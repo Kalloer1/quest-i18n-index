@@ -1,9 +1,12 @@
 #!/usr/bin/env node
 /**
- * 索引数据集构建入口（工单 01）。
+ * 索引数据集构建入口（工单 01、02）。
  *
- * 单一职责：读 research/build-input.json，产出 research/index-dataset.json。
+ * 单一职责：读 research/scan-cf500.tsv + research/build-input.json，产出 research/index-dataset.json。
  * 纯函数、离线、幂等：同一输入连跑两次，除时间戳外逐字节相同。
+ *
+ * 状态模型（工单 02）：每条整合包落入六态之一，见 PACK_STATES 与 classifyPack。
+ * 「探测未完成」不是整合包属性，单独用 probeIncomplete 表达，**不得**作为状态值。
  *
  * 匹配分三档，只有前两档计入「已覆盖」：
  *   exact    —— CF 标题规范化后与 VM originalName 全等
@@ -108,36 +111,133 @@ export function matchPack(pack, vmEntries) {
   return { tier: null, vm: null, why: '标题无全等命中' }
 }
 
+// ---------- 六态状态模型（工单 02） ----------
+
+/**
+ * 六态词表，顺序即页面展示顺序。词表与 GLOSSARY.md 同步。
+ * 六态描述**整合包本身**；探测进度不是状态，见 classifyPack 的 probeIncomplete。
+ */
+export const PACK_STATES = Object.freeze([
+  'downloadable',  // 可下载：本站已产出该整合包任务书汉化（本轮恒 0，结构保留）
+  'native-zh',     // 自带中文：整合包自身已带中文译文
+  'gap-uncovered', // 待翻译·无人覆盖：有英文源，本站未翻，社区也没有
+  'gap-covered',   // 待翻译·社区已覆盖：有英文源，本站未翻，VM 或 CFPA 已有
+  'embedded',      // 内嵌不可做：文本混在 chapters/*.snbt，该版本 FTB Quests 无翻译系统
+  'no-quests',     // 无任务书：不含 FTB Quests
+])
+
+/** 有英文源、可定向产出的两种语言布局。 */
+const SEPARATE_LAYOUTS = new Set(['separate-dir', 'separate-single'])
+
+/**
+ * 探测没跑完的布局标记。它们是探测结果，不是整合包属性，因此不进六态。
+ *   nodl              无下载地址，探测没开始
+ *   toobig            包体过大，未探测
+ *   other             布局无法识别，探测未定论
+ *   error:fetch failed 抓取失败
+ */
+const PROBE_INCOMPLETE_LAYOUTS = new Set(['nodl', 'toobig', 'other', 'error:fetch failed'])
+
+/**
+ * 判定一个整合包落入哪一态。
+ * @param {{slug:string,layout:string,enFiles:number|null,zhFiles:number|null,delivered?:boolean}} pack
+ * @param {Array} vmEntries
+ * @returns {{state:string|null, probeIncomplete:boolean, why:string, match?:object}}
+ */
+export function classifyPack(pack, vmEntries) {
+  const layout = pack.layout
+
+  // 探测未完成：拿不到探测结果，就无从判断整合包属性，六态留 null。
+  if (PROBE_INCOMPLETE_LAYOUTS.has(layout)) {
+    return { state: null, probeIncomplete: true, why: `探测未完成：${layout}` }
+  }
+
+  // 本轮没有任何输入置位 delivered，故 downloadable 恒为 0；分支保留，结构上留出该态。
+  if (pack.delivered) {
+    return { state: 'downloadable', probeIncomplete: false, why: '本站已产出该整合包任务书汉化' }
+  }
+
+  if (layout === 'embedded') {
+    return {
+      state: 'embedded', probeIncomplete: false,
+      why: '任务书文本内嵌在 chapters/*.snbt，该版本 FTB Quests 无翻译系统',
+    }
+  }
+
+  if (layout === 'none') {
+    return { state: 'no-quests', probeIncomplete: false, why: '探测到整合包不含 FTB Quests' }
+  }
+
+  if (SEPARATE_LAYOUTS.has(layout)) {
+    // 覆盖判定先于状态判定：自带中文的包也记录 VM 命中情况，供人工复核。
+    const m = matchPack(pack, vmEntries)
+    if (Number(pack.zhFiles) > 0) {
+      return {
+        state: 'native-zh', probeIncomplete: false, match: m,
+        why: `自带中文：${pack.zhFiles} 个中文任务书文件`,
+      }
+    }
+    if (m.vm) {
+      return {
+        state: 'gap-covered', probeIncomplete: false, match: m,
+        why: `社区已有「${m.vm.originalName}」：${m.why}`,
+      }
+    }
+    return {
+      state: 'gap-uncovered', probeIncomplete: false, match: m,
+      why: `有 ${pack.enFiles} 个英文任务书文件，本站未翻；${m.why}`,
+    }
+  }
+
+  throw new Error(`未知语言布局：${JSON.stringify(layout)}（整合包 ${pack.slug}）。新增布局须先定义其状态归属`)
+}
+
 // ---------- 构建 ----------
+
+const countBy = (list, key) => list.reduce((acc, item) => {
+  const k = key(item)
+  acc[k] = (acc[k] || 0) + 1
+  return acc
+}, {})
 
 export function buildDataset(input, { now = new Date().toISOString() } = {}) {
   const packs = input.packs.map(p => {
-    const m = matchPack(p, input.vmEntries)
+    const c = classifyPack(p, input.vmEntries)
+    const m = c.match || null
     return {
       slug: p.slug,
       cfId: p.cfId,
       layout: p.layout,
       enFiles: p.enFiles,
       zhFiles: p.zhFiles,
-      title: p.title,
-      // siteStatus 的六态模型由工单 02 接管；此处保持工单 01 的既有语义
-      siteStatus: p.zhFiles > 0 ? 'native-zh' : 'gap',
-      vm: m.vm
+      title: p.title ?? null,
+      state: c.state,
+      probeIncomplete: c.probeIncomplete,
+      stateWhy: c.why,
+      vm: m?.vm
         ? { match: m.tier, vmSlug: m.vm.vmSlug, originalName: m.vm.originalName, title: m.vm.title }
         : null,
-      vmSuspect: m.tier === 'suspect' ? { why: m.why } : null,
-      vmRejected: m.tier === null ? { why: m.why } : null,
+      vmSuspect: m?.tier === 'suspect' ? { why: m.why } : null,
+      vmRejected: m?.tier === null ? { why: m.why } : null,
     }
   })
 
   const stat = {
     total: packs.length,
-    gap: packs.filter(p => p.siteStatus === 'gap').length,
-    native: packs.filter(p => p.siteStatus === 'native-zh').length,
-    coveredByVm: packs.filter(p => p.vm).length,
+    // 各态计数：可与 scan-cf500.tsv 的 format 列对账
+    stateCounts: Object.fromEntries(PACK_STATES.map(s => [s, packs.filter(p => p.state === s).length])),
+    classified: packs.filter(p => p.state !== null).length,
+    probeIncomplete: packs.filter(p => p.probeIncomplete).length,
+    probeLayoutCounts: countBy(packs, p => p.layout),
+    // 「VM 覆盖」即待翻译·社区已覆盖的条数（自带中文的包不再重复计入）
+    coveredByVm: packs.filter(p => p.state === 'gap-covered').length,
     vmSuspect: packs.filter(p => p.vmSuspect).length,
     vmRejected: packs.filter(p => p.vmRejected).length,
-    trulyUncovered: packs.filter(p => p.siteStatus === 'gap' && !p.vm).length,
+  }
+
+  // 完整性不变式：每条记录要么有态，要么是探测未完成，不允许凭空消失。
+  if (stat.classified + stat.probeIncomplete !== stat.total) {
+    throw new Error(`状态计数对不上：${stat.classified} + ${stat.probeIncomplete} ≠ ${stat.total}`)
   }
 
   return {
@@ -150,10 +250,57 @@ export function buildDataset(input, { now = new Date().toISOString() } = {}) {
         '旧值 21 含 10 条 fuzzy 误配（slug 子串包含即判命中）。',
         '误配分两类：通用词撞车（create / fantasy 短 slug）、续作当同款（X-2 命中 X）。',
         '新逻辑只用标题全等判定；标题缺失时降级为疑似，不计入覆盖。',
+        '工单 02 起产出覆盖全部 500 条扫描记录（原 57 条），current 与旧值不可直接比大小。',
       ],
     },
     stat,
     dataset: packs,
+  }
+}
+
+// ---------- 扫描 TSV ----------
+
+const toCount = v => (v === '' || v == null ? null : Number(v))
+
+/**
+ * 读扫描结果 TSV。列：platform id slug bytes format newEn newZh oldCh cdKB scannedAt。
+ * TSV 的 format 列就是语言布局，产出里统一叫 layout。
+ * @returns {Array<{slug:string,cfId:string,layout:string,enFiles:number|null,zhFiles:number|null,normSlug:string,normTitle:null}>}
+ */
+export function parseScanTsv(text) {
+  const lines = text.split(/\r?\n/).filter(l => l.trim())
+  const header = lines[0].split('\t')
+  for (const col of ['id', 'slug', 'format', 'newEn', 'newZh']) {
+    if (!header.includes(col)) throw new Error(`扫描 TSV 缺列：${col}`)
+  }
+  const idx = Object.fromEntries(header.map((col, i) => [col, i]))
+  return lines.slice(1).map(line => {
+    const f = line.split('\t')
+    const slug = f[idx.slug]
+    return {
+      cfId: f[idx.id],
+      slug,
+      layout: f[idx.format],
+      enFiles: toCount(f[idx.newEn]),
+      zhFiles: toCount(f[idx.newZh]),
+      normSlug: norm(slug),
+      normTitle: null,
+    }
+  })
+}
+
+/**
+ * 合成 buildDataset 的输入：扫描 TSV 提供全部记录，build-input.json 提供标题与 VM 条目。
+ * 标题只有少数包有，其余靠 slug 全等判定覆盖（见 matchPack）。
+ */
+export function composeScanInput(scanText, baseInput) {
+  const base = new Map(baseInput.packs.map(p => [p.slug, p]))
+  return {
+    packs: parseScanTsv(scanText).map(row => {
+      const b = base.get(row.slug)
+      return { ...row, title: b?.title ?? null, normTitle: b?.normTitle ?? null }
+    }),
+    vmEntries: baseInput.vmEntries,
   }
 }
 
@@ -162,11 +309,13 @@ export function buildDataset(input, { now = new Date().toISOString() } = {}) {
 const isMain = process.argv[1] && import.meta.url.endsWith(process.argv[1].replace(/\\/g, '/').split('/').pop())
 
 if (isMain) {
-  const inPath = process.argv[2] || 'research/build-input.json'
+  const scanPath = process.argv[2] || 'research/scan-cf500.tsv'
   const outPath = process.argv[3] || 'research/index-dataset.json'
-  const input = JSON.parse(readFileSync(inPath, 'utf8'))
+  const baseInput = JSON.parse(readFileSync('research/build-input.json', 'utf8'))
+  const input = composeScanInput(readFileSync(scanPath, 'utf8'), baseInput)
   const out = buildDataset(input)
   writeFileSync(outPath, JSON.stringify(out, null, 2) + '\n')
   console.log(`→ ${outPath}`)
-  console.log(`  VM 覆盖 ${out.stat.coveredByVm}（旧 21）  疑似 ${out.stat.vmSuspect}  判拒 ${out.stat.vmRejected}`)
+  console.log(`  共 ${out.stat.total} 条：${Object.entries(out.stat.stateCounts).map(([s, n]) => `${s} ${n}`).join('  ')}`)
+  console.log(`  探测未完成 ${out.stat.probeIncomplete}  VM 覆盖 ${out.stat.coveredByVm}（旧 21）  疑似 ${out.stat.vmSuspect}`)
 }
