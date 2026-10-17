@@ -68,6 +68,48 @@ function splitGameVersions(values) {
   return { gameVersions, loaders }
 }
 
+// `mods/search` 与 `mods/<id>` 的响应**没有** gameVersions 字段，
+// 版本信息在 latestFilesIndexes 里：gameVersion = MC 版本，modLoader = 数字枚举。
+// 4=Forge 5=NeoForge 6=Fabric 7=Quilt
+const MOD_LOADER_BY_ID = new Map([
+  [1, 'Forge'],
+  [4, 'Forge'],
+  [5, 'NeoForge'],
+  [6, 'Fabric'],
+  [7, 'Quilt'],
+])
+
+function fromLatestFilesIndexes(indexes) {
+  const gameVersions = new Set()
+  const loaders = new Set()
+  for (const item of Array.isArray(indexes) ? indexes : []) {
+    if (typeof item?.gameVersion === 'string' && item.gameVersion.trim()) {
+      gameVersions.add(item.gameVersion.trim())
+    }
+    const loader = MOD_LOADER_BY_ID.get(item?.modLoader)
+    if (loader) loaders.add(loader)
+  }
+  return {
+    gameVersions: gameVersions.size > 0 ? [...gameVersions] : null,
+    loaders: loaders.size > 0 ? [...loaders] : null,
+  }
+}
+
+/**
+ * 取版本与加载器：优先 gameVersions（老响应），否则从 latestFilesIndexes 推导。
+ * 两处都拿不到时返回 null，不猜。
+ */
+function resolveVersionsAndLoaders(mod) {
+  const split = splitGameVersions(mod?.gameVersions)
+  if (split.gameVersions.length > 0 || split.loaders.length > 0) {
+    return {
+      gameVersions: split.gameVersions.length > 0 ? split.gameVersions : null,
+      loaders: split.loaders.length > 0 ? split.loaders : null,
+    }
+  }
+  return fromLatestFilesIndexes(mod?.latestFilesIndexes)
+}
+
 function recordFromDemo(pack, demo, demoDataCommitAt) {
   return {
     slug: pack.slug,
@@ -88,7 +130,7 @@ function recordFromDemo(pack, demo, demoDataCommitAt) {
 }
 
 function recordFromMod(pack, mod, fetchedAt) {
-  const { gameVersions, loaders } = splitGameVersions(mod.gameVersions)
+  const { gameVersions, loaders } = resolveVersionsAndLoaders(mod)
   const authors = Array.isArray(mod.authors)
     ? mod.authors.map((author) => textOrNull(author?.name)).filter(Boolean)
     : []
@@ -100,8 +142,8 @@ function recordFromMod(pack, mod, fetchedAt) {
     description: textOrNull(mod.summary),
     iconUrl: textOrNull(mod.logo?.thumbnailUrl) ?? textOrNull(mod.logo?.url),
     downloads: Number.isFinite(mod.downloadCount) ? mod.downloadCount : null,
-    gameVersions: gameVersions.length > 0 ? gameVersions : null,
-    loaders: loaders.length > 0 ? loaders : null,
+    gameVersions: gameVersions ?? null,
+    loaders: loaders ?? null,
     authors: authors.length > 0 ? authors : null,
     source: 'curseforge',
     fetchedAt,
