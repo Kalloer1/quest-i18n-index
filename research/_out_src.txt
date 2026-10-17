@@ -1,0 +1,764 @@
+########## Krutoy242/ftbq-nbt/examples/snbt.ts (master) ##########
+import { stringify, parse } from "../src"
+
+console.log(stringify({ json: `{"text":"Hello"}` }))
+
+console.log(stringify({ $: `Hellow` }))
+
+console.log(stringify({
+    a: [1/4, 1 / 3],
+    b: new Int32Array(8)
+}, { quote: "single", pretty: true }))
+
+console.log(parse(`{id:"minecraft:diamond_sword",Count:1b,tag:{ench:[{lvl:5s,id:16s},{lvl:3s,id:21s}],RepairCost:6,display:{Name:"Resilience"}},Damage:0s}`))
+
+########## Krutoy242/ftbq-nbt/examples/test_crlf.snbt (master) ##########
+{
+    test: 1
+}
+########## Krutoy242/ftbq-nbt/examples/test_tabs.snbt (master) ##########
+{
+	test: 1
+}
+########## Krutoy242/ftbq-nbt/src/snbt.ts (master) ##########
+import * as nbt from "."
+
+const unquotedRegExp = /^[0-9A-Za-z.+_-]+$/
+
+export interface StringifyOptions {
+    pretty?: boolean
+    breakLength?: number
+    quote?: "single" | "double"
+    skipComma?: boolean
+    useBoolean?: boolean
+    tab?: string
+    newline?: string
+    
+    /**
+     * Not add spaces at start of line in TAG_List (list of tags).  
+     * Also, join list opening brackets with object brackets.  
+     * @example ```
+     * `[{a:1},{b:2}]` // input
+     * // Output:
+     * `[{
+     *     a: 1
+     * },
+     * {
+     *     b: 2
+     * }]`
+     * ```
+     */
+    noTagListTab?: boolean
+
+    /**
+     * Character to add at the end of each typed value
+     */
+    typePostfix?: {
+        
+        /** @default '' */
+        I?: string
+        
+        /** @default 'f' */
+        F?: string
+        
+        /** @default '' */
+        D?: string
+        
+        /** @default 'b' */
+        B?: string
+        
+        /** @default 's' */
+        S?: string
+        
+        /** @default 'l' */
+        L?: string
+    }
+
+    /**
+     * Add type postfix for each list element.
+     */
+    arrayPostfix?: {
+        B?: string
+        I?: string
+        L?: string
+    }
+}
+
+export function stringify(tag: nbt.Tag, options: StringifyOptions = {}): string {
+    const pretty = !!options.pretty, breakLength = options.breakLength ?? 70
+    const skipComma = pretty && !!options.skipComma, useBoolean = !!options.useBoolean
+    const quoteChar = options.quote == "single" ? "'" : options.quote == "double" ? '"' : null
+    const spaces = options.tab || " ".repeat(4)
+    const nl = options.newline || "\n"
+
+    function escapeString(text: string) {
+        let q = quoteChar ?? '"'
+        if (quoteChar == null) {
+            for (let i = 0; i < text.length && i < 8; i++) {
+                switch (text[i]) {
+                    case "'": q = '"'; break
+                    case '"': q = "'"; break
+                    default: continue
+                }
+                break
+            }
+        }
+        return `${q}${text.replace(RegExp(`[${q}\\\\]`, "g"), x => `\\${x}`)}${q}`
+    }
+
+    function stringify(tag: nbt.Tag, depth: number): string {
+        const space = pretty ? " " : "", sep = pretty ? ", " : ","
+        const sep2 = skipComma ? nl : `,${nl}`
+
+        function isMultiline(list:string[]) {
+            return list.reduce((acc, x) => acc + x.length, 0) > breakLength
+                || list.some(text => text.includes("\n"))
+        }
+
+        function listToStr(list: string[], skipTab: boolean, arrT?: string) {
+            if (isMultiline(list)) {
+                const tabbedList = list.map(s => spaces.repeat(depth - +skipTab) + s).join(sep2)
+                return skipTab
+                    ? `[${tabbedList.trim()}]`
+                    : `[${arrT ? `${arrT};` : ''}${nl}${tabbedList}${nl}${spaces.repeat(depth - 1)}]`
+            } else {
+                return `[${arrT ? `${arrT};${space}` : ''}${list.join(sep)}]`
+            }
+        }
+
+        function arrToStr(arr: string[], arrType: 'B' | 'I' | 'L',) {
+            const postfix = options.arrayPostfix?.[arrType]
+            const list = postfix ? arr.map(s => s + postfix) : arr
+            return listToStr(list, false, arrType)
+        }
+
+        if (tag instanceof nbt.Byte) return `${tag.value}${options.typePostfix?.B ?? 'b'}`
+        else if (tag instanceof nbt.Short) return `${tag.value}${options.typePostfix?.S ?? 's'}`
+        else if (tag instanceof nbt.Int) return `${tag.value | 0}${options.typePostfix?.I ?? ''}`
+        else if (typeof tag == "bigint") return `${tag}${options.typePostfix?.L ?? 'l'}`
+        else if (tag instanceof nbt.Float) return `${tag.value}${options.typePostfix?.F ?? 'f'}`
+        else if (typeof tag == "number") return (Number.isInteger(tag) ? `${tag}.0` : tag.toString()) + (options.typePostfix?.D ?? '')
+        else if (typeof tag == "string") return escapeString(tag)
+        else if (typeof tag == "boolean") return useBoolean ? `${tag}` : escapeString(tag.toString())
+        else if (tag instanceof Buffer
+            || tag instanceof Int8Array) return arrToStr([...tag].map(String), 'B')
+        else if (tag instanceof Int32Array) return arrToStr([...tag].map(String), 'I')
+        else if (tag instanceof BigInt64Array) return arrToStr([...tag].map(String), 'L')
+        else if (tag instanceof Array) {
+            const skipTab = options.noTagListTab === true && typeof tag[0] === 'object'
+            const list = tag.map(tag => stringify(tag, depth + +!skipTab))
+            return listToStr(list, skipTab)
+        } else {
+            const pairs = (tag instanceof Map ? [...tag] : Object.entries(tag)
+                .filter(([_, v]) => v != null))
+                .map(([key, tag]) => {
+                    if (!unquotedRegExp.test(key)) key = escapeString(key)
+                    return `${key}:${space}${stringify(tag!, depth + 1)}`
+                })
+            if (pretty && pairs.reduce((acc, x) => acc + x.length, 0) > breakLength) {
+                return `{${nl}${pairs.map(text => spaces.repeat(depth)
+                    + text).join(sep2)}${nl}${spaces.repeat(depth - 1)}}`
+            } else {
+                return pairs.length ? `{${space}${pairs.join(sep)}${space}}` : '{}'
+            }
+        }
+    }
+    return stringify(tag, 1)
+}
+
+export interface ParseOptions {
+    useMaps?: boolean
+    skipComma?: boolean
+    useBoolean?: boolean
+}
+
+export function parse(text: string, options: ParseOptions = {}) {
+    let index = 0, i = 0, char = ""
+
+    const unexpectedEnd = () => new Error("Unexpected end")
+    const unexpectedChar = (i?: number) => {
+        if (i == null) i = index
+        return new Error(`Unexpected character ${text[index]} at position ${index}`)
+    }
+
+    function skipWhitespace() {
+        while (index < text.length) {
+            if (text[index] != " " && text[index] != "\t" && text[index] != "\n" && text[index] != "\r") return
+            index += 1
+        }
+    }
+
+    function readNumber() {
+        if (!"-0123456789".includes(text[index])) return null
+        i = index++
+        let hasFloatingPoint = false
+        while (index < text.length) {
+            char = text[index++]
+            if ("0123456789".includes(char)) {
+                continue
+            } else if (char == ".") {
+                if (hasFloatingPoint) return (index-- , null)
+                hasFloatingPoint = true
+            } else if (char == "f" || char == "F") {
+                return new nbt.Float(+text.slice(i, index - 1))
+            } else if (char == "d" || char == "D") {
+                return +text.slice(i, index - 1)
+            } else if (char == "b" || char == "B") {
+                return new nbt.Byte(+text.slice(i, index - 1))
+            } else if (char == "s" || char == "S") {
+                return new nbt.Short(+text.slice(i, index - 1))
+            } else if (char == "l" || char == "L") {
+                return BigInt(text.slice(i, index - 1))
+            } else if (hasFloatingPoint) {
+                return +text.slice(i, --index)
+            } else return new nbt.Int(+text.slice(i, --index))
+        }
+        if (hasFloatingPoint) return +text.slice(i, index)
+        else return new nbt.Int(+text.slice(i, index))
+    }
+
+    function readUnquotedString(useBoolean = false) {
+        i = index
+        while (index < text.length) {
+            if (!unquotedRegExp.test(text[index])) break
+            index++
+        }
+        if (index - i == 0) throw index == text.length ? unexpectedEnd() : unexpectedChar()
+        const str = text.slice(i, index)
+        if (useBoolean) {
+            if (str === "true") return true
+            else if (str === "false") return false
+        }
+        return str
+    }
+
+    function readQuotedString() {
+        const quoteChar = text[index]
+        i = ++index
+        let string = ""
+        while (index < text.length) {
+            char = text[index++]
+            if (char == "\\") {
+                string += text.slice(i, index - 1) + text[index]
+                i = ++index
+            } else if (char == quoteChar) return string + text.slice(i, index - 1)
+        }
+        throw unexpectedEnd()
+    }
+
+    function readString() {
+        if (text[index] == '"' || text[index] == "'") return readQuotedString()
+        else return readUnquotedString() as string
+    }
+
+    function skipCommas(isFirst: boolean, end: string) {
+        skipWhitespace()
+        if (text[index] == ",") {
+            if (isFirst) throw unexpectedChar()
+            else index++ , skipWhitespace()
+        } else if (!isFirst && text[index] != end) {
+            if (!options.skipComma) throw unexpectedChar()
+        }
+    }
+
+    function readCompound(): nbt.TagObject | nbt.TagMap {
+        const entries: [string, nbt.Tag][] = []
+        let first = true
+        while (true) {
+            skipCommas(first, "}"), first = false
+            if (text[index] == "}") {
+                index++
+                return options.useMaps
+                    ? new Map(entries)
+                    : entries.reduce<nbt.TagObject>((obj, [k, v]) => (obj[k] = v, obj), {})
+            }
+            const key = readString() as string
+            skipWhitespace()
+            if (text[index++] != ":") throw unexpectedChar()
+            entries.push([key, parse()])
+        }
+    }
+
+    function readArray(type: string) {
+        const array: string[] = []
+        while (index < text.length) {
+            skipCommas(array.length == 0, "]")
+            if (text[index] == "]") {
+                index++
+                if (type == "B") return Buffer.from(array.map(v => +v))
+                else if (type == "I") return Int32Array.from(array.map(v => +v))
+                else if (type == "L") return BigInt64Array.from(array.map(v => BigInt(v)))
+            }
+            i = index
+            if (text[index] == "-") index++
+            while (index < text.length) {
+                if (!"0123456789".includes(text[index])) break
+                index++
+            }
+            if (index - i == 0) throw unexpectedChar()
+            if (unquotedRegExp.test(text[index])) throw unexpectedChar()
+            array.push(text.slice(i, index))
+        }
+        throw unexpectedEnd()
+    }
+
+    function readList() {
+        if ("BILbil".includes(text[index]) && text[index + 1] == ";") {
+            return readArray(text[(index += 2) - 2].toUpperCase())
+        }
+        const array: nbt.TagArray = []
+        while (index < text.length) {
+            skipWhitespace()
+            skipCommas(array.length == 0, "]")
+            if (text[index] == "]") return (index++ , array)
+            array.push(parse())
+        }
+        throw unexpectedEnd()
+    }
+
+    function parse(): nbt.Tag {
+        skipWhitespace()
+
+        i = index, char = text[index]
+        if (char == "{") return (index++ , readCompound())
+        else if (char == "[") return (index++ , readList())
+        else if (char == '"' || char == "'") return readQuotedString()
+
+        const value = readNumber()
+        if (value != null && (index == text.length || !unquotedRegExp.test(text[index]))) {
+            return value
+        }
+        index = i
+        return readUnquotedString(options.useBoolean)
+    }
+
+    const value = parse()
+    return value
+}
+
+########## Nickid2018/snbt-grammar/src/index.ts (master) ##########
+import * as highlight from './snbt-highlighter.gen';
+import { SNBTValue } from './snbt-parser.base';
+import * as parser from './snbt-parser.gen';
+
+export {
+  IntegerValue,
+  FloatValue,
+  IntegerList,
+  SNBTValue,
+  createInteger,
+  createFloat,
+} from './snbt-parser.base';
+
+export type HighlightToken = {
+  start: number;
+  end: number;
+  type:
+    | 'number'
+    | 'numberSuffix'
+    | 'string'
+    | 'key'
+    | 'operation'
+    | 'arrayType'
+    | 'escape';
+};
+
+export const parse: (
+  input: string,
+  options?: Record<string, any>,
+) => SNBTValue = parser.parse;
+
+export const highlights: (
+  input: string,
+  options?: Record<string, any>,
+) => HighlightToken[] = (input, options) => {
+  const tokens = highlight.parse(input, options) as HighlightToken[];
+  const occupiedRange = [] as [number, number][];
+  return [
+    ...tokens
+      .filter(t => t.type !== 'escape')
+      .filter(t => t.start !== t.end)
+      .reverse()
+      .filter(token => {
+        if (
+          occupiedRange.some(
+            range => token.start <= range[1] - 1 && range[0] <= token.end - 1,
+          )
+        ) {
+          return false;
+        }
+        occupiedRange.push([token.start, token.end]);
+        return true;
+      })
+      .reverse(),
+    ...tokens.filter(t => t.type === 'escape'),
+  ];
+};
+
+########## Nickid2018/snbt-grammar/src/snbt-parser.base.ts (master) ##########
+export class IntegerValue {
+  value: bigint;
+  signed: boolean;
+  type: 'byte' | 'short' | 'int' | 'long' | null;
+
+  private resolved: boolean = false;
+
+  constructor(
+    value: bigint,
+    signed: boolean,
+    type: 'byte' | 'short' | 'int' | 'long' | null
+  ) {
+    this.value = value;
+    this.signed = signed;
+    this.type = type;
+  }
+
+  _resolve(
+    outType?: 'byte' | 'short' | 'int' | 'long',
+    error?: base.ParsingError
+  ): IntegerValue {
+    if (this.resolved) return this;
+    const resolveType = this.type ?? outType ?? 'int';
+    const type = base.getBitsForInteger(resolveType as base.IntegerTypeSuffix);
+    if (this.signed) {
+      if (
+        this.value > (1n << (type - 1n)) - 1n ||
+        this.value < -(1n << (type - 1n))
+      ) {
+        error?.('Value out of range.');
+        return this;
+      }
+    } else {
+      if (this.value > (1n << type) - 1n || this.value < 0n) {
+        error?.('Value out of range.');
+        return this;
+      }
+    }
+    this.value = BigInt.asIntN(Number(type), this.value);
+    this.resolved = true;
+    return this;
+  }
+}
+
+export class FloatValue {
+  value: number;
+  type: 'float' | 'double';
+}
+
+export class IntegerList {
+  values: bigint[];
+  type: 'byte' | 'short' | 'int' | 'long';
+}
+
+export function createInteger(
+  num: bigint | number,
+  signed?: boolean,
+  type?: 'byte' | 'short' | 'int' | 'long'
+): IntegerValue {
+  return new IntegerValue(BigInt(num), signed ?? true, type ?? null)._resolve(
+    type,
+    s => {
+      throw new Error(s);
+    }
+  );
+}
+
+export function createFloat(
+  num: number,
+  type?: 'float' | 'double'
+): FloatValue {
+  if (type === 'float') {
+    const f32Array = new Float32Array(new ArrayBuffer(4));
+    f32Array[0] = num;
+    num = f32Array[0];
+  }
+  return {
+    value: num,
+    type: type ?? 'double',
+  };
+}
+
+export type SNBTValue =
+  | IntegerValue
+  | FloatValue
+  | IntegerList
+  | string
+  | boolean
+  | { [p: string]: SNBTValue }
+  | Array<SNBTValue>;
+
+export namespace base {
+  export type ParsingError = (s: string, where?: any) => void;
+
+  export enum IntegerTypeSuffix {
+    BYTE = 'byte',
+    SHORT = 'short',
+    INTEGER = 'int',
+    LONG = 'long',
+  }
+
+  export enum FloatTypeSuffix {
+    FLOAT = 'float',
+    DOUBLE = 'double',
+  }
+
+  export enum SignedPrefix {
+    SIGNED = 'signed',
+    UNSIGNED = 'unsigned',
+  }
+
+  export enum Sign {
+    PLUS = '+',
+    MINUS = '-',
+  }
+
+  export enum Base {
+    HEX = 16,
+    DEC = 10,
+    BIN = 2,
+  }
+
+  export interface IntegerLiteral {
+    sign: Sign | string;
+    suffix: {
+      signed: SignedPrefix | null;
+      type: IntegerTypeSuffix | null;
+    };
+    base: number;
+    value: string;
+  }
+
+  export interface FloatLiteral {
+    sign: Sign | string;
+    integer: string;
+    frac: string;
+    exp?: {
+      sign: Sign | string;
+      value: string;
+    };
+    suf: FloatTypeSuffix | null;
+  }
+
+  export function getBitsForInteger(suffix: IntegerTypeSuffix) {
+    switch (suffix) {
+      case IntegerTypeSuffix.BYTE:
+        return 8n;
+      case IntegerTypeSuffix.SHORT:
+        return 16n;
+      case IntegerTypeSuffix.INTEGER:
+        return 32n;
+      case IntegerTypeSuffix.LONG:
+        return 64n;
+    }
+  }
+
+  export namespace BuiltinOperation {
+    const registry = new Map<
+      string,
+      (error: ParsingError, ...args: SNBTValue[]) => SNBTValue
+    >();
+
+    export function register(
+      name: string,
+      fn: (error: ParsingError, ...args: SNBTValue[]) => SNBTValue,
+      length: number
+    ) {
+      registry.set(`${length}-${name}`, fn);
+    }
+
+    export function get(name: string, length: number) {
+      return registry.get(`${length}-${name}`);
+    }
+
+    register(
+      'bool',
+      (error: ParsingError, val: SNBTValue) => {
+        if (typeof val === 'boolean') return val;
+        if (val instanceof IntegerValue) {
+          return val.value !== 0n;
+        }
+        if (val instanceof FloatValue) {
+          return val.value !== 0;
+        }
+        error('Expect number or boolean');
+      },
+      1
+    );
+
+    register(
+      'uuid',
+      (error: ParsingError, uuid: SNBTValue) => {
+        if (typeof uuid !== 'string') {
+          error('Expect string uuid');
+          return ''; // will not return
+        }
+        if (uuid.length > 36) error('Expect string uuid');
+        const split = uuid.split('-');
+        if (split.length !== 5) error('Expect string uuid');
+        const uuidNum =
+          ((BigInt(`0x${split[0]}`) & 0xffffffffn) << 96n) |
+          ((BigInt(`0x${split[1]}`) & 0xffffn) << 80n) |
+          ((BigInt(`0x${split[2]}`) & 0xffffn) << 64n) |
+          ((BigInt(`0x${split[3]}`) & 0xffffn) << 48n) |
+          (BigInt(`0x${split[4]}`) & 0xffffffffffffn);
+        return {
+          values: [
+            BigInt.asIntN(32, uuidNum >> 96n),
+            BigInt.asIntN(32, uuidNum >> 64n),
+            BigInt.asIntN(32, uuidNum >> 32n),
+            BigInt.asIntN(32, uuidNum),
+          ],
+          type: 'int',
+        };
+      },
+      1
+    );
+  }
+
+  export function convertToIntTypeSuffix(suffix: string) {
+    switch (suffix) {
+      case 'b':
+      case 'B':
+        return IntegerTypeSuffix.BYTE;
+      case 's':
+      case 'S':
+        return IntegerTypeSuffix.SHORT;
+      case 'i':
+      case 'I':
+        return IntegerTypeSuffix.INTEGER;
+      case 'l':
+      case 'L':
+        return IntegerTypeSuffix.LONG;
+    }
+  }
+
+  export function convertToFloatTypeSuffix(suffix: string) {
+    switch (suffix) {
+      case 'f':
+      case 'F':
+        return FloatTypeSuffix.FLOAT;
+      case 'd':
+      case 'D':
+        return FloatTypeSuffix.DOUBLE;
+    }
+    return null;
+  }
+
+  export function checkNum(num: string, error: ParsingError): string {
+    if (num.startsWith('_') || num.endsWith('_'))
+      error('Underscore is not allowed');
+    return num;
+  }
+
+  function cleanNumber(num: string) {
+    const needUnderscoreRemoval = num.includes('_');
+    if (needUnderscoreRemoval) num = num.replace(/_/g, '');
+    return num;
+  }
+
+  export function convertNum(
+    num: IntegerLiteral,
+    error: ParsingError
+  ): IntegerValue {
+    const signedPrefix = num.suffix
+      ? num.suffix.signed
+      : num.base === 10
+        ? SignedPrefix.SIGNED
+        : SignedPrefix.UNSIGNED;
+    const signed = signedPrefix === SignedPrefix.SIGNED;
+    if (!signed && num.sign === Sign.MINUS)
+      error('Expected non negative number');
+    num.value = cleanNumber(num.value);
+    const converted = `${num.base === Base.HEX ? '0x' : num.base === Base.BIN ? '0b' : ''}${num.value}`;
+    let integer = BigInt(converted);
+    if (signed) {
+      if (num.sign === Sign.MINUS) integer = -integer;
+      return new IntegerValue(integer, signed, num.suffix?.type ?? null);
+    } else {
+      return new IntegerValue(integer, signed, num.suffix?.type ?? null);
+    }
+  }
+
+  export function convertFloat(
+    num: FloatLiteral,
+    error: ParsingError
+  ): FloatValue {
+    num.integer = cleanNumber(num.integer);
+    num.frac = cleanNumber(num.frac);
+    if (num.exp) num.exp.value = cleanNumber(num.exp.value);
+    const converted = `${num.sign}${num.integer}.${num.frac}${num.exp ? `e${num.exp.sign}${num.exp.value}` : ''}`;
+    let float = parseFloat(converted);
+    if (!isFinite(float)) error('Infinity not allowed');
+    const suf = num.suf ? num.suf : FloatTypeSuffix.DOUBLE;
+    return createFloat(float, suf);
+  }
+
+  export function convertHexString(str: string, error: ParsingError): string {
+    const hex = parseInt(str, 16);
+    if (hex > 0x10ffff)
+      error(
+        `Invalid codepoint U+${hex.toString(16).toUpperCase().padStart(8, '0')}`
+      );
+    return String.fromCodePoint(hex);
+  }
+
+  export function convertUnicodeNameString(str: string, error: ParsingError) {
+    return str; // TODO
+  }
+
+  export function convertUnquotedOrBuiltin(
+    str: string,
+    argv: SNBTValue[] | null,
+    error: ParsingError
+  ) {
+    if (str.charAt(0).match(/[-+.0-9]/)) error('Invalid unquoted start');
+    if (argv) {
+      const op = BuiltinOperation.get(str, argv.length);
+      if (op) {
+        const result = op(error, ...argv);
+        if (result) return result;
+      }
+      error('No such operation');
+    }
+    if (str.toLowerCase() === 'true') return true;
+    if (str.toLowerCase() === 'false') return false;
+    return str;
+  }
+
+  export function convertIntList(
+    prefix: string,
+    list: IntegerValue[],
+    error: ParsingError
+  ) {
+    const type = convertToIntTypeSuffix(prefix);
+    if (
+      list
+        .filter(l => !!l.type)
+        .some(
+          l =>
+            getBitsForInteger(l.type as IntegerTypeSuffix) >
+            getBitsForInteger(type)
+        )
+    )
+      error('Invalid array element type');
+    return {
+      type: type,
+      values: list.map(l => l._resolve(type, error).value),
+    };
+  }
+}
+
+########## myworldzycpc/snbt-js/test/serializer-tests.ts (main) ##########
+import { expect } from "chai";
+import { NbtNumber, NbtObject } from "../src/snbt.js";
+
+describe('SNBT Serializer', () => {
+    it('should quote unsafe keys', () => {
+        const result = new NbtObject({
+            "minecraft:key": new NbtNumber(1),
+            "key with spaces": new NbtNumber(2),
+        }).text();
+
+        expect(result).to.equal('{"minecraft:key": 1, "key with spaces": 2}');
+    });
+});

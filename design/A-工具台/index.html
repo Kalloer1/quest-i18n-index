@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<!--
+  方向 A · 工具台（效率优先）
+  目标：让玩家在 3 秒内知道「哪些包现在就能下载」，然后走最短路径拿到文件。
+  关键决策（详见同目录 设计说明.md）：
+  1) 三状态（可下载 / 自带中文 / 待翻译）做成列表顶部可点击的计数条 —— 状态是第一等公民，
+     且不允许任何状态被静默隐藏；颜色只是辅助，状态始终带文字。
+  2) 列表用等高紧凑行 + 列头，而不是大图卡片流：一屏可见 12+ 条，数字列右对齐可比。
+  3) 只有 ≤480px（移动）与 ≥1200px（桌面）两个指定断点，另加 1024px 内容驱动的表格展开点；
+     小于 1024px 用两行卡片，避免 7 列在窄屏挤成横向滚动。
+  4) 详情页把「下载」与「安装步骤」放在同一屏：桌面右栏吸顶，移动端下载面板排到正文之前。
+  5) 安装说明独立成视图并附「常见错误」，因为放错位置是本站投诉的第一大来源。
+  6) 全部样式由设计令牌驱动，组件只消费 var(--*)，不散写颜色与间距。
+-->
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MC 任务书汉化 · 工具台</title>
+  <style>
+    :root {
+      --bg: #fafafa;
+      --surface: #ffffff;
+      --border: #e5e7eb;
+      --text: #1a1a1a;
+      --text-dim: #6b7280;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --ok: #16a34a;
+      --ok-bg: #dcfce7;
+      --info: #0284c7;
+      --info-bg: #e0f2fe;
+      --warn: #d97706;
+      --warn-bg: #fef3c7;
+      --danger: #dc2626;
+      --radius: 8px;
+      --radius-sm: 4px;
+      --sp-1: 4px;
+      --sp-2: 8px;
+      --sp-3: 12px;
+      --sp-4: 16px;
+      --sp-5: 24px;
+      --sp-6: 32px;
+      --sp-7: 48px;
+      --font: system-ui, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.5;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    input,
+    select {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: var(--sp-3) var(--sp-5);
+      display: flex;
+      align-items: center;
+      gap: var(--sp-5);
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+
+    .site-nav a.active {
+      color: var(--accent);
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--sp-4) var(--sp-5);
+    }
+
+    .crumb {
+      color: var(--text-dim);
+      margin-bottom: var(--sp-4);
+      font-size: 14px;
+    }
+
+    .crumb a:hover {
+      text-decoration: underline;
+    }
+
+    /* Filter bar */
+    .filter-row {
+      display: flex;
+      gap: var(--sp-3);
+      margin-bottom: var(--sp-4);
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .filter-row input[type="search"] {
+      flex: 1 1 200px;
+      min-width: 180px;
+      padding: var(--sp-2) var(--sp-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      line-height: 1.8;
+    }
+
+    .filter-row select {
+      padding: var(--sp-2) var(--sp-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      min-height: 44px;
+    }
+
+    .result-count {
+      color: var(--text-dim);
+      font-size: 13px;
+      margin-bottom: var(--sp-3);
+    }
+
+    /* 状态计数条：数字用等宽数字对齐，点一下即筛选；再点一次取消。 */
+    .status-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--sp-2);
+      margin-bottom: var(--sp-3);
+    }
+
+    .stat {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-2);
+      min-height: 44px;
+      padding: var(--sp-2) var(--sp-4);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .stat:hover {
+      border-color: var(--accent);
+    }
+
+    .stat[aria-pressed="true"] {
+      border-color: var(--accent);
+      box-shadow: inset 0 0 0 1px var(--accent);
+    }
+
+    .stat-num {
+      font-size: 18px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stat-label {
+      color: var(--text-dim);
+    }
+
+    .stat--all {
+      margin-left: auto;
+    }
+
+    /* Pack list */
+    .pack-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-2);
+    }
+
+    /* 移动优先：小于 1024px 时压缩成两行——
+       第 1 行「图标 + 名称 …… 下载量」，第 2 行「状态徽章 + 元信息」。
+       目的是让 22 条整合包在手机上仍能快速纵向扫读，而不是每条占满半屏。 */
+    .pack-row {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: var(--sp-3) var(--sp-4);
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: var(--sp-2) var(--sp-3);
+      align-items: center;
+      min-height: 44px;
+    }
+
+    .pack-row:hover {
+      border-color: var(--accent);
+    }
+
+    /* 整行可点，但按钮化会牺牲密度；用悬停下划线作为「可点」的弱提示。 */
+    .pack-row:hover .pack-title span,
+    .pack-row:focus-visible .pack-title span {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .pack-row .pack-title {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .pack-row .pack-downloads {
+      grid-column: 2;
+      grid-row: 1;
+      text-align: right;
+      font-size: 14px;
+    }
+
+    /* 移动端把状态与元信息并成一条 wrap 行，用间隔点分隔，避免每字段一行。 */
+    .pack-row .pack-meta {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--sp-1) var(--sp-2);
+      font-size: 13px;
+    }
+
+    .pack-row .pack-meta > * + *::before {
+      content: "·";
+      color: var(--border);
+      margin-right: var(--sp-2);
+    }
+
+    .pack-row .pack-files::before {
+      content: "文件 ";
+      color: var(--text-dim);
+    }
+
+    /* 桌面端列头：与数据行共用同一套列宽，保证数字可以纵向对齐比较 */
+    .pack-head {
+      display: none;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .badge--ok       { color: var(--ok);   background: var(--ok-bg); }
+    .badge--info     { color: var(--info); background: var(--info-bg); }
+    .badge--warn     { color: var(--warn); background: var(--warn-bg); }
+
+    .pack-title {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+      font-weight: 600;
+      overflow-wrap: anywhere;
+    }
+
+    .pack-title img {
+      width: 24px;
+      height: 24px;
+      border-radius: var(--radius-sm);
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .cell {
+      color: var(--text-dim);
+      font-size: 14px;
+      overflow-wrap: anywhere;
+    }
+
+    .cell-strong {
+      color: var(--text);
+      font-weight: 500;
+      overflow-wrap: anywhere;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .cell {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: var(--sp-6) var(--sp-4);
+      color: var(--text-dim);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      line-height: 1.7;
+    }
+
+    .empty-state strong {
+      color: var(--text);
+    }
+
+    /* Detail view */
+    .detail-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas:
+        "head"
+        "side"
+        "main";
+      gap: var(--sp-5);
+      align-items: start;
+    }
+
+    .detail-head {
+      grid-area: head;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: var(--sp-5);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-3);
+    }
+
+    .detail-head h1 {
+      font-size: 22px;
+      line-height: 1.3;
+    }
+
+    #detail-desc {
+      color: var(--text-dim);
+    }
+
+    #detail-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius);
+      object-fit: cover;
+    }
+
+    code,
+    kbd {
+      font-family: ui-monospace, Consolas, "Courier New", monospace;
+      font-size: 0.9em;
+      background: #f3f4f6;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1px 4px;
+    }
+
+    .detail-main {
+      grid-area: main;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: var(--sp-5);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-4);
+    }
+
+    .detail-side {
+      grid-area: side;
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-3);
+    }
+
+    .side-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: var(--sp-4);
+    }
+
+    .side-card h3 {
+      font-size: 14px;
+      margin-bottom: var(--sp-3);
+      color: var(--text);
+    }
+
+    .side-card dl {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: var(--sp-1) var(--sp-3);
+      font-size: 14px;
+    }
+
+    .side-card dt {
+      color: var(--text-dim);
+    }
+
+    .side-card dd {
+      color: var(--text);
+      overflow-wrap: anywhere;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: var(--sp-2) var(--sp-4);
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      width: 100%;
+    }
+
+    .btn--primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .btn--disabled {
+      background: var(--border);
+      color: var(--text-dim);
+      cursor: not-allowed;
+      border-color: var(--border);
+    }
+
+    .dl-stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-2);
+    }
+
+    .hint {
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    .screenshots {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: var(--sp-3);
+    }
+
+    .screenshots img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+    }
+
+    .install-steps {
+      counter-reset: step;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-2);
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .install-steps li {
+      counter-increment: step;
+      display: flex;
+      gap: var(--sp-2);
+      align-items: flex-start;
+      line-height: 1.6;
+    }
+
+    .install-steps li::before {
+      content: counter(step) ".";
+      font-weight: 600;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    footer {
+      margin-top: var(--sp-7);
+      padding: var(--sp-4) var(--sp-5);
+      border-top: 1px solid var(--border);
+      color: var(--text-dim);
+      font-size: 13px;
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    /* 断点 1：≥1024px 才展开成对齐的数据表（列宽固定，数字右对齐可比较）。
+       960–1023px 的窗口宽度放不下 7 列，强行展开会导致标题被压到换行。 */
+    @media (min-width: 1024px) {
+      .pack-row {
+        grid-template-columns: minmax(0, 1fr) 96px 168px 104px 88px 128px 84px;
+        gap: var(--sp-3);
+        align-items: center;
+        padding: var(--sp-3) var(--sp-4) var(--sp-3) var(--sp-4);
+      }
+
+      .pack-row .pack-title {
+        grid-column: auto;
+        grid-row: auto;
+      }
+
+      /* 桌面端让 .pack-meta 退出布局，其子元素直接落到同一套栅格列上，
+         保证移动端的两行结构与桌面端的 7 列结构共用一份 HTML。 */
+      .pack-row .pack-meta {
+        display: contents;
+      }
+
+      .pack-row .pack-downloads {
+        grid-column: auto;
+        grid-row: auto;
+        order: 7;
+      }
+
+      .pack-row .pack-meta > * + *::before,
+      .pack-row .pack-files::before {
+        content: none;
+      }
+
+      .pack-head {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 96px 168px 104px 88px 128px 84px;
+        gap: var(--sp-3);
+        padding: 0 var(--sp-4) var(--sp-2);
+        color: var(--text-dim);
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .pack-head span:nth-child(n + 6) {
+        text-align: right;
+      }
+
+      .pack-row .cell-strong,
+      .pack-row .pack-files {
+        text-align: right;
+      }
+
+      /* 桌面端把分类等次要字段压成单行省略，保证 22 行等高、可纵向扫读；
+         完整分类在详情页展示，信息不丢失。 */
+      .pack-row .cell {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      /* 长标题截断成单行，配合 title 提示与详情页全文；
+         目的是让 22 行等高，扫读时视线不会被换行打断。 */
+      .pack-row .pack-title span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .detail-layout {
+        grid-template-columns: minmax(0, 1fr) 300px;
+        grid-template-areas:
+          "head side"
+          "main side";
+        row-gap: 0;
+        column-gap: var(--sp-5);
+      }
+
+      .detail-side {
+        position: sticky;
+        top: var(--sp-4);
+      }
+
+      /* 桌面端把标题卡与正文卡拼成一张连续卡片，避免中间出现双边框。 */
+      .detail-head {
+        border-radius: var(--radius) var(--radius) 0 0;
+        border-bottom: 0;
+        padding-bottom: var(--sp-4);
+      }
+
+      .detail-main {
+        border-radius: 0 0 var(--radius) var(--radius);
+        border-top: 0;
+      }
+    }
+
+    /* 断点 2：≥1200px 桌面。加宽留白，让 22 行数据在一屏内更好扫读。 */
+    @media (min-width: 1200px) {
+      main {
+        padding: var(--sp-5) var(--sp-6) var(--sp-6);
+      }
+
+      .pack-row {
+        padding: var(--sp-3) var(--sp-5);
+      }
+
+      .pack-head {
+        padding: 0 var(--sp-5) var(--sp-2);
+      }
+    }
+
+    /* 断点 3：≤480px 移动端。收紧留白、缩小辅助信息，但保持 44px 触控目标；
+       两列字段网格最终合并为一列，杜绝 320px 横向滚动。 */
+    @media (max-width: 480px) {
+      .site-header {
+        padding: var(--sp-3);
+        gap: var(--sp-3);
+      }
+
+      main {
+        padding: var(--sp-3);
+      }
+
+      .filter-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      /* 修正：.filter-row 在窄屏改为纵向 flex 后，搜索框的 flex-basis:200px
+         会被解释成「高度」而撑出大块空白，这里还原为内容高度。 */
+      .filter-row input[type="search"] {
+        flex: 0 0 auto;
+        line-height: 1.4;
+      }
+
+      /* 移动端只保留决策必需的字段（状态 / 加载器 / 版本 / 文件比），
+         分类属于次要信息，在详情页完整展示，避免每条卡片 4 行以上。 */
+      .pack-row .pack-cats {
+        display: none;
+      }
+
+      .pack-row .pack-meta {
+        font-size: 12px;
+      }
+
+      .pack-row {
+        padding: var(--sp-3);
+      }
+
+      .pack-row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--sp-1);
+      }
+
+      .detail-head,
+      .detail-main {
+        padding: var(--sp-4);
+      }
+
+      .screenshots {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      }
+
+      .btn,
+      .filter-row input[type="search"],
+      .filter-row select {
+        min-height: 44px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <strong>MC 任务书汉化</strong>
+    <nav class="site-nav" aria-label="站内导航">
+      <a href="#" class="active" data-view="list">整合包列表</a>
+      <a href="#" data-view="install">安装说明</a>
+      <a href="#" data-view="about">关于与许可</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- List view -->
+    <section id="view-list" aria-labelledby="list-heading">
+      <h1 id="list-heading" style="font-size:20px; margin-bottom:var(--sp-4)">整合包列表</h1>
+      <!-- 信息架构决策：三种状态是本站的第一等公民，
+           所以把「可下载 / 自带中文 / 待翻译」的计数直接摊在列表最上方，
+           玩家一眼就知道现在有没有能下的包，点一下就筛出对应清单。 -->
+      <div class="status-bar" role="group" aria-label="按汉化状态筛选">
+        <button class="stat" type="button" data-status="可下载" aria-pressed="false">
+          <span class="stat-num" id="stat-ready">0</span>
+          <span class="stat-label">可下载</span>
+        </button>
+        <button class="stat" type="button" data-status="自带中文" aria-pressed="false">
+          <span class="stat-num" id="stat-bundled">0</span>
+          <span class="stat-label">自带中文</span>
+        </button>
+        <button class="stat" type="button" data-status="待翻译" aria-pressed="false">
+          <span class="stat-num" id="stat-pending">0</span>
+          <span class="stat-label">待翻译</span>
+        </button>
+        <button class="stat stat--all" type="button" data-status="" aria-pressed="true">
+          <span class="stat-num" id="stat-all">0</span>
+          <span class="stat-label">全部</span>
+        </button>
+      </div>
+      <div class="filter-row">
+        <input type="search" id="filter-keyword" placeholder="搜索整合包名称或描述" aria-label="搜索整合包" />
+        <select id="filter-loader" aria-label="按加载器筛选">
+          <option value="">全部加载器</option>
+        </select>
+        <select id="filter-version" aria-label="按 MC 版本筛选">
+          <option value="">全部 MC 版本</option>
+        </select>
+      </div>
+      <div id="result-count" class="result-count" aria-live="polite"></div>
+      <!-- 设计决策：桌面端保留列头，让下载量 / 汉化文件数可以纵向对齐比较；
+           移动端隐藏列头，改为在每个字段前用 data-label 显示字段名。
+           状态一律用带文字的徽章表达，不依赖颜色深浅。 -->
+      <div class="pack-head" aria-hidden="true">
+        <span>整合包</span>
+        <span>状态</span>
+        <span>分类</span>
+        <span>加载器</span>
+        <span>MC 版本</span>
+        <span>中文 / 源文件</span>
+        <span>下载量</span>
+      </div>
+      <ul id="pack-list" class="pack-list"></ul>
+      <div id="empty-state" class="empty-state" hidden>
+        <p><strong>没有符合当前筛选条件的整合包。</strong><br />试试清除关键词或改选其他状态。</p>
+      </div>
+    </section>
+
+    <!-- Detail view -->
+    <section id="view-detail" aria-labelledby="detail-title" hidden>
+      <div class="crumb"><a href="#" data-view="list">← 返回列表</a></div>
+      <!-- 布局决策：把「标题区」独立成一个栅格区域，
+           移动端顺序为 标题 → 下载/数据 → 截图与安装步骤，
+           用户先知道这是哪个包、能不能下载，再看怎么装；
+           桌面端标题区与正文拼成一张卡，右栏放下载面板并吸顶。 -->
+      <div class="detail-layout">
+        <div class="detail-head">
+          <h1 id="detail-title"></h1>
+          <p id="detail-desc"></p>
+          <img id="detail-icon" src="" alt="" />
+        </div>
+        <div class="detail-main">
+          <div id="detail-shots-block">
+            <h2 style="font-size:16px;margin-bottom:var(--sp-2)">截图</h2>
+            <div id="detail-screenshots" class="screenshots"></div>
+          </div>
+          <div>
+            <h2 style="font-size:16px;margin-bottom:var(--sp-2)">安装步骤</h2>
+            <ol id="detail-install-steps" class="install-steps"></ol>
+          </div>
+        </div>
+        <aside class="detail-side" aria-label="下载与信息面板">
+          <div class="side-card">
+            <h3>下载</h3>
+            <div id="detail-download-area"></div>
+          </div>
+          <div class="side-card">
+            <h3>数据</h3>
+            <dl id="detail-meta"></dl>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Install view -->
+    <section id="view-install" aria-labelledby="install-title" hidden>
+      <h1 id="install-title" style="font-size:20px; margin-bottom:var(--sp-4)">安装说明</h1>
+      <div class="detail-main">
+        <p>任务书汉化产物是一组文件或目录。请按照下方步骤放置，不要当作资源包 zip 来用。</p>
+        <ol class="install-steps">
+          <li>下载后得到一个或多个 <code>zh_cn.json</code> 文件（有的整合包是同名目录）。</li>
+          <li>打开整合包根目录下的 <code>config/ftbquests/quests/</code> 目录。</li>
+          <li>把下载的文件覆盖到对应子目录，覆盖前建议先备份原文件。</li>
+          <li>在 Minecraft 任务界面刷新（按 <kbd>R</kbd> 或重进任务界面）即可看到中文。</li>
+        </ol>
+        <!-- 设计决策：把「最常犯的错」单独列成一块，因为放错位置是本站投诉的第一大来源，
+             只写在步骤里容易被跳过，必须和步骤同级出现。 -->
+        <div>
+          <h2 style="font-size:16px;margin-bottom:var(--sp-2)">常见错误</h2>
+          <ul class="install-steps">
+            <li>放进 <code>resourcepacks/</code> 或 <code>mods/</code>：这两处不会生效，任务书读的是 <code>config/ftbquests/</code>。</li>
+            <li>只复制了目录却没有覆盖同名文件：保持目录结构和文件名与整合包内一致，整体覆盖才会生效。</li>
+            <li>覆盖后没重启游戏：先按 <kbd>R</kbd> 刷新任务界面，仍无效则完全退出并重开游戏。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- About / License view -->
+    <section id="view-about" aria-labelledby="about-title" hidden>
+      <h1 id="about-title" style="font-size:20px; margin-bottom:var(--sp-4)">关于与许可</h1>
+      <div class="detail-main">
+        <p><strong>站点目的：</strong>为 Minecraft 整合包提供任务书（FTB Quests）中文汉化产物的下载与状态查询。</p>
+        <p><strong>汉化来源：</strong>本站汉化基于 <a href="https://www.cfpa.team/" target="_blank" rel="noopener">CFPA 团队</a> 的译名与相关模组作者的翻译，感谢所有译者的付出。</p>
+        <p><strong>许可协议：</strong>本站产出采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 许可，署名 CFPA 团队与相关模组作者，非商业使用，相同方式共享。</p>
+        <p><strong>整合包数据：</strong>来自 CurseForge 公开接口，版权归原整合包作者所有。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>本站产出基于 CFPA 团队与相关模组作者译名，采用 CC BY-NC-SA 4.0 许可，非商业使用。</p>
+    <p>整合包数据来自 CurseForge，原整合包内容归原作者所有。</p>
+  </footer>
+
+  <script>
+    const DATA = [
+{"slug":"all-the-mods-10","layout":"separate-dir","enFiles":73,"zhFiles":69,"siteStatus":"自带中文","title":"All the Mods 10 - ATM10","description":"The top pack of 2026 with around 500 mods! Tons of quests and a proper endgame.","iconUrl":"https://media.forgecdn.net/avatars/thumbnails/1182/438/256/256/638755918649288941.png","screenshots":["https://media.forgecdn.net/attachments/thumbnails/980/939/310/172/2024-10-02_23.png","https://media.forgecdn.net/attachments/thumbnails/983/80/310/172/2024-10-05_14.png","https://media.forgecdn.net/attachments/thumbnails/983/79/310/172/2024-10-03_12.png","https://media.forgecdn.net/attachments/thumbnails/980/938/310/172/image-1.png"],"downloads":22381409,"updated":"2026-10-16","gameVersions":["1.21.1"],"loaders":["NeoForge"],"authors":["ATMTeam"],"categories":["Exploration","Extra Large","Magic","Tech","Quests"]},
+{"slug":"all-the-mods-10-sky","layout":"separate-dir","enFiles":61,"zhFiles":0,"siteStatus":"待翻译","title":"All the Mods 10: To the Sky   ATM10SKY","description":"Starting with only a tree, fill the void with large amounts of technology and magic!","iconUrl":"https://media.forgecdn.net/avatars/thumbnails/1389/739/256/256/638901033593272382.png","screenshots":["https://media.forgecdn.net/attachments/thumbnails/1324/702/310/172/image-19-png.png"],"downloads":3576517,"updated":"2026-10-15","gameVersions":["1.21.1"],"loaders":["NeoForge"],"authors":["ATMTeam","oly2o6"],"categories":["Skyblock","Magic","Tech"]},
+{"slug":"tensura-neo-otherworld","layout":"separate-single","enFiles":1,"zhFiles":1,"siteStatus":"自带中文","title":"Tensura Neo Otherworld","description":"A Tensura-themed adventure modpack.","iconUrl":"https://media.forgecdn.net/avatars/thumbnails/2003/829/256/256/639231505763283682.png","screenshots":["https://media.forgecdn.net/attachments/thumbnails/1566/93/310/172/2026-03-05_21-11-18-png.png","https://media.forgecdn.net/attachments/thumbnails/1616/804/310/172/1775107510_100846_lozi-png.png","https://media.forgecdn.net/attachments/thumbnails/1616/805/310/172/1775107536_100846_jgtn-png.png"],"downloads":315299,"updated":"2026-10-04","gameVersions":["1.21.1"],"loaders":["NeoForge"],"authors":["AblazeAQZL"],"categories":["Adventure and RPG","Magic","Quests","Combat / PvP"]},
+{"slug":"all-the-mods-11","layout":"separate-dir","enFiles":75,"zhFiles":69,"siteStatus":"自带中文","title":"All the Mods 11 - ATM11","description":"Super early alpha for 26.1.2","iconUrl":"https://media.forgecdn.net/avatars/thumbnails/1757/481/256/256/639118126616359223.png","screenshots":[],"downloads":1111857,"updated":"2026-10-15","gameVersions":["26.1.2","26.1","26.1.1"],"loaders":["NeoForge"],"authors":["ATMTeam"],"categories":["Exploration","Extra Large","Multiplayer","Tech","Magic"]},
+{"slug":"all-the-mons","layout":"separate-dir","enFiles":82,"zhFiles":0,"siteStatus":"待翻译","title":"All the Mons - ATMons","description":"All the Mods 10 + Cobblemon with full, customised content bridging the gap.","iconUrl":"https://media.forgecdn.net/avatars/thumbnails/1567/555/256/256/639016249214580144.png","screenshots":["https://media.forgecdn.net/attachments/thumbnails/1485/445/310/172/untitled-design-10-png.png","https://media.forgecdn.net/attachments/thumbnails/1485/446/310/172/untitled-design-9-png.png","https://media.forgecdn.net/attachments/thumbnails/1485/447/310/172/untitled-design-8-png.png","https://media.forgecdn.net/attachments/thumbnails/1485/452/310/172/untitled-design-7-png.png"],"downloads":2062055,"updated":"2026-09-06","gameVersions":["1.21.1"],"loaders":["NeoForge"],"authors":["ATMTeam"],"categories":["Extra Large","Adventure and RPG","Quests","Magic","Tech"]},
+{"slug":"all-of-create-aeronautics","layout":"separate-single","enFiles":1,"zhFiles":0,"siteStatus":"待翻译","title":"All of Create Aeronautics","description":"The Ultimate Create Aeronautics Experience | Create Aeronautics with 50+ Addons, Quests and Great Performance","iconUrl":"https://media.forgecdn.net/avatars/thumbnails/1765/2/256/256/639122119069761539.png","screenshots":["https://media.forgecdn.net/attachments/thumbnails/1710/485/310/172/serpentine-3-jpeg.jpeg","https://media.forgecdn.net/attachments/thumbnails/1710/503/310/172/sunsh1ne-jpeg.jpeg","https://media.forgecdn.net/attachments/thumbnails/1710/505/310/172/serpentine-2-jpeg.jpeg","https://media.forgecdn.net/attachments/thumbnails/1710/506/310/172/jaxx-jpeg.jpeg"],"downloads":838730,"updated":"2026-10-13","gameVersions":["1.21.1"],"loaders":["NeoForge"],"authors":["quickqwek"],"categories":["Multiplayer","Tech","Small / Light","Vanilla+","Quests"]},
+{"slug":"better-mc-neoforge-bmc5","layout":"separate-single","enFiles":1,"zhFiles":0,"siteStatus":"待翻译","title":"Better MC [NEOFORGE] BMC5","description":"Version 1.21.1 | Vanilla+ Experience With The Player in Mind | A New Era of Better MC!","iconUrl":"https://media.forgecdn.net/avatars/thumbnails/1100/202/256/256/638647377432789195.png","screenshots":[],"downloads":2904695,"updated":"2026-10-15","gameVersions":["1.21","1.21.1"],"loaders":["NeoForge"],"authors":["LunaPixelStudios"],"categories":["Exploration","Adventure and RPG","Multiplayer","Small / Light","Vanilla+"]},
+{"slug":"ftb-stoneblock-4","layout":"separate-single","enFiles":1,"zhFiles":1,"siteStatus":"自带中文","title":"FTB StoneBlock 4","description":"The stone remembers. Dive into StoneBlock 4, the next evolution of Minecraft’s underground survival: explore handcrafted Vaults, learn from ancient Echoes, power the World Engine, all on 1.21.1","iconUrl":"https://media.forgecdn.net/avatars/thumbnails/1495/561/256/256/638971627504237551.jpg","screenshots":["https://media.forgecdn.net/attachments/thumbnails/1374/827/310/172/cavestarter_scaled-webp.webp","https://media.forgecdn.net/attachments/thumbnails/1374/821/310/172/spawn_scaled-webp.webp","https://media.forgecdn.net/attachments/thumbnails/1374/828/310/172/cherrygrovestarter_scaled-webp.webp","https://media.forgecdn.net/attachments/thumbnails/1374/823/310/172/world-engine_scaled-webp.webp"],"downloads":2949798,"updated":"2026-10-12","gameVersions":["1.21.1"],"loaders":["NeoForge"],"authors":["FTB","FTBTeam"],"categories":["Exploration","Combat / PvP","Magic","Tech","Quests"]},
+{"slug":"vagrant-saga","layout":"separate-single","enFiles":1,"zhFiles":0,"siteStatus":"待翻译","title":"Vagrant Saga - RPG Survival Adventure","description":"RPG NeoForge modpack, Vampires, Magic, Quests, Skills, Bosses, 15 Dimensions, MMO server, Latest version 1.21+ RPG Adventure","iconUrl":"https://media.forgecdn.net/avatars/thumbnails/1155/345/256/256/638722892712728479_animated.gif","screenshots":["https://media.forgecdn.net/attachments/thumbnails/958/406/310/172/2024-09-04_00.png","https://media.forgecdn.net/attachments/thumbnails/958/407/310/172/2024-09-04_02.png","https://media.forgecdn.net/attachments/thumbnails/958/408/310/172/2024-09-04_02.png","https://media.forgecdn.net/attachments/thumbnails/958/815/310/172/2024-09-04_16.png"],"downloads":151710,"updated":"2026-10-15","gameVersions":["1.21.1"],"loaders":["NeoForge"],"authors":["GamerPotion"],"categories":["Adventure and RPG","Exploration","Hardcore","Magic","Quests"]},
+{"slug":"all-the-mods-10-aeronautics","layout":"separate-dir","enFiles":74,"zhFiles":64,"siteStatus":"自带中文","title":"All the Mods 10 Aeronautics ATM10A","description":"ATM10.5! With a hint of Aeronautics ;)","iconUrl":"https://media.forgecdn.net/avatars/thumbnails/1992/863/256/256/639226851425896647.png","screenshots":[],"downloads":188934,"updated":"2026-10-12","gameVersions":["1.21.1"],"loaders":["NeoForge"],"authors":["ATMTeam","oly2o6"],"categories":["Exploration","Extra Large","Multiplayer","Quests"]},
+{"slug":"craftoria","layout":"separate-dir","enFiles":66,"zhFiles":0,"siteStatus":"待翻译","title":"Craftoria","description":"500+ mods. 2,000+ quests. Dynamic seasons, custom content, and a handcrafted endgame. Your next massive adventure awaits.","iconUrl":"https://media.forgecdn.net/avatars/thumbnails/1066/473/256/256/638600434802547442.png","screenshots":[],"downloads":2897053,"updated":"2026-09-13","gameVersions":["1.21.1","1.21"],"loaders":["NeoForge"],"authors":["TeamAOE"],"categories":["Exploration","Extra Large","Quests","Magic","Tech"]},
+{"slug":"tensura-evolutions-1-21-1","layout":"separate-single","enFiles":1,"zhFiles":0,"siteStatus":"待翻译","title":"Tensura Evolutions","description":"An Modpack based on The Anime \"That time i became a Slime\" designed to ensure the Best Possible Experience","iconUrl":"https://media.forgecdn.net/avatars/thumbnails/2075/108/256/256/639261322055836363.png","screenshots":["https://media.forgecdn.net/attachments/thumbnails/1894/933/310/172/2026-08-25_16-46-37-png.png","https://media.forgecdn.net/attachments/thumbnails/1894/935/310/172/2026-08-25_16-46-42-png.png","https://media.forgecdn.net/attachments/thumbnails/1894/936/310/172/2026-08-25_16-47-00-png.png","https://media.forgecdn.net/attachments/thumbnails/1894/939/310/172/2026-08-25_16-48-01-png.png"],"downloads":123931,"updated":"2026-09-27","gameVersions":["1.21.1"],"loaders":["NeoForge"],"authors":["Membrane"],"categories":["Adventure and RPG","Combat / PvP","Magic","Quests","Multiplayer"]},
+{"slug":"ftb-skies-2-aero","layout":"separate-single","enFiles":1,"zhFiles":1,"siteStatus":"自带中文","title":"FTB Skies 2 Aero","description":"Aero is a skyblock built to enable enhanced aeronautics play while proving a tailored progression experience without the grind.","iconUrl":"https://media.forgecdn.net/avatars/thumbnails/1921/361/256/256/639197158506762262.png","screenshots":["https://media.forgecdn.net/attachments/thumbnails/1795/167/310/172/classic_island1_compress-png.png","https://media.forgecdn.net/attachments/thumbnails/1795/166/310/172/classic_island_ship_compress-png.png","https://media.forgecdn.net/attachments/thumbnails/1795/168/310/172/volcano_island_compress-png.png","https://media.forgecdn.net/attachments/thumbnails/1795/165/310/172/cataclysm_island_compress-png.png"],"downloads":240833,"updated":"2026-09-29","gameVersions":["1.21.1"],"loaders":["NeoForge"],"authors":["FTB","FTBTeam"],"categories":["Adventure and RPG","Exploration","Skyblock","Tech","Quests"]},
+{"slug":"aoc","layout":"separate-single","enFiles":1,"zhFiles":0,"siteStatus":"待翻译","title":"All of Create","description":"The Ultimate Create Experience | Create 6.0 with 50+ Addons, Quests and Great Performance","iconUrl":"https://media.forgecdn.net/avatars/thumbnails/845/271/256/256/638242920825975665.png","screenshots":["https://media.forgecdn.net/attachments/thumbnails/1064/791/310/172/spawnteaser_optimized_2000.png","https://media.forgecdn.net/attachments/thumbnails/807/447/310/172/2024-01-22_18.png","https://media.forgecdn.net/attachments/thumbnails/1103/965/310/172/2025-02-20_16-19-40_11zon-png.png","https://media.forgecdn.net/attachments/thumbnails/1103/971/310/172/2025-02-21_18-26-12_11zon-png.png"],"downloads":1848866,"updated":"2026-10-13","gameVersions":["1.21.1","1.20.1","1.19.2"],"loaders":["NeoForge","Forge"],"authors":["quickqwek"],"categories":["Multiplayer","Tech","Small / Light","Vanilla+","Quests"]},
+{"slug":"dungeon-heroes","layout":"separate-single","enFiles":1,"zhFiles":0,"siteStatus":"待翻译","title":"Dungeon Heroes (RPG Series)","description":"⚔️  Explore, Triumph, Loot - Together! Minecraft Dungeons meets vanilla survival.","iconUrl":"https://media.forgecdn.net/avatars/thumbnails/939/312/256/256/638419035171069148.png","screenshots":["https://media.forgecdn.net/attachments/thumbnails/797/189/310/172/logo_ramparts_bg.png","https://media.forgecdn.net/attachments/thumbnails/797/191/310/172/2024-01-26_22.png","https://media.forgecdn.net/attachments/thumbnails/797/192/310/172/2024-01-25_10.png","https://media.forgecdn.net/attachments/thumbnails/797/193/310/172/2024-01-26_20.png"],"downloads":1940768,"updated":"2026-10-03","gameVersions":["1.21.1","1.21","1.20.1"],"loaders":["Fabric"],"authors":["daedelus_dev"],"categories":["Adventure and RPG","Exploration","Multiplayer","Vanilla+","Combat / PvP"]},
+{"slug":"fantasy-rpg-with-quests","layout":"separate-single","enFiles":1,"zhFiles":0,"siteStatus":"待翻译","title":"Fantasy RPG - RPG Quests, Bosses & Magic | Fantasy & RPG","description":"A new modpack that combines the best Fantasy and RPG mods!","iconUrl":"https://media.forgecdn.net/avatars/thumbnails/1757/997/256/256/639118452801242006.webp","screenshots":["https://media.forgecdn.net/attachments/thumbnails/1632/446/310/172/fantasy-rpg-8.jpg","https://media.forgecdn.net/attachments/thumbnails/1632/437/310/172/fantasy-rpg-10.jpg","https://media.forgecdn.net/attachments/thumbnails/1632/438/310/172/fantasy-rpg-1.jpg","https://media.forgecdn.net/attachments/thumbnails/1632/439/310/172/fantasy-rpg-2.jpg"],"downloads":85633,"updated":"2026-10-16","gameVersions":["1.21.1"],"loaders":["Fabric"],"authors":["FlashhLab"],"categories":["Adventure and RPG","Multiplayer","Extra Large","Combat / PvP","Vanilla+"]},
+{"slug":"adventure-of-tech-6","layout":"separate-dir","enFiles":18,"zhFiles":0,"siteStatus":"待翻译","title":"Adventure of Tech VI","description":"Adventure of Tech VI | Neoforge | 26.1.2 | Made for those interested in tech and exploration!","iconUrl":"https://media.forgecdn.net/avatars/thumbnails/1925/305/256/256/639198828217954610.webp","screenshots":[],"downloads":54006,"updated":"2026-10-15","gameVersions":["26.1.2"],"loaders":["NeoForge"],"authors":["Tralty"],"categories":["Tech","Quests","Adventure and RPG","Multiplayer","Combat / PvP"]},
+{"slug":"techopolis-3","layout":"separate-single","enFiles":1,"zhFiles":0,"siteStatus":"待翻译","title":"Techopolis 3","description":"A modpack all about automation and tech","iconUrl":"https://media.forgecdn.net/avatars/thumbnails/1171/344/256/256/638742658199097356.png","screenshots":[],"downloads":489967,"updated":"2026-10-12","gameVersions":["1.21.1"],"loaders":["NeoForge"],"authors":["benbenlaw"],"categories":["Multiplayer","Skyblock","Tech","Quests","Expert"]},
+{"slug":"ftb-oceanblock-2","layout":"separate-single","enFiles":1,"zhFiles":1,"siteStatus":"自带中文","title":"FTB OceanBlock 2","description":"Nothing but endless ocean. No land. No rescue. You’re alone - or so you think...","iconUrl":"https://media.forgecdn.net/avatars/thumbnails/1177/122/256/256/638749588340995471.png","screenshots":["https://media.forgecdn.net/attachments/thumbnails/1095/73/310/172/ob2-nether-webp.webp","https://media.forgecdn.net/attachments/thumbnails/1095/72/310/172/ob2-raft-webp.webp","https://media.forgecdn.net/attachments/thumbnails/1095/71/310/172/ob2-starterbase-webp.webp","https://media.forgecdn.net/attachments/thumbnails/1095/70/310/172/ob2-underwater-webp.webp"],"downloads":1477395,"updated":"2026-08-25","gameVersions":["1.21.1"],"loaders":["NeoForge"],"authors":["FTB","FTBTeam"],"categories":["Adventure and RPG","Exploration","Combat / PvP","Quests","Tech"]},
+{"slug":"tempest-protocol","layout":"separate-single","enFiles":1,"zhFiles":0,"siteStatus":"待翻译","title":"Tempest Protocol - Tensura RPG","description":"RPG based on Tensura, Ice and Fire, Iron's Spells, featuring quests, magic, dragons and loot!","iconUrl":"https://media.forgecdn.net/avatars/thumbnails/1848/183/256/256/639162803109912882.webp","screenshots":["https://media.forgecdn.net/attachments/thumbnails/1718/670/310/172/mp_tempestprotocol_header2-webp.webp","https://media.forgecdn.net/attachments/thumbnails/1748/889/310/172/2026-06-05_18-46-14-webp.webp","https://media.forgecdn.net/attachments/thumbnails/1748/891/310/172/2026-06-05_18-52-42-webp.webp","https://media.forgecdn.net/attachments/thumbnails/1748/892/310/172/2026-06-05_18-54-05-webp.webp"],"downloads":113231,"updated":"2026-10-12","gameVersions":["1.21.1"],"loaders":["NeoForge"],"authors":["GamerPotion"],"categories":["Adventure and RPG","Exploration","Magic","Quests","Multiplayer"]},
+{"slug":"better-mc-bmc6","layout":"separate-dir","enFiles":9,"zhFiles":0,"siteStatus":"待翻译","title":"Better MC [BMC6]","description":"Version 26.1.2 | Vanilla+ Experience With The Player in Mind | Better MC both with NeoForge and Fabric Mods!","iconUrl":"https://media.forgecdn.net/avatars/thumbnails/1972/459/256/256/639218262468017116.png","screenshots":[],"downloads":93426,"updated":"2026-10-14","gameVersions":["26.1.2"],"loaders":["NeoForge"],"authors":["LunaPixelStudios","SHXRKIE"],"categories":["Adventure and RPG","Combat / PvP","Vanilla+","Exploration","Multiplayer"]},
+{"slug":"create-aeronautics-skybound","layout":"separate-single","enFiles":1,"zhFiles":0,"siteStatus":"待翻译","title":"Create Aeronautics - Skybound | Create Aeronautics & Create Addons with Quests","description":"A modpack built around Create Aeronautics and its main addons, set in a world with floating islands terrain generation.","iconUrl":"https://media.forgecdn.net/avatars/thumbnails/1832/350/256/256/639156021462578578.webp","screenshots":["https://media.forgecdn.net/attachments/thumbnails/1704/92/310/172/1-create-aeronautics-skybound-png.png","https://media.forgecdn.net/attachments/thumbnails/1879/677/310/172/create-aeronautics-skybound-2-jpg.jpg","https://media.forgecdn.net/attachments/thumbnails/1704/93/310/172/4-create-aeronautics-skybound-png.png","https://media.forgecdn.net/attachments/thumbnails/1879/678/310/172/create-aeronautics-skybound-3-jpg.jpg"],"downloads":200341,"updated":"2026-10-15","gameVersions":["1.21.1"],"loaders":["NeoForge"],"authors":["Lupin","TeamLUP"],"categories":["Skyblock","Tech","Adventure and RPG","Multiplayer","Quests"]}
+];
+
+    const statusMap = {
+      "可下载":   { label: "可下载",   cls: "badge--ok" },
+      "自带中文": { label: "自带中文", cls: "badge--info" },
+      "待翻译":   { label: "待翻译",   cls: "badge--warn" },
+    };
+
+    const views = ["list", "detail", "install", "about"];
+    let currentView = "list";
+    let selectedSlug = null;
+    // 状态筛选是列表的核心开关，独立存状态，避免和 select 的取值耦合。
+    let statusFilter = "";
+
+    function switchView(view) {
+      views.forEach(v => {
+        document.getElementById(`view-${v}`).hidden = v !== view;
+      });
+      document.querySelectorAll(".site-nav a").forEach(a => {
+        a.classList.toggle("active", a.dataset.view === view || (view === "detail" && a.dataset.view === "list"));
+      });
+      currentView = view;
+      if (view !== "detail") selectedSlug = null;
+    }
+
+    document.querySelectorAll("[data-view]").forEach(a => {
+      a.addEventListener("click", e => {
+        e.preventDefault();
+        switchView(a.dataset.view);
+      });
+    });
+
+    function unique(arr) {
+      return [...new Set(arr.flat())].sort();
+    }
+
+    function initFilters() {
+      const loaderEl = document.getElementById("filter-loader");
+      const versionEl = document.getElementById("filter-version");
+      unique(DATA.map(d => d.loaders)).forEach(v => {
+        loaderEl.insertAdjacentHTML("beforeend", `<option value="${v}">${v}</option>`);
+      });
+      unique(DATA.map(d => d.gameVersions)).forEach(v => {
+        versionEl.insertAdjacentHTML("beforeend", `<option value="${v}">${v}</option>`);
+      });
+    }
+
+    function matches(d) {
+      const kw = document.getElementById("filter-keyword").value.toLowerCase();
+      const ld = document.getElementById("filter-loader").value;
+      const ve = document.getElementById("filter-version").value;
+      if (statusFilter && d.siteStatus !== statusFilter) return false;
+      if (ld && !d.loaders.includes(ld)) return false;
+      if (ve && !d.gameVersions.includes(ve)) return false;
+      if (kw) {
+        const hay = `${d.title} ${d.description} ${d.authors.join(" ")} ${d.categories.join(" ")}`.toLowerCase();
+        if (!hay.includes(kw)) return false;
+      }
+      return true;
+    }
+
+    function initStatusBar() {
+      const counts = { "可下载": 0, "自带中文": 0, "待翻译": 0 };
+      DATA.forEach(d => { counts[d.siteStatus] = (counts[d.siteStatus] || 0) + 1; });
+      document.getElementById("stat-ready").textContent = counts["可下载"];
+      document.getElementById("stat-bundled").textContent = counts["自带中文"];
+      document.getElementById("stat-pending").textContent = counts["待翻译"];
+      document.getElementById("stat-all").textContent = DATA.length;
+      document.querySelectorAll(".stat").forEach(btn => {
+        btn.addEventListener("click", () => {
+          // 再点一次当前状态 = 取消筛选，回到全部。
+          statusFilter = statusFilter === btn.dataset.status ? "" : btn.dataset.status;
+          document.querySelectorAll(".stat").forEach(b =>
+            b.setAttribute("aria-pressed", String(b.dataset.status === statusFilter)));
+          renderList();
+        });
+      });
+    }
+
+    function fmtNum(n) {
+      if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, "") + "M";
+      if (n >= 1e3) return (n / 1e3).toFixed(1).replace(/\.0$/, "") + "K";
+      return String(n);
+    }
+
+    function fileLabel(d) {
+      // 统一成「中文 / 源文件」比值，三行数据可以纵向比较覆盖进度。
+      return `${d.zhFiles} / ${d.enFiles}`;
+    }
+
+    function renderList() {
+      const list = document.getElementById("pack-list");
+      const count = document.getElementById("result-count");
+      const empty = document.getElementById("empty-state");
+      const matched = DATA.filter(d => matches(d)).sort((a, b) => b.downloads - a.downloads);
+      count.textContent = `${matched.length} / ${DATA.length} 条整合包`;
+      list.innerHTML = "";
+      if (matched.length === 0) {
+        empty.hidden = false;
+        if (statusFilter === "可下载") {
+          empty.innerHTML = `<p><strong>本站目前没有可直接下载的汉化包。</strong><br />我们正在按社区热度整理翻译任务清单，欢迎稍后再来。</p>`;
+        } else {
+          empty.innerHTML = `<p><strong>没有符合当前筛选条件的整合包。</strong><br />试试清除关键词或改选其他状态。</p>`;
+        }
+        return;
+      }
+      empty.hidden = true;
+      matched.forEach(d => {
+        const st = statusMap[d.siteStatus];
+        const li = document.createElement("li");
+        li.className = "pack-row";
+        li.tabIndex = 0;
+        li.setAttribute("role", "button");
+        li.setAttribute("aria-label", `${d.title}，状态${st.label}，点击查看详情`);
+        li.innerHTML = `
+          <div class="pack-title">
+            <img src="${d.iconUrl}" alt="" loading="lazy" />
+            <span title="${d.title}">${d.title}</span>
+          </div>
+          <div class="pack-downloads cell-strong">${fmtNum(d.downloads)}</div>
+          <div class="pack-meta">
+            <div class="pack-status"><span class="badge ${st.cls}">${st.label}</span></div>
+            <div class="cell pack-cats">${d.categories.slice(0, 3).join(", ")}</div>
+            <div class="cell">${d.loaders.join(", ")}</div>
+            <div class="cell">${d.gameVersions[0]}</div>
+            <div class="cell pack-files">${fileLabel(d)}</div>
+          </div>
+        `;
+        li.addEventListener("click", () => openDetail(d.slug));
+        li.addEventListener("keydown", e => {
+          if (e.key === "Enter" || e.key === " ") openDetail(d.slug);
+        });
+        list.appendChild(li);
+      });
+    }
+
+    function openDetail(slug) {
+      selectedSlug = slug;
+      const d = DATA.find(x => x.slug === slug);
+      if (!d) return;
+      document.getElementById("detail-title").textContent = d.title;
+      document.getElementById("detail-desc").textContent = d.description;
+      const icon = document.getElementById("detail-icon");
+      icon.src = d.iconUrl;
+      icon.alt = d.title;
+
+      const shots = document.getElementById("detail-screenshots");
+      shots.innerHTML = d.screenshots.map(s => `<img src="${s}" alt="" loading="lazy" />`).join("");
+      // 截图来自第三方 CDN，可能因防盗链加载失败；失败时移除而不是留下空框。
+      shots.querySelectorAll("img").forEach(img =>
+        img.addEventListener("error", () => {
+          img.remove();
+          if (!shots.querySelector("img")) shots.innerHTML = `<p class="cell">截图加载失败，可前往整合包页面查看。</p>`;
+        })
+      );
+      document.getElementById("detail-shots-block").hidden = d.screenshots.length === 0;
+
+      const steps = document.getElementById("detail-install-steps");
+      if (d.layout === "separate-dir") {
+        steps.innerHTML = `
+          <li>下载汉化包，得到一个或多个文件和/或目录。</li>
+          <li>进入整合包根目录下 <code>config/ftbquests/quests/</code>。</li>
+          <li>将下载的文件或目录覆盖到对应位置（同名目录请整体覆盖）。</li>
+          <li>在任务界面按 <kbd>R</kbd> 刷新或重进任务界面。</li>
+        `;
+      } else {
+        steps.innerHTML = `
+          <li>下载 <code>zh_cn.json</code> 文件。</li>
+          <li>进入整合包根目录下 <code>config/ftbquests/quests/</code>。</li>
+          <li>把该文件复制到对应的任务章节子目录，覆盖原文件（建议先备份）。</li>
+          <li>在任务界面按 <kbd>R</kbd> 刷新或重进任务界面。</li>
+        `;
+      }
+
+      const dlArea = document.getElementById("detail-download-area");
+      if (d.siteStatus === "待翻译") {
+        dlArea.innerHTML = `<div class="dl-stack">
+            <button class="btn btn--disabled" type="button" disabled>暂无可下载</button>
+            <p class="hint">本站尚未完成该整合包的任务书汉化，已列入翻译计划。</p>
+            <button class="btn js-request" type="button">提交翻译请求</button>
+            <p class="hint" id="request-note" hidden></p>
+          </div>`;
+        dlArea.querySelector(".js-request").addEventListener("click", () => {
+          const note = document.getElementById("request-note");
+          note.hidden = false;
+          // 原型说明：这里只演示交互，真实站点应写入请求队列。
+          note.textContent = "已记录你的翻译请求（原型演示，未接入后端）。";
+        });
+      } else if (d.siteStatus === "自带中文") {
+        dlArea.innerHTML = `<div class="dl-stack">
+            <button class="btn btn--disabled" type="button" disabled>无需下载</button>
+            <p class="hint">该整合包自带中文，请直接游玩，无需本站汉化包。</p>
+          </div>`;
+      } else {
+        dlArea.innerHTML = `<div class="dl-stack">
+            <button class="btn btn--primary" type="button">下载汉化包（${d.zhFiles} 个文件）</button>
+          </div>`;
+      }
+
+      const meta = document.getElementById("detail-meta");
+      meta.innerHTML = `
+        <dt>状态</dt><dd><span class="badge ${statusMap[d.siteStatus].cls}">${statusMap[d.siteStatus].label}</span></dd>
+        <dt>下载量</dt><dd>${d.downloads.toLocaleString()}</dd>
+        <dt>MC 版本</dt><dd>${d.gameVersions.join(", ")}</dd>
+        <dt>加载器</dt><dd>${d.loaders.join(", ")}</dd>
+        <dt>作者</dt><dd>${d.authors.join(", ")}</dd>
+        <dt>更新时间</dt><dd>${d.updated}</dd>
+        <dt>英文任务文件</dt><dd>${d.enFiles}</dd>
+        <dt>中文任务文件</dt><dd>${d.zhFiles}</dd>
+      `;
+      switchView("detail");
+      window.scrollTo({ top: 0 });
+    }
+
+    initFilters();
+    initStatusBar();
+    renderList();
+    ["filter-keyword", "filter-loader", "filter-version"].forEach(id =>
+      document.getElementById(id).addEventListener("input", renderList));
+  </script>
+</body>
+</html>
