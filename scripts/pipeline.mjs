@@ -33,6 +33,9 @@ import {
 import { mergeByQuestId } from './snbt.mjs'
 import { toStatusValue } from '../shared/quest-status.mjs'
 import { defaultReportStatus } from './lib/report-status.mjs'
+import {
+  freeTierEnabled, callFreeTier, freeTierModel, FREE_TIER_FAILURE_THRESHOLD,
+} from './lib/free-tier.mjs'
 
 export { defaultReportStatus } from './lib/report-status.mjs'
 
@@ -362,29 +365,70 @@ if (isMain) {
   let glossary = {}
   try { glossary = JSON.parse(readFileSync(GLOSSARY_FILE, 'utf8')) } catch { /* 从头构建 */ }
 
-  // 默认 LLM 提供方：OpenAI 兼容 chat/completions。没有 LLM_API_KEY 时直接失败（离线测试用注入桩，不走这里）。
+  // 翻译提供方分两层（ADR-0007 已决：免费层优先，失败落自建网关模型池）。
   //
-  // 模型来源：`LLM_MODELS`（逗号分隔，来自管理区多选）优先，回退到单数 `LLM_MODEL`。
-  // 按顺序尝试，某个模型失败就换下一个——管理区勾选的模型必须真的生效，
-  // 曾经这里只读单数 `LLM_MODEL`，导致 workflow 传的 `LLM_MODELS` 完全被忽略。
+  // 第一层 · 免费层：bilibili Index-Translate 公开 API，**无需 API key**。
+  //   行式协议（合成键 L1..Ln），漏行按行回退不判整块失败；
+  //   连续 FREE_TIER_FAILURE_THRESHOLD 次失败才熔断本轮，之后直走网关，不再浪费超时。
   //
-  // 未消费：FREE_TIER_ENABLED / FREE_TIER_BASE_URL / FREE_TIER_MODEL。
-  // translate.yml 已传入这三个变量，但「免费层优先 + 熔断」尚未实现（ADR-0007 未决项）。
+  // 第二层 · 网关池：`LLM_MODELS`（逗号分隔，来自管理区多选）优先，回退单数 `LLM_MODEL`，
+  //   按顺序尝试，某个模型失败就换下一个。曾经这里只读单数 `LLM_MODEL`，
+  //   导致 workflow 传的 `LLM_MODELS` 被完全忽略。
+  //
+  // 两层都不可用时才报错；只有免费层可用时以「免费层单跑」模式跑。
   const MODELS = parseModels(process.env.LLM_MODELS, process.env.LLM_MODEL)
-  const translate = async (texts) => {
-    const key = process.env.LLM_API_KEY
-    const url = process.env.LLM_BASE_URL ?? 'https://api.openai.com/v1/chat/completions'
-    if (!key) throw new Error('未配置 LLM_API_KEY（离线测试请注入 translate 桩）')
+  const USE_FREE_TIER = freeTierEnabled()
+  let freeTierFailures = 0
+
+  if (USE_FREE_TIER) {
+    console.log(`翻译主路：免费层 ${freeTierModel()}（无需 key）`)
+  } else {
+    console.log('翻译主路：免费层已关闭（FREE_TIER_ENABLED=0）')
+  }
+  const hasGateway = Boolean(process.env.LLM_API_KEY)
+  if (!hasGateway) {
+    if (!USE_FREE_TIER) throw new Error('免费层已关闭且未配置 LLM_API_KEY：没有任何可用的翻译提供方')
+    console.log('未配置 LLM_API_KEY：以「免费层单跑」模式运行（失败即判该条失败）')
+  }
+
+  const translate = async (texts, signal) => {
     const errors = []
+
+    // ① 免费层（熔断后跳过）
+    if (USE_FREE_TIER && freeTierFailures < FREE_TIER_FAILURE_THRESHOLD) {
+      try {
+        const arr = await callFreeTier(texts, { signal })
+        const missing = arr.filter((x) => x === null).length
+        if (missing) console.log(`  [免费层] ${missing}/${texts.length} 条漏译，按行回退`)
+        freeTierFailures = 0
+        // 漏译位置回填原文（留英文比留空好，由回退率阀门把关整体质量）。
+        return arr.map((zh, i) => (zh === null ? texts[i] : zh))
+      } catch (err) {
+        freeTierFailures++
+        const msg = String(err?.message ?? err).slice(0, 120)
+        errors.push(`免费层: ${msg}`)
+        console.log(`  [免费层] 失败（${freeTierFailures}/${FREE_TIER_FAILURE_THRESHOLD}）：${msg}`)
+        if (freeTierFailures >= FREE_TIER_FAILURE_THRESHOLD) {
+          console.log('  [免费层] 已熔断，本轮剩余分块直接走网关')
+        }
+      }
+    }
+
+    // ② 网关回退池
+    const key = process.env.LLM_API_KEY
+    if (!key) {
+      throw new Error(`免费层不可用且未配置 LLM_API_KEY（${errors.join(' | ') || '免费层已熔断'}）`)
+    }
+    const url = process.env.LLM_BASE_URL ?? 'https://api.openai.com/v1/chat/completions'
     for (const model of MODELS) {
       try {
         return await callOnce(url, key, model, texts)
       } catch (err) {
         errors.push(`${model}: ${String(err?.message ?? err).slice(0, 120)}`)
-        console.log(`  [llm] ${model} 失败，换下一个（${errors.length}/${MODELS.length}）`)
+        console.log(`  [网关] ${model} 失败，换下一个`)
       }
     }
-    throw new Error(`全部模型均失败（尝试过 ${MODELS.join(', ')}）：${errors.join(' | ')}`)
+    throw new Error(`全部提供方均失败（网关尝试过 ${MODELS.join(', ')}）：${errors.join(' | ')}`)
   }
 
   const loadPack = async (slug) => {
