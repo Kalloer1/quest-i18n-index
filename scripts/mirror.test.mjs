@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { mkdtempSync, writeFileSync, rmSync, existsSync, readFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { runMirror, readMirrors, writeMirrors } from './mirror.mjs'
+import { runMirror, readMirrors, writeMirrors, makeUploader } from './mirror.mjs'
 import { STATUS } from '../shared/quest-status.mjs'
 import { defaultReportStatus } from './lib/report-status.mjs'
 
@@ -213,4 +213,64 @@ test('未配置 WORKER_URL/token 时 defaultReportStatus 不发请求、不报�
     globalThis.fetch = origFetch
   }
   assert.equal(called, false)
+})
+
+// ---- makeUploader：CLI 参数形状（回归：QUARK_PARENT_FID 被 workflow 传了但脚本从不读）----
+
+/** 造一个假 CLI 调用器，记录每次调用的 args，并按命令返回预设 data。 */
+function fakeCall(overrides = {}) {
+  const calls = []
+  const call = (_cli, args) => {
+    calls.push(args)
+    const cmd = args[0]
+    if (cmd === 'create-folder') return { fid: 'DIR_FID', full_path: '夸克网盘/整合包汉化' }
+    if (cmd === 'upload') return { fids: ['FILE_FID'] }
+    if (cmd === 'share') return { share_url: 'https://pan.quark.cn/s/abc' }
+    return overrides[cmd] ?? {}
+  }
+  return { call, calls }
+}
+
+test('makeUploader：给了 parentFid 时 create-folder 必须带 --parent-fid', async () => {
+  const { call, calls } = fakeCall()
+  const upload = makeUploader('/cli.cjs', '整合包汉化', '/cwd', { parentFid: 'PARENT_FID', call })
+  const url = await upload('demo', '/downloads/demo.zip')
+
+  assert.equal(url, 'https://pan.quark.cn/s/abc')
+  assert.deepEqual(calls[0], ['create-folder', '--dir-path', '整合包汉化', '--parent-fid', 'PARENT_FID'])
+  assert.deepEqual(calls[1], ['upload', '/downloads/demo.zip', '--parent-fid', 'DIR_FID'])
+})
+
+test('makeUploader：没给 parentFid 时不带 --parent-fid（沿用 CLI 服务端默认目录）', async () => {
+  const { call, calls } = fakeCall()
+  const upload = makeUploader('/cli.cjs', '整合包汉化', '/cwd', { call })
+  await upload('demo', '/downloads/demo.zip')
+
+  assert.deepEqual(calls[0], ['create-folder', '--dir-path', '整合包汉化'])
+})
+
+test('makeUploader：目录 fid 只解析一次，多条复用（不重复建目录）', async () => {
+  const { call, calls } = fakeCall()
+  const upload = makeUploader('/cli.cjs', '整合包汉化', '/cwd', { parentFid: 'P', call })
+  await upload('a', '/downloads/a.zip')
+  await upload('b', '/downloads/b.zip')
+
+  assert.equal(calls.filter((c) => c[0] === 'create-folder').length, 1)
+  assert.equal(calls.filter((c) => c[0] === 'upload').length, 2)
+})
+
+test('makeUploader：create-folder 未返回 fid 时报错（不静默继续）', async () => {
+  const call = (_cli, args) => (args[0] === 'create-folder' ? {} : {})
+  const upload = makeUploader('/cli.cjs', 'd', '/cwd', { call })
+  await assert.rejects(() => upload('demo', '/downloads/demo.zip'), /create-folder 未返回 fid/)
+})
+
+test('makeUploader：share 未返回 share_url 时报错（绝不伪造链接）', async () => {
+  const call = (_cli, args) => {
+    if (args[0] === 'create-folder') return { fid: 'D' }
+    if (args[0] === 'upload') return { fids: ['F'] }
+    return {}
+  }
+  const upload = makeUploader('/cli.cjs', 'd', '/cwd', { call })
+  await assert.rejects(() => upload('demo', '/downloads/demo.zip'), /share 未返回 share_url/)
 })

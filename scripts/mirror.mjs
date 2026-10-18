@@ -21,6 +21,9 @@
  *   QUARK_CLI           quark-drive.cjs 路径（缺失则跳过夸克，全部留空）
  *   QUARK_REQUIRED      设为 1 表示本轮必须有夸克：有目标待镜像而 QUARK_CLI 缺失时退出码 1
  *   QUARK_DIR_NAME      网盘目标目录名，默认「任务书汉化」（同名幂等，自动复用）
+ *   QUARK_PARENT_FID    目标目录的**父目录 fid**（选填）。传了就必须用：
+ *                       CLI 文档写明「`--parent-fid` 不传时，文件夹会被建在服务端默认目录」，
+ *                       而 CI 里解析那个默认目录会失败（`-602 文件浏览器实例不存在`）。
  *   WORKER_URL / INTERNAL_STATUS_TOKEN  配置时回写队列状态（成功→已完成，失败→镜像缺失）；
  *                       未配置时静默跳过，回写失败不阻断镜像。
  *
@@ -146,16 +149,10 @@ export function writeMirrors(results, file = MIRRORS_FILE, { now = new Date().to
 
 // ---------- 夸克 CLI 调用（仅 CLI 主流程使用） ----------
 
-/** 执行一个 CLI 调用并解析其 JSONL 输出，返回 result 行的 data。 */
-function quarkCall(cli, args, cwd) {
-  const stdout = execFileSync(process.execPath, [cli, ...args], {
-    cwd,
-    encoding: 'utf8',
-    maxBuffer: 32 * 1024 * 1024,
-    stdio: ['ignore', 'pipe', 'pipe'],
-  })
+/** 从 CLI 的 JSONL 输出里取 `type:"result"` 行。 */
+function parseResultLine(stdout) {
   let result = null
-  for (const line of stdout.split('\n')) {
+  for (const line of String(stdout ?? '').split('\n')) {
     const t = line.trim()
     if (!t.startsWith('{')) continue
     try {
@@ -163,26 +160,71 @@ function quarkCall(cli, args, cwd) {
       if (obj && obj.type === 'result') result = obj
     } catch { /* 非 JSON 行忽略 */ }
   }
+  return result
+}
+
+/**
+ * 执行一个 CLI 调用并解析其 JSONL 输出，返回 result 行的 data。
+ *
+ * 失败时**必须把 stdout 的 result 行与 stderr 都带进错误信息**：
+ * 夸克 CLI 失败时是非零退出，`execFileSync` 于是抛 `Command failed: …` 且**不带 stdout**，
+ * 而真正的错误码（如 `-602 文件浏览器实例不存在`）在 stdout 的 result 行里。
+ * 实跑 run 39166450472 的日志就只剩一句被截断的
+ * `[ERROR][FileBrowserManager] createFo…`，完全无法定位。
+ */
+function quarkCall(cli, args, cwd) {
+  let stdout
+  try {
+    stdout = execFileSync(process.execPath, [cli, ...args], {
+      cwd,
+      encoding: 'utf8',
+      maxBuffer: 32 * 1024 * 1024,
+      stdio: ['ignore', 'pipe', 'pipe'],
+    })
+  } catch (err) {
+    const parsed = parseResultLine(err.stdout)
+    const detail = parsed
+      ? `code ${parsed.code}: ${parsed.msg ?? ''}`
+      : String(err.stdout ?? '').trim().slice(-300) || '（无 stdout）'
+    const errOut = String(err.stderr ?? '').trim().slice(-300)
+    throw new Error(`quark-drive ${args[0]} 失败（${detail}）${errOut ? ` | stderr: ${errOut}` : ''}`)
+  }
+  const result = parseResultLine(stdout)
   if (!result) throw new Error(`CLI 未输出 result 行：${stdout.slice(-300)}`)
   if (result.code !== 0) throw new Error(`CLI 返回 code ${result.code}: ${result.msg ?? ''}`)
   return result.data ?? {}
 }
 
-/** 业务桩注入点：测试替换 makeUploader 而不触碰 quark CLI。 */
-function makeUploader(cli, dirName, cwd) {
+/**
+ * 业务桩注入点：测试替换 makeUploader 而不触碰 quark CLI。
+ *
+ * @param {string} cli quark-drive.cjs 路径
+ * @param {string} dirName 目标目录名
+ * @param {string} cwd 子进程工作目录
+ * @param {{parentFid?: string, call?: typeof quarkCall}} [opts] `QUARK_PARENT_FID`：目标目录的父目录 fid。
+ *        传了就必须用——CLI 文档写明「`--parent-fid` 不传时，文件夹会被建在服务端默认目录」，
+ *        而 CI 里解析那个默认目录会失败（`-602 文件浏览器实例不存在`）。
+ *        旧代码把它当空气（workflow 一直在传，脚本从未读），是 D6 的直接成因之一。
+ *        `call` 是可注入缝（测试用，不真的调 CLI）。
+ */
+export function makeUploader(cli, dirName, cwd, { parentFid = '', call = quarkCall } = {}) {
   let dirFid = null
   return async (slug, zipPath) => {
     if (!dirFid) {
-      // 同名目录幂等：CLI 侧自动复用已有目录，重复跑不产生重复目录
-      const d = quarkCall(cli, ['create-folder', '--dir-path', dirName], cwd)
+      // 同名目录复用：CLI 侧对已存在目录返回其 fid（文档「创建文件夹」一节：
+      // 「同名文件夹重复创建时具有幂等性，返回已有文件夹的 FID」）。
+      // 注意：**这个幂等性只在能解析出父目录时成立**——所以 parentFid 必须传下去。
+      const args = ['create-folder', '--dir-path', dirName]
+      if (parentFid) args.push('--parent-fid', parentFid)
+      const d = call(cli, args, cwd)
       if (!d.fid) throw new Error(`create-folder 未返回 fid`)
       dirFid = d.fid
     }
-    const up = quarkCall(cli, ['upload', zipPath, '--parent-fid', dirFid], cwd)
+    const up = call(cli, ['upload', zipPath, '--parent-fid', dirFid], cwd)
     const fileFid = (up.fids ?? [])[0]
     if (!fileFid) throw new Error('upload 未返回 fids')
     // url-type 1 = 公开链接，expired-type 1 = 永久有效
-    const sh = quarkCall(cli, ['share', fileFid, '--title', `${slug} 任务书汉化补丁`, '--url-type', '1', '--expired-type', '1'], cwd)
+    const sh = call(cli, ['share', fileFid, '--title', `${slug} 任务书汉化补丁`, '--url-type', '1', '--expired-type', '1'], cwd)
     if (!sh.share_url) throw new Error('share 未返回 share_url')
     return sh.share_url
   }
@@ -200,6 +242,8 @@ if (isMain) {
   const QUARK_CLI = process.env.QUARK_CLI
   const QUARK_REQUIRED = process.env.QUARK_REQUIRED === '1'
   const DIR_NAME = process.env.QUARK_DIR_NAME || '任务书汉化'
+  // 目标目录的父目录 fid。workflow 一直在传，旧代码从未读（D6 成因之一）。
+  const PARENT_FID = process.env.QUARK_PARENT_FID || ''
 
   // 待镜像目标：downloads/ 下的 zip；全量模式只取「尚无分享链接」的（幂等）
   const existing = readMirrors()
@@ -225,7 +269,7 @@ if (isMain) {
     process.exit(0)
   }
 
-  const upload = QUARK_CLI ? makeUploader(QUARK_CLI, DIR_NAME, ROOT) : null
+  const upload = QUARK_CLI ? makeUploader(QUARK_CLI, DIR_NAME, ROOT, { parentFid: PARENT_FID }) : null
   const { results, attempted, succeeded } = await runMirror({
     targets,
     existing,
