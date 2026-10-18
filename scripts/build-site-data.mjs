@@ -17,9 +17,17 @@ const STATE_LABEL = {
   'native-zh': '自带中文',
   'gap-uncovered': '待翻译·无人覆盖',
   'gap-covered': '待翻译·社区已覆盖',
-  'embedded': '内嵌不可做',
+  'embedded': '内嵌可做（覆盖式产出）',
   'no-quests': '无任务书',
 }
+
+/**
+ * 已确认使用非 FTB 任务书系统的整合包。数据集的 `no-quests` 探测无法区分
+ * 「不含任何任务书」与「含非 FTB 任务书系统」，这里按实证逐个登记：
+ * - skyfactory-5：Checklist 模组（CF 项目 405211），任务书为
+ *   `overrides/config/checklist/tasks.txt`（11.6 KB 纯文本、346 行），非 FTB Quests。
+ */
+const KNOWN_NON_FTB_QUESTS = new Set(['skyfactory-5'])
 
 /**
  * 六态的玩家视角解释。`why` 用来告诉玩家「为什么这里没有」，
@@ -30,9 +38,15 @@ const STATE_EXPLAIN = {
   'native-zh': '整合包自身已带中文，无需另装汉化。',
   'gap-uncovered': '有英文任务书，但本站尚未翻译，社区也无人覆盖。',
   'gap-covered': '有英文任务书，本站尚未翻译，但社区已有汉化可用。',
-  'embedded': '任务书文本混在章节数据里，该版本的 FTB Quests 没有翻译系统，无法以新增文件的方式汉化。',
-  'no-quests': '该整合包不含 FTB Quests 任务书，没有任务书可汉化。',
+  'embedded': '任务书文本混在章节数据里，本站以覆盖式补丁产出汉化（解压覆盖到整合包根目录）。'
+    + '注意：补丁会改写你的任务书文件，替换前请备份。整合包更新后补丁可能失效。',
+  'no-quests': '该整合包不含 FTB Quests 任务书，没有任务书可汉化。'
+    + '（若它使用其他任务书系统，如 Checklist，也不在本站范围内。）',
 }
+
+/** skyfactory-5 这类已知含非 FTB 任务书系统的包，专用文案。 */
+const NON_FTB_LABEL = '无任务书（非 FTB Quests）'
+const NON_FTB_EXPLAIN = '该整合包的任务书不是 FTB Quests（如 Checklist），本站只做 FTB Quests 任务书汉化。'
 
 export function buildSiteData({ index, vmStatus, packMeta }, { now = new Date().toISOString() } = {}) {
   // VM 官网部分条目的 slug 带 `/index` 后缀（如 sb4/index），工单 03 已归一化为 sb4。
@@ -50,6 +64,8 @@ export function buildSiteData({ index, vmStatus, packMeta }, { now = new Date().
       ? vmBySlug.get(row.vm.vmSlug) || vmBySlug.get(String(row.vm.vmSlug).replace(/\/index$/, '')) || null
       : null
 
+    // 「非 FTB 任务书系统」不是第七态：state 仍是 no-quests，只在文案上区分。
+    const nonFtb = row.state === 'no-quests' && KNOWN_NON_FTB_QUESTS.has(row.slug)
     return {
       slug: row.slug,
       cfId: row.cfId,
@@ -62,8 +78,8 @@ export function buildSiteData({ index, vmStatus, packMeta }, { now = new Date().
       authors: meta?.authors ?? null,
 
       state: row.state,
-      stateLabel: row.state ? STATE_LABEL[row.state] : null,
-      stateWhy: row.stateWhy || (row.state ? STATE_EXPLAIN[row.state] : null),
+      stateLabel: row.state ? (nonFtb ? NON_FTB_LABEL : STATE_LABEL[row.state]) : null,
+      stateWhy: row.stateWhy || (row.state ? (nonFtb ? NON_FTB_EXPLAIN : STATE_EXPLAIN[row.state]) : null),
       probeIncomplete: !!row.probeIncomplete,
 
       layout: row.layout,
