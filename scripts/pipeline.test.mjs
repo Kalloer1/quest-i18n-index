@@ -8,7 +8,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import {
-  parseArgs, runPipeline, processPack, translateUnits, readRecords, parseModels,
+  parseArgs, runPipeline, processPack, translateUnits, readRecords, parseModels, normalizeGatewayUrl,
   CHUNK_LINES, OVERALL_FALLBACK_THRESHOLD, DEFAULT_TIMEOUT_MS,
 } from './pipeline.mjs'
 import { STATUS } from '../shared/quest-status.mjs'
@@ -223,6 +223,32 @@ test('parseModels：去空、去重、保持顺序', () => {
   assert.deepEqual(parseModels(' b , a ,, b ', undefined), ['b', 'a'])
 })
 
-test('parseModels：都没有时用默认模型', () => {
-  assert.deepEqual(parseModels(undefined, undefined), ['gpt-4o-mini'])
+test('parseModels：都没有时返回空数组，不兜底任何模型（管理区不勾 = 只走免费层）', () => {
+  assert.deepEqual(parseModels(undefined, undefined), [])
+  assert.deepEqual(parseModels('', ''), [])
+  assert.deepEqual(parseModels(' , , ', '  '), [])
+})
+
+test('parseModels：显式传入 fallback 时仍然兜底', () => {
+  assert.deepEqual(parseModels(undefined, undefined, 'gpt-4o-mini'), ['gpt-4o-mini'])
+  assert.deepEqual(parseModels('a', undefined, 'gpt-4o-mini'), ['a'])
+})
+
+// ---- 网关地址归一化（回归：LLM_BASE_URL 在 Worker 是基址、在 pipeline 是完整端点）----
+
+test('normalizeGatewayUrl：只给到 /v1 时自动补 /chat/completions', () => {
+  assert.equal(normalizeGatewayUrl('https://api.888424.xyz/v1'), 'https://api.888424.xyz/v1/chat/completions')
+  assert.equal(normalizeGatewayUrl('https://api.888424.xyz/v1/'), 'https://api.888424.xyz/v1/chat/completions')
+  assert.equal(normalizeGatewayUrl('  https://api.888424.xyz/v1  '), 'https://api.888424.xyz/v1/chat/completions')
+})
+
+test('normalizeGatewayUrl：已是完整端点时原样返回，不重复拼接', () => {
+  const full = 'https://api.888424.xyz/v1/chat/completions'
+  assert.equal(normalizeGatewayUrl(full), full)
+})
+
+test('normalizeGatewayUrl：空值时用默认端点', () => {
+  assert.equal(normalizeGatewayUrl(undefined), 'https://api.openai.com/v1/chat/completions')
+  assert.equal(normalizeGatewayUrl(''), 'https://api.openai.com/v1/chat/completions')
+  assert.equal(normalizeGatewayUrl('   '), 'https://api.openai.com/v1/chat/completions')
 })

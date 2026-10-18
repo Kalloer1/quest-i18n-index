@@ -59,22 +59,46 @@ export const HEADER_LINE = '# AI 初翻，未人工校对'
  * 单独导出便于测试守护这个键名——曾因只读 `packs` 导致 CLI 全量空跑（--ids/--top 都找不到记录）。
  */
 /**
- * 解析模型列表：`LLM_MODELS`（逗号分隔，管理区多选）优先，回退到单数 `LLM_MODEL`，
- * 都没有时用默认值。去空、去重、保持顺序。
+ * 解析模型列表：`LLM_MODELS`（逗号分隔，管理区多选）优先，回退到单数 `LLM_MODEL`。
+ * 去空、去重、保持顺序。
+ *
+ * **都没有时返回空数组，不兜底任何默认模型**（2026-10-19 用户决定）：
+ * 管理区「不选模型」是合法选择，含义是「只走免费层」。
+ * 旧行为兜底 `gpt-4o-mini`，而该模型在中转站上并不存在（实测 503 `model_not_found`），
+ * 免费层一熔断就会去试一个死模型，白等几个 503 再判整包失败。
  *
  * 为何要导出：管理区多选曾完全不生效——workflow 传 `LLM_MODELS`，脚本只读 `LLM_MODEL`。
  * 这个函数是那个契约的唯一定义处，测试直接守它。
  * @param {string|undefined} modelsCsv
  * @param {string|undefined} single
- * @param {string} [fallback]
- * @returns {string[]}
+ * @param {string} [fallback] 显式兜底；缺省为空（不兜底）
+ * @returns {string[]} 可能为空数组
  */
-export function parseModels(modelsCsv, single, fallback = 'gpt-4o-mini') {
+export function parseModels(modelsCsv, single, fallback = '') {
   const raw = String(modelsCsv ?? '').split(',').map((s) => s.trim()).filter(Boolean)
   const list = raw.length ? raw : [String(single ?? '').trim()].filter(Boolean)
   const out = []
   for (const m of list) if (!out.includes(m)) out.push(m)
-  return out.length ? out : [fallback]
+  if (out.length) return out
+  const fb = String(fallback ?? '').trim()
+  return fb ? [fb] : []
+}
+
+/**
+ * 归一化网关地址：允许只给到 `/v1`（或任意前缀），自动补 `/chat/completions`。
+ *
+ * 为什么必须有：`LLM_BASE_URL` 这个名字在本仓库**有两个含义**——
+ * `worker/index.js` 当它是**基址**（自己补 `/models`），`pipeline.mjs` 当它是**完整端点**。
+ * 2026-10-19 实跑时按 Worker 的口径把 GitHub secret 设成了 `https://api.888424.xyz/v1`，
+ * 流水线于是 POST 到 `/v1` 拿到 404（`Invalid URL (POST /v1)`）。
+ * 与 `free-tier.mjs` 的 `freeTierUrl()` 同口径，两种写法都吃。
+ * @param {string|undefined} raw
+ * @returns {string}
+ */
+export function normalizeGatewayUrl(raw) {
+  const s = String(raw ?? '').trim()
+  if (!s) return 'https://api.openai.com/v1/chat/completions'
+  return /\/chat\/completions$/.test(s) ? s : `${s.replace(/\/+$/, '')}/chat/completions`
 }
 
 /**
@@ -421,10 +445,13 @@ if (isMain) {
 
     // ② 网关回退池
     const key = process.env.LLM_API_KEY
-    if (!key) {
-      throw new Error(`免费层不可用且未配置 LLM_API_KEY（${errors.join(' | ') || '免费层已熔断'}）`)
+    if (!key || !MODELS.length) {
+      throw new Error(
+        `免费层不可用且${key ? '未选择任何网关模型（管理区不勾模型 = 只走免费层）' : '未配置 LLM_API_KEY'}`
+        + `（${errors.join(' | ') || '免费层已熔断'}）`,
+      )
     }
-    const url = process.env.LLM_BASE_URL ?? 'https://api.openai.com/v1/chat/completions'
+    const url = normalizeGatewayUrl(process.env.LLM_BASE_URL)
     for (const model of MODELS) {
       try {
         return await callOnce(url, key, model, texts)
