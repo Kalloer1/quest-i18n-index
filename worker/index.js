@@ -456,6 +456,8 @@ async function handleStatus(request, env, origin) {
     attempts: Number.isFinite(body.attempts) ? body.attempts : existing.attempts,
     error: typeof body.error === 'string' ? body.error.slice(0, 500) : existing.error,
     note: typeof body.note === 'string' ? body.note.slice(0, 500) : existing.note,
+    // CurseForge 提交时 name 暂用 slug（提交不调 CF API）；流水线取回真实项目名后经此回写补全。
+    name: typeof body.name === 'string' && body.name ? body.name.slice(0, 200) : existing.name,
   }
 
   await writeEntry(env, entry)

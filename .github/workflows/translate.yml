@@ -88,42 +88,17 @@ jobs:
       - name: Validate data contract after translate
         run: npm test
 
-      - name: Commit and push
+      # 打包补丁包 → 重建站点数据（合并 quark 链接）→ 显式路径 git add → commit → push。
+      # 必须走 release.mjs：它把 patches/ 打成 downloads/<slug>.zip，并把 downloads/、
+      # site/data.json、research/quark-mirrors.json、glossary.json 显式入库（禁止 git add -A）。
+      # 早先的写法直接 git add patches 是错的：patches/ 是产出输入，站点消费的是 downloads/*.zip。
+      - name: Package, rebuild site data, commit and push
         id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          # 显式路径，禁止 git add -A（否则会裹入无关文件）
-          for p in patches site/data.json glossary.json; do
-            [ -e "$p" ] && git add -- "$p"
-          done
-          if git diff --cached --quiet; then
-            echo "无变更，跳过提交"
-            echo "pushed=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          git commit -m "翻译: ${{ inputs.ids }}"
-          # 并发保护：先 rebase 再推，失败重试一次。只 rebase，绝不 force push。
-          pushed=false
-          for attempt in 1 2; do
-            if ! git pull --rebase --autostash origin main; then
-              echo "rebase 失败（第 ${attempt} 次），原因见上方输出"
-              git rebase --abort 2>/dev/null || true
-              exit 1
-            fi
-            if git push; then
-              pushed=true
-              break
-            fi
-            echo "push 第 ${attempt} 次失败，重试"
-            sleep 5
-          done
-          if [ "$pushed" = "true" ]; then
-            echo "pushed=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "push 连续 2 次失败，退出非 0"
-            exit 1
-          fi
+          node scripts/release.mjs --ids "${{ inputs.ids }}"
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
 
       # GITHUB_TOKEN 的 push 不触发下游 workflow，故推送成功后显式 dispatch deploy。
       - name: Trigger deploy

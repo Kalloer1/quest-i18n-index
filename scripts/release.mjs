@@ -30,6 +30,20 @@ const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url))
 const PATCHES_DIR = join(ROOT, 'patches')
 const DOWNLOADS_DIR = join(ROOT, 'downloads')
 
+/**
+ * slug → 语言布局。内嵌布局包要用更强的备份警告 README（工单 03）。
+ * 数据集字段是 `dataset`（build-index.mjs 产出）；读不到时返回空表（按分离布局处理）。
+ */
+function loadLayouts() {
+  try {
+    const ds = JSON.parse(readFileSync(join(ROOT, 'research/index-dataset.json'), 'utf8'))
+    const rows = ds.dataset ?? ds.packs ?? []
+    return new Map(rows.filter((r) => r?.slug).map((r) => [r.slug, r.layout]))
+  } catch {
+    return new Map()
+  }
+}
+
 function usage() {
   console.error('用法: node scripts/release.mjs --ids <slug,slug> | --all [--dry-run] [--no-push]')
   process.exit(2)
@@ -72,6 +86,7 @@ if (!slugs.length) {
 }
 
 let produced = 0
+const layouts = loadLayouts()
 for (const slug of slugs) {
   const dir = join(PATCHES_DIR, slug)
   if (!existsSync(dir)) {
@@ -85,7 +100,7 @@ for (const slug of slugs) {
   }
   produced++
   const files = names.map(name => ({ name, text: readFileSync(join(dir, ...name.split('/')), 'utf8') }))
-  const zip = buildPatch(files)
+  const zip = buildPatch(files, { layout: layouts.get(slug) === 'embedded' ? 'embedded' : undefined })
   mkdirSync(DOWNLOADS_DIR, { recursive: true })
   const outPath = join(DOWNLOADS_DIR, `${slug}.zip`)
   writeFileSync(outPath, zip)
@@ -100,7 +115,7 @@ if (!produced) {
 
 // 2. 重建站点数据（合并 quark 镜像链接）
 exec(`node "${join(SCRIPT_DIR, 'build-site-data.mjs')}"`)
-staged.push('site/data.json', 'research/quark-mirrors.json')
+staged.push('site/data.json', 'research/quark-mirrors.json', 'glossary.json')
 
 // 3. 显式路径暂存（禁止 git add -A）
 for (const p of staged) {

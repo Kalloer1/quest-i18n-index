@@ -6,10 +6,25 @@
  */
 import test from 'node:test'
 import assert from 'node:assert/strict'
+import { readFileSync } from 'node:fs'
 import {
-  parseArgs, runPipeline, processPack, translateUnits,
+  parseArgs, runPipeline, processPack, translateUnits, readRecords,
   CHUNK_LINES, OVERALL_FALLBACK_THRESHOLD, DEFAULT_TIMEOUT_MS,
 } from './pipeline.mjs'
+
+// ---- 数据集键名（回归：曾只读 `packs`，而实际字段是 `dataset`，CLI 全量空跑）----
+
+test('readRecords 认 `dataset` 字段，并兼容旧的 `packs` 写法', () => {
+  assert.deepEqual(readRecords({ dataset: [{ slug: 'a' }] }), [{ slug: 'a' }])
+  assert.deepEqual(readRecords({ packs: [{ slug: 'b' }] }), [{ slug: 'b' }])
+  assert.deepEqual(readRecords({}), [])
+  assert.deepEqual(readRecords(null), [])
+})
+
+test('真实数据集能被 readRecords 读出 500 条（守护键名漂移）', () => {
+  const ds = JSON.parse(readFileSync(new URL('../research/index-dataset.json', import.meta.url), 'utf8'))
+  assert.equal(readRecords(ds).length, 500)
+})
 import { LAYOUT } from './lib/candidates.mjs'
 
 const EMBED = 'config/ftbquests/quests/chapters/chapter.snbt'

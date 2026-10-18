@@ -318,6 +318,33 @@ test('POST /status：合法状态写回 KV', async () => {
   assert.equal(entry.status, '已完成')
 })
 
+test('POST /status：可选 name 回写（CurseForge 项目名由流水线补全）', async () => {
+  const env = makeEnv()
+  await worker.fetch(post('https://api.test/', { url: CF_URL }), env)
+  // 提交时 name 暂用 slug
+  assert.equal(JSON.parse(env.TRANSLATION_QUEUE.store.get('queue:craftoria')).name, 'craftoria')
+  const res = await worker.fetch(
+    post(
+      'https://api.test/status',
+      { id: 'craftoria', status: '已完成', name: 'Craftoria 2' },
+      { 'X-Internal-Token': 'test-salt' },
+    ),
+    env,
+  )
+  assert.equal(res.status, 200)
+  assert.equal(JSON.parse(env.TRANSLATION_QUEUE.store.get('queue:craftoria')).name, 'Craftoria 2')
+})
+
+test('POST /status：不传 name 时保留原值', async () => {
+  const env = makeEnv()
+  await worker.fetch(post('https://api.test/', { url: CF_URL }), env)
+  await worker.fetch(
+    post('https://api.test/status', { id: 'craftoria', status: '翻译中' }, { 'X-Internal-Token': 'test-salt' }),
+    env,
+  )
+  assert.equal(JSON.parse(env.TRANSLATION_QUEUE.store.get('queue:craftoria')).name, 'craftoria')
+})
+
 test('POST /status：队列中不存在该 id → 404', async () => {
   const env = makeEnv()
   const res = await worker.fetch(

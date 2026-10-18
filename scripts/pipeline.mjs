@@ -45,6 +45,15 @@ export const OVERALL_FALLBACK_THRESHOLD = 0.3
 export const DEFAULT_TIMEOUT_MS = 5 * 60 * 1000
 export const HEADER_LINE = '# AI 初翻，未人工校对'
 
+/**
+ * 从数据集 JSON 里取整合包记录。
+ * 数据集字段是 `dataset`（build-index.mjs 产出）；兼容旧的 `packs` 写法。
+ * 单独导出便于测试守护这个键名——曾因只读 `packs` 导致 CLI 全量空跑（--ids/--top 都找不到记录）。
+ */
+export function readRecords(dataset) {
+  return dataset?.dataset ?? dataset?.packs ?? []
+}
+
 // ---------- 分块翻译（纯逻辑，注入 translate） ----------
 
 /**
@@ -230,7 +239,7 @@ export async function runPipeline(options) {
       for (const out of result.outputs) writeOutput(slug, out.name, out.text)
     }
     const payload = result.status === 'done'
-      ? { status: 'done', error: '' }
+      ? { status: 'done', error: '', ...(record.title ? { name: record.title } : {}) }
       : { status: result.status, error: result.error, note: result.note }
     await reportStatus(slug, payload)
     results.push(result)
@@ -298,7 +307,7 @@ if (isMain) {
     process.exit(1)
   }
   const dataset = JSON.parse(readFileSync(DATASET_FILE, 'utf8'))
-  const records = dataset.packs ?? []
+  const records = readRecords(dataset)
   const bySlug = new Map(records.map((r) => [r.slug, r]))
 
   let worklist
@@ -363,7 +372,7 @@ if (isMain) {
       }
     : null
 
-  const results = await runPipeline({ records: worklist, loadPack, translate, glossary, chunkLines: args.chunkLines, timeoutMs: args.timeoutMs, writeOutput, loadMergePack })
+  const results = await runPipeline({ records: worklist, loadPack, translate, glossary, chunkLines: args.chunkLines, timeoutMs: args.timeoutMs, writeOutput, loadMergePack, reportStatus: args.dryRun ? async () => {} : defaultReportStatus })
 
   // 合并式回写 glossary.json：只补新键，不抹历史条目。
   const additions = {}
