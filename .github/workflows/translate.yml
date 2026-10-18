@@ -1,0 +1,115 @@
+name: translate
+
+# 站点提交页 → Worker POST /translate → 本工作流。
+# inputs.ids 是逗号分隔的整合包 slug 列表（Worker 传入全部「待翻译」条目）。
+on:
+  workflow_dispatch:
+    inputs:
+      ids:
+        description: '逗号分隔的整合包 slug 列表'
+        required: true
+        type: string
+      models:
+        description: '逗号分隔的模型名；留空则用仓库默认（来自管理区勾选，Worker 已对网关列表做白名单校验）'
+        required: false
+        type: string
+        default: ''
+      retryFailed:
+        description: '是否额外重试「失败」条目（默认否，避免重复烧额度）'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  # workflow_dispatch 需要 actions: write（否则调用 dispatch 端点 403）
+  actions: write
+
+# 与 deploy.yml 共用 concurrency 组：两者都会写仓库 / 触发部署。
+concurrency:
+  group: repo-write
+  cancel-in-progress: false
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    # 每个整合包在 pipeline 内独立超时；这里给整批留出余量。
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # pipeline 会写回 patches/ 与 site/data.json，需要可 push 的凭据
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm ci || npm install
+
+      # 闸门（写入之前）：先把仓库里已有的产物校验一遍，避免带着历史问题继续产出。
+      - name: Run tests
+        run: npm test
+
+      - name: Validate existing quest files
+        run: npm run validate:quests
+
+      - name: Translate
+        run: node scripts/pipeline.mjs --ids "${{ inputs.ids }}"
+        env:
+          CF_KEY: ${{ secrets.CF_KEY }}
+          LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          LLM_MODELS: ${{ inputs.models || secrets.LLM_MODELS || '' }}
+          # FREE_TIER_* 当前未生效：workflow 已传入，但 pipeline.mjs 尚未消费（免费层优先逻辑是另一工单的范围，见 ADR-0007 未决项）。
+          FREE_TIER_ENABLED: ${{ secrets.FREE_TIER_ENABLED || '1' }}
+          FREE_TIER_BASE_URL: ${{ secrets.FREE_TIER_BASE_URL }}
+          FREE_TIER_MODEL: ${{ secrets.FREE_TIER_MODEL }}
+          WORKER_URL: ${{ secrets.WORKER_URL }}
+          INTERNAL_STATUS_TOKEN: ${{ secrets.INTERNAL_STATUS_TOKEN }}
+
+      - name: Mirror to Quark
+        id: mirror
+        # 镜像失败不阻断发布：翻译产物是主要价值，先让它入库；
+        # 但「零链接却绿灯」不可接受，故由末尾独立一步统一判红。
+        continue-on-error: true
+        run: node scripts/mirror.mjs
+        env:
+          QODER_PRODUCT_ID: qoder
+          QODER_AGENT: 'true'
+          QUARK_DIR_NAME: 整合包汉化
+          QUARK_PARENT_FID: ${{ secrets.QUARK_PARENT_FID }}
+          # 本轮「必须」完成夸克镜像：有目标待镜像而 CLI 缺失时 mirror.mjs 置退出码 1。
+          QUARK_REQUIRED: '1'
+          WORKER_URL: ${{ secrets.WORKER_URL }}
+          INTERNAL_STATUS_TOKEN: ${{ secrets.INTERNAL_STATUS_TOKEN }}
+
+      # 闸门（写入之后）：本次 Translate / Mirror 新写入的产物不在前面那次校验范围内。
+      - name: Validate data contract after translate
+        run: npm test
+
+      # 打包补丁包 → 重建站点数据（合并 quark 链接）→ 显式路径 git add → commit → push。
+      # 必须走 release.mjs：它把 patches/ 打成 downloads/<slug>.zip，并把 downloads/、
+      # site/data.json、research/quark-mirrors.json、glossary.json 显式入库（禁止 git add -A）。
+      # 早先的写法直接 git add patches 是错的：patches/ 是产出输入，站点消费的是 downloads/*.zip。
+      - name: Package, rebuild site data, commit and push
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          node scripts/release.mjs --ids "${{ inputs.ids }}"
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+
+      # GITHUB_TOKEN 的 push 不触发下游 workflow，故推送成功后显式 dispatch deploy。
+      - name: Trigger deploy
+        if: steps.commit.outputs.pushed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run deploy.yml --repo "$GITHUB_REPOSITORY"
+
+      # 夸克镜像没干成（登录态过期 / CLI 缺失）必须变红，但要在产物入库之后。
+      - name: Fail if quark mirror totally failed
+        if: steps.mirror.outcome == 'failure'
+        run: |
+          echo "::error::夸克镜像未完成（多为登录态过期，或 CLI 下载/安装失败）。翻译产物已入库；网盘字段为空，需修好后重跑镜像。"
+          exit 1

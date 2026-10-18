@@ -89,6 +89,9 @@ test('幂等：同一输入连跑两次，除时间戳外逐字节相同', () =>
 test('元数据记录新旧覆盖数差异', () => {
   const ds = buildDataset(input)
   assert.equal(ds.coverageChange.previous, 21)
-  assert.equal(ds.coverageChange.current, ds.stat.coveredByVm)
+  // current 用 vmMatched（不分状态的全部 VM 命中），不是 coveredByVm：
+  // 内嵌 / 无任务书 / 探测未完成的包也可能有 VM 汉化，
+  // 而它们的状态不是 gap-covered。
+  assert.equal(ds.coverageChange.current, ds.stat.vmMatched)
   assert.ok(ds.coverageChange.reason.length > 0)
 })

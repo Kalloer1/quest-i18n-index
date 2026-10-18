@@ -1,0 +1,184 @@
+#!/usr/bin/env node
+/**
+ * scripts/lib/ 四个纯函数模块的单测：色码、术语记忆、候选筛选、任务书抽取/产出。
+ */
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import { stripColorCodes, countColorCodes, countMalformedCodes } from './lib/format-codes.mjs'
+import {
+  stripSkeleton, isSourceEcho, isUsableMemory, lookupMemory,
+  shouldRememberMemory, mergeGlossary,
+} from './lib/glossary.mjs'
+import { classifyLayout, skipReason, screenCandidates, LAYOUT, SKIP } from './lib/candidates.mjs'
+import {
+  isTranslatablePath, sourceFileNames, outputName, extractPack, buildOutputs,
+} from './lib/quest-files.mjs'
+import { parse } from './snbt.mjs'
+import { readFileSync } from 'node:fs'
+
+// ---------- format-codes ----------
+
+test('stripColorCodes：剥离合法色码，保留正文', () => {
+  assert.equal(stripColorCodes('&7Holystone&r Weapons'), 'Holystone Weapons')
+  assert.equal(stripColorCodes('§eThe Aether§r'), 'The Aether')
+  assert.equal(stripColorCodes('&c&lSun Spirit&r'), 'Sun Spirit')
+})
+
+const BS = String.fromCharCode(92)
+test('stripColorCodes：字面转义 \\& 保留为 &', () => {
+  assert.equal(stripColorCodes(`${BS}&`), '&')
+  assert.equal(stripColorCodes(`${BS}&n&7x`), '&nx')
+})
+
+test('countColorCodes：合法码计数，转义不算', () => {
+  assert.equal(countColorCodes('&a&b&c'), 3)
+  assert.equal(countColorCodes('\\&a'), 0)
+  assert.equal(countColorCodes('§6§l'), 2)
+})
+
+test('countMalformedCodes：畸形序列计数（行尾/非法后继）', () => {
+  assert.equal(countMalformedCodes('abc&'), 1)
+  assert.equal(countMalformedCodes('&gg'), 1)
+  assert.equal(countMalformedCodes('§'), 1)
+  assert.equal(countMalformedCodes('\\&x'), 0)
+  assert.equal(countMalformedCodes('&a好'), 0)
+})
+
+// ---------- glossary ----------
+
+test('stripSkeleton：剥色码 + 小写 + 压缩空白', () => {
+  assert.equal(stripSkeleton('&7Holystone&r   Weapons'), 'holystone weapons')
+  assert.equal(stripSkeleton('  The   Aether '), 'the aether')
+})
+
+test('isSourceEcho：逐字比较', () => {
+  assert.equal(isSourceEcho('same', 'same'), true)
+  assert.equal(isSourceEcho('Same', 'same'), false)
+})
+
+test('isUsableMemory：空值与英文回显都不可用', () => {
+  assert.equal(isUsableMemory('译文', '原文'), true)
+  assert.equal(isUsableMemory('', '原文'), false)
+  assert.equal(isUsableMemory('原文', '原文'), false)
+  assert.equal(isUsableMemory(undefined, '原文'), false)
+})
+
+test('lookupMemory：按骨架命中，污染条目视为未命中', () => {
+  const entries = { 'holystone weapons': '圣愈石武器', 'echo trap': 'Echo Trap' }
+  assert.equal(lookupMemory(entries, '&7Holystone&r Weapons'), '圣愈石武器')
+  assert.equal(lookupMemory(entries, 'Echo Trap'), undefined)
+  assert.equal(lookupMemory(entries, ''), undefined)
+})
+
+test('shouldRememberMemory：骨架空/已有/回显都不记', () => {
+  assert.equal(shouldRememberMemory('k', '译文', '原文', undefined), true)
+  assert.equal(shouldRememberMemory('', '译文', '原文', undefined), false)
+  assert.equal(shouldRememberMemory('k', '译文', '原文', '已有'), false)
+  assert.equal(shouldRememberMemory('k', '原文', '原文', undefined), false)
+})
+
+test('mergeGlossary：合并式回写，历史条目优先', () => {
+  const existing = { a: '旧译', b: '保留' }
+  const out = mergeGlossary(existing, { a: '新译', c: '新增', d: '' })
+  assert.deepEqual(out, { a: '旧译', b: '保留', c: '新增' })
+  assert.deepEqual(existing, { a: '旧译', b: '保留' }) // 不改入参
+})
+
+// ---------- candidates ----------
+
+test('classifyLayout：分离·目录', () => {
+  const r = classifyLayout([
+    'config/ftbquests/quests/lang/en_us/chapter.snbt',
+    'config/ftbquests/quests/lang/zh_cn/chapter.snbt',
+    'config/ftbquests/quests/chapters/chapter.snbt',
+  ])
+  assert.equal(r.layout, LAYOUT.SEPARATE_DIR)
+  assert.equal(r.enFiles, 1)
+  assert.equal(r.zhFiles, 1)
+  assert.equal(r.hasQuests, true)
+})
+
+test('classifyLayout：分离·单文件', () => {
+  const r = classifyLayout(['config/ftbquests/quests/lang/en_us.snbt'])
+  assert.equal(r.layout, LAYOUT.SEPARATE_SINGLE)
+  assert.equal(r.enFiles, 1)
+  assert.equal(r.zhFiles, 0)
+})
+
+test('classifyLayout：内嵌', () => {
+  const r = classifyLayout(['config/ftbquests/quests/chapters/chapter.snbt'])
+  assert.equal(r.layout, LAYOUT.EMBEDDED)
+  assert.equal(r.enFiles, 1)
+  assert.equal(r.embeddedFiles, 1)
+})
+
+test('classifyLayout：无任务书 / 有 ftbquests 但无 snbt 布局', () => {
+  assert.equal(classifyLayout(['mods/a.jar']).layout, LAYOUT.NONE)
+  assert.equal(classifyLayout(['config/ftbquests/other.txt']).layout, LAYOUT.OTHER)
+})
+
+test('skipReason：四种跳过原因', () => {
+  assert.equal(skipReason({ layout: LAYOUT.NONE }), SKIP.NO_QUESTS)
+  assert.equal(skipReason({ layout: LAYOUT.OTHER }), SKIP.NO_QUESTS)
+  assert.equal(skipReason({ layout: LAYOUT.EMBEDDED, zhFiles: 2 }), SKIP.NATIVE_ZH)
+  assert.equal(skipReason({ layout: LAYOUT.SEPARATE_DIR, enFiles: 0 }), SKIP.NO_EN_SOURCE)
+  assert.equal(skipReason({ layout: LAYOUT.EMBEDDED, enFiles: 1, version: '1.2', translatedVersion: '1.2' }), SKIP.UP_TO_DATE)
+  assert.equal(skipReason({ layout: LAYOUT.EMBEDDED, enFiles: 1 }), null)
+})
+
+test('screenCandidates：候选与跳过清单分离', () => {
+  const rows = [
+    { slug: 'good', layout: LAYOUT.EMBEDDED, enFiles: 1 },
+    { slug: 'bad', layout: LAYOUT.NONE },
+  ]
+  const { candidates, skipped } = screenCandidates(rows)
+  assert.deepEqual(candidates, [rows[0]])
+  assert.deepEqual(skipped, [{ slug: 'bad', reason: SKIP.NO_QUESTS }])
+})
+
+// ---------- quest-files ----------
+
+const SEP_DIR_EN = 'config/ftbquests/quests/lang/en_us/chapter.snbt'
+const EMBED = 'config/ftbquests/quests/chapters/chapter.snbt'
+
+test('isTranslatablePath：内嵌只翻文本字段，分离全翻', () => {
+  assert.equal(isTranslatablePath('title', LAYOUT.EMBEDDED), true)
+  assert.equal(isTranslatablePath('tasks[0].item', LAYOUT.EMBEDDED), false)
+  assert.equal(isTranslatablePath('icon', LAYOUT.EMBEDDED), false)
+  assert.equal(isTranslatablePath('whatever.key', LAYOUT.SEPARATE_DIR), true)
+})
+
+test('sourceFileNames / outputName：三种布局', () => {
+  const names = [SEP_DIR_EN, 'config/ftbquests/quests/lang/zh_cn/x.snbt', EMBED, 'lang/en_us.snbt']
+  assert.deepEqual(sourceFileNames(names, LAYOUT.SEPARATE_DIR), [SEP_DIR_EN])
+  assert.deepEqual(sourceFileNames(names, LAYOUT.SEPARATE_SINGLE), ['lang/en_us.snbt'])
+  assert.deepEqual(sourceFileNames(names, LAYOUT.EMBEDDED), [EMBED])
+  assert.equal(outputName(SEP_DIR_EN, LAYOUT.SEPARATE_DIR), SEP_DIR_EN.replace('/en_us/', '/zh_cn/'))
+  assert.equal(outputName('lang/en_us.snbt', LAYOUT.SEPARATE_SINGLE), 'lang/zh_cn.snbt')
+  assert.equal(outputName(EMBED, LAYOUT.EMBEDDED), EMBED)
+})
+
+test('extractPack / buildOutputs：内嵌布局只改文本字段，其余字节无损', () => {
+  const text = readFileSync('scripts/fixtures/snbt/aether.snbt', 'utf8')
+  const pack = extractPack({ files: [{ name: EMBED, text }], layout: LAYOUT.EMBEDDED })
+  // 内嵌布局只翻文本字段：夹具里是 3 个 title（quest_desc 不在 TEXT_FIELDS）
+  assert.equal(pack.units.length, 3)
+  const translations = new Map(pack.units.map((u) => [u.key, `中:${u.text}`]))
+  const outputs = buildOutputs(pack, translations, { header: '# AI 初翻，未人工校对\n' })
+  assert.equal(outputs[0].name, EMBED)
+  assert.ok(outputs[0].text.startsWith('# AI 初翻，未人工校对\n'))
+  const body = outputs[0].text.slice('# AI 初翻，未人工校对\n'.length)
+  // 未改写的结构无损；被改写的字符串值已替换
+  assert.ok(body.includes('中:&7Holystone&r Weapons'))
+  // 再解析不抛错
+  parse(body)
+})
+
+test('extractPack：分离布局所有字符串都可翻', () => {
+  const pack = extractPack({
+    files: [{ name: SEP_DIR_EN, text: '{ "quest.a.title": "Hello" }' }],
+    layout: LAYOUT.SEPARATE_DIR,
+  })
+  assert.equal(pack.units.length, 1)
+  assert.equal(pack.units[0].key, `${SEP_DIR_EN}::quest.a.title`)
+})

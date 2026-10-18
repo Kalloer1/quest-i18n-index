@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>提交翻译请求 · 整合包任务书汉化索引</title>
+<style>
+:root {
+  --bg: #14161a;
+  --surface: #1c1f26;
+  --surface-2: #23262f;
+  --border: #31353f;
+  --text: #e8eaed;
+  --text-dim: #a1a7b3;
+  --text-faint: #767d8a;
+  --accent: #6ea8fe;
+  --ok: #4ade80;
+  --warn: #fbbf24;
+  --danger: #f87171;
+  --info: #60a5fa;
+  --radius: 10px;
+  --maxw: 1080px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.6 system-ui, -apple-system, "Segoe UI", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+}
+
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+
+/* ---------- 顶栏 ---------- */
+header {
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 60px;
+}
+.brand { font-weight: 700; font-size: 17px; letter-spacing: .2px; }
+.brand span { color: var(--text-faint); font-weight: 400; font-size: 13px; margin-left: 8px; }
+nav { display: flex; gap: 4px; }
+nav a {
+  color: var(--text-dim);
+  font-size: 14px;
+  padding: 10px 12px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 8px;
+}
+nav a[aria-current="page"] { color: var(--text); background: var(--surface-2); }
+nav a:hover { color: var(--text); }
+
+/* ---------- 通用 ---------- */
+main { padding: 28px 0 72px; }
+h1 { font-size: 24px; margin: 0 0 6px; }
+h2 { font-size: 18px; margin: 32px 0 12px; }
+h3 { font-size: 15px; margin: 0 0 8px; }
+.lede { color: var(--text-dim); margin: 0 0 24px; font-size: 14px; }
+.muted { color: var(--text-faint); font-size: 13px; }
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+
+/* ---------- 表单 ---------- */
+.field { margin-bottom: 16px; }
+.field label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.field .hint { color: var(--text-faint); font-weight: 400; font-size: 12.5px; margin-left: 6px; }
+.field input, .field textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 15px;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  min-height: 48px;
+}
+.field textarea { min-height: 84px; resize: vertical; }
+.field input::placeholder, .field textarea::placeholder { color: var(--text-faint); }
+.field input:focus, .field textarea:focus { border-color: var(--accent); }
+
+.submit-btn {
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: #0b1220;
+  background: var(--accent);
+  border: 0;
+  border-radius: 8px;
+  padding: 12px 22px;
+  min-height: 48px;
+  cursor: pointer;
+}
+.submit-btn:disabled { opacity: .55; cursor: default; }
+
+.result {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 14px;
+}
+.result[hidden] { display: none; }
+.result[data-kind="ok"] { border-color: var(--ok); background: rgba(74, 222, 128, .08); }
+.result[data-kind="err"] { border-color: var(--danger); background: rgba(248, 113, 113, .08); }
+.result .extra { color: var(--text-dim); font-size: 13px; margin-top: 6px; }
+
+/* ---------- 队列 ---------- */
+.queue { display: grid; gap: 10px; }
+.item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px 14px;
+  align-items: start;
+  padding: 12px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.item .name { font-weight: 600; font-size: 15px; overflow-wrap: anywhere; }
+.item .name a { color: inherit; text-decoration: none; }
+.item .name a:hover { text-decoration: underline; }
+.item .meta { color: var(--text-faint); font-size: 12.5px; margin-top: 2px; }
+.item .end { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.item .reason {
+  grid-column: 1 / -1;
+  color: var(--danger);
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.item .reason[hidden] { display: none; }
+
+.badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+.badge[data-state="pending"] { color: var(--text-dim); background: var(--surface-2); border-color: var(--border); }
+.badge[data-state="translating"] { color: #0b1220; background: var(--info); }
+.badge[data-state="done"] { color: #0b1220; background: var(--ok); }
+.badge[data-state="unmirrored"] { color: #0b1220; background: var(--warn); }
+.badge[data-state="failed"] { color: #0b1220; background: var(--danger); }
+.badge[data-state="unknown"] { color: var(--text-faint); background: transparent; border-color: var(--border); }
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-dim);
+  font-size: 14px;
+}
+
+/* ---------- 管理区（维护者门禁） ---------- */
+.admin-models { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 12px; }
+.admin-models label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  color: var(--text-dim);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+.admin-models input[type="checkbox"] { accent-color: var(--accent); }
+.admin-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.admin-row .field { margin: 0; flex: 1 1 220px; }
+.admin-check { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-dim); cursor: pointer; }
+.admin-check input { accent-color: var(--accent); }
+
+/* ---------- 宽屏（≥1200px）：表单与队列并排 ---------- */
+@media (min-width: 1200px) {
+  :root { --maxw: 1160px; }
+  .columns {
+    display: grid;
+    grid-template-columns: minmax(360px, 440px) 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+  .columns h2 { margin-top: 0; }
+}
+
+/* ---------- 移动端（≤480px） ---------- */
+@media (max-width: 480px) {
+  .wrap { padding: 0 14px; }
+  .topbar { min-height: 54px; flex-wrap: wrap; padding: 8px 0; }
+  .brand { font-size: 15px; }
+  .brand span { display: none; }
+  nav a { padding: 10px 10px; font-size: 13.5px; }
+  main { padding: 20px 0 56px; }
+  h1 { font-size: 20px; }
+  .card { padding: 14px; }
+  .item { padding: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap topbar">
+    <div class="brand">任务书汉化索引 <span>Minecraft 整合包 · FTB Quests</span></div>
+    <nav aria-label="主导航">
+      <a href="index.html">查</a>
+      <a href="request.html" aria-current="page">提交</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>提交翻译请求</h1>
+  <p class="lede">填一个整合包链接（CurseForge 或 Modrinth），我们会把它排进翻译队列。提交后可在下方队列里看到进度。</p>
+
+  <div class="columns">
+    <section>
+      <h2>提交一个整合包</h2>
+      <form id="submit-form" class="card" novalidate>
+        <div class="field">
+          <label for="url">整合包链接<span class="hint">必填</span></label>
+          <input id="url" name="url" type="url" required autocomplete="off" spellcheck="false"
+                 placeholder="https://www.curseforge.com/minecraft/modpacks/…">
+        </div>
+        <div class="field">
+          <label for="contact">邮箱<span class="hint">选填，便于我们联系你</span></label>
+          <input id="contact" name="contact" type="email" autocomplete="email" placeholder="you@example.com">
+        </div>
+        <div class="field">
+          <label for="note">说明<span class="hint">选填</span></label>
+          <textarea id="note" name="note" rows="3" placeholder="想补充的信息，例如你想要的版本"></textarea>
+        </div>
+        <button type="submit" class="submit-btn" id="submit-btn">提交翻译请求</button>
+        <div class="result" id="form-result" role="status" aria-live="polite" hidden></div>
+      </form>
+    </section>
+
+    <section>
+      <h2>翻译队列 <span class="muted" id="queue-meta"></span></h2>
+      <div class="queue" id="queue-list" aria-live="polite"></div>
+    </section>
+  </div>
+
+  <section id="admin-section">
+    <h2>管理区<span class="hint">仅维护者</span></h2>
+    <div class="card">
+      <div class="admin-row">
+        <div class="field">
+          <label for="admin-pass">维护者口令</label>
+          <input id="admin-pass" type="password" autocomplete="off" placeholder="输入口令后解锁">
+        </div>
+        <button type="button" class="submit-btn" id="admin-unlock">解锁管理区</button>
+      </div>
+      <div class="result" id="admin-result" role="status" aria-live="polite" hidden></div>
+      <div id="admin-gate" hidden>
+        <div class="field">
+          <label>模型多选<span class="hint">来自网关实时列表，留空用默认模型</span></label>
+          <div class="admin-models" id="admin-models"></div>
+        </div>
+        <div class="admin-row">
+          <label class="admin-check"><input type="checkbox" id="admin-retry-failed"> 同时重试失败条目</label>
+          <button type="button" class="submit-btn" id="admin-translate">一键触发翻译</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+// 须与已部署的 Worker 域名一致，改这一处即可
+const WORKER_URL = 'https://quest-i18n-api.wqclo.workers.dev';
+
+(function () {
+  "use strict";
+
+  var $ = function (s) { return document.querySelector(s); };
+  var esc = function (s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  };
+
+  // 状态中文标签与徽章配色，取值与 shared/quest-status.mjs 的 STATUS 一致
+  var STATUS_META = {
+    "待翻译": { state: "pending", label: "待翻译" },
+    "翻译中": { state: "translating", label: "翻译中" },
+    "已完成": { state: "done", label: "已完成" },
+    "镜像缺失": { state: "unmirrored", label: "镜像缺失" },
+    "失败": { state: "failed", label: "失败" }
+  };
+
+  function statusBadge(status) {
+    var m = STATUS_META[status] || { state: "unknown", label: status || "未知" };
+    return '<span class="badge" data-state="' + m.state + '">' + esc(m.label) + "</span>";
+  }
+
+  function fmtTime(iso) {
+    if (!iso) return "—";
+    var d = new Date(iso);
+    if (isNaN(d)) return iso;
+    var p = function (x) { return x < 10 ? "0" + x : String(x); };
+    return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate())
+      + " " + p(d.getHours()) + ":" + p(d.getMinutes());
+  }
+
+  // ---------- 队列 ----------
+  function itemHTML(e) {
+    var name = e.name || e.id || "未知整合包";
+    var title = e.url
+      ? '<a href="' + esc(e.url) + '" target="_blank" rel="noopener noreferrer">' + esc(name) + " ↗</a>"
+      : esc(name);
+    var reason = e.error
+      ? '<div class="reason">失败原因：' + esc(e.error) + "</div>"
+      : "";
+    return '<div class="item">'
+      + '<div><div class="name">' + title + "</div>"
+      + '<div class="meta">提交时间：' + esc(fmtTime(e.submittedAt)) + "</div></div>"
+      + '<div class="end">' + statusBadge(e.status) + "</div>"
+      + reason
+      + "</div>";
+  }
+
+  function renderQueue(data) {
+    var list = (data && data.entries) || [];
+    $("#queue-meta").textContent = list.length ? "共 " + list.length + " 条" : "";
+    if (!list.length) {
+      $("#queue-list").innerHTML = '<div class="empty-state">队列还是空的，来提交第一个吧。</div>';
+      return;
+    }
+    $("#queue-list").innerHTML = list.map(itemHTML).join("");
+  }
+
+  function loadQueue() {
+    fetch(WORKER_URL + "/queue")
+      .then(function (r) { return r.json(); })
+      .then(function (data) { renderQueue(data); })
+      .catch(function () {
+        $("#queue-list").innerHTML = '<div class="empty-state">暂时无法读取队列，稍后会自动重试。</div>';
+      });
+  }
+
+  // ---------- 提交 ----------
+  function showResult(kind, message, extra) {
+    var el = $("#form-result");
+    el.hidden = false;
+    el.dataset.kind = kind;
+    el.innerHTML = "<div>" + esc(message) + "</div>"
+      + (extra ? '<div class="extra">' + esc(extra) + "</div>" : "");
+  }
+
+  $("#submit-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var url = $("#url").value.trim();
+    if (!url) {
+      showResult("err", "请填写整合包链接。");
+      $("#url").focus();
+      return;
+    }
+    var btn = $("#submit-btn");
+    btn.disabled = true;
+    showResult("ok", "正在提交…");
+
+    fetch(WORKER_URL + "/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        url: url,
+        contact: $("#contact").value.trim(),
+        note: $("#note").value.trim()
+      })
+    })
+      .then(function (r) {
+        return r.json().then(function (data) { return { ok: r.ok, data: data }; });
+      })
+      .then(function (res) {
+        if (res.ok && res.data.success) {
+          var extra = res.data.remainingToday == null
+            ? ""
+            : "今日还可提交 " + res.data.remainingToday + " 次。";
+          showResult("ok", res.data.message || "提交成功！", extra);
+          $("#submit-form").reset();
+          loadQueue();
+        } else {
+          showResult("err", (res.data && res.data.error) || "提交失败，请稍后重试。");
+        }
+      })
+      .catch(function () {
+        showResult("err", "网络错误，提交失败，请稍后重试。");
+      })
+      .finally(function () {
+        btn.disabled = false;
+      });
+  });
+
+  // ---------- 管理区（维护者门禁 + 一键触发） ----------
+  var adminPass = "";
+
+  function showAdmin(kind, message, extra) {
+    var el = $("#admin-result");
+    el.hidden = false;
+    el.dataset.kind = kind;
+    el.innerHTML = "<div>" + esc(message) + "</div>"
+      + (extra ? '<div class="extra">' + esc(extra) + "</div>" : "");
+  }
+
+  function renderModels(models) {
+    var box = $("#admin-models");
+    box.innerHTML = models.length
+      ? models.map(function (m) {
+          return '<label><input type="checkbox" value="' + esc(m) + '">' + esc(m) + "</label>";
+        }).join("")
+      : '<span class="muted">网关暂无可用模型。</span>';
+  }
+
+  function loadModels() {
+    fetch(WORKER_URL + "/models")
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data && data.success) renderModels(data.models || []);
+        else showAdmin("err", (data && data.error) || "无法加载模型列表。");
+      })
+      .catch(function () { showAdmin("err", "网络错误，无法加载模型列表。"); });
+  }
+
+  $("#admin-unlock").addEventListener("click", function () {
+    var pass = $("#admin-pass").value;
+    if (!pass) { showAdmin("err", "请输入口令。"); return; }
+    fetch(WORKER_URL + "/verify-passphrase", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Passphrase": pass }
+    })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
+      .then(function (res) {
+        if (res.ok && res.data.success) {
+          adminPass = pass;
+          $("#admin-gate").hidden = false; // 口令通过后才渲染模型多选
+          $("#admin-result").hidden = true;
+          loadModels();
+        } else {
+          showAdmin("err", (res.data && res.data.error) || "口令不正确。");
+        }
+      })
+      .catch(function () { showAdmin("err", "网络错误，请稍后重试。"); });
+  });
+
+  $("#admin-translate").addEventListener("click", function () {
+    var btn = $("#admin-translate");
+    btn.disabled = true;
+    showAdmin("ok", "正在触发翻译…");
+    var models = Array.prototype.map.call(
+      document.querySelectorAll("#admin-models input:checked"),
+      function (el) { return el.value; }
+    );
+    fetch(WORKER_URL + "/translate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Passphrase": adminPass },
+      body: JSON.stringify({
+        retryFailed: $("#admin-retry-failed").checked,
+        models: models
+      })
+    })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
+      .then(function (res) {
+        if (res.ok && res.data.success) {
+          if (res.data.triggered) {
+            showAdmin("ok", "已触发翻译，共 " + res.data.count + " 条。", "相关条目已置为「翻译中」。")
+            loadQueue();
+          } else {
+            showAdmin("ok", res.data.message || "没有需要翻译的条目。");
+          }
+        } else {
+          showAdmin("err", (res.data && res.data.error) || "触发失败，请稍后重试。");
+        }
+      })
+      .catch(function () { showAdmin("err", "网络错误，触发失败，请稍后重试。"); })
+      .finally(function () { btn.disabled = false; });
+  });
+
+  // ---------- 启动 ----------
+  loadQueue();
+  setInterval(loadQueue, 15000);
+})();
+</script>
+</body>
+</html>

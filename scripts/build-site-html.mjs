@@ -10,7 +10,7 @@
  *   site/template.html 是含占位符的模板，不该被当成公开资源分发。
  */
 
-import { readFileSync, writeFileSync, mkdirSync, rmSync } from 'node:fs'
+import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync, copyFileSync } from 'node:fs'
 
 const data = readFileSync('site/data.json', 'utf8')
 const template = readFileSync('site/template.html', 'utf8')
@@ -30,3 +30,12 @@ writeFileSync('dist/index.html', template.replace(marker, safe))
 
 const bytes = readFileSync('dist/index.html').length
 console.log('→ dist/index.html', (bytes / 1024).toFixed(0) + 'KB')
+
+// 提交页：无数据占位符，原样复制进 dist/。
+// 不复制的话线上 /request.html 会 fallback 到 index，提交页根本不存在。
+if (existsSync('site/request.html')) {
+  copyFileSync('site/request.html', 'dist/request.html')
+  console.log('→ dist/request.html')
+} else {
+  console.warn('⚠ 找不到 site/request.html，跳过复制')
+}
