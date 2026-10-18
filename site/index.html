@@ -252,9 +252,9 @@ h3 { font-size: 15px; margin: 0 0 8px; }
 }
 .prov:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
 .prov .head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.prov dl, dl.prov { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 10px 0 0; font-size: 13px; }
-.prov dt, dl.prov dt { color: var(--text-faint); }
-.prov dd, dl.prov dd { margin: 0; color: var(--text-dim); }
+.prov dl, dl.kv { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 10px 0 0; font-size: 13px; }
+.prov dt, dl.kv dt { color: var(--text-faint); }
+.prov dd, dl.kv dd { margin: 0; color: var(--text-dim); }
 .prov .cta {
   display: inline-block;
   margin-top: 12px;
@@ -11208,6 +11208,14 @@ h3 { font-size: 15px; margin: 0 0 8px; }
       + '<p class="empty">本站尚未产出这个整合包的任务书汉化。</p></section>';
 
     var theirs = '<section class="theirs"><h3><span class="tag">社区已有</span></h3>';
+
+    // 自带中文 + 社区汉化共存时，必须说清楚该用哪个，否则玩家会两份都装
+    if (p.state === 'native-zh' && p.providers && p.providers.length) {
+      theirs += '<p class="muted" style="margin:0 0 12px">这个整合包<strong>已自带中文</strong>，'
+        + '正常情况下不需要再装汉化。社区版本列在下方供参考——'
+        + '如果你发现自带中文有缺漏，可以对照；但<strong>不要两份同时装</strong>。</p>';
+    }
+
     if (p.providers && p.providers.length) {
       p.providers.forEach(function (prov) {
         var st = prov.status;
@@ -11252,7 +11260,7 @@ h3 { font-size: 15px; margin: 0 0 8px; }
 
     // 探测数据
     if (!p.probeIncomplete) {
-      h += '<div class="card" style="margin-top:16px"><h3>探测数据</h3><dl class="prov" style="margin:10px 0 0">'
+      h += '<div class="card" style="margin-top:16px"><h3>探测数据</h3><dl class="kv" style="margin:10px 0 0">'
         + "<dt>语言布局</dt><dd>" + esc(p.layout || "—") + "</dd>"
         + "<dt>英文文件</dt><dd>" + (p.enFiles == null ? "—" : p.enFiles) + "</dd>"
         + "<dt>中文文件</dt><dd>" + (p.zhFiles == null ? "—" : p.zhFiles) + "</dd>"
