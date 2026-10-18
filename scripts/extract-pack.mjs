@@ -46,12 +46,23 @@ export const NEEDED_PATTERNS = [
   /(^|\/)lang\/en_us(\/.*)?\.snbt$/i,
   /(^|\/)lang\/zh_cn(\/.*)?\.snbt$/i,
   /(^|\/)chapters\/[^/]+\.snbt$/i,
-  /(^|\/)lang\/[^/]+\.snbt$/i,
 ]
+
+/**
+ * 已知的非中英语言单文件（`lang/pt_br.snbt` 这类），**不解出**。
+ *
+ * 为何要排除：实测 All of Create 同时带 `lang/en_us.snbt` 与 `lang/pt_br.snbt`。
+ * 解出葡语只会让校验器把它当基准键集、要求我们也翻葡语；
+ * 本站只产出简体中文，其余语言对流水线是噪声。
+ */
+export const OTHER_LANG_SINGLE = /(^|\/)lang\/(?!en_us|zh_cn)[^/]+\.snbt$/i
 
 /** 该 zip 条目是否是任务书相关文件（需要解出）。 */
 export function isQuestFile(name) {
   if (!/\.snbt$/i.test(name)) return false
+  // 先排除非中英语言单文件：它们同时命中 `ftbquests/.*\.snbt` 与 `lang/`，
+  // 必须在正向匹配之前拦掉，否则 `lang/pt_br.snbt` 会被当成任务书文件解出。
+  if (OTHER_LANG_SINGLE.test(name)) return false
   return NEEDED_PATTERNS.some((re) => re.test(name))
 }
 

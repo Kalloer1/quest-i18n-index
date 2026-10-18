@@ -68,12 +68,44 @@ jobs:
           WORKER_URL: ${{ secrets.WORKER_URL }}
           INTERNAL_STATUS_TOKEN: ${{ secrets.INTERNAL_STATUS_TOKEN }}
 
+      # 夸克登录态：CI 里没有浏览器，只能把本机已验证的存根写到 CLI 真正读取的位置。
+      # 路径必须是 <技能根>/qoder/config.json —— 旧写法 <技能根>/.quarkclouddrive/openclaw/config.json
+      # 不生效（实测），会让 CLI 表现为未登录，进而「绿色通过但零链接」。
+      - name: Restore quark config
+        env:
+          QUARK_CONFIG_JSON: ${{ secrets.QUARK_CONFIG_JSON }}
+        run: |
+          if [ -z "$QUARK_CONFIG_JSON" ]; then
+            echo "未提供 QUARK_CONFIG_JSON，跳过"
+            exit 0
+          fi
+          SKILL_DIR="$HOME/.pi/agent/skills/quarkclouddrive"
+          mkdir -p "$SKILL_DIR/qoder"
+          printf '%s' "$QUARK_CONFIG_JSON" > "$SKILL_DIR/qoder/config.json"
+          chmod 600 "$SKILL_DIR/qoder/config.json"
+          echo "登录态已写入（$(wc -c < "$SKILL_DIR/qoder/config.json" | tr -d ' ') 字节，内容不打印）"
+
+      # CLI 是 620KB 自包含单文件，超过 secret 的 48KB 上限，也不入库，只能每次从服务端下载。
+      # 安装脚本容错（失败只警告、exit 0）：镜像失败只让网盘字段留空，不该卡住翻译发布；
+      # 但本步骤容错不等于本轮可以没有夸克 —— Mirror 带 QUARK_REQUIRED=1，末尾会统一判红。
+      - name: Install quark CLI
+        run: bash scripts/install-quark-cli.sh
+
       - name: Mirror to Quark
         id: mirror
         # 镜像失败不阻断发布：翻译产物是主要价值，先让它入库；
         # 但「零链接却绿灯」不可接受，故由末尾独立一步统一判红。
         continue-on-error: true
-        run: node scripts/mirror.mjs
+        run: |
+          # CLI 装在哪里要显式告诉 mirror.mjs，否则它会认为夸克不可用。
+          CLI="$HOME/.pi/agent/skills/quarkclouddrive/scripts/quark-drive.cjs"
+          if [ -f "$CLI" ]; then
+            export QUARK_CLI="$CLI"
+            echo "夸克 CLI：$CLI（$(wc -c < "$CLI" | tr -d ' ') 字节）"
+          else
+            echo "::warning::夸克 CLI 不存在（Install quark CLI 未成功），本轮跳过镜像。"
+          fi
+          node scripts/mirror.mjs
         env:
           QODER_PRODUCT_ID: qoder
           QODER_AGENT: 'true'

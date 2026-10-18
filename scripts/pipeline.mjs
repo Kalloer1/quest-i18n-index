@@ -31,6 +31,7 @@ import {
   stripSkeleton, isUsableMemory, shouldRememberMemory, mergeGlossary, isSourceEcho,
 } from './lib/glossary.mjs'
 import { mergeByQuestId } from './snbt.mjs'
+import { shieldColorCodes, unshieldColorCodes } from './lib/format-codes.mjs'
 import { toStatusValue } from '../shared/quest-status.mjs'
 import { defaultReportStatus } from './lib/report-status.mjs'
 import {
@@ -397,12 +398,16 @@ if (isMain) {
     // ① 免费层（熔断后跳过）
     if (USE_FREE_TIER && freeTierFailures < FREE_TIER_FAILURE_THRESHOLD) {
       try {
-        const arr = await callFreeTier(texts, { signal })
+        // 色码先遮蔽成 <<Cn>> 占位符再送模型：
+        // 实测免费层会把 `&credstone` 翻成 `&红石`、把 `&ritem` 吃掉 `&r`，
+        // 而 `&` 后面跟中文是畸形色码，游戏里直接显示成字面量。
+        const shielded = texts.map((t) => shieldColorCodes(t))
+        const arr = await callFreeTier(shielded.map((s) => s.text), { signal })
         const missing = arr.filter((x) => x === null).length
         if (missing) console.log(`  [免费层] ${missing}/${texts.length} 条漏译，按行回退`)
         freeTierFailures = 0
         // 漏译位置回填原文（留英文比留空好，由回退率阀门把关整体质量）。
-        return arr.map((zh, i) => (zh === null ? texts[i] : zh))
+        return arr.map((zh, i) => (zh === null ? texts[i] : unshieldColorCodes(zh, shielded[i].codes)))
       } catch (err) {
         freeTierFailures++
         const msg = String(err?.message ?? err).slice(0, 120)

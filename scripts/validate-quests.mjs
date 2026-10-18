@@ -127,7 +127,18 @@ export function validatePair(enFiles, zhFiles, { layout = LAYOUT.EMBEDDED, label
   }
 
   const enEntries = new Map()
-  for (const [name, root] of enMap) for (const [k, v] of keysOf(root, name)) enEntries.set(k, v)
+  // 只把**英文源**文件计作基准键集。
+  // 实测：All of Create 这类包同时带 `lang/en_us.snbt` 与 `lang/pt_br.snbt`（葡语），
+  // 若把所有输入文件都当基准，校验器会要求产出里也有葡语译文——那不是我们的职责。
+  const isEnSource = (name) => {
+    if (layout === LAYOUT.SEPARATE_SINGLE) return /(^|\/)en_us\.snbt$/i.test(name)
+    if (layout === LAYOUT.SEPARATE_DIR) return /(^|\/)lang\/en_us\//i.test(name)
+    return true // 内嵌布局：章节文件本身就是源
+  }
+  for (const [name, root] of enMap) {
+    if (!isEnSource(name)) continue
+    for (const [k, v] of keysOf(root, name)) enEntries.set(k, v)
+  }
   const zhEntries = new Map()
   for (const [name, root] of zhMap) for (const [k, v] of keysOf(root, name)) zhEntries.set(k, v)
 

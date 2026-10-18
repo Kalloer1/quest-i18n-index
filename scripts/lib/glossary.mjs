@@ -8,7 +8,7 @@
  *
  * 无 IO、无网络，可直接单测。
  */
-import { stripColorCodes } from './format-codes.mjs'
+import { stripColorCodes, hasMalformedColorCodes } from './format-codes.mjs'
 
 /**
  * 英文骨架：剥离合法色码、小写、压缩空白、trim。
@@ -68,6 +68,7 @@ export function lookupMemory(entries, text) {
  */
 export function shouldRememberMemory(skeleton, translated, source, existing) {
   return Boolean(skeleton) && !existing && !isSourceEcho(translated, source)
+    && !hasMalformedColorCodes(translated)
 }
 
 /**

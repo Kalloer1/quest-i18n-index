@@ -139,3 +139,39 @@ test('callFreeTier：正常返回按序解析', async () => {
   const arr = await callFreeTier(['a', 'b'], { fetchImpl: stubFetch('L1=甲\nL2=乙') })
   assert.deepEqual(arr, ['甲', '乙'])
 })
+
+// ---- 色码遮蔽（回归：免费层会把 &credstone 翻成 &红石）----
+
+test('shieldColorCodes：色码换成带序号占位符，可无损还原', async () => {
+  const { shieldColorCodes, unshieldColorCodes } = await import('./lib/format-codes.mjs')
+  const cases = [
+    '&6Packager&r will pack &credstone&r power',
+    'A &dGrapplin Whisk&r',
+    'no codes here',
+    '&a&b&c multi',
+    '',
+  ]
+  for (const src of cases) {
+    const s = shieldColorCodes(src)
+    assert.ok(!/[&§][0-9a-fk-orx]/i.test(s.text), `遮蔽后不应残留色码：${s.text}`)
+    assert.equal(unshieldColorCodes(s.text, s.codes), src)
+  }
+})
+
+test('shieldColorCodes：多个不同色码用不同序号（无序号会被模型合并）', async () => {
+  const { shieldColorCodes } = await import('./lib/format-codes.mjs')
+  const s = shieldColorCodes('&6a&rb&cc')
+  assert.deepEqual(s.codes, ['&6', '&r', '&c'])
+  // 三个占位符序号必须互不相同，否则还原时无法区分。
+  const marks = s.text.match(/<c\d+>/g)
+  assert.deepEqual(marks, ['<c1>', '<c2>', '<c3>'])
+})
+
+test('unshieldColorCodes：占位符丢失时该色码消失，不产生畸形码', async () => {
+  const { shieldColorCodes, unshieldColorCodes, hasMalformedColorCodes } = await import('./lib/format-codes.mjs')
+  const s = shieldColorCodes('&6Packager&r power')
+  const broken = s.text.replace('<c2>', '')
+  const back = unshieldColorCodes(broken, s.codes)
+  assert.equal(back, '&6Packager power')
+  assert.equal(hasMalformedColorCodes(back), false)
+})
