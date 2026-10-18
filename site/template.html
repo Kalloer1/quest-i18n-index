@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>整合包任务书汉化索引</title>
+<style>
+:root {
+  --bg: #14161a;
+  --surface: #1c1f26;
+  --surface-2: #23262f;
+  --border: #31353f;
+  --text: #e8eaed;
+  --text-dim: #a1a7b3;
+  --text-faint: #767d8a;
+  --accent: #6ea8fe;
+  --ok: #4ade80;
+  --warn: #fbbf24;
+  --danger: #f87171;
+  --info: #60a5fa;
+  --radius: 10px;
+  --maxw: 1080px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.6 system-ui, -apple-system, "Segoe UI", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+}
+
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+
+/* ---------- 顶栏 ---------- */
+header {
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 60px;
+}
+.brand { font-weight: 700; font-size: 17px; letter-spacing: .2px; }
+.brand span { color: var(--text-faint); font-weight: 400; font-size: 13px; margin-left: 8px; }
+nav { display: flex; gap: 4px; }
+nav button {
+  background: none;
+  border: 0;
+  color: var(--text-dim);
+  font: inherit;
+  font-size: 14px;
+  padding: 10px 12px;
+  min-height: 44px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+nav button[aria-current="page"] { color: var(--text); background: var(--surface-2); }
+nav button:hover { color: var(--text); }
+
+/* ---------- 通用 ---------- */
+main { padding: 28px 0 72px; }
+h1 { font-size: 24px; margin: 0 0 6px; }
+h2 { font-size: 18px; margin: 32px 0 12px; }
+h3 { font-size: 15px; margin: 0 0 8px; }
+.lede { color: var(--text-dim); margin: 0 0 24px; font-size: 14px; }
+.muted { color: var(--text-faint); font-size: 13px; }
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+.view[hidden] { display: none; }
+
+/* ---------- 搜索 ---------- */
+.searchbar { position: relative; margin-bottom: 20px; }
+.searchbar input {
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 16px 14px 46px;
+  font: inherit;
+  font-size: 16px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.searchbar input::placeholder { color: var(--text-faint); }
+.searchbar .icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-faint);
+  pointer-events: none;
+}
+
+/* ---------- 筛选 ---------- */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.filters button {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font: inherit;
+  font-size: 13px;
+  padding: 8px 12px;
+  min-height: 44px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.filters button[aria-pressed="true"] {
+  background: var(--surface-2);
+  color: var(--text);
+  border-color: var(--accent);
+}
+.filters button .n { color: var(--text-faint); margin-left: 5px; }
+
+/* ---------- 列表 ---------- */
+.list { display: grid; gap: 10px; }
+.row {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  gap: 14px;
+  align-items: center;
+  padding: 12px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-align: left;
+  width: 100%;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  min-height: 72px;
+}
+.row:hover { border-color: var(--text-faint); }
+.row img, .row .ph {
+  width: 48px; height: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: var(--surface-2);
+  display: block;
+}
+.row .ph {
+  display: grid;
+  place-items: center;
+  color: var(--text-faint);
+  font-size: 18px;
+  font-weight: 700;
+}
+.row .name { font-weight: 600; font-size: 15px; }
+.row .sub { color: var(--text-faint); font-size: 12.5px; margin-top: 2px; }
+.row .end { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+
+/* ---------- 状态徽章 ---------- */
+.badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+.badge[data-state="downloadable"] { color: #0b1220; background: var(--ok); }
+.badge[data-state="native-zh"] { color: #0b1220; background: var(--info); }
+.badge[data-state="gap-uncovered"] { color: #0b1220; background: var(--warn); }
+.badge[data-state="gap-covered"] { color: #0b1220; background: #a78bfa; }
+.badge[data-state="embedded"] { color: var(--text); background: #4b5563; }
+.badge[data-state="no-quests"] { color: var(--text-dim); background: var(--surface-2); border-color: var(--border); }
+.badge[data-state="probe-incomplete"] { color: var(--text-faint); background: transparent; border-color: var(--border); }
+
+/* ---------- 详情 ---------- */
+.detail-head {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+.detail-head img, .detail-head .ph {
+  width: 96px; height: 96px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: var(--surface-2);
+}
+.detail-head .ph { display: grid; place-items: center; font-size: 32px; font-weight: 700; color: var(--text-faint); }
+.detail-head h1 { margin: 0 0 8px; }
+.detail-head .facts { color: var(--text-faint); font-size: 13px; display: flex; flex-wrap: wrap; gap: 6px 16px; }
+
+.state-box {
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin: 22px 0;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+.state-box .why { color: var(--text-dim); font-size: 14px; margin-top: 8px; }
+
+.warn {
+  border: 1px solid var(--danger);
+  background: rgba(248, 113, 113, .08);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin: 18px 0;
+}
+.warn h3 { color: var(--danger); margin-bottom: 6px; }
+.warn p { margin: 0; font-size: 14px; color: var(--text-dim); }
+
+/* 视觉强分栏：本站产出 vs 社区已有（ADR-0006） */
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+.split > section {
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+.split > section.ours { border-left: 4px solid var(--ok); }
+.split > section.theirs { border-left: 4px solid #a78bfa; }
+.split h3 { display: flex; align-items: center; gap: 8px; }
+.split .tag { font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 4px; }
+.split .ours .tag { background: rgba(74, 222, 128, .15); color: var(--ok); }
+.split .theirs .tag { background: rgba(167, 139, 250, .15); color: #a78bfa; }
+.split p { font-size: 13.5px; color: var(--text-dim); margin: 8px 0 0; }
+.split .empty { color: var(--text-faint); font-style: normal; }
+
+.prov {
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+  margin-top: 12px;
+}
+.prov:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
+.prov .head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.prov dl, dl.prov { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 10px 0 0; font-size: 13px; }
+.prov dt, dl.prov dt { color: var(--text-faint); }
+.prov dd, dl.prov dd { margin: 0; color: var(--text-dim); }
+.prov .cta {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 10px 16px;
+  min-height: 44px;
+  line-height: 24px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #0b1220;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+}
+.status-pill { font-size: 12px; padding: 2px 8px; border-radius: 999px; }
+.status-pill[data-s="maintaining"] { background: rgba(74, 222, 128, .15); color: var(--ok); }
+.status-pill[data-s="translating"] { background: rgba(96, 165, 250, .15); color: var(--info); }
+.status-pill[data-s="stopped"] { background: rgba(248, 113, 113, .15); color: var(--danger); }
+
+/* ---------- 空状态 ---------- */
+.empty-state {
+  text-align: center;
+  padding: 56px 20px;
+  color: var(--text-dim);
+}
+.empty-state .big { font-size: 40px; margin-bottom: 12px; }
+.empty-state h2 { margin: 0 0 8px; font-size: 17px; color: var(--text); }
+.empty-state p { margin: 0 auto; max-width: 420px; font-size: 14px; }
+
+/* ---------- 关于页 ---------- */
+.about section { margin-bottom: 28px; }
+.about ul { padding-left: 20px; color: var(--text-dim); font-size: 14px; }
+.about li { margin: 6px 0; }
+.about p { color: var(--text-dim); font-size: 14px; }
+.criteria {
+  border-left: 3px solid var(--warn);
+  padding: 4px 0 4px 16px;
+  margin: 16px 0;
+  color: var(--text-dim);
+  font-size: 14px;
+}
+
+/* ---------- 返回 ---------- */
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: 0;
+  color: var(--text-dim);
+  font: inherit;
+  font-size: 14px;
+  padding: 10px 0;
+  min-height: 44px;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+.back:hover { color: var(--text); }
+
+/* ---------- 移动端 ---------- */
+@media (max-width: 480px) {
+  .wrap { padding: 0 14px; }
+  .topbar { min-height: 54px; flex-wrap: wrap; padding: 8px 0; }
+  .brand { font-size: 15px; }
+  .brand span { display: none; }
+  nav button { padding: 10px 10px; font-size: 13.5px; }
+  main { padding: 20px 0 56px; }
+  h1 { font-size: 20px; }
+  .row {
+    grid-template-columns: 40px 1fr;
+    grid-template-areas: "icon name" "icon end";
+    gap: 8px 12px;
+    padding: 12px;
+  }
+  .row img, .row .ph { width: 40px; height: 40px; grid-area: icon; }
+  .row .mid { grid-area: name; min-width: 0; }
+  .row .end { grid-area: end; flex-direction: row; align-items: center; }
+  .row .name { font-size: 14px; overflow-wrap: anywhere; }
+  .detail-head { grid-template-columns: 64px 1fr; gap: 14px; }
+  .detail-head img, .detail-head .ph { width: 64px; height: 64px; }
+  .split { grid-template-columns: 1fr; }
+  .filters { gap: 6px; }
+  .filters button { padding: 8px 10px; font-size: 12.5px; }
+  .state-box, .warn, .split > section { padding: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap topbar">
+    <div class="brand">任务书汉化索引 <span>Minecraft 整合包 · FTB Quests</span></div>
+    <nav aria-label="主导航">
+      <button data-nav="search" aria-current="page">查</button>
+      <button data-nav="about">关于与许可</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ========== 查 ========== -->
+  <div class="view" id="view-search">
+    <h1>查一个整合包的任务书汉化</h1>
+    <p class="lede">输入整合包名（中英文、残缺词都可以），看它现在是什么状态、汉化在哪、适配哪个版本。</p>
+
+    <div class="searchbar">
+      <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <label for="q" class="muted" style="position:absolute;left:-9999px">搜索整合包</label>
+      <input id="q" type="search" placeholder="例如 FTB StoneBlock 4、craftoria、石头世界" autocomplete="off" spellcheck="false">
+    </div>
+
+    <div class="filters" id="filters" role="group" aria-label="按状态筛选"></div>
+
+    <div class="list" id="list" role="list"></div>
+    <div id="list-empty"></div>
+  </div>
+
+  <!-- ========== 详情 ========== -->
+  <div class="view" id="view-detail" hidden></div>
+
+  <!-- ========== 关于 ========== -->
+  <div class="view" id="view-about" hidden></div>
+
+</main>
+
+<script id="data" type="application/json">/*__DATA__*/null</script>
+<script>
+(function () {
+  "use strict";
+  var D = JSON.parse(document.getElementById("data").textContent);
+  var M = D.meta;
+  var PACKS = D.packs;
+
+  var $ = function (s) { return document.querySelector(s); };
+  var esc = function (s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  };
+  var fmtNum = function (n) {
+    if (n == null) return "—";
+    if (n >= 1e8) return (n / 1e8).toFixed(1).replace(/\.0$/, "") + " 亿";
+    if (n >= 1e4) return (n / 1e4).toFixed(1).replace(/\.0$/, "") + " 万";
+    return String(n);
+  };
+  var fmtDate = function (iso) {
+    if (!iso) return "—";
+    var d = new Date(iso);
+    if (isNaN(d)) return iso;
+    var p = function (x) { return x < 10 ? "0" + x : String(x); };
+    return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate());
+  };
+
+  var STATUS_TEXT = { maintaining: "维护中", translating: "翻译中", stopped: "已停止维护" };
+
+  // ---------- 归一化搜索 ----------
+  // 中文原样保留（玩家会输入「石头世界」这类中文名），英文做小写与去符号
+  function norm(s) {
+    return String(s || "").toLowerCase().replace(/[\s\-_:：·.,，。()（）\[\]【】]/g, "");
+  }
+  // 预建索引：标题、slug、以及 slug 的分词
+  PACKS.forEach(function (p) {
+    p._keys = [norm(p.slug), norm(p.title)];
+    if (p.providers && p.providers.length) p._keys.push(norm(p.providers[0].packName));
+    p._keys = p._keys.filter(Boolean);
+  });
+
+  function match(q) {
+    var n = norm(q);
+    if (!n) return [];
+    var scored = [];
+    for (var i = 0; i < PACKS.length; i++) {
+      var p = PACKS[i], best = -1;
+      for (var k = 0; k < p._keys.length; k++) {
+        var key = p._keys[k];
+        var s = -1;
+        if (key === n) s = 100;
+        else if (key.indexOf(n) === 0) s = 80;
+        else if (key.indexOf(n) > -1) s = 60;
+        else if (n.indexOf(key) > -1 && key.length >= 4) s = 40;
+        if (s > best) best = s;
+      }
+      if (best > 0) {
+        // 同分时下载量高的排前面
+        scored.push({ p: p, s: best, d: p.downloads || 0 });
+      }
+    }
+    scored.sort(function (a, b) { return b.s - a.s || b.d - a.d; });
+    return scored.map(function (x) { return x.p; });
+  }
+
+  // ---------- 视图切换 ----------
+  var currentFilter = "all";
+
+  function show(view, payload) {
+    ["search", "detail", "about"].forEach(function (v) {
+      $("#view-" + v).hidden = (v !== view);
+    });
+    document.querySelectorAll("nav button").forEach(function (b) {
+      if (b.dataset.nav === view || (view === "detail" && b.dataset.nav === "search")) {
+        b.setAttribute("aria-current", "page");
+      } else {
+        b.removeAttribute("aria-current");
+      }
+    });
+    if (view === "detail") renderDetail(payload);
+    if (view === "about") renderAbout();
+    window.scrollTo(0, 0);
+  }
+
+  // ---------- 列表 ----------
+  function badge(p) {
+    if (p.probeIncomplete) {
+      return '<span class="badge" data-state="probe-incomplete">探测未完成</span>';
+    }
+    return '<span class="badge" data-state="' + esc(p.state) + '">' + esc(p.stateLabel) + "</span>";
+  }
+
+  function rowHTML(p) {
+    var icon = p.iconUrl
+      ? '<img src="' + esc(p.iconUrl) + '" alt="" loading="lazy" width="48" height="48">'
+      : '<div class="ph" aria-hidden="true">' + esc((p.title || p.slug || "?").slice(0, 1).toUpperCase()) + "</div>";
+    var sub = [];
+    if (p.gameVersions && p.gameVersions.length) sub.push("MC " + p.gameVersions.slice(0, 2).join(" / "));
+    if (p.loaders && p.loaders.length) sub.push(p.loaders.join(" / "));
+    if (p.downloads != null) sub.push(fmtNum(p.downloads) + " 次下载");
+    return '<button class="row" role="listitem" data-slug="' + esc(p.slug) + '">'
+      + icon
+      + '<div class="mid"><div class="name">' + esc(p.title || p.slug) + "</div>"
+      + '<div class="sub">' + esc(sub.join(" · ")) + "</div></div>"
+      + '<div class="end">' + badge(p) + "</div>"
+      + "</button>";
+  }
+
+  function renderFilters() {
+    var counts = { all: 0 };
+    PACKS.forEach(function (p) {
+      if (p.probeIncomplete) { counts["probe"] = (counts["probe"] || 0) + 1; return; }
+      counts[p.state] = (counts[p.state] || 0) + 1;
+      counts.all++;
+    });
+    var order = [
+      ["all", "全部"],
+      ["native-zh", "自带中文"],
+      ["gap-covered", "待翻译·社区已覆盖"],
+      ["gap-uncovered", "待翻译·无人覆盖"],
+      ["embedded", "内嵌不可做"],
+      ["no-quests", "无任务书"],
+      ["probe", "探测未完成"]
+    ];
+    var html = "";
+    order.forEach(function (o) {
+      var n = counts[o[0]] || 0;
+      if (!n) return;
+      html += '<button data-filter="' + o[0] + '" aria-pressed="' + (currentFilter === o[0]) + '">'
+        + esc(o[1]) + '<span class="n">' + n + "</span></button>";
+    });
+    $("#filters").innerHTML = html;
+  }
+
+  function renderList() {
+    var q = $("#q").value.trim();
+    var results = q ? match(q) : PACKS.slice();
+
+    if (currentFilter !== "all") {
+      results = results.filter(function (p) {
+        if (currentFilter === "probe") return p.probeIncomplete;
+        return !p.probeIncomplete && p.state === currentFilter;
+      });
+    }
+
+    if (!results.length) {
+      $("#list").innerHTML = "";
+      $("#list-empty").innerHTML = q
+        ? '<div class="empty-state"><div class="big">🔍</div>'
+          + "<h2>没有找到「" + esc(q) + "」</h2>"
+          + "<p>这个整合包可能不在本站的扫描范围内（目前覆盖 CurseForge 热度前 500）。"
+          + "换一个更短的关键词试试，比如只输入名字的前几个词。</p></div>"
+        : '<div class="empty-state"><div class="big">📭</div><h2>这个筛选下没有整合包</h2>'
+          + "<p>换一个状态筛选，或者清空搜索框。</p></div>";
+      return;
+    }
+    $("#list-empty").innerHTML = "";
+    var shown = results.slice(0, 200);
+    $("#list").innerHTML = shown.map(rowHTML).join("");
+    if (results.length > shown.length) {
+      $("#list").insertAdjacentHTML("beforeend",
+        '<p class="muted" style="padding:12px 0">共 ' + results.length
+        + " 条结果，只显示前 " + shown.length + " 条。输入更精确的关键词可以缩小范围。</p>");
+    }
+  }
+
+  // ---------- 详情 ----------
+  function renderDetail(p) {
+    if (!p) { show("search"); return; }
+    var icon = p.iconUrl
+      ? '<img src="' + esc(p.iconUrl) + '" alt="">'
+      : '<div class="ph" aria-hidden="true">' + esc((p.title || p.slug).slice(0, 1).toUpperCase()) + "</div>";
+
+    var facts = [];
+    if (p.gameVersions && p.gameVersions.length) facts.push("MC " + p.gameVersions.join(" / "));
+    if (p.loaders && p.loaders.length) facts.push(p.loaders.join(" / "));
+    if (p.downloads != null) facts.push(fmtNum(p.downloads) + " 次下载");
+    if (p.authors && p.authors.length) facts.push(esc(p.authors.slice(0, 3).join("、")));
+
+    var h = '<button class="back" data-back>← 返回列表</button>'
+      + '<div class="detail-head">' + icon + "<div>"
+      + "<h1>" + esc(p.title || p.slug) + "</h1>"
+      + '<div class="facts">' + facts.map(function (f) { return "<span>" + f + "</span>"; }).join("") + "</div>"
+      + "</div></div>";
+
+    if (p.description) {
+      h += '<p class="lede" style="margin-top:18px">' + esc(p.description) + "</p>";
+    }
+
+    // 状态
+    if (p.probeIncomplete) {
+      h += '<div class="state-box">' + badge(p)
+        + '<div class="why">本站没能探测这个整合包的任务书情况（'
+        + esc(p.stateWhy || "原因未知") + "）。这不代表它没有汉化，只代表我们还没查到。</div></div>";
+    } else {
+      h += '<div class="state-box">' + badge(p)
+        + '<div class="why">' + esc(p.stateWhy) + "</div></div>";
+    }
+
+    // 不能混装警告（ADR-0006 / 约定 #46）
+    if (p.providers && p.providers.length) {
+      h += '<div class="warn" role="note"><h3>⚠ 不同来源的汉化不能同时安装</h3><p>'
+        + esc(M.noMixWarning) + "</p></div>";
+    }
+
+    // 视觉强分栏
+    var ours = '<section class="ours"><h3><span class="tag">本站产出</span></h3>'
+      + '<p class="empty">本站尚未产出这个整合包的任务书汉化。</p></section>';
+
+    var theirs = '<section class="theirs"><h3><span class="tag">社区已有</span></h3>';
+    if (p.providers && p.providers.length) {
+      p.providers.forEach(function (prov) {
+        var st = prov.status;
+        var stText = STATUS_TEXT[st] || (st ? st : "状态未知");
+        theirs += '<div class="prov">'
+          + '<div class="head"><strong>' + esc(prov.name) + "</strong>"
+          + (st ? '<span class="status-pill" data-s="' + esc(st) + '">' + esc(stText) + "</span>" : "")
+          + "</div>"
+          + "<dl>"
+          + "<dt>对应整合包</dt><dd>" + esc(prov.packName) + "</dd>"
+          + "<dt>适配版本</dt><dd>" + (prov.versions
+            ? esc([prov.versions.mc, prov.versions.loader, prov.versions.pack].filter(Boolean).join(" · "))
+            : "未记录") + "</dd>"
+          + "<dt>数据抓取</dt><dd>" + fmtDate(prov.fetchedAt) + "</dd>"
+          + "</dl>"
+          + (st === "stopped"
+            ? '<p class="muted" style="margin-top:8px">⚠ 该汉化已停止维护，可能不兼容当前版本。</p>'
+            : "")
+          + '<a class="cta" href="' + esc(prov.link) + '" target="_blank" rel="noopener noreferrer">前往 ' + esc(prov.name) + " ↗</a>"
+          + "</div>";
+      });
+    } else if (p.state === "gap-uncovered") {
+      theirs += '<p class="empty">社区也没有人做这个整合包的任务书汉化。</p>';
+    } else if (p.state === "embedded") {
+      theirs += '<p class="empty">这个整合包无法以新增文件的方式汉化，见下方说明。</p>';
+    } else if (p.state === "no-quests") {
+      theirs += '<p class="empty">这个整合包不含任务书，无需汉化。</p>';
+    } else {
+      theirs += '<p class="empty">未查到社区汉化。</p>';
+    }
+    theirs += "</section>";
+
+    h += '<div class="split">' + ours + theirs + "</div>";
+
+    // 内嵌包的额外说明
+    if (p.state === "embedded") {
+      h += '<div class="card"><h3>为什么「内嵌不可做」</h3>'
+        + '<p class="muted" style="margin:8px 0 0">这个整合包的任务文本混在 <code>config/ftbquests/quests/chapters/*.snbt</code> '
+        + "的任务数据里。要汉化就必须就地改写玩家文件，而它所使用的 FTB Quests 版本（对应 MC 1.20.1 及更早）"
+        + "根本没有翻译系统，没有任何可注入译文的机制。这不是我们选择不支持，而是那个版本上不存在支持机制。</p></div>";
+    }
+
+    // 探测数据
+    if (!p.probeIncomplete) {
+      h += '<div class="card" style="margin-top:16px"><h3>探测数据</h3><dl class="prov" style="margin:10px 0 0">'
+        + "<dt>语言布局</dt><dd>" + esc(p.layout || "—") + "</dd>"
+        + "<dt>英文文件</dt><dd>" + (p.enFiles == null ? "—" : p.enFiles) + "</dd>"
+        + "<dt>中文文件</dt><dd>" + (p.zhFiles == null ? "—" : p.zhFiles) + "</dd>"
+        + "</dl></div>";
+    }
+
+    if (p.suspect) {
+      h += '<p class="muted" style="margin-top:16px">待核线索：' + esc(p.suspect) + "</p>";
+    }
+
+    $("#view-detail").innerHTML = h;
+  }
+
+  // ---------- 关于 ----------
+  function renderAbout() {
+    var s = M.sources;
+    $("#view-about").innerHTML = '<button class="back" data-back>← 返回列表</button>'
+      + '<h1>关于与许可</h1>'
+      + '<p class="lede">这个站是做什么的、数据从哪来、法律上怎么站得住、以及什么情况下它应该被判定为不该继续做。</p>'
+      + '<div class="about">'
+
+      + "<section><h2>这是什么</h2>"
+      + "<p>一个索引站。它回答一个问题：<strong>某个 Minecraft 整合包的任务书有没有中文、汉化在哪、适配哪个版本。</strong></p>"
+      + "<p>本站<strong>不产出、不重分发</strong>任何译文。所有汉化都指向原作者的分发渠道。</p>"
+      + "<p>目前覆盖 CurseForge 热度前 500 的整合包，共 " + D.stat.total + " 条记录，"
+      + "其中 " + D.stat.withProvider + " 条查到了社区汉化来源。</p></section>"
+
+      + "<section><h2>数据来源</h2><ul>"
+      + "<li>整合包元数据：CurseForge 官方 API（标题、图标、下载量、MC 版本、加载器、作者）</li>"
+      + "<li>任务书格式：只读取整合包 zip 的中央目录（约 0.3~0.6 MB），不下载整包</li>"
+      + "<li>社区汉化状态：VM 汉化组官网，抓取于 " + fmtDate(s.vmStatus.fetchedAt) + "</li>"
+      + "</ul>"
+      + '<p class="muted">索引构建于 ' + fmtDate(D.generatedAt) + "。每条详情页都标注了该项数据的抓取时间。</p></section>"
+
+      + "<section><h2>许可</h2>"
+      + "<p><strong>当前状态：本站只放链接，不重分发任何第三方内容。</strong>"
+      + "因此本站不继承任何汉化组或模组作者的许可约束——我们分发的是 URL，不是文件。</p>"
+      + "<p>但这个区分只在「只放链接」时成立。如果本站将来开始分发译文，情况就变了：</p>"
+      + "<ul>"
+      + "<li>译文会基于 CFPA 团队的术语资源，其许可为 <strong>" + esc(M.license.name) + "</strong>"
+      + "（署名—非商业—相同方式共享）</li>"
+      + "<li>届时必须署名 CFPA 团队（含贡献者名单）与相关模组作者</li>"
+      + "<li>产出文件与下载页都必须带许可标识</li>"
+      + "</ul>"
+      + '<p class="muted">写清楚这两者的区别，是为了让将来的人既不会误以为现在已经合规、也不会误以为永远不用管。</p></section>'
+
+      + "<section><h2>非商业</h2>"
+      + "<p>本站<strong>没有广告、没有付费、没有赞助墙</strong>，将来也不会接入。</p>"
+      + "<p>如果哪天要商业化，<strong>必须先重做术语来源</strong>——因为 CC BY-NC-SA 的「非商业」条款不允许。</p></section>"
+
+      + "<section><h2>什么情况下这个站该关掉</h2>"
+      + '<div class="criteria">'
+      + "<p>本站的存在前提是「有真实需求」。这个前提没有被验证过，所以它被写成了可对照的判据：</p>"
+      + "<ul>"
+      + "<li><strong>观察期</strong>：上线后两个月</li>"
+      + "<li><strong>看什么</strong>：真实访问量、以及「我想玩这个包但没有中文」的提交量</li>"
+      + "<li><strong>判定</strong>：若两个月后没有可辨识的真实使用，则得出「这个需求不存在」的结论，停止投入</li>"
+      + "</ul>"
+      + "<p>这个判据的价值在于：它让「不做」成为一个可以提前得到的结论，而不是沉没成本之后才承认的事。</p>"
+      + "</div></section>"
+
+      + "<section><h2>为什么不做翻译</h2>"
+      + "<p>因为翻译是个更贵的问题，而它是否值得做取决于需求是否存在。"
+      + "索引是验证同一个问题的最低成本方式：两者的流量上限相同（都是「有多少人在找整合包汉化」），"
+      + "但索引只需要一个周末。</p>"
+      + "<p>另外，任务书的两种存放方式里，「译文内嵌」那种（MC 1.20.1 及更早）根本无法以新增文件的方式汉化——"
+      + "那些版本带的 FTB Quests 里没有翻译系统。这类包在站上标为「内嵌不可做」，"
+      + "不是我们偷懒，是那个版本上不存在支持机制。</p></section>"
+
+      + "</div>";
+  }
+
+  // ---------- 事件 ----------
+  document.addEventListener("click", function (e) {
+    var navBtn = e.target.closest("nav button");
+    if (navBtn) { show(navBtn.dataset.nav); return; }
+
+    var back = e.target.closest("[data-back]");
+    if (back) { show("search"); return; }
+
+    var f = e.target.closest("[data-filter]");
+    if (f) { currentFilter = f.dataset.filter; renderFilters(); renderList(); return; }
+
+    var row = e.target.closest(".row");
+    if (row) {
+      var slug = row.dataset.slug;
+      var p = PACKS.filter(function (x) { return x.slug === slug; })[0];
+      show("detail", p);
+      return;
+    }
+  });
+
+  var t = null;
+  $("#q").addEventListener("input", function () {
+    clearTimeout(t);
+    t = setTimeout(renderList, 120);
+  });
+
+  // 初始渲染
+  renderFilters();
+  renderList();
+})();
+</script>
+</body>
+</html>
