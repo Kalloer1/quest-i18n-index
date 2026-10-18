@@ -50,9 +50,13 @@ const NON_FTB_EXPLAIN = '该整合包的任务书不是 FTB Quests（如 Checkli
 
 /**
  * GitHub 仓库（工单 04 下载入口）：优先取调用方显式传入，其次 CI 的 GITHUB_REPOSITORY。
- * 拿不到时为空字符串 —— 详情页因此不渲染 GitHub 链接，绝不伪造。
+ *
+ * 兜底常量是**本项目自己的仓库**：本地跑 release.mjs 时没有 CI 环境变量，
+ * 若不兜底，download.zip 会是 null，打出的补丁包在详情页上根本没有下载按钮
+ * （实测踩到：state 已是 downloadable，但 zip 为 null）。
  */
-const GITHUB_REPO = process.env.GITHUB_REPOSITORY || ''
+const FALLBACK_REPO = 'Kalloer1/quest-i18n-index'
+const GITHUB_REPO = process.env.GITHUB_REPOSITORY || FALLBACK_REPO
 
 export function buildSiteData({ index, vmStatus, packMeta, quarkMirrors }, { now = new Date().toISOString(), githubRepo = GITHUB_REPO, quarkMirrors: quarkMirrorsOpt } = {}) {
   // VM 官网部分条目的 slug 带 `/index` 后缀（如 sb4/index），工单 03 已归一化为 sb4。
