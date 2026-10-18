@@ -186,6 +186,26 @@ h3 { font-size: 15px; margin: 0 0 8px; }
   font-size: 14px;
 }
 
+/* ---------- 管理区（维护者门禁） ---------- */
+.admin-models { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 12px; }
+.admin-models label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  color: var(--text-dim);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+.admin-models input[type="checkbox"] { accent-color: var(--accent); }
+.admin-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.admin-row .field { margin: 0; flex: 1 1 220px; }
+.admin-check { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-dim); cursor: pointer; }
+.admin-check input { accent-color: var(--accent); }
+
 /* ---------- 宽屏（≥1200px）：表单与队列并排 ---------- */
 @media (min-width: 1200px) {
   :root { --maxw: 1160px; }
@@ -259,6 +279,30 @@ h3 { font-size: 15px; margin: 0 0 8px; }
       <div class="queue" id="queue-list" aria-live="polite"></div>
     </section>
   </div>
+
+  <section id="admin-section">
+    <h2>管理区<span class="hint">仅维护者</span></h2>
+    <div class="card">
+      <div class="admin-row">
+        <div class="field">
+          <label for="admin-pass">维护者口令</label>
+          <input id="admin-pass" type="password" autocomplete="off" placeholder="输入口令后解锁">
+        </div>
+        <button type="button" class="submit-btn" id="admin-unlock">解锁管理区</button>
+      </div>
+      <div class="result" id="admin-result" role="status" aria-live="polite" hidden></div>
+      <div id="admin-gate" hidden>
+        <div class="field">
+          <label>模型多选<span class="hint">来自网关实时列表，留空用默认模型</span></label>
+          <div class="admin-models" id="admin-models"></div>
+        </div>
+        <div class="admin-row">
+          <label class="admin-check"><input type="checkbox" id="admin-retry-failed"> 同时重试失败条目</label>
+          <button type="button" class="submit-btn" id="admin-translate">一键触发翻译</button>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <script>
@@ -385,6 +429,90 @@ const WORKER_URL = 'https://quest-i18n-api.wqclo.workers.dev';
       .finally(function () {
         btn.disabled = false;
       });
+  });
+
+  // ---------- 管理区（维护者门禁 + 一键触发） ----------
+  var adminPass = "";
+
+  function showAdmin(kind, message, extra) {
+    var el = $("#admin-result");
+    el.hidden = false;
+    el.dataset.kind = kind;
+    el.innerHTML = "<div>" + esc(message) + "</div>"
+      + (extra ? '<div class="extra">' + esc(extra) + "</div>" : "");
+  }
+
+  function renderModels(models) {
+    var box = $("#admin-models");
+    box.innerHTML = models.length
+      ? models.map(function (m) {
+          return '<label><input type="checkbox" value="' + esc(m) + '">' + esc(m) + "</label>";
+        }).join("")
+      : '<span class="muted">网关暂无可用模型。</span>';
+  }
+
+  function loadModels() {
+    fetch(WORKER_URL + "/models")
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data && data.success) renderModels(data.models || []);
+        else showAdmin("err", (data && data.error) || "无法加载模型列表。");
+      })
+      .catch(function () { showAdmin("err", "网络错误，无法加载模型列表。"); });
+  }
+
+  $("#admin-unlock").addEventListener("click", function () {
+    var pass = $("#admin-pass").value;
+    if (!pass) { showAdmin("err", "请输入口令。"); return; }
+    fetch(WORKER_URL + "/verify-passphrase", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Passphrase": pass }
+    })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
+      .then(function (res) {
+        if (res.ok && res.data.success) {
+          adminPass = pass;
+          $("#admin-gate").hidden = false; // 口令通过后才渲染模型多选
+          $("#admin-result").hidden = true;
+          loadModels();
+        } else {
+          showAdmin("err", (res.data && res.data.error) || "口令不正确。");
+        }
+      })
+      .catch(function () { showAdmin("err", "网络错误，请稍后重试。"); });
+  });
+
+  $("#admin-translate").addEventListener("click", function () {
+    var btn = $("#admin-translate");
+    btn.disabled = true;
+    showAdmin("ok", "正在触发翻译…");
+    var models = Array.prototype.map.call(
+      document.querySelectorAll("#admin-models input:checked"),
+      function (el) { return el.value; }
+    );
+    fetch(WORKER_URL + "/translate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Passphrase": adminPass },
+      body: JSON.stringify({
+        retryFailed: $("#admin-retry-failed").checked,
+        models: models
+      })
+    })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
+      .then(function (res) {
+        if (res.ok && res.data.success) {
+          if (res.data.triggered) {
+            showAdmin("ok", "已触发翻译，共 " + res.data.count + " 条。", "相关条目已置为「翻译中」。")
+            loadQueue();
+          } else {
+            showAdmin("ok", res.data.message || "没有需要翻译的条目。");
+          }
+        } else {
+          showAdmin("err", (res.data && res.data.error) || "触发失败，请稍后重试。");
+        }
+      })
+      .catch(function () { showAdmin("err", "网络错误，触发失败，请稍后重试。"); })
+      .finally(function () { btn.disabled = false; });
   });
 
   // ---------- 启动 ----------
