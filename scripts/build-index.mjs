@@ -20,7 +20,7 @@
  *      ⇒ CF slug 带数字续作后缀、且 VM 无同名条目时，判为未覆盖。
  */
 
-import { readFileSync, writeFileSync } from 'node:fs'
+import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs'
 
 // ---------- 归一化 ----------
 
@@ -168,7 +168,8 @@ export function classifyPack(pack, vmEntries) {
     return { state: null, probeIncomplete: true, why: `探测未完成：${layout}`, match: m }
   }
 
-  // 本轮没有任何输入置位 delivered，故 downloadable 恒为 0；分支保留，结构上留出该态。
+  // delivered 由 downloads/<slug>.zip 的存在驱动（见 buildDataset 与 CLI）：
+  // 只要该包已产出补丁包，就落入 downloadable 态。
   if (pack.delivered) {
     return { state: 'downloadable', probeIncomplete: false, why: '本站已产出该整合包任务书汉化', match: m }
   }
@@ -216,8 +217,12 @@ const countBy = (list, key) => list.reduce((acc, item) => {
 }, {})
 
 export function buildDataset(input, { now = new Date().toISOString() } = {}) {
+  // 已产出补丁包的 slug（downloads/<slug>.zip）。不传时为空，delivered 全为 false，
+  // 六态计数与旧行为一致。
+  const deliveredSlugs = input.deliveredSlugs ?? []
   const packs = input.packs.map(p => {
-    const c = classifyPack(p, input.vmEntries)
+    const delivered = deliveredSlugs.includes(p.slug)
+    const c = classifyPack({ ...p, delivered }, input.vmEntries)
     const m = c.match || null
     return {
       slug: p.slug,
@@ -226,6 +231,7 @@ export function buildDataset(input, { now = new Date().toISOString() } = {}) {
       enFiles: p.enFiles,
       zhFiles: p.zhFiles,
       title: p.title ?? null,
+      delivered,
       state: c.state,
       probeIncomplete: c.probeIncomplete,
       stateWhy: c.why,
@@ -319,17 +325,19 @@ export function parseScanTsv(text) {
  * 扫描 TSV 提供全部 500 条记录；标题由 pack-metadata.json 提供（覆盖全部 500 条），
  * 它是 VM 覆盖匹配的**唯一可信依据**（见 matchPack）。
  * vmEntries 由 build-input.json 提供（VM 官网 58 条）。
+ * deliveredSlugs 是 downloads/ 下已有 zip 的 slug 列表，透传给 buildDataset 置 delivered。
  *
  * @param {string} scanText  research/scan-cf500.tsv 的内容
- * @param {{titles?: Record<string,string|null>, vmEntries?: Array}} sources
+ * @param {{titles?: Record<string,string|null>, vmEntries?: Array, deliveredSlugs?: string[]}} sources
  */
-export function composeScanInput(scanText, { titles = {}, vmEntries = [] } = {}) {
+export function composeScanInput(scanText, { titles = {}, vmEntries = [], deliveredSlugs = [] } = {}) {
   return {
     packs: parseScanTsv(scanText).map(row => {
       const title = titles[row.slug] ?? null
       return { ...row, title, normTitle: title ? norm(title) : null }
     }),
     vmEntries,
+    deliveredSlugs,
   }
 }
 
@@ -345,9 +353,14 @@ if (isMain) {
   const titles = Object.fromEntries(
     (packMeta.packs || []).map(p => [p.slug, p.title ?? null]),
   )
+  // downloads/ 下已有的 zip 即「已产出」：目录不存在时视为空（不破坏现有行为）。
+  const deliveredSlugs = existsSync('downloads')
+    ? readdirSync('downloads').filter(n => n.endsWith('.zip')).map(n => n.slice(0, -4))
+    : []
   const input = composeScanInput(readFileSync(scanPath, 'utf8'), {
     titles,
     vmEntries: baseInput.vmEntries,
+    deliveredSlugs,
   })
   const out = buildDataset(input)
   writeFileSync(outPath, JSON.stringify(out, null, 2) + '\n')

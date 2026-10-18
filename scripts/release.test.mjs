@@ -21,11 +21,16 @@ function setup() {
   mkdirSync(join(dir, 'research'), { recursive: true })
   mkdirSync(join(dir, 'site'), { recursive: true })
   writeFileSync(join(dir, 'patches', 'demo-pack', 'chapters', 'a.snbt'), 'demo content\n')
-  writeFileSync(join(dir, 'research', 'index-dataset.json'), JSON.stringify({
-    generatedAt: 'T', stat: {}, dataset: [{ slug: 'demo-pack', cfId: 1, state: 'downloadable', vm: null, vmSuspect: null, layout: null, enFiles: 1, zhFiles: 0, probeIncomplete: false, stateWhy: '' }],
-  }))
+  // 扫描 TSV + build-input：release 现在会在打包后重跑 build-index.mjs，
+  // 用它扫描 downloads/*.zip 置 delivered=true。这里给 demo-pack 一条分离布局记录。
+  writeFileSync(join(dir, 'research', 'scan-cf500.tsv'),
+    'id\tslug\tbytes\tformat\tnewEn\tnewZh\toldCh\tcdKB\tscannedAt\n'
+    + '1\tdemo-pack\t100\tseparate-dir\t1\t0\t0\t0\tT\n')
+  writeFileSync(join(dir, 'research', 'build-input.json'), JSON.stringify({ packs: [], vmEntries: [] }))
   writeFileSync(join(dir, 'research', 'vm-status.json'), JSON.stringify({ source: '', entries: [] }))
-  writeFileSync(join(dir, 'research', 'pack-metadata.json'), JSON.stringify({ generatedAt: 'T', incomplete: false, packs: [] }))
+  writeFileSync(join(dir, 'research', 'pack-metadata.json'), JSON.stringify({
+    generatedAt: 'T', incomplete: false, packs: [{ slug: 'demo-pack', title: 'Demo Pack' }],
+  }))
   writeFileSync(join(dir, 'research', 'quark-mirrors.json'), JSON.stringify({ mirrors: {} }))
   writeFileSync(join(dir, 'site', 'template.html'), '<html></html>')
   const git = (args) => execFileSync('git', args, { cwd: dir, encoding: 'utf8' })
