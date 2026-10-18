@@ -54,6 +54,14 @@ jobs:
       - name: Validate existing quest files
         run: npm run validate:quests
 
+      # 下载整合包并把任务书 .snbt 解到 research/packs/<slug>/：
+      # pipeline 的 loadPack 只读该目录，而此前没有任何步骤产出它，
+      # 于是 Translate 必然以「找不到整合包文件」失败（实跑 run 39165439848 暴露）。
+      - name: Prepare packs
+        run: node scripts/prepare-pack.mjs --ids "${{ inputs.ids }}"
+        env:
+          CF_KEY: ${{ secrets.CF_KEY }}
+
       - name: Translate
         run: node scripts/pipeline.mjs --ids "${{ inputs.ids }}"
         env:
@@ -61,12 +69,18 @@ jobs:
           LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
           LLM_MODELS: ${{ inputs.models || secrets.LLM_MODELS || '' }}
-          # FREE_TIER_* 当前未生效：workflow 已传入，但 pipeline.mjs 尚未消费（免费层优先逻辑是另一工单的范围，见 ADR-0007 未决项）。
+          # 免费层（bilibili Index-Translate）是主路，无需 key；FREE_TIER_* 已在 pipeline.mjs 消费。
           FREE_TIER_ENABLED: ${{ secrets.FREE_TIER_ENABLED || '1' }}
           FREE_TIER_BASE_URL: ${{ secrets.FREE_TIER_BASE_URL }}
           FREE_TIER_MODEL: ${{ secrets.FREE_TIER_MODEL }}
           WORKER_URL: ${{ secrets.WORKER_URL }}
           INTERNAL_STATUS_TOKEN: ${{ secrets.INTERNAL_STATUS_TOKEN }}
+
+      # 先打包：镜像步骤上传的是 downloads/<slug>.zip，它由 release.mjs 产出。
+      # 早先顺序是「先镜像、后打包」，镜像只能看到 downloads/ 里的历史 zip，
+      # 本轮新产出一律「找不到补丁包」而留空（恒为空链接）。
+      - name: Package patches
+        run: node scripts/release.mjs --ids "${{ inputs.ids }}" --package-only
 
       # 夸克登录态：CI 里没有浏览器，只能把本机已验证的存根写到 CLI 真正读取的位置。
       # 路径必须是 <技能根>/qoder/config.json —— 旧写法 <技能根>/.quarkclouddrive/openclaw/config.json
@@ -120,10 +134,12 @@ jobs:
       - name: Validate data contract after translate
         run: npm test
 
-      # 打包补丁包 → 重建站点数据（合并 quark 链接）→ 显式路径 git add → commit → push。
+      # 重建索引 → 重建站点数据（合并 quark 链接）→ 显式路径 git add → commit → push。
       # 必须走 release.mjs：它把 patches/ 打成 downloads/<slug>.zip，并把 downloads/、
-      # site/data.json、research/quark-mirrors.json、glossary.json 显式入库（禁止 git add -A）。
+      # research/packs/<slug>、site/data.json、research/quark-mirrors.json、glossary.json
+      # 显式入库（禁止 git add -A）。
       # 早先的写法直接 git add patches 是错的：patches/ 是产出输入，站点消费的是 downloads/*.zip。
+      # 这里的打包是幂等的（包已在 Package patches 步骤产出过），重跑逐字节相同。
       - name: Package, rebuild site data, commit and push
         id: commit
         run: |

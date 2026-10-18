@@ -96,3 +96,34 @@ test('release：无产出的 slug 跳过，不产出 zip', () => {
     assert.ok(!existsSync(join(dir, 'downloads')))
   } finally { rmSync(dir, { recursive: true, force: true }) }
 })
+
+// 实跑 translate.yml 暴露：镜像步骤上传的是 downloads/<slug>.zip，而 zip 由 release 产出。
+// 早先顺序「先镜像、后打包」让镜像恒为「找不到补丁包」而留空。
+// --package-only 让 workflow 能「打包 → 镜像 → 发布」按正确顺序串起来。
+test('release --package-only：只产出 zip，不重建索引、不暂存、不提交', () => {
+  const { dir, git } = setup()
+  try {
+    const out = execFileSync(process.execPath,
+      [join(ROOT, 'scripts', 'release.mjs'), '--ids', 'demo-pack', '--package-only'],
+      { cwd: dir, encoding: 'utf8', env: { ...process.env, GITHUB_REPOSITORY: 'acme/repo' } })
+    assert.ok(existsSync(join(dir, 'downloads', 'demo-pack.zip')), '应产出 zip')
+    assert.match(out, /package-only/)
+    // 未重建索引：index-dataset.json 不该被写出来
+    assert.ok(!existsSync(join(dir, 'research', 'index-dataset.json')))
+    assert.equal(git(['rev-list', '--count', 'HEAD']).trim(), '1', '不应产生新提交')
+    assert.equal(git(['diff', '--cached', '--name-only']).trim(), '', '不应暂存任何东西')
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+// 质量闸门 validate-quests 需要英文源做基准键集；不入库则闸门只 warn 跳过（假绿灯）。
+test('release：整合包英文源 research/packs/<slug> 一并入库', () => {
+  const { dir, git } = setup()
+  try {
+    mkdirSync(join(dir, 'research', 'packs', 'demo-pack', 'config', 'ftbquests', 'quests', 'lang'), { recursive: true })
+    writeFileSync(join(dir, 'research', 'packs', 'demo-pack', 'config', 'ftbquests', 'quests', 'lang', 'en_us.snbt'),
+      'quest.a.title: "Hi"\n')
+    runRelease(dir)
+    const staged = git(['show', '--name-only', '--format=', 'HEAD'])
+    assert.ok(staged.includes('research/packs/demo-pack/config/ftbquests/quests/lang/en_us.snbt'), staged)
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})

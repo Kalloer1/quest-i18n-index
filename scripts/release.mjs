@@ -8,13 +8,18 @@
  * 2. 重建索引（node scripts/build-index.mjs）：扫描 downloads/*.zip 置 delivered=true，
  *    使这些 slug 落入 downloadable 态（产品闭环的最后一环）
  * 3. 重建站点数据（node scripts/build-site-data.mjs，合并 quark 镜像链接到 site/data.json）
- * 4. **显式路径** git add（禁止 -A）：downloads/<slug>.zip、research/index-dataset.json、
- *    research/quark-mirrors.json、site/data.json、glossary.json
+ * 4. **显式路径** git add（禁止 -A）：downloads/<slug>.zip、research/packs/<slug>、
+ *    research/index-dataset.json、research/quark-mirrors.json、site/data.json、glossary.json
  * 5. commit + push（--dry-run / --no-push 时跳过）
+ *
+ * 两段式（workflow 需要）：镜像步骤要上传 downloads/<slug>.zip，而 zip 由第 1 步产出。
+ * `--package-only` 只跑第 1 步（不重建索引、不暂存、不提交），让
+ * 「打包 → 镜像 → 发布」能按正确顺序串起来。
  *
  * 用法：
  *   node scripts/release.mjs --ids a,b
  *   node scripts/release.mjs --all
+ *   node scripts/release.mjs --ids a --package-only
  *   node scripts/release.mjs --ids a --dry-run
  *   node scripts/release.mjs --ids a --no-push
  */
@@ -28,7 +33,7 @@ import { buildPatch } from './pack-patch.mjs'
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url))
 
 function usage() {
-  console.error('用法: node scripts/release.mjs --ids <slug,slug> | --all [--dry-run] [--no-push]')
+  console.error('用法: node scripts/release.mjs --ids <slug,slug> | --all [--package-only] [--dry-run] [--no-push]')
   process.exit(2)
 }
 
@@ -48,10 +53,10 @@ function listFiles(dir, base = dir) {
  * 执行发布流水线。以 cwd 为仓库根运行（workflow / 文档均如此约定），
  * 便于测试在临时目录里搭建完整环境。
  *
- * @param {{ids?: string[], all?: boolean, dryRun?: boolean, noPush?: boolean, cwd?: string, log?: (...args:any[])=>void}} [opts]
- * @returns {{produced:number, slugs:string[], staged:string[], committed:boolean, dryRun?:boolean}}
+ * @param {{ids?: string[], all?: boolean, packageOnly?: boolean, dryRun?: boolean, noPush?: boolean, cwd?: string, log?: (...args:any[])=>void}} [opts]
+ * @returns {{produced:number, slugs:string[], staged:string[], committed:boolean, dryRun?:boolean, packageOnly?:boolean}}
  */
-export function runRelease({ ids = [], all = false, dryRun = false, noPush = false, cwd = process.cwd(), log = console.log } = {}) {
+export function runRelease({ ids = [], all = false, packageOnly = false, dryRun = false, noPush = false, cwd = process.cwd(), log = console.log } = {}) {
   const ROOT = cwd
   const PATCHES_DIR = join(ROOT, 'patches')
   const DOWNLOADS_DIR = join(ROOT, 'downloads')
@@ -112,6 +117,12 @@ export function runRelease({ ids = [], all = false, dryRun = false, noPush = fal
     return { produced: 0, slugs, staged, committed: false }
   }
 
+  // 只打包：镜像步骤需要 zip 已存在，但不该在这时重建索引/提交。
+  if (packageOnly) {
+    log('--package-only：只打包，不重建索引、不暂存、不提交')
+    return { produced, slugs, staged, committed: false, packageOnly: true }
+  }
+
   // 2. 重建索引：downloads/ 里的新 zip 变成 delivered=true ⇒ state=downloadable。
   //    必须在 build-site-data 之前跑，否则站点数据里拿不到 download 区块。
   exec(`node "${join(SCRIPT_DIR, 'build-index.mjs')}"`)
@@ -122,6 +133,9 @@ export function runRelease({ ids = [], all = false, dryRun = false, noPush = fal
   staged.push('site/data.json', 'research/quark-mirrors.json', 'glossary.json')
 
   // 4. 显式路径暂存（禁止 git add -A）
+  //    整合包英文源一并入库：质量闸门 validate-quests 需要它做基准键集，
+  //    缺了它闸门只 warn 跳过该条（假绿灯）。与既有的 research/packs/aoc 同口径。
+  for (const slug of slugs) staged.push(`research/packs/${slug}`)
   for (const p of staged) {
     if (existsSync(join(ROOT, p))) exec(`git add -- "${p}"`)
   }
@@ -158,11 +172,12 @@ if (isMain) {
   const args = process.argv.slice(2)
   const dryRun = args.includes('--dry-run')
   const noPush = args.includes('--no-push')
+  const packageOnly = args.includes('--package-only')
   const idsArg = args.indexOf('--ids')
   const all = args.includes('--all')
   let ids = []
   if (idsArg >= 0) ids = (args[idsArg + 1] ?? '').split(',').map(s => s.trim()).filter(Boolean)
   else if (!all) usage()
   if (ids.length && all) usage()
-  runRelease({ ids, all, dryRun, noPush })
+  runRelease({ ids, all, packageOnly, dryRun, noPush })
 }
