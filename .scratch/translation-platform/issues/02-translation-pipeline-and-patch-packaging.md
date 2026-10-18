@@ -7,7 +7,7 @@
 
 **Blocked by:** None (can start immediately)
 
-**Status:** ready-for-agent
+**Status:** done
 
 ## 参照实现（照搬骨架，目标换成 FTB Quests 的 SNBT）
 

@@ -9,7 +9,7 @@
 
 **Blocked by:** None (can start immediately)
 
-**Status:** ready-for-agent
+**Status:** done
 
 ## 参照实现（照搬，不要重新设计）
 

@@ -18,18 +18,20 @@
 
 | 工单 | 阻塞于 | 状态 | 文件归属 |
 |---|---|---|---|
-| [01 提交入口与队列](./issues/01-submit-and-queue.md) | — | ready-for-agent | `worker/`、`shared/`、`wrangler.toml`、`site/request.html` |
-| [02 翻译流水线与覆盖式打包](./issues/02-translation-pipeline-and-patch-packaging.md) | — | ready-for-agent | `scripts/pipeline.mjs`、`validate-quests.mjs`、`snbt.mjs`、`pack-patch.mjs`、`glossary.json` |
-| [03 内嵌布局产出](./issues/03-embedded-layout-output.md) | 02 | blocked | `scripts/pipeline.mjs`（内嵌分支）、`snbt.mjs`（合并） |
-| [04 镜像、发布与下载](./issues/04-mirror-release-and-download.md) | 02 | blocked | `scripts/mirror.mjs`、`release.mjs`、`.github/workflows/`、详情页下载区块 |
-| [05 维护者门禁与一键触发](./issues/05-maintainer-gate-and-trigger.md) | 01, 02 | blocked | `worker/index.js`（translate/models 端点） |
-| [06 状态模型与文案收尾](./issues/06-status-model-and-copy.md) | — | ready-for-agent | `docs/adr/`、`GLOSSARY.md`、`build-site-data.mjs`、状态文案 |
+| [01 提交入口与队列](./issues/01-submit-and-queue.md) | — | ✅ done | `worker/`、`shared/`、`wrangler.worker.toml`、`site/request.html` |
+| [02 翻译流水线与覆盖式打包](./issues/02-translation-pipeline-and-patch-packaging.md) | — | ✅ done | `scripts/pipeline.mjs`、`validate-quests.mjs`、`snbt.mjs`、`pack-patch.mjs`、`glossary.json` |
+| [03 内嵌布局产出](./issues/03-embedded-layout-output.md) | 02 | ✅ done | `scripts/pipeline.mjs`（内嵌分支）、`snbt.mjs`（合并） |
+| [04 镜像、发布与下载](./issues/04-mirror-release-and-download.md) | 02 | ✅ done | `scripts/mirror.mjs`、`release.mjs`、`.github/workflows/`、详情页下载区块 |
+| [05 维护者门禁与一键触发](./issues/05-maintainer-gate-and-trigger.md) | 01, 02 | ✅ done | `worker/index.js`（translate/models 端点） |
+| [06 状态模型与文案收尾](./issues/06-status-model-and-copy.md) | — | ✅ done | `docs/adr/`、`GLOSSARY.md`、`build-site-data.mjs`、状态文案 |
 
 ## 前沿
 
 - 第一批（可并行）：**01、02、06**
 - 02 合并后解锁：**03、04**
 - 01+02 合并后解锁：**05**
+
+**全部完成（2026-10-18）。** 集成分支 `feat/translation-platform`，222 项测试全绿。
 
 ## 交付方式
 

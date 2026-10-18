@@ -15,7 +15,7 @@
 
 **Blocked by:** None (ADR-0007 已接受，可立即开工)
 
-**Status:** ready-for-agent
+**Status:** done
 
 ## 参照实现 / 权威来源
 
