@@ -1,12 +1,16 @@
 #!/usr/bin/env node
 /**
- * 把 site/data.json 内联进自包含 HTML。
+ * 把 site/data.json 内联进自包含 HTML，产出 dist/index.html。
  *
- * 为什么内联而不是 fetch：file:// 打开时 fetch 会被 CORS 拦，
- * 而 ADR / 设计稿要求「双击即可在浏览器打开，不依赖本地服务器」。
+ * 为什么内联而不是 fetch：
+ *   1. file:// 打开时 fetch 会被 CORS 拦，而设计要求「双击即可打开」
+ *   2. 部署后少一个请求，首屏更快
+ *
+ * 为什么输出到 dist/ 而不是 site/：
+ *   site/template.html 是含占位符的模板，不该被当成公开资源分发。
  */
 
-import { readFileSync, writeFileSync } from 'node:fs'
+import { readFileSync, writeFileSync, mkdirSync, rmSync } from 'node:fs'
 
 const data = readFileSync('site/data.json', 'utf8')
 const template = readFileSync('site/template.html', 'utf8')
@@ -20,5 +24,9 @@ if (!template.includes(marker)) {
 // 防 </script> 提前闭合
 const safe = data.replace(/</g, '\\u003c')
 
-writeFileSync('site/index.html', template.replace(marker, safe))
-console.log('→ site/index.html', (readFileSync('site/index.html', 'utf8').length / 1024).toFixed(0) + 'KB')
+rmSync('dist', { recursive: true, force: true })
+mkdirSync('dist', { recursive: true })
+writeFileSync('dist/index.html', template.replace(marker, safe))
+
+const bytes = readFileSync('dist/index.html').length
+console.log('→ dist/index.html', (bytes / 1024).toFixed(0) + 'KB')
