@@ -294,6 +294,60 @@ export function setString(node, value) {
 }
 
 /**
+ * 按 quest ID 合并内嵌章节（工单 03 可选增强）。
+ *
+ * 前提：SNBT 无损往返已验证（serialize(parse(t)) === t，见 snbt.test.mjs），
+ * 因此「整体覆盖」之外可以只改写译文：以上游最新文件为骨架，把译文文件里
+ * 同 id 的 quest 条目整体搬回来，上游新增的 quest（译文里没有的）原样保留。
+ *
+ * @param {string} upstreamText 上游最新章节文件（含玩家/作者新增内容）
+ * @param {string} translatedText 本流水线产出的译文文件（可带 `# 注释` 头，解析为 trivia）
+ * @returns {string} 合并后的文本：上游结构 + 译文条目
+ * @throws {SnbtParseError} 任一侧不可解析时抛出（调用方按闸门失败处理）
+ */
+export function mergeByQuestId(upstreamText, translatedText) {
+  const upstream = parse(upstreamText)
+  const translated = parse(translatedText)
+  const translatedQuests = questIdMap(translated)
+  // 上游没有 quests 列表或译文里没有可合并条目 → 结构以上游为准，原样返回。
+  const upstreamList = questsList(upstream)
+  if (!upstreamList || translatedQuests.size === 0) return serialize(upstream)
+  for (const item of upstreamList.items) {
+    const id = questId(item.value)
+    if (id === null || !translatedQuests.has(id)) continue
+    // 用译文条目的解析结果整体替换：上游的元素分隔 trivia 保留，条目内部字节来自译文。
+    item.value = parse(serialize(translatedQuests.get(id))).value
+  }
+  return serialize(upstream)
+}
+
+/** 取 compound 节点下键为 `quests` 的 list 节点；不存在返回 null。 */
+function questsList(root) {
+  if (root.value?.type !== 'compound') return null
+  const entry = root.value.entries.find((e) => e.key.type === 'string' && e.key.value === 'quests')
+  return entry?.value?.type === 'list' ? entry.value : null
+}
+
+/** quest 条目（compound）的 `id` 字符串值；缺失返回 null。 */
+function questId(node) {
+  if (node?.type !== 'compound') return null
+  const entry = node.entries.find((e) => e.key.type === 'string' && e.key.value === 'id')
+  return entry?.value?.type === 'string' ? entry.value.value : null
+}
+
+/** 译文 root 的 quests 列表 → Map<id, 解析后的 quest 节点>。 */
+function questIdMap(root) {
+  const list = questsList(root)
+  const map = new Map()
+  if (!list) return map
+  for (const item of list.items) {
+    const id = questId(item.value)
+    if (id !== null) map.set(id, item.value)
+  }
+  return map
+}
+
+/**
  * 把值转成带引号的 SNBT 字符串字面量。
  * @param {string} value
  * @param {string} [quote] 引号字符（`"` 或 `'`）
