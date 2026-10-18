@@ -16,12 +16,17 @@
  *   node scripts/release.mjs --ids a --no-push
  */
 import { readFileSync, writeFileSync, existsSync, readdirSync, statSync, mkdirSync } from 'node:fs'
+import { join, relative, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { dirname, join, relative } from 'node:path'
 import { execSync } from 'node:child_process'
 import { buildPatch } from './pack-patch.mjs'
 
-const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
+// CLI 以仓库根为工作目录运行（workflow / 文档均如此约定）；
+// 用 cwd 而非 import.meta.url，便于测试在临时目录里搭建完整环境。
+const ROOT = process.cwd()
+// build-site-data.mjs 的绝对路径：数据输入按 cwd 解析（临时目录测试场景），
+// 脚本本体按自身位置解析（临时目录里没有 scripts/）。
+const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url))
 const PATCHES_DIR = join(ROOT, 'patches')
 const DOWNLOADS_DIR = join(ROOT, 'downloads')
 
@@ -51,7 +56,7 @@ function listFiles(dir, base = dir) {
   if (!existsSync(dir)) return out
   for (const name of readdirSync(dir)) {
     const full = join(dir, name)
-    if (statSync(full).isDirectory()) out.push(...listFiles(full, base).map(n => `${name}/${n}`))
+    if (statSync(full).isDirectory()) out.push(...listFiles(full, base))
     else out.push(relative(base, full).replace(/\\/g, '/'))
   }
   return out
@@ -66,7 +71,7 @@ if (!slugs.length) {
   process.exit(0)
 }
 
-mkdirSync(DOWNLOADS_DIR, { recursive: true })
+let produced = 0
 for (const slug of slugs) {
   const dir = join(PATCHES_DIR, slug)
   if (!existsSync(dir)) {
@@ -78,21 +83,23 @@ for (const slug of slugs) {
     console.log(`[${slug}] ${dir} 为空，跳过`)
     continue
   }
+  produced++
   const files = names.map(name => ({ name, text: readFileSync(join(dir, ...name.split('/')), 'utf8') }))
   const zip = buildPatch(files)
+  mkdirSync(DOWNLOADS_DIR, { recursive: true })
   const outPath = join(DOWNLOADS_DIR, `${slug}.zip`)
   writeFileSync(outPath, zip)
   console.log(`[${slug}] ✔ ${relative(ROOT, outPath)}（${names.length} 个文件，${(zip.length / 1024).toFixed(1)} KB）`)
   staged.push(`downloads/${slug}.zip`)
 }
 
-if (!staged.length) {
-  console.log('没有打出任何补丁包，退出')
-  process.exit(1)
+if (!produced) {
+  console.log('没有打出任何补丁包，无事可做')
+  process.exit(0)
 }
 
 // 2. 重建站点数据（合并 quark 镜像链接）
-exec('node scripts/build-site-data.mjs')
+exec(`node "${join(SCRIPT_DIR, 'build-site-data.mjs')}"`)
 staged.push('site/data.json', 'research/quark-mirrors.json')
 
 // 3. 显式路径暂存（禁止 git add -A）
