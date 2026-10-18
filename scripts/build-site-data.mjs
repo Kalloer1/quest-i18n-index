@@ -48,7 +48,13 @@ const STATE_EXPLAIN = {
 const NON_FTB_LABEL = '无任务书（非 FTB Quests）'
 const NON_FTB_EXPLAIN = '该整合包的任务书不是 FTB Quests（如 Checklist），本站只做 FTB Quests 任务书汉化。'
 
-export function buildSiteData({ index, vmStatus, packMeta }, { now = new Date().toISOString() } = {}) {
+/**
+ * GitHub 仓库（工单 04 下载入口）：优先取调用方显式传入，其次 CI 的 GITHUB_REPOSITORY。
+ * 拿不到时为空字符串 —— 详情页因此不渲染 GitHub 链接，绝不伪造。
+ */
+const GITHUB_REPO = process.env.GITHUB_REPOSITORY || ''
+
+export function buildSiteData({ index, vmStatus, packMeta, quarkMirrors }, { now = new Date().toISOString(), githubRepo = GITHUB_REPO, quarkMirrors: quarkMirrorsOpt } = {}) {
   // VM 官网部分条目的 slug 带 `/index` 后缀（如 sb4/index），工单 03 已归一化为 sb4。
   // 这里两种写法都认，否则这些包会丢掉汉化来源。
   const vmBySlug = new Map()
@@ -57,6 +63,11 @@ export function buildSiteData({ index, vmStatus, packMeta }, { now = new Date().
     if (typeof e.buildInputSlug === 'string' && e.buildInputSlug) vmBySlug.set(e.buildInputSlug, e)
   }
   const metaBySlug = new Map((packMeta.packs || []).map(p => [p.slug, p]))
+  // 夸克镜像链接（mirror.mjs 写回 research/quark-mirrors.json）：slug → 真实 share_url。
+  // 缺失/失败条目为空字符串，详情页不渲染夸克按钮，绝不显示假链接。
+  const quarkSource = quarkMirrors ?? quarkMirrorsOpt
+  const quarkBySlug = new Map(Object.entries(quarkSource?.mirrors ?? {})
+    .map(([slug, v]) => [slug, typeof v === 'string' ? v : (v?.shareUrl || '')]))
 
   const packs = index.dataset.map(row => {
     const meta = metaBySlug.get(row.slug) || null
@@ -85,6 +96,17 @@ export function buildSiteData({ index, vmStatus, packMeta }, { now = new Date().
       layout: row.layout,
       enFiles: row.enFiles,
       zhFiles: row.zhFiles,
+
+      // 详情页下载入口（工单 04）：仅本站已产出的包（downloadable）有下载区块。
+      // zip 走 GitHub raw（zips 随仓库分发，downloads/<slug>.zip）；
+      // quark 为空时详情页不渲染夸克按钮。
+      download: row.state === 'downloadable'
+        ? {
+            zip: githubRepo ? `https://github.com/${githubRepo}/raw/main/downloads/${row.slug}.zip` : null,
+            github: githubRepo ? `https://github.com/${githubRepo}` : null,
+            quark: quarkBySlug.get(row.slug) || '',
+          }
+        : null,
 
       // 社区已有汉化：只放链接与状态，不重分发任何内容
       providers: vmEntry
@@ -144,10 +166,14 @@ const isMain = process.argv[1] && import.meta.url.endsWith(process.argv[1].repla
 
 if (isMain) {
   const read = p => JSON.parse(readFileSync(p, 'utf8'))
+  // 夸克镜像链接可选：文件不存在（还没跑过镜像）时全部留空
+  let quarkMirrors
+  try { quarkMirrors = read('research/quark-mirrors.json') } catch { quarkMirrors = { mirrors: {} } }
   const out = buildSiteData({
     index: read('research/index-dataset.json'),
     vmStatus: read('research/vm-status.json'),
     packMeta: read('research/pack-metadata.json'),
+    quarkMirrors,
   })
   mkdirSync('site', { recursive: true })
   writeFileSync('site/data.json', JSON.stringify(out, null, 2) + '\n')

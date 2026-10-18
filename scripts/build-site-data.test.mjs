@@ -101,3 +101,72 @@ test('幂等：同一输入连跑两次结果相同', () => {
   const b = buildSiteData(inputs(), { now: 'T' })
   assert.equal(JSON.stringify(a), JSON.stringify(b))
 })
+
+// ---------- 工单 04：详情页下载字段 ----------
+// 真实数据集目前 downloadable 计数为 0（尚无产出），下载字段用合成输入单测。
+
+const GITHUB = 'acme/quest-i18n-index'
+
+const SYNTH = () => ({
+  index: {
+    generatedAt: 'T',
+    stat: { stateCounts: { downloadable: 1 } },
+    dataset: [{
+      slug: 'demo-pack', cfId: 1, state: 'downloadable', probeIncomplete: false,
+      stateWhy: '', vm: null, vmSuspect: null, layout: null, enFiles: 1, zhFiles: 0,
+    }],
+  },
+  vmStatus: { source: '', entries: [] },
+  packMeta: { generatedAt: 'T', incomplete: false, packs: [] },
+})
+
+const synthetic = (opts) => buildSiteData(SYNTH(), { now: 'T', ...opts })
+
+test('downloadable 包带 download 字段：zip 走 GitHub raw，github 仓库链接，quark 默认留空', () => {
+  const out = synthetic({ githubRepo: GITHUB })
+  const p = out.packs[0]
+  assert.equal(p.download.zip, `https://github.com/${GITHUB}/raw/main/downloads/demo-pack.zip`)
+  assert.equal(p.download.github, `https://github.com/${GITHUB}`)
+  assert.equal(p.download.quark, '')
+})
+
+test('非 downloadable 包没有 download 字段', () => {
+  const out = buildSiteData(inputs(), { githubRepo: GITHUB })
+  for (const p of out.packs.filter(x => x.state !== 'downloadable')) {
+    assert.equal(p.download, null, `${p.slug} 不应有 download 字段`)
+  }
+})
+
+test('quark 镜像链接从 quarkMirrors 合并进来；缺失条目留空（绝不伪造）', () => {
+  const withQuark = synthetic({
+    githubRepo: GITHUB,
+    quarkMirrors: { mirrors: { 'demo-pack': { shareUrl: 'https://pan.quark.cn/s/real-link' } } },
+  }).packs[0]
+  assert.equal(withQuark.download.quark, 'https://pan.quark.cn/s/real-link')
+  // 缺失条目：空字符串，不渲染按钮
+  assert.equal(synthetic({ githubRepo: GITHUB }).packs[0].download.quark, '')
+})
+
+test('githubRepo 缺失时 zip 与 github 链接为 null（不伪造链接），quark 仍可渲染', () => {
+  const p = synthetic({ githubRepo: '' }).packs[0]
+  assert.equal(p.download.zip, null)
+  assert.equal(p.download.github, null)
+})
+
+// ---------- 详情页下载区块的渲染契约（site/template.html） ----------
+// 渲染逻辑在模板内联 JS 里，无法直接单测；这里对模板做静态契约断言，
+// 防止有人删掉 quark 空值守卫或把警告塞进可折叠容器。
+const template = readFileSync(new URL('../site/template.html', import.meta.url), 'utf8')
+
+test('模板：夸克按钮必须在 quark 非空守卫内（空字符串绝不渲染假链接）', () => {
+  // 守卫：`if (p.download.quark)` 包住 dl-quark 按钮的拼接
+  assert.match(template, /if \(p\.download\.quark\) \{[\s\S]*?dl-quark/)
+})
+
+test('模板：不能混装警告是普通可见块，不在 <details> 等可折叠容器里', () => {
+  // 去掉 CSS/HTML 注释后再检查，避免注释里的举例文字（「不得放进 <details>」）误报
+  const code = template.replace(/\/\*[\s\S]*?\*\//g, '').replace(/<!--[\s\S]*?-->/g, '')
+  assert.doesNotMatch(code, /<details/i)
+  assert.match(template, /不同来源的汉化不能同时安装/)
+  assert.match(template, /class="warn" role="note"/)
+})

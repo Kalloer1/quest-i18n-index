@@ -1,0 +1,52 @@
+name: Deploy to Cloudflare
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+# 与 translate.yml 共用 concurrency 组，避免两个工作流同时写仓库。
+concurrency:
+  group: repo-write
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm ci || npm install
+
+      # 闸门：测试 + 全量任务书校验，必须在构建之前通过。
+      # 删掉人工质量确认后，这里是唯一的质量防线。
+      - name: Run tests
+        run: npm test
+
+      - name: Validate quest files
+        run: npm run validate:quests
+
+      - run: npm run build
+
+      # Worker 部署。必须在 pages deploy 之前，否则线上 API 仍是旧版本。
+      - name: Deploy Worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy --config wrangler.worker.toml
+
+      - name: Deploy Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name quest-i18n-index --branch main
