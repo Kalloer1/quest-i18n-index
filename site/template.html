@@ -422,7 +422,11 @@ h3 { font-size: 15px; margin: 0 0 8px; }
   // 预建索引：标题、slug、以及 slug 的分词
   PACKS.forEach(function (p) {
     p._keys = [norm(p.slug), norm(p.title)];
-    if (p.providers && p.providers.length) p._keys.push(norm(p.providers[0].packName));
+    if (p.providers && p.providers.length) {
+      p._keys.push(norm(p.providers[0].packName));
+      // 中文名（VM 官网）——玩家常输「石头世界」这类词
+      if (p.providers[0].packNameZh) p._keys.push(norm(p.providers[0].packNameZh));
+    }
     p._keys = p._keys.filter(Boolean);
   });
 

@@ -75,6 +75,9 @@ export function buildSiteData({ index, vmStatus, packMeta }, { now = new Date().
         ? [{
             name: 'VM汉化组',
             packName: vmEntry.originalName,
+            // VM 官网的中文名（如「FTB石头世界4汉化下载」）是玩家搜索时真正会输入的词，
+            // 必须带进站点数据，否则中文查询全部落空。
+            packNameZh: (vmEntry.name || '').replace(/汉化下载$/, '') || null,
             link: `https://vmct-cn.top/modpacks/${vmEntry.vmSlug}`,
             status: vmEntry.status?.type ?? null,
             statusRecognized: vmEntry.status?.recognized ?? false,
