@@ -31,6 +31,10 @@ import {
   stripSkeleton, isUsableMemory, shouldRememberMemory, mergeGlossary, isSourceEcho,
 } from './lib/glossary.mjs'
 import { mergeByQuestId } from './snbt.mjs'
+import { toStatusValue } from '../shared/quest-status.mjs'
+import { defaultReportStatus } from './lib/report-status.mjs'
+
+export { defaultReportStatus } from './lib/report-status.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const DATASET_FILE = join(ROOT, 'research/index-dataset.json')
@@ -50,6 +54,53 @@ export const HEADER_LINE = '# AI 初翻，未人工校对'
  * 数据集字段是 `dataset`（build-index.mjs 产出）；兼容旧的 `packs` 写法。
  * 单独导出便于测试守护这个键名——曾因只读 `packs` 导致 CLI 全量空跑（--ids/--top 都找不到记录）。
  */
+/**
+ * 解析模型列表：`LLM_MODELS`（逗号分隔，管理区多选）优先，回退到单数 `LLM_MODEL`，
+ * 都没有时用默认值。去空、去重、保持顺序。
+ *
+ * 为何要导出：管理区多选曾完全不生效——workflow 传 `LLM_MODELS`，脚本只读 `LLM_MODEL`。
+ * 这个函数是那个契约的唯一定义处，测试直接守它。
+ * @param {string|undefined} modelsCsv
+ * @param {string|undefined} single
+ * @param {string} [fallback]
+ * @returns {string[]}
+ */
+export function parseModels(modelsCsv, single, fallback = 'gpt-4o-mini') {
+  const raw = String(modelsCsv ?? '').split(',').map((s) => s.trim()).filter(Boolean)
+  const list = raw.length ? raw : [String(single ?? '').trim()].filter(Boolean)
+  const out = []
+  for (const m of list) if (!out.includes(m)) out.push(m)
+  return out.length ? out : [fallback]
+}
+
+/**
+ * 调一次 OpenAI 兼容 chat/completions。失败抛错，由调用方决定换下一个模型。
+ * @param {string} url
+ * @param {string} key
+ * @param {string} model
+ * @param {string[]} texts
+ * @returns {Promise<string[]>}
+ */
+async function callOnce(url, key, model, texts) {
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${key}` },
+    body: JSON.stringify({
+      model,
+      messages: [
+        { role: 'system', content: '你是 Minecraft 整合包任务书翻译。逐条翻译为简体中文，保留色码（&7 等）与占位符，返回 JSON 数组，顺序与输入一致。' },
+        { role: 'user', content: JSON.stringify(texts) },
+      ],
+      response_format: { type: 'json_object' },
+    }),
+  })
+  if (!res.ok) throw new Error(`LLM HTTP ${res.status}`)
+  const parsed = JSON.parse((await res.json()).choices[0].message.content)
+  const arr = Array.isArray(parsed) ? parsed : (parsed.translations ?? parsed.result)
+  if (!Array.isArray(arr) || arr.length !== texts.length) throw new Error('LLM 返回条数不符')
+  return arr.map((s) => String(s))
+}
+
 export function readRecords(dataset) {
   return dataset?.dataset ?? dataset?.packs ?? []
 }
@@ -170,18 +221,6 @@ export async function processPack(record, pack, { translate, glossary = {}, chun
 // ---------- 批处理（含独立超时与状态回写） ----------
 
 /**
- * 默认状态回写：POST {WORKER_URL}/status，带 X-Internal-Token。尽力而为，失败只打日志。
- */
-export function defaultReportStatus(id, payload, { workerUrl = process.env.WORKER_URL, token = process.env.INTERNAL_STATUS_TOKEN } = {}) {
-  if (!workerUrl || !token) return Promise.resolve()
-  return fetch(`${workerUrl.replace(/\/+$/, '')}/status`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'X-Internal-Token': token },
-    body: JSON.stringify({ id, ...payload }),
-  }).catch((err) => console.log(`  [status] 回写异常: ${String(err?.message ?? err).slice(0, 120)}`))
-}
-
-/**
  * 跑一批整合包。每条独立超时：超时/抛错只让该条失败，其余继续。
  *
  * @param {{
@@ -208,7 +247,7 @@ export async function runPipeline(options) {
   for (const row of skipped) {
     const result = { slug: row.slug, status: 'skipped', error: row.reason, note: SKIP_LABEL[row.reason] ?? row.reason }
     results.push(result)
-    await reportStatus(row.slug, { status: 'skipped', error: row.reason, note: result.note })
+    await reportStatus(row.slug, { status: toStatusValue('skipped'), error: row.reason, note: result.note })
   }
 
   for (const record of candidates) {
@@ -228,7 +267,7 @@ export async function runPipeline(options) {
       const message = String(err?.message ?? err?.reason ?? err).slice(0, 200)
       console.log(`[${slug}] 失败: ${message}`)
       result = { slug, status: 'failed', error: message }
-      await reportStatus(slug, { status: 'failed', error: message })
+      await reportStatus(slug, { status: toStatusValue('failed'), error: message })
       results.push(result)
       continue
     } finally {
@@ -239,8 +278,8 @@ export async function runPipeline(options) {
       for (const out of result.outputs) writeOutput(slug, out.name, out.text)
     }
     const payload = result.status === 'done'
-      ? { status: 'done', error: '', ...(record.title ? { name: record.title } : {}) }
-      : { status: result.status, error: result.error, note: result.note }
+      ? { status: toStatusValue('done'), error: '', ...(record.title ? { name: record.title } : {}) }
+      : { status: toStatusValue(result.status), error: result.error, note: result.note }
     await reportStatus(slug, payload)
     results.push(result)
   }
@@ -324,27 +363,28 @@ if (isMain) {
   try { glossary = JSON.parse(readFileSync(GLOSSARY_FILE, 'utf8')) } catch { /* 从头构建 */ }
 
   // 默认 LLM 提供方：OpenAI 兼容 chat/completions。没有 LLM_API_KEY 时直接失败（离线测试用注入桩，不走这里）。
+  //
+  // 模型来源：`LLM_MODELS`（逗号分隔，来自管理区多选）优先，回退到单数 `LLM_MODEL`。
+  // 按顺序尝试，某个模型失败就换下一个——管理区勾选的模型必须真的生效，
+  // 曾经这里只读单数 `LLM_MODEL`，导致 workflow 传的 `LLM_MODELS` 完全被忽略。
+  //
+  // 未消费：FREE_TIER_ENABLED / FREE_TIER_BASE_URL / FREE_TIER_MODEL。
+  // translate.yml 已传入这三个变量，但「免费层优先 + 熔断」尚未实现（ADR-0007 未决项）。
+  const MODELS = parseModels(process.env.LLM_MODELS, process.env.LLM_MODEL)
   const translate = async (texts) => {
     const key = process.env.LLM_API_KEY
     const url = process.env.LLM_BASE_URL ?? 'https://api.openai.com/v1/chat/completions'
     if (!key) throw new Error('未配置 LLM_API_KEY（离线测试请注入 translate 桩）')
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${key}` },
-      body: JSON.stringify({
-        model: process.env.LLM_MODEL ?? 'gpt-4o-mini',
-        messages: [
-          { role: 'system', content: '你是 Minecraft 整合包任务书翻译。逐条翻译为简体中文，保留色码（&7 等）与占位符，返回 JSON 数组，顺序与输入一致。' },
-          { role: 'user', content: JSON.stringify(texts) },
-        ],
-        response_format: { type: 'json_object' },
-      }),
-    })
-    if (!res.ok) throw new Error(`LLM HTTP ${res.status}`)
-    const parsed = JSON.parse((await res.json()).choices[0].message.content)
-    const arr = Array.isArray(parsed) ? parsed : (parsed.translations ?? parsed.result)
-    if (!Array.isArray(arr) || arr.length !== texts.length) throw new Error('LLM 返回条数不符')
-    return arr.map((s) => String(s))
+    const errors = []
+    for (const model of MODELS) {
+      try {
+        return await callOnce(url, key, model, texts)
+      } catch (err) {
+        errors.push(`${model}: ${String(err?.message ?? err).slice(0, 120)}`)
+        console.log(`  [llm] ${model} 失败，换下一个（${errors.length}/${MODELS.length}）`)
+      }
+    }
+    throw new Error(`全部模型均失败（尝试过 ${MODELS.join(', ')}）：${errors.join(' | ')}`)
   }
 
   const loadPack = async (slug) => {

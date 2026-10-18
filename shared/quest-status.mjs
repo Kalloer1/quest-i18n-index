@@ -21,6 +21,27 @@ export const STATUS = {
 /** 状态枚举的合法取值列表（POST /status 校验用）。 */
 export const STATUS_VALUES = Object.values(STATUS)
 
+/**
+ * 把流水线内部英文 kind 映射到队列中文状态值（POST /status 的 body.status 必须是中文）。
+ *
+ * - `done`    → STATUS.DONE（已完成）
+ * - `failed`  → STATUS.FAILED（失败）
+ * - `skipped` → STATUS.FAILED（失败），error 携带跳过原因。
+ *   理由：状态机只有「待翻译/翻译中/已完成/镜像缺失/失败」五态，没有「跳过」态；
+ *   被跳过的条目（如不含 FTB Quests）永远不会产出，玩家需要看到「为什么没翻」，
+ *   而只有「失败」态会在站点上展示 error 文案。故归入失败并回写跳过原因。
+ *
+ * 未知 kind 直接抛错，避免把无效状态发给 Worker 后被 400 静默吞掉。
+ */
+export function toStatusValue(kind) {
+  switch (kind) {
+    case 'done': return STATUS.DONE
+    case 'failed': return STATUS.FAILED
+    case 'skipped': return STATUS.FAILED
+    default: throw new Error(`未知状态 kind：${kind}`)
+  }
+}
+
 /** 队列条目来源枚举。 */
 export const SOURCE = {
   PLAYER: '玩家请求',

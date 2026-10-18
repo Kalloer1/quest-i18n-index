@@ -21,6 +21,8 @@
  *   QUARK_CLI           quark-drive.cjs 路径（缺失则跳过夸克，全部留空）
  *   QUARK_REQUIRED      设为 1 表示本轮必须有夸克：有目标待镜像而 QUARK_CLI 缺失时退出码 1
  *   QUARK_DIR_NAME      网盘目标目录名，默认「任务书汉化」（同名幂等，自动复用）
+ *   WORKER_URL / INTERNAL_STATUS_TOKEN  配置时回写队列状态（成功→已完成，失败→镜像缺失）；
+ *                       未配置时静默跳过，回写失败不阻断镜像。
  *
  * 测试：runMirror() 核心可注入 upload 桩，不联网、不真上传。
  */
@@ -28,6 +30,8 @@ import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 import { execFileSync } from 'node:child_process'
+import { STATUS } from '../shared/quest-status.mjs'
+import { defaultReportStatus } from './lib/report-status.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 export const DOWNLOADS_DIR = join(ROOT, 'downloads')
@@ -36,6 +40,13 @@ export const MIRRORS_FILE = join(ROOT, 'research/quark-mirrors.json')
 export const DEFAULT_RATE_LIMIT_MS = 300
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
+
+/** 回写队列状态：回写失败绝不阻断镜像主流程（镜像产物才是主要价值）。 */
+async function safeReport(reportStatus, id, payload) {
+  try {
+    await reportStatus(id, payload)
+  } catch { /* 回写失败不影响镜像结果 */ }
+}
 
 // ---------- 核心（可注入，测试用桩） ----------
 
@@ -49,9 +60,12 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
  *        上传并创建分享，返回真实 share_url；失败应抛错
  * @param {number} [options.rateLimitMs] 每条之间的间隔
  * @param {(msg: string) => void} [options.log]
+ * @param {(id: string, payload: object) => Promise<void>} [options.reportStatus]
+ *        镜像结果回写队列状态：成功 → 已完成；失败/留空 → 镜像缺失（带原因）。
+ *        默认不发请求（CLI 显式传 defaultReportStatus），回写失败不阻断镜像。
  * @returns {Promise<{results: Record<string,string>, attempted: number, succeeded: number, skipped: number, failed: number}>}
  */
-export async function runMirror({ targets, existing = {}, upload, rateLimitMs = DEFAULT_RATE_LIMIT_MS, log = () => {} }) {
+export async function runMirror({ targets, existing = {}, upload, rateLimitMs = DEFAULT_RATE_LIMIT_MS, log = () => {}, reportStatus = async () => {} }) {
   const results = {}
   let attempted = 0, succeeded = 0, skipped = 0, failed = 0
 
@@ -62,15 +76,18 @@ export async function runMirror({ targets, existing = {}, upload, rateLimitMs = 
       results[slug] = prev
       skipped++
       log(`[${slug}] 已有分享链接，跳过（幂等）：${prev}`)
+      await safeReport(reportStatus, slug, { status: STATUS.DONE, error: '' })
       continue
     }
     if (!existsSync(zipPath)) {
       results[slug] = ''
       log(`[${slug}] 找不到 ${zipPath}，跳过（字段留空）`)
+      await safeReport(reportStatus, slug, { status: STATUS.DONE_UNMIRRORED, error: `找不到补丁包 ${zipPath}` })
       continue
     }
     attempted++
     let url = ''
+    let errorMsg = ''
     try {
       url = await upload(slug, zipPath)
       if (typeof url !== 'string' || !url) throw new Error('upload 未返回真实 share_url')
@@ -80,9 +97,13 @@ export async function runMirror({ targets, existing = {}, upload, rateLimitMs = 
       // 失败不阻断：字段留空（绝不伪造链接）
       url = ''
       failed++
-      log(`[${slug}] 夸克 ✗ ${String(err.message || err).slice(0, 200)}`)
+      errorMsg = String(err.message || err).slice(0, 200)
+      log(`[${slug}] 夸克 ✗ ${errorMsg}`)
     }
     results[slug] = url
+    await safeReport(reportStatus, slug, url
+      ? { status: STATUS.DONE, error: '' }
+      : { status: STATUS.DONE_UNMIRRORED, error: errorMsg })
     if (i < targets.length - 1) await sleep(rateLimitMs)
   }
 
@@ -210,6 +231,7 @@ if (isMain) {
     existing,
     upload: upload ?? (async () => { throw new Error('QUARK_CLI 未配置') }),
     log: (m) => console.log(m),
+    reportStatus: defaultReportStatus,
   })
 
   writeMirrors(results)

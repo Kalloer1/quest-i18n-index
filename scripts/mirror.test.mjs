@@ -4,6 +4,8 @@ import { mkdtempSync, writeFileSync, rmSync, existsSync, readFileSync } from 'no
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { runMirror, readMirrors, writeMirrors } from './mirror.mjs'
+import { STATUS } from '../shared/quest-status.mjs'
+import { defaultReportStatus } from './lib/report-status.mjs'
 
 // 工单 04：镜像核心逻辑。全部用桩，不联网、不真上传。
 
@@ -136,4 +138,79 @@ test('writeMirrors/readMirrors 往返：成功写真实链接，失败留空', (
     assert.equal(raw.updatedAt, 'T3')
     assert.equal(raw.mirrors.a.updatedAt, 'T1')
   } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+// ---------- 队列状态回写（回归：mirror 不回写，「镜像缺失」是死代码） ----------
+
+test('回写：镜像成功条目 → 已完成', async () => {
+  const dir = mkdtempSync(join(tmpdir(), 'mirror-'))
+  try {
+    const t = targets(dir, ['a'])
+    const posted = []
+    await runMirror({
+      targets: t,
+      upload: async (slug) => `https://pan.quark.cn/s/${slug}`,
+      reportStatus: async (id, payload) => { posted.push([id, payload]) },
+    })
+    assert.equal(posted.length, 1)
+    assert.equal(posted[0][0], 'a')
+    assert.equal(posted[0][1].status, STATUS.DONE)
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('回写：镜像失败条目 → 镜像缺失，且带 error 原因', async () => {
+  const dir = mkdtempSync(join(tmpdir(), 'mirror-'))
+  try {
+    const t = targets(dir, ['bad'])
+    const posted = []
+    await runMirror({
+      targets: t,
+      upload: async () => { throw new Error('登录态过期') },
+      reportStatus: async (id, payload) => { posted.push([id, payload]) },
+    })
+    assert.equal(posted[0][1].status, STATUS.DONE_UNMIRRORED)
+    assert.match(posted[0][1].error, /登录态过期/)
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('回写：zip 缺失（留空）条目 → 镜像缺失', async () => {
+  const posted = []
+  await runMirror({
+    targets: [{ slug: 'ghost', zipPath: join(tmpdir(), 'no-such-zip.zip') }],
+    upload: async () => { throw new Error('不应被调用') },
+    reportStatus: async (id, payload) => { posted.push([id, payload]) },
+  })
+  assert.equal(posted[0][1].status, STATUS.DONE_UNMIRRORED)
+  assert.match(posted[0][1].error, /找不到补丁包/)
+})
+
+test('回写失败绝不阻断镜像：reportStatus 抛错时镜像结果照常产出', async () => {
+  const dir = mkdtempSync(join(tmpdir(), 'mirror-'))
+  try {
+    const t = targets(dir, ['a', 'b'])
+    const { results, succeeded } = await runMirror({
+      targets: t,
+      upload: async (slug) => `https://pan.quark.cn/s/${slug}`,
+      reportStatus: async () => { throw new Error('回写炸了') },
+    })
+    assert.equal(succeeded, 2)
+    assert.equal(results.a, 'https://pan.quark.cn/s/a')
+    assert.equal(results.b, 'https://pan.quark.cn/s/b')
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('未配置 WORKER_URL/token 时 defaultReportStatus 不发请求、不报错', async () => {
+  let called = false
+  const origFetch = globalThis.fetch
+  globalThis.fetch = async () => { called = true; throw new Error('不应调用') }
+  try {
+    await runMirror({
+      targets: [{ slug: 'ghost', zipPath: join(tmpdir(), 'no-such-zip.zip') }],
+      upload: async () => { throw new Error('不应被调用') },
+      reportStatus: (id, payload) => defaultReportStatus(id, payload, { workerUrl: '', token: '' }),
+    })
+  } finally {
+    globalThis.fetch = origFetch
+  }
+  assert.equal(called, false)
 })

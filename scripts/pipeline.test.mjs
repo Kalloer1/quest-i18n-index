@@ -8,9 +8,10 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import {
-  parseArgs, runPipeline, processPack, translateUnits, readRecords,
+  parseArgs, runPipeline, processPack, translateUnits, readRecords, parseModels,
   CHUNK_LINES, OVERALL_FALLBACK_THRESHOLD, DEFAULT_TIMEOUT_MS,
 } from './pipeline.mjs'
+import { STATUS } from '../shared/quest-status.mjs'
 
 // ---- 数据集键名（回归：曾只读 `packs`，而实际字段是 `dataset`，CLI 全量空跑）----
 
@@ -171,14 +172,16 @@ test('runPipeline：失败回写 POST /status 带 X-Internal-Token', async () =>
     translate: stubTranslator(-1),
     reportStatus: async (id, payload) => { posted.push([id, payload]) },
   })
+  // 回写给 Worker 的状态必须是中文枚举（shared/quest-status.mjs 是唯一定义，
+  // Worker 的 POST /status 用 STATUS_VALUES.includes 校验，英文 'failed' 会 400）。
   const fail = posted.find(([id]) => id === 'gone')
   assert.ok(fail)
-  assert.equal(fail[1].status, 'failed')
+  assert.equal(fail[1].status, STATUS.FAILED)
   const done = posted.find(([id]) => id === 'good')
-  assert.equal(done[1].status, 'done')
+  assert.equal(done[1].status, STATUS.DONE)
 })
 
-test('runPipeline：no-quests 跳过并回写 skipped', async () => {
+test('runPipeline：no-quests 跳过回写「失败」并带跳过原因', async () => {
   const posted = []
   const results = await runPipeline({
     records: [{ slug: 'notq', layout: LAYOUT.NONE }],
@@ -187,7 +190,9 @@ test('runPipeline：no-quests 跳过并回写 skipped', async () => {
     reportStatus: async (id, payload) => { posted.push([id, payload]) },
   })
   assert.equal(results[0].status, 'skipped')
-  assert.equal(posted[0][1].status, 'skipped')
+  // 跳过不是「成功」也不是「已完成」：玩家需要看到为什么没翻，故回写「失败」+ 原因。
+  assert.equal(posted[0][1].status, STATUS.FAILED)
+  assert.equal(posted[0][1].error, 'no-quests')
 })
 
 test('runPipeline：writeOutput 收到产出（done 时）', async () => {
@@ -201,4 +206,23 @@ test('runPipeline：writeOutput 收到产出（done 时）', async () => {
   })
   assert.equal(written.length, 1)
   assert.equal(written[0][1], EMBED)
+})
+
+// ---- 模型列表契约（回归：管理区多选曾完全不生效）----
+
+test('parseModels：LLM_MODELS 逗号分隔优先于单数 LLM_MODEL', () => {
+  assert.deepEqual(parseModels('a,b,c', 'z'), ['a', 'b', 'c'])
+})
+
+test('parseModels：无 LLM_MODELS 时回退单数 LLM_MODEL', () => {
+  assert.deepEqual(parseModels('', 'only-one'), ['only-one'])
+  assert.deepEqual(parseModels(undefined, 'only-one'), ['only-one'])
+})
+
+test('parseModels：去空、去重、保持顺序', () => {
+  assert.deepEqual(parseModels(' b , a ,, b ', undefined), ['b', 'a'])
+})
+
+test('parseModels：都没有时用默认模型', () => {
+  assert.deepEqual(parseModels(undefined, undefined), ['gpt-4o-mini'])
 })

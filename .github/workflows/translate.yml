@@ -61,7 +61,7 @@ jobs:
           LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
           LLM_MODELS: ${{ inputs.models || secrets.LLM_MODELS || '' }}
-          # 免费层优先，失败落自建网关模型池（ADR-0007 已决）
+          # FREE_TIER_* 当前未生效：workflow 已传入，但 pipeline.mjs 尚未消费（免费层优先逻辑是另一工单的范围，见 ADR-0007 未决项）。
           FREE_TIER_ENABLED: ${{ secrets.FREE_TIER_ENABLED || '1' }}
           FREE_TIER_BASE_URL: ${{ secrets.FREE_TIER_BASE_URL }}
           FREE_TIER_MODEL: ${{ secrets.FREE_TIER_MODEL }}
