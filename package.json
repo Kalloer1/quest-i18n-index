@@ -1,0 +1,16 @@
+{
+  "devDependencies": {
+    "wrangler": "^4.151.1"
+  },
+  "name": "quest-i18n-index",
+  "private": true,
+  "type": "module",
+  "description": "Minecraft 整合包任务书汉化索引",
+  "scripts": {
+    "build": "node scripts/build-index.mjs && node scripts/build-site-data.mjs && node scripts/build-site-html.mjs",
+    "build:data": "node scripts/build-site-data.mjs",
+    "build:html": "node scripts/build-site-html.mjs",
+    "test": "node --test scripts/*.test.mjs",
+    "deploy": "npm run build && wrangler pages deploy dist --project-name quest-i18n-index --branch main --commit-dirty=true"
+  }
+}
