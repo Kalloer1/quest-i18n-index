@@ -86,6 +86,16 @@ test('许可与非商业声明存在（ADR-0004）', () => {
   assert.equal(out.meta.nonCommercial, true)
 })
 
+test('skyfactory-5：state 仍是 no-quests（六态不变），文案区分非 FTB', () => {
+  const out = buildSiteData(inputs())
+  const sf5 = out.packs.find(p => p.slug === 'skyfactory-5')
+  assert.ok(sf5, '应有 skyfactory-5')
+  assert.equal(sf5.state, 'no-quests')
+  assert.equal(sf5.stateLabel, '无任务书（非 FTB Quests）')
+  // 六态计数不变：skyfactory-5 仍计入 no-quests
+  assert.deepEqual(out.stat.stateCounts, inputs().index.stat.stateCounts)
+})
+
 test('幂等：同一输入连跑两次结果相同', () => {
   const a = buildSiteData(inputs(), { now: 'T' })
   const b = buildSiteData(inputs(), { now: 'T' })

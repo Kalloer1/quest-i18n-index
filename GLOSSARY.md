@@ -65,10 +65,14 @@ _Avoid_: 扫描、爬取
 | 自带中文 | `native-zh` | 整合包自身已带中文译文 | 分离布局且 `zhFiles > 0` |
 | 待翻译·无人覆盖 | `gap-uncovered` | 有英文源，本站未翻，社区也没有 | 分离布局、`zhFiles = 0`、VM/CFPA 均未覆盖 |
 | 待翻译·社区已覆盖 | `gap-covered` | 有英文源，本站未翻，但 VM 或 CFPA 已有 | 分离布局、`zhFiles = 0`、VM/CFPA 已覆盖 |
-| 内嵌不可做 | `embedded` | 任务书文本混在章节数据里，该版本 FTB Quests 无翻译系统 | 探测到 `chapters/*.snbt` 内含 `title`/`description` |
+| 内嵌可做（覆盖式产出） | `embedded` | 任务书文本混在章节数据里，本站以覆盖式补丁产出汉化 | 探测到 `chapters/*.snbt` 内含 `title`/`description` |
 | 无任务书 | `no-quests` | 整合包不含 FTB Quests | 探测到无任何任务书文件 |
 
 「待翻译」两态的差别只有覆盖来源，对玩家都是「还没有本站汉化」，页面上不得混成一个态。
+
+**非 FTB 任务书系统不是第七态**：含 Checklist 等非 FTB 任务书系统的包（如 skyfactory-5）
+`state` 仍是 `no-quests`，只在展示文案上标「无任务书（非 FTB Quests）」，六态计数不变。
+_Avoid_: `no-quests-non-ftb` 这样的第七个状态值
 _Avoid_: 待翻译（单说时不知是哪个）、缺失、无状态
 
 **探测未完成**：
