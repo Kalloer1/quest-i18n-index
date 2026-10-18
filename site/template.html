@@ -256,6 +256,23 @@ h3 { font-size: 15px; margin: 0 0 8px; }
 .split p { font-size: 13.5px; color: var(--text-dim); margin: 8px 0 0; }
 .split .empty { color: var(--text-faint); font-style: normal; }
 
+/* 详情页下载入口（工单 04）：zip / 夸克镜像 / GitHub 仓库 */
+.dl { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 4px; }
+.dl .cta { margin-top: 0; }
+.dl-quark { background: var(--info); color: #0b1220; }
+.dl .dl-gh {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 14px;
+  min-height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-dim);
+  font-size: 14px;
+  text-decoration: none;
+}
+.dl .dl-gh:hover { color: var(--text); border-color: var(--text-faint); }
+
 .prov {
   border-top: 1px solid var(--border);
   padding-top: 12px;
@@ -607,8 +624,29 @@ h3 { font-size: 15px; margin: 0 0 8px; }
     }
 
     // 视觉强分栏
-    var ours = '<section class="ours"><h3><span class="tag">本站产出</span></h3>'
-      + '<p class="empty">本站尚未产出这个整合包的任务书汉化。</p></section>';
+    // 详情页下载入口（工单 04）：zip 下载 + GitHub 仓库 + 夸克镜像（仅 quark 非空时渲染）。
+    // 夸克链接为空字符串时绝不渲染按钮，不显示假链接。
+    var ours = '<section class="ours"><h3><span class="tag">本站产出</span></h3>';
+    if (p.download && (p.download.zip || p.download.github || p.download.quark)) {
+      ours += '<div class="dl">';
+      if (p.download.zip) {
+        ours += '<a class="cta" href="' + esc(p.download.zip) + '" download>下载补丁包 zip</a>';
+      } else {
+        ours += '<p class="empty">本站已产出该整合包的任务书汉化，但 zip 暂未发布。</p>';
+      }
+      if (p.download.quark) {
+        ours += '<a class="cta dl-quark" href="' + esc(p.download.quark)
+          + '" target="_blank" rel="noopener noreferrer">夸克网盘镜像 ↗</a>';
+      }
+      if (p.download.github) {
+        ours += '<a class="dl-gh" href="' + esc(p.download.github)
+          + '" target="_blank" rel="noopener noreferrer">GitHub 仓库 ↗</a>';
+      }
+      ours += '</div>';
+    } else {
+      ours += '<p class="empty">本站尚未产出这个整合包的任务书汉化。</p>';
+    }
+    ours += '</section>';
 
     var theirs = '<section class="theirs"><h3><span class="tag">社区已有</span></h3>';
 
