@@ -5,6 +5,9 @@
  * 1. POST /        玩家提交整合包链接（CurseForge / Modrinth）→ 解析并校验 → 写 KV（权威）
  * 2. GET  /queue   返回全部队列条目（公开字段），供站点轮询
  * 3. POST /status  流水线回写单条状态（内部 token）→ 更新 KV
+ * 4. POST /translate 维护者口令门禁 → 取「待翻译」（可选含「失败」）→ GitHub workflow_dispatch → 置「翻译中」
+ * 5. POST /verify-passphrase 仅校验口令，供管理区门禁渲染模型多选
+ * 6. GET  /models  代理网关 /models，返回实时模型 id 列表（公开；不含任何秘密）
  *
  * 状态权威源是 KV；腾讯文档类镜像由后续工单接入，任何失败都不阻断主流程。
  *
@@ -36,9 +39,13 @@ import {
   submitDayKey,
   clientIp,
 } from '../shared/submit-limit.mjs'
+import { verifyPassphrase, parseModelsInput } from '../shared/gate.mjs'
 
 const MODRINTH_API = 'https://api.modrinth.com/v2'
 const UA = 'quest-i18n-index/0.1.0 (submit worker)'
+
+// 网关地址是公开值（wrangler.worker.toml [vars]）；LLM_API_KEY 是 secret，只存在 Worker 里。
+const DEFAULT_LLM_BASE_URL = 'https://api.888424.xyz/v1'
 
 const INDEX_KEY = 'queue:index'
 const QUEUE_PREFIX = 'queue:'
@@ -63,7 +70,7 @@ function isAllowedOrigin(origin) {
 function corsHeaders(origin) {
   const headers = {
     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type, X-Internal-Token',
+    'Access-Control-Allow-Headers': 'Content-Type, X-Passphrase, X-Internal-Token',
     Vary: 'Origin',
   }
   if (isAllowedOrigin(origin)) headers['Access-Control-Allow-Origin'] = origin
@@ -272,6 +279,143 @@ export function selectTranslateTargets(entries, { retryFailed = false } = {}) {
   )
 }
 
+// ---------- 网关模型列表（实时拉取） ----------
+// 模型列表来自网关（OpenAI 兼容 /models），不是写死的策展清单：
+// 管理员会实时增删模型，写死列表必然过时。Worker 用 LLM_BASE_URL / LLM_API_KEY
+// 代理该请求，浏览器端永远接触不到网关 key。
+
+async function fetchGatewayModels(env) {
+  const base = (env.LLM_BASE_URL || DEFAULT_LLM_BASE_URL).replace(/\/+$/, '')
+  const key = env.LLM_API_KEY
+  if (!key) return { error: '缺少 LLM_API_KEY（服务配置错误）' }
+  let res
+  try {
+    res = await fetch(`${base}/models`, {
+      headers: { Authorization: `Bearer ${key}`, 'User-Agent': UA },
+    })
+  } catch (err) {
+    console.error('gateway /models fetch failed:', err?.message ?? err)
+    return { error: '模型网关不可达' }
+  }
+  if (!res.ok) {
+    return { error: `模型网关返回 ${res.status}` }
+  }
+  const data = await res.json().catch(() => null)
+  const models = Array.isArray(data?.data) ? data.data.map((m) => m?.id).filter(Boolean) : []
+  return { models }
+}
+
+/** GET /models —— 公开返回网关当前模型 id 列表（不含任何秘密） */
+async function handleModels(env, origin) {
+  const { models, error } = await fetchGatewayModels(env)
+  if (error) return json({ success: false, error }, 502, origin)
+  return json({ success: true, models }, 200, origin)
+}
+
+/** POST /verify-passphrase —— 仅校验口令，供管理区门禁渲染模型多选 */
+async function handleVerifyPassphrase(request, env, origin) {
+  const verdict = verifyPassphrase(request.headers.get('X-Passphrase') || '', env.TRANSLATE_PASSPHRASE)
+  if (verdict === 'missing-config') {
+    return json({ error: '服务配置错误：缺少 TRANSLATE_PASSPHRASE' }, 500, origin)
+  }
+  if (verdict !== 'ok') return json({ error: '口令不正确' }, 401, origin)
+  return json({ success: true }, 200, origin)
+}
+
+/**
+ * POST /translate —— 口令门禁后触发 GitHub Actions workflow_dispatch。
+ *
+ * - 默认只取「待翻译」条目；body.retryFailed === true 时额外含「失败」条目。
+ * - 「翻译中」永不入选；没有可触发条目时返回 { success, triggered: false }，不调 GitHub。
+ * - body.models 必须命中网关实时列表（白名单），任意字符串不透传进 workflow；
+ *   网关不可达时宁可 400 拒绝，也不能跳过校验。
+ * - dispatch 成功后立即把条目置「翻译中」，避免重复点击重复触发。
+ */
+async function handleTranslate(request, env, origin) {
+  const verdict = verifyPassphrase(request.headers.get('X-Passphrase') || '', env.TRANSLATE_PASSPHRASE)
+  if (verdict === 'missing-config') {
+    return json({ error: '服务配置错误：缺少 TRANSLATE_PASSPHRASE' }, 500, origin)
+  }
+  if (verdict !== 'ok') return json({ error: '口令不正确' }, 401, origin)
+
+  const body = await request.json().catch(() => null)
+
+  // 可选 models：管理区模型多选（口令门禁后才渲染）。必须命中网关实时列表。
+  const candidate = parseModelsInput(body?.models)
+  let modelsInput = ''
+  if (candidate.length) {
+    const { models: available, error } = await fetchGatewayModels(env)
+    if (error) {
+      return json({ error: `无法校验模型列表：${error}` }, 400, origin)
+    }
+    const invalid = candidate.filter((m) => !available.includes(m))
+    if (invalid.length) {
+      return json({ error: `以下模型不在网关列表中：${invalid.join(', ')}` }, 400, origin)
+    }
+    modelsInput = candidate.join(',')
+  }
+
+  // 必须是显式布尔 true —— 缺省不重跑失败项，避免每次点击都重复消耗翻译额度。
+  const retryFailed = body?.retryFailed === true
+
+  const index = await readIndex(env)
+  const entries = (await Promise.all(index.map((id) => readEntry(env, id)))).filter(Boolean)
+  const targets = selectTranslateTargets(entries, { retryFailed })
+
+  if (!targets.length) {
+    return json(
+      {
+        success: true,
+        triggered: false,
+        message: retryFailed ? '没有待翻译或失败的条目' : '没有待翻译的条目',
+        ids: [],
+      },
+      200,
+      origin,
+    )
+  }
+
+  const ids = targets.map((e) => e.id)
+
+  if (!env.GITHUB_PAT) {
+    return json({ error: '服务配置错误：缺少 GITHUB_PAT' }, 500, origin)
+  }
+  if (!env.GITHUB_REPO || !env.GITHUB_WORKFLOW_FILE) {
+    return json({ error: '服务配置错误：缺少 GITHUB_REPO / GITHUB_WORKFLOW_FILE' }, 500, origin)
+  }
+
+  const inputs = { ids: ids.join(',') }
+  if (modelsInput) inputs.models = modelsInput
+
+  const dispatch = await fetch(
+    `https://api.github.com/repos/${env.GITHUB_REPO}/actions/workflows/${env.GITHUB_WORKFLOW_FILE}/dispatches`,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${env.GITHUB_PAT}`,
+        Accept: 'application/vnd.github+json',
+        'User-Agent': UA,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ ref: 'main', inputs }),
+    },
+  )
+
+  if (!dispatch.ok) {
+    const detail = (await dispatch.text()).slice(0, 300)
+    console.error('workflow_dispatch failed:', dispatch.status, detail)
+    return json({ error: '触发翻译失败，请稍后重试', detail }, 502, origin)
+  }
+
+  // dispatch 已成功，立即置「翻译中」，避免重复点击导致重复触发
+  const now = new Date().toISOString()
+  await Promise.all(
+    targets.map((e) => writeEntry(env, { ...e, status: STATUS.TRANSLATING, updatedAt: now, error: '' })),
+  )
+
+  return json({ success: true, triggered: true, ids, count: ids.length }, 200, origin)
+}
+
 /** GET /queue —— 队列全量（供站点轮询）；公开字段，绝不泄露 contact 明文 */
 async function handleQueue(env, origin) {
   const index = await readIndex(env)
@@ -357,6 +501,21 @@ export default {
       if (pathname === '/status') {
         if (request.method !== 'POST') return json({ error: 'Method not allowed' }, 405, origin)
         return await handleStatus(request, env, origin)
+      }
+
+      if (pathname === '/models') {
+        if (request.method !== 'GET') return json({ error: 'Method not allowed' }, 405, origin)
+        return await handleModels(env, origin)
+      }
+
+      if (pathname === '/verify-passphrase') {
+        if (request.method !== 'POST') return json({ error: 'Method not allowed' }, 405, origin)
+        return await handleVerifyPassphrase(request, env, origin)
+      }
+
+      if (pathname === '/translate') {
+        if (request.method !== 'POST') return json({ error: 'Method not allowed' }, 405, origin)
+        return await handleTranslate(request, env, origin)
       }
 
       return json({ error: 'Not found' }, 404, origin)
