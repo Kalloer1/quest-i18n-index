@@ -1,0 +1,27 @@
+# Cloudflare Worker 部署配置（提交入口 + 翻译队列）。
+#
+# 部署：
+#   wrangler deploy --config wrangler.worker.toml
+#
+# Secrets（不要写进本文件，用 wrangler secret put 设置）：
+#   wrangler secret put TRANSLATE_PASSPHRASE --config wrangler.worker.toml
+#   wrangler secret put INTERNAL_STATUS_TOKEN --config wrangler.worker.toml
+#   wrangler secret put GITHUB_PAT --config wrangler.worker.toml
+#   wrangler secret put LLM_API_KEY --config wrangler.worker.toml
+#
+# KV：先创建命名空间，再把返回的 id 填到下面 TRANSLATION_QUEUE 的 id：
+#   wrangler kv namespace create TRANSLATION_QUEUE
+
+name = "quest-i18n-api"
+main = "worker/index.js"
+compatibility_date = "2026-10-18"
+
+[[kv_namespaces]]
+binding = "TRANSLATION_QUEUE"
+id = "REPLACE_WITH_wrangler_kv_namespace_create_TRANSLATION_QUEUE"
+
+[vars]
+GITHUB_REPO = "Kalloer1/quest-i18n-index"
+GITHUB_WORKFLOW_FILE = "translate.yml"
+SUBMIT_LIMIT_PER_DAY = "3"
+LLM_BASE_URL = "https://api.888424.xyz/v1"
