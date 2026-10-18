@@ -63,8 +63,12 @@ test('sb4/index 这类带后缀的 vmSlug 也能匹配上（数据链不断裂�
 
 test('元数据字段从 pack-metadata 合并进来', () => {
   const out = buildSiteData(inputs())
+  // 元数据覆盖全部 500 条（不是只覆盖「可产出」的那批）：
+  // 图标与标题是列表页的全部可见内容，缺一条就是一个占位块。
   const withIcon = out.packs.filter(p => p.iconUrl)
-  assert.equal(withIcon.length, 57, '57 个可产出包应有图标')
+  assert.equal(withIcon.length, 500, '500 条都应有图标')
+  const withoutTitle = out.packs.filter(p => !p.title)
+  assert.equal(withoutTitle.length, 0, `缺标题：${withoutTitle.map(p => p.slug).join(', ')}`)
   const sb4 = out.packs.find(p => p.slug === 'ftb-stoneblock-4')
   assert.ok(sb4.downloads > 0)
   assert.ok(sb4.gameVersions.length > 0)
