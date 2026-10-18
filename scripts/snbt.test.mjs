@@ -29,8 +29,16 @@ test('未改写的 AST 序列化后与原文件逐字节相同（含注释与空
   const text = fixture('syntax.snbt')
   const root = parse(text)
   assert.match(root.lead, /^# 顶层注释/)
-  assert.match(root.trail, /# 末尾注释\n$/)
+  // 行尾不假定 LF：仓库在 Windows 上可能以 CRLF 检出，解析器必须原样保留。
+  assert.match(root.trail, /# 末尾注释\r?\n$/)
   assert.equal(serialize(root), text)
+})
+
+test('CRLF 输入无损往返（Windows 检出场景）', () => {
+  const lf = fixture('syntax.snbt')
+  const crlf = lf.replace(/\n/g, '\r\n')
+  assert.equal(serialize(parse(crlf)), crlf)
+  assert.equal(serialize(parse(serialize(parse(crlf)))), crlf)
 })
 
 // ---- 覆盖：字符串转义 ----
