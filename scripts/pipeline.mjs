@@ -1,0 +1,347 @@
+#!/usr/bin/env node
+/**
+ * 翻译流水线（工单 02）：筛候选 → 站点术语记忆精确命中 → LLM 分块翻译 → 回退率闸门 → 产出写出。
+ *
+ * - `--ids a,b` 与 `--top N` 互斥；同时给出直接报错退出（exit 2）。
+ * - 分块默认 60 行/块（CHUNK_LINES，可用 --chunk-lines 覆盖）。
+ * - 单块回退率 > 10% 时整块重试，最多 3 次；整体回退率 > 30% 判失败，不写文件、不回写成功。
+ * - 每条整合包独立超时（默认 5 分钟，--timeout-ms 可配）：超时只让该条失败，其余继续。
+ * - 失败原因回写队列状态：配置 WORKER_URL + INTERNAL_STATUS_TOKEN 时调 `POST /status`
+ *   （带 `X-Internal-Token` 头）；未配置时只打日志，不影响主流程。
+ * - LLM 可注入：核心流程 `runPipeline()` 的 `translate` 参数是
+ *   `async (texts: string[]) => string[]`，测试用桩替换，不联网。
+ * - 产出文件头部标注「AI 初翻，未人工校对」；英文↔中文对照合并式回写 glossary.json（不抹历史条目）。
+ *
+ * CLI 数据来源（离线）：
+ *   - 记录：research/index-dataset.json 的 `packs`（build-index.mjs 产出）
+ *   - 整合包内文件：research/packs/<slug>/ 下的 .snbt（调用方事先解包）
+ *   - 产出：patches/<slug>/ 下，路径与整合包内路径一致（pack-patch.mjs 直接打包该目录）
+ *
+ * 用法：
+ *   node scripts/pipeline.mjs --ids a,b
+ *   node scripts/pipeline.mjs --top 5
+ *   node scripts/pipeline.mjs --ids a --dry-run   不写文件，只打印结果
+ */
+import { readFileSync, writeFileSync, mkdirSync, readdirSync, statSync, existsSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
+import { dirname, join, relative } from 'node:path'
+import { screenCandidates, skipReason, SKIP, SKIP_LABEL } from './lib/candidates.mjs'
+import { extractPack, buildOutputs, sourceFileNames } from './lib/quest-files.mjs'
+import {
+  stripSkeleton, isUsableMemory, shouldRememberMemory, mergeGlossary, isSourceEcho,
+} from './lib/glossary.mjs'
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
+const DATASET_FILE = join(ROOT, 'research/index-dataset.json')
+const PACKS_DIR = join(ROOT, 'research/packs')
+const PATCHES_DIR = join(ROOT, 'patches')
+const GLOSSARY_FILE = join(ROOT, 'glossary.json')
+
+export const CHUNK_LINES = 60
+export const CHUNK_RETRY_THRESHOLD = 0.1
+export const CHUNK_MAX_RETRIES = 3
+export const OVERALL_FALLBACK_THRESHOLD = 0.3
+export const DEFAULT_TIMEOUT_MS = 5 * 60 * 1000
+export const HEADER_LINE = '# AI 初翻，未人工校对'
+
+// ---------- 分块翻译（纯逻辑，注入 translate） ----------
+
+/**
+ * 翻译一批待译单元：
+ *   1. 按英文骨架查 glossary，全命中时一次 LLM 都不调；
+ *   2. 未命中的按 chunkLines 分块，逐块调 LLM；
+ *   3. 单块回退率（译文 === 原文）> CHUNK_RETRY_THRESHOLD 时整块重试，最多 CHUNK_MAX_RETRIES 次；
+ *   4. 整体回退率 > OVERALL_FALLBACK_THRESHOLD 抛错（调用方判失败，不写文件）。
+ *
+ * @param {Array<{key: string, text: string}>} units
+ * @param {(texts: string[], signal?: AbortSignal) => Promise<string[]>} translate 可注入的 LLM
+ * @param {{glossary?: Record<string,string>, chunkLines?: number, signal?: AbortSignal}} options
+ * @returns {Promise<{map: Map<string,string>, fallback: number, llmCalls: number, glossaryHits: number, additions: Record<string,string>}>}
+ */
+export async function translateUnits(units, translate, { glossary = {}, chunkLines = CHUNK_LINES, signal } = {}) {
+  const map = new Map()
+  const additions = {}
+  let llmCalls = 0
+  let glossaryHits = 0
+
+  const unmatched = []
+  for (const u of units) {
+    const skeleton = stripSkeleton(u.text)
+    const hit = skeleton ? glossary[skeleton] : undefined
+    if (isUsableMemory(hit, u.text)) {
+      map.set(u.key, hit)
+      glossaryHits++
+    } else {
+      unmatched.push(u)
+    }
+  }
+
+  if (unmatched.length === 0) {
+    return { map, fallback: 0, llmCalls: 0, glossaryHits, additions }
+  }
+
+  let fallback = 0
+  const chunks = []
+  for (let i = 0; i < unmatched.length; i += chunkLines) chunks.push(unmatched.slice(i, i + chunkLines))
+
+  for (const chunk of chunks) {
+    if (signal?.aborted) throw new Error('处理超时')
+    let attempt = 0
+    let texts = []
+    for (;;) {
+      attempt++
+      texts = await translate(chunk.map((u) => u.text), signal)
+      llmCalls++
+      const echoes = chunk.filter((u, i) => isSourceEcho(texts[i], u.text)).length
+      if (echoes / chunk.length <= CHUNK_RETRY_THRESHOLD) break
+      if (attempt >= CHUNK_MAX_RETRIES) break
+    }
+    chunk.forEach((u, i) => {
+      const zh = texts[i]
+      map.set(u.key, zh)
+      if (isSourceEcho(zh, u.text)) fallback++
+      else {
+        // 写入端守卫：回显不进记忆；已存在的骨架不覆盖（历史优先，合并式回写在 mergeGlossary）。
+        const skeleton = stripSkeleton(u.text)
+        if (shouldRememberMemory(skeleton, zh, u.text, glossary[skeleton])) additions[skeleton] = zh
+      }
+    })
+  }
+
+  if (fallback > units.length * OVERALL_FALLBACK_THRESHOLD) {
+    throw new Error(`翻译回退率过高（${fallback}/${units.length}）`)
+  }
+  return { map, fallback, llmCalls, glossaryHits, additions }
+}
+
+// ---------- 单条整合包处理 ----------
+
+/**
+ * 处理单条整合包记录：筛候选 → 抽取 → 翻译 → 产出。
+ * @param {object} record 候选记录（slug/layout/...）
+ * @param {{files: Array<{name: string, text: string}>}} pack 整合包内文件
+ * @param {{translate: Function, glossary?: Record<string,string>, chunkLines?: number, signal?: AbortSignal}} options
+ * @returns {Promise<{status: 'done'|'skipped'|'failed', error?: string, note?: string, outputs?: Array<{name: string, text: string}>, additions?: Record<string,string>}>}
+ */
+export async function processPack(record, pack, { translate, glossary = {}, chunkLines, signal } = {}) {
+  const reason = skipReason(record)
+  if (reason) {
+    return { status: 'skipped', error: reason, note: SKIP_LABEL[reason] ?? reason }
+  }
+  const sourceNames = sourceFileNames(pack.files.map((f) => f.name), record.layout)
+  if (sourceNames.length === 0) {
+    return { status: 'failed', error: SKIP.NO_EN_SOURCE }
+  }
+  const files = pack.files.filter((f) => sourceNames.includes(f.name))
+  const extracted = extractPack({ files, layout: record.layout })
+  const { map, additions } = await translateUnits(extracted.units, translate, { glossary, chunkLines, signal })
+  const outputs = buildOutputs(extracted, map, { header: `${HEADER_LINE}\n` })
+  return { status: 'done', outputs, additions }
+}
+
+// ---------- 批处理（含独立超时与状态回写） ----------
+
+/**
+ * 默认状态回写：POST {WORKER_URL}/status，带 X-Internal-Token。尽力而为，失败只打日志。
+ */
+export function defaultReportStatus(id, payload, { workerUrl = process.env.WORKER_URL, token = process.env.INTERNAL_STATUS_TOKEN } = {}) {
+  if (!workerUrl || !token) return Promise.resolve()
+  return fetch(`${workerUrl.replace(/\/+$/, '')}/status`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'X-Internal-Token': token },
+    body: JSON.stringify({ id, ...payload }),
+  }).catch((err) => console.log(`  [status] 回写异常: ${String(err?.message ?? err).slice(0, 120)}`))
+}
+
+/**
+ * 跑一批整合包。每条独立超时：超时/抛错只让该条失败，其余继续。
+ *
+ * @param {{
+ *   records: object[],
+ *   loadPack: (slug: string) => Promise<{files: Array<{name: string, text: string}>}> | {files: Array<{name: string, text: string}>},
+ *   translate: (texts: string[], signal?: AbortSignal) => Promise<string[]>,
+ *   glossary?: Record<string,string>,
+ *   chunkLines?: number,
+ *   timeoutMs?: number,
+ *   writeOutput?: (slug: string, name: string, text: string) => void,
+ *   reportStatus?: (id: string, payload: object) => Promise<void>,
+ * }} options
+ */
+export async function runPipeline(options) {
+  const {
+    records, loadPack, translate, glossary = {}, chunkLines = CHUNK_LINES,
+    timeoutMs = DEFAULT_TIMEOUT_MS, writeOutput = () => {}, reportStatus = defaultReportStatus,
+  } = options
+  const { candidates, skipped } = screenCandidates(records)
+  const results = []
+
+  for (const row of skipped) {
+    const result = { slug: row.slug, status: 'skipped', error: row.reason, note: SKIP_LABEL[row.reason] ?? row.reason }
+    results.push(result)
+    await reportStatus(row.slug, { status: 'skipped', error: row.reason, note: result.note })
+  }
+
+  for (const record of candidates) {
+    const slug = record.slug
+    let result
+    const controller = new AbortController()
+    const timer = setTimeout(() => controller.abort(new Error(`处理超时（${Math.round(timeoutMs / 1000)}s）`)), timeoutMs)
+    try {
+      const pack = await loadPack(slug)
+      result = await withTimeout(
+        processPack(record, pack, { translate, glossary, chunkLines, signal: controller.signal }),
+        timeoutMs,
+        controller,
+      )
+    } catch (err) {
+      const message = String(err?.message ?? err?.reason ?? err).slice(0, 200)
+      console.log(`[${slug}] 失败: ${message}`)
+      result = { slug, status: 'failed', error: message }
+      await reportStatus(slug, { status: 'failed', error: message })
+      results.push(result)
+      continue
+    } finally {
+      clearTimeout(timer)
+    }
+    result = { slug, ...result }
+    if (result.status === 'done') {
+      for (const out of result.outputs) writeOutput(slug, out.name, out.text)
+    }
+    const payload = result.status === 'done'
+      ? { status: 'done', error: '' }
+      : { status: result.status, error: result.error, note: result.note }
+    await reportStatus(slug, payload)
+    results.push(result)
+  }
+  return results
+}
+
+/** 独立超时：到时 reject，只影响该条（同时用 controller.abort 通知进行中的 translate）。 */
+function withTimeout(promise, ms, controller) {
+  let timer
+  const timeout = new Promise((_, reject) => {
+    timer = setTimeout(() => {
+      controller?.abort(new Error(`处理超时（${Math.round(ms / 1000)}s）`))
+      reject(new Error(`处理超时（${Math.round(ms / 1000)}s）`))
+    }, ms)
+  })
+  return Promise.race([promise, timeout]).finally(() => clearTimeout(timer))
+}
+
+// ---------- CLI ----------
+
+/** 解析 CLI 参数：--ids 与 --top 互斥。 */
+export function parseArgs(argv) {
+  const args = { ids: null, top: null, chunkLines: CHUNK_LINES, timeoutMs: DEFAULT_TIMEOUT_MS, dryRun: false }
+  for (let i = 0; i < argv.length; i++) {
+    const a = argv[i]
+    if (a === '--ids') args.ids = (argv[++i] ?? '').split(',').map((s) => s.trim()).filter(Boolean)
+    else if (a === '--top') args.top = Number(argv[++i])
+    else if (a === '--chunk-lines') args.chunkLines = Number(argv[++i])
+    else if (a === '--timeout-ms') args.timeoutMs = Number(argv[++i])
+    else if (a === '--dry-run') args.dryRun = true
+    else throw new Error(`未知参数：${a}`)
+  }
+  if (args.ids && args.top != null) throw new Error('--ids 与 --top 互斥，只能给一个')
+  if (!args.ids && args.top == null) throw new Error('必须给 --ids a,b 或 --top N')
+  return args
+}
+
+/** 递归列目录下的 .snbt 文件（相对路径，/ 分隔）。 */
+function listSnbt(dir, base = dir) {
+  const out = []
+  if (!existsSync(dir)) return out
+  for (const name of readdirSync(dir)) {
+    const full = join(dir, name)
+    if (statSync(full).isDirectory()) out.push(...listSnbt(full, base))
+    else if (/\.snbt$/i.test(name)) out.push(relative(base, full).replace(/\\/g, '/'))
+  }
+  return out
+}
+
+const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]
+if (isMain) {
+  let args
+  try {
+    args = parseArgs(process.argv.slice(2))
+  } catch (err) {
+    console.error(`✘ ${err.message}`)
+    console.error('用法: node scripts/pipeline.mjs --ids <slug,slug> | --top N [--chunk-lines 60] [--timeout-ms 300000] [--dry-run]')
+    process.exit(2)
+  }
+
+  if (!existsSync(DATASET_FILE)) {
+    console.error(`✘ 找不到 ${DATASET_FILE}，先跑 npm run build:data 生成整合包记录`)
+    process.exit(1)
+  }
+  const dataset = JSON.parse(readFileSync(DATASET_FILE, 'utf8'))
+  const records = dataset.packs ?? []
+  const bySlug = new Map(records.map((r) => [r.slug, r]))
+
+  let worklist
+  if (args.ids) {
+    worklist = args.ids.map((id) => bySlug.get(id)).filter(Boolean)
+    const missing = args.ids.filter((id) => !bySlug.has(id))
+    for (const id of missing) console.log(`[${id}] 记录不存在，跳过`)
+  } else {
+    worklist = screenCandidates(records).candidates.slice(0, args.top)
+  }
+  console.log(`本次处理 ${worklist.length} 条\n`)
+
+  let glossary = {}
+  try { glossary = JSON.parse(readFileSync(GLOSSARY_FILE, 'utf8')) } catch { /* 从头构建 */ }
+
+  // 默认 LLM 提供方：OpenAI 兼容 chat/completions。没有 LLM_API_KEY 时直接失败（离线测试用注入桩，不走这里）。
+  const translate = async (texts) => {
+    const key = process.env.LLM_API_KEY
+    const url = process.env.LLM_BASE_URL ?? 'https://api.openai.com/v1/chat/completions'
+    if (!key) throw new Error('未配置 LLM_API_KEY（离线测试请注入 translate 桩）')
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${key}` },
+      body: JSON.stringify({
+        model: process.env.LLM_MODEL ?? 'gpt-4o-mini',
+        messages: [
+          { role: 'system', content: '你是 Minecraft 整合包任务书翻译。逐条翻译为简体中文，保留色码（&7 等）与占位符，返回 JSON 数组，顺序与输入一致。' },
+          { role: 'user', content: JSON.stringify(texts) },
+        ],
+        response_format: { type: 'json_object' },
+      }),
+    })
+    if (!res.ok) throw new Error(`LLM HTTP ${res.status}`)
+    const parsed = JSON.parse((await res.json()).choices[0].message.content)
+    const arr = Array.isArray(parsed) ? parsed : (parsed.translations ?? parsed.result)
+    if (!Array.isArray(arr) || arr.length !== texts.length) throw new Error('LLM 返回条数不符')
+    return arr.map((s) => String(s))
+  }
+
+  const loadPack = async (slug) => {
+    const dir = join(PACKS_DIR, slug)
+    const names = listSnbt(dir)
+    if (!names.length) throw new Error(`找不到整合包文件：research/packs/${slug}/（先解包 .snbt 到该目录）`)
+    return { files: names.map((name) => ({ name, text: readFileSync(join(dir, name), 'utf8') })) }
+  }
+
+  const writeOutput = (slug, name, text) => {
+    if (args.dryRun) return
+    const path = join(PATCHES_DIR, slug, name)
+    mkdirSync(dirname(path), { recursive: true })
+    writeFileSync(path, text)
+    console.log(`[${slug}] → ${relative(ROOT, path).replace(/\\/g, '/')}`)
+  }
+
+  const results = await runPipeline({ records: worklist, loadPack, translate, glossary, chunkLines: args.chunkLines, timeoutMs: args.timeoutMs, writeOutput })
+
+  // 合并式回写 glossary.json：只补新键，不抹历史条目。
+  const additions = {}
+  for (const r of results) if (r.additions) Object.assign(additions, r.additions)
+  if (Object.keys(additions).length && !args.dryRun) {
+    const merged = mergeGlossary(glossary, additions)
+    writeFileSync(GLOSSARY_FILE, JSON.stringify(merged, null, 2) + '\n')
+    console.log(`\n术语记忆 +${Object.keys(additions).length} 条（共 ${Object.keys(merged).length}）`)
+  }
+
+  const failed = results.filter((r) => r.status === 'failed').length
+  console.log(`\n完成：done ${results.filter((r) => r.status === 'done').length}，skipped ${results.filter((r) => r.status === 'skipped').length}，failed ${failed}`)
+  process.exit(failed ? 1 : 0)
+}
