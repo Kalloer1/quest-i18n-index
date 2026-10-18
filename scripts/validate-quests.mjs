@@ -29,6 +29,11 @@ import { parse, serialize, SnbtParseError } from './snbt.mjs'
 import { countColorCodes, countMalformedCodes } from './lib/format-codes.mjs'
 import { LAYOUT } from './lib/candidates.mjs'
 
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
+const PATCHES_DIR = join(ROOT, 'patches')
+const PACKS_DIR = join(ROOT, 'research/packs')
+const DATASET_FILE = join(ROOT, 'research/index-dataset.json')
+
 /** 抽取占位符，返回「占位符 → 次数」。先匹配带位置/包裹的形式，再匹配简单形式。 */
 export function extractPlaceholders(value) {
   const counts = new Map()
@@ -203,6 +208,86 @@ function listSnbt(dir) {
   return out
 }
 
+// ---------- 批量模式 ----------
+
+/** 从 index-dataset.json 的 `dataset` 数组读 slug → layout 映射。 */
+function loadLayouts(file) {
+  const map = new Map()
+  if (!existsSync(file)) return map
+  try {
+    const data = JSON.parse(readFileSync(file, 'utf8'))
+    for (const row of data.dataset ?? []) {
+      if (row?.slug) map.set(row.slug, row.layout ?? LAYOUT.EMBEDDED)
+    }
+  } catch {
+    // 数据集缺失/损坏不阻断：layout 回退为默认值。
+  }
+  return map
+}
+
+/** 读取目录下所有 .snbt 为 {name, text} 列表。 */
+const readDir = (dir) => listSnbt(dir).map((name) => ({ name, text: readFileSync(join(dir, ...name.split('/')), 'utf8') }))
+
+/**
+ * 批量校验仓库里已有的产出：扫描 patches/<slug>/，逐个与 research/packs/<slug>/ 比对。
+ *
+ * 关键约定：
+ *   - patches/ 不存在（或没有任何 slug）时视为「无产出」→ 退出码 0，绝不判红。
+ *   - 找不到英文源（research/packs/<slug>/ 不存在）只 warn 跳过该条，不判失败。
+ *   - 单条失败不中断其余条目，全部跑完再统一给退出码。
+ *
+ * @param {{patchesDir?: string, packsDir?: string, datasetFile?: string}} [options] 注入路径（测试用）
+ * @returns {number} 退出码：0 通过；1 有校验失败
+ */
+export function runBatch({ patchesDir = PATCHES_DIR, packsDir = PACKS_DIR, datasetFile = DATASET_FILE } = {}) {
+  const slugs = existsSync(patchesDir)
+    ? readdirSync(patchesDir).filter((n) => statSync(join(patchesDir, n)).isDirectory())
+    : []
+  if (!slugs.length) {
+    console.log('ℹ️  没有待校验的产出，跳过')
+    return 0
+  }
+
+  const layoutBySlug = loadLayouts(datasetFile)
+  let failed = 0
+  let totalKeys = 0
+  let warningCount = 0
+
+  for (const slug of slugs) {
+    const enDir = join(packsDir, slug)
+    if (!existsSync(enDir)) {
+      console.warn(`⚠ ${slug}: 找不到英文源 research/packs/${slug}/，跳过该条`)
+      continue
+    }
+    const layout = layoutBySlug.get(slug) ?? LAYOUT.EMBEDDED
+    const result = validatePair(readDir(enDir), readDir(join(patchesDir, slug)), {
+      layout,
+      label: `patches/${slug}`,
+    })
+    totalKeys += result.keyCount
+    for (const w of result.warnings) {
+      warningCount++
+      console.warn(`⚠ ${w}`)
+    }
+    if (result.problems.length) {
+      failed++
+      console.error(`✘ patches/${slug}`)
+      for (const p of result.problems) console.error(`    - ${p}`)
+    }
+  }
+
+  if (failed) {
+    console.error(`\n✘ 批量校验失败：${failed}/${slugs.length} 个产出有问题`)
+    return 1
+  }
+  console.log(
+    `✔ 批量校验通过：${slugs.length} 个产出，共 ${totalKeys} 个键${warningCount ? `（${warningCount} 条样式警告）` : ''}`,
+  )
+  return 0
+}
+
+// ---------- 入口 ----------
+
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]
 if (isMain) {
   const argv = process.argv.slice(2)
@@ -210,12 +295,14 @@ if (isMain) {
   const layout = layoutArg >= 0 ? argv[layoutArg + 1] : LAYOUT.EMBEDDED
   const dirs = argv.filter((a, i) => !a.startsWith('--') && i !== layoutArg + 1)
   const [enDir, zhDir] = dirs
-  if (!enDir || !zhDir) {
+  // 无参数 → 批量校验仓库已有产出（CI 的 npm run validate:quests 走这条）。
+  if (!enDir) process.exit(runBatch())
+  if (!zhDir) {
     console.error('用法: node scripts/validate-quests.mjs <英文源目录> <产出目录> [--layout embedded|separate-dir|separate-single]')
+    console.error('      node scripts/validate-quests.mjs            （批量扫描 patches/）')
     process.exit(2)
   }
-  const read = (dir) => listSnbt(dir).map((name) => ({ name, text: readFileSync(join(dir, ...name.split('/')), 'utf8') }))
-  const result = validatePair(read(enDir), read(zhDir), { layout, label: zhDir })
+  const result = validatePair(readDir(enDir), readDir(zhDir), { layout, label: zhDir })
   for (const w of result.warnings) console.warn(`⚠ ${w}`)
   if (result.problems.length) {
     console.error(`✘ 校验失败：\n${result.problems.map((p) => `  - ${p}`).join('\n')}`)
