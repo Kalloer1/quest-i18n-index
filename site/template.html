@@ -239,7 +239,7 @@ h3 { font-size: 15px; margin: 0 0 8px; }
 .warn h3 { color: var(--danger); margin-bottom: 6px; }
 .warn p { margin: 0; font-size: 14px; color: var(--text-dim); }
 
-/* 视觉强分栏：本站产出 vs 社区已有（ADR-0006） */
+/* 不能混装警告（ADR-0006 / 约定 #46）：必须是普通可见块，不得放进 <details> 等可折叠容器 */
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
 .split > section {
   border-radius: var(--radius);
@@ -521,7 +521,7 @@ h3 { font-size: 15px; margin: 0 0 8px; }
       ["native-zh", "自带中文"],
       ["gap-covered", "待翻译·社区已覆盖"],
       ["gap-uncovered", "待翻译·无人覆盖"],
-      ["embedded", "内嵌不可做"],
+      ["embedded", "内嵌可做（覆盖式产出）"],
       ["no-quests", "无任务书"],
       ["probe", "探测未完成"]
     ];
@@ -600,7 +600,7 @@ h3 { font-size: 15px; margin: 0 0 8px; }
         + '<div class="why">' + esc(p.stateWhy) + "</div></div>";
     }
 
-    // 不能混装警告（ADR-0006 / 约定 #46）
+    // 不能混装警告（ADR-0006 / 约定 #46）：普通可见块，不可折叠隐藏
     if (p.providers && p.providers.length) {
       h += '<div class="warn" role="note"><h3>⚠ 不同来源的汉化不能同时安装</h3><p>'
         + esc(M.noMixWarning) + "</p></div>";
@@ -643,7 +643,7 @@ h3 { font-size: 15px; margin: 0 0 8px; }
     } else if (p.state === "gap-uncovered") {
       theirs += '<p class="empty">社区也没有人做这个整合包的任务书汉化。</p>';
     } else if (p.state === "embedded") {
-      theirs += '<p class="empty">这个整合包无法以新增文件的方式汉化，见下方说明。</p>';
+      theirs += '<p class="empty">本站尚未产出这个包的覆盖式汉化补丁。</p>';
     } else if (p.state === "no-quests") {
       theirs += '<p class="empty">这个整合包不含任务书，无需汉化。</p>';
     } else {
@@ -653,12 +653,13 @@ h3 { font-size: 15px; margin: 0 0 8px; }
 
     h += '<div class="split">' + ours + theirs + "</div>";
 
-    // 内嵌包的额外说明
+    // 内嵌包的额外说明（覆盖式产出，ADR-0002 修订 / ADR-0007）
     if (p.state === "embedded") {
-      h += '<div class="card"><h3>为什么「内嵌不可做」</h3>'
+      h += '<div class="card"><h3>内嵌包怎么做汉化（覆盖式产出）</h3>'
         + '<p class="muted" style="margin:8px 0 0">这个整合包的任务文本混在 <code>config/ftbquests/quests/chapters/*.snbt</code> '
-        + "的任务数据里。要汉化就必须就地改写玩家文件，而它所使用的 FTB Quests 版本（对应 MC 1.20.1 及更早）"
-        + "根本没有翻译系统，没有任何可注入译文的机制。这不是我们选择不支持，而是那个版本上不存在支持机制。</p></div>";
+        + "的任务数据里，且它所带的 FTB Quests 版本（对应 MC 1.20.1 及更早）没有语言注入机制——"
+        + "所以本站以<strong>覆盖式补丁</strong>产出汉化：解压覆盖到整合包根目录，直接改写任务书文件。"
+        + "替换前请备份；整合包更新后补丁可能失效。</p></div>";
     }
 
     // 探测数据
@@ -686,8 +687,10 @@ h3 { font-size: 15px; margin: 0 0 8px; }
       + '<div class="about">'
 
       + "<section><h2>这是什么</h2>"
-      + "<p>一个索引站。它回答一个问题：<strong>某个 Minecraft 整合包的任务书有没有中文、汉化在哪、适配哪个版本。</strong></p>"
-      + "<p>本站<strong>不产出、不重分发</strong>任何译文。所有汉化都指向原作者的分发渠道。</p>"
+      + "<p>一个<strong>整合包任务书翻译平台</strong>：玩家提交整合包 → 自动翻译流水线产出任务书汉化 → "
+      + "以<strong>双通道分发</strong>（本站直接下载成品 / 指向社区已有汉化）。</p>"
+      + "<p>本站产出的是任务书译文与覆盖式补丁包（<strong>衍生作品</strong>），不重分发整合包本体或模组文件。"
+      + "分发行为意味着我们受许可与署名约束（见下方「许可」）。</p>"
       + "<p>目前覆盖 CurseForge 热度前 500 的整合包，共 " + D.stat.total + " 条记录，"
       + "其中 " + D.stat.withProvider + " 条查到了社区汉化来源。</p></section>"
 
@@ -699,16 +702,13 @@ h3 { font-size: 15px; margin: 0 0 8px; }
       + '<p class="muted">索引构建于 ' + fmtDate(D.generatedAt) + "。每条详情页都标注了该项数据的抓取时间。</p></section>"
 
       + "<section><h2>许可</h2>"
-      + "<p><strong>当前状态：本站只放链接，不重分发任何第三方内容。</strong>"
-      + "因此本站不继承任何汉化组或模组作者的许可约束——我们分发的是 URL，不是文件。</p>"
-      + "<p>但这个区分只在「只放链接」时成立。如果本站将来开始分发译文，情况就变了：</p>"
+      + "<p><strong>本站分发的是衍生作品（任务书译文与补丁包），接受 " + esc(M.license.name) + "（署名—非商业—相同方式共享）约束。</strong></p>"
       + "<ul>"
-      + "<li>译文会基于 CFPA 团队的术语资源，其许可为 <strong>" + esc(M.license.name) + "</strong>"
-      + "（署名—非商业—相同方式共享）</li>"
-      + "<li>届时必须署名 CFPA 团队（含贡献者名单）与相关模组作者</li>"
-      + "<li>产出文件与下载页都必须带许可标识</li>"
+      + "<li>每个产出文件与下载页都署名 <strong>CFPA 团队</strong>（含贡献者名单）与相关模组作者</li>"
+      + "<li>产出文件都带 <strong>" + esc(M.license.name) + "</strong> 许可标识</li>"
+      + "<li>非商业条款约束到译文本身：本站产出的汉化不得商用</li>"
       + "</ul>"
-      + '<p class="muted">写清楚这两者的区别，是为了让将来的人既不会误以为现在已经合规、也不会误以为永远不用管。</p></section>'
+      + '<p class="muted">详见 ADR-0004。</p></section>'
 
       + "<section><h2>非商业</h2>"
       + "<p>本站<strong>没有广告、没有付费、没有赞助墙</strong>，将来也不会接入。</p>"
@@ -716,22 +716,18 @@ h3 { font-size: 15px; margin: 0 0 8px; }
 
       + "<section><h2>什么情况下这个站该关掉</h2>"
       + '<div class="criteria">'
-      + "<p>本站的存在前提是「有真实需求」。这个前提没有被验证过，所以它被写成了可对照的判据：</p>"
+      + "<p>关站判据是客观可查的（ADR-0008），两个条件<strong>同时</strong>满足满 6 个月：</p>"
       + "<ul>"
-      + "<li><strong>观察期</strong>：上线后两个月</li>"
-      + "<li><strong>看什么</strong>：真实访问量、以及「我想玩这个包但没有中文」的提交量</li>"
-      + "<li><strong>判定</strong>：若两个月后没有可辨识的真实使用，则得出「这个需求不存在」的结论，停止投入</li>"
+      + "<li><strong>无新增提交</strong>：连续 6 个月没有新的翻译提交进入流水线</li>"
+      + "<li><strong>无新增产出</strong>：连续 6 个月没有产出任何新的汉化成品或补丁包</li>"
       + "</ul>"
-      + "<p>这个判据的价值在于：它让「不做」成为一个可以提前得到的结论，而不是沉没成本之后才承认的事。</p>"
+      + "<p>触发后优先选择只读归档（保留已产出汉化的下载），而非直接下线。</p>"
       + "</div></section>"
 
-      + "<section><h2>为什么不做翻译</h2>"
-      + "<p>因为翻译是个更贵的问题，而它是否值得做取决于需求是否存在。"
-      + "索引是验证同一个问题的最低成本方式：两者的流量上限相同（都是「有多少人在找整合包汉化」），"
-      + "但索引只需要一个周末。</p>"
-      + "<p>另外，任务书的两种存放方式里，「译文内嵌」那种（MC 1.20.1 及更早）根本无法以新增文件的方式汉化——"
-      + "那些版本带的 FTB Quests 里没有翻译系统。这类包在站上标为「内嵌不可做」，"
-      + "不是我们偷懒，是那个版本上不存在支持机制。</p></section>"
+      + "<section><h2>内嵌包也能做</h2>"
+      + "<p>任务文本内嵌在章节数据里的包（MC 1.20.1 及更早的 FTB Quests 没有语言注入机制），"
+      + "无法以新增文件的方式汉化，但可以通过<strong>覆盖式补丁</strong>产出："
+      + "解压覆盖到整合包根目录，直接改写任务书文件。替换前请备份；整合包更新后补丁可能失效。</p></section>"
 
       + "</div>";
   }
