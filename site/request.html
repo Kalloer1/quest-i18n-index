@@ -3,307 +3,468 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
 <title>提交翻译请求 · 整合包任务书汉化索引</title>
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem("quest-theme");
+    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+})();
+</script>
 <style>
+/* ==========================================================================
+   提交页 —— 沿用索引页的 Minecraft 像素 / 方块风
+   表单 = 空物品栏格子；队列 = 成就弹窗列表；管理区 = 命令方块面板
+   ========================================================================== */
 :root {
-  --bg: #14161a;
-  --surface: #1c1f26;
-  --surface-2: #23262f;
-  --border: #31353f;
-  --text: #e8eaed;
-  --text-dim: #a1a7b3;
-  --text-faint: #767d8a;
-  --accent: #6ea8fe;
-  --ok: #4ade80;
-  --warn: #fbbf24;
-  --danger: #f87171;
-  --info: #60a5fa;
-  --radius: 10px;
-  --maxw: 1080px;
+  --mono: ui-monospace, "Cascadia Mono", "SFMono-Regular", Consolas,
+          "Sarasa Mono SC", "Noto Sans Mono CJK SC", "MS Gothic", monospace;
+
+  --page:      #b3afa6;
+  --page-2:    #a49f95;
+  --panel:     #dedbd3;
+  --panel-2:   #cfcbc1;
+  --slot:      #c3bfb6;
+  --slot-deep: #b0aca2;
+  --ink:       #1e1d1a;
+  --ink-dim:   #54514a;
+  --ink-faint: #7a766d;
+  --hl:        #ffffff;
+  --sh:        #8b877e;
+  --edge:      #171613;
+  --dither:    rgba(0, 0, 0, .07);
+
+  --grass:     #5f9e3a;
+  --grass-2:   #4a7f2c;
+  --dirt:      #8a6242;
+  --dirt-2:    #6f4d33;
+  --gold:      #8a6a10;
+  --link:      #1c4fa8;
+
+  --ok:       #2f7d32;
+  --err:      #a02a20;
+  --pending:  #8a6a12;
+  --busy:     #2b4fa8;
+  --unmirror: #a04a1e;
+  --toast-bg: rgba(24, 22, 20, .93);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --page:      #12141a;
+    --page-2:    #0c0e12;
+    --panel:     #2a2e36;
+    --panel-2:   #22262d;
+    --slot:      #1b1e24;
+    --slot-deep: #14171c;
+    --ink:       #eae7e0;
+    --ink-dim:   #a9a5a0;
+    --ink-faint: #7d7a75;
+    --hl:        #454b55;
+    --sh:        #0a0b0e;
+    --edge:      #000000;
+    --dither:    rgba(255, 255, 255, .045);
+
+    --grass:     #4e8a35;
+    --grass-2:   #3a6b28;
+    --dirt:      #4a3a2c;
+    --dirt-2:    #33281e;
+    --gold:      #ffc83d;
+    --link:      #7fb0ff;
+
+    --ok:       #5fd35f;
+    --err:      #ff7a6b;
+    --pending:  #ffc83d;
+    --busy:     #7d9bff;
+    --unmirror: #ff9a5c;
+    --toast-bg: rgba(8, 9, 12, .95);
+  }
+}
+:root[data-theme="dark"] {
+  --page:      #12141a;
+  --page-2:    #0c0e12;
+  --panel:     #2a2e36;
+  --panel-2:   #22262d;
+  --slot:      #1b1e24;
+  --slot-deep: #14171c;
+  --ink:       #eae7e0;
+  --ink-dim:   #a9a5a0;
+  --ink-faint: #7d7a75;
+  --hl:        #454b55;
+  --sh:        #0a0b0e;
+  --edge:      #000000;
+  --dither:    rgba(255, 255, 255, .045);
+
+  --grass:     #4e8a35;
+  --grass-2:   #3a6b28;
+  --dirt:      #4a3a2c;
+  --dirt-2:    #33281e;
+  --gold:      #ffc83d;
+  --link:      #7fb0ff;
+
+  --ok:       #5fd35f;
+  --err:      #ff7a6b;
+  --pending:  #ffc83d;
+  --busy:     #7d9bff;
+  --unmirror: #ff9a5c;
+  --toast-bg: rgba(8, 9, 12, .95);
 }
 
-* { box-sizing: border-box; }
-
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html { -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font: 16px/1.6 system-ui, -apple-system, "Segoe UI", "Noto Sans SC", "Microsoft YaHei", sans-serif;
-}
-
-a { color: var(--accent); }
-a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
-
-/* ---------- 顶栏 ---------- */
-header {
-  border-bottom: 1px solid var(--border);
-  background: var(--surface);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-.topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  min-height: 60px;
-}
-.brand { font-weight: 700; font-size: 17px; letter-spacing: .2px; }
-.brand span { color: var(--text-faint); font-weight: 400; font-size: 13px; margin-left: 8px; }
-nav { display: flex; gap: 4px; }
-nav a {
-  color: var(--text-dim);
+  font-family: var(--mono);
   font-size: 14px;
-  padding: 10px 12px;
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-  text-decoration: none;
-  border-radius: 8px;
+  line-height: 1.72;
+  color: var(--ink);
+  background-color: var(--page);
+  background-image:
+    linear-gradient(45deg, var(--dither) 25%, transparent 25%, transparent 75%, var(--dither) 75%),
+    linear-gradient(45deg, var(--dither) 25%, transparent 25%, transparent 75%, var(--dither) 75%),
+    radial-gradient(circle at 12% 18%, var(--page-2) 0 7px, transparent 8px),
+    radial-gradient(circle at 44% 7%,  var(--page-2) 0 5px, transparent 6px),
+    radial-gradient(circle at 74% 24%, var(--page-2) 0 8px, transparent 9px),
+    radial-gradient(circle at 22% 63%, var(--page-2) 0 6px, transparent 7px),
+    radial-gradient(circle at 58% 80%, var(--page-2) 0 9px, transparent 10px),
+    radial-gradient(circle at 90% 66%, var(--page-2) 0 5px, transparent 6px);
+  background-size: 8px 8px, 8px 8px, 128px 128px, 128px 128px, 128px 128px,
+                   128px 128px, 128px 128px, 128px 128px;
+  background-position: 0 0, 4px 4px, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
 }
-nav a[aria-current="page"] { color: var(--text); background: var(--surface-2); }
-nav a:hover { color: var(--text); }
+::selection { background: var(--gold); color: var(--panel); }
 
-/* ---------- 通用 ---------- */
-main { padding: 28px 0 72px; }
-h1 { font-size: 24px; margin: 0 0 6px; }
-h2 { font-size: 18px; margin: 32px 0 12px; }
-h3 { font-size: 15px; margin: 0 0 8px; }
-.lede { color: var(--text-dim); margin: 0 0 24px; font-size: 14px; }
-.muted { color: var(--text-faint); font-size: 13px; }
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 18px;
+h1, h2, .brand strong { text-shadow: 2px 2px 0 rgba(0, 0, 0, .45); }
+:root[data-theme="light"] h1 { text-shadow: 2px 2px 0 rgba(0, 0, 0, .18); }
+
+a { color: var(--link); text-underline-offset: 3px; }
+a:hover { color: var(--ink); }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+.ic { width: 1.25em; height: 1.25em; flex: none; display: inline-block; vertical-align: -.22em; fill: currentColor; }
+
+.skip { position: absolute; left: -9999px; top: 0; z-index: 99; background: var(--gold); color: #14120e; padding: 10px 16px; font-weight: 700; }
+.skip:focus { left: 8px; top: 8px; }
+
+.panel {
+  background: var(--panel);
+  box-shadow: 0 0 0 4px var(--edge), inset 4px 4px 0 0 var(--hl), inset -4px -4px 0 0 var(--sh);
 }
 
-/* ---------- 表单 ---------- */
+/* 页头：草方块 */
+.site-head {
+  position: relative;
+  background-color: var(--dirt);
+  background-image:
+    linear-gradient(45deg, rgba(0,0,0,.16) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.16) 75%),
+    linear-gradient(45deg, rgba(0,0,0,.16) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.16) 75%),
+    radial-gradient(circle at 20% 40%, var(--dirt-2) 0 6px, transparent 7px),
+    radial-gradient(circle at 66% 70%, var(--dirt-2) 0 8px, transparent 9px);
+  background-size: 8px 8px, 8px 8px, 96px 96px, 96px 96px;
+  background-position: 0 0, 4px 4px, 0 0, 0 0;
+  padding-bottom: 14px;
+}
+.site-head::before {
+  content: ""; display: block; height: 10px; background: var(--grass);
+  box-shadow: inset 0 -4px 0 0 var(--grass-2), 0 4px 0 0 var(--grass-2);
+}
+.site-head::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -8px; height: 8px; pointer-events: none;
+  background-image:
+    repeating-linear-gradient(90deg, var(--grass-2) 0 12px, transparent 12px 32px),
+    repeating-linear-gradient(90deg, var(--grass-2) 0 20px, transparent 20px 32px);
+  background-size: 32px 4px, 32px 4px;
+  background-position: 0 0, 16px 4px;
+}
+.head-inner {
+  max-width: 1180px; margin: 0 auto; padding: 14px 20px 0;
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap; color: #fff;
+}
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; }
+.brand-slot {
+  width: 40px; height: 40px; display: grid; place-items: center; flex: none;
+  background: var(--slot); color: var(--gold);
+  box-shadow: inset 3px 3px 0 0 var(--sh), inset -3px -3px 0 0 var(--hl), 0 0 0 3px var(--edge);
+}
+.brand-slot .ic { width: 24px; height: 24px; }
+.brand-text { display: flex; flex-direction: column; line-height: 1.25; }
+.brand strong { font-size: 16px; letter-spacing: .02em; }
+.brand small { font-size: 11px; color: rgba(255,255,255,.72); letter-spacing: .04em; }
+
+.nav { display: flex; gap: 6px; margin-left: auto; flex-wrap: wrap; }
+.nav a {
+  font: inherit; font-size: 13px; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 12px; color: #fff; background: var(--dirt-2);
+  box-shadow: 3px 3px 0 0 rgba(0,0,0,.5), inset 2px 2px 0 0 rgba(255,255,255,.22), inset -2px -2px 0 0 rgba(0,0,0,.35);
+}
+.nav a:hover { background: var(--grass-2); color: #fff; }
+.nav a[aria-current="page"] {
+  background: var(--grass);
+  box-shadow: 3px 3px 0 0 rgba(0,0,0,.5), inset 2px 2px 0 0 rgba(255,255,255,.4), inset -2px -2px 0 0 rgba(0,0,0,.3);
+}
+.theme-btn {
+  font: inherit; font-size: 12px; cursor: pointer; color: #fff;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 10px; border: 0; background: var(--dirt-2);
+  box-shadow: 3px 3px 0 0 rgba(0,0,0,.5), inset 2px 2px 0 0 rgba(255,255,255,.22), inset -2px -2px 0 0 rgba(0,0,0,.35);
+}
+.theme-btn:hover { background: var(--gold); color: #14120e; }
+.theme-btn .ic { width: 16px; height: 16px; }
+
+main { max-width: 900px; margin: 0 auto; padding: 40px 20px 72px; }
+h1 { font-size: clamp(22px, 3.6vw, 34px); line-height: 1.24; margin: 0 0 12px; }
+h2 { font-size: 17px; margin: 0 0 10px; display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
+h2::before { content: ""; width: 12px; height: 12px; flex: none; background: var(--grass); box-shadow: 0 0 0 2px var(--edge); }
+p { margin: 0 0 12px; max-width: 74ch; }
+.lede { color: var(--ink-dim); margin-bottom: 26px; }
+
+.block { padding: 20px 22px; margin-bottom: 20px; }
+.block > h2 { margin-bottom: 14px; }
+
+/* 表单：一格一格的空物品栏 */
 .field { margin-bottom: 16px; }
-.field label {
-  display: block;
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 6px;
+.field > label { display: block; font-size: 12px; color: var(--ink-dim); margin-bottom: 7px; letter-spacing: .04em; }
+.field .slot {
+  display: flex; align-items: center; gap: 10px; padding: 0 12px;
+  background: var(--slot);
+  box-shadow: inset 3px 3px 0 0 var(--sh), inset -3px -3px 0 0 var(--hl);
 }
-.field .hint { color: var(--text-faint); font-weight: 400; font-size: 12.5px; margin-left: 6px; }
-.field input, .field textarea {
-  width: 100%;
-  font: inherit;
-  font-size: 15px;
-  color: var(--text);
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 12px 14px;
-  min-height: 48px;
-}
-.field textarea { min-height: 84px; resize: vertical; }
-.field input::placeholder, .field textarea::placeholder { color: var(--text-faint); }
-.field input:focus, .field textarea:focus { border-color: var(--accent); }
+.field .slot .ic { color: var(--ink-faint); width: 20px; height: 20px; }
+.field .slot:focus-within { box-shadow: inset 3px 3px 0 0 var(--sh), inset -3px -3px 0 0 var(--hl), 0 0 0 3px var(--gold); }
+.field .slot textarea { padding-top: 12px; }
+.field .slot:has(textarea) { align-items: flex-start; padding-top: 12px; padding-bottom: 12px; }
+.field .slot:has(textarea) .ic { margin-top: 2px; }
+.field textarea { resize: vertical; min-height: 84px; }
+.hint { font-size: 12px; color: var(--ink-faint); margin: 7px 0 0; }
 
-.submit-btn {
-  font: inherit;
-  font-size: 15px;
-  font-weight: 600;
-  color: #0b1220;
-  background: var(--accent);
-  border: 0;
-  border-radius: 8px;
-  padding: 12px 22px;
-  min-height: 48px;
-  cursor: pointer;
+input[type="search"], input[type="text"], input[type="url"], input[type="email"],
+input[type="password"], textarea {
+  font: inherit; color: var(--ink); background: transparent; border: 0; outline: 0;
+  width: 100%; padding: 12px 0; min-width: 0;
 }
-.submit-btn:disabled { opacity: .55; cursor: default; }
+input::placeholder, textarea::placeholder { color: var(--ink-faint); }
 
+.btn {
+  font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; border: 0;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 18px; color: #14120e; background: var(--gold);
+  box-shadow: 0 0 0 3px var(--edge), inset 3px 3px 0 0 rgba(255,255,255,.45), inset -3px -3px 0 0 rgba(0,0,0,.28);
+}
+.btn:hover { filter: brightness(1.08); }
+.btn:active { box-shadow: 0 0 0 3px var(--edge), inset 3px 3px 0 0 rgba(0,0,0,.28), inset -3px -3px 0 0 rgba(255,255,255,.45); }
+.btn[disabled] { cursor: progress; filter: grayscale(.5) brightness(.9); }
+.btn.ghost { background: var(--slot); color: var(--ink); }
+.btn.ghost:hover { color: var(--ink); }
+
+/* 结果提示 = 成就弹窗 */
 .result {
-  margin-top: 16px;
-  padding: 14px 16px;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  background: var(--surface);
-  font-size: 14px;
+  margin-top: 16px; padding: 14px; color: #f2efe8; background: var(--toast-bg);
+  box-shadow: 0 0 0 4px var(--edge), inset 4px 4px 0 0 rgba(255,255,255,.14), inset -4px -4px 0 0 rgba(0,0,0,.5);
+  animation: toastIn .34s steps(6, end) both;
 }
-.result[hidden] { display: none; }
-.result[data-kind="ok"] { border-color: var(--ok); background: rgba(74, 222, 128, .08); }
-.result[data-kind="err"] { border-color: var(--danger); background: rgba(248, 113, 113, .08); }
-.result .extra { color: var(--text-dim); font-size: 13px; margin-top: 6px; }
+@keyframes toastIn { from { transform: translateX(28px); opacity: 0; } to { transform: none; opacity: 1; } }
+.result[data-kind="ok"] { border-left: 8px solid var(--ok); }
+.result[data-kind="err"] { border-left: 8px solid var(--err); }
+.result .extra { margin-top: 6px; font-size: 12px; color: rgba(255,255,255,.62); }
 
-/* ---------- 队列 ---------- */
-.queue { display: grid; gap: 10px; }
+/* 队列 */
+#queue-meta { font-size: 12px; font-weight: 400; color: var(--ink-faint); }
 .item {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 6px 14px;
-  align-items: start;
-  padding: 12px 14px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  display: grid; grid-template-columns: 1fr auto; gap: 6px 14px; align-items: center;
+  padding: 12px 14px; margin-bottom: 8px; background: var(--panel-2);
+  box-shadow: 0 0 0 3px var(--edge), inset 3px 3px 0 0 var(--hl), inset -3px -3px 0 0 var(--sh);
 }
-.item .name { font-weight: 600; font-size: 15px; overflow-wrap: anywhere; }
-.item .name a { color: inherit; text-decoration: none; }
-.item .name a:hover { text-decoration: underline; }
-.item .meta { color: var(--text-faint); font-size: 12.5px; margin-top: 2px; }
-.item .end { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
-.item .reason {
-  grid-column: 1 / -1;
-  color: var(--danger);
-  font-size: 13px;
-  overflow-wrap: anywhere;
-}
-.item .reason[hidden] { display: none; }
-
+.item .name { font-weight: 700; }
+.item .name a { display: inline-flex; align-items: center; gap: 6px; }
+.item .meta { font-size: 12px; color: var(--ink-dim); }
+.item .end { align-self: center; }
+.item .reason { grid-column: 1 / -1; font-size: 12px; color: var(--err); }
 .badge {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 3px 9px;
-  border-radius: 999px;
-  white-space: nowrap;
-  border: 1px solid transparent;
+  display: inline-flex; align-items: center; gap: 6px; flex: none;
+  font-size: 11.5px; font-weight: 700; padding: 5px 9px; color: #fff; background: var(--pending);
+  box-shadow: 2px 2px 0 0 rgba(0,0,0,.55), inset 2px 2px 0 0 rgba(255,255,255,.28);
 }
-.badge[data-state="pending"] { color: var(--text-dim); background: var(--surface-2); border-color: var(--border); }
-.badge[data-state="translating"] { color: #0b1220; background: var(--info); }
-.badge[data-state="done"] { color: #0b1220; background: var(--ok); }
-.badge[data-state="unmirrored"] { color: #0b1220; background: var(--warn); }
-.badge[data-state="failed"] { color: #0b1220; background: var(--danger); }
-.badge[data-state="unknown"] { color: var(--text-faint); background: transparent; border-color: var(--border); }
+.badge::before { content: ""; width: 8px; height: 8px; background: currentColor; box-shadow: 0 0 0 2px rgba(0,0,0,.45); }
+.badge[data-state="pending"] { background: var(--pending); color: #1a1508; }
+.badge[data-state="translating"] { background: var(--busy); }
+.badge[data-state="done"] { background: var(--ok); }
+.badge[data-state="unmirrored"] { background: var(--unmirror); }
+.badge[data-state="failed"] { background: var(--err); }
+.badge[data-state="unknown"] { background: var(--ink-faint); }
 
-.empty-state {
-  text-align: center;
-  padding: 40px 20px;
-  color: var(--text-dim);
-  font-size: 14px;
+.empty { padding: 18px; color: var(--ink-dim); background: var(--slot); box-shadow: inset 3px 3px 0 0 var(--sh), inset -3px -3px 0 0 var(--hl); }
+
+/* 管理区：命令方块 */
+#admin-section { border-left: 8px solid var(--unmirror); }
+#admin-section h2::before { background: var(--unmirror); }
+#admin-gate { margin-top: 18px; padding-top: 18px; border-top: 4px dashed var(--sh); }
+.gate-label { display: block; font-size: 12px; color: var(--ink-dim); margin-bottom: 8px; letter-spacing: .04em; }
+#admin-models { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+#admin-models label {
+  display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+  font-size: 12.5px; padding: 8px 11px; color: var(--ink); background: var(--slot);
+  box-shadow: inset 3px 3px 0 0 var(--sh), inset -3px -3px 0 0 var(--hl);
 }
+#admin-models label:has(input:checked) { background: var(--gold); color: #14120e; }
+#admin-models input { width: 15px; height: 15px; accent-color: var(--gold); }
+.check-row { display: flex; align-items: center; gap: 9px; font-size: 13px; margin-bottom: 16px; color: var(--ink-dim); }
+.check-row input { width: 16px; height: 16px; accent-color: var(--gold); }
+.muted { color: var(--ink-dim); font-size: 12.5px; }
+.row-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 
-/* ---------- 管理区（维护者门禁） ---------- */
-.admin-models { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 12px; }
-.admin-models label {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13.5px;
-  color: var(--text-dim);
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 6px 12px;
-  cursor: pointer;
+.site-foot {
+  padding: 26px 20px 34px; font-size: 12px; color: rgba(255,255,255,.72);
+  background-color: var(--dirt-2);
+  background-image: linear-gradient(45deg, rgba(0,0,0,.18) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.18) 75%);
+  background-size: 8px 8px;
+  border-top: 8px solid var(--grass-2);
 }
-.admin-models input[type="checkbox"] { accent-color: var(--accent); }
-.admin-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.admin-row .field { margin: 0; flex: 1 1 220px; }
-.admin-check { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-dim); cursor: pointer; }
-.admin-check input { accent-color: var(--accent); }
+.site-foot .inner { max-width: 900px; margin: 0 auto; display: flex; gap: 18px; flex-wrap: wrap; justify-content: space-between; }
+.site-foot a { color: #fff; }
 
-/* ---------- 宽屏（≥1200px）：表单与队列并排 ---------- */
-@media (min-width: 1200px) {
-  :root { --maxw: 1160px; }
-  .columns {
-    display: grid;
-    grid-template-columns: minmax(360px, 440px) 1fr;
-    gap: 28px;
-    align-items: start;
-  }
-  .columns h2 { margin-top: 0; }
+@media (max-width: 720px) {
+  .head-inner { gap: 10px; }
+  .brand { order: 1; }
+  .theme-btn { order: 2; margin-left: auto; padding: 7px 9px; }
+  .nav { order: 3; margin-left: 0; width: 100%; }
+  .theme-label { display: none; }
+  main { padding: 30px 14px 56px; }
+  .block { padding: 16px 14px; }
+  .item { grid-template-columns: 1fr; }
+  .item .end { justify-self: start; }
 }
-
-/* ---------- 移动端（≤480px） ---------- */
-@media (max-width: 480px) {
-  .wrap { padding: 0 14px; }
-  .topbar { min-height: 54px; flex-wrap: wrap; padding: 8px 0; }
-  .brand { font-size: 15px; }
-  .brand span { display: none; }
-  nav a { padding: 10px 10px; font-size: 13.5px; }
-  main { padding: 20px 0 56px; }
-  h1 { font-size: 20px; }
-  .card { padding: 14px; }
-  .item { padding: 12px; }
-}
-
+@media (max-width: 420px) { .brand small { display: none; } }
 @media (prefers-reduced-motion: reduce) {
-  * { animation: none !important; transition: none !important; }
+  * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
 }
 </style>
 </head>
-<body>
 
-<header>
-  <div class="wrap topbar">
-    <div class="brand">任务书汉化索引 <span>Minecraft 整合包 · FTB Quests</span></div>
-    <nav aria-label="主导航">
-      <a href="/">查</a>
-      <a href="request" aria-current="page">提交</a>
+<body>
+<a class="skip" href="#main">跳到主要内容</a>
+
+<header class="site-head">
+  <div class="head-inner">
+    <a class="brand" href="./">
+      <span class="brand-slot" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24"><path fill="currentColor" d="M2 2h20v20H2zm2 2v4h4V4zm6 0v4h4V4zm6 0v4h4V4zm4 6h-4v4h4zm0 6h-4v4h4zm-6 4v-4h-4v4zm-6 0v-4H4v4zm-4-6h4v-4H4zm6-4v4h4v-4z"/></svg></span>
+      <span class="brand-text">
+        <strong>任务书汉化索引</strong>
+        <small>FTB QUESTS · MINECRAFT</small>
+      </span>
+    </a>
+    <nav class="nav" aria-label="主导航">
+      <a href="/">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M22 22h-2v-2h2zm-2-2h-2v-2h2zm-6-2H6v-2h8zm4 0h-2v-2h2zM6 16H4v-2h2zm10 0h-2v-2h2zM4 14H2V6h2zm14 0h-2V6h2zM6 6H4V4h2zm10 0h-2V4h2zm-2-2H6V2h8z"/></svg>
+        检索
+      </a>
+      <a href="request" aria-current="page">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 19h4v2H2v-8h2zm8 0H8v-2h4zm4-2h-4v-2h4zm4-2h-4v-2h4zm-10-2H4v-2h6zm12 0h-2v-2h2zM8 5H4v6H2V3h6zm12 6h-4V9h4zm-4-2h-4V7h4zm-4-2H8V5h4z"/></svg>
+        提交
+      </a>
     </nav>
+    <button class="theme-btn" id="theme-toggle" type="button" aria-label="切换主题：当前跟随系统">
+      <span id="theme-icon" aria-hidden="true"></span>
+      <span class="theme-label" id="theme-label">跟随系统</span>
+    </button>
   </div>
 </header>
 
-<main class="wrap">
-  <h1>提交翻译请求</h1>
-  <p class="lede">填一个整合包链接（CurseForge 或 Modrinth），我们会把它排进翻译队列。提交后可在下方队列里看到进度。</p>
+<main id="main">
 
-  <div class="columns">
-    <section>
-      <h2>提交一个整合包</h2>
-      <form id="submit-form" class="card" novalidate>
-        <div class="field">
-          <label for="url">整合包链接<span class="hint">必填</span></label>
+  <h1>提交翻译请求</h1>
+  <p class="lede">填一个整合包链接（CurseForge 或 Modrinth），我们会把它排进翻译队列。提交后可在下方看到进度。</p>
+
+  <section class="block panel">
+    <h2>提交一个整合包</h2>
+    <form id="submit-form" novalidate>
+      <div class="field">
+        <label for="url">整合包链接（必填）</label>
+        <span class="slot">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 5H5v2h6zM5 7H3v12h2zm12 12H5v2h12zm2-6h-2v6h2zm-8 0H9v2h2zm2-2h-2v2h2zm2-2h-2v2h2zm2-2h-2v2h2zm2-2h-2v2h2zm2-2h-2v8h2z"/><path d="M21 3h-8v2h8z"/></svg>
           <input id="url" name="url" type="url" required autocomplete="off" spellcheck="false"
                  placeholder="https://www.curseforge.com/minecraft/modpacks/…">
-        </div>
-        <div class="field">
-          <label for="contact">邮箱<span class="hint">选填，便于我们联系你</span></label>
-          <input id="contact" name="contact" type="email" autocomplete="email" placeholder="you@example.com">
-        </div>
-        <div class="field">
-          <label for="note">说明<span class="hint">选填</span></label>
-          <textarea id="note" name="note" rows="3" placeholder="想补充的信息，例如你想要的版本"></textarea>
-        </div>
-        <button type="submit" class="submit-btn" id="submit-btn">提交翻译请求</button>
-        <div class="result" id="form-result" role="status" aria-live="polite" hidden></div>
-      </form>
-    </section>
-
-    <section>
-      <h2>翻译队列 <span class="muted" id="queue-meta"></span></h2>
-      <div class="queue" id="queue-list" aria-live="polite"></div>
-    </section>
-  </div>
-
-  <section id="admin-section">
-    <h2>管理区<span class="hint">仅维护者</span></h2>
-    <div class="card">
-      <div class="admin-row">
-        <div class="field">
-          <label for="admin-pass">维护者口令</label>
-          <input id="admin-pass" type="password" autocomplete="off" placeholder="输入口令后解锁">
-        </div>
-        <button type="button" class="submit-btn" id="admin-unlock">解锁管理区</button>
+        </span>
       </div>
-      <div class="result" id="admin-result" role="status" aria-live="polite" hidden></div>
-      <div id="admin-gate" hidden>
-        <div class="field">
-          <label>模型多选<span class="hint">来自网关实时列表，留空用默认模型</span></label>
-          <div class="admin-models" id="admin-models"></div>
-        </div>
-        <div class="admin-row">
-          <label class="admin-check"><input type="checkbox" id="admin-retry-failed"> 同时重试失败条目</label>
-          <button type="button" class="submit-btn" id="admin-translate">一键触发翻译</button>
-        </div>
+
+      <div class="field">
+        <label for="contact">邮箱（选填，便于我们联系你）</label>
+        <span class="slot">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 4h20v2H2zm0 14h20v2H2zM2 6h2v12H2zm18 0h2v12h-2zM6 10h2v2H6zm2 2h2v2H8zm2 2h4v2h-4zm4-2h2v2h-2zm2-2h2v2h-2z"/></svg>
+          <input id="contact" name="contact" type="email" autocomplete="email" placeholder="you@example.com">
+        </span>
+      </div>
+
+      <div class="field">
+        <label for="note">说明（选填）</label>
+        <span class="slot">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 2h16v2H4zm0 18h16v2H4zM2 4h2v16H2zm18 0h2v16h-2zM6 6h12v2H6zm0 4h12v2H6zm0 4h7v2H6z"/></svg>
+          <textarea id="note" name="note" rows="3" placeholder="想补充的信息，例如你想要的版本"></textarea>
+        </span>
+      </div>
+
+      <button class="btn" type="submit" id="submit-btn">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 19h4v2H2v-8h2zm8 0H8v-2h4zm4-2h-4v-2h4zm4-2h-4v-2h4zm-10-2H4v-2h6zm12 0h-2v-2h2zM8 5H4v6H2V3h6zm12 6h-4V9h4zm-4-2h-4V7h4zm-4-2H8V5h4z"/></svg>
+        提交翻译请求
+      </button>
+      <div id="form-result" role="status" aria-live="polite" hidden></div>
+      <p class="hint">提交后自动进入流水线；队列状态每 15 秒刷新一次。</p>
+    </form>
+  </section>
+
+  <section class="block panel">
+    <h2>翻译队列 <span id="queue-meta"></span></h2>
+    <div id="queue-list" aria-live="polite"></div>
+  </section>
+
+  <section class="block panel" id="admin-section">
+    <h2>管理区（仅维护者）</h2>
+    <div class="field">
+      <label for="admin-pass">维护者口令</label>
+      <span class="slot">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5 8h14v2H5zm0 12h14v2H5zM3 10h2v10H3zm16 0h2v10h-2zM7 4h2v4H7zm2-2h6v2H9zm6 2h2v4h-2z"/></svg>
+        <input id="admin-pass" type="password" autocomplete="off" placeholder="输入口令后解锁">
+      </span>
+    </div>
+    <div class="row-actions">
+      <button class="btn ghost" type="button" id="admin-unlock">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5 8h14v2H5zm0 12h14v2H5zM3 10h2v10H3zm16 0h2v10h-2zM7 4h2v4H7zm2-2h6v2H9zm6 2h2v4h-2z"/></svg>
+        解锁管理区
+      </button>
+    </div>
+    <div id="admin-result" role="status" aria-live="polite" hidden></div>
+
+    <div id="admin-gate" hidden>
+      <span class="gate-label" id="admin-models-label">模型多选（来自网关实时列表，留空用默认模型）</span>
+      <div id="admin-models" role="group" aria-labelledby="admin-models-label"></div>
+      <label class="check-row"><input type="checkbox" id="admin-retry-failed"> 同时重试失败条目</label>
+      <div class="row-actions">
+        <button class="btn" type="button" id="admin-translate">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 13h8v6h2v2h-2v2h-2v-8H2v-4h2zm12 6h-2v-2h2zm2-2h-2v-2h2zm2-2h-2v-2h2zm-6-6h8v4h-2v-2h-8V5h-2V3h2V1h2zm-8 2H4V9h2zm2-2H6V7h2zm2-2H8V5h2z"/></svg>
+          一键触发翻译
+        </button>
       </div>
     </div>
   </section>
+
+  <noscript>
+    <div class="block panel">
+      <h2>需要 JavaScript</h2>
+      <p class="muted">提交表单与队列状态依赖脚本。请在浏览器中启用 JavaScript，或直接发邮件给维护者。</p>
+    </div>
+  </noscript>
+
 </main>
+
+<footer class="site-foot">
+  <div class="inner">
+    <span>整合包任务书汉化索引 · 提交页</span>
+    <span><a href="./">返回检索</a></span>
+  </div>
+</footer>
 
 <script>
 // 须与已部署的 Worker 域名一致，改这一处即可
@@ -318,6 +479,48 @@ const WORKER_URL = 'https://quest-i18n-api.wqclo.workers.dev';
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
     });
   };
+
+  // 图标（iconify / pixelarticons），内联以免依赖外链
+  var ICON_OUT = '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><g fill="currentColor"><path d="M11 5H5v2h6zM5 7H3v12h2zm12 12H5v2h12zm2-6h-2v6h2zm-8 0H9v2h2zm2-2h-2v2h2zm2-2h-2v2h2zm2-2h-2v2h2zm2-2h-2v2h2zm2-2h-2v8h2z"/><path d="M21 3h-8v2h8z"/></g></svg>';
+
+  // ---------- 主题：auto / light / dark ----------
+  var THEME_KEY = "quest-theme";
+  var THEME_ORDER = ["auto", "light", "dark"];
+  var THEME_TEXT = { auto: "跟随系统", light: "亮色", dark: "暗色" };
+  var THEME_ICON = {
+    auto: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13 22h-2v-3h2zm-6-3H5v-2h2zm12 0h-2v-2h2zm-4-2H9v-2h6zm-6-2H7V9h2zm8 0h-2V9h2zM5 13H2v-2h3zm17 0h-3v-2h3zm-7-4H9V7h6zM7 7H5V5h2zm12 0h-2V5h2zm-6-2h-2V2h2z"/></svg>',
+    light: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13 22h-2v-3h2zm-6-3H5v-2h2zm12 0h-2v-2h2zm-4-2H9v-2h6zm-6-2H7V9h2zm8 0h-2V9h2zM5 13H2v-2h3zm17 0h-3v-2h3zm-7-4H9V7h6zM7 7H5V5h2zm12 0h-2V5h2zm-6-2h-2V2h2z"/></svg>',
+    dark: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18 22H8v-2h10zM8 20H6v-2h2zm12 0h-2v-2h2zM6 18H4v-2h2zm16 0h-2v-4h-2v-2h2v-2h2zM4 16H2V6h2zm14 0h-6v-2h6zm-6-2h-2v-2h2zm-2-2H8V6h2zM6 6H4V4h2zm8-2h-2v2h-2V4H6V2h8z"/></svg>'
+  };
+  var themeMode = "auto";
+  try {
+    var savedTheme = localStorage.getItem(THEME_KEY);
+    if (THEME_ORDER.indexOf(savedTheme) > -1) themeMode = savedTheme;
+  } catch (e) {}
+
+  function paintTheme() {
+    var root = document.documentElement;
+    if (themeMode === "auto") root.removeAttribute("data-theme");
+    else root.setAttribute("data-theme", themeMode);
+    var btn = $("#theme-toggle");
+    if (!btn) return;
+    $("#theme-icon").innerHTML = THEME_ICON[themeMode];
+    $("#theme-label").textContent = THEME_TEXT[themeMode];
+    var next = THEME_ORDER[(THEME_ORDER.indexOf(themeMode) + 1) % THEME_ORDER.length];
+    btn.setAttribute("aria-label", "切换主题：当前" + THEME_TEXT[themeMode] + "，点击切换到" + THEME_TEXT[next]);
+  }
+
+  var themeBtn = $("#theme-toggle");
+  if (themeBtn) {
+    themeBtn.addEventListener("click", function () {
+      themeMode = THEME_ORDER[(THEME_ORDER.indexOf(themeMode) + 1) % THEME_ORDER.length];
+      try {
+        if (themeMode === "auto") localStorage.removeItem(THEME_KEY);
+        else localStorage.setItem(THEME_KEY, themeMode);
+      } catch (e) {}
+      paintTheme();
+    });
+  }
 
   // 状态中文标签与徽章配色，取值与 shared/quest-status.mjs 的 STATUS 一致
   var STATUS_META = {
@@ -346,7 +549,7 @@ const WORKER_URL = 'https://quest-i18n-api.wqclo.workers.dev';
   function itemHTML(e) {
     var name = e.name || e.id || "未知整合包";
     var title = e.url
-      ? '<a href="' + esc(e.url) + '" target="_blank" rel="noopener noreferrer">' + esc(name) + " ↗</a>"
+      ? '<a href="' + esc(e.url) + '" target="_blank" rel="noopener noreferrer">' + esc(name) + " " + ICON_OUT + "</a>"
       : esc(name);
     var reason = e.error
       ? '<div class="reason">失败原因：' + esc(e.error) + "</div>"
@@ -363,7 +566,7 @@ const WORKER_URL = 'https://quest-i18n-api.wqclo.workers.dev';
     var list = (data && data.entries) || [];
     $("#queue-meta").textContent = list.length ? "共 " + list.length + " 条" : "";
     if (!list.length) {
-      $("#queue-list").innerHTML = '<div class="empty-state">队列还是空的，来提交第一个吧。</div>';
+      $("#queue-list").innerHTML = '<div class="empty">队列还是空的，来提交第一个吧。</div>';
       return;
     }
     $("#queue-list").innerHTML = list.map(itemHTML).join("");
@@ -374,7 +577,7 @@ const WORKER_URL = 'https://quest-i18n-api.wqclo.workers.dev';
       .then(function (r) { return r.json(); })
       .then(function (data) { renderQueue(data); })
       .catch(function () {
-        $("#queue-list").innerHTML = '<div class="empty-state">暂时无法读取队列，稍后会自动重试。</div>';
+        $("#queue-list").innerHTML = '<div class="empty">暂时无法读取队列，稍后会自动重试。</div>';
       });
   }
 
@@ -516,6 +719,7 @@ const WORKER_URL = 'https://quest-i18n-api.wqclo.workers.dev';
   });
 
   // ---------- 启动 ----------
+  paintTheme();
   loadQueue();
   setInterval(loadQueue, 15000);
 })();
