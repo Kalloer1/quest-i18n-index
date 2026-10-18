@@ -35,6 +35,32 @@ export const README_TEXT = `任务书汉化补丁（AI 初翻，未人工校对�
 问题反馈：任务书汉化索引站
 `
 
+/**
+ * 内嵌布局包专用 README：比分离布局更强的备份警告。
+ * 内嵌包会直接改写玩家已有的 chapters/*.snbt（任务数据文件），
+ * 覆盖后无法用「删除新增文件」恢复，必须靠备份回滚。
+ */
+export const EMBEDDED_README_TEXT = `任务书汉化补丁·内嵌布局覆盖版（AI 初翻，未人工校对）
+=====================================================
+
+⚠⚠ 强烈建议：安装前务必备份整个整合包目录（或至少 config/ftbquests/ 整个目录）！⚠⚠
+
+本补丁与普通的语言文件补丁不同：它会【直接改写】你已有的任务文件
+（config/ftbquests/quests/chapters/*.snbt），而不是新增文件。
+
+  - 覆盖后无法通过删除补丁文件来恢复原状，只能用备份回滚；
+  - 若你或服务器管理员在本地修改过任务（自定义任务、进度、奖励），
+    这些修改会被本补丁【覆盖丢失】；
+  - 上游整合包更新后本补丁很可能失效（任务结构变化），需要等待重新翻译；
+    更新整合包前也请先卸载/回滚本补丁。
+
+安装方法：
+  1. 备份 config/ftbquests/ 目录；
+  2. 把 zip 内的全部内容解压并覆盖到整合包根目录（即 config/ 所在的目录）。
+
+问题反馈：任务书汉化索引站
+`
+
 export const LICENSE_TEXT = `本补丁的翻译部分以 CC BY-NC-SA 4.0（署名-非商业性使用-相同方式共享）授权发布。
 
 署名：
@@ -71,12 +97,14 @@ const DOS_DATE = (1 << 5) | 1 // 年偏移 0（=1980），月 1，日 1
 /**
  * 打补丁包：文件条目按路径排序、deflate 压缩，附带 README.txt 与 LICENSE.txt。
  * @param {Array<{name: string, text: string}>} files zip 内路径（/ 分隔）与文本内容
+ * @param {{layout?: string}} [options] layout 为 `embedded` 时使用内嵌布局专用 README（更强备份警告）
  * @returns {Buffer}
  */
-export function buildPatch(files) {
+export function buildPatch(files, { layout } = {}) {
+  const readme = layout === 'embedded' ? EMBEDDED_README_TEXT : README_TEXT
   const entries = [
     ...files,
-    { name: 'README.txt', text: README_TEXT },
+    { name: 'README.txt', text: readme },
     { name: 'LICENSE.txt', text: LICENSE_TEXT },
   ].slice().sort((a, b) => a.name.localeCompare(b.name))
 
@@ -177,8 +205,9 @@ function listFiles(dir, base = dir) {
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]
 if (isMain) {
   const [dir, outFile] = process.argv.slice(2)
+  const embedded = process.argv.includes('--embedded')
   if (!dir || !outFile) {
-    console.error('用法: node scripts/pack-patch.mjs <产出目录> <输出 zip>')
+    console.error('用法: node scripts/pack-patch.mjs <产出目录> <输出 zip> [--embedded]')
     process.exit(2)
   }
   const names = listFiles(dir)
@@ -187,7 +216,7 @@ if (isMain) {
     process.exit(1)
   }
   const files = names.map((name) => ({ name, text: readFileSync(join(dir, ...name.split('/')), 'utf8') }))
-  const zip = buildPatch(files)
+  const zip = buildPatch(files, { layout: embedded ? 'embedded' : undefined })
   writeFileSync(outFile, zip)
   console.log(`✔ ${outFile}（${names.length} 个任务书文件 + README/LICENSE，${(zip.length / 1024).toFixed(1)} KB）`)
 }

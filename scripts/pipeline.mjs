@@ -25,11 +25,12 @@
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, statSync, existsSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join, relative } from 'node:path'
-import { screenCandidates, skipReason, SKIP, SKIP_LABEL } from './lib/candidates.mjs'
+import { screenCandidates, skipReason, SKIP, SKIP_LABEL, LAYOUT } from './lib/candidates.mjs'
 import { extractPack, buildOutputs, sourceFileNames } from './lib/quest-files.mjs'
 import {
   stripSkeleton, isUsableMemory, shouldRememberMemory, mergeGlossary, isSourceEcho,
 } from './lib/glossary.mjs'
+import { mergeByQuestId } from './snbt.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const DATASET_FILE = join(ROOT, 'research/index-dataset.json')
@@ -120,10 +121,13 @@ export async function translateUnits(units, translate, { glossary = {}, chunkLin
  * 处理单条整合包记录：筛候选 → 抽取 → 翻译 → 产出。
  * @param {object} record 候选记录（slug/layout/...）
  * @param {{files: Array<{name: string, text: string}>}} pack 整合包内文件
- * @param {{translate: Function, glossary?: Record<string,string>, chunkLines?: number, signal?: AbortSignal}} options
+ * @param {{translate: Function, glossary?: Record<string,string>, chunkLines?: number, signal?: AbortSignal,
+ *   mergeFiles?: Array<{name: string, text: string}>|null}} options
+ *   mergeFiles：上游最新章节文件（同路径）。内嵌布局提供时启用「按 quest ID 合并」产出
+ *   （工单 03 可选增强）：只改写译文、保留上游新增任务；上游已删除的章节不再产出。
  * @returns {Promise<{status: 'done'|'skipped'|'failed', error?: string, note?: string, outputs?: Array<{name: string, text: string}>, additions?: Record<string,string>}>}
  */
-export async function processPack(record, pack, { translate, glossary = {}, chunkLines, signal } = {}) {
+export async function processPack(record, pack, { translate, glossary = {}, chunkLines, signal, mergeFiles = null } = {}) {
   const reason = skipReason(record)
   if (reason) {
     return { status: 'skipped', error: reason, note: SKIP_LABEL[reason] ?? reason }
@@ -136,6 +140,21 @@ export async function processPack(record, pack, { translate, glossary = {}, chun
   const extracted = extractPack({ files, layout: record.layout })
   const { map, additions } = await translateUnits(extracted.units, translate, { glossary, chunkLines, signal })
   const outputs = buildOutputs(extracted, map, { header: `${HEADER_LINE}\n` })
+  if (record.layout === LAYOUT.EMBEDDED && mergeFiles) {
+    const upstream = new Map(mergeFiles.map((f) => [f.name, f.text]))
+    const merged = []
+    const notes = []
+    for (const out of outputs) {
+      const upstreamText = upstream.get(out.name)
+      if (upstreamText === undefined) {
+        // 上游已删除该章节：旧译文不再产出，避免把已移除的内容覆盖回去。
+        notes.push(`上游已删除 ${out.name}，跳过产出`)
+        continue
+      }
+      merged.push({ name: out.name, text: mergeByQuestId(upstreamText, out.text) })
+    }
+    return { status: 'done', outputs: merged, additions, ...(notes.length ? { note: notes.join('; ') } : {}) }
+  }
   return { status: 'done', outputs, additions }
 }
 
@@ -159,6 +178,7 @@ export function defaultReportStatus(id, payload, { workerUrl = process.env.WORKE
  * @param {{
  *   records: object[],
  *   loadPack: (slug: string) => Promise<{files: Array<{name: string, text: string}>}> | {files: Array<{name: string, text: string}>},
+ *   loadMergePack?: (slug: string) => Array<{name: string, text: string}> | null | Promise<...>,
  *   translate: (texts: string[], signal?: AbortSignal) => Promise<string[]>,
  *   glossary?: Record<string,string>,
  *   chunkLines?: number,
@@ -171,6 +191,7 @@ export async function runPipeline(options) {
   const {
     records, loadPack, translate, glossary = {}, chunkLines = CHUNK_LINES,
     timeoutMs = DEFAULT_TIMEOUT_MS, writeOutput = () => {}, reportStatus = defaultReportStatus,
+    loadMergePack = null,
   } = options
   const { candidates, skipped } = screenCandidates(records)
   const results = []
@@ -188,8 +209,9 @@ export async function runPipeline(options) {
     const timer = setTimeout(() => controller.abort(new Error(`处理超时（${Math.round(timeoutMs / 1000)}s）`)), timeoutMs)
     try {
       const pack = await loadPack(slug)
+      const mergeFiles = loadMergePack ? await loadMergePack(slug) : null
       result = await withTimeout(
-        processPack(record, pack, { translate, glossary, chunkLines, signal: controller.signal }),
+        processPack(record, pack, { translate, glossary, chunkLines, signal: controller.signal, mergeFiles }),
         timeoutMs,
         controller,
       )
@@ -232,7 +254,7 @@ function withTimeout(promise, ms, controller) {
 
 /** 解析 CLI 参数：--ids 与 --top 互斥。 */
 export function parseArgs(argv) {
-  const args = { ids: null, top: null, chunkLines: CHUNK_LINES, timeoutMs: DEFAULT_TIMEOUT_MS, dryRun: false }
+  const args = { ids: null, top: null, chunkLines: CHUNK_LINES, timeoutMs: DEFAULT_TIMEOUT_MS, dryRun: false, mergeDir: null }
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i]
     if (a === '--ids') args.ids = (argv[++i] ?? '').split(',').map((s) => s.trim()).filter(Boolean)
@@ -240,6 +262,7 @@ export function parseArgs(argv) {
     else if (a === '--chunk-lines') args.chunkLines = Number(argv[++i])
     else if (a === '--timeout-ms') args.timeoutMs = Number(argv[++i])
     else if (a === '--dry-run') args.dryRun = true
+    else if (a === '--merge-dir') args.mergeDir = argv[++i]
     else throw new Error(`未知参数：${a}`)
   }
   if (args.ids && args.top != null) throw new Error('--ids 与 --top 互斥，只能给一个')
@@ -266,7 +289,7 @@ if (isMain) {
     args = parseArgs(process.argv.slice(2))
   } catch (err) {
     console.error(`✘ ${err.message}`)
-    console.error('用法: node scripts/pipeline.mjs --ids <slug,slug> | --top N [--chunk-lines 60] [--timeout-ms 300000] [--dry-run]')
+    console.error('用法: node scripts/pipeline.mjs --ids <slug,slug> | --top N [--chunk-lines 60] [--timeout-ms 300000] [--merge-dir <上游最新章节根目录>] [--dry-run]')
     process.exit(2)
   }
 
@@ -330,7 +353,17 @@ if (isMain) {
     console.log(`[${slug}] → ${relative(ROOT, path).replace(/\\/g, '/')}`)
   }
 
-  const results = await runPipeline({ records: worklist, loadPack, translate, glossary, chunkLines: args.chunkLines, timeoutMs: args.timeoutMs, writeOutput })
+  // 可选：按 quest ID 合并模式（内嵌布局）。--merge-dir 指向上游最新章节根目录，
+  // 子目录结构与 research/packs/<slug>/ 一致；未给出时不合并，产出为整体覆盖式。
+  const loadMergePack = args.mergeDir
+    ? (slug) => {
+        const dir = join(args.mergeDir, slug)
+        const names = listSnbt(dir)
+        return names.length ? names.map((name) => ({ name, text: readFileSync(join(dir, name), 'utf8') })) : null
+      }
+    : null
+
+  const results = await runPipeline({ records: worklist, loadPack, translate, glossary, chunkLines: args.chunkLines, timeoutMs: args.timeoutMs, writeOutput, loadMergePack })
 
   // 合并式回写 glossary.json：只补新键，不抹历史条目。
   const additions = {}
