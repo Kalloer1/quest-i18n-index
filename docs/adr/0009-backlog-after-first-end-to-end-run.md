@@ -74,10 +74,29 @@
 - **反证（说明不是「一直坏」）**：2026-10-18 的 `aoc` 镜像**成功过**——
   分享链接 `https://pan.quark.cn/s/a01a2210c9d0` 内含 `aoc.zip`（32687 字节，
   与 `downloads/aoc.zip` 一致）。
-- **真因**：`scripts/mirror.mjs` 里 `makeUploader()` 的注释
-  「同名目录幂等：CLI 侧自动复用已有目录，重复跑不产生重复目录」**不成立**。
-  CLI 版本本地 `1.0.24-29460f9`、CI 装 `1.0.24`，同版本，故不是版本漂移。
+- **真因（2026-10-19 查清）**：夸克官方技能 `references/file-ops.md` 写明
+  `create-folder` 的失败码——**`-602` = 「文件浏览器实例不存在」（SDK 文件浏览器初始化失败）**。
+  CI 报的 `[ERROR][FileBrowserManager] createFo…` 就是它。
+  另据同一文档：**`--parent-fid` 不传时，文件夹会被建在「服务端默认目录」，而非根目录**。
+- **关键发现**：`translate.yml` 里**传了** `QUARK_PARENT_FID`，但 `scripts/mirror.mjs`
+  的 `makeUploader()` **从未读取它**（全文件只有一处 `--parent-fid`，是 `upload` 用的 `dirFid`）。
+  即：配置项存在但被忽略。
 - **影响**：夸克国内镜像通道**当前完全不可用**；`QUARK_REQUIRED=1` 时整个 run 判红。
+
+### D9. `package-lock.json` 钉死国内镜像，CI 上 `npm ci` 间歇 504
+
+- **现象**：run `39175693590`（用户从管理界面触发的真实提交路径）**在 `npm ci` 就死了**，
+  耗时 **18m59s**，**根本没走到翻译**：
+  ```
+  npm error code E504
+  npm error 504 Gateway Time-out - GET https://registry.npmmirror.com/youch-core/-/youch-core-0.3.3.tgz
+  ```
+- **真因**：`package-lock.json` 里**每一条** `resolved` 都指向 `https://registry.npmmirror.com/…`
+  （国内镜像）。仓库无 `.npmrc`，`package.json` 也无 registry 配置——钉死发生在 lockfile 里。
+- **性质**：**间歇性**，不是硬阻断——run `39166450472`（21:07）的 `npm ci` 是过的。
+  但它让**每一次 CI 都依赖一个国内镜像从美国可达**，与 D7 同一类风险。
+- **影响**：与 D7 叠加——CI 链路里**两个关键依赖都在国内**（npm 镜像、免费层 API），
+  任一个抖动就让整轮失败，且失败点离「翻译」很远，排查成本高。
 
 ### D7. 免费层在 GitHub runner 上不可用
 
@@ -140,6 +159,7 @@
 | 6 | 补一次真实提交路径的端到端验证（D8） | D8 | — |
 | 7 | 扫描范围决策与落地（D3/D4） | D3、D4 | U1 |
 | 8 | 本地跑流水线的 `CF_KEY` 落盘（若 U3 选 a） | — | U3 |
+| 9 | 解开 lockfile 对国内 npm 镜像的钉死（D9） | D9 | — |
 
 ## 后果
 
