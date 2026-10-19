@@ -104,21 +104,28 @@ function classify(names) {
 }
 
 // ---------- CurseForge ----------
-async function scanCF(limit) {
+/**
+ * 扫 CurseForge。支持按 index 区间切分，便于多进程并行。
+ *
+ * @param {number} limit 总数上限
+ * @param {{start?: number, end?: number}} [range] index 区间 [start, end)；不传则从 0 开始扫 limit 条
+ */
+async function scanCF(limit, { start = 0, end = null } = {}) {
   if (!CF_KEY) { console.log('跳过 CF：未设置 CF_KEY'); return }
   const H = { ...UA, 'x-api-key': CF_KEY, Accept: 'application/json' }
+  const stop = end ?? (start + limit)
   const mods = []
-  for (let page = 0; mods.length < limit; page++) {
-    const r = await fetchRetry(`https://api.curseforge.com/v1/mods/search?gameId=432&classId=4471&sortField=2&sortOrder=desc&pageSize=50&index=${page * 50}`, { headers: H })
+  for (let index = start; index < stop; index += 50) {
+    const r = await fetchRetry(`https://api.curseforge.com/v1/mods/search?gameId=432&classId=4471&sortField=2&sortOrder=desc&pageSize=50&index=${index}`, { headers: H })
     const j = await r.json()
     if (!j.data?.length) break
     mods.push(...j.data)
   }
-  const list = mods.slice(0, limit)
-  console.log(`\n=== CurseForge 整合包热度前 ${list.length} ===`)
+  const list = mods.slice(0, stop - start)
+  console.log(`\n=== CurseForge 整合包 index ${start}..${start + list.length - 1}（共 ${list.length}） ===`)
   for (let i = 0; i < list.length; i++) {
     const m = list[i]
-    const tag = `[CF ${i + 1}/${list.length}] ${m.slug}`
+    const tag = `[CF ${start + i + 1}/${stop}] ${m.slug}`
     try {
       const fr = await fetchRetry(`https://api.curseforge.com/v1/mods/${m.id}/files?pageSize=1`, { headers: H })
       const f = (await fr.json()).data[0]
@@ -135,21 +142,28 @@ async function scanCF(limit) {
 }
 
 // ---------- Modrinth ----------
-async function scanMR(limit) {
+/**
+ * 扫 Modrinth。支持按 offset 区间切分，便于多进程并行。
+ *
+ * @param {number} limit 总数上限
+ * @param {{start?: number, end?: number}} [range] offset 区间 [start, end)
+ */
+async function scanMR(limit, { start = 0, end = null } = {}) {
   const H = UA
   const facets = encodeURIComponent(JSON.stringify([['project_type:modpack']]))
+  const stop = end ?? (start + limit)
   const hits = []
-  for (let off = 0; hits.length < limit; off += 50) {
+  for (let off = start; off < stop; off += 50) {
     const r = await fetchRetry(`https://api.modrinth.com/v2/search?limit=50&index=downloads&facets=${facets}&offset=${off}`, { headers: H })
     const j = await r.json()
     hits.push(...j.hits)
     if (j.hits.length === 0) break
   }
-  const list = hits.slice(0, limit)
-  console.log(`\n=== Modrinth 整合包热度前 ${list.length} ===`)
+  const list = hits.slice(0, stop - start)
+  console.log(`\n=== Modrinth 整合包 offset ${start}..${start + list.length - 1}（共 ${list.length}） ===`)
   for (let i = 0; i < list.length; i++) {
     const h = list[i]
-    const tag = `[MR ${i + 1}/${list.length}] ${h.slug}`
+    const tag = `[MR ${start + i + 1}/${stop}] ${h.slug}`
     try {
       const vr = await fetchRetry(`https://api.modrinth.com/v2/project/${h.project_id}/version`, { headers: H })
       const vs = await vr.json()
@@ -171,6 +185,14 @@ function write(tag, platform, id, slug, bytes, format, newEn, newZh, oldCh, cdKB
 }
 
 if (!existsSync(OUT)) writeFileSync(OUT, ['platform', 'id', 'slug', 'bytes', 'format', 'newEn', 'newZh', 'oldCh', 'cdKB', 'scannedAt'].join('\t') + '\n')
-await scanCF(arg('cf', 100))
-await scanMR(arg('mr', 100))
+
+// 区间参数：多进程并行时每个进程扫一段。
+// 不传则从 0 开始（保持旧行为）。
+const rangeOf = (prefix) => ({
+  start: arg(`${prefix}-start`, 0),
+  end: process.argv.includes(`--${prefix}-end`) ? arg(`${prefix}-end`, null) : null,
+})
+
+await scanCF(arg('cf', 100), rangeOf('cf'))
+await scanMR(arg('mr', 100), rangeOf('mr'))
 console.log('\n完成 → ' + OUT)
