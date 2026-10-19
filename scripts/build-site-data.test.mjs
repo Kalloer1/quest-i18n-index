@@ -10,9 +10,13 @@ const inputs = () => ({
   packMeta: read('research/pack-metadata.json'),
 })
 
-test('500 条全部进入站点数据', () => {
-  const out = buildSiteData(inputs())
-  assert.equal(out.stat.total, 500)
+test('全部记录进入站点数据（条数随数据集，不写死）', () => {
+  const inp = inputs()
+  const out = buildSiteData(inp)
+  // 不写死 500/2000：数据集会随扫描范围变化（500 → 2000 → …）。
+  // 真正要守的是「一条都不丢」。
+  assert.equal(out.stat.total, inp.index.dataset.length)
+  assert.equal(out.packs.length, inp.index.dataset.length)
 })
 
 test('六态计数与 index-dataset 对账', () => {
@@ -30,9 +34,13 @@ test('每条已分类的包都有 stateLabel 与 stateWhy', () => {
 })
 
 test('探测未完成的包 state 为 null，不冒充六态', () => {
-  const out = buildSiteData(inputs())
+  const inp = inputs()
+  const out = buildSiteData(inp)
   const inc = out.packs.filter(p => p.probeIncomplete)
-  assert.equal(inc.length, 105)
+  // 条数随扫描范围变化（500 条时 105，2000 条时 226）：
+  // 守的是「probeIncomplete 与 dataset 一致」和「state 必须为 null」。
+  assert.equal(inc.length, inp.index.dataset.filter(r => r.probeIncomplete).length)
+  assert.ok(inc.length > 0, '数据集里应有探测未完成的条目')
   for (const p of inc) assert.equal(p.state, null, `${p.slug} 探测未完成却有 state`)
 })
 
@@ -63,12 +71,15 @@ test('sb4/index 这类带后缀的 vmSlug 也能匹配上（数据链不断裂�
 
 test('元数据字段从 pack-metadata 合并进来', () => {
   const out = buildSiteData(inputs())
-  // 元数据覆盖全部 500 条（不是只覆盖「可产出」的那批）：
+  // 元数据覆盖全部条目（不是只覆盖「可产出」的那批）：
   // 图标与标题是列表页的全部可见内容，缺一条就是一个占位块。
-  const withIcon = out.packs.filter(p => p.iconUrl)
-  assert.equal(withIcon.length, 500, '500 条都应有图标')
-  const withoutTitle = out.packs.filter(p => !p.title)
-  assert.equal(withoutTitle.length, 0, `缺标题：${withoutTitle.map(p => p.slug).join(', ')}`)
+  // 注意：元数据只覆盖 CurseForge（fetch-pack-metadata 只拉 cf），
+  // 故 Modrinth 条目没有图标是预期的，不应当成缺陷。
+  const cfPacks = out.packs.filter((p) => p.platform === 'cf')
+  const withIcon = cfPacks.filter((p) => p.iconUrl)
+  assert.equal(withIcon.length, cfPacks.length, `CF 条目都应有图标（缺 ${cfPacks.length - withIcon.length}）`)
+  const withoutTitle = cfPacks.filter((p) => !p.title)
+  assert.equal(withoutTitle.length, 0, `缺标题：${withoutTitle.map((p) => p.slug).join(', ')}`)
   const sb4 = out.packs.find(p => p.slug === 'ftb-stoneblock-4')
   assert.ok(sb4.downloads > 0)
   assert.ok(sb4.gameVersions.length > 0)

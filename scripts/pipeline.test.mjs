@@ -22,9 +22,11 @@ test('readRecords 认 `dataset` 字段，并兼容旧的 `packs` 写法', () => 
   assert.deepEqual(readRecords(null), [])
 })
 
-test('真实数据集能被 readRecords 读出 500 条（守护键名漂移）', () => {
+test('真实数据集能被 readRecords 读出（守护键名漂移）', () => {
   const ds = JSON.parse(readFileSync(new URL('../research/index-dataset.json', import.meta.url), 'utf8'))
-  assert.equal(readRecords(ds).length, 500)
+  // 不写死条数（数据集随扫描范围变化）：守的是「键名漂移会让条数变成 0」这件事。
+  assert.ok(ds.dataset.length > 0, '数据集不能为空')
+  assert.equal(readRecords(ds).length, ds.dataset.length)
 })
 import { LAYOUT } from './lib/candidates.mjs'
 
