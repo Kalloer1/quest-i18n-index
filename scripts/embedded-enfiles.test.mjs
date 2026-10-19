@@ -67,3 +67,11 @@ test('packTimeoutMs：小包仍保底 5 分钟', () => {
 test('packTimeoutMs：上限 60 分钟，不会无限放大', () => {
   assert.equal(packTimeoutMs({ enFiles: 100000 }), 60 * 60 * 1000)
 })
+
+test('packTimeoutMs：显式传入的 timeoutMs 原样尊重，不被下限抬高', () => {
+  // 回归：曾把 5 分钟下限无条件套用，导致 runPipeline 测试传 timeoutMs:50
+  // 被抬到 300s，测试永远等不到超时（整条挂 5 秒后断言失败）。
+  // 用户想用 --timeout-ms 缩短预算也必须能生效。
+  assert.equal(packTimeoutMs({ enFiles: 100 }, { base: 50 }), 50)
+  assert.equal(packTimeoutMs({ enFiles: 100 }, { base: 1000 }), 1000)
+})

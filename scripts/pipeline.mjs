@@ -257,8 +257,11 @@ export async function processPack(record, pack, { translate, glossary = {}, chun
  *   - 分离格式 fantasy-rpg 608 条 = 21 块 ≈ 2.8 分钟
  *   - 内嵌格式 prominence 31 章节、每章节多条文本，5 分钟预算在第 9 块就被 abort
  *
- * 故：`块数 × 单块上限(20s) × 2 倍余量`，但不低于传入的 base（默认 5 分钟）。
- * 这是**上限保护**，不是性能优化：估小了会白丢已翻好的块。
+ * 故：`文件数 × 单块上限(20s) × 2 倍余量`。
+ *
+ * **下限只作用于默认值**：显式传入的 `timeoutMs`（如测试的 50ms、或用户 --timeout-ms）
+ * 一律原样尊重，不抬到 5 分钟——否则测试永远等不到超时，
+ * 用户想缩短也做不到。
  *
  * @param {object} record 数据集记录（用 enFiles 估算文本量）
  * @param {{chunkLines: number, base: number}} opts
@@ -267,10 +270,11 @@ export async function processPack(record, pack, { translate, glossary = {}, chun
 export function packTimeoutMs(record, { chunkLines = CHUNK_LINES, base = DEFAULT_TIMEOUT_MS } = {}) {
   // enFiles 是文件数（内嵌=章节数），粗略当「每文件至少 1 块」估。
   const files = Math.max(1, Number(record?.enFiles) || 1)
-  const estimatedChunks = files
-  const perChunkMs = 20_000
-  const estimated = estimatedChunks * perChunkMs * 2
-  return Math.max(base, Math.min(estimated, 60 * 60 * 1000))
+  const estimated = files * 20_000 * 2
+  const scaled = Math.min(estimated, 60 * 60 * 1000)
+  // 显式传了非默认值 → 用户/测试有明确意图，不伸缩。
+  if (base !== DEFAULT_TIMEOUT_MS) return base
+  return Math.max(base, scaled)
 }
 
 // ---------- 批处理（含独立超时与状态回写） ----------
