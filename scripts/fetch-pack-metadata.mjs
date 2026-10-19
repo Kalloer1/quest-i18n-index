@@ -15,7 +15,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)))
-const SCAN_PATH = join(ROOT, 'research', 'scan-cf500.tsv')
+const SCAN_PATH = process.env.SCAN_PATH || join(ROOT, 'research', 'scan-2k.tsv')
 const OUTPUT_PATH = join(ROOT, 'research', 'pack-metadata.json')
 
 const CF_API_BASE = 'https://api.curseforge.com/v1'

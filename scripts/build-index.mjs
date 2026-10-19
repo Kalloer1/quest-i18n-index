@@ -227,6 +227,8 @@ export function buildDataset(input, { now = new Date().toISOString() } = {}) {
     return {
       slug: p.slug,
       cfId: p.cfId,
+      // D4：站点要能按平台区分/筛选，不能只有 cfId 一个来源标识。
+      platform: p.platform ?? null,
       layout: p.layout,
       enFiles: p.enFiles,
       zhFiles: p.zhFiles,
@@ -295,7 +297,7 @@ const toCount = v => (v === '' || v == null ? null : Number(v))
 /**
  * 读扫描结果 TSV。列：platform id slug bytes format newEn newZh oldCh cdKB scannedAt。
  * TSV 的 format 列就是语言布局，产出里统一叫 layout。
- * @returns {Array<{slug:string,cfId:string,layout:string,enFiles:number|null,zhFiles:number|null,normSlug:string,normTitle:null}>}
+ * @returns {Array<{slug:string,cfId:string,platform:string,layout:string,enFiles:number|null,zhFiles:number|null,normSlug:string,normTitle:null}>}
  */
 export function parseScanTsv(text) {
   const lines = text.split(/\r?\n/).filter(l => l.trim())
@@ -310,6 +312,9 @@ export function parseScanTsv(text) {
     return {
       cfId: f[idx.id],
       slug,
+      // D4：platform 曾全部缺失，导致扫描扩到 Modrinth 后站点无法区分来源。
+      // 旧 TSV 没有该列时给 null，不猜成 'cf'。
+      platform: idx.platform === undefined ? null : (f[idx.platform] || null),
       layout: f[idx.format],
       enFiles: toCount(f[idx.newEn]),
       zhFiles: toCount(f[idx.newZh]),
@@ -343,10 +348,21 @@ export function composeScanInput(scanText, { titles = {}, vmEntries = [], delive
 
 // ---------- CLI ----------
 
+/**
+ * 默认扫描 TSV：优先新的 2000 条（scan-2k.tsv），没有就退回旧的 500 条。
+ *
+ * 为何不硬编 2k：release.test.mjs 在临时目录里跑，那里只有它自己造的夹具，
+ * 硬编 2k 会让 7 个测试一起报 ENOENT（实测）。
+ * @returns {string}
+ */
+export function defaultScanPath() {
+  return existsSync('research/scan-2k.tsv') ? 'research/scan-2k.tsv' : 'research/scan-cf500.tsv'
+}
+
 const isMain = process.argv[1] && import.meta.url.endsWith(process.argv[1].replace(/\\/g, '/').split('/').pop())
 
 if (isMain) {
-  const scanPath = process.argv[2] || 'research/scan-cf500.tsv'
+  const scanPath = process.argv[2] || process.env.SCAN_PATH || defaultScanPath()
   const outPath = process.argv[3] || 'research/index-dataset.json'
   const baseInput = JSON.parse(readFileSync('research/build-input.json', 'utf8'))
   const packMeta = JSON.parse(readFileSync('research/pack-metadata.json', 'utf8'))
