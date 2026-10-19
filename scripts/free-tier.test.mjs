@@ -1,7 +1,8 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import {
-  freeTierEnabled, freeTierUrl, freeTierModel,
+  freeTierEnabled, freeTierOnly, freeTierUrl, freeTierModel,
+  FREE_TIER_MIN_INTERVAL_MS, FREE_TIER_BACKOFF_MS, FREE_TIER_MAX_RETRIES,
   toSingleLine, fromSingleLine,
   buildInstTransPrompt, parseInstTransOutput,
   callFreeTier,
@@ -174,4 +175,26 @@ test('unshieldColorCodes：占位符丢失时该色码消失，不产生畸形�
   const back = unshieldColorCodes(broken, s.codes)
   assert.equal(back, '&6Packager power')
   assert.equal(hasMalformedColorCodes(back), false)
+})
+
+// ---- 免费层调用纪律（实测得出的硬约束） ----
+
+test('freeTierOnly：缺省开启（封了就停，不静默转付费网关）', () => {
+  assert.equal(freeTierOnly({}), true)
+  assert.equal(freeTierOnly({ FREE_TIER_ONLY: '' }), true)
+  assert.equal(freeTierOnly({ FREE_TIER_ONLY: '1' }), true)
+  for (const v of ['0', 'false', 'no', 'off', 'OFF']) {
+    assert.equal(freeTierOnly({ FREE_TIER_ONLY: v }), false, v)
+  }
+})
+
+test('调用纪律常量：间隔 8s、退避递增、最多重试 3 次', () => {
+  // 实测：30 条 + 8s 间隔连跑 6 次全过；零间隔时 30 条第 3 次、60 条首块即 504。
+  assert.equal(FREE_TIER_MIN_INTERVAL_MS, 8000)
+  assert.deepEqual(FREE_TIER_BACKOFF_MS, [30000, 60000, 120000])
+  assert.equal(FREE_TIER_MAX_RETRIES, 3)
+  // 退避必须严格递增：固定退避救不回「冷启动被限」那段。
+  for (let i = 1; i < FREE_TIER_BACKOFF_MS.length; i++) {
+    assert.ok(FREE_TIER_BACKOFF_MS[i] > FREE_TIER_BACKOFF_MS[i - 1])
+  }
 })

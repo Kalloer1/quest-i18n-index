@@ -37,7 +37,8 @@ import { shieldColorCodes, unshieldColorCodes } from './lib/format-codes.mjs'
 import { toStatusValue } from '../shared/quest-status.mjs'
 import { defaultReportStatus } from './lib/report-status.mjs'
 import {
-  freeTierEnabled, callFreeTier, freeTierModel, FREE_TIER_FAILURE_THRESHOLD, FREE_TIER_MIN_INTERVAL_MS,
+  freeTierEnabled, freeTierOnly, callFreeTier, freeTierModel, FREE_TIER_FAILURE_THRESHOLD,
+  FREE_TIER_MIN_INTERVAL_MS, FREE_TIER_BACKOFF_MS, FREE_TIER_MAX_RETRIES,
 } from './lib/free-tier.mjs'
 
 export { defaultReportStatus } from './lib/report-status.mjs'
@@ -411,6 +412,7 @@ if (isMain) {
   // 两层都不可用时才报错；只有免费层可用时以「免费层单跑」模式跑。
   const MODELS = parseModels(process.env.LLM_MODELS, process.env.LLM_MODEL)
   const USE_FREE_TIER = freeTierEnabled()
+  const FREE_TIER_ONLY = freeTierOnly()
   let freeTierFailures = 0
   // 上一次免费层调用结束时刻。免费层对连发敏感，用它保证最小间隔（见上方注释）。
   let lastFreeTierCallAt = 0
@@ -429,31 +431,52 @@ if (isMain) {
   const translate = async (texts, signal) => {
     const errors = []
 
-    // ① 免费层（熔断后跳过）
-    if (USE_FREE_TIER && freeTierFailures < FREE_TIER_FAILURE_THRESHOLD) {
-      try {
-        // 色码先遮蔽成 <<Cn>> 占位符再送模型：
-        // 实测免费层会把 `&credstone` 翻成 `&红石`、把 `&ritem` 吃掉 `&r`，
-        // 而 `&` 后面跟中文是畸形色码，游戏里直接显示成字面量。
-        const shielded = texts.map((t) => shieldColorCodes(t))
-        // 强制调用间隔：免费层对「背靠背连发」敏感，实测零间隔第 3 次必 504。
-        const wait = FREE_TIER_MIN_INTERVAL_MS - (Date.now() - lastFreeTierCallAt)
-        if (wait > 0) await new Promise((r) => setTimeout(r, wait))
-        const arr = await callFreeTier(shielded.map((s) => s.text), { signal })
-        lastFreeTierCallAt = Date.now()
-        const missing = arr.filter((x) => x === null).length
-        if (missing) console.log(`  [免费层] ${missing}/${texts.length} 条漏译，按行回退`)
-        freeTierFailures = 0
-        // 漏译位置回填原文（留英文比留空好，由回退率阀门把关整体质量）。
-        return arr.map((zh, i) => (zh === null ? texts[i] : unshieldColorCodes(zh, shielded[i].codes)))
-      } catch (err) {
-        freeTierFailures++
-        const msg = String(err?.message ?? err).slice(0, 120)
-        errors.push(`免费层: ${msg}`)
-        console.log(`  [免费层] 失败（${freeTierFailures}/${FREE_TIER_FAILURE_THRESHOLD}）：${msg}`)
-        if (freeTierFailures >= FREE_TIER_FAILURE_THRESHOLD) {
-          console.log('  [免费层] 已熔断，本轮剩余分块直接走网关')
+    // ① 免费层（带指数退避重试）
+    //
+    // 为何必须重试：实测完整跑一个整合包（21 块），失败集中在**开头**第 3/4/6 块，
+    // 之后连续 15 块全过。也就是说冷启动阶段会被限一下，跑热了就稳。
+    // 不重试等于每包白丢 14% 的分块（约 40 条文本），而每块都是真实额度换来的。
+    if (USE_FREE_TIER) {
+      const shielded = texts.map((t) => shieldColorCodes(t))
+      let lastErr = null
+      for (let attempt = 0; attempt <= FREE_TIER_MAX_RETRIES; attempt++) {
+        try {
+          // 强制调用间隔：免费层对「背靠背连发」敏感，实测零间隔第 3 次必 504。
+          // 退避等待本身也算间隔，取两者较大值，避免重复等。
+          const backoff = attempt === 0 ? 0 : FREE_TIER_BACKOFF_MS[Math.min(attempt - 1, FREE_TIER_BACKOFF_MS.length - 1)]
+          const sinceLast = Date.now() - lastFreeTierCallAt
+          const wait = Math.max(FREE_TIER_MIN_INTERVAL_MS - sinceLast, backoff)
+          if (wait > 0) {
+            if (backoff > 0) console.log(`  [免费层] 退避 ${Math.round(wait / 1000)}s 后重试（第 ${attempt}/${FREE_TIER_MAX_RETRIES} 次）`)
+            await new Promise((r) => setTimeout(r, wait))
+          }
+          // 色码先遮蔽成 <<Cn>> 占位符再送模型：
+          // 实测免费层会把 `&credstone` 翻成 `&红石`、把 `&ritem` 吃掉 `&r`，
+          // 而 `&` 后面跟中文是畸形色码，游戏里直接显示成字面量。
+          const arr = await callFreeTier(shielded.map((s) => s.text), { signal })
+          lastFreeTierCallAt = Date.now()
+          const missing = arr.filter((x) => x === null).length
+          if (missing) console.log(`  [免费层] ${missing}/${texts.length} 条漏译，按行回退`)
+          freeTierFailures = 0
+          // 漏译位置回填原文（留英文比留空好，由回退率阀门把关整体质量）。
+          return arr.map((zh, i) => (zh === null ? texts[i] : unshieldColorCodes(zh, shielded[i].codes)))
+        } catch (err) {
+          lastErr = err
+          lastFreeTierCallAt = Date.now()
+          const msg = String(err?.message ?? err).slice(0, 120)
+          console.log(`  [免费层] 失败（${attempt + 1}/${FREE_TIER_MAX_RETRIES + 1}）：${msg}`)
         }
+      }
+      // 重试全用尽才计一次「本轮失败」。
+      freeTierFailures++
+      errors.push(`免费层: ${String(lastErr?.message ?? lastErr).slice(0, 120)}`)
+      if (freeTierFailures >= FREE_TIER_FAILURE_THRESHOLD) {
+        console.log(`  [免费层] 连续 ${freeTierFailures} 块重试全败${FREE_TIER_ONLY ? '（FREE_TIER_ONLY=1，不转网关，该条判失败）' : '，本轮剩余分块转网关'}`)
+      }
+      // FREE_TIER_ONLY：严格「封了就停」，绝不静默切到付费网关。
+      // 默认开启（ADR-0009 U2 用户裁决「先翻译，封了再说」）。
+      if (FREE_TIER_ONLY) {
+        throw new Error(`免费层不可用（FREE_TIER_ONLY=1，不转网关）：${errors.join(' | ')}`)
       }
     }
 

@@ -35,6 +35,36 @@ export const FREE_TIER_FAILURE_THRESHOLD = 2
  */
 export const FREE_TIER_MIN_INTERVAL_MS = 8000
 
+/**
+ * 免费层失败后的指数退避序列（毫秒）。
+ *
+ * 为何需要：实测完整跑一个整合包（21 块），失败集中在开头第 3/4/6 块，
+ * 之后连续 15 块全过——冷启动阶段会被限一下，跑热了就稳。
+ * 30s → 60s → 120s 正好跨过这个冷却期；再长就接近单包超时了。
+ */
+export const FREE_TIER_BACKOFF_MS = [30_000, 60_000, 120_000]
+
+/** 免费层单块最多重试几次（不含首次）。3 次 = 共 4 次尝试。 */
+export const FREE_TIER_MAX_RETRIES = 3
+
+/**
+ * 只走免费层，**绝不静默转付费网关**。
+ *
+ * 背景（ADR-0009 U2，用户裁决「先翻译，封了再说」）：
+ * 旧行为是连续 2 次失败就熔断并静默切到 `LLM_MODELS` 网关，
+ * 而网关是**按 token 计费**的。322 个整合包一旦免费层全封，
+ * 会在无人察觉的情况下烧掉难以预估的额度。
+ *
+ * 默认开启（未设或空字符串都视为开启）；显式设 `0/false/no/off` 才允许转网关。
+ * @param {Record<string,string|undefined>} [env]
+ * @returns {boolean}
+ */
+export function freeTierOnly(env = process.env) {
+  const raw = env.FREE_TIER_ONLY
+  if (raw === undefined || raw === '') return true
+  return !/^(0|false|no|off)$/i.test(String(raw).trim())
+}
+
 /** 免费层固定温度：低温度减少格式漂移。 */
 export const FREE_TIER_TEMPERATURE = 0.2
 export const FREE_TIER_MAX_TOKENS = 8192
