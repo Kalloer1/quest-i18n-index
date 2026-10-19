@@ -151,9 +151,12 @@ export function buildInstTransPrompt(texts) {
  *
  * @param {string} content 模型返回的原始文本
  * @param {number} expected 期望条数
+ * @param {string[]} [sources] 原文。给出时，**原文为空串的行允许空译文**：
+ *   任务书里有大量空字符串（aoc 948 条里约 40 条），它们本来就无字可翻，
+ *   模型回空行是正确的。不给 sources 时保持旧行为（空译文当缺行）。
  * @returns {(string|null)[]} 长度恒为 expected；缺失位置为 null
  */
-export function parseInstTransOutput(content, expected) {
+export function parseInstTransOutput(content, expected, sources = null) {
   const out = new Array(expected).fill(null)
   const lines = String(content ?? '').replace(/\r\n/g, '\n').split('\n')
   for (const line of lines) {
@@ -162,9 +165,22 @@ export function parseInstTransOutput(content, expected) {
     const idx = Number(m[1]) - 1
     if (!Number.isInteger(idx) || idx < 0 || idx >= expected) continue
     const value = m[2]
-    // 空译文等同于缺行：留英文比留空更好。
-    if (value.trim() === '') continue
+    // 空译文默认等同于缺行（留英文比留空更好）。
+    // 例外：原文本身就是空串时，空译文是对的，不能算漏译。
+    if (value.trim() === '') {
+      const src = Array.isArray(sources) ? String(sources[idx] ?? '') : ''
+      if (src.trim() === '' && Array.isArray(sources)) {
+        out[idx] = ''
+      }
+      continue
+    }
     out[idx] = fromSingleLine(value)
+  }
+  // 原文为空但模型根本没回该行的，也算已完成（空串不需要翻译）。
+  if (Array.isArray(sources)) {
+    for (let i = 0; i < expected; i++) {
+      if (out[i] === null && String(sources[i] ?? '').trim() === '') out[i] = ''
+    }
   }
   return out
 }
@@ -213,7 +229,7 @@ export async function callFreeTier(texts, {
     const json = await res.json()
     const content = json?.choices?.[0]?.message?.content
     if (typeof content !== 'string' || !content) throw new Error('免费层返回空内容')
-    return parseInstTransOutput(content, texts.length)
+    return parseInstTransOutput(content, texts.length, texts)
   } finally {
     clearTimeout(timer)
     if (signal) signal.removeEventListener('abort', onAbort)

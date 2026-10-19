@@ -198,3 +198,27 @@ test('调用纪律常量：间隔 8s、退避递增、最多重试 3 次', () =>
     assert.ok(FREE_TIER_BACKOFF_MS[i] > FREE_TIER_BACKOFF_MS[i - 1])
   }
 })
+
+// ---- 空串原文不算漏译（实测：aoc 948 条里约 40 条是空串） ----
+
+test('parseInstTransOutput：原文为空串时，空译文是正确结果，不算漏译', () => {
+  // 回归：早先把所有空译文当缺行，导致 aoc 稳定报 38 条"漏译"，
+  // 而那 38 条原文本来就是 ""，没有任何可翻的内容。
+  const sources = ['', 'Hello', '', 'World']
+  const content = 'L2=你好\nL4=世界'
+  const out = parseInstTransOutput(content, 4, sources)
+  assert.deepEqual(out, ['', '你好', '', '世界'])
+})
+
+test('parseInstTransOutput：原文非空而译文为空 → 仍算漏译（null）', () => {
+  const sources = ['Hello', 'World']
+  const content = 'L1=\nL2=世界'
+  const out = parseInstTransOutput(content, 2, sources)
+  assert.equal(out[0], null, '原文非空、译文空 → 漏译')
+  assert.equal(out[1], '世界')
+})
+
+test('parseInstTransOutput：不传 sources 时保持旧行为（空译文=缺行）', () => {
+  const out = parseInstTransOutput('L1=\nL2=世界', 2)
+  assert.deepEqual(out, [null, '世界'])
+})
