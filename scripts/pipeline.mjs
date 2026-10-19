@@ -322,7 +322,7 @@ export async function runPipeline(options) {
       const mergeFiles = loadMergePack ? await loadMergePack(slug) : null
       result = await withTimeout(
         processPack(record, pack, { translate, glossary, chunkLines, signal: controller.signal, mergeFiles }),
-        timeoutMs,
+        effectiveTimeout,
         controller,
       )
     } catch (err) {
@@ -472,6 +472,10 @@ if (isMain) {
       let lastErr = null
       for (let attempt = 0; attempt <= FREE_TIER_MAX_RETRIES; attempt++) {
         try {
+          // signal 已被 abort（整包超时）时立即放弃：重试没有意义，
+          // 而且会白白拖到下一个 abort。实测：超时后重试打出
+          // 「退避 30s 后重试」然后整包仍判 failed，白等 30 秒。
+          if (signal?.aborted) throw new Error('整包已超时，放弃重试')
           // 强制调用间隔：免费层对「背靠背连发」敏感，实测零间隔第 3 次必 504。
           // 退避等待本身也算间隔，取两者较大值，避免重复等。
           const backoff = attempt === 0 ? 0 : FREE_TIER_BACKOFF_MS[Math.min(attempt - 1, FREE_TIER_BACKOFF_MS.length - 1)]
