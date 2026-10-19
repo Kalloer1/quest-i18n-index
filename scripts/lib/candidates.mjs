@@ -35,8 +35,15 @@ export const SKIP = {
 
 /** 三种布局的路径判据（大小写不敏感）。 */
 export const LAYOUT_PATTERNS = {
-  sepDirEn: /(^|\/)lang\/en_us\/[^/]+\.snbt$/i,
-  sepDirZh: /(^|\/)lang\/zh_cn\/[^/]+\.snbt$/i,
+  // `lang/en_us/` 下**允许任意层级子目录**。
+  //
+  // 早先写成 `[^/]+\.snbt$`，只认 `lang/en_us/file.snbt` 这种单层；
+  // 实测 craftoria 用的是新版格式 `lang/en_us/chapters/apotheosis.snbt`（31 个章节文件），
+  // 于是只有 file.snbt / reward_table.snbt 被当作英文源，
+  // 章节全部漏译 —— 产出缺 7354 个键（校验器拓出来的）。
+  // 同样的问题也会让 ATM10 那类包少翻大量文本。
+  sepDirEn: /(^|\/)lang\/en_us\/.+\.snbt$/i,
+  sepDirZh: /(^|\/)lang\/zh_cn\/.+\.snbt$/i,
   sepFileEn: /(^|\/)lang\/en_us\.snbt$/i,
   sepFileZh: /(^|\/)lang\/zh_cn\.snbt$/i,
   embedded: /(^|\/)chapters\/[^/]+\.snbt$/i,

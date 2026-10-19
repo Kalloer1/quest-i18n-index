@@ -349,15 +349,38 @@ function questIdMap(root) {
 
 /**
  * 把值转成带引号的 SNBT 字符串字面量。
+ *
+ * 关键：**保留原文的未知转义**（如 `\&`），不能把它双重转义成 `\\&`。
+ *
+ * 事故（实测 all-the-mods-10-sky / all-the-mons）：
+ * 原文是 `&6&lForbidden \& Arcanus&r` —— 模组名里的 `&` 被作者转义成 `\&`，
+ * 意在表示字面量 & 而非色码。解析器正确地把 `\&` 原样保留在 value 里（两个字符），
+ * 但本函数把其中的反斜杠当普通字符再转义一次，写出 `\\&`。
+ * 结果校验器看到裸的 `& `（& 后跟空格）判为「畸形色码」，
+ * 而实际含义已经变成「字面反斜杠 + 色码开头」——语义被改坏了。
+ *
  * @param {string} value
  * @param {string} [quote] 引号字符（`"` 或 `'`）
  * @returns {string}
  */
 export function quoteString(value, quote = '"') {
+  // 本函数会主动转义的字符：反斜杠、引号、换行、回车、制表符。
+  // 反斜杠后面不是这些字符时（如 `\&`），视为原文的未知转义，原样保留。
+  const ESCAPED = new Set(['\\', quote, 'n', 'r', 't'])
   let out = quote
-  for (const ch of value) {
-    if (ch === '\\') out += '\\\\'
-    else if (ch === quote) out += '\\' + quote
+  const s = String(value)
+  for (let i = 0; i < s.length; i++) {
+    const ch = s[i]
+    if (ch === '\\') {
+      const next = s[i + 1]
+      if (next !== undefined && !ESCAPED.has(next)) {
+        // 未知转义（如 `\&`）：原样保留两个字符，不再加一层反斜杠。
+        out += ch + next
+        i++
+      } else {
+        out += '\\\\'
+      }
+    } else if (ch === quote) out += '\\' + quote
     else if (ch === '\n') out += '\\n'
     else if (ch === '\r') out += '\\r'
     else if (ch === '\t') out += '\\t'
