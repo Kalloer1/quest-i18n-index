@@ -46,3 +46,24 @@ test('skipReason：真·无英文源（none 布局）仍然跳过', () => {
   assert.equal(r.layout, LAYOUT.NONE)
   assert.equal(skipReason(r), SKIP.NO_QUESTS)
 })
+
+// ---- 单包超时必须随包大小伸缩 ----
+
+import { packTimeoutMs, DEFAULT_TIMEOUT_MS } from './pipeline.mjs'
+
+test('packTimeoutMs：内嵌大包不再被 5 分钟一刀切', () => {
+  // 实测：prominence-2-hasturian-era 31 章节，5 分钟预算在第 9 块就被 abort，
+  // 整包判 failed —— 已翻好的块全部白丢。
+  const t = packTimeoutMs({ enFiles: 31 })
+  assert.ok(t > DEFAULT_TIMEOUT_MS, `应大于默认 5 分钟，实际 ${t}`)
+  assert.ok(t >= 20 * 60 * 1000, `31 章节至少给 20 分钟，实际 ${t / 60000} 分钟`)
+})
+
+test('packTimeoutMs：小包仍保底 5 分钟', () => {
+  assert.equal(packTimeoutMs({ enFiles: 1 }), DEFAULT_TIMEOUT_MS)
+  assert.equal(packTimeoutMs({}), DEFAULT_TIMEOUT_MS)
+})
+
+test('packTimeoutMs：上限 60 分钟，不会无限放大', () => {
+  assert.equal(packTimeoutMs({ enFiles: 100000 }), 60 * 60 * 1000)
+})

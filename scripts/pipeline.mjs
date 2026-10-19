@@ -249,6 +249,30 @@ export async function processPack(record, pack, { translate, glossary = {}, chun
   return { status: 'done', outputs, additions }
 }
 
+/**
+ * 按包大小估算单包超时。
+ *
+ * 依据（实测 2026-10-19，serv00）：
+ *   - 30 条/块 + 8s 强制间隔 → 单块约 8~15s（免费层）
+ *   - 分离格式 fantasy-rpg 608 条 = 21 块 ≈ 2.8 分钟
+ *   - 内嵌格式 prominence 31 章节、每章节多条文本，5 分钟预算在第 9 块就被 abort
+ *
+ * 故：`块数 × 单块上限(20s) × 2 倍余量`，但不低于传入的 base（默认 5 分钟）。
+ * 这是**上限保护**，不是性能优化：估小了会白丢已翻好的块。
+ *
+ * @param {object} record 数据集记录（用 enFiles 估算文本量）
+ * @param {{chunkLines: number, base: number}} opts
+ * @returns {number} 毫秒
+ */
+export function packTimeoutMs(record, { chunkLines = CHUNK_LINES, base = DEFAULT_TIMEOUT_MS } = {}) {
+  // enFiles 是文件数（内嵌=章节数），粗略当「每文件至少 1 块」估。
+  const files = Math.max(1, Number(record?.enFiles) || 1)
+  const estimatedChunks = files
+  const perChunkMs = 20_000
+  const estimated = estimatedChunks * perChunkMs * 2
+  return Math.max(base, Math.min(estimated, 60 * 60 * 1000))
+}
+
 // ---------- 批处理（含独立超时与状态回写） ----------
 
 /**
@@ -284,8 +308,15 @@ export async function runPipeline(options) {
   for (const record of candidates) {
     const slug = record.slug
     let result
+    // 单包超时必须随包大小伸缩，不能一律 5 分钟。
+    //
+    // 实测（2026-10-19，serv00）：内嵌包 prominence-2-hasturian-era 有 31 个章节、
+    // 每块 30 条 + 8s 间隔，5 分钟预算在第 9 块就被 abort，整包判 failed。
+    // 分离格式的包（如 fantasy-rpg 608 条）21 块也要 2.8 分钟，已经贴着 5 分钟的边。
+    // 按「块数 × 单块实测耗时（含 8s 间隔）」估算，并留 2 倍余量。
+    const effectiveTimeout = packTimeoutMs(record, { chunkLines, base: timeoutMs })
     const controller = new AbortController()
-    const timer = setTimeout(() => controller.abort(new Error(`处理超时（${Math.round(timeoutMs / 1000)}s）`)), timeoutMs)
+    const timer = setTimeout(() => controller.abort(new Error(`处理超时（${Math.round(effectiveTimeout / 1000)}s）`)), effectiveTimeout)
     try {
       const pack = await loadPack(slug)
       const mergeFiles = loadMergePack ? await loadMergePack(slug) : null
