@@ -5,9 +5,16 @@
  * 只读 zip 中央目录（Range 请求），不下载整包。约 0.3~0.6MB / 包。
  * 用法：node scripts/scan-packs.mjs [--cf N] [--mr N]
  * 输出：research/scan-results.tsv（增量写入，中断可续）
+ *
+ * 分类逻辑**复用 lib/candidates.mjs 的 classifyLayout**，不在这里再写一份。
+ * 事故：本文件曾复制过一份分类器，只把 `lang/en_us/*` 算进 enFiles，
+ * 内嵌格式于是恒为 0，导致全部 213 个内嵌包被 skipReason 判成「找不到英文源」而跳过
+ * （2000 条扫描里 66% 的可做工作被静默丢弃，表面还显示「ok / failed 0」）。
+ * 两处重复实现是这类偏差的温床，故合并为一处。
  */
 import { appendFileSync, existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { inflateRawSync } from 'node:zlib'
+import { classifyLayout } from './lib/candidates.mjs'
 
 const CF_KEY = process.env.CF_KEY
 const OUT = process.env.SCAN_OUT
@@ -82,25 +89,16 @@ async function listZip(url, headers) {
 
 // ---------- 判定 ----------
 function classify(names) {
-  const fq = names.filter(n => /ftbquests\/quests\//i.test(n))
-  const sepDirEn = names.filter(n => /ftbquests\/quests\/lang\/en_us\//i.test(n)).length
-  const sepDirZh = names.filter(n => /ftbquests\/quests\/lang\/zh_cn\//i.test(n)).length
-  const sepFileEn = names.filter(n => /ftbquests\/quests\/lang\/en_us\.snbt$/i.test(n)).length
-  const sepFileZh = names.filter(n => /ftbquests\/quests\/lang\/zh_cn\.snbt$/i.test(n)).length
-  const embedded = names.filter(n => /ftbquests\/quests\/chapters\/.+\.snbt$/i.test(n)).length
-  // 布局判定优先级：分离·目录 > 分离·单文件 > 内嵌
-  let layout = 'none'
-  if (sepDirEn > 0) layout = 'separate-dir'
-  else if (sepFileEn > 0) layout = 'separate-single'
-  else if (embedded > 0) layout = 'embedded'
-  else if (fq.length > 0) layout = 'other'
-  const produces = layout === 'separate-dir' || layout === 'separate-single'
+  // 唯一真相源：lib/candidates.mjs。本文件不再自己算 enFiles/zhFiles。
+  const c = classifyLayout(names)
+  const fq = names.filter((n) => /ftbquests\/quests\//i.test(n))
   return {
-    layout,
-    produces,
-    nativeZh: sepDirZh + sepFileZh,
-    enFiles: sepDirEn + sepFileEn,
-    embedded,
+    layout: c.layout,
+    produces: c.layout === 'separate-dir' || c.layout === 'separate-single',
+    nativeZh: c.zhFiles,
+    // classifyLayout 已保证内嵌布局的 enFiles = 章节数（不是 0）。
+    enFiles: c.enFiles,
+    embedded: c.embeddedFiles,
     fqCount: fq.length,
   }
 }
