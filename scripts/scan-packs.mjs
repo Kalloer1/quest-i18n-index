@@ -15,6 +15,30 @@ const OUT = process.env.SCAN_OUT
 const UA = { 'User-Agent': 'modpack-i18n-research/0.1' }
 const sleep = ms => new Promise(r => setTimeout(r, ms))
 
+/**
+ * 带重试的 fetch：长任务（上千条）里单次网络抖动不该让整轮退出。
+ * 早先 --cf 1000 实测：搜索页第一次请求就 'TypeError: terminated' 直接崩溃，一行没扫。
+ * @param {string} url
+ * @param {object} [init]
+ * @param {number} [tries]
+ */
+async function fetchRetry(url, init = {}, tries = 4) {
+  let last
+  for (let i = 0; i < tries; i++) {
+    try {
+      const r = await fetch(url, { ...init, signal: AbortSignal.timeout(60_000) })
+      if (r.status >= 500 || r.status === 429) throw new Error('HTTP ' + r.status)
+      return r
+    } catch (e) {
+      last = e
+      const wait = 1000 * 2 ** i
+      console.log(`  [retry ${i + 1}/${tries}] ${url.slice(0, 60)}… ${e.message.slice(0, 40)}，${wait}ms 后重试`)
+      await sleep(wait)
+    }
+  }
+  throw last
+}
+
 const arg = (name, dflt) => {
   const i = process.argv.indexOf(`--${name}`)
   return i >= 0 && process.argv[i + 1] ? Number(process.argv[i + 1]) : dflt
@@ -22,12 +46,12 @@ const arg = (name, dflt) => {
 
 // ---------- zip 中央目录（只读） ----------
 async function head(url, headers) {
-  const r = await fetch(url, { method: 'HEAD', headers, redirect: 'follow' })
+  const r = await fetchRetry(url, { method: 'HEAD', headers, redirect: 'follow' })
   if (!r.ok) throw new Error('HEAD ' + r.status)
   return { len: Number(r.headers.get('content-length')), finalUrl: r.url }
 }
 async function getRange(url, s, e, headers) {
-  const r = await fetch(url, { headers: { ...headers, Range: `bytes=${s}-${e}` } })
+  const r = await fetchRetry(url, { headers: { ...headers, Range: `bytes=${s}-${e}` } })
   if (r.status !== 206) throw new Error('range ' + r.status)
   return Buffer.from(await r.arrayBuffer())
 }
@@ -87,7 +111,7 @@ async function scanCF(limit) {
   const H = { ...UA, 'x-api-key': CF_KEY, Accept: 'application/json' }
   const mods = []
   for (let page = 0; mods.length < limit; page++) {
-    const r = await fetch(`https://api.curseforge.com/v1/mods/search?gameId=432&classId=4471&sortField=2&sortOrder=desc&pageSize=50&index=${page * 50}`, { headers: H })
+    const r = await fetchRetry(`https://api.curseforge.com/v1/mods/search?gameId=432&classId=4471&sortField=2&sortOrder=desc&pageSize=50&index=${page * 50}`, { headers: H })
     const j = await r.json()
     if (!j.data?.length) break
     mods.push(...j.data)
@@ -98,7 +122,7 @@ async function scanCF(limit) {
     const m = list[i]
     const tag = `[CF ${i + 1}/${list.length}] ${m.slug}`
     try {
-      const fr = await fetch(`https://api.curseforge.com/v1/mods/${m.id}/files?pageSize=1`, { headers: H })
+      const fr = await fetchRetry(`https://api.curseforge.com/v1/mods/${m.id}/files?pageSize=1`, { headers: H })
       const f = (await fr.json()).data[0]
       if (!f?.downloadUrl) { console.log(`${tag} - 无下载地址`); write(tag, 'cf', m.id, m.slug, 0, 'nodl', '', '', '', ''); continue }
       const mb = f.fileLength / 1048576
@@ -118,7 +142,7 @@ async function scanMR(limit) {
   const facets = encodeURIComponent(JSON.stringify([['project_type:modpack']]))
   const hits = []
   for (let off = 0; hits.length < limit; off += 50) {
-    const r = await fetch(`https://api.modrinth.com/v2/search?limit=50&index=downloads&facets=${facets}&offset=${off}`, { headers: H })
+    const r = await fetchRetry(`https://api.modrinth.com/v2/search?limit=50&index=downloads&facets=${facets}&offset=${off}`, { headers: H })
     const j = await r.json()
     hits.push(...j.hits)
     if (j.hits.length === 0) break
@@ -129,7 +153,7 @@ async function scanMR(limit) {
     const h = list[i]
     const tag = `[MR ${i + 1}/${list.length}] ${h.slug}`
     try {
-      const vr = await fetch(`https://api.modrinth.com/v2/project/${h.project_id}/version`, { headers: H })
+      const vr = await fetchRetry(`https://api.modrinth.com/v2/project/${h.project_id}/version`, { headers: H })
       const vs = await vr.json()
       const v = vs.find(v => v.files.some(f => f.filename.endsWith('.mrpack'))) || vs[0]
       const f = v.files.find(f => f.filename.endsWith('.mrpack')) || v.files[0]
