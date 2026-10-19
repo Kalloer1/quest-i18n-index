@@ -204,9 +204,13 @@ async function main() {
       fail++
       console.log(`${tag} FAILED: ${msg}`)
     }
-    // 中间产物删掉（可重建，占磁盘）
-    const dir = join(PACKS_DIR, p.slug)
-    if (existsSync(dir)) rmSync(dir, { recursive: true, force: true })
+    // 中间产物清理：**只删并行翻译的块文件，不删英文源**。
+    //
+    // `research/packs/<slug>` 是 `validate-quests.mjs` 的**基准键集**。
+    // 删了它，闸门就只会打一行「找不到英文源，跳过该条」——
+    // 实测：11 个包里 9 个被跳过校验，等于零质检（假绿灯）。
+    //
+    // 代价是占磁盘，但英文源只抽 .snbt（几 MB 级），不是整包（几百 MB）。
     const parDir = join(ROOT, 'research/par-out', p.slug)
     if (existsSync(parDir)) rmSync(parDir, { recursive: true, force: true })
 
