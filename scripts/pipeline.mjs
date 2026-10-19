@@ -3,7 +3,9 @@
  * 翻译流水线（工单 02）：筛候选 → 站点术语记忆精确命中 → LLM 分块翻译 → 回退率闸门 → 产出写出。
  *
  * - `--ids a,b` 与 `--top N` 互斥；同时给出直接报错退出（exit 2）。
- * - 分块默认 60 行/块（CHUNK_LINES，可用 --chunk-lines 覆盖）。
+ * - 分块默认 30 行/块（CHUNK_LINES，可用 --chunk-lines 覆盖）。
+ *   实测免费层阈值（2026-10-19，连续调用）：5 条 1.1s / 15 条 2.7s / 30 条 7.9s 全过，
+ *   **60 条 30.6s 必然 HTTP 504**。旧值 60 正好踩在超时线上，是「CI 上免费层 504」的真因之一。
  * - 单块回退率 > 10% 时整块重试，最多 3 次；整体回退率 > 30% 判失败，不写文件、不回写成功。
  * - 每条整合包独立超时（默认 5 分钟，--timeout-ms 可配）：超时只让该条失败，其余继续。
  * - 失败原因回写队列状态：配置 WORKER_URL + INTERNAL_STATUS_TOKEN 时调 `POST /status`
@@ -35,7 +37,7 @@ import { shieldColorCodes, unshieldColorCodes } from './lib/format-codes.mjs'
 import { toStatusValue } from '../shared/quest-status.mjs'
 import { defaultReportStatus } from './lib/report-status.mjs'
 import {
-  freeTierEnabled, callFreeTier, freeTierModel, FREE_TIER_FAILURE_THRESHOLD,
+  freeTierEnabled, callFreeTier, freeTierModel, FREE_TIER_FAILURE_THRESHOLD, FREE_TIER_MIN_INTERVAL_MS,
 } from './lib/free-tier.mjs'
 
 export { defaultReportStatus } from './lib/report-status.mjs'
@@ -46,7 +48,7 @@ const PACKS_DIR = join(ROOT, 'research/packs')
 const PATCHES_DIR = join(ROOT, 'patches')
 const GLOSSARY_FILE = join(ROOT, 'glossary.json')
 
-export const CHUNK_LINES = 60
+export const CHUNK_LINES = 30
 export const CHUNK_RETRY_THRESHOLD = 0.1
 export const CHUNK_MAX_RETRIES = 3
 export const OVERALL_FALLBACK_THRESHOLD = 0.3
@@ -396,6 +398,12 @@ if (isMain) {
   //   行式协议（合成键 L1..Ln），漏行按行回退不判整块失败；
   //   连续 FREE_TIER_FAILURE_THRESHOLD 次失败才熔断本轮，之后直走网关，不再浪费超时。
   //
+  // **调用节奏是硬约束（实测 2026-10-19）**：
+  //   免费层不看分块大小，看**调用间隔**。30 条 + 8s 间隔连跑 6 次全过；
+  //   而 30 条背靠背连发时第 3 次就 504，60 条单发也要 30.6s 后 504。
+  //   旧代码零间隔，是「免费层在 CI 上 504」的真因（ADR-0009 的 D7 归因于「runner 在美国」是错的）。
+  //   故每次免费层调用前强制间隔 FREE_TIER_MIN_INTERVAL_MS。
+  //
   // 第二层 · 网关池：`LLM_MODELS`（逗号分隔，来自管理区多选）优先，回退单数 `LLM_MODEL`，
   //   按顺序尝试，某个模型失败就换下一个。曾经这里只读单数 `LLM_MODEL`，
   //   导致 workflow 传的 `LLM_MODELS` 被完全忽略。
@@ -404,6 +412,8 @@ if (isMain) {
   const MODELS = parseModels(process.env.LLM_MODELS, process.env.LLM_MODEL)
   const USE_FREE_TIER = freeTierEnabled()
   let freeTierFailures = 0
+  // 上一次免费层调用结束时刻。免费层对连发敏感，用它保证最小间隔（见上方注释）。
+  let lastFreeTierCallAt = 0
 
   if (USE_FREE_TIER) {
     console.log(`翻译主路：免费层 ${freeTierModel()}（无需 key）`)
@@ -426,7 +436,11 @@ if (isMain) {
         // 实测免费层会把 `&credstone` 翻成 `&红石`、把 `&ritem` 吃掉 `&r`，
         // 而 `&` 后面跟中文是畸形色码，游戏里直接显示成字面量。
         const shielded = texts.map((t) => shieldColorCodes(t))
+        // 强制调用间隔：免费层对「背靠背连发」敏感，实测零间隔第 3 次必 504。
+        const wait = FREE_TIER_MIN_INTERVAL_MS - (Date.now() - lastFreeTierCallAt)
+        if (wait > 0) await new Promise((r) => setTimeout(r, wait))
         const arr = await callFreeTier(shielded.map((s) => s.text), { signal })
+        lastFreeTierCallAt = Date.now()
         const missing = arr.filter((x) => x === null).length
         if (missing) console.log(`  [免费层] ${missing}/${texts.length} 条漏译，按行回退`)
         freeTierFailures = 0

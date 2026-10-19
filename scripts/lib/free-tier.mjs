@@ -23,6 +23,18 @@ export const FREE_TIER_TIMEOUT_MS = 60_000
 /** 连续失败多少次才判定「本轮免费层不可用」。单次抖动只降级当前分块。 */
 export const FREE_TIER_FAILURE_THRESHOLD = 2
 
+/**
+ * 免费层最小调用间隔（毫秒）。
+ *
+ * 实测（2026-10-19，本机连续探测）：
+ *   - 30 条 + 8s 间隔，连跑 6 次全部 200；
+ *   - 30 条零间隔，第 3 次就 504；
+ *   - 60 条零间隔，30.6s 后 504（旧 CHUNK_LINES=60 正好踩这条线）。
+ *
+ * 所以限速的触发变量是**调用频度**，不是单次体积。改小分块没用，隔开时间才有用。
+ */
+export const FREE_TIER_MIN_INTERVAL_MS = 8000
+
 /** 免费层固定温度：低温度减少格式漂移。 */
 export const FREE_TIER_TEMPERATURE = 0.2
 export const FREE_TIER_MAX_TOKENS = 8192

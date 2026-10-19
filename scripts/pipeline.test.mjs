@@ -46,7 +46,7 @@ test('parseArgs：--ids 与 --top 互斥', () => {
   assert.throws(() => parseArgs([]), /--ids/)
 })
 
-test('parseArgs：默认分块 60 行、超时 5 分钟', () => {
+test('parseArgs：默认分块 30 行、超时 5 分钟', () => {
   const args = parseArgs(['--top', '1'])
   assert.equal(args.chunkLines, CHUNK_LINES)
   assert.equal(args.timeoutMs, DEFAULT_TIMEOUT_MS)
@@ -69,12 +69,12 @@ test('translateUnits：全命中术语记忆时一次 LLM 都不调', async () =
   assert.equal(r.glossaryHits, 1)
 })
 
-test('translateUnits：默认分块 60 行', async () => {
+test('translateUnits：默认分块 30 行（免费层实测阈值，60 条必 504）', async () => {
   const sizes = []
   const translate = async (texts) => { sizes.push(texts.length); return texts.map((t) => `中:${t}`) }
   const units = Array.from({ length: 130 }, (_, i) => ({ key: `k${i}`, text: `text ${i}` }))
   await translateUnits(units, translate)
-  assert.deepEqual(sizes, [60, 60, 10])
+  assert.deepEqual(sizes, [30, 30, 30, 30, 10])
 })
 
 test('translateUnits：块回退率 >10% 整块重试，最多 3 次', async () => {
