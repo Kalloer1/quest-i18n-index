@@ -142,9 +142,21 @@ const SEPARATE_LAYOUTS = new Set(['separate-dir', 'separate-single'])
  *   nodl              无下载地址，探测没开始
  *   toobig            包体过大，未探测
  *   other             布局无法识别，探测未定论
- *   error:fetch failed 抓取失败
+ *   error:*           抓取失败（error:fetch failed、error:HEAD 404、error:range 416…）
+ *
+ * 为何用前缀判断而不是枚举：扫描侧写的是 `'error:' + e.message.slice(0, 40)`，
+ * 错误文案有无限多种（实测全量扫描里出现了 `error:HEAD 404`）。
+ * 早先枚举只列了 `error:fetch failed`，结果全量数据一进来就抛
+ * 「未知语言布局」把整条流水线搞崩。探测失败不该阻断站点构建。
  */
+const PROBE_INCOMPLETE_PREFIXES = ['nodl', 'toobig', 'other', 'error:']
 const PROBE_INCOMPLETE_LAYOUTS = new Set(['nodl', 'toobig', 'other', 'error:fetch failed'])
+
+/** 该布局是否属于「探测未完成」。 */
+function isProbeIncomplete(layout) {
+  const s = String(layout ?? '')
+  return PROBE_INCOMPLETE_PREFIXES.some((p) => s === p || s.startsWith(p))
+}
 
 /**
  * 判定一个整合包落入哪一态。
@@ -164,7 +176,7 @@ export function classifyPack(pack, vmEntries) {
   const m = matchPack(pack, vmEntries)
 
   // 探测未完成：拿不到探测结果，就无从判断整合包属性，六态留 null。
-  if (PROBE_INCOMPLETE_LAYOUTS.has(layout)) {
+  if (isProbeIncomplete(layout)) {
     return { state: null, probeIncomplete: true, why: `探测未完成：${layout}`, match: m }
   }
 
@@ -356,6 +368,9 @@ export function composeScanInput(scanText, { titles = {}, vmEntries = [], delive
  * @returns {string}
  */
 export function defaultScanPath() {
+  // 优先级：全量 > 2000 条 > 旧 500 条。
+  // 全量扫描（scan-full.tsv）是当前权威数据源，扫到多少就用多少。
+  if (existsSync('research/scan-full.tsv')) return 'research/scan-full.tsv'
   return existsSync('research/scan-2k.tsv') ? 'research/scan-2k.tsv' : 'research/scan-cf500.tsv'
 }
 
