@@ -60,7 +60,6 @@
   --s-uncovered:    #8a6a12;
   --s-embedded:     #a04a1e;
   --s-none:         #5c5952;
-  --s-probe:        #6b3fa0;
   --toast-bg:  rgba(24, 22, 20, .93);
   --toast-ink: #f2efe8;
 }
@@ -93,7 +92,6 @@
     --s-uncovered:    #ffc83d;
     --s-embedded:     #ff9a5c;
     --s-none:         #9a9a9a;
-    --s-probe:        #c08cff;
     --toast-bg:  rgba(8, 9, 12, .95);
     --toast-ink: #f2efe8;
   }
@@ -126,7 +124,6 @@
   --s-uncovered:    #ffc83d;
   --s-embedded:     #ff9a5c;
   --s-none:         #9a9a9a;
-  --s-probe:        #c08cff;
   --toast-bg:  rgba(8, 9, 12, .95);
   --toast-ink: #f2efe8;
 }
@@ -357,7 +354,7 @@ input::placeholder, textarea::placeholder { color: var(--ink-faint); }
 .rowhit .name { display: block; font-weight: 700; font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .rowhit .meta { display: block; font-size: 12px; color: var(--ink-dim); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-/* 状态徽章 = 成就弹窗的迷你版 */
+/* 状态徽章 = 成就弹窗的迷你版。主标签只有三态，细节交给行内徽章 */
 .tab {
   display: inline-flex; align-items: center; gap: 6px; flex: none;
   font-size: 11.5px; font-weight: 700; padding: 5px 9px;
@@ -365,13 +362,23 @@ input::placeholder, textarea::placeholder { color: var(--ink-faint); }
   box-shadow: 2px 2px 0 0 rgba(0,0,0,.55), inset 2px 2px 0 0 rgba(255,255,255,.28);
 }
 .tab::before { content: ""; width: 8px; height: 8px; background: currentColor; box-shadow: 0 0 0 2px rgba(0,0,0,.45); }
-.tab[data-state="downloadable"] { background: var(--s-downloadable); }
-.tab[data-state="native-zh"]    { background: var(--s-native); }
-.tab[data-state="gap-covered"]  { background: var(--s-covered); }
-.tab[data-state="gap-uncovered"]{ background: var(--s-uncovered); color: #1a1508; }
-.tab[data-state="embedded"]     { background: var(--s-embedded); }
-.tab[data-state="no-quests"]    { background: var(--s-none); }
-.tab[data-state="probe-incomplete"] { background: var(--s-probe); }
+.tab[data-state="zh"]     { background: var(--s-downloadable); }
+.tab[data-state="unzh"]   { background: var(--s-uncovered); color: #1a1508; }
+.tab[data-state="no-ftb"] { background: var(--s-none); }
+
+/* 行内徽章：说清这条为什么落在当前主分类里 */
+.tab-badge {
+  font-size: 10.5px; font-weight: 700; line-height: 1.7; padding: 1px 6px;
+  color: #f2efe8; background: rgba(0,0,0,.38);
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,.18);
+}
+.tab .tab-badge { margin-left: 2px; }
+.toast-title .tab-badge { margin-left: 8px; vertical-align: middle; }
+/* 内嵌格式要直接改写玩家的任务书文件，徽章用警示色，不和普通说明混同 */
+.tab-badge[data-badge="embedded"] {
+  color: #ffcf9e; background: #2a1206;
+  box-shadow: inset 0 0 0 2px #ff9a5c;
+}
 
 .more { font-size: 12px; color: var(--ink-dim); padding: 12px 4px; }
 
@@ -419,13 +426,9 @@ input::placeholder, textarea::placeholder { color: var(--ink-faint); }
   box-shadow: inset 3px 3px 0 0 rgba(255,255,255,.3), inset -3px -3px 0 0 rgba(0,0,0,.45);
 }
 .toast-icon .ic { width: 30px; height: 30px; color: #16140f; }
-.toast[data-state="downloadable"] .toast-icon { background: var(--s-downloadable); }
-.toast[data-state="native-zh"] .toast-icon    { background: var(--s-native); }
-.toast[data-state="gap-covered"] .toast-icon  { background: var(--s-covered); }
-.toast[data-state="gap-uncovered"] .toast-icon{ background: var(--s-uncovered); }
-.toast[data-state="embedded"] .toast-icon     { background: var(--s-embedded); }
-.toast[data-state="no-quests"] .toast-icon    { background: var(--s-none); }
-.toast[data-state="probe-incomplete"] .toast-icon { background: var(--s-probe); }
+.toast[data-state="zh"] .toast-icon     { background: var(--s-downloadable); }
+.toast[data-state="unzh"] .toast-icon   { background: var(--s-uncovered); }
+.toast[data-state="no-ftb"] .toast-icon { background: var(--s-none); }
 .toast-title { color: var(--gold); font-weight: 700; font-size: 15px; letter-spacing: .04em; }
 .toast-sub { font-size: 12px; color: rgba(255,255,255,.6); letter-spacing: .06em; }
 .toast-why { margin: 6px 0 0; font-size: 13px; line-height: 1.75; color: rgba(255,255,255,.86); max-width: 70ch; }
@@ -586,7 +589,7 @@ code { background: var(--slot); padding: 1px 5px; font-size: .94em; box-shadow: 
 
   <section id="view-search">
     <div class="hero panel">
-      <p class="kicker">CURSEFORGE 热度前 500 · 六种状态</p>
+      <p class="kicker">CURSEFORGE 热度前 500 · 三种状态</p>
       <h1>整合包任务书汉化索引</h1>
       <p class="lede">输入整合包名——中文、英文、只记得半截词都行。这里告诉你它的任务书现在是什么状态、汉化在哪、适配哪个版本。</p>
 
@@ -618,14 +621,11 @@ code { background: var(--slot); padding: 1px 5px; font-size: .94em; box-shadow: 
       <div class="empty" style="margin-top:18px">
         <div class="big">JS</div>
         <h2>本站需要 JavaScript 才能检索</h2>
-        <p>关闭脚本时，搜索与筛选不可用。下面是这个索引收录的六种状态，供你直接阅读。</p>
+        <p>关闭脚本时，搜索与筛选不可用。下面是这个索引收录的三种状态，供你直接阅读。</p>
         <dl class="kv" style="margin-top:16px">
-          <dt>可下载</dt><dd>本站已产出该整合包的任务书汉化，可以直接下载补丁包。</dd>
-          <dt>自带中文</dt><dd>整合包自身已带中文，无需另装汉化。</dd>
-          <dt>待翻译·社区已覆盖</dt><dd>有英文任务书，本站尚未翻译，但社区已有汉化可用。</dd>
-          <dt>待翻译·无人覆盖</dt><dd>有英文任务书，本站尚未翻译，社区也无人覆盖。</dd>
-          <dt>内嵌可做</dt><dd>任务文本混在章节数据里，本站以覆盖式补丁产出汉化（解压覆盖到整合包根目录，替换前请备份）。</dd>
-          <dt>无任务书</dt><dd>该整合包不含 FTB Quests 任务书，没有任务书可汉化。</dd>
+          <dt>已汉化</dt><dd>整合包自带中文（行内徽章「整合包自带」），或本站已产出任务书汉化，可以直接下载补丁包。</dd>
+          <dt>未汉化</dt><dd>有英文任务书但还没有中文：社区已有汉化、社区也无人覆盖，或任务文本内嵌在章节数据里（行内徽章「内嵌格式」，本站以覆盖式补丁产出，会改写任务书文件，替换前请备份）。</dd>
+          <dt>没有 FTB 任务</dt><dd>该整合包不含 FTB Quests 任务书，没有任务书可汉化。其中一部分是本站没能探测（行内徽章「无法探测」），这不代表它没有汉化。</dd>
         </dl>
       </div>
     </noscript>
@@ -804,11 +804,55 @@ code { background: var(--slot); padding: 1px 5px; font-size: .94em; box-shadow: 
   }
 
   // ---------- 列表 ----------
-  function tab(p) {
+  // 三态分类：主分类只有「已汉化 / 未汉化 / 没有 FTB 任务」。
+  // native-zh、embedded、探测失败不再各自占一个分类，改为行内徽章。
+  // 探测未完成（state 为 null）归入「没有 FTB 任务」，但它只说明本站没查到，
+  // 所以徽章说「无法探测」，理由按 layout 字段如实给出。
+  var PROBE_WHY = { nodl: "作者关闭了 API 分发", toobig: "包体超过 400MB" };
+
+  function probeWhy(p) {
+    var layout = String(p.layout || "");
+    if (PROBE_WHY[layout]) return PROBE_WHY[layout];
+    if (layout.indexOf("error") === 0) return "探测请求失败";
+    return "探测没能完成";
+  }
+
+  var STATE_CAT = {
+    "downloadable": "zh",
+    "native-zh": "zh",
+    "gap-uncovered": "unzh",
+    "gap-covered": "unzh",
+    "embedded": "unzh",
+    "no-quests": "no-ftb"
+  };
+  var CAT_LABEL = { zh: "已汉化", unzh: "未汉化", "no-ftb": "没有 FTB 任务" };
+
+  // 返回 { cat, label, badge, why }：cat 是筛选用的主分类，badge 是可选的徽章
+  function classify(p) {
     if (p.probeIncomplete) {
-      return '<span class="tab" data-state="probe-incomplete">探测未完成</span>';
+      return {
+        cat: "no-ftb", label: CAT_LABEL["no-ftb"], why: probeWhy(p),
+        badge: { key: "probe", text: "无法探测" }
+      };
     }
-    return '<span class="tab" data-state="' + esc(p.state) + '">' + esc(p.stateLabel) + "</span>";
+    var cat = STATE_CAT[p.state];
+    // 未知状态不猜、不硬塞分类：仍出现在「全部」里，但不计入三个主分类
+    if (!cat) return { cat: null, label: p.stateLabel || "状态未知", badge: null, why: p.stateWhy };
+    var badge = null;
+    if (p.state === "native-zh") badge = { key: "native", text: "整合包自带" };
+    else if (p.state === "embedded") badge = { key: "embedded", text: "内嵌格式" };
+    return { cat: cat, label: CAT_LABEL[cat], badge: badge, why: p.stateWhy };
+  }
+
+  function badgeHTML(badge) {
+    if (!badge) return "";
+    return '<span class="tab-badge" data-badge="' + badge.key + '">' + esc(badge.text) + "</span>";
+  }
+
+  function tab(p) {
+    var c = classify(p);
+    return '<span class="tab" data-state="' + (c.cat || "unknown") + '">' + esc(c.label)
+      + badgeHTML(c.badge) + "</span>";
   }
 
   function rowHTML(p, i) {
@@ -832,25 +876,22 @@ code { background: var(--slot); padding: 1px 5px; font-size: .94em; box-shadow: 
   }
 
   function renderFilters() {
-    var counts = { all: 0 };
+    // D1：「全部」直接取 PACKS.length，不靠循环累加。
+    // 旧实现按状态累加，探测未完成的条目提前 return，于是 counts.all 少算（395 ≠ 500）。
+    var counts = { all: PACKS.length, zh: 0, unzh: 0, "no-ftb": 0 };
     PACKS.forEach(function (p) {
-      if (p.probeIncomplete) { counts["probe"] = (counts["probe"] || 0) + 1; return; }
-      counts[p.state] = (counts[p.state] || 0) + 1;
-      counts.all++;
+      var cat = classify(p).cat;
+      if (cat) counts[cat]++;
     });
     var order = [
       ["all", "全部", "var(--ink-faint)"],
-      ["native-zh", "自带中文", "var(--s-native)"],
-      ["gap-covered", "待翻译·社区已覆盖", "var(--s-covered)"],
-      ["gap-uncovered", "待翻译·无人覆盖", "var(--s-uncovered)"],
-      ["embedded", "内嵌可做（覆盖式产出）", "var(--s-embedded)"],
-      ["no-quests", "无任务书", "var(--s-none)"],
-      ["probe", "探测未完成", "var(--s-probe)"]
+      ["zh", "已汉化", "var(--s-downloadable)"],
+      ["unzh", "未汉化", "var(--s-uncovered)"],
+      ["no-ftb", "没有 FTB 任务", "var(--s-none)"]
     ];
     var html = "";
     order.forEach(function (o) {
       var n = counts[o[0]] || 0;
-      if (!n) return;
       html += '<button type="button" data-filter="' + o[0] + '" aria-pressed="' + (currentFilter === o[0]) + '">'
         + '<span class="swatch" style="background:' + o[2] + '" aria-hidden="true"></span>'
         + esc(o[1]) + '<span class="n">' + n + "</span></button>";
@@ -863,10 +904,7 @@ code { background: var(--slot); padding: 1px 5px; font-size: .94em; box-shadow: 
     var results = q ? match(q) : PACKS.slice();
 
     if (currentFilter !== "all") {
-      results = results.filter(function (p) {
-        if (currentFilter === "probe") return p.probeIncomplete;
-        return !p.probeIncomplete && p.state === currentFilter;
-      });
+      results = results.filter(function (p) { return classify(p).cat === currentFilter; });
     }
 
     if (!results.length) {
@@ -881,13 +919,9 @@ code { background: var(--slot); padding: 1px 5px; font-size: .94em; box-shadow: 
       return;
     }
     $("#list-empty").innerHTML = "";
-    var shown = results.slice(0, 200);
-    $("#list").innerHTML = shown.map(rowHTML).join("");
-    if (results.length > shown.length) {
-      $("#list").insertAdjacentHTML("beforeend",
-        '<li class="more">共 ' + results.length
-        + " 条结果，只显示前 " + shown.length + " 条。输入更精确的关键词可以缩小范围。</li>");
-    }
+    // 全量渲染：不再截前 200 条（截断会让「没有 FTB 任务」这类大分类漏掉一半）
+    $("#list").innerHTML = results.map(rowHTML).join("");
+    $("#list").insertAdjacentHTML("beforeend", '<li class="more">共 ' + results.length + " 条</li>");
   }
 
   // ---------- 详情 ----------
@@ -914,18 +948,18 @@ code { background: var(--slot); padding: 1px 5px; font-size: .94em; box-shadow: 
       h += '<p class="standfirst">' + esc(p.description) + "</p>";
     }
 
-    // 状态 —— 成就弹窗形态（视觉锚点）
-    var toastState = p.probeIncomplete ? "probe-incomplete" : esc(p.state);
-    var toastLabel = p.probeIncomplete ? "探测未完成" : esc(p.stateLabel);
+    // 状态 —— 成就弹窗形态（视觉锚点），与列表同一套三态口径
+    var c = classify(p);
     var toastWhy = p.probeIncomplete
-      ? "本站没能探测这个整合包的任务书情况（" + esc(p.stateWhy || "原因未知")
+      ? "本站没能探测这个整合包的任务书情况（" + c.why
         + "）。这不代表它没有汉化，只代表我们还没查到。"
-      : esc(p.stateWhy);
-    h += '<div class="toast" data-state="' + toastState + '" role="status">'
+      // 内嵌包会直接改写玩家的任务书文件，这句警告必须留在状态块里
+      : (p.state === "embedded" ? ((M.stateExplain && M.stateExplain.embedded) || p.stateWhy) : c.why);
+    h += '<div class="toast" data-state="' + (c.cat || "unknown") + '" role="status">'
       + '<span class="toast-icon" aria-hidden="true">' + ICON.check + "</span>"
       + "<div><div class=\"toast-sub\">任务书状态</div>"
-      + '<div class="toast-title">' + toastLabel + "</div>"
-      + '<p class="toast-why">' + toastWhy + "</p></div></div>";
+      + '<div class="toast-title">' + esc(c.label) + badgeHTML(c.badge) + "</div>"
+      + '<p class="toast-why">' + esc(toastWhy) + "</p></div></div>";
 
     // 不能混装警告（ADR-0006 / 约定 #46）：普通可见块，不可折叠隐藏
     if (p.providers && p.providers.length) {
