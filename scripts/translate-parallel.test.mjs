@@ -1,8 +1,11 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { mkdtempSync, rmSync, mkdirSync, writeFileSync, readdirSync, readFileSync } from 'node:fs'
+import { mkdtempSync, rmSync, mkdirSync, writeFileSync, readdirSync, readFileSync, statSync, existsSync } from 'node:fs'
 import { tmpdir } from 'node:os'
-import { join } from 'node:path'
+import { join, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 import { translatePackParallel, loadPackUnits, listTranslatable, DEFAULT_LANES } from './translate-parallel.mjs'
 import {
   translateText, translateTexts, buildLinePrompt, isDirective, translateModel,
@@ -339,4 +342,131 @@ test('translatePackParallel：计数区分漏译/未译/空串/指令', async ()
     rmSync(root, { recursive: true, force: true })
     rmSync(out, { recursive: true, force: true })
   }
+})
+
+// ---- U5：布局判定收敛为单一事实来源（ADR-0009 D10） ----
+//
+// `loadPackUnits` 曾自己写一份三行判定（lang/en_us/ → separate-dir；
+// lang/en_us.snbt → separate-single；否则 embedded），与 lib/candidates.mjs 的
+// `classifyLayout` 同序同义却分居两处 —— 改一处不会带动另一处。
+// 实测（2026-10-20，research/packs/ 下 34 个包逐一对齐）：0 处分歧。
+// 故收敛为 `loadPackUnits` 改调 `classifyLayout`，本组测试锁住这件事。
+
+import { classifyLayout } from './lib/candidates.mjs'
+
+/** 造一个整合包目录树，只放 .snbt（内容为空也无妨，判定只看路径）。 */
+function makeTree(root, slug, relPaths) {
+  const dir = join(root, slug)
+  for (const rel of relPaths) {
+    const full = join(dir, rel)
+    mkdirSync(dirname(full), { recursive: true })
+    writeFileSync(full, '{\n}\n')
+  }
+  return dir
+}
+
+/** 递归列 .snbt 相对路径，与 loadPackUnits 内部同口径。 */
+function listSnbt(dir, base = dir) {
+  const out = []
+  for (const name of readdirSync(dir)) {
+    const full = join(dir, name)
+    if (statSync(full).isDirectory()) out.push(...listSnbt(full, base))
+    else if (/\.snbt$/i.test(name)) out.push(full.slice(base.length + 1).split('\\').join('/'))
+  }
+  return out.sort()
+}
+
+test('U5：loadPackUnits 的布局判定与 classifyLayout 一致（separate-dir）', () => {
+  const root = mkdtempSync(join(tmpdir(), 'u5-'))
+  try {
+    const dir = makeTree(root, 'p-dir', [
+      'config/ftbquests/quests/lang/en_us/chapters/a.snbt',
+      'config/ftbquests/quests/lang/en_us/chapters/b.snbt',
+    ])
+    const names = listSnbt(dir)
+    assert.equal(loadPackUnits('p-dir', root).layout, classifyLayout(names).layout)
+    assert.equal(classifyLayout(names).layout, 'separate-dir')
+  } finally {
+    rmSync(root, { recursive: true, force: true })
+  }
+})
+
+test('U5：loadPackUnits 的布局判定与 classifyLayout 一致（separate-single）', () => {
+  const root = mkdtempSync(join(tmpdir(), 'u5-'))
+  try {
+    const dir = makeTree(root, 'p-single', ['config/ftbquests/quests/lang/en_us.snbt'])
+    const names = listSnbt(dir)
+    assert.equal(loadPackUnits('p-single', root).layout, classifyLayout(names).layout)
+    assert.equal(classifyLayout(names).layout, 'separate-single')
+  } finally {
+    rmSync(root, { recursive: true, force: true })
+  }
+})
+
+test('U5：同时有 chapters/ 与 lang/en_us.snbt 时判 separate-single（不是 embedded）', () => {
+  // 实测 adm-confluence-otherworld：13 个 chapters/*.snbt + 1 个 lang/en_us.snbt。
+  // 旧的两份实现都判 separate-single；这条测试锁住优先级不会因重构而颠倒。
+  const root = mkdtempSync(join(tmpdir(), 'u5-'))
+  try {
+    const dir = makeTree(root, 'p-mixed', [
+      'config/ftbquests/quests/lang/en_us.snbt',
+      'config/ftbquests/quests/chapters/a.snbt',
+      'config/ftbquests/quests/chapters/b.snbt',
+    ])
+    const names = listSnbt(dir)
+    assert.equal(loadPackUnits('p-mixed', root).layout, 'separate-single')
+    assert.equal(classifyLayout(names).layout, 'separate-single')
+  } finally {
+    rmSync(root, { recursive: true, force: true })
+  }
+})
+
+test('U5：只有 chapters/ 时判 embedded，两份实现仍一致', () => {
+  const root = mkdtempSync(join(tmpdir(), 'u5-'))
+  try {
+    const dir = makeTree(root, 'p-emb', [
+      'config/ftbquests/quests/chapters/a.snbt',
+      'config/ftbquests/quests/chapters/b.snbt',
+    ])
+    const names = listSnbt(dir)
+    assert.equal(loadPackUnits('p-emb', root).layout, classifyLayout(names).layout)
+    assert.equal(classifyLayout(names).layout, 'embedded')
+  } finally {
+    rmSync(root, { recursive: true, force: true })
+  }
+})
+
+test('U5：research/packs/ 下每个真实包的两种判定都一致（34 包实测锁进 CI）', () => {
+  // 这条是 D10 的核心证据：2026-10-20 手工逐包比对 0 处分歧。
+  // 收敛后它仍必须成立 —— 一旦 classifyLayout 的优先级被改，这里会立刻红。
+  const packsRoot = join(ROOT, 'research/packs')
+  if (!existsSync(packsRoot)) {
+    // 干净克隆里 research/packs/ 已入库（commit a1830e2），正常应存在；
+    // 不存在时跳过而不是假通过。
+    return
+  }
+  const dirs = readdirSync(packsRoot).filter((n) => statSync(join(packsRoot, n)).isDirectory())
+  assert.ok(dirs.length > 0, 'research/packs/ 下应有包')
+  let compared = 0
+  const diverged = []
+  for (const slug of dirs) {
+    const names = listSnbt(join(packsRoot, slug))
+    if (!names.length) continue
+    const r = loadPackUnits(slug, packsRoot)
+    const viaClassify = classifyLayout(names).layout
+    if (r.layout !== viaClassify) diverged.push(`${slug}: loadPackUnits=${r.layout} classifyLayout=${viaClassify}`)
+    compared++
+  }
+  assert.ok(compared > 0, '至少应比对一个包')
+  assert.deepEqual(diverged, [], `两种布局判定出现分歧：${diverged.join('; ')}`)
+})
+
+test('U5：loadPackUnits 不得再内联一份布局判定（结构性断言）', () => {
+  // 行为测试锁不住「两份实现」这件事本身：只要两份逻辑相同，行为测试全绿。
+  // 故直接断言源码里不再有那段三行内联判定，并把 classifyLayout 的调用钉住。
+  const src = readFileSync(join(ROOT, 'scripts/translate-parallel.mjs'), 'utf8')
+  // 用不含反斜杠的独特子串做结构断言，避免正则/字符串两层转义出错。
+  const hasInline = src.includes('names.some((n) => /lang')
+  assert.ok(!hasInline, 'loadPackUnits 仍在内联布局判定 —— 应改调 classifyLayout')
+  assert.match(src, /classifyLayout/, '应导入并使用 classifyLayout')
 })

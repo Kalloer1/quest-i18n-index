@@ -589,7 +589,7 @@ code { background: var(--slot); padding: 1px 5px; font-size: .94em; box-shadow: 
 
   <section id="view-search">
     <div class="hero panel">
-      <p class="kicker">CURSEFORGE 热度前 500 · 三种状态</p>
+      <p class="kicker">整合包任务书汉化索引 · 已翻译分离式，内嵌式尚未开始</p>
       <h1>整合包任务书汉化索引</h1>
       <p class="lede">输入整合包名——中文、英文、只记得半截词都行。这里告诉你它的任务书现在是什么状态、汉化在哪、适配哪个版本。</p>
 
@@ -912,7 +912,8 @@ code { background: var(--slot); padding: 1px 5px; font-size: .94em; box-shadow: 
       $("#list-empty").innerHTML = q
         ? '<div class="empty"><div class="big">0 条</div>'
           + "<h2>没有找到「" + esc(q) + "」</h2>"
-          + "<p>这个整合包可能不在本站的扫描范围内（目前覆盖 CurseForge 热度前 500）。"
+          + "<p>这个整合包可能不在本站的扫描范围内（目前覆盖 CurseForge 热度前 10,000 与 Modrinth 热度前列，共 "
+          + D.stat.total + " 条记录）。"
           + "换一个更短的关键词试试，比如只输入名字的前几个词。</p></div>"
         : '<div class="empty"><div class="big">0 条</div><h2>这个筛选下没有整合包</h2>'
           + "<p>换一个状态筛选，或者清空搜索框。</p></div>";
@@ -1073,8 +1074,11 @@ code { background: var(--slot); padding: 1px 5px; font-size: .94em; box-shadow: 
       + "以<strong>双通道分发</strong>（本站直接下载成品 / 指向社区已有汉化）。</p>"
       + "<p>本站产出的是任务书译文与覆盖式补丁包（<strong>衍生作品</strong>），不重分发整合包本体或模组文件。"
       + "分发行为意味着我们受许可与署名约束（见下方「许可」）。</p>"
-      + "<p>目前覆盖 CurseForge 热度前 500 的整合包，共 " + D.stat.total + " 条记录，"
-      + "其中 " + D.stat.withProvider + " 条查到了社区汉化来源。</p></section>"
+      + "<p>目前已扫描 CurseForge 热度前 10,000 与 Modrinth 热度前列，共 " + D.stat.total + " 条记录，"
+      + "其中 " + D.stat.withProvider + " 条查到了社区汉化来源。</p>"
+      + "<p><strong>翻译进度：</strong>本站已翻译<strong>分离式布局</strong>（任务书文案在 <code>lang/</code> 目录下的独立语言文件）的整合包；"
+      + "<strong>内嵌式布局</strong>（任务书文案直接写在 <code>chapters/*.snbt</code> 里）尚未开始 —— 索引里标记为「内嵌未译」的 "
+      + (D.stat.stateCounts && D.stat.stateCounts.embedded ? D.stat.stateCounts.embedded : 0) + " 个整合包属于这一类。</p></section>"
 
       + "<section><h2>数据来源</h2><ul>"
       + "<li>整合包元数据：CurseForge 官方 API（标题、图标、下载量、MC 版本、加载器、作者）</li>"

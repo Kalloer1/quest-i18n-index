@@ -32,10 +32,11 @@
  *   CF_KEY          CurseForge API key（下载解包必需）
  *   BATCH_PUSH_EVERY 每处理多少个包 commit+push 一次（默认 20；0 = 从不）
  */
-import { readFileSync, writeFileSync, existsSync, rmSync, mkdirSync } from 'node:fs'
+import { readFileSync, writeFileSync, existsSync, rmSync, mkdirSync, readdirSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 import { execFileSync } from 'node:child_process'
+import { randomBytes } from 'node:crypto'
 import { translatePackParallel, DEFAULT_LANES } from './translate-parallel.mjs'
 import { LAYOUT } from './lib/candidates.mjs'
 
@@ -88,6 +89,97 @@ export function pickTranslatable(text, { platform, layout } = {}) {
   return rows
 }
 
+/**
+ * 算出一轮入库该暂存的显式路径（仓库相对，目录带尾斜杠）。
+ *
+ * ## 为什么不能 `git add -A`
+ *
+ * 跑大批量翻译时 `research/packs/` 下会堆 20 多个未跟踪目录（本脚本刚解出来的英文源），
+ * `-A` 会把它们连同任何未跟踪文件一起提交、push 到 main。
+ * 已实测踩坑：`research/par-out/` 的中间块、本机临时缓存都被卷进过一次提交。
+ *
+ * 口径与 `release.mjs` 的「显式路径暂存（禁止 git add -A）」一致：
+ * 站点消费的是 `downloads/*.zip`，`patches/` 只是产出输入；而闸门要本轮包的英文源
+ * 做基准键集，所以 `research/packs/<slug>/` 必须显式带上，别的包不能顺手捎上。
+ *
+ * @param {{slugs?: string[]}} [batch]
+ * @returns {string[]}
+ */
+export function stagedPathsForBatch({ slugs = [] } = {}) {
+  const paths = ['patches/', 'downloads/', 'site/data.json', 'glossary.json', 'research/index-dataset.json']
+  const seen = new Set()
+  for (const slug of slugs) {
+    const s = String(slug ?? '').trim()
+    if (!s || seen.has(s)) continue
+    seen.add(s)
+    paths.push(`research/packs/${s}/`)
+  }
+  return paths
+}
+
+// ---------- 分片运行标识（ADR-0009 D11） ----------
+//
+// `writePatch` 曾经无过滤地按 `^chunk-\d+\.json$` 读盘，没有时间戳、没有 run-id。
+// 实测（2026-10-20）：`research/par-out/ftb-evolution/` 有 216 个 `chunk-NNNN.failed.json`，
+// 该正则对它们全部不匹配（侥幸安全，靠文件名巧合）；但「没有普通分片」与
+// 「分片还没翻完」都产出全空补丁且不报警；一旦同目录留下上一轮的普通分片，
+// 正则无法分辨，会静默混入旧译文。
+//
+// 现在每轮翻译产出的分片文件名带 `.<runId>.`，`mergeShards` 只合并本轮的分片。
+
+/**
+ * 生成本轮的唯一标识。
+ * 时间戳在前（目录里按名字排序即按时间排序，便于人看），随机后缀防同一毫秒碰撞。
+ * @returns {string}
+ */
+export function newRunId() {
+  return `${Date.now().toString(36)}${randomBytes(3).toString('hex')}`
+}
+
+/**
+ * 某个分片文件名是否属于本轮、且不是失败标记。
+ * @param {string} name
+ * @param {string} runId
+ * @returns {boolean}
+ */
+export function isCurrentRunShard(name, runId) {
+  const n = String(name ?? '')
+  if (!runId) return false
+  if (!n.endsWith(`.${runId}.json`)) return false
+  return /^chunk-\d+\.[^.]+\.json$/.test(n)
+}
+
+/**
+ * 从 `par-out/<slug>/` 里只合并**本轮**的分片。
+ *
+ * 返回 `foundAnyShard` 让调用方分清两种零结果：
+ *   - `shards === 0 && foundAnyShard === false` → 目录里一个分片都没有（翻译没写盘）；
+ *   - `shards === 0 && foundAnyShard === true`  → 有分片，但都不属于本轮（遗留物）。
+ * 两者都应该让调用方抛错，但原因不同，日志里要能看出来。
+ *
+ * @param {string} dir
+ * @param {string} runId
+ * @returns {{translations: Map<string,string>, shards: number, foundAnyShard: boolean}}
+ */
+export function mergeShards(dir, runId) {
+  const translations = new Map()
+  if (!existsSync(dir)) return { translations, shards: 0, foundAnyShard: false }
+  const names = readdirSync(dir)
+  const foundAnyShard = names.some((f) => /^chunk-\d+\..+\.json$/.test(f) || /^chunk-\d+\.json$/.test(f))
+  let shards = 0
+  for (const f of names) {
+    if (!isCurrentRunShard(f, runId)) continue
+    const d = JSON.parse(readFileSync(join(dir, f), 'utf8'))
+    if (d.runId !== runId) continue
+    d.keys.forEach((k, i) => {
+      const v = d.outs[i]
+      if (typeof v === 'string') translations.set(k, v)
+    })
+    shards++
+  }
+  return { translations, shards, foundAnyShard }
+}
+
 /** 读状态；损坏时当空状态（最坏只重翻几包）。 */
 export function loadState(file = STATE_FILE) {
   if (!existsSync(file)) return { done: {}, failed: {} }
@@ -107,7 +199,7 @@ const run = (cmd, args, env = {}) => execFileSync(cmd, args, {
 })
 
 /** 把并行翻译的块合并写回 patches/<slug>/（复用 pipeline 的 buildOutputs）。 */
-async function writePatch(slug, layout) {
+async function writePatch(slug, layout, runId) {
   const { loadPackUnits } = await import('./translate-parallel.mjs')
   const { buildOutputs } = await import('./lib/quest-files.mjs')
   const { extractPack, sourceFileNames } = await import('./lib/quest-files.mjs')
@@ -131,14 +223,19 @@ async function writePatch(slug, layout) {
   const files = names.filter((n) => sourceNames.includes(n)).map((n) => ({ name: n, text: readFileSync(join(packDir, n), 'utf8') }))
   const pack = extractPack({ files, layout })
 
-  // 读并行产出的块，拼成 key → 译文
+  // 读并行产出的块，拼成 key → 译文。
+  //
+  // 只合并**本轮**的分片（D11）：旧实现按 `^chunk-\d+\.json$` 无差别读盘，
+  // 分不清「上一轮遗留」与「本轮产出」，一旦同目录留下旧分片就会静默混入旧译文。
   const outDir = join(ROOT, 'research/par-out', slug)
   if (!existsSync(outDir)) return null
-  const translations = new Map()
-  for (const f of readdirSync(outDir)) {
-    if (!/^chunk-\d+\.json$/.test(f)) continue
-    const d = JSON.parse(readFileSync(join(outDir, f), 'utf8'))
-    d.keys.forEach((k, i) => { const v = d.outs[i]; if (typeof v === 'string') translations.set(k, v) })
+  const { translations, shards, foundAnyShard } = mergeShards(outDir, runId)
+  if (shards === 0) {
+    // 「无分片」与「分片都不属于本轮」必须区分开来 —— 两者都不能当成功写空补丁。
+    const why = foundAnyShard
+      ? `只有不属于本轮（runId=${runId}）的遗留分片`
+      : '目录里没有任何分片'
+    throw new Error(`${slug}：${why}，拒绝写空补丁`)
   }
 
   const outputs = buildOutputs(pack, translations, { header: '# AI 初翻，未人工校对\n' })
@@ -188,6 +285,8 @@ async function main() {
   let ok = 0
   let fail = 0
   let sincePush = 0
+  // 本轮已成功处理的 slug：入库时只暂存它们的英文源，别捎上别人的未跟踪目录。
+  let sincePushSlugs = []
 
   for (let i = 0; i < worklist.length; i++) {
     const p = worklist[i]
@@ -195,17 +294,23 @@ async function main() {
     const started = Date.now()
     try {
       // 1) 下载解包
-      run('node', ['scripts/prepare-pack.mjs', '--ids', p.slug], { CF_KEY: process.env.CF_KEY ?? '' })
+      // `--no-keep-zip`：批量跑时不留 zip。zip 的唯一价值是「重新解包时不用再下载」，
+      // 而 `research/packs/<slug>/` 下的 `.snbt` 一旦存在，prepare-pack 本来就跳过下载 —— 
+      // zip 再也用不上。实测 2026-10-20 积了 1.5 GB / 33 个，346 个包会再攒约 15 GB。
+      run('node', ['scripts/prepare-pack.mjs', '--ids', p.slug, '--no-keep-zip'], { CF_KEY: process.env.CF_KEY ?? '' })
       // 2) 并行翻译
-      const r = await translatePackParallel(p.slug, { lanes })
+      // 每个包一份独立 runId：分片文件名带它，`writePatch` 只合并本轮的分片（D11）。
+      const runId = newRunId()
+      const r = await translatePackParallel(p.slug, { lanes, runId })
       // 3) 写回补丁
-      const w = await writePatch(p.slug, r.layout)
+      const w = await writePatch(p.slug, r.layout, runId)
       if (!w || w.translated === 0) throw new Error('没有产出任何译文')
       state.done[p.slug] = { layout: p.layout, files: w.files, translated: w.translated, total: w.total, at: new Date().toISOString(), ms: Date.now() - started }
       delete state.failed[p.slug]
       saveState(state)
       ok++
       sincePush++
+      sincePushSlugs.push(p.slug)
       const secs = Math.round((Date.now() - started) / 1000)
       console.log(`${tag} done ${secs}s · ${w.translated}/${w.total} 条译文 · ${w.files} 个文件 · 漏译 ${r.missing}`)
     } catch (e) {
@@ -228,10 +333,15 @@ async function main() {
     if (pushEvery > 0 && sincePush >= pushEvery) {
       console.log(`--- 入库：${sincePush} 个包 ---`)
       try {
-        run('git', ['add', '-A'])
+        // 显式路径暂存（禁止 git add -A）：-A 会把 research/packs/ 下 20 多个未跟踪
+        // 目录连同任何未跟踪文件一起提交。只认本轮产物 + 站点/索引/术语数据。
+        for (const sp of stagedPathsForBatch({ slugs: sincePushSlugs })) {
+          if (existsSync(join(ROOT, sp))) run('git', ['add', '--', sp])
+        }
         run('git', ['commit', '-q', '-m', `data(translate): 本地并行翻译 ${sincePush} 个整合包`])
         run('git', ['push', '-q', 'origin', 'HEAD:main'])
         sincePush = 0
+        sincePushSlugs = []
       } catch (e) {
         console.log(`入库失败（不中断整批）：${String(e?.message ?? e).slice(0, 200)}`)
       }

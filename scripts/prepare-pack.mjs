@@ -103,13 +103,14 @@ export async function resolveLatestFile(cfId, { apiKey, fetchImpl = fetch } = {}
  * @param {string} [options.packsDir]
  * @param {string} [options.tmpDir]
  * @param {boolean} [options.force] 已有文件也重新下载解包
+ * @param {boolean} [options.keepZip] 把下载到的 zip 留在 `tmpDir` 便于复现（缺省 true）
  * @param {typeof fetch} [options.fetchImpl]
  * @param {(msg: string) => void} [options.log]
  * @returns {Promise<{slug: string, status: 'prepared'|'skipped', written: number, layout: string|null}>}
  */
 export async function preparePack({
   slug, cfId, apiKey, packsDir = PACKS_DIR, tmpDir = TMP_DIR,
-  force = false, fetchImpl = fetch, log = () => {},
+  force = false, keepZip = true, fetchImpl = fetch, log = () => {},
 }) {
   const outDir = join(packsDir, slug)
   const existing = listSnbt(outDir)
@@ -126,8 +127,18 @@ export async function preparePack({
   const buf = Buffer.from(await res.arrayBuffer())
 
   // 留一份 zip 在 research/tmp/（已 gitignore），便于复现；不参与提交。
-  mkdirSync(tmpDir, { recursive: true })
-  writeFileSync(join(tmpDir, `${slug}.zip`), buf)
+  //
+  // 批量路（`translate-local.mjs`）传 `keepZip: false` 关掉：实测 2026-10-20，
+  // `research/tmp/` 积了 1.5 GB / 33 个 zip，346 个包按同比例会再攒约 15 GB。
+  // zip 的唯一价值是「重新解包时不用再下载」，而 `research/packs/<slug>/` 下的
+  // `.snbt` 一旦存在，上面那个幂等分支本来就会跳过下载 —— 故 zip 再也用不上。
+  //
+  // 默认仍为 true：单包调试时留一份 zip 有复现价值；默认改 false 会让调试场景
+  // 失去这个便利，而「默认留、批量显式关」不需要任何人记住新参数就能保持旧行为。
+  if (keepZip) {
+    mkdirSync(tmpDir, { recursive: true })
+    writeFileSync(join(tmpDir, `${slug}.zip`), buf)
+  }
 
   const { written } = extractFromBuffer(buf, outDir)
   const info = classifyLayout(written)
@@ -143,8 +154,10 @@ if (isMain) {
   const idsArg = args.indexOf('--ids')
   const ids = idsArg >= 0 ? (args[idsArg + 1] ?? '').split(',').map((s) => s.trim()).filter(Boolean) : []
   const force = args.includes('--force')
+  // `--no-keep-zip`：解包完不留 zip。批量跑 346 个包时用，否则会攒约 15 GB 用不上的中间物。
+  const keepZip = !args.includes('--no-keep-zip')
   if (!ids.length) {
-    console.error('用法: node scripts/prepare-pack.mjs --ids <slug,slug> [--force]')
+    console.error('用法: node scripts/prepare-pack.mjs --ids <slug,slug> [--force] [--no-keep-zip]')
     process.exit(2)
   }
   if (!existsSync(DATASET_FILE)) {
@@ -164,7 +177,7 @@ if (isMain) {
       continue
     }
     try {
-      await preparePack({ slug, cfId, apiKey, force, log: (m) => console.log(m) })
+      await preparePack({ slug, cfId, apiKey, force, keepZip, log: (m) => console.log(m) })
     } catch (err) {
       console.log(`[${slug}] 失败: ${String(err?.message ?? err).slice(0, 200)}`)
       failed++

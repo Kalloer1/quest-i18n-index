@@ -32,7 +32,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, statSy
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 import { extractPack, sourceFileNames } from './lib/quest-files.mjs'
-import { LAYOUT } from './lib/candidates.mjs'
+import { LAYOUT, classifyLayout } from './lib/candidates.mjs'
 import { translateTexts, translateText, DEFAULT_LANES } from './lib/line-translator.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
@@ -76,6 +76,13 @@ function listSnbt(dir, base = dir) {
 
 /**
  * 读一个整合包的待译单元。布局判定与 pipeline 同一套 sourceFileNames。
+ *
+ * **布局判定只走 `classifyLayout`，本函数不再自己写一份。**
+ * 旧实现内联了同序同义的三行判定（lang/en_us/ → separate-dir；lang/en_us.snbt →
+ * separate-single；否则 embedded），与 `lib/candidates.mjs` 分居两处，改一处不会带动另一处。
+ * 实测（2026-10-20，`research/packs/` 下 34 个包逐一对齐）：0 处分歧，故收敛为单一事实来源。
+ * `scripts/translate-parallel.test.mjs` 里有一条结构性断言锁住「不得再内联」。
+ *
  * @param {string} slug
  * @returns {{units: Array<{key:string,text:string}>, layout: string}|null}
  */
@@ -85,9 +92,7 @@ export function loadPackUnits(slug, packsDir = PACKS_DIR) {
   const names = listSnbt(dir).sort()
   if (!names.length) return null
   const all = names.map((name) => ({ name, text: readFileSync(join(dir, name), 'utf8') }))
-  const layout = names.some((n) => /lang\/en_us\//i.test(n)) ? LAYOUT.SEPARATE_DIR
-    : names.some((n) => /lang\/en_us\.snbt$/i.test(n)) ? LAYOUT.SEPARATE_SINGLE
-      : LAYOUT.EMBEDDED
+  const layout = classifyLayout(names).layout
   const sourceNames = sourceFileNames(names, layout)
   const files = all.filter((f) => sourceNames.includes(f.name))
   if (!files.length) return null
@@ -112,6 +117,7 @@ export async function translatePackParallel(slug, {
   lanes = DEFAULT_LANES,
   outDir = OUT_DIR,
   packsDir = PACKS_DIR,
+  runId,
   callFn,
 } = {}) {
   const loaded = loadPackUnits(slug, packsDir)
@@ -125,14 +131,23 @@ export async function translatePackParallel(slug, {
   mkdirSync(dir, { recursive: true })
 
   // 按单元原序切成固定大小的分片。
-  // 形状 `{slug, chunk, keys, outs}` 是 `translate-local.mjs` 读盘契约，不要改。
+  //
+  // 形状 `{slug, chunk, runId, keys, outs}` 是 `translate-local.mjs` 的读盘契约。
+  // `runId` 是 ADR-0009 D11 的修法：文件名与内容都带上本轮标识，
+  // `mergeShards` 只合并同 runId 的分片，上一轮遗留的普通分片不会被静默混入。
+  // 不传 `runId` 时退回旧的无标识文件名（保持向后兼容，便于手工调试）。
+  const effectiveRunId = runId ?? null
+  const shardName = (n) => effectiveRunId
+    ? `chunk-${String(n).padStart(4, '0')}.${effectiveRunId}.json`
+    : `chunk-${String(n).padStart(4, '0')}.json`
   for (let start = 0, n = 0; start < units.length; start += SHARD_SIZE, n++) {
     const part = units.slice(start, start + SHARD_SIZE)
     writeFileSync(
-      join(dir, `chunk-${String(n).padStart(4, '0')}.json`),
+      join(dir, shardName(n)),
       JSON.stringify({
         slug,
         chunk: n,
+        ...(effectiveRunId ? { runId: effectiveRunId } : {}),
         keys: part.map((u) => u.key),
         outs: outs.slice(start, start + SHARD_SIZE),
       }, null, 1) + '\n',
