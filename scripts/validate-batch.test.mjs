@@ -100,7 +100,7 @@ test('批量：一条产出有问题 → exit 1，且其余条目仍被校验', 
   }
 })
 
-test('批量：找不到英文源 → 该条 warn 跳过，不判失败', () => {
+test('批量：找不到英文源 → 判失败（缺基准键集时不许「通过」）', () => {
   const t = makeTree()
   try {
     writeDataset(t.datasetFile, [{ slug: 'demo', layout: 'embedded' }])
@@ -109,9 +109,36 @@ test('批量：找不到英文源 → 该条 warn 跳过，不判失败', () => 
     const { code, logs } = capture(() =>
       runBatch({ patchesDir: t.patchesDir, packsDir: t.packsDir, datasetFile: t.datasetFile }),
     )
-    assert.equal(code, 0)
-    assert.ok(logs.some((l) => l.includes('找不到英文源')))
+    // 这条断言曾经是 code === 0（warn 跳过）。
+    // 2026-10-19 那轮假绿灯就是它放过去的：20/31 个包没有英文源，
+    // 全部跳过，最后仍打印「✔ 31 个产出，33201 个键」。
+    assert.equal(code, 1)
+    assert.ok(logs.some((l) => l.includes('找不到英文源')), '应说明缺的是英文源')
+    assert.ok(logs.some((l) => l.includes('1/1')), '汇总分母应包含这一条')
   } finally {
     rmSync(t.root, { recursive: true, force: true })
   }
 })
+
+test('批量：缺英文源与校验不通过分开计数，汇总行不许把跳过的算进键数', () => {
+  const t = makeTree()
+  try {
+    writeDataset(t.datasetFile, [
+      { slug: 'good', layout: 'embedded' },
+      { slug: 'nosrc', layout: 'embedded' },
+    ])
+    writeSnbt(join(t.packsDir, 'good'), 'chapters/a.snbt', '{ title: "Hello" }')
+    writeSnbt(t.patchesDir, 'good/chapters/a.snbt', '{ title: "你好" }')
+    writeSnbt(t.patchesDir, 'nosrc/chapters/a.snbt', '{ title: "你好" }')
+    const { code, logs } = capture(() =>
+      runBatch({ patchesDir: t.patchesDir, packsDir: t.packsDir, datasetFile: t.datasetFile }),
+    )
+    assert.equal(code, 1)
+    const summary = logs.find((l) => l.includes('批量校验失败')) ?? ''
+    assert.ok(summary.includes('1 个缺英文源'), `汇总应点名缺源数，实际：${summary}`)
+    assert.ok(!logs.some((l) => l.includes('✔ 批量校验通过')), '有失败时不许打印通过行')
+  } finally {
+    rmSync(t.root, { recursive: true, force: true })
+  }
+})
+

@@ -27,7 +27,7 @@ import { fileURLToPath } from 'node:url'
 import { dirname, join, relative } from 'node:path'
 import { parse, serialize, SnbtParseError } from './snbt.mjs'
 import { countColorCodes, countMalformedCodes } from './lib/format-codes.mjs'
-import { LAYOUT } from './lib/candidates.mjs'
+import { LAYOUT, LAYOUT_PATTERNS } from './lib/candidates.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const PATCHES_DIR = join(ROOT, 'patches')
@@ -160,14 +160,23 @@ export function validatePair(enFiles, zhFiles, { layout = LAYOUT.EMBEDDED, label
   if (extra.length) problems.push(`${prefix}多出 ${extra.length} 个键: ${extra.slice(0, 10).join(', ')}`)
 
   // 色码：译文引入的畸形序列判失败；数量差异只警告。
+  //
+  // 字面转义 `\&`（SNBT 里写作 `\\&`）的特殊处理（实测 2026-10-20，chosens-create-integrated）：
+  // 原文 "Create Crafts \& Additions" 里的 `\&` 是**字面 &**，不是色码。
+  // 译成中文后这个转义失去意义，模型会把反斜杠去掉写成裸 `&`——
+  // 按旧口径裸 `&`（后跟空格）算畸形色码，于是判了假失败。
+  // 正确口径：译文允许把原文的 `\&` 还原成裸 `&`，只要**裸 `&` 总数不超过
+  // 原文「字面转义 + 合法色码」的总数**。超出的部分才是凭空多出来的畸形 `&`。
   const malformed = []
   const countMismatch = []
   for (const [k, enVal] of enKeys) {
     const zhVal = zhKeys.get(k)
     if (zhVal === undefined) continue
+    const enLiteralEscapes = String(enVal ?? '').split('\\&').length - 1
     const enMal = countMalformedCodes(enVal)
     const zhMal = countMalformedCodes(zhVal)
-    if (zhMal > enMal) malformed.push(`${k}（en ${enMal} / zh ${zhMal}）`)
+    // 原文里有字面转义时，允许译文多出至多 enLiteralEscapes 个畸形 `&`。
+    if (zhMal > enMal + enLiteralEscapes) malformed.push(`${k}（en ${enMal} / zh ${zhMal}）`)
     const enCount = countColorCodes(enVal)
     const zhCount = countColorCodes(zhVal)
     if (enCount !== zhCount) countMismatch.push(`${k}（en ${enCount} / zh ${zhCount}）`)
@@ -221,6 +230,33 @@ function listSnbt(dir) {
 
 // ---------- 批量模式 ----------
 
+/**
+ * 判定某个 slug 的校验布局。
+ *
+ * 优先用**磁盘实况**（英文源文件名），数据集只做兵子。
+ *
+ * 为何不能直接信数据集：同一个 slug 在 CF 与 Modrinth 会各有一条记录，
+ * 两条的 layout 可能不同（实测 `create-evolution-renewed` 是 CF=separate-single / MR=embedded）。
+ * 旧实现用 `map.set(slug, layout)` 按数据集顺序覆盖 → **last-wins**，
+ * 取到 embedded，于是把 `chapters/*.snbt` 当基准键集，
+ * 报出「缺 11301 个键 + 多出 1346 个键」的假失败（这个包其实完好）。
+ *
+ * @param {string[]} enNames 英文源目录下的全部 .snbt 相对路径
+ * @param {string|undefined} fromDataset 数据集里的 layout（仅作兵子）
+ * @returns {string}
+ */
+export function resolveLayout(enNames, fromDataset) {
+  const list = Array.isArray(enNames) ? enNames : []
+  const sepDir = list.filter((n) => LAYOUT_PATTERNS.sepDirEn.test(n)).length
+  const sepFile = list.filter((n) => LAYOUT_PATTERNS.sepFileEn.test(n)).length
+  const embedded = list.filter((n) => LAYOUT_PATTERNS.embedded.test(n)).length
+  // 与 candidates.classifyLayout 同优先级：分离·目录 > 分离·单文件 > 内嵌。
+  if (sepDir > 0) return LAYOUT.SEPARATE_DIR
+  if (sepFile > 0) return LAYOUT.SEPARATE_SINGLE
+  if (embedded > 0) return LAYOUT.EMBEDDED
+  return fromDataset ?? LAYOUT.EMBEDDED
+}
+
 /** 从 index-dataset.json 的 `dataset` 数组读 slug → layout 映射。 */
 function loadLayouts(file) {
   const map = new Map()
@@ -244,8 +280,15 @@ const readDir = (dir) => listSnbt(dir).map((name) => ({ name, text: readFileSync
  *
  * 关键约定：
  *   - patches/ 不存在（或没有任何 slug）时视为「无产出」→ 退出码 0，绝不判红。
- *   - 找不到英文源（research/packs/<slug>/ 不存在）只 warn 跳过该条，不判失败。
+ *   - 找不到英文源（research/packs/<slug>/ 不存在）**判失败**。
+ *
+ *     这里曾写成「只 warn 跳过该条」，于是 2026-10-19 那轮出现了假绿灯：
+ *     31 个产出里有 20 个没有英文源，全部被跳过，最后仍打印
+ *     「✔ 批量校验通过：31 个产出，共 33201 个键」——那 33201 个键其实只来自
+ *     真正校验过的 11 个包。缺源时没有基准键集，任何「通过」都是空转。
+ *     内嵌布局是覆盖式改写玩家任务文件，闸门必须能独立复算，故缺源 = 红。
  *   - 单条失败不中断其余条目，全部跑完再统一给退出码。
+ *   - 汇总行只报**真正校验过**的包数与键数，跳过的单独列出（不许混算）。
  *
  * @param {{patchesDir?: string, packsDir?: string, datasetFile?: string}} [options] 注入路径（测试用）
  * @returns {number} 退出码：0 通过；1 有校验失败
@@ -263,15 +306,23 @@ export function runBatch({ patchesDir = PATCHES_DIR, packsDir = PACKS_DIR, datas
   let failed = 0
   let totalKeys = 0
   let warningCount = 0
+  const missingSource = []
+  let checked = 0
 
   for (const slug of slugs) {
     const enDir = join(packsDir, slug)
     if (!existsSync(enDir)) {
-      console.warn(`⚠ ${slug}: 找不到英文源 research/packs/${slug}/，跳过该条`)
+      // 缺源 = 红（见函数头注释：这里曾经是假绿灯的产地）。
+      missingSource.push(slug)
+      failed++
+      console.error(`✘ ${slug}: 找不到英文源 research/packs/${slug}/，无法校验（缺基准键集）`)
       continue
     }
-    const layout = layoutBySlug.get(slug) ?? LAYOUT.EMBEDDED
-    const result = validatePair(readDir(enDir), readDir(join(patchesDir, slug)), {
+    checked++
+    const enFiles = readDir(enDir)
+    // 布局按磁盘实况判定（见 resolveLayout 注释：数据集里同 slug 有多条且可能不同）
+    const layout = resolveLayout(enFiles.map((f) => f.name), layoutBySlug.get(slug))
+    const result = validatePair(enFiles, readDir(join(patchesDir, slug)), {
       layout,
       label: `patches/${slug}`,
     })
@@ -288,11 +339,15 @@ export function runBatch({ patchesDir = PATCHES_DIR, packsDir = PACKS_DIR, datas
   }
 
   if (failed) {
-    console.error(`\n✘ 批量校验失败：${failed}/${slugs.length} 个产出有问题`)
+    const parts = []
+    if (missingSource.length) parts.push(`${missingSource.length} 个缺英文源`)
+    const bad = failed - missingSource.length
+    if (bad) parts.push(`${bad} 个校验不通过`)
+    console.error(`\n✘ 批量校验失败：${failed}/${slugs.length} 个产出有问题（${parts.join('，')}）`)
     return 1
   }
   console.log(
-    `✔ 批量校验通过：${slugs.length} 个产出，共 ${totalKeys} 个键${warningCount ? `（${warningCount} 条样式警告）` : ''}`,
+    `✔ 批量校验通过：${checked} 个产出，共 ${totalKeys} 个键${warningCount ? `（${warningCount} 条样式警告）` : ''}`,
   )
   return 0
 }

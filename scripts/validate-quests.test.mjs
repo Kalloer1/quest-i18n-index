@@ -88,3 +88,113 @@ test('extractPlaceholders：位置参数与包裹式', () => {
   assert.equal(counts.get('%s'), 1)
   assert.equal(counts.get('%%'), 1)
 })
+
+// ---------- runBatch：缺英文源必须判红（假绿灯回归） ----------
+
+test('runBatch：缺英文源判失败，不打「批量校验通过」（假绿灯回归）', async () => {
+  const { mkdtempSync, mkdirSync, writeFileSync } = await import('node:fs')
+  const { tmpdir } = await import('node:os')
+  const { join } = await import('node:path')
+  const { runBatch } = await import('./validate-quests.mjs')
+
+  const root = mkdtempSync(join(tmpdir(), 'vq-'))
+  const patches = join(root, 'patches')
+  const packs = join(root, 'packs')
+  mkdirSync(join(patches, 'nosource'), { recursive: true })
+  writeFileSync(join(patches, 'nosource', 'chapters.snbt'), '{ title: "你好" }')
+  mkdirSync(packs, { recursive: true }) // 故意不给英文源
+
+  const logs = []
+  const origLog = console.log
+  const origWarn = console.warn
+  const origErr = console.error
+  console.log = (m) => logs.push(String(m))
+  console.warn = (m) => logs.push(String(m))
+  console.error = (m) => logs.push(String(m))
+  let code
+  try {
+    code = runBatch({ patchesDir: patches, packsDir: packs, datasetFile: join(root, 'none.json') })
+  } finally {
+    console.log = origLog
+    console.warn = origWarn
+    console.error = origErr
+  }
+
+  assert.equal(code, 1, '缺英文源必须退出码 1')
+  assert.ok(!logs.some((l) => l.includes('批量校验通过')), '缺英文源时绝不能打「批量校验通过」')
+  assert.ok(logs.some((l) => l.includes('找不到英文源')), '必须明确指出缺源')
+})
+
+// ---------- 布局判定：重复 slug 不能用 last-wins ----------
+
+test('runBatch：同 slug 多平台时按磁盘实况判布局，不因后一行是 embedded 而误判', async () => {
+  const { mkdtempSync, mkdirSync, writeFileSync } = await import('node:fs')
+  const { tmpdir } = await import('node:os')
+  const { join } = await import('node:path')
+  const { runBatch } = await import('./validate-quests.mjs')
+
+  // 复现 create-evolution-renewed：CF 是 separate-single（磁盘上确实只有 lang/en_us.snbt），
+  // MR 是 embedded。旧实现按数据集顺序 last-wins，取到 embedded，
+  // 于是把 chapters/*.snbt 当基准键集，报出「缺 11301 个键 + 多出 1346 个键」的假失败。
+  const root = mkdtempSync(join(tmpdir(), 'vq-layout-'))
+  const slug = 'dup-slug-pack'
+  const enDir = join(root, 'packs', slug, 'config/ftbquests/quests/lang')
+  const zhDir = join(root, 'patches', slug, 'config/ftbquests/quests/lang')
+  mkdirSync(enDir, { recursive: true })
+  mkdirSync(zhDir, { recursive: true })
+  writeFileSync(join(enDir, 'en_us.snbt'), '{ quest.A.title: "Hello" }')
+  writeFileSync(join(zhDir, 'zh_cn.snbt'), '{ quest.A.title: "你好" }')
+  // 章节文件存在但属于另一平台那条记录；不该被当成本次产出的基准
+  const chapDir = join(root, 'packs', slug, 'config/ftbquests/quests/chapters')
+  mkdirSync(chapDir, { recursive: true })
+  writeFileSync(join(chapDir, 'a.snbt'), '{ title: "Hello" }')
+
+  const dataset = join(root, 'ds.json')
+  writeFileSync(dataset, JSON.stringify({
+    dataset: [
+      { slug, platform: 'cf', layout: 'separate-single' },
+      { slug, platform: 'mr', layout: 'embedded' },
+    ],
+  }))
+
+  const logs = []
+  const orig = { log: console.log, warn: console.warn, error: console.error }
+  console.log = console.warn = console.error = (m) => logs.push(String(m))
+  let code
+  try {
+    code = runBatch({ patchesDir: join(root, 'patches'), packsDir: join(root, 'packs'), datasetFile: dataset })
+  } finally {
+    Object.assign(console, orig)
+  }
+
+  assert.equal(code, 0, `不该判失败，实际日志：\n${logs.join('\n')}`)
+  assert.ok(!logs.some((l) => l.includes('缺少')), '不该报缺键')
+})
+
+// ---------- 字面转义 \& 不是畸形色码 ----------
+
+test('通过：原文 \& 在译文里写成裸 & 时不算畸形色码', () => {
+  // 实测来源 chosens-create-integrated：
+  //   原文 "Create Crafts \& Additions"（SNBT 里是字面转义）
+  //   译文 "Create Crafts & Additions"（译成中文后转义失去意义，模型去掉了反斜杠）
+  // 旧实现把裸 & 判为畸形色码（& 后跟空格不是合法码字符），判了假失败。
+  const en = [{ name: 'lang/en_us.snbt', text: '{ quest.A.quest_desc: "Create Crafts \\& Additions" }' }]
+  const zh = [{ name: 'lang/zh_cn.snbt', text: '{ quest.A.quest_desc: "创造工艺 & 附加内容" }' }]
+  const r = validatePair(en, zh, { layout: LAYOUT.SEPARATE_SINGLE })
+  assert.deepEqual(r.problems, [], `不该有 problems：${JSON.stringify(r.problems)}`)
+})
+
+test('失败：原文没有 \& 时，译文里的裸 & 仍是畸形色码', () => {
+  // 反向守护：上一条放宽不能把真正的畸形色码也放过去。
+  const en = [{ name: 'lang/en_us.snbt', text: '{ quest.A.quest_desc: "Get apples" }' }]
+  const zh = [{ name: 'lang/zh_cn.snbt', text: '{ quest.A.quest_desc: "获得 &苹果" }' }]
+  const r = validatePair(en, zh, { layout: LAYOUT.SEPARATE_SINGLE })
+  assert.ok(r.problems.some((p) => p.includes('畸形色码')), '应判畸形色码')
+})
+
+test('失败：原文 \& 数量多于译文裸 & 时仍判畸形（不许凭空多出 &）', () => {
+  const en = [{ name: 'lang/en_us.snbt', text: '{ quest.A.t: "A \\& B" }' }]
+  const zh = [{ name: 'lang/zh_cn.snbt', text: '{ quest.A.t: "甲 & 乙 & 丙" }' }]
+  const r = validatePair(en, zh, { layout: LAYOUT.SEPARATE_SINGLE })
+  assert.ok(r.problems.some((p) => p.includes('畸形色码')), '多出的裸 & 应判畸形')
+})
