@@ -406,6 +406,28 @@ mediafilez.forgecdn.net                  → 本机 TCP 443 连不上（超时�
 
 **在拿到一条可达 mediafilez 的出口之前，不建议开始 346 包的批量。**
 
+#### 2026-10-21 补充：Modrinth 的 CDN 是通的
+
+同一时刻对比两个平台的下载域（均用 `Range: bytes=0-99` 探测）：
+
+| 平台 | 域名 | 结果 |
+|---|---|---|
+| CurseForge | `mediafilez.forgecdn.net`（`edge` 的 302 目标） | **TCP 443 超时** |
+| Modrinth | `cdn.modrinth.com` | **HTTP 206**，拿到 100 字节 |
+
+`scripts/scan-packs.mjs --cf 1` 实测也是这个形状：CF 1/1 重试 4 次后 `ERR fetch failed`，
+同一次运行的 MR 1~3 全部正常返回体积与布局。
+
+**这不是巧合**：CF 与 MR 走完全不同的 CDN，本机只是到不了 CF 那条。
+故在 CF 线路恢复前，**可以先做 Modrinth 侧的包**：
+
+- Modrinth 可产出且无自带中文、未完成的包：**377 个**
+  （`separate-single` 106 个 + `embedded` 271 个）
+- 其中 `separate` 的 106 个可以直接进本轮批量口径（与 CF 的 346 个同一处理方式）
+
+但这需要 `prepare-pack` 支持 Modrinth 的 `.mrpack` 格式（当前只处理 CF 的 zip），
+是一个独立工程量，**未在本轮实现**。
+
 ## 后果
 
 - 本清单是**唯一**的遗留事项权威来源；新增缺陷应追加到本文档，而不是散落在交接文件里。
