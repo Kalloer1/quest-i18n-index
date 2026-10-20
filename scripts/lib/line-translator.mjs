@@ -28,6 +28,51 @@ import { freeTierUrl } from './free-tier.mjs'
 import { shieldColorCodes, unshieldColorCodes } from './format-codes.mjs'
 
 /**
+ * 数一段文本里的占位符（`%s`、`%1$s`、`%value%`、`%d%` 这类）。
+ *
+ * 与 `validate-quests.mjs` 的 `extractPlaceholders` **同一套正则**，
+ * 但刻意不复用那个导出：`validate-quests` 是闸门（写盘后校验），
+ * 本模块是翻译器（写盘前拦截），把两者耦合起来会让闸门的改动意外改变翻译行为。
+ * 两份实现的一致性由测试锁住（`translate-parallel.test.mjs` 的占位符组）。
+ *
+ * `%%` 单独计数：它是转义的字面百分号，数量差异闸门只警告不判红，故这里也不拦。
+ *
+ * @param {string} value
+ * @returns {Map<string, number>}
+ */
+export function countPlaceholders(value) {
+  const counts = new Map()
+  const bump = (t) => counts.set(t, (counts.get(t) ?? 0) + 1)
+  const re = /%%|%\d+\$[sdfx]|%[sdfx]|%[A-Za-z_][A-Za-z0-9_]*%|%\d+%/g
+  let m
+  while ((m = re.exec(String(value ?? ''))) !== null) bump(m[0])
+  return counts
+}
+
+/**
+ * 译文是否保住了原文的全部**非 `%%`** 占位符（种类与数量都要对）。
+ *
+ * 为什么必须核：实测 2026-10-20 `tensuranewworld`，英文源是
+ * `"Reset Scrolls Price"`，模型回了 `"重置卷轴的价格为：&c1%value%&c2%"` ——
+ * 凭空造了一个 `%value%` 和两个色码。闸门抓到了（占位符不一致 1 个键），
+ * 但那是**写盘之后**，整个包被判红。写盘前拦住这一条，包就不会脏。
+ *
+ * @param {string} source
+ * @param {string} translated
+ * @returns {boolean}
+ */
+export function placeholdersPreserved(source, translated) {
+  const a = countPlaceholders(source)
+  const b = countPlaceholders(translated)
+  const tokens = new Set([...a.keys(), ...b.keys()])
+  for (const t of tokens) {
+    if (t === '%%') continue // 字面百分号：闸门只警告，翻译器不拦
+    if ((a.get(t) ?? 0) !== (b.get(t) ?? 0)) return false
+  }
+  return true
+}
+
+/**
  * 逐条翻译用的模型。
  *
  * 刻意**不复用** `FREE_TIER_MODEL`：`pipeline.mjs` 的 35B 批量模式还在读它，
@@ -172,7 +217,11 @@ export async function translateText(text, {
       for (let i = 1; i <= shielded.codes.length; i++) {
         if (!content.includes(`<c${i}>`)) return null
       }
-      return unshieldColorCodes(content.trim(), shielded.codes)
+      const restored = unshieldColorCodes(content.trim(), shielded.codes)
+      // 占位符也要在返回前核：色码只挡住了一类内容失败，
+      // 实测有模型凭空造出 `%value%` 的情况（见 `placeholdersPreserved` 注释）。
+      if (!placeholdersPreserved(src, restored)) return null
+      return restored
     } catch (e) {
       lastErr = e
       // 重试是给传输抖动的，signal 已 abort 时再等只是白拖。

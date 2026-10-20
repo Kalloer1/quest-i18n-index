@@ -470,3 +470,39 @@ test('U5：loadPackUnits 不得再内联一份布局判定（结构性断言）'
   assert.ok(!hasInline, 'loadPackUnits 仍在内联布局判定 —— 应改调 classifyLayout')
   assert.match(src, /classifyLayout/, '应导入并使用 classifyLayout')
 })
+
+// ---- 占位符守卫：模型不得凭空造出 %value% 这类占位符 ----
+//
+// 实测（2026-10-20，tensuranewworld）：英文源是 "Reset Scrolls Price"，
+// 模型回 "重置卷轴的价格为：&c1%value%&c2%"，凭空造了一个 %value% 与两个色码。
+// 闸门抓到了（占位符不一致 1 个键），但那是**写盘之后**才发现 —— 整包被判红。
+// `translateText` 原来只核对色码占位符 `<cN>`，不核对 %s / %value% 这类，
+// 于是这种内容失败被当成成功返回。现在两者都核，任一不符即返回 null（内容失败，不重试）。
+
+test('translateText：模型凭空造出 %value% 时返回 null（不只是色码要核）', async () => {
+  const fetchImpl = fakeFetch(() => '重置卷轴的价格为：%value%')
+  const out = await translateText('Reset Scrolls Price', {
+    fetchImpl, retryBackoffMs: [0, 0],
+  })
+  assert.equal(out, null, '源文没有 %value%，译文凭空多出来必须判内容失败')
+})
+
+test('translateText：源文有 %value% 且译文保留 → 正常返回', async () => {
+  const fetchImpl = fakeFetch(() => '价格是 %value% 个卷轴')
+  const out = await translateText('Price is %value% scrolls', {
+    fetchImpl, retryBackoffMs: [0, 0],
+  })
+  assert.equal(out, '价格是 %value% 个卷轴')
+})
+
+test('translateText：源文有 %s 而译文丢了 → 返回 null', async () => {
+  const fetchImpl = fakeFetch(() => '你好世界')
+  const out = await translateText('Hello %s', { fetchImpl, retryBackoffMs: [0, 0] })
+  assert.equal(out, null)
+})
+
+test('translateText：%% 数量差异不算内容失败（样式差异，闸门也只警告）', async () => {
+  const fetchImpl = fakeFetch(() => '百分之百')
+  const out = await translateText('100%% sure', { fetchImpl, retryBackoffMs: [0, 0] })
+  assert.equal(out, '百分之百')
+})

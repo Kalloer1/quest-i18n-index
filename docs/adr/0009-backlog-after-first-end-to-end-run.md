@@ -211,7 +211,8 @@
 | 12 | 指令判定放行 JSON 文本组件那类例外（D12） | D12 | — |
 | 13 | ~~英文源只在本机、CI 红灯~~ **已于 `a1830e2` 入库 + `34ac096` 加 `verify:ci`** | D13 | ✅ 关闭 |
 | 14 | ~~入库裸 `git add -A`~~ **已于 `878f259` 改显式路径** | D14 | ✅ 关闭 |
-| 15 | 批量翻译 346 个 `separate` 包（实测约 9.2 小时） | — | 待跑 |
+| 15 | 批量翻译 346 个 `separate` 包（实测约 9.2 小时） | — | **CDN 不可达**（见 D16 节），已解包的 3 个已跑 |
+| 16 | ~~模型凭空造占位符不拦~~ **已修：`placeholdersPreserved`** | D16 | ✅ 关闭 |
 
 ### 2026-10-20 复核
 
@@ -322,6 +323,88 @@
 （CF 10,000 + Modrinth 18,816）—— 同一屏上两个口径自相矛盾，正是 D1 那条教训的重演。
 已改为「CurseForge 热度前 10,000 与 Modrinth 热度前列」，并按 U8 的范围裁决补一句：
 本站已翻译**分离式布局**，**内嵌式布局尚未开始**（附该类包的条数）。
+
+#### 2026-10-20 夜第一轮实测：CDN 拦截了 9/20 个包
+
+按 U8/U9 跑了第一轮 20 个混合体积的 `separate` 包（0.1 MB ~ 400 MB）。
+**结果：11 成功 / 9 失败**，失败全部卡在下载阶段，且**不是随机**：
+
+```
+[12/20] more-animals-exclusive FAILED   (14.7MB)
+[13/20] tales-of-celerity     FAILED   (19.1MB)
+… 一直到 [20/20] maria-create-project FAILED (399.8MB)
+```
+
+##### 真因（已查实，不是我们的代码问题）
+
+CurseForge 的下载链是**两跳**：
+
+```
+api.curseforge.com/v1/mods/<id>/files   → 200，返回 downloadUrl
+  downloadUrl = https://edge.forgecdn.net/files/8632/969/xxx.zip
+edge.forgecdn.net                        → 302，Location 指向 mediafilez.forgecdn.net
+mediafilez.forgecdn.net                  → 本机 TCP 443 连不上（超时）
+```
+
+实测证据：
+
+| 检查 | 结果 |
+|---|---|
+| `curl -I edge.forgecdn.net/files/…` | **302**，`Location: https://mediafilez.forgecdn.net/…`，`X-Cache: Miss from cloudfront`，`X-Amz-Cf-Pop: HKG61-P1` |
+| `curl -L` 跟到 mediafilez | `curl: (28) Failed to connect … after 21716 ms` |
+| `mediafilez.forgecdn.net` 三个 A 记录（54.230.70.63/66/72）的 443 端口 | **全部不通**（`/dev/tcp` 直连超时） |
+| 同一台机器上的 `registry.npmjs.org` / `api.github.com` | **200**（网络本身正常） |
+| 免费层 `index-translate.bilibili.com` | **200**（国内线路正常） |
+| 本地代理 `127.0.0.1:10808`（系统设置里是关的） | 端口开着，但走它访问 CDN **同样超时** |
+| **昨天下载成功过的包**（atm10 / aoc / tensura-evolutions）的 URL | **现在也是 404/超时** |
+
+最后一条最关键：**这不是「新文件没准备好」，而是整条 mediafilez 线路对本机不可达** ——
+连昨天成功下过的文件今天也下不了。
+
+##### 为何 11 个成功了
+
+成功的 11 个里有 3 个（`ftb-evolution`、`tats1`、`tensura-rpg-new-world`）**本来就在硬盘上**，
+`prepare-pack` 直接跳过下载。剩下 8 个是**小包**（0.1 MB ~ 11.8 MB），
+推测小文件命中了不同的 CloudFront POP 或走了未拦截的路径；
+从 14.7 MB 起全部失败。**这是相关性，不是已证实的因果** —— 未做进一步定位。
+
+##### 这一轮的实际产出
+
+- 11 个包成功，**21,692 / 21,830 条译文，漏译率 0.63%**
+- 闸门：**41 个产出 / 94,743 个键全绿**（20 条样式警告，不阻断）
+- 站点 `downloadable` 36 → **47**，`gap-uncovered` 445 → 436
+- Deploy run `39460274127` 绿
+
+##### 本轮新查实的缺陷（已修）
+
+**D16. 模型会凭空造出 `%value%` 这类占位符，翻译器不拦。**
+
+- **证据**：`tensuranewworld` 的 `quest.173D9856BCD06A82.title`，
+  英文源 `"Reset Scrolls Price"`（无占位符），
+  模型回 `"重置卷轴的价格为：&c1%value%&c2%"` —— 凭空造了一个 `%value%` 与两个色码。
+- **闸门抓到了**（`占位符不一致 1 个键: … [%value%（en 0 / zh 1）]`），但那是**写盘之后**，
+  整个包被判红。
+- **真因**：`translateText` 只核对色码占位符 `<cN>`，不核对 `%s` / `%value%` 这类。
+- **处置**：`line-translator.mjs` 新增 `countPlaceholders` / `placeholdersPreserved`，
+  与闸门**同一套正则**但**刻意不复用**（闸门改动不应意外改变翻译行为，
+  两份一致性由测试锁住）。任一非 `%%` 占位符种类或数量不符 → 返回 `null`（内容失败，不重试）。
+  `%%` 不拦，与闸门「只警告」口径一致。修后重翻 `tensuranewworld`，该键变为 `"重置卷轴价格"`。
+
+#### 下一轮的前提（阻塞项）
+
+**CDN 不可达是硬阻塞**：346 个 `separate` 包里，只剩 3 个已解包，其余 343 个都要下载。
+在 mediafilez 线路恢复前，批量只能做「已在硬盘上的包」。
+
+可选绕法（均未验证）：
+
+| 方案 | 代价 |
+|---|---|
+| 换一条能到 mediafilez 的出口（VPN/其他代理/其他机器） | 需实测；serv00 与 InstaBox 的出口是否可达未知 |
+| 找 CurseForge 的备用下载域（`media.forgecdn.net` 等） | 实测同样超时 |
+| 等线路自行恢复 | 不可控 |
+| 只翻已解包的包 | 只省 3 个，不解决问题 |
+
+**在拿到一条可达 mediafilez 的出口之前，不建议开始 346 包的批量。**
 
 ## 后果
 
