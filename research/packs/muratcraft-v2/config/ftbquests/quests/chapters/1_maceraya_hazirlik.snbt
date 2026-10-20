@@ -1,0 +1,101 @@
+{
+	id: "1000000000000001"
+	group: ""
+	order_index: 0
+	filename: "1_maceraya_hazirlik"
+	title: "1. Maceraya Hazırlık"
+	icon: "minecraft:campfire"
+	default_quest_shape: "square"
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			id: "1000000000000010"
+			x: 0.0d
+			y: 0.0d
+			title: "İlk Gece"
+			subtitle: "Klasik başlangıç. Temel aletleri üret."
+			tasks: [{
+				id: "1000000000000011"
+				type: "item"
+				item: "minecraft:wooden_pickaxe"
+			}]
+			rewards: [
+				{
+					id: "1000000000000012"
+					type: "item"
+					item: "minecraft:torch"
+					count: 8
+				}
+				{
+					id: "1000000000000013"
+					type: "item"
+					item: "minecraft:apple"
+					count: 4
+				}
+			]
+		}
+		{
+			id: "1000000000000020"
+			x: 1.5d
+			y: 0.0d
+			title: "Yatak Değil Tulum"
+			subtitle: "Yoldayken uyumak için bir uyku tulumu yap."
+			dependencies: ["1000000000000010"]
+			tasks: [{
+				id: "1000000000000021"
+				type: "item"
+				title: "Herhangi bir uyku tulumu"
+				item: {
+					id: "itemfilters:mod"
+					Count: 1b
+					tag: {
+						value: "comforts"
+					}
+				}
+			}]
+			rewards: [{
+				id: "1000000000000022"
+				type: "item"
+				item: "minecraft:bread"
+				count: 2
+			}]
+		}
+		{
+			id: "1000000000000030"
+			x: 0.0d
+			y: 1.5d
+			title: "Sırt Çantası Şart"
+			subtitle: "Eşyalarını taşımak için temel çantayı üret."
+			dependencies: ["1000000000000010"]
+			tasks: [{
+				id: "1000000000000031"
+				type: "item"
+				item: "sophisticatedbackpacks:backpack"
+			}]
+			rewards: [{
+				id: "1000000000000032"
+				type: "item"
+				item: "minecraft:leather"
+				count: 4
+			}]
+		}
+		{
+			id: "1000000000000040"
+			x: 1.5d
+			y: 1.5d
+			title: "Yolculuk Taşı"
+			subtitle: "Hızlı seyahat için bir Waystone bul veya üret."
+			dependencies: ["1000000000000010"]
+			tasks: [{
+				id: "1000000000000041"
+				type: "item"
+				item: "waystones:waystone"
+			}]
+			rewards: [{
+				id: "1000000000000042"
+				type: "item"
+				item: "waystones:warp_scroll"
+			}]
+		}
+	]
+}

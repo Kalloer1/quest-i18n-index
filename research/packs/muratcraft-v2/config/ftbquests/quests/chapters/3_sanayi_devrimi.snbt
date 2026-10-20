@@ -1,0 +1,174 @@
+{
+	id: "3000000000000001"
+	group: ""
+	order_index: 2
+	filename: "3_sanayi_devrimi"
+	title: "3. Sanayi Devrimi"
+	icon: "mekanism:metallurgic_infuser"
+	default_quest_shape: "rsquare"
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			id: "3000000000000010"
+			x: 0.0d
+			y: 0.0d
+			title: "Fırınları Hızlandır"
+			subtitle: "Standart fırından daha hızlısına geçiş yap."
+			tasks: [{
+				id: "3000000000000011"
+				type: "item"
+				item: "ironfurnaces:iron_furnace"
+			}]
+			rewards: [{
+				id: "3000000000000012"
+				type: "item"
+				item: "minecraft:coal"
+				count: 16
+			}]
+		}
+		{
+			id: "3000000000000020"
+			x: 1.5d
+			y: 0.0d
+			title: "Temel Alaşım"
+			subtitle: "Mekanism'e ilk adım. Alaşım makinesi yap."
+			dependencies: ["3000000000000010"]
+			tasks: [{
+				id: "3000000000000021"
+				type: "item"
+				item: "mekanism:metallurgic_infuser"
+			}]
+			rewards: [{
+				id: "3000000000000022"
+				type: "item"
+				item: "mekanism:ingot_osmium"
+				count: 8
+			}]
+		}
+		{
+			id: "3000000000000030"
+			x: 1.5d
+			y: 1.5d
+			title: "Enerji Kaynağı"
+			subtitle: "Makinelere güç sağlamak için ısı jeneratörü üret."
+			dependencies: ["3000000000000020"]
+			tasks: [{
+				id: "3000000000000031"
+				type: "item"
+				item: "mekanismgenerators:heat_generator"
+			}]
+			rewards: [{
+				id: "3000000000000032"
+				type: "item"
+				item: "minecraft:lava_bucket"
+			}]
+		}
+		{
+			id: "3000000000000040"
+			x: 3.0d
+			y: 0.0d
+			title: "Cevher Katlama"
+			subtitle: "Cevherleri toz haline getirip verimi ikiye katla."
+			dependencies: ["3000000000000030"]
+			tasks: [{
+				id: "3000000000000041"
+				type: "item"
+				item: "mekanism:enrichment_chamber"
+			}]
+			rewards: [{
+				id: "3000000000000042"
+				type: "xp"
+				xp: 250
+			}]
+		}
+		{
+			id: "3000000000000050"
+			x: 0.0d
+			y: 3.0d
+			title: "Dijital Depoya Geçiş"
+			subtitle: "Sandıklardan kurtulma vakti. Sistemi başlat."
+			tasks: [{
+				id: "3000000000000051"
+				type: "item"
+				item: "refinedstorage:controller"
+			}]
+			rewards: [{
+				id: "3000000000000052"
+				type: "item"
+				item: "refinedstorage:quartz_enriched_iron"
+				count: 8
+			}]
+		}
+		{
+			id: "3000000000000060"
+			x: 1.5d
+			y: 3.0d
+			title: "Sürücü ve Diskler"
+			subtitle: "Eşyaların dijital olarak depolanacağı alanı oluştur."
+			dependencies: ["3000000000000050"]
+			tasks: [
+				{
+					id: "3000000000000061"
+					type: "item"
+					item: "refinedstorage:disk_drive"
+				}
+				{
+					id: "3000000000000062"
+					type: "item"
+					item: "refinedstorage:1k_storage_part"
+				}
+			]
+			rewards: [{
+				id: "3000000000000063"
+				type: "item"
+				item: "minecraft:glass"
+				count: 16
+			}]
+		}
+		{
+			id: "3000000000000070"
+			x: 3.0d
+			y: 3.0d
+			title: "Ağa Bağlan"
+			subtitle: "Eşyalarına erişmek için terminali kur."
+			dependencies: ["3000000000000060"]
+			tasks: [{
+				id: "3000000000000071"
+				type: "item"
+				item: "refinedstorage:grid"
+			}]
+			rewards: [{
+				id: "3000000000000072"
+				type: "item"
+				item: "refinedstorage:cable"
+				count: 16
+			}]
+		}
+		{
+			id: "3000000000000080"
+			x: 3.0d
+			y: 1.5d
+			title: "Kablosuz Enerji"
+			subtitle: "Mekanism ve Refined Storage ağını kablosuz bağla."
+			dependencies: ["3000000000000030", "3000000000000070"]
+			tasks: [
+				{
+					id: "3000000000000081"
+					type: "item"
+					item: "fluxnetworks:flux_plug"
+				}
+				{
+					id: "3000000000000082"
+					type: "item"
+					item: "fluxnetworks:flux_point"
+				}
+			]
+			rewards: [{
+				id: "3000000000000083"
+				type: "item"
+				item: "fluxnetworks:flux_dust"
+				count: 16
+			}]
+		}
+	]
+}

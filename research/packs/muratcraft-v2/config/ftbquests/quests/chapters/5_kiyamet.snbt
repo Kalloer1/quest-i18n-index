@@ -1,0 +1,105 @@
+{
+	id: "5000000000000001"
+	group: ""
+	order_index: 4
+	filename: "5_kiyamet"
+	title: "5. Kıyamet"
+	icon: "cataclysm:ignitium_ingot"
+	default_quest_shape: "gear"
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			id: "5000000000000010"
+			x: 0.0d
+			y: 0.0d
+			title: "Cehennem Hazırlığı"
+			subtitle: "Boss'lara gitmeden önce zırhını Netherite seviyesine çıkar."
+			tasks: [
+				{
+					id: "5000000000000011"
+					type: "item"
+					item: {
+						id: "minecraft:netherite_chestplate"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "5000000000000012"
+				type: "item"
+				item: "minecraft:golden_apple"
+				count: 2
+			}]
+		}
+		{
+			id: "5000000000000020"
+			x: 1.5d
+			y: 0.0d
+			title: "Çölün Dehşeti"
+			subtitle: "Ancient Remnant boss'unu yen."
+			dependencies: ["5000000000000010"]
+			tasks: [{
+				id: "5000000000000021"
+				type: "kill"
+				entity: "cataclysm:ancient_remnant"
+				value: 1L
+			}]
+			rewards: [{
+				id: "5000000000000022"
+				type: "xp"
+				xp: 1000
+			}]
+		}
+		{
+			id: "5000000000000030"
+			x: 3.0d
+			y: 0.0d
+			title: "Yeraltı Canavarı"
+			subtitle: "The Leviathan boss'unu avla."
+			dependencies: ["5000000000000010"]
+			tasks: [{
+				id: "5000000000000031"
+				type: "kill"
+				entity: "cataclysm:the_leviathan"
+				value: 1L
+			}]
+			rewards: [{
+				id: "5000000000000032"
+				type: "item"
+				item: "relics:solid_snowball"
+			}]
+		}
+		{
+			id: "5000000000000040"
+			x: 4.5d
+			y: 0.0d
+			title: "Alevlerin Efendisi"
+			subtitle: "Ignis'i keserek gücünü kanıtla."
+			dependencies: [
+				"5000000000000020"
+				"5000000000000030"
+			]
+			tasks: [{
+				id: "5000000000000041"
+				type: "kill"
+				entity: "cataclysm:ignis"
+				value: 1L
+			}]
+			rewards: [
+				{
+					id: "5000000000000042"
+					type: "xp"
+					xp: 2000
+				}
+				{
+					id: "5000000000000043"
+					type: "item"
+					item: "minecraft:nether_star"
+				}
+			]
+		}
+	]
+}
