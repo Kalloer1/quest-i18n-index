@@ -545,6 +545,60 @@ serv00 的 SSH **拒绝 stdin 管道与 scp**（实测 50 KB / 300 KB / 20 KB ba
 跑批量时必须**每包跑完就清 `research/packs/<slug>/` 与 `research/tmp/`**，
 否则 346 个包 × 平均 1 MB 语言文件 = 约 350 MB，加上临时 zip 会很快撞配额。
 
+#### 2026-10-21 第一批 20 包实跑完成
+
+在 serv00 上跑完 20 个 `separate` 包（按体积分位选，0.1 MB ~ 400 MB）：
+
+| # | 包 | 耗时 | 译文 | 漏译 |
+|---|---|---|---|---|
+| 1 | tensura-true-aura | 24s | 1057/1057 | 0 |
+| 2 | braincells-magical-creation | 15s | 420/421 | 1 |
+| 3 | peace-of-mind-21-1 | 9s | 293/294 | 1 |
+| 4 | **tensura-waka-edition** | **1384s** | 42866/42944 | 78 |
+| 5 | cobblemon-colony | 218s | 3633/3656 | 23 |
+| 6 | pixelsprings-plus | 6s | 145/145 | 0 |
+| 7 | **fr3shpack-toomanymods** | **729s** | 12813/12913 | 100 |
+| 8 | scoobyland-create-and-friends | 30s | 329/386 | 57 |
+| 9 | a-lightweight-skyblock | 49s | 1438/1444 | 6 |
+| 10 | skytech-evolution | 135s | 1253/1253 | 0 |
+| 11 | overclock-tech-automation | 62s | 1556/1556 | 0 |
+| 12 | modern-revolutions | 115s | 531/536 | 5 |
+| 13 | bgv-adventure-survival | 149s | 2632/2636 | 4 |
+| 14 | jiromon-reborn | 7s | 191/191 | 0 |
+| 15 | muratcraft-v2 | 2s | 1/1 | 0 |
+| 16 | crazymc-a-special-apocalypse | 151s | 834/936 | 102 |
+| 17 | the-frozen-hell | 2s | 3/3 | 0 |
+| 18 | our-antarchy-craft | 124s | 1167/1167 | 0 |
+| 19 | dragoncraft | 134s | 1220/1223 | 3 |
+| 20 | maria-create-project | 5s | 67/68 | 1 |
+
+**20/20 全部成功，合计 73,246 条译文。** 闸门：**61 个产出 / 167,573 个键全绿**
+（24 条样式警告，不阻断）。站点 `downloadable` 47 → **67**，`gap-uncovered` 436 → 416。
+
+##### 本轮的两个关键实测
+
+**① 分片要全部翻完才落盘 → 大包看不到进度。**
+`tensura-waka-edition` 有 **42,944 条**（atm10 的 15 倍），跑了 23 分钟，
+期间 `research/par-out/<slug>/` 一直是空的。这不是卡死，是 `translatePackParallel`
+把全包翻完才写分片。风险：中途中断则全包白跑。
+**待改进**：改为边翻边落盘（每 `SHARD_SIZE` 条写一片）。
+
+**② 小包的“耗时”很多是下载而非翻译。**
+`muratcraft-v2` 1 条译文花 2 秒、`the-frozen-hell` 3 条花 2 秒 —— 这些包任务书里
+几乎全是指令与空串。反过来 `tensura-waka-edition` 4 万条占全批 58% 的时间。
+**346 包的时间预算不能按“平均”算**，得按译文总量算：全批 73,246 条 / 约 66 分钟
+= **1,110 条/分钟**，与之前本机实测的 1,083 条/分钟一致。
+
+##### 代码 bug：开关做了但没接上（已修）
+
+第一次开跑时发现 `translate-local.mjs` 调 `prepare-pack` 时**没传 `--quest-files-only`**，
+于是批量仍在整包下载。开关落在 `prepare-pack` 上、却没接到调用方 ——
+这类“功能做了但没接上”只有把参数构造变成可测对象才能拦住。
+已抽成 `prepareArgsForBatch` 纯函数 + 5 条测试（`e63286b`，npm test 407 → 412）。
+
+`embedded` 包刻意**不**开 Range：内嵌包必须拿到全部 `chapters/*.snbt` 才知道哪些有文本
+（atm10 是 82 个），逐个 Range 不如整包一次下完。
+
 ## 后果
 
 - 本清单是**唯一**的遗留事项权威来源；新增缺陷应追加到本文档，而不是散落在交接文件里。
