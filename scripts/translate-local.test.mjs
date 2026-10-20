@@ -14,7 +14,7 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
-import { stagedPathsForBatch } from './translate-local.mjs'
+import { stagedPathsForBatch, prepareArgsForBatch } from './translate-local.mjs'
 
 // 断言函数不存在时会 ImportError，正是我们要的红。
 // 去注释再匹配：注释里写「禁止 git add -A」不该被当成实现本身。
@@ -73,4 +73,42 @@ test('stagedPathsForBatch：每条都是仓库相对路径（不带盘符/反斜
     assert.ok(!/^[a-zA-Z]:/.test(p), `不应出现盘符：${p}`)
     assert.ok(!p.startsWith('/'), `不应是绝对路径：${p}`)
   }
+})
+
+// ---- 批量路必须把 Range 模式传给 prepare-pack ----
+//
+// 2026-10-21 实测踩到的坑：`translate-local` 调 `prepare-pack` 时没传 `--quest-files-only`，
+// 于是批量跑仍在整包下载（346 包 ≈ 14.8 GB），而只取语言文件只要约 67 MB。
+// 开关落在 prepare-pack 上、却没接到调用方 —— 这种「功能做了但没接上」只有测试能拦。
+
+test('prepareArgsForBatch：separate 包传 --quest-files-only（只取语言文件）', () => {
+  const args = prepareArgsForBatch({ slug: 'demo', platform: 'cf', layout: 'separate-single' })
+  assert.ok(args.includes('--quest-files-only'), 'separate 包应只取语言文件')
+  assert.ok(args.includes('--no-keep-zip'))
+})
+
+test('prepareArgsForBatch：embedded 包不传 --quest-files-only（章节文件太多）', () => {
+  // 内嵌包必须拿到全部 chapters/*.snbt 才知道哪些有文本（atm10 是 82 个），
+  // 逐个 Range 不如整包一次下完。
+  const args = prepareArgsForBatch({ slug: 'demo', platform: 'cf', layout: 'embedded' })
+  assert.ok(!args.includes('--quest-files-only'), '内嵌包应整包下载')
+})
+
+test('prepareArgsForBatch：Modrinth 包带 --platform mr', () => {
+  const args = prepareArgsForBatch({ slug: 'demo', platform: 'mr', layout: 'separate-single' })
+  const i = args.indexOf('--platform')
+  assert.ok(i >= 0, '应带 --platform')
+  assert.equal(args[i + 1], 'mr')
+})
+
+test('prepareArgsForBatch：CF 包不带 --platform（默认就是 cf）', () => {
+  const args = prepareArgsForBatch({ slug: 'demo', platform: 'cf', layout: 'separate-dir' })
+  assert.ok(!args.includes('--platform'), 'CF 是默认值，不必显式传')
+})
+
+test('prepareArgsForBatch：--ids 用该包的 slug', () => {
+  const args = prepareArgsForBatch({ slug: 'my-pack', platform: 'cf', layout: 'separate-single' })
+  const i = args.indexOf('--ids')
+  assert.ok(i >= 0)
+  assert.equal(args[i + 1], 'my-pack')
 })

@@ -198,6 +198,27 @@ const run = (cmd, args, env = {}) => execFileSync(cmd, args, {
   cwd: ROOT, stdio: 'inherit', env: { ...process.env, ...env },
 })
 
+/**
+ * 算出调 `prepare-pack` 的参数（纯函数，便于测）。
+ *
+ * 为什么抽出来：2026-10-21 踩到的坑是「开关做了但没接到调用方」——
+ * `prepare-pack` 已经支持 `--quest-files-only`，但 `translate-local` 调它时没传，
+ * 于是批量仍在整包下载（346 包 ≈ 14.8 GB），而只取语言文件只要约 67 MB。
+ * 这种错误只有把参数构造本身变成可测对象才能拦住。
+ *
+ * `embedded` 刻意**不**开 Range：内嵌包必须拿到全部 `chapters/*.snbt`
+ * 才知道哪些有文本（atm10 是 82 个），逐个 Range 反而不如整包一次下完。
+ *
+ * @param {{slug: string, platform?: string, layout?: string}} pack
+ * @returns {string[]}
+ */
+export function prepareArgsForBatch({ slug, platform, layout }) {
+  const args = ['scripts/prepare-pack.mjs', '--ids', slug, '--no-keep-zip']
+  if (platform === 'mr') args.push('--platform', 'mr')
+  if (layout !== LAYOUT.EMBEDDED) args.push('--quest-files-only')
+  return args
+}
+
 /** 把并行翻译的块合并写回 patches/<slug>/（复用 pipeline 的 buildOutputs）。 */
 async function writePatch(slug, layout, runId) {
   const { loadPackUnits } = await import('./translate-parallel.mjs')
@@ -294,10 +315,17 @@ async function main() {
     const started = Date.now()
     try {
       // 1) 下载解包
+      //
+      // `--quest-files-only`：只 Range 取任务书文件，不下载整包。
+      // 实测（2026-10-21）41 个已解包包，`en_us.snbt` 合计 6.3 MB / 整包 1392 MB = **0.453%**。
+      // 346 个待翻 separate 包只需约 384 次文件 Range / 67 MB，整包下载要 14.8 GB。
+      // 它在 Range 失败时会自动回退整包，所以这里无条件开。
+      //
       // `--no-keep-zip`：批量跑时不留 zip。zip 的唯一价值是「重新解包时不用再下载」，
-      // 而 `research/packs/<slug>/` 下的 `.snbt` 一旦存在，prepare-pack 本来就跳过下载 —— 
+      // 而 `research/packs/<slug>/` 下的 `.snbt` 一旦存在，prepare-pack 本来就跳过下载 ——
       // zip 再也用不上。实测 2026-10-20 积了 1.5 GB / 33 个，346 个包会再攒约 15 GB。
-      run('node', ['scripts/prepare-pack.mjs', '--ids', p.slug, '--no-keep-zip'], { CF_KEY: process.env.CF_KEY ?? '' })
+      const prepArgs = prepareArgsForBatch(p)
+      run('node', prepArgs, { CF_KEY: process.env.CF_KEY ?? '' })
       // 2) 并行翻译
       // 每个包一份独立 runId：分片文件名带它，`writePatch` 只合并本轮的分片（D11）。
       const runId = newRunId()
