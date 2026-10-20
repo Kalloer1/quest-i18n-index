@@ -51,8 +51,8 @@ export { DEFAULT_LANES }
  */
 export const SHARD_SIZE = 200
 
-/** 汉字判定。用来把「模型原样回英文」的条目单独计数（模组名不算失败）。 */
-const CJK = /[㐀-鿿豈-﫿]/ // 3400-9FFF, F900-FAFF
+/** 汉字判定（3400-9FFF 与 F900-FAFF）。用来把「模型原样回英文」的条目单独计数，模组名不算失败。 */
+const CJK = /[㐀-鿿豈-﫿]/
 
 const arg = (name, dflt) => {
   const i = process.argv.indexOf(`--${name}`)

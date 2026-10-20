@@ -53,7 +53,7 @@ export const TRANSLATE_MAX_TOKENS = 4000
 /** 温度 0：逐条翻译不需要多样性，越低越不容易漂格式。 */
 export const TRANSLATE_TEMPERATURE = 0
 
-/** 传输失败的退避（毫秒）。并发下偶发 5xx，两次足够。 */
+/** 传输失败的退避（毫秒）。并发下偶发 5xx，两次足够。单测传 `[0, 0]` 跳过等待。 */
 export const TRANSLATE_RETRY_BACKOFF_MS = [2000, 4000]
 
 /**
