@@ -504,6 +504,47 @@ Found by stepping on Infested Sculk
 - 内嵌布局的文本量（252 条）远小于分离式单文件（atm10 有 2784 条），
   因为内嵌包的 `chapters/*.snbt` 里大部分字段不是文案。
 
+#### 2026-10-21 两条新链路在 serv00 实跑验证
+
+代码已落地并推送（`5925926`，`npm test` 385 → **407**）。在 serv00 上实跑两个新分支：
+
+##### Range 只取语言文件（`--quest-files-only`）
+
+```
+$ node scripts/prepare-pack.mjs --ids the-new-exploration --quest-files-only --no-keep-zip
+[the-new-exploration] 只取任务书文件（Range，不下载整包）：The New Exploration-1.2.5.zip
+[the-new-exploration] Range 取到 10 个任务书文件，布局 separate-single（enFiles=1 zhFiles=0）
+```
+
+产物 103 KB / 10 个 `.snbt`，整包是 0.2 MB。**全程未下载整包。**
+
+##### Modrinth `.mrpack`（`--platform mr`）
+
+```
+$ node scripts/prepare-pack.mjs --ids better-mc-fabric-bmc2 --platform mr --no-keep-zip
+[better-mc-fabric-bmc2] 下载 BMC2 [FABRIC] 1.20.1 v40.mrpack（63.2 MB）
+[better-mc-fabric-bmc2] 解出 28 个任务书文件，布局 embedded（enFiles=20 zhFiles=0）
+```
+
+`overrides/` 被 `toOutputPath` 正确剥掉，内嵌布局识别正确。
+
+##### 代码如何到 serv00（下次照做）
+
+serv00 的 SSH **拒绝 stdin 管道与 scp**（实测 50 KB / 300 KB / 20 KB base64 全部
+`Connection closed`），所以不能用 `scp` 或 `ssh 'cat >'` 传文件。
+**正确做法（用户指定）**：代码推 GitHub，serv00 上 `git clone` 拉。
+
+私有仓库需要凭据。本次用 `gh auth token` 的 token 拼进 clone URL（`x-access-token:<t>@github.com/...`），
+克隆后**立即 `git remote set-url` 去掉 token**，并清掉 shell history。
+**待办**：该 token 曾明文出现在 pane 输出里，建议在 GitHub 设置里吊销重发
+（`gh auth refresh` 被网络挡住，未能自动轮换）。
+
+##### serv00 空间约束（用户提醒）
+
+个人免费用户只有 **3 GB**。当前 `~/qsrc` 49 MB，整个 home 63 MB。
+跑批量时必须**每包跑完就清 `research/packs/<slug>/` 与 `research/tmp/`**，
+否则 346 个包 × 平均 1 MB 语言文件 = 约 350 MB，加上临时 zip 会很快撞配额。
+
 ## 后果
 
 - 本清单是**唯一**的遗留事项权威来源；新增缺陷应追加到本文档，而不是散落在交接文件里。
