@@ -72,16 +72,27 @@ export function cloneLocal(target) {
   })
 }
 
-/** 跑一步命令，返回退出码（不抛错，让调用方统一汇总）。 */
+/**
+ * 跑一步命令，返回退出码（不抛错，让调用方统一汇总）。
+ *
+ * `shell` 只在 Windows 上开：`npm` 在那上面是 `npm.cmd` 的 shim，
+ * `execFileSync('npm', ...)` 会直接 ENOENT（实测），而 `npm.cmd` 在
+ * shell:false 下又是 EINVAL（Node 的 Windows 安全限制）。
+ * 本脚本的命令与参数都是写死的常量，不开 shell 的注入风险在这里不存在。
+ */
 function runStep(step, cwd) {
   process.stdout.write(`\n▶ ${step.name}: ${step.cmd} ${step.args.join(' ')}\n`)
   const started = Date.now()
   try {
-    execFileSync(step.cmd, step.args, { cwd, stdio: 'inherit' })
+    execFileSync(step.cmd, step.args, {
+      cwd,
+      stdio: 'inherit',
+      shell: process.platform === 'win32',
+    })
     console.log(`✔ ${step.name}（${((Date.now() - started) / 1000).toFixed(1)}s）`)
     return { name: step.name, code: 0 }
   } catch (e) {
-    console.error(`✘ ${step.name} 失败（退出码 ${e.status ?? '?'}）`)
+    console.error(`✘ ${step.name} 失败（退出码 ${e.status ?? e.code ?? '?'}）`)
     return { name: step.name, code: e.status ?? 1 }
   }
 }

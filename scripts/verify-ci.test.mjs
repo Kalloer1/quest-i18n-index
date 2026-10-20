@@ -71,3 +71,16 @@ test('judgeRun：空结果不算通过（没跑过就没有资格说绿）', () 
   const r = judgeRun([])
   assert.equal(r.ok, false)
 })
+
+test('buildSteps：命令与参数都是写死的常量（shell:true 不引入注入面）', () => {
+  // Windows 上必须 shell:true 才能跑 npm（它是 .cmd shim，实测 execFileSync('npm') → ENOENT）。
+  // 前提是所有命令与参数都是本文件里的字面量，绝不拼接外部输入。
+  for (const s of buildSteps()) {
+    assert.equal(typeof s.cmd, 'string')
+    assert.ok(Array.isArray(s.args))
+    for (const a of s.args) {
+      assert.equal(typeof a, 'string')
+      assert.ok(!/[;&|`$<>]/.test(a), `参数不得含 shell 元字符：${a}`)
+    }
+  }
+})
