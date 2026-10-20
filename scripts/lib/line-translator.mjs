@@ -247,22 +247,30 @@ export async function translateText(text, {
  * @param {string[]} texts
  * @param {{
  *   lanes?: number, translateFn?: (text: string, opts: {emphasizeCodes: boolean}) => Promise<string|null>,
+ *   onResult?: (index: number, value: string|null) => void,
  * } & Parameters<typeof translateText>[1]} [opts]
  * @returns {Promise<(string|null)[]>}
  */
 export async function translateTexts(texts, {
   lanes = DEFAULT_LANES,
   translateFn = translateText,
+  onResult,
   ...opts
 } = {}) {
   const list = Array.isArray(texts) ? texts.map((t) => String(t ?? '')) : []
   const results = new Array(list.length).fill(null)
 
+  // `onResult` 让调用方能「边翻边落盘」。
+  // 为何需要（实测 2026-10-21，serv00）：`tensura-waka-edition` 有 42,944 条、跑 23 分钟，
+  // 旧实现要等 `translateTexts` 全量返回才写分片 —— 期间 `par-out/` 一直是空的，
+  // 外部看不出进度，中途中断则整包白跑。
+  const emit = typeof onResult === 'function' ? onResult : () => {}
+
   // 不需要请求的项先就地结清，剩下才是真正要排队的。
   const pending = []
   for (let i = 0; i < list.length; i++) {
-    if (list[i].trim() === '') results[i] = ''
-    else if (isDirective(list[i])) results[i] = list[i]
+    if (list[i].trim() === '') { results[i] = ''; emit(i, '') }
+    else if (isDirective(list[i])) { results[i] = list[i]; emit(i, list[i]) }
     else pending.push(i)
   }
   if (!pending.length) return results
@@ -281,6 +289,7 @@ export async function translateTexts(texts, {
           // 单条传输失败只影响这一条：留 null，由上层回退英文或计数。
           results[i] = null
         }
+        emit(i, results[i])
       }
     }
     const workers = Math.max(1, Math.min(lanes, items.length))

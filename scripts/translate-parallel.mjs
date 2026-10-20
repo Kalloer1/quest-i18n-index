@@ -125,22 +125,36 @@ export async function translatePackParallel(slug, {
   const { units, layout } = loaded
 
   const translateFn = callFn ?? ((text, opts) => translateText(text, opts))
-  const outs = await translateTexts(units.map((u) => u.text), { lanes, translateFn })
 
   const dir = join(outDir, slug)
   mkdirSync(dir, { recursive: true })
 
-  // 按单元原序切成固定大小的分片。
-  //
-  // 形状 `{slug, chunk, runId, keys, outs}` 是 `translate-local.mjs` 的读盘契约。
-  // `runId` 是 ADR-0009 D11 的修法：文件名与内容都带上本轮标识，
+  // 分片文件名与内容都带 `runId`（ADR-0009 D11）：
   // `mergeShards` 只合并同 runId 的分片，上一轮遗留的普通分片不会被静默混入。
   // 不传 `runId` 时退回旧的无标识文件名（保持向后兼容，便于手工调试）。
   const effectiveRunId = runId ?? null
   const shardName = (n) => effectiveRunId
     ? `chunk-${String(n).padStart(4, '0')}.${effectiveRunId}.json`
     : `chunk-${String(n).padStart(4, '0')}.json`
-  for (let start = 0, n = 0; start < units.length; start += SHARD_SIZE, n++) {
+
+  // ---- 边翻边落盘 ----
+  //
+  // 为何不能等全量返回再写（实测 2026-10-21，serv00）：`tensura-waka-edition`
+  // 有 42,944 条、跑 23 分钟，期间 `research/par-out/<slug>/` 一直是空的。
+  // 外部看不出进度，中途中断则整包白跑。
+  //
+  // 做法：每个分片维护一个「还没落位的槽位数」，归零就立刻写盘。
+  // 分片按单元**原序**切（不是翻译的调度序，调度序是长文本优先），
+  // 所以第 n 片要等它那 200 个位置都填上才完整。
+  const shardCount = Math.max(1, Math.ceil(units.length / SHARD_SIZE))
+  const remaining = new Array(shardCount).fill(0)
+  for (let i = 0; i < units.length; i++) remaining[Math.floor(i / SHARD_SIZE)]++
+  const written = new Set()
+  const outs = new Array(units.length).fill(null)
+
+  const writeShard = (n) => {
+    if (written.has(n)) return
+    const start = n * SHARD_SIZE
     const part = units.slice(start, start + SHARD_SIZE)
     writeFileSync(
       join(dir, shardName(n)),
@@ -152,7 +166,23 @@ export async function translatePackParallel(slug, {
         outs: outs.slice(start, start + SHARD_SIZE),
       }, null, 1) + '\n',
     )
+    written.add(n)
   }
+
+  await translateTexts(units.map((u) => u.text), {
+    lanes,
+    translateFn,
+    onResult: (i, value) => {
+      outs[i] = value
+      const n = Math.floor(i / SHARD_SIZE)
+      remaining[n]--
+      if (remaining[n] === 0) writeShard(n)
+    },
+  })
+
+  // 兵子：正常路径下 `onResult` 已把每片写完；这里只补「一个 onResult 都没收到」的边缘情况
+  // （例如 units 为空）。重复写同一片无意义，`written` 已去重。
+  for (let n = 0; n < shardCount; n++) writeShard(n)
 
   let ok = 0
   let missing = 0

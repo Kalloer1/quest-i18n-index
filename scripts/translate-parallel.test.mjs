@@ -506,3 +506,91 @@ test('translateText：%% 数量差异不算内容失败（样式差异，闸门�
   const out = await translateText('100%% sure', { fetchImpl, retryBackoffMs: [0, 0] })
   assert.equal(out, '百分之百')
 })
+
+// ---- 边翻边落盘：不能等全包翻完才写分片 ----
+//
+// 实测（2026-10-21，serv00）`tensura-waka-edition` 有 42,944 条，跑了 23 分钟，
+// 期间 `research/par-out/<slug>/` 一直是空的 —— 旧实现是 `translateTexts` 全量返回后
+// 才一次性写所有分片。后果：中途中断则整包白跑，且外部完全看不出进度。
+//
+// 现在要求：每凑满 SHARD_SIZE 条（且是该分片最后一条落位）就立刻落盘。
+
+test('translatePackParallel：首个分片在整包翻完之前就已落盘（边翻边写）', async () => {
+  const root = mkdtempSync(join(tmpdir(), 'par-stream-'))
+  const out = mkdtempSync(join(tmpdir(), 'par-stream-out-'))
+  try {
+    // 450 条 → 3 个分片（200/200/50）。
+    // 文本必须**等长**：`translateTexts` 按长度降序调度（长文本先发），
+    // 长度不齐会让调度序与索引序错开，第 0 片就不是最先填满的那一片，
+    // 测的就不再是「边翻边落盘」而是调度顺序。
+    const entries = []
+    for (let i = 0; i < 450; i++) {
+      const id = String(i).padStart(3, '0')
+      entries.push([`q${id}.title`, `text ${id}`])
+    }
+    makePack(root, 'p1', entries)
+
+    // 用计数而不是计时判定：前 200 条翻完后，让第 201 条一直挂着，
+    // 直到我们确认第 1 片已落盘才放行。这样与机器快慢无关。
+    let served = 0
+    let releaseLater = null
+    const laterGate = new Promise((res) => { releaseLater = res })
+    const dir = join(out, 'p1')
+
+    const p = translatePackParallel('p1', {
+      outDir: out, packsDir: root, lanes: 1, runId: 'rr',
+      callFn: async (t) => {
+        served++
+        if (served > 200) await laterGate   // 卡住第 201 条之后的所有请求
+        return '你好'
+      },
+    })
+
+    // 等第 1 片出现（最多 5 秒）。此刻 served 应恰好停在 200 附近 —— 后半被 gate 卡住。
+    let sawFirstShard = false
+    for (let i = 0; i < 100; i++) {
+      if (existsSync(dir) && readdirSync(dir).some((f) => f.startsWith('chunk-0000.'))) { sawFirstShard = true; break }
+      await new Promise((r) => setTimeout(r, 50))
+    }
+    assert.ok(sawFirstShard, '首个分片应在整包翻完前落盘')
+    assert.ok(served <= 201, `第 1 片落盘时应还没翻完后半（实际已发 ${served} 条请求）`)
+
+    releaseLater()
+    const r = await p
+    assert.equal(r.ok, 450)
+    assert.equal(readdirSync(dir).filter((f) => f.endsWith('.rr.json')).length, 3)
+  } finally {
+    rmSync(root, { recursive: true, force: true })
+    rmSync(out, { recursive: true, force: true })
+  }
+})
+
+test('translatePackParallel：中断后已落盘的分片仍在（可续跑）', async () => {
+  const root = mkdtempSync(join(tmpdir(), 'par-resume-'))
+  const out = mkdtempSync(join(tmpdir(), 'par-resume-out-'))
+  try {
+    const entries = []
+    for (let i = 0; i < 400; i++) entries.push([`q${i}.title`, `text ${i}`])
+    makePack(root, 'p1', entries)
+
+    const ctrl = new AbortController()
+    const p = translatePackParallel('p1', {
+      outDir: out, packsDir: root, lanes: 4, runId: 'rr',
+      callFn: async (t) => {
+        const n = Number(/text (\d+)/.exec(t)?.[1] ?? 0)
+        if (n >= 200) {
+          ctrl.abort()               // 后半段直接中断
+          throw new Error('aborted')
+        }
+        return '你好'
+      },
+    })
+    await p.catch(() => {})
+    const dir = join(out, 'p1')
+    const shards = existsSync(dir) ? readdirSync(dir).filter((f) => f.endsWith('.rr.json')) : []
+    assert.ok(shards.length >= 1, '中断前已落盘的分片必须留下')
+  } finally {
+    rmSync(root, { recursive: true, force: true })
+    rmSync(out, { recursive: true, force: true })
+  }
+})
