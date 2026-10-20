@@ -428,6 +428,82 @@ mediafilez.forgecdn.net                  → 本机 TCP 443 连不上（超时�
 但这需要 `prepare-pack` 支持 Modrinth 的 `.mrpack` 格式（当前只处理 CF 的 zip），
 是一个独立工程量，**未在本轮实现**。
 
+#### 2026-10-21 端到端验证：serv00 跑通了 CF 与 MD 两条链路
+
+在 Herdr 里开了一个常驻 serv00 会话（`gfdrgfd@s9`），把「下载 → 解包 → 翻译」
+整条链路跑了一遍。**结论：CF 的 CDN 在 serv00 上可达，MD 全链路也跑通了。**
+
+##### 三台机器的 CDN 可达性（同一时刻）
+
+| 主机 | `mediafilez.forgecdn.net` | 说明 |
+|---|---|---|
+| 本机（Windows） | TCP 443 **超时** | 整包下不来 |
+| `win11-direct`（10.77.77.2） | **超时** | 同本机 |
+| `p20pro`（手机） | **403** | 网络可达 |
+| **serv00 `gfdrgfd`** | **403 → 真实文件 200** | **可用** |
+
+关键区分：**403 不等于不可达**。mediafilez 的根路径本来就禁访（S3 返回
+`<Error><Code>AccessDenied</Code></Error>`），要拿**具体文件**才看得出能不能下。
+本机是 TCP 都连不上（超时），serv00 是能连上、只是路径不对。
+
+##### CF 链路实测（serv00）
+
+```
+GET https://edge.forgecdn.net/files/5540/618/The%20New%20Exploration-1.2.5.zip
+→ HTTP 200, 163,843 bytes, 0.83s
+```
+
+解包后得到 10 个 `.snbt`（含 `lang/en_us.snbt`），56 条可译文本。
+
+##### MD 链路实测（serv00）
+
+按用户要求“随便探索一个 MD 站的包”：
+
+1. `GET api.modrinth.com/v2/search?facets=[["project_type:modpack"]]` → 25 个热门包
+2. 逐个用 **Range 读 mrpack 尾部中央目录**，找含 `ftbquests` 的 —— 这一步只花几十 KB/包，
+   不用下整包。命中 3 个：
+
+   | slug | 体积 | `.snbt` 数 |
+   |---|---|---|
+   | `better-mc-fabric-bmc2` | 63.2 MB | 18 |
+   | `better-mc-forge-bmc4` | 86.2 MB | 24 |
+   | `prominence-2-fabric` | 404.9 MB | 3 |
+
+3. 下 `better-mc-fabric-bmc2`（63 MB，`cdn.modrinth.com`）→ 解出 35 个 `.snbt`，
+   其中 20 个在 `chapters/`（**内嵌布局**）
+4. 提取 252 条可译文本（`title` 148 / `subtitle` 104）
+5. 24 路并发翻译 → **252/252 成功，0 失败，11.2 秒，1351 条/分钟**
+
+样例（注意 `&` 色码保留得很好）：
+
+```
+Enter The &8&lOtherside          => 进入 &8&l另一个世界
+Grants the wearer a permanent &3speed effect
+                                 => 赋予穿戴者永久性的 &3速度效果
+Found by stepping on Infested Sculk
+                                 => 踩在被感染的潜声方块上即可找到
+```
+
+##### 两条链路的共同结论
+
+| 指标 | CF（serv00） | MD（serv00） |
+|---|---|---|
+| 下载 | 200 / 0.83s（163 KB） | 200 / 33s（96 MB） |
+| 解包 | 10 个 `.snbt` | 35 个 `.snbt` |
+| 翻译 | 56/56 ok，2.6s，1295 条/分 | 252/252 ok，11.2s，1351 条/分 |
+| 免费层 | **200，1.13s** | 同 |
+
+**serv00 同时能到 mediafilez 和 index-translate，两条链路都不需要额外代理。**
+磁盘 `/tmp` 有 8.3 GB 可用（已用 875 MB），单个包解包后约 130 MB。
+
+##### 本轮观察到的质量点
+
+- 252 条里有 **8 条色码数量不符**（3.2%），与 atm10 那轮的 4/55 同量级；
+  `translateText` 的 `<cN>` 占位符核对会拦住这类（这次探针没做遮蔽，故直接暴露）。
+- **3 条未译**：模型把 `Warden Leggings` 这类专有名词原样返回，符合提示词第 5 条，不算缺陷。
+- 内嵌布局的文本量（252 条）远小于分离式单文件（atm10 有 2784 条），
+  因为内嵌包的 `chapters/*.snbt` 里大部分字段不是文案。
+
 ## 后果
 
 - 本清单是**唯一**的遗留事项权威来源；新增缺陷应追加到本文档，而不是散落在交接文件里。
