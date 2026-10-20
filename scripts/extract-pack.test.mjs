@@ -87,6 +87,22 @@ test('isQuestFile：只认任务书相关 .snbt，忽略其他文件', () => {
   assert.equal(isQuestFile('overrides/config/ftbquests/quests/readme.txt'), false)
 })
 
+test('isQuestFile：非中英语言的**目录**也不解出', () => {
+  // 实测 2026-10-20：ATM10 这类包同时带 lang/en_us/ 与 lang/ja_jp/、lang/ko_kr/…
+  // 各一整份章节目录。旧实现只拦 `lang/pt_br.snbt` 这种单文件，
+  // 目录式外文全部命中 `ftbquests/.*\.snbt` 被解出，33 个包累计 29 MB 噪声
+  // （总 38.3 MB 里只有 9.3 MB 是 en_us）。它们既不会进基准键集，
+  // 也不该被 release.mjs 提交进仓库。
+  const base = 'config/ftbquests/quests/lang'
+  for (const lang of ['ja_jp', 'ko_kr', 'es_es', 'fr_fr', 'pt_br', 'pl_pl', 'tr_tr', 'nb_no', 'recovery']) {
+    assert.equal(isQuestFile(`${base}/${lang}/chapter.snbt`), false, `${lang} 目录不该解出`)
+    assert.equal(isQuestFile(`${base}/${lang}/chapters/a.snbt`), false, `${lang} 章节目录不该解出`)
+  }
+  // 中英两种照旧解出。
+  assert.equal(isQuestFile(`${base}/en_us/chapters/a.snbt`), true)
+  assert.equal(isQuestFile(`${base}/zh_cn/chapters/a.snbt`), true)
+})
+
 test('toOutputPath：剥掉顶层包装目录与 overrides/，锚定任务书根', () => {
   assert.equal(
     toOutputPath('SkyFactory5-5.0.8/overrides/config/ftbquests/quests/chapters/x.snbt'),

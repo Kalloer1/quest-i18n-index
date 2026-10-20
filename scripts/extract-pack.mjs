@@ -49,13 +49,20 @@ export const NEEDED_PATTERNS = [
 ]
 
 /**
- * 已知的非中英语言单文件（`lang/pt_br.snbt` 这类），**不解出**。
+ * 已知的非中英语言（`lang/pt_br.snbt`、`lang/ja_jp/chapters/a.snbt`），**不解出**。
  *
  * 为何要排除：实测 All of Create 同时带 `lang/en_us.snbt` 与 `lang/pt_br.snbt`。
  * 解出葡语只会让校验器把它当基准键集、要求我们也翻葡语；
  * 本站只产出简体中文，其余语言对流水线是噪声。
+ *
+ * 2026-10-20 修正：旧口径只拦**单文件**（`lang/pt_br.snbt`），拦不住**目录式**外文
+ * （`lang/ja_jp/chapters/*.snbt`）。ATM10 这类包带 9 份完整外文章节目录，
+ * 全部命中 `ftbquests/.*\.snbt` 被解出；33 个包累计 29 MB，
+ * 而总 38.3 MB 里只有 9.3 MB 是 en_us。它们既进不了基准键集，
+ * 又会被 release.mjs 原样提交进仓库。
+ * 现在两种形态都拦：`lang/<非中英>/` 目录与 `lang/<非中英>.snbt` 单文件。
  */
-export const OTHER_LANG_SINGLE = /(^|\/)lang\/(?!en_us|zh_cn)[^/]+\.snbt$/i
+export const OTHER_LANG_SINGLE = /(^|\/)lang\/(?!en_us|zh_cn)([^/]+\.snbt|[^/]+\/)/i
 
 /** 该 zip 条目是否是任务书相关文件（需要解出）。 */
 export function isQuestFile(name) {
