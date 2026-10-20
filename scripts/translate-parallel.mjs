@@ -1,88 +1,58 @@
 #!/usr/bin/env node
 /**
- * 并行翻译：把整合包的待译文本切成块，多路并发调免费层，最后合并写回。
+ * 并行翻译：把一个整合包的待译文本**一条一条**并发送免费层，再按组分片落盘。
  *
- * ## 为什么可以并行（实测推翻了之前的结论）
+ * ## 为什么不再分块 / 不再补翻漏译行（实测 2026-10-20）
  *
- * 早先观察到「零间隔串行连发第 3 次就 504」，据此定下 8 秒强制间隔。
- * 但并发探测（`probe-concurrency.mjs`，515 次真实调用）显示：
+ * 换到 `index-mt-9b-syllable` 之后，分块这件事直接失效：
+ * 给它多条 `L<n>=` 行，**它只回第一行**，3/3 次复现 —— 30 条一块只出 1 条。
+ * 于是「按字符预算切块」「漏译行单独补翻（MAX_MISSING_ROUNDS=8）」全部失去意义：
+ * 一次一条没有行可丢，缺的就换一套更重的占位符措辞补扫一轮，仍缺就留英文。
  *
- * | 并发 | 成功/总 | 吞吐 |
- * | 5   | 15/15   | 1.60 块/秒 |
- * | 12  | 36/36   | 3.94 块/秒 |
- * | 32  | 96/96   | 7.93 块/秒 |
- * | 64  | 128/128 | 13.67 块/秒 |
- *
- * **零失败，延迟只从 3.0s 升到 4.6s。**
- * 所以真正的变量不是「频度」而是「同一连接上的连续请求」——
- * 多路并发反而天然形成了间隔。
+ * 吞吐不是问题：lanes=24/32/48 实测吞吐完全一样（19.7 req/s），零 HTTP 错误，
+ * 瓶颈在服务端而不在我们这边。24 路够用，且在途请求最少。
+ * 最长文本 1251 字符、最坏延迟 8.7s；短文本 p50 约 0.5s。
  *
  * ## 与 pipeline.mjs 的关系
  *
- * `pipeline.mjs` 是串行版（单包跑完再下一个），适合 CI 与调试。
- * 本脚本是并行版，只替换「翻译」这一段：解包、打包、状态回写仍复用原有脚本。
+ * `pipeline.mjs` 是串行版（35B 批量模式，30 条一块），适合 CI 与调试。
+ * 本脚本是并行版，只替换「翻译」这一段，解包/打包/状态回写仍复用原有脚本。
  *
  * ## 为什么产物写盘而不是直接出补丁
  *
  * 并行下多个包同时写 `glossary.json` 必然损坏（它是跨包累积的资产）。
- * 故本脚本只产出「每块译文」到 `research/par-out/<slug>/`，
- * 由调用方（或后续的合并步骤）串行写回 glossary 与 patches。
+ * 故本脚本只产出译文分片到 `research/par-out/<slug>/`，
+ * 由调用方（`translate-local.mjs`）串行写回 glossary 与 patches。
  *
  * 用法：
- *   node scripts/translate-parallel.mjs --slug a,b,c --lanes 12
- *   node scripts/translate-parallel.mjs --platform cf --limit 20 --lanes 16
+ *   node scripts/translate-parallel.mjs --slug a,b,c --lanes 24
+ *   node scripts/translate-parallel.mjs --platform cf --limit 20 --lanes 24
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, statSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
-import { callFreeTier, FREE_TIER_MIN_INTERVAL_MS } from './lib/free-tier.mjs'
-import { shieldColorCodes, unshieldColorCodes } from './lib/format-codes.mjs'
 import { extractPack, sourceFileNames } from './lib/quest-files.mjs'
 import { LAYOUT } from './lib/candidates.mjs'
-import { CHUNK_LINES } from './pipeline.mjs'
+import { translateTexts, translateText, DEFAULT_LANES } from './lib/line-translator.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const PACKS_DIR = join(ROOT, 'research/packs')
 const OUT_DIR = process.env.PAR_OUT || join(ROOT, 'research/par-out')
 const DATASET = join(ROOT, 'research/index-dataset.json')
 
-/** 默认并发。实测 12 路是吞吐/延迟的甜点（3.94 块/秒，p50 仍 < 3s）。 */
-export const DEFAULT_LANES = 12
-
-/** 单块失败重试次数（并发下偶发 5xx 很常见，重试成本低）。 */
-export const MAX_RETRIES = 2
+export { DEFAULT_LANES }
 
 /**
- * 漏译行的补翻轮数。
+ * 每个分片的条数。
  *
- * 为何必须有这一层（实测 2026-10-19，aoc 同一批 30 条重复 5 次）：
- *   漏译数在 `11, 0, 17, 0, 14` 之间剧烈波动 ——
- *   这是免费层的**随机丢行**，不是占位符、不是分块、不是长文本。
- *
- * 但丢行是随机的，所以**重试几乎必然成功**：
- *   实测三轮：首轮漏 14/20/15 条，经 2~4 轮「只重试漏掉的行」后
- *   **最终全部补回，漏译 0**。
- *
- * 成本极低：只发漏掉的那几条，不是重发整块。
+ * 这个数字现在**只影响落盘粒度**（中断损失、`translate-local` 读盘的内存），
+ * 不影响请求形态 —— 请求永远是一条文本一个。200 条一组：450 条的包出 3 个文件，
+ * 单文件既不至于小到上千个句柄，也不至于中断一次丢太多。
  */
-export const MAX_MISSING_ROUNDS = 8
+export const SHARD_SIZE = 200
 
-/**
- * 单块字符预算。
- *
- * 为何按字符而不按条数分块（实测 2026-10-19，aoc 948 条）：
- *   - 按「30 条」分块时漏译率 42%，且**分布极不均**：
- *     全是 title 的块漏 0 条，含 9 个 quest_desc + 11 个 subtitle 的块漏 27 条。
- *   - 根因：任务书文本长度差 10 倍以上（p50 27 字符，max 415；
- *     最长 30 条合计 7513 字符，最短 30 条合计 0）。
- *     长文本块会把输出撞到 `max_tokens: 8192` 上限，后面几行被截断。
- *
- * 按字符预算分块后，每块的输出量大致恒定，不会再出现「某块全丢」。
- */
-export const CHUNK_CHAR_BUDGET = 1200
-
-/** 单块条数上限（避免全是空串/极短文本时切出上千条一块）。 */
-export const CHUNK_MAX_ITEMS = 40
+/** 汉字判定。用来把「模型原样回英文」的条目单独计数（模组名不算失败）。 */
+const CJK = /[㐀-鿿豈-﫿]/ // 3400-9FFF, F900-FAFF
 
 const arg = (name, dflt) => {
   const i = process.argv.indexOf(`--${name}`)
@@ -102,35 +72,6 @@ function listSnbt(dir, base = dir) {
     else if (/\.snbt$/i.test(name)) out.push(full.slice(base.length + 1).replace(/\\/g, '/'))
   }
   return out
-}
-
-/**
- * 按字符预算切块。
- *
- * 同时受两个上限约束：字符总量与条数。
- * 空串/极短文本不占预算但计数，故必须有条数上限兜底。
- *
- * @param {Array<{key:string,text:string}>} units
- * @param {{charBudget?: number, maxItems?: number}} [opts]
- * @returns {Array<Array<{key:string,text:string}>>}
- */
-export function chunkByChars(units, { charBudget = CHUNK_CHAR_BUDGET, maxItems = CHUNK_MAX_ITEMS } = {}) {
-  const chunks = []
-  let cur = []
-  let used = 0
-  for (const u of units) {
-    const len = (u.text ?? '').length
-    // 单条就超预算时独占一块（不能无限堆积）。
-    if (cur.length && (used + len > charBudget || cur.length >= maxItems)) {
-      chunks.push(cur)
-      cur = []
-      used = 0
-    }
-    cur.push(u)
-    used += len
-  }
-  if (cur.length) chunks.push(cur)
-  return chunks
 }
 
 /**
@@ -155,96 +96,67 @@ export function loadPackUnits(slug, packsDir = PACKS_DIR) {
 }
 
 /**
- * 把一个整合包的所有块并发翻译。
- *
- * 每块成功后立刻落盘，中断不丢已完成的部分。
+ * 把一个整合包的所有单元逐条并发翻译。
  *
  * @param {string} slug
- * @param {{lanes?: number, charBudget?: number, maxChunkItems?: number, outDir?: string, packsDir?: string, callFn?: Function}} [opts]
- * @returns {Promise<{slug:string, layout:string, chunks:number, ok:number, failed:number, missing:number}>}
+ * @param {{
+ *   lanes?: number, outDir?: string, packsDir?: string,
+ *   callFn?: (text: string, opts: {emphasizeCodes: boolean}) => Promise<string|null>,
+ * }} [opts]
+ * @returns {Promise<{
+ *   slug: string, layout: string, total: number, ok: number, missing: number,
+ *   untranslated: number, skipped: number, directives: number,
+ * }>}
  */
 export async function translatePackParallel(slug, {
   lanes = DEFAULT_LANES,
-  charBudget = CHUNK_CHAR_BUDGET,
-  maxChunkItems = CHUNK_MAX_ITEMS,
   outDir = OUT_DIR,
   packsDir = PACKS_DIR,
-  callFn = callFreeTier,
+  callFn,
 } = {}) {
   const loaded = loadPackUnits(slug, packsDir)
   if (!loaded) throw new Error(`${slug}：research/packs/${slug} 不存在或没有任务书文件`)
   const { units, layout } = loaded
 
-  // 按字符预算切块（不按条数：长文本会把输出撞到 max_tokens 上限）。
-  const chunks = chunkByChars(units, { charBudget, maxItems: maxChunkItems })
+  const translateFn = callFn ?? ((text, opts) => translateText(text, opts))
+  const outs = await translateTexts(units.map((u) => u.text), { lanes, translateFn })
 
   const dir = join(outDir, slug)
   mkdirSync(dir, { recursive: true })
 
-  let ok = 0
-  let failed = 0
-  let missing = 0
-  let next = 0
-
-  // N 路 worker 共享一个游标队列 —— 这就是真实并行的形态。
-  const worker = async () => {
-    while (true) {
-      const i = next++
-      if (i >= chunks.length) return
-      const chunk = chunks[i]
-      const shielded = chunk.map((u) => shieldColorCodes(u.text))
-      const texts = shielded.map((s) => s.text)
-      let lastErr = null
-      let succeeded = false
-      for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
-        try {
-          let outs = await callFn(texts)
-
-          // 漏译行单独补翻：免费层会随机丢行（实测同一批在 0~20 条之间波动），
-          // 但丢行是随机的，只重发漏掉的那几条几乎必然补回。
-          // 不补的话，内嵌/长文本包的漏译率可达 35%，产出就是中英混杂。
-          for (let round = 0; round < MAX_MISSING_ROUNDS; round++) {
-            const missIdx = outs.map((o, j) => (o == null ? j : -1)).filter((j) => j >= 0)
-            if (!missIdx.length) break
-            const retry = await callFn(missIdx.map((j) => texts[j]))
-            retry.forEach((o, k) => { if (o != null) outs[missIdx[k]] = o })
-          }
-
-          const miss = outs.filter((x) => x == null).length
-          missing += miss
-          // 立刻落盘：中断不丢已翻好的块。
-          writeFileSync(
-            join(dir, `chunk-${String(i).padStart(4, '0')}.json`),
-            JSON.stringify({
-              slug,
-              chunk: i,
-              keys: chunk.map((u) => u.key),
-              outs: outs.map((o, j) => (o == null ? null : unshieldColorCodes(o, shielded[j].codes))),
-            }, null, 1) + '\n',
-          )
-          ok++
-          succeeded = true
-          break
-        } catch (e) {
-          lastErr = e
-          // 并发下 5xx 很常见，短暂退避后重试；退避时间随尝试次数增长。
-          if (attempt < MAX_RETRIES) await new Promise((r) => setTimeout(r, 2000 * (attempt + 1)))
-        }
-      }
-      if (!succeeded) {
-        failed++
-        writeFileSync(
-          join(dir, `chunk-${String(i).padStart(4, '0')}.failed.json`),
-          JSON.stringify({ slug, chunk: i, error: String(lastErr?.message ?? lastErr).slice(0, 200) }, null, 1) + '\n',
-        )
-      }
-      // 注意：这里不能 return —— 一个 worker 要一直取下一块直到队列空。
-      // 早先写成成功即 return，导致 12 路 worker 各只干一块就退出（21 块只做了 12 块）。
-    }
+  // 按单元原序切成固定大小的分片。
+  // 形状 `{slug, chunk, keys, outs}` 是 `translate-local.mjs` 读盘契约，不要改。
+  for (let start = 0, n = 0; start < units.length; start += SHARD_SIZE, n++) {
+    const part = units.slice(start, start + SHARD_SIZE)
+    writeFileSync(
+      join(dir, `chunk-${String(n).padStart(4, '0')}.json`),
+      JSON.stringify({
+        slug,
+        chunk: n,
+        keys: part.map((u) => u.key),
+        outs: outs.slice(start, start + SHARD_SIZE),
+      }, null, 1) + '\n',
+    )
   }
 
-  await Promise.all(Array.from({ length: Math.min(lanes, chunks.length) }, worker))
-  return { slug, layout, chunks: chunks.length, ok, failed, missing }
+  let ok = 0
+  let missing = 0
+  let untranslated = 0
+  let skipped = 0
+  let directives = 0
+  units.forEach((u, i) => {
+    const src = String(u.text ?? '')
+    if (src.trim() === '') { skipped++; return }
+    if (/^\{[\s\S]*\}$/.test(src.trim())) { directives++; return }
+    const out = outs[i]
+    if (out == null) { missing++; return }
+    ok++
+    // 模组名（Mekanism、XyCraft）、`AllRightsReserved` 这类占位垃圾原样回来是正常的，
+    // 实测 14/240。计数观察即可，判失败只会把好包打成坏包。
+    if (!CJK.test(out)) untranslated++
+  })
+
+  return { slug, layout, total: units.length, ok, missing, untranslated, skipped, directives }
 }
 
 /**
@@ -279,7 +191,7 @@ async function main() {
   }
   if (limit > 0) slugs = slugs.slice(0, limit)
 
-  console.log(`待翻译 ${slugs.length} 个整合包，${lanes} 路并发`)
+  console.log(`待翻译 ${slugs.length} 个整合包，${lanes} 路并发（一条文本一个请求）`)
   if (!slugs.length) { console.log('没有可翻译的包'); return }
 
   const t0 = Date.now()
@@ -292,19 +204,25 @@ async function main() {
     try {
       const r = await translatePackParallel(slug, { lanes })
       results.push(r)
-      console.log(`[${i + 1}/${slugs.length}] ${slug} (${r.layout}) 块 ${r.ok}/${r.chunks} 失败 ${r.failed} 漏译 ${r.missing} · ${Math.round((Date.now() - started) / 1000)}s`)
+      console.log(
+        `[${i + 1}/${slugs.length}] ${slug} (${r.layout}) 共 ${r.total} 条 / 译出 ${r.ok}`
+        + ` / 漏译 ${r.missing} / 未译 ${r.untranslated} / 空串 ${r.skipped} / 指令 ${r.directives}`
+        + ` · ${Math.round((Date.now() - started) / 1000)}s`,
+      )
     } catch (e) {
       console.log(`[${i + 1}/${slugs.length}] ${slug} FAILED: ${String(e?.message ?? e).slice(0, 120)}`)
-      results.push({ slug, failed: 1, ok: 0, chunks: 0, missing: 0, error: String(e?.message ?? e) })
+      results.push({ slug, total: 0, ok: 0, missing: 0, untranslated: 0, skipped: 0, directives: 0, error: String(e?.message ?? e) })
     }
   }
 
-  const totalOk = results.reduce((a, r) => a + (r.ok ?? 0), 0)
-  const totalChunks = results.reduce((a, r) => a + (r.chunks ?? 0), 0)
-  const totalMissing = results.reduce((a, r) => a + (r.missing ?? 0), 0)
+  const sum = (k) => results.reduce((a, r) => a + (r[k] ?? 0), 0)
   const secs = Math.round((Date.now() - t0) / 1000)
-  console.log(`\n=== 完成：${results.length} 个包 / ${totalOk}/${totalChunks} 块 / 漏译 ${totalMissing} 条 / 耗时 ${secs}s ===`)
-  console.log(`吞吐 ${(totalOk / Math.max(1, secs)).toFixed(2)} 块/秒`)
+  console.log(
+    `\n=== 完成：${results.length} 个包 / 共 ${sum('total')} 条 / 译出 ${sum('ok')}`
+    + ` / 漏译 ${sum('missing')} / 未译 ${sum('untranslated')}`
+    + ` / 空串 ${sum('skipped')} / 指令 ${sum('directives')} / 耗时 ${secs}s ===`,
+  )
+  console.log(`吞吐 ${(sum('ok') / Math.max(1, secs)).toFixed(2)} 条/秒`)
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {

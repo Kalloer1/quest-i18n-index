@@ -111,6 +111,51 @@
 - **真因**：手动 `gh workflow run` 的包从未进入 KV 队列，故无条目可回写。
 - **影响**：状态机（`待翻译 → 翻译中 → 已完成 / 镜像缺失 / 失败`）**尚未被真实路径验证过**。
 
+### D10. 布局判定有两份实现，`ftb-evolution` 的单元来源与直觉不符
+
+- **现象**：`loadPackUnits`（`scripts/translate-parallel.mjs:147-149`）自己写了一份布局判定，
+  没有调用 `scripts/lib/candidates.mjs:63` 的 `classifyLayout`。同一条优先级规则维护在两处。
+- **实测**（`research/packs/ftb-evolution/`）：全包 **82** 个 `.snbt`，其中 **41** 个在 `chapters/`，
+  同时存在 `config/ftbquests/quests/lang/en_us.snbt`（846,207 字节、4,807 个键）。
+  `loadPackUnits` 判为 `separate-single`，产出 **10,789** 个单元；按 `u.key.split('::')[0]` 统计，
+  **10,789/10,789** 全部来自 `lang/en_us.snbt`。
+- **反证**：同一棵树按 `embedded` 判定只抽出 **1** 个单元
+  （`chapters/ftb_pyramid.snbt::quests[12].rewards[2].description`，值 `Fed The Beast`），
+  该串在 `en_us.snbt` 里已有对应键 `reward.5E71D2A58521E928`。
+  即「这 10,789 个单元大部分来自 `chapters/`」**不成立**：章节文件的文本字段几乎是空的
+  （41 个文件合计 `title:` **0** 处、`subtitle:` **0** 处、`description:` **1** 处）。
+- **全量比对**：`research/packs/` 下 30 个包，`classifyLayout` 与 `loadPackUnits` 的判定
+  **0 处不一致**（`skyfactory-5` 两边都判「无可用任务书」，不是分歧）。
+- **影响**：风险是**潜在的**——两份实现此刻同序同义，尚未翻错来源；但改一处不会带动另一处。
+  本轮仍跳过 `ftb-evolution`；按实测该包可按 `separate-single` 正常产出，跳过已非必需。
+- **处置**：待裁决「两个判定是否合并为一个函数」。
+
+### D11. `writePatch` 不区分分片属于哪一次运行
+
+- **证据**：`scripts/translate-local.mjs` 的 `writePatch()`（:110）在 :138-141 无过滤地遍历
+  `research/par-out/<slug>/`，只按文件名 `^chunk-\d+\.json$`（:139）筛选，无时间戳、无 run-id。
+- **实测**：`research/par-out/ftb-evolution/` 现有 **216** 个文件，**全部**是
+  `chunk-NNNN.failed.json`，普通分片 **0** 个，时间跨 06:52–07:05。
+  该正则对这 216 个名字**全部不匹配**（`chunk-0000.failed.json` → `false`）。
+- **真因/影响**：遗留的失败标记被正则挡住了，**不会**被静默合并；但它同样让 `writePatch`
+  分不清「没有分片」与「分片还没翻」——两种情况下都产出全空补丁，且不报警。
+  一旦同目录留下**上一轮**的普通 `chunk-NNNN.json`，正则无法分辨，就会静默混入。
+- **处置**：本轮每轮开跑前清空 `research/par-out/<slug>/`。按运行标识过滤仍欠着。
+
+### D12. 任务书媒体指令白占翻译请求
+
+- **证据**：`all-the-mods-10-lite` 共 2,784 个单元，非空 **2,608** 个；其中整段被花括号包裹的
+  **119** 个：**106** 个 `{image:atm:textures/...}`、**11** 个 `{@pagebreak}`（合计 117 条纯指令），
+  另 **2** 个不是指令——`en_us/chapters/chapter_2_allthemodium.snbt` 的
+  `{"text": "POWAH QUESTLINE", "color": "#55FF55", ...}`（JSON 文本组件，含真实文案）与
+  `{atm10.quest.ae2.img.star}`（翻译键引用）。
+- **影响**：117 条纯指令模型原样返回，白花请求；计入「未译」时它不是真缺陷。
+  但「花括号包裹即跳过」会连带跳过那条 JSON 文案。
+- **处置**：已落地——`scripts/lib/line-translator.mjs:68-70` 的 `isDirective()` 按
+  `/^\{[\s\S]*\}$/` 判定，`translateText`（:149）与 `translateTexts`（:216）都不发请求，
+  `translatePackParallel`（`scripts/translate-parallel.mjs:150`）单独计入 `directives`。
+  上述 2 条例外尚无处理。
+
 ## 本地跑流水线：可行性
 
 用户 2026-10-19 提问：「从那里拉取这个提交的列表下来，直接到我这个本地项目上面跑吗？」
@@ -146,6 +191,7 @@
 | U2 | 免费层在 CI 失效怎么应对？（D7） | (a) 约定「必须从管理界面触发」；(b) 设 `LLM_MODELS` 默认值兜底（违背「不设默认模型」）；(c) 查清免费层能否救（换域名/加重试）；(d) 改走本地跑 |
 | U3 | 本地跑流水线要不要作为正式路径？（`CF_KEY` 落本机） | (a) 是，作为 CI 的替代/补充；(b) 否，只作调试手段 |
 | U4 | 夸克镜像修不修、怎么修？（D6） | (a) 改成先 `search` 拿 fid；(b) 显式传 `--parent-fid`；(c) 暂时关掉 `QUARK_REQUIRED`，不阻断发布 |
+| U5 | 布局判定要不要收敛成一个函数？（D10） | (a) `loadPackUnits` 改调 `classifyLayout`；(b) 保留两份，加测试锁住一致性；(c) 只删 `loadPackUnits` 里那份，全部走 `classifyLayout` |
 
 ## 待办清单
 
@@ -160,11 +206,24 @@
 | 7 | 扫描范围决策与落地（D3/D4） | D3、D4 | U1 |
 | 8 | 本地跑流水线的 `CF_KEY` 落盘（若 U3 选 a） | — | U3 |
 | 9 | 解开 lockfile 对国内 npm 镜像的钉死（D9） | D9 | — |
+| 10 | 合并两份布局判定，或约定单一事实来源（D10） | D10 | 布局判定决策（U5） |
+| 11 | 分片按运行标识过滤，并区分「无分片」与「未翻完」（D11） | D11 | — |
+| 12 | 指令判定放行 JSON 文本组件那类例外（D12） | D12 | — |
+
+### 2026-10-20 复核
+
+- `Index-Translate-35B-A3B` **已恢复可达**（200），但 24 路下实测 **2.7 req/s**，
+  240 次请求里 **32 次**在 60s 超时。
+- `index-mt-9b-syllable`：24 路 **19.7 req/s**，**0** 个 HTTP 错误；24/32/48 三档吞吐相同。
+- `9b-syllable` **不能批量**（3/3 次只回第一行 `L1=`）。故「一次一条」是**所选模型的性质**，
+  不是服务端的普遍限制——ADR-0007 里「免费层必须逐行」的表述应据此收窄。
+- 所选模型名与相关调参都在 `TRANSLATE_MODEL` 环境变量之后
+  （`scripts/lib/line-translator.mjs:37-42`，缺省 `index-mt-9b-syllable`）。
 
 ## 后果
 
 - 本清单是**唯一**的遗留事项权威来源；新增缺陷应追加到本文档，而不是散落在交接文件里。
-- 未决项（U1–U4）**不得由实现者自行拍板**——它们是产品/范围决策，不是工程细节。
+- 未决项（U1–U5）**不得由实现者自行拍板**——它们是产品/范围决策，不是工程细节。
 - 清单里每一条都附了实测证据；**没有证据的条目不得进入本文档**（这是本项目
   「不接受猜测」约定的延伸）。
 - 本 ADR 不设失效期：条目全部关闭后，应新增 ADR 记录关闭结论，而非删除本文档。

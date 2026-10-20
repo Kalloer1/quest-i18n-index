@@ -11,7 +11,7 @@
  * ## 与 translate-batch.mjs 的区别
  *
  * `translate-batch.mjs` 调的是串行 `pipeline.mjs`（CI 时代写的，单包跑完再下一个）。
- * 本脚本调 `translate-parallel.mjs`（包内 12 路并发），实测快 8 倍。
+ * 本脚本调 `translate-parallel.mjs`（包内 24 路并发，一条文本一个请求）。
  *
  * ## 关键设计
  *
@@ -24,7 +24,8 @@
  * 用法：
  *   node scripts/translate-local.mjs --limit 20                 # 先跑 20 个试水
  *   node scripts/translate-local.mjs --limit 0                  # 全部（0 = 不限）
- *   node scripts/translate-local.mjs --layout separate --lanes 12
+ *   node scripts/translate-local.mjs --layout separate --lanes 24
+ *   node scripts/translate-local.mjs --slug some-pack,other      # 只重翻指定的包
  *   node scripts/translate-local.mjs --dry-run                  # 只看清单
  *
  * 环境变量：
@@ -155,6 +156,7 @@ async function main() {
   const lanes = arg('lanes', DEFAULT_LANES)
   const platform = arg('platform', 'cf')
   const layout = arg('layout', '')
+  const slugArg = arg('slug', '')
   const dryRun = Boolean(arg('dry-run', false))
   const pushEvery = Number(arg('push-every', process.env.BATCH_PUSH_EVERY ?? 20))
 
@@ -165,7 +167,16 @@ async function main() {
   const all = pickTranslatable(readFileSync(scanFile, 'utf8'), { platform: platform || undefined, layout: layout || undefined })
   const state = loadState()
   const pending = all.filter((p) => !state.done[p.slug])
-  const worklist = limit > 0 ? pending.slice(0, limit) : pending
+
+  // `--slug` 直接给清单，跳过 limit/platform/layout 筛选，也不看已完成状态。
+  // 为什么需要：要重翻的那个包常常排在下载量后面、或者已经标了 done，
+  // 用 `--limit N` 只能从队头取，会顺带把前面 N-1 个包一起重跑。
+  const explicit = typeof slugArg === 'string'
+    ? slugArg.split(',').map((s) => s.trim()).filter(Boolean)
+    : []
+  const worklist = explicit.length
+    ? explicit.map((slug) => all.find((p) => p.slug === slug) ?? { slug, platform, layout, bytes: 0 })
+    : (limit > 0 ? pending.slice(0, limit) : pending)
 
   console.log(`平台 ${platform || '全部'}：可翻译 ${all.length} 个，已完成 ${all.length - pending.length} 个，本次处理 ${worklist.length} 个，${lanes} 路并发`)
   if (dryRun) {

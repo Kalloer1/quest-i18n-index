@@ -452,6 +452,12 @@ if (isMain) {
   // 上一次免费层调用结束时刻。免费层对连发敏感，用它保证最小间隔（见上方注释）。
   let lastFreeTierCallAt = 0
 
+  // 注意这里与本地并行路的分工（实测 2026-10-20）：
+  //   本文件是 **CI/串行路**，走 35B 批量模式（30 条一块，`Index-Translate-35B-A3B`）。
+  //   本地并行路（`translate-parallel.mjs` → `lib/line-translator.mjs`）是
+  //   **一条文本一个请求**，因为 `index-mt-9b-syllable` 面对多条 `L<n>=` 只回第一行（3/3 复现）。
+  //   两条路的模型 env 也是分开的（FREE_TIER_MODEL / TRANSLATE_MODEL），
+  //   别把 9B 塞进这里：批量模式会静默只翻出每块的第一条。
   if (USE_FREE_TIER) {
     console.log(`翻译主路：免费层 ${freeTierModel()}（无需 key）`)
   } else {
