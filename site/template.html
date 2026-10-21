@@ -380,7 +380,48 @@ input::placeholder, textarea::placeholder { color: var(--ink-faint); }
   box-shadow: inset 0 0 0 2px #ff9a5c;
 }
 
-.more { font-size: 12px; color: var(--ink-dim); padding: 12px 4px; }
+/* ---------- 视图切换 + 分页（修一次渲染 2.8 万行的卡死） ---------- */
+.listbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 14px; flex-wrap: wrap; }
+.viewtoggle { display: inline-flex; }
+.viewtoggle button {
+  font: inherit; font-size: 12px; font-weight: 700; cursor: pointer; border: 0; color: var(--ink-dim);
+  background: var(--panel); padding: 8px 14px;
+  box-shadow: 0 0 0 3px var(--edge), inset 3px 3px 0 0 var(--hl), inset -3px -3px 0 0 var(--sh);
+}
+.viewtoggle button + button { margin-left: 6px; }
+.viewtoggle button[aria-pressed="true"] { color: #14120e; background: var(--s-downloadable); }
+.listmeta { font-size: 12px; color: var(--ink-dim); font-variant-numeric: tabular-nums; }
+
+/* 画廊：卡片网格 */
+.list.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+.card { margin: 0; }
+.cardhit {
+  font: inherit; width: 100%; height: 100%; text-align: left; cursor: pointer; border: 0;
+  display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 16px 12px 12px;
+  color: var(--ink); background: var(--panel);
+  box-shadow: 0 0 0 3px var(--edge), inset 3px 3px 0 0 var(--hl), inset -3px -3px 0 0 var(--sh);
+}
+.cardhit:hover { background: var(--panel-2); transform: translate(-2px, -2px); box-shadow: 0 0 0 3px var(--edge), 5px 5px 0 0 var(--edge), inset 3px 3px 0 0 var(--hl), inset -3px -3px 0 0 var(--sh); }
+.cardhit:active { transform: translate(0, 0); box-shadow: 0 0 0 3px var(--edge), inset 3px 3px 0 0 var(--sh), inset -3px -3px 0 0 var(--hl); }
+.cardhit .thumb-slot { width: 64px; height: 64px; }
+.cardhit .thumb { width: 64px; height: 64px; }
+.cardhit .thumb-initial { font-size: 28px; }
+.card-body { min-width: 0; width: 100%; text-align: center; display: flex; flex-direction: column; gap: 3px; align-items: center; }
+.cardhit .name { display: block; font-weight: 700; font-size: 13px; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cardhit .meta { display: block; font-size: 11px; color: var(--ink-dim); width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* 分页控件 */
+.pager { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+.pager button {
+  font: inherit; font-size: 12px; font-weight: 700; cursor: pointer; border: 0; color: var(--ink);
+  background: var(--panel); padding: 7px 11px; min-width: 34px; font-variant-numeric: tabular-nums;
+  box-shadow: 0 0 0 3px var(--edge), inset 2px 2px 0 0 var(--hl), inset -2px -2px 0 0 var(--sh);
+}
+.pager button:hover:not(:disabled) { background: var(--panel-2); }
+.pager button:disabled { opacity: .45; cursor: default; }
+.pager button.cur { color: #14120e; background: var(--s-downloadable); }
+.pg-gap { color: var(--ink-faint); padding: 0 2px; }
+.pg-info { margin-left: 6px; font-size: 12px; color: var(--ink-dim); font-variant-numeric: tabular-nums; }
 
 .empty { padding: 28px 22px; background: var(--panel); box-shadow: 0 0 0 4px var(--edge), inset 4px 4px 0 0 var(--hl), inset -4px -4px 0 0 var(--sh); }
 .empty .big { font-size: 34px; font-weight: 700; color: var(--ink-faint); line-height: 1; margin-bottom: 10px; }
@@ -614,8 +655,17 @@ code { background: var(--slot); padding: 1px 5px; font-size: .94em; box-shadow: 
 
     <div id="filters" class="filters" role="group" aria-label="按状态筛选"></div>
 
-    <ul id="list" class="list"></ul>
+    <div class="listbar">
+      <div class="viewtoggle" role="group" aria-label="显示方式">
+        <button type="button" data-view="gallery" aria-pressed="true">画廊</button>
+        <button type="button" data-view="list" aria-pressed="false">列表</button>
+      </div>
+      <div id="listmeta" class="listmeta" aria-live="polite"></div>
+    </div>
+
+    <ul id="list" class="list grid"></ul>
     <div id="list-empty"></div>
+    <div id="pager" class="pager" role="group" aria-label="分页"></div>
 
     <noscript>
       <div class="empty" style="margin-top:18px">
@@ -899,6 +949,49 @@ code { background: var(--slot); padding: 1px 5px; font-size: .94em; box-shadow: 
     $("#filters").innerHTML = html;
   }
 
+  // 分页 + 双视图：绝不一次性渲染全部结果。
+  // 默认「全部」有 2.8 万条，旧实现一把 innerHTML 把全部行塞进 DOM，浏览器直接卡死。
+  // 现在每页只渲染 PAGE_SIZE 条（renderPager 管翻页，cardHTML/rowHTML 只画当页切片）。
+  var PAGE_SIZE = 60;
+  var currentView = "gallery"; // "gallery" 画廊 | "list" 列表
+  var currentPage = 0;
+  var lastResults = [];
+
+  function cardHTML(p, i) {
+    var icon = '<span class="thumb-slot">'
+      + '<span class="thumb-initial" aria-hidden="true">' + esc((p.title || p.slug || "?").slice(0, 1).toUpperCase()) + "</span>"
+      + (p.iconUrl ? '<img class="thumb" src="' + esc(p.iconUrl) + '" alt="" loading="lazy" width="52" height="52">' : "")
+      + "</span>";
+    var sub = [];
+    if (p.gameVersions && p.gameVersions.length) sub.push("MC " + p.gameVersions.slice(0, 2).join(" / "));
+    if (p.loaders && p.loaders.length) sub.push(p.loaders.join(" / "));
+    if (p.downloads != null) sub.push(fmtNum(p.downloads) + " 次下载");
+    return '<li class="card"><button class="cardhit" type="button" data-slug="' + esc(p.slug) + '">'
+      + icon
+      + '<span class="card-body"><span class="name">' + esc(p.title || p.slug) + "</span>"
+      + '<span class="meta">' + esc(sub.join(" · ")) + "</span></span>"
+      + tab(p)
+      + "</button></li>";
+  }
+
+  function renderPager(total) {
+    var pages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+    if (currentPage > pages - 1) currentPage = pages - 1;
+    if (currentPage < 0) currentPage = 0;
+    var pager = $("#pager");
+    if (pages <= 1) { pager.innerHTML = ""; return; }
+    var html = '<button type="button" data-page="prev"' + (currentPage === 0 ? " disabled" : "") + ">上一页</button>";
+    var from = Math.max(0, currentPage - 2), to = Math.min(pages - 1, currentPage + 2);
+    if (from > 0) html += '<button type="button" data-page="0">1</button>' + (from > 1 ? '<span class="pg-gap">…</span>' : "");
+    for (var i = from; i <= to; i++) {
+      html += '<button type="button" data-page="' + i + '"' + (i === currentPage ? ' class="cur" aria-current="page"' : "") + ">" + (i + 1) + "</button>";
+    }
+    if (to < pages - 1) html += (to < pages - 2 ? '<span class="pg-gap">…</span>' : "") + '<button type="button" data-page="' + (pages - 1) + '">' + pages + "</button>";
+    html += '<button type="button" data-page="next"' + (currentPage >= pages - 1 ? " disabled" : "") + ">下一页</button>";
+    html += '<span class="pg-info">第 ' + (currentPage + 1) + " / " + pages + " 页</span>";
+    pager.innerHTML = html;
+  }
+
   function renderList() {
     var q = $("#q").value.trim();
     var results = q ? match(q) : PACKS.slice();
@@ -906,9 +999,15 @@ code { background: var(--slot); padding: 1px 5px; font-size: .94em; box-shadow: 
     if (currentFilter !== "all") {
       results = results.filter(function (p) { return classify(p).cat === currentFilter; });
     }
+    lastResults = results;
+
+    var list = $("#list");
+    list.className = "list " + (currentView === "gallery" ? "grid" : "rows");
 
     if (!results.length) {
-      $("#list").innerHTML = "";
+      list.innerHTML = "";
+      $("#pager").innerHTML = "";
+      $("#listmeta").textContent = "";
       $("#list-empty").innerHTML = q
         ? '<div class="empty"><div class="big">0 条</div>'
           + "<h2>没有找到「" + esc(q) + "」</h2>"
@@ -920,9 +1019,17 @@ code { background: var(--slot); padding: 1px 5px; font-size: .94em; box-shadow: 
       return;
     }
     $("#list-empty").innerHTML = "";
-    // 全量渲染：不再截前 200 条（截断会让「没有 FTB 任务」这类大分类漏掉一半）
-    $("#list").innerHTML = results.map(rowHTML).join("");
-    $("#list").insertAdjacentHTML("beforeend", '<li class="more">共 ' + results.length + " 条</li>");
+
+    var pages = Math.max(1, Math.ceil(results.length / PAGE_SIZE));
+    if (currentPage > pages - 1) currentPage = pages - 1;
+    if (currentPage < 0) currentPage = 0;
+    var start = currentPage * PAGE_SIZE;
+    var slice = results.slice(start, start + PAGE_SIZE);
+    var rowFn = currentView === "gallery" ? cardHTML : rowHTML;
+    list.innerHTML = slice.map(function (p, k) { return rowFn(p, start + k); }).join("");
+
+    $("#listmeta").textContent = "共 " + results.length + " 条";
+    renderPager(results.length);
   }
 
   // ---------- 详情 ----------
@@ -1127,9 +1234,32 @@ code { background: var(--slot); padding: 1px 5px; font-size: .94em; box-shadow: 
     if (back) { show("search"); return; }
 
     var f = e.target.closest("[data-filter]");
-    if (f) { currentFilter = f.dataset.filter; renderFilters(); renderList(); return; }
+    if (f) { currentFilter = f.dataset.filter; currentPage = 0; renderFilters(); renderList(); return; }
 
-    var row = e.target.closest(".rowhit");
+    var vt = e.target.closest("[data-view]");
+    if (vt) {
+      currentView = vt.dataset.view;
+      currentPage = 0;
+      document.querySelectorAll("[data-view]").forEach(function (b) {
+        b.setAttribute("aria-pressed", String(b.dataset.view === currentView));
+      });
+      renderList();
+      return;
+    }
+
+    var pg = e.target.closest("[data-page]");
+    if (pg && !pg.disabled) {
+      var pages = Math.max(1, Math.ceil(lastResults.length / PAGE_SIZE));
+      var v = pg.dataset.page;
+      if (v === "prev") currentPage = Math.max(0, currentPage - 1);
+      else if (v === "next") currentPage = Math.min(pages - 1, currentPage + 1);
+      else currentPage = Math.min(pages - 1, Math.max(0, Number(v) || 0));
+      renderList();
+      window.scrollTo(0, $("#list").getBoundingClientRect().top + window.scrollY - 80);
+      return;
+    }
+
+    var row = e.target.closest(".rowhit, .cardhit");
     if (row) {
       var slug = row.dataset.slug;
       var p = PACKS.filter(function (x) { return x.slug === slug; })[0];
@@ -1141,6 +1271,7 @@ code { background: var(--slot); padding: 1px 5px; font-size: .94em; box-shadow: 
   var t = null;
   $("#q").addEventListener("input", function () {
     clearTimeout(t);
+    currentPage = 0;
     t = setTimeout(renderList, 120);
   });
 
