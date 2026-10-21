@@ -24,7 +24,16 @@
  * `research/packs/<slug>`），因为质量闸门 `validate-quests.mjs` 需要英文源做基准键集——
  * 缺了它闸门只会 warn 跳过，退化成假绿灯。
  *
- * 幂等：`research/packs/<slug>/` 已有 .snbt 时直接跳过，不重复下载。
+ * **幂等 + 残留稳健**（ADR-0009 P1）：`research/packs/<slug>/` 已有 .snbt 时跳过下载，
+ * 但「有文件」不等于「这份文件是当前权威源」—— 目录里可能残留上一次不同来源的文件
+ * （实测 5 个已发布包里 `chapters/*.snbt` 与 `lang/en_us.snbt` 并存）。下游
+ * `loadPackUnits` / `pipeline.loadPack` / `validate-quests.resolveLayout` 都按**目录实况**跑
+ * `classifyLayout`，残留文件足以把取源带偏（布局判成 embedded，产出与英文源不一致）。
+ * 所以跳过之前先用**权威 zip 清单**（HEAD + 尾部 Range + 中央目录 Range，不下文件）
+ * 与目录实况比对：一致才跳过；不一致就重取并把不属于本次权威源的文件删掉。
+ * 清单取不到（CDN 不支持 Range / 不可达）时退回旧行为「有 .snbt 就用本地副本」——
+ * 绝不因为拿不到清单就把在跑的包判失败。删除只发生在**权威产物已写盘之后**：
+ * 取源失败时目录原样留着，已发布包的基准键集不会被我们毁掉。
  *
  * 用法：
  *   node scripts/prepare-pack.mjs --ids a,b
@@ -38,13 +47,13 @@
  * 环境变量：
  *   CF_KEY   CurseForge API key（仅 cf 来源需要；缺失时明确失败，不静默跳过）
  */
-import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmdirSync, rmSync, statSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join, relative } from 'node:path'
 import { extractFromBuffer, isQuestFile, toOutputPath } from './extract-pack.mjs'
 import { classifyLayout } from './lib/candidates.mjs'
 import { resolveLatestMrpack } from './lib/modrinth.mjs'
-import { fetchZipTexts } from './lib/zip-range.mjs'
+import { fetchZipTexts, listZip } from './lib/zip-range.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const DATASET_FILE = join(ROOT, 'research/index-dataset.json')
@@ -63,6 +72,95 @@ function listSnbt(dir, base = dir) {
     else if (/\.snbt$/i.test(name)) out.push(relative(base, full).replace(/\\/g, '/'))
   }
   return out
+}
+
+/**
+ * 权威 zip 的条目名 → 本次取源**应当**落盘的相对路径集合（去重、排序）。
+ *
+ * 与 `writeQuestTexts` / `extractFromBuffer` 同一口径（都走 `isQuestFile` + `toOutputPath`），
+ * 所以这个集合就是「当前权威源在 `research/packs/<slug>/` 里的完整内容」。
+ * 纯函数：条目名来自中央目录，不碰网络与磁盘。
+ *
+ * @param {string[]} entryNames zip 中央目录里的条目名
+ * @returns {string[]}
+ */
+export function authoritativeQuestNames(entryNames) {
+  const names = (Array.isArray(entryNames) ? entryNames : []).filter((n) => isQuestFile(n)).map(toOutputPath)
+  return [...new Set(names)].sort()
+}
+
+/**
+ * 目录实况与权威清单的比对（顺序无关）。
+ *
+ * `stale` = 目录里有、权威源里没有 —— 上一次不同来源留下的残留文件，
+ * 正是它们能把 `classifyLayout` 带偏；`missing` = 权威源里有、本地没有。
+ * 只有两者都空才算新鲜，才允许跳过下载。
+ *
+ * 纯函数。
+ *
+ * @param {string[]} existingNames 目录实况（`listSnbt` 的结果）
+ * @param {string[]} authoritativeNames 权威清单（`authoritativeQuestNames` 的结果）
+ * @returns {{fresh: boolean, stale: string[], missing: string[]}}
+ */
+export function compareWithAuthoritative(existingNames, authoritativeNames) {
+  const existing = new Set(Array.isArray(existingNames) ? existingNames : [])
+  const authoritative = new Set(Array.isArray(authoritativeNames) ? authoritativeNames : [])
+  const stale = [...existing].filter((n) => !authoritative.has(n)).sort()
+  const missing = [...authoritative].filter((n) => !existing.has(n)).sort()
+  return { fresh: stale.length === 0 && missing.length === 0, stale, missing }
+}
+
+/**
+ * 只取权威 zip 的任务书文件清单（HEAD + 尾部 Range + 中央目录 Range，不下文件）。
+ *
+ * 取不到时 `names` 为 null（`error` 带原因）而不是抛错：调用方据此退回旧行为
+ * 「有 .snbt 就用本地副本」。CDN 不支持 Range 或不可达都是真实情况
+ * （ADR-0009 记过 mediafilez 整线不可达、昨天下过的文件今天 404），
+ * 为了拿一份清单就把在跑的包判失败，代价远大于收益。
+ *
+ * @param {string} url 权威文件下载地址
+ * @param {{fetchImpl?: typeof fetch}} [options]
+ * @returns {Promise<{names: string[]|null, error: string|null}>}
+ */
+export async function authoritativeQuestNamesOf(url, { fetchImpl = fetch } = {}) {
+  try {
+    const { entries } = await listZip(url, { fetchImpl })
+    return { names: authoritativeQuestNames(entries.map((e) => e.name)), error: null }
+  } catch (err) {
+    return { names: null, error: String(err?.message ?? err) }
+  }
+}
+
+/** 递归删掉空目录（最深优先），清掉残留来源留下的 `chapters/` 之类空壳。 */
+function removeEmptyDirs(dir) {
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue
+    const full = join(dir, entry.name)
+    removeEmptyDirs(full)
+    if (readdirSync(full).length === 0) rmdirSync(full)
+  }
+}
+
+/**
+ * 删掉 `outDir` 里不属于本次取源的文件（上一次来源的残留），返回删掉的相对路径。
+ *
+ * **只在权威产物已经写盘之后调用**：取源失败时根本走不到这里，目录原样留着 ——
+ * 已发布包的英文源是 `validate-quests.mjs` 的基准键集，不能因为一次下载失败就被清空。
+ *
+ * @param {string} outDir `research/packs/<slug>/`
+ * @param {string[]} writtenNames 本次取源落盘的相对路径
+ * @returns {string[]} 删掉的相对路径
+ */
+export function pruneStaleFiles(outDir, writtenNames) {
+  const keep = new Set(writtenNames)
+  const removed = []
+  for (const name of listSnbt(outDir)) {
+    if (keep.has(name)) continue
+    rmSync(join(outDir, name), { force: true })
+    removed.push(name)
+  }
+  if (existsSync(outDir)) removeEmptyDirs(outDir)
+  return removed
 }
 
 /**
@@ -167,6 +265,29 @@ function writeQuestTexts(files, outDir) {
 }
 
 /**
+ * 本地副本是否就是当前权威源。
+ *
+ * 权威清单只花 HEAD + 尾部 Range + 中央目录 Range（不下文件），两条取源路都用得起 ——
+ * 整包路反正要下载整个 zip，多这两次 Range 可以忽略；而清单说「一致」时能省掉整包下载。
+ * 清单取不到（CDN 不支持 Range / 不可达）时 `unknown: true`，并记一行日志 ——
+ * 绝不因为拿不到清单就把在跑的包判失败。
+ *
+ * @param {string} slug
+ * @param {string} url 权威文件下载地址
+ * @param {string[]} existing 目录实况
+ * @param {{fetchImpl?: typeof fetch, log?: (m: string) => void}} options
+ * @returns {Promise<{fresh: boolean, unknown: boolean, stale: string[], missing: string[]}>}
+ */
+async function freshnessVerdict(slug, url, existing, { fetchImpl, log }) {
+  const { names, error } = await authoritativeQuestNamesOf(url, { fetchImpl })
+  if (!names) {
+    log(`[${slug}] 权威清单取不到（${error}）`)
+    return { fresh: false, unknown: true, stale: [], missing: [] }
+  }
+  return { ...compareWithAuthoritative(existing, names), unknown: false }
+}
+
+/**
  * 下载 zip 并解出任务书文件到 `<packsDir>/<slug>/`。
  *
  * @param {object} options
@@ -197,17 +318,25 @@ export async function preparePack({
 
   const outDir = join(packsDir, slug)
   const existing = listSnbt(outDir)
-  if (existing.length > 0 && !force) {
-    log(`[${slug}] 已有 ${existing.length} 个任务书文件，跳过下载（--force 可强制重取）`)
-    return { slug, status: 'skipped', written: existing.length, layout: classifyLayout(existing).layout }
-  }
 
   // 两个来源只在「取下载地址」这一步分叉；后面的下载 / 留 zip / 解包完全相同
   // （`.mrpack` 就是 zip，overrides/ 由 toOutputPath 剥掉）。
+  // 放在幂等分支**之前**：判定「本地副本是不是权威源」得先知道权威源是谁。
   const file = platform === 'mr'
     ? await resolveLatestMrpack(String(mrSlug ?? slug).trim(), { fetchImpl })
     : await resolveLatestFile(cfId, { apiKey, fetchImpl })
 
+  if (existing.length > 0 && !force) {
+    const verdict = await freshnessVerdict(slug, file.url, existing, { fetchImpl, log })
+    if (verdict.unknown || verdict.fresh) {
+      const why = verdict.unknown ? '（权威清单取不到，用本地副本）' : ''
+      log(`[${slug}] 已有 ${existing.length} 个任务书文件，跳过下载${why}（--force 可强制重取）`)
+      return { slug, status: 'skipped', written: existing.length, layout: classifyLayout(existing).layout }
+    }
+    // 不一致 = 目录里有上一次不同来源的残留，或本地缺权威源里的文件。继续往下取源，
+    // 写盘后由 pruneStaleFiles 把残留删掉 —— 不提前清空，取源失败时基准键集原样留着。
+    log(`[${slug}] 目录与权威源不一致：残留 ${verdict.stale.length} 个（${verdict.stale.slice(0, 3).join(', ')}${verdict.stale.length > 3 ? ' …' : ''}）、缺 ${verdict.missing.length} 个，重新取源`)
+  }
   // 只取任务书文件：HEAD + 尾部 Range + 中央目录 Range + 每个目标文件 1 次 Range。
   //
   // 兜底是硬要求，不是可选项：真实 CDN 会忽略 Range 头直接回 200 + 整包
@@ -219,7 +348,15 @@ export async function preparePack({
     try {
       const files = await fetchQuestFilesOnly(file.url, { fetchImpl })
       const written = writeQuestTexts(files, outDir)
+      if (written.length === 0) {
+        // 权威源里确实没有任务书文件：**不清目录**。`pruneStaleFiles` 会把「本次一个文件
+        // 都没产出」理解成「目录里全是残留」，那会毁掉已发布包的基准键集。
+        log(`[${slug}] 权威源里没有任务书文件，保留 research/packs/${slug}/ 现有英文源不动`)
+        return { slug, status: 'prepared', written: 0, layout: classifyLayout(written).layout }
+      }
+      const pruned = pruneStaleFiles(outDir, written)
       const info = classifyLayout(written)
+      if (pruned.length) log(`[${slug}] 清掉 ${pruned.length} 个不属于权威源的残留文件：${pruned.slice(0, 3).join(', ')}${pruned.length > 3 ? ' …' : ''}`)
       log(`[${slug}] Range 取到 ${written.length} 个任务书文件，布局 ${info.layout}（enFiles=${info.enFiles} zhFiles=${info.zhFiles}）`)
       return { slug, status: 'prepared', written: written.length, layout: info.layout }
     } catch (err) {
@@ -249,6 +386,13 @@ export async function preparePack({
 
   const { written } = extractFromBuffer(buf, outDir)
   const info = classifyLayout(written)
+  if (written.length === 0) {
+    // 权威源里确实没有任务书文件：目录原样不动（里面的英文源是基准键集），明确告知。
+    log(`[${slug}] 权威源里没有任务书文件，保留 research/packs/${slug}/ 现有英文源不动`)
+    return { slug, status: 'prepared', written: 0, layout: info.layout }
+  }
+  const pruned = pruneStaleFiles(outDir, written)
+  if (pruned.length) log(`[${slug}] 清掉 ${pruned.length} 个不属于权威源的残留文件：${pruned.slice(0, 3).join(', ')}${pruned.length > 3 ? ' …' : ''}`)
   log(`[${slug}] 解出 ${written.length} 个任务书文件，布局 ${info.layout}（enFiles=${info.enFiles} zhFiles=${info.zhFiles}）`)
   return { slug, status: 'prepared', written: written.length, layout: info.layout }
 }

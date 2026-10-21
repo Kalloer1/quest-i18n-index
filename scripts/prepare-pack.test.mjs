@@ -7,12 +7,27 @@
  */
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { mkdtempSync, rmSync, mkdirSync, writeFileSync, existsSync, readFileSync } from 'node:fs'
+import { mkdtempSync, rmSync, mkdirSync, writeFileSync, existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { tmpdir } from 'node:os'
-import { join } from 'node:path'
+import { join, relative } from 'node:path'
 import { deflateRawSync } from 'node:zlib'
-import { preparePack, resolveLatestFile, downloadUrlOf, cfIdOf } from './prepare-pack.mjs'
+import {
+  preparePack, resolveLatestFile, downloadUrlOf, cfIdOf,
+  authoritativeQuestNames, compareWithAuthoritative, pruneStaleFiles,
+} from './prepare-pack.mjs'
 import { classifyLayout, LAYOUT } from './lib/candidates.mjs'
+
+/** 与 prepare-pack.mjs 的 listSnbt 同口径：递归列 .snbt（相对路径）——测试里要看「目录实况」。 */
+function snbtNames(dir, base = dir) {
+  const out = []
+  if (!existsSync(dir)) return out
+  for (const name of readdirSync(dir)) {
+    const full = join(dir, name)
+    if (statSync(full).isDirectory()) out.push(...snbtNames(full, base))
+    else if (/\.snbt$/i.test(name)) out.push(relative(base, full).replace(/\\/g, '/'))
+  }
+  return out.sort()
+}
 
 // ---------- 合成 zip（与 extract-pack.test.mjs 同构，仅本文件所需的最小子集） ----------
 
@@ -64,11 +79,20 @@ const PACK_ZIP = buildZip([
   { name: 'Demo-1.0/overrides/mods/example.jar', data: 'not-a-quest-file' },
 ])
 
-/** 按 URL 分派的 fetch 桩：文件列表端点返回 CF 形状，其余返回 zip 字节。 */
-function stubFetch({ downloadUrl = 'https://cdn.example/files/demo.zip', fileLength = 1024, calls = [] } = {}) {
-  return async (url) => {
-    calls.push(String(url))
-    if (String(url).includes('/files?pageSize=1')) {
+/**
+ * 按 URL 分派的 fetch 桩：文件列表端点返回 CF 形状，其余返回 zip 字节。
+ *
+ * HEAD 会返回 content-length（所以 `listZip` 的 HEAD 这步能过），但**忽略 Range 头** ——
+ * 于是清单在「Range 未返回 206」这步失败，正好模拟真实 CDN 不支持 Range 的样子。
+ * `bodies` 只在 `arrayBuffer()` 真被调用时记一笔：判断「有没有下载整包」要看它，
+ * 而不是看请求列表（失败在被拒阶段的 Range 请求并不产生字节）。
+ */
+function stubFetch({ zip = PACK_ZIP, downloadUrl = 'https://cdn.example/files/demo.zip', fileLength = 1024, calls = [], bodies = [] } = {}) {
+  return async (url, init = {}) => {
+    const u = String(url)
+    const method = String(init?.method ?? 'GET').toUpperCase()
+    calls.push({ url: u, method })
+    if (u.includes('/files?pageSize=1')) {
       return {
         ok: true,
         status: 200,
@@ -80,7 +104,49 @@ function stubFetch({ downloadUrl = 'https://cdn.example/files/demo.zip', fileLen
     return {
       ok: true,
       status: 200,
-      arrayBuffer: async () => PACK_ZIP,
+      url: u,
+      headers: { get: (k) => (k.toLowerCase() === 'content-length' ? String(zip.length) : null) },
+      arrayBuffer: async () => {
+        bodies.push({ url: u, method })
+        return zip
+      },
+    }
+  }
+}
+
+/**
+ * 支持 HEAD + Range 的桩（`listZip` 能跑通）：HEAD 给总长，带 Range 头按切片回 206。
+ * 用来测「权威清单能拿到」时的判定与裁剪。
+ */
+function listingStub({ zip = PACK_ZIP, downloadUrl = 'https://cdn.example/files/demo.zip', calls = [], bodies = [] } = {}) {
+  const base = stubFetch({ zip, downloadUrl, calls, bodies })
+  return async (url, init = {}) => {
+    const u = String(url)
+    const method = String(init?.method ?? 'GET').toUpperCase()
+    if (u.includes('/files?pageSize=1')) return base(url, init)
+    if (method === 'HEAD') {
+      calls.push({ url: u, method })
+      return {
+        ok: true,
+        status: 200,
+        url: u,
+        headers: { get: (k) => (k.toLowerCase() === 'content-length' ? String(zip.length) : null) },
+        arrayBuffer: async () => Buffer.alloc(0),
+      }
+    }
+    const range = init?.headers?.Range ?? init?.headers?.range ?? null
+    if (!range) return base(url, init)
+    const m = /bytes=(\d+)-(\d+)/.exec(range)
+    if (!m) return { ok: false, status: 416, url: u, headers: { get: () => null }, arrayBuffer: async () => Buffer.alloc(0) }
+    const start = Number(m[1])
+    const end = Math.min(Number(m[2]), zip.length - 1)
+    if (start > end) return { ok: false, status: 416, url: u, headers: { get: () => null }, arrayBuffer: async () => Buffer.alloc(0) }
+    return {
+      ok: true,
+      status: 206,
+      url: u,
+      headers: { get: (k) => (k.toLowerCase() === 'content-length' ? String(end - start + 1) : null) },
+      arrayBuffer: async () => zip.subarray(start, end + 1),
     }
   }
 }
@@ -149,7 +215,7 @@ test('preparePack：只解任务书文件到 research/packs/<slug>/，布局可�
   } finally { dirs.cleanup() }
 })
 
-test('preparePack：已有任务书文件时跳过下载（幂等），不发起任何请求', async () => {
+test('preparePack：已有任务书文件时跳过下载（幂等），不下载整包', async () => {
   const dirs = tempDirs()
   try {
     const outDir = join(dirs.packsDir, 'demo', 'config/ftbquests/quests/lang')
@@ -157,12 +223,45 @@ test('preparePack：已有任务书文件时跳过下载（幂等），不发起
     writeFileSync(join(outDir, 'en_us.snbt'), 'quest.a.title: "Hi"\n')
 
     const calls = []
+    const bodies = []
+    const logs = []
     const result = await preparePack({
       slug: 'demo', cfId: '1514778', apiKey: 'k', packsDir: dirs.packsDir, tmpDir: dirs.tmpDir,
-      fetchImpl: stubFetch({ calls }),
+      fetchImpl: stubFetch({ calls, bodies }),
+      log: (m) => logs.push(m),
     })
     assert.equal(result.status, 'skipped')
-    assert.deepEqual(calls, [], '已有文件时不应下载')
+    // 1 次文件列表请求（要知道权威源是谁）+ 1 次 HEAD + 1 次注定被拒的 Range ——
+    // 桩忽略 Range 头回 200，`getRange` 因「未返回 206」失败，于是清单拿不到。
+    assert.deepEqual(calls.map((c) => c.method), ['GET', 'HEAD', 'GET'])
+    assert.deepEqual(bodies, [], '跳过时不该拉走任何 zip 字节')
+    assert.match(logs.join('\n'), /权威清单取不到/, '清单拿不到要明说，不能静默当成一致')
+    // 本地副本一个字节都不能动
+    assert.equal(readFileSync(join(outDir, 'en_us.snbt'), 'utf8'), 'quest.a.title: "Hi"\n')
+  } finally { dirs.cleanup() }
+})
+
+test('preparePack：目录实况与权威清单一致时跳过下载，一个 zip 字节都不拉', async () => {
+  const dirs = tempDirs()
+  try {
+    // 整包路解出的完整形态：lang/en_us.snbt + data.snbt（与 PACK_ZIP 的权威清单一致）
+    const questsDir = join(dirs.packsDir, 'demo', 'config/ftbquests/quests')
+    mkdirSync(join(questsDir, 'lang'), { recursive: true })
+    writeFileSync(join(questsDir, 'lang/en_us.snbt'), 'quest.a.title: "Hi"\n')
+    writeFileSync(join(questsDir, 'data.snbt'), '{ }\n')
+
+    const calls = []
+    const bodies = []
+    const result = await preparePack({
+      slug: 'demo', cfId: '1514778', apiKey: 'k', packsDir: dirs.packsDir, tmpDir: dirs.tmpDir,
+      fetchImpl: listingStub({ calls, bodies }),
+    })
+    assert.equal(result.status, 'skipped')
+    assert.equal(result.layout, LAYOUT.SEPARATE_SINGLE)
+    assert.deepEqual(bodies.filter((b) => b.method === 'GET'), [], '一致时连整包 GET 都不该发')
+    // 只花清单的钱：1 次 API + 1 次 HEAD + 2 次中央目录 Range
+    assert.equal(calls.filter((c) => c.method === 'HEAD').length, 1)
+    assert.equal(calls.filter((c) => c.method === 'GET' && String(c.url).includes('/files?pageSize=1')).length, 1)
   } finally { dirs.cleanup() }
 })
 
@@ -196,5 +295,143 @@ test('preparePack：解出的文件能被 classifyLayout 认出可翻译的英�
     assert.equal(info.layout, LAYOUT.SEPARATE_SINGLE)
     assert.equal(info.enFiles, 1)
     assert.equal(info.zhFiles, 0)
+  } finally { dirs.cleanup() }
+})
+
+// ---------- 残留旧文件的稳健性（ADR-0009 P1） ----------
+//
+// 背景：`research/packs/<slug>/` 的英文源是 `validate-quests.mjs` 的基准键集，
+// 下游 `loadPackUnits` / `pipeline.loadPack` / `resolveLayout` 又都按**目录实况**跑
+// `classifyLayout`。所以目录里一旦混进上一次不同来源的文件，取源就会被带偏 ——
+// 实测 5 个已发布包（peace-of-mind-21-1 等）就是因此走了内嵌路。
+// 下面几条锁住「取源后目录实况 == 本次权威取源」这个不变量。
+
+test('authoritativeQuestNames：权威 zip 清单 → 落盘路径集（剥包装目录、去重排序）', () => {
+  assert.deepEqual(authoritativeQuestNames([
+    'Demo-1.0/overrides/config/ftbquests/quests/lang/en_us.snbt',
+    'Demo-1.0/overrides/config/ftbquests/quests/data.snbt',
+    'Demo-1.0/overrides/mods/big.jar', // 非任务书文件不进清单
+    'Demo-1.0/overrides/mods/', // 目录条目也不进
+  ]), [
+    'config/ftbquests/quests/data.snbt',
+    'config/ftbquests/quests/lang/en_us.snbt',
+  ])
+})
+
+test('compareWithAuthoritative：目录多出上一次来源的文件 = 不新鲜，并点名叫出残留', () => {
+  const r = compareWithAuthoritative(
+    ['config/ftbquests/quests/lang/en_us.snbt', 'config/ftbquests/quests/chapters/old.snbt'],
+    ['config/ftbquests/quests/lang/en_us.snbt'],
+  )
+  assert.equal(r.fresh, false)
+  assert.deepEqual(r.stale, ['config/ftbquests/quests/chapters/old.snbt'])
+  assert.deepEqual(r.missing, [])
+})
+
+test('compareWithAuthoritative：集合相等（顺序无关）算新鲜；缺文件算不新鲜', () => {
+  assert.equal(compareWithAuthoritative(['b.snbt', 'a.snbt'], ['a.snbt', 'b.snbt']).fresh, true)
+  const r = compareWithAuthoritative(['a.snbt'], ['a.snbt', 'b.snbt'])
+  assert.equal(r.fresh, false)
+  assert.deepEqual(r.missing, ['b.snbt'])
+  assert.deepEqual(r.stale, [])
+})
+
+test('pruneStaleFiles：只删不属于本次取源的文件，留下的与 written 逐条一致', () => {
+  const dirs = tempDirs()
+  try {
+    const outDir = join(dirs.packsDir, 'demo', 'config/ftbquests/quests')
+    mkdirSync(join(outDir, 'chapters'), { recursive: true })
+    mkdirSync(join(outDir, 'lang'), { recursive: true })
+    writeFileSync(join(outDir, 'lang/en_us.snbt'), 'fresh')
+    writeFileSync(join(outDir, 'chapters/old.snbt'), 'stale')
+
+    const removed = pruneStaleFiles(outDir, ['lang/en_us.snbt'])
+    assert.deepEqual(removed, ['chapters/old.snbt'])
+    assert.equal(readFileSync(join(outDir, 'lang/en_us.snbt'), 'utf8'), 'fresh')
+    assert.equal(existsSync(join(outDir, 'chapters')), false, '删空后的 chapters/ 目录也要清掉')
+    assert.deepEqual(snbtNames(outDir), ['lang/en_us.snbt'])
+  } finally { dirs.cleanup() }
+})
+
+test('preparePack：目录里有上一次来源的残留文件时，取源后清掉残留（不需要 --force）', async () => {
+  const dirs = tempDirs()
+  try {
+    // 残留：上一个来源留下的内嵌章节文件（已发布包里就是这么混进去的）
+    const staleDir = join(dirs.packsDir, 'demo', 'config/ftbquests/quests/chapters')
+    mkdirSync(staleDir, { recursive: true })
+    writeFileSync(join(staleDir, 'old.snbt'), 'title: "上一次来源"\n')
+
+    const logs = []
+    const r = await preparePack({
+      slug: 'demo', cfId: '1514778', apiKey: 'k', packsDir: dirs.packsDir, tmpDir: dirs.tmpDir,
+      fetchImpl: listingStub(),
+      log: (m) => logs.push(m),
+    })
+    assert.equal(r.status, 'prepared')
+    assert.equal(r.layout, LAYOUT.SEPARATE_SINGLE)
+    // 目录实况 == 本次权威取源（PACK_ZIP 里是 lang/en_us.snbt + data.snbt）
+    assert.deepEqual(snbtNames(join(dirs.packsDir, 'demo')), [
+      'config/ftbquests/quests/data.snbt',
+      'config/ftbquests/quests/lang/en_us.snbt',
+    ])
+    // 下游按目录实况判布局，必须与 preparePack 报回来的一致
+    assert.equal(classifyLayout(snbtNames(join(dirs.packsDir, 'demo'))).layout, r.layout)
+    assert.match(logs.join('\n'), /清掉 1 个不属于权威源的残留文件/)
+  } finally { dirs.cleanup() }
+})
+
+test('preparePack --force：权威源里没有任务书文件时不动目录（不毁已发布包的基准键集）', async () => {
+  const dirs = tempDirs()
+  try {
+    // 已发布包的英文源（validate-quests 的基准键集）
+    const langDir = join(dirs.packsDir, 'demo', 'config/ftbquests/quests/lang')
+    mkdirSync(langDir, { recursive: true })
+    writeFileSync(join(langDir, 'en_us.snbt'), 'quest.a.title: "Hi"\n')
+
+    const noQuestZip = buildZip([{ name: 'Demo-1.0/overrides/mods/example.jar', data: 'not-a-quest-file' }])
+    const r = await preparePack({
+      slug: 'demo', cfId: '1514778', apiKey: 'k', packsDir: dirs.packsDir, tmpDir: dirs.tmpDir,
+      force: true, fetchImpl: stubFetch({ zip: noQuestZip }),
+    })
+    assert.equal(r.status, 'prepared')
+    assert.equal(r.written, 0)
+    assert.equal(readFileSync(join(langDir, 'en_us.snbt'), 'utf8'), 'quest.a.title: "Hi"\n')
+  } finally { dirs.cleanup() }
+})
+
+test('preparePack：判定为不一致后下载失败 —— 原样留着旧英文源（基准键集不能因为一次失败就没了）', async () => {
+  const dirs = tempDirs()
+  try {
+    // 已发布包的英文源 + 上一次来源的残留
+    const questsDir = join(dirs.packsDir, 'demo', 'config/ftbquests/quests')
+    mkdirSync(join(questsDir, 'chapters'), { recursive: true })
+    mkdirSync(join(questsDir, 'lang'), { recursive: true })
+    writeFileSync(join(questsDir, 'chapters/old.snbt'), 'title: "上一次来源"\n')
+    writeFileSync(join(questsDir, 'lang/en_us.snbt'), 'quest.a.title: "Hi"\n')
+    const before = snbtNames(join(dirs.packsDir, 'demo'))
+
+    // 清单能拿到（不一致 → 决定重取），但拉 zip 本体时挂掉
+    const fetchImpl = listingStub({
+      downloadUrl: 'https://cdn.example/files/demo.zip',
+    })
+    const failing = async (url, init) => {
+      const u = String(url)
+      const method = String(init?.method ?? 'GET').toUpperCase()
+      const hasRange = init?.headers?.Range ?? init?.headers?.range
+      if (u.includes('/files?pageSize=1') || method === 'HEAD' || hasRange) return fetchImpl(url, init)
+      throw new Error('下载整合包 HTTP 500')
+    }
+
+    await assert.rejects(
+      () => preparePack({
+        slug: 'demo', cfId: '1514778', apiKey: 'k', packsDir: dirs.packsDir, tmpDir: dirs.tmpDir,
+        fetchImpl: failing,
+      }),
+      /下载整合包 HTTP 500/,
+    )
+    // 关键：目录一个字节都没动 —— 闸门的基准键集还在
+    assert.deepEqual(snbtNames(join(dirs.packsDir, 'demo')), before)
+    assert.equal(readFileSync(join(questsDir, 'lang/en_us.snbt'), 'utf8'), 'quest.a.title: "Hi"\n')
+    assert.equal(readFileSync(join(questsDir, 'chapters/old.snbt'), 'utf8'), 'title: "上一次来源"\n')
   } finally { dirs.cleanup() }
 })

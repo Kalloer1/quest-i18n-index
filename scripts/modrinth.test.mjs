@@ -228,21 +228,23 @@ test('preparePack(platform:mr)：不需要 apiKey；keepZip:false 仍解包但�
   } finally { dirs.cleanup() }
 })
 
-test('preparePack(platform:mr)：幂等——已有 .snbt 时一个请求都不发', async () => {
+test('preparePack(platform:mr)：幂等——已有 .snbt 时跳过下载，不拉任何字节', async () => {
   const dirs = tempDirs()
   try {
     await preparePack({
       slug: 'better-mc-fabric-bmc2', platform: 'mr',
       packsDir: dirs.packsDir, tmpDir: dirs.tmpDir, fetchImpl: stubFetch(),
     })
-    let called = 0
+    // 幂等跳过前会先取一次权威地址 + 一次清单（拿不到就退回本地副本），
+    // 但绝不下载 zip 字节。桩只对「拉字节的请求」计数。
+    let bodies = 0
     const again = await preparePack({
       slug: 'better-mc-fabric-bmc2', platform: 'mr',
       packsDir: dirs.packsDir, tmpDir: dirs.tmpDir,
-      fetchImpl: async () => { called++; throw new Error('不该发起请求') },
+      fetchImpl: stubFetch({ onBody: () => bodies++ }),
     })
     assert.equal(again.status, 'skipped')
-    assert.equal(called, 0)
+    assert.equal(bodies, 0, '跳过时不该拉走任何 zip 字节')
   } finally { dirs.cleanup() }
 })
 

@@ -18,7 +18,7 @@
  */
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { mkdtempSync, rmSync, existsSync, readFileSync } from 'node:fs'
+import { mkdtempSync, rmSync, existsSync, readFileSync, mkdirSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { deflateRawSync } from 'node:zlib'
@@ -328,22 +328,89 @@ test('preparePack questFilesOnly：Range 失败自动回退整包下载，产物
   } finally { dirs.cleanup() }
 })
 
-test('preparePack questFilesOnly：已有 .snbt 时仍走幂等跳过，一个请求都不发', async () => {
+test('preparePack questFilesOnly：已有 .snbt 且目录实况与权威清单一致时跳过（只取清单，不下文件）', async () => {
   const dirs = tempDirs()
   try {
-    const calls = []
     await preparePack({
       slug: 'demo', cfId: '7', apiKey: 'k',
       packsDir: dirs.packsDir, tmpDir: dirs.tmpDir, questFilesOnly: true,
-      fetchImpl: makeCdn(SINGLE_ZIP, { calls }),
+      fetchImpl: makeCdn(SINGLE_ZIP),
     })
+    const calls = []
     const r = await preparePack({
       slug: 'demo', cfId: '7', apiKey: 'k',
       packsDir: dirs.packsDir, tmpDir: dirs.tmpDir, questFilesOnly: true,
-      fetchImpl: makeCdn(SINGLE_ZIP, { calls: [] }),
+      fetchImpl: makeCdn(SINGLE_ZIP, { calls }),
       log: () => {},
     })
     assert.equal(r.status, 'skipped')
+    assert.equal(wholeGets(calls).length, 0, '跳过时不该下载整包')
+    // 只取权威清单：HEAD + 尾部 Range + 中央目录 Range，没有任何**文件** Range
+    assert.equal(rangeGets(calls).length, 2, `跳过时只该取权威清单：${JSON.stringify(calls)}`)
+  } finally { dirs.cleanup() }
+})
+
+test('preparePack questFilesOnly：目录残留上一次来源的章节文件 → 权威清单说不该有 → 清空重取（无需 --force）', async () => {
+  const dirs = tempDirs()
+  try {
+    // 上一次来源的内嵌章节文件：只有它存在时，loadPackUnits 会把布局判成 embedded
+    const staleDir = join(dirs.packsDir, 'demo', 'config/ftbquests/quests/chapters')
+    mkdirSync(staleDir, { recursive: true })
+    writeFileSync(join(staleDir, 'old.snbt'), 'title: "上一次来源"\n')
+
+    const calls = []
+    const logs = []
+    const r = await preparePack({
+      slug: 'demo', cfId: '7', apiKey: 'k',
+      packsDir: dirs.packsDir, tmpDir: dirs.tmpDir, questFilesOnly: true,
+      fetchImpl: makeCdn(SINGLE_ZIP, { calls }),
+      log: (m) => logs.push(m),
+    })
+
+    assert.equal(r.status, 'prepared')
+    assert.equal(r.layout, LAYOUT.SEPARATE_SINGLE)
+    // 自愈：残留章节文件没了，目录实况 == 本次权威取源
+    assert.equal(existsSync(staleDir), false)
+    assert.equal(readFileSync(join(dirs.packsDir, 'demo', 'config/ftbquests/quests/lang/en_us.snbt'), 'utf8'), EN_TEXT)
+    assert.ok(existsSync(join(dirs.packsDir, 'demo', 'config/ftbquests/quests/data.snbt')))
+    assert.match(logs.join('\n'), /残留/)
+    assert.equal(wholeGets(calls).length, 0, '不该回退整包下载')
+  } finally { dirs.cleanup() }
+})
+
+test('preparePack questFilesOnly：权威清单取不到时退回旧行为 —— 用本地副本，不把包判失败', async () => {
+  const dirs = tempDirs()
+  try {
+    // 本地副本（上一次取源留下的，比如 CDN 只挡住了中央目录）
+    const langDir = join(dirs.packsDir, 'demo', 'config/ftbquests/quests/lang')
+    mkdirSync(langDir, { recursive: true })
+    writeFileSync(join(langDir, 'en_us.snbt'), EN_TEXT)
+
+    const headFails = async (url, init = {}) => {
+      const u = String(url)
+      const method = String(init?.method ?? 'GET').toUpperCase()
+      if (u.includes('/files?pageSize=1')) {
+        return {
+          ok: true, status: 200, url: u, headers: { get: () => null },
+          json: async () => ({ data: [{ id: 7, fileName: 'Demo-1.0.zip', fileLength: 1, downloadUrl: 'https://cdn.example/files/demo.zip' }] }),
+        }
+      }
+      if (method === 'HEAD') return { ok: false, status: 500, url: u, headers: { get: () => null }, arrayBuffer: async () => Buffer.alloc(0) }
+      throw new Error('清单取不到时不该继续发请求')
+    }
+
+    const logs = []
+    const r = await preparePack({
+      slug: 'demo', cfId: '7', apiKey: 'k',
+      packsDir: dirs.packsDir, tmpDir: dirs.tmpDir, questFilesOnly: true,
+      fetchImpl: headFails,
+      log: (m) => logs.push(m),
+    })
+
+    assert.equal(r.status, 'skipped', '清单取不到要退回「有 .snbt 就用本地副本」')
+    assert.equal(r.layout, LAYOUT.SEPARATE_SINGLE)
+    assert.match(logs.join('\n'), /权威清单取不到/)
+    assert.equal(readFileSync(join(langDir, 'en_us.snbt'), 'utf8'), EN_TEXT, '本地副本必须原样留着')
   } finally { dirs.cleanup() }
 })
 

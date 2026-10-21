@@ -17,7 +17,7 @@
  */
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { mkdtempSync, rmSync, mkdirSync, writeFileSync, existsSync } from 'node:fs'
+import { mkdtempSync, rmSync, mkdirSync, writeFileSync, existsSync, readFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { deflateRawSync } from 'node:zlib'
@@ -67,8 +67,8 @@ const ZIP = buildZip([{
   data: 'quest.a.title: "Hi"\n',
 }])
 
-/** fetch 桩：先回文件列表，再回 zip 本体。 */
-function stubFetch() {
+/** fetch 桩：先回文件列表，再回 zip 本体。`onBody` 只在真拉走字节时调用。 */
+function stubFetch({ onBody } = {}) {
   return async (url) => {
     if (String(url).includes('/files')) {
       return {
@@ -78,7 +78,10 @@ function stubFetch() {
         }),
       }
     }
-    return { ok: true, status: 200, arrayBuffer: async () => ZIP }
+    return {
+      ok: true, status: 200,
+      arrayBuffer: async () => { onBody?.(); return ZIP },
+    }
   }
 }
 
@@ -139,14 +142,19 @@ test('keepZip: false 且已有 .snbt —— 仍跳过下载，完全不碰 tmp',
     mkdirSync(outDir, { recursive: true })
     writeFileSync(join(outDir, 'en_us.snbt'), 'quest.a.title: "Hi"\n')
 
-    let called = 0
+    // 幂等跳过前会先取一次权威文件地址 + 一次清单（拿不到就退回本地副本），
+    // 但绝不下载 zip 字节、绝不碰 tmp。桩只对「拉字节的请求」计数。
+    let bodies = 0
+    const zipUrl = 'https://cdn.example/files/demo.zip'
     const r = await preparePack({
       slug: 'demo', cfId: '1', apiKey: 'k',
       packsDir: dirs.packsDir, tmpDir: dirs.tmpDir, keepZip: false,
-      fetchImpl: async () => { called++; throw new Error('不该发起请求') },
+      fetchImpl: stubFetch({ bodies: () => bodies++ }),
     })
     assert.equal(r.status, 'skipped')
-    assert.equal(called, 0)
+    assert.equal(bodies, 0, '跳过时不该拉走任何 zip 字节')
     assert.equal(existsSync(join(dirs.tmpDir, 'demo.zip')), false)
+    // 本地英文源一个字节都不能动（它是 validate-quests 的基准键集）
+    assert.equal(readFileSync(join(outDir, 'en_us.snbt'), 'utf8'), 'quest.a.title: "Hi"\n')
   } finally { dirs.cleanup() }
 })
