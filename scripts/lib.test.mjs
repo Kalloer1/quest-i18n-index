@@ -16,6 +16,7 @@ import {
 import { parse } from './snbt.mjs'
 import { readFileSync } from 'node:fs'
 import { fetchRetry } from './lib/fetch-retry.mjs'
+import { repairUnclosedStringLists } from './lib/snbt-repair.mjs'
 
 // ---------- format-codes ----------
 
@@ -182,6 +183,37 @@ test('extractPack：分离布局所有字符串都可翻', () => {
   })
   assert.equal(pack.units.length, 1)
   assert.equal(pack.units[0].key, `${SEP_DIR_EN}::quest.a.title`)
+})
+
+// ---------- snbt-repair ----------
+// 上游整合包确实存在「忘了收尾 "]」的坏行（cleancraft-by-acul-neoforged 实测）。
+// 这种坏行会让整个文件解析错位，拖死整包翻译。判据要窄，不误伤合法多行字符串。
+
+test('repairUnclosedStringLists：补上遗漏的 "]，且后续行不被吞进字符串', () => {
+  const bad = '{\n\tquest.A.quest_desc: ["This Quest has been authored by X.\n\tquest.B.title: "Hello"\n\tquest.C.title: "World"\n}'
+  const { text, repaired } = repairUnclosedStringLists(bad)
+  assert.equal(repaired.length, 1)
+  assert.equal(repaired[0].key, 'quest.A.quest_desc')
+  assert.match(text, /quest\.A\.quest_desc: \["This Quest has been authored by X\."\]/)
+  // 修完后整份文件必须能解析
+  assert.doesNotThrow(() => parse(text))
+  const root = parse(text).value
+  const byKey = Object.fromEntries(root.entries.map((e) => [e.key.value, e.value.value]))
+  assert.equal(byKey['quest.B.title'], 'Hello')
+  assert.equal(byKey['quest.C.title'], 'World')
+})
+
+test('repairUnclosedStringLists：正常的单行列表/跨行长文本不动', () => {
+  const ok = '{\n\tquest.A.quest_desc: ["one line"]\n\tquest.B.quest_desc: ["multi\nline text"]\n}'
+  const { text, repaired } = repairUnclosedStringLists(ok)
+  assert.equal(repaired.length, 0)
+  assert.equal(text, ok)
+})
+
+test('repairUnclosedStringLists：后面不是新键行时不修（避免误伤）', () => {
+  const s = '{\n\tquest.A.quest_desc: ["open text\nplain continuation line\n}'
+  const { repaired } = repairUnclosedStringLists(s)
+  assert.equal(repaired.length, 0)
 })
 
 // ---------- fetch-retry ----------

@@ -51,6 +51,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, rmdirSync, rmSync, st
 import { fileURLToPath } from 'node:url'
 import { dirname, join, relative } from 'node:path'
 import { extractFromBuffer, isQuestFile, toOutputPath } from './extract-pack.mjs'
+import { repairUnclosedStringLists } from './lib/snbt-repair.mjs'
 import { classifyLayout } from './lib/candidates.mjs'
 import { resolveLatestMrpack } from './lib/modrinth.mjs'
 import { fetchZipTexts, listZip } from './lib/zip-range.mjs'
@@ -281,6 +282,38 @@ function writeQuestTexts(files, outDir) {
 }
 
 /**
+ * 落盘后修一遍上游源文件里「忘了收尾 `"]`」的损坏（见 lib/snbt-repair.mjs）。
+ *
+ * 为什么在落盘后统一修、而不是在两条写盘路各写一遍：Range 路（`writeQuestTexts`）
+ * 与整包路（`extractFromBuffer`）写的是同一批文件，修一处覆盖两条路。
+ * 修复会画日志——不静默改源数据。
+ *
+ * @param {string} slug
+ * @param {string} outDir
+ * @param {string[]} written 落盘相对路径
+ * @param {(m: string) => void} log
+ * @returns {number} 修过的文件数
+ */
+function repairSources(slug, outDir, written, log) {
+  let files = 0
+  const keys = []
+  for (const rel of written) {
+    const dest = join(outDir, rel)
+    if (!existsSync(dest)) continue
+    const before = readFileSync(dest, 'utf8')
+    const { text, repaired } = repairUnclosedStringLists(before)
+    if (!repaired.length) continue
+    writeFileSync(dest, text)
+    files++
+    for (const r of repaired.slice(0, 3)) keys.push(`${rel}::${r.key}`)
+  }
+  if (files) {
+    log(`[${slug}] 修正上游源文件的未闭合 [" ：${files} 个文件（${keys.slice(0, 3).join('、')}${keys.length > 3 ? ' …' : ''}）`)
+  }
+  return files
+}
+
+/**
  * 本地副本是否就是当前权威源。
  *
  * 权威清单只花 HEAD + 尾部 Range + 中央目录 Range（不下文件），两条取源路都用得起 ——
@@ -372,6 +405,7 @@ export async function preparePack({
       }
       const pruned = pruneStaleFiles(outDir, written)
       const info = classifyLayout(written)
+      repairSources(slug, outDir, written, log)
       if (pruned.length) log(`[${slug}] 清掉 ${pruned.length} 个不属于权威源的残留文件：${pruned.slice(0, 3).join(', ')}${pruned.length > 3 ? ' …' : ''}`)
       log(`[${slug}] Range 取到 ${written.length} 个任务书文件，布局 ${info.layout}（enFiles=${info.enFiles} zhFiles=${info.zhFiles}）`)
       return { slug, status: 'prepared', written: written.length, layout: info.layout }
@@ -408,6 +442,7 @@ export async function preparePack({
     return { slug, status: 'prepared', written: 0, layout: info.layout }
   }
   const pruned = pruneStaleFiles(outDir, written)
+  repairSources(slug, outDir, written, log)
   if (pruned.length) log(`[${slug}] 清掉 ${pruned.length} 个不属于权威源的残留文件：${pruned.slice(0, 3).join(', ')}${pruned.length > 3 ? ' …' : ''}`)
   log(`[${slug}] 解出 ${written.length} 个任务书文件，布局 ${info.layout}（enFiles=${info.enFiles} zhFiles=${info.zhFiles}）`)
   return { slug, status: 'prepared', written: written.length, layout: info.layout }
