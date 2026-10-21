@@ -1,0 +1,477 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "rsquare"
+	filename: "era_da_eletricidade_unificada"
+	group: "238ED177346771AE"
+	icon: "create_new_age:generator_coil"
+	id: "7E70415A63394259"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["Acumule Cobre — o condutor básico de toda a rede elétrica."]
+			id: "1AF1D6E6DDAD3D7A"
+			tasks: [{
+				count: 32L
+				id: "54265BCC1A89534A"
+				item: "minecraft:copper_ingot"
+				type: "item"
+			}]
+			title: "Estoque de Cobre"
+			x: -6.0d
+			y: -1.5d
+		}
+		{
+			description: ["O Zinco do Create é necessário para ligas e componentes elétricos."]
+			id: "3B8124D3EF7F664D"
+			tasks: [{
+				count: 32L
+				id: "4FF6BA13EF22F9DE"
+				item: "create:zinc_ingot"
+				type: "item"
+			}]
+			title: "Estoque de Zinco"
+			x: -6.0d
+			y: 0.0d
+		}
+		{
+			description: ["O Ouro será usado para a fiação de alta tensão sem perdas."]
+			id: "065A47B5404CCE1A"
+			tasks: [{
+				count: 32L
+				id: "361AF26B0C33C305"
+				item: "minecraft:gold_ingot"
+				type: "item"
+			}]
+			title: "Estoque de Ouro"
+			x: -6.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["5000000000000001"]
+			description: ["A matéria-prima para fios e conectores. Prense lingotes de cobre nas Crushing Wheels."]
+			id: "5000000000000007"
+			tasks: [{
+				count: 16L
+				id: "5000000000000008"
+				item: "create:copper_sheet"
+				type: "item"
+			}]
+			title: "Placas de Cobre"
+			x: -4.5d
+			y: -1.5d
+		}
+		{
+			dependencies: [
+				"5000000000000001"
+				"5000000000000003"
+			]
+			description: ["A mistura perfeita para a carcaça dos maquinários elétricos."]
+			id: "5000000000000009"
+			shape: "gear"
+			tasks: [{
+				count: 16L
+				id: "500000000000000A"
+				item: "create:brass_ingot"
+				type: "item"
+			}]
+			title: "A Base do Latão"
+			x: -4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5000000000000009"]
+			description: ["Esta máquina especial puxa lingotes e placas, afinando-os até virarem arames finíssimos."]
+			id: "500000000000000B"
+			tasks: [{
+				id: "500000000000000C"
+				item: "createaddition:rolling_mill"
+				type: "item"
+			}]
+			title: "O Moinho de Rolos"
+			x: -4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: [
+				"5000000000000007"
+				"500000000000000B"
+			]
+			description: ["Fio de cobre. Transmite energia FE, mas tem perda em longas distâncias."]
+			id: "500000000000000D"
+			tasks: [{
+				count: 16L
+				id: "500000000000000E"
+				item: "createaddition:copper_wire"
+				type: "item"
+			}]
+			title: "Fiação Básica"
+			x: -3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: [
+				"5000000000000005"
+				"500000000000000B"
+			]
+			description: ["Fio de ouro. Sem perdas e transfere grandes pacotes de energia."]
+			id: "500000000000000F"
+			tasks: [{
+				count: 16L
+				id: "5000000000000010"
+				item: "createaddition:gold_wire"
+				type: "item"
+			}]
+			title: "Fiação de Alta Tensão"
+			x: -3.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["500000000000000D"]
+			description: ["A ferramenta essencial. Clique com ela em dois conectores para puxar o fio entre eles."]
+			id: "5000000000000011"
+			shape: "hexagon"
+			tasks: [{
+				id: "5000000000000012"
+				item: "createaddition:spool"
+				type: "item"
+			}]
+			title: "O Carretel (Spool)"
+			x: -3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5000000000000011"]
+			description: ["Coloque isso nas máquinas de outros mods (como o AE2) para injetar a energia elétrica neles."]
+			id: "5000000000000013"
+			tasks: [{
+				count: 4L
+				id: "5000000000000014"
+				item: "createaddition:connector"
+				type: "item"
+			}]
+			title: "Conector Estático"
+			x: -1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"500000000000000D"
+				"5000000000000013"
+			]
+			description: ["A ponte de ida! Conecte as rodas d'água do Create na base dele, e ele gerará Eletricidade (FE) no topo. Ligue um fio e espalhe!"]
+			id: "5000000000000015"
+			shape: "gear"
+			size: 1.5d
+			tasks: [{
+				id: "5000000000000016"
+				item: "createaddition:alternator"
+				type: "item"
+			}]
+			title: "O Alternador (Geração)"
+			x: 0.0d
+			y: -1.5d
+		}
+		{
+			dependencies: [
+				"500000000000000F"
+				"5000000000000013"
+			]
+			description: ["A ponte de volta! Injete eletricidade nele por um fio, e o eixo dele começará a girar. Perfeito para automatizar máquinas longe dos rios."]
+			id: "5000000000000017"
+			shape: "gear"
+			size: 1.5d
+			tasks: [{
+				id: "5000000000000018"
+				item: "createaddition:electric_motor"
+				type: "item"
+			}]
+			title: "Motor Elétrico (Consumo)"
+			x: 0.0d
+			y: 1.5d
+		}
+		{
+			dependencies: [
+				"5000000000000015"
+				"5000000000000017"
+			]
+			description: ["O Accumulator. Monte um cubo gigante juntando vários desses para armazenar milhões de RF para quando o vento parar ou a água secar."]
+			id: "5000000000000019"
+			shape: "hexagon"
+			size: 1.2d
+			tasks: [{
+				count: 4L
+				icon: "createaddition:modular_accumulator"
+				id: "500000000000001A"
+				item: "createaddition:modular_accumulator"
+				type: "item"
+			}]
+			title: "Banco de Baterias"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5000000000000019"]
+			description: ["Entrando no mod New Age. As Carbon Brushes são usadas para raspar e coletar energia de geradores em rotação."]
+			id: "500000000000001B"
+			tasks: [{
+				id: "500000000000001C"
+				item: "create_new_age:carbon_brushes"
+				type: "item"
+			}]
+			title: "Coletor Estático"
+			x: 3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["5000000000000019"]
+			description: ["Uma pedra magnética maciça. É o coração de uma usina hidrelétrica avançada. Faça girar rápido!"]
+			id: "500000000000001D"
+			tasks: [{
+				id: "500000000000001E"
+				item: "create_new_age:heat_pipe"
+				type: "item"
+			}]
+			title: "O Magneto (Rotor)"
+			x: 3.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["500000000000001B"]
+			description: ["Coloque essas bobinas AO REDOR do bloco de Magnetita que está girando. Elas captarão a alteração do campo magnético e gerarão energia insana!"]
+			id: "500000000000001F"
+			tasks: [{
+				id: "5000000000000020"
+				item: "create_new_age:magnetite_block"
+				type: "item"
+			}]
+			title: "Bobina Geradora (Estator)"
+			x: 4.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["500000000000001D"]
+			description: ["Placas solares que aquecem os tubos de calor durante o dia. Energia 100% passiva e limpa!"]
+			id: "5000000000000021"
+			tasks: [{
+				icon: "create_new_age:basic_solar_heating_plate"
+				id: "5000000000000022"
+				item: "create_new_age:basic_solar_heating_plate"
+				type: "item"
+			}]
+			title: "Energia Solar Básica"
+			x: 4.5d
+			y: 2.5d
+		}
+		{
+			dependencies: [
+				"500000000000001B"
+				"500000000000001F"
+			]
+			description: ["Tubos de calor. Transmitem temperaturas extremas (de lava ou caldeiras) sem deixar o bloco esquentar por fora."]
+			id: "5000000000000023"
+			shape: "hexagon"
+			tasks: [{
+				id: "5000000000000024"
+				item: "create_new_age:generator_coil"
+				type: "item"
+			}]
+			title: "Termodinâmica"
+			x: 4.5d
+			y: -1.0d
+		}
+		{
+			dependencies: [
+				"500000000000001D"
+				"5000000000000021"
+			]
+			description: ["O Energiser. Jogue muita eletricidade nele, e coloque um minério embaixo. O laser vai sobrecarregar o material, criando metais fundidos impossíveis na natureza!"]
+			id: "5000000000000025"
+			shape: "hexagon"
+			tasks: [{
+				id: "5000000000000026"
+				item: "create_new_age:heater"
+				type: "item"
+			}]
+			title: "Laser Energético"
+			x: 4.5d
+			y: 1.0d
+		}
+		{
+			dependencies: [
+				"5000000000000023"
+				"5000000000000025"
+			]
+			description: ["O primeiro estágio do Energizer. Processe materiais com eletricidade para obter Ferro Sobrecarregado (Overcharged Iron)."]
+			id: "5000000000000027"
+			shape: "gear"
+			size: 1.5d
+			tasks: [{
+				icon: "create_new_age:basic_energiser"
+				id: "5000000000000028"
+				item: "create_new_age:basic_energiser"
+				type: "item"
+			}]
+			title: "Energizador Básico"
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5000000000000027"]
+			description: ["O metal que foi atravessado por milhões de volts. É mais resistente e magnético que o Netherite."]
+			id: "5000000000000029"
+			shape: "diamond"
+			tasks: [{
+				id: "500000000000002A"
+				item: "create_new_age:overcharged_iron"
+				type: "item"
+			}]
+			title: "Ferro Sobrecarregado"
+			x: 7.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5000000000000029"]
+			description: ["Um imã laminado e densíssimo. A base do gerador de grande escala."]
+			id: "500000000000002B"
+			tasks: [{
+				id: "500000000000002C"
+				item: "create_new_age:layered_magnet"
+				type: "item"
+			}]
+			title: "Imã em Camadas"
+			x: 9.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["5000000000000029"]
+			description: ["A versão melhorada das placas solares. Gera muito mais calor."]
+			id: "500000000000002D"
+			tasks: [{
+				icon: "create_new_age:advanced_solar_heating_plate"
+				id: "500000000000002E"
+				item: "create_new_age:advanced_solar_plate"
+				type: "item"
+			}]
+			title: "Placa Solar Avançada"
+			x: 9.0d
+			y: 1.5d
+		}
+		{
+			dependencies: [
+				"500000000000002B"
+				"500000000000002D"
+			]
+			description: ["O segundo estágio. Combine o Imã, a Placa Solar Avançada e muito FE para obter Ouro Sobrecarregado."]
+			id: "500000000000002F"
+			shape: "gear"
+			size: 1.5d
+			tasks: [{
+				icon: "create_new_age:advanced_energiser"
+				id: "5000000000000030"
+				item: "create_new_age:advanced_energiser"
+				type: "item"
+			}]
+			title: "Energizador Avançado"
+			x: 10.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["500000000000002F"]
+			description: ["O metal dourado e reluzente que conduz eletricidade de forma quase perfeita."]
+			id: "5000000000000031"
+			shape: "diamond"
+			tasks: [{
+				id: "5000000000000032"
+				item: "create_new_age:overcharged_gold"
+				type: "item"
+			}]
+			title: "Ouro Sobrecarregado"
+			x: 12.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5000000000000031"]
+			description: ["O fio de transmissão definitivo. Zero perda, enorme capacidade."]
+			id: "5000000000000033"
+			tasks: [{
+				icon: "create_new_age:overcharged_golden_wire"
+				id: "5000000000000034"
+				item: "create_new_age:overcharged_gold_wire"
+				type: "item"
+			}]
+			title: "Fio de Ouro Sobrecarregado"
+			x: 13.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["5000000000000031"]
+			description: ["Um material denso e radioativo que é o componente final dos Energizers de topo de linha."]
+			id: "5000000000000035"
+			tasks: [{
+				id: "5000000000000036"
+				item: "create_new_age:solid_corium"
+				type: "item"
+			}]
+			title: "Corium Sólido"
+			x: 13.5d
+			y: 1.5d
+		}
+		{
+			dependencies: [
+				"5000000000000033"
+				"5000000000000035"
+			]
+			description: ["O terceiro e último estágio. O Energizer Reforçado gera Diamante Sobrecarregado — o material mais elétrico do jogo."]
+			id: "5000000000000037"
+			shape: "gear"
+			size: 2.0d
+			tasks: [{
+				icon: "create_new_age:reinforced_energiser"
+				id: "5000000000000038"
+				item: "create_new_age:reinforced_energiser"
+				type: "item"
+			}]
+			title: "Energizador Reforçado"
+			x: 15.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5000000000000037"]
+			description: ["O resultado final da cadeia elétrica. Um diamante que foi atravessado por energia pura."]
+			id: "5000000000000039"
+			shape: "diamond"
+			size: 1.5d
+			tasks: [{
+				id: "500000000000003A"
+				item: "create_new_age:overcharged_diamond"
+				type: "item"
+			}]
+			title: "Diamante Sobrecarregado"
+			x: 16.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5000000000000039"]
+			description: ["O último item da linha. A Magnetita em Fluxo (Fluxuated Magnetite) é o coração de geradores de escala industrial. Você dominou a eletricidade."]
+			id: "500000000000003B"
+			rewards: [{
+				id: "500000000000003D"
+				type: "xp_levels"
+				xp_levels: 30
+			}]
+			shape: "hexagon"
+			size: 2.0d
+			tasks: [{
+				icon: "create_new_age:fluxuated_magnetite"
+				id: "500000000000003C"
+				item: "create_new_age:fluxuated_magnetite"
+				type: "item"
+			}]
+			title: "Magnetita em Fluxo"
+			x: 18.0d
+			y: 0.0d
+		}
+	]
+	title: "Era da Eletriucidade"
+}

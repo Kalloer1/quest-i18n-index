@@ -1,0 +1,398 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "rsquare"
+	filename: "era_nuclear"
+	group: "238ED177346771AE"
+	icon: "createnuclear:uranium_powder"
+	id: "2487561E164022B4"
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"O subsolo guarda um perigo silencioso: o Urânio."
+				""
+				"Antes de qualquer coisa, mine os dois minérios essenciais: o Autunite (Urânio bruto) e o Galena (Chumbo bruto). Sem o Chumbo, a radiação vai te matar antes de você chegar perto do reator."
+			]
+			id: "7000000000000001"
+			rewards: [{
+				id: "7000000000000004"
+				item: "minecraft:golden_apple"
+				type: "item"
+			}]
+			shape: "gear"
+			size: 1.5d
+			tasks: [
+				{
+					count: 16L
+					id: "7000000000000002"
+					item: "createnuclear:raw_uranium"
+					type: "item"
+				}
+				{
+					count: 16L
+					id: "7000000000000003"
+					item: "createnuclear:raw_lead"
+					type: "item"
+				}
+			]
+			title: "A Era Atômica"
+			x: -8.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7000000000000001"]
+			description: ["O Chumbo (Lead) bloqueia a radiação. Derreta os minérios em lingotes imediatamente."]
+			id: "7000000000000005"
+			tasks: [{
+				count: 32L
+				id: "7000000000000006"
+				item: "createnuclear:lead_ingot"
+				type: "item"
+			}]
+			title: "O Escudo de Chumbo"
+			x: -6.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["7000000000000005"]
+			description: ["Filtra as partículas radioativas do ar. Feito com chumbo."]
+			id: "7000000000000007"
+			tasks: [{
+				id: "7000000000000008"
+				item: {
+					Count: 1
+					id: "createnuclear:orange_anti_radiation_helmet"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "Capacete Hazmat"
+			x: -4.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["7000000000000005"]
+			description: ["A peça central da sua segurança. Um colete pesado de chumbo que protege seus órgãos vitais da radiação ionizante."]
+			id: "7000000000000009"
+			tasks: [{
+				id: "700000000000000A"
+				item: {
+					Count: 1
+					id: "createnuclear:orange_anti_radiation_chestplate"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "Peitoral Hazmat"
+			x: -3.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["7000000000000005"]
+			description: ["Isolamento contra a contaminação direta."]
+			id: "700000000000000B"
+			tasks: [{
+				id: "700000000000000C"
+				item: {
+					Count: 1
+					id: "createnuclear:orange_anti_radiation_leggings"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "Calças Hazmat"
+			x: -1.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["7000000000000005"]
+			description: ["O chão de um reator é mortal. Isole seus pés!"]
+			id: "700000000000000D"
+			tasks: [{
+				id: "700000000000000E"
+				item: {
+					Count: 1
+					id: "createnuclear:anti_radiation_boots"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "Botas Hazmat"
+			x: 0.0d
+			y: -3.5d
+		}
+		{
+			dependencies: [
+				"7000000000000007"
+				"7000000000000009"
+				"700000000000000B"
+				"700000000000000D"
+			]
+			description: [
+				"Com o traje completo equipado, você pode entrar na zona quente."
+				""
+				"NUNCA manipule Urânio sem o traje. A radiação causa dano passivo severo, reduz sua velocidade e pode matar em segundos."
+			]
+			id: "700000000000000F"
+			rewards: [{
+				id: "7000000000000011"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+			shape: "diamond"
+			size: 1.5d
+			tasks: [{
+				id: "5DF84886370D60D0"
+				type: "checkmark"
+			}]
+			title: "Proteção Total"
+			x: 0.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["7000000000000001"]
+			description: ["Moa a rocha para extrair o pó de urânio."]
+			id: "7000000000000012"
+			tasks: [{
+				count: 16L
+				id: "7000000000000013"
+				item: "createnuclear:uranium_powder"
+				type: "item"
+			}]
+			title: "Moagem de Autunita"
+			x: -6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7000000000000012"]
+			description: ["Use esta fogueira especial para aquecer o pó e transformá-lo na base do combustível."]
+			id: "7000000000000014"
+			shape: "hexagon"
+			tasks: [{
+				id: "7000000000000015"
+				item: "createnuclear:enriching_campfire"
+				type: "item"
+			}]
+			title: "Fogueira de Enriquecimento"
+			x: -4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7000000000000014"]
+			description: ["O primeiro estágio do enriquecimento. Guarde com cuidado."]
+			id: "7000000000000016"
+			tasks: [{
+				count: 8L
+				id: "7000000000000017"
+				item: "createnuclear:yellowcake"
+				type: "item"
+			}]
+			title: "Yellowcake (Bolo Amarelo)"
+			x: -3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7000000000000016"]
+			description: ["A matéria prima altamente instável. Usar traje é obrigatório!"]
+			id: "15166D62853F659C"
+			rewards: [{
+				id: "7000000000000032"
+				item: "minecraft:milk_bucket"
+				type: "item"
+			}]
+			shape: "hexagon"
+			tasks: [{
+				count: 4L
+				id: "7000000000000031"
+				item: "createnuclear:enriched_yellowcake"
+				type: "item"
+			}]
+			title: "Enriched Yellowcake"
+			x: -1.5d
+			y: 0.0d
+		}
+		{
+			description: ["Uranium Rods! Esse é o combustível que será injetado pelo Reactor Input."]
+			id: "7000000000000019"
+			tasks: [{
+				count: 4L
+				id: "700000000000001A"
+				item: "createnuclear:uranium_rod"
+				type: "item"
+			}]
+			title: "Varetas de Combustível"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7000000000000001"]
+			description: ["Sem isso, você construirá no escuro. Segure o Reactor Blueprint e aponte. Ele projetará um holograma indicando onde cada bloco exato da usina deve ser colocado."]
+			id: "700000000000001B"
+			shape: "gear"
+			size: 1.2d
+			tasks: [{
+				id: "700000000000001C"
+				item: "createnuclear:reactor_blueprint_item"
+				type: "item"
+			}]
+			title: "A Planta (Blueprint)"
+			x: -6.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["700000000000001B"]
+			description: ["O Reactor Controller. Coloque-o no local indicado pelo holograma. Quando construir a estrutura inteira ao redor dele, clique nele para formar o reator."]
+			id: "7000000000000033"
+			shape: "hexagon"
+			tasks: [{
+				id: "7000000000000034"
+				item: "createnuclear:reactor_controller"
+				type: "item"
+			}]
+			title: "O Cérebro (Controller)"
+			x: -4.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["7000000000000033"]
+			description: ["Paredes de contenção. Forje Aço e Chumbo para fazer a carcaça blindada e os vidros de proteção térmica."]
+			id: "7000000000000035"
+			tasks: [
+				{
+					count: 32L
+					id: "7000000000000036"
+					item: "createnuclear:reactor_casing"
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "7000000000000037"
+					item: "create_new_age:reactor_glass"
+					type: "item"
+				}
+			]
+			title: "A Gaiola (Casing e Glass)"
+			x: -2.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7000000000000033"]
+			description: ["Os Reactor Coolers ficam dentro da estrutura para estabilizar o calor. Se esquecer deles, é Meltdown na certa."]
+			id: "7000000000000038"
+			tasks: [{
+				count: 4L
+				id: "7000000000000039"
+				item: "createnuclear:reactor_cooler"
+				type: "item"
+			}]
+			title: "Prevenção de Derretimento"
+			x: -2.5d
+			y: 3.5d
+		}
+		{
+			dependencies: [
+				"7000000000000035"
+				"7000000000000038"
+			]
+			description: [
+				"Reactor Input: Conecte canos de água e funis jogando Varetas de Urânio AQUI."
+				"Reactor Output: Puxe o Vapor (Steam) superaquecido por canos e extraia o lixo radioativo (Depleted Rods) por AQUI."
+			]
+			id: "700000000000003A"
+			tasks: [
+				{
+					id: "700000000000003B"
+					item: "createnuclear:reactor_input"
+					type: "item"
+				}
+				{
+					id: "700000000000003C"
+					item: "createnuclear:reactor_output"
+					type: "item"
+				}
+			]
+			title: "Automação: Input / Output"
+			x: -1.0d
+			y: 2.5d
+		}
+		{
+			dependencies: [
+				"700000000000000F"
+				"7000000000000019"
+				"700000000000003A"
+			]
+			description: [
+				"Tudo convergiu. Você tem as peças da gaiola, o controlador, as entradas e o combustível."
+				""
+				"Erga a estrutura baseada no Blueprint. Clique no Controller para ativar a máquina. Alimente o Input com Água e Urânio."
+			]
+			id: "7000000000000023"
+			rewards: [{
+				id: "7000000000000025"
+				type: "xp_levels"
+				xp_levels: 10
+			}]
+			shape: "gear"
+			size: 2.0d
+			tasks: [{
+				count: 2L
+				id: "7000000000000024"
+				item: "createnuclear:graphite_rod"
+				type: "item"
+			}]
+			title: "A Montagem do Multibloco"
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7000000000000023"]
+			description: [
+				"O reator está vivo."
+				""
+				"A água que entra pelo Input evapora violentamente e sai pelo Output como Vapor (Steam). Conecte Steam Engines na saída e veja o poder de milhões de SU dominarem sua fábrica!"
+			]
+			id: "7000000000000028"
+			rewards: [
+				{
+					id: "700000000000002A"
+					item: "minecraft:netherite_block"
+					type: "item"
+				}
+				{
+					id: "700000000000002B"
+					type: "xp_levels"
+					xp_levels: 50
+				}
+			]
+			shape: "hexagon"
+			size: 2.0d
+			tasks: [
+				{
+					count: 8L
+					id: "7000000000000029"
+					item: "create:steam_engine"
+					type: "item"
+				}
+				{
+					count: 16L
+					id: "7E264D51F56ECB82"
+					item: "create:fluid_pipe"
+					type: "item"
+				}
+			]
+			title: "Fissão Termonuclear"
+			x: 5.0d
+			y: 0.0d
+		}
+	]
+	title: "Energia Nuclear"
+}

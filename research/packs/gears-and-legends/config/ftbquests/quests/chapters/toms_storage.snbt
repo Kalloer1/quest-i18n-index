@@ -1,0 +1,387 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "rsquare"
+	filename: "toms_storage"
+	group: "3B12E0629411DDDB"
+	icon: "toms_storage:ts.crafting_terminal"
+	id: "5600000000000000"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"O Tom's Simple Storage é a sua rede de dados inicial. Não usa energia (FE) e custa apenas madeira e redstone!"
+				""
+				"O Inventory Connector é o coração da rede. Coloque-o encostado em uma parede de baús, e ele lerá todo o conteúdo deles simultaneamente."
+			]
+			id: "5600000000000001"
+			rewards: [{
+				count: 8
+				id: "5DEA2CB10264661C"
+				item: "minecraft:barrel"
+				type: "item"
+			}]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{
+				id: "5600000000000011"
+				item: "toms_storage:ts.inventory_connector"
+				type: "item"
+			}]
+			title: "O Fim da Bagunça"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5600000000000001"]
+			description: ["O Inventory Cable conecta os baús mais distantes ao seu Conector central."]
+			id: "5600000000000002"
+			rewards: [{
+				count: 16
+				id: "6F4F3555AD181A68"
+				type: "item"
+			}]
+			tasks: [{
+				count: 16L
+				id: "5600000000000012"
+				item: "toms_storage:ts.inventory_cable"
+				type: "item"
+			}]
+			title: "Fiação de Madeira"
+			x: 0.0d
+			y: -2.0d
+		}
+		{
+			dependencies: [
+				"5600000000000001"
+				"5600000000000002"
+			]
+			description: ["O Storage Terminal é a sua tela. Ele permite ver, pesquisar e retirar itens de qualquer baú conectado à rede."]
+			id: "5600000000000003"
+			rewards: [{
+				count: 8
+				id: "1D8AE50E7A953C5B"
+				item: "minecraft:glowstone_dust"
+				type: "item"
+			}]
+			tasks: [{
+				id: "5600000000000013"
+				item: "toms_storage:ts.storage_terminal"
+				type: "item"
+			}]
+			title: "O Monitor Inicial"
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"5600000000000001"
+				"5600000000000003"
+			]
+			description: ["O Inventory Hopper puxa ou empurra itens diretamente da sua rede de baús para fornalhas ou esteiras do Create!"]
+			id: "5600000000000004"
+			rewards: [{
+				count: 2
+				id: "4B135AB798D8E39E"
+				item: "minecraft:hopper"
+				type: "item"
+			}]
+			tasks: [{
+				id: "5600000000000014"
+				item: "toms_storage:ts.inventory_hopper_basic"
+				type: "item"
+			}]
+			title: "Automação Básica"
+			x: 0.0d
+			y: 2.0d
+		}
+		{
+			dependencies: [
+				"5600000000000001"
+				"5600000000000002"
+			]
+			description: ["Dica de Ouro: O Tom's Storage se conecta nativamente ao Sophisticated Storage! Coloque o Conector encostado num Sophisticated Controller e acesse milhares de gavetas instantaneamente."]
+			id: "5600000000000005"
+			rewards: [{
+				count: 2
+				id: "345F3A855CFDDDE3"
+				item: "sophisticatedstorage:upgrade_base"
+				type: "item"
+			}]
+			shape: "hexagon"
+			tasks: [{
+				id: "5600000000000015"
+				item: "sophisticatedstorage:controller"
+				type: "item"
+			}]
+			title: "Integração: Sophisticated"
+			x: -2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"5600000000000002"
+				"5600000000000005"
+			]
+			description: ["O Framed Cable permite que você aplique a textura de QUALQUER bloco nele, escondendo seus cabos perfeitamente dentro da parede!"]
+			id: "5600000000000006"
+			rewards: [{
+				count: 16
+				id: "0FDD83179BB5809E"
+				item: "minecraft:stone"
+				type: "item"
+			}]
+			tasks: [{
+				count: 8L
+				id: "5600000000000016"
+				item: "toms_storage:ts.inventory_cable_connector_framed"
+				type: "item"
+			}]
+			title: "Cabo Camuflado"
+			x: -2.0d
+			y: -2.0d
+		}
+		{
+			dependencies: [
+				"5600000000000002"
+				"5600000000000003"
+			]
+			description: ["Este conector permite ligar um cabo a um baú que esteja 'de costas' para a parede, sem precisar quebrar a estética da sala."]
+			id: "5600000000000007"
+			rewards: [{
+				count: 4
+				id: "112A88BA27483E70"
+				item: "minecraft:iron_ingot"
+				type: "item"
+			}]
+			tasks: [{
+				id: "5600000000000017"
+				item: "toms_storage:ts.inventory_cable_connector"
+				type: "item"
+			}]
+			title: "Conector de Cabo"
+			x: 2.0d
+			y: -2.0d
+		}
+		{
+			dependencies: [
+				"5600000000000004"
+				"5600000000000005"
+			]
+			description: ["O Level Emitter emite um sinal de Redstone com base na quantidade de um item. Ex: 'Desligue a máquina se eu tiver mais de 100 ferros'."]
+			id: "5600000000000008"
+			rewards: [{
+				count: 16
+				id: "60ACC871CE5D028B"
+				item: "minecraft:redstone"
+				type: "item"
+			}]
+			tasks: [{
+				id: "5600000000000018"
+				item: "toms_storage:ts.level_emitter"
+				type: "item"
+			}]
+			title: "Lógica de Redstone"
+			x: -2.0d
+			y: 2.0d
+		}
+		{
+			dependencies: [
+				"5600000000000004"
+				"5600000000000003"
+			]
+			description: ["O Open Crate joga tudo que recebe da rede no chão. Perfeito para jogar itens em bacias ou esteiras do Create automaticamente!"]
+			id: "5600000000000009"
+			rewards: [{
+				id: "42B96EBB96BA1365"
+				item: "minecraft:dropper"
+				type: "item"
+			}]
+			tasks: [{
+				id: "5600000000000019"
+				item: "toms_storage:ts.open_crate"
+				type: "item"
+			}]
+			title: "Despejo Físico (Dropper)"
+			x: 2.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["5600000000000002"]
+			description: ["O Proxy estende a face de um baú. Útil quando você tem muitos cabos e funis brigando por espaço no mesmo bloco."]
+			id: "560000000000000A"
+			rewards: [{
+				id: "08CA36B2281394DD"
+				type: "xp_levels"
+				xp_levels: 2
+			}]
+			tasks: [{
+				id: "560000000000001A"
+				item: "toms_storage:ts.inventory_proxy"
+				type: "item"
+			}]
+			title: "A Extensão (Proxy)"
+			x: 0.0d
+			y: -4.0d
+		}
+		{
+			dependencies: [
+				"5600000000000006"
+				"560000000000000A"
+			]
+			description: ["Para disfarçar o Framed Cable: segure o Paint Kit, clique Shift + Direita no bloco que você quer copiar, e depois clique no cabo!"]
+			id: "560000000000000B"
+			rewards: [{
+				count: 4
+				id: "17737B094944F9A7"
+				item: "minecraft:white_wool"
+				type: "item"
+			}]
+			shape: "hexagon"
+			tasks: [{
+				id: "560000000000001B"
+				item: {
+					Count: 1
+					id: "toms_storage:ts.paint_kit"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "Kit de Pintura"
+			x: -4.0d
+			y: -2.0d
+		}
+		{
+			dependencies: [
+				"5600000000000005"
+				"5600000000000006"
+			]
+			description: ["O Trim é puramente estético. Serve para conectar os blocos do mod visualmente sem que eles troquem dados entre si."]
+			id: "560000000000000C"
+			rewards: [{
+				count: 8
+				id: "67253A9DBEBE48B3"
+				item: "minecraft:oak_log"
+				type: "item"
+			}]
+			tasks: [{
+				count: 4L
+				id: "560000000000001C"
+				item: "toms_storage:ts.trim"
+				type: "item"
+			}]
+			title: "Bloco de Acabamento"
+			x: -4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"5600000000000003"
+				"5600000000000007"
+				"5600000000000009"
+			]
+			description: ["A evolução natural. O Crafting Terminal tem uma mesa de trabalho embutida e puxa os itens dos baús direto para a grade de craft!"]
+			id: "560000000000000D"
+			rewards: [{
+				count: 2
+				id: "7C688DC95F4E5C1D"
+				item: "minecraft:diamond"
+				type: "item"
+			}]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{
+				id: "560000000000001D"
+				item: "toms_storage:ts.crafting_terminal"
+				type: "item"
+			}]
+			title: "A Bancada Definitiva"
+			x: 4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["560000000000000D"]
+			id: "239F64ABAF2E7802"
+			rewards: [{
+				count: 4
+				id: "0D789C40FD074BB3"
+				item: "minecraft:ender_pearl"
+				type: "item"
+			}]
+			tasks: [{
+				id: "5600000000000021"
+				item: "toms_storage:ts.wireless_terminal"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["239F64ABAF2E7802"]
+			id: "3A03C16B5005D0BA"
+			rewards: [
+				{
+					id: "5C0B6C3856D25D96"
+					item: "minecraft:netherite_ingot"
+					type: "item"
+				}
+				{
+					id: "6D56EC4A844D9EF7"
+					type: "xp_levels"
+					xp_levels: 10
+				}
+			]
+			shape: "diamond"
+			size: 1.5d
+			tasks: [{
+				id: "5600000000000022"
+				item: "toms_storage:ts.adv_wireless_terminal"
+				type: "item"
+			}]
+			x: 8.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5600000000000004"]
+			description: ["Insira este filtro dentro do Inventory Hopper para dizer exatamente quais itens devem ser sugados ou ignorados pela automação."]
+			id: "560000000000000F"
+			rewards: [{
+				count: 8
+				id: "11DF525603A6E5D1"
+				item: "minecraft:paper"
+				type: "item"
+			}]
+			tasks: [{
+				id: "560000000000001F"
+				item: "toms_storage:ts.item_filter"
+				type: "item"
+			}]
+			title: "Filtro Simples"
+			x: 0.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["560000000000000F"]
+			description: ["O Tag Filter permite filtrar por categorias do Minecraft! Em vez de filtrar cada madeira, filtre a tag 'Todas as Madeiras' de uma vez."]
+			id: "5600000000000010"
+			rewards: [{
+				count: 4
+				id: "08C83F9ECB1A061D"
+				item: "minecraft:book"
+				type: "item"
+			}]
+			shape: "diamond"
+			tasks: [{
+				id: "5600000000000020"
+				item: "toms_storage:ts.tag_item_filter"
+				type: "item"
+			}]
+			title: "Filtro Avançado (Tags)"
+			x: 0.0d
+			y: 6.0d
+		}
+	]
+	title: "Organização"
+}

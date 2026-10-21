@@ -1,0 +1,249 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "rsquare"
+	filename: "create_ore_excavation"
+	group: "238ED177346771AE"
+	icon: "createoreexcavation:drilling_machine"
+	id: "1000000000001600"
+	order_index: 7
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"A mineração manual é coisa do passado! O Create: Ore Excavation traz maquinário pesado para extrair recursos gigantescos diretamente do subsolo da sua região (chunk)."
+				""
+				"O primeiro passo é a prospecção. Use o Ore Vein Finder (clicando com o botão direito no chão) para escanear a área e descobrir qual veio de minério maciço está escondido debaixo dos seus pés."
+			]
+			id: "1000000000001601"
+			rewards: [{
+				id: "3000000000001601"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{
+				id: "2000000000001601"
+				item: "createoreexcavation:vein_finder"
+				type: "item"
+			}]
+			title: "Mapeamento Geológico"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["1000000000001601"]
+			description: ["Anotar coordenadas no chat é passado! O Ore Vein Atlas é o seu caderninho geológico automatizado. Ele armazena os dados, o tipo e a localização de todos os veios massivos que o seu Finder detectar pelo mundo."]
+			id: "1000000000001606"
+			rewards: [{
+				id: "3000000000001606"
+				item: "minecraft:book"
+				type: "item"
+			}]
+			shape: "diamond"
+			size: 1.2d
+			tasks: [{
+				id: "2000000000001606"
+				item: "createoreexcavation:vein_atlas"
+				type: "item"
+			}]
+			title: "Ore Vein Atlas"
+			x: 0.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["1000000000001601"]
+			description: ["Antes de gastar toneladas de metal montando a fábrica principal, use o Sample Drill. Essa perfuratriz de amostragem testa o chunk usando um pouco de força rotacional (RPM) para extrair uma amostra física e confirmar a riqueza do local."]
+			id: "1000000000001607"
+			rewards: [{
+				count: 4
+				id: "3000000000001607"
+				item: "create:andesite_alloy"
+				type: "item"
+			}]
+			shape: "hexagon"
+			size: 1.2d
+			tasks: [{
+				id: "2000000000001607"
+				item: "createoreexcavation:sample_drill"
+				type: "item"
+			}]
+			title: "Sample Drill"
+			x: 0.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["1000000000001607"]
+			description: ["Confirmou o veio de minério? Posicione a Drilling Machine no local e forneça energia rotacional no topo dela. A máquina vai perfurar o núcleo da terra de forma constante. É a peça central da sua extração de sólidos!"]
+			id: "1000000000001602"
+			rewards: [{
+				count: 16
+				id: "3000000000001602"
+				item: "create:brass_casing"
+				type: "item"
+			}]
+			shape: "hexagon"
+			size: 1.2d
+			tasks: [{
+				id: "2000000000001602"
+				item: "createoreexcavation:drilling_machine"
+				type: "item"
+			}]
+			title: "Drilling Machine"
+			x: -2.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["1000000000001607"]
+			description: ["Se o seu Sample Drill encontrou água, lava ou petróleo, a Drilling Machine não vai funcionar. É aqui que entra o Fluid Well Extractor! Ele bombeia bolsões gigantes de líquido subterrâneos diretamente para os seus canos e tanques do Create."]
+			id: "1000000000001603"
+			rewards: [{
+				count: 4
+				id: "3000000000001603"
+				item: "create:copper_casing"
+				type: "item"
+			}]
+			shape: "hexagon"
+			size: 1.2d
+			tasks: [{
+				id: "2000000000001603"
+				item: "createoreexcavation:extractor"
+				type: "item"
+			}]
+			title: "Fluid Well Extractor"
+			x: 2.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["1000000000001602"]
+			description: ["A primeira cabeça de corte da sua linha industrial. A Iron Drill possui durabilidade básica, mas já é capaz de extrair toneladas de material antes de se desgastar e quebrar."]
+			id: "1000000000001608"
+			rewards: [{
+				id: "3000000000001608"
+				item: "minecraft:iron_block"
+				type: "item"
+			}]
+			shape: "rsquare"
+			size: 1.2d
+			tasks: [{
+				id: "2000000000001608"
+				item: "createoreexcavation:drill"
+				type: "item"
+			}]
+			title: "Iron Drill"
+			x: -2.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["1000000000001608"]
+			description: ["Com uma broca revestida em Diamante, a manutenção da sua Drilling Machine diminui drasticamente, permitindo deixar a extração rodando sozinha (AFK) por muito mais tempo."]
+			id: "1000000000001604"
+			rewards: [{
+				count: 2
+				id: "3000000000001604"
+				item: "minecraft:diamond"
+				type: "item"
+			}]
+			shape: "rsquare"
+			size: 1.2d
+			tasks: [{
+				id: "2000000000001604"
+				item: {
+					Count: 1
+					id: "createoreexcavation:diamond_drill"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "Diamond Drill"
+			x: -2.0d
+			y: 7.5d
+		}
+		{
+			dependencies: ["1000000000001604"]
+			description: ["O ápice da engenharia de escavação! Inquebrável por um longo período. Com uma broca de Netherite, você atinge o verdadeiro patamar end-game de mineração."]
+			id: "1000000000001605"
+			rewards: [{
+				id: "3000000000001605"
+				item: "minecraft:netherite_scrap"
+				type: "item"
+			}]
+			shape: "rsquare"
+			size: 1.2d
+			tasks: [{
+				id: "2000000000001605"
+				item: {
+					Count: 1
+					id: "createoreexcavation:netherite_drill"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "Netherite Drill"
+			x: -2.0d
+			y: 9.0d
+		}
+		{
+			dependencies: ["1000000000001602"]
+			description: ["O mod extrai diamantes em seu formato bruto (Raw). Jogue-os nas esteiras mecânicas, faça a lavagem ou trituração do Create para finalmente processá-los na versão utilizável do Minecraft!"]
+			id: "1000000000001609"
+			rewards: [{
+				id: "3000000000001609"
+				type: "xp_levels"
+				xp_levels: 2
+			}]
+			shape: "diamond"
+			tasks: [{
+				id: "2000000000001609"
+				item: "createoreexcavation:raw_diamond"
+				type: "item"
+			}]
+			title: "Raw Diamond"
+			x: -4.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["1000000000001602"]
+			description: ["Extraída das veias de esmeralda gigantes. A versão bruta (Raw) precisará ser refinada pelos maquinários do Create antes de você poder trocá-las com os Villagers da sua base."]
+			id: "1000000000001610"
+			rewards: [{
+				id: "3000000000001610"
+				type: "xp_levels"
+				xp_levels: 2
+			}]
+			shape: "diamond"
+			tasks: [{
+				id: "2000000000001610"
+				item: "createoreexcavation:raw_emerald"
+				type: "item"
+			}]
+			title: "Raw Emerald"
+			x: -4.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["1000000000001602"]
+			description: ["Diferente do Minecraft Vanilla onde a redstone cai em pó diretamente, o Ore Excavation extrai nacos brutos (Raw Redstone) que devem passar pela Crushing Wheel do Create para liberar o pó condutor."]
+			id: "1000000000001611"
+			rewards: [{
+				id: "3000000000001611"
+				type: "xp_levels"
+				xp_levels: 2
+			}]
+			shape: "diamond"
+			tasks: [{
+				id: "2000000000001611"
+				item: "createoreexcavation:raw_redstone"
+				type: "item"
+			}]
+			title: "Raw Redstone"
+			x: -4.0d
+			y: 5.0d
+		}
+	]
+	title: "Ore Excavation"
+}
