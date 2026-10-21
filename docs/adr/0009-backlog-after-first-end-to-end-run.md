@@ -211,7 +211,12 @@
 | 12 | 指令判定放行 JSON 文本组件那类例外（D12） | D12 | — |
 | 13 | ~~英文源只在本机、CI 红灯~~ **已于 `a1830e2` 入库 + `34ac096` 加 `verify:ci`** | D13 | ✅ 关闭 |
 | 14 | ~~入库裸 `git add -A`~~ **已于 `878f259` 改显式路径** | D14 | ✅ 关闭 |
-| 15 | 批量翻译 346 个 `separate` 包（实测约 9.2 小时） | — | **CDN 不可达**（见 D16 节），已解包的 3 个已跑 |
+| 15 | 批量翻译 `separate` 包（实测约 9.2 小时） | — | 已跑 **93 个**（第一批 20 + 第二批 73），**剩 348 个**；`embedded` 与 Modrinth 未开战线 |
+| 17 | 5 个已发布包的重跑版取源不一致（`peace-of-mind-21-1` 等），暂不覆盖 | — | 需查 serv00 `research/packs/` 残留旧章节文件为何让布局判定走内嵌路 |
+| 18 | 第二批 273 条漏译（`tensura-waka-edition` 78 条最多） | — | 未处置；漏译率 0.4%，与第一批 0.63% 同量级 |
+| 19 | `fids-cobblemon-server` 产出含 `config/ftbquests - Copy/`、`verlac` 产出在 `saved/` 下 | — | 能过闸门，但补丁包路径可能不被游戏加载 |
+| 20 | ~~serv00 凭据用可写 GitHub token~~ **已改只读 deploy key**（`77a5c9f` 后的运维动作） | — | ✅ 关闭 |
+| 21 | ~~断点续跑只信本机 state，跨机丢进度~~ **已改看 `patches/` 产物实况** | — | ✅ 关闭（`77a5c9f`） |
 | 16 | ~~模型凭空造占位符不拦~~ **已修：`placeholdersPreserved`** | D16 | ✅ 关闭 |
 
 ### 2026-10-20 复核
@@ -606,3 +611,60 @@ serv00 的 SSH **拒绝 stdin 管道与 scp**（实测 50 KB / 300 KB / 20 KB ba
 - 清单里每一条都附了实测证据；**没有证据的条目不得进入本文档**（这是本项目
   「不接受猜测」约定的延伸）。
 - 本 ADR 不设失效期：条目全部关闭后，应新增 ADR 记录关闭结论，而非删除本文档。
+#### 2026-10-21 第二批：交接误判「产物没回传」，实为 78/100 后进程消失
+
+上一份交接（`quest-handoff-2026-10-21-batch-in-progress.md`）称第二批 100 个包
+「跑到第 70/100 个时会话断了，那批的产物没有回传」。**本轮查实：产物一个都没丢。**
+
+##### 查实结果
+
+| 交接说法 | 实测 |
+|---|---|
+| 「会话断了，产物没回传」 | `~/qsrc/patches/` 下有 **73 个新包目录 + 5 个重跑包**，81 个 `zh_cn.snbt` 全在 |
+| 「跑到第 70/100 断了」 | `/tmp/runA.log` 到 **78/100**：77 done + 1 FAILED（`creator-academy-based-on-create`），第 79 个 `cobblemon-age-of-industry` 跑到一半进程消失 |
+| 「serv00 会话已消失」 | SSH 正常，`~/qsrc` @ `a8a45e9`，5 核、磁盘余量 3.6 T |
+| 「~70 个包的产物没回传」 | **72 个新包**（state 记 92 done = 第一批 20 + 第二批 72，与本机 41 done **零重叠**） |
+
+`state` 与 `patches/` 完全对齐：92 个 done **全部**有产物目录，零缺失。
+所以「产物没回传」这个判断的根因不是产物丢了，而是**没有人去看 `patches/` 实况** ——
+交接作者只读了被 gitignore 的 `state` 文件，而那个文件恰恰不跟着 git 走。
+
+##### 落地
+
+| 改动 | 提交 |
+|---|---|
+| 导入 73 个新包产出 + 76 个英文源（`validate:quests` 61 → **134 个产出 / 212,281 键**全绿） | `b743a9c` |
+| 断点续跑改看产物实况（`isAlreadyTranslated` / `pendingWorklist`） | `77a5c9f` |
+
+**5 个已发布包（`braincells-magical-creation` / `cobblemon-colony` / `peace-of-mind-21-1` /
+`tensura-true-aura` / `tensura-waka-edition`）的重跑版暂不覆盖**：它们的差异不是措辞好坏，
+而是**取源不同**。例：`peace-of-mind-21-1` 的 `chapter.7BCC04609D1A692A.title`，
+英文源只有 `"Tipps & Tricks"`，已发布版是 37 字符，serv00 重跑版是 200+ 字符一整段
+（`survival` 之类无关文案）—— 说明 serv00 的 `research/packs/<slug>/` 残留了旧章节文件，
+布局判定走了内嵌路。**取源不一致时覆盖等于用未知换已知。**
+
+##### 本轮的 273 条漏译（尚未处置）
+
+第二批 77 个成功包里合计 **273 条漏译**，集中在
+`tensura-waka-edition 78` / `chaos-oneblock 65` / `cobblemon-colony 22` /
+`fids-cobblemon-server 21` / `oritech-academy 19` / `tensura-roguelike 17` /
+`the-best-of-twilight-forest 13` / `tcc-skyzone 10`。
+漏译率 0.4%（273 / 约 7 万条），与第一批的 0.63% 同量级。
+
+##### serv00 凭据改为只读 deploy key
+
+上一轮的 `gho_...` token 曾多次明文出现在 pane 输出里，且被持久化在 serv00 的
+`~/.git-credentials`（69 字节）—— 任何拿到 serv00 账号的人都能推仓库。
+
+本轮改为：serv00 生成 `~/.ssh/id_deploy`，**只读** deploy key 加进仓库
+（`id=167139117, read_only=true`），`~/.ssh/config` 固定 `IdentityFile`，
+删掉 `~/.git-credentials` 与 `credential.helper`。
+实测：`git ls-remote` 通、`git push` 被拒 —— 这正是想要的形状。
+**代码流向仍是「本机 push → serv00 fetch」**，只是 serv00 再也推不动了。
+
+##### 待查的产物路径异常（本批 2 个包）
+
+- `fids-cobblemon-server` 产出里有一个 `config/ftbquests - Copy/` 目录（Windows 复制残留）
+- `verlac` 的源与产出都在 `ftbquests/saved/2025-09-02-*/lang/`（存档备份目录，不是运行目录）
+
+两者都能过闸门（键集一致），但打出来的补丁包路径可能不被游戏加载。
