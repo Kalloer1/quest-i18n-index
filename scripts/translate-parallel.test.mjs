@@ -56,6 +56,28 @@ test('loadPackUnits：目录不存在返回 null，不抛错', () => {
   assert.equal(loadPackUnits('nope', join(tmpdir(), 'definitely-not-here')), null)
 })
 
+test('loadPackUnits：空的 en_us.snbt 不算 separate 源，回退到内嵌章节', () => {
+  // 实测 2026-10-21（onlymon / pokeheros-2）：en_us.snbt 内容是 `{ }`（空），
+  // 但同目录 chapters/*.snbt 有内嵌文本。按文件名 classifyLayout 判成 separate-single，
+  // 于是只抽那个空文件 → 0 个单元 → 整包报「没有产出任何译文」。
+  const root = mkdtempSync(join(tmpdir(), 'par-'))
+  try {
+    const lang = join(root, 'p-empty', 'config/ftbquests/quests/lang')
+    const chap = join(root, 'p-empty', 'config/ftbquests/quests/chapters')
+    mkdirSync(lang, { recursive: true })
+    mkdirSync(chap, { recursive: true })
+    writeFileSync(join(lang, 'en_us.snbt'), '{ }\n')
+    writeFileSync(join(chap, 'main.snbt'), '{\n\tid: "abc"\n\ttitle: "Kill the Dragon"\n\tsubtitle: "Chapter One"\n}\n')
+    const r = loadPackUnits('p-empty', root)
+    assert.ok(r, '应能读到包')
+    assert.equal(r.layout, 'embedded', '空 en_us.snbt 应回退到内嵌布局')
+    assert.ok(r.units.length >= 2, '应抽到内嵌章节里的可译文本')
+    assert.ok(r.units.some((u) => /Dragon/.test(u.text)), '应包含章节标题文本')
+  } finally {
+    rmSync(root, { recursive: true, force: true })
+  }
+})
+
 test('listTranslatable：只返回可产出且无自带中文的包', () => {
   const slugs = listTranslatable()
   assert.ok(Array.isArray(slugs))

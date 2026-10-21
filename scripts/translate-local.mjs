@@ -377,6 +377,7 @@ async function main() {
 
   let ok = 0
   let fail = 0
+  let noText = 0
   let sincePush = 0
   // 本轮已成功处理的 slug：入库时只暂存它们的英文源，别捎上别人的未跟踪目录。
   let sincePushSlugs = []
@@ -402,6 +403,24 @@ async function main() {
       // 每个包一份独立 runId：分片文件名带它，`writePatch` 只合并本轮的分片（D11）。
       const runId = newRunId()
       const r = await translatePackParallel(p.slug, { lanes, runId })
+      // 真的没有可译文本 → 跳过，不当失败。
+      //
+      // 实测 2026-10-21（`onlymon`）：`en_us.snbt` 是 `{ }`，`chapters/*.snbt`
+      // 里只有 `tasks`/`rewards`/`icon` 这类机械字段，一个 `title`/`subtitle`/
+      // `description` 都没有 —— 这包就是没有文本可翻。旧行为在这里抛
+      // 「没有产出任何译文」并计入 failed，既吓人又会每轮重试。
+      // 记入 done 并带 `noText` 标记，下一轮不再重试，台账也能区分。
+      if (!r.total) {
+        state.done[p.slug] = {
+          layout: r.layout, files: 0, translated: 0, total: 0,
+          at: new Date().toISOString(), noText: true,
+        }
+        delete state.failed[p.slug]
+        saveState(state)
+        noText++
+        console.log(`${tag} skipped · 没有可译文本（布局 ${r.layout}）`)
+        continue
+      }
       // 3) 写回补丁
       const w = await writePatch(p.slug, r.layout, runId)
       if (!w || w.translated === 0) throw new Error('没有产出任何译文')
@@ -448,7 +467,7 @@ async function main() {
     }
   }
 
-  console.log(`\n=== 完成：ok ${ok} / failed ${fail} / 共 ${worklist.length} ===`)
+  console.log(`\n=== 完成：ok ${ok} / 无可译文本 ${noText} / failed ${fail} / 共 ${worklist.length} ===`)
   if (fail) {
     console.log('失败清单：')
     for (const p of worklist) {

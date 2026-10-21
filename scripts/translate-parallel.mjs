@@ -97,7 +97,32 @@ export function loadPackUnits(slug, packsDir = PACKS_DIR) {
   const files = all.filter((f) => sourceNames.includes(f.name))
   if (!files.length) return null
   const extracted = extractPack({ files, layout })
-  return { units: extracted.units.map((u) => ({ key: u.key, text: u.text })), layout }
+  const units = extracted.units.map((u) => ({ key: u.key, text: u.text }))
+
+  // 空 `en_us.snbt` 回退内嵌路。
+  //
+  // 实测 2026-10-21（`onlymon` / `pokeheros-2`）：`en_us.snbt` 内容就是 `{ }`，
+  // 但同目录 `chapters/*.snbt` 里有内嵌文本。`classifyLayout` 只看文件名，于是判成
+  // `separate-single`，`sourceFileNames` 只选出那个空文件 → 0 个可译单元 →
+  // 整包报「没有产出任何译文」（ADR-0009 P3 的真因）。
+  //
+  // 判据用「有没有可译正文」而不是「unit 个数」：空的 lang 文件也可能解析出 0 个单元，
+  // 而内嵌章节里 `id`/`icon` 这类字段会抽出无意义单元（旧实现报过 3109 个 `undefined`），
+  // 故两边都要求 `text` 非空且非纯空白。
+  const hasText = (list) => list.some((u) => typeof u.text === 'string' && u.text.trim())
+  if (!hasText(units) && layout !== LAYOUT.EMBEDDED) {
+    const embNames = sourceFileNames(names, LAYOUT.EMBEDDED)
+    const embFiles = all.filter((f) => embNames.includes(f.name))
+    if (embFiles.length) {
+      const emb = extractPack({ files: embFiles, layout: LAYOUT.EMBEDDED })
+      const embUnits = emb.units
+        .map((u) => ({ key: u.key, text: u.text }))
+        .filter((u) => typeof u.text === 'string' && u.text.trim())
+      if (embUnits.length) return { units: embUnits, layout: LAYOUT.EMBEDDED }
+    }
+  }
+
+  return { units, layout }
 }
 
 /**
