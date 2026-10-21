@@ -16,7 +16,7 @@ import assert from 'node:assert/strict'
 import { readFileSync, mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { stagedPathsForBatch, prepareArgsForBatch, isAlreadyTranslated, pendingWorklist } from './translate-local.mjs'
+import { stagedPathsForBatch, prepareArgsForBatch, isAlreadyTranslated, pendingWorklist, describeWorklist } from './translate-local.mjs'
 
 // 断言函数不存在时会 ImportError，正是我们要的红。
 // 去注释再匹配：注释里写「禁止 git add -A」不该被当成实现本身。
@@ -167,5 +167,35 @@ test('pendingWorklist：explicit slug 清单不看已完成状态（要重翻就
   const all = [{ slug: 'already' }]
   const pending = pendingWorklist(root, all, { done: { already: {} }, failed: {} }, ['already'])
   assert.deepEqual(pending.map((p) => p.slug), ['already'])
+  rmSync(root, { recursive: true, force: true })
+})
+
+// ---- `--slug` 时「已完成 N 个」不能算错 ----
+//
+// 2026-10-21 实测踩到：给了 `--slug one-pack` 后日志打出
+// 「可翻译 1649 个，已完成 1648 个，本次处理 1 个」——
+// 因为 `pendingWorklist` 在显式清单下只返回那 1 个，`all.length - pending.length` 就成了 1648。
+// 这个数字会让人以为「已经翻完了 1648 个」，正好是交接误判的同类问题（数字有出处但口径错）。
+
+test('describeWorklist：显式 slug 时「已完成」仍按 state+产物实况统计', () => {
+  assert.equal(typeof describeWorklist, 'function')
+  const root = mkdtempSync(join(tmpdir(), 'desc-'))
+  mkdirSync(join(root, 'patches/done-one/config/ftbquests/quests/lang'), { recursive: true })
+  writeFileSync(join(root, 'patches/done-one/config/ftbquests/quests/lang/zh_cn.snbt'), '{}')
+  const all = [{ slug: 'done-one' }, { slug: 'todo-a' }, { slug: 'todo-b' }]
+  const state = { done: {}, failed: {} }
+  const d = describeWorklist(root, all, state, ['todo-a'])
+  assert.equal(d.total, 3, '总数是候选包数')
+  assert.equal(d.done, 1, '已完成只算真翻过的（产物 1 个），不受显式清单影响')
+  assert.equal(d.selected, 1, '本次处理是显式清单里的')
+  rmSync(root, { recursive: true, force: true })
+})
+
+test('describeWorklist：不给显式清单时 selected = 待翻数', () => {
+  const root = mkdtempSync(join(tmpdir(), 'desc2-'))
+  const all = [{ slug: 'a' }, { slug: 'b' }]
+  const d = describeWorklist(root, all, { done: { a: {} }, failed: {} })
+  assert.equal(d.done, 1)
+  assert.equal(d.selected, 1)
   rmSync(root, { recursive: true, force: true })
 })

@@ -244,6 +244,27 @@ export function pendingWorklist(root, all, state, explicit = []) {
   return all.filter((p) => !done[p.slug] && !isAlreadyTranslated(root, p.slug))
 }
 
+/**
+ * 日志用的三个数字。**`done` 不受显式清单影响**。
+ *
+ * 2026-10-21 实测踩到：给了 `--slug one-pack` 后日志打出
+ * 「可翻译 1649 个，已完成 1648 个」—— 因为 `pendingWorklist` 在显式清单下只返回那 1 个，
+ * `all.length - pending.length` 就成了 1648。这个数字有出处但口径错，
+ * 与「交接误判产物丢失」是同一类错误（数字对不上真实现状）。
+ *
+ * @param {string} root
+ * @param {Array<{slug: string}>} all
+ * @param {{done?: object}} state
+ * @param {string[]} [explicit]
+ * @returns {{total: number, done: number, selected: number}}
+ */
+export function describeWorklist(root, all, state, explicit = []) {
+  const doneMap = state?.done ?? {}
+  const done = all.filter((p) => doneMap[p.slug] || isAlreadyTranslated(root, p.slug)).length
+  const selected = pendingWorklist(root, all, state, explicit).length
+  return { total: all.length, done, selected }
+}
+
 const run = (cmd, args, env = {}) => execFileSync(cmd, args, {
   cwd: ROOT, stdio: 'inherit', env: { ...process.env, ...env },
 })
@@ -342,11 +363,12 @@ async function main() {
     ? slugArg.split(',').map((s) => s.trim()).filter(Boolean)
     : []
   const pending = pendingWorklist(ROOT, all, state, explicit)
+  const d = describeWorklist(ROOT, all, state, explicit)
   const worklist = explicit.length
     ? explicit.map((slug) => all.find((p) => p.slug === slug) ?? { slug, platform, layout, bytes: 0 })
     : (limit > 0 ? pending.slice(0, limit) : pending)
 
-  console.log(`平台 ${platform || '全部'}：可翻译 ${all.length} 个，已完成 ${all.length - pending.length} 个，本次处理 ${worklist.length} 个，${lanes} 路并发`)
+  console.log(`平台 ${platform || '全部'}：可翻译 ${d.total} 个，已完成 ${d.done} 个，本次处理 ${worklist.length} 个，${lanes} 路并发`)
   if (dryRun) {
     worklist.slice(0, 30).forEach((p, i) => console.log(`${String(i + 1).padStart(4)}. ${p.slug} (${p.layout}, ${(p.bytes / 1048576).toFixed(0)}MB)`))
     if (worklist.length > 30) console.log(`… 另有 ${worklist.length - 30} 个`)
