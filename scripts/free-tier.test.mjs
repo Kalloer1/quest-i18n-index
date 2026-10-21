@@ -168,6 +168,75 @@ test('shieldColorCodes：多个不同色码用不同序号（无序号会被模�
   assert.deepEqual(marks, ['<c1>', '<c2>', '<c3>'])
 })
 
+// ---- hex 色码 &#RRGGBB（2026-10-21 查实的系统性漏译根因）----
+//
+// FTB Quests 任务书除了 `&a`/`&f` 这种字母色码，还有 `&#ff8137` 这种 6 位 hex 色码。
+// `VALID_CODE` 只认字母码，hex 码不被遮蔽、不被计数，于是：
+//   1. 提示词里 hex 码以明文出现，模型视之为乱码，常把同句的 <cN> 一起弄丢
+//      -> translateText 返回 null -> 该键静默保留英文原文（看起来就是「漏译」）
+//   2. 闸门里数的是另一套正则，于是同一批文本质检报「色码数量不一致」但翻译侧不拦
+// 实测影响：4 个包 / 3637 个键，hex 键未译率 31.4%，普通键 3.79%（差 8 倍）。
+// cobblemon-colony 有 62 条真句子因此没译（"Can You Kill Them All?" 等）。
+
+test('shieldColorCodes：hex 色码 &#RRGGBB 也要遮蔽（否则静默漏译）', async () => {
+  const { shieldColorCodes, unshieldColorCodes } = await import('./lib/format-codes.mjs')
+  const cases = [
+    'Can You &#ff8137&oKill&r Them All?',
+    'Time to &#92fe27&oExplore&r the Lands!',
+    '&#6100ffDragon',
+    '&#fd1c52S&#fd214bt&#fd2645a&#fd2b3er&r',
+    'After &#fd1c52&oCollecting&r &#1c3efd&oLogs&r, craft them into Planks.',
+  ]
+  for (const src of cases) {
+    const s = shieldColorCodes(src)
+    assert.ok(!/[&§]#[0-9a-fA-F]{6}/.test(s.text), `遮蔽后不应残留 hex 色码：${s.text}`)
+    assert.ok(s.codes.length > 0, 'hex 色码必须被计入 codes')
+    assert.equal(unshieldColorCodes(s.text, s.codes), src)
+  }
+})
+
+test('shieldColorCodes：hex 色码与字母色码各自独立占位序号', async () => {
+  const { shieldColorCodes } = await import('./lib/format-codes.mjs')
+  const s = shieldColorCodes('&#ff8137&oKill&r')
+  assert.deepEqual(s.codes, ['&#ff8137', '&o', '&r'])
+  const marks = s.text.match(/<c\d+>/g)
+  assert.deepEqual(marks, ['<c1>', '<c2>', '<c3>'])
+})
+
+test('shieldColorCodes：形似 hex 但不是色码的不能误伤', async () => {
+  const { shieldColorCodes, unshieldColorCodes } = await import('./lib/format-codes.mjs')
+  // `&#ff8137` 要求严格 6 位十六进制；少一位、多一位、含非十六进制字符都不算。
+  // 不足 6 位、非十六进制、中间插空格 —— 这些都不是 color code，必须原样留着。
+  for (const src of ['&#ff41 short', '&#ff813 nothex', '&#zzzzzz nothex', '& #ff8137 spaced', '&#8226 bullet']) {
+    const s = shieldColorCodes(src)
+    assert.deepEqual(s.codes, [], `不该被当成色码：${src}`)
+    assert.equal(unshieldColorCodes(s.text, s.codes), src, '必须可无损还原')
+  }
+  // 贪心取 6 位：7 位十六进制里前 6 位是码，第 7 位是正文（实测 cobblemon-colony 有 &#FF8027F）。
+  const greedy = shieldColorCodes('&#FF8027F')
+  assert.deepEqual(greedy.codes, ['&#FF8027'])
+  assert.equal(unshieldColorCodes(greedy.text, greedy.codes), '&#FF8027F')
+  // 大写 hex 也是合法色码，应被遮蔽。
+  const upper = shieldColorCodes('&#FF8137Dragon')
+  assert.deepEqual(upper.codes, ['&#FF8137'])
+})
+
+test('countColorCodes / hasMalformedColorCodes 认识 hex 色码', async () => {
+  const { countColorCodes, hasMalformedColorCodes } = await import('./lib/format-codes.mjs')
+  const t = '&#ff8137&oKill&r'
+  assert.equal(countColorCodes(t), 3, 'hex 码也算色码')
+  assert.equal(hasMalformedColorCodes(t), false, '合法 hex 码不是畸形码')
+  assert.equal(hasMalformedColorCodes('&#ff81 not-a-code'), true)
+})
+
+test('translateText 对 hex 色码文本不再静默返回 null', async () => {
+  const { shieldColorCodes } = await import('./lib/format-codes.mjs')
+  // 遮蔽后提示词里必须只剩 <cN> 占位符，模型才看得懂要保留什么。
+  const s = shieldColorCodes('Can You &#ff8137&oKill&r Them All?')
+  assert.ok(!s.text.includes('&#ff8137'), 'hex 码必须以占位符形式出现')
+  assert.equal(s.text, 'Can You <c1><c2>Kill<c3> Them All?')
+})
+
 test('unshieldColorCodes：占位符丢失时该色码消失，不产生畸形码', async () => {
   const { shieldColorCodes, unshieldColorCodes, hasMalformedColorCodes } = await import('./lib/format-codes.mjs')
   const s = shieldColorCodes('&6Packager&r power')

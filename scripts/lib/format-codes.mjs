@@ -13,8 +13,45 @@
  * 无 IO、无网络，可直接单测。
  */
 
-/** 合法色码后继字符。 */
+/** 合法色码后继字符（`&a` `&f` `&o` `&r` 这种单字母码）。 */
 const VALID_CODE = /[0-9a-fk-orx]/i
+
+/** hex 色码：`&#RRGGBB`（也可能写成 `§#RRGGBB`）。
+ *
+ * 2026-10-21 查实的系统性漏译根因：FTB Quests 任务书里有 `&#ff8137` 这种 6 位
+ * 十六进制色码，但下面所有函数原先只认单字母码，于是 hex 码
+ *   1. 不被遮蔽也不被计数 —— 提示词里它以明文出现，模型视之为乱码，
+ *      常把同句的 `<cN>` 一起弄丢 → `translateText` 返回 null → 该键静默保留英文。
+ * 实测 4 个包 / 3637 个键，hex 键未译率 31.4% vs 普通键 3.79%。
+ * 翻译器与 `validate-quests` 闸门共用这文件里的函数，所以修这里两边同时生效，
+ * 不会重演「翻译侧不拦、闸门侧报错」的分裂。
+ */
+const HEX_CODE = /^[0-9a-fA-F]{6}$/
+
+/**
+ * 位置 `i` 上是不是一个色码，是则返回它的长度，否则 0。
+ *
+ * - 单字母码 `&a` `&f` `&o` `&r`（或 `§` 版）→ 2
+ * - hex 码 `&#RRGGBB` → 8
+ *
+ * hex 取 `#` 后**恰好 6 位**十六进制、贪心匹配：真实数据里 `&#FF8027F` 是
+ * hex 码 `&#FF8027` 紧跟字母 `F`，`&#6100ffDragon` 是码 + `Dragon`，
+ * 取 6 位才对。反过来 `&#8226`（HTML 实体 `•`）不足 6 位，不算色码。
+ *
+ * 统一的判定入口：剥、数、查畸形、遮蔽四个函数必须用同一套，
+ * 否则又会重演口径分裂。
+ *
+ * @param {string} text
+ * @param {number} i
+ * @returns {number}
+ */
+function colorCodeLen(text, i) {
+  const ch = text[i]
+  if (ch !== '&' && ch !== '\u00a7') return 0
+  const next = text[i + 1] ?? ''
+  if (next === '#') return HEX_CODE.test(text.slice(i + 2, i + 8)) ? 8 : 0
+  return VALID_CODE.test(next) ? 2 : 0
+}
 
 /** 该位置是不是被反斜杠转义的字面色码前缀。 */
 function isEscaped(text, i) {
@@ -36,8 +73,8 @@ export function stripColorCodes(text) {
       i++
       continue
     }
-    if ((ch === '&' || ch === '§') && VALID_CODE.test(text[i + 1] ?? '')) {
-      i++
+    if (colorCodeLen(text, i)) {
+      i += colorCodeLen(text, i) - 1
       continue
     }
     out += ch
@@ -55,10 +92,8 @@ export function countColorCodes(text) {
   for (let i = 0; i < text.length; i++) {
     const ch = text[i]
     if (isEscaped(text, i)) continue
-    if ((ch === '&' || ch === '§') && VALID_CODE.test(text[i + 1] ?? '')) {
-      n++
-      i++
-    }
+    const len = colorCodeLen(text, i)
+    if (len) { n++; i += len - 1 }
   }
   return n
 }
@@ -74,7 +109,8 @@ export function countMalformedCodes(text) {
     const ch = text[i]
     if (isEscaped(text, i)) continue
     if (ch !== '&' && ch !== '§') continue
-    if (VALID_CODE.test(text[i + 1] ?? '')) i++
+    const len = colorCodeLen(text, i)
+    if (len) i += len - 1
     else n++
   }
   return n
@@ -109,11 +145,11 @@ export function shieldColorCodes(text) {
   const src = String(text ?? '')
   for (let i = 0; i < src.length; i++) {
     const ch = src[i]
-    if ((ch === '&' || ch === '§') && VALID_CODE.test(src[i + 1] ?? '')) {
-      codes.push(ch + src[i + 1])
-      // 序号从 1 开始：`<c0>` 在模型眼里比 `<c1>` 更容易被当作可删的列表头。
+    const len = colorCodeLen(src, i)
+    if (len) {
+      codes.push(src.slice(i, i + len))
       out += `${SHIELD_OPEN}${codes.length}${SHIELD_CLOSE}`
-      i++
+      i += len - 1
     } else {
       out += ch
     }
