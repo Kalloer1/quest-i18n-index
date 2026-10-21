@@ -1,0 +1,416 @@
+{
+	autofocus_id: "35C1CCD86A2EB20C"
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "mailing"
+	group: ""
+	icon: {
+		id: "envelope:letter"
+	}
+	id: "1923ACF1730FE47D"
+	order_index: 8
+	quest_links: [ ]
+	quests: [
+		{
+			icon: {
+				id: "envelope:letter"
+			}
+			id: "1B81EED368063E8A"
+			tasks: [{
+				id: "4575773BDBE52CD3"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["1B81EED368063E8A"]
+			id: "1033B7FA51F76297"
+			rewards: [{
+				count: 8
+				id: "441677570C6A395E"
+				item: {
+					count: 1
+					id: "minecraft:wheat_seeds"
+				}
+				type: "item"
+			}]
+			tasks: [{
+				icon: {
+					id: "envelope:pigeon_spawn_egg"
+				}
+				id: "263C947328CC04DF"
+				observation_type: "entity_type"
+				observe_type: 5
+				timer: 0L
+				to_observe: "envelope:pigeon"
+				type: "observation"
+			}]
+			x: 0.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["1033B7FA51F76297"]
+			icon: {
+				id: "envelope:mailbox"
+			}
+			id: "5FF78CC8F0E2478A"
+			rewards: [{
+				id: "18D9B69EEB6F354F"
+				type: "xp_levels"
+				xp_levels: 3
+			}]
+			tasks: [
+				{
+					id: "294DE4FF281FA56E"
+					item: { count: 1, id: "envelope:mailbox" }
+					type: "item"
+				}
+				{
+					id: "76CDF4CEF359673D"
+					points: false
+					type: "xp"
+					value: 3L
+				}
+				{
+					id: "6BFE5F66B63B19AD"
+					item: { components: { "ftbfiltersystem:filter": "item_tag(c:seeds)", "minecraft:custom_name": "\"Seeds\"" }, count: 1, id: "ftbfiltersystem:smart_filter" }
+					type: "item"
+				}
+			]
+			x: 0.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["1B81EED368063E8A"]
+			id: "5E424B3E63691E12"
+			rewards: [{
+				command: "summon envelope:pigeon ~ ~5 ~"
+				exclude_from_claim_all: true
+				feedback_message: "Look around you!"
+				icon: {
+					id: "envelope:pigeon_spawn_egg"
+				}
+				id: "50DC1BA350239F61"
+				type: "command"
+			}]
+			tasks: [{
+				id: "2163410D21E933B3"
+				item: { components: { "ftbfiltersystem:filter": "item_tag(envelope:pigeonholes)" }, count: 1, id: "ftbfiltersystem:smart_filter" }
+				type: "item"
+			}]
+			x: -1.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["5FF78CC8F0E2478A"]
+			id: "055BBDD31B8B12BC"
+			rewards: [{
+				count: 4
+				id: "6810D87B259CC992"
+				item: {
+					count: 1
+					id: "minecraft:black_dye"
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "455A5FFDB7E0076A"
+				item: { count: 1, id: "envelope:letter_and_quill" }
+				type: "item"
+			}]
+			x: -3.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["5FF78CC8F0E2478A"]
+			id: "6561732C927949EC"
+			rewards: [{
+				count: 16
+				id: "74936E59F9BC62A7"
+				item: {
+					count: 1
+					id: "create:cardboard"
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "58E28C2F5CFB6AF7"
+				item: { count: 1, id: "envelope:paper_box" }
+				type: "item"
+			}]
+			x: 3.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["055BBDD31B8B12BC"]
+			id: "34703414C61627E1"
+			rewards: [{
+				id: "15A23C879D515F15"
+				item: {
+					count: 1
+					id: "envelope:letter_and_quill"
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "2173907238F7808B"
+				item: { count: 1, id: "envelope:letter" }
+				type: "item"
+			}]
+			x: -3.5d
+			y: -8.5d
+		}
+		{
+			dependencies: ["6561732C927949EC"]
+			id: "7BF0A6C8DB4D4DCD"
+			rewards: [{
+				count: 4
+				id: "7D1C75644F1657D3"
+				item: {
+					count: 1
+					id: "envelope:paper_box"
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "274B64D1A305BB3A"
+				item: { count: 1, id: "envelope:package" }
+				type: "item"
+			}]
+			x: 3.5d
+			y: -8.5d
+		}
+		{
+			dependencies: [
+				"34703414C61627E1"
+				"7BF0A6C8DB4D4DCD"
+			]
+			id: "35C1CCD86A2EB20C"
+			min_required_dependencies: 2
+			tasks: [
+				{
+					id: "3181207B573C4530"
+					item: { count: 1, id: "envelope:sealed_letter" }
+					type: "item"
+				}
+				{
+					id: "05080D9EEA90F3C6"
+					item: { count: 1, id: "envelope:sealed_package" }
+					type: "item"
+				}
+			]
+			x: 0.0d
+			y: -6.0d
+		}
+		{
+			dependencies: [
+				"34703414C61627E1"
+				"7BF0A6C8DB4D4DCD"
+			]
+			id: "3D534A15F591B2A4"
+			rewards: [{
+				id: "0BAADFFC182E044E"
+				item: {
+					count: 1
+					id: "minecraft:golden_apple"
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "73DB7A0C43059F09"
+				item: { count: 1, id: "envelope:seal_stamp" }
+				type: "item"
+			}]
+			x: 0.0d
+			y: -8.5d
+		}
+		{
+			dependencies: [
+				"34703414C61627E1"
+				"7BF0A6C8DB4D4DCD"
+			]
+			id: "379DE51307C04D67"
+			rewards: [{
+				count: 4
+				id: "22BF028F43380BBB"
+				item: {
+					count: 1
+					id: "envelope:address_tag"
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "47CE10C9A7B7585B"
+				item: { count: 1, id: "envelope:address_tag" }
+				type: "item"
+			}]
+			x: 0.0d
+			y: -11.0d
+		}
+		{
+			dependencies: ["3EEDF89A1784E0C0"]
+			id: "3227E0A55FEACC2E"
+			rewards: [{
+				count: 2
+				id: "1D88B58BFA7C0FF4"
+				item: {
+					count: 1
+					id: "envelope:address_tag"
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "1C7D2E7D4B9B9047"
+				item: { count: 1, id: "envelope:payback_tag" }
+				type: "item"
+			}]
+			x: 0.0d
+			y: -15.0d
+		}
+		{
+			id: "71C253AB785966A1"
+			rewards: [{
+				id: "10D339EDD3549C71"
+				item: {
+					count: 1
+					id: "cobblemon:air_balloon"
+				}
+				type: "item"
+			}]
+			tasks: [{
+				icon: {
+					id: "mcwholidays:red_balloon"
+				}
+				id: "3CD572483F1A6D59"
+				structure: "envelope:collapsed_mail_hub"
+				type: "structure"
+			}]
+			x: -2.0d
+			y: -13.0d
+		}
+		{
+			id: "0ECEB6DB82DAA239"
+			rewards: [{
+				count: 8
+				id: "59C63A75A089717E"
+				item: {
+					count: 1
+					id: "minecraft:bone_meal"
+				}
+				type: "item"
+			}]
+			tasks: [{
+				icon: {
+					id: "envelope:oak_pigeonhole"
+				}
+				id: "4E653F93056AB0AF"
+				structure: "#envelope:dovecote"
+				type: "structure"
+			}]
+			x: -3.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["1033B7FA51F76297"]
+			id: "1ABCEE5D22B9F9B1"
+			rewards: [{
+				id: "0FF19559402D92E5"
+				item: {
+					components: {
+						"envelope:package_experience": 2
+						"minecraft:container_loot": {
+							loot_table: "envelope:packages/lost_mail"
+						}
+						"minecraft:item_name": "{\"translate\":\"item.envelope.lost_mail\"}"
+					}
+					count: 1
+					id: "envelope:package"
+				}
+				type: "item"
+			}]
+			tasks: [{
+				entity: "envelope:charred_pigeon"
+				id: "4C9C9D3CA7044F47"
+				type: "kill"
+				value: 1L
+			}]
+			x: 1.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["379DE51307C04D67"]
+			icon: {
+				components: {
+					"ftbquests:icon": "envelope:textures/gui/sprites/mailbox/icon_mail_service.png"
+				}
+				id: "ftbquests:custom_icon"
+			}
+			icon_scale: 0.75d
+			id: "3EEDF89A1784E0C0"
+			rewards: [{
+				command: "summon envelope:pigeon ~ ~5 ~"
+				exclude_from_claim_all: true
+				feedback_message: "Look around you again!"
+				icon: {
+					id: "envelope:pigeon_spawn_egg"
+				}
+				id: "394CA3F6127F01FB"
+				type: "command"
+			}]
+			tasks: [{
+				id: "0F6ED06D857919E4"
+				item: { components: { "envelope:address": { definition: "envelope:mail_service", type: "service" } }, count: 1, id: "envelope:address_tag" }
+				match_components: "strict"
+				type: "item"
+			}]
+			x: 0.0d
+			y: -13.0d
+		}
+		{
+			dependencies: ["3EEDF89A1784E0C0"]
+			id: "13176079F85C751A"
+			invisible: true
+			optional: true
+			rewards: [
+				{
+					id: "567E93B4A698F812"
+					item: {
+						count: 1
+						id: "envelope:paper_box"
+					}
+					type: "item"
+				}
+				{
+					id: "7C1C46BC1412E281"
+					item: {
+						components: {
+							"envelope:address": {
+								definition: "horizon:horizon_quality_assurance"
+								type: "service"
+							}
+						}
+						count: 1
+						id: "envelope:address_tag"
+					}
+					type: "item"
+				}
+				{
+					id: "268BB7DEE25F5A5E"
+					item: {
+						count: 1
+						id: "minecraft:wheat_seeds"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "47D57BB8EFF4016F"
+				item: { components: { "ftbfiltersystem:filter": "item_tag(horizon:faulty_items)", "minecraft:custom_name": "\"Faulty Items\"" }, count: 1, id: "ftbfiltersystem:smart_filter" }
+				type: "item"
+			}]
+			x: 2.0d
+			y: -13.0d
+		}
+	]
+}
