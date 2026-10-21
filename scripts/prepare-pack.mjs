@@ -54,6 +54,7 @@ import { extractFromBuffer, isQuestFile, toOutputPath } from './extract-pack.mjs
 import { classifyLayout } from './lib/candidates.mjs'
 import { resolveLatestMrpack } from './lib/modrinth.mjs'
 import { fetchZipTexts, listZip } from './lib/zip-range.mjs'
+import { fetchRetry } from './lib/fetch-retry.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const DATASET_FILE = join(ROOT, 'research/index-dataset.json')
@@ -322,7 +323,7 @@ async function freshnessVerdict(slug, url, existing, { fetchImpl, log }) {
  */
 export async function preparePack({
   slug, platform = 'cf', cfId, mrSlug, apiKey, packsDir = PACKS_DIR, tmpDir = TMP_DIR,
-  force = false, keepZip = true, questFilesOnly = false, fetchImpl = fetch, log = () => {},
+  force = false, keepZip = true, questFilesOnly = false, fetchImpl = fetchRetry, log = () => {},
 }) {
   // 平台白名单：写错（`'modrinth'`、`'mr '` 之类）时不静默落到 CF 分支 ——
   // 那会用 cfId=null 去调 CF API，报出「未配置 CF_KEY」这种与真实原因无关的错误。

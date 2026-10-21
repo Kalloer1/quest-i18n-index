@@ -15,6 +15,7 @@ import {
 } from './lib/quest-files.mjs'
 import { parse } from './snbt.mjs'
 import { readFileSync } from 'node:fs'
+import { fetchRetry } from './lib/fetch-retry.mjs'
 
 // ---------- format-codes ----------
 
@@ -181,4 +182,49 @@ test('extractPack：分离布局所有字符串都可翻', () => {
   })
   assert.equal(pack.units.length, 1)
   assert.equal(pack.units[0].key, `${SEP_DIR_EN}::quest.a.title`)
+})
+
+// ---------- fetch-retry ----------
+// 用全局 fetch 桩验证重试行为，不联网。baseWaitMs 传 1 让退避几乎不耗时。
+const withFetch = async (impl, fn) => {
+  const orig = globalThis.fetch
+  globalThis.fetch = impl
+  try { return await fn() } finally { globalThis.fetch = orig }
+}
+const retryResp = (status) => ({ status, ok: status >= 200 && status < 300 })
+
+test('fetchRetry：瞬时网络错误重试后成功', async () => {
+  let n = 0
+  await withFetch(async () => { n++; if (n < 3) throw new TypeError('fetch failed'); return retryResp(200) }, async () => {
+    const res = await fetchRetry('https://x/y', {}, 5, 60_000, 1)
+    assert.equal(res.status, 200)
+    assert.equal(n, 3, '前两次失败、第三次应成功')
+  })
+})
+
+test('fetchRetry：5xx/429 重试，4xx/302 原样返回不重试', async () => {
+  let n = 0
+  await withFetch(async () => { n++; return n < 2 ? retryResp(503) : retryResp(200) }, async () => {
+    const res = await fetchRetry('https://x/y', {}, 5, 60_000, 1)
+    assert.equal(res.status, 200)
+    assert.equal(n, 2)
+  })
+  let m = 0
+  await withFetch(async () => { m++; return retryResp(404) }, async () => {
+    const res = await fetchRetry('https://x/y', {}, 5, 60_000, 1)
+    assert.equal(res.status, 404)
+    assert.equal(m, 1, '404 不该重试')
+  })
+  await withFetch(async () => retryResp(302), async () => {
+    const res = await fetchRetry('https://x/y', {}, 5, 60_000, 1)
+    assert.equal(res.status, 302)
+  })
+})
+
+test('fetchRetry：所有尝试都失败则抛出最后一次错误', async () => {
+  let n = 0
+  await withFetch(async () => { n++; throw new TypeError('fetch failed') }, async () => {
+    await assert.rejects(() => fetchRetry('https://x/y', {}, 3, 60_000, 1), /fetch failed/)
+    assert.equal(n, 3, '应尝试 tries 次')
+  })
 })
