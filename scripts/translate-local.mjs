@@ -194,6 +194,56 @@ export function saveState(state, file = STATE_FILE) {
   writeFileSync(file, JSON.stringify(state, null, 1) + '\n')
 }
 
+/**
+ * 「这个包翻过没有」——**看产物实况，不看 state 文件**。
+ *
+ * ## 为什么不能只信 state
+ *
+ * 2026-10-21 实测：serv00 跑完 72 个包，产物全在 `patches/<slug>/`，
+ * 但 `research/local-batch-state.json` 在 `.gitignore` 里（几 KB 的耗时统计，
+ * 跟着 git 走会把每次翻译都变成一次提交冲突）。换台机器重跑时 state 里一个都没有，
+ * 72 个包会被整体重翻 —— 含 `tensura-waka-edition` 这种要 25 分钟的。
+ *
+ * 产物则天然跨机：`patches/<slug>/` 必须入库才能发布，`git clone` 下来就在。
+ * 所以判定权威是产物，state 只当本机的耗时统计与失败记录。
+ *
+ * 注意只认 `patches/`：`research/packs/<slug>/` 是**英文源**，
+ * 它存在只说明下载过，不说明翻过（内嵌包还会因为布局判定失败留下半套源）。
+ *
+ * @param {string} root 仓库根
+ * @param {string} slug 整合包 slug
+ * @returns {boolean}
+ */
+export function isAlreadyTranslated(root, slug) {
+  const dir = join(root, 'patches', slug)
+  if (!existsSync(dir)) return false
+  const walk = (d) => {
+    let found = false
+    for (const e of readdirSync(d, { withFileTypes: true })) {
+      if (e.isDirectory()) found = found || walk(join(d, e.name))
+      else if (/\.snbt$/i.test(e.name)) found = true
+      if (found) break
+    }
+    return found
+  }
+  return walk(dir)
+}
+
+/**
+ * 算本次真正要翻的清单：`state.done` 与 `patches/<slug>/` 实况取并集。
+ *
+ * @param {string} root 仓库根
+ * @param {Array<{slug: string}>} all 候选包
+ * @param {{done?: object}} state 本机状态
+ * @param {string[]} [explicit] 显式 slug 清单（给了就不看已完成状态）
+ * @returns {Array<object>}
+ */
+export function pendingWorklist(root, all, state, explicit = []) {
+  if (explicit.length) return all.filter((p) => explicit.includes(p.slug))
+  const done = state?.done ?? {}
+  return all.filter((p) => !done[p.slug] && !isAlreadyTranslated(root, p.slug))
+}
+
 const run = (cmd, args, env = {}) => execFileSync(cmd, args, {
   cwd: ROOT, stdio: 'inherit', env: { ...process.env, ...env },
 })
@@ -284,7 +334,6 @@ async function main() {
 
   const all = pickTranslatable(readFileSync(scanFile, 'utf8'), { platform: platform || undefined, layout: layout || undefined })
   const state = loadState()
-  const pending = all.filter((p) => !state.done[p.slug])
 
   // `--slug` 直接给清单，跳过 limit/platform/layout 筛选，也不看已完成状态。
   // 为什么需要：要重翻的那个包常常排在下载量后面、或者已经标了 done，
@@ -292,6 +341,7 @@ async function main() {
   const explicit = typeof slugArg === 'string'
     ? slugArg.split(',').map((s) => s.trim()).filter(Boolean)
     : []
+  const pending = pendingWorklist(ROOT, all, state, explicit)
   const worklist = explicit.length
     ? explicit.map((slug) => all.find((p) => p.slug === slug) ?? { slug, platform, layout, bytes: 0 })
     : (limit > 0 ? pending.slice(0, limit) : pending)

@@ -13,8 +13,10 @@
  */
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
-import { stagedPathsForBatch, prepareArgsForBatch } from './translate-local.mjs'
+import { readFileSync, mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
+import { stagedPathsForBatch, prepareArgsForBatch, isAlreadyTranslated, pendingWorklist } from './translate-local.mjs'
 
 // 断言函数不存在时会 ImportError，正是我们要的红。
 // 去注释再匹配：注释里写「禁止 git add -A」不该被当成实现本身。
@@ -111,4 +113,59 @@ test('prepareArgsForBatch：--ids 用该包的 slug', () => {
   const i = args.indexOf('--ids')
   assert.ok(i >= 0)
   assert.equal(args[i + 1], 'my-pack')
+})
+
+// ---- 断点续跑不能只信本机 state 文件 ----
+//
+// 2026-10-21 实测踩到的坑：serv00 跑完 72 个包，产物全在 `patches/<slug>/`，
+// 但 `research/local-batch-state.json` 在 `.gitignore` 里、跨机不同步。
+// 换一台机器重跑时 state 里一个都没有 → 72 个包会被整体重翻（含 25 分钟的 tensura-waka-edition）。
+//
+// 产物本身才是权威：`patches/<slug>/` 存在且含 `.snbt` 就是「翻过」，
+// 因为它必须入库才能发布，天然跟着 git 走。
+
+test('isAlreadyTranslated：patches/<slug>/ 里有 .snbt 就算翻过（不依赖 state）', () => {
+  assert.equal(typeof isAlreadyTranslated, 'function')
+  const root = mkdtempSync(join(tmpdir(), 'done-'))
+  mkdirSync(join(root, 'patches/has-patch/config/ftbquests/quests/lang'), { recursive: true })
+  writeFileSync(join(root, 'patches/has-patch/config/ftbquests/quests/lang/zh_cn.snbt'), '{}')
+  mkdirSync(join(root, 'patches/empty-patch'), { recursive: true })
+  assert.equal(isAlreadyTranslated(root, 'has-patch'), true)
+  assert.equal(isAlreadyTranslated(root, 'empty-patch'), false, '空目录不算翻过')
+  assert.equal(isAlreadyTranslated(root, 'never-heard-of-it'), false)
+  rmSync(root, { recursive: true, force: true })
+})
+
+test('isAlreadyTranslated：只认 patches/，不认 research/packs/（那是英文源不是产出）', () => {
+  const root = mkdtempSync(join(tmpdir(), 'done2-'))
+  mkdirSync(join(root, 'research/packs/en-only/config/ftbquests/quests/lang'), { recursive: true })
+  writeFileSync(join(root, 'research/packs/en-only/config/ftbquests/quests/lang/en_us.snbt'), '{}')
+  assert.equal(isAlreadyTranslated(root, 'en-only'), false, '英文源存在不代表翻过')
+  rmSync(root, { recursive: true, force: true })
+})
+
+test('pendingWorklist：state 与产物取并集，任一判定翻过就跳过', () => {
+  assert.equal(typeof pendingWorklist, 'function')
+  const root = mkdtempSync(join(tmpdir(), 'done3-'))
+  mkdirSync(join(root, 'patches/from-artifact/config/ftbquests/quests/lang'), { recursive: true })
+  writeFileSync(join(root, 'patches/from-artifact/config/ftbquests/quests/lang/zh_cn.snbt'), '{}')
+  const all = [
+    { slug: 'from-artifact' },   // 产物在，state 不在
+    { slug: 'from-state' },      // state 在，产物不在
+    { slug: 'untouched' },       // 都没有 → 待翻
+  ]
+  const state = { done: { 'from-state': {} }, failed: {} }
+  const pending = pendingWorklist(root, all, state)
+  assert.deepEqual(pending.map((p) => p.slug), ['untouched'])
+  rmSync(root, { recursive: true, force: true })
+})
+
+test('pendingWorklist：explicit slug 清单不看已完成状态（要重翻就重翻）', () => {
+  const root = mkdtempSync(join(tmpdir(), 'done4-'))
+  mkdirSync(join(root, 'patches/already/config/ftbquests/quests/lang'), { recursive: true })
+  writeFileSync(join(root, 'patches/already/config/ftbquests/quests/lang/zh_cn.snbt'), '{}')
+  const all = [{ slug: 'already' }]
+  const pending = pendingWorklist(root, all, { done: { already: {} }, failed: {} }, ['already'])
+  assert.deepEqual(pending.map((p) => p.slug), ['already'])
+  rmSync(root, { recursive: true, force: true })
 })
