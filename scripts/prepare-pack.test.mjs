@@ -13,7 +13,7 @@ import { join, relative } from 'node:path'
 import { deflateRawSync } from 'node:zlib'
 import {
   preparePack, resolveLatestFile, downloadUrlOf, cfIdOf,
-  authoritativeQuestNames, compareWithAuthoritative, pruneStaleFiles,
+  authoritativeQuestNames, compareWithAuthoritative, pruneStaleFiles, rewriteCdnHost,
 } from './prepare-pack.mjs'
 import { classifyLayout, LAYOUT } from './lib/candidates.mjs'
 
@@ -175,6 +175,25 @@ test('downloadUrlOf：没有 downloadUrl 时明确报错，不猜替代地址', 
   assert.equal(downloadUrlOf({ downloadUrl: ' https://cdn.example/a.zip ' }), 'https://cdn.example/a.zip')
   assert.throws(() => downloadUrlOf({ downloadUrl: null }), /downloadUrl/)
   assert.throws(() => downloadUrlOf(null), /downloadUrl/)
+})
+
+test('rewriteCdnHost：把不可达的 edge.forgecdn.net 改写成可达的 mediafilez.forgecdn.net', () => {
+  // 本机到 edge 超时、到 mediafilez 全速；CF 的 edge 会 302 跳到 mediafilez 同路径文件。
+  assert.equal(
+    rewriteCdnHost('https://edge.forgecdn.net/files/8989/794/x.zip'),
+    'https://mediafilez.forgecdn.net/files/8989/794/x.zip',
+  )
+  assert.equal(
+    rewriteCdnHost('http://edge.forgecdn.net/files/1/2/y.zip'),
+    'http://mediafilez.forgecdn.net/files/1/2/y.zip',
+  )
+  // 已在 mediafilez 的不动
+  assert.equal(
+    rewriteCdnHost('https://mediafilez.forgecdn.net/files/1/2/y.zip'),
+    'https://mediafilez.forgecdn.net/files/1/2/y.zip',
+  )
+  // 别的域名不动
+  assert.equal(rewriteCdnHost('https://cdn.example/a.zip'), 'https://cdn.example/a.zip')
 })
 
 test('resolveLatestFile：取最新文件的地址、文件名与体积', async () => {

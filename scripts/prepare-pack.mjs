@@ -193,6 +193,21 @@ export function platformOf(records, slug) {
 }
 
 /**
+ * 把 CurseForge 下载主机从 edge.forgecdn.net 改写成 mediafilez.forgecdn.net。
+ *
+ * 为什么：本机网络到 edge.forgecdn.net 连接超时（连那记 302 都拉不到），但
+ * mediafilez.forgecdn.net 可达且全速（实测 Range 206 ~1s，代理要 ~7s）。CF 的下载
+ * 地址在 edge 上、会 302 跳到 mediafilez 的同路径文件；既然 edge 连不上，直接改写
+ * 主机跳过那步。两者是同一批文件，mediafilez 是 CF 规范文件主机（serv00 上也可达），
+ * 改写安全通用。
+ * @param {string} url
+ * @returns {string}
+ */
+export function rewriteCdnHost(url) {
+  return String(url).replace(/(^https?:\/\/)edge\.forgecdn\.net/, '$1mediafilez.forgecdn.net')
+}
+
+/**
  * 取该文件条目的下载地址。CurseForge 对作者关闭 API 分发的项目返回 null——
  * 明确报错，不猜替代地址（猜出来的地址一旦变了就是静默下错包）。
  * @param {object|null} file
@@ -201,7 +216,7 @@ export function platformOf(records, slug) {
 export function downloadUrlOf(file) {
   const url = typeof file?.downloadUrl === 'string' ? file.downloadUrl.trim() : ''
   if (!url) throw new Error('CurseForge 未返回 downloadUrl（作者可能关闭了 API 分发）')
-  return url
+  return rewriteCdnHost(url)
 }
 
 /**
