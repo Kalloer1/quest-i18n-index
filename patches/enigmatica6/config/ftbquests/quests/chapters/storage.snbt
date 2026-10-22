@@ -1,0 +1,1403 @@
+# AI 初翻，未人工校对
+{
+	id: "583482A1C530FE26"
+	group: "0856CF7F5CBEB20A"
+	order_index: 0
+	filename: "storage"
+	title: "储物空间"
+	icon: "minecraft:chest"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "储物空间"
+			icon: "minecraft:chest"
+			x: -0.5d
+			y: -7.5d
+			shape: "gear"
+			description: [
+				"找个地方存放物品总是有点麻烦，保持整洁有时也是一项大工程。幸运的是，有几个模组可以在这方面提供帮助。以下任务将帮助你发现这些模组。"
+				""
+				"注意：大多数可作为存储块的方块都已在 JEI 中被标记以供搜索。搜索以下类别："
+				""
+				"● $storage"
+				"● $storage/basic"
+				"● $storage/bulk"
+				"● $storage/bag"
+				"● $storage/energy"
+				"● $storage/gas"
+				"● $storage/liquid"
+			]
+			optional: true
+			id: "00000000000003FF"
+			tasks: [{
+				id: "0000000000000400"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "0000000000000CA3"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "Refined Storage"
+			x: 1.0d
+			y: -5.0d
+			subtitle: "能量质量在正方形中的转换"
+			description: [
+				"将存储带入数字时代，Refined Storage 允许将物品和流体存储在具有无线访问和传输功能的磁盘驱动器上。它还可以与大多数机器和物品栏接口以扩展其功能。"
+				""
+				"前往 Refined Storage 的 quest，获取更多关于此大型 mod 的入门帮助。"
+			]
+			dependencies: ["00000000000003FF"]
+			dependency_requirement: "one_completed"
+			id: "0000000000000403"
+			tasks: [{
+				id: "0000000000000699"
+				type: "item"
+				item: "refinedstorage:controller"
+			}]
+			rewards: [{
+				id: "00000000000006FB"
+				type: "command"
+				title: "矿工的喜悦"
+				icon: "kubejs:miners_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_miners_delight"
+				player_command: false
+			}]
+		}
+		{
+			title: "铁质箱子"
+			icon: "ironchest:iron_chest"
+			x: -0.5d
+			y: -10.0d
+			description: [
+				"与一个箱子相同大小的超大存储空间。铁质箱子有多种类型，适合您的预算。"
+				""
+				"使用升级物品在原地升级箱子即可！"
+			]
+			dependencies: ["00000000000003FF"]
+			id: "0000000000000405"
+			tasks: [{
+				id: "0000000000000EA5"
+				type: "item"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "enigmatica:quests/storage/wood_to_iron"
+					}
+				}
+			}]
+			rewards: [{
+				id: "0000000000000A6B"
+				type: "command"
+				title: "拾荒者之乐"
+				icon: "kubejs:scavengers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_scavengers_delight"
+				player_command: false
+			}]
+		}
+		{
+			icon: "mekanism:basic_bin"
+			x: 1.0d
+			y: -10.0d
+			subtitle: "我喜欢大桶，我对此毫不否认"
+			description: ["常被忽视的箱子是密集存储物品的绝佳选择。你甚至可以在物品栏的合成网格中操作它们的内容。"]
+			dependencies: ["00000000000003FF"]
+			id: "0000000000000407"
+			tasks: [{
+				id: "3635395991201030"
+				type: "item"
+				title: "箱子"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "mekanism:basic_bin"
+								Count: 1b
+							}
+							{
+								id: "mekanism:advanced_bin"
+								Count: 1b
+							}
+							{
+								id: "mekanism:elite_bin"
+								Count: 1b
+							}
+							{
+								id: "mekanism:ultimate_bin"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "0000000000000A5C"
+					type: "command"
+					title: "农夫的欢乐时光"
+					icon: "kubejs:farmers_delight"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_farmers_delight"
+					player_command: false
+				}
+				{
+					id: "0000000000000A6C"
+					type: "command"
+					title: "拾荒者之乐"
+					icon: "kubejs:scavengers_delight"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_scavengers_delight"
+					player_command: false
+				}
+			]
+		}
+		{
+			title: "黑洞存储系统"
+			x: -0.5d
+			y: -5.0d
+			subtitle: "物理破坏与囤积模组"
+			description: [
+				"Industrial Foregoing 拥有巨大的存储能力。"
+				""
+				"前往工业向前者章节，了解黑洞存储。"
+			]
+			dependencies: ["00000000000003FF"]
+			id: "0000000000000409"
+			tasks: [
+				{
+					id: "0000000000000F5B"
+					type: "item"
+					item: "industrialforegoing:common_black_hole_unit"
+				}
+				{
+					id: "57D959FDEF6D9777"
+					type: "item"
+					item: "industrialforegoing:common_black_hole_tank"
+				}
+			]
+			rewards: [{
+				id: "000000000000069C"
+				type: "command"
+				title: "农夫的欢乐时光"
+				icon: "kubejs:farmers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_farmers_delight"
+				player_command: false
+			}]
+		}
+		{
+			title: "找到我"
+			icon: "naturesaura:range_visualizer"
+			x: -2.0d
+			y: -10.0d
+			description: ["忘记把珍贵的正岩放在哪里了？将鼠标悬停在物品栏或 JEI 中的某个正岩上，然后按 Y 键即可在附近的物品栏中找到它。"]
+			dependencies: ["00000000000003FF"]
+			id: "000000000000040B"
+			tasks: [{
+				id: "000000000000040C"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "0000000000000A5E"
+				type: "command"
+				title: "农夫的欢乐时光"
+				icon: "kubejs:farmers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_farmers_delight"
+				player_command: false
+			}]
+		}
+		{
+			title: "砰的一声落下"
+			icon: "botania:cosmetic_thinking_hand"
+			x: -2.0d
+			y: -8.5d
+			description: [
+				"想在锻造台旁找个好地方放锤子？厌倦了翻遍一个又一个箱子找齿轮机？直接把它们放在世界里面吧！"
+				""
+				"Plonk 允许你在任意方块空间中放置最多四组物品。只需手持物品，对准方块，按 P 键放置。右键可拾回物品。"
+			]
+			dependencies: ["00000000000003FF"]
+			id: "000000000000040D"
+			tasks: [{
+				id: "000000000000040E"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "2D1E55B5A92B9F94"
+				type: "command"
+				title: "农夫的欢乐时光"
+				icon: "kubejs:farmers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_farmers_delight"
+				player_command: false
+			}]
+		}
+		{
+			title: "抽屉控制器"
+			icon: "storagedrawers:controller"
+			x: -4.5d
+			y: -7.0d
+			description: [
+				"抽屉控制器必须与抽屉接触才能“看到”它们。当然，抽屉也可以连成一排或一面墙，单个抽屉控制器可以连接到多个抽屉。"
+				""
+				"修剪方块也可用于填补空隙，让控制器能绕过拐角进行观察。"
+			]
+			dependencies: ["0000000000000966"]
+			id: "000000000000040F"
+			tasks: [{
+				id: "000000000000068C"
+				type: "item"
+				item: "storagedrawers:controller"
+			}]
+			rewards: [{
+				id: "00000000000009AB"
+				type: "command"
+				title: "魔导师的喜悦"
+				icon: "kubejs:sorcerers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_sorcerers_delight"
+				player_command: false
+			}]
+		}
+		{
+			title: "黄金宝箱"
+			icon: "ironchest:gold_chest"
+			x: -0.5d
+			y: -11.0d
+			description: ["只需增添一点额外的闪耀光芒。"]
+			dependencies: ["0000000000000405"]
+			id: "000000000000094F"
+			tasks: [{
+				id: "0000000000000EA6"
+				type: "item"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "enigmatica:quests/storage/iron_to_gold"
+					}
+				}
+			}]
+			rewards: [{
+				id: "0000000000000A5B"
+				type: "command"
+				title: "炼金术师的喜悦"
+				icon: "kubejs:alchemists_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_alchemists_delight"
+				player_command: false
+			}]
+		}
+		{
+			title: "钻石宝箱"
+			icon: "ironchest:diamond_chest"
+			x: -0.5d
+			y: -12.0d
+			description: ["把物品储存在钻石盒子里，这可真够炫耀的。"]
+			dependencies: ["000000000000094F"]
+			id: "0000000000000951"
+			tasks: [{
+				id: "0000000000000EA7"
+				type: "item"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "enigmatica:quests/storage/gold_to_diamond"
+					}
+				}
+			}]
+			rewards: [{
+				id: "00000000000009A3"
+				type: "command"
+				title: "魔导师的喜悦"
+				icon: "kubejs:sorcerers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_sorcerers_delight"
+				player_command: false
+			}]
+		}
+		{
+			title: "抽屉"
+			icon: "storagedrawers:oak_full_drawers_1"
+			x: -3.0d
+			y: -7.5d
+			description: [
+				"满足你所有深度存储需求的可定制抽屉。"
+				""
+				"抽屉可单独使用，也可放置在控制器旁以相互连接。每个抽屉都可安装多个升级，以扩展其容量和功能。"
+			]
+			dependencies: ["00000000000003FF"]
+			id: "0000000000000966"
+			tasks: [{
+				id: "0000000000000967"
+				type: "item"
+				title: "储物抽屉"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "storagedrawers:drawers"
+					}
+				}
+			}]
+			rewards: [{
+				id: "0000000000000A59"
+				type: "command"
+				title: "炼金术师的喜悦"
+				icon: "kubejs:alchemists_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_alchemists_delight"
+				player_command: false
+			}]
+		}
+		{
+			x: -4.5d
+			y: -8.0d
+			dependencies: ["0000000000000966"]
+			id: "0000000000000980"
+			tasks: [{
+				id: "00000000000009A0"
+				type: "item"
+				item: "storagedrawers:emerald_storage_upgrade"
+			}]
+			rewards: [{
+				id: "00000000000009A1"
+				type: "command"
+				title: "矿工的喜悦"
+				icon: "kubejs:miners_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_miners_delight"
+				player_command: false
+			}]
+		}
+		{
+			x: -3.5d
+			y: -8.5d
+			description: ["大不一定好。在少量存储的情况下，降级存储可能很有用。"]
+			dependencies: ["0000000000000966"]
+			id: "0000000000000982"
+			tasks: [{
+				id: "0000000000000983"
+				type: "item"
+				item: "storagedrawers:one_stack_upgrade"
+			}]
+			rewards: [{
+				id: "00000000000009AA"
+				type: "command"
+				title: "农夫的欢乐时光"
+				icon: "kubejs:farmers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_farmers_delight"
+				player_command: false
+			}]
+		}
+		{
+			x: -3.5d
+			y: -6.5d
+			description: ["多余的物品将被自动丢弃。"]
+			dependencies: ["0000000000000966"]
+			id: "0000000000000984"
+			tasks: [{
+				id: "0000000000000985"
+				type: "item"
+				item: "storagedrawers:void_upgrade"
+			}]
+			rewards: [{
+				id: "695D02E01FA0C0BD"
+				type: "command"
+				title: "拾荒者之乐"
+				icon: "kubejs:scavengers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_scavengers_delight"
+				player_command: false
+			}]
+		}
+		{
+			icon: {
+				id: "sophisticatedbackpacks:backpack"
+				Count: 1b
+				tag: {
+					inventorySlots: 27
+					upgradeSlots: 1
+				}
+			}
+			x: 2.0d
+			y: -7.5d
+			description: [
+				"Sophisticated backpacks 是你从未意识到自己错过的背包模组。"
+				""
+				"背包本身可以佩戴在奇物栏中并通过按键绑定访问，也可以放置在世界中并通过管道或漏斗进行交互。"
+				""
+				"除了这些已有的出色功能外，它们还可以搭载许多非常实用的升级组件。"
+			]
+			dependencies: ["00000000000003FF"]
+			id: "0000000000000986"
+			tasks: [{
+				id: "0000000000000998"
+				type: "checkmark"
+				title: "Sophisticated Backpacks"
+			}]
+			rewards: [{
+				id: "0000000000000997"
+				type: "item"
+				title: "皮革"
+				icon: "minecraft:leather"
+				item: "minecraft:leather"
+				random_bonus: 3
+			}]
+		}
+		{
+			x: 2.5d
+			y: -9.0d
+			description: ["升级背包前最好先移除里面的物品。"]
+			dependencies: ["0000000000000986"]
+			id: "0000000000000988"
+			tasks: [{
+				id: "0000000000000989"
+				type: "item"
+				item: "sophisticatedbackpacks:iron_backpack"
+			}]
+			rewards: [{
+				id: "0000000000000999"
+				type: "command"
+				title: "农夫的欢乐时光"
+				icon: "kubejs:farmers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_farmers_delight"
+				player_command: false
+			}]
+		}
+		{
+			x: 3.5d
+			y: -9.0d
+			description: ["升级背包前最好先移除里面的物品。"]
+			dependencies: ["0000000000000988"]
+			id: "000000000000098A"
+			tasks: [{
+				id: "000000000000098B"
+				type: "item"
+				item: "sophisticatedbackpacks:gold_backpack"
+			}]
+			rewards: [{
+				id: "0000000000000A66"
+				type: "command"
+				title: "拾荒者之乐"
+				icon: "kubejs:scavengers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_scavengers_delight"
+				player_command: false
+			}]
+		}
+		{
+			x: 4.5d
+			y: -9.0d
+			description: ["升级背包前最好先移除里面的物品。"]
+			dependencies: ["000000000000098A"]
+			id: "000000000000098C"
+			tasks: [{
+				id: "000000000000098D"
+				type: "item"
+				item: "sophisticatedbackpacks:diamond_backpack"
+			}]
+			rewards: [{
+				id: "0000000000000A67"
+				type: "command"
+				title: "炼金术师的喜悦"
+				icon: "kubejs:alchemists_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_alchemists_delight"
+				player_command: false
+			}]
+		}
+		{
+			x: 4.0d
+			y: -7.5d
+			description: ["一个可过滤的升级，能将物品从远处直接吸到你的背包里。"]
+			dependencies: ["0000000000000986"]
+			id: "000000000000098E"
+			tasks: [{
+				id: "000000000000098F"
+				type: "item"
+				item: "sophisticatedbackpacks:magnet_upgrade"
+			}]
+			rewards: [{
+				id: "0000000000000A50"
+				type: "command"
+				title: "拾荒者之乐"
+				icon: "kubejs:scavengers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_scavengers_delight"
+				player_command: false
+			}]
+		}
+		{
+			x: 6.0d
+			y: -7.5d
+			description: ["再也不会弄丢你的珍贵物品了！"]
+			dependencies: ["0000000000000986"]
+			id: "0000000000000990"
+			tasks: [{
+				id: "0000000000000991"
+				type: "item"
+				item: "sophisticatedbackpacks:everlasting_upgrade"
+			}]
+			rewards: [
+				{
+					id: "000000000000099C"
+					type: "command"
+					title: "魔导师的喜悦"
+					icon: "kubejs:sorcerers_delight"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_sorcerers_delight"
+					player_command: false
+				}
+				{
+					id: "0000000000000A6A"
+					type: "command"
+					title: "炼金术师的喜悦"
+					icon: "kubejs:alchemists_delight"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_alchemists_delight"
+					player_command: false
+				}
+			]
+		}
+		{
+			x: 3.0d
+			y: -7.5d
+			description: ["一个可过滤的升级，当玩家拾起物品时，可使其直接传入背包。"]
+			dependencies: ["0000000000000986"]
+			id: "0000000000000992"
+			tasks: [{
+				id: "0000000000000993"
+				type: "item"
+				item: "sophisticatedbackpacks:pickup_upgrade"
+			}]
+			rewards: [{
+				id: "000000000000099D"
+				type: "command"
+				title: "农夫的欢乐时光"
+				icon: "kubejs:farmers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_farmers_delight"
+				player_command: false
+			}]
+		}
+		{
+			title: "喂食升级"
+			x: 5.0d
+			y: -7.5d
+			subtitle: "饥饿时的你，不是真正的你"
+			description: ["需要零食吗？让你的背包来提供吧。"]
+			dependencies: ["0000000000000986"]
+			id: "0000000000000994"
+			tasks: [{
+				id: "0000000000000995"
+				type: "item"
+				title: "喂食升级"
+				item: "sophisticatedbackpacks:feeding_upgrade"
+			}]
+			rewards: [{
+				id: "0000000000000A51"
+				type: "command"
+				title: "炼金术师的喜悦"
+				icon: "kubejs:alchemists_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_alchemists_delight"
+				player_command: false
+			}]
+		}
+		{
+			x: -3.5d
+			y: -11.0d
+			subtitle: "不要乱动调节器，否则后果自负"
+			description: [
+				"经过轻微校准，个人缩小装置就能让人缩小到特殊机器的犄角旮旯里，完全消失不见。"
+				""
+				"在它们内部建造符合你需求的装置，配有自定义的输入和输出端口。"
+				""
+				"只需右键点击装有PSD的紧凑型机器，即可传送至内部。"
+			]
+			dependencies: ["2A74822BE970E9D4"]
+			id: "0AD2769DC173D26D"
+			tasks: [{
+				id: "6B198B6A029D9333"
+				type: "item"
+				item: "compactmachines:personal_shrinking_device"
+			}]
+			rewards: [{
+				id: "07BAD39E967F6B85"
+				type: "item"
+				item: "enderstorage:ender_pouch"
+			}]
+		}
+		{
+			icon: "compactmachines:machine_tiny"
+			x: -3.5d
+			y: -10.0d
+			subtitle: "一、在箱子上挖一个洞"
+			description: [
+				"收集你第一台紧凑型机器的材料！"
+				""
+				"微型紧凑机器的内部体积为3x3x3，虽然看起来很小，但对于某些小型自动化来说却非常合适。如果你自己缩小了体型，放置内部方块也会变得相当简单。"
+				""
+				"给自己定个挑战，尝试在一个装置里自动化Industrial Foregoing的乳胶和橡胶。巧妙利用其他模组，这甚至可以完全自给自足，包括木材、能源，以及乳胶到塑料片的转化，全部都在这个小小的盒子里完成。"
+			]
+			dependencies: ["0AD2769DC173D26D"]
+			min_width: 250
+			id: "3787A109AABC8921"
+			tasks: [{
+				id: "16A0C1D718EA19AF"
+				type: "item"
+				item: "compactmachines:machine_tiny"
+			}]
+			rewards: [{
+				id: "3E2CA8D755178794"
+				type: "command"
+				title: "拾荒者之乐"
+				icon: "kubejs:scavengers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_scavengers_delight"
+				player_command: false
+			}]
+		}
+		{
+			x: -4.5d
+			y: -10.0d
+			description: ["内部体积为13x13x13的超大紧凑型机器，为你开启了无限的自动化可能。你的机器将用来做什么？移动基地？紧凑型矿石处理？防僵尸的村民交易所？"]
+			dependencies: ["3787A109AABC8921"]
+			id: "0DAA452348B02827"
+			tasks: [{
+				id: "21ED2337B44743E5"
+				type: "item"
+				item: "compactmachines:machine_maximum"
+			}]
+			rewards: [{
+				id: "299A8E596E259DC4"
+				type: "command"
+				title: "拾荒者之乐"
+				icon: "kubejs:scavengers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_scavengers_delight"
+				player_command: false
+			}]
+		}
+		{
+			x: 5.5d
+			y: -9.0d
+			description: ["升级背包前最好先移除里面的物品。"]
+			dependencies: ["000000000000098C"]
+			id: "585A22AF9FB84AFD"
+			tasks: [{
+				id: "4F51BBE2671F8947"
+				type: "item"
+				item: "sophisticatedbackpacks:netherite_backpack"
+			}]
+			rewards: [{
+				id: "2102EE1604B1EE96"
+				type: "command"
+				title: "魔导师的喜悦"
+				icon: "kubejs:sorcerers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_sorcerers_delight"
+				player_command: false
+			}]
+		}
+		{
+			title: "维度存储（Dimensional Storage）"
+			x: -2.0d
+			y: -5.0d
+			subtitle: "你不觉得我的收藏品已经完整了吗？"
+			description: [
+				"洞穴里放不下更多的小玩意儿？不知道该怎么处理那些稀奇古怪的东西？那就把它们塞进另一个维度，雇人帮你整理吧。不过，签合同前记得仔细阅读条款。"
+				""
+				"Occultism 提供了广泛的存储能力，支持手动和自动化跨维度存取。更多详情请参阅 Occultism 章节。"
+			]
+			dependencies: ["00000000000003FF"]
+			id: "662DA1135F00D6B6"
+			tasks: [{
+				id: "0B58FB5EED4BBC33"
+				type: "item"
+				item: "occultism:storage_controller"
+			}]
+			rewards: [{
+				id: "44BA68CC5061BD0A"
+				type: "command"
+				title: "拾荒者之乐"
+				icon: "kubejs:scavengers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_scavengers_delight"
+				player_command: false
+			}]
+		}
+		{
+			title: "流体"
+			icon: "minecraft:bucket"
+			x: -0.5d
+			y: -1.5d
+			shape: "gear"
+			subtitle: "当水桶不够用时"
+			description: [
+				"将流体与存储系统配合使用可能很困难。以下是一些专用的流体存储单元。"
+				""
+				"这只是个开端，并非详尽无遗，更多信息请查看各模组的任务章节。"
+			]
+			dependency_requirement: "one_started"
+			id: "568DC3ECDB943C47"
+			tasks: [{
+				id: "3C4FF0EC769D419E"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "34549CDC2415DAD6"
+				type: "item"
+				item: "minecraft:bucket"
+			}]
+		}
+		{
+			title: "流体储罐 (Mekanism)"
+			icon: "mekanism:basic_fluid_tank"
+			x: 2.5d
+			y: -1.5d
+			description: [
+				"Mekanism 流体储罐有桶模式（默认：shift + 滚轮），可以拾取和放置流体。试试用巨型桶吧！"
+				""
+				"它还有内部槽位，可自动填充或排空桶等流体容器物品，底部可通过配置器 Shift + 右键点击设置为自动输出流体。"
+				""
+				"用奖励物品，你可以制作一个自动填充空桶的系统：将水箱的两端连接到管道上，管道的另一端连接到桶消耗器。然后在其中一个连接到水箱的管道中，插入取回模块并将其设置为将空桶吸入水箱，而在另一个连接到水箱的管道中，使用提取模块将装满的桶推出去！"
+			]
+			dependencies: ["568DC3ECDB943C47"]
+			id: "120DA7809C60693C"
+			tasks: [{
+				id: "682D32339BA2A263"
+				type: "item"
+				title: "任意一个Mekanism储罐"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "mekanism:basic_fluid_tank"
+								Count: 1b
+							}
+							{
+								id: "mekanism:advanced_fluid_tank"
+								Count: 1b
+							}
+							{
+								id: "mekanism:elite_fluid_tank"
+								Count: 1b
+							}
+							{
+								id: "mekanism:ultimate_fluid_tank"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "77079E43823E3AE6"
+					type: "item"
+					item: "prettypipes:pipe"
+					count: 4
+				}
+				{
+					id: "6C334DFD063E8B65"
+					type: "item"
+					item: "prettypipes:low_retrieval_module"
+				}
+				{
+					id: "3C327392E358E068"
+					type: "item"
+					item: "prettypipes:low_extraction_module"
+				}
+			]
+		}
+		{
+			title: "流体储罐 (PNC)"
+			x: -0.5d
+			y: 1.5d
+			description: [
+				"PNC流体储罐可接受分配器升级，以实现升级配置侧面的自动输出（在游戏中的方块侧面右键升级即可配置）。它们也接受速度升级来增强分配器升级的效果。"
+				""
+				"它们还可以用来批量制作配方中包含一桶流体的物品；将桶替换为储罐，每次制作都会从储罐中扣除一个桶的流体。非常适合制作处理过的木板！"
+			]
+			dependencies: ["568DC3ECDB943C47"]
+			id: "42FE114176EAE0DD"
+			tasks: [{
+				id: "61F77FEB2B9801A7"
+				type: "item"
+				item: "pneumaticcraft:small_tank"
+			}]
+			rewards: [
+				{
+					id: "279817005D062A56"
+					type: "item"
+					item: {
+						id: "pneumaticcraft:small_tank"
+						Count: 1b
+						tag: {
+							BlockEntityTag: {
+								SavedTanks: {
+									Tank: {
+										FluidName: "minecraft:water"
+										Amount: 32000
+									}
+								}
+							}
+						}
+					}
+				}
+				{
+					id: "1629A9186DB5B764"
+					type: "item"
+					item: "create:wheat_flour"
+					count: 32
+				}
+			]
+		}
+		{
+			title: "流体单元"
+			x: -3.0d
+			y: 0.0d
+			description: [
+				"Thermal Series 的流体储罐高度可配置和升级。每个侧面可设为输入、输出、双向或无连接，并支持自动推送/拉取及可调节的传输速率。"
+				""
+				"它们可以通过Integral Components、Expanded Tank Construction增强组件，或用Holding附魔进行升级，这些都能提升容量和最大传输速率。"
+			]
+			dependencies: ["568DC3ECDB943C47"]
+			id: "5BEB6955518864A8"
+			tasks: [{
+				id: "49D84038D947694F"
+				type: "item"
+				item: {
+					id: "thermal:fluid_cell"
+					Count: 1b
+					tag: {
+						BlockEntityTag: {
+							TankInv: [{
+								FluidName: "minecraft:empty"
+								Capacity: 32000
+								Tank: 0b
+								Amount: 0
+							}]
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "2EE50650168F11A5"
+				type: "item"
+				item: "thermal:fluid_tank_augment"
+			}]
+		}
+		{
+			title: "流体储罐 (Create)"
+			x: 1.0d
+			y: 1.0d
+			description: ["Create 储罐可以制成大型多区块储罐。更多信息请参阅 Create 章节中的任务。"]
+			dependencies: ["568DC3ECDB943C47"]
+			id: "516772B582C9114A"
+			tasks: [{
+				id: "755A21A9FE7980B4"
+				type: "item"
+				item: "create:fluid_tank"
+			}]
+			rewards: [{
+				id: "72197B3870AE32F2"
+				type: "command"
+				title: "农夫的欢乐时光"
+				icon: "kubejs:farmers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_farmers_delight"
+				player_command: false
+			}]
+		}
+		{
+			title: "末影储罐"
+			x: -2.0d
+			y: -3.5d
+			description: [
+				"使用相同颜色编码通道的末影储罐将共享物品栏。制作储罐时，默认颜色编码将为你配方中使用的羊毛颜色，但你可以通过将染料右键点击顶部的三个色块来自定义编码。"
+				""
+				"右键坦克正面的圆圈可切换自动输出，用钻石右键圆圈可使坦克使用与玩家绑定的私人频道。私人频道仅可通过同一玩家用钻石设为私密的同一频道上的其他坦克访问。"
+			]
+			dependencies: ["568DC3ECDB943C47"]
+			id: "1E357DE462DBB1C8"
+			tasks: [{
+				id: "3CD94E8A1FADA69C"
+				type: "item"
+				item: "enderstorage:ender_tank"
+				count: 2L
+			}]
+			rewards: [
+				{
+					id: "18AC74F0A635EC32"
+					type: "item"
+					item: "resourcefulbees:rgbee_honeycomb"
+					count: 4
+				}
+				{
+					id: "4ED4A6EAF019E0C4"
+					type: "item"
+					item: "resourcefulbees:wax"
+					count: 4
+				}
+			]
+		}
+		{
+			title: "储罐 (RFTools)"
+			x: 2.0d
+			y: 0.0d
+			description: ["流体储罐总是存错液体？RFTools储罐可以过滤接受的液体，只需在UI的槽位里放一桶你想“白名单”的流体即可。"]
+			dependencies: ["568DC3ECDB943C47"]
+			id: "484A9BB4A5423AF8"
+			tasks: [{
+				id: "3BF2366BB0C0E896"
+				type: "item"
+				item: "rftoolsutility:tank"
+			}]
+			rewards: [{
+				id: "798CE4333D002DC4"
+				type: "command"
+				title: "拾荒者之乐"
+				icon: "kubejs:scavengers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_scavengers_delight"
+				player_command: false
+			}]
+		}
+		{
+			title: "坦克无效化装置"
+			icon: {
+				id: "tanknull:tank_1"
+				Count: 1b
+				tag: {
+					fluidinv: { }
+				}
+			}
+			x: -0.5d
+			y: -3.5d
+			description: [
+				"储罐是终极便携式流体存储解决方案。它能拾取和放置流体，存储多种流体，甚至可以自动吸收附近的流体。"
+				""
+				"使用 alt + 右键在填充/清空模式间切换，按住 shift + 滚轮切换活动储罐。使用快捷键（默认：o）设置海绵模式等选项。"
+				""
+				"你可以使用 Tank Null Dock 将储罐作为方块访问，只需右键储罐并将其放入坞中。Shift + 右键可将其从坞中弹出。"
+			]
+			dependencies: ["568DC3ECDB943C47"]
+			id: "5D02087F29AA5454"
+			tasks: [{
+				id: "09AE24315524F720"
+				type: "item"
+				title: "任意坦克"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "tanknull:tank_1"
+								Count: 1b
+								tag: {
+									fluidinv: { }
+								}
+							}
+							{
+								id: "tanknull:tank_2"
+								Count: 1b
+								tag: {
+									fluidinv: { }
+								}
+							}
+							{
+								id: "tanknull:tank_3"
+								Count: 1b
+								tag: {
+									fluidinv: { }
+								}
+							}
+							{
+								id: "tanknull:tank_4"
+								Count: 1b
+								tag: {
+									fluidinv: { }
+								}
+							}
+							{
+								id: "tanknull:tank_5"
+								Count: 1b
+								tag: {
+									fluidinv: { }
+								}
+							}
+							{
+								id: "tanknull:tank_6"
+								Count: 1b
+								tag: {
+									fluidinv: { }
+								}
+							}
+							{
+								id: "tanknull:tank_7"
+								Count: 1b
+								tag: {
+									fluidinv: { }
+								}
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "6B430A2095F38839"
+				type: "command"
+				title: "拾荒者之乐"
+				icon: "kubejs:scavengers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_scavengers_delight"
+				player_command: false
+			}]
+		}
+		{
+			title: "流体存储磁盘"
+			icon: "refinedstorage:64k_fluid_storage_disk"
+			x: 2.5d
+			y: -3.5d
+			description: [
+				"流体也可以直接存储在RS系统中，使用流体磁盘驱动器。只需将磁盘放入普通磁盘驱动器即可。"
+				""
+				"流体存储上线后，RS 可用存储的流体自动合成，或使用流体模式的普通进出口器将流体移入或移出系统。"
+				"在导入/导出UI中，点击左上数第2个“类型”按钮，将其更改为流体模式。"
+			]
+			dependencies: [
+				"568DC3ECDB943C47"
+				"0000000000000403"
+			]
+			id: "475E9EE7D90F0BB8"
+			tasks: [{
+				id: "716230750AA92EC9"
+				type: "item"
+				title: "任意流体存储磁盘"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "refinedstorage:64k_fluid_storage_disk"
+								Count: 1b
+								tag: {
+									Id: [I;
+										-1031856902
+										-899464268
+										-1112014982
+										515911903
+									]
+								}
+							}
+							{
+								id: "refinedstorage:256k_fluid_storage_disk"
+								Count: 1b
+								tag: {
+									Id: [I;
+										-356968885
+										-503821794
+										-1682123444
+										1712090278
+									]
+								}
+							}
+							{
+								id: "refinedstorage:1024k_fluid_storage_disk"
+								Count: 1b
+								tag: {
+									Id: [I;
+										-1183223022
+										358039592
+										-1084084011
+										-1294625985
+									]
+								}
+							}
+							{
+								id: "refinedstorage:4096k_fluid_storage_disk"
+								Count: 1b
+								tag: {
+									Id: [I;
+										907752426
+										-272873231
+										-1246367336
+										-1496277162
+									]
+								}
+							}
+							{
+								id: "extrastorage:disk_16384k_fluid"
+								Count: 1b
+								tag: {
+									ID: [I;
+										51139427
+										-1958262542
+										-1340406862
+										909704624
+									]
+								}
+							}
+							{
+								id: "extrastorage:disk_65536k_fluid"
+								Count: 1b
+								tag: {
+									ID: [I;
+										1950220109
+										1070221666
+										-1228984801
+										1801515425
+									]
+								}
+							}
+							{
+								id: "extrastorage:disk_262144k_fluid"
+								Count: 1b
+								tag: {
+									ID: [I;
+										1723919845
+										-1513143925
+										-1779991496
+										1774992712
+									]
+								}
+							}
+							{
+								id: "extrastorage:disk_1048576k_fluid"
+								Count: 1b
+								tag: {
+									ID: [I;
+										-1030006703
+										-1075493156
+										-1368676727
+										-274718083
+									]
+								}
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "604ED1BE1F115A88"
+				type: "command"
+				title: "拾荒者之乐"
+				icon: "kubejs:scavengers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_scavengers_delight"
+				player_command: false
+			}]
+		}
+		{
+			title: "动态储罐"
+			x: 4.0d
+			y: -1.5d
+			subtitle: "内部比外部大得多"
+			description: [
+				"Mekanism动态储罐是一个多区块储罐，可存储大量流体，并提供多种访问端口。最小的储罐是一个中空的3x3x3立方体，最大可达18x18x18。即使是最小的储罐，也能容纳价值432,000满桶的流体！"
+				""
+				"建造方法：将动态储罐方块放置成空心长方体的所有“边缘”，并用动态储罐、动态阀门或结构玻璃填充构成墙壁的其他方块（与内部空气方块相邻）。若建造正确，会闪烁红色粒子。"
+			]
+			dependencies: ["120DA7809C60693C"]
+			id: "7EB1E018DE90ADCA"
+			tasks: [
+				{
+					id: "6F108555E4895D92"
+					type: "item"
+					item: "mekanism:dynamic_valve"
+					count: 2L
+				}
+				{
+					id: "40EBC06D819585A2"
+					type: "item"
+					item: "mekanism:dynamic_tank"
+					count: 24L
+				}
+			]
+			rewards: [{
+				id: "24BBD9AE9A183012"
+				type: "item"
+				item: "mekanism:structural_glass"
+				count: 8
+			}]
+		}
+		{
+			x: -2.0d
+			y: 1.0d
+			description: [
+				"储水池的用法和桶一样，但可以一次性储存多桶的液体。使用模式键可在填充和清空模式之间切换。它还能自动填充背包中其他可接受液体的物品；按住Shift右键可切换“充电模式”。"
+				""
+				"容量可通过Integral Components和Expanded Tank Construction增强组件（使用Tinker's Workbench将增强组件应用到物品上）以及附魔Holding来升级。"
+			]
+			dependencies: ["568DC3ECDB943C47"]
+			id: "1963E75A50255E85"
+			tasks: [{
+				id: "1BD90F15A5929378"
+				type: "item"
+				item: {
+					id: "thermal:fluid_reservoir"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "2D1CA89CAC683ADD"
+				type: "item"
+				item: {
+					id: "minecraft:enchanted_book"
+					Count: 1b
+					tag: {
+						StoredEnchantments: [{
+							lvl: 2s
+							id: "cofh_core:holding"
+						}]
+					}
+				}
+			}]
+		}
+		{
+			title: "Tinker's Tanks"
+			icon: "tconstruct:seared_ingot_tank"
+			x: -3.5d
+			y: -1.5d
+			description: ["Tinkers 燃料箱是熔炉/铸造厂多方块结构的一部分，但它们也作为小型廉价 4 桶储罐使用。锭箱的容量稍大，约为 4.6 桶，可容纳 32 个熔融锭。"]
+			dependencies: ["568DC3ECDB943C47"]
+			id: "1EFC81649E4D4C50"
+			tasks: [{
+				id: "376F9D335DB66E98"
+				type: "item"
+				title: "任意 #tconstruct:tanks"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "tconstruct:tanks"
+					}
+				}
+			}]
+			rewards: [{
+				id: "5F2C198D293D7995"
+				type: "item"
+				item: {
+					id: "tconstruct:copper_can"
+					Count: 1b
+					tag: {
+						fluid: "tconstruct:molten_copper"
+					}
+				}
+			}]
+		}
+		{
+			x: -5.0d
+			y: -1.5d
+			description: ["熔炉不仅能将物品熔成液体，还能用作多流体储罐！更多信息请查看 Tinkers Construct 章节中的任务。"]
+			dependencies: [
+				"1EFC81649E4D4C50"
+				"76BAE86D90953DD4"
+			]
+			id: "090B9336E75C759A"
+			tasks: [{
+				id: "6C548EA30E5F258C"
+				type: "item"
+				item: "tconstruct:foundry_controller"
+			}]
+			rewards: [{
+				id: "0CF79BF4A3ACFB40"
+				type: "item"
+				item: "tconstruct:nether_grout"
+				count: 8
+			}]
+		}
+		{
+			x: 1.0d
+			y: -3.5d
+			description: [
+				"在默认设置下，External Storage 可用于物品。但它同样能让 RS 访问存储在其他储罐中的流体。"
+				""
+				"像物品栏一样将其连接到储罐上，然后在UI中点击左侧的“类型”按钮，将其更改为流体模式。"
+				""
+				"要过滤流体，就像物品一样，你可以直接从 JEI 将流体拖到槽位中（方形纹理版本，不是装满的桶）"
+			]
+			dependencies: [
+				"568DC3ECDB943C47"
+				"0000000000000403"
+			]
+			id: "1E8D2377DCF03984"
+			tasks: [{
+				id: "734CC72EF1E4ACE4"
+				type: "item"
+				item: "refinedstorage:external_storage"
+			}]
+			rewards: [{
+				id: "6D9A4CEFB43C39C7"
+				type: "command"
+				title: "拾荒者之乐"
+				icon: "kubejs:scavengers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_scavengers_delight"
+				player_command: false
+			}]
+		}
+		{
+			x: -3.5d
+			y: -5.0d
+			description: ["Pretty Pipes 物品终端和合成终端是早期游戏从单一位置访问所有物品、进行合成，甚至实现自动合成的绝佳方式。更多信息请查看自动化章节中的 Pretty Pipes 任务！"]
+			dependencies: ["00000000000003FF"]
+			id: "6E3133DD54A6C7E7"
+			tasks: [{
+				id: "43B9523816655544"
+				type: "item"
+				item: "prettypipes:item_terminal"
+			}]
+			rewards: [{
+				id: "68188157B1667326"
+				type: "item"
+				item: "prettypipes:pipe"
+				count: 8
+			}]
+		}
+		{
+			title: "ID 存储终端"
+			icon: "integratedterminals:part_terminal_storage"
+			x: 2.5d
+			y: -5.0d
+			subtitle: "数据魔法"
+			description: [
+				"Integrated Dynamics 存储终端让你能访问和制作所有已连接物品栏中的物品，无需等待或使用电力！"
+				""
+				"要连接一个物品栏，先在其旁边放置逻辑线缆，然后将物品接口放在线缆所在方块格的物品栏上。接着把所有线缆连起来，把存储终端装在其中一个线缆上，搞定！谁说ID复杂来着？"
+				""
+				"然后用外立面遮住电缆即可，只需将方块与外立面合成，就能让外立面呈现该方块的外观。"
+			]
+			dependencies: ["00000000000003FF"]
+			id: "69982730005EDD7D"
+			tasks: [
+				{
+					id: "305FEF030727F2B7"
+					type: "item"
+					item: "integratedterminals:part_terminal_storage"
+				}
+				{
+					id: "5EE786F87A40ABE3"
+					type: "item"
+					item: "integrateddynamics:cable"
+					count: 8L
+				}
+				{
+					id: "56CE84BAC42C77C2"
+					type: "item"
+					item: "integratedtunnels:part_interface_item"
+					count: 2L
+				}
+			]
+			rewards: [
+				{
+					id: "2DCCF7F86474DF47"
+					type: "item"
+					item: "integratedtunnels:part_interface_item"
+					count: 2
+				}
+				{
+					id: "000CFB69B8DEE81F"
+					type: "item"
+					item: "integrateddynamics:cable"
+					count: 8
+				}
+				{
+					id: "26F8EDF02B0D31AA"
+					type: "item"
+					item: "integrateddynamics:facade"
+					count: 16
+				}
+			]
+		}
+	]
+}

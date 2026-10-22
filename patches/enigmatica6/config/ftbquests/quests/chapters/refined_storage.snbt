@@ -1,0 +1,820 @@
+# AI 初翻，未人工校对
+{
+	id: "0000000000000240"
+	group: "0856CF7F5CBEB20A"
+	order_index: 2
+	filename: "refined_storage"
+	title: "Refined Storage"
+	icon: "refinedstorage:controller"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "Refined Storage"
+			icon: "refinedstorage:wrench"
+			x: 0.5d
+			y: 0.5d
+			shape: "gear"
+			subtitle: "像AE2，但更精致100%"
+			description: ["Refined Storage 能让你构建庞大的电子存储和自动化网络，将物品存入 Magic Computer Space，并按需进行导入、导出和自动合成。可以说是一种相当精细的存储方式。"]
+			size: 1.5d
+			optional: true
+			id: "000000000000024F"
+			tasks: [{
+				id: "42C8AA65635D8B7B"
+				type: "item"
+				item: "refinedstorage:quartz_enriched_iron"
+				count: 4L
+			}]
+			rewards: [
+				{
+					id: "000000000000027A"
+					type: "item"
+					title: "史莱姆球"
+					item: "minecraft:slime_ball"
+					count: 4
+				}
+				{
+					id: "000000000000027B"
+					type: "item"
+					title: "String"
+					item: "minecraft:string"
+					count: 4
+				}
+				{
+					id: "0000000000000F4D"
+					type: "item"
+					title: "扳手"
+					item: "refinedstorage:wrench"
+				}
+			]
+		}
+		{
+			title: "处理器"
+			icon: "refinedstorage:advanced_processor"
+			x: 0.5d
+			y: 2.0d
+			subtitle: "但它们到底是英特尔还是AMD的呢？"
+			description: ["处理器是大多数RS装置所需的基本组件。在深入研究之前，最好先储备好足够的史莱姆。"]
+			dependencies: ["000000000000024F"]
+			id: "0000000000000252"
+			tasks: [
+				{
+					id: "0000000000000253"
+					type: "item"
+					item: "refinedstorage:basic_processor"
+				}
+				{
+					id: "0000000000000254"
+					type: "item"
+					item: "refinedstorage:improved_processor"
+				}
+				{
+					id: "0000000000000255"
+					type: "item"
+					item: "refinedstorage:advanced_processor"
+				}
+			]
+			rewards: [{
+				id: "00000000000005AF"
+				type: "item"
+				title: "石英富集铁"
+				item: "refinedstorage:quartz_enriched_iron"
+				count: 16
+			}]
+		}
+		{
+			icon: "refinedstorage:controller"
+			x: 0.5d
+			y: 3.5d
+			shape: "rsquare"
+			subtitle: "别把这个东西扔到墙上！"
+			description: [
+				"控制器是任何RS网络的核心；组件工作需要至少一个。它能接受普通RF/FE能量。"
+				""
+				"网络的所有部分（不包括未来的高级无线选项）都必须通过电缆连接。与控制器本身互动会显示每种组件的功耗详情。"
+			]
+			dependencies: ["0000000000000252"]
+			id: "0000000000000256"
+			tasks: [
+				{
+					id: "0000000000000257"
+					type: "item"
+					item: "refinedstorage:controller"
+				}
+				{
+					id: "0000000000000287"
+					type: "item"
+					item: "refinedstorage:cable"
+				}
+			]
+			rewards: [{
+				id: "00000000000005B0"
+				type: "item"
+				title: "电缆"
+				item: "refinedstorage:cable"
+				count: 16
+			}]
+		}
+		{
+			title: "磁盘与驱动器"
+			icon: "refinedstorage:64k_storage_disk"
+			x: 2.0d
+			y: 6.5d
+			subtitle: "就像鸟儿和蜜蜂一样……差不多吧"
+			description: [
+				"要在RS网络中存储物品，你需要制作存储磁盘。它们有多种尺寸，先尝试制作最小的1k磁盘。手持物品，潜行右键即可获取制作所需的材料（存储部件/外壳）。"
+				""
+				"磁盘驱动器是存放存储磁盘的主要方式。一个驱动器最多可容纳八个磁盘，你可以根据需要随时更换。"
+			]
+			dependencies: ["0000000000000264"]
+			id: "0000000000000258"
+			tasks: [
+				{
+					id: "0000000000000259"
+					type: "item"
+					item: "refinedstorage:disk_drive"
+				}
+				{
+					id: "0000000000000286"
+					type: "item"
+					title: "存储磁盘"
+					item: {
+						id: "itemfilters:or"
+						Count: 1b
+						tag: {
+							items: [
+								{
+									id: "refinedstorage:1k_storage_disk"
+									Count: 1b
+								}
+								{
+									id: "refinedstorage:4k_storage_disk"
+									Count: 1b
+								}
+								{
+									id: "refinedstorage:16k_storage_disk"
+									Count: 1b
+								}
+								{
+									id: "refinedstorage:64k_storage_disk"
+									Count: 1b
+								}
+							]
+						}
+					}
+				}
+			]
+			rewards: [
+				{
+					id: "00000000000005B1"
+					type: "command"
+					title: "Refined Storage 战利品箱"
+					icon: "kubejs:epic_lootbox"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_refined_storage_loot"
+					player_command: false
+				}
+				{
+					id: "00000000000005BD"
+					type: "item"
+					title: "储物房屋"
+					item: "refinedstorage:storage_housing"
+					count: 2
+				}
+			]
+		}
+		{
+			title: "流体存储磁盘"
+			x: 3.5d
+			y: 6.5d
+			subtitle: "往电脑里倒水似乎是个馊主意……"
+			description: ["流体存储盘可以储存流体。难以置信吧！当然，访问盘中内容的方法也会有所不同，更多信息请参见流体网格任务。"]
+			dependencies: ["0000000000000268"]
+			id: "000000000000025D"
+			tasks: [{
+				id: "000000000000025E"
+				type: "item"
+				title: "流体存储磁盘"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "refinedstorage:64k_fluid_storage_disk"
+								Count: 1b
+							}
+							{
+								id: "refinedstorage:256k_fluid_storage_disk"
+								Count: 1b
+							}
+							{
+								id: "refinedstorage:1024k_fluid_storage_disk"
+								Count: 1b
+							}
+							{
+								id: "refinedstorage:4096k_fluid_storage_disk"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "00000000000005BB"
+				type: "item"
+				title: "256k 流体存储组件部分"
+				item: "refinedstorage:256k_fluid_storage_part"
+			}]
+		}
+		{
+			title: "导入与导出"
+			icon: "refinedstorage:exporter"
+			x: -1.0d
+			y: 6.5d
+			subtitle: "最棒的商业头脑！"
+			description: ["导入器会自动从连接的物品栏中拉取物品，导出器会自动将（已配置）的物品推送到连接的物品栏。两者都可以设置过滤器或通过升级来加速。"]
+			dependencies: ["0000000000000256"]
+			id: "000000000000025F"
+			tasks: [
+				{
+					id: "0000000000000260"
+					type: "item"
+					item: "refinedstorage:importer"
+				}
+				{
+					id: "0000000000000261"
+					type: "item"
+					item: "refinedstorage:exporter"
+				}
+			]
+			rewards: [{
+				id: "00000000000005BA"
+				type: "command"
+				title: "Refined Storage 战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_refined_storage_loot"
+				player_command: false
+			}]
+		}
+		{
+			x: -1.0d
+			y: 3.5d
+			subtitle: "当磁盘不够用时"
+			description: [
+				"将外部存储模块朝向普通物品栏（如箱子）放置，该物品栏将被视为网络的一部分，其内容可像存储在驱动器上一样访问。"
+				""
+				"顺便一提，这也可以通过将其连接到任何类型的储罐并将类型设置为流体来与流体配合使用。"
+			]
+			dependencies: ["0000000000000256"]
+			id: "0000000000000262"
+			tasks: [{
+				id: "0000000000000263"
+				type: "item"
+				item: "refinedstorage:external_storage"
+			}]
+			rewards: [{
+				id: "00000000000005BF"
+				type: "item"
+				title: "高级分类器"
+				item: "mekanism:advanced_bin"
+			}]
+		}
+		{
+			x: 2.0d
+			y: 5.0d
+			shape: "hexagon"
+			subtitle: "脱离电网？更像是身处电网之中"
+			description: ["网格是你存取物品的主要方式。只需将网格连接到网络，就可以开始往里扔东西了。"]
+			dependencies: ["0000000000000256"]
+			id: "0000000000000264"
+			tasks: [{
+				id: "0000000000000265"
+				type: "item"
+				item: "refinedstorage:grid"
+			}]
+			rewards: [{
+				id: "00000000000005BE"
+				type: "item"
+				title: "电缆"
+				item: "refinedstorage:cable"
+				count: 8
+			}]
+		}
+		{
+			x: 3.5d
+			y: 3.5d
+			subtitle: "就像你给孩子用的那种一样就行了"
+			description: [
+				"Storage Monitor 添加了一种便捷（又时尚）的方式，让你能一目了然地查看网络中特定物品（或流体）的当前数量。潜行右键可打开配置 GUI。"
+				""
+				"你甚至可以在此方块上直接放入/取出相关物品/流体。"
+			]
+			dependencies: ["0000000000000264"]
+			id: "0000000000000266"
+			tasks: [{
+				id: "0000000000000267"
+				type: "item"
+				item: "refinedstorage:storage_monitor"
+			}]
+			rewards: [{
+				id: "00000000000005C0"
+				type: "item"
+				title: "储物房屋"
+				item: "refinedstorage:storage_housing"
+				count: 4
+			}]
+		}
+		{
+			x: 3.5d
+			y: 5.0d
+			subtitle: "坦克？谁需要它们！它们连枪都不会开……"
+			description: ["流体网格的运作方式与普通网格略有不同。流体只能通过桶等流体容器物品来注入/提取。"]
+			dependencies: ["0000000000000264"]
+			id: "0000000000000268"
+			tasks: [{
+				id: "0000000000000269"
+				type: "item"
+				item: "refinedstorage:fluid_grid"
+			}]
+			rewards: [{
+				id: "00000000000005C2"
+				type: "item"
+				title: "256k 流体存储组件部分"
+				item: "refinedstorage:256k_fluid_storage_part"
+				count: 2
+			}]
+		}
+		{
+			x: 5.0d
+			y: 5.0d
+			subtitle: "让你忘记常规网格存在的那个整合包"
+			description: [
+				"合成台，人类最伟大的发明，字面意义上就是一个内置了合成台的网格。"
+				""
+				"该方块的“合成台”部分在关闭时会保留其物品栏，并会自动从网络中拉取更多物品到网格中，以替换你使用的物品。"
+			]
+			dependencies: ["0000000000000264"]
+			id: "000000000000026A"
+			tasks: [{
+				id: "000000000000026B"
+				type: "item"
+				item: "refinedstorage:crafting_grid"
+			}]
+			rewards: [{
+				id: "00000000000005C5"
+				type: "command"
+				title: "Refined Storage 战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_refined_storage_loot"
+				player_command: false
+			}]
+		}
+		{
+			title: "无线电网接入权限已授予。"
+			icon: "refinedstorage:wireless_grid"
+			x: 5.0d
+			y: 6.5d
+			subtitle: "甚至还有键盘快捷键绑定！"
+			description: [
+				"无线网格正如其名：手持式物品形态的网格。它们听起来有多棒，用起来就有多棒，并且有所有常规类型；现在，制作一个无线合成网格。"
+				""
+				"这些物品必须充电，并且只有在无线发射器附近才能使用。这些发射器的基础范围为16格。"
+			]
+			dependencies: ["000000000000026A"]
+			id: "000000000000026C"
+			tasks: [
+				{
+					id: "000000000000026D"
+					type: "item"
+					item: "refinedstorageaddons:wireless_crafting_grid"
+				}
+				{
+					id: "000000000000029A"
+					type: "item"
+					item: "refinedstorage:wireless_transmitter"
+				}
+			]
+			rewards: [{
+				id: "00000000000005C3"
+				type: "command"
+				title: "Refined Storage 战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_refined_storage_loot"
+				player_command: false
+			}]
+		}
+		{
+			x: 5.0d
+			y: 8.0d
+			subtitle: "我的房子可没有你想象的那么小！"
+			description: ["16个方块还不够！每次范围升级都会显著增加无线发射器的范围，但会消耗更多电力。"]
+			dependencies: ["000000000000026C"]
+			id: "000000000000026E"
+			tasks: [{
+				id: "000000000000026F"
+				type: "item"
+				item: "refinedstorage:range_upgrade"
+			}]
+			rewards: [{
+				id: "00000000000005C4"
+				type: "item"
+				title: "末影珍珠"
+				item: "minecraft:ender_pearl"
+				count: 4
+			}]
+		}
+		{
+			title: "图案"
+			icon: "refinedstorage:pattern"
+			x: 0.5d
+			y: 6.5d
+			subtitle: "你最先自动合成的东西是"
+			description: [
+				"图案和图案网格对于自动合成都至关重要。在图案网格中，你可以将特定配方编码到图案物品上，然后将其放入合成器中进行自动合成。"
+				""
+				"有两种类型的配方：「合成」和「加工」。合成配方就是你能够自己完成的简单 2x2 或 3x3 合成配方。"
+				""
+				"配方处理可以接受更广泛的输入/输出（例如大于1的堆叠大小），并表示需要机器或设备才能执行的操作。"
+			]
+			dependencies: ["0000000000000264"]
+			id: "0000000000000270"
+			tasks: [
+				{
+					id: "0000000000000271"
+					type: "item"
+					item: "refinedstorage:pattern_grid"
+				}
+				{
+					id: "0000000000000297"
+					type: "item"
+					item: "refinedstorage:pattern"
+				}
+			]
+			rewards: [{
+				id: "00000000000005C1"
+				type: "command"
+				title: "Refined Storage 战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_refined_storage_loot"
+				player_command: false
+			}]
+		}
+		{
+			x: 0.5d
+			y: 8.0d
+			shape: "rsquare"
+			subtitle: "自动化，展现其最完美的形态！"
+			description: [
+				"光荣的自动合成！合成器可用于处理两种类型的配方。每个合成器最多可容纳九个配方。"
+				""
+				"对于普通合成配方，只需设置这些即可 - 输入一个模式，你就能向任何已连接的网格请求该配方了。"
+				""
+				"处理配方时，必须将制造台朝向正在处理的机器输入端。注意，此时制造台实际上只是将配方物品交给机器；将输出引入网络需另行处理（例如使用接口）。"
+				""
+				"注意：在多个制造台中放置相同的处理模式，系统将智能地在多台机器间分配任务。这对多输入的配方尤其有用，否则用大多数管道进行分配会很复杂。"
+			]
+			dependencies: ["0000000000000270"]
+			size: 1.25d
+			min_width: 300
+			id: "0000000000000272"
+			tasks: [{
+				id: "0000000000000273"
+				type: "item"
+				item: "refinedstorage:crafter"
+			}]
+			rewards: [
+				{
+					id: "00000000000005B2"
+					type: "command"
+					title: "Refined Storage 战利品箱"
+					icon: "kubejs:epic_lootbox"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_refined_storage_loot"
+					player_command: false
+				}
+				{
+					id: "00000000000005B3"
+					type: "command"
+					title: "Refined Storage 战利品箱"
+					icon: "kubejs:epic_lootbox"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_refined_storage_loot"
+					player_command: false
+				}
+			]
+		}
+		{
+			x: 2.0d
+			y: 3.5d
+			subtitle: "得赶紧走！"
+			description: ["放置在设备中，速度升级将提高其速度（和功耗）。这对导入器、导出器、制造机等很有用。"]
+			dependencies: ["0000000000000256"]
+			id: "0000000000000274"
+			tasks: [{
+				id: "0000000000000275"
+				type: "item"
+				item: "refinedstorage:speed_upgrade"
+			}]
+			rewards: [{
+				id: "00000000000005B5"
+				type: "item"
+				title: "速度升级"
+				item: "refinedstorage:speed_upgrade"
+				count: 2
+			}]
+		}
+		{
+			x: 2.0d
+			y: 2.0d
+			subtitle: "速度的追求！"
+			description: ["堆叠升级通常比速度升级更实用。它不加快单个操作的速度，而是让每个操作能处理一整个物品堆栈。"]
+			dependencies: ["0000000000000274"]
+			id: "0000000000000276"
+			tasks: [{
+				id: "0000000000000277"
+				type: "item"
+				item: "refinedstorage:stack_upgrade"
+			}]
+			rewards: [{
+				id: "00000000000005B4"
+				type: "command"
+				title: "Refined Storage 战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_refined_storage_loot"
+				player_command: false
+			}]
+		}
+		{
+			x: 0.5d
+			y: 9.5d
+			subtitle: "希望它们不要卡住就好了……"
+			description: [
+				"合成监视器可用于查看任何正在进行的合成任务的进度，包括当前进度和预计剩余时间。"
+				""
+				"这些方块相当重要，特别是当你设置复杂的处理配方并需要排查问题时。"
+			]
+			dependencies: ["0000000000000272"]
+			id: "0000000000000278"
+			tasks: [{
+				id: "0000000000000279"
+				type: "item"
+				item: "refinedstorage:crafting_monitor"
+			}]
+			rewards: [{
+				id: "00000000000005BC"
+				type: "command"
+				title: "Refined Storage 战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_refined_storage_loot"
+				player_command: false
+			}]
+		}
+		{
+			x: -1.0d
+			y: 8.0d
+			subtitle: "一个完全抽象的类！这不是 Java 吗？"
+			description: [
+				"接口与导入器和导出器一样，是一种处理网络输入/输出的设备。但与导入器和导出器不同，它不会向相邻的背包推送或拉取物品。"
+				""
+				"当外部物品源能自行“推送”物品时，例如用传送带将物品存入接口，接口是导入器一个更简单（且可能延迟更低）的替代方案。"
+			]
+			dependencies: ["000000000000025F"]
+			id: "0000000000000298"
+			tasks: [{
+				id: "0000000000000299"
+				type: "item"
+				item: "refinedstorage:interface"
+			}]
+			rewards: [{
+				id: "00000000000005B9"
+				type: "item"
+				title: "界面"
+				item: "refinedstorage:interface"
+			}]
+		}
+		{
+			title: "远程网络连接 (Long-Range Networking)"
+			icon: "refinedstorage:network_transmitter"
+			x: 0.5d
+			y: 5.0d
+			subtitle: "该死的5G要毁了我们所有人！"
+			description: [
+				"要是能用网络把设施连起来，不用成百上千根线缆，那该多好。解决方案来啦！"
+				""
+				"在远处放置一个网络接收器，然后用网络卡右键单击它。在主网络中放置一个网络发射器并赋予它网络卡，搞定——链接完成。"
+				""
+				"注意，发射器必须处于加载区块状态才能正常工作，并且整个网络（所有位置）中仍然只能有一个控制器。"
+			]
+			dependencies: ["0000000000000256"]
+			id: "000000000000029B"
+			tasks: [
+				{
+					id: "000000000000029C"
+					type: "item"
+					item: "refinedstorage:network_transmitter"
+				}
+				{
+					id: "000000000000029D"
+					type: "item"
+					item: "refinedstorage:network_receiver"
+				}
+				{
+					id: "000000000000029E"
+					type: "item"
+					item: "refinedstorage:network_card"
+				}
+			]
+			rewards: [
+				{
+					id: "00000000000005B6"
+					type: "command"
+					title: "Refined Storage 战利品箱"
+					icon: "kubejs:epic_lootbox"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_refined_storage_loot"
+					player_command: false
+				}
+				{
+					id: "00000000000005B7"
+					type: "command"
+					title: "Refined Storage 战利品箱"
+					icon: "kubejs:epic_lootbox"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_refined_storage_loot"
+					player_command: false
+				}
+			]
+		}
+		{
+			title: "建造者与破坏者"
+			x: -1.0d
+			y: 5.0d
+			subtitle: "快把我搭起来，黄油杯（Buttercup）"
+			description: [
+				"建造者可以直接将物品从系统中放置或掉落至世界中，使世界内的自动化变得更容易。"
+				""
+				"你能猜到破坏者还会做些什么吗？"
+			]
+			dependencies: ["0000000000000256"]
+			id: "0000000000000F3F"
+			tasks: [
+				{
+					id: "0000000000000F40"
+					type: "item"
+					item: "refinedstorage:constructor"
+				}
+				{
+					id: "0000000000000F41"
+					type: "item"
+					item: "refinedstorage:destructor"
+				}
+			]
+			rewards: [{
+				id: "0000000000000F4C"
+				type: "command"
+				title: "Refined Storage 战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_refined_storage_loot"
+				player_command: false
+			}]
+		}
+		{
+			x: 2.0d
+			y: 9.5d
+			subtitle: "我就是钢铁侠！"
+			description: [
+				"你的合成台总是空间不足吗？有没有想过有个更好的选择，有更多模式槽位，这样就不用一直合成更多了？今天就是你的幸运日！"
+				""
+				"隆重推出铁匠机！与普通工匠相比，它的槽位多三倍，能帮你整理并保持基地整洁。哦，而且它可能还会进一步升级……"
+			]
+			dependencies: ["0000000000000272"]
+			id: "0000000000000F42"
+			tasks: [{
+				id: "0000000000000F43"
+				type: "item"
+				item: "extrastorage:iron_crafter"
+			}]
+			rewards: [{
+				id: "0000000000000F4F"
+				type: "command"
+				title: "Refined Storage 战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_refined_storage_loot"
+				player_command: false
+			}]
+		}
+		{
+			x: 2.0d
+			y: 11.0d
+			shape: "hexagon"
+			subtitle: "可惜下界合金人不存在！"
+			description: ["绝对过剩？我不知道那是什么意思！足足81个格子的下界合金合成台，是你所有自动化合成需求的顶级选择。永远不够用！"]
+			dependencies: ["0000000000000F42"]
+			id: "0000000000000F44"
+			tasks: [{
+				id: "0000000000000F45"
+				type: "item"
+				item: "extrastorage:netherite_crafter"
+			}]
+			rewards: [{
+				id: "0000000000000F50"
+				type: "command"
+				title: "Refined Storage 战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_refined_storage_loot"
+				player_command: false
+			}]
+		}
+		{
+			x: -1.0d
+			y: 9.5d
+			subtitle: "不，凯伦，不是那个经理……"
+			description: [
+				"厌倦了在基地里到处寻找合适的合成台来合成配方吗？合成台管理器来啦！"
+				""
+				"这个方便的方块会连接到系统中所有的合成器，让你通过同一个方块访问所有合成器，方便管理配方。你还可以用铁砧给合成器命名，名字会显示在管理器里！"
+			]
+			dependencies: ["0000000000000272"]
+			id: "0000000000000F46"
+			tasks: [{
+				id: "0000000000000F47"
+				type: "item"
+				item: "refinedstorage:crafter_manager"
+			}]
+			rewards: [{
+				id: "0000000000000F4E"
+				type: "item"
+				title: "合成台"
+				item: "refinedstorage:crafter"
+			}]
+		}
+		{
+			x: 3.5d
+			y: 8.0d
+			subtitle: "Living Large"
+			description: [
+				"有了全新的 Infinity Range Booster，你可以随心所欲地建造了！"
+				""
+				"只需要一张卡片即可。"
+			]
+			dependencies: ["000000000000026E"]
+			id: "2306493F2E5034A9"
+			tasks: [{
+				id: "6F47C4273FB03E51"
+				type: "item"
+				item: "rsinfinitybooster:infinity_card"
+			}]
+			rewards: [{
+				id: "20EF5FBDB4D844CB"
+				type: "command"
+				title: "Refined Storage 战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_refined_storage_loot"
+				player_command: false
+			}]
+		}
+		{
+			x: 2.0d
+			y: 8.0d
+			subtitle: "移居国外"
+			description: [
+				"非常适合在 Ivis Fields 建造的那栋夏屋。"
+				""
+				"这取代了Infinity Booster，实现了跨维度无限射程。"
+			]
+			dependencies: ["2306493F2E5034A9"]
+			id: "005B9AE555D13DE7"
+			tasks: [{
+				id: "7AFFE72DF5E94D4F"
+				type: "item"
+				item: "rsinfinitybooster:dimension_card"
+			}]
+			rewards: [{
+				id: "3E28C6692FC99AEB"
+				type: "command"
+				title: "Refined Storage 战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_refined_storage_loot"
+				player_command: false
+			}]
+		}
+		{
+			x: -2.5d
+			y: 9.5d
+			subtitle: "你想要多少个呢？"
+			description: ["带合成卡的接口能很好地储备少量多种物品，但如果需要更多呢？现在可以了。请求器是一个附加模块，能让精炼存储随时保持指定物品的内部库存。想要5000块玻璃随时待命？设置一个请求器就能做到。"]
+			dependencies: ["0000000000000298"]
+			id: "5DA4C492523C7D72"
+			tasks: [{
+				id: "34568F90E5706133"
+				type: "item"
+				item: "rsrequestify:requester"
+			}]
+			rewards: [{
+				id: "504B58199A20F9B0"
+				type: "command"
+				title: "Refined Storage 战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_refined_storage_loot"
+				player_command: false
+			}]
+		}
+	]
+}
