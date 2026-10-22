@@ -4,7 +4,11 @@
  */
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { validatePair, extractPlaceholders, enSourceName } from './validate-quests.mjs'
+import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
+import { validatePair, extractPlaceholders, enSourceName, runBatch } from './validate-quests.mjs'
+import { packBaseline } from './lib/baseline.mjs'
 import { LAYOUT } from './lib/candidates.mjs'
 
 const EN = [{ name: 'chapters/a.snbt', text: '{ title: "Hello &aWorld" desc: "Get %s apples" }' }]
@@ -65,8 +69,9 @@ test('警告：色码数量差异不判失败', () => {
 })
 
 test('警告：%% 占位符差异不判失败', () => {
-  const en = [{ name: 'a.snbt', text: '{ t: "100%% sure" }' }]
-  const zh = [{ name: 'a.snbt', text: '{ t: "100% 确定" }' }]
+  // 内嵌布局的英文源只认 chapters/*.snbt，其余路径不算源（见文末基准集口径）。
+  const en = [{ name: 'chapters/a.snbt', text: '{ t: "100%% sure" }' }]
+  const zh = [{ name: 'chapters/a.snbt', text: '{ t: "100% 确定" }' }]
   const r = validatePair(en, zh, { layout: LAYOUT.EMBEDDED })
   assert.deepEqual(r.problems, [])
   assert.ok(r.warnings.some((w) => w.includes('%%')))
@@ -234,4 +239,120 @@ test('真正损坏（有内容但结构错）仍判失败 —— 跳过只针对
   const zh = [{ name: 'chapters/a.snbt', text: '{ title: "未闭合 }' }]
   const r = validatePair(en, zh, { layout: LAYOUT.EMBEDDED })
   assert.ok(r.problems.some((p) => p.includes('不可解析')))
+})
+
+// ---- 内嵌布局的基准键集：只算本布局负责改写的文件 ----
+//
+// 缺陷（2026-10-22）：内嵌产出只改写 `chapters/*.snbt`，闸门却拿英文源目录下
+// **所有** `.snbt` 当基准键集，于是 `data.snbt`、`reward_tables/*.snbt` 永远「缺键」判红。
+// 口径：产出什么就校验什么 —— 基准集 = `sourceFileNames(embedded)` = `chapters/*.snbt`。
+// 之前没暴露是因为 `resolveLayout` 优先判「分离·目录 / 分离·单文件」，
+// 带 `lang/en_us.snbt` 的包根本走不到内嵌这条分支。
+
+const QUEST_DIR = 'config/ftbquests/quests'
+const EN_MIXED = [
+  { name: `${QUEST_DIR}/chapters/a.snbt`, text: '{ title: "Hello &aWorld" desc: "Get %s apples" }' },
+  { name: `${QUEST_DIR}/data.snbt`, text: '{ title: "Quest data" }' },
+  { name: `${QUEST_DIR}/reward_tables/x.snbt`, text: '{ title: "Reward A" }' },
+]
+const ZH_CHAPTER_ONLY = [
+  { name: `${QUEST_DIR}/chapters/a.snbt`, text: '{ title: "你好 &a世界" desc: "获得 %s 个苹果" }' },
+]
+
+test('内嵌布局：非章节文件（data.snbt、reward_tables/*.snbt）不进基准键集', () => {
+  const r = validatePair(EN_MIXED, ZH_CHAPTER_ONLY, { layout: LAYOUT.EMBEDDED })
+  assert.deepEqual(r.problems, [], `不该报缺键：${JSON.stringify(r.problems)}`)
+  assert.equal(r.keyCount, 2, '基准键数只该来自 chapters/a.snbt')
+})
+
+test('内嵌布局：章节文件真缺键仍判红（修成「一律放行」就挂这条）', () => {
+  const zh = [{ name: `${QUEST_DIR}/chapters/a.snbt`, text: '{ title: "你好 &a世界" }' }]
+  const r = validatePair(EN_MIXED, zh, { layout: LAYOUT.EMBEDDED })
+  const missing = r.problems.find((p) => p.includes('缺少'))
+  assert.ok(missing, `章节文件少一个键必须判红，实际：${JSON.stringify(r.problems)}`)
+  assert.ok(missing.includes('desc'), `缺键里应点名 desc，实际：${missing}`)
+})
+
+test('内嵌布局：产出多出的非章节文件允许，但不作校验基准', () => {
+  // 有人手动把 data.snbt 也复制进产出：允许（不判「多出」），但不进基准键集。
+  const zh = [...ZH_CHAPTER_ONLY, { name: `${QUEST_DIR}/data.snbt`, text: '{ title: "任务数据" }' }]
+  const r = validatePair(EN_MIXED, zh, { layout: LAYOUT.EMBEDDED })
+  assert.deepEqual(r.problems, [])
+  assert.equal(r.keyCount, 2)
+})
+
+test('内嵌布局：多出的非章节文件仍要过结构检查（不是整份跳过）', () => {
+  const zh = [...ZH_CHAPTER_ONLY, { name: `${QUEST_DIR}/data.snbt`, text: '{ title: "未闭合 }' }]
+  const r = validatePair(EN_MIXED, zh, { layout: LAYOUT.EMBEDDED })
+  assert.ok(r.problems.some((p) => p.includes('不可解析')), '多出的非章节文件也要能解析')
+})
+
+test('内嵌布局：英文源里没有章节文件时判红（不许 0 键空转绿灯）', () => {
+  const en = [{ name: `${QUEST_DIR}/data.snbt`, text: '{ title: "Quest data" }' }]
+  const r = validatePair(en, ZH_CHAPTER_ONLY, { layout: LAYOUT.EMBEDDED })
+  assert.ok(r.problems.some((p) => p.includes('找不到英文源')), `实际：${JSON.stringify(r.problems)}`)
+})
+
+// ---------- 基准源双读：目录 或 <slug>.tar.gz ----------
+
+function batchEnv(t) {
+  const dir = mkdtempSync(join(tmpdir(), 'quest-batch-'))
+  t.after(() => rmSync(dir, { recursive: true, force: true }))
+  const patchesDir = join(dir, 'patches')
+  const packsDir = join(dir, 'packs')
+  mkdirSync(join(patchesDir, 'demo', 'chapters'), { recursive: true })
+  mkdirSync(packsDir, { recursive: true })
+  writeFileSync(join(patchesDir, 'demo', 'chapters', 'a.snbt'), '{ title: "你好 &a世界" }\n')
+  return { dir, patchesDir, packsDir }
+}
+
+/** 捕获 runBatch 的汇总输出（它直接写 console）。 */
+function captureConsole(t) {
+  const logs = []
+  const errs = []
+  const origLog = console.log
+  const origErr = console.error
+  console.log = (...a) => logs.push(a.join(' '))
+  console.error = (...a) => errs.push(a.join(' '))
+  t.after(() => {
+    console.log = origLog
+    console.error = origErr
+  })
+  return { logs, errs }
+}
+
+test('runBatch：只有 <slug>.tar.gz 时能校验通过（双读替代目录）', (t) => {
+  const { dir, patchesDir, packsDir } = batchEnv(t)
+  captureConsole(t)
+  const enDir = join(dir, 'en-src')
+  mkdirSync(join(enDir, 'chapters'), { recursive: true })
+  writeFileSync(join(enDir, 'chapters', 'a.snbt'), '{ title: "Hello &aWorld" }\n')
+  packBaseline(enDir, join(packsDir, 'demo.tar.gz'))
+
+  const code = runBatch({ patchesDir, packsDir, datasetFile: join(dir, 'none.json') })
+  assert.equal(code, 0)
+})
+
+test('runBatch：目录与 tar.gz 都没有时仍判红（缺基准键集，不许假绿灯）', (t) => {
+  const { dir, patchesDir, packsDir } = batchEnv(t)
+  const { errs } = captureConsole(t)
+  const code = runBatch({ patchesDir, packsDir, datasetFile: join(dir, 'none.json') })
+  assert.equal(code, 1)
+  assert.ok(errs.some((m) => m.includes('找不到英文源')), errs.join('\n'))
+})
+
+test('runBatch：目录存在时优先走目录（与历史行为一致）', (t) => {
+  const { dir, patchesDir, packsDir } = batchEnv(t)
+  captureConsole(t)
+  const enDir = join(packsDir, 'demo')
+  mkdirSync(join(enDir, 'chapters'), { recursive: true })
+  writeFileSync(join(enDir, 'chapters', 'a.snbt'), '{ title: "Hello &aWorld" }\n')
+  // 归档里放一份错的源：若被误用会判缺键。目录优先 → 应通过。
+  const badSrc = join(dir, 'bad-src')
+  mkdirSync(join(badSrc, 'chapters'), { recursive: true })
+  writeFileSync(join(badSrc, 'chapters', 'a.snbt'), '{ other: "x" }\n')
+  packBaseline(badSrc, join(packsDir, 'demo.tar.gz'))
+
+  const code = runBatch({ patchesDir, packsDir, datasetFile: join(dir, 'none.json') })
+  assert.equal(code, 0)
 })

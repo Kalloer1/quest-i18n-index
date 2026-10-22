@@ -8,7 +8,8 @@
  * 2. 重建索引（node scripts/build-index.mjs）：扫描 downloads/*.zip 置 delivered=true，
  *    使这些 slug 落入 downloadable 态（产品闭环的最后一环）
  * 3. 重建站点数据（node scripts/build-site-data.mjs，合并 quark 镜像链接到 site/data.json）
- * 4. **显式路径** git add（禁止 -A）：downloads/<slug>.zip、research/packs/<slug>、
+ * 4. **显式路径** git add（禁止 -A）：downloads/<slug>.zip、research/packs/<slug>.tar.gz
+ *    （无归档时 fallback 到 research/packs/<slug> 目录）、
  *    research/index-dataset.json、research/quark-mirrors.json、site/data.json、glossary.json
  * 5. commit + push（--dry-run / --no-push 时跳过）
  *
@@ -135,9 +136,24 @@ export function runRelease({ ids = [], all = false, packageOnly = false, dryRun 
   // 4. 显式路径暂存（禁止 git add -A）
   //    整合包英文源一并入库：质量闸门 validate-quests 需要它做基准键集，
   //    缺了它闸门只 warn 跳过该条（假绿灯）。与既有的 research/packs/aoc 同口径。
-  for (const slug of slugs) staged.push(`research/packs/${slug}`)
+  //    新形态是 `<slug>.tar.gz`（scripts/lib/baseline.mjs，可复现）；历史包仍是解包目录，
+  //    所以「有归档推归档，否则推目录」——目录 fallback 让旧包照常入库。
+  const forceAdd = new Set()
+  for (const slug of slugs) {
+    const tgz = `research/packs/${slug}.tar.gz`
+    const dirPath = `research/packs/${slug}`
+    if (existsSync(join(ROOT, tgz))) staged.push(tgz)
+    else {
+      staged.push(dirPath)
+      forceAdd.add(dirPath)
+    }
+  }
   for (const p of staged) {
-    if (existsSync(join(ROOT, p))) exec(`git add -- "${p}"`)
+    if (!existsSync(join(ROOT, p))) continue
+    // 目录 fallback 必须 `-f`：`.gitignore` 里有 `research/packs/*/`（新解包目录不入库），
+    // 而 git 会因此连**已跟踪**的旧包目录一起拒收（实测 git 2.55：`git add` 直接报
+    // ignored 并让 release 抛错中断）。历史包的目录本来就该入库，force 只解除这条误伤。
+    exec(`git add ${forceAdd.has(p) ? '-f ' : ''}-- "${p}"`)
   }
   const status = exec('git status --porcelain')
   if (!status) {

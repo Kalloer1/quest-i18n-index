@@ -6,6 +6,7 @@ import { tmpdir } from 'node:os'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { readZip } from './pack-patch.mjs'
+import { packBaseline } from './lib/baseline.mjs'
 
 // 工单 04：release.mjs 端到端（git 步骤用临时仓库桩环境，不碰真实仓库、不 push）。
 
@@ -122,6 +123,43 @@ test('release：整合包英文源 research/packs/<slug> 一并入库', () => {
     mkdirSync(join(dir, 'research', 'packs', 'demo-pack', 'config', 'ftbquests', 'quests', 'lang'), { recursive: true })
     writeFileSync(join(dir, 'research', 'packs', 'demo-pack', 'config', 'ftbquests', 'quests', 'lang', 'en_us.snbt'),
       'quest.a.title: "Hi"\n')
+    runRelease(dir)
+    const staged = git(['show', '--name-only', '--format=', 'HEAD'])
+    assert.ok(staged.includes('research/packs/demo-pack/config/ftbquests/quests/lang/en_us.snbt'), staged)
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+// 基准源新形态：research/packs/<slug>.tar.gz（scripts/lib/baseline.mjs 打）。
+// 目录 fallback 只给历史包用，且必须能在 .gitignore 的 `research/packs/*/` 之下入库。
+test('release：有 <slug>.tar.gz 时推归档，不推解包目录', () => {
+  const { dir, git } = setup()
+  try {
+    const src = join(dir, 'baseline-src', 'chapters')
+    mkdirSync(src, { recursive: true })
+    writeFileSync(join(src, 'a.snbt'), '{ title: "Hello" }\n')
+    mkdirSync(join(dir, 'research', 'packs'), { recursive: true })
+    packBaseline(join(dir, 'baseline-src'), join(dir, 'research', 'packs', 'demo-pack.tar.gz'))
+
+    runRelease(dir)
+    const staged = git(['show', '--name-only', '--format=', 'HEAD'])
+    assert.ok(staged.includes('research/packs/demo-pack.tar.gz'), staged)
+    assert.ok(!staged.includes('research/packs/demo-pack/chapters/a.snbt'), '不应再推解包目录')
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+// 实测 git 2.55：`research/packs/*/` 入 .gitignore 后，`git add -- research/packs/<slug>`
+// 对**已跟踪**目录也会报 ignored，release 会直接抛错中断。目录 fallback 必须 -f。
+test('release：.gitignore 忽略 research/packs/*/ 时，目录 fallback 仍能入库', () => {
+  const { dir, git } = setup()
+  try {
+    writeFileSync(join(dir, '.gitignore'), 'research/packs/*/\n')
+    git(['add', '.gitignore'])
+    git(['commit', '-m', 'ignore packs dirs'])
+
+    mkdirSync(join(dir, 'research', 'packs', 'demo-pack', 'config', 'ftbquests', 'quests', 'lang'), { recursive: true })
+    writeFileSync(join(dir, 'research', 'packs', 'demo-pack', 'config', 'ftbquests', 'quests', 'lang', 'en_us.snbt'),
+      'quest.a.title: "Hi"\n')
+
     runRelease(dir)
     const staged = git(['show', '--name-only', '--format=', 'HEAD'])
     assert.ok(staged.includes('research/packs/demo-pack/config/ftbquests/quests/lang/en_us.snbt'), staged)

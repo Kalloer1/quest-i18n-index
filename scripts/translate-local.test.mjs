@@ -13,10 +13,13 @@
  */
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { readFileSync, mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs'
+import { readFileSync, mkdtempSync, mkdirSync, writeFileSync, rmSync, existsSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { stagedPathsForBatch, prepareArgsForBatch, isAlreadyTranslated, pendingWorklist, describeWorklist } from './translate-local.mjs'
+import {
+  stagedPathsForBatch, prepareArgsForBatch, isAlreadyTranslated, pendingWorklist, describeWorklist,
+  farmDiskGuard, freeBytesFromStatfs, MIN_FREE_BYTES,
+} from './translate-local.mjs'
 
 // 断言函数不存在时会 ImportError，正是我们要的红。
 // 去注释再匹配：注释里写「禁止 git add -A」不该被当成实现本身。
@@ -197,5 +200,90 @@ test('describeWorklist：不给显式清单时 selected = 待翻数', () => {
   const d = describeWorklist(root, all, { done: { a: {} }, failed: {} })
   assert.equal(d.done, 1)
   assert.equal(d.selected, 1)
+  rmSync(root, { recursive: true, force: true })
+})
+
+// ---- farm 模式：入库只认补丁与基准源归档 ----
+//
+// 三台 serv00 主机共享同一个远端，各自的分支只该带「只有这台机器才有的东西」：
+// 译文补丁 + 该包的 <slug>.tar.gz。downloads/site/术语/索引是各机自行生成、
+// 由 CI 从 patches/ 重算的产物，推上去只会互相覆盖。
+
+test('stagedPathsForBatch：farm 模式不含 downloads/site/术语/索引', () => {
+  const paths = stagedPathsForBatch({ slugs: ['p1', 'p2'], farm: true })
+  for (const forbidden of ['downloads/', 'site/data.json', 'glossary.json', 'research/index-dataset.json', 'research/par-out/']) {
+    assert.ok(!paths.includes(forbidden), `farm 模式不该暂存 ${forbidden}`)
+  }
+  assert.deepEqual(paths, [
+    'patches/p1/', 'research/packs/p1.tar.gz',
+    'patches/p2/', 'research/packs/p2.tar.gz',
+  ])
+})
+
+test('stagedPathsForBatch：farm 模式不暂存英文源目录（只推归档）', () => {
+  const paths = stagedPathsForBatch({ slugs: ['p1'], farm: true })
+  assert.ok(!paths.includes('research/packs/p1/'), '解包目录是中间态，永不入库')
+  assert.ok(paths.includes('research/packs/p1.tar.gz'), '基准源以归档形态入库')
+  assert.ok(!paths.includes('patches/'), 'farm 模式按包暂存，别的包的补丁不能顺手捎上')
+})
+
+test('farm 模式：打包必须先于删目录（否则闸门失去基准键集）', () => {
+  // 「先删后打」在磁盘满时会把可重试的源和该有的归档一起丢掉，
+  // 而只剩 patches/ 时 validate-quests 会退化成「找不到英文源，跳过该条」的假绿灯。
+  // 这条顺序只能靠源码位置锁住：运行时很难稳定复现磁盘写失败。
+  const iPack = SOURCE.indexOf('packBaseline(')
+  const iRm = SOURCE.indexOf('rmSync(packDir')
+  assert.ok(iPack > 0, 'farm 分支应调用 packBaseline')
+  assert.ok(iRm > iPack, 'rmSync(packDir) 必须出现在 packBaseline 之后')
+  // 推送失败要能被上层识别成「推送失败」，而不是混进「翻译失败」。
+  assert.match(SOURCE, /process\.exitCode\s*=\s*3/, '推送失败应把退出码置 3')
+  assert.ok(SOURCE.includes('commitAndPush('), 'farm 分支应走 lib/farm-git 的 commitAndPush')
+})
+
+test('freeBytesFromStatfs：可用块 × 块大小', () => {
+  assert.equal(MIN_FREE_BYTES, 500 * 1024 * 1024)
+  assert.equal(freeBytesFromStatfs({ bavail: 100, bsize: 4096 }), 409600)
+  assert.equal(freeBytesFromStatfs({}), 0)
+})
+
+test('farmDiskGuard：清 par-out/tmp 与已打档的英文源，仍不足则 exit 4', () => {
+  const root = mkdtempSync(join(tmpdir(), 'guard-'))
+  const mk = (rel, body = 'x') => {
+    mkdirSync(join(root, rel), { recursive: true })
+    writeFileSync(join(root, rel, 'f.txt'), body)
+  }
+  mk('research/par-out/p1')
+  mk('research/tmp/unzip-1')
+  mk('research/packs/packed-p1')           // 已打档 → 可删
+  writeFileSync(join(root, 'research/packs/packed-p1.tar.gz'), 'gz')
+  mk('research/packs/unpacked-p2')         // 没打档 → 必须留着（下一轮接着翻）
+
+  const logs = []
+  let code = 0
+  // 把下限设成「任何真实磁盘都达不到」，模拟磁盘满：清理做完仍然不够 → exit 4。
+  farmDiskGuard({
+    root,
+    minBytes: Number.MAX_SAFE_INTEGER,
+    log: (l) => logs.push(l),
+    exit: (c) => { code = c },
+  })
+
+  assert.equal(code, 4, '清理后仍不足应 exit 4')
+  assert.equal(existsSync(join(root, 'research/par-out/p1')), false, 'par-out 应清空')
+  assert.equal(existsSync(join(root, 'research/tmp/unzip-1')), false, 'research/tmp 应清空')
+  assert.equal(existsSync(join(root, 'research/packs/packed-p1')), false, '已打档的目录应删')
+  assert.equal(existsSync(join(root, 'research/packs/unpacked-p2')), true, '未打档的目录不能删')
+  assert.ok(logs.some((l) => l.includes('占用明细')), '退出前应打印占用明细')
+  rmSync(root, { recursive: true, force: true })
+})
+
+test('farmDiskGuard：空间充足时不动任何文件', () => {
+  const root = mkdtempSync(join(tmpdir(), 'guard2-'))
+  mkdirSync(join(root, 'research/par-out/p1'), { recursive: true })
+  writeFileSync(join(root, 'research/par-out/p1/f.txt'), 'x')
+  let code = 0
+  farmDiskGuard({ root, minBytes: 1, log: () => {}, exit: (c) => { code = c } })
+  assert.equal(code, 0)
+  assert.equal(existsSync(join(root, 'research/par-out/p1/f.txt')), true)
   rmSync(root, { recursive: true, force: true })
 })

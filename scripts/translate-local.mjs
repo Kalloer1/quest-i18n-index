@@ -21,24 +21,38 @@
  * - **每 N 包入库**：避免一整天跑完才第一次 push，中断损失最小。
  * - **处理完即删 research/packs/<slug>**：它是中间产物，占磁盘且可重建。
  *
+ * ## farm 模式（`--farm`，跑在别人的主机上）
+ *
+ * 三台 serv00 主机各自跑一段，产物推到自己分支 `farm/<host>`，**永不 push main**
+ * （由 `.github/workflows/farm-merge.yml` 统一取增量、过闸门、合 main）。与非 farm 的区别：
+ *
+ * - 入库路径只有 `patches/<slug>/` + `research/packs/<slug>.tar.gz`，不碰 downloads/site/术语；
+ * - 英文源目录先用 `packBaseline` 打成 tar.gz（可复现、几十 MB → 几 MB），**打包成功才删目录**；
+ * - 推送失败 `exit 3` 并停机（不停机会把几 GB 产物堆在别人的磁盘上）；
+ * - 磁盘不足先清中间产物，仍不足 `exit 4`。
+ *
  * 用法：
  *   node scripts/translate-local.mjs --limit 20                 # 先跑 20 个试水
  *   node scripts/translate-local.mjs --limit 0                  # 全部（0 = 不限）
  *   node scripts/translate-local.mjs --layout separate --lanes 24
  *   node scripts/translate-local.mjs --slug some-pack,other      # 只重翻指定的包
  *   node scripts/translate-local.mjs --dry-run                  # 只看清单
+ *   node scripts/translate-local.mjs --farm --slug-file research/shards/gfdrgfd.txt --lanes 8
  *
  * 环境变量：
  *   CF_KEY          CurseForge API key（下载解包必需）
  *   BATCH_PUSH_EVERY 每处理多少个包 commit+push 一次（默认 20；0 = 从不）
  */
-import { readFileSync, writeFileSync, existsSync, rmSync, mkdirSync, readdirSync } from 'node:fs'
+import { readFileSync, writeFileSync, existsSync, rmSync, mkdirSync, readdirSync, statSync, statfsSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
-import { dirname, join } from 'node:path'
+import { dirname, join, resolve, isAbsolute } from 'node:path'
 import { execFileSync } from 'node:child_process'
 import { randomBytes } from 'node:crypto'
+import { hostname } from 'node:os'
 import { translatePackParallel, DEFAULT_LANES } from './translate-parallel.mjs'
 import { LAYOUT } from './lib/candidates.mjs'
+import { packBaseline } from './lib/baseline.mjs'
+import { commitAndPush } from './lib/farm-git.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const SCAN_FILE = join(ROOT, 'research/scan-full.tsv')
@@ -102,19 +116,134 @@ export function pickTranslatable(text, { platform, layout } = {}) {
  * 站点消费的是 `downloads/*.zip`，`patches/` 只是产出输入；而闸门要本轮包的英文源
  * 做基准键集，所以 `research/packs/<slug>/` 必须显式带上，别的包不能顺手捎上。
  *
- * @param {{slugs?: string[]}} [batch]
+ * ## farm 模式为什么完全是另一张表
+ *
+ * farm 主机跑的是同一份仓库，但 downloads/site/索引/术语都是**本机各自生成**的产物：
+ * 三台各推一份必然冲突，而它们全由 CI 从 `patches/` 重算得出来。所以 farm 只推
+ * 「只有这台主机才有的东西」：译文补丁 + 该包的基准源归档（`<slug>.tar.gz`，
+ * `research/packs/<slug>/` 目录本身永不入库）。
+ *
+ * @param {{slugs?: string[], farm?: boolean}} [batch]
  * @returns {string[]}
  */
-export function stagedPathsForBatch({ slugs = [] } = {}) {
-  const paths = ['patches/', 'downloads/', 'site/data.json', 'glossary.json', 'research/index-dataset.json']
+export function stagedPathsForBatch({ slugs = [], farm = false } = {}) {
   const seen = new Set()
+  const uniq = []
   for (const slug of slugs) {
     const s = String(slug ?? '').trim()
     if (!s || seen.has(s)) continue
     seen.add(s)
-    paths.push(`research/packs/${s}/`)
+    uniq.push(s)
   }
+  if (farm) return uniq.flatMap((s) => [`patches/${s}/`, `research/packs/${s}.tar.gz`])
+
+  const paths = ['patches/', 'downloads/', 'site/data.json', 'glossary.json', 'research/index-dataset.json']
+  for (const s of uniq) paths.push(`research/packs/${s}/`)
   return paths
+}
+
+// ---------- farm 模式的磁盘护栏 ----------
+//
+// 主机侧最容易死得难看的一种：翻译本身正常，但磁盘写满后 prepare-pack 解包失败、
+// gzip 写入半截文件，报错看起来像「网络/翻译有问题」，人反复重跑还是同一个错。
+// 所以每包开始前查一次剩余空间，不够就先清中间产物，仍不够就带着明细退出。
+
+/** 剩余空间下限：500 MB。低于它时解包 + 打包的临时写都可能失败。 */
+export const MIN_FREE_BYTES = 500 * 1024 * 1024
+
+/**
+ * `statfsSync` 结果 → 可用字节数（纯函数，便于测）。
+ * `bavail` 是「非特权用户可用块数」，比 `bfree` 更保守（对 root 保留块也当成不可用）。
+ *
+ * @param {{bavail?: number|bigint, bsize?: number|bigint}} st
+ * @returns {number}
+ */
+export function freeBytesFromStatfs(st) {
+  return Number(st?.bavail ?? 0) * Number(st?.bsize ?? 0)
+}
+
+/** 目录占用字节数（递归）；读不到的条目按 0 计，不让护栏自己把脚本搞崩。 */
+export function dirBytes(dir) {
+  let total = 0
+  let entries
+  try { entries = readdirSync(dir, { withFileTypes: true }) } catch { return 0 }
+  for (const e of entries) {
+    const full = join(dir, e.name)
+    try {
+      if (e.isDirectory()) total += dirBytes(full)
+      else total += statSync(full).size
+    } catch { /* 统计失败不影响结论 */ }
+  }
+  return total
+}
+
+/** 清空目录下的所有子项（保留目录本身）。 */
+function rmChildren(dir) {
+  let freed = 0
+  let entries
+  try { entries = readdirSync(dir) } catch { return 0 }
+  for (const name of entries) {
+    const full = join(dir, name)
+    freed += dirBytes(full)
+    rmSync(full, { recursive: true, force: true })
+  }
+  return freed
+}
+
+/**
+ * farm 模式每包开始前的磁盘检查。
+ *
+ * 清理顺序刻意从「最没用」到「还有用」：
+ *   1. `research/par-out/*` —— 本轮分片，已经写进 `patches/` 了；
+ *   2. `research/tmp/*`     —— prepare-pack 的解包临时目录（本来就是垃圾）；
+ *   3. `research/packs/<slug>/` —— **只删已经有 `<slug>.tar.gz` 的**（已打成归档、已提交过），
+ *      没打档的目录是下一轮接着翻的依据，删了要重下。
+ *
+ * 仍不足就打印占用明细并 `exit 4`：这时候继续跑必然在解包中途写坏，不如停下等人清盘。
+ *
+ * @param {{root?: string, minBytes?: number, log?: Function, exit?: Function}} [opts]
+ * @returns {{free: number, reclaimed: number}}
+ */
+export function farmDiskGuard({
+  root = ROOT,
+  minBytes = MIN_FREE_BYTES,
+  log = console.log,
+  exit = (code) => process.exit(code),
+} = {}) {
+  const freeAt = () => freeBytesFromStatfs(statfsSync(root))
+  let free = freeAt()
+  if (free >= minBytes) return { free, reclaimed: 0 }
+
+  const mb = (n) => `${(n / 1048576).toFixed(0)}MB`
+  log(`磁盘剩余 ${mb(free)} < ${mb(minBytes)}，清理中间产物后重试`)
+  let reclaimed = 0
+  reclaimed += rmChildren(join(root, 'research/par-out'))
+  reclaimed += rmChildren(join(root, 'research/tmp'))
+
+  const packsDir = join(root, 'research/packs')
+  let names = []
+  try { names = readdirSync(packsDir) } catch { names = [] }
+  for (const name of names) {
+    if (!name.endsWith('.tar.gz')) continue
+    const slug = name.slice(0, -'.tar.gz'.length)
+    const dir = join(packsDir, slug)
+    if (!existsSync(dir)) continue
+    reclaimed += dirBytes(dir)
+    rmSync(dir, { recursive: true, force: true })
+  }
+
+  free = freeAt()
+  log(`清理后剩余 ${mb(free)}（回收约 ${mb(reclaimed)}）`)
+  if (free >= minBytes) return { free, reclaimed }
+
+  log('磁盘仍然不足，占用明细：')
+  for (const rel of ['research/packs', 'research/par-out', 'research/tmp', 'downloads', 'patches']) {
+    log(`  ${rel.padEnd(18)} ${mb(dirBytes(join(root, rel)))}`)
+  }
+  log(`  ${'剩余可用'.padEnd(18)} ${mb(free)}`)
+  log('需要人工清理（或删掉已无用的 downloads 下的 zip）后重新启动')
+  exit(4)
+  return { free, reclaimed }
 }
 
 // ---------- 分片运行标识（ADR-0009 D11） ----------
@@ -348,6 +477,21 @@ async function main() {
   const slugArg = arg('slug', '')
   const dryRun = Boolean(arg('dry-run', false))
   const pushEvery = Number(arg('push-every', process.env.BATCH_PUSH_EVERY ?? 20))
+  const farm = Boolean(arg('farm', false))
+  const branch = String(arg('branch', `farm/${hostname()}`))
+  const slugFileArg = arg('slug-file', '')
+  const pushMinutes = Number(arg('push-minutes', 20))
+
+  // `--slug-file`：544 个 slug 拼成一条 10KB 的 argv 在 FreeBSD 上不可靠
+  // （不同内核/登录方式对单参数长度限制不一，超了是 `Argument list too long` 或静默截断）。
+  // 文件里允许逗号、换行、空白混合分隔，方便人工追加。
+  const explicitList = []
+  if (typeof slugArg === 'string') explicitList.push(...slugArg.split(',').map((s) => s.trim()).filter(Boolean))
+  if (typeof slugFileArg === 'string' && slugFileArg) {
+    const file = isAbsolute(slugFileArg) ? slugFileArg : resolve(process.cwd(), slugFileArg)
+    if (!existsSync(file)) throw new Error(`找不到 slug 清单：${file}`)
+    explicitList.push(...readFileSync(file, 'utf8').split(/[,\s]+/).map((s) => s.trim()).filter(Boolean))
+  }
 
   const scanFile = existsSync(SCAN_FILE) ? SCAN_FILE : SCAN_FALLBACK
   if (!existsSync(scanFile)) throw new Error(`找不到扫描结果：${SCAN_FILE}`)
@@ -359,9 +503,7 @@ async function main() {
   // `--slug` 直接给清单，跳过 limit/platform/layout 筛选，也不看已完成状态。
   // 为什么需要：要重翻的那个包常常排在下载量后面、或者已经标了 done，
   // 用 `--limit N` 只能从队头取，会顺带把前面 N-1 个包一起重跑。
-  const explicit = typeof slugArg === 'string'
-    ? slugArg.split(',').map((s) => s.trim()).filter(Boolean)
-    : []
+  const explicit = [...new Set(explicitList)]
   const pending = pendingWorklist(ROOT, all, state, explicit)
   const d = describeWorklist(ROOT, all, state, explicit)
   const worklist = explicit.length
@@ -369,6 +511,7 @@ async function main() {
     : (limit > 0 ? pending.slice(0, limit) : pending)
 
   console.log(`平台 ${platform || '全部'}：可翻译 ${d.total} 个，已完成 ${d.done} 个，本次处理 ${worklist.length} 个，${lanes} 路并发`)
+  if (farm) console.log(`farm 模式：只推 ${branch}（每 ${pushEvery} 包 或 ${pushMinutes} 分钟，先到者）`)
   if (dryRun) {
     worklist.slice(0, 30).forEach((p, i) => console.log(`${String(i + 1).padStart(4)}. ${p.slug} (${p.layout}, ${(p.bytes / 1048576).toFixed(0)}MB)`))
     if (worklist.length > 30) console.log(`… 另有 ${worklist.length - 30} 个`)
@@ -381,11 +524,15 @@ async function main() {
   let sincePush = 0
   // 本轮已成功处理的 slug：入库时只暂存它们的英文源，别捎上别人的未跟踪目录。
   let sincePushSlugs = []
+  // 上一次成功入库的时刻（farm 模式的 `--push-minutes` 用它算间隔）。
+  let lastPushAt = Date.now()
 
   for (let i = 0; i < worklist.length; i++) {
     const p = worklist[i]
     const tag = `[${i + 1}/${worklist.length}] ${p.slug}`
     const started = Date.now()
+    // 每包开始前查盘：解包 + 打包都要临时空间，写满后报的错全都长得像「翻译失败」。
+    if (farm) farmDiskGuard({ root: ROOT })
     try {
       // 1) 下载解包
       //
@@ -424,6 +571,24 @@ async function main() {
       // 3) 写回补丁
       const w = await writePatch(p.slug, r.layout, runId)
       if (!w || w.translated === 0) throw new Error('没有产出任何译文')
+      // farm 模式：英文源先打档，**打包成功才删目录**。
+      //
+      // 反过来（先删后打）在磁盘满 / 文件名过长时会同时丢掉「可重试的源」和「该有的归档」，
+      // 只剩一份 patches 让 `validate-quests` 找不到基准键集 —— 正是那句
+      // 「删了英文源，闸门假绿灯」的老坑。打档本身是幂等的（baseline.mjs 同输入同字节），
+      // 重跑同一包不会产生无意义 diff。
+      let packedNote = ''
+      if (farm) {
+        const packDir = join(PACKS_DIR, p.slug)
+        const archive = join(PACKS_DIR, `${p.slug}.tar.gz`)
+        try {
+          const packed = packBaseline(packDir, archive)
+          packedNote = ` · 基准源 ${packed.files} 个文件 ${(packed.bytes / 1048576).toFixed(1)}MB`
+        } catch (err) {
+          throw new Error(`打包基准源失败（保留 research/packs/${p.slug}/ 不删）：${String(err?.message ?? err).slice(0, 200)}`)
+        }
+        rmSync(packDir, { recursive: true, force: true })
+      }
       state.done[p.slug] = { layout: p.layout, files: w.files, translated: w.translated, total: w.total, at: new Date().toISOString(), ms: Date.now() - started }
       delete state.failed[p.slug]
       saveState(state)
@@ -431,7 +596,7 @@ async function main() {
       sincePush++
       sincePushSlugs.push(p.slug)
       const secs = Math.round((Date.now() - started) / 1000)
-      console.log(`${tag} done ${secs}s · ${w.translated}/${w.total} 条译文 · ${w.files} 个文件 · 漏译 ${r.missing}`)
+      console.log(`${tag} done ${secs}s · ${w.translated}/${w.total} 条译文 · ${w.files} 个文件 · 漏译 ${r.missing}${packedNote}`)
     } catch (e) {
       const msg = String(e?.message ?? e).slice(0, 300)
       state.failed[p.slug] = { layout: p.layout, at: new Date().toISOString(), error: msg }
@@ -439,30 +604,59 @@ async function main() {
       fail++
       console.log(`${tag} FAILED: ${msg}`)
     }
-    // 中间产物清理：**只删并行翻译的块文件，不删英文源**。
+    // 中间产物清理：分片块文件永远删。
     //
-    // `research/packs/<slug>` 是 `validate-quests.mjs` 的**基准键集**。
-    // 删了它，闸门就只会打一行「找不到英文源，跳过该条」——
-    // 实测：11 个包里 9 个被跳过校验，等于零质检（假绿灯）。
-    //
-    // 代价是占磁盘，但英文源只抽 .snbt（几 MB 级），不是整包（几百 MB）。
+    // 英文源目录 `research/packs/<slug>/` 非 farm 模式**保留**：它是 `validate-quests.mjs`
+    // 的基准键集，删了闸门只会打一行「找不到英文源，跳过该条」（实测 11 个包里 9 个被跳过）。
+    // 仓库已改约定「`research/packs/<slug>/` 只在本机、归档 `<slug>.tar.gz` 才入库」，
+    // 所以 farm 模式的目录在打档之后、上面那段里就已经删掉了，这里不再重复。
     const parDir = join(ROOT, 'research/par-out', p.slug)
     if (existsSync(parDir)) rmSync(parDir, { recursive: true, force: true })
 
-    if (pushEvery > 0 && sincePush >= pushEvery) {
-      console.log(`--- 入库：${sincePush} 个包 ---`)
-      try {
-        // 显式路径暂存（禁止 git add -A）：-A 会把 research/packs/ 下 20 多个未跟踪
-        // 目录连同任何未跟踪文件一起提交。只认本轮产物 + 站点/索引/术语数据。
-        for (const sp of stagedPathsForBatch({ slugs: sincePushSlugs })) {
-          if (existsSync(join(ROOT, sp))) run('git', ['add', '--', sp])
-        }
-        run('git', ['commit', '-q', '-m', `data(translate): 本地并行翻译 ${sincePush} 个整合包`])
-        run('git', ['push', '-q', 'origin', 'HEAD:main'])
+    const dueByCount = pushEvery > 0 && sincePush >= pushEvery
+    // farm 模式再加一道时间闸：某个包翻 40 分钟时，光靠「20 包」可能一整天不入库。
+    const dueByTime = farm && pushMinutes > 0 && sincePush > 0
+      && Date.now() - lastPushAt >= pushMinutes * 60_000
+
+    if (farm && (dueByCount || dueByTime)) {
+      console.log(`--- 入库：${sincePush} 个包 → origin/${branch}（farm）---`)
+      const res = commitAndPush({ root: ROOT, branch, slugs: sincePushSlugs, pushAttempts: 3 })
+      lastPushAt = Date.now()
+      if (res.ok) {
         sincePush = 0
         sincePushSlugs = []
-      } catch (e) {
-        console.log(`入库失败（不中断整批）：${String(e?.message ?? e).slice(0, 200)}`)
+      } else {
+        // 不停机的话，产物会在这台主机的磁盘上无限堆积（每包几十 MB 的归档 + 补丁），
+        // 最后以「磁盘满导致解包失败」的样子出现，看起来像翻译问题。
+        console.error('')
+        console.error(`!!! 推送失败（不是翻译失败）：origin/${branch}`)
+        console.error(`!!! 产物都已提交在本地 HEAD，未推上去；本次已成功 ${ok} 个包`)
+        console.error(`!!! 最后一次错误：${String(res.error ?? '').trim().split('\n').slice(-3).join(' / ').slice(0, 400)}`)
+        console.error(`!!! 处理完远端问题后重跑同一条命令即可续推（不会重翻已完成的包）`)
+        process.exitCode = 3
+        break
+      }
+    } else if (!farm && dueByCount) {
+      console.log(`--- 入库：${sincePush} 个包 ---`)
+      // 非 farm 路径：口径与改 farm 之前逐字一致 —— 只暂存原有的显式清单、
+      // 用原提交信息、只推一次 main、失败打一行继续。
+      const res = commitAndPush({
+        root: ROOT,
+        branch: 'main',
+        slugs: sincePushSlugs,
+        pushAttempts: 1,
+        fetch: false,
+        // 显式路径暂存（禁止 git add -A）：-A 会把 research/packs/ 下 20 多个未跟踪
+        // 目录连同任何未跟踪文件一起提交。只认本轮产物 + 站点/索引/术语数据。
+        paths: stagedPathsForBatch({ slugs: sincePushSlugs }),
+        message: `data(translate): 本地并行翻译 ${sincePush} 个整合包`,
+        log: () => {},
+      })
+      if (res.ok) {
+        sincePush = 0
+        sincePushSlugs = []
+      } else {
+        console.log(`入库失败（不中断整批）：${String(res.error ?? '').slice(0, 200)}`)
       }
     }
   }

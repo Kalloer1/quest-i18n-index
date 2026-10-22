@@ -27,6 +27,7 @@ import { fileURLToPath } from 'node:url'
 import { dirname, join, relative } from 'node:path'
 import { parse, serialize, SnbtParseError } from './snbt.mjs'
 import { countColorCodes, countMalformedCodes } from './lib/format-codes.mjs'
+import { readBaseline } from './lib/baseline.mjs'
 import { LAYOUT, LAYOUT_PATTERNS } from './lib/candidates.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
@@ -138,17 +139,33 @@ export function validatePair(enFiles, zhFiles, { layout = LAYOUT.EMBEDDED, label
   // 只把**英文源**文件计作基准键集。
   // 实测：All of Create 这类包同时带 `lang/en_us.snbt` 与 `lang/pt_br.snbt`（葡语），
   // 若把所有输入文件都当基准，校验器会要求产出里也有葡语译文——那不是我们的职责。
+  //
+  // 内嵌布局同理，且更严格：产出只改写 `chapters/*.snbt`（见 quest-files.sourceFileNames），
+  // `data.snbt`、`reward_tables/*.snbt` 本布局不动，产出侧也不该被要求出现。
+  // 旧口径对 embedded 直接 `return true`，把这些文件也算进基准，于是判出「缺键」假失败；
+  // 长期没暴露是因为 resolveLayout 优先判分离布局，带 lang/en_us 的包走不到这条分支。
   const isEnSource = (name) => {
     if (layout === LAYOUT.SEPARATE_SINGLE) return /(^|\/)en_us\.snbt$/i.test(name)
     if (layout === LAYOUT.SEPARATE_DIR) return /(^|\/)lang\/en_us\//i.test(name)
-    return true // 内嵌布局：章节文件本身就是源
+    // 内嵌布局：章节文件本身就是源（与 LAYOUT_PATTERNS.embedded 同一判据）。
+    return LAYOUT_PATTERNS.embedded.test(name)
   }
   for (const [name, root] of enMap) {
     if (!isEnSource(name)) continue
     for (const [k, v] of keysOf(root, name)) enEntries.set(k, v)
   }
+  // 基准集被筛空（英文源里一个章节文件都没有）时不许 0 键空转绿灯。
+  if (!enFiles.some((f) => isEnSource(f.name))) {
+    problems.push(`${prefix}找不到英文源，无法做完整校验`)
+  }
   const zhEntries = new Map()
-  for (const [name, root] of zhMap) for (const [k, v] of keysOf(root, name)) zhEntries.set(k, v)
+  for (const [name, root] of zhMap) {
+    // 内嵌布局：产出侧同样只算本布局负责改写的文件。多出来的非章节文件
+    // （例如有人手动把 data.snbt 也复制了一份）允许存在，但不进入键集合比对；
+    // 它们仍要过上面的 BOM / 可解析 / 可序列化检查。
+    if (layout === LAYOUT.EMBEDDED && !LAYOUT_PATTERNS.embedded.test(name)) continue
+    for (const [k, v] of keysOf(root, name)) zhEntries.set(k, v)
+  }
 
   // 产出文件名换回英文源名再比键（分离布局 en_us → zh_cn 会换名）。
   const remap = (entries) => {
@@ -284,11 +301,39 @@ function loadLayouts(file) {
 const readDir = (dir) => listSnbt(dir).map((name) => ({ name, text: readFileSync(join(dir, ...name.split('/')), 'utf8') }))
 
 /**
- * 批量校验仓库里已有的产出：扫描 patches/<slug>/，逐个与 research/packs/<slug>/ 比对。
+ * 取某个 slug 的英文源（基准键集）。
+ *
+ * 两种形态并列存在（双读）：
+ *   - `research/packs/<slug>/` 目录 —— 历史形态，解包后的 `.snbt` 树；
+ *   - `research/packs/<slug>.tar.gz` —— 新形态，`scripts/lib/baseline.mjs` 打的归档。
+ *
+ * 目录优先：本地解包过的包通常比归档新（调试时会改），且目录分支行为与历史完全一致。
+ * 归档分支在内存里解压，不落临时目录；只收 `.snbt`，与 `listSnbt` 同口径
+ * （归档里若混进 `.DS_Store` 之类，不该被当成英文源去解析）。
+ *
+ * 都可注入（runBatch 的 loadSource 参数），便于测试替换。
+ *
+ * @param {string} packsDir research/packs 目录
+ * @param {string} slug 包 slug
+ * @returns {{files: Array<{name: string, text: string}>, kind: 'dir'|'tar.gz'}|null} 找不到返回 null
+ */
+export function loadPackSource(packsDir, slug) {
+  const dir = join(packsDir, slug)
+  if (existsSync(dir)) return { files: readDir(dir), kind: 'dir' }
+  const tarFile = join(packsDir, `${slug}.tar.gz`)
+  if (existsSync(tarFile)) {
+    const files = readBaseline(tarFile).filter((f) => /\.snbt$/i.test(f.name))
+    return { files, kind: 'tar.gz' }
+  }
+  return null
+}
+
+/**
+ * 批量校验仓库里已有的产出：扫描 patches/<slug>/，逐个与基准源（research/packs/<slug>/）比对。
  *
  * 关键约定：
  *   - patches/ 不存在（或没有任何 slug）时视为「无产出」→ 退出码 0，绝不判红。
- *   - 找不到英文源（research/packs/<slug>/ 不存在）**判失败**。
+ *   - 找不到英文源（`research/packs/<slug>/` 目录与 `<slug>.tar.gz` 归档都不存在）**判失败**。
  *
  *     这里曾写成「只 warn 跳过该条」，于是 2026-10-19 那轮出现了假绿灯：
  *     31 个产出里有 20 个没有英文源，全部被跳过，最后仍打印
@@ -298,10 +343,10 @@ const readDir = (dir) => listSnbt(dir).map((name) => ({ name, text: readFileSync
  *   - 单条失败不中断其余条目，全部跑完再统一给退出码。
  *   - 汇总行只报**真正校验过**的包数与键数，跳过的单独列出（不许混算）。
  *
- * @param {{patchesDir?: string, packsDir?: string, datasetFile?: string}} [options] 注入路径（测试用）
+ * @param {{patchesDir?: string, packsDir?: string, datasetFile?: string, loadSource?: (packsDir: string, slug: string) => ({files: Array<{name: string, text: string}>}|null)}} [options] 注入路径（测试用）
  * @returns {number} 退出码：0 通过；1 有校验失败
  */
-export function runBatch({ patchesDir = PATCHES_DIR, packsDir = PACKS_DIR, datasetFile = DATASET_FILE } = {}) {
+export function runBatch({ patchesDir = PATCHES_DIR, packsDir = PACKS_DIR, datasetFile = DATASET_FILE, loadSource = loadPackSource } = {}) {
   const slugs = existsSync(patchesDir)
     ? readdirSync(patchesDir).filter((n) => statSync(join(patchesDir, n)).isDirectory())
     : []
@@ -318,8 +363,9 @@ export function runBatch({ patchesDir = PATCHES_DIR, packsDir = PACKS_DIR, datas
   let checked = 0
 
   for (const slug of slugs) {
-    const enDir = join(packsDir, slug)
-    if (!existsSync(enDir)) {
+    // 目录优先，其次 <slug>.tar.gz（双读）；都没有 → 缺源，判红。
+    const source = loadSource(packsDir, slug)
+    if (!source) {
       // 缺源 = 红（见函数头注释：这里曾经是假绿灯的产地）。
       missingSource.push(slug)
       failed++
@@ -327,7 +373,7 @@ export function runBatch({ patchesDir = PATCHES_DIR, packsDir = PACKS_DIR, datas
       continue
     }
     checked++
-    const enFiles = readDir(enDir)
+    const enFiles = source.files
     // 布局按磁盘实况判定（见 resolveLayout 注释：数据集里同 slug 有多条且可能不同）
     const layout = resolveLayout(enFiles.map((f) => f.name), layoutBySlug.get(slug))
     const result = validatePair(enFiles, readDir(join(patchesDir, slug)), {

@@ -1,0 +1,328 @@
+name: farm-merge
+
+# 三台 serv00 主机（gfdrgfd / podsjk / jslfkds）各自把产物推到自己分支 farm/<host>，
+# 永不 push main。本工作流负责把三条分支的增量合进 main：取 delta → 补布局（build-index）
+# → 过闸门 → 打包 → 镜像 → 补交付状态并重算站点数据 → 显式提交 → 触发部署。
+#
+# 为什么 build-index 要跑两次：layout 来自 research/scan-full.tsv 的 format 列，产物是
+# research/index-dataset.json；而 release.mjs 与 validate-quests.mjs 都从它取 layout。
+# 新合进来的包如果还不在这份索引里，就会被当成「分离布局」——内嵌包要么假绿要么误红。
+#
+# 为什么不在主机上直接 push main：主机上只有只读 deploy key（1 把），
+# 也没法跑 npm 全套校验；而且三台同时 push main 必然互相顶掉。
+on:
+  push:
+    branches: ['farm/**']
+  schedule:
+    # 兜底漏推：主机侧 push 偶发断网/超时，分支上的提交会一直躺着没人合。
+    # 每 3 小时扫一遍，代价只是一次 blobless fetch（见下文）。
+    - cron: '0 */3 * * *'
+  workflow_dispatch:
+    inputs:
+      hosts:
+        description: '逗号分隔的主机名（留空 = 所有 farm/* 分支）'
+        required: false
+        default: ''
+        type: string
+      dryRun:
+        description: '只计算增量并输出摘要，不落盘、不镜像、不提交'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+  # workflow_dispatch 需要 actions: write（否则 dispatch 端点 403）
+  actions: write
+
+# 与 deploy.yml / translate.yml 共用 concurrency 组：三者都会写仓库。
+concurrency:
+  group: repo-write
+  cancel-in-progress: false
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    # 主要成本是拉 blob + 夸克上传；给足余量，避免慢网被误杀。
+    timeout-minutes: 120
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          # 只有 main 的 depth=1：farm 分支下面单独按需拉，不能跟着一起下。
+          fetch-depth: 1
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Prepare workspace
+        run: |
+          echo "FARM_DIR=$RUNNER_TEMP/farm" >> "$GITHUB_ENV"
+          mkdir -p "$RUNNER_TEMP/farm"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm ci || npm install
+
+      # 为什么是 --filter=blob:none + --depth=1：
+      # 三条分支的 tip 树各带数百 MB（patches/ 全量 + research/packs/*.tar.gz），
+      # 老实的 depth=1 同样会把树里所有 blob 全下下来，三台加起来单次就要拉上 GB。
+      # blobless 只取 commit + tree（几 MB），随后 git checkout <ref> -- <path> 时才按路径
+      # 按需拉那几个 blob；本轮真正要的通常只有几十个 .snbt 和一两个 tar.gz。
+      - name: Fetch farm branches (blobless)
+        run: |
+          set -euo pipefail
+          if git -c gc.auto=0 fetch --no-tags --prune --filter=blob:none --depth=1 \
+               origin '+refs/heads/farm/*:refs/remotes/origin/farm/*'; then
+            exit 0
+          fi
+          # 通配 refspec 一条都匹配不上时 git fetch 返回 1（不是警告），
+          # 而「分支还没建」是正常的初始状态，不能因此把定时任务刷成红。
+          # 用 ls-remote 区分：确实没有分支 → 放行；有分支却 fetch 失败 → 真故障，照常报错。
+          if [ "$(git ls-remote --heads origin 'refs/heads/farm/*' | wc -l)" -eq 0 ]; then
+            echo "::warning::远端还没有 farm/* 分支，本轮无事可做"
+            # 分支被删光时本地会留下旧的 remote-tracking ref，不清理的话下一轮会拿幽灵 tip 去 diff。
+            git for-each-ref --format='%(refname)' refs/remotes/origin/farm | xargs -r -n1 git update-ref -d
+            exit 0
+          fi
+          echo "::error::farm 分支存在但 fetch 失败（网络 / 凭据 / 部分克隆不支持）"
+          exit 1
+
+      - name: Resolve hosts
+        id: hosts
+        run: |
+          set -euo pipefail
+          RAW="${{ inputs.hosts }}"
+          if [ -n "$RAW" ]; then
+            # 手动触发可以只合一台，便于排障时不惊动另外两台。
+            LIST=$(printf '%s' "$RAW" | tr ',' ' ')
+          else
+            LIST=$(git for-each-ref --format='%(refname:lstrip=4)' refs/remotes/origin/farm | sort | tr '\n' ' ')
+          fi
+          LIST=$(printf '%s' "$LIST" | tr -s ' ' | sed 's/^ //; s/ $//')
+          # host 会被直接拼进 `git checkout origin/farm/<h>`、diff 文件名和目录名，
+          # 不校验就等于把 `../`、空格、大写之类的输入交给 git。
+          # 规则与 scripts/lib/farm-merge.mjs 的 isValidHost 保持一致。
+          BAD=""
+          for h in $LIST; do
+            if [[ ! "$h" =~ ^[a-z0-9][a-z0-9-]*$ ]]; then
+              BAD="$BAD $h"
+            fi
+          done
+          if [ -n "$BAD" ]; then
+            echo "::error::hosts 含非法值:$BAD（只允许小写字母/数字开头，后接小写字母、数字或连字符）"
+            exit 1
+          fi
+          echo "hosts=$LIST" >> "$GITHUB_ENV"
+          echo "list=$LIST" >> "$GITHUB_OUTPUT"
+          [ -n "$LIST" ] || echo "::warning::远端没有 farm/* 分支，本轮无事可做"
+
+      - name: Compute merge plan
+        id: plan
+        # 不跳过：没有 farm 分支时也要跑一次，让 outputs.count 明确等于 0，
+        # 后续步骤的 `count != '0'` 判断才不会被空字符串放行（会在读 plan.json 时炸）。
+        run: |
+          set -euo pipefail
+          # 必须 two-dot（origin/main origin/farm/<h>），不能用 three-dot：
+          # 主机从不追 main，Action 里又只有 --depth=1 的浅历史，两边没有 merge-base，
+          # `origin/main...origin/farm/<h>` 会直接 fatal（"no merge base"）。
+          # 代价是 two-dot 给出的是两棵树的**全量**差异：别台刚合进 main 的包在这里会显示成 D
+          # （看起来是本分支把它删了）。所以必须配 --diff-filter=AM 只认新增/修改，
+          # 否则每轮都会把同事刚合进来的产物当成待删项，越合越少。
+          # core.quotePath=false：别让 git 把非 ASCII 路径转成 \xxx 转义，否则解析不出 slug。
+          for h in $HOSTS; do
+            git -c core.quotePath=false diff --name-only --diff-filter=AM \
+              origin/main "origin/farm/$h" -- patches research/packs > "$FARM_DIR/diff-$h.txt"
+          done
+          node scripts/lib/farm-merge.mjs --dir "$FARM_DIR" \
+            --hosts "$(printf '%s' "$HOSTS" | tr ' ' ',')" \
+            --out "$FARM_DIR/plan.json" --github-output "$GITHUB_OUTPUT"
+
+      - name: Check out only the delta
+        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        run: |
+          set -euo pipefail
+          # 逐文件 checkout，不整目录覆盖：main 的 patches/<slug>/ 里可能已经有别台合进来的
+          # 文件，整目录 checkout 会按本分支的旧树把它们回滚掉。
+          # 这里同时把 research/packs/<slug>.tar.gz 基准源落到工作区；顺序很关键：
+          # validate-quests 会双读目录与 tar.gz 拿英文键集，基准源没下来就会按「缺基准键集」判红。
+          node --input-type=module -e '
+            import { readFileSync } from "node:fs"
+            import { execFileSync } from "node:child_process"
+            const { bySlug } = JSON.parse(readFileSync(process.env.FARM_DIR + "/plan.json", "utf8"))
+            for (const [slug, item] of Object.entries(bySlug)) {
+              const paths = [...item.patchPaths, item.baselinePath].filter(Boolean)
+              execFileSync("git", ["checkout", `origin/farm/${item.branch}`, "--", ...paths], { stdio: "inherit" })
+              console.log(`[${slug}] ← farm/${item.branch}（${paths.length} 个文件）`)
+            }
+          '
+
+      # 第一轮 build-index（只补布局）：layout 来自 research/scan-full.tsv 的 format 列
+      # （见 scripts/build-index.mjs:311-312），产物是 research/index-dataset.json。
+      # 而 release.mjs（打包）与 validate-quests.mjs（闸门）都从 index-dataset 取 layout：
+      # 本轮新合进来的包在里面还没有记录 → layout 未知 → 内嵌包被按分离布局打包/校验，
+      # 结果不是假绿就是误红。所以必须在闸门和打包之前先补一趟布局。
+      # 此刻 downloads/<slug>.zip 还没生成（delivered=false），下一轮再补交付状态。
+      - name: Build index (layout pass)
+        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        run: node scripts/build-index.mjs
+
+      # 闸门：增量落盘之后、打包之前。npm test 里已经含 build/site 的数据契约测试。
+      - name: Run tests
+        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        run: npm test
+
+      - name: Validate quest files
+        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        run: npm run validate:quests
+
+      # 先打包：镜像上传的是 downloads/<slug>.zip，它由 release.mjs 产出（幂等，重跑字节相同）。
+      # 必须在 layout pass 之后：release.mjs 用 index-dataset 里的 layout 决定 zip 的目录形态。
+      - name: Package patches
+        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        run: node scripts/release.mjs --ids "${{ steps.plan.outputs.slugs }}" --package-only
+
+      # 夸克登录态：CI 里没有浏览器，只能把本机已验证的存根写到 CLI 真正读取的位置。
+      # 路径必须是 <技能根>/qoder/config.json；旧写法的 openclaw/config.json 不生效（实测），
+      # 会让 CLI 表现为未登录：绿色通过但零链接。写入后只报字节数，绝不打印内容。
+      - name: Restore quark config
+        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        env:
+          QUARK_CONFIG_JSON: ${{ secrets.QUARK_CONFIG_JSON }}
+        run: |
+          if [ -z "$QUARK_CONFIG_JSON" ]; then
+            echo "未提供 QUARK_CONFIG_JSON，跳过"
+            exit 0
+          fi
+          SKILL_DIR="$HOME/.pi/agent/skills/quarkclouddrive"
+          mkdir -p "$SKILL_DIR/qoder"
+          printf '%s' "$QUARK_CONFIG_JSON" > "$SKILL_DIR/qoder/config.json"
+          chmod 600 "$SKILL_DIR/qoder/config.json"
+          echo "登录态已写入（$(wc -c < "$SKILL_DIR/qoder/config.json" | tr -d ' ') 字节，内容不打印）"
+
+      # CLI 是 620KB 自包含单文件，超 secret 48KB 上限，也不入库，只能每次下载。
+      # 安装脚本本身容错（失败只警告、exit 0）；本轮「必须」镜像由 QUARK_REQUIRED=1 保证。
+      - name: Install quark CLI
+        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        run: bash scripts/install-quark-cli.sh
+
+      - name: Mirror to Quark
+        id: mirror
+        # 镜像失败不阻断入库：译文是主要价值，先把 main 推进去；
+        # 但「零链接却绿灯」不可接受，由末尾独立一步统一判红。
+        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        continue-on-error: true
+        run: |
+          CLI="$HOME/.pi/agent/skills/quarkclouddrive/scripts/quark-drive.cjs"
+          if [ -f "$CLI" ]; then
+            export QUARK_CLI="$CLI"
+            echo "夸克 CLI：$CLI（$(wc -c < "$CLI" | tr -d ' ') 字节）"
+          else
+            echo "::warning::夸克 CLI 不存在（Install quark CLI 未成功），本轮跳过镜像。"
+          fi
+          node scripts/mirror.mjs --ids "${{ steps.plan.outputs.slugs }}"
+        env:
+          QODER_PRODUCT_ID: qoder
+          QODER_AGENT: 'true'
+          QUARK_DIR_NAME: 整合包汉化
+          QUARK_PARENT_FID: ${{ secrets.QUARK_PARENT_FID }}
+          # 本轮「必须」完成夸克镜像：有目标待镜像而 CLI 缺失时 mirror.mjs 置退出码 1。
+          QUARK_REQUIRED: '1'
+
+      # 第二轮 build-index（只补交付状态）：此时 downloads/<slug>.zip 已存在 → delivered=true。
+      # 两次 build-index 是「先补布局、后补交付状态」，代价只多生成一次 13MB 的 JSON，
+      # 换来打包与闸门拿到正确 layout——比在 release/validate 里各自猜布局便宜得多。
+      # 索引与站点数据仍须在本轮 zip / 镜像链接落盘之后重算，否则新条目在站点上是「未交付」。
+      - name: Rebuild index (delivered pass) and site data
+        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        run: |
+          node scripts/build-index.mjs
+          node scripts/build-site-data.mjs
+          node scripts/build-site-html.mjs
+
+      - name: Stage artifacts
+        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        run: |
+          set -euo pipefail
+          node --input-type=module -e '
+            import { readFileSync } from "node:fs"
+            const { bySlug } = JSON.parse(readFileSync(process.env.FARM_DIR + "/plan.json", "utf8"))
+            for (const slug of Object.keys(bySlug)) console.log(slug)
+          ' > "$FARM_DIR/slugs.txt"
+
+          # 显式路径 git add（禁止 -A）：main 上还有别的代理在改脚本，-A 会把他们的半成品带进来。
+          while IFS= read -r slug; do
+            for p in "patches/$slug" "research/packs/$slug.tar.gz" "downloads/$slug.zip"; do
+              if [ -e "$p" ]; then git add -- "$p"; fi
+            done
+          done < "$FARM_DIR/slugs.txt"
+          for p in research/index-dataset.json site/data.json research/quark-mirrors.json glossary.json; do
+            if [ -e "$p" ]; then git add -- "$p"; fi
+          done
+
+      - name: Commit and push
+        id: commit
+        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --cached --quiet; then
+            echo "无变更，跳过提交"
+            exit 0
+          fi
+          # 提交说明按主机分布生成，事后翻 git log 能直接看出这一轮是谁贡献的。
+          node --input-type=module -e '
+            import { readFileSync } from "node:fs"
+            const { bySlug } = JSON.parse(readFileSync(process.env.FARM_DIR + "/plan.json", "utf8"))
+            const byHost = {}
+            for (const item of Object.values(bySlug)) byHost[item.branch] = (byHost[item.branch] ?? 0) + 1
+            const parts = Object.entries(byHost).sort().map(([h, n]) => `${h}×${n}`).join(", ")
+            console.log(`farm: 合并 ${Object.keys(bySlug).length} 个整合包（${parts}）`)
+          ' > "$FARM_DIR/commit-msg.txt"
+          git commit -m "$(cat "$FARM_DIR/commit-msg.txt")"
+          # 合并期间别的代理/工作流可能也推了 main：rebase 上来再推，别用 force。
+          git pull --rebase --autostash origin main
+          git push
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+
+      # GITHUB_TOKEN 的 push 不会触发下游 workflow，故推送成功后显式 dispatch deploy。
+      - name: Trigger deploy
+        if: steps.commit.outputs.pushed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run deploy.yml --repo "$GITHUB_REPOSITORY"
+
+      - name: Write summary
+        if: always()
+        run: |
+          {
+            echo "## farm 合并结果"
+            if [ ! -f "$FARM_DIR/plan.json" ]; then
+              echo ""
+              echo "没有 farm/* 分支或未计算增量，本轮无事可做。"
+            else
+              node --input-type=module -e '
+                import { readFileSync } from "node:fs"
+                const plan = JSON.parse(readFileSync(process.env.FARM_DIR + "/plan.json", "utf8"))
+                const { stats, bySlug, conflicts, skipped } = plan
+                console.log(`- 新增/更新：**${stats.count}** 个整合包${stats.count ? `（${Object.keys(bySlug).join("、")}）` : ""}`)
+                const dist = Object.entries(stats.byHost).sort().map(([h, n]) => `${h} × ${n}`).join("，")
+                console.log(`- 按主机分布：${dist || "无"}`)
+                console.log(`- 冲突（取新者，不判失败）：${conflicts.length ? conflicts.map((c) => `\`${c.slug}\`（${c.winning} 胜 ${c.losers.join("/")}）`).join("、") : "无"}`)
+                console.log(`- 跳过：${skipped.length ? skipped.map((s) => `\`${s.slug}\` — ${s.reason}`).join("；<br>") : "无"}`)
+              '
+            fi
+            echo ""
+            if [ "${{ inputs.dryRun }}" = "true" ]; then
+              echo "> dryRun：未落盘、未镜像、未提交。"
+            fi
+            echo "> 镜像步骤结果：${{ steps.mirror.outcome || 'skipped' }}"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # 夸克镜像没干成（登录态过期 / CLI 缺失）必须变红，但要在产物入库之后才判。
+      - name: Fail if quark mirror totally failed
+        if: steps.mirror.outcome == 'failure'
+        run: |
+          echo "::error::夸克镜像未完成（多为登录态过期，或 CLI 下载/安装失败）。产物已入库；网盘字段为空，需修好后补跑镜像。"
+          exit 1
