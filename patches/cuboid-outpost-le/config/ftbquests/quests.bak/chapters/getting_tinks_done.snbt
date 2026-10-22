@@ -1,0 +1,891 @@
+# AI 初翻，未人工校对
+{
+	id: "6B875C77BF0C8CD5"
+	group: "719DAED049159F2E"
+	order_index: 3
+	filename: "getting_tinks_done"
+	title: "完成Tinkers的委托任务"
+	icon: "tconstruct:smeltery_controller"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	images: [
+		{
+			x: -5.5d
+			y: 4.5d
+			width: 3.8d
+			height: 5.75d
+			rotation: 0.0d
+			image: "kubejs:textures/quests/seared_melter.png"
+			hover: ["Example of a Seared Melter setup"]
+			click: ""
+			dev: false
+			corner: false
+		}
+		{
+			x: 8.5d
+			y: 3.0d
+			width: 6.75d
+			height: 5.4d
+			rotation: 0.0d
+			image: "kubejs:textures/quests/basic_smeltery.png"
+			hover: ["Example of a 3x3x2 Smeltery"]
+			click: ""
+			dev: false
+			corner: false
+		}
+	]
+	quests: [
+		{
+			title: "完成Tinkers的委托任务"
+			x: -10.5d
+			y: 0.5d
+			shape: "gear"
+			description: ["是时候开始动手，完成一些事情了。"]
+			dependencies: ["11F9CF9280A7259D"]
+			id: "0BA4183E9254B2AD"
+			tasks: [{
+				id: "56218806F1A5FC3D"
+				type: "checkmark"
+				title: "完成Tinkers的委托任务"
+			}]
+		}
+		{
+			title: "这是为了更伟大的善（The Grouter Good）"
+			x: -8.5d
+			y: 0.5d
+			shape: "square"
+			description: [
+				"填缝剂。不是用来把瓷砖粘在墙上的那种——而是另一种。"
+				""
+				"事实上，我们要把这类东西熔炼成一堆焦砖，然后建造熔炉和冶炼炉来捣鼓一番。"
+				""
+				"首先，制作 40 个 Grout 方块，然后我们就可以开始了。"
+			]
+			dependencies: ["0BA4183E9254B2AD"]
+			id: "7689811B675CB663"
+			tasks: [{
+				id: "49D59D73E9165F7D"
+				type: "item"
+				item: "tconstruct:grout"
+				count: 40L
+			}]
+		}
+		{
+			title: "稍微烤过头的砖块"
+			x: -5.5d
+			y: 0.5d
+			shape: "square"
+			description: [
+				"将砂浆熔炼即可制成焦砖。将砂浆块投入熔炉，每个都会炼成焦砖。"
+				""
+				"Seared Bricks 将用于我们接下来要制作的 Tinker's Melter 中的许多方块。"
+			]
+			dependencies: ["7689811B675CB663"]
+			id: "1F4CB5B1FA691BAC"
+			tasks: [{
+				id: "5F93AB2B1F682EC9"
+				type: "item"
+				item: "tconstruct:seared_brick"
+			}]
+		}
+		{
+			title: "墙上又有一块焦灼砖块"
+			x: 2.0d
+			y: 3.0d
+			shape: "square"
+			subtitle: "（熔炉的）"
+			description: ["使用29个焦灼砖块、一个熔炉控制器、一个焦灼燃料箱、一个焦灼滑道和一个焦灼排水口，你可以建造一个3x3x2的熔炉（内部尺寸）。"]
+			dependencies: ["54493C0419586822"]
+			id: "504A8DED31C4E3EC"
+			tasks: [{
+				id: "574EAA111108B2C3"
+				type: "item"
+				item: "tconstruct:seared_bricks"
+				count: 29L
+			}]
+		}
+		{
+			title: "熔化的金属随取随用"
+			x: -2.5d
+			y: -0.5d
+			shape: "square"
+			description: [
+				"Seared Faucets 可以安装在大多数流体容器的侧面。"
+				""
+				"其中包括了焦灼熔炉，以及焦灼储罐和焦灼仪表。"
+				""
+				"若接收到红石信号，灼烧水龙头会自动倾倒熔炼材料，若没有信号，也可手动使其倾倒熔炼材料。"
+			]
+			dependencies: ["1F4CB5B1FA691BAC"]
+			id: "38125BFEC7884F38"
+			tasks: [{
+				id: "10994F67755FD853"
+				type: "item"
+				item: "tconstruct:seared_faucet"
+			}]
+		}
+		{
+			title: "正在加热中"
+			x: -2.5d
+			y: 0.5d
+			shape: "square"
+			description: [
+				"焦灼加热器放置在焦灼熔炉下方，为熔炉内的材料提供足够的热量以使其熔化。"
+				""
+				"焦灼加热器几乎能消耗任何燃料，包括煤炭和木材，就像熔炉一样。"
+				""
+				"焦灼加热器稍后会用于制作熔炉控制器，所以尽管可以用装满熔岩的焦灼燃料箱来代替焦灼熔炉，但现在制作一个仍然是值得的。"
+			]
+			dependencies: ["1F4CB5B1FA691BAC"]
+			id: "44443475CE111148"
+			tasks: [{
+				id: "018EC9387F41B4DD"
+				type: "item"
+				item: "tconstruct:seared_heater"
+			}]
+		}
+		{
+			title: "微型冶炼炉 (The Miniature Smeltery)"
+			x: -2.5d
+			y: -1.5d
+			shape: "square"
+			description: [
+				"Seared Melter 是一种用于熔化和盛放少量熔融材料的小型容器。"
+				""
+				"需要以下物品："
+				"- 下方有一个 Seared Heater"
+				""
+				"- 将灼烧熔炉的侧面(s)附着灼烧水龙头(s)"
+				""
+				"- 一个铸造盆或铸造台，用于将熔化的材料倒出。"
+				""
+				"注意，Seared Melter 无法合金熔融材料——不过我们很快会升级到 Smeltery 来解决这个问题。"
+			]
+			dependencies: ["1F4CB5B1FA691BAC"]
+			id: "3468A1304A244F66"
+			tasks: [
+				{
+					id: "48F1BA79A6314BF5"
+					type: "item"
+					item: "tconstruct:seared_fuel_gauge"
+				}
+				{
+					id: "7DACD9AD1E7C395C"
+					type: "item"
+					item: "tconstruct:seared_melter"
+				}
+			]
+		}
+		{
+			title: "无需进行任何类型的转换操作"
+			x: -2.5d
+			y: 1.5d
+			shape: "square"
+			description: ["将熔化的液体倒入铸造盆中并冷却，即可形成固体。例如，倒入熔融铁并冷却，就能得到铁块。"]
+			dependencies: ["1F4CB5B1FA691BAC"]
+			id: "0D7C115221200F4E"
+			tasks: [{
+				id: "7B2B895E62E3418E"
+				type: "item"
+				item: "tconstruct:seared_basin"
+			}]
+		}
+		{
+			title: "跳动的心脏"
+			x: 1.0d
+			y: 4.0d
+			shape: "square"
+			subtitle: "（熔炉的）"
+			description: ["要制作熔炉控制器，将焦灼加热器放入焦灼铸造盆中，并倒入价值4个锭的熔融铜。冷却后，你就会得到一个闪闪发亮的新熔炉控制器。"]
+			dependencies: ["54493C0419586822"]
+			id: "71C94DD1513C239E"
+			tasks: [{
+				id: "6888EAC1B4EC22C7"
+				type: "item"
+				item: "tconstruct:smeltery_controller"
+			}]
+		}
+		{
+			title: "制作形状"
+			x: -2.5d
+			y: 2.5d
+			shape: "square"
+			description: [
+				"焦灼铸造台可以使用不同形状的铸模来制作工具、机械或锭件的特定部件。"
+				""
+				"最简单的入门例子是锭铸造，可以通过两种方式之一来制作。"
+				""
+				"第一种方法是用 Ingot Sand Cast，它在铸造过程中会被消耗掉，或者用 Ingot Gold Cast，它是可重复使用的。"
+			]
+			dependencies: ["1F4CB5B1FA691BAC"]
+			id: "1825174040BFD858"
+			tasks: [{
+				id: "5AB713D013461E27"
+				type: "item"
+				item: "tconstruct:seared_table"
+			}]
+		}
+		{
+			title: "空白填充器"
+			x: -2.0d
+			y: 3.5d
+			description: [
+				"在合成台里，一块沙子可以轻松转换成4个空白沙铸模。"
+				""
+				"空白沙铸的典型用法是将其放置在铸造台上，然后放入模板物品（如制作鱼竿的沙铸所需的木棍）以制作成型铸件，移除模板物品，最后倒入熔融材料。"
+			]
+			dependencies: ["1825174040BFD858"]
+			optional: true
+			id: "1F502D916C90EBBA"
+			tasks: [{
+				id: "44535C3C32C698EC"
+				type: "item"
+				item: "tconstruct:blank_sand_cast"
+				count: 4L
+			}]
+		}
+		{
+			title: "从漏斗入口，从排水口出口"
+			x: 3.0d
+			y: 2.0d
+			shape: "square"
+			description: [
+				"灼烧滑道可通过漏斗或其他物品运输方式向熔炉输入材料。"
+				""
+				"焦灼排水口可通过焦灼水龙头、管道或其他流体运输方式，将熔炼炉中的熔融物抽出。"
+			]
+			dependencies: ["54493C0419586822"]
+			dependency_requirement: "one_started"
+			id: "06701B9E3630EED8"
+			tasks: [
+				{
+					id: "0756D33C8B5EE77C"
+					type: "item"
+					item: "tconstruct:seared_drain"
+				}
+				{
+					id: "386DE7EB5D67D5D6"
+					type: "item"
+					item: "tconstruct:seared_chute"
+				}
+			]
+		}
+		{
+			title: "有点像骨瓷的感觉"
+			x: -6.5d
+			y: -0.5d
+			shape: "square"
+			description: [
+				"原来骨粉和黏土混合在一起会形成一种名为 Porcelain 的物质，烧制后可以用来盛放极热的液体。"
+				""
+				"制作至少6个瓷土球和一些水泥，将它们塑造成一个未烧制的坩埚。"
+			]
+			dependencies: ["7689811B675CB663"]
+			id: "307E3B89B44B462C"
+			tasks: [
+				{
+					id: "1A4674119DEF63F2"
+					type: "item"
+					item: "exnihilosequentia:porcelain_clay"
+					count: 6L
+				}
+				{
+					id: "068DB47D59025F1D"
+					type: "item"
+					item: "tconstruct:grout"
+				}
+				{
+					id: "6876EAA3C6D0CE1A"
+					type: "item"
+					item: "exnihilosequentia:crucible_unfired"
+				}
+			]
+		}
+		{
+			title: "火力全开"
+			x: -4.5d
+			y: -1.5d
+			shape: "square"
+			description: ["将未烧制的坩埚放入熔炉，即可获得烧制坩埚。"]
+			dependencies: ["307E3B89B44B462C"]
+			id: "3546C3F02222AD0D"
+			tasks: [{
+				id: "59E4D769813EB5C0"
+				type: "item"
+				item: "exnihilosequentia:crucible_fired"
+			}]
+		}
+		{
+			title: "熔岩派对"
+			x: -2.5d
+			y: -2.5d
+			shape: "square"
+			description: [
+				"在熔炉下方放置热源，温度会缓慢升高，直到足够高将石头熔成岩浆。"
+				""
+				"不同材料提供的熔岩（即Lava）量不同。目前最有效的方法可能是用4个岩石，这样能产生足够装满一个标准桶的熔岩。"
+				""
+				"首先，在坩埚下方使用火把——更高效的后续方法可在JEI中查看。"
+			]
+			dependencies: ["3546C3F02222AD0D"]
+			id: "7ABCB955100B92C0"
+			tasks: [{
+				id: "2DA12207E7FA9DA5"
+				type: "item"
+				item: "minecraft:lava_bucket"
+			}]
+		}
+		{
+			title: "非常感谢你的帮助，坦克们"
+			x: 4.0d
+			y: 1.0d
+			shape: "square"
+			description: [
+				"灼烧燃料箱最多可储存4桶熔岩。"
+				""
+				"作为熔炉的墙体方块放置时，可提供高达1000度的热量，足以满足大多数配方，但部分配方可能需要更高的热量。"
+				""
+				"如需更高温度，焦灼燃料箱也可容纳烈焰血，可提供高达1500度的热量。"
+			]
+			dependencies: ["54493C0419586822"]
+			id: "46AFFB07DDB85108"
+			tasks: [{
+				id: "00EA5B814E3D4C31"
+				type: "item"
+				item: "tconstruct:seared_fuel_tank"
+			}]
+		}
+		{
+			title: "Tonetherness"
+			x: 7.0d
+			y: -5.0d
+			shape: "square"
+			description: [
+				"在装满岩浆的石桶上使用一块红石，你就能创造出名为下界岩的地狱材料。"
+				""
+				"我们稍后会研究更快的方法，但现在，在熔炉下点燃一块下界岩，能让你熔炼岩浆的速度大幅提升。"
+			]
+			dependencies: ["1D85898B092C9EC0"]
+			id: "79F700177E90BB51"
+			tasks: [{
+				id: "6D90414844FDED91"
+				type: "item"
+				item: "minecraft:netherrack"
+				count: 8L
+			}]
+		}
+		{
+			title: "用鹅卵石砌起来"
+			x: -0.5d
+			y: -3.5d
+			shape: "square"
+			description: [
+				"现在有岩浆了，你应该能用水和岩浆互相靠近来制作一个鹅卵石发电机——只要确保水不会接触到岩浆源方块，否则它会变成黑曜石。"
+				""
+				"最简单的鹅卵石生成器，可以挖一个3x1的沟渠，在一端放些楼梯（“开放”面朝沟渠末端），然后用水淹没楼梯。（如果水流了，说明你做错了！）留出中间的缝隙，在沟渠的另一端放一桶岩浆。"
+				""
+				"当岩浆流动并接触到浸水的楼梯时，会形成一块鹅卵石。"
+			]
+			dependencies: ["7ABCB955100B92C0"]
+			id: "02B6D4809390E44E"
+			tasks: [{
+				id: "0B47650F2688464A"
+				type: "item"
+				item: "minecraft:cobblestone"
+				count: 9L
+			}]
+		}
+		{
+			title: "正在将其打磨光滑"
+			x: 1.5d
+			y: -4.5d
+			shape: "square"
+			description: [
+				"取9个你制作的鹅卵石，放入熔炉中烧制，得到9个石头。"
+				""
+				"p.s. 既然你已经知道如何获取石头了，或许可以考虑建造一个生物农场。第4部分有一个章节叫“&a屠宰场&f”，其中有一个小节介绍了建造初级生物农场可能用到的工具。"
+			]
+			dependencies: ["02B6D4809390E44E"]
+			id: "554C2B8969903BC6"
+			tasks: [{
+				id: "0F16B5080A380453"
+				type: "item"
+				item: "minecraft:stone"
+				count: 9L
+			}]
+		}
+		{
+			title: "半砖"
+			x: 3.5d
+			y: -5.5d
+			shape: "square"
+			description: ["工作台里3个石头可以合成6个半高的石砖。"]
+			dependencies: ["554C2B8969903BC6"]
+			id: "6661387F6A3E1BCA"
+			tasks: [{
+				id: "6D7351AB69CCF2B9"
+				type: "item"
+				item: "minecraft:stone_slab"
+				count: 6L
+			}]
+		}
+		{
+			title: "一个更实用的桶形容器"
+			x: 5.5d
+			y: -6.5d
+			shape: "square"
+			description: ["现在你有了石头和石板，就可以制作石桶了。与木制桶不同，石桶可以盛放高温液体，包括岩浆。"]
+			dependencies: ["6661387F6A3E1BCA"]
+			id: "1D85898B092C9EC0"
+			tasks: [{
+				id: "667247C878E418E8"
+				type: "item"
+				item: "exnihilosequentia:barrel_stone"
+			}]
+		}
+		{
+			title: "被压碎的下界岩"
+			x: 7.0d
+			y: -3.5d
+			shape: "square"
+			description: ["用铁丝网或更高级的筛子可以筛出粉碎的下界岩。"]
+			dependencies: ["79F700177E90BB51"]
+			id: "24E0AF40A7800C82"
+			tasks: [{
+				id: "6BEAA253B08B1B63"
+				type: "item"
+				item: "exnihilosequentia:crushed_netherrack"
+				count: 8L
+			}]
+		}
+		{
+			title: "并非来自巨石阵"
+			x: 5.5d
+			y: -5.0d
+			description: ["在装满岩浆的石桶上使用一块萤石粉，你就能创造出一些末地石。"]
+			dependencies: ["1D85898B092C9EC0"]
+			optional: true
+			id: "55130CF64C4F9EBB"
+			tasks: [{
+				id: "3560FFE36865EE7C"
+				type: "item"
+				item: "minecraft:end_stone"
+				count: 8L
+			}]
+		}
+		{
+			title: "粉碎的末地石"
+			x: 5.5d
+			y: -3.5d
+			description: ["用铁丝网或以上等级的筛子筛碎末石，就有机会获得末影珍珠（无需杀死末影人）。"]
+			dependencies: ["55130CF64C4F9EBB"]
+			optional: true
+			id: "29EB650396A8609B"
+			tasks: [{
+				id: "72D9FD24B0A83E18"
+				type: "item"
+				item: "exnihilosequentia:crushed_end_stone"
+				count: 8L
+			}]
+		}
+		{
+			title: "这是来自下界的废料，对吧？"
+			x: 10.0d
+			y: -0.5d
+			shape: "square"
+			description: [
+				"你还可以通过筛碎的下界岩来获得下界合金碎片，这真是一个不错的额外奖励！"
+				""
+				"一旦有了第一个废料，你可能想研究如何制作远古残骸，以及如何将其粉碎和富集，以获得更可靠的下界合金废料获取方法。"
+			]
+			dependencies: ["24E0AF40A7800C82"]
+			id: "2CDC1C706AFA2E47"
+			tasks: [{
+				id: "5BA1FE72963139D3"
+				type: "item"
+				item: "minecraft:netherite_scrap"
+				count: 4L
+			}]
+		}
+		{
+			title: "黄金！(Gold)"
+			x: 7.0d
+			y: -2.0d
+			shape: "square"
+			subtitle: "永远相信你自己的灵魂所在之处"
+			description: ["用铁丝网或以上筛碎下界岩，有几率获得金矿石块，可组合成金矿石堆。"]
+			dependencies: ["24E0AF40A7800C82"]
+			id: "41533B9883BC8046"
+			tasks: [{
+				id: "06EB9253FE030BFD"
+				type: "item"
+				item: "exnihilosequentia:chunk_gold"
+			}]
+		}
+		{
+			title: "真是一片蔚蓝的美丽景象"
+			x: 8.5d
+			y: -3.5d
+			description: ["筛分压碎的下界岩有几率掉落钴矿石块，你可以将它们组合成钴矿石堆。"]
+			dependencies: ["24E0AF40A7800C82"]
+			id: "02C565DF230C9A02"
+			tasks: [{
+				id: "7617224DF1652A7A"
+				type: "item"
+				item: "exnihilosequentia:chunk_cobalt"
+			}]
+		}
+		{
+			title: "但我发誓，在剩下的日子里，我定会兑现承诺"
+			x: 7.0d
+			y: -0.5d
+			shape: "gear"
+			subtitle: "我们将在金色的田野中漫步"
+			description: [
+				"熔炼一些金锭吧——它们对各种事情都会很有用。"
+				""
+				"谁不喜欢闪闪发光的东西呢？"
+				""
+				"&a解锁：获取数字&f"
+				"&a解锁：工业预感&f"
+				"&a解锁：Ther-malcontent&f"
+				"&a解锁：X-Men 网络&f"
+			]
+			dependencies: ["41533B9883BC8046"]
+			size: 1.5d
+			id: "3B00278F3DDF103C"
+			tasks: [{
+				id: "01616EB880322908"
+				type: "item"
+				item: "minecraft:gold_ingot"
+				count: 4L
+			}]
+		}
+		{
+			title: "下界合金！"
+			x: 8.5d
+			y: -0.5d
+			description: ["现在你有了金子和下界合金碎片，可以制作下界合金锭了。"]
+			dependencies: [
+				"2CDC1C706AFA2E47"
+				"3B00278F3DDF103C"
+			]
+			id: "2AFD34A536E1F29A"
+			tasks: [{
+				id: "6CD1DA551BCF8758"
+				type: "item"
+				item: "minecraft:netherite_ingot"
+			}]
+		}
+		{
+			title: "我很难过，哒吧滴 哒吧哒 哒吧滴 哒吧哒"
+			x: 10.0d
+			y: -3.5d
+			subtitle: "（哒吧滴 哒吧哒 重复6次）"
+			description: ["把钴矿石熔炼一下（或许先压成粉？），给自己做些钴锭。"]
+			dependencies: ["02C565DF230C9A02"]
+			id: "5A325EC318C6B44C"
+			tasks: [{
+				id: "3934CF1C614F8C7C"
+				type: "item"
+				item: "tconstruct:cobalt_ingot"
+				count: 3L
+			}]
+		}
+		{
+			title: "曼尤林恩……"
+			x: 10.0d
+			y: -2.0d
+			subtitle: "……试着快快地说五遍试试！"
+			description: [
+				"Manyullyn 是一种非常坚硬的材料，需要在温度至少为 1200 度的熔炉中，将熔渣和钴合金化而成。"
+				""
+				"我们唯一能用的燃料是 Blazing Blood。搞定这个之后，冶炼 Manyullyn 其实并不难。"
+			]
+			dependencies: [
+				"2CDC1C706AFA2E47"
+				"5A325EC318C6B44C"
+				"3725D438E369781D"
+			]
+			id: "29AD6791E3C49B6C"
+			tasks: [{
+				id: "42E5D0085314ABFA"
+				type: "item"
+				item: "tconstruct:manyullyn_ingot"
+			}]
+		}
+		{
+			title: "小心那些牡蛎，它们很危险"
+			x: 5.5d
+			y: -2.0d
+			description: ["用铁丝网或更高级的筛子筛碎末石，运气好的话，你就能得到一两颗末影珍珠。"]
+			dependencies: ["29EB650396A8609B"]
+			optional: true
+			id: "17073588CB8CC58B"
+			tasks: [{
+				id: "4A7F1AE7D925C083"
+				type: "item"
+				item: "minecraft:ender_pearl"
+			}]
+		}
+		{
+			title: "合金阿罗哈！"
+			x: 4.0d
+			y: 4.0d
+			shape: "diamond"
+			description: [
+				"先铺一个3x3的焦砖底座，然后在外面围上4面3x2的墙。你会缺少4个方块，可以用储罐、滑道、排水管和控制器来补充。"
+				""
+				"放置熔炉控制器，并用有效的熔炉方块完成所有墙壁后，多区块熔炉结构便会形成。"
+				""
+				"在焦灼燃料箱中加入一些熔岩或烈焰血，你的熔炉就准备好开始熔炼和合金化液态材料了。"
+				""
+				"注意：如果熔炉中的内容可以混合成合金，该过程是自动的。"
+				""
+				"使用带上方杠杆的水龙头、下方的铸造台和盆，再用漏斗将物品从铸造台和盆中取出，与 Seared Melter 的设置方式基本相同。"
+				""
+				"我们的科学部门提供了一张示例设置图供您审阅。纤维素砖是装饰性配件，用于放置水龙头上方的杠杆。"
+			]
+			dependencies: [
+				"06701B9E3630EED8"
+				"71C94DD1513C239E"
+				"46AFFB07DDB85108"
+				"504A8DED31C4E3EC"
+			]
+			id: "2827AB59F3D85E9D"
+			tasks: [{
+				id: "41F718B8F6D58AE9"
+				type: "checkmark"
+			}]
+		}
+		{
+			title: "熔炼或融化"
+			x: 0.5d
+			y: 0.5d
+			shape: "diamond"
+			description: [
+				"此时你已经拥有一切所需，可以制作第一个焦灼熔炉并开始使用了。"
+				""
+				"请参考提供的图片，了解如何设置此功能。"
+				""
+				"注意，对于一些简单的自动化，你可以使用漏斗从顶部或侧面将物品输入到焦黑熔炉中，并且可以通过在焦黑铸造台和焦黑铸造盆下方放置漏斗来提取已铸造并完全冷却的材料。"
+			]
+			dependencies: [
+				"3468A1304A244F66"
+				"38125BFEC7884F38"
+				"44443475CE111148"
+				"0D7C115221200F4E"
+				"1825174040BFD858"
+				"7ABCB955100B92C0"
+			]
+			id: "54493C0419586822"
+			tasks: [{
+				id: "3F9C93758622F915"
+				type: "checkmark"
+			}]
+		}
+		{
+			title: "锇元素渗透 Osmium Osmosis"
+			x: 4.0d
+			y: 5.5d
+			shape: "gear"
+			description: [
+				"用于高级机械的关键元素锇，可通过合金化富勒烯（熔融碳纳米管）、铁和Thatldu制成。"
+				""
+				"锇其实是一种纯元素，所以就连我们的科学部门也不确定具体过程是什么，但那种 Thatldu 物质似乎能让这一切成为可能，这有点“不对劲”。"
+				""
+				"接下来你可能需要不少锇，所以最好先多储备一些。"
+				""
+				"&a解锁：阿洛？阿洛？合金！&f"
+				"&a解锁：实现机械化 (2/2)&f"
+			]
+			dependencies: ["2827AB59F3D85E9D"]
+			size: 1.5d
+			id: "495C59666CD6C3A0"
+			tasks: [{
+				id: "47970DBB4446450F"
+				type: "item"
+				item: "mekanism:ingot_osmium"
+				count: 3L
+			}]
+		}
+		{
+			title: "我的小烈焰人宝宝"
+			x: 11.5d
+			y: -3.5d
+			description: ["将烈焰人玩偶加入熔岩桶中会生成烈焰人。这对于获取烈焰人血液尤其有用。"]
+			dependencies: [
+				"5D14F476E568B129"
+				"742CB98CD34C3815"
+			]
+			id: "6418606FCB78AE9F"
+			tasks: [
+				{
+					id: "647C981B3E0D1CE1"
+					type: "item"
+					item: "exnihilosequentia:porcelain_clay"
+					count: 5L
+				}
+				{
+					id: "74C0592F1B3A46C2"
+					type: "item"
+					item: "exnihilosequentia:doll_crafting"
+				}
+				{
+					id: "7BFB98282F8CA846"
+					type: "item"
+					item: "exnihilosequentia:doll_blaze"
+				}
+			]
+		}
+		{
+			title: "流血的烈焰人"
+			x: 11.5d
+			y: -2.0d
+			description: [
+				"将活着的烈焰人放入加热熔炉中即可获得炽热血液。烈焰人会持续受到伤害并产生炽热血液，直到死亡。"
+				""
+				"之后你可以用其他方式设置生成器来创造烈焰人，或者捕捉烈焰人并直接释放到熔炉中，但在早期，使用烈焰人玩偶来召唤烈焰人可能是你唯一的方法。"
+			]
+			dependencies: ["6418606FCB78AE9F"]
+			id: "3725D438E369781D"
+			tasks: [{
+				id: "76C119766ECDC82C"
+				type: "item"
+				item: "tconstruct:blazing_blood_bucket"
+			}]
+		}
+		{
+			title: "远古真菌"
+			x: 7.0d
+			y: -7.0d
+			shape: "square"
+			description: [
+				"用钻石筛网筛滤硅石粉尘块可以获得远古孢子。"
+				""
+				"如果你还没弄明白，可以用铁网筛取砾石或碎石来获得钻石。"
+				""
+				"&a古代孢子可用于泥土上将其变为菌丝体&f。但要小心——它会蔓延！最好在3x3的泥土区域周围用某种石头围一圈，然后在中间的方块上使用古代孢子。"
+			]
+			dependencies: ["1D85898B092C9EC0"]
+			id: "7F6BB5E95997690C"
+			tasks: [{
+				id: "3CE850AFE9C0341A"
+				type: "item"
+				title: "远古孢子 (Ancient Spores)"
+				item: "exnihilosequentia:ancient_spores"
+			}]
+		}
+		{
+			title: "Watery Witches"
+			x: 8.5d
+			y: -7.0d
+			shape: "square"
+			description: [
+				"将橡木桶等木桶放置在菌丝体方块上，然后向桶中注满水。"
+				""
+				"几秒钟后，桶里的水就会变成女巫药水。"
+				""
+				"把这种东西倒在地上，可以把一些敌对生物变成更强大的版本——比如骷髅变成凋零骷髅，苦力怕变成带电苦力怕。小心！"
+			]
+			dependencies: ["7F6BB5E95997690C"]
+			id: "1640986D10506C1D"
+			tasks: [{
+				id: "0A6EB3EF495CA016"
+				type: "item"
+				item: "exnihilosequentia:bucket_witchwater"
+			}]
+		}
+		{
+			title: "诡异肮脏的沙土"
+			x: 10.0d
+			y: -6.5d
+			shape: "square"
+			description: [
+				"将沙子加入装满女巫水的桶中，沙子会转化为灵魂沙，同时消耗女巫水。"
+				""
+				"附注：自动化生产灵魂沙可能非常困难。如果你还是想尝试，科学部门的专家们为你准备了一套分步方法。你首先需要金子和红石，准备好后，请查看附录A中本生存指南的“X-Men网络”部分。"
+			]
+			dependencies: ["1640986D10506C1D"]
+			id: "185FD41758B01CB1"
+			tasks: [{
+				id: "42EA454D1CD57C9E"
+				type: "item"
+				item: "minecraft:soul_sand"
+			}]
+		}
+		{
+			title: "更像是圣约翰草（St John's Wort）才对"
+			x: 11.0d
+			y: -5.5d
+			shape: "square"
+			subtitle: "不是那种传说中从青蛙身上得到的那种"
+			description: [
+				"用铁丝网筛滤灵魂沙，可能会得到一些下界疣。"
+				""
+				"下界疣可以种在灵魂沙上，也是许多配方中的材料。之后我们开始酿造药水时，它会特别有用。"
+			]
+			dependencies: ["185FD41758B01CB1"]
+			id: "5D14F476E568B129"
+			tasks: [{
+				id: "3BF851A35704A7D8"
+				type: "item"
+				item: "minecraft:nether_wart"
+			}]
+		}
+		{
+			title: "烈焰粉"
+			x: 9.0d
+			y: -5.5d
+			shape: "square"
+			description: ["用铁网筛粉可以获得烈焰粉"]
+			dependencies: ["1D85898B092C9EC0"]
+			id: "742CB98CD34C3815"
+			tasks: [{
+				id: "041A23E2D7932DE3"
+				type: "item"
+				item: "minecraft:blaze_powder"
+				count: 4L
+			}]
+		}
+		{
+			title: "黄金铸造 - 提升生活质量的改进"
+			x: 5.5d
+			y: -0.5d
+			description: [
+				"沙铸还行，但也有点麻烦。既然现在有金了，可以考虑做些金铸，用来铸造常用物品。"
+				""
+				"一个好的例子是金锭铸造——你可以在铸造台上放置一个锭（或砖块等锭状物品），然后向其倒入熔融的金子。"
+				""
+				"砖块（或锭）会被消耗，但会留下一个金制模具，之后制作锭时不会被消耗。这绝对值得投资！"
+			]
+			dependencies: ["3B00278F3DDF103C"]
+			optional: true
+			id: "335B313D35BDDF8C"
+			tasks: [{
+				id: "57FFA64939A753EF"
+				type: "item"
+				item: "tconstruct:ingot_cast"
+			}]
+		}
+		{
+			title: "沙质锭铸造（原文如此）"
+			icon: "tconstruct:ingot_sand_cast"
+			x: -1.5d
+			y: 4.5d
+			description: [
+				"要制作砂铸锭，将空白砂铸模放在铸造台上，然后用锭状物品（如真正的锭或焦砖）作用于其上。"
+				""
+				"拾起 Ingot Sand Cast 后，你将获得一个 Blank Sand Cast。"
+			]
+			dependencies: ["1F502D916C90EBBA"]
+			optional: true
+			id: "5C4B82EC3BC4FB7D"
+			tasks: [{
+				id: "07E9361CEF1E4B4B"
+				type: "checkmark"
+				title: "沙粒锭铸造（原文如此）"
+			}]
+		}
+	]
+}

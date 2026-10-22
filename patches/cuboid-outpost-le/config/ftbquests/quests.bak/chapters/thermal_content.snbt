@@ -1,0 +1,571 @@
+# AI 初翻，未人工校对
+{
+	id: "4C3211D7C7EB80CF"
+	group: "4F582DBBFACF1F69"
+	order_index: 2
+	filename: "thermal_content"
+	title: "Ther-malcontents"
+	icon: "thermal:machine_pulverizer"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "Ther-malcontent"
+			x: 0.0d
+			y: 0.0d
+			shape: "gear"
+			description: [
+				"到目前为止，你已经成功复原了几台机器，但我们还需要你填补一些空白，这样我们才能让你的生活重回正轨。"
+				""
+				"Thermal Series 机器为许多其他机器提供了替代方案，并提供了一些能帮助你解决可能遇到的特定问题的新机器。"
+				""
+				"&aUnlocked by getting Gold in the \"Getting Tinks Done\" chapter.&f"
+			]
+			dependencies: ["3B00278F3DDF103C"]
+			id: "304B2612E56845AB"
+			tasks: [
+				{
+					id: "40E39A53CB16A9DC"
+					type: "item"
+					item: "minecraft:gold_ingot"
+				}
+				{
+					id: "5132997F84207BD0"
+					type: "item"
+					title: "锡锭"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "forge:ingots/tin"
+						}
+					}
+				}
+				{
+					id: "7DF5C6055A7E2589"
+					type: "item"
+					title: "铜制锭块"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "forge:ingots/copper"
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "基础齿轮模组"
+			x: 2.0d
+			y: 0.0d
+			shape: "square"
+			description: ["齿轮在制造这些热力机器时被广泛使用。要开始运作，首先需要这两种齿轮。"]
+			dependencies: ["304B2612E56845AB"]
+			id: "5E3BB220C87D1E87"
+			tasks: [
+				{
+					id: "061E4D95E2898E08"
+					type: "item"
+					title: "锡制齿轮"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "forge:gears/tin"
+						}
+					}
+				}
+				{
+					id: "469B6CB3DAA67A7B"
+					type: "item"
+					title: "铜质齿轮"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "forge:gears/copper"
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "不是我干的，长官！我发誓！"
+			x: 4.0d
+			y: 0.0d
+			shape: "square"
+			subtitle: "给那台机器加上框架"
+			description: [
+				"机器框架用于将所有组成热力机器的其他部件固定在一起。"
+				""
+				"它们相对便宜又容易制作，所以最好先多做几个备用。"
+			]
+			dependencies: ["5E3BB220C87D1E87"]
+			id: "177C75AD8B222FD5"
+			tasks: [{
+				id: "1D0BB74EF86256D5"
+				type: "item"
+				item: "thermal:machine_frame"
+			}]
+		}
+		{
+			x: 8.0d
+			y: 0.0d
+			description: [
+				"红石熔炉是一种使用红石流（RF - 即能量）而非易燃燃料来烹饪物品的熔炉。它不仅仅是红石熔炉！"
+				""
+				"它还能升级，是一种仅用能量就能快速熔炼物品的非常高效的方法。"
+			]
+			dependencies: ["43FA19C5DEEEF7E2"]
+			optional: true
+			id: "7FCD766C2820B7F3"
+			tasks: [{
+				id: "16FFB95BAEC11B3C"
+				type: "item"
+				item: "thermal:machine_furnace"
+			}]
+		}
+		{
+			title: "红石流线圈"
+			x: 6.0d
+			y: 0.0d
+			shape: "square"
+			description: [
+				"红石流线圈用于需要调节RF能量的机器和增幅器中。"
+				""
+				"这些线圈在很多机器里都用得到，所以最好多做几个这两种——相信它们之后会派上用场的……"
+			]
+			dependencies: ["177C75AD8B222FD5"]
+			id: "43FA19C5DEEEF7E2"
+			tasks: [{
+				id: "195143340B6A367F"
+				type: "item"
+				item: "thermal:rf_coil"
+			}]
+		}
+		{
+			x: 8.0d
+			y: -2.0d
+			description: [
+				"锯木厂能高效地将原木切成木板，每根原木可产出6块木板，而非通常的4块。积累的木屑也可用来制作纸张和纸板。"
+				""
+				"这也是把甜瓜切成甜瓜片的好方法。"
+			]
+			dependencies: ["43FA19C5DEEEF7E2"]
+			optional: true
+			id: "0D0D0371C13D40E3"
+			tasks: [{
+				id: "12E3E6E94C0A9E5E"
+				type: "item"
+				item: "thermal:machine_sawmill"
+			}]
+		}
+		{
+			x: 8.0d
+			y: 1.0d
+			description: [
+				"把 Pulverizer 看作一个可自动化的 Smoosher 就差不多了。"
+				""
+				"它能粉碎Smasher无法粉碎的东西，而且效率相当高！"
+			]
+			dependencies: ["43FA19C5DEEEF7E2"]
+			optional: true
+			id: "26CEE055CC89D4EC"
+			tasks: [{
+				id: "4C9D635160353E20"
+				type: "item"
+				item: "thermal:machine_pulverizer"
+			}]
+		}
+		{
+			x: 6.0d
+			y: 4.0d
+			description: ["Lumium 只能在感应熔炉中制作。"]
+			dependencies: ["508B9043053F83F3"]
+			id: "751956F759096D80"
+			tasks: [{
+				id: "5A2F8CB859362CE1"
+				type: "item"
+				title: "Lumium Gear"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "forge:gears/lumium"
+					}
+				}
+			}]
+		}
+		{
+			x: 8.0d
+			y: -1.0d
+			description: ["流体封装器可以泵入流体，然后填充瓶子、桶和便携式储罐等容器。"]
+			dependencies: ["43FA19C5DEEEF7E2"]
+			optional: true
+			id: "28B5AB28799FEE21"
+			tasks: [{
+				id: "3AC692EE0A66BECB"
+				type: "item"
+				item: "thermal:machine_bottler"
+			}]
+		}
+		{
+			x: 8.0d
+			y: 2.0d
+			description: [
+				"Sequential Fabricator 可以设置配方，在提供资源和能量后，能自动合成目标物品。"
+				""
+				"非常适合通常需要多个手动步骤的简单自动化任务——只需为每个步骤设置一个 Sequential Fabricator，并将结果输送到所需位置即可。"
+			]
+			dependencies: ["43FA19C5DEEEF7E2"]
+			optional: true
+			id: "0C96F700BB74F8DC"
+			tasks: [{
+				id: "01129D9D67C55C4F"
+				type: "item"
+				item: "thermal:machine_crafter"
+			}]
+		}
+		{
+			title: "康斯坦坦齿轮"
+			x: 0.5d
+			y: 5.5d
+			shape: "gear"
+			subtitle: "（制作康斯坦坦的方法请参见“Allo? Allo? Alloy!”章节）"
+			dependencies: ["239ABB6920C2D4C2"]
+			dependency_requirement: "one_completed"
+			optional: true
+			id: "7E0F0541B4718277"
+			tasks: [{
+				id: "49390DD485B72533"
+				type: "item"
+				title: "康斯坦坦齿轮"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "forge:gears/constantan"
+					}
+				}
+			}]
+		}
+		{
+			x: 8.0d
+			y: 4.0d
+			description: [
+				"植物绝缘体就像一个盒子里的农场。"
+				""
+				"给它水和动力，它就会像种子一样快速生长，并将结果存入输出槽，之后可以通过管道导出。"
+				""
+				"骨粉和植物生长素等生长催化剂可以加快生长过程。"
+				""
+				"增幅器可用于提高产量，或保留输入物品以实现持续生产。"
+			]
+			dependencies: ["751956F759096D80"]
+			optional: true
+			id: "5040463B5E776B76"
+			tasks: [{
+				id: "725D641063961DA7"
+				type: "item"
+				item: "thermal:machine_insolator"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 4.0d
+			description: ["离心分离机可以将某些材料分离成组件物品。"]
+			dependencies: ["7E0F0541B4718277"]
+			optional: true
+			id: "50B1893A30931C26"
+			tasks: [{
+				id: "6C0370AB3BD82613"
+				type: "item"
+				item: "thermal:machine_centrifuge"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 5.0d
+			description: ["Multiservo Press 是一款用途广泛的机器，装上合适的模具后，可以完成物品与方块形态之间的转换、将锭制成齿轮或板件等操作。它在自动化合成和生产线中极为实用。"]
+			dependencies: ["7E0F0541B4718277"]
+			optional: true
+			id: "75FF9C12DE5741E0"
+			tasks: [{
+				id: "3541A8A76C5A8377"
+				type: "item"
+				item: "thermal:machine_press"
+			}]
+		}
+		{
+			x: 10.0d
+			y: 4.0d
+			description: [
+				"如果你想知道那个Appatite到底有什么用（除了能轻松获得青色染料），那就是这个了。"
+				""
+				"Phytogro 是一种极其高效的肥料，在 Phytogenic Insulator 中使用可显著缩短生长时间。"
+			]
+			dependencies: ["5040463B5E776B76"]
+			optional: true
+			id: "49B3B842F3607B54"
+			tasks: [{
+				id: "776A551942C142F3"
+				type: "item"
+				item: "thermal:phytogro"
+			}]
+		}
+		{
+			title: "Invar齿轮"
+			x: 2.0d
+			y: 3.5d
+			shape: "gear"
+			subtitle: "（制作 Invar 的方法请参见 \"Allo? Allo? Alloy!\" 章节）"
+			dependencies: ["370DC91DCE34BD2B"]
+			id: "6B6CBCB0904E17C4"
+			tasks: [{
+				id: "27E01E0F92322595"
+				type: "item"
+				title: "不变形齿轮"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "forge:gears/invar"
+					}
+				}
+			}]
+		}
+		{
+			x: -1.5d
+			y: 6.0d
+			description: ["炼金灌注器用于批量酿造药水（通常通过管道连接到流体封装器等装置，将药水液体封装成可用的瓶装形式）。"]
+			dependencies: ["7E0F0541B4718277"]
+			optional: true
+			id: "71CA68F42A658AD1"
+			tasks: [{
+				id: "4016337303D01A7D"
+				type: "item"
+				item: "thermal:machine_brewer"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 7.0d
+			description: ["Pyrolyzer 可用于制造 Coke（不是饮料！）、Creosote Oil、Heavy Oil、Tar 和 Charcoal。"]
+			dependencies: ["7E0F0541B4718277"]
+			optional: true
+			id: "4070E83E154D268C"
+			tasks: [{
+				id: "2645874E180406BB"
+				type: "item"
+				item: "thermal:machine_pyrolyzer"
+			}]
+		}
+		{
+			x: 4.0d
+			y: 5.0d
+			shape: "square"
+			description: ["感应熔炉使用能量来制造合金和冶炼矿石。它能处理一些熔炉无法制作的材料，并且也能在一个方块内处理大部分相同的材料。"]
+			dependencies: ["6B6CBCB0904E17C4"]
+			id: "508B9043053F83F3"
+			tasks: [{
+				id: "42AD38D4EFF90D13"
+				type: "item"
+				item: "thermal:machine_smelter"
+			}]
+		}
+		{
+			x: 4.0d
+			y: 4.0d
+			description: ["岩浆熔炉利用能量将固体熔化为液体。"]
+			dependencies: ["6B6CBCB0904E17C4"]
+			optional: true
+			id: "60ECC7258A85864D"
+			tasks: [{
+				id: "64FE1EC996FD1B4C"
+				type: "item"
+				item: "thermal:machine_crucible"
+			}]
+		}
+		{
+			x: 4.0d
+			y: 3.0d
+			shape: "gear"
+			description: [
+				"Blast Chiller 用于将某些液体快速冷冻成固体形态。"
+				""
+				"即将到来的机器肯定需要其中一个——和低温冷冻与维度旅行有关，但具体细节以后再谈。"
+				""
+				"&a前置任务：末地还剩下什么？&f"
+			]
+			dependencies: ["6B6CBCB0904E17C4"]
+			size: 1.2d
+			id: "131A4A51271715E2"
+			tasks: [{
+				id: "6A75705700D0E322"
+				type: "item"
+				item: "thermal:machine_chiller"
+			}]
+		}
+		{
+			x: 4.0d
+			y: 2.0d
+			description: ["Fractionating Still 可将流体分离为组成材料，例如将树液分离为糖浆和水，树脂分离为松香和木油。"]
+			dependencies: ["6B6CBCB0904E17C4"]
+			optional: true
+			id: "5D58C72431929C9D"
+			tasks: [{
+				id: "0AF1FDDCC1A84ACA"
+				type: "item"
+				item: "thermal:machine_refinery"
+			}]
+		}
+		{
+			title: "红石伺服装置"
+			x: -2.0d
+			y: 0.0d
+			description: ["红石伺服组件可用于制造多种简易机械，也可用于创造可添加到机器上以提升其功能的增强模块。"]
+			dependencies: ["304B2612E56845AB"]
+			optional: true
+			id: "25C51F1B3C28DE9F"
+			tasks: [{
+				id: "3AB055309AA35766"
+				type: "item"
+				item: "thermal:redstone_servo"
+			}]
+		}
+		{
+			title: "保持地板的干净！"
+			x: -4.0d
+			y: 0.5d
+			description: [
+				"真空吸尘器会拾取周围的所有散落物品，并将其放入内部物品栏中。之后你就可以通过管道将它们输送出去。"
+				""
+				"在物品可能掉落在地的区域，例如自动化树木农场（木材、木棍和树叶可能掉在地上）或生物农场（生物掉落物可能散落在周围）中，这非常有用。"
+				""
+				"还可以应用过滤器增强，使拾取功能更具选择性。"
+			]
+			dependencies: ["25C51F1B3C28DE9F"]
+			optional: true
+			id: "57EC076D817C1485"
+			tasks: [{
+				id: "2980167E3F9857AB"
+				type: "item"
+				item: "thermal:device_collector"
+			}]
+		}
+		{
+			title: "树木提取术"
+			x: -4.0d
+			y: -0.5d
+			description: [
+				"将树木提取器放置在有叶子的树上，并提供燃料后，它会缓慢提取三种流体中的一种："
+				""
+				"&a树脂&f - 用于分馏塔制作松脂和木油。"
+				""
+				"&a树液&f - 用于分馏塔制作糖浆和水。"
+				""
+				"&a乳胶&f - 可用于制作橡胶。"
+				""
+			]
+			dependencies: ["25C51F1B3C28DE9F"]
+			optional: true
+			id: "17A8A53541D15D3F"
+			tasks: [{
+				id: "78AC9DA7FF42F898"
+				type: "item"
+				item: "thermal:device_tree_extractor"
+			}]
+		}
+		{
+			x: 4.0d
+			y: 7.0d
+			description: ["Signalum 只能在感应熔炉中制造。"]
+			dependencies: ["508B9043053F83F3"]
+			optional: true
+			id: "649E4011A9875F66"
+			tasks: [{
+				id: "01AD9FE0D0C3F7D9"
+				type: "item"
+				title: "Signalum 齿轮"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "forge:gears/signalum"
+					}
+				}
+			}]
+		}
+		{
+			title: "核心组件"
+			x: 2.0d
+			y: 7.5d
+			shape: "gear"
+			subtitle: "（制作 Invar 的方法请参见 \"Allo? Allo? Alloy!\" 章节）"
+			description: [
+				"将核心组件添加到热力机增强槽中，可以提升其性能——通常是处理速度、能量容量或效率。"
+				""
+				"首个核心组件升级是硬化核心组件增强模块。"
+			]
+			dependencies: ["370DC91DCE34BD2B"]
+			optional: true
+			id: "5807222BFBC0B66A"
+			tasks: [{
+				id: "3A164F4B53B08EF7"
+				type: "item"
+				item: "thermal:upgrade_augment_1"
+			}]
+		}
+		{
+			x: 4.0d
+			y: 9.5d
+			description: ["第二个“核心组件”升级是“加固核心组件”升级。"]
+			dependencies: [
+				"649E4011A9875F66"
+				"5807222BFBC0B66A"
+			]
+			optional: true
+			id: "7045B2B822678989"
+			tasks: [{
+				id: "5115AE24141071ED"
+				type: "item"
+				item: "thermal:upgrade_augment_2"
+			}]
+		}
+		{
+			x: 6.0d
+			y: 6.0d
+			shape: "gear"
+			description: [
+				"末影锭只能在感应熔炉中制作。"
+				""
+				"&a前置任务：末地还剩下什么？&f"
+			]
+			dependencies: ["508B9043053F83F3"]
+			size: 1.2d
+			id: "7DB0567D4BF1657C"
+			tasks: [{
+				id: "25FCCD5AD0F5B9C4"
+				type: "item"
+				item: "thermal:enderium_ingot"
+			}]
+		}
+		{
+			x: 6.0d
+			y: 7.5d
+			description: ["第三个也是最后一个“核心组件”升级是“共振核心组件”增强。"]
+			dependencies: [
+				"7045B2B822678989"
+				"7DB0567D4BF1657C"
+			]
+			optional: true
+			id: "435B559A8CA70380"
+			tasks: [{
+				id: "1869DE0E3916DB51"
+				type: "item"
+				item: "thermal:upgrade_augment_3"
+			}]
+		}
+	]
+}

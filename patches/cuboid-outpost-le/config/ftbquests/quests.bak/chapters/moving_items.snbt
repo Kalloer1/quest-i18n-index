@@ -1,0 +1,404 @@
+# AI 初翻，未人工校对
+{
+	id: "39AE34428D014BEC"
+	group: "033EC740B2EF1FC1"
+	order_index: 3
+	filename: "moving_items"
+	title: "移动物品"
+	icon: "enderstorage:ender_chest"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: -1.5d
+			y: 0.0d
+			description: [
+				"基础物流运输机每秒最多可移动2个物品，距离为1格。"
+				""
+				"在连接到物品栏或机器的接口上使用配置器，将模式从正常改为拉取（即提取物品并送入管道）、推入（即从管道取物并放入连接的物品栏）或关闭（即断开连接）。"
+				""
+				"注意，在普通模式下，如果管道正被其他机器（如自动输出机器）持续泵入物品，则无需明确设置为“拉取”模式，管道仍能正常工作。"
+				""
+				"同样，如果物品在管道中传输，当发现一个能接收物品的容器时，物品会被存入，无需显式设置连接为“推送”。"
+				""
+				"物流运输机总会尝试将物品存入管道中第一个能接受该物品并能将其路由到的相连容器中。要改变此行为，您需要使用物流分拣器。"
+			]
+			id: "771FE160AB82E93D"
+			tasks: [{
+				id: "0BD379BA344489C2"
+				type: "item"
+				item: "mekanism:basic_logistical_transporter"
+			}]
+		}
+		{
+			x: -1.0d
+			y: 1.5d
+			description: ["高级物流运输机每秒可将最多32个物品移动2格。"]
+			dependencies: ["771FE160AB82E93D"]
+			id: "77164C9BAEC48316"
+			tasks: [{
+				id: "238C05BA44C21445"
+				type: "item"
+				item: "mekanism:advanced_logistical_transporter"
+			}]
+		}
+		{
+			x: -1.0d
+			y: 3.0d
+			description: ["精英物流运输机每秒可将最多64个物品移动4格。"]
+			dependencies: ["77164C9BAEC48316"]
+			id: "6ABF0D13FB892268"
+			tasks: [{
+				id: "699E6DFA9FF05587"
+				type: "item"
+				item: "mekanism:elite_logistical_transporter"
+			}]
+		}
+		{
+			x: -1.0d
+			y: 4.5d
+			description: ["终极物流运输机每秒可将最多128个物品移动10格。"]
+			dependencies: ["6ABF0D13FB892268"]
+			id: "11E0226EAE21EE6D"
+			tasks: [{
+				id: "534FD3B0C49A281D"
+				type: "item"
+				item: "mekanism:ultimate_logistical_transporter"
+			}]
+		}
+		{
+			x: -0.5d
+			y: 0.0d
+			description: [
+				"物流分拣器可用于确定物品在物流运输器网络中应被送往何处。"
+				""
+				"使用配置器更改连接到目标库存的物流运输管的颜色，然后在物流分拣器中设置过滤器，指定应将哪些物品路由到目标颜色。"
+				""
+				"物流分拣器是一套强大的装备，但可能需要花些时间来适应！"
+			]
+			id: "5B40CF0C26FA4D48"
+			tasks: [{
+				id: "4FDB062B18603C9B"
+				type: "item"
+				item: "mekanism:logistical_sorter"
+			}]
+		}
+		{
+			x: -3.5d
+			y: 0.0d
+			description: [
+				"这些传送带不需要动力，只要把东西扔上去或放上去，就会一直移动，直到遇到障碍物或传送带末端为止。"
+				""
+				"这些传送带可以用工程师锤旋转，也可以沿45度角向上或向下移动。"
+				""
+				"这些腰带也有一个带顶棚的版本可供选择。"
+			]
+			id: "4023C40F3002AC45"
+			tasks: [{
+				id: "3CF13788C2B39FE3"
+				type: "item"
+				item: "immersiveengineering:conveyor_basic"
+			}]
+		}
+		{
+			x: -3.5d
+			y: 1.5d
+			description: ["垂直传送带的工作原理与标准传送带相同，只是它们允许物品垂直移动。"]
+			id: "515712C92361FDD4"
+			tasks: [{
+				id: "6E2230C6B4BA4AFB"
+				type: "item"
+				item: "immersiveengineering:conveyor_vertical"
+			}]
+		}
+		{
+			x: -3.5d
+			y: 3.0d
+			description: ["放置在物品栏上方的掉落传送带，会将传送带上运行的物品掉落至下方的物品栏中。"]
+			id: "2CEE014FDACFB2AA"
+			tasks: [{
+				id: "2C6D31312B3B0C81"
+				type: "item"
+				item: "immersiveengineering:conveyor_dropper"
+			}]
+		}
+		{
+			x: -3.5d
+			y: 4.5d
+			description: ["提取传送带连接到物品栏（如箱子）时，会从物品栏中提取物品并将其放置在传送带上进行运输。"]
+			id: "78E1C171E5D7755D"
+			tasks: [{
+				id: "717E71775F7F1BFD"
+				type: "item"
+				item: "immersiveengineering:conveyor_extract"
+			}]
+		}
+		{
+			x: -3.5d
+			y: 6.0d
+			description: ["分叉传送带会将传入的物品分成两条独立的轨道，与原行进方向呈90度角排出。"]
+			id: "511603C278061999"
+			tasks: [{
+				id: "03176BD4E21F9638"
+				type: "item"
+				item: "immersiveengineering:conveyor_splitter"
+			}]
+		}
+		{
+			title: "由旋转之力所传达的信息"
+			x: -6.0d
+			y: 0.0d
+			description: [
+				"一旦你获得了旋转动力源，就可以用SHAFT!和机械传动带将物品从一个地方运到另一个地方。"
+				""
+				"这些机械传送带本身只会将掉落在上面的任何东西移动到末端，之后它们就会再次掉落。"
+				""
+				"SHAFT! 的转速决定了传送带的移动速度。注意，传送带也可用于在轴之间传递旋转力。"
+				""
+				"传送带可以水平放置，也可以45度角放置，并且仍能移动物品。也可以垂直放置传送带，但物品不会像这样垂直粘附在上面。"
+				""
+				"隧道、漏斗和滑道（以及漏斗）可用于自动将物品放到传送带上，并再次将其取下，从而更实用地实现物品的自动移动。"
+			]
+			id: "04FD705635701534"
+			tasks: [
+				{
+					id: "5CC333372A82FBF5"
+					type: "item"
+					item: "create:belt_connector"
+				}
+				{
+					id: "7A249A0113A94819"
+					type: "item"
+					item: "create:shaft"
+				}
+			]
+		}
+		{
+			x: -6.5d
+			y: 1.5d
+			description: [
+				"隧道可以覆盖机械传送带，防止物品（还有你！）被意外掉落到上面。"
+				""
+				"此外，如果隧道在平行的传送带上相邻放置，进入隧道的物品将被分配到出口传送带上，从而实现分配。"
+				""
+				"安山岩隧道非常基础，只会以循环方式分配物品。如果需要指定将哪些物品放入特定传送带，则需要使用黄铜隧道，它支持应用过滤器。"
+			]
+			id: "76B554CC34945020"
+			tasks: [{
+				id: "7DB9FB4895D7C06C"
+				type: "item"
+				item: "create:andesite_tunnel"
+			}]
+		}
+		{
+			x: -5.5d
+			y: 1.5d
+			description: [
+				"黄铜隧道与安山岩隧道的行为相同，但可以为它们应用过滤器。这意味着当多个连接的隧道设置在平行的传送带上时，可以指定允许哪些物品从特定隧道中通过。这有效地实现了物品的分类和路由。"
+				""
+				"隧道出口上方有一个小区域，你可以在那里放入物品或过滤器，以指定哪些物品可以经由该隧道进入出口传送带。"
+			]
+			id: "03C17F549EA160DE"
+			tasks: [{
+				id: "668C73363498DE8E"
+				type: "item"
+				item: "create:brass_tunnel"
+			}]
+		}
+		{
+			x: -6.5d
+			y: 3.0d
+			description: [
+				"漏斗可以从传送带上拾取物品，并放入所连接的容器中。例如，通常会将漏斗连接到机械传送带的末端的箱子上。它们也可以反向配置，从容器中取出物品，并放置在机械传送带或其他可接收物品的方块（如储物箱）上。"
+				""
+				"操作方向由漏斗框架上的小箭头指示，使用扳手作用于框架即可更改方向。"
+				""
+				"安山漏斗的工作方式与漏斗类似，可以接收或提取任何物品。如果需要过滤漏斗可以拾取或提取的物品，则需要使用黄铜版本。"
+			]
+			id: "020FC982F30FA0C0"
+			tasks: [{
+				id: "321A84D8C066D893"
+				type: "item"
+				item: "create:andesite_funnel"
+			}]
+		}
+		{
+			x: -5.5d
+			y: 3.0d
+			description: [
+				"黄铜漏斗的行为与安山岩漏斗相同，但可以应用过滤器。这对于分类和引导很有用。"
+				""
+				"举个例子，你有一条机械传送带，上面可能有沙子或砾石，你想把它们储存在不同的箱子里。你可以在每个箱子上放一个黄铜漏斗，配置它们从传送带上吸取物品，并在一个漏斗的过滤器里放沙子，另一个放砾石。这样，它们只会在物品与过滤器匹配时，才从传送带上捡起物品。"
+				""
+				"同样地，你可能有一个箱子，里面装着机器的主要和次要输出物，想用传送带把它们运到不同地方。你可以在箱子上安装两个黄铜漏斗（在不同侧面），为每个漏斗应用过滤器，并确保它们被设置为从箱子中提取物品并放入传送带（用扳手点击漏斗的框架来改变物品移动方向）。"
+			]
+			id: "7166B30D53F350AC"
+			tasks: [{
+				id: "0978D35D2967EF1F"
+				type: "item"
+				item: "create:brass_funnel"
+			}]
+		}
+		{
+			x: -6.5d
+			y: 4.5d
+			description: [
+				"滑槽可以让物品垂直移动。物品从滑槽顶部投入，会沿着滑槽（或滑槽链）下落，并落到下方的传送带（或地面或其他方块）上。"
+				""
+				"如果在滑道下方使用向上吹风的封闭式风扇，方向可以反转。"
+				""
+				"安山岩滑道允许任何物品通过。如果需要指定特定物品使用滑道，则需改用智能滑道。"
+			]
+			id: "281118B8A2CCB6CD"
+			tasks: [{
+				id: "05CC428EEBA215C6"
+				type: "item"
+				item: "create:chute"
+			}]
+		}
+		{
+			x: -5.5d
+			y: 4.5d
+			description: ["智能滑道与滑道的工作原理类似，但可以为其添加过滤器，以限制允许通过的物品。你可以在过滤器槽中使用单个物品，或使用过滤器来指定多种可以使用智能滑道的物品类型。"]
+			id: "5537B428F502B4BA"
+			tasks: [{
+				id: "18BBA00035668CB3"
+				type: "item"
+				item: "create:smart_chute"
+			}]
+		}
+		{
+			x: 1.5d
+			y: 0.0d
+			description: [
+				"共享同一频道（通过给顶部按钮染色或在合成网格中设置）的所有末地箱，都能访问同一个物品栏（27个物品栏 - 3行9列 - 与标准箱子大小相同）"
+				""
+				"简单来说，如果你有两个频道相同的末地箱，其中一个装有原石，那么你就可以从另一个末地箱中提取出这些原石——这不仅在跨维度有效，而且不受距离限制！"
+				""
+				"附注：如果你担心其他维度的玩家偷窃你的物品，可以通过将钻石放在末地箱的锁扣上将其设为私有。注意：如果箱子中已有物品，它们会保留在公共频道，设为私有后内容会丢失！"
+			]
+			id: "5E674CC0FE9ECD44"
+			tasks: [{
+				id: "203EA348A09ECC3D"
+				type: "item"
+				item: "enderstorage:ender_chest"
+			}]
+		}
+		{
+			x: 1.5d
+			y: 1.5d
+			description: [
+				"末影袋能让你在任何地方访问末影箱，前提是你已将其调谐到目标末影箱，并且随身携带该袋子。"
+				""
+				"要将末影袋调谐到与末影箱相同的频道，请蹲下并使用它在一个已配置的末影箱上。调谐后，它就像该末影箱所配置频道上的便携版一样工作。"
+			]
+			id: "5F95CF05B912275D"
+			tasks: [{
+				id: "7B383462518155B9"
+				type: "item"
+				item: "enderstorage:ender_pouch"
+			}]
+		}
+		{
+			title: "物品传输网络 XNet"
+			x: 3.5d
+			y: 0.0d
+			description: [
+				"XNet 可用于在相连的容器（箱子、机器等）之间快速传输物品。它高度可配置，支持过滤器、每次传输物品数量、使用单根网络电缆向不同目的地传输物品的多通道等高级功能。"
+				""
+				"如果想了解一些使用示例，可以查看本附录中的“XMen 网络”主题。"
+				""
+				"&c很遗憾，由于本生存指南在传输过程中发生了损坏，你无法直接在此处查询配方。请使用 JEI 的搜索功能。&f"
+			]
+			id: "2C69BA63A47A0E40"
+			tasks: [
+				{
+					id: "5ED38A1C95DD9D5C"
+					type: "item"
+					title: "网络电缆"
+					icon: "xnet:netcable_blue"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "xnet:cables"
+						}
+					}
+				}
+				{
+					id: "363C1254FAE20EE1"
+					type: "item"
+					title: "连接器"
+					icon: "xnet:connector_blue"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "xnet:connectors"
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "总比待在货车里的人要好得多"
+			x: 0.0d
+			y: -2.25d
+			shape: "gear"
+			description: [
+				"迟早你都得考虑自动化和物品搬运。幸运的是，有不少选择可用，不过其中一些你需要先解锁才能使用。"
+				""
+				"本附录中提供了许多更简单的选项，以帮助您快速上手。"
+			]
+			size: 1.5d
+			id: "44D7204AAA23552C"
+			tasks: [{
+				id: "5BDF007D5D3390F7"
+				type: "checkmark"
+			}]
+		}
+		{
+			x: -6.0d
+			y: 6.0d
+			description: ["使用黄铜隧道、黄铜漏斗或智能滑道（或其他使用此类过滤器的类似机器）时，可以使用过滤器来指定多种物品进行过滤。"]
+			id: "03937D67746BE765"
+			tasks: [{
+				id: "300F36E6A95B2B59"
+				type: "item"
+				item: {
+					id: "create:filter"
+					Count: 1b
+					tag: {
+						Items: { }
+					}
+				}
+			}]
+		}
+		{
+			x: 5.5d
+			y: 0.0d
+			description: [
+				"一对物品运输器可用于在相隔1格距离的方块之间移动物品。在每个方块上放置一个物品运输器，然后按下你想要接收物品的侧面的按钮。"
+				""
+				"可通过白名单/黑名单进行过滤。"
+			]
+			id: "4CD2F74DF812083B"
+			tasks: [{
+				id: "569631D59D8BFA8B"
+				type: "item"
+				item: "industrialforegoing:item_transporter_type"
+			}]
+		}
+		{
+			x: 7.5d
+			y: 0.0d
+			description: ["用于传输物品。使用管道扳手进行配置。可通过管道升级进行升级。"]
+			id: "47C0486BA8120EB0"
+			tasks: [{
+				id: "7FD9DB0052845816"
+				type: "item"
+				item: "pipez:item_pipe"
+			}]
+		}
+	]
+}

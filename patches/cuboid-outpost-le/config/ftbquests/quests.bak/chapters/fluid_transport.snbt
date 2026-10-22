@@ -1,0 +1,270 @@
+# AI 初翻，未人工校对
+{
+	id: "7504D2F4D88313C5"
+	group: "033EC740B2EF1FC1"
+	order_index: 0
+	filename: "fluid_transport"
+	title: "流体运输系统"
+	icon: "enderstorage:ender_tank"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: 2.5d
+			y: 2.0d
+			description: [
+				"机械管道连接起来后，可以长距离传输流体。使用配置器对准机器边缘，将流体抽出并通过连接的管道输送。"
+				""
+				"基础机械管道能以每刻最多512mb的速率传输流体（略高于每秒10桶）"
+			]
+			id: "5E419353EC2F2F44"
+			tasks: [{
+				id: "73B097E020BC0B9A"
+				type: "item"
+				item: "mekanism:basic_mechanical_pipe"
+			}]
+		}
+		{
+			x: 2.0d
+			y: 3.5d
+			description: [
+				"高级机械管道能以每秒1000mb（20桶）的速度传输流体"
+				""
+				"你可以使用一个 Infused Alloy 将最多 8 根 Basic Mechanical Pipes 升级为 Advanced 版本。"
+			]
+			dependencies: ["5E419353EC2F2F44"]
+			id: "721A102962C8373F"
+			tasks: [{
+				id: "472D4D80A157E367"
+				type: "item"
+				item: "mekanism:advanced_mechanical_pipe"
+			}]
+		}
+		{
+			x: 2.0d
+			y: 5.0d
+			description: [
+				"精英机械管道能以每刻最多16,000mb（每秒320桶！）的速率传输流体"
+				""
+				"你可以在其中一个高级机械管上使用强化合金，从而在“世界内”升级最多8个相连的高级机械管。"
+			]
+			dependencies: ["721A102962C8373F"]
+			id: "09EDB80081CCAA54"
+			tasks: [{
+				id: "1E916F420B2E1600"
+				type: "item"
+				item: "mekanism:elite_mechanical_pipe"
+			}]
+		}
+		{
+			x: 2.0d
+			y: 6.5d
+			description: [
+				"终极机械管道能以每刻最多64,000mb（每秒1280桶！）的速率传输流体"
+				""
+				"最多8根相连的精英机械管可以通过在其中一个上使用原子合金进行“世界内”升级。"
+			]
+			dependencies: ["09EDB80081CCAA54"]
+			id: "14E47EE15819EF3D"
+			tasks: [{
+				id: "2639228F1B2DE6C9"
+				type: "item"
+				item: "mekanism:ultimate_mechanical_pipe"
+			}]
+		}
+		{
+			x: 1.5d
+			y: 2.0d
+			description: ["通电的电动泵会消耗相连的流体源方块，并将其泵入相连的机械管道。泵本身可以被水淹没，但要开始工作，其正下方必须有一个流体源方块。"]
+			id: "725F5C52C894F657"
+			tasks: [{
+				id: "76D946183175597C"
+				type: "item"
+				item: "mekanism:electric_pump"
+			}]
+		}
+		{
+			title: "Immersive: 流体管道"
+			x: -0.5d
+			y: 2.0d
+			description: ["这些流体管道非常简单，但也极其便宜。你需要将它们连接到能自动泵入流体的机器上，或使用流体泵来移动管道内的流体。"]
+			id: "64B1FD08E6E2B140"
+			tasks: [{
+				id: "5DB02A4C6E1F26F8"
+				type: "item"
+				item: "immersiveengineering:fluid_pipe"
+			}]
+		}
+		{
+			x: 5.5d
+			y: 2.0d
+			description: ["这些管道需要机械泵来推动流体，但它们也可以用来从世界中吸入流体，或者将流体推入世界。用扳手点击管道，为其添加一个“窗口”，这样你就可以看到流体在其中流动。"]
+			id: "133AC42B97A5ACBF"
+			tasks: [{
+				id: "6A782A6A10284D31"
+				type: "item"
+				item: "create:fluid_pipe"
+			}]
+		}
+		{
+			x: 5.0d
+			y: 3.5d
+			description: ["智能流体管道可以安装过滤器（将允许通过的流体桶放入过滤器槽中）。使用搅拌机时，这可以确保在流体完全混合前不会被抽出。"]
+			dependencies: ["133AC42B97A5ACBF"]
+			id: "25E394F9E9C727E5"
+			tasks: [{
+				id: "7A812FA6750FB272"
+				type: "item"
+				item: "create:smart_fluid_pipe"
+			}]
+		}
+		{
+			title: "Immersive: 流体泵"
+			x: -1.5d
+			y: 2.0d
+			description: ["此流体泵需要能量，可用红石信号开关。使用工程师之锤指定泵两侧的输入（蓝色）和输出（橙色）。"]
+			id: "182026EEBE95B146"
+			tasks: [{
+				id: "236034ADD050CFCA"
+				type: "item"
+				item: "immersiveengineering:fluid_pump"
+			}]
+		}
+		{
+			x: 4.5d
+			y: 2.0d
+			description: ["机械泵利用旋转力将流体推过一组相连的管道，最远可达16格。使用扳手可以反转方向，旋转速度会影响流速。"]
+			id: "1A189C9FA030E922"
+			tasks: [{
+				id: "3E5C822799E3A611"
+				type: "item"
+				item: "create:mechanical_pump"
+			}]
+		}
+		{
+			x: 7.5d
+			y: 2.0d
+			description: [
+				"末影储罐的运作方式与末影箱类似，只是它能储存一种流体而非物品。所有共享同一频道（通过为顶部按钮上色或在合成网格中设置）的末影储罐，都能访问同一个流体储罐。"
+				""
+				"简单来说，如果你有两个相同通道的末影储罐，并且其中一个装有岩浆，那么你就可以从另一个储罐中提取岩浆——这不仅在跨维度有效，而且不受距离限制！"
+				""
+				"附注：如果你担心其他维度的玩家偷你的东西，可以将钻石放在储罐的转盘上，使其变为私人储罐。"
+			]
+			id: "3837867475B59F18"
+			tasks: [{
+				id: "0747AC7427213B38"
+				type: "item"
+				item: "enderstorage:ender_tank"
+			}]
+		}
+		{
+			title: "流体传输网络（XNet for Fluids）"
+			x: -3.5d
+			y: 2.0d
+			description: [
+				"XNet 可以为流体配置通道，支持过滤、速率限制、优先级和分配模式等功能。"
+				""
+				"当然，它也需要一个 XNet 控制器，但如果你想自动化涉及流体的流程，它可能是一个不错的选择。"
+				""
+				"如果想了解一些使用示例，可以查看本附录中的“XMen 网络”主题。"
+				""
+				"&c很遗憾，由于本生存指南在传输过程中发生了损坏，你无法直接在此处查询配方。请使用 JEI 的搜索功能。&f"
+			]
+			id: "26642B00376F3070"
+			tasks: [
+				{
+					id: "17CA4CE1C8650ECD"
+					type: "item"
+					title: "连接器"
+					icon: "xnet:connector_blue"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "xnet:connectors"
+						}
+					}
+				}
+				{
+					id: "6603FA3C57ABF327"
+					type: "item"
+					title: "网络电缆"
+					icon: "xnet:netcable_blue"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "xnet:cables"
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "流体运输系统"
+			x: 3.75d
+			y: 0.0d
+			shape: "gear"
+			description: [
+				"迟早都需要移动流体，所以了解你的选择是关键。"
+				""
+				"有手动运输的选项，有使用泵和管道在容器或机器间移动流体的选项，也有将存储与运输性相结合的选项。"
+			]
+			size: 1.5d
+			id: "7F4EEC10573D1EB4"
+			tasks: [{
+				id: "2C676AA9A71CAFE9"
+				type: "checkmark"
+			}]
+		}
+		{
+			x: -5.5d
+			y: 2.0d
+			description: ["朴实的水桶显然是必备之选，但毫无疑问，它也是移动少量流体时最通用、最实用的工具之一。"]
+			id: "7DB74266994654BB"
+			tasks: [{
+				id: "74CE124D630B37CE"
+				type: "item"
+				item: "minecraft:bucket"
+			}]
+		}
+		{
+			x: 9.5d
+			y: 2.0d
+			description: ["油桶可用于特定机器中携带最多10桶流体。一个典型例子是从焦炉中收集焦油油。之后，它可以在合成网格中代替一桶焦油油，制作多达10批经过处理的木板。"]
+			id: "47C3812B2944C18C"
+			tasks: [{
+				id: "04D8A47038A41DFF"
+				type: "item"
+				item: "immersiveengineering:jerrycan"
+			}]
+		}
+		{
+			x: 11.5d
+			y: 2.0d
+			description: [
+				"一对流体运输器可用于在相隔1格距离的方块之间移动流体。在每个方块上放置一个流体运输器，然后按下你想要接收流体的那一侧的按钮。"
+				""
+				"支持白名单/黑名单过滤功能。"
+			]
+			id: "3A53D5F1E7426C55"
+			tasks: [{
+				id: "5670EB889425CF2B"
+				type: "item"
+				item: "industrialforegoing:fluid_transporter_type"
+			}]
+		}
+		{
+			x: 13.5d
+			y: 2.0d
+			description: ["可传输流体。使用管道扳手进行配置。可通过管道升级进行升级。"]
+			id: "6CF2A3AD1FE8A99D"
+			tasks: [{
+				id: "5A3CAF06472F0395"
+				type: "item"
+				item: "pipez:fluid_pipe"
+			}]
+		}
+	]
+}

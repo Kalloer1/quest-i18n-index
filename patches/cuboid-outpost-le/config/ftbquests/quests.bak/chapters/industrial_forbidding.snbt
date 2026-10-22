@@ -1,0 +1,895 @@
+# AI 初翻，未人工校对
+{
+	id: "04D54A9ECAA72ADA"
+	group: "4785B5C7E26FA669"
+	order_index: 2
+	filename: "industrial_forbidding"
+	title: "工业禁区 (Industrial Forbidding)"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "工业塑料"
+			disable_toast: true
+			x: 0.0d
+			y: -2.5d
+			shape: "gear"
+			description: [
+				"虽然许多人认为塑料是现代社会的祸根，但我们的科学部门指出，它也是一种非常实用的材料。"
+				""
+				"为了向你证明，它们正齐心协力地研究各种需要塑料的机器。至于这些机器是否有用，就由你来决定吧！"
+			]
+			size: 1.5d
+			id: "76732FBE9A8C66D9"
+			tasks: [{
+				id: "354A9521767970E2"
+				type: "item"
+				item: "industrialforegoing:plastic"
+			}]
+		}
+		{
+			title: "绝命毒师"
+			x: -1.5d
+			y: -1.0d
+			description: ["The Block Breaker 是一种简单的机器，能立即破坏其正前方的任何方块，并将该方块放入其物品栏中，以便后续通过管道输送或拾取。"]
+			dependencies: ["76732FBE9A8C66D9"]
+			id: "77411B682D02F4E2"
+			tasks: [{
+				id: "73F383D5EF544132"
+				type: "item"
+				item: "industrialforegoing:block_breaker"
+			}]
+		}
+		{
+			title: "把它放下来！"
+			disable_toast: true
+			x: -2.0d
+			y: -2.5d
+			description: ["放置器会从物品栏中取出方块，并立即放置在自己前方。"]
+			dependencies: ["76732FBE9A8C66D9"]
+			id: "533B5517A1ECB654"
+			tasks: [{
+				id: "33DAC19ADC3F8E3E"
+				type: "item"
+				item: "industrialforegoing:block_placer"
+			}]
+		}
+		{
+			title: "吸溜！"
+			x: -1.5d
+			y: -4.0d
+			description: ["流体收集器会排干其前方的流体源方块，并将其储存在内部储罐中，随时可以经由管道导出。"]
+			dependencies: ["76732FBE9A8C66D9"]
+			id: "067FBABC0776FE74"
+			tasks: [{
+				id: "5EE324FC5BE88F1C"
+				type: "item"
+				item: "industrialforegoing:fluid_collector"
+			}]
+		}
+		{
+			title: "打嗝声！"
+			x: 0.0d
+			y: -4.5d
+			description: ["流体放置器会从内部储罐中取出流体，并将其放置在其前方的世界中。"]
+			dependencies: ["76732FBE9A8C66D9"]
+			id: "029622AFBFB99C6A"
+			tasks: [{
+				id: "1F8DF6C4155E14A6"
+				type: "item"
+				item: "industrialforegoing:fluid_placer"
+			}]
+		}
+		{
+			x: 0.0d
+			y: -0.5d
+			description: [
+				"植物播种机会在上方的泥土中播种，必要时会先翻耕土壤。"
+				""
+				"使用范围扩展模组可以轻松增加播种范围——它们会将每个方向的范围增加相应的数值。例如，+1 范围扩展模组会将范围向北、南、东、西各增加 1，从而覆盖一个 3x3 的区域。"
+				""
+				"有关如何控制种植位置以及机器所有选项的更多信息，请参阅手册。"
+				""
+				"这台机器只会种植种子或树苗。要收获它们，你需要其他方法，比如植物收集器。"
+			]
+			dependencies: ["76732FBE9A8C66D9"]
+			id: "6008564FC758C4C5"
+			tasks: [{
+				id: "0F5294A4A2E2B6D3"
+				type: "item"
+				item: "industrialforegoing:plant_sower"
+			}]
+		}
+		{
+			x: 0.0d
+			y: 1.0d
+			description: [
+				"植物采集者会收割其范围内的作物和树木。"
+				""
+				"默认情况下，范围仅为机器前方的单个方块。这可以通过使用范围扩展（Range Addon）轻松调整。+1 范围扩展会将区域中心向远离机器的方向移动 1 格，并在每个基本方向上增加 1 格的范围，从而形成一个 3x3 的区域，植物可在此区域内被自动收集。"
+				""
+				"采集植物会产生污泥，可以用污泥精炼器进行加工。"
+			]
+			dependencies: ["6008564FC758C4C5"]
+			id: "018967A12D6042A1"
+			tasks: [{
+				id: "6AA5E198EA5A48A6"
+				type: "item"
+				item: "industrialforegoing:plant_gatherer"
+			}]
+		}
+		{
+			x: 0.0d
+			y: 2.5d
+			description: [
+				"污泥可以在污泥精炼器中提炼。这基本上是将植物收集器产生的副产品污泥转化为有用的东西。"
+				""
+				"每次操作获得的物品是随机的，但包括沙子、泥土、黏土、砾石和灵魂沙等。"
+			]
+			dependencies: ["018967A12D6042A1"]
+			id: "293343406BD1BD8A"
+			tasks: [{
+				id: "0155F8C3235281DD"
+				type: "item"
+				item: "industrialforegoing:sludge_refiner"
+			}]
+		}
+		{
+			disable_toast: true
+			x: 1.5d
+			y: -4.0d
+			description: ["如果使用红、绿、蓝染料（如甜菜根、仙人掌和青金石），只需消耗30RF，就能制作出任何其他颜色的染料。"]
+			dependencies: ["76732FBE9A8C66D9"]
+			id: "6A5678138716AF96"
+			tasks: [{
+				id: "207E6091E2182007"
+				type: "item"
+				item: "industrialforegoing:dye_mixer"
+			}]
+		}
+		{
+			title: "工业化畜牧养殖系统"
+			disable_toast: true
+			x: 7.0d
+			y: -2.5d
+			shape: "gear"
+			size: 1.5d
+			id: "5569711F6E3BEA01"
+			tasks: [{
+				id: "5C9F04CD8D7FA453"
+				type: "item"
+				item: "industrialforegoing:plastic"
+			}]
+		}
+		{
+			title: "适合懒散的牛仔们..."
+			x: 9.0d
+			y: -2.5d
+			description: [
+				"如果你需要稳定的牛奶或羊毛供应，那么动物牧场主就是你的不二之选。"
+				""
+				"这台机器可以自动剪羊毛和挤奶范围内的绵羊和奶牛。"
+				""
+				"可以使用范围扩展来增加范围——例如，+1 范围扩展会将效果区域的中心点从动物驯养者处移开 1 格，并在每个方向上增加 1 格，从而在机器前方创建一个 3x3 的效果区域。"
+				""
+				"进入作用范围的牛或羊将被相应地挤奶或剪毛。牛奶会储存在内部储罐中（并可被管道导出），羊毛则储存在内部物品栏中（同样可以被管道导出）。"
+			]
+			dependencies: ["5569711F6E3BEA01"]
+			id: "7C271DDB34C7CF5D"
+			tasks: [{
+				id: "698FB17A791A7A67"
+				type: "item"
+				item: "industrialforegoing:animal_rancher"
+			}]
+		}
+		{
+			title: "给懒惰的繁殖者准备的..."
+			x: 7.0d
+			y: -4.5d
+			description: [
+				"动物喂食器可以从内部物品栏中取出动物饲料，并在它们饥饿时自动喂食范围内的所有动物。"
+				""
+				"如果投喂的食物满足繁殖条件（例如，给两头牛喂小麦），动物就会繁殖。只要你有足够的食物，它们就会持续繁殖。"
+				""
+				"不过，最好不要让这个机器无限运行！至少你得确保能适当减少数量！为此，你应该考虑使用像 Animal Baby Separator 或 Mob Filter (child) 这样的东西，来自动将动物幼崽转移到另一个区域进行处理。"
+			]
+			dependencies: ["5569711F6E3BEA01"]
+			id: "0204E4D9E6300101"
+			tasks: [{
+				id: "0781208B96AA98F0"
+				type: "item"
+				item: "industrialforegoing:animal_feeder"
+			}]
+		}
+		{
+			title: "给父母们放个假吧！"
+			x: 5.0d
+			y: -2.5d
+			description: [
+				"动物幼崽分离器会将幼崽从前方传送到后方。"
+				""
+				"如果你想让成年动物作为繁殖对，但等它们长胖了——我是说长大了！——再把幼崽移到另一个地方进行，嗯……处理？这可能会有用！"
+			]
+			dependencies: ["5569711F6E3BEA01"]
+			id: "41F7D8A3A22F6F91"
+			tasks: [{
+				id: "3F188D251D3B45D6"
+				type: "item"
+				item: "industrialforegoing:animal_baby_separator"
+			}]
+		}
+		{
+			title: "正在处理这个烂摊子！"
+			x: 7.0d
+			y: -0.5d
+			subtitle: "没有人喜欢臭烘烘的农场！"
+			description: [
+				"尤其是如果使用自动繁殖器（动物喂食器），那么……嗯……粪便……的问题只会变得更糟！幸运的是，有一种方法可以将污水废料转化为真正有用的东西。"
+				""
+				"此外，繁殖动物会掉落经验值，久而久之会堆积成严重问题（导致卡顿！），所以这个下水道还会收集散落的经验球并将其储存为精粹。"
+				""
+				"污水和精华都可以通过管道排出，以更可控（且气味更芬芳）的方式进行处理。"
+			]
+			dependencies: ["5569711F6E3BEA01"]
+			id: "27651D4BF3C2A478"
+			tasks: [{
+				id: "0C72BBE3D942B105"
+				type: "item"
+				item: "industrialforegoing:sewer"
+			}]
+		}
+		{
+			title: "有用的排放物"
+			x: 7.0d
+			y: 1.0d
+			description: [
+				"从下水道收集的污水可以接入污水堆肥器，转化为肥料。"
+				""
+				"这种肥料可以像骨粉一样用于作物，也可以用于制作水培床。"
+			]
+			dependencies: ["27651D4BF3C2A478"]
+			id: "51A474A57192808E"
+			tasks: [{
+				id: "4CE20F86A6827244"
+				type: "item"
+				item: "industrialforegoing:sewage_composter"
+			}]
+		}
+		{
+			title: "肥料！"
+			x: 7.0d
+			y: 2.5d
+			subtitle: "（又名：Fertilizer）"
+			description: [
+				"这活儿有点恶心，但总得有人来做。"
+				""
+				"而且既然没有别人了，我想只能靠你了！"
+			]
+			dependencies: ["51A474A57192808E"]
+			id: "50F6022EB42C71BB"
+			tasks: [{
+				id: "49F82192D991ED78"
+				type: "item"
+				item: "industrialforegoing:fertilizer"
+			}]
+			rewards: [{
+				id: "261C6792FB3F9080"
+				type: "item"
+				item: "industrialforegoing:fertilizer"
+				count: 8
+				random_bonus: 8
+			}]
+		}
+		{
+			title: "工业简约模组 (Industrial Simplicity)"
+			disable_toast: true
+			x: 14.0d
+			y: -2.5d
+			shape: "gear"
+			size: 1.5d
+			id: "3D8ADEC8E08C0C88"
+			tasks: [{
+				id: "262D4DB16C3B6DF9"
+				type: "item"
+				item: "industrialforegoing:machine_frame_simple"
+			}]
+		}
+		{
+			disable_toast: true
+			x: 2.0d
+			y: -2.5d
+			description: [
+				"溶解室是一种特殊设备，能将固体原料与特定流体结合，以制造高级装备。"
+				""
+				"除了更高级的机器框架外，溶解室还用于为这些机器创建许多附加组件（升级），包括速度、效率和范围附加组件。"
+				""
+				"制作多个溶解室（每种流体一个）可能比尝试使用单个溶解室更简单。"
+			]
+			dependencies: ["76732FBE9A8C66D9"]
+			id: "5D956852A7CA4CF2"
+			tasks: [{
+				id: "337195C66293BF35"
+				type: "item"
+				item: "industrialforegoing:dissolution_chamber"
+			}]
+		}
+		{
+			title: "高效的作物生长效率"
+			x: 14.0d
+			y: -0.5d
+			description: [
+				"默认情况下，如果提供能量和水（下界作物则为岩浆），水培床的生长速度会比正常情况略快。"
+				""
+				"之后，当你有相关物品时，加入少量以太气体将极大地提高生产效率，并实现自动化采集。"
+				""
+				"在此期间，将一组水培床与播种机和收割机配合使用即可解决问题（即，将播种机/收割机装置中的泥土替换为水培床）。"
+				""
+				"注意，相邻的水培床会自动共享电力和水（或岩浆）——你不需要为每个床单独提供这些资源。"
+			]
+			dependencies: [
+				"3D8ADEC8E08C0C88"
+				"50F6022EB42C71BB"
+			]
+			id: "08B0E7CCF4261CF4"
+			tasks: [{
+				id: "2340305BE6029D97"
+				type: "item"
+				item: "industrialforegoing:hydroponic_bed"
+			}]
+		}
+		{
+			title: "让它生长！让它生长！"
+			x: 16.0d
+			y: -2.5d
+			subtitle: "再也无法阻止我了！"
+			description: [
+				"植物肥料会对其作用范围内的作物施加骨粉或肥料。"
+				""
+				"它会持续将作物施加到方块中的作物上，直到作物无法再接受更多为止，然后才会移动到下一个作物。这使得它不适用于某些作物，但对大多数作物效果显著（前提是你有稳定的输入材料供应）。"
+				""
+				"默认情况下，作用范围是机器正前方1x1格的区域。可以通过使用范围扩展来扩大范围。例如，+2范围扩展会将作用中心向远离机器的方向移动2格，并将范围在每个基本方向上增加2格，从而形成一个5x5的工作区域。"
+			]
+			dependencies: ["3D8ADEC8E08C0C88"]
+			id: "4680373A78B8F0F1"
+			tasks: [{
+				id: "4DEF1FEC70804C0D"
+				type: "item"
+				item: "industrialforegoing:plant_fertilizer"
+			}]
+		}
+		{
+			title: "对于懒惰的渔夫来说……"
+			x: 12.0d
+			y: -2.5d
+			description: [
+				"海洋渔夫用相当大的功率来捕鱼，但能免去你盯着水池发呆的无尽无聊！"
+				""
+				"放置在至少3x3的水池上方时，它会自动捕鱼（或许还有其他东西？），每次消耗5000RF。"
+			]
+			dependencies: ["3D8ADEC8E08C0C88"]
+			id: "06856E9683A0E4DD"
+			tasks: [{
+				id: "1306E26A35735D05"
+				type: "item"
+				item: "industrialforegoing:marine_fisher"
+			}]
+		}
+		{
+			disable_toast: true
+			x: 14.0d
+			y: -4.5d
+			description: [
+				"激光钻头本身没什么大用。"
+				""
+				"你需要将它们对准某种激光基地——矿石激光基地（如果你想产出矿石）或流体激光基地（如果你的目标是流体）。"
+				""
+				"每个基地可以使用多个矿石激光——只要它们的工作区域与激光基地重叠，它们就能正常工作。"
+				""
+				"激光钻头需要能量，并且可以接受速度和效率的升级。"
+			]
+			dependencies: ["3D8ADEC8E08C0C88"]
+			dependency_requirement: "one_completed"
+			id: "1AD240B7CC719585"
+			tasks: [{
+				id: "550F655F0D522776"
+				type: "item"
+				item: "industrialforegoing:laser_drill"
+			}]
+		}
+		{
+			x: 12.5d
+			y: -4.0d
+			description: [
+				"这台机器会检测其前方（范围内）的实体数量，并在背面输出与该数量相等的红石信号。"
+				""
+				"例如，当有怪物可杀时，可以开启 Mob Crusher 等机器，或者在没有任务时将其关闭，从而节省能源。"
+			]
+			dependencies: ["3D8ADEC8E08C0C88"]
+			id: "1B862F3D13008CAC"
+			tasks: [{
+				id: "2C712A68531FFE92"
+				type: "item"
+				item: "industrialforegoing:mob_detector"
+			}]
+		}
+		{
+			x: 15.5d
+			y: -4.0d
+			description: [
+				"现阶段可能没必要费心制作这台机器——它是矿石五倍化多阶段流程的一部分，但既然你有奇点资源生成器，那这还有什么意义呢？"
+				""
+				"如果你好奇，这台机器会在达到设定等级时密封内容物，并将（清洗工厂生产的）生矿石肉发酵成发酵矿石肉，为流体筛分机中的下一阶段做好准备。"
+			]
+			dependencies: ["3D8ADEC8E08C0C88"]
+			id: "0CBF45A8A7A7C44B"
+			tasks: [{
+				id: "641F6E26078349CB"
+				type: "item"
+				item: "industrialforegoing:fermentation_station"
+			}]
+		}
+		{
+			disable_toast: true
+			x: 0.0d
+			y: 7.5d
+			shape: "gear"
+			description: ["一旦你获得了粉史莱姆，就可以将简易机器框架在溶解室中升级为高级机器框架。"]
+			hide_dependency_lines: true
+			dependencies: ["3D8ADEC8E08C0C88"]
+			size: 1.5d
+			id: "2996F0F6C75C18CE"
+			tasks: [{
+				id: "25332D071220CA22"
+				type: "item"
+				item: "industrialforegoing:machine_frame_advanced"
+			}]
+		}
+		{
+			x: 1.5d
+			y: 6.0d
+			description: ["流体筛分机是5倍矿石加工多阶段流程的最后阶段。它会筛分发酵矿石肉，产出最终资源。"]
+			dependencies: ["2996F0F6C75C18CE"]
+			id: "014B7AC405EA2A18"
+			tasks: [{
+				id: "6B0119B2FFC628B2"
+				type: "item"
+				item: "industrialforegoing:fluid_sieving_machine"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 6.0d
+			description: ["这台机器会为含有能量的物品充能。如果物品是无限物品，充能速度会非常快。"]
+			dependencies: ["2996F0F6C75C18CE"]
+			id: "43C07C9C8F81B664"
+			tasks: [{
+				id: "1E0494FFD9F5477C"
+				type: "item"
+				item: "industrialforegoing:infinity_charger"
+			}]
+		}
+		{
+			x: -2.0d
+			y: 7.5d
+			description: [
+				"药水——也就是“现代药物”——用酿造台酿造起来可真是麻烦。"
+				""
+				"如果你真想批量酿造药水，那么这台机器应该能帮到你！"
+			]
+			dependencies: ["2996F0F6C75C18CE"]
+			id: "6E8F6A093FCECB82"
+			tasks: [{
+				id: "23E845BDB7C0145D"
+				type: "item"
+				item: "industrialforegoing:potion_brewer"
+			}]
+		}
+		{
+			disable_toast: true
+			x: 1.5d
+			y: 9.0d
+			description: [
+				"流体激光基地本身并不能做什么。"
+				""
+				"不过，只要正确放置激光钻，流体激光基座就是你控制整个装置的地方。"
+				""
+				"要了解用这个能挖掘什么，最好的方法是在 JEI 中查看流体激光基座的用途。"
+			]
+			dependencies: ["2996F0F6C75C18CE"]
+			id: "4DFA2CEA803CD973"
+			tasks: [{
+				id: "38855F4C0A352530"
+				type: "item"
+				item: "industrialforegoing:fluid_laser_base"
+			}]
+		}
+		{
+			disable_toast: true
+			x: 0.0d
+			y: 9.5d
+			description: [
+				"停滞室可以将生物冻结在原地。"
+				""
+				"这需要在其正上方的 3x3x3 区域内完成。"
+				""
+				"不过要小心！如果电力耗尽，停滞场就会坍缩，怪物又会重获自由！"
+			]
+			dependencies: ["2996F0F6C75C18CE"]
+			id: "6C39F9EE5CD29A70"
+			tasks: [{
+				id: "16B46A186FD3D742"
+				type: "item"
+				item: "industrialforegoing:stasis_chamber"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 9.0d
+			description: [
+				"这台机器可以生成黑曜石、花岗岩、闪长岩、安山岩、鹅卵石和下界岩。"
+				""
+				"除了鹅卵石，生成还需要消耗一些输入材料。对于鹅卵石，内部储罐必须装有水和岩浆，但它们不会被消耗。"
+				""
+				"除了生成各种原材料外，这台机器还能执行不同的加工步骤，总共能产生36种额外产物！更多信息请查看JEI或补充文档《Industrial Foregoing's Manual》。"
+			]
+			dependencies: ["2996F0F6C75C18CE"]
+			id: "50A22A3ED8A775A3"
+			tasks: [{
+				id: "02D876C87AAF92A7"
+				type: "item"
+				item: "industrialforegoing:material_stonework_factory"
+			}]
+		}
+		{
+			x: 2.0d
+			y: 7.5d
+			description: [
+				"矿石激光基地本身并不能做什么。"
+				""
+				"不过，放置正确的激光钻头后，矿石激光基地才是你控制整个装置的地方。"
+				""
+				"要了解用这个能挖掘什么，最好的方法是在 JEI 中查看 Ore Laser Base 的用途。"
+			]
+			dependencies: ["2996F0F6C75C18CE"]
+			id: "4D4AD4D62B9AB65A"
+			tasks: [{
+				id: "2A86A5FB4F5D9A0B"
+				type: "item"
+				item: "industrialforegoing:ore_laser_base"
+			}]
+		}
+		{
+			x: 0.0d
+			y: 5.5d
+			description: [
+				"洗矿厂用液态肉清洗矿石，生产出可发酵的矿石肉。这是三阶段流程中的第一台机器，可产出5倍矿石加工量。"
+				""
+				"如果你已经有了 Singularity Resource Generators 和 Quantum Singularities，可能觉得这个没必要，但也许你喜欢多些选择，所以再给你一个！"
+			]
+			dependencies: ["2996F0F6C75C18CE"]
+			id: "265AB2D17A6FA8F2"
+			tasks: [{
+				id: "1EB59DFDA8EAF6FB"
+				type: "item"
+				item: "industrialforegoing:washing_factory"
+			}]
+		}
+		{
+			disable_toast: true
+			x: 7.0d
+			y: 7.5d
+			shape: "gear"
+			description: ["制作至尊机器框架需要在溶解室中放入以太气体。有关如何获取以太气体的更多信息，请参阅章节“屠宰场”的第二部分。"]
+			hide_dependency_lines: true
+			dependencies: ["2996F0F6C75C18CE"]
+			size: 1.5d
+			id: "531C316189E908F5"
+			tasks: [{
+				id: "65A80ACBDA1C1CC0"
+				type: "item"
+				item: "industrialforegoing:machine_frame_supreme"
+			}]
+		}
+		{
+			disable_toast: true
+			x: 7.0d
+			y: 5.5d
+			description: [
+				"当向凋灵建造者提供灵魂沙、凋灵骷髅头和能量时，它将自动为你建造凋灵。"
+				""
+				"当然，你得做好防护！确保有办法快速安全地处理它们。我们建议你用 Mob Crusher 来杀死它们，再用一个防凋零的笼子把它们关起来？"
+			]
+			dependencies: ["531C316189E908F5"]
+			id: "2757A23A4100A52B"
+			tasks: [{
+				id: "128F824F44BE2288"
+				type: "item"
+				item: "industrialforegoing:wither_builder"
+			}]
+		}
+		{
+			x: 7.0d
+			y: 9.5d
+			description: ["黑洞控制器最多可容纳16个其他黑洞单元或黑洞储罐，通过存储总线连接到ME系统后可实现海量外部存储。"]
+			dependencies: ["531C316189E908F5"]
+			id: "09EC26A89D4CE5E0"
+			tasks: [{
+				id: "4189035CDC7577B9"
+				type: "item"
+				item: "industrialforegoing:black_hole_controller"
+			}]
+		}
+		{
+			x: 9.0d
+			y: 7.5d
+			description: [
+				"Mycelial Reactor 每刻能产生高达 2000 万 RF 的能量——但这需要 16 个其他 Mycelial Generator 同时运行！"
+				""
+				"要让菌丝反应堆持续运行，最大的挑战在于自动化16个发电机，使其能不间断工作。这需要相当多的设置工作，实现起来颇具难度，所以你或许会放弃这个想法……"
+			]
+			dependencies: ["531C316189E908F5"]
+			id: "087B1B24B1CEB64D"
+			tasks: [{
+				id: "2F7B8F7127BCED5B"
+				type: "item"
+				item: "industrialforegoing:mycelial_reactor"
+			}]
+		}
+		{
+			x: 10.5d
+			y: 6.0d
+			description: [
+				"熔炉燃料燃烧后会产生："
+				"&a80 FE/t&f，燃烧时间取决于材料，从2.5秒到1600秒不等"
+			]
+			hide_dependency_lines: true
+			dependencies: ["3D8ADEC8E08C0C88"]
+			id: "1F13871D302C247E"
+			tasks: [{
+				id: "1E545998D95A04E0"
+				type: "item"
+				item: "industrialforegoing:mycelial_furnace"
+			}]
+		}
+		{
+			x: 10.5d
+			y: 7.0d
+			description: [
+				"消耗 250 mB 牛奶和 1 个史莱姆球，并产生："
+				"&a200 FE/t&f for 20 seconds"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2996F0F6C75C18CE"]
+			id: "25119080A30B87B6"
+			tasks: [{
+				id: "4ED5AAEF913A7351"
+				type: "item"
+				item: "industrialforegoing:mycelial_slimey"
+			}]
+		}
+		{
+			x: 10.5d
+			y: 8.0d
+			description: [
+				"消耗食物物品并产生："
+				"Between &a8 FE/t&f and &a160 FE/t&f for 8 to 256 seconds depending on the quality of the food."
+			]
+			hide_dependency_lines: true
+			dependencies: ["3D8ADEC8E08C0C88"]
+			id: "084642F7108A86BD"
+			tasks: [{
+				id: "36622266BFB432EB"
+				type: "item"
+				item: "industrialforegoing:mycelial_culinary"
+			}]
+		}
+		{
+			x: 10.5d
+			y: 9.0d
+			description: [
+				"消耗药水（或水瓶），并产生："
+				"根据所用药水强度的不同，在 4 到 484 秒内，速度介于 &a10 FE/t&f 和 &a7290 FE/t&f 之间。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2996F0F6C75C18CE"]
+			id: "4B0DA7311482E35D"
+			tasks: [{
+				id: "530B4BCA8799F8D9"
+				type: "item"
+				item: "industrialforegoing:mycelial_potion"
+			}]
+		}
+		{
+			x: 11.5d
+			y: 6.0d
+			description: [
+				"消耗附魔书，并产出："
+				"根据附魔品质，在 16 到 52 秒内，消耗 &a40 FE/t&f 至 &a160 FE/t&f。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2996F0F6C75C18CE"]
+			id: "40FA1054CF0F4B36"
+			tasks: [{
+				id: "593D8EAA6CFF913A"
+				type: "item"
+				item: "industrialforegoing:mycelial_disenchantment"
+			}]
+		}
+		{
+			x: 11.5d
+			y: 7.0d
+			description: [
+				"消耗末影之眼或末影珍珠，并产生："
+				"&a40 FE/t&f（末影珍珠）持续80秒，或&a80 EF/t&f（末影之眼）持续160秒"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2996F0F6C75C18CE"]
+			id: "3F5FA6CBC1DC4734"
+			tasks: [{
+				id: "652FD401F48543C8"
+				type: "item"
+				item: "industrialforegoing:mycelial_ender"
+			}]
+		}
+		{
+			x: 11.5d
+			y: 8.0d
+			description: [
+				"消耗火药或TNT，并产生："
+				"20次或160秒内消耗&a160 FE/t&f"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2996F0F6C75C18CE"]
+			id: "77C84C932F3529E0"
+			tasks: [{
+				id: "0BEE696D88056496"
+				type: "item"
+				item: "industrialforegoing:mycelial_explosive"
+			}]
+		}
+		{
+			x: 11.5d
+			y: 9.0d
+			description: [
+				"消耗不同类型的雪和冰，并产生："
+				"在 &a2 FE/t&f 和 &a40 FE/t&f 之间，持续 20-180 秒"
+			]
+			hide_dependency_lines: true
+			dependencies: ["3D8ADEC8E08C0C88"]
+			id: "5BE659FCA09580FD"
+			tasks: [{
+				id: "24B5D65D9111D56A"
+				type: "item"
+				item: "industrialforegoing:mycelial_frosty"
+			}]
+		}
+		{
+			x: 12.5d
+			y: 6.0d
+			description: [
+				"消耗龙之息，并产生："
+				"&a40 FE/t&f for 600 seconds"
+			]
+			hide_dependency_lines: true
+			dependencies: ["531C316189E908F5"]
+			id: "4E258DA8B1DB307F"
+			tasks: [{
+				id: "4FCDFA43CE2F3E6A"
+				type: "item"
+				item: "industrialforegoing:mycelial_halitosis"
+			}]
+		}
+		{
+			x: 12.5d
+			y: 7.0d
+			description: [
+				"消耗岩浆（和可选的红石），并产生："
+				"&a50 FE/t&f（仅岩浆）或 &a100 FE/t&f（含红石）持续25秒"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2996F0F6C75C18CE"]
+			id: "2EAAACD86EFD1A78"
+			tasks: [{
+				id: "27AB4BC9F32FA2AA"
+				type: "item"
+				item: "industrialforegoing:mycelial_magma"
+			}]
+		}
+		{
+			x: 12.5d
+			y: 8.0d
+			description: [
+				"消耗粉色物品，并产出："
+				"&a135 FE/t&f 持续 3.45 秒"
+			]
+			hide_dependency_lines: true
+			dependencies: ["3D8ADEC8E08C0C88"]
+			id: "7A70D3BA58ED438B"
+			tasks: [{
+				id: "5DDE7C4BF08D73FF"
+				type: "item"
+				item: "industrialforegoing:mycelial_pink"
+			}]
+		}
+		{
+			x: 12.5d
+			y: 9.0d
+			description: [
+				"消耗下界之星，并产出："
+				"&a4000 FE/t&f for 120 seconds"
+			]
+			hide_dependency_lines: true
+			dependencies: ["531C316189E908F5"]
+			id: "186527276B05032F"
+			tasks: [{
+				id: "69CB3425D6B57F95"
+				type: "item"
+				item: "industrialforegoing:mycelial_netherstar"
+			}]
+		}
+		{
+			x: 13.5d
+			y: 6.0d
+			description: [
+				"消耗骨头、腐肉或凋零骷髅头，并产出："
+				"&a20 FE/t&f for 10 seconds"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2996F0F6C75C18CE"]
+			id: "305540D9B90FCD24"
+			tasks: [{
+				id: "12338FAF3AA9ABC2"
+				type: "item"
+				item: "industrialforegoing:mycelial_death"
+			}]
+		}
+		{
+			x: 13.5d
+			y: 7.0d
+			description: [
+				"消耗火箭并产生："
+				"&a80 FE/t&f 及以上，具体取决于火箭类型。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2996F0F6C75C18CE"]
+			id: "7D3A0BDDB67E55C8"
+			tasks: [{
+				id: "4E6D56822EF3BA66"
+				type: "item"
+				item: "industrialforegoing:mycelial_rocket"
+			}]
+		}
+		{
+			x: 13.5d
+			y: 8.0d
+			description: [
+				"消耗下界植物（蘑菇、真菌等），并产出："
+				"输入不同，则为 &a20 FE/t&f 或 &a40 FE/t&f，持续 10 或 20 秒"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2996F0F6C75C18CE"]
+			id: "711CBBA866A34A57"
+			tasks: [{
+				id: "4CB5AF005FC23EBB"
+				type: "item"
+				item: "industrialforegoing:mycelial_crimed"
+			}]
+		}
+		{
+			x: 13.5d
+			y: 9.0d
+			description: [
+				"消耗 20 mB 液态肉和 1 个锭，并产生："
+				"&a100 FE/t&f for 20 seconds"
+			]
+			hide_dependency_lines: true
+			dependencies: ["531C316189E908F5"]
+			id: "154A6BCBB48DF0D2"
+			tasks: [{
+				id: "23B95FBB4BBEC468"
+				type: "item"
+				item: "industrialforegoing:mycelial_meatallurgic"
+			}]
+		}
+	]
+}

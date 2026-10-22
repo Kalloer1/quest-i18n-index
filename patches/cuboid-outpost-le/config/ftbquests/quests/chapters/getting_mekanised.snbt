@@ -1,0 +1,740 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "getting_mekanised"
+	group: "719DAED049159F2E"
+	icon: "mekanism:alloy_infused"
+	id: "4263B8C4A58CC2F5"
+	order_index: 5
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: [
+				"2A3A34A47D8AF234"
+				"556EC4397E364D31"
+			]
+			description: [
+				"既然你已经获得了铁和锇，我们就可以开始制造一些较为先进的机器了。"
+				""
+				"解锁条件："
+				"- 发挥创造力 (1/2)"
+				"- 完成Tinkers的委托 (2/2)"
+			]
+			id: "222E7D1D24E47EE0"
+			rewards: [{
+				id: "722E792C7B9C563B"
+				item: {
+					Count: 1b
+					id: "mekanism:configurator"
+					tag: {
+						mekData: {
+							EnergyContainers: [{
+								Container: 0b
+								stored: "60000"
+							}]
+						}
+					}
+				}
+				type: "item"
+			}]
+			shape: "gear"
+			subtitle: "（包含 Mekanism 模组）"
+			tasks: [{
+				id: "0CCC9D6C4EEE6B7E"
+				title: "开始机械化改造"
+				type: "checkmark"
+			}]
+			title: "开始机械化改造"
+			x: -19.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["222E7D1D24E47EE0"]
+			description: [
+				"我们需要制造的第一台新机器是冶金注入器。"
+				""
+				"本质上，你为机器提供能量（或在右侧的能量槽中放入红石），将煤炭或红石等注入材料放入注入材料槽（其他材料见配方），然后放入你想要注入的金属。"
+				""
+				"几秒钟的喧闹过后，你就能得到融合的结果了。"
+				""
+				"如果噪音实在困扰你，可以尝试制作消音器升级（每台机器最多4个），或使用背包中的内置消音器来静音特定声音。"
+			]
+			id: "2EDEBF605629EAF5"
+			shape: "square"
+			subtitle: "让他们知道谁是老大！"
+			tasks: [{
+				id: "758E7E22CD876569"
+				item: "mekanism:metallurgic_infuser"
+				type: "item"
+			}]
+			title: "给那些金属注入能量！"
+			x: -17.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["2EDEBF605629EAF5"]
+			description: [
+				"冶金注入器的注入罐中放入10mb红石和1个铁锭，即可生产出注入合金。"
+				""
+				"浸渍合金可用于许多机器，并可再次浸渍以生产更高级别的合金。"
+				""
+				"你也可以将已放置的基础电缆升级为最多8根相连的高级电缆，无需在合成台中进行操作。"
+			]
+			id: "1DFD647EF1A8254C"
+			rewards: [{
+				id: "569CC30EE4D358B1"
+				item: "mekanism:alloy_infused"
+				random_bonus: 31
+				type: "item"
+			}]
+			shape: "square"
+			tasks: [{
+				count: 32L
+				id: "5FDCFF9A33FBC1D1"
+				item: "mekanism:alloy_infused"
+				type: "item"
+			}]
+			title: "Infused Alloys"
+			x: -21.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["2EDEBF605629EAF5"]
+			description: [
+				"在注入器中加入20mb红石和一个锇锭，即可制作一个基础控制电路。"
+				""
+				"基础控制电路可以升级到更高级别，并且是我们即将重制的许多机器的材料，所以最好多储备一些。"
+			]
+			id: "2A2991C7A49282DB"
+			rewards: [{
+				id: "735DFA8249851257"
+				item: "mekanism:basic_control_circuit"
+				random_bonus: 15
+				type: "item"
+			}]
+			shape: "square"
+			tasks: [{
+				count: 32L
+				id: "12252D4D84D5F358"
+				item: "mekanism:basic_control_circuit"
+				type: "item"
+			}]
+			title: "基础的控制力灌注仪式"
+			x: -17.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["2EDEBF605629EAF5"]
+			description: [
+				"钢是一种坚固耐用的材料，也是我们沿途需要建造的许多高级机器所必需的。"
+				""
+				"使用冶金催化器制作钢是一个两步过程。首先将一些碳放入催化罐中（每次10mb），然后放入一些铁。这样会产生富集铁粉。"
+				""
+				"将富化铁粉和另外10mb的碳放回冶金注入器中，即可生成钢粉，可熔炼成钢锭。"
+			]
+			id: "58C29DF76FB2F288"
+			shape: "square"
+			tasks: [
+				{
+					count: 32L
+					id: "2341253C43B5149C"
+					item: "mekanism:enriched_iron"
+					type: "item"
+				}
+				{
+					count: 32L
+					id: "252106879C7832C4"
+					item: {
+						Count: 1b
+						id: "itemfilters:tag"
+						tag: {
+							value: "forge:dusts/steel"
+						}
+					}
+					title: "32x 钢粉"
+					type: "item"
+				}
+				{
+					count: 32L
+					id: "638003E4CCA29C48"
+					item: {
+						Count: 1b
+						id: "itemfilters:tag"
+						tag: {
+							value: "forge:ingots/steel"
+						}
+					}
+					title: "32x 钢锭"
+					type: "item"
+				}
+			]
+			title: "钢铁般的神经"
+			x: -15.0d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"2A2991C7A49282DB"
+				"1DFD647EF1A8254C"
+			]
+			description: [
+				"将两种注入合金与基础控制电路结合，即可将其提升至下一级：高级控制电路。"
+				""
+				"这将为你现有的机器提供更多机械选项，以及更高级别的升级。"
+			]
+			id: "5095107E4E8235DE"
+			rewards: [{
+				id: "317F518BCD1712E8"
+				item: "mekanism:advanced_control_circuit"
+				random_bonus: 5
+				type: "item"
+			}]
+			shape: "square"
+			tasks: [{
+				count: 6L
+				id: "1EA02C3A398C9B20"
+				item: "mekanism:advanced_control_circuit"
+				type: "item"
+			}]
+			title: "一种高级的控制灌注术"
+			x: -17.0d
+			y: 6.0d
+		}
+		{
+			dependencies: [
+				"5095107E4E8235DE"
+				"09E3F456104DF524"
+			]
+			description: [
+				"将两种强化合金与一个高级控制电路结合，即可将其提升至下一级：精英控制电路。"
+				""
+				"这将为你现有的机器提供更多机械选项，以及更高级别的升级。"
+			]
+			id: "61C0AA54A152FCAA"
+			rewards: [{
+				id: "61449BFD511E055A"
+				item: "mekanism:elite_control_circuit"
+				random_bonus: 3
+				type: "item"
+			}]
+			shape: "square"
+			tasks: [{
+				count: 4L
+				id: "54A946CE644136FF"
+				item: "mekanism:elite_control_circuit"
+				type: "item"
+			}]
+			title: "精英控制的注入物（An Elite Infusion of Control）"
+			x: -17.0d
+			y: 8.0d
+		}
+		{
+			dependencies: [
+				"61C0AA54A152FCAA"
+				"335E73D74980F177"
+			]
+			description: [
+				"将两种原子合金与精英控制电路结合，即可将其提升至下一级：终极控制电路。"
+				""
+				"这将为你现有的机器提供更多机械选项，以及更高级别的升级。"
+				""
+				"&a前置任务：末地还剩下什么？&f"
+			]
+			id: "10E2C4E20F68BED8"
+			rewards: [{
+				id: "610D352C2F5E7BC7"
+				item: "mekanism:ultimate_control_circuit"
+				random_bonus: 3
+				type: "item"
+			}]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{
+				count: 2L
+				id: "656E2E531B35E307"
+				item: "mekanism:ultimate_control_circuit"
+				type: "item"
+			}]
+			title: "终极控制力的注入仪式"
+			x: -17.0d
+			y: 10.0d
+		}
+		{
+			dependencies: ["1DFD647EF1A8254C"]
+			description: [
+				"冶金注入器的注入罐中放入20mb钻石粉尘和一种注入合金，即可生产出强化合金。"
+				""
+				"强化合金可用于许多机器，并且可以再次注入以生产更高级别的合金。"
+				""
+				"你也可以将已放置的高级电缆升级为精英电缆，无需在合成台中进行操作。"
+			]
+			id: "09E3F456104DF524"
+			rewards: [{
+				id: "6EFF2F108869B4FE"
+				item: "mekanism:alloy_reinforced"
+				random_bonus: 15
+				type: "item"
+			}]
+			shape: "square"
+			tasks: [{
+				count: 16L
+				id: "7D23D114FB7A76D7"
+				item: "mekanism:alloy_reinforced"
+				type: "item"
+			}]
+			title: "强化合金 Reinforced Alloys"
+			x: -21.0d
+			y: 6.0d
+		}
+		{
+			dependencies: [
+				"09E3F456104DF524"
+				"7E01B04F285F87CF"
+			]
+			description: [
+				"冶金注入器的注入罐中放入40mb的提炼黑曜石和一种强化合金，即可生产出原子合金。"
+				""
+				"原子合金用于许多顶级机器中。"
+				""
+				"你也可以将已放置的精英电缆升级为终极电缆，无需在合成台中进行操作。"
+			]
+			id: "335E73D74980F177"
+			rewards: [{
+				id: "2EBCDAECC235D058"
+				item: "mekanism:alloy_atomic"
+				random_bonus: 5
+				type: "item"
+			}]
+			shape: "square"
+			tasks: [{
+				count: 6L
+				id: "46B7BD3931AFABFE"
+				item: "mekanism:alloy_atomic"
+				type: "item"
+			}]
+			title: "原子合金"
+			x: -21.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["58C29DF76FB2F288"]
+			description: ["重型机械需要坚固的框架。大多数高级机械装置都需要钢制外壳，所以先制作十几个备用吧。"]
+			id: "57047D57E53534BF"
+			rewards: [{
+				count: 3
+				id: "30C9CD6E26A177EB"
+				item: "mekanism:steel_casing"
+				random_bonus: 3
+				type: "item"
+			}]
+			shape: "square"
+			tasks: [{
+				count: 4L
+				id: "6D7A16FB467754E2"
+				item: "mekanism:steel_casing"
+				type: "item"
+			}]
+			title: "钢铁般的内核 (A Steely Inner Core)"
+			x: -13.0d
+			y: 4.0d
+		}
+		{
+			dependencies: [
+				"57047D57E53534BF"
+				"2A2991C7A49282DB"
+			]
+			description: [
+				"并非所有材料都适合用来制造量子奇点，而这些奇点可用于SRG。有些材料需要采用其他方法才能充分利用其价值。"
+				""
+				"你现在应该着手制作4台机器。它们起初会很简单，但可以使用升级（如速度和能效改进）进行升级，也可以将其升级为高级工厂（可提供更多并行处理）。"
+				""
+				"富集室"
+				"- 用于富集材料/将粉尘还原为物品/作为矿石三倍化的一部分"
+				""
+				"破碎机"
+				"- 用一点能量把各种各样的东西压缩在一起的方法"
+				""
+				"能量熔炼炉"
+				"一种使用能量而非可燃物品作为燃料的冶炼方式。"
+				""
+				"精密锯木厂"
+				"- 在自动化需要木板和木棍等物品的配方时非常有用"
+			]
+			id: "09801260481BD6F9"
+			shape: "square"
+			tasks: [
+				{
+					id: "2E5698A30208A3DD"
+					item: "mekanism:enrichment_chamber"
+					type: "item"
+				}
+				{
+					id: "2A48AB2725CA85FE"
+					item: "mekanism:energized_smelter"
+					type: "item"
+				}
+				{
+					id: "5262066C4C80EB76"
+					item: "mekanism:precision_sawmill"
+					type: "item"
+				}
+				{
+					id: "26A09644B3184AA7"
+					item: "mekanism:crusher"
+					type: "item"
+				}
+			]
+			title: "丰富你的生活，增添更多乐趣"
+			x: -15.0d
+			y: 5.0d
+		}
+		{
+			dependencies: ["2A2991C7A49282DB"]
+			description: [
+				"基础安装器是一种可以直接安装在已连接的基础机器上的升级组件。它会将基础机器转换为工厂基础版，从而提升其并行处理能力，使3种输入能同时处理。"
+				""
+				"可应用于多种 Mekanism 机器 - 在 JEI 中搜索 'factory' 查看列表。"
+			]
+			id: "79926615667744FB"
+			tasks: [{
+				id: "6EEA8DFD27372B8A"
+				item: "mekanism:basic_tier_installer"
+				type: "item"
+			}]
+			title: "基础工厂"
+			x: -19.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["5095107E4E8235DE"]
+			description: ["可用于将基础工厂原地转换为高级工厂，将并行处理的输入数量从3增加到5。"]
+			id: "6A91722A7C8216E2"
+			tasks: [{
+				id: "749122A429D71FB5"
+				item: "mekanism:advanced_tier_installer"
+				type: "item"
+			}]
+			title: "高级工厂自动化模组 (Advanced Factories)"
+			x: -19.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["61C0AA54A152FCAA"]
+			description: ["可用于将高级工厂原地转换为精英工厂，将并行处理的输入数量从5增加到7。"]
+			id: "2DA204B08A16A02D"
+			tasks: [{
+				id: "629EE11C87FA1F0E"
+				item: "mekanism:elite_tier_installer"
+				type: "item"
+			}]
+			title: "精英工厂"
+			x: -19.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["10E2C4E20F68BED8"]
+			description: ["可用于将精英工厂原地转换为终极工厂，将并行处理的输入数量从7增加到9。"]
+			id: "55C8109845C482E3"
+			tasks: [{
+				id: "556F6D3438089741"
+				item: "mekanism:ultimate_tier_installer"
+				type: "item"
+			}]
+			title: "终极工厂模组 (Ultimate Factories)"
+			x: -19.0d
+			y: 10.0d
+		}
+		{
+			dependencies: [
+				"5095107E4E8235DE"
+				"09801260481BD6F9"
+			]
+			description: [
+				"锇压缩机可用于制作高级锭，这些锭是工具、武器和其他合成配方所需的材料。"
+				""
+				"净化室消耗氧气，可用于不同流程的3倍、4倍和5倍矿石加工。"
+			]
+			id: "3338C7FA3C1698BE"
+			tasks: [
+				{
+					id: "08127692DE6233D0"
+					item: "mekanism:purification_chamber"
+					type: "item"
+				}
+				{
+					id: "762C8EE18DE29A9B"
+					item: "mekanism:osmium_compressor"
+					type: "item"
+				}
+			]
+			title: "压缩的纯净度"
+			x: -15.0d
+			y: 7.0d
+		}
+		{
+			dependencies: ["1DFD647EF1A8254C"]
+			description: [
+				"行，你暂时不打算造烧烤炉，可能也不在乎烧烤，但我们还是需要办法弄到一些气体。"
+				""
+				"具体来说，我们很快就需要氢气，之后可能还需要氧气。"
+				""
+				"如果我们建造一个电解分离器，只需将水分子分解成原子，就能同时获得这两种物质。"
+				""
+				"建造电解分离器后，为其提供水和电力，它就会开始生产氢气和氧气气体。"
+				""
+				"你可以用桶手动将水倒入电解分离器，也可以通过管道输送——可能使用电动泵、流体泵或水槽。"
+			]
+			id: "7F093389CF7E25F9"
+			shape: "square"
+			tasks: [
+				{
+					id: "0726DEDF28110AA4"
+					item: "mekanism:electrolytic_core"
+					type: "item"
+				}
+				{
+					id: "34214171D8448434"
+					item: "mekanism:electrolytic_separator"
+					type: "item"
+				}
+			]
+			title: "电解分离法"
+			x: -23.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["1DFD647EF1A8254C"]
+			description: [
+				"化学储罐用于储存高压气体，例如氧气和氢气。"
+				""
+				"基础储罐可以储存 64,000mb 的气体。"
+			]
+			id: "2BBDDBAB24C47867"
+			shape: "square"
+			tasks: [{
+				id: "02DE402C45690C38"
+				item: "mekanism:basic_chemical_tank"
+				type: "item"
+			}]
+			title: "用木炭烧烤，用燃气烤架烤制"
+			x: -23.0d
+			y: 4.0d
+		}
+		{
+			dependencies: [
+				"2BBDDBAB24C47867"
+				"7F093389CF7E25F9"
+			]
+			description: [
+				"现在有氢气了，你可以制作一个喷气背包，翱翔天际了。"
+				""
+				"为什么？因为你可以做到！"
+				""
+				"等会儿我们去探索的时候你也需要一个——相信我！"
+				""
+				"不过在飞走之前，你可能需要考虑如何安全着陆。我们建议穿戴 Free Runners 来吸收坠落伤害，否则你可能会面临一次相当狼狈且不优雅的着陆。"
+			]
+			id: "3AEF883219F65FF5"
+			shape: "square"
+			tasks: [{
+				id: "1A9ADD9E2C17E732"
+				item: {
+					Count: 1b
+					id: "mekanism:jetpack"
+					tag: {
+						HideFlags: 2
+					}
+				}
+				type: "item"
+			}]
+			title: "像鸟儿一样飞翔！"
+			x: -25.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["3AEF883219F65FF5"]
+			description: [
+				"虽然标准的喷气背包很适合用来移动，但它并不能给你的躯干提供多少保护！"
+				""
+				"不过，装甲喷气背包不仅让你能四处飞行，还提供了相当不错的保护，性能相当出色。"
+			]
+			id: "3B9269E12FF51576"
+			tasks: [{
+				id: "635CC4AE475DCD32"
+				item: "mekanism:jetpack_armored"
+				type: "item"
+			}]
+			title: "不仅仅是一个动力风筝而已"
+			x: -25.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["1DFD647EF1A8254C"]
+			description: ["能量电池是许多机器和小工具使用的电池。通常它们单独作用不大，但却是我们想要（重）发明的许多事物的关键部件。"]
+			id: "73469BF238C904F6"
+			tasks: [{
+				id: "41814C221F694106"
+				item: "mekanism:energy_tablet"
+				type: "item"
+			}]
+			title: "现代电池模组 (Modern Batteries)"
+			x: -21.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["73469BF238C904F6"]
+			description: [
+				"要是能不用一直跳，行动快一点，岂不是很棒？而且可能也不用太担心摔下来会受伤？"
+				""
+				"好消息！"
+				""
+				"自由跑者靴子能保护你！只需为其充能，它们就能消耗能量来帮你提升高度，并吸收坠落伤害。"
+				""
+				"记得保持它们充满电，否则你可能会在毫无防备的时候摔个四脚朝天。"
+			]
+			id: "162D84598C9C824A"
+			tasks: [{
+				id: "211074DD3F82FC1E"
+				item: "mekanism:free_runners"
+				type: "item"
+			}]
+			title: "正在使用能量运行"
+			x: -23.0d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"57047D57E53534BF"
+				"09801260481BD6F9"
+			]
+			description: [
+				"你需要某种电缆来连接你的新机器。有几种类型可供选择："
+				""
+				"Logistical Transporter - 用于移动物品。"
+				""
+				"通用电缆 - 用于传输能量。"
+				""
+				"机械管道 - 用于输送流体。"
+				""
+				"Pressurized Tube - 用于输送气体。"
+				""
+				"请使用配置器在适当的模式下（按 shift + 滚轮可切换）进行配置。"
+				""
+				"使用灌注合金，你可以在基础线缆升级为高级线缆，操作可在合成台或世界内已放置的线缆上完成。同样，升级至下一级线缆，请使用下一级合金。"
+			]
+			id: "7D512A79A62F1361"
+			shape: "square"
+			tasks: [
+				{
+					id: "669F11FEA270661A"
+					item: "mekanism:basic_universal_cable"
+					type: "item"
+				}
+				{
+					id: "443B9959DDC72C12"
+					item: "mekanism:basic_mechanical_pipe"
+					type: "item"
+				}
+				{
+					id: "13AB3D87412AAE01"
+					item: "mekanism:basic_pressurized_tube"
+					type: "item"
+				}
+				{
+					id: "183AC768E1F63896"
+					item: "mekanism:basic_logistical_transporter"
+					type: "item"
+				}
+			]
+			title: "有线电视安装工"
+			x: -13.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["09801260481BD6F9"]
+			description: [
+				"在石桶中倒入岩浆，然后在桶上放置水，就可以制作出黑曜石。"
+				""
+				"将一块黑曜石放入富集室即可制作出黑曜石粉尘。"
+				""
+				"将黑曜石粉尘放入装有钻石的冶金注入器中，即可制作出精炼黑曜石粉尘。"
+				""
+				"考虑到提炼黑曜石粉尘既耗时又昂贵，你可能想把粉尘放入富集室，制成富集黑曜石来制造原子合金，这样能节省8倍的用量。"
+			]
+			hide_dependency_lines: true
+			id: "7E01B04F285F87CF"
+			shape: "square"
+			tasks: [
+				{
+					id: "1761FBDECBD9AE9A"
+					item: "mekanism:dust_obsidian"
+					type: "item"
+				}
+				{
+					id: "501DBA1B60F28ED1"
+					item: "mekanism:dust_refined_obsidian"
+					type: "item"
+				}
+			]
+			title: "精炼黑曜石"
+			x: -23.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["162D84598C9C824A"]
+			description: [
+				"一些个人工具和装备需要充电。通常，你可以把它们放进专门的充电机或电源装置里，但要是能直接站在某个东西上，把所有东西都充好电，而不用先取下来，岂不是很棒？"
+				""
+				"Chargepad 正是你梦寐以求的！只需将其连接到电源，站在上面即可为背包中的物品或穿戴的装备充电，无需提前脱下！"
+				""
+				"不客气！"
+			]
+			id: "48C961DA8D4EE3D5"
+			tasks: [{
+				id: "5F15007FEC80E196"
+				item: "mekanism:chargepad"
+				type: "item"
+			}]
+			title: "说到给自己充能这件事儿……"
+			x: -25.0d
+			y: 4.0d
+		}
+		{
+			dependencies: [
+				"3338C7FA3C1698BE"
+				"10E2C4E20F68BED8"
+			]
+			description: [
+				"原子分解器是一种使用能量来驱动的多功能工具。"
+				""
+				"它能执行与镐、斧、铲子和锄头相同的大部分功能。"
+				""
+				"原子分解器有多种模式（默认情况下，按蹲下键和滚动键可切换模式）："
+				""
+				"&a普通&f: 效率 II 的钻石工具效果"
+				"&a缓慢&f：效果如同钻石工具"
+				"&a快速&f：效率V，如同钻石工具般运作"
+				"&a矿脉&f: 单次挥砍即可挖掘一整条石料/矿石/木材的矿脉。"
+				"&a扩展脉矿开采&f：与脉矿开采类似，但会开采相似的材料（例如，开采石头时，也会开采石头的变种）"
+				"&a关闭&f: 倒不如直接用手好了。"
+			]
+			id: "58E7FC36824A169E"
+			tasks: [{
+				id: "40CC2619274FAF46"
+				item: {
+					Count: 1b
+					id: "mekanism:atomic_disassembler"
+					tag: {
+						HideFlags: 2
+					}
+				}
+				type: "item"
+			}]
+			title: "机械多功能工具"
+			x: -15.0d
+			y: 9.0d
+		}
+	]
+	title: "开始机械化改造"
+}

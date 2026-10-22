@@ -1,0 +1,408 @@
+# AI 初翻，未人工校对
+{
+	id: "224354F4BDF62683"
+	group: "53EA7D6C6A1B0F69"
+	order_index: 4
+	filename: "exploring_the_nether_regions"
+	title: "探索下界区域 (Exploring Nether Regions)"
+	icon: "exnihilosequentia:crushed_netherrack"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "探索下界区域 (Exploring Nether Regions)"
+			x: -1.0d
+			y: 2.0d
+			shape: "gear"
+			description: ["既然你成功访问了末地并幸存下来，就需要用收集的材料去探索下一个维度。据说科学部认为生物就起源于那里。"]
+			id: "2280A6EEC1BFDEDD"
+			tasks: [
+				{
+					id: "598A8BA555915DF1"
+					type: "item"
+					item: "rftoolsbase:dimensionalshard"
+				}
+				{
+					id: "50FDF0F8AA087D2F"
+					type: "item"
+					item: "minecraft:nether_bricks"
+				}
+				{
+					id: "21E3DEA97509F418"
+					type: "item"
+					item: "powah:crystal_niotic"
+				}
+				{
+					id: "5C575C37D9D2698D"
+					type: "item"
+					item: "endergetic:boof_block"
+				}
+			]
+		}
+		{
+			x: -1.0d
+			y: 4.0d
+			shape: "square"
+			description: [
+				"你需要一把新钥匙才能通过低温维度传送器进入下一个维度。科学部门保证，为一些下界砖充能就能校准低温传送器，确保通行安全。"
+				""
+				"希望它能行，但现在先别管这个了……直接去制作充能的下界砖，我们拭目以待，好吗？"
+			]
+			dependencies: ["2280A6EEC1BFDEDD"]
+			id: "46821A52352BBC8F"
+			tasks: [{
+				id: "08117E8BF30437D8"
+				type: "item"
+				item: "cuboidmod:energized_nether_bricks"
+			}]
+			rewards: [{
+				id: "672DC08DB4F9A8FB"
+				type: "gamestage"
+				title: "出发吧！"
+				icon: "storagedrawers:shroud_key"
+				auto: "disabled"
+				stage: "nether_access"
+			}]
+		}
+		{
+			x: -1.0d
+			y: 6.0d
+			shape: "square"
+			description: [
+				"和探索末地维度一样，做好准备再去是个好主意。"
+				""
+				"确保你有飞行方式（并且喷气背包已充满电！）、有储物空间、武器装备，以及一些传送石，以便在需要返回时能更轻松地往返！"
+				""
+				"P.S. 我们一位比较极客——我是说，非常敬业！——的科学家似乎认为，“下界”维度可能是一个源自神话的地狱般存在。据说，根据现有故事，那里可能有些居民喜欢黄金，讨厌不戴闪亮饰品的人。当然，这只是 Ashrem 的说法，所以最终决定权在你。"
+			]
+			dependencies: ["46821A52352BBC8F"]
+			id: "248E373FA159A972"
+			tasks: [{
+				id: "62434700F775BD85"
+				type: "dimension"
+				title: "进入下界"
+				dimension: "minecraft:the_nether"
+			}]
+		}
+		{
+			x: 0.0d
+			y: 10.0d
+			description: [
+				"你可能已经遇到过烈焰了。原来它们来自下界。"
+				""
+				"它们通常出现在下界堡垒附近，并且似乎经常由刷怪器生成。"
+			]
+			dependencies: ["42F7BB732588FE2B"]
+			id: "1E782624571D6928"
+			tasks: [{
+				id: "68F7AB3C0286EEFA"
+				type: "advancement"
+				advancement: "minecraft:nether/obtain_blaze_rod"
+				criterion: ""
+			}]
+		}
+		{
+			title: "有点像没有肉体的柯南……"
+			x: -2.0d
+			y: 10.0d
+			description: ["找到下界堡垒后，请务必小心。传说中有名为凋零骷髅的高大、好战的亡灵生物在堡垒中巡逻。若未做好准备，哪怕只是被轻轻触碰，也可能瞬间丧命。"]
+			dependencies: ["42F7BB732588FE2B"]
+			id: "2CCD8D8A135B4012"
+			tasks: [{
+				id: "55930FCDE6793F9D"
+				type: "advancement"
+				advancement: "minecraft:nether/get_wither_skull"
+				criterion: ""
+			}]
+		}
+		{
+			title: "找到一个下界堡垒"
+			x: -1.0d
+			y: 8.0d
+			description: [
+				"如果你足够幸运，Cuboid Corp (tm) 提供的地图会显示附近的一两个建筑。"
+				""
+				"我们的三级人工智能阵列，数字冗余文学法医（D.E.L.F.），预测在下界维度中应该存在大型堡垒状结构。"
+				""
+				"说到文学分析（比如理解 Ashrem 提供的、导致科学部带你来这里的神话文本），我们倾向于相信 D.E.L.F. 的判断……所以快出去找一个吧！根据 D.E.L.F. 的说法，它们真实存在的概率高达 99.97%！"
+				""
+				"……不过他曾经也以同样的自信预测过独角兽的存在，并试图把胡萝卜粘在驴的额头上来欺骗我们所有人。"
+			]
+			dependencies: ["248E373FA159A972"]
+			id: "42F7BB732588FE2B"
+			tasks: [{
+				id: "10EF5F1603135887"
+				type: "advancement"
+				advancement: "minecraft:nether/find_fortress"
+				criterion: ""
+			}]
+		}
+		{
+			x: -3.0d
+			y: 11.5d
+			description: [
+				"凋零骷髅是由覆盖着丑陋黑色坏死组织的骨骼组成的。"
+				""
+				"不过，最好还是拿个样本，所以记得去收集一些回来。"
+			]
+			dependencies: ["2CCD8D8A135B4012"]
+			id: "5228AC6AE66600A9"
+			tasks: [{
+				id: "7F1ABEC7A490B886"
+				type: "item"
+				item: "tconstruct:necrotic_bone"
+			}]
+		}
+		{
+			title: "如黑夜般漆黑的头骨"
+			x: -1.0d
+			y: 11.5d
+			description: [
+				"凋灵骷髅还拥有另一种你需要的东西，那就是凋灵骷髅头。不幸的是，它们通常长在凋灵骷髅身上，所以你得想办法解决这个小问题。"
+				""
+				"根据神话，你需要3个来召唤更强大的实体，而它又能让你获得另一个重要材料。"
+				""
+				"你还需要不少，所以不妨试着用生物囚禁工具捕捉一只凋零骷髅，然后在基地里进行可控的复制。或者，你也可以用/fly到处飞，看看能收集多少头骨，希望这足够用。"
+			]
+			dependencies: ["2CCD8D8A135B4012"]
+			id: "201E274E8AF73865"
+			tasks: [{
+				id: "6D8923FBDC026412"
+				type: "item"
+				item: "minecraft:wither_skeleton_skull"
+				count: 3L
+			}]
+			rewards: [{
+				id: "1DF1D59D6DE8C13D"
+				type: "item"
+				item: "minecraft:wither_skeleton_skull"
+				count: 3
+				random_bonus: 6
+			}]
+		}
+		{
+			x: 1.0d
+			y: 11.5d
+			description: ["消灭几只烈焰人，收集一些烈焰棒。"]
+			dependencies: ["1E782624571D6928"]
+			id: "14DD4220E654B1A5"
+			tasks: [{
+				id: "117DC9F090335B5A"
+				type: "item"
+				item: "minecraft:blaze_rod"
+			}]
+			rewards: [{
+				id: "2ABED4487128C00B"
+				type: "item"
+				item: "minecraft:blaze_rod"
+				count: 4
+				random_bonus: 4
+			}]
+		}
+		{
+			title: "黏糊糊的岛屿"
+			x: 1.0d
+			y: 6.0d
+			description: ["岩浆海面上似乎漂浮着一些奇怪的岛屿。请探索其中一些，看看上面是否有有用的东西。"]
+			dependencies: ["248E373FA159A972"]
+			id: "244ED9B4D1CBE9AC"
+			tasks: [{
+				id: "5C6BD88342B2E516"
+				type: "advancement"
+				advancement: "tconstruct:world/blood_island"
+				criterion: ""
+			}]
+		}
+		{
+			x: 2.5d
+			y: 6.0d
+			description: [
+				"长得像蘑菇并不意味着你就可以吃掉它。"
+				""
+				"血蘑菇里似乎含有大量的，嗯，血。或许可以带一些回家，试着在植物盆里种植它们。"
+			]
+			dependencies: ["244ED9B4D1CBE9AC"]
+			id: "047B6EBAE1807B03"
+			tasks: [{
+				id: "4A86899259AAC5F4"
+				type: "item"
+				item: "tconstruct:blood_slime_sapling"
+				count: 4L
+			}]
+		}
+		{
+			x: 2.0d
+			y: 5.0d
+			description: ["采集构成岛屿的泥土样本。它或许能作为园艺盆的土壤，尝试在我们的维度里重新种植血蘑菇，或者干脆筛一筛看看能得到什么。"]
+			dependencies: ["244ED9B4D1CBE9AC"]
+			id: "3ACD607AE2660F6E"
+			tasks: [{
+				id: "0AB7BCC0128822A2"
+				type: "item"
+				item: "tconstruct:ichor_slime_dirt"
+				count: 8L
+			}]
+		}
+		{
+			x: 2.0d
+			y: 7.0d
+			description: ["大型血蘑菇植物的茎干就像染血的木头一样，呈现出迷人的鲜红色。带一点回家，为各处增添一抹色彩。"]
+			dependencies: ["244ED9B4D1CBE9AC"]
+			id: "2776F79EABC10B36"
+			tasks: [{
+				id: "61260AE125A05266"
+				type: "item"
+				item: "tconstruct:bloodshroom_log"
+				count: 4L
+			}]
+		}
+		{
+			title: "探索一座堡垒遗迹"
+			x: -3.0d
+			y: 6.0d
+			description: [
+				"我们相信这个维度可能存在名为堡垒的大型结构。它们主要由黑石建造而成。"
+				""
+				"探索其中一两个可能还是值得的。"
+			]
+			dependencies: ["248E373FA159A972"]
+			optional: true
+			id: "52B9B245AEAB386B"
+			tasks: [{
+				id: "026869BFC0248580"
+				type: "advancement"
+				advancement: "minecraft:nether/find_bastion"
+				criterion: ""
+			}]
+		}
+		{
+			title: "可怕的尖叫声！"
+			x: -3.0d
+			y: 8.0d
+			subtitle: "简直要把你逼疯了！"
+			description: [
+				"那些漂浮的白色大怪物相当吓人。它们还不停地朝你吐火球，更让人讨厌了！"
+				""
+				"不妨试试能不能打回其中一个火球，以其人之道还治其人之身！"
+			]
+			dependencies: ["248E373FA159A972"]
+			optional: true
+			id: "793BD41368775901"
+			tasks: [{
+				id: "08ED9E2374B6AB91"
+				type: "advancement"
+				advancement: "minecraft:nether/return_to_sender"
+				criterion: ""
+			}]
+		}
+		{
+			x: 1.0d
+			y: 4.5d
+			description: ["乍一看像是脏水，其实看起来是液态的岩浆膏。拿个桶装起来吧！"]
+			dependencies: ["244ED9B4D1CBE9AC"]
+			id: "688ED713E6A8695F"
+			tasks: [{
+				id: "56A91D70C1CBBCA4"
+				type: "item"
+				item: "tconstruct:magma_bucket"
+			}]
+		}
+		{
+			title: "星宿交错之脂肉"
+			x: -1.0d
+			y: 14.5d
+			shape: "gear"
+			description: [
+				"击败凋灵后，它们会坍缩并形成我们所说的下界之星。这是后续高级合成的重要材料，所以你需要准备几个。"
+				""
+				"幸运的是，这份数字生存指南似乎有足够的备用能量，在你首次成功时进行复制，所以你的努力将得到回报。"
+				""
+				"祝你好运！"
+			]
+			dependencies: ["3C37857BCEA55086"]
+			size: 1.5d
+			id: "7D30BCCFA1ACF48B"
+			tasks: [{
+				id: "116D7BB3AEA275A0"
+				type: "item"
+				item: "minecraft:nether_star"
+			}]
+			rewards: [{
+				id: "19D4CD775F57156D"
+				type: "item"
+				item: "minecraft:nether_star"
+				random_bonus: 1
+			}]
+		}
+		{
+			title: "慢慢来，不着急！"
+			x: 1.0d
+			y: 8.0d
+			subtitle: "有很多东西值得探索一番"
+			description: [
+				"看来下界并没有想象中那么无聊和空旷，毕竟它可是类似于冥界的地方！"
+				""
+				"花点时间多探索一下吧——当然，为了科学，当你探索完这个维度的所有生物群系后，我们就会给你一个特别的答谢信物。"
+			]
+			dependencies: ["248E373FA159A972"]
+			optional: true
+			id: "68E5299643C9D8E3"
+			tasks: [{
+				id: "773788BEB5397CA1"
+				type: "advancement"
+				advancement: "minecraft:nether/explore_nether"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "13B7E2E58AF24D9A"
+				type: "choice"
+				table_id: 2037880618578575318L
+			}]
+		}
+		{
+			title: "希斯克利夫！"
+			x: -2.0d
+			y: 13.0d
+			description: [
+				"这可能是我们要求你做的最具挑战性的事情了。目前为止。"
+				""
+				"是时候尝试召唤一个凋零了。这东西相当棘手，所以最好采取一切你能想到的预防措施。例如，确保你的喷气背包已充满电，准备好好的武器和盔甲，储备充足的食物，并看看有没有能“取巧”的方法。"
+				""
+				"最好不要把这类生物召唤得太靠近你喜欢的地方——比如你的基地。"
+				""
+				"要召唤凋灵，用4个灵魂沙摆成T形，然后在T形的顶部放置3个凋灵骷髅头。放置第三个后，凋灵应该会立即出现。"
+				""
+				"最好先退后一点，因为古籍记载，它们被召唤时会以爆炸的方式登场。"
+			]
+			dependencies: ["201E274E8AF73865"]
+			id: "3C37857BCEA55086"
+			tasks: [{
+				id: "0991948E533FD474"
+				type: "advancement"
+				advancement: "minecraft:nether/summon_wither"
+				criterion: ""
+			}]
+		}
+		{
+			title: "获得一个烈焰灯笼"
+			x: -3.0d
+			y: 4.0d
+			shape: "gear"
+			description: [
+				"你需要从下界获取的关键材料之一是烈焰灯笼。"
+				""
+				"你可以在岩浆海洋的高耸尖塔中找到它们，通常会有同名生物守护。"
+				""
+				"或者，你也可以用烈焰棒、烈焰粉和维度共享矿石的下界变种来制作（你需要用带有丝绸之触的镐，或使用带有丝滑能力的匠人工具，才能采集整块矿石，而不仅仅是碎片）"
+			]
+			dependencies: ["248E373FA159A972"]
+			size: 1.5d
+			id: "036A00C69FE8FD59"
+			tasks: [{
+				id: "5EE34EC0795F7010"
+				type: "item"
+				item: "quark:blaze_lantern"
+			}]
+		}
+	]
+}
