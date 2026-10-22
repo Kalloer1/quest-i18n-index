@@ -1,0 +1,805 @@
+# AI 初翻，未人工校对
+{
+	autofocus_id: "0DC8408A9AC8D66A"
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "species"
+	group: "7A1222722EF924E3"
+	icon: {
+		Count: 1
+		id: "species:youth_potion"
+		tag: { }
+	}
+	id: "53537A6CF3370EBF"
+	images: [
+		{
+			height: 2.0d
+			image: "ftbquests:textures/gui/arrow_right.png"
+			rotation: 0.0d
+			width: 2.0d
+			x: -7.5d
+			y: 3.0d
+		}
+		{
+			alpha: 30
+			height: 100.0d
+			image: "ftbquests:textures/gui/species/specices_logo.png"
+			order: -1
+			rotation: 0.0d
+			width: 100.0d
+			x: 10.0d
+			y: 8.5d
+		}
+		{
+			height: 12.0d
+			image: "simplyswords:item/hiveheart_anim_01"
+			rotation: 0.0d
+			width: 12.0d
+			x: 26.0d
+			y: 3.5d
+		}
+	]
+	order_index: 4
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: [
+				"7E7C840529D3E3E4"
+				"0DC8408A9AC8D66A"
+			]
+			description: [
+				"&6古生物学发掘点&r"
+				"挖掘点由结构物&e表面&r的几块骨头&e方块&r标记。"
+				"{image:ftbquests:textures/gui/species/species1_paleontology_dig_site.png width:100 height:59 align:center fit:true}"
+				""
+				"你需要在周围&a挖掘&r，并保留&c红色可疑沙砾&r，这样你就可以用&e刷子&r清理它了。"
+				"{image:ftbquests:textures/gui/species/species2_paleontology_dig_site.png width:100 height:59 align:center fit:true}"
+				""
+				"现在，用你的&e刷子&r刷&c红色可疑沙砾&r，直到露出&dCruncher 蛋&r。"
+				"{image:ftbquests:textures/gui/species/species3_red_suspicious_sand.png width:100 height:80 align:center fit:true}"
+				"{image:ftbquests:textures/gui/species/species4_paleontology_dig_site_crucher_egg.png width:100 height:80 align:center fit:true}"
+				""
+				"你或许还能找到&2石化蛋&r或&6春灵蛋&r。"
+			]
+			id: "13AE47C013987DEB"
+			shape: "square"
+			size: 2.0d
+			subtitle: "点击任务图标以显示更多信息"
+			tasks: [{
+				id: "33A05FE946A4946F"
+				structure: "species:paleontology_dig_site"
+				type: "structure"
+			}]
+			title: "&f定位&6古生物学挖掘点"
+			x: 5.0d
+			y: 3.0d
+		}
+		{
+			icon: {
+				Count: 1
+				id: "minecraft:red_sand"
+				tag: { }
+			}
+			id: "0DC8408A9AC8D66A"
+			shape: "square"
+			size: 2.0d
+			tasks: [{
+				biome: "minecraft:badlands"
+				icon: {
+					Count: 1
+					id: "minecraft:red_sand"
+					tag: { }
+				}
+				id: "26C4066A923957D6"
+				type: "biome"
+			}]
+			title: "&f访问&6Badland&f生物群系"
+			x: -5.5d
+			y: 3.0d
+		}
+		{
+			id: "7E7C840529D3E3E4"
+			shape: "gear"
+			size: 1.5d
+			tasks: [{
+				id: "75810E05AD7AA6B2"
+				item: {
+					Count: 1
+					id: "minecraft:brush"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["13AE47C013987DEB"]
+			description: [
+				"放置&a&r&dCruncher 蛋&r，然后等待一天。"
+				"{image:ftbquests:textures/gui/species/specices6_cruncher_egg_placed.png width:100 height:59 align:center fit:true}"
+				""
+				"我会打破顶部以发出巨响。此操作还会&a给予&r你&d直觉效果&r。"
+				"{image:ftbquests:textures/gui/species/specices7_cruncher_egg_broken.png width:100 height:59 align:center fit:true}"
+				"{image:ftbquests:textures/gui/species/specices8_cruncher_gut_feeling.png width:100 height:30 align:center fit:true}"
+				""
+				"等待&d直觉效果&r结束，然后&d粉碎者&r将被&a召唤&r。做好准备..."
+			]
+			id: "49D57366A7D55143"
+			size: 3.0d
+			subtitle: "点击任务图标以显示更多信息"
+			tasks: [{
+				id: "7D877483AAB2A6F5"
+				item: {
+					Count: 1
+					id: "species:cruncher_egg"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: 13.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["49D57366A7D55143"]
+			id: "4A98BC4AB353F22C"
+			shape: "octagon"
+			size: 4.0d
+			tasks: [{
+				entity: "species:cruncher"
+				id: "16346D26DB47D474"
+				type: "kill"
+				value: 1L
+			}]
+			title: "&d&l击杀粉碎者 (KILL THE CRUNCHER)</c2></c1>"
+			x: 22.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["49D57366A7D55143"]
+			description: [
+				"与&dCruncher&r战斗时，对其造成足够的&c伤害&r后，它会&c被眩晕&r。在此期间，你可以用&e熟肉&r或&e生肉&r来&a投喂&r它。"
+				"{image:ftbquests:textures/gui/species/specices9_cruncher_stunned.png width:100 height:59 align:center fit:true}"
+				""
+				"与它成为朋友后，你可以&a交互&r与&dCruncher&r以打开其用户界面，在那里你可以投入由&2原版&r&c敌对生物&r掉落的资源来促使它开始搜寻。"
+				"{image:ftbquests:textures/gui/species/specices_cruncher_ui.png width:100 height:83 align:center fit:true}"
+				"{image:ftbquests:textures/gui/species/specices_cruncher_ui_creeper.png width:100 height:84 align:center fit:true}"
+				""
+				"你睡觉后，&dCruncher&r 会&a分裂&r出一个 &bCruncher Pellet&r 方块。打破它，就会掉落你喂给 &dCruncher&r 的多种材料。"
+				""
+				"&4有时，用户界面可能无法正常工作——这是一个已知的错误。&r"
+				"{image:ftbquests:textures/gui/species/specices_cruncher_pellet.png width:100 height:65 align:center fit:true}"
+			]
+			id: "259B0F4953E16DFA"
+			shape: "octagon"
+			size: 4.0d
+			subtitle: "点击任务图标以显示更多信息"
+			tasks: [{
+				advancement: "species:adventure/feed_cruncher"
+				criterion: ""
+				id: "53B41BEDAC92296D"
+				type: "advancement"
+			}]
+			title: "&e&l与CRUNCHER交朋友"
+			x: 22.0d
+			y: 8.0d
+		}
+		{
+			description: [
+				"&bBirts&r 就像鸟儿一样，但它们喜欢和其他 &bBirts&r 交谈。当它们 &a交流&r 时，身体会 &e发光&r。"
+				""
+				"{image:ftbquests:textures/gui/species/species_birt.png width:100 height:61 align:center fit:true}"
+			]
+			icon: {
+				Count: 1
+				id: "species:birt_spawn_egg"
+				tag: { }
+			}
+			id: "6555BE0152C893A7"
+			size: 2.0d
+			subtitle: "点击任务图标以显示更多信息"
+			tasks: [{
+				id: "061AB2D6D89A6ACC"
+				title: "Birt"
+				type: "checkmark"
+			}]
+			title: "&bBirt"
+			x: -4.0d
+			y: -10.0d
+		}
+		{
+			dependencies: ["6555BE0152C893A7"]
+			id: "103298E2EF50151E"
+			size: 2.0d
+			subtitle: "&a这是一个Birt的巢穴"
+			tasks: [{
+				id: "16039D8C42E33393"
+				item: {
+					Count: 1
+					id: "species:birt_dwelling"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -5.0d
+			y: -7.0d
+		}
+		{
+			dependencies: ["6555BE0152C893A7"]
+			description: [
+				"你可以打破它们的巢来获得&bBirt 蛋&r，但要小心——&bBirt&r不喜欢这样。"
+				""
+				"你可以向敌人投掷&bBirt Eggs&r来&c阻止&r他们的移动。"
+			]
+			id: "4F3D964A3F0EA232"
+			size: 2.0d
+			subtitle: "点击任务图标以显示更多信息"
+			tasks: [{
+				id: "765FC02A3D8D7F86"
+				item: {
+					Count: 1
+					id: "species:birt_egg"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -1.0d
+			y: -9.0d
+		}
+		{
+			dependencies: ["4F3D964A3F0EA232"]
+			id: "3E006621EEAB2DCC"
+			size: 2.0d
+			tasks: [{
+				id: "167AE0256D926610"
+				item: {
+					Count: 1
+					id: "species:music_disc_dial"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -2.0d
+			y: -6.0d
+		}
+		{
+			dependencies: ["7FDCBBC6C50016F4"]
+			description: [
+				"&6房间虫&r通常生活在&e沙漠&r中"
+				""
+				"&6Roombug&r 可以用 &6Honeycomb&r 驯服，当它 &d睡觉&r 时，你可以把生物 &a推&r 到它背上，然后用 &6Lead&r 来 &a拖动&r &6Roombug&r"
+				""
+				"&a潜行 + 交互&r 使其&d睡觉&r"
+				""
+				"{image:ftbquests:textures/gui/species/species_roombug.png width:100 height:72 align:center fit:true}"
+			]
+			icon: {
+				Count: 1
+				id: "species:roombug_spawn_egg"
+				tag: { }
+			}
+			id: "5A1BC1290072204B"
+			size: 2.0d
+			subtitle: "点击任务图标以显示更多信息"
+			tasks: [{
+				id: "54CE388BFB78239F"
+				title: "房间错误"
+				type: "checkmark"
+			}]
+			title: "&6房间错误实体"
+			x: 7.0d
+			y: -7.0d
+		}
+		{
+			id: "7FDCBBC6C50016F4"
+			size: 2.0d
+			tasks: [{
+				id: "5272BAFC6CFD43BC"
+				item: {
+					Count: 1
+					id: "minecraft:honeycomb"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: 4.0d
+			y: -9.0d
+		}
+		{
+			dependencies: ["5253C854DF468B05"]
+			description: [
+				"可以说，&9贻贝&r就像会动的&9矿石&r——只不过它们会&a走路&r。"
+				""
+				"你需要足够&e强力&r的工具来打破它们的盾牌。"
+				""
+				"{image:ftbquests:textures/gui/species/species_limpet.png width:100 height:54 align:center fit:true}"
+			]
+			icon: {
+				Count: 1
+				id: "species:limpet_spawn_egg"
+				tag: { }
+			}
+			id: "6A36E2C132DC3047"
+			size: 2.0d
+			subtitle: "点击任务图标以显示更多信息"
+			tasks: [{
+				id: "15C62092C8137F1E"
+				title: "Limpet"
+				type: "checkmark"
+			}]
+			title: "&9贻贝（Limpets）"
+			x: 27.0d
+			y: 17.0d
+		}
+		{
+			description: [
+				"&5深海鱼&r栖息在&9洞穴湖泊&r中，会发出微光。要我的话，我会把这些发光的鱼抓进我的水族箱里。"
+				""
+				"{image:ftbquests:textures/gui/species/specices_deepfish.png width:100 height:63 align:center fit:true}"
+			]
+			icon: {
+				Count: 1
+				id: "species:deepfish_spawn_egg"
+				tag: { }
+			}
+			id: "1587B1807928B1B3"
+			size: 2.0d
+			subtitle: "点击任务图标以显示更多信息"
+			tasks: [{
+				id: "389BD24EAAD1E0E5"
+				title: "深海鱼（Deepfish）"
+				type: "checkmark"
+			}]
+			title: "&5深海鱼"
+			x: 13.0d
+			y: 13.0d
+		}
+		{
+			dependencies: ["1587B1807928B1B3"]
+			id: "350240A95FF9B7D5"
+			size: 2.0d
+			subtitle: "&a你可以用桶捕捉深海鱼"
+			tasks: [{
+				id: "0A1205A26E51FA96"
+				item: {
+					Count: 1
+					id: "species:deepfish_bucket"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: 17.0d
+			y: 12.0d
+		}
+		{
+			description: [
+				"像大型树木状&2苦力怕&r一样的&2Treepers&r，&2Treepers&r白天睡觉，夜间在世界各地游荡。它们栖息在&a远古针叶林&r生物群系中。"
+				""
+				"等到晚上，然后用任意&e斧&r把它们砍下来。它们会掉落&6远古松果&r。"
+				""
+				"{image:ftbquests:textures/gui/species/species_treeper1.png width:100 height:76 align:center fit:true}"
+			]
+			icon: {
+				Count: 1
+				id: "species:treeper_spawn_egg"
+				tag: { }
+			}
+			id: "65FB475E283C87C1"
+			size: 2.0d
+			subtitle: "点击任务图标以显示更多信息"
+			tasks: [{
+				id: "6F3E71412D575903"
+				title: "&2树精守卫"
+				type: "checkmark"
+			}]
+			x: 18.0d
+			y: -11.0d
+		}
+		{
+			dependencies: [
+				"65FB475E283C87C1"
+				"4D887DCEEA026647"
+			]
+			dependency_requirement: "one_started"
+			description: [
+				"你可以像普通作物一样&a种植&r&6远古松果&r。等它长成&6Tropper&r后，用&d骨粉&r喂养它来驯服。这个&6Tropper&r会在战斗中&a协助&r你。"
+				""
+				"&a交互&r使其保持静止状态。"
+				""
+				"{image:ftbquests:textures/gui/species/specices_trooper.png width:100 height:48 align:center fit:true}"
+			]
+			id: "1F65F51214EAC250"
+			size: 2.0d
+			subtitle: "点击任务图标以显示更多信息"
+			tasks: [{
+				id: "196D8ADF49F003DF"
+				item: {
+					Count: 1
+					id: "species:ancient_pinecone"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: 16.5d
+			y: -8.0d
+		}
+		{
+			id: "4D887DCEEA026647"
+			size: 2.0d
+			tasks: [{
+				id: "3D72830677094994"
+				item: {
+					Count: 1
+					id: "minecraft:bone_meal"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: 13.0d
+			y: -9.0d
+		}
+		{
+			description: [
+				"&d迅猛龙&r会出现在&d缠绕森林&r中。"
+				""
+				"&d迅猛龙&r是&c凋零骷髅&r的中立敌人。"
+				""
+				"你可以&a剪毛&r来从&d迅猛龙&r身上获得羽毛"
+				""
+				"{image:ftbquests:textures/gui/species/species_wraptor.png width:100 height:110 align:center fit:true}"
+			]
+			icon: {
+				Count: 1
+				id: "species:wraptor_spawn_egg"
+				tag: { }
+			}
+			id: "1B13FA7B6DDDF525"
+			size: 2.0d
+			subtitle: "点击任务图标以显示更多信息"
+			tasks: [{
+				id: "2523EBAA6989970E"
+				title: "迅猛龙"
+				type: "checkmark"
+			}]
+			x: -12.5d
+			y: 13.5d
+		}
+		{
+			dependencies: ["1B13FA7B6DDDF525"]
+			description: [
+				"&dWraptor Coop&r could has &dWraptor Eggs&r, which will &abreak&r to reveal a small &dWraptor&r."
+				""
+				"{image:ftbquests:textures/gui/species/specices_wraptor2_coop.png width:100 height:62 align:center fit:true}"
+			]
+			id: "18EA82688B062CFB"
+			size: 2.0d
+			subtitle: "点击任务图标以显示更多信息"
+			tasks: [{
+				id: "1E79070CA20E703C"
+				structure: "species:wraptor_coop"
+				type: "structure"
+			}]
+			title: "&f寻找&d迅猛龙巢穴&r"
+			x: -13.0d
+			y: 17.0d
+		}
+		{
+			dependencies: ["1B13FA7B6DDDF525"]
+			description: [
+				"让&e铁砧&r砸在&d迅猛龙蛋&r上。它会进入&5破碎状态&r。如果在此状态下&a打破&r鸡蛋，它会变成&d裂纹迅猛龙蛋&r，然后可以&a吃掉&r。"
+				""
+				"{image:ftbquests:textures/gui/species/species_wraptor3_break_egg1.png width:100 height:77 align:center fit:true}"
+			]
+			id: "321F2C7A56DF7B6D"
+			size: 2.0d
+			subtitle: "点击任务图标以显示更多信息"
+			tasks: [{
+				id: "4186B29C1075ADE6"
+				item: {
+					Count: 1
+					id: "species:cracked_wraptor_egg"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -10.0d
+			y: 15.0d
+		}
+		{
+			dependencies: ["1B13FA7B6DDDF525"]
+			description: [
+				"让&e铁砧&r砸在&d迅猛龙蛋&r上，它就会进入&5破碎状态&r。如果继续让&e铁砧&r砸在蛋上，它最终会破碎，露出一只小&d迅猛龙&r。"
+				""
+				"{image:ftbquests:textures/gui/species/species_wraptor_break_egg2.png width:100 height:59 align:center fit:true}"
+			]
+			id: "01026A9B8406B809"
+			size: 2.0d
+			subtitle: "点击任务图标以显示更多信息"
+			tasks: [{
+				advancement: "species:nether/hatch_wraptor"
+				criterion: ""
+				id: "0FCE0CE2C33CE6B0"
+				type: "advancement"
+			}]
+			x: -10.0d
+			y: 11.0d
+		}
+		{
+			description: [
+				"建议先查看一下以下内容："
+				"{ \"text\": \"古生物学发掘点\", \"underlined\": true, \"color\": \"#ffb200\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"13AE47C013987DEB\" } }​"
+				""
+				"要孵化&2石化蛋&r，请将其放置在&c高温&r方块上。"
+				""
+				"{image:ftbquests:textures/gui/species/specices_goober_petrified_egg_hatch.png width:100 height:73 align:center fit:true}"
+			]
+			id: "0D0D9DD2B508FABD"
+			size: 2.0d
+			subtitle: "点击任务图标以显示更多信息"
+			tasks: [{
+				id: "0D325519D85E21B4"
+				item: {
+					Count: 1
+					id: "species:petrified_egg"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -11.0d
+			y: -11.0d
+		}
+		{
+			dependencies: [
+				"5D1FD1EC8EDE9015"
+				"0D0D9DD2B508FABD"
+			]
+			dependency_requirement: "one_started"
+			description: [
+				"&2Goobers&r 喜欢&d睡觉&r，总是感到&d困倦&r。它们不会自然生成，只能通过&a孵化&r &2Petrified Egg&r 来获得。"
+				""
+				"{image:ftbquests:textures/gui/species/specices_goober_sleeping.png width:100 height:57 align:center fit:true}"
+				""
+				"你可以用&e刷子&r刷它们，让它们&a打喷嚏&r喷出&2黏液&r。这些&2黏液&r落到哪里，哪里就会变成&2阿尔法烯方块&r。"
+				""
+				"{image:ftbquests:textures/gui/species/species_gobber_alphacene_blocks.png width:100 height:62 align:center fit:true}"
+			]
+			icon: {
+				Count: 1
+				id: "species:goober_spawn_egg"
+				tag: { }
+			}
+			id: "02339FCE4247C94B"
+			size: 2.0d
+			subtitle: "点击任务图标以显示更多信息"
+			tasks: [{
+				id: "18A7E94411100C49"
+				title: "&2Gobber"
+				type: "checkmark"
+			}]
+			title: "&2Goober"
+			x: -14.0d
+			y: -8.5d
+		}
+		{
+			id: "5D1FD1EC8EDE9015"
+			size: 2.0d
+			tasks: [{
+				id: "06A3DF514EED9F75"
+				item: {
+					Count: 1
+					id: "minecraft:brush"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: -17.0d
+			y: -11.0d
+		}
+		{
+			dependencies: ["74009FA6EF0C37F7"]
+			description: [
+				"&6Springlings&r 不会自然生成；它们只能从 &6Springling Egg&r 中 &a孵化&r 出来。"
+				""
+				"要驯服一只&6Springling&r，就喂它&2Saplings&r。和原版生物一样，喂食两只&6Springlings&r，它们会产下一枚&6Springling Egg&r。"
+				""
+				"&aInteract&r with a &6Springling&r to sit on its head. While riding, use the &earrow keys&r (by default) to &eextend&r its neck &eup&r and &edown&r."
+				""
+				"{image:ftbquests:textures/gui/species/specices_springling.png width:100 height:60 align:center fit:true}"
+			]
+			icon: {
+				Count: 1
+				id: "species:springling_spawn_egg"
+				tag: { }
+			}
+			id: "0E8F93477BCF08F8"
+			size: 2.0d
+			subtitle: "点击任务图标以显示更多信息"
+			tasks: [{
+				id: "24ABC7FA9E416F0C"
+				title: "&6春精灵"
+				type: "checkmark"
+			}]
+			x: 27.0d
+			y: -10.0d
+		}
+		{
+			dependency_requirement: "one_started"
+			description: [
+				"建议先查看一下以下内容："
+				"{ \"text\": \"古生物学发掘点\", \"underlined\": true, \"color\": \"#ffb200\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"13AE47C013987DEB\" } }​"
+				""
+				"孵化&r&6Springling 蛋&r没有&c任何&r&a要求&r——只需放置并等待即可。"
+			]
+			id: "74009FA6EF0C37F7"
+			size: 2.0d
+			subtitle: "点击任务图标以显示更多信息"
+			tasks: [{
+				id: "2D167602AF62B6C1"
+				item: {
+					Count: 1
+					id: "species:springling_egg"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: 29.0d
+			y: -7.0d
+		}
+		{
+			description: [
+				"&6冷冻肉&r和&6冷冻毛发&r方块可以在&b冰冻海洋&r生物群系的洞穴中&a找到&r。"
+				""
+				"{image:ftbquests:textures/gui/species/species_mamutilation_meat_hair.png width:100 height:59 align:center fit:true}"
+			]
+			id: "774EF1A7481DF985"
+			size: 2.0d
+			subtitle: "点击任务图标以显示更多信息"
+			tasks: [{
+				id: "476C87634EBE1D6D"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "species:frozen_meat"
+							}
+							{
+								Count: 1b
+								id: "species:frozen_hair"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "&6冷冻肉&f和&6冷冻头发&f"
+			x: 1.0d
+			y: 9.0d
+		}
+		{
+			dependencies: [
+				"774EF1A7481DF985"
+				"547B32A93042C8E3"
+				"178EE7B24A22CFFD"
+			]
+			description: [
+				"&6Mamutilation&r 可以通过让&b闪电&r击中&6建造的尸体&r来&a召唤&r。"
+				""
+				"要制作它的&6尸体&r，将&6冷冻毛发&r和&6冷冻肉&r按以下所示任意排列组合："
+				""
+				"{image:ftbquests:textures/gui/species/specices_mamutilation_build.png width:100 height:69 align:center fit:true}"
+				""
+				"等待雷暴，闪电最终会击中&e引雷针&r，将其变为&6Mamutilation&r。"
+				""
+				"{image:ftbquests:textures/gui/species/specices_mamutilation_revived.png width:100 height:69 align:center fit:true}"
+			]
+			icon: {
+				Count: 1
+				id: "species:mammutilation_spawn_egg"
+				tag: { }
+			}
+			id: "5AED66E0AC1596C4"
+			size: 2.0d
+			subtitle: "点击任务图标以显示更多信息"
+			tasks: [{
+				id: "4C223FFF0768513D"
+				title: "&6Mammutilation"
+				type: "checkmark"
+			}]
+			x: 2.0d
+			y: 12.0d
+		}
+		{
+			dependencies: ["08283D8A06E2AF15"]
+			description: ["&aInteract&r with any mobs that have the &dbaby&r state, It'll turn that mob into a baby forever&r"]
+			id: "7ADEFB1B4646C697"
+			size: 2.0d
+			subtitle: "点击任务图标以显示更多信息"
+			tasks: [{
+				id: "5192E7E9BCBF516C"
+				item: {
+					Count: 1
+					id: "species:youth_potion"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: 4.0d
+			y: 18.0d
+		}
+		{
+			id: "178EE7B24A22CFFD"
+			size: 2.0d
+			tasks: [{
+				count: 2L
+				id: "6E93B8A229AFCD21"
+				item: {
+					Count: 2
+					id: "minecraft:lightning_rod"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: 5.0d
+			y: 12.0d
+		}
+		{
+			id: "547B32A93042C8E3"
+			size: 2.0d
+			tasks: [{
+				id: "20F471789554F1C8"
+				item: {
+					Count: 1
+					id: "minecraft:carved_pumpkin"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: 0.0d
+			y: 14.0d
+		}
+		{
+			dependencies: ["5AED66E0AC1596C4"]
+			description: ["&a与&r&6Mamutilation&r互动，&a手持&r&b空瓶&r时，你会得到一个&cIchor Bottle&r"]
+			id: "08283D8A06E2AF15"
+			size: 2.0d
+			subtitle: "点击任务图标以显示更多信息"
+			tasks: [{
+				id: "1C1775250A613351"
+				item: {
+					Count: 1
+					id: "species:ichor_bottle"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: 3.0d
+			y: 15.0d
+		}
+		{
+			id: "5253C854DF468B05"
+			size: 2.0d
+			tasks: [{
+				id: "7A934D17C80AA958"
+				item: {
+					Count: 1
+					id: "ftbfiltersystem:smart_filter"
+					tag: {
+						"ftbfiltersystem:filter": "ftbfiltersystem:item_tag(c:pickaxes)"
+					}
+				}
+				title: "任意 #c:镐"
+				type: "item"
+			}]
+			x: 25.0d
+			y: 14.0d
+		}
+	]
+	title: "物种"
+}
