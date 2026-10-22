@@ -1,0 +1,285 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "rats"
+	group: "056260E5194984A9"
+	icon: "rats:cheese"
+	id: "6E29BA51DE105127"
+	images: [
+		{
+			height: 1.0d
+			image: "fairylights:entity/letter/digit_one"
+			rotation: 0.0d
+			width: 1.0d
+			x: -4.0d
+			y: 0.0d
+		}
+		{
+			height: 1.0d
+			image: "fairylights:entity/letter/digit_two"
+			rotation: 0.0d
+			width: 1.0d
+			x: -4.0d
+			y: 2.0d
+		}
+		{
+			height: 1.0d
+			image: "fairylights:entity/letter/digit_three"
+			rotation: 0.0d
+			width: 1.0d
+			x: -4.0d
+			y: 4.0d
+		}
+	]
+	order_index: 4
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"在本章中，您将了解到以下内容："
+				"&l1.&r 制作奶酪。"
+				"&l2.&r 生成老鼠。"
+				"&l3.&r 驯服、装备、升级和指挥老鼠。"
+				"&l4.&r 繁殖驯服的鼠鼠。"
+			]
+			id: "051C186F7B1DED05"
+			shape: "octagon"
+			size: 2.0d
+			subtitle: "Rats 模组的核心是利用驯服的鼠来自动化各种任务。"
+			tasks: [{
+				icon: "rats:cheese"
+				id: "201210997E9795AD"
+				title: "从这里开始"
+				type: "custom"
+			}]
+			x: 0.0d
+			y: -2.0d
+		}
+		{
+			id: "460E18C0D4D4CFF8"
+			tasks: [{
+				disable_toast: true
+				icon: "plushies:cow_plushie"
+				id: "4CF705CDC2082764"
+				observe_type: 5
+				optional_task: true
+				timer: 0L
+				title: "找到一头牛"
+				to_observe: "minecraft:cow"
+				type: "observation"
+			}]
+			x: -3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["460E18C0D4D4CFF8"]
+			hide_lock_icon: true
+			id: "1CEB2538DE74335C"
+			subtitle: "手持空桶，右键点击奶牛。"
+			tasks: [{
+				id: "6D221DFAACCD1629"
+				item: "minecraft:milk_bucket"
+				type: "item"
+			}]
+			title: "把牛挤奶"
+			x: -1.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["1CEB2538DE74335C"]
+			hide_lock_icon: true
+			id: "75771B788ECD7C65"
+			subtitle: "手持牛奶桶，右键点击炼药锅。"
+			tasks: [{
+				icon: "minecraft:cauldron"
+				id: "489AC9BDECECFE84"
+				optional_task: true
+				title: "将牛奶倒入一个炼药锅中"
+				type: "custom"
+			}]
+			title: "将牛奶倒入炼药锅中并等待"
+			x: 1.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["75771B788ECD7C65"]
+			description: ["{image:rats:item/cheese width:25 height:25 align:center}"]
+			hide_dependency_lines: false
+			hide_details_until_startable: false
+			hide_lock_icon: true
+			hide_text_until_complete: false
+			hide_until_deps_complete: false
+			hide_until_deps_visible: false
+			id: "64C94766D1D7056B"
+			subtitle: "将奶酪块放入合成网格中，将其转换为奶酪。"
+			tasks: [{
+				icon: "rats:block_of_cheese"
+				id: "17F7B0E9FDB20D2C"
+				title: "牛奶会变成一块奶酪块！"
+				type: "custom"
+			}]
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			id: "7C18EAE65113578D"
+			tasks: [{
+				icon: "rats:trash_can"
+				id: "527F40F9EE1B79E7"
+				title: "制作并放置一个垃圾桶 Trash Can"
+				type: "custom"
+			}]
+			x: -3.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["7C18EAE65113578D"]
+			hide_lock_icon: true
+			id: "47D9E35E77C263C8"
+			subtitle: "手持泥土或鹅卵石等方块，右键垃圾桶即可填充。"
+			tasks: [{
+				icon: "rats:garbage_pile"
+				id: "560255D6C6281DD8"
+				title: "填满垃圾桶以获得垃圾堆"
+				type: "custom"
+			}]
+			x: -1.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["47D9E35E77C263C8"]
+			hide_lock_icon: true
+			id: "546E6411D081549B"
+			subtitle: "野鼠会逃跑。为了方便驯服，请将垃圾堆方块放入洞中，这样它们就无法逃脱了。"
+			tasks: [{
+				icon: "botania:cosmetic_clock_eye"
+				id: "23EF4B169A5B1ABE"
+				title: "在黑暗中放置垃圾堆并等待"
+				type: "custom"
+			}]
+			title: "在黑暗中放置垃圾堆方块，等待野鼠生成"
+			x: 1.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["546E6411D081549B"]
+			hide_lock_icon: true
+			hide_until_deps_visible: false
+			id: "740EA761A898CFED"
+			subtitle: "确保它没有被瘟疫感染！"
+			tasks: [{
+				icon: "rats:rat_arrow"
+				id: "3E5965F9C418258D"
+				observe_type: 5
+				timer: 0L
+				title: "一只野生的老鼠，等待被驯服"
+				to_observe: "rats:wild_rat"
+				type: "observation"
+			}]
+			x: 3.0d
+			y: 2.0d
+		}
+		{
+			description: ["奶酪是通过将一块&b&l奶酪块&r&r放入合成网格中制作的。"]
+			id: "3806C3621E97C5FA"
+			subtitle: "这很容易消耗掉超过10个奶酪。"
+			tasks: [{
+				icon: "rats:cheese"
+				id: "1CC5FFADD6AEF63E"
+				title: "向老鼠投掷奶酪。"
+				type: "custom"
+			}]
+			title: "向老鼠投掷奶酪，直到被驯服为止"
+			x: -3.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["3806C3621E97C5FA"]
+			description: [""]
+			hide_lock_icon: true
+			id: "562CD00D16566133"
+			subtitle: "是时候学习如何与它互动了。"
+			tasks: [{
+				icon: "artifacts:crystal_heart"
+				id: "5BE1B541570208AE"
+				title: "继续向老鼠投掷奶酪，直到被驯服为止"
+				type: "custom"
+			}]
+			title: "恭喜你！你成功驯服了第一只老鼠！"
+			x: -1.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["562CD00D16566133"]
+			description: [
+				"在老鼠的背包中，你可以为它装备最多&6&l3个老鼠升级&r&r，给它戴上&b帽子&r和&b旗帜&r，还可以给它一个&b手持物品&r，它会叼在嘴里或用爪子拿着。"
+				""
+				"当前大鼠的性别&l和&r状态也会显示出来。"
+				"[ \"性别很重要，因为 \", { \"text\": \"繁殖\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"02B7D9786899EC57\" } }, \"需要一公一母两只老鼠才能繁殖出更多老鼠。\" ]"
+				""
+				"[ \"这也是用于分配命令的菜单\", { \"text\": \"命令\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"0AB5325979E04AB2\" } }, \" 给你的老鼠。要循环查看老鼠命令，请按“当前”下方的箭头\" ] 命令。"
+			]
+			hide_lock_icon: true
+			id: "6A6B7ED78BAF3583"
+			tasks: [{
+				icon: "rats:rat_sack"
+				id: "29738992CF6B5C02"
+				title: "右键单击老鼠以打开其物品栏"
+				type: "custom"
+			}]
+			x: 1.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["6A6B7ED78BAF3583"]
+			description: [
+				"Rats 有多种命令，可以在它们的菜单中更改，或使用 &l&bRat Flute&r&r。命令如下："
+				""
+				"• &6&lWander&r&r - 这只老鼠会像大多数原版生物一样漫无目的地游荡。注意，在此命令下，老鼠仍会保护其主人。"
+				"• &6&lStay Here&r&r - 老鼠一动不动，不移动也不完成任何任务。"
+				"• &6&l跟随我&r&r - 这只老鼠会像狼一样跟随主人，并保护他们免受攻击。"
+				"• &6&l捕猎猎物&r&r - 老鼠会锁定并攻击区域内的任何动物和怪物。老鼠不会攻击幼年生物。"
+				"• &6&l收集物品&r&r - 老鼠会捡起地上的任何物品。"
+				"• &6&lHarvest&r&r - 老鼠会破坏草方块和作物并捡起掉落物。 &7某些升级，如 Rat Upgrade: Miner、Rat Upgrade: Planter 和 Rat Upgrade: Fisherman，会覆盖此命令。&r"
+				"• &6&l运输物品&r&r - 老鼠会将物品从一个拾取容器（如箱子）搬运到另一个存放容器。"
+				""
+				"&l注意：&r对于&6Hunt Prey&r、&6Gather Items&r、&6Harvest&r和&6Transport Items&r命令，玩家可以使用&l&bCheese Staff&r&r在容器上指定它们为拾取和放置点。"
+			]
+			hide_lock_icon: true
+			id: "0AB5325979E04AB2"
+			tasks: [{
+				icon: "rats:cheese_stick"
+				id: "267B8393E6B96731"
+				title: "了解不同命令的作用是什么"
+				type: "custom"
+			}]
+			x: 3.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["6A6B7ED78BAF3583"]
+			description: [
+				"一公一母的两只老鼠，放置在用&b&lRat Breeding Lantern&r&r装饰的&b&lRat Cage&r&r中时，会进行繁殖。"
+				""
+				"繁殖后，大鼠会生出 &d&l1-3 只幼崽&r&r，需要一天才能成年。新生大鼠（称为粉鼠）看起来像小粉豆，在笼子里长大前会一动不动。一旦成年，&l它们将自动被你驯服&r。"
+				""
+				"繁殖老鼠可以产生新的颜色品种，包括白色、兜帽、奶油和albino。"
+				""
+				"Rat Breeding Lanterns 可以同时繁殖任意多对老鼠，冷却时间持续到这对老鼠的后代成长为成年老鼠为止。"
+			]
+			hide_lock_icon: true
+			id: "02B7D9786899EC57"
+			shape: "heart"
+			tasks: [{
+				icon: "rats:rat_breeding_lantern"
+				id: "7E304BCFCB8CE98E"
+				title: "繁殖老鼠"
+				type: "custom"
+			}]
+			x: 1.0d
+			y: 5.0d
+		}
+	]
+	title: "老鼠们"
+}
