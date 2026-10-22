@@ -1,0 +1,1971 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "master_chef"
+	group: ""
+	hide_quest_until_deps_complete: true
+	hide_quest_until_deps_visible: true
+	icon: "minecraft:cake"
+	id: "15CA5D905DB3D9E2"
+	images: [
+		{
+			height: 2.0d
+			image: "kubejs:textures/images/masterchef.png"
+			rotation: 0.0d
+			width: 20.0d
+			x: 0.5d
+			y: -7.5d
+		}
+		{
+			height: 3.0d
+			image: "kubejs:textures/images/warning.png"
+			rotation: 0.0d
+			width: 15.0d
+			x: 0.0d
+			y: -5.0d
+		}
+	]
+	order_index: 8
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["3FE44A54B2658669"]
+			description: ["收集可用于制作不同药水所需的种子。"]
+			icon: "minecraft:wheat_seeds"
+			id: "5F2C2A79333F2E68"
+			tasks: [
+				{
+					id: "2D8BF66BD271C2D7"
+					item: "brewery:hops_seeds"
+					type: "item"
+				}
+				{
+					id: "6AD1D0A1899F4AD6"
+					item: "brewery:barley_seeds"
+					type: "item"
+				}
+				{
+					id: "13DC11BEE615D8A1"
+					item: "brewery:corn_seeds"
+					type: "item"
+				}
+			]
+			title: "进步的种子"
+			x: 6.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["042405075CA41D91"]
+			description: [
+				"想不想实现你成为酿酒大师的最佳梦想？"
+				""
+				"开始酿造吧！"
+			]
+			icon: {
+				Count: 1
+				id: "brewery:brewfest_hat"
+				tag: {
+					Damage: 0
+					affix_data: {
+						sockets: 0
+					}
+				}
+			}
+			id: "3FE44A54B2658669"
+			size: 1.5d
+			tasks: [{
+				id: "306CFDBBACD41228"
+				type: "checkmark"
+			}]
+			title: "开始酿造吧！"
+			x: 5.25d
+			y: 4.5d
+		}
+		{
+			dependencies: ["5F2C2A79333F2E68"]
+			description: ["虽然绳子可以用作装饰方块，但把它放在种子上方，就能让藤蔓长到8格高！"]
+			id: "1808ADB05BBDB729"
+			rewards: [{
+				amount: 250L
+				auto: "no_toast"
+				id: "5889063AF1A9D445"
+				ignoreBonuses: true
+				skill: "crafting"
+				type: "pmmo:xpreward"
+			}]
+			tasks: [{
+				consume_items: true
+				count: 8L
+				id: "51E24D2698A243E6"
+				item: "brewery:rope"
+				type: "item"
+			}]
+			title: "种植藤蔓 (Growing Vines)"
+			x: 5.0d
+			y: 6.5d
+		}
+		{
+			dependencies: ["5F2C2A79333F2E68"]
+			description: ["种植你的作物。酿造工作等着你。"]
+			icon: "brewery:hops"
+			id: "42C800D499990022"
+			tasks: [
+				{
+					consume_items: false
+					count: 16L
+					id: "5450818AA8D0E232"
+					item: "brewery:barley"
+					type: "item"
+				}
+				{
+					consume_items: false
+					count: 16L
+					id: "0515BB732922E5DA"
+					item: "brewery:corn"
+					only_from_crafting: false
+					type: "item"
+				}
+				{
+					consume_items: false
+					count: 32L
+					id: "7A00A1DB82F5C151"
+					item: "brewery:hops"
+					type: "item"
+				}
+			]
+			title: "丰收的作物"
+			x: 6.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["42C800D499990022"]
+			description: ["建造你的筒仓来烘干作物。它可以是8格高。"]
+			id: "230301307C36C1BF"
+			rewards: [{
+				amount: 500L
+				auto: "no_toast"
+				id: "7BB98EF47091B07E"
+				ignoreBonuses: true
+				skill: "harvesting"
+				type: "pmmo:xpreward"
+			}]
+			tasks: [{
+				count: 3L
+				id: "0AE13D52BAF6F9E3"
+				item: { Count: 3, id: "brewery:silo_wood" }
+				type: "item"
+			}]
+			title: "烘干筒仓"
+			x: 7.0d
+			y: 6.5d
+		}
+		{
+			dependencies: ["230301307C36C1BF"]
+			description: ["你需要先创建一个酿造台才能开始。"]
+			id: "0382E2692AA2C812"
+			rewards: [{
+				amount: 500L
+				auto: "no_toast"
+				id: "0632C133745EA281"
+				ignoreBonuses: true
+				skill: "crafting"
+				type: "pmmo:xpreward"
+			}]
+			tasks: [{
+				id: "66EBF5D1F1BA1462"
+				item: "brewery:wooden_brewingstation"
+				type: "item"
+			}]
+			title: "酿造的开端"
+			x: 8.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["5E0FFD69850114A2"]
+			description: [
+				"用煤炭激活酿造台。你需要给酿造台注满水。在饮品熬制过程中，你可能需要使用红石，或者清空或重新注满水盆。你做得越好，得到的饮品就越好。"
+				""
+				"准备好杯子来收集你的产品，确保万无一失。"
+			]
+			icon: "minecraft:water_bucket"
+			id: "41D54BDD39740FE8"
+			tasks: [
+				{
+					id: "71CC7174B70ED839"
+					item: "minecraft:redstone"
+					type: "item"
+				}
+				{
+					id: "4AA413423DED00A0"
+					item: "minecraft:coal"
+					type: "item"
+				}
+				{
+					id: "0649D53CB66C0A40"
+					item: "minecraft:water_bucket"
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "356CA7447560476B"
+					item: { Count: 8, id: "brewery:beer_mug" }
+					type: "item"
+				}
+			]
+			title: "酿造工具包 (Tools of the Brew)"
+			x: 9.5d
+			y: 5.5d
+		}
+		{
+			dependencies: ["0382E2692AA2C812"]
+			description: [
+				"查看 JEI 来决定你想酿造的药水类型。"
+				""
+				"大多数啤酒至少需要一种啤酒花。"
+				""
+				"试着酿造一杯小麦啤酒吧。"
+			]
+			icon: "brewery:beer_wheat"
+			id: "5E0FFD69850114A2"
+			tasks: [
+				{
+					count: 2L
+					id: "6C1DD0DA4C43A410"
+					item: { Count: 2, id: "brewery:dried_wheat" }
+					type: "item"
+				}
+				{
+					id: "1D0844ECF0D03109"
+					item: "brewery:hops"
+					type: "item"
+				}
+			]
+			title: "烹饪时间到了"
+			x: 8.5d
+			y: 6.5d
+		}
+		{
+			dependencies: ["41D54BDD39740FE8"]
+			description: ["酿造每一种啤酒。"]
+			icon: "brewery:beer_wheat"
+			id: "18166970DB3FFE97"
+			rewards: [{
+				amount: 2
+				auto: "no_toast"
+				id: "12A1D05AFFC2A1F6"
+				skill: "cooking"
+				type: "pmmo:levelreward"
+			}]
+			tasks: [
+				{
+					consume_items: true
+					count: 3L
+					id: "50CDDCD7D1EC4405"
+					item: "brewery:beer_wheat"
+					match_nbt: false
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 3L
+					id: "3342008C3C1F437D"
+					item: "brewery:beer_barley"
+					match_nbt: false
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 3L
+					id: "6E7A8064396A05BB"
+					item: "brewery:beer_hops"
+					match_nbt: false
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 3L
+					id: "54821F4E192E7361"
+					item: "brewery:beer_haley"
+					match_nbt: false
+					type: "item"
+				}
+			]
+			title: "酿酒大师"
+			x: 11.0d
+			y: 6.5d
+		}
+		{
+			dependencies: ["41D54BDD39740FE8"]
+			description: [
+				"如果你想酿造威士忌，至少需要一个铜制工作站。"
+				""
+				"烹饪过程相同，但威士忌使用棕色蘑菇代替啤酒花基底。"
+			]
+			id: "296B63AEE83E486F"
+			tasks: [{
+				id: "0213F49A95599DBD"
+				item: "brewery:copper_brewingstation"
+				type: "item"
+			}]
+			title: "升级酿造配方（Upgrading the Brew）"
+			x: 10.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["296B63AEE83E486F"]
+			description: ["酿造每一种威士忌酒。"]
+			icon: "brewery:whiskey_cristelwalker"
+			id: "1C1B3812CFC93BA6"
+			rewards: [{
+				amount: 2
+				auto: "no_toast"
+				id: "312D9FD97106FBAD"
+				skill: "cooking"
+				type: "pmmo:levelreward"
+			}]
+			tasks: [
+				{
+					consume_items: true
+					count: 3L
+					id: "1556C12A1876C9B9"
+					item: "brewery:whiskey_jojannik"
+					match_nbt: false
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 3L
+					id: "306E0AA7A1053416"
+					item: "brewery:whiskey_lilitusinglemalt"
+					match_nbt: false
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 3L
+					id: "093500323BCE5886"
+					item: "brewery:whiskey_cristelwalker"
+					match_nbt: false
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 3L
+					id: "4261999DB65E9AE8"
+					item: "brewery:whiskey_maggoallan"
+					match_nbt: false
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 3L
+					id: "2FC3A3DC3AA7C40E"
+					item: "brewery:whiskey_carrasconlabel"
+					match_nbt: false
+					type: "item"
+				}
+			]
+			title: "威士忌大师"
+			x: 8.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["3FE44A54B2658669"]
+			description: ["从村民那里收集酿造衣物。"]
+			hide_dependency_lines: true
+			icon: {
+				Count: 1
+				id: "brewery:brewfest_hat"
+				tag: {
+					Damage: 0
+					affix_data: {
+						sockets: 0
+					}
+				}
+			}
+			id: "5E3CBAC9738A0C5D"
+			rewards: [{
+				amount: 3
+				auto: "no_toast"
+				id: "791DE7083669E1EC"
+				skill: "exploration"
+				type: "pmmo:levelreward"
+			}]
+			tasks: [
+				{
+					id: "3235441775D84F05"
+					item: {
+						Count: 1
+						id: "brewery:brewfest_hat"
+						tag: {
+							Damage: 0
+							affix_data: {
+								sockets: 0
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "7FBF2901C8D2C246"
+					item: {
+						Count: 1
+						id: "brewery:brewfest_regalia"
+						tag: {
+							Damage: 0
+							affix_data: {
+								sockets: 0
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "1615BF6D875FB66B"
+					item: {
+						Count: 1
+						id: "brewery:brewfest_trousers"
+						tag: {
+							Damage: 0
+							affix_data: {
+								sockets: 0
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "28573DCAD1B62525"
+					item: {
+						Count: 1
+						id: "brewery:brewfest_boots"
+						tag: {
+							Damage: 0
+							affix_data: {
+								sockets: 0
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "74D5308ABF8A0049"
+					item: {
+						Count: 1
+						id: "brewery:brewfest_hat_red"
+						tag: {
+							Damage: 0
+							affix_data: {
+								sockets: 0
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "3FE36738131AB665"
+					item: {
+						Count: 1
+						id: "brewery:brewfest_dress"
+						tag: {
+							Damage: 0
+							affix_data: {
+								sockets: 0
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "04D67D6E46515319"
+					item: {
+						Count: 1
+						id: "brewery:brewfest_blouse"
+						tag: {
+							Damage: 0
+							affix_data: {
+								sockets: 0
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "3650555C3DE657DE"
+					item: {
+						Count: 1
+						id: "brewery:brewfest_shoes"
+						tag: {
+							Damage: 0
+							affix_data: {
+								sockets: 0
+							}
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "酿造装备"
+			x: 11.5d
+			y: 5.0d
+		}
+		{
+			dependencies: ["042405075CA41D91"]
+			description: [
+				"想不想实现你成为酿酒大师的梦想呢？"
+				""
+				"来玩藤蔓吧！"
+			]
+			icon: {
+				Count: 1
+				id: "vinery:straw_hat"
+				tag: {
+					Damage: 0
+					affix_data: {
+						sockets: 0
+					}
+				}
+			}
+			id: "6CB4518B38A25932"
+			size: 1.5d
+			tasks: [{
+				id: "727520ADC6EB340E"
+				type: "checkmark"
+			}]
+			title: "来玩藤蔓吧！"
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["6CB4518B38A25932"]
+			description: [
+				"你需要先找到葡萄种子才能开始。如果你找到了葡萄，就可以把它们转换成种子。"
+				""
+				"或者，你也可以用苹果来开启你的旅程。"
+			]
+			id: "7337651A93623CC6"
+			tasks: [{
+				consume_items: true
+				id: "7A2DDBBD2612C7A2"
+				item: "minecraft:apple"
+				type: "item"
+			}]
+			title: "藤蔓的开端"
+			x: 3.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["400F092634BB2C0D"]
+			description: ["你需要工具来酿造葡萄酒。"]
+			icon: "vinery:wine_bottle"
+			id: "3C3A2511197E7A84"
+			rewards: [{
+				amount: 200L
+				auto: "no_toast"
+				id: "7A2CE22512854241"
+				ignoreBonuses: true
+				skill: "crafting"
+				type: "pmmo:xpreward"
+			}]
+			tasks: [
+				{
+					id: "2054661BF7762815"
+					item: "vinery:apple_press"
+					type: "item"
+				}
+				{
+					id: "46ED054EC5CC54F6"
+					item: "vinery:grapevine_pot"
+					type: "item"
+				}
+				{
+					id: "0F48433835773736"
+					item: "vinery:fermentation_barrel"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "4151A4722DD1890C"
+					item: { Count: 4, id: "vinery:wine_bottle" }
+					type: "item"
+				}
+			]
+			title: "藤蔓的工具"
+			x: 5.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7337651A93623CC6"]
+			description: [
+				"要种植葡萄，你需要制作葡萄藤和棚架。"
+				""
+				"将种子放在茎干上。"
+				""
+				"对于丛林的藤葡萄，你需要使用格架。"
+			]
+			icon: "vinery:acacia_lattice"
+			id: "400F092634BB2C0D"
+			rewards: [{
+				amount: 250L
+				auto: "no_toast"
+				id: "528031BC75123A1E"
+				ignoreBonuses: true
+				skill: "crafting"
+				type: "pmmo:xpreward"
+			}]
+			tasks: [
+				{
+					id: "251622FAC142E17D"
+					item: "vinery:grapevine_stem"
+					type: "item"
+				}
+				{
+					id: "2822556DAE8AEE95"
+					item: {
+						Count: 1
+						id: "itemfilters:tag"
+						tag: {
+							value: "vinery:lattice"
+						}
+					}
+					title: "任意 #vinery:lattice"
+					type: "item"
+				}
+			]
+			title: "种植一棵藤本植物"
+			x: 4.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["400F092634BB2C0D"]
+			description: ["收集每种类型的葡萄。"]
+			icon: "vinery:red_grape"
+			id: "5A8D83E30313DB06"
+			rewards: [{
+				amount: 2
+				auto: "no_toast"
+				id: "5E6128F60FDCB5B8"
+				skill: "harvesting"
+				type: "pmmo:levelreward"
+			}]
+			tasks: [
+				{
+					consume_items: true
+					count: 16L
+					id: "1288340B08EB0454"
+					item: "vinery:red_grape"
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 16L
+					id: "742C56D2DFB3CD55"
+					item: "vinery:white_grape"
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 16L
+					id: "383E1D5E5066695B"
+					item: "vinery:savanna_grapes_red"
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 16L
+					id: "51D9439B0CD56AE3"
+					item: "vinery:savanna_grapes_white"
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 16L
+					id: "015AA81E3594F5A1"
+					item: "vinery:taiga_grapes_red"
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 16L
+					id: "752C498D670F2D0E"
+					item: "vinery:taiga_grapes_white"
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 16L
+					id: "33B14DAD5F61A1FB"
+					item: "vinery:jungle_grapes_red"
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 16L
+					id: "57C0E81655D2FC7F"
+					item: "vinery:jungle_grapes_white"
+					type: "item"
+				}
+			]
+			title: "丰饶的作物 (A Pleantiful Crop)"
+			x: 5.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["6CB4518B38A25932"]
+			description: [
+				"酿酒师套装能让你用骨粉催熟作物，但不会消耗骨粉，而是消耗装备耐久度。"
+				""
+				"真棒！"
+			]
+			hide_dependency_lines: true
+			icon: {
+				Count: 1
+				id: "vinery:straw_hat"
+				tag: {
+					Damage: 0
+					affix_data: {
+						sockets: 0
+					}
+				}
+			}
+			id: "3754B0F3A88D43D9"
+			rewards: [{
+				amount: 1
+				auto: "no_toast"
+				id: "2D1F0C05D09C076A"
+				skill: "harvesting"
+				type: "pmmo:levelreward"
+			}]
+			tasks: [
+				{
+					id: "19C4DC14CDEBCFA6"
+					item: {
+						Count: 1
+						id: "vinery:straw_hat"
+						tag: {
+							Damage: 0
+							affix_data: {
+								sockets: 0
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "0E3CCEB3B92EE760"
+					item: {
+						Count: 1
+						id: "vinery:winemaker_apron"
+						tag: {
+							Damage: 0
+							affix_data: {
+								sockets: 0
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "2208911FD61A645C"
+					item: {
+						Count: 1
+						id: "vinery:winemaker_leggings"
+						tag: {
+							Damage: 0
+							affix_data: {
+								sockets: 0
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "07E402C26A5C1EDB"
+					item: {
+						Count: 1
+						id: "vinery:winemaker_boots"
+						tag: {
+							Damage: 0
+							affix_data: {
+								sockets: 0
+							}
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "藤蔓齿轮"
+			x: 6.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["3C3A2511197E7A84"]
+			description: ["将苹果放入苹果压榨机中，制作苹果泥。"]
+			id: "25F8CE14D915C86F"
+			tasks: [{
+				consume_items: true
+				id: "106F299FEDF35F66"
+				item: "vinery:apple_mash"
+				type: "item"
+			}]
+			title: "按压苹果以获取奖励，享受丰收的喜悦！"
+			x: 6.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["25F8CE14D915C86F"]
+			description: ["将苹果泥和葡萄酒瓶一起放入陈酿桶中，即可酿造苹果汁。"]
+			id: "3CC4C497EF49F727"
+			tasks: [{
+				consume_items: true
+				id: "3955271CE08B5A83"
+				item: "vinery:apple_juice"
+				type: "item"
+			}]
+			title: "榨取藤蔓的汁液"
+			x: 7.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["3CC4C497EF49F727"]
+			description: ["进一步处理苹果汁会给你葡萄酒和苹果酒。"]
+			icon: {
+				Count: 1
+				id: "vinery:apple_wine"
+				tag: {
+					Year: 0
+				}
+			}
+			id: "43574CDAE6A70A42"
+			tasks: [
+				{
+					consume_items: true
+					id: "7F9CD705E6FF5C3A"
+					item: {
+						Count: 1
+						id: "vinery:apple_wine"
+						tag: {
+							Year: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "05206AAAAB6CB9DA"
+					item: {
+						Count: 1
+						id: "vinery:apple_cider"
+						tag: {
+							Year: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "果汁的陈化过程"
+			x: 8.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["3C3A2511197E7A84"]
+			description: ["你需要跳到葡萄藤罐里的葡萄上制作葡萄汁，然后用葡萄酒瓶收集。"]
+			icon: "vinery:red_grapejuice"
+			id: "01D680519FA92BD5"
+			rewards: [{
+				amount: 150L
+				auto: "no_toast"
+				id: "3D8DD02B330C0D80"
+				ignoreBonuses: true
+				skill: "cooking"
+				type: "pmmo:xpreward"
+			}]
+			tasks: [{
+				consume_items: true
+				id: "15816F36797F279A"
+				item: {
+					Count: 1
+					id: "itemfilters:tag"
+					tag: {
+						value: "vinery:grapejuice"
+					}
+				}
+				title: "任意 #vinery:grapejuice"
+				type: "item"
+			}]
+			title: "在藤蔓上跳跃"
+			x: 6.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["01D680519FA92BD5"]
+			description: [
+				"将果汁与各种其他物品在陈酿桶中混合以酿造葡萄酒。"
+				""
+				"在JEI中查看可尝试的不同葡萄酒。"
+			]
+			icon: "vinery:wine_bottle"
+			id: "21F969BAB1815F1F"
+			rewards: [{
+				amount: 250L
+				auto: "no_toast"
+				id: "42610B2BD81DD66B"
+				ignoreBonuses: true
+				skill: "cooking"
+				type: "pmmo:xpreward"
+			}]
+			tasks: [
+				{
+					consume_items: true
+					id: "716BF1C86F4FC497"
+					item: {
+						Count: 1
+						id: "itemfilters:tag"
+						tag: {
+							value: "vinery:red_wine"
+						}
+					}
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "29AC247E1820805A"
+					item: {
+						Count: 1
+						id: "itemfilters:tag"
+						tag: {
+							value: "vinery:white_wine"
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "让藤蔓老化 (Aging the Vine)"
+			x: 8.0d
+			y: 0.5d
+		}
+		{
+			dependencies: [
+				"43574CDAE6A70A42"
+				"21F969BAB1815F1F"
+			]
+			description: ["将所有类型的葡萄酒和果汁都陈酿起来。"]
+			icon: "vinery:wine_bottle"
+			id: "182B1A88C2ECA98D"
+			rewards: [{
+				amount: 3
+				auto: "no_toast"
+				id: "7F7118699E43F3FC"
+				skill: "cooking"
+				type: "pmmo:levelreward"
+			}]
+			tasks: [
+				{
+					consume_items: true
+					id: "5031011161D76303"
+					item: {
+						Count: 1
+						id: "vinery:chorus_wine"
+						tag: {
+							Year: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "057C1008BBD93882"
+					item: {
+						Count: 1
+						id: "vinery:cherry_wine"
+						tag: {
+							Year: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "24EE92E88D5B56A1"
+					item: {
+						Count: 1
+						id: "vinery:magnetic_wine"
+						tag: {
+							Year: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "04B2472367E55DC1"
+					item: {
+						Count: 1
+						id: "vinery:noir_wine"
+						tag: {
+							Year: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "59BDCC7235EAF7C6"
+					item: {
+						Count: 1
+						id: "vinery:lilitu_wine"
+						tag: {
+							Year: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "074FAD2ED14FB030"
+					item: {
+						Count: 1
+						id: "vinery:mellohi_wine"
+						tag: {
+							Year: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "6C9F3EAD938426A1"
+					item: {
+						Count: 1
+						id: "vinery:stal_wine"
+						tag: {
+							Year: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "4E787EBEE4D514BD"
+					item: {
+						Count: 1
+						id: "vinery:strad_wine"
+						tag: {
+							Year: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "30FCE4163ECB7D8D"
+					item: {
+						Count: 1
+						id: "vinery:solaris_wine"
+						tag: {
+							Year: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "3BE8C0955095ECCB"
+					item: {
+						Count: 1
+						id: "vinery:bolvar_wine"
+						tag: {
+							Year: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "79CBBFD83F2856B9"
+					item: {
+						Count: 1
+						id: "vinery:aegis_wine"
+						tag: {
+							Year: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "440DF68A70168286"
+					item: {
+						Count: 1
+						id: "vinery:clark_wine"
+						tag: {
+							Year: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "3C05EDC8B002CF07"
+					item: {
+						Count: 1
+						id: "vinery:chenet_wine"
+						tag: {
+							Year: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "46546ABD7C95F8D5"
+					item: {
+						Count: 1
+						id: "vinery:apple_wine"
+						tag: {
+							Year: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "4EA13D9938249336"
+					item: {
+						Count: 1
+						id: "vinery:jellie_wine"
+						tag: {
+							Year: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "40A7F5496D2C5142"
+					item: {
+						Count: 1
+						id: "vinery:red_wine"
+						tag: {
+							Year: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "7F1B0E28910251D3"
+					item: {
+						Count: 1
+						id: "vinery:cristel_wine"
+						tag: {
+							Year: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "59FB56D69E1A380A"
+					item: {
+						Count: 1
+						id: "vinery:glowing_wine"
+						tag: {
+							Year: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "58208EEF8350445B"
+					item: {
+						Count: 1
+						id: "vinery:kelp_cider"
+						tag: {
+							Year: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "50E32541887B1733"
+					item: {
+						Count: 1
+						id: "vinery:apple_cider"
+						tag: {
+							Year: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "葡萄酒大师"
+			x: 8.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["182B1A88C2ECA98D"]
+			description: [
+				"将葡萄酒存放起来也会使其陈化，从而增强增益效果。"
+				""
+				"快来试试吧！"
+			]
+			icon: "vinery:wine_bottle"
+			id: "1A0188FCC8D69CCC"
+			tasks: [{
+				id: "7D701B51972FDEB4"
+				type: "checkmark"
+			}]
+			title: "一个古老的瓶子"
+			x: 9.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["042405075CA41D91"]
+			description: [
+				"有了 Farmer's Delight 和它的附加组件，烹饪体验会好一些。"
+				""
+				"一起来享受乐趣吧！"
+			]
+			icon: {
+				Count: 1
+				id: "farmersdelight:iron_knife"
+				tag: {
+					Damage: 0
+					affix_data: {
+						sockets: 0
+					}
+				}
+			}
+			id: "30DA6D07C597210A"
+			size: 1.5d
+			tasks: [{
+				id: "06203E209E6229CE"
+				type: "checkmark"
+			}]
+			title: "一起来享受乐趣吧！"
+			x: -5.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["30DA6D07C597210A"]
+			description: ["在做出真正的炉灶之前，大部分烹饪都将在篝火上进行。"]
+			id: "0E8FB1F406E5395D"
+			tasks: [{
+				id: "61E08CEB98AD0BB6"
+				item: "minecraft:campfire"
+				type: "item"
+			}]
+			x: -7.0d
+			y: 2.0d
+		}
+		{
+			dependencies: [
+				"6E35D8B334300B9C"
+				"297582856CEAC97E"
+			]
+			description: [
+				"是时候安定下来，建个炉子改善烹饪了。"
+				""
+				"它的作用和篝火一样，但无需添柴，把煎锅或锅子放在上面即可。"
+			]
+			id: "331D6F00782668CC"
+			rewards: [{
+				amount: 1
+				auto: "no_toast"
+				id: "4800BF3A68D2F9A0"
+				skill: "crafting"
+				type: "pmmo:levelreward"
+			}]
+			tasks: [{
+				id: "3B74D334E898327C"
+				item: "farmersdelight:stove"
+				type: "item"
+			}]
+			x: -10.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["0E8FB1F406E5395D"]
+			description: [
+				"煎锅可以悬在火上，也可以用 Shift 键点击将其放置在火上。"
+				""
+				"为了方便自动化，物品会始终被弹出到右侧。"
+				""
+				"如果附魔了火焰附加，烹饪速度也会更快。"
+			]
+			id: "6E35D8B334300B9C"
+			tasks: [{
+				id: "6C23DB6C15127ADB"
+				item: {
+					Count: 1
+					id: "farmersdelight:skillet"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: -8.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["0E8FB1F406E5395D"]
+			description: [
+				"将锅放在篝火上烹饪食物。"
+				""
+				"在JEI中查看不同食谱。有些食谱需要用工具（碗）将食物从锅中取出。"
+			]
+			id: "297582856CEAC97E"
+			tasks: [{
+				id: "39A2082DD5DD7A50"
+				item: "farmersdelight:cooking_pot"
+				type: "item"
+			}]
+			x: -8.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["30DA6D07C597210A"]
+			description: ["找到模组新增的种子类型。"]
+			icon: "farmersdelight:tomato_seeds"
+			id: "1292774DB30E0F9C"
+			rewards: [{
+				amount: 1
+				auto: "no_toast"
+				id: "7E689FBC81DF4CCD"
+				skill: "harvesting"
+				type: "pmmo:levelreward"
+			}]
+			tasks: [
+				{
+					id: "0CA61DA4288892E3"
+					item: "farmersdelight:tomato_seeds"
+					type: "item"
+				}
+				{
+					id: "2F2EAE6EFD7AF64A"
+					item: "farmersdelight:cabbage_seeds"
+					type: "item"
+				}
+				{
+					id: "2BF71734B1AF7153"
+					item: "farmersdelight:rice"
+					type: "item"
+				}
+				{
+					id: "7AD36C3CA0E02314"
+					item: "farmersdelight:onion"
+					type: "item"
+				}
+			]
+			title: "Seeds of Delight"
+			x: -6.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["331D6F00782668CC"]
+			description: [
+				"有些食物可以吃多次，需要放在地上，然后用碗来食用。"
+				""
+				"用填塞南瓜来试试吧。"
+			]
+			id: "6926F3AAECB088B4"
+			rewards: [{
+				amount: 1
+				auto: "no_toast"
+				id: "0DF51530CBF94D58"
+				skill: "cooking"
+				type: "pmmo:levelreward"
+			}]
+			tasks: [{
+				id: "3888D17AEB011A16"
+				item: "farmersdelight:stuffed_pumpkin_block"
+				type: "item"
+			}]
+			x: -11.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["1292774DB30E0F9C"]
+			description: ["你可以制作堆肥，它会腐烂成肥沃的土壤。在阳光、水、蘑菇、菌丝和腐殖土附近时速度会加快。"]
+			id: "5BD58D55E21E6E1F"
+			tasks: [{
+				count: 9L
+				id: "62F4944FA401E76E"
+				item: "farmersdelight:organic_compost"
+				type: "item"
+			}]
+			title: "令人愉快的剩菜剩饭"
+			x: -8.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["1292774DB30E0F9C"]
+			description: [
+				"水稻需要在泥土上种植，并有一格水。它会生长两格高，你只需打破最上面一格即可获得水稻。"
+				""
+				"种一些出来吧。"
+			]
+			id: "013F32CE5C64E022"
+			rewards: [{
+				amount: 1
+				auto: "no_toast"
+				id: "5C68840C8AD55D53"
+				skill: "harvesting"
+				type: "pmmo:levelreward"
+			}]
+			tasks: [{
+				consume_items: true
+				count: 32L
+				id: "03043E5C85AE759B"
+				item: { Count: 32, id: "farmersdelight:rice" }
+				type: "item"
+			}]
+			title: "白色喜悦"
+			x: -7.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["5BD58D55E21E6E1F"]
+			description: [
+				"肥沃的土壤可用作农田，也可用来种植蘑菇群（用剪刀收割蘑菇群）。"
+				""
+				"土壤会像被随机骨粉催熟一样生长。"
+			]
+			id: "4A0679ED72702303"
+			rewards: [{
+				amount: 1
+				auto: "no_toast"
+				id: "34789A3A5DD45F41"
+				skill: "harvesting"
+				type: "pmmo:levelreward"
+			}]
+			tasks: [{
+				count: 9L
+				id: "46E2AC22DD1E4129"
+				item: { Count: 9, id: "farmersdelight:rich_soil" }
+				type: "item"
+			}]
+			title: "Farming Delight"
+			x: -10.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["1292774DB30E0F9C"]
+			description: ["右键点击番茄即可收获，若置于绳索下可生长得更高。"]
+			id: "5388758270F4F1ED"
+			rewards: [{
+				amount: 1
+				auto: "no_toast"
+				id: "18BAB00AD70B9F3B"
+				skill: "harvesting"
+				type: "pmmo:levelreward"
+			}]
+			tasks: [{
+				consume_items: true
+				count: 32L
+				id: "5957449D86C059E2"
+				item: "farmersdelight:tomato"
+				type: "item"
+			}]
+			title: "Red Delight"
+			x: -6.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["30DA6D07C597210A"]
+			description: [
+				"砧板可以根据你使用的工具来处理多种材料。"
+				""
+				"为了方便自动化，砧板会将物品从手柄的对面弹出。"
+			]
+			id: "680D62C7F943739A"
+			tasks: [{
+				id: "0FAEF175F347568B"
+				item: "farmersdelight:cutting_board"
+				type: "item"
+			}]
+			title: "砍伐的乐趣"
+			x: -6.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["680D62C7F943739A"]
+			description: [
+				"将一把刀升级为下界合金材质。"
+				""
+				"也许这样做是值得的？"
+			]
+			id: "5446D5E15D48F99E"
+			rewards: [{
+				amount: 2
+				auto: "no_toast"
+				id: "550E27E8478F177C"
+				skill: "smithing"
+				type: "pmmo:levelreward"
+			}]
+			tasks: [{
+				advancement: "farmersdelight:main/obtain_netherite_knife"
+				criterion: ""
+				id: "4E85F318F03C8098"
+				type: "advancement"
+			}]
+			title: "升级 Delight 模组体验"
+			x: -7.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["6926F3AAECB088B4"]
+			description: ["吃掉农夫乐事提供的所有菜肴"]
+			id: "61E268199E1A6D53"
+			rewards: [{
+				amount: 3
+				auto: "no_toast"
+				id: "6D0C3AED59A4D1FC"
+				skill: "cooking"
+				type: "pmmo:levelreward"
+			}]
+			tasks: [{
+				advancement: "farmersdelight:main/master_chef"
+				criterion: ""
+				id: "62B0592500DC709F"
+				type: "advancement"
+			}]
+			title: "顶级厨师"
+			x: -12.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["30DA6D07C597210A"]
+			description: [
+				"篮子是漏斗在游戏前期的廉价替代品。"
+				""
+				"它们也可以被水淹没。"
+			]
+			id: "5C6ADEF91A654EF2"
+			rewards: [{
+				amount: 150L
+				auto: "no_toast"
+				id: "0FAD12CFEC21566E"
+				ignoreBonuses: true
+				skill: "crafting"
+				type: "pmmo:xpreward"
+			}]
+			tasks: [{
+				id: "1B8D42117F1F9E3E"
+				item: "farmersdelight:basket"
+				type: "item"
+			}]
+			title: "跳跃的喜悦"
+			x: -7.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["042405075CA41D91"]
+			description: [
+				"Let's do Meadow 重制了草地群系，并为部分动物增添了多样性。"
+				""
+				"我们去……草地怎么样？"
+			]
+			icon: {
+				Count: 1
+				id: "meadow:fur_helmet"
+				tag: {
+					Damage: 0
+					affix_data: {
+						sockets: 0
+					}
+				}
+			}
+			id: "24D8212356002BCA"
+			size: 1.5d
+			tasks: [{
+				id: "6FD4448899585C8C"
+				type: "checkmark"
+			}]
+			title: "一起去草地上玩耍吧！"
+			x: -2.25d
+			y: 4.5d
+		}
+		{
+			dependencies: ["24D8212356002BCA"]
+			description: ["伐木工可以帮助把木头砍成材料，就像石匠一样。"]
+			id: "77AABDB1993FDECD"
+			rewards: [{
+				amount: 250L
+				auto: "no_toast"
+				id: "59EF0A18E22B7303"
+				ignoreBonuses: true
+				skill: "crafting"
+				type: "pmmo:xpreward"
+			}]
+			tasks: [{
+				id: "434C288BA439B876"
+				item: "meadow:woodcutter"
+				type: "item"
+			}]
+			x: -0.5d
+			y: 5.0d
+		}
+		{
+			dependencies: ["24D8212356002BCA"]
+			description: ["木制桶是普通桶的廉价替代品，可以让你挤奶各种动物（牛、山羊、绵羊）。"]
+			id: "676D281ADACBCBE5"
+			rewards: [{
+				amount: 150L
+				auto: "no_toast"
+				id: "62D0B7E2BC3DC7C2"
+				ignoreBonuses: true
+				skill: "crafting"
+				type: "pmmo:xpreward"
+			}]
+			tasks: [{
+				id: "38921F3BDA907221"
+				item: "meadow:wooden_bucket"
+				type: "item"
+			}]
+			x: -3.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["676D281ADACBCBE5"]
+			description: ["收集牛奶来制作奶酪。"]
+			icon: "meadow:wooden_sheep_milk_bucket"
+			id: "4E8B32E2A6BEC5C4"
+			tasks: [{
+				id: "068CE82F095FCCB5"
+				item: {
+					Count: 1
+					id: "itemfilters:tag"
+					tag: {
+						value: "meadow:wooden_milk_bucket"
+					}
+				}
+				title: "任意 #meadow:wooden_milk_bucket"
+				type: "item"
+			}]
+			title: "Milky Meadows"
+			x: -3.5d
+			y: 7.0d
+		}
+		{
+			dependencies: ["24D8212356002BCA"]
+			description: [
+				"盐可以在草原生物群系中找到。"
+				""
+				"你需要它来制作奶酪。"
+			]
+			id: "232FEA9C1467AEF2"
+			tasks: [{
+				count: 16L
+				id: "0ED2FD31EA753EEB"
+				item: { Count: 16, id: "meadow:alpine_salt" }
+				type: "item"
+			}]
+			title: "草地盐（Meadow Salt）"
+			x: -4.0d
+			y: 5.0d
+		}
+		{
+			dependencies: ["24D8212356002BCA"]
+			description: [
+				"还有新的奶牛变种也加入了进来。"
+				""
+				"水牛通常都靠近水源。"
+			]
+			id: "0AB568E9E16E6092"
+			rewards: [{
+				amount: 100L
+				auto: "no_toast"
+				id: "0AA810903575E74A"
+				ignoreBonuses: true
+				skill: "cooking"
+				type: "pmmo:xpreward"
+			}]
+			tasks: [{
+				id: "1D91475CFF0DEDE6"
+				item: "meadow:raw_buffalo_meat"
+				type: "item"
+			}]
+			x: -1.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["24D8212356002BCA"]
+			description: [
+				"牛和绵羊有不同的变种，可以剪毛获得各种类型的羊毛。"
+				""
+				"试着找到全部 7 个。"
+			]
+			icon: "meadow:flecked_wool"
+			id: "68864DFAB0021E9F"
+			rewards: [{
+				amount: 250L
+				auto: "no_toast"
+				id: "5877C3652D5DAAF3"
+				ignoreBonuses: true
+				skill: "harvesting"
+				type: "pmmo:xpreward"
+			}]
+			tasks: [{
+				advancement: "meadow:main/wool_collector"
+				criterion: ""
+				id: "2E66F495258A74FC"
+				type: "advancement"
+			}]
+			title: "草地羊毛 (Meadow Wools)"
+			x: -2.5d
+			y: 6.5d
+		}
+		{
+			dependencies: [
+				"232FEA9C1467AEF2"
+				"4E8B32E2A6BEC5C4"
+			]
+			description: [
+				"你需要用模组里的烹饪工具来制作奶酪。"
+				""
+				"木制炉灶是唯一能作为炉灶使用的。其他都只是装饰。"
+				""
+				"现在就制作吧。（石灰岩来自草原生物群系）"
+			]
+			icon: "meadow:cooking_cauldron"
+			id: "6A6AD7706A1ADBC2"
+			rewards: [{
+				amount: 1
+				auto: "no_toast"
+				id: "291033692F7ADD5A"
+				skill: "crafting"
+				type: "pmmo:levelreward"
+			}]
+			tasks: [
+				{
+					id: "7972EB092B5F97FC"
+					item: "meadow:stove_tiles_wood"
+					type: "item"
+				}
+				{
+					id: "1392FC1ADEF4C243"
+					item: "meadow:cooking_cauldron"
+					type: "item"
+				}
+				{
+					id: "387ED9160976E5A2"
+					item: "meadow:cheese_form"
+					type: "item"
+				}
+			]
+			title: "草地烹饪"
+			x: -5.0d
+			y: 6.5d
+		}
+		{
+			dependencies: ["6A6AD7706A1ADBC2"]
+			description: ["使用收集到的工具和物品来制作凝乳酶。"]
+			id: "5A36A129D4D767B0"
+			tasks: [{
+				id: "0D46132AF0EB111D"
+				item: "meadow:rennet"
+				type: "item"
+			}]
+			title: "半块奶酪"
+			x: -4.5d
+			y: 7.5d
+		}
+		{
+			dependencies: ["5A36A129D4D767B0"]
+			description: [
+				"将凝乳酶和牛奶放入奶酪压榨机中制作奶酪。"
+				""
+				"真恶心！"
+			]
+			id: "337E646D69C65E11"
+			rewards: [{
+				amount: 1
+				auto: "invisible"
+				id: "2EE9460B8F0C9AE0"
+				skill: "cooking"
+				type: "pmmo:levelreward"
+			}]
+			tasks: [{
+				id: "4BDC34C3DBAF2A4C"
+				item: "meadow:cheese_block"
+				type: "item"
+			}]
+			title: "草地奶酪"
+			x: -3.5d
+			y: 8.5d
+		}
+		{
+			dependencies: ["24D8212356002BCA"]
+			description: ["你可以制作皮毛套装，它能提高击退抗性。"]
+			hide_dependency_lines: true
+			icon: {
+				Count: 1
+				id: "meadow:fur_helmet"
+				tag: {
+					Damage: 0
+					affix_data: {
+						sockets: 0
+					}
+				}
+			}
+			id: "57B397670BB2F2A8"
+			rewards: [{
+				amount: 1
+				auto: "no_toast"
+				id: "7AB56C6C58FD49F7"
+				skill: "crafting"
+				type: "pmmo:levelreward"
+			}]
+			tasks: [
+				{
+					id: "35D8F56860A17153"
+					item: {
+						Count: 1
+						id: "meadow:fur_helmet"
+						tag: {
+							Damage: 0
+							affix_data: {
+								sockets: 0
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "5013277D37C8BB6B"
+					item: {
+						Count: 1
+						id: "meadow:fur_chestplate"
+						tag: {
+							Damage: 0
+							affix_data: {
+								sockets: 0
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "5F2E2AADE4DD5527"
+					item: {
+						Count: 1
+						id: "meadow:fur_leggings"
+						tag: {
+							Damage: 0
+							affix_data: {
+								sockets: 0
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "13A6B34BA92612B1"
+					item: {
+						Count: 1
+						id: "meadow:fur_boots"
+						tag: {
+							Damage: 0
+							affix_data: {
+								sockets: 0
+							}
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "毛茸茸的草地"
+			x: -0.5d
+			y: 7.5d
+		}
+		{
+			dependencies: ["337E646D69C65E11"]
+			description: [
+				"收集所有 7 种类型的奶酪。"
+				""
+				"（扭曲牛变种会生成在连接到扭曲森林的下界传送门附近）"
+			]
+			id: "53B5D57979526BF1"
+			rewards: [{
+				amount: 2
+				auto: "no_toast"
+				id: "5124DDA7E08A58C4"
+				skill: "cooking"
+				type: "pmmo:levelreward"
+			}]
+			tasks: [{
+				advancement: "meadow:main/cheese_collector"
+				criterion: ""
+				id: "755AA63BF699D6E2"
+				type: "advancement"
+			}]
+			title: "奶酪，求你了"
+			x: -2.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["337E646D69C65E11"]
+			description: ["你可以用熔炉制作奶酪棒，这是大家最喜欢的食物。"]
+			icon: "meadow:cheese_stick"
+			id: "7947F3CD9D9816B8"
+			rewards: [{
+				amount: 150L
+				auto: "no_toast"
+				id: "16B503D077FC897D"
+				ignoreBonuses: true
+				skill: "cooking"
+				type: "pmmo:xpreward"
+			}]
+			tasks: [
+				{
+					id: "68D45278B6A4F4F2"
+					item: "meadow:fondue"
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "63CDA1F8C18D39E4"
+					item: "meadow:cheese_stick"
+					type: "item"
+				}
+			]
+			title: "奶酪爱好者"
+			x: -2.0d
+			y: 9.5d
+		}
+		{
+			dependencies: ["6A6AD7706A1ADBC2"]
+			description: [
+				"烹饪锅的用法和农夫之乐锅一样，只是没有碗，而且烹饪速度更慢。"
+				""
+				"它也可以烹饪普通配方，但使用盐可以增加产量。"
+			]
+			id: "6FBEA5DBE683DD78"
+			rewards: [{
+				amount: 150L
+				auto: "invisible"
+				id: "622066A2B51F4899"
+				ignoreBonuses: false
+				skill: "cooking"
+				type: "pmmo:xpreward"
+			}]
+			tasks: [{
+				consume_items: true
+				count: 4L
+				id: "0A3043D68F704C3D"
+				item: { Count: 4, id: "minecraft:cooked_beef" }
+				type: "item"
+			}]
+			title: "烹饪与盐分"
+			x: -5.5d
+			y: 8.5d
+		}
+	]
+	title: "顶级厨师"
+}

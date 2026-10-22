@@ -1,0 +1,1053 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "gear"
+	filename: "create"
+	group: ""
+	hide_quest_until_deps_complete: true
+	icon: "create:goggles"
+	id: "000000000000044D"
+	images: [
+		{
+			height: 1.0d
+			image: "kubejs:textures/images/mechanical.png"
+			rotation: 0.0d
+			width: 15.0d
+			x: 0.0d
+			y: -2.5d
+		}
+		{
+			height: 3.0d
+			image: "kubejs:textures/images/warning.png"
+			rotation: 0.0d
+			width: 15.0d
+			x: 10.0d
+			y: 1.0d
+		}
+	]
+	order_index: 7
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["0000000000000496"]
+			description: ["机械传动带是一种传递旋转、移动物品和实体的机械组件。"]
+			hide_until_deps_visible: true
+			id: "0000000000000450"
+			rewards: [{
+				count: 32
+				id: "7A8DDF64FC9608AA"
+				item: "create:belt_connector"
+				type: "item"
+			}]
+			tasks: [{
+				count: 64L
+				id: "0000000000000451"
+				item: "create:belt_connector"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["0000000000000458"]
+			description: ["当红石信号被施加时，Clutch会停止向外旋转。"]
+			hide_dependency_lines: true
+			hide_until_deps_visible: true
+			id: "0000000000000454"
+			rewards: [{
+				count: 8
+				id: "790CEBCD09694347"
+				item: "minecraft:redstone"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0000000000000455"
+				item: "create:clutch"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["0000000000000458"]
+			description: ["当红石信号被施加时，齿轮会反转输出的旋转力。"]
+			hide_dependency_lines: true
+			hide_until_deps_visible: true
+			id: "0000000000000456"
+			rewards: [{
+				id: "51F768748A8D5B7A"
+				item: "create:adjustable_chain_gearshift"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0000000000000457"
+				item: "create:gearshift"
+				type: "item"
+			}]
+			x: -1.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["56898DB9BBAE241B"]
+			description: ["CREATE 中使用的许多装置都基于安山合金。先制作一些来开始吧。"]
+			hide_until_deps_visible: true
+			icon: "create:andesite_alloy"
+			id: "0000000000000458"
+			rewards: [
+				{
+					count: 32
+					id: "311D6756D53F50A6"
+					item: "minecraft:andesite"
+					type: "item"
+				}
+				{
+					amount: 100L
+					auto: "enabled"
+					id: "3B4D75AE42DF8AAD"
+					ignoreBonuses: true
+					skill: "crafting"
+					type: "pmmo:xpreward"
+				}
+			]
+			size: 2.0d
+			tasks: [
+				{
+					id: "0000000000000459"
+					item: "create:andesite_casing"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "099203870155107F"
+					item: {
+						Count: 1
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+						id: "create:andesite_alloy"
+					}
+					type: "item"
+				}
+			]
+			title: "将石头转化为机器"
+			x: -2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000000496"]
+			description: ["机械压机是一个机械组件，可将压制、填充和压缩配方应用于其下方的物品。"]
+			hide_dependency_lines: true
+			hide_until_deps_visible: true
+			id: "000000000000045A"
+			rewards: [{
+				id: "1FD8D28077EC30E8"
+				item: "create:blaze_cake_base"
+				type: "item"
+			}]
+			tasks: [{
+				id: "000000000000045B"
+				item: "create:mechanical_press"
+				type: "item"
+			}]
+			x: 3.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["000000000000046A"]
+			description: [
+				"过滤器用于将多种不同物品通过单一输出进行排序。"
+				""
+				"过滤器只能用于带有过滤器插槽的机器，例如黄铜漏斗、黄铜隧道和盆。"
+			]
+			hide_until_deps_visible: true
+			icon: {
+				Count: 1
+				ForgeCaps: {
+					"dungeons_libraries:built_in_enchantments": {
+						BuiltInEnchantments: [ ]
+					}
+				}
+				id: "create:filter"
+				tag: {
+					Items: { }
+				}
+			}
+			id: "000000000000045C"
+			rewards: [{
+				count: 2
+				id: "166CECA5095CAFF9"
+				item: {
+					Count: 1
+					id: "create:filter"
+					tag: {
+						Items: { }
+					}
+				}
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "000000000000045D"
+					item: {
+						Count: 1
+						id: "create:filter"
+						tag: {
+							Items: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "000000000000045E"
+					item: {
+						Count: 1
+						id: "create:attribute_filter"
+						tag: { }
+					}
+					type: "item"
+				}
+			]
+			title: "过滤器"
+			x: 0.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["0000000000000458"]
+			description: [
+				"速度计测量的是旋转力的速度。"
+				""
+				"压力计用于测量轴上的压力大小。"
+			]
+			hide_dependency_lines: true
+			hide_until_deps_visible: true
+			id: "000000000000045F"
+			rewards: [{
+				count: 16
+				id: "327CCF89C7813997"
+				item: "create:shaft"
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "0000000000000460"
+					item: "create:speedometer"
+					type: "item"
+				}
+				{
+					id: "0000000000000461"
+					item: "create:stressometer"
+					type: "item"
+				}
+			]
+			title: "动能力量"
+			x: -1.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["56898DB9BBAE241B"]
+			description: [
+				"工程师护目镜能让你看到机器的相关信息。"
+				""
+				"扳手是一种用于旋转、拆卸和配置组件的工具"
+				""
+				"工具箱可用于存放更多用于建造的方块。"
+			]
+			hide_until_deps_visible: true
+			icon: {
+				Count: 1
+				ForgeCaps: {
+					"dungeons_libraries:built_in_enchantments": {
+						BuiltInEnchantments: [ ]
+					}
+				}
+				id: "create:orange_toolbox"
+			}
+			id: "0000000000000462"
+			rewards: [{
+				id: "7CF3777BE2FA9D6C"
+				item: {
+					Count: 1
+					id: "create:extendo_grip"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "0000000000000463"
+					item: "create:goggles"
+					type: "item"
+				}
+				{
+					id: "0000000000000464"
+					item: "create:wrench"
+					type: "item"
+				}
+				{
+					id: "2940D0C619B7BB3D"
+					item: "create:brown_toolbox"
+					type: "item"
+				}
+			]
+			title: "工作中的工具必不可少"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["0000000000000458"]
+			description: ["Encased Chain Drive 是一种可以传递旋转的方块，与 Mechanical Belt 类似。"]
+			hide_dependency_lines: true
+			hide_until_deps_visible: true
+			id: "0000000000000465"
+			rewards: [{
+				count: 3
+				id: "6844DA50D035EEF5"
+				item: "create:encased_chain_drive"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0000000000000466"
+				item: "create:encased_chain_drive"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["0000000000000450"]
+			dependency_requirement: "one_completed"
+			description: [
+				"安山岩隧道是机械传送带的装饰性隧道。"
+				""
+				"黄铜隧道是一种只能放置在机械传送带上的机器。它可以对通过的物品进行分类。"
+			]
+			hide_until_deps_visible: true
+			icon: {
+				Count: 1
+				ForgeCaps: {
+					"dungeons_libraries:built_in_enchantments": {
+						BuiltInEnchantments: [ ]
+					}
+				}
+				id: "create:andesite_tunnel"
+			}
+			id: "0000000000000467"
+			rewards: [{
+				count: 3
+				id: "014648654A02A8D2"
+				item: "create:andesite_tunnel"
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "0000000000000468"
+					item: "create:andesite_tunnel"
+					type: "item"
+				}
+				{
+					id: "0000000000000469"
+					item: "create:brass_tunnel"
+					type: "item"
+				}
+			]
+			x: 0.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["0000000000000467"]
+			description: ["漏斗用于将物品提取到或放入物品栏中。"]
+			hide_until_deps_visible: true
+			icon: {
+				Count: 1
+				ForgeCaps: {
+					"dungeons_libraries:built_in_enchantments": {
+						BuiltInEnchantments: [ ]
+					}
+				}
+				id: "create:andesite_funnel"
+			}
+			id: "000000000000046A"
+			rewards: [{
+				count: 2
+				id: "10E1AC1476E59B79"
+				item: "create:andesite_funnel"
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "000000000000046B"
+					item: "create:andesite_funnel"
+					type: "item"
+				}
+				{
+					id: "000000000000046C"
+					item: "create:brass_funnel"
+					type: "item"
+				}
+			]
+			x: 0.0d
+			y: 5.0d
+		}
+		{
+			dependencies: ["0000000000000496"]
+			description: ["机械活塞是一种在旋转动力驱动下能推动多个方块装置的活塞。"]
+			hide_dependency_lines: true
+			hide_until_deps_visible: true
+			id: "000000000000046D"
+			rewards: [{
+				count: 2
+				id: "616349F11928EF15"
+				item: "create:mechanical_piston"
+				type: "item"
+			}]
+			tasks: [{
+				id: "000000000000046E"
+				item: "create:mechanical_piston"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["000000000000046D"]
+			description: ["粘性机械活塞是一种在旋转动力驱动下能推动多个方块装置的活塞。"]
+			hide_until_deps_visible: true
+			id: "000000000000046F"
+			rewards: [{
+				id: "7693632113C50A9B"
+				item: "create:sticky_mechanical_piston"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0000000000000470"
+				item: "create:sticky_mechanical_piston"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["0000000000000496"]
+			description: [
+				"流体储罐是一种流体存储装置，每个方块最多可存储8桶流体。"
+				""
+				"流体储罐也会与相邻储罐合并，最大可达 3x32x3，可存储多达 2,304 桶的任何流体。"
+			]
+			hide_dependency_lines: true
+			hide_until_deps_visible: true
+			id: "0000000000000473"
+			rewards: [{
+				id: "26BCDFD884D405D5"
+				item: "create:fluid_tank"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0000000000000474"
+				item: "create:fluid_tank"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["0000000000000496"]
+			description: [
+				"线性底盘是连接移动结构或矿车装置的一种方法。"
+				""
+				"径向底盘是一种用于连接机械装置的方块。"
+			]
+			hide_dependency_lines: true
+			hide_until_deps_visible: true
+			icon: {
+				Count: 1
+				ForgeCaps: {
+					"dungeons_libraries:built_in_enchantments": {
+						BuiltInEnchantments: [ ]
+					}
+				}
+				id: "create:linear_chassis"
+			}
+			id: "0000000000000479"
+			rewards: [
+				{
+					count: 4
+					id: "73D1DD893F9C875F"
+					item: "create:linear_chassis"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "2686B1AE969A2A31"
+					item: "create:radial_chassis"
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "000000000000047A"
+					item: "create:linear_chassis"
+					type: "item"
+				}
+				{
+					id: "000000000000047B"
+					item: "create:radial_chassis"
+					type: "item"
+				}
+				{
+					id: "000000000000047C"
+					item: "create:secondary_linear_chassis"
+					type: "item"
+				}
+			]
+			title: "将所有内容整合在一起"
+			x: -1.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["0000000000000496"]
+			description: ["机械钻头是一种用于破坏方块的方块。"]
+			hide_dependency_lines: true
+			hide_until_deps_visible: true
+			id: "000000000000047F"
+			rewards: [{
+				count: 8
+				id: "4859F1C3B12EAC00"
+				item: "minecraft:iron_ore"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0000000000000480"
+				item: "create:mechanical_drill"
+				type: "item"
+			}]
+			x: -1.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["0000000000000496"]
+			description: [
+				"机械收割机在前进时会收割所有接触到的成熟作物。"
+				""
+				"然后，它会将物品存入装置上的物品栏，如果没有可用的物品栏，则会将物品掉落在地上。"
+			]
+			hide_dependency_lines: true
+			hide_until_deps_visible: true
+			id: "0000000000000483"
+			rewards: [{
+				count: 16
+				id: "6D06EA6A80049DC6"
+				item: "minecraft:wheat"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0000000000000484"
+				item: "create:mechanical_harvester"
+				type: "item"
+			}]
+			x: 4.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["0000000000000496"]
+			description: ["齿轮箱可以将旋转动力向四个水平方向传递。垂直齿轮箱则和普通版本一样，能将动力向四个垂直方向传递。"]
+			hide_dependency_lines: true
+			hide_until_deps_visible: true
+			icon: {
+				Count: 1
+				ForgeCaps: {
+					"dungeons_libraries:built_in_enchantments": {
+						BuiltInEnchantments: [ ]
+					}
+				}
+				id: "create:gearbox"
+			}
+			id: "0000000000000489"
+			rewards: [
+				{
+					count: 2
+					id: "165405136AEC8E17"
+					item: "create:gearbox"
+					type: "item"
+				}
+				{
+					count: 2
+					id: "35E037341F06884B"
+					item: "create:vertical_gearbox"
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "000000000000048A"
+					item: "create:vertical_gearbox"
+					type: "item"
+				}
+				{
+					id: "000000000000048B"
+					item: "create:gearbox"
+					type: "item"
+				}
+			]
+			title: "齿轮箱"
+			x: 1.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["0000000000000496"]
+			description: [
+				"Encased Fan 是一种机械组件，可以产生气流并生成电力。"
+				""
+				"其气流可用于移动实体，或进行批量清洗、批量爆破和批量熏制。"
+			]
+			hide_dependency_lines: true
+			hide_until_deps_visible: true
+			id: "000000000000048C"
+			rewards: [{
+				count: 2
+				id: "2FF74FEED253681C"
+				item: "create:propeller"
+				type: "item"
+			}]
+			tasks: [{
+				id: "000000000000048D"
+				item: "create:encased_fan"
+				type: "item"
+			}]
+			x: -5.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["0000000000000496"]
+			description: ["机械合成器是一种能自动合成物品的机器。"]
+			hide_dependency_lines: true
+			hide_until_deps_visible: true
+			id: "0000000000000492"
+			rewards: [{
+				count: 4
+				id: "1FD526637BD9016F"
+				item: "create:brass_casing"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0000000000000493"
+				item: "create:mechanical_crafter"
+				type: "item"
+			}]
+			x: -3.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["56A7781353F88367"]
+			description: ["要开始发电，风车轴承必须安装风帆或羊毛。"]
+			hide_until_deps_visible: true
+			id: "0000000000000494"
+			rewards: [{
+				count: 10
+				id: "62539F04D2C1FC81"
+				item: {
+					Count: 1
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+					}
+					id: "create:shaft"
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "0000000000000495"
+				item: "create:windmill_bearing"
+				type: "item"
+			}]
+			x: -5.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["29951186B4D666F0"]
+			description: [
+				""
+				"你现在有了能量，但它需要传输到你的机器上。制作齿轮轮，这是传输能量的基本组件。"
+			]
+			icon: {
+				Count: 1
+				ForgeCaps: {
+					"dungeons_libraries:built_in_enchantments": {
+						BuiltInEnchantments: [ ]
+					}
+				}
+				id: "create:shaft"
+			}
+			id: "0000000000000496"
+			rewards: [{
+				count: 16
+				id: "363CB6E6046DFC1C"
+				item: "create:shaft"
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "0000000000000497"
+					item: "create:shaft"
+					type: "item"
+				}
+				{
+					id: "000000000000049C"
+					item: {
+						Count: 1
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+						id: "create:cogwheel"
+					}
+					title: "Cogwheel"
+					type: "item"
+				}
+				{
+					id: "000000000000049D"
+					item: {
+						Count: 1
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+						id: "create:large_cogwheel"
+					}
+					title: "大型齿轮"
+					type: "item"
+				}
+			]
+			title: "正在传输能量"
+			x: 0.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["56A7781353F88367"]
+			description: [
+				"水车是一种旋转动力源。当水流过时，它会生成旋转力。"
+				""
+				"水车可以与一桶水或河流结合以产生动力。"
+			]
+			hide_until_deps_visible: true
+			id: "000000000000049E"
+			rewards: [{
+				count: 2
+				id: "72AF8BD5DB212E5C"
+				item: {
+					Count: 1
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+					}
+					id: "create:water_wheel"
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "000000000000049F"
+				item: "create:water_wheel"
+				type: "item"
+			}]
+			x: -5.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000000496"]
+			description: ["Millstone 是 Crushing Wheels 的更基础版本，能将研磨配方应用到从上方投入的任何物品上。"]
+			hide_dependency_lines: true
+			hide_until_deps_visible: true
+			id: "00000000000004A0"
+			rewards: [{
+				count: 64
+				id: "7843221DAA95EFAF"
+				item: "create:limestone"
+				type: "item"
+			}]
+			tasks: [{
+				id: "00000000000004A1"
+				item: "create:millstone"
+				type: "item"
+			}]
+			x: -2.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["0000000000000492"]
+			description: ["Crushing Wheels 是 Millstone 的进阶版。它对从旋转方向的反向插入的任何物品应用 Crushing 配方。"]
+			hide_until_deps_visible: true
+			id: "00000000000004A2"
+			rewards: [{
+				count: 24
+				id: "70FFD7366F3FFB37"
+				item: "minecraft:obsidian"
+				type: "item"
+			}]
+			tasks: [{
+				count: 2L
+				id: "00000000000004A3"
+				item: "create:crushing_wheel"
+				type: "item"
+			}]
+			x: -3.5d
+			y: 5.5d
+		}
+		{
+			dependencies: ["56A7781353F88367"]
+			description: ["手摇曲柄通过玩家互动产生少量旋转力。"]
+			hide_until_deps_visible: true
+			id: "00000000000004A4"
+			rewards: [{
+				count: 4
+				id: "14CB6B8F7A0FB743"
+				item: "create:andesite_alloy"
+				type: "item"
+			}]
+			tasks: [{
+				id: "00000000000004A5"
+				item: "create:hand_crank"
+				type: "item"
+			}]
+			x: -5.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["0000000000000496"]
+			description: ["机械搅拌机是一种机械组件，可将混合配方和无配方合成配方应用于盆中的物品。"]
+			hide_dependency_lines: true
+			hide_until_deps_visible: true
+			id: "00000000000004A6"
+			rewards: [{
+				count: 8
+				id: "64F6B486A756B8F0"
+				item: "create:dough"
+				type: "item"
+			}]
+			tasks: [{
+				id: "00000000000004A7"
+				item: "create:mechanical_mixer"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["0000000000000496"]
+			description: [
+				"机械锯通过旋转力驱动，放置时朝向侧面，会自动砍伐前方的木块。砍伐树木时，只需破坏最下方的木块，即可自动摧毁整棵树。"
+				""
+				"朝上放置时，锯子会应用锯切或石匠配方。"
+			]
+			hide_dependency_lines: true
+			hide_until_deps_visible: true
+			id: "00000000000004A8"
+			rewards: [{
+				count: 16
+				id: "02E033781C0A7370"
+				item: "minecraft:oak_log"
+				type: "item"
+			}]
+			tasks: [{
+				id: "00000000000004A9"
+				item: "create:mechanical_saw"
+				type: "item"
+			}]
+			x: -4.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["0000000000000473"]
+			description: ["Spout 是一种用于填充瓶子或桶等液体容器，或与液体进行合成的方块。"]
+			hide_until_deps_visible: true
+			id: "00000000000004AA"
+			rewards: [{
+				id: "529A5EB5322FEB59"
+				item: "create:item_drain"
+				type: "item"
+			}]
+			tasks: [{
+				id: "00000000000004AB"
+				item: "create:spout"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["00000000000004A6"]
+			description: [
+				"盆是一个用于存放物品和流体以进行打包、压实和混合配方制作的方块。"
+				""
+				"水槽也可以作为流体系统的交互点，因为玩家可以直接或将流体放入或移出水槽。"
+			]
+			hide_until_deps_visible: true
+			id: "00000000000004AC"
+			rewards: [{
+				count: 32
+				id: "55DAEFC4AD398606"
+				item: "minecraft:andesite"
+				type: "item"
+			}]
+			tasks: [{
+				id: "00000000000004AD"
+				item: "create:basin"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["0000000000000496"]
+			description: [
+				"强力胶水能将装置中的结构粘合在一起，就像史莱姆球一样。"
+				""
+				"Super Glue 和 Slimeball 的主要区别在于，Super Glue 不需要使用 Linear Chassis 木块的面来将方块粘合在一起。"
+			]
+			hide_dependency_lines: true
+			hide_until_deps_visible: false
+			id: "1649CACDA9411210"
+			rewards: [{
+				count: 4
+				id: "5002022DFE1760D5"
+				item: "minecraft:lime_dye"
+				type: "item"
+			}]
+			tasks: [{
+				id: "4CF58B688D370BDB"
+				item: {
+					Count: 1
+					id: "create:super_glue"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: -2.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["4A31F90BCE24D994"]
+			description: [
+				"CREATE 是一款增强原版体验的模组，可用于创建自动化机械系统。本指南将帮助您快速上手。"
+				"大多数系统和设计都可以通过“沉思”物品来查看。(W 键注视物品)"
+			]
+			hide_until_deps_visible: true
+			icon: "create:goggles"
+			id: "56898DB9BBAE241B"
+			subtitle: "我们一定行！"
+			tasks: [{
+				id: "3DA8314F1A8B4145"
+				title: "我们能把它建造出来吗？"
+				type: "checkmark"
+			}]
+			x: -1.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["0000000000000458"]
+			description: [
+				"有两种主要方式来产生电力——风车和 водяное колесо。"
+				"你也可以使用需要玩家互动的徒手挖掘工具。"
+			]
+			hide_until_deps_visible: true
+			id: "56A7781353F88367"
+			tasks: [{
+				id: "54C3F64D256BCE36"
+				type: "checkmark"
+			}]
+			title: "正在生成电力"
+			x: -4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000000494"]
+			description: [
+				"将帆与风车轴承连接可产生电力。 轴承上至少需要连接8个。"
+				"船帆和羊毛无需使用强力胶水或史莱姆球即可附着。"
+			]
+			hide_until_deps_visible: true
+			id: "599A9A12734CECD2"
+			tasks: [{
+				count: 8L
+				id: "28743A01B43C5BE0"
+				item: {
+					Count: 1
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+					}
+					id: "create:white_sail"
+				}
+				type: "item"
+			}]
+			x: -6.0d
+			y: 1.0d
+		}
+		{
+			dependencies: [
+				"0000000000000494"
+				"000000000000049E"
+			]
+			dependency_requirement: "one_completed"
+			hide_dependency_lines: true
+			hide_until_deps_visible: true
+			icon: "create:wrench"
+			id: "29951186B4D666F0"
+			rewards: [{
+				amount: 200L
+				auto: "enabled"
+				id: "43FBE8719B219EC4"
+				ignoreBonuses: true
+				skill: "crafting"
+				type: "pmmo:xpreward"
+			}]
+			size: 2.0d
+			tasks: [{
+				disable_toast: true
+				id: "6A1464DEBBB38C54"
+				type: "checkmark"
+			}]
+			title: "学习这门手艺"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000000458"]
+			description: [
+				"Ars和Create的核心模组组件大多需要由Minecolony伐木工加工的木材。"
+				""
+				"你可以要求最低库存的木材，或通过邮箱请求数量，以强制伐木工创建所需库存。"
+				""
+				"有时，你需要重新排列配方，以确保伐木工使用你提供的木材。"
+			]
+			id: "54B45E8EDC4F5F07"
+			rewards: [{
+				amount: 1
+				auto: "no_toast"
+				id: "3F5B4CE09550344E"
+				skill: "crafting"
+				type: "pmmo:levelreward"
+			}]
+			tasks: [{
+				consume_items: true
+				count: 8L
+				id: "1134618AB3790020"
+				item: "kubejs:processed_wood"
+				type: "item"
+			}]
+			title: "基础木材"
+			x: -3.0d
+			y: 1.5d
+		}
+	]
+	title: "机械优势"
+}

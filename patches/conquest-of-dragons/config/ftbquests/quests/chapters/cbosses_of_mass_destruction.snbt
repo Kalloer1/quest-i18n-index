@@ -1,0 +1,503 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "cbosses_of_mass_destruction"
+	group: "49FDD79D2384A7A4"
+	icon: "bosses_of_mass_destruction:void_thorn"
+	id: "42FC538CE4BB4F52"
+	images: [{
+		height: 4.0d
+		image: "kubejs:textures/fotos/bossesofmass.png"
+		rotation: 0.0d
+		width: 4.0d
+		x: 0.0d
+		y: 1.5d
+	}]
+	order_index: 4
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"&a击败&d4位终局首领，&a并获取他们的独特战利品。"
+				"&b本系列任务将教你如何&6定位、召唤&b并&6击败&b它们。"
+			]
+			hide_dependent_lines: true
+			id: "5050FB19CBA1D745"
+			rewards: [{
+				id: "2D7FE53B2F728F12"
+				type: "xp"
+				xp: 15
+			}]
+			shape: "gear"
+			subtitle: "&7勾选以开始这场终局狩猎"
+			tasks: [{
+				id: "71D5E95E9ED740B1"
+				title: "&e&l毁灭领主：开始"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["5050FB19CBA1D745"]
+			description: [
+				"&a获取一个&6Soul Star&a，并使用它来追踪&bLich Tower&a，就像使用末影之眼一样。"
+				"&b你最终需要 &f4 个灵魂之星 &b来激活里面的祭坛。"
+			]
+			id: "7EA3F75E89356D81"
+			rewards: [
+				{
+					id: "29F70836CF597309"
+					type: "xp"
+					xp: 25
+				}
+				{
+					id: "6FEBD51461900578"
+					item: "bosses_of_mass_destruction:soul_star"
+					random_bonus: 2
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			subtitle: "&7找到巫妖塔的关键所在"
+			tasks: [{
+				count: 4L
+				id: "61FE52541E3DF2DA"
+				item: { Count: 4, id: "bosses_of_mass_destruction:soul_star" }
+				type: "item"
+			}]
+			x: 0.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["7EA3F75E89356D81"]
+			description: [
+				"&a在塔内，找到带有&fChiseled Stone Altars&a的地板。"
+				"&b放入 &f4 个灵魂之星 &b以开始与 &5夜巫妖 &b的 boss 战斗。"
+			]
+			id: "0BEB5813D287A3A7"
+			rewards: [
+				{
+					id: "67B99765FD1F48EE"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "5F8EA8D41E12D7D6"
+					item: "minecraft:enchanted_golden_apple"
+					random_bonus: 2
+					type: "item"
+				}
+			]
+			shape: "diamond"
+			subtitle: "&7四个祭坛，四颗星星"
+			tasks: [{
+				entity: "bosses_of_mass_destruction:lich"
+				icon: {
+					Count: 1
+					id: "simplyswords:stars_edge"
+					tag: {
+						Damage: 0
+						nether_power: "socket_empty"
+						runic_power: "no_socket"
+					}
+				}
+				id: "48C921435EDBB67F"
+				type: "kill"
+				value: 1L
+			}]
+			title: "&e&l唤醒夜之巫妖"
+			x: -1.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["5050FB19CBA1D745"]
+			description: [
+				"&a获取一朵&d虚空百合&a，并将其放置在&2草地&a或&2泥土&a上以揭示粒子提示。"
+				"&b跟随粒子，直到你到达竞技场入口的上方。"
+			]
+			id: "0623999FFC2F3968"
+			rewards: [
+				{
+					id: "1641B3EBF44B0868"
+					type: "xp"
+					xp: 15
+				}
+				{
+					id: "6370851A89C8FB59"
+					item: "bosses_of_mass_destruction:void_lily"
+					random_bonus: 2
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			subtitle: "&7找到通往虚空之花的路径"
+			tasks: [{
+				id: "2D1AA44F4BDC3B55"
+				item: "bosses_of_mass_destruction:void_lily"
+				type: "item"
+			}]
+			title: "&e&l虚空百合罗盘"
+			x: 0.0d
+			y: 5.0d
+		}
+		{
+			dependencies: ["0623999FFC2F3968"]
+			description: [
+				"&a下降到密室中，触发与&d虚空之花&a的战斗。"
+				"&b管理其恢复：它&l无法恢复到下一个阶段以上&b——将每个进度条视为一个检查点。"
+			]
+			icon: {
+				Count: 1
+				id: "cataclysm:void_forge"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "1CC4F33F9FBC715A"
+			rewards: [
+				{
+					id: "6D0A89B2548509A2"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "7AF8458502538316"
+					item: "minecraft:torchflower"
+					random_bonus: 2
+					type: "item"
+				}
+				{
+					id: "60A059F19D251D38"
+					item: "alexscaves:pewen_branch"
+					type: "item"
+				}
+			]
+			shape: "diamond"
+			subtitle: "&7无法逃脱，只有检查点"
+			tasks: [{
+				entity: "bosses_of_mass_destruction:void_blossom"
+				icon: {
+					Count: 1
+					id: "cataclysm:void_forge"
+					tag: {
+						Damage: 0
+					}
+				}
+				id: "1DE7D52DCCB98372"
+				type: "kill"
+				value: 1L
+			}]
+			title: "&e&l进入虚空花竞技场"
+			x: 1.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["688A0F54968534F3"]
+			description: [
+				"&a击败&cNether Gauntlet&a；躲避冲击波、重拳和突然的致盲效果。"
+				"&b收集其独特的战利品并继续前进。"
+			]
+			icon: "bosses_of_mass_destruction:blazing_eye"
+			id: "59A00E942F6B9284"
+			rewards: [{
+				id: "00E7CA39B3A758B7"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "diamond"
+			subtitle: "&7闪避、震击和致盲效果"
+			tasks: [{
+				entity: "bosses_of_mass_destruction:gauntlet"
+				id: "6ECD350AF0B75126"
+				type: "kill"
+				value: 1L
+			}]
+			title: "&e&l击败下界手套守护者"
+			x: -1.0d
+			y: 6.5d
+		}
+		{
+			dependencies: ["5050FB19CBA1D745"]
+			description: [
+				"&a寻找&cGauntlet Arena &a——它会以一个特殊结构的形式出现。"
+				"&b准备： &cNether Gauntlet &b分阶段进行，并对走位不佳的玩家进行惩罚。"
+			]
+			id: "688A0F54968534F3"
+			rewards: [{
+				id: "1CC58B259ED98AA2"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "rsquare"
+			subtitle: "&7活拳头的家园"
+			tasks: [{
+				id: "5638709856EB3A0E"
+				title: "&e&l找到手套竞技场"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["5050FB19CBA1D745"]
+			description: [
+				"&aLocate the &8Obsidilith &ain its rare structure among the end isles."
+				"&b研究竞技场——这场战斗会迅速升级。"
+			]
+			id: "1D5E9E0F70B16FD2"
+			rewards: [{
+				id: "1840268CA7D27F22"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "rsquare"
+			subtitle: "&7群岛的巨石纪念碑"
+			tasks: [{
+				id: "7C69ED7364E29E8F"
+				title: "&e&l寻找奥布西迪利斯（Obsidilith）"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: 7.0d
+		}
+		{
+			dependencies: ["1D5E9E0F70B16FD2"]
+			description: [
+				"&a击败&8Obsidilith&a；小心光束攻击和惩罚性转换。"
+				"&b领取巅峰之战的丰厚奖励。"
+			]
+			icon: "bosses_of_mass_destruction:obsidian_heart"
+			id: "154E1D52E4E33A53"
+			rewards: [
+				{
+					id: "0AE73395EA15B646"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "468D3D5407CA3C6E"
+					item: "minecraft:nether_star"
+					type: "item"
+				}
+			]
+			shape: "diamond"
+			subtitle: "&7支柱、横梁和惩罚性阶段"
+			tasks: [{
+				entity: "bosses_of_mass_destruction:obsidilith"
+				id: "0513489CE14BDC2C"
+				type: "kill"
+				value: 1L
+			}]
+			title: "&e&l击碎奥布西迪利斯（Obsidilith）"
+			x: 1.0d
+			y: 7.5d
+		}
+		{
+			dependencies: ["5050FB19CBA1D745"]
+			description: [
+				"&a击败&cNether Gauntlet&a，并掠夺&6Brimstone Nectar&a。"
+				"&b这个稀有掉落可用于合成，也可作为征服的奖杯。"
+			]
+			id: "5385CD08366CB4BE"
+			rewards: [
+				{
+					id: "1F5B7FA95B05BC40"
+					type: "xp"
+					xp: 25
+				}
+				{
+					id: "2930DE661516A3C0"
+					item: "bosses_of_mass_destruction:crystal_fruit"
+					type: "item"
+				}
+			]
+			subtitle: "&7Essence of the Gauntlet’s fury"
+			tasks: [{
+				id: "440CB4D9EDC9354A"
+				item: "bosses_of_mass_destruction:brimstone_nectar"
+				type: "item"
+			}]
+			title: "&e&l收集硫磺花蜜"
+			x: -3.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["5050FB19CBA1D745"]
+			description: [
+				"&a击败&d虚空之花&a，并收集&5虚空荆棘&a。"
+				"&b用于制作强力远程或魔法装备的组件。"
+			]
+			id: "1F62EEFB64276733"
+			rewards: [
+				{
+					id: "4F619A9CC7A5964F"
+					type: "xp"
+					xp: 45
+				}
+				{
+					id: "6CD1AE2D6B2EB202"
+					item: "croptopia:fruit_cake"
+					random_bonus: 3
+					type: "item"
+				}
+			]
+			subtitle: "&7花瓣的致命尖刺"
+			tasks: [{
+				id: "3671656D3C47D683"
+				item: "bosses_of_mass_destruction:void_thorn"
+				type: "item"
+			}]
+			title: "&e&l收割虚空荆棘"
+			x: -2.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["5050FB19CBA1D745"]
+			description: [
+				"&a击败&5夜之巫妖&a，并掠夺&b镇压法杖&a。"
+				"&b用它来削弱敌人，将战斗倾向拉向你有利的一方。"
+			]
+			id: "1374EBE5F882A6C9"
+			rewards: [
+				{
+					id: "7B019FA85575C472"
+					type: "xp"
+					xp: 45
+				}
+				{
+					id: "383499AA5F8C0D4E"
+					item: {
+						Count: 1
+						id: "the_bumblezone:essence_life"
+						tag: {
+							abilityUseRemaining: 1000
+						}
+					}
+					type: "item"
+				}
+			]
+			subtitle: "&7掌控战斗的走向"
+			tasks: [{
+				id: "0F2714D958174938"
+				item: "bosses_of_mass_destruction:mob_ward"
+				type: "item"
+			}]
+			title: "&e&l获得镇压法杖 Staff of Suppression"
+			x: -1.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["5050FB19CBA1D745"]
+			description: [
+				"&a击败&8Obsidilith&a，并掠夺&2Earthdive Spear&a。"
+				"&b一种奖励精准打击的卓越近战武器。"
+			]
+			id: "0D3BBB109A373669"
+			rewards: [
+				{
+					id: "3C91468B68CAC5C1"
+					type: "xp"
+					xp: 45
+				}
+				{
+					id: "49CAAE2EC07D2625"
+					item: {
+						Count: 1
+						id: "valarian_conquest:aegis_knight_shield"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			subtitle: "&7刺穿敌人的心脏，将其击败！"
+			tasks: [{
+				id: "37F8B6A9C3278773"
+				item: {
+					Count: 1
+					id: "bosses_of_mass_destruction:earthdive_spear"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "&e&l领取地球之矛（Earthdive Spear）"
+			x: 1.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["5050FB19CBA1D745"]
+			description: [
+				"&aLoot the &6Blast Amplifier &afrom the &cNether Gauntlet&a’s treasure.  "
+				"&bCombine with TNT or other explosives for devastating effects. "
+			]
+			id: "51D1A8A0299A319C"
+			rewards: [
+				{
+					id: "22CE1B9A50D49578"
+					type: "xp"
+					xp: 45
+				}
+				{
+					id: "7D19F82DE70DB7C0"
+					item: {
+						Count: 1
+						id: "aquamirae:coral_lance"
+						tag: {
+							Damage: 0
+							Enchantments: [{
+								id: "minecraft:unbreaking"
+								lvl: 4s
+							}]
+						}
+					}
+					type: "item"
+				}
+			]
+			subtitle: "&7让你的爆炸更强大"
+			tasks: [{
+				id: "1DB3D8BE91597226"
+				item: "bosses_of_mass_destruction:monolith_block"
+				type: "item"
+			}]
+			title: "&e&l取回爆炸增幅器"
+			x: 2.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["5050FB19CBA1D745"]
+			description: [
+				"&a从特殊首领掉落物中获取&5充电器末影珍珠&a。"
+				"&b功能类似末影珍珠，但附加了冲击伤害。"
+			]
+			id: "2DE2B9F3A63E4196"
+			rewards: [
+				{
+					id: "3C22C5ADA40E02D8"
+					type: "xp"
+					xp: 45
+				}
+				{
+					id: "191A96346A29DEBE"
+					item: "mysticalagriculture:imperium_essence"
+					random_bonus: 3
+					type: "item"
+				}
+			]
+			subtitle: "&7用原始力量进行传送"
+			tasks: [{
+				id: "5107A344F4C9DDE3"
+				item: "bosses_of_mass_destruction:charged_ender_pearl"
+				type: "item"
+			}]
+			title: "&e&l保护充电器末影珍珠的安全"
+			x: 3.0d
+			y: 2.5d
+		}
+	]
+	title: "&c大规模毁灭的领主们"
+}

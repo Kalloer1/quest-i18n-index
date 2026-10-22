@@ -1,0 +1,726 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "9stalwart_dungeons"
+	group: "49FDD79D2384A7A4"
+	icon: "stalwart_dungeons:keeping_castle_spawner"
+	id: "5A86206EF6F474E0"
+	images: [{
+		height: 4.0d
+		image: "kubejs:textures/fotos/stalwart.png"
+		rotation: 0.0d
+		width: 4.0d
+		x: 0.5d
+		y: 3.5d
+	}]
+	order_index: 3
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"&a前往下界，找到保持城堡（位于下界废土/绯红森林）和糟糕地牢（位于灵魂沙山谷/扭曲森林）。</c1>"
+				"&b标记它们的位置，并为即将到来的试炼做好准备。"
+				"&8只有勇敢者才能继续前进。"
+			]
+			id: "2A007FB2777A6E10"
+			rewards: [
+				{
+					id: "1621848C9406B447"
+					type: "xp"
+					xp: 45
+				}
+				{
+					id: "54417B93A22E5E30"
+					item: {
+						Count: 1
+						id: "minecraft:potion"
+						tag: {
+							Potion: "minecraft:fire_resistance"
+						}
+					}
+					type: "item"
+				}
+			]
+			shape: "heart"
+			subtitle: "&7探索全新的要塞，迎接危险与荣耀"
+			tasks: [{
+				dimension: "minecraft:the_nether"
+				icon: "minecraft:netherrack"
+				id: "62E07C557612A6C7"
+				type: "dimension"
+			}]
+			title: "&e&l进入下界地牢"
+			x: 0.5d
+			y: 5.0d
+		}
+		{
+			dependencies: ["2A007FB2777A6E10"]
+			description: [
+				"&aUse a Nether Star on the altar inside Keeping Castle to summon the Nether Keeper.  "
+				"&b抵抗孢子并召唤眩晕烈焰的浪潮来击败它。"
+				"&8夺取远古之火，掠夺城堡富含钨的宝库。"
+			]
+			id: "44F34A25EE77473B"
+			rewards: [
+				{
+					id: "55E5DE7F15886949"
+					type: "xp"
+					xp: 65
+				}
+				{
+					id: "308268A40B377067"
+					item: "minecraft:blaze_rod"
+					random_bonus: 2
+					type: "item"
+				}
+			]
+			shape: "gear"
+			subtitle: "&7守护城堡的领主 Boss of the Keeping Castle"
+			tasks: [{
+				entity: "stalwart_dungeons:nether_keeper"
+				icon: {
+					Count: 1
+					id: "stalwart_dungeons:ancient_fire"
+					tag: {
+						Damage: 0
+					}
+				}
+				id: "6D70983FE60A9425"
+				type: "kill"
+				value: 1L
+			}]
+			title: "&e&l直面下界守护者"
+			x: -1.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["2A007FB2777A6E10"]
+			description: [
+				"&aActivate the Awful Ghast’s Altar with a Nether Star in the Awful Dungeon.  "
+				"&b存活其2个战斗阶段：远程物品禁用投射物，近距离则会造成毁灭性冲锋。"
+				"&8赚取可怕的晶体和强大的可怕枪。"
+			]
+			id: "5913BB13274F6228"
+			rewards: [
+				{
+					id: "62C14844DED47348"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "5DEE7442E4C47117"
+					item: "stalwart_dungeons:awful_crystal"
+					random_bonus: 2
+					type: "item"
+				}
+			]
+			shape: "gear"
+			subtitle: "&7恐怖的地牢惊魂记</c1>"
+			tasks: [{
+				entity: "stalwart_dungeons:awful_ghast"
+				icon: "stalwart_dungeons:awful_dungeon_spawner"
+				id: "6AEBD9CC4F30B828"
+				type: "kill"
+				value: 1L
+			}]
+			title: "&e&l击败可怕的加斯特（Awful Ghast）"
+			x: 0.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["2A007FB2777A6E10"]
+			description: [
+				"&aLocate the End Dungeon in the End (Void / Midlands biomes).  "
+				"&b用Propulks和Obsidian Striker、Shulker Cannon等陷阱探索其垂直布局。"
+				"&8鼓起你的勇气吧。"
+			]
+			icon: "stalwart_dungeons:shulker_cannon_item"
+			id: "782A3ADC3157C965"
+			rewards: [
+				{
+					id: "6389A11C6794AE21"
+					type: "xp"
+					xp: 80
+				}
+				{
+					id: "6792AFB2B632296B"
+					item: "stalwart_dungeons:shulker_cannon_item"
+					type: "item"
+				}
+			]
+			shape: "gear"
+			subtitle: "&7踏入虚空中的最终试炼"
+			tasks: [{
+				entity: "stalwart_dungeons:shulker_cannon"
+				id: "461B55245CFB68F0"
+				type: "kill"
+				value: 1L
+			}]
+			title: "&e&l进入末地地牢"
+			x: 1.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["2A007FB2777A6E10"]
+			description: [
+				"&a在庇护者祭坛上使用下界之星即可召唤它。"
+				"&b只能用爆炸物摧毁——TNT、黑曜石冲击器、潜影炮。"
+				"&8Receive Void Crystals upon victory."
+			]
+			icon: "stalwart_dungeons:shelterer_altar"
+			id: "6F088A054373B152"
+			rewards: [
+				{
+					id: "7C9480A958C43968"
+					type: "xp"
+					xp: 80
+				}
+				{
+					id: "2E30D06352568631"
+					item: {
+						Count: 1
+						id: "new_shield_variants:shulker_shield"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			shape: "gear"
+			subtitle: "&7末地世界的无敌方块首领"
+			tasks: [{
+				entity: "stalwart_dungeons:shelterer"
+				id: "3466BE3408F39748"
+				type: "kill"
+				value: 1L
+			}]
+			title: "&e&l击败庇护者 (Slay the Shelterer)</c2></c1>"
+			x: 2.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["2A007FB2777A6E10"]
+			description: [
+				"&aCraft or obtain the Nether Hammer using Ancient Fire and tungsten.  "
+				"&b沉重的打击能轻松碾碎下界敌人。"
+				"&8小心轻放。"
+			]
+			id: "08E5B8DF7B0B690C"
+			rewards: [
+				{
+					id: "09F385804F2E4FB4"
+					type: "xp"
+					xp: 45
+				}
+				{
+					id: "673BBA543A672E53"
+					item: "minecraft:ancient_debris"
+					random_bonus: 2
+					type: "item"
+				}
+			]
+			shape: "gear"
+			subtitle: "&7来自深海的强大武器"
+			tasks: [{
+				id: "69F68F959AE54CFC"
+				item: {
+					Count: 1
+					id: "stalwart_dungeons:nether_hammer"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "&e&l锻造下界之锤"
+			x: 0.5d
+			y: 7.0d
+		}
+		{
+			description: [
+				"&aForge the helmet from refined Chorundum ingots.  "
+				"&b赋予高耐久度和魔法抗性。"
+			]
+			id: "3EF8AA38A960205E"
+			rewards: [
+				{
+					id: "4B9E097CC106DD67"
+					type: "xp"
+					xp: 35
+				}
+				{
+					id: "153D66D935A36C0E"
+					item: "stalwart_dungeons:void_crystal"
+					type: "item"
+				}
+			]
+			subtitle: "&7用刚玉保护你的头部"
+			tasks: [{
+				id: "67CAD070EAFBF6BE"
+				item: {
+					Count: 1
+					id: "stalwart_dungeons:chorundum_armor_helmet"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "&e&l制作刚玉头盔"
+			x: 2.0d
+			y: 7.5d
+		}
+		{
+			description: [
+				"&aForge the chestplate from refined Chorundum ingots.  "
+				"&b近战和远程伤害的最佳防御。"
+			]
+			id: "3915AFBDCA8C2876"
+			rewards: [
+				{
+					id: "644E46F35A075C28"
+					type: "xp"
+					xp: 35
+				}
+				{
+					id: "583312BA3DEAE910"
+					item: "stalwart_dungeons:void_crystal"
+					type: "item"
+				}
+			]
+			subtitle: "&7用刚玉保护你的核心"
+			tasks: [{
+				id: "30A7F1A055370681"
+				item: {
+					Count: 1
+					id: "stalwart_dungeons:chorundum_armor_chestplate"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "&e&l合成刚玉胸甲"
+			x: 2.0d
+			y: 8.5d
+		}
+		{
+			description: [
+				"&aForge leggings from refined Chorundum ingots.  "
+				"&b提高了对击退的稳定性。"
+			]
+			id: "793785CFAAFD2F24"
+			rewards: [
+				{
+					id: "560F7F7D22D1F0E6"
+					type: "xp"
+					xp: 35
+				}
+				{
+					id: "5D424AE6C9630954"
+					item: "minecraft:ender_pearl"
+					random_bonus: 3
+					type: "item"
+				}
+			]
+			subtitle: "&7强大的下半身防御力"
+			tasks: [{
+				id: "4C23DD05F04B4E82"
+				item: {
+					Count: 1
+					id: "stalwart_dungeons:chorundum_armor_leggings"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "&e&l合成刚玉护腿 (Craft Chorundum Leggings)"
+			x: 2.0d
+			y: 9.5d
+		}
+		{
+			description: [
+				"&a由精炼的刚玉锭制成的锻造靴。"
+				"&b减少坠落伤害并提高速度。"
+			]
+			id: "7CACFAA903104AC3"
+			rewards: [
+				{
+					id: "5712163418BAE720"
+					type: "xp"
+					xp: 35
+				}
+				{
+					id: "53D4DCC904563340"
+					item: "minecraft:diamond"
+					random_bonus: 3
+					type: "item"
+				}
+			]
+			subtitle: "&7快速耐用的鞋履"
+			tasks: [{
+				id: "0E098EDD9842943A"
+				item: {
+					Count: 1
+					id: "stalwart_dungeons:chorundum_armor_boots"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "&e&l制作刚玉靴子"
+			x: 2.0d
+			y: 10.5d
+		}
+		{
+			description: [
+				"&aForge the helmet from smelted tungsten ingots.  "
+				"&b极高的爆炸抗性。"
+			]
+			id: "3995B9BBBC4FC475"
+			rewards: [
+				{
+					id: "3ED54B16BAC09983"
+					type: "xp"
+					xp: 35
+				}
+				{
+					id: "6ED59855A17B6E92"
+					item: "stalwart_dungeons:tungsten_ingot"
+					random_bonus: 2
+					type: "item"
+				}
+			]
+			shape: "diamond"
+			subtitle: "&7采用重钨合金，头部防护性强"
+			tasks: [{
+				id: "33C6B72208B600B0"
+				item: {
+					Count: 1
+					id: "stalwart_dungeons:tungsten_helmet"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "&e&l制作钨头盔"
+			x: 0.5d
+			y: 8.0d
+		}
+		{
+			description: [
+				"&aForge chestplate from smelted tungsten ingots.  "
+				"&b能抵抗爆炸和近战攻击。"
+			]
+			id: "06FF4DD71670A8CC"
+			rewards: [
+				{
+					id: "5D7A232D009BB89A"
+					type: "xp"
+					xp: 35
+				}
+				{
+					id: "1B971A22833DE7A2"
+					item: "stalwart_dungeons:blaze_armor_scrap"
+					type: "item"
+				}
+			]
+			shape: "diamond"
+			subtitle: "&7坚固的箱子防御"
+			tasks: [{
+				id: "33ABD2A1293ECB47"
+				item: {
+					Count: 1
+					id: "stalwart_dungeons:tungsten_chestplate"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "&e&l制作钨胸甲"
+			x: 0.5d
+			y: 9.0d
+		}
+		{
+			description: [
+				"&aForge leggings from smelted tungsten ingots.  "
+				"&b防止受到强力击退。"
+			]
+			id: "06882494FF3B20EA"
+			rewards: [
+				{
+					id: "4323168FC8879B08"
+					type: "xp"
+					xp: 35
+				}
+				{
+					id: "18471F5F7E76B844"
+					item: "stalwart_dungeons:tungsten_ingot"
+					random_bonus: 2
+					type: "item"
+				}
+			]
+			shape: "diamond"
+			subtitle: "&7下界防御力较低"
+			tasks: [{
+				id: "4B8DF73E58037535"
+				item: {
+					Count: 1
+					id: "stalwart_dungeons:tungsten_leggings"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "&e&l制作钨合金护腿"
+			x: 0.5d
+			y: 10.0d
+		}
+		{
+			description: [
+				"&a用熔化的钨锭制作的锻造靴。"
+				"&b额外的牵引力和摔落抗性。"
+			]
+			id: "598DCAD04F7F1528"
+			rewards: [
+				{
+					id: "3CE6CDBC2C717F18"
+					type: "xp"
+					xp: 35
+				}
+				{
+					id: "0C245169FB656736"
+					item: "stalwart_dungeons:tungsten_ingot"
+					random_bonus: 2
+					type: "item"
+				}
+				{
+					id: "54FEB09EB5A49DDB"
+					item: "minecraft:ancient_debris"
+					random_bonus: 2
+					type: "item"
+				}
+			]
+			shape: "diamond"
+			subtitle: "&7结实的鞋子"
+			tasks: [{
+				id: "55485708695BF4C3"
+				item: {
+					Count: 1
+					id: "stalwart_dungeons:tungsten_boots"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "&e&l制作钨合金靴子"
+			x: 0.5d
+			y: 11.0d
+		}
+		{
+			description: [
+				"&aForge the helmet using warted ingots from the Nether.  "
+				"&b提高火焰抗性。"
+			]
+			id: "705978651FC316B9"
+			rewards: [
+				{
+					id: "1F28B651E8C53FEA"
+					type: "xp"
+					xp: 35
+				}
+				{
+					id: "0080CDCAC4D8C5DE"
+					item: {
+						Count: 1
+						id: "minecraft:enchanted_book"
+						tag: {
+							StoredEnchantments: [{
+								id: "stalwart_dungeons:thunder_strike"
+								lvl: 3s
+							}]
+						}
+					}
+					type: "item"
+				}
+			]
+			subtitle: "&7下界疣强化头盔"
+			tasks: [{
+				id: "49DA7BFC131DCBA2"
+				item: {
+					Count: 1
+					id: "stalwart_dungeons:warted_tungsten_helmet"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "&e&l合成带疣的头盔"
+			x: -1.0d
+			y: 7.5d
+		}
+		{
+			description: [
+				"&a用疣体锭打造的锻造胸甲。"
+				"&bBest defense in high-temperature environments.  "
+			]
+			id: "372F42FA9B93C5EC"
+			rewards: [
+				{
+					id: "2D8E0D238A3DA69E"
+					type: "xp"
+					xp: 35
+				}
+				{
+					id: "32D0A4E660943E27"
+					item: {
+						Count: 1
+						id: "stalwart_dungeons:diamond_hammer"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			subtitle: "&7防烈焰人盔甲套装"
+			tasks: [{
+				id: "67571CED988B4CFE"
+				item: {
+					Count: 1
+					id: "stalwart_dungeons:warted_tungsten_chestplate"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "&e&l合成带疣的胸甲"
+			x: -1.0d
+			y: 8.5d
+		}
+		{
+			description: [
+				"&aForge leggings with warted ingots.  "
+				"&b在末地拥有额外的耐久度。"
+			]
+			id: "0AF99C72D14F892E"
+			rewards: [
+				{
+					id: "0C21C0E3D181B42E"
+					type: "xp"
+					xp: 35
+				}
+				{
+					id: "21EBBEB6A974ED4D"
+					item: {
+						Count: 1
+						id: "minecraft:potion"
+						tag: {
+							Potion: "stalwart_dungeons:spore"
+						}
+					}
+					random_bonus: 2
+					type: "item"
+				}
+			]
+			subtitle: "&7耐热护腿裤"
+			tasks: [{
+				id: "623C923F003858FF"
+				item: {
+					Count: 1
+					id: "stalwart_dungeons:warted_tungsten_leggings"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "&e&l合成带疣的护腿"
+			x: -1.0d
+			y: 9.5d
+		}
+		{
+			description: [
+				"&a用疣体锭打造的锻造靴子。"
+				"&b安全地穿过岩浆和高温方块。"
+			]
+			id: "199100A49C254242"
+			rewards: [
+				{
+					id: "228E685CE58CB0F0"
+					type: "xp"
+					xp: 35
+				}
+				{
+					count: 8
+					id: "2B2F511BA0499796"
+					item: "stalwart_dungeons:transient_block_close"
+					type: "item"
+				}
+			]
+			subtitle: "&7火行者靴子"
+			tasks: [{
+				id: "5983BC095FF38036"
+				item: {
+					Count: 1
+					id: "stalwart_dungeons:warted_tungsten_boots"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "&e&l合成带疣的靴子"
+			x: -1.0d
+			y: 10.5d
+		}
+		{
+			description: [
+				"&a击败恐怖地牢里的恐怖恶魂。"
+				"&b从宝箱中搜刮出可怕的枪。"
+				"&8这把枪使用劣质水晶作为弹药，能造成巨大的远程伤害。"
+			]
+			id: "0BAD624B2AC7F84F"
+			rewards: [
+				{
+					id: "60ADE72496D99AE7"
+					item: "stalwart_dungeons:awful_crystal"
+					random_bonus: 4
+					type: "item"
+				}
+				{
+					id: "5EA72A207E3770FC"
+					type: "xp"
+					xp: 10
+				}
+			]
+			shape: "rsquare"
+			subtitle: "&7恐怖恶魂的传奇武器"
+			tasks: [{
+				id: "3676D2D4B0D9AC6B"
+				item: {
+					Count: 1
+					id: "stalwart_dungeons:awful_gun"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "&e&l获得可怕的枪 (Awful Gun)</c2></c1>"
+			x: 0.5d
+			y: 12.0d
+		}
+	]
+	title: "&9Stalwart Dungeons"
+}

@@ -1,0 +1,539 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "7the_graveyard"
+	group: "79B54FC9E76145BC"
+	icon: "graveyard:leaning_skeleton"
+	id: "38A4E570BDA5EA92"
+	images: [{
+		height: 4.0d
+		image: "kubejs:textures/fotos/graveyard.png"
+		rotation: 0.0d
+		width: 4.0d
+		x: -3.0d
+		y: -11.5d
+	}]
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"&a找到并进入以下任一恐怖建筑：鬼屋、地穴或大型墓地。"
+				"&b小心潜伏在阴影中的骷髅苦力怕、食尸鬼和亡魂。"
+				"&8死者永不眠。"
+			]
+			id: "5D90D77AE870AF26"
+			rewards: [{
+				id: "248BA8C11A6512FD"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "rsquare"
+			subtitle: "&7开始在坟墓中踏上你的旅程"
+			tasks: [{
+				id: "5845259D2E4E2B03"
+				title: "&e&l探索闹鬼的土地"
+				type: "checkmark"
+			}]
+			x: -3.0d
+			y: -10.5d
+		}
+		{
+			dependencies: ["5D90D77AE870AF26"]
+			description: [
+				"&a穿过地牢，解开机关，并从石棺或瓮中寻宝。"
+				"&b你可能会遇到陷阱——明智地使用火盆或骨匕首来管理不死生物的生成。"
+				"&8Treasure and peril intertwined."
+			]
+			icon: "graveyard:sarcophagus"
+			id: "746450608E6624D8"
+			rewards: [
+				{
+					id: "60C05701665723EB"
+					type: "xp"
+					xp: 10
+				}
+				{
+					id: "7035CB3791C6CD49"
+					item: "graveyard:fire_brazier"
+					type: "item"
+				}
+				{
+					id: "52CCD00A19E0B4B6"
+					item: {
+						Count: 1
+						id: "graveyard:bone_dagger"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			subtitle: "&7Traps, coffins, and undead guardians "
+			tasks: [{
+				icon: "graveyard:sarcophagus"
+				id: "1F4742EC38834A41"
+				observe_type: 0
+				timer: 0L
+				to_observe: "minecraft:smooth_basalt"
+				type: "observation"
+			}]
+			title: "&e&l突袭地牢迷宫"
+			x: -2.5d
+			y: -9.5d
+		}
+		{
+			dependencies: ["5D90D77AE870AF26"]
+			description: [
+				"&a从遗迹（上层、中层、下层）收集全部3个不祥骨杖碎片。"
+				"&b使用骨匕首攻击村民，获得一瓶血。"
+				"&c在夜间于巫妖监狱举行仪式：将碎片置于祭坛上并倒入血液。"
+				"&8邪恶正在逼近。"
+			]
+			id: "71A200B6601AFF4B"
+			rewards: [
+				{
+					id: "40E13A9F2BC1C8BF"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "2351F6D1635EA38B"
+					item: "minecraft:enchanted_golden_apple"
+					type: "item"
+				}
+				{
+					id: "64C6505A2185F1AC"
+					item: "artifacts:flame_pendant"
+					type: "item"
+				}
+			]
+			shape: "diamond"
+			subtitle: "&7直面腐化诞生的巫妖"
+			tasks: [
+				{
+					id: "2B0558567E69864D"
+					item: "graveyard:upper_bone_staff"
+					type: "item"
+				}
+				{
+					id: "0F91986A82A55177"
+					item: "graveyard:middle_bone_staff"
+					type: "item"
+				}
+				{
+					id: "228E0D88D8DE0726"
+					item: "graveyard:lower_bone_staff"
+					type: "item"
+				}
+			]
+			title: "&e&l直面被污染的冠军"
+			x: -3.0d
+			y: -7.5d
+		}
+		{
+			dependencies: ["5D90D77AE870AF26"]
+			description: [
+				"&a击败被腐化的冠军，贯穿其所有阶段：施法（骨旋风、头骨投掷…）、狩猎（黑暗、追逐）和变形。"
+				"&bResist minions, falling corpses, levitation, heal attacks, and relentless pursuit.  "
+				"&8战胜纯粹的腐化。"
+			]
+			id: "55CACAF12F50C6F8"
+			rewards: [
+				{
+					id: "7E4383770B5B2704"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "0386A3921765B97D"
+					item: "graveyard:sarcophagus"
+					type: "item"
+				}
+				{
+					id: "34E20BFD0217F2D3"
+					item: "croptopia:pumpkin_spice_latte"
+					type: "item"
+				}
+			]
+			shape: "heart"
+			subtitle: "&7掌握巫妖的各个阶段"
+			tasks: [{
+				entity: "graveyard:lich"
+				icon: "graveyard:lich_spawn_egg"
+				id: "1AC73580AA48FE9F"
+				type: "kill"
+				value: 1L
+			}]
+			title: "&e&l在冠军的猛攻中生存下来"
+			x: -3.0d
+			y: -6.5d
+		}
+		{
+			dependencies: ["5D90D77AE870AF26"]
+			description: [
+				"&aCraft the &8Dark Iron Ingot &aby combining Iron Ingots with &5Corruption &ain a crafting table.  "
+				"&b或者，也可以在地牢或墓地的宝箱中找到它。"
+				"&8用于从 The Graveyard 模组中制作各种深色装饰方块和物品。"
+			]
+			id: "5500AE4AE2BFCBDE"
+			rewards: [
+				{
+					id: "15FAEDC32E2DCDED"
+					type: "xp"
+					xp: 35
+				}
+				{
+					id: "67A9D2A406F273FE"
+					item: "graveyard:dark_iron_ingot"
+					random_bonus: 3
+					type: "item"
+				}
+			]
+			subtitle: "&7由铁与腐化所诞生的金属"
+			tasks: [{
+				id: "5803D8098B96EAEC"
+				item: "graveyard:dark_iron_ingot"
+				type: "item"
+			}]
+			title: "&e&l锻造或寻找暗铁锭"
+			x: -3.5d
+			y: -9.5d
+		}
+		{
+			dependencies: ["5D90D77AE870AF26"]
+			description: [
+				"&a搜寻或制作&f斜靠的骷髅&a，用诡异的骸骨装饰你的基地。"
+				"&bCan be found in crypts, haunted houses, or large graveyards."
+			]
+			id: "20DB23D1E4F6DA2A"
+			rewards: [
+				{
+					id: "5BAB3FE1D52054A7"
+					type: "xp"
+					xp: 45
+				}
+				{
+					id: "43B7CE76206D3DBC"
+					item: "graveyard:leaning_skeleton"
+					type: "item"
+				}
+			]
+			subtitle: "&7来自坟墓的恐怖装饰物"
+			tasks: [{
+				id: "7424AAD6E5C95CAB"
+				item: "graveyard:leaning_skeleton"
+				type: "item"
+			}]
+			title: "&e&l找回倾斜的骷髅"
+			x: -3.5d
+			y: -8.5d
+		}
+		{
+			dependencies: ["5D90D77AE870AF26"]
+			description: [
+				"&aLoot the &0Leaning Wither Skeleton &afrom Nether Graveyards or special dungeon chests.  "
+				"&bPerfect for dark-themed builds or ritual setups."
+			]
+			id: "2D30818438FF87F0"
+			rewards: [
+				{
+					id: "364A1043A331F080"
+					type: "xp"
+					xp: 35
+				}
+				{
+					id: "5E55EF31EBB700A5"
+					item: "graveyard:leaning_wither_skeleton"
+					type: "item"
+				}
+			]
+			subtitle: "&7被下界诅咒的战士的残骸"
+			tasks: [{
+				id: "7EDB4516B503D727"
+				item: "graveyard:leaning_wither_skeleton"
+				type: "item"
+			}]
+			title: "&e&l找回倾斜的凋零骷髅"
+			x: -2.5d
+			y: -8.5d
+		}
+		{
+			dependencies: ["5D90D77AE870AF26"]
+			description: [
+				"&aFind and kill a &cCorrupter Vindicator &ain a corrupted graveyard raid or dark ruins.  "
+				"&b它们挥舞着被诅咒的斧头，并且免疫击退——做好准备再来。"
+			]
+			id: "59031802FB33D1E1"
+			rewards: [
+				{
+					id: "46C12CEDE16F2F53"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "1D68443269F5B865"
+					item: "minecraft:totem_of_undying"
+					type: "item"
+				}
+			]
+			shape: "heart"
+			subtitle: "&7净化被腐化的斧头持有者"
+			tasks: [{
+				entity: "graveyard:corrupted_vindicator"
+				icon: "graveyard:corrupted_vindicator_spawn_egg"
+				id: "3D3413C866631963"
+				type: "kill"
+				value: 1L
+			}]
+			title: "&e&l击败腐化者卫道士"
+			x: -4.0d
+			y: -7.5d
+		}
+		{
+			dependencies: ["5D90D77AE870AF26"]
+			description: [
+				"&aHunt down the &cCorrupter Pillager &awithin corrupted raids or haunted battlefields.  "
+				"&b它们的射击速度比普通掠夺者更快，箭矢带有腐化效果。"
+			]
+			id: "50A89D70288FEC16"
+			rewards: [
+				{
+					id: "6F37281F804F9938"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "14AFBBE9899D8791"
+					item: "graveyard:hanged_skeleton"
+					type: "item"
+				}
+				{
+					id: "21CD4D98996AB266"
+					item: "minecraft:emerald"
+					random_bonus: 7
+					type: "item"
+				}
+			]
+			shape: "heart"
+			subtitle: "&7打破被诅咒的射手的统治"
+			tasks: [{
+				entity: "graveyard:corrupted_pillager"
+				icon: "graveyard:corrupted_pillager_spawn_egg"
+				id: "2A63D667F7D09E38"
+				type: "kill"
+				value: 1L
+			}]
+			title: "&e&l击杀腐化掠夺者（Corrupter Pillager）"
+			x: -2.0d
+			y: -7.5d
+		}
+		{
+			dependencies: ["5D90D77AE870AF26"]
+			description: [
+				"&aFind and slay a &fSkeleton Creeper &ain graveyards or haunted ruins.  "
+				"&b接触即爆炸，会留下骨头碎片——请保持距离。"
+			]
+			id: "2A0B589BE64950F5"
+			rewards: [
+				{
+					id: "6CFB94987181D6D5"
+					type: "xp"
+					xp: 65
+				}
+				{
+					id: "02B874CD8A57F55A"
+					item: {
+						Count: 1
+						id: "tombstone:receptacle_of_familiar"
+						tag: {
+							dead_pet: {
+								id: "stalwart_dungeons:incomplete_wither"
+							}
+						}
+					}
+					type: "item"
+				}
+			]
+			shape: "heart"
+			subtitle: "&7骨头和爆炸物的结合体"
+			tasks: [{
+				entity: "graveyard:skeleton_creeper"
+				icon: "graveyard:skeleton_creeper_spawn_egg"
+				id: "116C8ABBBA8A98FC"
+				type: "kill"
+				value: 3L
+			}]
+			title: "&e&l狩猎骷髅苦力怕  }"
+			x: -1.0d
+			y: -5.5d
+		}
+		{
+			dependencies: ["5D90D77AE870AF26"]
+			description: [
+				"&aHunt down an &5Acolyte &awithin crypts or near ritual altars.  "
+				"&b它们能召唤仆从并削弱你的攻击——要快！"
+			]
+			id: "4383B6319D76B558"
+			rewards: [
+				{
+					id: "67E4720E5C5B0C00"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "62A161A21A81DE76"
+					item: "minecraft:iron_ingot"
+					random_bonus: 3
+					type: "item"
+				}
+			]
+			shape: "heart"
+			subtitle: "&7黑暗仪式的侍从者"
+			tasks: [{
+				entity: "graveyard:acolyte"
+				icon: "graveyard:acolyte_spawn_egg"
+				id: "482F64922806FE63"
+				type: "kill"
+				value: 4L
+			}]
+			title: "&e&l消灭侍从者（Acolyte）"
+			x: -1.0d
+			y: -6.5d
+		}
+		{
+			dependencies: ["5D90D77AE870AF26"]
+			description: [
+				"&aLocate and defeat a &8Reaper &ain haunted graveyards or shadowy fields.  "
+				"&b它们会瞬移，挥舞镰刀造成巨额伤害，然后消失在烟雾中。"
+			]
+			id: "213EBA274382EDDD"
+			rewards: [
+				{
+					id: "3E3E17AC92BCA00A"
+					type: "xp"
+					xp: 65
+				}
+				{
+					id: "61D1F6437935DCD2"
+					item: "minecraft:candle"
+					random_bonus: 3
+					type: "item"
+				}
+			]
+			shape: "heart"
+			subtitle: "&7直面死亡本身"
+			tasks: [{
+				entity: "graveyard:reaper"
+				icon: "graveyard:reaper_spawn_egg"
+				id: "430A637EF021AF65"
+				type: "kill"
+				value: 3L
+			}]
+			title: "&e&l收割者收割"
+			x: -1.0d
+			y: -7.5d
+		}
+		{
+			dependencies: ["5D90D77AE870AF26"]
+			description: [
+				"&aTrack and kill a &fRevenant &ain ruined graveyards or night-time ambushes.  "
+				"&b快速、无情，且能抵抗击退——保持机动性。"
+			]
+			id: "7D1ADCB452EFDB57"
+			rewards: [
+				{
+					id: "1928833D01840C45"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "1357A7B9AEABEEDE"
+					item: "graveyard:corruption"
+					random_bonus: 3
+					type: "item"
+				}
+			]
+			shape: "heart"
+			subtitle: "&7复仇心切的亡灵战士"
+			tasks: [{
+				entity: "graveyard:revenant"
+				icon: "graveyard:revenant_spawn_egg"
+				id: "13E0BBF9B41DBD2D"
+				type: "kill"
+				value: 3L
+			}]
+			title: "&e&l击败亡灵复仇者"
+			x: -5.0d
+			y: -7.5d
+		}
+		{
+			dependencies: ["5D90D77AE870AF26"]
+			description: [
+				"&aEncounter the &4Nightmare &ain graveyards during Blood Moon events or rare spawns.  "
+				"&b它在现实与虚幻中穿梭，释放出毁灭性的近战攻击。"
+			]
+			id: "3E5815455D10854E"
+			rewards: [
+				{
+					id: "4E02042F9B223780"
+					type: "xp"
+					xp: 80
+				}
+				{
+					id: "1D5BD25C16CFC285"
+					item: "graveyard:dark_iron_ingot"
+					random_bonus: 3
+					type: "item"
+				}
+			]
+			shape: "heart"
+			subtitle: "&7源自梦境的恐怖之物"
+			tasks: [{
+				entity: "graveyard:nightmare"
+				icon: "graveyard:nightmare_spawn_egg"
+				id: "08973979EDC2A27C"
+				type: "kill"
+				value: 1L
+			}]
+			title: "&e&l驱逐噩梦 (Banish the Nightmare)</c2></c1>"
+			x: -5.0d
+			y: -6.5d
+		}
+		{
+			dependencies: ["5D90D77AE870AF26"]
+			description: [
+				"&aHunt a &bWraith &ain crypts, large graveyards, or spectral battlefields.  "
+				"&b它能飞行、穿墙，还会吸取你的生命——使用远程武器吧。"
+			]
+			id: "3D985F380998AF41"
+			rewards: [
+				{
+					id: "6D3552807D06175A"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "57464E20A14151AB"
+					item: "graveyard:small_brown_urn"
+					type: "item"
+				}
+			]
+			shape: "heart"
+			subtitle: "&7不安宁的亡魂之鬼"
+			tasks: [{
+				entity: "graveyard:wraith"
+				icon: "graveyard:wraith_spawn_egg"
+				id: "6BB4EFAA9644EDB7"
+				type: "kill"
+				value: 3L
+			}]
+			title: "&e&l驱散亡魂 (Dispel the Wraith)</c2></c1>"
+			x: -5.0d
+			y: -5.5d
+		}
+	]
+	title: "&7墓园 (The Graveyard)"
+}

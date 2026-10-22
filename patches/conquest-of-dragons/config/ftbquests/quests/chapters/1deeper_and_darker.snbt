@@ -1,0 +1,424 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "1deeper_and_darker"
+	group: "101FB9788679C4F0"
+	icon: "deeperdarker:heart_of_the_deep"
+	id: "18F6BAFC744E3431"
+	images: [{
+		height: 4.0d
+		image: "kubejs:textures/fotos/deeper.png"
+		rotation: 0.0d
+		width: 4.0d
+		x: -3.0d
+		y: -4.0d
+	}]
+	order_index: 6
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"&b&fActivate four Sculk Shriekers while standing on them in the Deep Dark to summon the Warden.  "
+				"&b&f&l站在&8深海暗区&f的&r&f四个&9Sculk Shrieker&f上激活它们，以召唤&4Warden&r。  &d&f击败&4Warden &f以收集&5深海之心&r和&3Warden Carapace&r。  &a&f这些物品可通过&8Ancient City&r传送门框架解锁通往&dOtherside&f的入口。"
+				"&a&f这些物品可通过远古城市传送门框架解锁通往另一面的入口。"
+			]
+			id: "5BC94B98E50E0C83"
+			rewards: [
+				{
+					id: "5823A6D62C2FED0B"
+					type: "xp"
+					xp: 300
+				}
+				{
+					id: "4A2574B09C914610"
+					item: "deeperdarker:warden_carapace"
+					random_bonus: 4
+					type: "item"
+				}
+			]
+			shape: "gear"
+			subtitle: "&3&7通往另一面的钥匙"
+			tasks: [
+				{
+					id: "3D2AEFE5A8538706"
+					item: "deeperdarker:heart_of_the_deep"
+					type: "item"
+				}
+				{
+					entity: "minecraft:warden"
+					id: "536DA3AF50881625"
+					type: "kill"
+					value: 1L
+				}
+			]
+			title: "&e&l获取深海之心 (Heart of the Deep)</c2></c1>"
+			x: -3.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["5BC94B98E50E0C83"]
+			description: [
+				"&d&fFind the &8portal frame &fin the &8Ancient City&r (over &8reinforced deepslate&r).  "
+				"&c&fClear away any &9Sculk Veins&f, then &e&lright‑click&r &fwith the &5Heart of the Deep &fto activate it.  "
+				"&e&f穿过传送门，开启你的 &dOtherside&r 之旅。"
+			]
+			icon: "minecraft:reinforced_deepslate"
+			id: "24303DD9E8C47FE3"
+			rewards: [
+				{
+					id: "4C91F31E9356B9E9"
+					type: "xp"
+					xp: 15
+				}
+				{
+					count: 8
+					id: "7CD6C17843B11C58"
+					item: "minecraft:torch"
+					type: "item"
+				}
+			]
+			shape: "pentagon"
+			subtitle: "&2&7穿越回响与阴霾的国度，踏上旅程"
+			tasks: [{
+				id: "1645A60729310C73"
+				observe_type: 0
+				timer: 0L
+				to_observe: "deeperdarker:otherside_portal"
+				type: "observation"
+			}]
+			title: "&a&l进入异次元世界"
+			x: -3.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["24303DD9E8C47FE3"]
+			description: [
+				"&b&fSlay &5Shattered mobs &fin the &3Echoing Forest &fto drop &dSoul Dust&r.  "
+				"&a&fHunt &9Sculk Centipedes &fin the &8Deeplands &fto obtain &bSculk Bones&r.  "
+				"&6&f收集至少 &64 个骨头 &f和 &d3 个粉尘 &f以准备制作高级物品。"
+			]
+			icon: "deeperdarker:shattered_spawn_egg"
+			id: "14637FFB6FFA1CE8"
+			rewards: [
+				{
+					count: 5
+					id: "4262F33A9E34EFF1"
+					item: "minecraft:echo_shard"
+					type: "item"
+				}
+				{
+					count: 5
+					id: "3EFE46BEE53F259E"
+					item: "minecraft:experience_bottle"
+					type: "item"
+				}
+				{
+					count: 3
+					id: "5B880210C3CCA3C4"
+					item: "deeperdarker:sculk_bone"
+					type: "item"
+				}
+			]
+			shape: "hexagon"
+			subtitle: "&7收集异界的精华，将其收入囊中"
+			tasks: [{
+				entity: "deeperdarker:shattered"
+				id: "65D455E6F233E6E4"
+				type: "kill"
+				value: 5L
+			}]
+			title: "&d&l收集潜声骨和灵魂粉尘"
+			x: -2.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["24303DD9E8C47FE3"]
+			description: [
+				"&9&fBreak &eAncient Vases &fin &8Ancient Cities &for &cAncient Temples &fto spawn the &4Stalker&r with ~31% chance.  "
+				"&e&f使用&6高级装备&r击败它；会掉落&5Soul Crystal &f，用于制作高级装备。"
+				"&2&l当心&r&f：噪音过大可能会召唤出&4Wardens&f。"
+			]
+			icon: "deeperdarker:stalker_spawn_egg"
+			id: "64C1D115DB5E171A"
+			rewards: [
+				{
+					id: "574ADDDAC6E1084F"
+					item: "deeperdarker:soul_crystal"
+					type: "item"
+				}
+				{
+					id: "57DC74EE83229FD1"
+					item: "minecraft:soul_torch"
+					random_bonus: 12
+					type: "item"
+				}
+				{
+					id: "145337C318F6E16A"
+					type: "xp"
+					xp: 350
+				}
+			]
+			shape: "hexagon"
+			subtitle: "&7直面来自异界的危险迷你首领"
+			tasks: [{
+				entity: "deeperdarker:stalker"
+				id: "03681CC91425B8BF"
+				type: "kill"
+				value: 1L
+			}]
+			title: "&6&l击败潜行者 (Stalker)</c2></c1>"
+			x: -4.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["64C1D115DB5E171A"]
+			description: [
+				"将&e&f普通鞘翅&f、&f4个潜声骨&b、&f2个灵魂粉尘&d和&f5个灵魂水晶&5&f组合起来，即可制作独特的&3潜声鞘翅&r。"
+				"&a&f升级后的鞘翅提供&a+3护甲值&f，并允许每30秒使用一次&e加速能力&f（默认，可配置）。"
+			]
+			id: "32071382DE8E526A"
+			rewards: [
+				{
+					count: 2
+					id: "74D6D0D71C060D06"
+					item: "deeperdarker:soul_dust"
+					type: "item"
+				}
+				{
+					id: "7321FA51078B9517"
+					type: "xp"
+					xp: 100
+				}
+			]
+			shape: "diamond"
+			subtitle: "&7乘着幽灵之翼翱翔于阴霾之上"
+			tasks: [{
+				id: "797387DC27F7FE4A"
+				item: {
+					Count: 1
+					id: "deeperdarker:soul_elytra"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "&9&l合成潜声鞘翅"
+			x: -4.0d
+			y: 0.5d
+		}
+		{
+			description: [
+				"&e&fFind the &8Ancient Temple &fin the &8Deeplands &fwithin the &dOtherside&r.  "
+				"&f搜寻&6宝箱和隐藏&f的古代花瓶房间&e，以找到&f一个&bSculk 发射器&r。"
+				"&2&f潜行 + &e右键&f绑定方块；远程交互可打开物品栏和远程合成。"
+			]
+			id: "70B21DC0FE02D64F"
+			rewards: [
+				{
+					id: "658C837D320A7347"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "110730D9DBCD815A"
+					item: "deeperdarker:sculk_transmitter"
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			subtitle: "&7解锁整个王国的远程访问权限"
+			tasks: [{
+				id: "04D863839C5BFF30"
+				item: "deeperdarker:sculk_transmitter"
+				type: "item"
+			}]
+			title: "&4&l链接一个潜声发射器"
+			x: -2.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["64C1D115DB5E171A"]
+			description: [
+				"&bUse a &dReinforced Echo Shard &fand a &9Warden Upgrade Template &fon a Netherite Helmet, Chestplate, Leggings, and Boots.  "
+				"&5每件装备都能提供更强保护：头盔提供夜视，全套提供黑暗和失明抗性，以及生物追踪的脉冲回响。"
+				"&2Craft the full set to unlock the Warden’s legacy.  "
+			]
+			id: "5103D23CEE757574"
+			rewards: [
+				{
+					count: 6
+					id: "49F53DB557481080"
+					item: "minecraft:echo_shard"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "4F09CFED8FC762AB"
+					item: {
+						Count: 1
+						id: "minecraft:potion"
+						tag: {
+							Potion: "minecraft:strong_regeneration"
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 3
+					id: "5A3F8C66AD092452"
+					item: "minecraft:sculk_sensor"
+					type: "item"
+				}
+				{
+					id: "11933C5BE2182425"
+					type: "xp"
+					xp: 100
+				}
+			]
+			shape: "diamond"
+			subtitle: "&3&7装备深海的力量，武装自己"
+			tasks: [
+				{
+					id: "397AE0F160886548"
+					item: {
+						Count: 1
+						id: "deeperdarker:warden_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "05FB26D91F3267B4"
+					item: {
+						Count: 1
+						id: "deeperdarker:warden_chestplate"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "03F8BC5E00D06014"
+					item: {
+						Count: 1
+						id: "deeperdarker:warden_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "08A55C4A2BECE617"
+					item: {
+						Count: 1
+						id: "deeperdarker:warden_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "&6&l获得完整的卫道士盔甲套装"
+			x: -5.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["64C1D115DB5E171A"]
+			description: [
+				"&bUpgrade your Netherite Sword, Pickaxe, Axe, Shovel and Hoe using a Reinforced Echo Shard and a Warden Upgrade Template on each.  "
+				"&d这些潜声守卫工具耐久度超高（约3122），速度更快，对潜声生物的伤害更高。"
+				"&1装备它们，在最深处的采矿和战斗中占据主导地位。"
+			]
+			id: "6976C49BC8106B53"
+			rewards: [
+				{
+					count: 10
+					id: "55B3034FCC8A0EAF"
+					item: "irons_spellbooks:arcane_essence"
+					type: "item"
+				}
+				{
+					count: 11
+					id: "71DC4E1968922255"
+					item: "minecraft:amethyst_shard"
+					type: "item"
+				}
+				{
+					id: "3E24CCCD1D89A088"
+					type: "xp"
+					xp: 100
+				}
+			]
+			shape: "diamond"
+			subtitle: "&7手持着来自异界的传奇工具"
+			tasks: [
+				{
+					id: "74D7F05F920795CE"
+					item: {
+						Count: 1
+						id: "deeperdarker:warden_sword"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "2A13761C028196A1"
+					item: {
+						Count: 1
+						id: "deeperdarker:warden_pickaxe"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "50762B0C787DC1FD"
+					item: {
+						Count: 1
+						id: "deeperdarker:warden_axe"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "60B646D125644FB6"
+					item: {
+						Count: 1
+						id: "deeperdarker:warden_shovel"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "234CA4202F4FFA27"
+					item: {
+						Count: 1
+						id: "deeperdarker:warden_hoe"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "&4&l锻造卫道士工具套装"
+			x: -3.0d
+			y: 0.5d
+		}
+	]
+	title: "&1更深更暗的世界 (Deeper and Darker)"
+}
