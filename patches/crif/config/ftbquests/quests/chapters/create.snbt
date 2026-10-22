@@ -1,0 +1,890 @@
+# AI 初翻，未人工校对
+{
+	id: "722389B9BEEFCAF9"
+	group: ""
+	order_index: 1
+	filename: "create"
+	title: "创建"
+	icon: {
+		id: "create_stuff_additions:brass_portable_drill"
+		Count: 1b
+		tag: {
+			Damage: 0
+		}
+	}
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "关于"
+			icon: "kubejs:create_title"
+			x: 0.0d
+			y: 0.0d
+			shape: "gear"
+			subtitle: "&fCreate 是由 &4Simibubi 制作的模组，&f让你能用旋转动力来制造装置和自动化流程。"
+			description: ["它为游戏添加了多种机械组件和方块变体。该模组优化良好，帧率表现优异，几乎可以在任何电脑上流畅运行！"]
+			size: 2.0d
+			id: "4EF5DE80CB2071B5"
+			tasks: [{
+				id: "1DF9A35FDED8A811"
+				type: "checkmark"
+				icon: {
+					id: "create_stuff_additions:brass_portable_drill"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "0E40F71402F24F96"
+				type: "item"
+				auto: "enabled"
+				item: "minecraft:andesite"
+				count: 32
+			}]
+		}
+		{
+			title: "第一步：基础操作指南"
+			x: 0.0d
+			y: 1.5d
+			dependencies: ["4EF5DE80CB2071B5"]
+			id: "39C813B22F57FC44"
+			tasks: [{
+				id: "188515E5A6BD5D75"
+				type: "item"
+				item: "create:shaft"
+			}]
+			rewards: [
+				{
+					id: "4B48F95D624586DD"
+					type: "item"
+					auto: "enabled"
+					item: "minecraft:oak_button"
+					count: 12
+				}
+				{
+					id: "09894B68B6CC4C52"
+					type: "item"
+					item: "minecraft:oak_planks"
+					count: 4
+				}
+			]
+		}
+		{
+			x: 1.0d
+			y: 2.0d
+			description: ["齿轮是Create中用于传递旋转的基本机械组件。"]
+			dependencies: ["39C813B22F57FC44"]
+			id: "102D6A62AA9C4846"
+			tasks: [{
+				id: "45CC57B61B63A757"
+				type: "item"
+				item: "create:cogwheel"
+			}]
+			rewards: [{
+				id: "5AAC24C5AA0D52FE"
+				type: "item"
+				item: "create:shaft"
+				count: 8
+			}]
+		}
+		{
+			x: -1.0d
+			y: 2.0d
+			description: ["大型齿轮是齿轮的一种较大变体，可以在拐角处传递旋转并为旋转速度控制器提供动力。"]
+			dependencies: ["39C813B22F57FC44"]
+			id: "4267FF61CF4DC0F1"
+			tasks: [{
+				id: "54CA0E1E7DF46398"
+				type: "item"
+				item: "create:large_cogwheel"
+			}]
+			rewards: [{
+				id: "192E2E3506542ABD"
+				type: "item"
+				item: "minecraft:oak_slab"
+				count: 8
+			}]
+		}
+		{
+			x: 0.0d
+			y: 4.5d
+			description: [
+				"水车是一种旋转动力源。当水流过时，它会生成旋转力。"
+				"{image:kubejs:textures/item/water_wheel.png width:100 height:100 align:1}"
+			]
+			dependencies: [
+				"102D6A62AA9C4846"
+				"4267FF61CF4DC0F1"
+			]
+			id: "3478DFF3D557E9A0"
+			tasks: [{
+				id: "60F523AC8A5A6BC6"
+				type: "item"
+				item: "create:water_wheel"
+			}]
+			rewards: [{
+				id: "65DA7C80F466CDDF"
+				type: "item"
+				item: "create:andesite_alloy"
+				count: 2
+			}]
+		}
+		{
+			x: 0.0d
+			y: 5.5d
+			description: ["外壳是用于合成和装饰的方块。"]
+			dependencies: ["3478DFF3D557E9A0"]
+			id: "4A45C6DB6F56A4BF"
+			tasks: [{
+				id: "5FF73C9F5A2238C8"
+				type: "item"
+				item: "create:andesite_casing"
+			}]
+			rewards: [{
+				id: "61A284A65A1874A3"
+				type: "item"
+				item: "create:cogwheel"
+				count: 4
+			}]
+		}
+		{
+			x: 0.0d
+			y: 7.5d
+			description: [
+				"机械压机是一个机械组件，可将压制、填充和压缩配方应用于其下方的物品。它是早期游戏的重要物品，用于将锭压制成薄片，而薄片是更高级组件的重要材料。"
+				""
+				"机械压机由内部转轴驱动，可从相对的两面接入。与转轴类似，压机会沿其轴线传递旋转。当接收到更快的旋转动力时，它能更快地处理物品。"
+			]
+			dependencies: ["7ABA9A52FF6191DC"]
+			id: "68C861F23B5D783E"
+			tasks: [{
+				id: "59FBCBB6709731F1"
+				type: "item"
+				item: "create:mechanical_press"
+			}]
+			rewards: [{
+				id: "0018D32431E0DDB0"
+				type: "item"
+				item: "minecraft:iron_ingot"
+				count: 2
+			}]
+		}
+		{
+			x: -1.0d
+			y: 8.5d
+			description: ["玫瑰石英可用于制作抛光玫瑰石英。为此，玩家必须将砂纸放在副手，玫瑰石英放在主手，然后右键。抛光后的版本会掉落在地上。"]
+			dependencies: ["68C861F23B5D783E"]
+			id: "7C7364D9A86264DB"
+			tasks: [{
+				id: "44E389E586F00006"
+				type: "item"
+				item: "create:rose_quartz"
+			}]
+			rewards: [{
+				id: "19A30EE27C93E144"
+				type: "item"
+				item: {
+					id: "create:sand_paper"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			x: 1.0d
+			y: 8.5d
+			description: [
+				"烈焰燃烧器是一种加热组件，某些混合配方需要它。"
+				""
+				"烈焰燃烧器必须有烈焰才能工作。要将烈焰放入空的烈焰燃烧器中，右键点击烈焰即可捕捉。或者，也可以通过点击烈焰生成器来填充空的烈焰燃烧器。"
+			]
+			dependencies: ["68C861F23B5D783E"]
+			id: "28233989D868BDFC"
+			tasks: [{
+				id: "36972204C33EBAC6"
+				type: "item"
+				item: "create:empty_blaze_burner"
+			}]
+			rewards: [{
+				id: "5F8C8FC62B96653F"
+				type: "item"
+				item: "minecraft:coal"
+				count: 16
+			}]
+		}
+		{
+			x: 1.0d
+			y: 9.5d
+			description: [
+				"烈焰燃烧器用于在混合配方中加热和超加热熔炉。用任何可作为熔炉燃料的物品右键烈焰燃烧器，可临时解锁加热配方。用烈焰蛋糕右键烈焰燃烧器，可临时解锁超加热配方。"
+				""
+				"输入的燃料物品为烈焰人提供能量的时间，等于其在熔炉中的燃烧时间。烈焰人会根据提供的燃料量，经历以下阶段，改变其大小和纹理："
+				""
+				"-阶段1 — 余烬 — 不提供任何热量。这是默认状态，放置燃烧器或燃料耗尽时会激活。"
+				""
+				"-阶段2 — 渐弱 — 仍能提供足够的热量来执行需要加热的配方。可用任何燃料实现。持续时间取决于燃料的燃烧时间，但最多50秒。如果燃料燃烧超过50秒，将优先激活阶段3。"
+				""
+				"-阶段3 — 加热 — 允许执行需要加热的配方。使用燃烧时间超过50秒的燃料即可达成。持续时间等于燃料燃烧时间减去50秒。"
+				""
+				"-阶段4 — 超高温 — 可执行所有混合配方。仅能通过烈焰蛋糕达成。持续时间始终为50秒。此阶段中烈焰熔炉无法再次投喂。"
+			]
+			dependencies: ["28233989D868BDFC"]
+			id: "15CF29183C30D8CC"
+			tasks: [{
+				id: "27E62A42778BA887"
+				type: "item"
+				item: "create:blaze_burner"
+			}]
+			rewards: [{
+				id: "1E732CBC71953789"
+				type: "item"
+				item: "minecraft:blaze_powder"
+				count: 4
+			}]
+		}
+		{
+			x: 0.0d
+			y: 6.5d
+			description: ["齿轮箱是一种用于传递旋转动力的方块。"]
+			dependencies: ["4A45C6DB6F56A4BF"]
+			id: "7ABA9A52FF6191DC"
+			tasks: [{
+				id: "60C110119E9994D9"
+				type: "item"
+				item: "create:gearbox"
+			}]
+			rewards: [{
+				id: "4FE93A35921D979A"
+				type: "item"
+				item: "minecraft:iron_block"
+			}]
+		}
+		{
+			x: -1.0d
+			y: 13.5d
+			description: ["电子管是一种仅用于合成配方中的物品。"]
+			dependencies: ["7C7364D9A86264DB"]
+			id: "465016EA822A57B3"
+			tasks: [{
+				id: "4A90F9E53AACE061"
+				type: "item"
+				item: "create:electron_tube"
+			}]
+			rewards: [{
+				id: "452CC9DAA0476643"
+				type: "item"
+				item: "create:cogwheel"
+				count: 2
+			}]
+		}
+		{
+			x: 0.5d
+			y: 11.0d
+			description: ["盆是一种用于包装、压实和混合配方中的物品和流体容器。盆也可以作为流体系统的交互点，玩家可以直接或将流体放入盆中。在生存游戏中，盆最重要的功能是制造黄铜，这是制造大多数高级组件所必需的。"]
+			dependencies: ["15CF29183C30D8CC"]
+			id: "521CB2A5F1F0A5D3"
+			tasks: [{
+				id: "13630BE7686F1943"
+				type: "item"
+				item: "create:basin"
+			}]
+			rewards: [{
+				id: "5987FD18DEEB8BC0"
+				type: "item"
+				item: "create:copper_ingot"
+			}]
+		}
+		{
+			x: 1.5d
+			y: 11.0d
+			description: ["机械搅拌机是一种机械组件，可将混合配方和无配方合成配方应用于盆中的物品。"]
+			dependencies: ["15CF29183C30D8CC"]
+			id: "3F06063482B30286"
+			tasks: [{
+				id: "508415B49375D136"
+				type: "item"
+				item: "create:mechanical_mixer"
+			}]
+			rewards: [{
+				id: "1E8F42C9B337E046"
+				type: "item"
+				item: "create:zinc_ingot"
+			}]
+		}
+		{
+			x: 1.0d
+			y: 12.0d
+			description: ["黄铜是一种通过将铜矿石和锌矿石用压轮或机械搅拌机混合/粉碎，再熔炼铜和锌得到的锭。它可用于多种配方，包括黄铜外壳、手持式方块破坏器的5种升级，以及其他形式的黄铜，如：黄铜块、黄铜原矿和黄铜板。"]
+			dependencies: [
+				"521CB2A5F1F0A5D3"
+				"3F06063482B30286"
+			]
+			id: "1CAD2711F7D92F56"
+			tasks: [{
+				id: "5B78CF1895C576CF"
+				type: "item"
+				item: "create:brass_ingot"
+			}]
+			rewards: [{
+				id: "32B65FD9B8D817D1"
+				type: "item"
+				item: "create:brass_ingot"
+			}]
+		}
+		{
+			x: 1.0d
+			y: 13.5d
+			description: ["外壳是用于合成和装饰的方块。"]
+			dependencies: ["1CAD2711F7D92F56"]
+			id: "3EAB8A7EF5874050"
+			tasks: [{
+				id: "349F4FBB311A7593"
+				type: "item"
+				item: "create:brass_casing"
+			}]
+			rewards: [{
+				id: "78FFE080A7BB99DD"
+				type: "item"
+				item: "create:cogwheel"
+				count: 2
+			}]
+		}
+		{
+			x: 0.0d
+			y: 14.5d
+			description: ["机械合成器是一种能自动合成物品的机器。"]
+			dependencies: [
+				"3EAB8A7EF5874050"
+				"465016EA822A57B3"
+			]
+			id: "31072DF4F7E66389"
+			tasks: [{
+				id: "10AF722250D702AA"
+				type: "item"
+				item: "create:mechanical_crafter"
+				count: 21L
+			}]
+			rewards: [{
+				id: "772DEAA82E63F99B"
+				type: "item"
+				item: "create:gearbox"
+				count: 2
+			}]
+		}
+		{
+			x: 0.0d
+			y: 15.5d
+			dependencies: ["31072DF4F7E66389"]
+			id: "06244E469BEC0D0C"
+			tasks: [{
+				id: "169610BC0D8BA6BA"
+				type: "item"
+				item: "create:crushing_wheel"
+				count: 2L
+			}]
+			rewards: [
+				{
+					id: "148FAAAA397BC9A8"
+					type: "item"
+					item: "create:shaft"
+					count: 8
+				}
+				{
+					id: "1F548F3ED5FA4A23"
+					type: "item"
+					item: "cavesandcliffs:raw_iron"
+					count: 2
+				}
+			]
+		}
+		{
+			x: 0.0d
+			y: 16.5d
+			dependencies: ["06244E469BEC0D0C"]
+			id: "5ABC8CBDD78F573F"
+			tasks: [{
+				id: "52503FB954F73FB2"
+				type: "item"
+				item: "create:crushed_iron_ore"
+				count: 4L
+			}]
+		}
+		{
+			x: 0.0d
+			y: 3.0d
+			subtitle: "齿轮主要有三种相互啮合的方式："
+			description: [
+				"两个齿轮并排（非对角）放置且朝向相同时会相互啮合。当其中一个齿轮受到旋转力时，该力会以相同的速度反向传递到另一个齿轮。"
+				"&6两个相邻的齿轮轮齿"
+				"{image:kubejs:textures/item/adjacent.png width:145 height:100 align:1}"
+				"&f---------------------------------"
+				"两个大型齿轮垂直放置时会相互啮合，从而改变其轴和方向，但速度不变。"
+				"&6两个相互垂直的大型齿轮"
+				"{image:kubejs:textures/item/perpendicular.png width:145 height:100 align:1}"
+				"&f---------------------------------"
+				"齿轮和大型齿轮斜向放置且朝向相同时会相互啮合。大型齿轮的转速是齿轮的一半。"
+				"   &6Diagonally connected cogwheel and                   large cogwheel"
+				"{image:kubejs:textures/item/cogwheel.png width:145 height:100 align:1}"
+				"&f---------------------------------"
+				""
+			]
+			dependencies: ["39C813B22F57FC44"]
+			id: "761E6D66D79F15C0"
+			tasks: [{
+				id: "507790CB02E6E357"
+				type: "checkmark"
+				title: "齿轮的使用说明"
+				icon: "create:large_cogwheel"
+			}]
+		}
+		{
+			title: "&6黄铜手"
+			x: 3.0d
+			y: 12.0d
+			subtitle: "黄铜手是一个仅在合成配方中使用的物品。"
+			dependencies: ["1CAD2711F7D92F56"]
+			id: "0DDC686651DE12B7"
+			tasks: [{
+				id: "779042B3180703C5"
+				type: "item"
+				item: "create:brass_hand"
+			}]
+		}
+		{
+			title: "&6部署器"
+			x: 4.5d
+			y: 12.0d
+			subtitle: "部署器会模拟玩家对其2格以内方块或实体的操作。"
+			description: [
+				""
+				"部署器可以给它物品，用于机器，或者右键物品到手中。"
+				""
+				"Deployer 面上的过滤器可以调整以仅使用特定物品。在 Contraption 中使用 Deployer 时，过滤器也是必不可少的。"
+				""
+				"Deployer 有 2 个物品栏槽位：手持物品和 1 个额外的内部槽位。除无法使用的物品外，Deployer 采集的物品会转移到额外槽位，由机器移除，在此期间 Deployer 会停滞。玩家无法直接从额外槽位中提取物品。"
+				""
+				"部署器默认模拟右键。用扳手可以调整为左键。在左键模式下，部署器可以使用普通工具，如稿子和剑。工具的行为会像玩家手持它们一样，包括部署器击杀生物时掉落稀有物品。"
+			]
+			dependencies: ["0DDC686651DE12B7"]
+			id: "4184089328B5DF3F"
+			tasks: [{
+				id: "4FBB3585EAF26B14"
+				type: "item"
+				item: "create:deployer"
+			}]
+		}
+		{
+			title: "&6精密机械装置"
+			x: 6.5d
+			y: 12.0d
+			subtitle: "精密机制是众多合成组件之一。"
+			description: [
+				""
+				"部署者请按以下顺序将物品应用到金质薄片上，重复五次。"
+				"{image:kubejs:textures/item/precision_screenshot.png width:150 height:100 align:1}"
+			]
+			dependencies: ["4184089328B5DF3F"]
+			id: "1235DAE4937409D5"
+			tasks: [{
+				id: "481684843690C126"
+				type: "item"
+				item: "create:precision_mechanism"
+			}]
+			rewards: [{
+				id: "147259B8256F24AA"
+				type: "item"
+				item: "create:precision_mechanism"
+			}]
+		}
+		{
+			x: 5.5d
+			y: 13.5d
+			subtitle: "机械臂是一种用于传输物品的方块。"
+			description: [
+				""
+				"&6&l物品移动中"
+				"手持机械臂，在4格半径内右键有效物品栏即可选中。若无法取物，则物品将被存入。再次右键可在取物与存物间切换。右键点击方块可放置机械臂，并为其供电。"
+				""
+				"&6&l行为模式"
+				"机械臂有三种不同的行为，可以通过&6扳手进行切换："
+				""
+				"-循环臂 - 机械臂将按放置顺序，从可用物品栏中取物或存入物品。"
+				""
+				"-强制循环- 与循环功能相同，但机械臂在下一个按放置顺序排列的库存可用前不会移动物品。"
+				""
+				"-优先选择第一个-机械臂将始终按照放置顺序，从第一个可用的物品栏中取物或存入物品。"
+			]
+			dependencies: ["1235DAE4937409D5"]
+			id: "634E83B718FAB810"
+			tasks: [{
+				id: "49D67A205F523EF8"
+				type: "item"
+				item: "create:mechanical_arm"
+			}]
+			rewards: [{
+				id: "0335B063943206C4"
+				type: "item"
+				item: "create:brass_ingot"
+				count: 2
+			}]
+		}
+		{
+			x: 6.5d
+			y: 14.0d
+			subtitle: "比马好，但它不会跳跃"
+			dependencies: ["1235DAE4937409D5"]
+			id: "3B7B3EBA64EE72C0"
+			tasks: [{
+				id: "045348326A72A01A"
+				type: "item"
+				item: "create_stuff_additions:brass_moped_item"
+			}]
+			rewards: [{
+				id: "5E06A3FA395B65C6"
+				type: "item"
+				item: "minecraft:ancient_debris"
+			}]
+		}
+		{
+			x: 5.5d
+			y: 10.5d
+			subtitle: "这个外骨骼是一套盔甲，它能赋予你&f力量 II&r，但同时也会让你患上&8挖掘疲劳症"
+			dependencies: ["1235DAE4937409D5"]
+			id: "2C646DF09D63D5CD"
+			tasks: [{
+				id: "36E7E26D84EBDDBB"
+				type: "item"
+				item: {
+					id: "create_stuff_additions:copper_exoskeleton_chestplate"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "6238CEFDCEB3AE99"
+				type: "item"
+				item: "minecraft:armor_stand"
+			}]
+		}
+		{
+			x: 6.5d
+			y: 10.0d
+			subtitle: "这个外骨骼是一套盔甲，能赋予你&f速度 II&r，但同时也会让你受到&5虚弱效果"
+			dependencies: ["1235DAE4937409D5"]
+			id: "6C883EDE68AD9FDF"
+			tasks: [{
+				id: "48CD55217F2E8A7D"
+				type: "item"
+				item: {
+					id: "create_stuff_additions:refined_radiance_exoskeleton_chestplate"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "25AFFBAFAEA3E146"
+				type: "item"
+				item: "minecraft:armor_stand"
+			}]
+		}
+		{
+			x: 7.5d
+			y: 10.5d
+			subtitle: "这个外骨骼是一套盔甲，能赋予你&f速度&r和&f力量"
+			dependencies: ["1235DAE4937409D5"]
+			id: "7198CB5A5B577313"
+			tasks: [{
+				id: "79AE4010F713976D"
+				type: "item"
+				item: {
+					id: "create_stuff_additions:exoskeleton_chestplate"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "07D6C56D5F3B3D3D"
+				type: "item"
+				item: "minecraft:armor_stand"
+			}]
+		}
+		{
+			title: "&4黄铜喷气背包"
+			x: 8.5d
+			y: 12.0d
+			subtitle: "能让你飞行，使用时会消耗耐久度。"
+			dependencies: ["1235DAE4937409D5"]
+			id: "2656B6EF7A0F784C"
+			tasks: [{
+				id: "2254AD593D1BD71D"
+				type: "item"
+				item: {
+					id: "create_stuff_additions:encased_jet_chestplate"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "1BF7A56463C41E71"
+				type: "item"
+				item: "minecraft:armor_stand"
+			}]
+		}
+		{
+			x: 7.5d
+			y: 13.5d
+			subtitle: "旋转速度控制器是一种机械组件，能让玩家精确控制旋转速度。"
+			description: [
+				"&6&l控制旋转速度</c2></c1>"
+				""
+				"要让旋转速度控制器正常工作，必须搭配一个大齿轮。当旋转速度控制器由大齿轮供电时，它会从侧面输出任意所需的旋转速度。反之亦然：当从侧面供电时，它会控制大齿轮的速度。"
+				""
+				"可以通过面向机器的前后并向上或向下滚动来设置旋转速度。滚动时按住 Shift 键可以更精确地控制速度。速度可设置为 -256 到 256 之间的任意整数。"
+			]
+			dependencies: ["1235DAE4937409D5"]
+			id: "5C32DB73846D1A98"
+			tasks: [{
+				id: "590426BD0B141582"
+				type: "item"
+				item: "create:rotation_speed_controller"
+			}]
+			rewards: [{
+				id: "608D6C66FE0B2118"
+				type: "item"
+				item: "create:rotation_speed_controller"
+			}]
+		}
+		{
+			x: 6.5d
+			y: 15.5d
+			subtitle: "比龙还快，可惜它不会飞。"
+			dependencies: ["3B7B3EBA64EE72C0"]
+			id: "3040237E27905247"
+			tasks: [{
+				id: "30A7799CD10075A4"
+				type: "item"
+				item: "create_stuff_additions:tuned_brass_moped_item"
+			}]
+			rewards: [{
+				id: "09FD6D7A9EA0D19E"
+				type: "toast"
+				title: "I am speeeeeeeed"
+				description: ""
+			}]
+		}
+		{
+			x: -3.0d
+			y: 8.5d
+			dependencies: ["68C861F23B5D783E"]
+			id: "228EFB5DE6757AC2"
+			tasks: [{
+				id: "7583AB76E14EFE8D"
+				type: "item"
+				item: "createaddition:zinc_sheet"
+			}]
+		}
+		{
+			x: -3.0d
+			y: 6.5d
+			dependencies: ["68C861F23B5D783E"]
+			id: "0FB3F1332BB1B435"
+			tasks: [{
+				id: "1BC184BCB6A96D18"
+				type: "item"
+				item: "create:iron_sheet"
+			}]
+			rewards: [{
+				id: "18035E631C25C18E"
+				type: "item"
+				item: "create:iron_sheet"
+			}]
+		}
+		{
+			x: -5.0d
+			y: 6.5d
+			subtitle: "&f用于制作电线和鱼竿。"
+			dependencies: ["0FB3F1332BB1B435"]
+			id: "0EB3DE04A6E31047"
+			tasks: [{
+				id: "155FFD54B9269258"
+				type: "item"
+				item: "createaddition:rolling_mill"
+			}]
+		}
+		{
+			x: -5.0d
+			y: 8.5d
+			subtitle: "&f制造大多数创造电力组件所必需"
+			dependencies: ["228EFB5DE6757AC2"]
+			id: "72960D428C5C723D"
+			tasks: [{
+				id: "31FF586909250084"
+				type: "item"
+				item: "createaddition:capacitor"
+			}]
+			rewards: [{
+				id: "0025E6A7AFC4F872"
+				type: "item"
+				item: "create:copper_sheet"
+			}]
+		}
+		{
+			x: -6.0d
+			y: 4.5d
+			dependencies: ["0EB3DE04A6E31047"]
+			id: "1E37180AA5070356"
+			tasks: [{
+				id: "4465871672A7B110"
+				type: "item"
+				item: "createaddition:copper_wire"
+				count: 4L
+			}]
+			rewards: [{
+				id: "7A79A069C7487B45"
+				type: "item"
+				item: "createaddition:spool"
+			}]
+		}
+		{
+			x: -5.0d
+			y: 4.0d
+			dependencies: ["0EB3DE04A6E31047"]
+			id: "7A8DDA4813DE1AEC"
+			tasks: [{
+				id: "48AE4B807805CA6B"
+				type: "item"
+				item: "createaddition:gold_wire"
+				count: 4L
+			}]
+			rewards: [{
+				id: "23B83AFCFEFAB7EC"
+				type: "item"
+				item: "createaddition:spool"
+			}]
+		}
+		{
+			x: -4.0d
+			y: 4.5d
+			dependencies: ["0EB3DE04A6E31047"]
+			id: "7861E6982C32D599"
+			tasks: [{
+				id: "1157B02DD1C794B6"
+				type: "item"
+				item: "createaddition:iron_wire"
+				count: 4L
+			}]
+			rewards: [{
+				id: "126E098F966CADDA"
+				type: "item"
+				item: "createaddition:spool"
+			}]
+		}
+		{
+			x: -6.5d
+			y: 7.5d
+			subtitle: "&f将动能转化为Forge能量。"
+			dependencies: ["72960D428C5C723D"]
+			id: "701EB9C6A4B7EEB0"
+			tasks: [{
+				id: "75D2DFFFC9834E39"
+				type: "item"
+				item: "createaddition:alternator"
+			}]
+		}
+		{
+			x: -7.0d
+			y: 8.5d
+			subtitle: "&f利用Forge Energy产生动能，"
+			dependencies: ["72960D428C5C723D"]
+			id: "08C8308D675F5ADE"
+			tasks: [{
+				id: "2B61CB9BEF2A236A"
+				type: "item"
+				item: "createaddition:electric_motor"
+			}]
+		}
+		{
+			x: -6.5d
+			y: 9.5d
+			subtitle: "&f这是一个能量存储装置"
+			dependencies: ["72960D428C5C723D"]
+			id: "413F1B96B6D7C469"
+			tasks: [{
+				id: "11DBB2E86D831106"
+				type: "item"
+				item: "createaddition:accumulator"
+			}]
+		}
+		{
+			x: -5.0d
+			y: 2.0d
+			dependencies: [
+				"1E37180AA5070356"
+				"7A8DDA4813DE1AEC"
+				"7861E6982C32D599"
+			]
+			id: "4402FCC8F8D6F06A"
+			tasks: [{
+				id: "1D158E0D7F2AEAE9"
+				type: "item"
+				item: "createaddition:connector"
+			}]
+		}
+		{
+			x: -7.5d
+			y: 6.5d
+			dependencies: ["0EB3DE04A6E31047"]
+			id: "417AA6C0221D7046"
+			tasks: [{
+				id: "3C5C2CF730DF6247"
+				type: "item"
+				item: "createaddition:copper_rod"
+			}]
+		}
+		{
+			x: -6.5d
+			y: 6.5d
+			dependencies: ["0EB3DE04A6E31047"]
+			id: "448A967C9496FA73"
+			tasks: [{
+				id: "5205F1045768D758"
+				type: "item"
+				item: "createaddition:iron_rod"
+			}]
+		}
+		{
+			x: -8.5d
+			y: 6.5d
+			dependencies: ["0EB3DE04A6E31047"]
+			id: "2FFE483806A0D1FE"
+			tasks: [{
+				id: "17B8CFEA9236DA86"
+				type: "item"
+				item: "createaddition:gold_rod"
+			}]
+		}
+		{
+			x: -9.5d
+			y: 6.5d
+			dependencies: ["0EB3DE04A6E31047"]
+			id: "5E4B9451B4A3BAC2"
+			tasks: [{
+				id: "0E770A15395956CB"
+				type: "item"
+				item: "createaddition:brass_rod"
+			}]
+		}
+	]
+}

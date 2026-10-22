@@ -1,0 +1,162 @@
+# AI 初翻，未人工校对
+{
+	id: "42993EF48437D760"
+	group: ""
+	order_index: 2
+	filename: "rats"
+	title: "老鼠们"
+	icon: "rats:block_of_cheese"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "老鼠们"
+			icon: "kubejs:rat"
+			x: 0.0d
+			y: 0.0d
+			subtitle: "&f遗憾的是，RATS 模组目前相当不稳定，并非所有功能都正常，有时正常功能也可能失效。因此，现阶段该模组仅推荐给希望尝试并已知部分功能可能失效、甚至引发错误或崩溃的玩家。 &l&2强烈建议仅使用与战斗相关的升级内容。"
+			description: [
+				""
+				""
+			]
+			id: "249891B4B4585DCA"
+			tasks: [{
+				id: "400FE36E9F7885E7"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "498424CA2FDE0040"
+				type: "item"
+				item: "rats:cheese"
+				count: 4
+			}]
+		}
+		{
+			title: "驯服生物"
+			x: 0.0d
+			y: 1.5d
+			subtitle: "&f驯服老鼠被认为很难，因为它们会主动躲避玩家。瘟疫鼠无法驯服，但普通老鼠可以用奶酪驯服。"
+			dependencies: ["249891B4B4585DCA"]
+			id: "72E6CC158A0A6316"
+			tasks: [{
+				id: "6B7806FE380BEC58"
+				type: "advancement"
+				advancement: "minecraft:husbandry/tame_an_animal"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "18D2FE070AD154FC"
+				type: "item"
+				item: "rats:garbage_pile"
+			}]
+		}
+		{
+			title: "Rat 命令"
+			icon: "rats:rat_paw"
+			x: 0.0d
+			y: 3.0d
+			subtitle: "&f老鼠有多种命令，可以在它们的菜单中更改，或使用老鼠笛来更改。"
+			description: [
+				""
+				""
+				""
+				""
+			]
+			dependencies: ["72E6CC158A0A6316"]
+			id: "5A4F67EF7139D134"
+			tasks: [{
+				id: "3F8288F97D76819B"
+				type: "checkmark"
+			}]
+		}
+		{
+			x: -2.0d
+			y: 3.0d
+			subtitle: "&f一公一母两只老鼠被放入用鼠类繁殖灯笼装饰的鼠笼中时便会繁殖。繁殖后，老鼠会生出1-3只幼崽，需要一天才能成年。繁殖老鼠可能会产生白色、兜帽、奶油和阿尔比诺等新的家养颜色形态。"
+			description: [
+				""
+				"Rat Breeding Lanterns 每天只能繁殖一对老鼠。"
+				""
+				"相邻放置的鼠笼被视为单个鼠笼，因此无论笼中有多少灯笼或老鼠，每天只能繁殖1对老鼠。（需要更彻底的测试）"
+			]
+			dependencies: ["72E6CC158A0A6316"]
+			id: "149081ED9E3D3A54"
+			tasks: [
+				{
+					id: "36C4BB061E0651DC"
+					type: "item"
+					item: "rats:rat_breeding_lantern"
+				}
+				{
+					id: "4ABDF36ADB1C1943"
+					type: "item"
+					item: "rats:rat_cage"
+				}
+			]
+			rewards: [{
+				id: "023F2C0EDB160319"
+				type: "item"
+				item: "rats:cheese"
+				count: 5
+			}]
+		}
+		{
+			title: "Rat 物品栏"
+			icon: "rats:rat_pelt"
+			x: 2.0d
+			y: 3.0d
+			subtitle: "&f被驯服的鼠有物品栏，可以用大多数物品或空手与它们互动来打开。"
+			dependencies: ["72E6CC158A0A6316"]
+			id: "454F7801FDB018BD"
+			tasks: [{
+				id: "0D63C4F0DBB4F7B2"
+				type: "checkmark"
+			}]
+		}
+		{
+			title: "自动化"
+			x: 3.5d
+			y: 0.0d
+			subtitle: "&f乳娘升级可与凝乳站结合使用，实现自动化制奶酪。漏斗或滑道和箱子可提供更好的自动化，减少检查满度的必要操作。"
+			dependencies: ["10DAC5E20315DD48"]
+			id: "5F691BF8418FE4E2"
+			tasks: [
+				{
+					id: "335659F11C8563F4"
+					type: "item"
+					item: "rats:auto_curdler"
+				}
+				{
+					id: "413F65A892981811"
+					type: "item"
+					item: "rats:rat_upgrade_milker"
+				}
+			]
+			rewards: [{
+				id: "7860A88D3DEB14EC"
+				type: "item"
+				item: "rats:cheese"
+				count: 8
+			}]
+		}
+		{
+			title: "奶酪制作"
+			x: 2.0d
+			y: 0.0d
+			subtitle: "&f用牛奶桶与空锅互动即可制作一块奶酪。锅中会装满牛奶，默认需要7.5秒凝固成奶酪。此时锅中已有奶酪，点击锅即可取出一块奶酪。该奶酪可通过无配方合成分解为4个奶酪（物品）。奶酪可用于驯服老鼠。"
+			dependencies: ["249891B4B4585DCA"]
+			id: "10DAC5E20315DD48"
+			tasks: [{
+				id: "0647EBB8852711EB"
+				type: "item"
+				item: "rats:block_of_cheese"
+			}]
+			rewards: [{
+				id: "3658FE988049E525"
+				type: "item"
+				item: "rats:cheese"
+				count: 8
+			}]
+		}
+	]
+}

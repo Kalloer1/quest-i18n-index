@@ -1,0 +1,670 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "circle"
+	filename: "thermal"
+	group: "A100000000000002"
+	icon: "thermal:machine_furnace"
+	id: "5A813A907E201AF2"
+	order_index: 9
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["Thermal progression 是一套由聚焦机器、发电机、运输方块和增强器组成的系统，可组合成紧凑型工厂。围绕稳定的 Forge Energy 主干，并行发展发电、处理、路由和控制。"]
+			id: "C6EC733EBC40C779"
+			rewards: [{
+				id: "830A67BFAA21C7BA"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "C49EF6BB654803C8"
+				title: "确认：模块化加工工坊 (A Modular Processing Workshop)"
+				type: "checkmark"
+			}]
+			title: "模块化加工工坊"
+			x: -0.457d
+			y: 0.075d
+		}
+		{
+			dependencies: ["C6EC733EBC40C779"]
+			description: ["红石熔炉实现了热力机械的运作和侧向配置。在添加导管或速度升级前，请先测试手动输入和输出。"]
+			id: "F8B31CA4DB08665B"
+			shape: "circle"
+			tasks: [{
+				id: "88C995FEC86BEF50"
+				item: "thermal:machine_furnace"
+				type: "item"
+			}]
+			title: "红石熔炉"
+			x: 0.618d
+			y: -0.156d
+		}
+		{
+			dependencies: ["C6EC733EBC40C779"]
+			description: ["斯特林发电机可将固体燃料转化为Forge能量。计量燃料并提供存储，避免向已满网络发电造成浪费。"]
+			id: "5648407DE8657461"
+			shape: "circle"
+			tasks: [{
+				id: "FDD7E4162B883E39"
+				item: "thermal:dynamo_stirling"
+				type: "item"
+			}]
+			title: "斯特林发电机"
+			x: 0.601d
+			y: -1.256d
+		}
+		{
+			dependencies: ["5648407DE8657461"]
+			description: ["岩浆发电机消耗岩浆等高温流体。在依赖其无人值守供电前，请确认其可再生性和重启安全性。"]
+			id: "B9F55A0356503C1B"
+			shape: "circle"
+			tasks: [{
+				id: "919190645D4BC5B6"
+				item: "thermal:dynamo_magmatic"
+				type: "item"
+			}]
+			title: "岩浆发电机"
+			x: 1.458d
+			y: -1.945d
+		}
+		{
+			dependencies: ["5648407DE8657461"]
+			description: ["压缩发电机消耗带冷却剂的液体燃料。请保持两种储罐的平衡，否则即使燃料充足，缺少次要液体也会导致发电停止。"]
+			id: "1BC40F7C28576770"
+			shape: "circle"
+			tasks: [{
+				id: "9A67EECD496D91F6"
+				item: "thermal:dynamo_compression"
+				type: "item"
+			}]
+			title: "压缩发电机"
+			x: 1.627d
+			y: -0.859d
+		}
+		{
+			dependencies: ["5648407DE8657461"]
+			description: ["美食发电机由食物产生，并奖励高价值投入。使用多余的再生食物，而不是与玩家的储备食物竞争。"]
+			id: "9900F0D549497255"
+			shape: "circle"
+			tasks: [{
+				id: "F425490C455C9BEF"
+				item: "thermal:dynamo_gourmand"
+				type: "item"
+			}]
+			title: "美食家动力机"
+			x: 1.643d
+			y: 0.241d
+		}
+		{
+			dependencies: ["5648407DE8657461"]
+			description: ["Lapidary Dynamos 消耗宝石来爆发发电。限制它们的物品栏，以免珍贵的升级材料被意外烧毁。"]
+			id: "87023641BD0E5083"
+			shape: "circle"
+			tasks: [{
+				id: "9BBB3175C5DD1F70"
+				item: "thermal:dynamo_lapidary"
+				type: "item"
+			}]
+			title: "宝石切割发电机"
+			x: 0.814d
+			y: 0.963d
+		}
+		{
+			dependencies: ["5648407DE8657461"]
+			description: ["钱币发电机可将有效货币类物品转化为能量。将符文面纱经济资金与自动化输入分开，并测试整合包的具体接受范围。"]
+			id: "243CB27A4659341E"
+			shape: "circle"
+			tasks: [{
+				id: "96E855B6EF3C600E"
+				item: "thermal:dynamo_numismatic"
+				type: "item"
+			}]
+			title: "钱币学发电机"
+			x: 1.854d
+			y: 1.320d
+		}
+		{
+			dependencies: ["5648407DE8657461"]
+			description: ["Disenchantment Dynamos 消耗附魔输入和辅助流体。仅喂食指定废料，并为被拒绝的物品提供溢出路径。"]
+			id: "C80FE113482C70EB"
+			shape: "circle"
+			tasks: [{
+				id: "6AAF1FE16EA56DD5"
+				item: "thermal:dynamo_disenchantment"
+				type: "item"
+			}]
+			title: "附魔解除发电机"
+			x: 0.767d
+			y: 2.062d
+		}
+		{
+			dependencies: ["B9F55A0356503C1B" "1BC40F7C28576770" "9900F0D549497255" "87023641BD0E5083" "243CB27A4659341E" "C80FE113482C70EB"]
+			description: ["选择至少两台由可再生或可控输入支持的发电机。测量其综合持续输出，并证明电网能在一个燃料源停止后仍能运行。"]
+			id: "8C1266360CF5FB68"
+			rewards: [{
+				id: "BF567F8BE2D892FA"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "BDB48D046593AC0B"
+				title: "确认：多样化热电联产系统"
+				type: "checkmark"
+			}]
+			title: "多样化热能发电系统"
+			x: 2.742d
+			y: 0.208d
+		}
+		{
+			dependencies: ["F8B31CA4DB08665B"]
+			description: ["热力机器和增强器使用多种配方和作用各异的合金。统一输入金属，自动化重复合金，并保持标签储备用于维修。"]
+			id: "4318A3EBDB97E08A"
+			rewards: [{
+				id: "52CA662997CEF3FE"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "E8A5BFD1A9A2F7B1"
+				title: "确认：Thermal 材料家族"
+				type: "checkmark"
+			}]
+			title: "Thermal 材料家族"
+			x: 1.119d
+			y: 5.926d
+		}
+		{
+			dependencies: ["4318A3EBDB97E08A"]
+			description: ["青铜将铜和锡结合成了一种可靠的工程合金。在将其送入机器制作前，请确认使用模组指定的锭。"]
+			id: "6DE42A5844D8AEB1"
+			shape: "circle"
+			tasks: [{
+				id: "36D82A8F4C9E41CE"
+				item: "thermal:bronze_ingot"
+				type: "item"
+			}]
+			title: "青铜"
+			x: 1.787d
+			y: 5.052d
+		}
+		{
+			dependencies: ["4318A3EBDB97E08A"]
+			description: ["Invar 结合了铁和镍，用于制造耐用的 Thermal 组件。保持镍加工的统一性，防止重复的矿石产生不兼容的库存。"]
+			id: "D3E57B9F6506365D"
+			shape: "circle"
+			tasks: [{
+				id: "3428CD9987A13B6F"
+				item: "thermal:invar_ingot"
+				type: "item"
+			}]
+			title: "Invar"
+			x: 2.209d
+			y: 6.068d
+		}
+		{
+			dependencies: ["4318A3EBDB97E08A"]
+			description: ["Electrum 结合了金和银，用于导电组件。在大量生产该合金前，将金用于其他进度。"]
+			id: "B8C981CBDCEB4F53"
+			shape: "circle"
+			tasks: [{
+				id: "DA5444189478718A"
+				item: "thermal:electrum_ingot"
+				type: "item"
+			}]
+			title: "Electrum"
+			x: 1.927d
+			y: 7.130d
+		}
+		{
+			dependencies: ["4318A3EBDB97E08A"]
+			description: ["康斯坦坦合金由铜和镍组成。将其与因瓦合金分开自动化，以便共享的镍需求仍然可见。"]
+			id: "0C90B94A5D323E58"
+			shape: "circle"
+			tasks: [{
+				id: "C616261CF787272F"
+				item: "thermal:constantan_ingot"
+				type: "item"
+			}]
+			title: "康斯坦坦合金"
+			x: 2.878d
+			y: 5.194d
+		}
+		{
+			dependencies: ["4318A3EBDB97E08A"]
+			description: ["铅用于机器和存储配方。将其加工成统一形式，并保持放射性外观的材料清晰标记。"]
+			id: "2680CFA057D04016"
+			shape: "circle"
+			tasks: [{
+				id: "01AAAC3F261EADD6"
+				item: "thermal:lead_ingot"
+				type: "item"
+			}]
+			title: "铅制物品（Lead）"
+			x: 3.300d
+			y: 6.208d
+		}
+		{
+			dependencies: ["4318A3EBDB97E08A"]
+			description: ["镍能用于多种合金，常是隐藏的瓶颈。在投入大量因瓦或康斯坦坦合金前，先追踪原材料供应。"]
+			id: "CAB868C8539145F9"
+			shape: "circle"
+			tasks: [{
+				id: "A5A2DC92D4A9D213"
+				item: "thermal:nickel_ingot"
+				type: "item"
+			}]
+			title: "镍矿石"
+			x: 3.017d
+			y: 7.271d
+		}
+		{
+			dependencies: ["4318A3EBDB97E08A"]
+			description: ["Silver 支持 Electrum 和整合包中各种魔法或技术配方。在合金自动化系统外保留受保护的储备。"]
+			id: "87F08AC3DFC07DB9"
+			shape: "circle"
+			tasks: [{
+				id: "61714C298E847D53"
+				item: "thermal:silver_ingot"
+				type: "item"
+			}]
+			title: "银色"
+			x: 4.148d
+			y: 6.908d
+		}
+		{
+			dependencies: ["6DE42A5844D8AEB1" "D3E57B9F6506365D" "B8C981CBDCEB4F53" "0C90B94A5D323E58" "2680CFA057D04016" "CAB868C8539145F9" "87F08AC3DFC07DB9"]
+			description: ["以整合包推荐的形式产出每种核心热能金属，将重复的通过统一处理，并记录哪些合金会争夺镍、铜、金或银。"]
+			id: "70CF07535A186F3D"
+			rewards: [{
+				id: "3F56E1D1B2FE2B54"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "01644FBC8EC78331"
+				title: "确认：统一合金生产已开启"
+				type: "checkmark"
+			}]
+			title: "统一合金生产系统"
+			x: 4.954d
+			y: 6.160d
+		}
+		{
+			dependencies: ["F8B31CA4DB08665B"]
+			description: ["粉碎机可处理矿石和材料，并可能产生副产品。在批量自动化前，请确认产物已转换为整合包统一形式。"]
+			id: "2775188788A0B65C"
+			shape: "circle"
+			tasks: [{
+				id: "DDF83026A30E89A9"
+				item: "thermal:machine_pulverizer"
+				type: "item"
+			}]
+			title: "Pulverizer"
+			x: 0.835d
+			y: 3.160d
+		}
+		{
+			dependencies: ["F8B31CA4DB08665B"]
+			description: ["锯木厂可改进木材加工并回收有用的副产品。用过滤器将普通木材与稀有配方产物分离。"]
+			id: "8DF038647C91373B"
+			shape: "circle"
+			tasks: [{
+				id: "174766F560F2B671"
+				item: "thermal:machine_sawmill"
+				type: "item"
+			}]
+			title: "锯木厂"
+			x: 1.046d
+			y: 4.239d
+		}
+		{
+			dependencies: ["2775188788A0B65C"]
+			description: ["感应熔炉可组合材料并支持矿石加工配方。在连续投入前，请预留催化剂槽位并规划炉渣或副产品的流向。"]
+			id: "F768DE37FCBC9E01"
+			shape: "circle"
+			tasks: [{
+				id: "32F08A00F110BF47"
+				item: "thermal:machine_smelter"
+				type: "item"
+			}]
+			title: "感应式熔炉 (Induction Smelter)"
+			x: 1.807d
+			y: 2.419d
+		}
+		{
+			dependencies: ["2775188788A0B65C"]
+			description: ["离心分离器将复杂输入分解为多种产物。每个输出都需要容量，否则整台机器会停滞。"]
+			id: "EC5B605FD5EA301C"
+			shape: "circle"
+			tasks: [{
+				id: "DC592FA13642FC67"
+				item: "thermal:machine_centrifuge"
+				type: "item"
+			}]
+			title: "离心分离机"
+			x: 1.875d
+			y: 3.517d
+		}
+		{
+			dependencies: ["2775188788A0B65C"]
+			description: ["Multiservo Press 用于压缩材料，并使用模具进行特殊配方。请单独存放模具，并确认哪些配方需要模具。"]
+			id: "4D0BBD6F778A97D9"
+			shape: "circle"
+			tasks: [{
+				id: "AAEDFA93A4F050AE"
+				item: "thermal:machine_press"
+				type: "item"
+			}]
+			title: "多伺服压机"
+			x: 2.809d
+			y: 4.097d
+		}
+		{
+			dependencies: ["F768DE37FCBC9E01"]
+			description: ["岩浆熔炉可将固体熔化为液体。贵重产物请使用专用储罐，切勿共用未经过滤的液体出口。"]
+			id: "7BAAE403EE4442C5"
+			shape: "circle"
+			tasks: [{
+				id: "B870E96C2ABD9882"
+				item: "thermal:machine_crucible"
+				type: "item"
+			}]
+			title: "岩浆熔炉"
+			x: 2.791d
+			y: 2.908d
+		}
+		{
+			dependencies: ["7BAAE403EE4442C5"]
+			description: ["Blast Chiller 可凝固流体并支持铸造。搭配受控的流体供应，防止错误液体进入其储罐。"]
+			id: "C74654AF6B1458B2"
+			shape: "circle"
+			tasks: [{
+				id: "6DFAD276D77F4C5D"
+				item: "thermal:machine_chiller"
+				type: "item"
+			}]
+			title: "爆炸冷却器"
+			x: 3.761d
+			y: 2.389d
+		}
+		{
+			dependencies: ["7BAAE403EE4442C5"]
+			description: ["分馏塔可将流体分离为有用产品和副产品。为消耗较慢的分支准备大容量的输出储罐。"]
+			id: "3B5525152E248F9F"
+			shape: "circle"
+			tasks: [{
+				id: "82CB18D8DD0A76E6"
+				item: "thermal:machine_refinery"
+				type: "item"
+			}]
+			title: "分馏蒸馏器"
+			x: 3.725d
+			y: 3.488d
+		}
+		{
+			dependencies: ["7BAAE403EE4442C5"]
+			description: ["流体封装器可将物品填充流体。过滤容器和流体输入以防止交叉污染。"]
+			id: "CC700DBE3C783335"
+			shape: "circle"
+			tasks: [{
+				id: "8DE984C9831F55AE"
+				item: "thermal:machine_bottler"
+				type: "item"
+			}]
+			title: "流体封装器"
+			x: 3.794d
+			y: 4.586d
+		}
+		{
+			dependencies: ["CC700DBE3C783335"]
+			description: ["炼金灌注器将流体和试剂结合，用于类似药水的制作。保持配方独立，并为每条流体路径贴上标签。"]
+			id: "8413C8370561F0AF"
+			shape: "circle"
+			tasks: [{
+				id: "1CA80109CD28D985"
+				item: "thermal:machine_brewer"
+				type: "item"
+			}]
+			title: "炼金灌注器"
+			x: 4.780d
+			y: 5.074d
+		}
+		{
+			dependencies: ["3B5525152E248F9F"]
+			description: ["Pyrolyzer 通过加热进行多输出处理。收集所有产物，并确认配方催化剂是否被消耗。"]
+			id: "D2922BAE71120E37"
+			shape: "circle"
+			tasks: [{
+				id: "C702C3A0035CC55B"
+				item: "thermal:machine_pyrolyzer"
+				type: "item"
+			}]
+			title: "Pyrolyzer"
+			x: 4.709d
+			y: 3.977d
+		}
+		{
+			dependencies: ["3B5525152E248F9F"]
+			description: ["结晶器可将流体和试剂转化为固体材料。保持流体种类一致，并为批次完成留出输出空间。"]
+			id: "3F1ADCFB0601B9B4"
+			shape: "circle"
+			tasks: [{
+				id: "5D791B8D4EC1DBA8"
+				item: "thermal:machine_crystallizer"
+				type: "item"
+			}]
+			title: "结晶器"
+			x: 4.746d
+			y: 2.877d
+		}
+		{
+			dependencies: ["C74654AF6B1458B2" "8413C8370561F0AF" "D2922BAE71120E37" "3F1ADCFB0601B9B4" "EC5B605FD5EA301C" "4D0BBD6F778A97D9" "8DF038647C91373B"]
+			description: ["运行代表性固体、合金、流体和多输出配方。验证输出填满后的侧边配置、过滤器、副产品存储和回收。"]
+			id: "EBC836B959AF34D5"
+			rewards: [{
+				id: "307AD9937A87C548"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "FAE2F67283440367"
+				title: "确认：一个完整的热处理大厅"
+				type: "checkmark"
+			}]
+			title: "一个完整的热处理加工大厅"
+			x: 5.684d
+			y: 3.467d
+		}
+		{
+			dependencies: ["8C1266360CF5FB68"]
+			description: ["能量导管用于分配Forge能量。将高耗能设备分段，并确保导管等级能承受峰值总负荷。"]
+			id: "41FC578B06777453"
+			shape: "circle"
+			tasks: [{
+				id: "26C9ECB4AEF1896A"
+				item: "thermal:energy_duct"
+				type: "item"
+			}]
+			title: "能量导管"
+			x: 2.728d
+			y: -0.904d
+		}
+		{
+			dependencies: ["41FC578B06777453"]
+			description: ["流体管道用于在机器和存储之间传输兼容流体。使用过滤器或专用路线，防止不同流体共享不安全的目标。"]
+			id: "5EA46FB7BA5DD153"
+			shape: "circle"
+			tasks: [{
+				id: "F10385F25C5A37C4"
+				item: "thermal:fluid_duct"
+				type: "item"
+			}]
+			title: "流体管道"
+			x: 3.684d
+			y: -0.361d
+		}
+		{
+			dependencies: ["5EA46FB7BA5DD153"]
+			description: ["窗口式风管可在诊断期间使流体身份和移动可视化。在交叉点和机器入口处使用，以防止高成本的污染。"]
+			id: "5318076A6304C3B9"
+			shape: "circle"
+			tasks: [{
+				id: "85F56D1CA5702A66"
+				item: "thermal:fluid_duct_windowed"
+				type: "item"
+			}]
+			title: "可见流体流动路径规划"
+			x: 3.619d
+			y: -1.558d
+		}
+		{
+			dependencies: ["5EA46FB7BA5DD153"]
+			description: ["物品缓冲器可在物品栏和机器之间建立受控的交接。用它来吸收突发流量并暴露可过滤的接口。"]
+			id: "F6D2D4AD5B89CB32"
+			shape: "circle"
+			tasks: [{
+				id: "E57D5C42FFFEABB4"
+				item: "thermal:item_buffer"
+				type: "item"
+			}]
+			title: "物品缓冲器"
+			x: 4.572d
+			y: -1.009d
+		}
+		{
+			dependencies: ["F6D2D4AD5B89CB32"]
+			description: ["过滤附件会限制连接可移动的物品。在连接共享存储网络前，请先测试允许和拒绝的物品。"]
+			id: "EE96FBF41C2A06E6"
+			shape: "circle"
+			tasks: [{
+				id: "052653E99FF9C196"
+				item: "thermal:filter_attachment"
+				type: "item"
+			}]
+			title: "过滤后的附件"
+			x: 5.538d
+			y: -1.535d
+		}
+		{
+			dependencies: ["F6D2D4AD5B89CB32"]
+			description: ["能量限制器将传输限制在分支内。为关键系统保留带宽，防止单个升级后的机器耗尽电网。"]
+			id: "722638CCC71519BC"
+			shape: "circle"
+			tasks: [{
+				id: "04E930852F2425B9"
+				item: "thermal:energy_limiter_attachment"
+				type: "item"
+			}]
+			title: "能量限制"
+			x: 5.229d
+			y: -0.128d
+		}
+		{
+			dependencies: ["EE96FBF41C2A06E6" "722638CCC71519BC"]
+			description: ["使用过滤器、缓冲器和分支限制，展示独立的物品、流体和能量路线。清除堵塞的输出，并确认工厂能自动恢复运行。"]
+			id: "6E78646D6A2CA996"
+			rewards: [{
+				id: "7DB3F03354270A87"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "B100F56E4D3F9A87"
+				title: "确认：受控热传导系统已启用"
+				type: "checkmark"
+			}]
+			title: "受控热传导系统 (Controlled Thermal Routing)"
+			x: 6.195d
+			y: -0.653d
+		}
+		{
+			dependencies: ["EBC836B959AF34D5"]
+			description: ["Sequential Fabricator 可自动化合成配方。锁定配方、提供有界原料缓冲，并防止递归生产循环。"]
+			id: "381508811C50803F"
+			shape: "circle"
+			tasks: [{
+				id: "19FF0CDF4B0E43BB"
+				item: "thermal:machine_crafter"
+				type: "item"
+			}]
+			title: "顺序式制造机"
+			x: 5.732d
+			y: 2.369d
+		}
+		{
+			dependencies: ["EBC836B959AF34D5"]
+			description: ["Phytogenic Insolator 利用水、能量和可选催化剂来种植作物。提取产品前请确保保留种子。"]
+			id: "C5FE5A1CFBD77699"
+			shape: "circle"
+			tasks: [{
+				id: "DCA54E6C13813696"
+				item: "thermal:machine_insolator"
+				type: "item"
+			}]
+			title: "植物源绝缘体"
+			x: 6.666d
+			y: 3.962d
+		}
+		{
+			dependencies: ["EBC836B959AF34D5"]
+			description: ["压制模具可解锁齿轮、硬币、打包和拆包。将可重复使用的模具存放在自动化无法将其作为产品导出的地方。"]
+			id: "51EC4D1A0F0E0A6C"
+			shape: "circle"
+			tasks: [{
+				id: "427E84F69B39F222"
+				item: "thermal:press_gear_die"
+				type: "item"
+			}]
+			title: "按下 Dies 键"
+			x: 5.791d
+			y: 4.627d
+		}
+		{
+			dependencies: ["381508811C50803F" "C5FE5A1CFBD77699" "51EC4D1A0F0E0A6C" "6E78646D6A2CA996"]
+			description: ["Thermal augments 会改变速度、效率、容量、范围或输出。升级最慢的阶段及其运输方式，而不是盲目地最大化每台机器。"]
+			id: "A12715F190E003A6"
+			rewards: [{
+				id: "7FDD5D0D8651E7AD"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "A3023F2C340A8A21"
+				title: "确认：作为完整线路进行升级"
+				type: "checkmark"
+			}]
+			title: "作为完整线路进行升级"
+			x: 6.714d
+			y: 2.863d
+		}
+		{
+			dependencies: ["A12715F190E003A6" "70CF07535A186F3D" "5318076A6304C3B9"]
+			description: ["成熟的Thermal工厂拥有多样化的生成、统一的合金和加工产出、隔离的流体、过滤的传输、受限制的合成、可再生农业以及经过测试的重启路径。"]
+			id: "E48713CF6BD8B7CD"
+			rewards: [{
+				id: "0EA4FCE73B39BF41"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "AE3C1952DAAAFBA1"
+				title: "确认：一个平衡的热能工厂"
+				type: "checkmark"
+			}]
+			title: "一个平衡的热能工厂"
+			x: 7.798d
+			y: 3.050d
+		}
+	]
+	title: "Thermal 系列"
+}

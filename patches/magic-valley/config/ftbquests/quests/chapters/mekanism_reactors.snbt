@@ -1,0 +1,389 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "circle"
+	filename: "mekanism_reactors"
+	group: "A100000000000008"
+	icon: "mekanismgenerators:fission_reactor_casing"
+	id: "5303D454F588CB26"
+	order_index: 7
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["此章节仅在核心Mekanism化学处理和高效电力传输稳定后开始。加载裂变燃料前，请先建造辐射屏蔽、紧急停机及废料存储设施。"]
+			id: "2DDF49647F27EBB7"
+			rewards: [{
+				id: "951A2BA1B1C7E2DC"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "AA7CD35CA6EB565E"
+				title: "确认：Mekanism 反应堆与辐射"
+				type: "checkmark"
+			}]
+			title: "Mekanism 反应堆与辐射"
+			x: 0.000d
+			y: 0.000d
+		}
+		{
+			dependencies: ["2DDF49647F27EBB7"]
+			description: ["准备好盖革计数器和剂量计。在制造放射性材料前制定应对计划。"]
+			id: "4423480F1345C21B"
+			shape: "circle"
+			tasks: [{
+				id: "07DEB85742AB15C8"
+				item: "mekanism:geiger_counter"
+				type: "item"
+			}]
+			title: "辐射监测"
+			x: 1.414d
+			y: -1.414d
+		}
+		{
+			dependencies: ["4423480F1345C21B"]
+			description: ["全套防护服可降低暴露风险，但不能替代收容措施。备用防护服应存放在反应堆区外。"]
+			id: "E0BDA8BF7AD22595"
+			shape: "circle"
+			tasks: [{
+				id: "CC99FCDC8FF0D713"
+				item: "mekanism:hazmat_gown"
+				type: "item"
+			}]
+			title: "Hazmat Protection"
+			x: 2.828d
+			y: -1.414d
+		}
+		{
+			dependencies: ["E0BDA8BF7AD22595"]
+			description: ["废料桶会缓慢衰变核废料。提供足够的独立容量，确保满载输出不会导致运行中的反应堆排气或堵塞。"]
+			id: "B9CC92822894FF76"
+			shape: "circle"
+			tasks: [{
+				id: "82641F93E6809E8D"
+				item: "mekanism:radioactive_waste_barrel"
+				type: "item"
+			}]
+			title: "放射性废料桶"
+			x: 4.243d
+			y: -1.414d
+		}
+		{
+			dependencies: ["B9CC92822894FF76"]
+			description: ["按照文档搭建外壳、端口、玻璃、燃料组件和控制棒。从最低可行的燃烧率开始，并测试自动紧急停堆逻辑。"]
+			id: "224E1BA133B20F36"
+			rewards: [{
+				id: "44491CEB76B6509F"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "C42565CED80A388F"
+				title: "确认：裂变反应堆 Fission Reactor"
+				type: "checkmark"
+			}]
+			title: "裂变反应堆"
+			x: 2.828d
+			y: 0.707d
+		}
+		{
+			dependencies: ["224E1BA133B20F36"]
+			description: ["布置反应堆，设置维护通道，并保护冷却剂、燃料、蒸汽和废料路线。"]
+			id: "3E0C341575CF31E2"
+			shape: "circle"
+			tasks: [{
+				id: "A35C0C1424F9DD81"
+				item: "mekanismgenerators:fission_reactor_casing"
+				type: "item"
+			}]
+			title: "裂变反应堆外壳"
+			x: 4.243d
+			y: 0.000d
+		}
+		{
+			dependencies: ["3E0C341575CF31E2"]
+			description: ["燃料组件决定反应堆容量。请谨慎添加，并确保控制棒位于每根柱的正上方。"]
+			id: "24444B0163AF08CA"
+			shape: "circle"
+			tasks: [{
+				id: "123BB66AADBA1659"
+				item: "mekanismgenerators:fission_fuel_assembly"
+				type: "item"
+			}]
+			title: "裂变燃料组件"
+			x: 5.657d
+			y: 0.000d
+		}
+		{
+			dependencies: ["24444B0163AF08CA"]
+			description: ["控制棒调节反应。在装载燃料前，确认红石停机逻辑已到达整个反应堆。"]
+			id: "B902D18DDF680C5D"
+			shape: "circle"
+			tasks: [{
+				id: "D556E8F5CDB4C82F"
+				item: "mekanismgenerators:control_rod_assembly"
+				type: "item"
+			}]
+			title: "控制杆组件装配"
+			x: 7.071d
+			y: 0.000d
+		}
+		{
+			dependencies: ["B902D18DDF680C5D"]
+			description: ["使用逻辑适配器处理损坏、温度、冷却剂和废料安全联锁。以低燃烧率测试每种情况。"]
+			id: "B95580B3303F1D9F"
+			shape: "circle"
+			tasks: [{
+				id: "A73F83E8CAB66D83"
+				item: "mekanismgenerators:fission_reactor_logic_adapter"
+				type: "item"
+			}]
+			title: "裂变逻辑适配器"
+			x: 8.485d
+			y: 0.000d
+		}
+		{
+			dependencies: ["B95580B3303F1D9F"]
+			description: ["用与峰值蒸汽产量匹配的涡轮机将反应堆蒸汽转化为电力。不匹配的涡轮机或冷凝器可能会导致反应堆停机。"]
+			id: "580F34FAC7FB0B09"
+			rewards: [{
+				id: "F12EDFE1C626669C"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "F94B80A616699216"
+				title: "确认：工业涡轮机"
+				type: "checkmark"
+			}]
+			title: "工业涡轮机"
+			x: 5.657d
+			y: 2.828d
+		}
+		{
+			dependencies: ["580F34FAC7FB0B09"]
+			description: ["按照文档要求，用进气口、排气口、线圈、转子和冷凝器层搭建涡轮多区块结构。"]
+			id: "D29D9B00B6986B94"
+			shape: "circle"
+			tasks: [{
+				id: "62DCBA5D14BDCCB5"
+				item: "mekanismgenerators:turbine_casing"
+				type: "item"
+			}]
+			title: "涡轮外壳"
+			x: 7.071d
+			y: 2.121d
+		}
+		{
+			dependencies: ["D29D9B00B6986B94"]
+			description: ["转子高度和叶片数量决定蒸汽处理。在提高反应堆燃烧率前，请验证结构。"]
+			id: "179D0FCB48FB12AC"
+			shape: "circle"
+			tasks: [{
+				id: "32233D5D3F11327E"
+				item: "mekanismgenerators:turbine_rotor"
+				type: "item"
+			}]
+			title: "涡轮转子"
+			x: 8.485d
+			y: 2.121d
+		}
+		{
+			dependencies: ["179D0FCB48FB12AC"]
+			description: ["均匀安装叶片，并在转子周围留出必要空间。更多叶片需要合适的通风口和线圈。"]
+			id: "A1EA5F7386AA1F81"
+			shape: "circle"
+			tasks: [{
+				id: "3775A52F4FDC8EAB"
+				item: "mekanismgenerators:turbine_blade"
+				type: "item"
+			}]
+			title: "涡轮叶片"
+			x: 9.899d
+			y: 2.121d
+		}
+		{
+			dependencies: ["A1EA5F7386AA1F81"]
+			description: ["线圈将转子运动转化为电能。确保在满负荷运行时，能量输出能离开涡轮机。"]
+			id: "ECB6449D151FD0DA"
+			shape: "circle"
+			tasks: [{
+				id: "0AB71D46AD320705"
+				item: "mekanismgenerators:electromagnetic_coil"
+				type: "item"
+			}]
+			title: "电磁线圈"
+			x: 11.314d
+			y: 2.121d
+		}
+		{
+			dependencies: ["ECB6449D151FD0DA"]
+			description: ["冷凝器可从蒸汽中回收水。保持足够的冷凝器容量和回水储存量以实现连续冷却。"]
+			id: "9E6C2CEA66CF5F64"
+			shape: "circle"
+			tasks: [{
+				id: "C616A0C1BD3AB387"
+				item: "mekanismgenerators:saturating_condenser"
+				type: "item"
+			}]
+			title: "饱和冷凝器"
+			x: 12.728d
+			y: 2.121d
+		}
+		{
+			dependencies: ["B95580B3303F1D9F"]
+			description: ["锅炉可将反应堆热量与涡轮蒸汽生产分离。组合水输入、冷却循环和蒸汽输出。"]
+			id: "BD6F378685456519"
+			rewards: [{
+				id: "2EC5DADB10C00B27"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "5297B3D162F0DA7F"
+				title: "确认：热电锅炉 Thermoelectric Boiler"
+				type: "checkmark"
+			}]
+			title: "热电锅炉"
+			x: 7.071d
+			y: 4.243d
+		}
+		{
+			dependencies: ["BD6F378685456519"]
+			description: ["用阀门、压力分散器和过热元件在正确的层上建造锅炉。"]
+			id: "F957B3BEF42825E7"
+			shape: "circle"
+			tasks: [{
+				id: "8286C5F43F88C0F9"
+				item: "mekanism:boiler_casing"
+				type: "item"
+			}]
+			title: "锅炉外壳"
+			x: 8.485d
+			y: 4.243d
+		}
+		{
+			dependencies: ["F957B3BEF42825E7"]
+			description: ["过热元件将热量传递给水。测试循环时，请监控冷却剂和蒸汽缓冲器。"]
+			id: "D9D25C7E9732D748"
+			shape: "circle"
+			tasks: [{
+				id: "1D18E2D58917C816"
+				item: "mekanism:superheating_element"
+				type: "item"
+			}]
+			title: "过热元件 (Superheating Element)"
+			x: 9.899d
+			y: 4.243d
+		}
+		{
+			dependencies: ["580F34FAC7FB0B09" "BD6F378685456519"]
+			description: ["聚变需要氘、氚、一个Hohlraum点火电荷、激光能量和一个完整的反应堆。在聚变循环自持之前，保持裂变功率可用。"]
+			id: "F8E4F3FDCBAAAAD9"
+			rewards: [{
+				id: "6F480677C0917086"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "CF4DF8651718FF53"
+				title: "确认：聚变反应堆"
+				type: "checkmark"
+			}]
+			title: "聚变反应堆"
+			x: 9.899d
+			y: 7.071d
+		}
+		{
+			dependencies: ["F8E4F3FDCBAAAAD9"]
+			description: ["在准备点火序列之前，先建造并验证完整的聚变结构。"]
+			id: "A573149FAEDAC2B6"
+			shape: "circle"
+			tasks: [{
+				id: "538022972C6F97AF"
+				item: "mekanismgenerators:fusion_reactor_frame"
+				type: "item"
+			}]
+			title: "聚变反应堆框架"
+			x: 11.314d
+			y: 6.364d
+		}
+		{
+			dependencies: ["F8E4F3FDCBAAAAD9"]
+			description: ["生产并缓冲氚，而不会使其他锂或太阳能中子过程陷入停滞。"]
+			id: "CD3A934145667E3D"
+			shape: "circle"
+			tasks: [{
+				id: "CC14D990DACA84C0"
+				item: "mekanismgenerators:tritium_bucket"
+				type: "item"
+			}]
+			title: "氚（Tritium）"
+			x: 11.314d
+			y: 7.778d
+		}
+		{
+			dependencies: ["F8E4F3FDCBAAAAD9"]
+			description: ["从重水中生产氘，并保持其供应速率高于计划的注入需求。"]
+			id: "CB32105BC5FBB90B"
+			shape: "circle"
+			tasks: [{
+				id: "A50ABA1ED088DEE4"
+				item: "mekanismgenerators:deuterium_bucket"
+				type: "item"
+			}]
+			title: "氘（Deuterium）"
+			x: 11.314d
+			y: 9.192d
+		}
+		{
+			dependencies: ["CD3A934145667E3D" "CB32105BC5FBB90B"]
+			description: ["点火前立即将Hohlraum填满D-T燃料，并为启动失败保留备用路径。"]
+			id: "6E46571163A3598A"
+			shape: "circle"
+			tasks: [{
+				id: "96C6CCF301E6492B"
+				item: "mekanismgenerators:hohlraum"
+				type: "item"
+			}]
+			title: "中空的洞穴"
+			x: 12.728d
+			y: 8.485d
+		}
+		{
+			dependencies: ["A573149FAEDAC2B6" "6E46571163A3598A"]
+			description: ["只有在反应堆和燃料系统就绪后，才将蓄能激光放大器对准聚焦矩阵。"]
+			id: "8DFCC15CF8E7976E"
+			shape: "circle"
+			tasks: [{
+				id: "7157015AE48138A5"
+				item: "mekanismgenerators:laser_focus_matrix"
+				type: "item"
+			}]
+			title: "激光聚焦矩阵"
+			x: 14.142d
+			y: 7.071d
+		}
+		{
+			dependencies: ["8DFCC15CF8E7976E"]
+			description: ["监控注入率、等离子温度、燃料储备和输出功率。逐步提高注入量，并保持独立的停机计划。"]
+			id: "EE4F8EBE8B1E3DE3"
+			shape: "circle"
+			tasks: [{
+				id: "A8C0EC61B064A1E7"
+				item: "mekanismgenerators:fusion_reactor_controller"
+				type: "item"
+			}]
+			title: "聚变反应堆控制器"
+			x: 15.556d
+			y: 7.071d
+		}
+	]
+	title: "Mekanism 反应堆与辐射"
+}

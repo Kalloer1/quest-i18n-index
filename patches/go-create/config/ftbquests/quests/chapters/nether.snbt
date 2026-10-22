@@ -1,0 +1,667 @@
+# AI 初翻，未人工校对
+{
+	id: "1A566D1005CF5381"
+	group: "37BCB3363E396B37"
+	order_index: 1
+	filename: "nether"
+	title: "下界"
+	icon: "minecraft:magma_block"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	images: [{
+		x: 2.0d
+		y: -11.5d
+		width: 10.0d
+		height: 2.0d
+		rotation: 0.0d
+		image: "kubejs:textures/other/nether.png"
+		hover: [ ]
+		click: ""
+		dev: false
+		corner: false
+	}]
+	quests: [
+		{
+			title: "进入下界"
+			x: 1.0d
+			y: -8.5d
+			subtitle: "你可能需要带些黄金给猪灵们用"
+			id: "492F2A93499D5171"
+			tasks: [{
+				id: "067822E39CCDE47A"
+				type: "dimension"
+				dimension: "minecraft:the_nether"
+			}]
+			rewards: [{
+				id: "4913C6EB43B9454B"
+				type: "item"
+				item: "minecraft:gold_ingot"
+				count: 4
+			}]
+		}
+		{
+			x: 2.5d
+			y: -8.5d
+			subtitle: "改装车！"
+			id: "21BAA54A8DDC37A5"
+			tasks: [{
+				id: "5F67465BB28710A4"
+				type: "item"
+				item: "minecraft:blaze_rod"
+			}]
+			rewards: [{
+				id: "29A06C776D7C27F3"
+				type: "item"
+				item: "minecraft:blaze_powder"
+				count: 4
+			}]
+		}
+		{
+			x: 4.0d
+			y: -8.5d
+			subtitle: "或许你可以在与猪灵的交易中“走运”"
+			dependencies: ["21BAA54A8DDC37A5"]
+			id: "440BBFA6420428E2"
+			tasks: [{
+				id: "16A0AD36D39FF18E"
+				type: "item"
+				item: "minecraft:ender_eye"
+			}]
+			rewards: [{
+				id: "2B5A65074A32FEC7"
+				type: "item"
+				item: "minecraft:ender_pearl"
+				count: 4
+			}]
+		}
+		{
+			x: 2.5d
+			y: -7.0d
+			subtitle: "再收集两个，你就能获得一个凋零了！"
+			dependencies: ["06E4DF2954EECC07"]
+			id: "4EFF199D63C49146"
+			tasks: [{
+				id: "64780CA39D05C31F"
+				type: "item"
+				item: "minecraft:wither_skeleton_skull"
+			}]
+			rewards: [
+				{
+					id: "235E982B0A3680BC"
+					type: "item"
+					item: "minecraft:soul_sand"
+					count: 4
+				}
+				{
+					id: "667A6050C00E4851"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			title: "找到一个堡垒 (Locate a Fortress)"
+			x: 1.0d
+			y: -7.0d
+			subtitle: "多么可爱的堡垒啊！"
+			dependencies: ["492F2A93499D5171"]
+			id: "06E4DF2954EECC07"
+			tasks: [{
+				id: "28FC6E43DE954040"
+				type: "advancement"
+				advancement: "minecraft:nether/find_fortress"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "67687D94D8077011"
+				type: "item"
+				item: "tconstruct:broad_blade_sand_cast"
+			}]
+		}
+		{
+			x: 4.0d
+			y: -7.0d
+			subtitle: "在末地的深处被发现"
+			id: "0B33F86D1FA7A2A5"
+			tasks: [{
+				id: "322C376BAE532CA8"
+				type: "item"
+				item: "minecraft:ancient_debris"
+			}]
+			rewards: [{
+				id: "63F0B07AB4199E71"
+				type: "item"
+				item: {
+					id: "minecraft:diamond_pickaxe"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			x: 6.0d
+			y: -7.0d
+			subtitle: "比钻石还要好！"
+			dependencies: ["0B33F86D1FA7A2A5"]
+			id: "687690964CE52845"
+			tasks: [{
+				id: "48F87EE740A4A478"
+				type: "item"
+				item: "minecraft:netherite_ingot"
+			}]
+			rewards: [
+				{
+					id: "7A55DBC6CB61485B"
+					type: "item"
+					item: "minecraft:smithing_table"
+				}
+				{
+					id: "5635E3250CE72CEC"
+					type: "item"
+					item: {
+						id: "minecraft:diamond_helmet"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "2352F58252AF871D"
+					type: "command"
+					title: "一个区块声明"
+					icon: {
+						id: "ftbquests:custom_icon"
+						Count: 1b
+						tag: {
+							Icon: "cc:textures/block/claim_block.png"
+						}
+					}
+					command: "/ftbchunks admin extra_claim_chunks @p add 1"
+					player_command: false
+				}
+			]
+		}
+		{
+			title: "用黄金分散猪灵的注意力"
+			x: 4.0d
+			y: -5.5d
+			subtitle: "未穿戴金质盔甲的情况下"
+			id: "2B270EBABF2DB016"
+			tasks: [{
+				id: "7CD2E2A8E3B0567B"
+				type: "advancement"
+				icon: "minecraft:gold_ingot"
+				advancement: "minecraft:nether/distract_piglin"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "1B8E31186130B0D1"
+				type: "item"
+				item: "minecraft:ender_pearl"
+				count: 2
+			}]
+		}
+		{
+			x: -2.5d
+			y: -8.5d
+			subtitle: "Chargin' Targe"
+			dependencies: ["744D7E5E60563B8A"]
+			id: "6DED16F7C56C93F5"
+			tasks: [{
+				id: "2B1F610A347BB75A"
+				type: "item"
+				item: {
+					id: "bigbrain:buckler"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "01503187F2AE370D"
+				type: "item"
+				item: {
+					id: "tconstruct:sword"
+					Count: 1b
+					tag: {
+						tic_multipliers: {
+							"tconstruct:mining_speed": 0.5f
+							"tconstruct:durability": 1.1f
+						}
+						tic_stats: {
+							"tconstruct:attack_speed": 1.4399999f
+							"tconstruct:mining_speed": 2.25f
+							"tconstruct:attack_damage": 7.7999997f
+							"tconstruct:harvest_level": 3.0f
+							"tconstruct:durability": 345.4f
+						}
+						tic_broken: 0b
+						tic_modifiers: [
+							{
+								name: "tconstruct:lacerating"
+								level: 3s
+							}
+							{
+								name: "tconstruct:silky_shears"
+								level: 1s
+							}
+						]
+						tic_materials: [
+							"tconstruct:nahuatl"
+							"tconstruct:nahuatl"
+							"tconstruct:nahuatl"
+						]
+						Damage: 0
+						tic_persistent_data: {
+							abilities: 1
+							upgrades: 3
+						}
+					}
+				}
+			}]
+		}
+		{
+			title: "找到一个堡垒遗迹"
+			x: -1.0d
+			y: -8.5d
+			subtitle: "注意黑石砖的踪迹，小心提防"
+			dependencies: ["492F2A93499D5171"]
+			id: "744D7E5E60563B8A"
+			tasks: [{
+				id: "64519C52278EE143"
+				type: "advancement"
+				advancement: "minecraft:nether/find_bastion"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "0D5251A56D2B2B37"
+				type: "item"
+				item: {
+					id: "minecraft:golden_boots"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			x: -1.0d
+			y: -5.5d
+			subtitle: "杀死一只绯红蚊子"
+			dependencies: ["5431E1A9FF830F21"]
+			id: "162906530F86E698"
+			tasks: [{
+				id: "13D153CDAA80827C"
+				type: "item"
+				item: "alexsmobs:mosquito_proboscis"
+			}]
+			rewards: [{
+				id: "6D709838E34A0841"
+				type: "item"
+				item: "byg:crimson_berry_pie"
+			}]
+		}
+		{
+			title: "驯服一只扭曲蟾蜍"
+			x: -2.5d
+			y: -5.0d
+			subtitle: "用绯红幼虫喂养它们"
+			dependencies: ["384B4869B575E368"]
+			id: "632E2155E10FCA41"
+			tasks: [{
+				id: "54ADF9959A624D9E"
+				type: "advancement"
+				advancement: "alexsmobs:alexsmobs/tame_warped_toad"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "770A5856FDE7C82F"
+				type: "item"
+				item: "alexsmobs:warped_mixture"
+			}]
+		}
+		{
+			x: -1.0d
+			y: -4.0d
+			subtitle: "看起来不太有食欲的样子"
+			dependencies: ["162906530F86E698"]
+			id: "384B4869B575E368"
+			tasks: [{
+				id: "475DC84650E20A4F"
+				type: "item"
+				item: "alexsmobs:mosquito_larva"
+			}]
+			rewards: [{
+				id: "783AC458E705FD5F"
+				type: "item"
+				item: {
+					id: "tconstruct:tough_handle"
+					Count: 1b
+					tag: {
+						Material: "tconstruct:blazing_bone"
+					}
+				}
+			}]
+		}
+		{
+			title: "将 Stradpole 培育成 Straddler"
+			x: -2.5d
+			y: -3.0d
+			subtitle: "用绯红幼虫喂养它们"
+			dependencies: ["384B4869B575E368"]
+			id: "4EBC2FFBA1930A2B"
+			tasks: [{
+				id: "1DA0B38381352844"
+				type: "advancement"
+				advancement: "alexsmobs:alexsmobs/stradpole_feed"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "7D5DB9B89A723949"
+					type: "item"
+					item: "alexsmobs:straddlite"
+					count: 4
+				}
+				{
+					id: "68A36C73149ED24F"
+					type: "command"
+					title: "一个区块声明"
+					icon: {
+						id: "ftbquests:custom_icon"
+						Count: 1b
+						tag: {
+							Icon: "cc:textures/block/claim_block.png"
+						}
+					}
+					command: "/ftbchunks admin extra_claim_chunks @p add 1"
+					player_command: false
+				}
+			]
+		}
+		{
+			x: 1.0d
+			y: -5.5d
+			subtitle: "如果把这种沙子和另一种沙子混合，可能会产生奇妙的效果"
+			id: "0118475FD95DCC75"
+			tasks: [{
+				id: "525504CC9DD55E93"
+				type: "item"
+				item: "byg:quartzite_sand"
+			}]
+			rewards: [{
+				id: "39EBE1B2DCBBB58F"
+				type: "item"
+				item: "minecraft:quartz_block"
+			}]
+		}
+		{
+			x: 1.0d
+			y: -4.0d
+			subtitle: "可以变成金锭！"
+			id: "4FF8FAA7B376A550"
+			tasks: [{
+				id: "72AB593393DF1EB2"
+				type: "item"
+				item: "byg:sythian_stalk_block"
+			}]
+			rewards: [{
+				id: "63CCCD160B7DFA1C"
+				type: "item"
+				item: "minecraft:blast_furnace"
+			}]
+		}
+		{
+			x: 2.5d
+			y: -5.5d
+			subtitle: "自然光！"
+			id: "37DBDFB0C4AC274C"
+			tasks: [{
+				id: "0673A861346BA3C2"
+				type: "item"
+				item: "minecraft:shroomlight"
+			}]
+			rewards: [{
+				id: "3E0DA204A0CDFEB7"
+				type: "item"
+				item: "minecraft:glowstone_dust"
+				count: 16
+			}]
+		}
+		{
+			x: 2.5d
+			y: -4.0d
+			subtitle: "可爱的灯盏"
+			dependencies: ["37DBDFB0C4AC274C"]
+			id: "33D750951687F128"
+			tasks: [{
+				id: "02952F3DB7248D8D"
+				type: "item"
+				item: "supplementaries:crimson_lantern"
+			}]
+			rewards: [
+				{
+					id: "00331A8672F2D7A7"
+					type: "item"
+					item: "minecraft:red_carpet"
+					count: 6
+				}
+				{
+					id: "7F423F658770C92F"
+					type: "xp"
+					xp: 30
+				}
+			]
+		}
+		{
+			x: 2.5d
+			y: -10.0d
+			subtitle: "黑曜石纸巾在哪里呢？"
+			id: "289C83C254776B8F"
+			tasks: [{
+				id: "0D25865EA19B9353"
+				type: "item"
+				item: "minecraft:crying_obsidian"
+			}]
+			rewards: [{
+				id: "32A165A9DEBDA768"
+				type: "item"
+				item: "minecraft:ghast_tear"
+			}]
+		}
+		{
+			x: 4.0d
+			y: -10.0d
+			subtitle: "用萤石填满它，将你的出生点设置在末地"
+			dependencies: ["289C83C254776B8F"]
+			id: "7E7A1240BC94D76C"
+			tasks: [{
+				id: "2634EB8432CA9212"
+				type: "item"
+				item: "minecraft:respawn_anchor"
+			}]
+			rewards: [
+				{
+					id: "10B9CCA684DFBEE5"
+					type: "item"
+					item: "minecraft:glowstone"
+					count: 4
+				}
+				{
+					id: "6D7DDC71AA0530F4"
+					type: "command"
+					title: "一个区块声明"
+					icon: {
+						id: "ftbquests:custom_icon"
+						Count: 1b
+						tag: {
+							Icon: "cc:textures/block/claim_block.png"
+						}
+					}
+					command: "/ftbchunks admin extra_claim_chunks @p add 1"
+					player_command: false
+				}
+			]
+		}
+		{
+			title: "找到一个绯红森林"
+			icon: "minecraft:crimson_nylium"
+			x: -1.0d
+			y: -7.0d
+			subtitle: "小心那些蚊子，它们会咬人"
+			dependencies: ["492F2A93499D5171"]
+			id: "5431E1A9FF830F21"
+			tasks: [{
+				id: "1BBB387C6A61496A"
+				type: "biome"
+				biome: "minecraft:crimson_forest"
+			}]
+			rewards: [{
+				id: "4BD6EA9E181412FD"
+				type: "item"
+				item: "eidolon:crimson_essence"
+			}]
+		}
+		{
+			title: "找到一个玄武岩三角洲"
+			icon: "minecraft:polished_basalt"
+			x: 1.0d
+			y: -10.0d
+			subtitle: "在岩石上"
+			dependencies: ["492F2A93499D5171"]
+			id: "20832B5489C262BE"
+			tasks: [{
+				id: "763F70C65E04A527"
+				type: "biome"
+				biome: "minecraft:basalt_deltas"
+			}]
+			rewards: [{
+				id: "5F8D41A8FC0FEA2F"
+				type: "item"
+				item: {
+					id: "quark:pickarang"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			title: "找到一个下界城市"
+			x: 6.0d
+			y: -10.0d
+			subtitle: "它们看起来像末地城市，但却在末地传送门"
+			id: "21B3C9EA4F27F9CD"
+			tasks: [{
+				id: "24A22D98DA6F49B4"
+				type: "advancement"
+				advancement: "repurposed_structures:city_nether"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "2BFCB7DBFF2AA806"
+					type: "item"
+					item: {
+						id: "minecraft:potion"
+						Count: 1b
+						tag: {
+							Potion: "goblintraders:extended_fire_resistance"
+						}
+					}
+				}
+				{
+					id: "66B5BCD3B6650E1A"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			x: -1.0d
+			y: -10.0d
+			subtitle: "用于创造Manyullyn的一种坚固金属"
+			id: "6F4A218F5BA2DF8E"
+			tasks: [{
+				id: "7E7D85975D7822C8"
+				type: "item"
+				item: "tconstruct:cobalt_ore"
+			}]
+			rewards: [
+				{
+					id: "367DF3C73D0E275C"
+					type: "item"
+					item: "tconstruct:debris_nugget"
+				}
+				{
+					id: "0FFE82AA2A94CFD2"
+					type: "command"
+					title: "一个区块声明"
+					icon: {
+						id: "ftbquests:custom_icon"
+						Count: 1b
+						tag: {
+							Icon: "cc:textures/block/claim_block.png"
+						}
+					}
+					command: "/ftbchunks admin extra_claim_chunks @p add 1"
+					player_command: false
+				}
+			]
+		}
+		{
+			title: "找到一个荧光石峡谷"
+			icon: "infernalexp:dimstone"
+			x: 4.0d
+			y: -4.0d
+			subtitle: "小心……发光石，我猜是这样"
+			id: "1F7E82967F918F60"
+			tasks: [{
+				id: "24AE0244B39FF1B8"
+				type: "biome"
+				biome: "infernalexp:glowstone_canyon"
+			}]
+			rewards: [{
+				id: "43AD663038D0C016"
+				type: "item"
+				item: "minecraft:glowstone"
+				count: 16
+			}]
+		}
+		{
+			x: 6.0d
+			y: -8.5d
+			subtitle: "你在地狱里又要吃不健康的食物了"
+			id: "44A5281B10CE6EE7"
+			tasks: [{
+				id: "460FD3C8D7DCEC25"
+				type: "item"
+				item: "farmersdelight:nether_salad"
+			}]
+			rewards: [
+				{
+					id: "5A9B28A96859CE6F"
+					type: "item"
+					item: {
+						id: "minecraft:splash_potion"
+						Count: 1b
+						tag: {
+							Potion: "goblintraders:powerful_instant_health"
+						}
+					}
+				}
+				{
+					id: "71C71DB2E9054F0C"
+					type: "xp"
+					xp: 10
+				}
+			]
+		}
+	]
+}
