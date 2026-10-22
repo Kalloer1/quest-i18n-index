@@ -10,13 +10,17 @@ name: farm-merge
 #
 # 为什么不在主机上直接 push main：主机上只有只读 deploy key（1 把），
 # 也没法跑 npm 全套校验；而且三台同时 push main 必然互相顶掉。
+#
+# 为什么**不用** `push: branches: ['farm/**']` 触发（2026-10-23 实测踩到）：
+# push 事件用的是「被推那条分支里」的 workflow 文件。farm 分支是从某一刻的 main 切出来的，
+# 之后 main 上的 workflow 修复永远不会自动流进去 —— 结果就是「改好了 main、push 上去
+# 却仍然按旧版报错」。schedule 与 workflow_dispatch 永远读默认分支的 workflow，不受这个影响。
+# 代价是合并最多滞后一个调度周期（30 分钟），而主机本身也是每 20 包 / 20 分钟才推一次，
+# 这个滞后相对整批耗时可忽略。
 on:
-  push:
-    branches: ['farm/**']
   schedule:
-    # 兜底漏推：主机侧 push 偶发断网/超时，分支上的提交会一直躺着没人合。
-    # 每 3 小时扫一遍，代价只是一次 blobless fetch（见下文）。
-    - cron: '0 */3 * * *'
+    # 每 30 分钟扫一遍三条分支。主机侧 push 断网/超时也不会丢，分支上的提交会一直躺着。
+    - cron: '*/30 * * * *'
   workflow_dispatch:
     inputs:
       hosts:

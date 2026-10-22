@@ -60,11 +60,33 @@ if [ ! -f "$SLUG_FILE" ]; then
 fi
 
 restarts=0
+
+# ---- 每轮开跑前把「代码」刷新到 main，但**不碰产物路径** ----
+# 为什么必须刷新：farm 分支是从某一刻的 main 切出来的，之后 main 上的脚本修复
+# 永远不会自动流到这台机器 —— 2026-10-23 就踩到过：合并 workflow 的变量名修复
+# 只在 main 上，主机分支里还是旧版，push 触发的那次 run 直接用旧 workflow 报错。
+# 为什么只 checkout 代码路径：main 上还堆着别台已经合进来的 patches 与 tar.gz，
+# 整棵树拉下来会白占几百 MB（配额 3GB），而本机只需要自己的分片。
+refresh_code() {
+  if git fetch -q --depth=1 origin main 2>/dev/null; then
+    # restore 只改工作区、不动索引：这样后面 commitAndPush 的 `git add patches/...`
+    # 不会顺手把脚本改动卷进 farm 分支的提交里。
+    git restore --source=origin/main --worktree -- scripts shared package.json .github 2>/dev/null \
+      || git checkout origin/main -- scripts shared package.json .github 2>/dev/null \
+      || true
+    echo "$(date '+%Y-%m-%d %H:%M:%S') 代码刷新到 $(git rev-parse --short origin/main)" >> "$LOG"
+  else
+    echo "$(date '+%Y-%m-%d %H:%M:%S') 刷新代码失败（fetch main），沿用本地版本继续" >> "$LOG"
+  fi
+}
+
 while :; do
   if [ -f "$STOP_FILE" ]; then
     echo "发现 $STOP_FILE，停止重启" >&2
     break
   fi
+
+  refresh_code
 
   # nohup + & 再 wait：让 node 脱离当前会话（ssh 断开不跟着死），同时保留退出码。
   nohup node scripts/translate-local.mjs \
