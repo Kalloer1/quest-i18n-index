@@ -1,0 +1,915 @@
+# AI 初翻，未人工校对
+{
+	id: "45F7413F3674787E"
+	group: "5A43EA4A3BF38D32"
+	order_index: 3
+	filename: "mine_colonies"
+	title: "&6Mine Colonies"
+	icon: {
+		id: "minecolonies:resourcescroll"
+		Count: 1b
+		tag: { }
+	}
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "远程进度检查器"
+			x: -8.0d
+			y: 2.0d
+			shape: "gear"
+			subtitle: "制作一个资源卷轴 (Craft a Resource Scroll)"
+			size: 1.2d
+			id: "0CB059C87EB97BA3"
+			tasks: [{
+				id: "10782E0804CDF27E"
+				type: "item"
+				item: {
+					id: "minecolonies:resourcescroll"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [
+				{
+					id: "77901B8B809CCF87"
+					type: "item"
+					item: "structurize:sceptergold"
+				}
+				{
+					id: "0F4DB132353CF912"
+					type: "item"
+					item: "minecolonies:scroll_buff"
+				}
+			]
+		}
+		{
+			title: "建造一个市政厅"
+			x: -8.0d
+			y: 1.0d
+			shape: "gear"
+			subtitle: "你的殖民地“中心”。创建殖民地所必需，但除此之外别无他用。请放置在远离敌对生物、空间充足的地方。"
+			size: 1.2d
+			id: "43C6147E5634BD0C"
+			tasks: [{
+				id: "78E3B306790CEC98"
+				type: "item"
+				item: "minecolonies:blockhuttownhall"
+			}]
+			rewards: [{
+				id: "471789ABBB2592F0"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "建造一个建筑师小屋"
+			x: -5.0d
+			y: 1.5d
+			subtitle: "建造建筑物所必需的物品。"
+			dependencies: [
+				"0CB059C87EB97BA3"
+				"43C6147E5634BD0C"
+			]
+			id: "394CAA0F8F8D0006"
+			tasks: [{
+				id: "671313154160B76C"
+				type: "item"
+				item: "minecolonies:blockhutbuilder"
+			}]
+			rewards: [{
+				id: "1AFA9A2E7C167F34"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "建造一家酒馆"
+			x: -5.0d
+			y: 3.5d
+			subtitle: "每个殖民地一个。可容纳4名殖民者。"
+			dependencies: ["394CAA0F8F8D0006"]
+			id: "787C3B1B2A01D44A"
+			tasks: [{
+				id: "5F6211F7E68B3220"
+				type: "item"
+				item: "minecolonies:blockhuttavern"
+			}]
+			rewards: [{
+				id: "348A4018BDDB5199"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "建造一座守卫塔"
+			x: -4.0d
+			y: 3.5d
+			subtitle: "将一名定居者分配为守卫，巡逻殖民地并消灭敌对生物。"
+			dependencies: ["394CAA0F8F8D0006"]
+			id: "5CAB0F7B68C2C33A"
+			tasks: [{
+				id: "7D737437FC230B83"
+				type: "item"
+				item: "minecolonies:blockhutguardtower"
+			}]
+			rewards: [{
+				id: "13E9C550B77F7468"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "建造一个农场"
+			x: -5.0d
+			y: -0.5d
+			subtitle: "指派一名定居者为农夫，为您的定居者提供食物。也可以为您制作与农业相关的物品。"
+			dependencies: ["394CAA0F8F8D0006"]
+			id: "0877A906DEA0F17A"
+			tasks: [{
+				id: "6D4A51C80001C1CF"
+				type: "item"
+				item: "minecolonies:blockhutfarmer"
+			}]
+			rewards: [{
+				id: "0E7E1A4535465942"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "创建一个田地 Field"
+			x: -5.0d
+			y: -2.5d
+			subtitle: "农夫种植种子所必需。应放置在水源附近。"
+			dependencies: ["0877A906DEA0F17A"]
+			id: "63B8FD833124A73D"
+			tasks: [{
+				id: "3ED99D615F95B91E"
+				type: "item"
+				item: "minecolonies:blockhutfield"
+			}]
+			rewards: [{
+				id: "23B1C40818864670"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "创建一个大学"
+			x: 1.0d
+			y: 1.5d
+			subtitle: "将定居者分配为研究员。必要用于进一步推进。可升级以允许离线进度。"
+			dependencies: ["394CAA0F8F8D0006"]
+			id: "2500C0A3F1CF4CE5"
+			tasks: [{
+				id: "2F1C987CF044A87B"
+				type: "item"
+				item: "minecolonies:blockhutuniversity"
+			}]
+			rewards: [{
+				id: "2F723DCA987914C5"
+				type: "choice"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "建造一家医院"
+			x: 1.0d
+			y: -0.5d
+			subtitle: "指派一名定居者担任治疗者，用各种物品治疗受伤的定居者。床的数量随等级提升。"
+			dependencies: ["2500C0A3F1CF4CE5"]
+			id: "01BD9E807C1234AC"
+			tasks: [{
+				id: "137AA1D963659893"
+				type: "item"
+				item: "minecolonies:blockhuthospital"
+			}]
+			rewards: [{
+				id: "6F03A5199C3CF6FB"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "创建一个图书馆"
+			x: 0.0d
+			y: -0.5d
+			subtitle: "提高成年定居者的智力。每栋建筑每级可容纳两名定居者学习。纸张和书籍可加快升级速度。"
+			dependencies: ["2500C0A3F1CF4CE5"]
+			id: "14E834E168E38384"
+			tasks: [{
+				id: "7581D67519F98C28"
+				type: "item"
+				item: "minecolonies:blockhutlibrary"
+			}]
+			rewards: [{
+				id: "0AD59EC522450CC6"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "建造一所学校"
+			x: -1.0d
+			y: -0.5d
+			subtitle: "将定居者指定为教师，他们会提高儿童定居者的智力。纸张能加快升级速度。"
+			dependencies: ["2500C0A3F1CF4CE5"]
+			id: "554C05DB5A3689E1"
+			tasks: [{
+				id: "3D49B540B6C21E53"
+				type: "item"
+				item: "minecolonies:blockhutschool"
+			}]
+			rewards: [{
+				id: "36352A8F8F5750E8"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "创建一个神秘遗迹 (Mystical Site)"
+			x: 2.0d
+			y: -0.5d
+			subtitle: "提高殖民地整体的幸福度。守墓人使用神秘之地来提升法力技能。"
+			dependencies: ["2500C0A3F1CF4CE5"]
+			id: "1498CDC1230442C6"
+			tasks: [{
+				id: "7D89D073B72D37BC"
+				type: "item"
+				item: "minecolonies:blockhutmysticalsite"
+			}]
+			rewards: [{
+				id: "1272DAB28CAEE11B"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "创建一个墓地 Graveyard"
+			x: 3.0d
+			y: -0.5d
+			subtitle: "将一名定居者指定为守墓人，他们会尝试复活已故的定居者。在理想条件下，成功率为12.5%。"
+			dependencies: ["2500C0A3F1CF4CE5"]
+			id: "03079B0C0F4B0086"
+			tasks: [{
+				id: "24679629C1E671E1"
+				type: "item"
+				item: "minecolonies:blockhutgraveyard"
+			}]
+			rewards: [{
+				id: "2A8A3F6C78DBCFE0"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "建造一座兵营 Barracks"
+			x: 4.0d
+			y: 0.5d
+			subtitle: "每级可多容纳1座 Barracks Tower，直至4级。允许 Barracks Tower 每 Barracks 等级额外升级一级。Barracks Tower 每级将雇佣并容纳一名守卫。"
+			dependencies: ["2500C0A3F1CF4CE5"]
+			id: "195215080596FF9F"
+			tasks: [{
+				id: "65520609F1DEBA18"
+				type: "item"
+				item: "minecolonies:blockhutbarracks"
+			}]
+			rewards: [{
+				id: "4D9716FF6C1EC842"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "创建一个战斗学院"
+			x: 5.0d
+			y: -0.5d
+			subtitle: "每级训练一名见习骑士成为正式骑士。骑士将在战斗学院中休息，并在学院内升级。骑士在学院期间不会保卫你的殖民地。"
+			dependencies: ["195215080596FF9F"]
+			id: "7A31D4A4B8607F76"
+			tasks: [{
+				id: "7CC49B99D2674382"
+				type: "item"
+				item: "minecolonies:blockhutcombatacademy"
+			}]
+			rewards: [{
+				id: "048A99378CDB3C81"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "创建一个弓箭模组整合包"
+			x: 5.5d
+			y: 0.5d
+			subtitle: "每级将一名见习弓箭手训练为弓箭手。弓箭手将在射箭场睡觉，并在射箭场升级。弓箭手在射箭场时不会保卫你的殖民地。"
+			dependencies: ["195215080596FF9F"]
+			id: "0EFF98CA90DEC6C5"
+			tasks: [{
+				id: "74B58318637991A5"
+				type: "item"
+				item: "minecolonies:blockhutarchery"
+			}]
+			rewards: [{
+				id: "7F8131AFDC1A516C"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "建造一个堆肥小屋"
+			x: 4.0d
+			y: 2.5d
+			subtitle: "指派一名定居者担任堆肥者，将物品转化为农民和花匠使用的堆肥。"
+			dependencies: ["2500C0A3F1CF4CE5"]
+			id: "7F75A287F50DF3A2"
+			tasks: [{
+				id: "12AC3C1749271AFD"
+				type: "item"
+				item: "minecolonies:blockhutcomposter"
+			}]
+			rewards: [{
+				id: "0E064954373BDDF9"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "创建一个花店"
+			x: 4.0d
+			y: 3.5d
+			subtitle: "将一名定居者分配为花匠，每建筑等级可种植4朵花。"
+			dependencies: ["2500C0A3F1CF4CE5"]
+			id: "3706DF23EC965DC0"
+			tasks: [{
+				id: "02E88623D457C602"
+				type: "item"
+				item: "minecolonies:blockhutflorist"
+			}]
+			rewards: [{
+				id: "3C1EAF7579669A99"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "建造一个染色匠小屋"
+			x: 5.5d
+			y: 3.5d
+			subtitle: "指派一名定居者担任染色匠，他们将制作染料并为下界砖和棱镜岩等方块染色。"
+			dependencies: ["3706DF23EC965DC0"]
+			id: "7269C87B8458B6BF"
+			tasks: [{
+				id: "0FB7E976A591CE1B"
+				type: "item"
+				item: "minecolonies:blockhutdyer"
+			}]
+			rewards: [{
+				id: "2D1EFF6A72673C4B"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "创建一个种植园"
+			x: 3.0d
+			y: 4.0d
+			subtitle: "指派一名定居者担任种植者，每建筑等级可种植4根甘蔗、竹子或仙人掌。学会配方后还能制作纸、书和糖。"
+			dependencies: ["2500C0A3F1CF4CE5"]
+			id: "1ABA3773D4427019"
+			tasks: [{
+				id: "3678CD913D31DA9A"
+				type: "item"
+				icon: "minecolonies:blockhutplantation"
+				item: "minecolonies:blockhutplantation"
+			}]
+			rewards: [{
+				id: "3B8946F04417E2A6"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "建造一个下界矿井"
+			x: 4.0d
+			y: 1.5d
+			subtitle: "将定居者分配为下界矿工，他们将在下界找到各种物品。5级可找到远古残骸。"
+			dependencies: ["2500C0A3F1CF4CE5"]
+			id: "35C4B12435DC3F03"
+			tasks: [{
+				id: "5249AFA24AC4B3FD"
+				type: "item"
+				item: "minecolonies:blockhutnetherworker"
+			}]
+			rewards: [{
+				id: "3D8CDD94B06EEDEE"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "建造一座炼金术士塔"
+			x: 5.5d
+			y: 1.5d
+			subtitle: "将定居者分配为炼金术士，他们会酿造药水并采集下界疣。5级时可学习160个配方。"
+			dependencies: ["35C4B12435DC3F03"]
+			id: "1C4C7223B83EAEDA"
+			tasks: [{
+				id: "02A26A496D37664E"
+				type: "item"
+				item: "minecolonies:blockhutalchemist"
+			}]
+			rewards: [{
+				id: "38E74136C2D8AF90"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "建造一个石匠小屋"
+			x: 1.0d
+			y: 4.0d
+			subtitle: "将定居者分配为石匠，他们能用鹅卵石、石头、紫晶、海晶灯等制作物品。"
+			dependencies: ["2500C0A3F1CF4CE5"]
+			id: "09B90C6720089894"
+			tasks: [{
+				id: "23D243BFC3F901CC"
+				type: "item"
+				item: "minecolonies:blockhutstonemason"
+			}]
+			rewards: [{
+				id: "568FA5D5C3D024B1"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "建造一台破碎机 Crusher"
+			x: 1.0d
+			y: 5.5d
+			subtitle: "将一名定居者指定为破碎机操作员，用于将鹅卵石压成砾石，将砾石压成沙子，再将沙子压成黏土。"
+			dependencies: ["09B90C6720089894"]
+			id: "4FCF2A6BCD9D9D07"
+			tasks: [{
+				id: "759423B9AE0408D2"
+				type: "item"
+				item: "minecolonies:blockhutcrusher"
+			}]
+			rewards: [{
+				id: "732CFD4619D20A7F"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "建造一个混凝土搅拌机小屋"
+			x: 1.0d
+			y: 7.0d
+			subtitle: "将一名定居者分配为混凝土搅拌机，用于将混凝土粉末混合成混凝土。"
+			dependencies: ["4FCF2A6BCD9D9D07"]
+			id: "56A84C0F43E44FF0"
+			tasks: [{
+				id: "1CF5CD2DD0EAC4F7"
+				type: "item"
+				item: "minecolonies:blockhutconcretemixer"
+			}]
+			rewards: [{
+				id: "7C644E22F09B506E"
+				type: "choice"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "建造一个锯木厂"
+			x: 0.0d
+			y: 4.0d
+			subtitle: "将一名定居者分配为木匠，他们将制作至少75%由木材制成的物品。"
+			dependencies: ["2500C0A3F1CF4CE5"]
+			id: "7D9F7C270AA404A7"
+			tasks: [{
+				id: "7B4DE570B3951C3A"
+				type: "item"
+				item: "minecolonies:blockhutsawmill"
+			}]
+			rewards: [{
+				id: "032B4AEAF93FDE49"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "建造一个弓箭手小屋"
+			x: 0.0d
+			y: 5.5d
+			subtitle: "指派一名定居者成为弓箭手，负责制作箭矢以及其他由线或羊毛制成的物品。"
+			dependencies: ["7D9F7C270AA404A7"]
+			id: "67999FB09B096D08"
+			tasks: [{
+				id: "44D81BADA5C10B0C"
+				type: "item"
+				item: "minecolonies:blockhutfletcher"
+			}]
+			rewards: [{
+				id: "50FB8375D8A06EEE"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "制作一个 Sifter"
+			x: 0.0d
+			y: 7.0d
+			subtitle: "将定居者分配为筛选工，使用砾石、泥土、沙子和灵魂沙来寻找宝藏，包括绿宝石、钻石、甘蔗和树苗。更高的建筑等级会解锁更好的筛网，从而获得更好的宝藏。建筑等级5允许每天筛选无限数量的方块。"
+			dependencies: ["67999FB09B096D08"]
+			id: "65C64C6D9B0AA640"
+			tasks: [{
+				id: "02D969F6EA016C7C"
+				type: "item"
+				item: "minecolonies:blockhutsifter"
+			}]
+			rewards: [{
+				id: "0EC8630D45100583"
+				type: "choice"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "建造一个熔炉（Smeltery）"
+			x: -1.0d
+			y: 4.0d
+			subtitle: "指派一名定居者担任熔炼工，将矿石熔炼成锭。更高级的熔炼炉有几率使锭的产量翻倍或三倍。"
+			dependencies: ["2500C0A3F1CF4CE5"]
+			id: "0CFC15A6CBA3637F"
+			tasks: [{
+				id: "41199674C9C94C9C"
+				type: "item"
+				item: "minecolonies:blockhutsmeltery"
+			}]
+			rewards: [{
+				id: "3F0999D3B283D1A6"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "建造一个熔炉熔炼器"
+			x: -1.0d
+			y: 5.5d
+			subtitle: "指派一名定居者担任熔石匠，可以熔炼石头、黏土、原木和陶土。还能弹出紫颂果。敏捷度高的熔石匠熔炼速度远超玩家。"
+			dependencies: ["0CFC15A6CBA3637F"]
+			id: "6F3511EA2719C7A3"
+			tasks: [{
+				id: "7F60BF31AAD7EBB6"
+				type: "item"
+				item: "minecolonies:blockhutstonesmeltery"
+			}]
+			rewards: [{
+				id: "0AA7A639C34D8109"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "建造一个玻璃吹制小屋"
+			x: -1.0d
+			y: 7.0d
+			subtitle: "将一名定居者分配为玻璃吹制工，负责将沙子熔炼成玻璃并制作玻璃板。"
+			dependencies: ["6F3511EA2719C7A3"]
+			id: "6CE81A1E58A5548F"
+			tasks: [{
+				id: "16C90F1AB316B193"
+				type: "item"
+				item: "minecolonies:blockhutglassblower"
+			}]
+			rewards: [{
+				id: "10F8D4D0EC6061E5"
+				type: "choice"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "建造一个铁匠小屋"
+			x: 2.0d
+			y: 4.0d
+			subtitle: "指派一名定居者为铁匠，可在定居者要求时制作原版工具、盔甲、剑和盾牌。在5级时学习下界合金配方。"
+			dependencies: ["2500C0A3F1CF4CE5"]
+			id: "4FB52A1A9BCA344A"
+			tasks: [{
+				id: "2701400545F43148"
+				type: "item"
+				item: "minecolonies:blockhutblacksmith"
+			}]
+			rewards: [{
+				id: "3169844A608A2D99"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "建造一个机械师小屋"
+			x: 2.0d
+			y: 5.5d
+			subtitle: "将一名定居者分配为机械师，他们将制作红石物品、火把、蓝冰等。"
+			dependencies: ["4FB52A1A9BCA344A"]
+			id: "6C9D69E38A45E074"
+			tasks: [{
+				id: "372929CA47D2EF78"
+				type: "item"
+				item: "minecolonies:blockhutmechanic"
+			}]
+			rewards: [{
+				id: "339312754313FF54"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "建造信使小屋和仓库"
+			x: -3.0d
+			y: 3.5d
+			subtitle: "将一名定居者指定为信使，负责向其他定居者运送仓库物资。"
+			dependencies: ["394CAA0F8F8D0006"]
+			id: "7D0190B89B19ECB8"
+			tasks: [
+				{
+					id: "5D63576871398F37"
+					type: "item"
+					item: "minecolonies:blockhutdeliveryman"
+				}
+				{
+					id: "39DB4B0F76F59CEC"
+					type: "item"
+					item: "minecolonies:blockhutwarehouse"
+				}
+			]
+			rewards: [{
+				id: "0A6AA407113772A4"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "创建一个矿井 Mine"
+			x: -6.0d
+			y: 3.5d
+			subtitle: "将一名定居者分配为矿工，用于地下剥离采矿。"
+			dependencies: ["394CAA0F8F8D0006"]
+			id: "61CB65AE618598D5"
+			tasks: [{
+				id: "18C33D893BCA4769"
+				type: "item"
+				item: "minecolonies:blockhutminer"
+			}]
+			rewards: [{
+				id: "23359A1543A6A6C4"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "建造一个简单的采石场"
+			x: -6.0d
+			y: 5.0d
+			subtitle: "可将矿工变为采石工。挖掘出一个完整的区块。"
+			dependencies: ["61CB65AE618598D5"]
+			id: "05D6F90B198B42EA"
+			tasks: [{
+				id: "4D60062F946DD56E"
+				type: "item"
+				item: "minecolonies:simplequarry"
+			}]
+			rewards: [{
+				id: "63DDE70110F64D00"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "建造一个中型采石场"
+			x: -6.0d
+			y: 6.5d
+			subtitle: "可将矿工变为采石工。挖掘出四个完整的区块。"
+			dependencies: ["05D6F90B198B42EA"]
+			id: "4055DD7E1D49E754"
+			tasks: [{
+				id: "519599249C210AFE"
+				type: "item"
+				item: "minecolonies:mediumquarry"
+			}]
+			rewards: [
+				{
+					id: "43921C2D8EE073B7"
+					type: "item"
+					item: {
+						id: "minecraft:enchanted_book"
+						Count: 1b
+						tag: {
+							StoredEnchantments: [{
+								lvl: 4s
+								id: "minecraft:efficiency"
+							}]
+						}
+					}
+				}
+				{
+					id: "620DA64E146B22CC"
+					type: "choice"
+					table_id: 5645059266537726814L
+				}
+			]
+		}
+		{
+			title: "建造一座房子"
+			x: -6.0d
+			y: -0.5d
+			subtitle: "每个建筑层级可容纳一名定居者。"
+			dependencies: ["394CAA0F8F8D0006"]
+			id: "21B1DA4530F7A83F"
+			tasks: [{
+				id: "6F432EF09C12FF3C"
+				type: "item"
+				item: "minecolonies:blockhutcitizen"
+			}]
+			rewards: [{
+				id: "5097241266C9ED71"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "建造一个林业小屋"
+			x: -3.0d
+			y: -0.5d
+			subtitle: "将一名定居者分配为护林员，负责在150格范围内砍伐树木。"
+			dependencies: ["394CAA0F8F8D0006"]
+			id: "14D9874CD9AC8EB0"
+			tasks: [{
+				id: "43C5B41AA69A8DF0"
+				type: "item"
+				item: "minecolonies:blockhutlumberjack"
+			}]
+			rewards: [{
+				id: "06E3E3CAB0797585"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "建造一家餐厅"
+			x: -4.0d
+			y: -0.5d
+			subtitle: "指派一名定居者担任厨师，当提供食材和燃料时，他们会为殖民地烹饪食物。"
+			dependencies: ["394CAA0F8F8D0006"]
+			id: "5ED802D9BDF952E7"
+			tasks: [{
+				id: "1F88F8CCE2D91100"
+				type: "item"
+				item: "minecolonies:blockhutcook"
+			}]
+			rewards: [{
+				id: "37A4DB413B7F4AB2"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			title: "建造一个渔夫小屋"
+			x: -7.0d
+			y: -0.5d
+			subtitle: "将定居者分配为渔民，负责捕鱼。需要至少7格宽、7格长的水域。可在海洋生物群系中捕获宝藏。"
+			dependencies: ["394CAA0F8F8D0006"]
+			id: "0DD93164579646FE"
+			tasks: [{
+				id: "679E8B73128A8579"
+				type: "item"
+				item: "minecolonies:blockhutfisherman"
+			}]
+			rewards: [{
+				id: "793989139FFBAB0C"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			x: -7.0d
+			y: 3.5d
+			subtitle: "将定居者分配为面包师，他们会制作面包、饼干等各种烘焙食品，以及一些具有特殊属性的新食物。"
+			dependencies: ["394CAA0F8F8D0006"]
+			id: "365833C8BF74F023"
+			tasks: [{
+				id: "3C40364366DD44AD"
+				type: "item"
+				item: "minecolonies:blockhutbaker"
+			}]
+			rewards: [{
+				id: "12F8FE5EF9CC5B89"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			x: -2.0d
+			y: 1.0d
+			subtitle: "指派一名殖民者担任猪倌，负责繁殖和屠宰猪来获取食物。每个建筑等级会保留两头活猪。前两头猪需要手动补充。"
+			dependencies: ["394CAA0F8F8D0006"]
+			id: "3C90D9698F90E056"
+			tasks: [{
+				id: "5A8C7469B3E03DE0"
+				type: "item"
+				item: "minecolonies:blockhutswineherder"
+			}]
+			rewards: [{
+				id: "52F6D63F5DF180FB"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			x: -8.0d
+			y: -0.5d
+			subtitle: "将定居者指定为附魔者，他们会用其他定居者的经验值来创造附魔书。等级越高，附魔等级也越高。还能创造魔法卷轴。"
+			dependencies: ["394CAA0F8F8D0006"]
+			id: "560CF1C214A93147"
+			tasks: [{
+				id: "79FD08DFE370A185"
+				type: "item"
+				item: "minecolonies:blockhutenchanter"
+			}]
+			rewards: [{
+				id: "407737588314B7EB"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			x: -8.0d
+			y: 3.5d
+			subtitle: "将定居者指定为养蜂人，他们会繁殖蜜蜂，并采集你选择的蜂巢蜜或蜂蜜瓶。每提升一级建筑，可额外管理2个蜂箱。"
+			dependencies: ["394CAA0F8F8D0006"]
+			id: "72AC34088E271E47"
+			tasks: [{
+				id: "58721766B34E58DD"
+				type: "item"
+				item: "minecolonies:blockhutbeekeeper"
+			}]
+			rewards: [{
+				id: "1919539C31CDB844"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			x: -2.0d
+			y: 2.0d
+			subtitle: "将定居者分配为养鸡户，负责收集鸡蛋和杀死鸡。每个建筑层级保留两只活鸡。前两只鸡需要手动补充。"
+			dependencies: ["394CAA0F8F8D0006"]
+			id: "345BFA90E07CBA51"
+			tasks: [{
+				id: "39EF87C724FD86DA"
+				type: "item"
+				item: "minecolonies:blockhutchickenherder"
+			}]
+			rewards: [{
+				id: "4945ABF371CE4D71"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			x: -2.0d
+			y: 0.0d
+			subtitle: "将定居者分配为兔农，负责繁殖和屠宰兔子以获取物品。每个建筑层级会保留两只活兔子。前两只兔子需要手动补充。"
+			dependencies: ["394CAA0F8F8D0006"]
+			id: "407CE8901B64EF2D"
+			tasks: [{
+				id: "60CD51A2F6102E3F"
+				type: "item"
+				item: "minecolonies:blockhutrabbithutch"
+			}]
+			rewards: [{
+				id: "02DA8F61116CD5C3"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+		{
+			x: -2.0d
+			y: 3.0d
+			subtitle: "将定居者分配为牛仔，负责繁殖、屠宰和挤奶。每建筑等级维持两头牛存活。前两头牛需手动补充。"
+			dependencies: ["394CAA0F8F8D0006"]
+			id: "17C0F3C47FDBB562"
+			tasks: [{
+				id: "33E4911475FF9887"
+				type: "item"
+				item: "minecolonies:blockhutcowboy"
+			}]
+			rewards: [{
+				id: "7664F790AEE6DC8D"
+				type: "random"
+				table_id: 5645059266537726814L
+			}]
+		}
+	]
+	quest_links: [ ]
+}
