@@ -33,6 +33,20 @@ BACKOFF=${BACKOFF:-60}
 
 cd "$REPO_DIR" || { echo "找不到仓库目录 $REPO_DIR" >&2; exit 1; }
 
+# ---- CurseForge / Modrinth 下载凭据 ----
+# 必须在这里 export：translate-local 的下载步骤要 CF_KEY，缺了会让**每一个包**
+# 都在 prepare-pack 阶段失败，而失败又被记成 per-pack failed、循环一路往下跑 ——
+# 2026-10-23 实测：25 秒内烧掉了 145 个条目全部变成 FAILED，看起来像「跑得飞快」。
+if [ -z "${CF_KEY:-}" ]; then
+  if [ -f "$HOME/.cf-key" ]; then
+    CF_KEY=$(cat "$HOME/.cf-key")
+    export CF_KEY
+  else
+    echo "缺少 CF_KEY（$HOME/.cf-key 不存在），拒绝空跑：所有下载都会失败" >&2
+    exit 1
+  fi
+fi
+
 # ---- 单实例：mkdir 原子锁 ----
 if ! mkdir "$LOCK_DIR" 2>/dev/null; then
   echo "已有实例在跑（锁目录 $LOCK_DIR，pid $(cat "$LOCK_DIR/pid" 2>/dev/null || echo '?'))——本次不启动" >&2
