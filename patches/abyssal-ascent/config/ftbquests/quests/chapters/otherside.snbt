@@ -1,0 +1,326 @@
+# AI 初翻，未人工校对
+{
+	autofocus_id: "27F351EBE386FFA2"
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "otherside"
+	group: ""
+	hide_quest_until_deps_complete: true
+	hide_quest_until_deps_visible: true
+	icon: "minecraft:sculk"
+	id: "3E65CD7A59C480CE"
+	order_index: 6
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"欢迎来到&l第六层&r，即&l异次元&r！"
+				""
+				"在这里，你必须悄悄行动，确保不要发出&l声响&r，否则会有&l不速之客&r找来。"
+				""
+				"花点时间探索这一层吧，这里有很多事情要做，也有很多东西要探索！"
+			]
+			id: "27F351EBE386FFA2"
+			invisible: true
+			subtitle: "保持安静……"
+			tasks: [{
+				dimension: "deeperdarker:otherside"
+				icon: "minecraft:sculk"
+				id: "57CC2D4F387EC31C"
+				type: "dimension"
+			}]
+			title: "另一个世界"
+			x: 1.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["27F351EBE386FFA2"]
+			description: ["你需要找到一个&l远古遗迹&r来获取&l回响碎片&r，这是制作&l强化回响碎片&r所需的材料。"]
+			id: "739A8BFA0CB20203"
+			rewards: [{
+				id: "4678ACDB365D8D6B"
+				type: "xp"
+				xp: 60
+			}]
+			subtitle: "找到一个远古遗迹神殿"
+			tasks: [{
+				icon: "deeperdarker:sculk_stone_bricks"
+				id: "0049CAF5B66179D2"
+				structure: "deeperdarker:ancient_temple"
+				type: "structure"
+			}]
+			title: "一座被亵渎的神庙"
+			x: 2.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["739A8BFA0CB20203"]
+			description: ["需要&l回声碎片&r来制作&l强化回声碎片&r。"]
+			id: "48F7EB4503996C4E"
+			rewards: [{
+				id: "60671DEB3A20C5DC"
+				type: "xp"
+				xp: 80
+			}]
+			subtitle: "获得一个回声碎片 (Echo Shard)"
+			tasks: [{
+				id: "50B84A5F8DC588ED"
+				item: "minecraft:echo_shard"
+				type: "item"
+			}]
+			title: "回响过去的碎片之一"
+			x: 2.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["27F351EBE386FFA2"]
+			description: ["要获得用于制作&lReinforced Echo Shards&r的&lPhantom Membranes&r，你需要杀死一只&lPhantom&r，所以别忘了不要&lSleep&r。"]
+			id: "7F0321F549CE320D"
+			rewards: [{
+				id: "129E6548573427B7"
+				type: "xp"
+				xp: 80
+			}]
+			subtitle: "击败一只幻影生物"
+			tasks: [{
+				entity: "minecraft:phantom"
+				icon: "celestial_core:soaring_wings"
+				id: "789852E6F04091DC"
+				type: "kill"
+				value: 1L
+			}]
+			title: "飞行威胁"
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7F0321F549CE320D"]
+			description: ["要制作&l强化回响碎片&r，你需要收集&l幻影膜&r。"]
+			id: "191543B05F9DA2F7"
+			rewards: [{
+				id: "22D5E2964C3A9EB1"
+				type: "xp"
+				xp: 80
+			}]
+			subtitle: "获取幻影膜 Phantom Membrane"
+			tasks: [{
+				id: "2050D0DC48FBD9A7"
+				item: "minecraft:phantom_membrane"
+				type: "item"
+			}]
+			x: 4.5d
+			y: -0.5d
+		}
+		{
+			dependencies: [
+				"191543B05F9DA2F7"
+				"48F7EB4503996C4E"
+				"4CBB56F4B4209225"
+			]
+			description: ["要制作&lTectonic Abyssal Pickaxe&r，你需要先制作一个&lReinforced Echo Shard&r作为其中一个组件。"]
+			id: "14D43FAD1B0FB654"
+			rewards: [{
+				id: "5425240808850C84"
+				type: "xp"
+				xp: 50
+			}]
+			subtitle: "制作一个加固回响碎片"
+			tasks: [{
+				id: "07E4E3358111D2A2"
+				item: "deeperdarker:reinforced_echo_shard"
+				type: "item"
+			}]
+			title: "Encased Echoes"
+			x: 1.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["27F351EBE386FFA2"]
+			description: [
+				"不要发出声音，否则它会通过刺耳的哀嚎被召唤出来。"
+				"若它到来，请勿尖叫，否则会使野兽陷入狂暴，你将不得不为生存而战。"
+				""
+				"击败&lWarden&r不仅能掉落制作&lReinforced Echo Shard&r所需的&lWarden Carapace&r，还会掉落制作&lTectonic Abyssal Pickaxe&r所需的&lWarden Sclerite&r。"
+			]
+			icon: "minecraft:sculk_shrieker"
+			id: "507BE24D21EE778B"
+			rewards: [
+				{
+					id: "1A2B34548D1F9B9D"
+					type: "xp"
+					xp: 100
+				}
+				{
+					count: 4
+					id: "6E53F6129839A104"
+					item: "irons_spellbooks:ancient_knowledge_fragment"
+					type: "item"
+				}
+			]
+			subtitle: "击败一个坚守者"
+			tasks: [{
+				entity: "minecraft:warden"
+				icon: {
+					Count: 1
+					id: "deeperdarker:warden_helmet"
+					tag: {
+						Damage: 0
+					}
+				}
+				id: "59DFAD1A2FAFB687"
+				type: "kill"
+				value: 1L
+			}]
+			title: "不要发出任何声音"
+			x: -0.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["507BE24D21EE778B"]
+			description: ["要制作&l强化回响碎片&r，你需要收集&l潜袭者甲壳&r。"]
+			id: "4CBB56F4B4209225"
+			rewards: [{
+				id: "715B9A1D72B09A9C"
+				type: "xp"
+				xp: 300
+			}]
+			subtitle: "获取潜袭者甲壳"
+			tasks: [{
+				id: "7A43235C26B69FCD"
+				item: "deeperdarker:warden_carapace"
+				type: "item"
+			}]
+			title: "一位守卫者的藏身之处"
+			x: -0.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["507BE24D21EE778B"]
+			description: ["要制作&lTectonic Abyssal Pickaxe&r，你需要获得一个&lWarden Sclerite&r。"]
+			id: "3191BBA37891507E"
+			rewards: [{
+				id: "293B49CCAE0E8745"
+				type: "xp"
+				xp: 100
+			}]
+			subtitle: "获取一个 Warden Sclerite"
+			tasks: [{
+				id: "5173D816B20FAD4D"
+				item: "celestial_core:warden_sclerite"
+				type: "item"
+			}]
+			title: "一位守卫的防御"
+			x: -2.5d
+			y: -0.5d
+		}
+		{
+			dependencies: [
+				"3191BBA37891507E"
+				"14D43FAD1B0FB654"
+			]
+			description: [
+				"你现在有工具可以逃到 &l主世界&r 了！"
+				""
+				"这是逃离&l深渊&r的最后准备，现在你只需要笔直向上挖掘！"
+			]
+			id: "6F9F480D96ED8A84"
+			rewards: [{
+				id: "2348B4892021D796"
+				type: "xp"
+				xp: 70
+			}]
+			subtitle: "制作一把 Tectonic Abyssal Pickaxe"
+			tasks: [{
+				id: "615F7AD0957612D5"
+				item: {
+					Count: 1
+					id: "kubejs:tectonic_abyssal_pickaxe"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "通往主世界的道路"
+			x: 1.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["6F9F480D96ED8A84"]
+			description: ["你已从&l异世界&r中解脱！现在，只需继续向上挖掘，你就能从&l深渊&r中解脱！"]
+			id: "5DDDA50BF71AECD1"
+			rewards: [{
+				id: "5978E4C9C3F222BD"
+				type: "xp"
+				xp: 150
+			}]
+			subtitle: "进入洞穴"
+			tasks: [{
+				dimension: "infinite_abyss:first_layer"
+				id: "5910303E12B805D5"
+				type: "dimension"
+			}]
+			title: "最后一层……"
+			x: 1.0d
+			y: -6.5d
+		}
+		{
+			dependencies: ["507BE24D21EE778B"]
+			description: ["深渊法术的战斗效率各不相同，但实用性一致，用多份此手稿解锁它们。"]
+			id: "46838CCA21289C2B"
+			subtitle: "学习远古魔法咒语"
+			tasks: [{
+				id: "58888674CC6D93D5"
+				item: "irons_spellbooks:eldritch_manuscript"
+				type: "item"
+			}]
+			title: "禁忌的知识"
+			x: -2.5d
+			y: 2.5d
+		}
+		{
+			can_repeat: true
+			dependencies: ["507BE24D21EE778B"]
+			description: [
+				"不要发出声音，否则它会通过刺耳的哀嚎被召唤出来。"
+				"如果它来了，不要尖叫，否则会让野兽陷入狂暴，你将为了生存而战。但是……你早就知道会发生这一切，不是吗？"
+				""
+				"击败&lWarden&r不仅能掉落制作&lReinforced Echo Shard&r所需的&lWarden Carapace&r，还会掉落制作&lTectonic Abyssal Pickaxe&r所需的&lWarden Sclerite&r。"
+			]
+			icon: "minecraft:sculk_shrieker"
+			id: "1737931164B23C7D"
+			optional: true
+			rewards: [
+				{
+					id: "27DB2BBDEE4B2322"
+					type: "xp"
+					xp: 70
+				}
+				{
+					count: 2
+					id: "5A2DB67122E67A06"
+					item: "irons_spellbooks:ancient_knowledge_fragment"
+					type: "item"
+				}
+			]
+			subtitle: "击败一个坚守者……又一次"
+			tasks: [{
+				entity: "minecraft:warden"
+				icon: {
+					Count: 1
+					id: "deeperdarker:warden_helmet"
+					tag: {
+						Damage: 0
+					}
+				}
+				id: "3E699374D283C313"
+				type: "kill"
+				value: 1L
+			}]
+			title: "沉默是金"
+			x: 1.0d
+			y: 0.5d
+		}
+	]
+	title: "另一个世界"
+}

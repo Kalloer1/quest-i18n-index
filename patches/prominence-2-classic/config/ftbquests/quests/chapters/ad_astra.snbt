@@ -1,0 +1,444 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "ad_astra"
+	group: "49D52BD6447C5CC0"
+	icon: {
+		Count: 1b
+		id: "ad_astra:tier_4_rocket"
+		tag: {
+			BotariumData: { }
+		}
+	}
+	id: "7C5653194206BB48"
+	images: [
+		{
+			click: ""
+			corner: false
+			dev: false
+			height: 1.0d
+			hover: [ ]
+			image: "ad_astra:textures/sky/earth.png"
+			rotation: 45.0d
+			width: 1.0d
+			x: -0.5d
+			y: 0.0d
+		}
+		{
+			click: ""
+			corner: false
+			dev: false
+			height: 1.0d
+			hover: [ ]
+			image: "ad_astra:textures/sky/moon.png"
+			rotation: -15.0d
+			width: 1.0d
+			x: 5.0d
+			y: 0.5d
+		}
+	]
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			id: "3C67FBF3A1B8027A"
+			rewards: [{
+				id: "79318778A1FC7655"
+				type: "xp_levels"
+				xp_levels: 2
+			}]
+			shape: "rsquare"
+			subtitle: "锤子是开始在 Ad Astra 生存的&e必备工具&r。 &r它能让你制作板材和薄片。"
+			tasks: [{
+				id: "2676950ECB199DBD"
+				item: {
+					Count: 1b
+					id: "ad_astra:hammer"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "&f&l第一步：&r&e锤子"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["3C67FBF3A1B8027A"]
+			id: "09C244BB6D956483"
+			rewards: [{
+				id: "673FD48C0970E26E"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+			subtitle: "&e制作6个铁板。&r只需将&e铁锭&r和&e锤子&r放入工作台即可。"
+			tasks: [{
+				id: "798FA55D0F029CE1"
+				item: {
+					Count: 1b
+					id: "itemfilters:tag"
+					tag: {
+						value: "c:iron_plates"
+					}
+				}
+				title: "制作一个铁板 (Iron Plate)"
+				type: "item"
+			}]
+			title: "&a制作铁板（Making Iron Sheets）"
+			x: -0.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["09C244BB6D956483"]
+			id: "0C58C56DFA474426"
+			shape: "gear"
+			subtitle: "为机器提供能量的最简单方法是使用&e煤炭发电机&r。它能将煤炭转化为能量，是非常便宜的入门选择。"
+			tasks: [{
+				id: "37C3C22B6B2D841A"
+				item: "ad_astra:coal_generator"
+				type: "item"
+			}]
+			title: "&f&l获取能量：&r&e煤炭"
+			x: 0.0d
+			y: -3.0d
+		}
+		{
+			dependencies: [
+				"0C58C56DFA474426"
+				"09C244BB6D956483"
+			]
+			id: "6454E38184F351ED"
+			shape: "gear"
+			subtitle: "制作一个&eCompressor&r。这台机器可以自动化生产板和片。"
+			tasks: [{
+				id: "39F4D8962987DB43"
+				item: "ad_astra:compressor"
+				type: "item"
+			}]
+			title: "&f&l自动化：&e 板条"
+			x: -1.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["3C67FBF3A1B8027A"]
+			id: "65106E545E9BDE59"
+			rewards: [{
+				id: "44AF10C4BFE6FB42"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+			subtitle: "&e制作6个钢制钢板。&r要制作它们，先将一个&e铁锭&r在&6高炉&r中熔炼成钢锭。然后，只需将&e钢锭&r和您的&e锤子&r一起放入工作台即可。"
+			tasks: [{
+				id: "46E850B5C14617F1"
+				item: {
+					Count: 1b
+					id: "itemfilters:tag"
+					tag: {
+						value: "c:steel_plates"
+					}
+				}
+				title: "制作 6x 钢板"
+				type: "item"
+			}]
+			title: "&a制作钢板"
+			x: 0.5d
+			y: -1.5d
+		}
+		{
+			dependencies: [
+				"0C58C56DFA474426"
+				"65106E545E9BDE59"
+			]
+			id: "34CE233D885ABE32"
+			rewards: [{
+				id: "755C52F8B286492D"
+				item: "ad_astra:wrench"
+				type: "item"
+			}]
+			shape: "gear"
+			subtitle: "这个工作台可以让你制造火箭！"
+			tasks: [{
+				id: "3D49CEFFCF42D1C3"
+				item: "ad_astra:nasa_workbench"
+				type: "item"
+			}]
+			title: "&f&l工作台：&eNASA 工作台"
+			x: 2.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["34CE233D885ABE32"]
+			id: "0FDDF2B649E63D13"
+			rewards: [
+				{
+					id: "2839C23A7B685765"
+					type: "xp_levels"
+					xp_levels: 25
+				}
+				{
+					id: "70502D1142520B28"
+					item: "ad_astra:launch_pad"
+					type: "item"
+				}
+			]
+			shape: "diamond"
+			size: 0.75d
+			subtitle: "制作火箭的材料。它们主要由钢铁制成。"
+			tasks: [
+				{
+					id: "78682BEC70BE48A0"
+					item: "ad_astra:rocket_nose_cone"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "16B52D3D0B5B0C00"
+					item: "ad_astra:rocket_fin"
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "40E5951011ECAD0B"
+					item: "ad_astra:steel_tank"
+					type: "item"
+				}
+				{
+					id: "742CEB93411BD1F0"
+					item: "ad_astra:steel_engine"
+					type: "item"
+				}
+				{
+					count: 6L
+					id: "719F22AD64DB96BA"
+					item: "ad_astra:steel_block"
+					type: "item"
+				}
+			]
+			title: "&6&lTier I&r:&e 获取火箭的材料"
+			x: 3.470663265306122d
+			y: -2.484693877551045d
+		}
+		{
+			dependencies: [
+				"1CC0BA7DFB453F27"
+				"0FDDF2B649E63D13"
+				"4A63A65484B91B08"
+			]
+			id: "1A63418253F51878"
+			rewards: [{
+				id: "30F37DF9B339E7B8"
+				type: "xp_levels"
+				xp_levels: 25
+			}]
+			shape: "octagon"
+			size: 1.25d
+			subtitle: "一级火箭将允许你前往&b月球&r。"
+			tasks: [{
+				id: "5F87EEFEEC66F7D0"
+				item: {
+					Count: 1b
+					id: "ad_astra:tier_1_rocket"
+					tag: {
+						BotariumData: { }
+					}
+				}
+				type: "item"
+			}]
+			title: "&6&l获取一级火箭&r"
+			x: 5.0d
+			y: -2.5d
+		}
+		{
+			id: "2E22E703E8284EB5"
+			rewards: [{
+				id: "3CECDF8FE6098E47"
+				type: "xp_levels"
+				xp_levels: 25
+			}]
+			shape: "diamond"
+			size: 0.75d
+			subtitle: "你可以在&b海洋&r中找到&6石油&r，它是一种漂浮在水中的深色液体。"
+			tasks: [{
+				id: "6BD5391C733F80B1"
+				item: "ad_astra:oil_bucket"
+				type: "item"
+			}]
+			title: "&6获取石油"
+			x: 2.0267857142857153d
+			y: -4.357142857142865d
+		}
+		{
+			dependencies: [
+				"0C58C56DFA474426"
+				"2E22E703E8284EB5"
+			]
+			id: "4AA61A71E6FE033F"
+			rewards: [{
+				id: "480ECD2A9DB5E4E9"
+				type: "xp_levels"
+				xp_levels: 25
+			}]
+			shape: "gear"
+			subtitle: "建造一个&e燃料精炼厂&r。它将让你精炼&6石油&r并将其转化为&6燃料&r。"
+			tasks: [{
+				id: "493992FD74CD28DD"
+				item: "ad_astra:fuel_refinery"
+				type: "item"
+			}]
+			title: "&6提炼石油：&e燃料！"
+			x: 2.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["4AA61A71E6FE033F"]
+			id: "1CC0BA7DFB453F27"
+			rewards: [
+				{
+					id: "7E4D26D0FF80A0E8"
+					item: "ad_astra:launch_pad"
+					type: "item"
+				}
+				{
+					id: "18009C40BB1DE818"
+					type: "xp_levels"
+					xp_levels: 10
+				}
+			]
+			shape: "diamond"
+			size: 0.75d
+			subtitle: "提炼石油，获得 &e6x 燃料桶&r。一级火箭只需要 3 个，但返回地球还需要另外 3 个。"
+			tasks: [{
+				count: 6L
+				id: "796F55D700722E2A"
+				item: "ad_astra:fuel_bucket"
+				type: "item"
+			}]
+			title: "&6&lTier I&r: &e获取燃料！"
+			x: 3.470663265306122d
+			y: -3.4846938775510488d
+		}
+		{
+			id: "08BC21829175107A"
+			rewards: [{
+				id: "7B804BAACDB33D04"
+				type: "xp_levels"
+				xp_levels: 35
+			}]
+			shape: "octagon"
+			size: 1.25d
+			subtitle: "二级火箭将允许你前往 &6火星&r。"
+			tasks: [{
+				id: "551D7969D1A02CDE"
+				item: {
+					Count: 1b
+					id: "ad_astra:tier_2_rocket"
+					tag: {
+						BotariumData: { }
+					}
+				}
+				type: "item"
+			}]
+			title: "&6&l获取一个&c二级火箭&r"
+			x: 8.125d
+			y: -2.5d
+		}
+		{
+			dependencies: ["65106E545E9BDE59"]
+			id: "06D595D2CC8B542F"
+			rewards: [{
+				id: "33E33582674F4B05"
+				item: {
+					Count: 1b
+					id: "ad_astra:space_helmet"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			shape: "gear"
+			subtitle: "这台机器能让你利用水来生产氧气！"
+			tasks: [{
+				id: "1E9E5289A87EDE89"
+				item: "ad_astra:oxygen_loader"
+				type: "item"
+			}]
+			title: "&f&l生产氧气：&b用水！"
+			x: 2.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["06D595D2CC8B542F"]
+			id: "4A63A65484B91B08"
+			rewards: [
+				{
+					id: "3B7F984DA77D438C"
+					item: "ad_astra:launch_pad"
+					type: "item"
+				}
+				{
+					id: "3926018D2924E533"
+					type: "xp_levels"
+					xp_levels: 10
+				}
+			]
+			shape: "diamond"
+			size: 0.75d
+			subtitle: "太空服将允许你呼吸空气"
+			tasks: [
+				{
+					id: "5005D01138582D50"
+					item: {
+						Count: 1b
+						id: "ad_astra:space_suit"
+						tag: {
+							BotariumData: { }
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "77D2738F7626F50F"
+					item: {
+						Count: 1b
+						id: "ad_astra:space_pants"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "6F76A61C1CA82CAD"
+					item: {
+						Count: 1b
+						id: "ad_astra:space_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "062BF5DF8CBA53C7"
+					item: {
+						Count: 1b
+						id: "ad_astra:space_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "&f&l储存氧气：&e太空服！"
+			x: 3.5d
+			y: -1.5d
+		}
+	]
+	subtitle: ["本章将指导你如何建造自己的 Ad Astra 火箭，并乘坐它前往其他行星。"]
+	title: "&b 星辰大海"
+}

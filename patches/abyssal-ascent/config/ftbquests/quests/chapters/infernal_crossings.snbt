@@ -1,0 +1,537 @@
+# AI 初翻，未人工校对
+{
+	autofocus_id: "66B329252EE24FB4"
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "infernal_crossings"
+	group: ""
+	hide_quest_until_deps_complete: true
+	hide_quest_until_deps_visible: true
+	icon: "minecraft:magma_block"
+	id: "2DB53868E589783C"
+	order_index: 3
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"欢迎来到&l第三层&r，即&lInfernal Crossings&r！"
+				""
+				"这里不像下界那么危险，但其洞穴中潜伏着许多&l黑暗&r而&l令人不安的秘密&r。"
+				""
+				"花点时间探索这一层吧，这里有很多事情要做，也有很多东西要探索，更有&l压轴大戏&r等着你！"
+			]
+			id: "66B329252EE24FB4"
+			invisible: true
+			subtitle: "这里确实挺黑的……"
+			tasks: [{
+				dimension: "infernalcross:dimension"
+				icon: "minecraft:magma_block"
+				id: "00D25986A1A13A0D"
+				title: "地狱般的十字路口"
+				type: "dimension"
+			}]
+			x: 2.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["66B329252EE24FB4"]
+			description: ["这些哥们在有&l红深岩&r的区域，会游荡在&l地狱十字路口&r，它们有3个&l明亮发光的红眼&r，所以不难发现。"]
+			id: "2CE41BD82CBCE13F"
+			rewards: [{
+				id: "635756958CE87917"
+				type: "xp"
+				xp: 50
+			}]
+			subtitle: "击败一个深岩哥布林"
+			tasks: [{
+				entity: "infinite_abyss:deeprock_golem"
+				icon: "infinite_abyss:red_deepstone"
+				id: "6A0727A193D81AE6"
+				title: "顽固不化的人头马"
+				type: "kill"
+				value: 1L
+			}]
+			x: -1.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["2CE41BD82CBCE13F"]
+			description: ["要进入下一层，你需要击败本层的&lGuardian&r。要召唤它，你需要获得一个&lDeeprock Golem Spirit Stone&r。"]
+			id: "2184C4A68BE90336"
+			rewards: [{
+				id: "598F7E9755BE23CE"
+				type: "xp"
+				xp: 50
+			}]
+			subtitle: "获取一个深岩哥布林灵魂石"
+			tasks: [{
+				id: "13FEE0AC2030714D"
+				item: "infinite_abyss:deeprock_golem_spirit_stone"
+				type: "item"
+			}]
+			title: "灵魂石"
+			x: -2.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["66B329252EE24FB4"]
+			description: ["需要&l欧泊&r来制作&l无名守护者&r的召唤物，常见于&l地狱十字路口&r的顶部。"]
+			id: "6779F79C4681C957"
+			rewards: [{
+				id: "5AE9A20634E82FAF"
+				type: "xp"
+				xp: 40
+			}]
+			subtitle: "开采一块欧泊矿石"
+			tasks: [{
+				id: "2D74BFD3AA091964"
+				item: "infinite_abyss:opal"
+				type: "item"
+			}]
+			title: "闪闪发光的宝石"
+			x: -4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"6779F79C4681C957"
+				"2184C4A68BE90336"
+				"62D8E1443FD4A27C"
+			]
+			description: ["可选地，如果你不想寻找古灵，可以制作&l无名守护者生成蛋&r。"]
+			id: "72C91BF7ACFAE793"
+			subtitle: "合成无名守卫的刷怪蛋"
+			tasks: [{
+				icon: {
+					Count: 1
+					id: "eeeabsmobs:guardian_core"
+					tag: {
+						Damage: 0
+					}
+				}
+				id: "5524CCCD14920902"
+				item: "eeeabsmobs:nameless_guardian_egg"
+				type: "item"
+			}]
+			title: "守护者的召唤"
+			x: -1.5d
+			y: -3.5d
+		}
+		{
+			dependencies: [
+				"72C91BF7ACFAE793"
+				"00C4832A56CC3120"
+			]
+			dependency_requirement: "one_completed"
+			description: [
+				"誓要守护&lGuling&r，&lMachine&r高耸入云，由&lBlack Steel&r锻造，并由&lEndless Energised Core&r驱动，挥舞着&lGrand Axe&r斩杀敌人。"
+				""
+				"击败&lNameless Guardian&r后，它会掉落&lBlack Steel&r，可用于制作&lDark Steel Pickaxe&r以进入下一层。"
+			]
+			id: "56E305C85570BD33"
+			rewards: [
+				{
+					id: "58EFB31E0F6CFE1F"
+					type: "xp"
+					xp: 150
+				}
+				{
+					id: "68B536775601BA6B"
+					item: {
+						Count: 1
+						id: "irons_spellbooks:scroll"
+						tag: {
+							ISB_Spells: {
+								data: [{
+									id: "traveloptics:halberd_horizon"
+									index: 0
+									level: 6
+									locked: 1b
+								}]
+								maxSpells: 1
+								mustEquip: 0b
+								spellWheel: 0b
+							}
+						}
+					}
+					type: "item"
+				}
+			]
+			subtitle: "击败无名守护者（Nameless Guardian）"
+			tasks: [{
+				entity: "eeeabsmobs:nameless_guardian"
+				icon: {
+					Count: 1
+					id: "eeeabsmobs:guardian_axe"
+					tag: {
+						Damage: 0
+					}
+				}
+				id: "7D386E48B16E5766"
+				title: "格陵兰的守护者"
+				type: "kill"
+				value: 1L
+			}]
+			title: "翻滚之地的守护者"
+			x: 2.0d
+			y: -5.5d
+		}
+		{
+			dependencies: ["56E305C85570BD33"]
+			description: ["&l黑钢&r是锻造&l无名守护者&r的主要材料，坚固到足以击穿&l地狱十字路口&r的屋顶。"]
+			id: "453ACBC82E32238E"
+			rewards: [{
+				id: "59ECEAA51D795555"
+				type: "xp"
+				xp: 70
+			}]
+			subtitle: "获取暗钢（Dark Steel）"
+			tasks: [{
+				id: "6E6CAE010B10A685"
+				item: "cataclysm:black_steel_ingot"
+				type: "item"
+			}]
+			title: "黑化钢（Blackened Steel）"
+			x: 2.0d
+			y: -8.5d
+		}
+		{
+			dependencies: ["66B329252EE24FB4"]
+			description: ["&lGuling&r 是 &lInfernal Crossings&r 中的一个结构，&lNameless Guardian&r 居住于此，它是一座由 &lDeepslate Brick&r 建造的大型建筑。"]
+			icon: "minecraft:deepslate_bricks"
+			id: "00C4832A56CC3120"
+			rewards: [{
+				id: "442954C47EFC2CAD"
+				type: "xp"
+				xp: 90
+			}]
+			subtitle: "找到古灵（Guling）"
+			tasks: [{
+				id: "0E83F3FB0C21E8E0"
+				structure: "eeeabsmobs:guling"
+				type: "structure"
+			}]
+			title: "守护者的家园"
+			x: 2.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["453ACBC82E32238E"]
+			description: ["要前往下一层，你需要使用&l黑钢镐&r。"]
+			id: "4CA989D6ECCCEA13"
+			rewards: [{
+				id: "4F0259A4D4B3E1F6"
+				type: "xp"
+				xp: 90
+			}]
+			subtitle: "制作一把黑钢镐"
+			tasks: [{
+				id: "6E3F5572DEB53497"
+				item: {
+					Count: 1
+					id: "cataclysm:black_steel_pickaxe"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "由守卫的肉身锻造而成"
+			x: 2.0d
+			y: -11.5d
+		}
+		{
+			dependencies: ["4CA989D6ECCCEA13"]
+			description: [
+				"你已从&lInfernal Crossings&r中解脱！"
+				""
+				"现在，你将直面&l史前生物&r，穿行于&l繁茂植被&r和&l大型爬行动物&r构成的景观中。"
+			]
+			id: "643A9067E675BF0C"
+			rewards: [{
+				id: "028A9CD1F35381B4"
+				type: "xp"
+				xp: 80
+			}]
+			subtitle: "进入原始洞穴 (Primordial Caves)"
+			tasks: [{
+				dimension: "dimension_of_caves:cave"
+				id: "68EDC78ADC3AE2A9"
+				type: "dimension"
+			}]
+			title: "回到过去"
+			x: 2.0d
+			y: -14.5d
+		}
+		{
+			dependencies: ["00D25986A1A13A0D"]
+			description: ["&lForsaken&r 是一种罕见的 &lMiniboss&r，出没于 &lInfernal Crossings&r。务必盯住 &lCultists&r，你 &owouldn't&r 希望它们抓住任何东西，对吧？如果它们抓住了，就退后并准备好要 &lfight&r。"]
+			id: "44EE047AD86F8846"
+			optional: true
+			rewards: [
+				{
+					id: "28C3A073EB6D44FE"
+					type: "xp"
+					xp: 200
+				}
+				{
+					id: "0910AD08F4ACE721"
+					item: {
+						Count: 1
+						id: "irons_spellbooks:scroll"
+						tag: {
+							ISB_Spells: {
+								data: [{
+									id: "irons_spellbooks:heartstop"
+									index: 0
+									level: 10
+									locked: 1b
+								}]
+								maxSpells: 1
+								mustEquip: 0b
+								spellWheel: 0b
+							}
+						}
+					}
+					type: "item"
+				}
+			]
+			subtitle: "击败被遗弃者（Forsaken）"
+			tasks: [{
+				entity: "alexscaves:forsaken"
+				icon: "alexscaves:pure_darkness"
+				id: "4B1D4E38B754C6E9"
+				optional_task: true
+				type: "kill"
+				value: 1L
+			}]
+			title: "被遗弃之人 (The Forsaken One)"
+			x: 5.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["00D25986A1A13A0D"]
+			description: ["&lWatcher&r 是一种罕见的 &lMiniboss&r，可在 &lInfernal Crossings&r 中找到，务必盯紧那些 &lCultists&r..."]
+			id: "27B91CD02DEBC7B6"
+			optional: true
+			rewards: [
+				{
+					id: "3B8F7F1FF6C29639"
+					type: "xp"
+					xp: 150
+				}
+				{
+					id: "7C5053E75D43DF04"
+					item: {
+						Count: 1
+						id: "irons_spellbooks:scroll"
+						tag: {
+							ISB_Spells: {
+								data: [{
+									id: "irons_spellbooks:evasion"
+									index: 0
+									level: 4
+									locked: 1b
+								}]
+								maxSpells: 1
+								mustEquip: 0b
+								spellWheel: 0b
+							}
+						}
+					}
+					type: "item"
+				}
+			]
+			subtitle: "击败观察者（Watcher）"
+			tasks: [{
+				entity: "alexscaves:watcher"
+				icon: "alexscaves:dark_tatters"
+				id: "15B5A2235C39495F"
+				optional_task: true
+				type: "kill"
+				value: 1L
+			}]
+			title: "那位一直在注视着的存在"
+			x: 5.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["572CB86EBBD5C22B"]
+			description: ["击败&lNetherite Monstrosity&r后，它会掉落&lLava Power Cells&r，可用于制作&lNameless Guardian Spawner&r。"]
+			id: "62D8E1443FD4A27C"
+			rewards: [{
+				id: "0B16177A5116CEFD"
+				type: "xp"
+				xp: 60
+			}]
+			subtitle: "获取熔岩能量单元"
+			tasks: [{
+				id: "74F3CA6F3D9E6F3B"
+				item: "cataclysm:lava_power_cell"
+				type: "item"
+			}]
+			title: "熔岩驱动"
+			x: -0.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["66B329252EE24FB4"]
+			dependency_requirement: "all_started"
+			description: ["在&l地狱熔炉&r中，&l灵魂熔炉&r会产出&l至纯的邪恶&r。 &l下界合金巨兽&r凭借其凶猛捍卫家园，它存在的唯一目的就是毁灭，而你侵犯了它的领地。 击败&l下界合金巨兽&r后，你可以从它身上收集到丰厚的&l战利品&r，包括一把酷炫的&l近战武器&r和一个&l召唤物&r！"]
+			id: "572CB86EBBD5C22B"
+			rewards: [
+				{
+					id: "7A35ADA605D77A31"
+					type: "xp"
+					xp: 100
+				}
+				{
+					exclude_from_claim_all: true
+					id: "6DC86CE55EAF3720"
+					table_id: 6427865286428247873L
+					type: "random"
+				}
+				{
+					count: 4
+					id: "119CB03F451609F0"
+					item: "cataclysm:lava_power_cell"
+					type: "item"
+				}
+				{
+					id: "5857E1E8EABEB849"
+					item: {
+						Count: 1
+						id: "irons_spellbooks:scroll"
+						tag: {
+							ISB_Spells: {
+								data: [{
+									id: "irons_spellbooks:fortify"
+									index: 0
+									level: 10
+									locked: 1b
+								}]
+								maxSpells: 1
+								mustEquip: 0b
+								spellWheel: 0b
+							}
+						}
+					}
+					type: "item"
+				}
+			]
+			subtitle: "击败下界合金巨兽"
+			tasks: [{
+				entity: "cataclysm:netherite_monstrosity"
+				icon: "cataclysm:netherite_effigy"
+				id: "33DAFDF92B274928"
+				optional_task: true
+				title: "与下界合金巨人搏斗一番"
+				type: "kill"
+				value: 1L
+			}]
+			x: 0.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["6779F79C4681C957"]
+			description: [
+				"有了欧泊，你就能获得最重大的升级之一。"
+				""
+				"它们可以通过秘法砧将特定法术类型或法力属性注入盔甲和法术书，每次最多可升级3次。"
+			]
+			id: "3BA0A8C01344B314"
+			optional: true
+			rewards: [{
+				count: 3
+				id: "63DFE3E00F043216"
+				item: "irons_spellbooks:upgrade_orb"
+				type: "item"
+			}]
+			subtitle: "升级球体"
+			tasks: [{
+				id: "133C338DDA13BDB1"
+				item: "irons_spellbooks:upgrade_orb"
+				type: "item"
+			}]
+			title: "进一步升级你的法术能力"
+			x: -4.0d
+			y: -1.5d
+		}
+		{
+			can_repeat: true
+			dependencies: ["56E305C85570BD33"]
+			dependency_requirement: "one_completed"
+			description: [
+				"誓要守护&lGuling&r，&lMachine&r高耸入云，由&lBlack Steel&r锻造，并由&lEndless Energised Core&r驱动，挥舞着&lGrand Axe&r斩杀敌人。"
+				""
+				"击败&lNameless Guardian&r后，它会掉落&lBlack Steel&r，可用于制作&lDark Steel Pickaxe&r以进入下一层。"
+			]
+			id: "075256D71E8DEB92"
+			optional: true
+			rewards: [{
+				id: "0ECDE27F9EF4EBDF"
+				type: "xp"
+				xp: 100
+			}]
+			subtitle: "再次击败无名守护者……又一次"
+			tasks: [{
+				entity: "eeeabsmobs:nameless_guardian"
+				icon: {
+					Count: 1
+					id: "eeeabsmobs:guardian_axe"
+					tag: {
+						Damage: 0
+					}
+				}
+				id: "05928755C27DFD91"
+				title: "格陵兰的守护者"
+				type: "kill"
+				value: 1L
+			}]
+			title: "无名残酷"
+			x: 3.5d
+			y: -5.5d
+		}
+		{
+			can_repeat: true
+			dependencies: ["572CB86EBBD5C22B"]
+			dependency_requirement: "all_started"
+			description: ["&l灵魂熔炉&r在&l地狱熔炉&r中锻造出&l至纯之恶&r。 &l下界合金巨兽&r以其凶猛捍卫家园，它存在的意义便是毁灭，而你再次入侵了它的领地。你比&l下界合金巨兽&r更邪恶吗，还是这仅仅是&l复仇&r？"]
+			id: "2C3B9F693E791161"
+			optional: true
+			rewards: [
+				{
+					id: "41E65B4219ABB8F5"
+					type: "xp"
+					xp: 70
+				}
+				{
+					exclude_from_claim_all: true
+					id: "21C6D01D63091D2C"
+					table_id: 6427865286428247873L
+					type: "random"
+				}
+				{
+					count: 2
+					id: "22E7442C9F3FBF55"
+					item: "cataclysm:lava_power_cell"
+					type: "item"
+				}
+			]
+			subtitle: "击败下界合金巨兽……再一次"
+			tasks: [{
+				entity: "cataclysm:netherite_monstrosity"
+				icon: "cataclysm:netherite_effigy"
+				id: "4B591668FC4099CF"
+				optional_task: true
+				title: "与下界合金巨人搏斗一番"
+				type: "kill"
+				value: 1L
+			}]
+			title: "小摩擦大麻烦"
+			x: 1.0d
+			y: -1.5d
+		}
+	]
+	title: "地狱般的十字路口"
+}
