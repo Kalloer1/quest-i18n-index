@@ -1,0 +1,629 @@
+# AI 初翻，未人工校对
+{
+	id: "0252CFF73D2F4C90"
+	group: ""
+	order_index: 27
+	filename: "hostil_neural_networks"
+	title: "敌对神经网络 (Hostile Neural Networks)"
+	icon: "hostilenetworks:sim_chamber"
+	subtitle: ["存储怪物数据并掠夺它们！"]
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: 0.0d
+			y: 0.0d
+			shape: "hexagon"
+			description: ["这个机器框架是为该整合包制作的，用于制作敌对神经机器。"]
+			dependencies: [
+				"7D0BC26B33BBB358"
+				"5CF931657DFA41A5"
+			]
+			size: 2.0d
+			id: "53281223F73C2C0A"
+			tasks: [{
+				id: "559E58622DF71343"
+				type: "item"
+				item: "hostilenetworks:machine_frame"
+			}]
+			rewards: [{
+				id: "16D800A3FB9B7FD1"
+				type: "item"
+				item: "mekanism:steel_casing"
+			}]
+		}
+		{
+			x: 1.5d
+			y: 0.0d
+			shape: "square"
+			description: ["模拟室用于利用你的数据模型和预测矩阵来生成通用预测和生物预测。"]
+			dependencies: [
+				"53281223F73C2C0A"
+				"565CE6AE6D70881D"
+				"5CF931657DFA41A5"
+			]
+			id: "055A2F4251CEB8F4"
+			tasks: [{
+				id: "27ED03A76820069C"
+				type: "item"
+				item: "hostilenetworks:sim_chamber"
+			}]
+			rewards: [{
+				id: "446505E9268CA916"
+				type: "item"
+				item: "hostilenetworks:sim_chamber"
+			}]
+		}
+		{
+			x: 0.0d
+			y: -1.5d
+			shape: "square"
+			description: ["战利品制造器可以通过生物预测来生产资源。"]
+			dependencies: [
+				"53281223F73C2C0A"
+				"5CF931657DFA41A5"
+			]
+			id: "26EC567B8ED51040"
+			tasks: [{
+				id: "347CB8332DCB8391"
+				type: "item"
+				item: "hostilenetworks:loot_fabricator"
+			}]
+			rewards: [{
+				id: "7D1587AED0982A88"
+				type: "item"
+				item: "hostilenetworks:loot_fabricator"
+			}]
+		}
+		{
+			x: 5.5d
+			y: -1.0d
+			shape: "square"
+			description: ["模型框架用于从生物体获取数据模型。"]
+			dependencies: ["5CF931657DFA41A5"]
+			id: "0C53882CCAF972DC"
+			tasks: [{
+				id: "3D6F63D16601DF20"
+				type: "item"
+				item: "hostilenetworks:blank_data_model"
+			}]
+			rewards: [{
+				id: "23A8C93B9054B94A"
+				type: "item"
+				item: "hostilenetworks:blank_data_model"
+				random_bonus: 3
+			}]
+		}
+		{
+			title: "预测矩阵"
+			x: 1.5d
+			y: 1.0d
+			shape: "square"
+			description: ["预测矩阵用于在模拟室中生成广义预测。"]
+			dependencies: ["5CF931657DFA41A5"]
+			id: "565CE6AE6D70881D"
+			tasks: [{
+				id: "6473B035A1C7A823"
+				type: "item"
+				item: "hostilenetworks:empty_prediction"
+				count: 16L
+			}]
+			rewards: [{
+				id: "15CE2678728B8161"
+				type: "item"
+				item: "hostilenetworks:empty_prediction"
+				count: 32
+				random_bonus: 32
+			}]
+		}
+		{
+			x: 3.0d
+			y: 0.0d
+			shape: "square"
+			description: [
+				"获取一个 Warden 数据模型。"
+				"只需右键点击该生物即可。"
+			]
+			dependencies: [
+				"0C53882CCAF972DC"
+				"055A2F4251CEB8F4"
+				"5CF931657DFA41A5"
+			]
+			id: "0521FCCDCB3DB274"
+			tasks: [{
+				id: "2046BF23EDA6D287"
+				type: "item"
+				item: {
+					id: "hostilenetworks:data_model"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:warden"
+						}
+					}
+				}
+				match_nbt: true
+			}]
+			rewards: [{
+				id: "11E3037051A67AE0"
+				type: "item"
+				item: {
+					id: "hostilenetworks:data_model"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:creeper"
+						}
+					}
+				}
+			}]
+		}
+		{
+			x: 4.0d
+			y: 0.0d
+			shape: "square"
+			description: [
+				"获取一个烈焰人数据模型。"
+				"只需右键单击该生物即可。"
+			]
+			dependencies: [
+				"0C53882CCAF972DC"
+				"055A2F4251CEB8F4"
+				"5CF931657DFA41A5"
+			]
+			id: "68FB65525251C786"
+			tasks: [{
+				id: "5C30BFCC74F17359"
+				type: "item"
+				item: {
+					id: "hostilenetworks:data_model"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:blaze"
+						}
+					}
+				}
+				match_nbt: true
+			}]
+			rewards: [{
+				id: "5F3DE607B014E281"
+				type: "item"
+				item: {
+					id: "hostilenetworks:data_model"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:zombified_piglin"
+						}
+					}
+				}
+			}]
+		}
+		{
+			x: 3.0d
+			y: 1.0d
+			shape: "square"
+			description: ["此通用主世界预测由模拟室与主世界数据模型共同生成。"]
+			dependencies: [
+				"0521FCCDCB3DB274"
+				"5CF931657DFA41A5"
+			]
+			id: "1D013C288CC715C8"
+			tasks: [{
+				id: "71569791E84BBFF9"
+				type: "item"
+				item: "hostilenetworks:overworld_prediction"
+			}]
+			rewards: [{
+				id: "7F2E4CBE26090DD0"
+				type: "item"
+				item: "hostilenetworks:overworld_prediction"
+				random_bonus: 7
+			}]
+		}
+		{
+			x: 4.0d
+			y: 1.0d
+			shape: "square"
+			description: ["通用下界预测由模拟室与下界数据模型共同生成。"]
+			dependencies: [
+				"68FB65525251C786"
+				"5CF931657DFA41A5"
+			]
+			id: "5B092740CBDC0A6B"
+			tasks: [{
+				id: "0D64DC5C26E87BD4"
+				type: "item"
+				item: "hostilenetworks:nether_prediction"
+			}]
+			rewards: [{
+				id: "6EA418EBC9BE2807"
+				type: "item"
+				item: "hostilenetworks:nether_prediction"
+				random_bonus: 7
+			}]
+		}
+		{
+			x: 5.0d
+			y: 1.0d
+			shape: "square"
+			description: ["这个通用末影预测是由模拟室和末影数据模型共同制作的。"]
+			dependencies: [
+				"42247B4F56A6393F"
+				"5CF931657DFA41A5"
+			]
+			id: "1317D404CB9A9735"
+			tasks: [{
+				id: "2591D75F97CB8689"
+				type: "item"
+				item: "hostilenetworks:end_prediction"
+			}]
+			rewards: [{
+				id: "73440B8755116C98"
+				type: "item"
+				item: "hostilenetworks:end_prediction"
+				random_bonus: 7
+			}]
+		}
+		{
+			x: 6.0d
+			y: 1.0d
+			shape: "square"
+			description: ["此通用暮色预测由模拟室与暮色数据模型共同生成。"]
+			dependencies: [
+				"44150A1347863EF6"
+				"5CF931657DFA41A5"
+			]
+			id: "7F963FC1D741B554"
+			tasks: [{
+				id: "0CD99446CBD7F0B0"
+				type: "item"
+				item: "hostilenetworks:twilight_prediction"
+			}]
+			rewards: [{
+				id: "30C7AFBE4ADE9510"
+				type: "item"
+				item: "hostilenetworks:twilight_prediction"
+				random_bonus: 7
+			}]
+		}
+		{
+			x: 5.0d
+			y: 0.0d
+			shape: "square"
+			description: [
+				"获取一个末影人数据模型。"
+				"只需右键单击该生物即可。"
+			]
+			dependencies: [
+				"0C53882CCAF972DC"
+				"055A2F4251CEB8F4"
+				"5CF931657DFA41A5"
+			]
+			id: "42247B4F56A6393F"
+			tasks: [{
+				id: "7A47DE47C1E73B04"
+				type: "item"
+				item: {
+					id: "hostilenetworks:data_model"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:enderman"
+						}
+					}
+				}
+				match_nbt: true
+			}]
+			rewards: [{
+				id: "7D7B7A82B02E5A4D"
+				type: "item"
+				item: {
+					id: "hostilenetworks:data_model"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:shulker"
+						}
+					}
+				}
+			}]
+		}
+		{
+			x: 6.0d
+			y: 0.0d
+			shape: "square"
+			description: [
+				"获取一个洞穴巨魔的数据模型。"
+				"只需右键单击该生物即可。"
+			]
+			dependencies: [
+				"0C53882CCAF972DC"
+				"055A2F4251CEB8F4"
+				"5CF931657DFA41A5"
+			]
+			id: "44150A1347863EF6"
+			tasks: [{
+				id: "3A066925EC66EFE6"
+				type: "item"
+				item: {
+					id: "hostilenetworks:data_model"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:twilightforest/troll"
+						}
+					}
+				}
+				match_nbt: true
+			}]
+			rewards: [{
+				id: "7687866AA96030E3"
+				type: "item"
+				item: {
+					id: "hostilenetworks:data_model"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:twilightforest/death_tome"
+						}
+					}
+				}
+			}]
+		}
+		{
+			x: 7.0d
+			y: 1.0d
+			shape: "square"
+			description: ["此通用化地下花园预测由模拟室与地下花园数据模型共同生成。"]
+			dependencies: [
+				"54B3964CD5D46AF9"
+				"5CF931657DFA41A5"
+			]
+			id: "42966F6EA137914D"
+			tasks: [{
+				id: "4AA6A14E1705E488"
+				type: "item"
+				item: "hostilenetworks:undergarden_prediction"
+			}]
+			rewards: [{
+				id: "313554AD55012418"
+				type: "item"
+				item: "hostilenetworks:undergarden_prediction"
+				random_bonus: 7
+			}]
+		}
+		{
+			x: 8.0d
+			y: 1.0d
+			shape: "square"
+			description: ["此通用化蓝天预测由模拟室与蓝天数据模型共同生成。"]
+			dependencies: [
+				"0FEA7BD6913AC553"
+				"5CF931657DFA41A5"
+			]
+			id: "5132D78E47917D2A"
+			tasks: [{
+				id: "5726C90643EC64F2"
+				type: "item"
+				item: "hostilenetworks:blueskies_prediction"
+			}]
+			rewards: [{
+				id: "6D160FC23980B594"
+				type: "item"
+				item: "hostilenetworks:blueskies_prediction"
+				random_bonus: 7
+			}]
+		}
+		{
+			x: 7.0d
+			y: 0.0d
+			shape: "square"
+			description: [
+				"获取一个 Rotbeast 数据模型。"
+				"只需右键点击该生物即可。"
+			]
+			dependencies: [
+				"0C53882CCAF972DC"
+				"055A2F4251CEB8F4"
+				"5CF931657DFA41A5"
+			]
+			id: "54B3964CD5D46AF9"
+			tasks: [{
+				id: "2DCED991EC518E21"
+				type: "item"
+				item: {
+					id: "hostilenetworks:data_model"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:undergarden_rotbeast"
+						}
+					}
+				}
+				match_nbt: true
+			}]
+			rewards: [{
+				id: "517E575704634551"
+				type: "item"
+				item: {
+					id: "hostilenetworks:data_model"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:undergarden_gloomper"
+						}
+					}
+				}
+			}]
+		}
+		{
+			x: 8.0d
+			y: 0.0d
+			shape: "square"
+			description: [
+				"获取一个 Stonelet 数据模型。"
+				"只需右键单击该生物即可。"
+			]
+			dependencies: [
+				"0C53882CCAF972DC"
+				"055A2F4251CEB8F4"
+				"5CF931657DFA41A5"
+			]
+			id: "0FEA7BD6913AC553"
+			tasks: [{
+				id: "317991025FEEE945"
+				type: "item"
+				item: {
+					id: "hostilenetworks:data_model"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:blue_skies_stonelet"
+						}
+					}
+				}
+				match_nbt: true
+			}]
+			rewards: [{
+				id: "56DA1517B7C1C2C5"
+				type: "item"
+				item: {
+					id: "hostilenetworks:data_model"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:blue_skies_cosmic_fox"
+						}
+					}
+				}
+			}]
+		}
+		{
+			icon: {
+				id: "custommachinery:custom_machine_item"
+				Count: 1b
+				tag: {
+					machine: "ragnamod_7:simulation_matrix"
+				}
+			}
+			x: 10.0d
+			y: 0.0d
+			shape: "gear"
+			description: [
+				"模拟矩阵是一个可以多方块结构，能为你快速刷怪模拟的装置！"
+				"{image:ftbquests:textures/quests/simulation_matrix.png width:150 height:100 align:1}"
+				"你需要先使用数据模型“自我意识”和矩阵合金来制作一个完整的预测。"
+				""
+				"然后，将“完成预测”放在基座上，启动机器以开始刷怪预测。"
+				""
+				"§5要查看如何建造这个多方块结构，只需将方块放置在你想要的位置，然后在 JEI 中查看它能制作的配方即可。"
+				"§5左下角有这个图标（见下图），点击它，就会显示幽灵方块。"
+				"{image:ftbquests:textures/quests/multiblock_icon.png width:26 height:29 align:1}"
+			]
+			dependencies: [
+				"5CF931657DFA41A5"
+				"055A2F4251CEB8F4"
+			]
+			size: 2.0d
+			id: "1243849C21B05B3B"
+			tasks: [
+				{
+					id: "53D632C5B1266C4D"
+					type: "item"
+					item: {
+						id: "custommachinery:custom_machine_item"
+						Count: 1b
+						tag: {
+							machine: "ragnamod_7:simulation_matrix"
+						}
+					}
+				}
+				{
+					id: "101F2B6370F3B9DD"
+					type: "item"
+					item: "spirit:pedestal"
+				}
+				{
+					id: "50DC8F51272ADF6E"
+					type: "item"
+					item: "architects_palette:lit_withered_osseous_skull"
+				}
+				{
+					id: "5C31BA2630305E1F"
+					type: "item"
+					item: "decorative_blocks:soul_brazier"
+					count: 2L
+				}
+				{
+					id: "44F875CD9BBFC02B"
+					type: "item"
+					item: "create:scorchia_pillar"
+					count: 3L
+				}
+			]
+			rewards: [{
+				id: "32D327AD9D3145E6"
+				type: "item"
+				item: "spirit:pedestal"
+				random_bonus: 7
+			}]
+		}
+		{
+			x: 1.5d
+			y: -1.0d
+			description: [
+				"模型进化允许你进化你的数据模型。"
+				""
+				"在JEI中查看数据模型的制作配方时，必须按住Shift键才能看到其等级，从而找到正确的配方，将故障模型升级为普通，普通升级为高级，高级升级为卓越，最后将卓越升级为自我意识。"
+			]
+			dependencies: ["055A2F4251CEB8F4"]
+			id: "1BDE6D8CEFF8F4A9"
+			tasks: [{
+				id: "5B9DC44604452460"
+				type: "item"
+				item: {
+					id: "custommachinery:custom_machine_item"
+					Count: 1b
+					tag: {
+						machine: "ragnamod_7:model_evolution"
+					}
+				}
+			}]
+			rewards: [{
+				id: "655DE7BA114A8454"
+				type: "item"
+				item: {
+					id: "custommachinery:custom_machine_item"
+					Count: 1b
+					tag: {
+						machine: "ragnamod_7:model_evolution"
+					}
+				}
+			}]
+		}
+		{
+			icon: "architects_palette:hazard_sign"
+			x: 5.5d
+			y: -2.0d
+			shape: "octagon"
+			description: [
+				"关于 Hostile Neural Networks 模组的注意事项。"
+				""
+				"如你所见，我们正在使用 Veydiz 制作的“TS Edition”整合包。"
+				"此版本允许我控制你的数据模型的演化，从而改变你升级数据模型的方式。"
+				""
+				"要了解如何升级你的数据模型，请阅读任务“模型进化”。"
+			]
+			dependencies: ["5CF931657DFA41A5"]
+			id: "535EA082789466C9"
+			tasks: [{
+				id: "5CDF32525BDAB244"
+				type: "checkmark"
+				title: "注意"
+			}]
+		}
+	]
+	quest_links: [ ]
+}

@@ -1,0 +1,732 @@
+# AI 初翻，未人工校对
+{
+	id: "35D0DC4AC8BE5302"
+	group: ""
+	order_index: 2
+	filename: "get_back_to_earth"
+	title: "返回地球"
+	icon: "beyond_earth:earth_globe"
+	subtitle: ["逃离这个暮色世界"]
+	default_quest_shape: "square"
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "简介"
+			x: 3.0d
+			y: 1.5d
+			shape: "octagon"
+			subtitle: "你的目标是离开暮色森林，带上火箭返回地球，真正开启你的冒险！"
+			description: [
+				"此整合包中，暮色森林的经典流程已被禁用，因此你可以随心所欲地前往任何地方。"
+				""
+				"你必须制作一个传送门激活器，才能进入Undergarden，获取建造火箭的最后几块零件。"
+				""
+				"提示：你可以在山丘中找到原版矿石。"
+			]
+			dependencies: ["375F4C25F6B07F8C"]
+			size: 1.5d
+			id: "7DCDDC6CA278A7C5"
+			tasks: [{
+				id: "608B0D64957C2EC8"
+				type: "checkmark"
+				title: "简介"
+			}]
+		}
+		{
+			x: 3.0d
+			y: -5.5d
+			description: [
+				"NASA 工作台结合了你所创造的所有技术！"
+				"使用乌瑟里姆水晶、钢铁和机械臂来获取它，并开始设计火箭！"
+			]
+			dependencies: [
+				"366106157FB5459C"
+				"3C884020904C1B6C"
+				"6013E9708A7B59E9"
+			]
+			id: "2FE44372B1A4621B"
+			tasks: [{
+				id: "2B0FC2ADEF8C5A73"
+				type: "item"
+				item: "beyond_earth:nasa_workbench"
+			}]
+			rewards: [{
+				id: "3112CFE6B2F0278A"
+				type: "item"
+				item: "farmersdelight:honey_glazed_ham"
+			}]
+		}
+		{
+			title: "与纳迦的战斗"
+			icon: "twilightforest:naga_trophy"
+			x: 1.5d
+			y: -0.5d
+			subtitle: "第一场战斗！"
+			description: ["你需要击败娜迦才能获得一些娜迦鳞片。"]
+			dependencies: ["7DCDDC6CA278A7C5"]
+			id: "5CFDD2C9BF21A177"
+			tasks: [
+				{
+					id: "5EC9CCB7901BFE35"
+					type: "item"
+					item: "twilightforest:naga_trophy"
+				}
+				{
+					id: "56F520CEDDB00B10"
+					type: "item"
+					item: "twilightforest:naga_scale"
+				}
+			]
+			rewards: [{
+				id: "290D04A786CC5269"
+				type: "item"
+				item: {
+					id: "tinker_rapier:rapier_tic"
+					Count: 1b
+					tag: {
+						tic_persistent: { }
+						tic_stats: {
+							"tconstruct:attack_speed": 2.75f
+							"tconstruct:mining_speed": 9.75f
+							"tconstruct:attack_damage": 3.5f
+							"tconstruct:harvest_tier": "minecraft:stone"
+							"tconstruct:durability": 461.0f
+						}
+						tic_broken: 0b
+						tic_modifiers: [
+							{
+								name: "twilightforest:twilit"
+								level: 2s
+							}
+							{
+								name: "twilightforest:precipitate"
+								level: 2s
+							}
+							{
+								name: "tconstruct:cultivated"
+								level: 2s
+							}
+							{
+								name: "tconstruct:silky_shears"
+								level: 1s
+							}
+						]
+						tic_materials: [
+							"twilightforest:nagascale"
+							"twilightforest:nagascale"
+							"tconstruct:wood"
+							"tconstruct:wood"
+						]
+						Damage: 0
+						tic_volatile_data: {
+							abilities: 1
+							upgrades: 2
+						}
+					}
+				}
+			}]
+		}
+		{
+			x: 4.0d
+			y: -3.5d
+			description: ["混合坩埚就是 Hexerei 模组里的一个普通坩埚。"]
+			dependencies: ["608B0D64957C2EC8"]
+			id: "3D70617228B5BE1A"
+			tasks: [{
+				id: "30BEAED1C0B3D177"
+				type: "item"
+				item: "hexerei:mixing_cauldron"
+			}]
+			rewards: [{
+				id: "4B3FE0AB11C117B6"
+				type: "item"
+				item: "minecraft:bucket"
+			}]
+		}
+		{
+			title: "高炉 Blast Furnace"
+			icon: "immersiveengineering:blast_furnace"
+			x: 4.0d
+			y: -4.5d
+			subtitle: "钢铁之路。"
+			description: [
+				"要获得钢，你需要制作一个高炉。"
+				""
+				"这是一个3x3x3的多方块结构，将Ironwood（本整合包中）与木炭、焦炭或石油焦混合以生产钢铁。"
+				""
+				"你可以在暮色森林中使用 Hexerei 炼药锅来获取一个。"
+			]
+			dependencies: ["3D70617228B5BE1A"]
+			id: "1EF95835215D60E0"
+			tasks: [{
+				id: "67D43460FF6C2547"
+				type: "item"
+				item: "immersiveengineering:blastbrick"
+				count: 27L
+			}]
+			rewards: [{
+				id: "6AF1E067B8EF1C5D"
+				type: "item"
+				item: "minecraft:charcoal"
+				count: 64
+			}]
+		}
+		{
+			x: 2.0d
+			y: -5.5d
+			description: ["目前你可能只需要在制造 Nasa 工作台时使用机械臂，但它对自动化 Create 装置也很有用！"]
+			dependencies: ["5836EBA421A25364"]
+			id: "6013E9708A7B59E9"
+			tasks: [{
+				id: "478CE551CDB598E1"
+				type: "item"
+				item: "create:mechanical_arm"
+			}]
+			rewards: [{
+				id: "217EC9A55E00D994"
+				type: "item"
+				item: "create:brass_casing"
+			}]
+		}
+		{
+			x: 3.0d
+			y: -4.5d
+			description: [
+				"Utherium Crystal 用于制作 NASA 工作台。"
+				"你可以在矿石中找到它，或者通过杀死腐化生物来获得碎片。"
+			]
+			dependencies: ["769AFAB1B0F353E0"]
+			id: "366106157FB5459C"
+			tasks: [{
+				id: "7C86DD3FAFEA242D"
+				type: "item"
+				item: "undergarden:utherium_crystal"
+			}]
+			rewards: [{
+				id: "534EE72D049560AF"
+				type: "item"
+				item: "undergarden:shard_torch"
+				count: 16
+			}]
+		}
+		{
+			x: 3.0d
+			y: -2.5d
+			description: ["传送门激活器是开启暮色传送门所必需的。只需建造一个由花朵或蘑菇环绕的2x2小水池，然后将激活器投入其中。这将为你开启一个通往新维度的传送门，在本整合包中，该维度即为The Undergarden。"]
+			dependencies: [
+				"5CFDD2C9BF21A177"
+				"22556496826ED6BF"
+				"572A921A6E34907B"
+				"731DC23E85B1A666"
+				"7750BE582D815E25"
+				"15459E52419C1267"
+				"03912F8EED303C9E"
+				"29582A190DD0E266"
+				"3D70617228B5BE1A"
+				"5A7AE75E4AF0003F"
+			]
+			id: "0A1BC75F350F8C54"
+			tasks: [{
+				id: "39E7E8F2DCB9F5EB"
+				type: "item"
+				item: "ragnamod_seven:portal_activator"
+			}]
+			rewards: [{
+				id: "0F251640BA15EF7E"
+				type: "item"
+				item: {
+					id: "minecraft:diamond"
+					Count: 1b
+					tag: {
+						display: {
+							Name: "{\"text\":\"An old activator portal\"}"
+						}
+					}
+				}
+			}]
+		}
+		{
+			title: "地下花园（The Undergarden）"
+			x: 3.0d
+			y: -3.5d
+			description: ["只需前往 The Undergarden 即可。"]
+			dependencies: ["0A1BC75F350F8C54"]
+			id: "769AFAB1B0F353E0"
+			tasks: [{
+				id: "73ED122E36E42D7D"
+				type: "dimension"
+				dimension: "undergarden:undergarden"
+			}]
+			rewards: [{
+				id: "12AB01A258C7B2DE"
+				type: "item"
+				item: {
+					id: "undergarden:masticated_chestplate"
+					Count: 1b
+					tag: {
+						Damage: 0
+						Enchantments: [{
+							lvl: 5s
+							id: "minecraft:thorns"
+						}]
+					}
+				}
+			}]
+		}
+		{
+			x: 3.5d
+			y: -0.5d
+			subtitle: "你可以用它制作一张地图，来指引你穿越暮色森林。"
+			description: [
+				"你必须杀死一只乌鸦来获取它的羽毛。"
+				"获得后，必须将其与发光石（可在大型空心山丘中获得）和火把浆果（可通过击杀骷髅德鲁伊或在洞穴中找到）相结合。"
+			]
+			dependencies: ["7DCDDC6CA278A7C5"]
+			id: "572A921A6E34907B"
+			tasks: [{
+				id: "7270D4E775853181"
+				type: "item"
+				item: "twilightforest:magic_map_focus"
+			}]
+			rewards: [{
+				id: "36480523B0B55FFE"
+				type: "item"
+				item: "twilightforest:magic_map"
+			}]
+		}
+		{
+			x: -0.5d
+			y: -0.5d
+			subtitle: "掘地精华可以在远古恶魂的塔中找到。"
+			description: ["你可以从塔顶收集一些，或者杀死藏在受感染塔木块中的塔木蛀虫，就像银鱼一样。"]
+			dependencies: ["7DCDDC6CA278A7C5"]
+			id: "22556496826ED6BF"
+			tasks: [{
+				id: "5483417CE5FB5317"
+				type: "item"
+				item: "twilightforest:borer_essence"
+			}]
+			rewards: [{
+				id: "5ECE23B1890F4170"
+				type: "item"
+				item: "twilightforest:borer_essence"
+				count: 16
+			}]
+		}
+		{
+			x: 2.5d
+			y: -0.5d
+			description: ["要获得瓶装黑暗，你需要在空中用瓶子和软木右键单击。"]
+			dependencies: ["7DCDDC6CA278A7C5"]
+			id: "731DC23E85B1A666"
+			tasks: [{
+				id: "5C0A1D10C9375810"
+				type: "item"
+				item: {
+					id: "naturesaura:aura_bottle"
+					Count: 1b
+					tag: {
+						stored_type: "naturesaura:end"
+					}
+				}
+			}]
+			rewards: [{
+				id: "232CD3789B7F9936"
+				type: "item"
+				item: "croptopia:milk_bottle"
+			}]
+		}
+		{
+			title: "未加工的昆虫"
+			x: 0.5d
+			y: -0.5d
+			subtitle: "快刀斩乱麻！"
+			description: ["你只需要在砧板上用刀切一些昆虫就行了。"]
+			dependencies: ["7DCDDC6CA278A7C5"]
+			id: "7750BE582D815E25"
+			tasks: [{
+				id: "63E2B2082AE32BAD"
+				type: "item"
+				item: "twilightdelight:raw_insect"
+				count: 2L
+			}]
+			rewards: [{
+				id: "61AFBD924C99A798"
+				type: "item"
+				item: "twilightdelight:fried_insect"
+			}]
+		}
+		{
+			x: 6.5d
+			y: -0.5d
+			subtitle: "非常适合用来保持身体温暖。"
+			description: ["要获得北极皮毛，你需要去雪地森林，杀死雪怪或冬狼。"]
+			dependencies: ["7DCDDC6CA278A7C5"]
+			id: "15459E52419C1267"
+			tasks: [{
+				id: "36783FA28795DC7D"
+				type: "item"
+				item: "twilightforest:arctic_fur"
+			}]
+			rewards: [{
+				id: "19DC611C405AEB0A"
+				type: "item"
+				item: {
+					id: "twilightforest:arctic_helmet"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			x: 4.5d
+			y: -0.5d
+			subtitle: "一颗闪闪发光的魔法水晶。"
+			description: ["你可以在洞穴里找到它们。"]
+			dependencies: ["7DCDDC6CA278A7C5"]
+			id: "03912F8EED303C9E"
+			tasks: [{
+				id: "2FA8CB62E927395D"
+				type: "item"
+				item: "forbidden_arcanus:arcane_crystal"
+			}]
+			rewards: [{
+				id: "47EFDB022CA016F6"
+				type: "item"
+				item: "forbidden_arcanus:arcane_crystal_block"
+			}]
+		}
+		{
+			x: 5.5d
+			y: -0.5d
+			subtitle: "非常适合制作早期的盔甲和工具套装。"
+			description: ["将生铁、金块和肝根融合，可以获得一团生铁木球。"]
+			dependencies: ["7DCDDC6CA278A7C5"]
+			id: "29582A190DD0E266"
+			tasks: [{
+				id: "006D82236FD066D5"
+				type: "item"
+				item: "twilightforest:raw_ironwood"
+			}]
+			rewards: [{
+				id: "32661F6DD4C3D978"
+				type: "item"
+				item: {
+					id: "twilightforest:ironwood_pickaxe"
+					Count: 1b
+					tag: {
+						Damage: 0
+						Enchantments: [{
+							id: "minecraft:efficiency"
+							lvl: 1s
+						}]
+					}
+				}
+			}]
+		}
+		{
+			x: 4.0d
+			y: -5.5d
+			description: ["你需要将铁木放入高炉以获得钢铁。"]
+			dependencies: ["1EF95835215D60E0"]
+			id: "3C884020904C1B6C"
+			tasks: [{
+				id: "01469A72E9B27D2B"
+				type: "item"
+				item: "beyond_earth:steel_ingot"
+			}]
+			rewards: [{
+				id: "18700D2FD3E51451"
+				type: "item"
+				item: "twilightforest:ironwood_block"
+			}]
+		}
+		{
+			x: 3.0d
+			y: -6.5d
+			subtitle: "火箭升空！"
+			description: [
+				"有了你的 NASA 工作台，你现在可以制作第一枚火箭了。"
+				"这样你就能去主世界，从而进入下界和末地！"
+				""
+				"小心，如果直接去月球，别忘了带上火箭发射台和燃料，才能从月球返回！"
+			]
+			dependencies: ["2FE44372B1A4621B"]
+			id: "6F5B1AE2E73664A7"
+			tasks: [{
+				id: "133486B7D579DD33"
+				type: "item"
+				item: {
+					id: "beyond_earth:rocket_t1"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "7ABC86292AFEC53D"
+				type: "item"
+				item: "beyond_earth:earth_globe"
+			}]
+		}
+		{
+			title: "主世界"
+			icon: "beyond_earth:earth_globe"
+			x: 3.0d
+			y: -9.0d
+			shape: "octagon"
+			subtitle: "冒险开始了！"
+			description: ["安全地降落到地球上。"]
+			dependencies: ["6F5B1AE2E73664A7"]
+			size: 2.0d
+			id: "4543AD330BD0A901"
+			tasks: [{
+				id: "4CFAB8DD6282CDBF"
+				type: "dimension"
+				dimension: "minecraft:overworld"
+			}]
+		}
+		{
+			x: 2.0d
+			y: -6.5d
+			subtitle: "精准度。"
+			description: [
+				"精密机制主要用于制作机械臂或旋转速度控制器。"
+				""
+				"不过要小心，因为合成有 20% 的失败率，会给你一个垃圾物品。"
+			]
+			dependencies: ["6234A8C99DAEDBF1"]
+			id: "5836EBA421A25364"
+			tasks: [{
+				id: "1A21FB994515127B"
+				type: "item"
+				item: "create:precision_mechanism"
+			}]
+			rewards: [{
+				id: "2240DD7A50FB0623"
+				type: "item"
+				item: "create_sa:brass_cube"
+			}]
+		}
+		{
+			x: 1.0d
+			y: -5.5d
+			subtitle: "自动点击器。"
+			description: ["部署器将有助于制作组装类物品。"]
+			dependencies: [
+				"4C6AA93A91E04FBB"
+				"27709AD99F715F2C"
+			]
+			id: "6234A8C99DAEDBF1"
+			tasks: [{
+				id: "2AF8E0DF89B6C9C8"
+				type: "item"
+				item: "create:deployer"
+			}]
+			rewards: [{
+				id: "763A1822C74D46CD"
+				type: "item"
+				item: "create:brass_hand"
+			}]
+		}
+		{
+			x: 1.0d
+			y: -6.5d
+			description: [
+				"要制作玫瑰石英，你需要萤石和红石。"
+				"之后会有办法用石英来制作玫瑰石英。"
+			]
+			dependencies: ["608B0D64957C2EC8"]
+			id: "4C6AA93A91E04FBB"
+			tasks: [{
+				id: "4B40F178460395FD"
+				type: "item"
+				item: "create:rose_quartz"
+			}]
+			rewards: [{
+				id: "27E7CAA68021E444"
+				type: "item"
+				item: {
+					id: "create:red_sand_paper"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			x: 1.0d
+			y: -4.5d
+			subtitle: "黄铜的时代已经来临。"
+			description: ["用你的合金熔炉制作黄铜锭，与 Create 一起进入黄铜时代！"]
+			dependencies: ["5B7594939BB7C888"]
+			id: "27709AD99F715F2C"
+			tasks: [{
+				id: "5CA38B103AB4469B"
+				type: "item"
+				item: "create:brass_ingot"
+			}]
+			rewards: [{
+				id: "047E11044BEFEF0E"
+				type: "item"
+				item: {
+					id: "create_sa:brass_sword"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			title: "合金熔炉"
+			icon: "immersiveengineering:alloy_smelter"
+			x: 2.0d
+			y: -4.5d
+			subtitle: "一种原始合金熔炉"
+			description: ["合金熔炉是制作第一批合金的简单方法！"]
+			dependencies: ["608B0D64957C2EC8"]
+			id: "5B7594939BB7C888"
+			tasks: [{
+				id: "187782A76A7FD770"
+				type: "item"
+				item: "immersiveengineering:alloybrick"
+				count: 8L
+			}]
+			rewards: [{
+				id: "4A87AA178181DC1D"
+				type: "item"
+				item: "minecraft:coal_block"
+			}]
+		}
+		{
+			title: "如何返回 The Undergarden 和 Twilight Forest"
+			x: 3.0d
+			y: -11.0d
+			shape: "circle"
+			description: [
+				"用这个催化剂，你可以从主世界返回地下花园，方法是像下图一样建造新传送门，进而通过建造暮色传送门（周围有花朵或蘑菇的2x2水池）并使用同一个催化剂来开启，从而进入暮色森林。"
+				"{image:ftbquests:textures/quests/undergarden_portal.png width:150 height:100 align:1}"
+				"之后，我建议你制作一个 Tempad，以便轻松穿越任何维度。"
+			]
+			dependencies: ["4543AD330BD0A901"]
+			id: "13B3A667FA99741C"
+			tasks: [{
+				id: "774111107EC390B8"
+				type: "item"
+				item: "undergarden:catalyst"
+			}]
+			rewards: [{
+				id: "2D4FA487219B7095"
+				type: "item"
+				item: "undergarden:catalyst"
+			}]
+		}
+		{
+			x: 5.0d
+			y: -4.5d
+			shape: "square"
+			description: [
+				"要为火箭制作燃料，你需要找到一些原油，就像这口油井一样。"
+				"{image:ftbquests:textures/quests/ip_crudeoil.png width:150 height:100 align:1}"
+			]
+			hide_dependency_lines: true
+			dependencies: ["7DCDDC6CA278A7C5"]
+			id: "713A56F9D9036CC6"
+			tasks: [{
+				id: "673BA3E5C155C8A5"
+				type: "item"
+				item: "immersivepetroleum:crudeoil_bucket"
+			}]
+			rewards: [{
+				id: "6446CE2EFABB8310"
+				type: "item"
+				item: "immersivepetroleum:crudeoil_bucket"
+			}]
+		}
+		{
+			x: 5.0d
+			y: -6.5d
+			shape: "square"
+			description: ["在燃料精炼器中加工原油，为你的火箭获取燃料。"]
+			dependencies: ["1E65C40447A8DAC9"]
+			id: "37E18CFB7E512A82"
+			tasks: [{
+				id: "511ED3FE7C5B9AE1"
+				type: "item"
+				item: "beyond_earth:fuel_bucket"
+			}]
+			rewards: [{
+				id: "1DE056748A95830D"
+				type: "item"
+				item: "beyond_earth:fuel_bucket"
+			}]
+		}
+		{
+			x: 5.0d
+			y: -5.5d
+			description: [
+				"燃料提炼厂可以将石油转化为燃料。"
+				"通过潜行+右键点击火箭，你可以用最近获得的燃料为其填充。"
+			]
+			dependencies: [
+				"3C884020904C1B6C"
+				"713A56F9D9036CC6"
+			]
+			id: "1E65C40447A8DAC9"
+			tasks: [{
+				id: "207FF5F35A77FCE9"
+				type: "item"
+				item: "beyond_earth:fuel_refinery"
+			}]
+			rewards: [{
+				id: "2ACD56ECB2D0776D"
+				type: "item"
+				item: "beyond_earth:steel_ingot"
+				random_bonus: 3
+			}]
+		}
+		{
+			title: "发射台"
+			x: 4.0d
+			y: -6.5d
+			shape: "square"
+			description: ["想要去太空，火箭发射台必不可少！将它们以3x3的方形铺在地上，然后把火箭放在上面。"]
+			dependencies: ["3C884020904C1B6C"]
+			id: "2196A221FBC8BDF3"
+			tasks: [{
+				id: "309581467DDCF2AB"
+				type: "item"
+				item: "beyond_earth:rocket_launch_pad"
+				count: 9L
+			}]
+			rewards: [{
+				id: "17AF5DF646E688E8"
+				type: "item"
+				item: "beyond_earth:rocket_launch_pad"
+				count: 9
+			}]
+		}
+		{
+			x: 2.0d
+			y: -3.5d
+			description: ["你可以在火焰沼泽、火焰喷射器和吸烟者下方，或在牛蘑菇的迷宫中找到岩浆。"]
+			hide_dependency_lines: true
+			dependencies: ["7DCDDC6CA278A7C5"]
+			id: "5A7AE75E4AF0003F"
+			tasks: [{
+				id: "3FC10B61DD89AAD1"
+				type: "item"
+				item: "minecraft:lava_bucket"
+			}]
+			rewards: [{
+				id: "0357BD43E5378D47"
+				type: "item"
+				item: "minecraft:lava_bucket"
+			}]
+		}
+	]
+	quest_links: [ ]
+}
