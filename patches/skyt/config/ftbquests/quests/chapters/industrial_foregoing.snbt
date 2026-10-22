@@ -1,0 +1,416 @@
+# AI 初翻，未人工校对
+{
+	id: "6B6BC37FB7E109AB"
+	group: "3D109918D62355FC"
+	order_index: 5
+	filename: "industrial_foregoing"
+	title: "Industrial Foregoing"
+	icon: "industrialforegoing:mycelial_reactor"
+	subtitle: ["或者更确切地说，是那个东西"]
+	default_quest_shape: "hexagon"
+	default_hide_dependency_lines: false
+	images: [{
+		x: 1.5d
+		y: -2.5d
+		width: 2.0d
+		height: 2.0d
+		rotation: 0.0d
+		image: "industrialforegoing:textures/items/plastic.png"
+		hover: [ ]
+		click: ""
+		dev: false
+		corner: false
+	}]
+	quests: [
+		{
+			x: -2.5d
+			y: 0.0d
+			subtitle: "第一级框架"
+			description: [
+				"机器框架是能够制作工业前序机器所需的基本组件。"
+				""
+				"用这些框架可以建造数十种机器。它们用途广泛："
+				"生物和动物养殖，植物种植，一套 Infinity 工具，大型物品/流体存储和运输器，电力生成，附魔分类和创造"
+			]
+			size: 1.25d
+			min_width: 300
+			id: "6115C21CE0A14F1D"
+			tasks: [{
+				id: "37F5363EED52A67A"
+				type: "item"
+				item: "industrialforegoing:machine_frame_pity"
+			}]
+			rewards: [{
+				id: "14C4798EE2EC6536"
+				type: "item"
+				item: "industrialforegoing:machine_frame_pity"
+			}]
+		}
+		{
+			x: 1.5d
+			y: 0.0d
+			subtitle: "二级框架"
+			dependencies: ["19EA90532EE354C8"]
+			size: 1.25d
+			id: "5336E2968E42F59A"
+			tasks: [{
+				id: "1A535DE67874A8CA"
+				type: "item"
+				item: "industrialforegoing:machine_frame_simple"
+			}]
+			rewards: [{
+				id: "7B9AE49B0DE166BE"
+				type: "item"
+				item: "industrialforegoing:machine_frame_simple"
+			}]
+		}
+		{
+			x: 4.5d
+			y: 0.0d
+			subtitle: "第三级框架"
+			dependencies: ["412D5F839D2F920B"]
+			size: 1.25d
+			id: "0441CB9FD3524FA1"
+			tasks: [{
+				id: "1659E16C693ED234"
+				type: "item"
+				item: "industrialforegoing:machine_frame_advanced"
+			}]
+			rewards: [{
+				id: "549D664335B30614"
+				type: "item"
+				item: "industrialforegoing:machine_frame_advanced"
+			}]
+		}
+		{
+			x: 7.5d
+			y: 0.0d
+			subtitle: "最终层级框架"
+			dependencies: ["0C166EFC9329A747"]
+			size: 1.25d
+			id: "1DF51EB61DCD1F6A"
+			tasks: [{
+				id: "6A9A1ACF0C6BD0E9"
+				type: "item"
+				item: "industrialforegoing:machine_frame_supreme"
+			}]
+			rewards: [{
+				id: "74FEBF996CE8F1DF"
+				type: "item"
+				item: "industrialforegoing:machine_frame_supreme"
+			}]
+		}
+		{
+			x: -1.0d
+			y: 0.0d
+			subtitle: "Latex"
+			description: [
+				"从原木中提取乳胶流体。"
+				"金合欢木原木的输出率最高。"
+			]
+			dependencies: ["6115C21CE0A14F1D"]
+			id: "1E706E6140E09C30"
+			tasks: [{
+				id: "2FE874036BEA511D"
+				type: "item"
+				item: "industrialforegoing:fluid_extractor"
+			}]
+			rewards: [{
+				id: "73F8C964889237AD"
+				type: "item"
+				item: "minecraft:acacia_log"
+				count: 16
+			}]
+		}
+		{
+			x: 0.0d
+			y: 0.0d
+			subtitle: "橡胶"
+			description: ["将乳胶与水混合，可制成干橡胶。"]
+			dependencies: ["1E706E6140E09C30"]
+			id: "19EA90532EE354C8"
+			tasks: [{
+				id: "017D0B813E4B114C"
+				type: "item"
+				item: "industrialforegoing:latex_processing_unit"
+			}]
+			rewards: [{
+				id: "625BE1697F097533"
+				type: "item"
+				item: "minecraft:water_bucket"
+			}]
+		}
+		{
+			x: 3.0d
+			y: 0.0d
+			description: ["从生物身上生成液态肉和粉色史莱姆液体。"]
+			dependencies: ["19EA90532EE354C8"]
+			id: "412D5F839D2F920B"
+			tasks: [{
+				id: "13C5B41CB18A49F1"
+				type: "item"
+				item: "industrialforegoing:mob_slaughter_factory"
+			}]
+			rewards: [{
+				id: "7F23C97AAE59BF1C"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			title: "流体激光"
+			x: 6.0d
+			y: 0.0d
+			subtitle: "嘘... 不会有事的，放心吧"
+			description: [
+				"用流体激光让凋零静止，以获取以太气体。"
+				"{image:ftbquests:textures/3d-ether.png width:50 height:100 align:1}"
+			]
+			dependencies: ["0441CB9FD3524FA1"]
+			id: "0C166EFC9329A747"
+			tasks: [
+				{
+					id: "56180AB2F8CD4956"
+					type: "item"
+					item: "industrialforegoing:fluid_laser_base"
+				}
+				{
+					id: "484CC1FF1978DEA2"
+					type: "item"
+					item: "industrialforegoing:laser_drill"
+				}
+				{
+					id: "712925EF8B600815"
+					type: "item"
+					item: "industrialforegoing:stasis_chamber"
+				}
+			]
+			rewards: [{
+				id: "6C4DDBBAE197BF90"
+				type: "item"
+				item: "minecraft:nether_star"
+			}]
+		}
+		{
+			x: -1.0d
+			y: -1.5d
+			description: [
+				"在其前方放置一个方块。"
+				"用它来自动化你的乳胶生产。"
+				""
+				"&o在已被占用的区块中可能无法使用。"
+			]
+			dependencies: ["1E706E6140E09C30"]
+			id: "0945F4A6BD7217CF"
+			tasks: [{
+				id: "54474D8677DDD6F1"
+				type: "item"
+				item: "industrialforegoing:block_placer"
+			}]
+			rewards: [{
+				id: "4E3DA4D05D458743"
+				type: "item"
+				item: "industrialforegoing:block_placer"
+			}]
+		}
+		{
+			title: "附加组件"
+			x: 2.5d
+			y: 2.0d
+			subtitle: "更快、更好、更便宜"
+			description: ["这些是可用于模组中所有机器的升级组件。"]
+			id: "5E4076CA4BBDACDC"
+			tasks: [
+				{
+					id: "0A130AA266C40BFF"
+					type: "item"
+					item: {
+						id: "industrialforegoing:processing_addon_2"
+						Count: 1b
+						tag: {
+							TitaniumAugment: {
+								Processing: 3.0f
+							}
+						}
+					}
+				}
+				{
+					id: "384DA684BDE01DBC"
+					type: "item"
+					item: {
+						id: "industrialforegoing:efficiency_addon_2"
+						Count: 1b
+						tag: {
+							TitaniumAugment: {
+								Efficiency: 0.8f
+							}
+						}
+					}
+				}
+				{
+					id: "2697796341B5245F"
+					type: "item"
+					item: {
+						id: "industrialforegoing:speed_addon_2"
+						Count: 1b
+						tag: {
+							TitaniumAugment: {
+								Speed: 3.0f
+							}
+						}
+					}
+				}
+			]
+			rewards: [
+				{
+					id: "0866AAC6AFD4E61E"
+					type: "item"
+					item: {
+						id: "industrialforegoing:speed_addon_2"
+						Count: 1b
+						tag: {
+							TitaniumAugment: {
+								Speed: 3.0f
+							}
+						}
+					}
+				}
+				{
+					id: "23D113250B4383A5"
+					type: "item"
+					item: {
+						id: "industrialforegoing:efficiency_addon_2"
+						Count: 1b
+						tag: {
+							TitaniumAugment: {
+								Efficiency: 0.8f
+							}
+						}
+					}
+				}
+				{
+					id: "169CDF1C863A55E4"
+					type: "item"
+					item: {
+						id: "industrialforegoing:processing_addon_2"
+						Count: 1b
+						tag: {
+							TitaniumAugment: {
+								Processing: 3.0f
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 3.5d
+			y: 2.0d
+			description: ["增加你机器的作用范围。"]
+			id: "31932455923E0C05"
+			tasks: [{
+				id: "4C56DC9CF2D9595C"
+				type: "item"
+				item: {
+					id: "industrialforegoing:range_addon11"
+					Count: 1b
+					tag: {
+						TitaniumAugment: {
+							Range: 11.0f
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "150C022DD2C30261"
+				type: "item"
+				item: {
+					id: "industrialforegoing:range_addon11"
+					Count: 1b
+					tag: {
+						TitaniumAugment: {
+							Range: 11.0f
+						}
+					}
+				}
+			}]
+		}
+		{
+			x: 0.0d
+			y: 1.5d
+			description: ["溶解室能让你用物品和液体来制作物品。"]
+			dependencies: ["19EA90532EE354C8"]
+			id: "45671D3D53DB4996"
+			tasks: [{
+				id: "7DDE1E86515F8B19"
+				type: "item"
+				item: "industrialforegoing:dissolution_chamber"
+			}]
+			rewards: [{
+				id: "0F72FC6F5C731AF9"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			x: 4.5d
+			y: -1.5d
+			subtitle: "出生点处击杀生物"
+			description: [
+				"生物复制器用于根据生物囚禁工具中捕获的生物类型来生成生物。"
+				""
+				"Mob Crusher 用于像玩家一样击杀生物，并产出精华和生物掉落物。"
+			]
+			dependencies: ["0441CB9FD3524FA1"]
+			id: "26A7F662FF71985E"
+			tasks: [
+				{
+					id: "3CBB30ED9B760B7F"
+					type: "item"
+					item: "industrialforegoing:mob_duplicator"
+				}
+				{
+					id: "26A606ABF2446050"
+					type: "item"
+					item: "industrialforegoing:mob_crusher"
+				}
+			]
+			rewards: [{
+				id: "13593FE7B7D2A52F"
+				type: "item"
+				item: "industrialforegoing:mob_imprisonment_tool"
+			}]
+		}
+		{
+			title: "植物"
+			x: -2.5d
+			y: 1.5d
+			description: [
+				"植物播种机将种植种子和树苗。"
+				""
+				"植物采集者会收割所有生长完成的事物，并重新种植。"
+			]
+			dependencies: ["6115C21CE0A14F1D"]
+			id: "74402412CCD51939"
+			tasks: [
+				{
+					id: "62EFADD4FEDAD38F"
+					type: "item"
+					item: "industrialforegoing:plant_gatherer"
+				}
+				{
+					id: "6B533B275A15EC75"
+					type: "item"
+					item: "industrialforegoing:plant_sower"
+				}
+			]
+			rewards: [{
+				id: "06E758994B26CE19"
+				type: "item"
+				item: "minecraft:wheat_seeds"
+				count: 16
+			}]
+		}
+	]
+	quest_links: [ ]
+}
