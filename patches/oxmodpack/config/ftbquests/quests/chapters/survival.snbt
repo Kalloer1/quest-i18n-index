@@ -1,0 +1,1655 @@
+# AI 初翻，未人工校对
+{
+	id: "1C4E126BC8379B51"
+	group: "6E6F1BF3B228176D"
+	order_index: 1
+	filename: "survival"
+	title: "生存模式"
+	icon: "minecraft:campfire"
+	subtitle: [
+		"Основы выживания"
+		""
+		"ColdSweat"
+		"ToughAsNails"
+		"Try2Survive"
+		"硬核火把模组任务书"
+	]
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	images: [
+		{
+			x: -8.0d
+			y: 5.0d
+			width: 15.0d
+			height: 15.0d
+			rotation: 0.0d
+			image: "mekanism:textures/item/geiger_counter_4.png"
+			hover: [ ]
+			click: ""
+			dev: false
+			corner: false
+			dependency: "115663A56B52AF55"
+		}
+		{
+			x: 4.0d
+			y: 4.5d
+			width: 12.0d
+			height: 12.0d
+			rotation: 0.0d
+			image: "cold_sweat:textures/mob_effect/insulated.png"
+			hover: [ ]
+			click: ""
+			dev: false
+			corner: false
+			dependency: "349B881A94D29C0E"
+		}
+	]
+	quests: [
+		{
+			x: 2.5d
+			y: 2.5d
+			subtitle: "Изготовьте флягу для воды"
+			description: ["Так хочется пить... пить из лужи долго и вредно, может, получится сделать флягу?"]
+			dependencies: ["349B881A94D29C0E"]
+			hide: true
+			id: "1B5CDD77B894360C"
+			tasks: [{
+				id: "7BED094835238606"
+				type: "item"
+				item: "toughasnails:empty_canteen"
+				only_from_crafting: false
+			}]
+			rewards: [{
+				id: "7EDBE26EF558CBBD"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			title: "屠夫"
+			icon: "minecraft:leather"
+			x: 4.0d
+			y: 0.5d
+			subtitle: "Мастер на все руки, делающий всё сам"
+			description: ["Пришло время добыть &eкожу&r. Без неё не сделать большинство вещей для выживания в суровых условиях. Это не овечки, тут придётся замарать руки."]
+			hide_dependency_lines: true
+			dependencies: ["5AE6ADFF7A567DF1"]
+			hide: true
+			size: 1.25d
+			id: "349B881A94D29C0E"
+			tasks: [{
+				id: "7CDFD397BB18057D"
+				type: "item"
+				item: "minecraft:leather"
+				count: 3L
+			}]
+			rewards: [{
+				id: "62940600D3F4A5B6"
+				type: "xp"
+				xp: 250
+			}]
+		}
+		{
+			title: "生存模式"
+			icon: "minecraft:campfire"
+			x: -2.0d
+			y: -2.0d
+			shape: "rsquare"
+			subtitle: "作者：Proxwian"
+			dependencies: ["004C8CDBAB0228BE"]
+			hide: true
+			size: 2.0d
+			id: "5AE6ADFF7A567DF1"
+			tasks: [{
+				id: "5658416B7D4A0CAB"
+				type: "gamestage"
+				title: "Глава: Выживание"
+				stage: "survive"
+			}]
+		}
+		{
+			x: 7.0d
+			y: 2.0d
+			subtitle: "Скрафтите и наполните мешочек для воды"
+			description: ["Человек на 70% состоит из воды. А что можно сделать с водой? Нагреть! Или охладить. Надо бы запастись этими мешочками для путешествий по холодным и горячим биомам."]
+			dependencies: ["349B881A94D29C0E"]
+			hide: true
+			id: "47ABE3EB4F456E8B"
+			tasks: [
+				{
+					id: "71479EA8D2BA5CE0"
+					type: "item"
+					item: {
+						id: "cold_sweat:filled_waterskin"
+						Count: 1b
+						tag: { }
+					}
+				}
+				{
+					id: "2D153EA88F6CAE7F"
+					type: "item"
+					item: "cold_sweat:waterskin"
+					only_from_crafting: false
+				}
+			]
+			rewards: [{
+				id: "03A8A9E528378F57"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			title: "净水过滤器"
+			x: 2.5d
+			y: 4.5d
+			subtitle: "保持健康！Stay Helathy!"
+			description: [
+				"Пить грязную воду из водоёмов — не лучшая идея, лучше попробовать её как-нибудь очистить."
+				""
+				"Кстати, дождевая вода тоже чистая."
+			]
+			dependencies: ["1B5CDD77B894360C"]
+			hide: true
+			optional: true
+			id: "75AB6F00997CC58A"
+			tasks: [
+				{
+					id: "21E58F995E1CD358"
+					type: "item"
+					item: "toughasnails:water_purifier"
+					only_from_crafting: false
+				}
+				{
+					id: "2671932B090153FF"
+					type: "item"
+					item: "toughasnails:rain_collector"
+					only_from_crafting: false
+				}
+			]
+			rewards: [
+				{
+					id: "5BEB8D6604C68311"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 1678205825642991271L
+				}
+				{
+					id: "2D14D4C71CFA828C"
+					type: "item"
+					item: "minecraft:emerald"
+				}
+			]
+		}
+		{
+			title: "灯笼和油灯"
+			icon: "hardcore_torches:unlit_lantern"
+			x: 1.0d
+			y: 6.0d
+			subtitle: "Как зажечь фонарь за 3 шага"
+			description: [
+				"Факелы горят и гаснут под водой, так что лучше сделать фонарь."
+				""
+				"Чтобы зажечь фонарь, нужна масленка, а чтобы наполнить её, требуется животный жир."
+				""
+				"У некоторых животных можно добыть жир, который мне пригодится для заправки маслёнки. Свинки, вы где?"
+			]
+			dependencies: ["1367F0CB450B5E16"]
+			hide: true
+			id: "12FF75343E63C6A4"
+			tasks: [
+				{
+					id: "7B2AC2E6944B8F93"
+					type: "item"
+					item: "hardcore_torches:oil_can"
+					only_from_crafting: false
+				}
+				{
+					id: "59DC37AF248B7DDE"
+					type: "item"
+					item: "hardcore_torches:animal_fat"
+					count: 3L
+				}
+				{
+					id: "41AF2D4EC375431C"
+					type: "item"
+					item: "hardcore_torches:unlit_lantern"
+					only_from_crafting: false
+				}
+			]
+			rewards: [{
+				id: "2658C19304BF1EBF"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			icon: "toughasnails:purified_water_bottle"
+			x: 2.5d
+			y: 6.5d
+			subtitle: "可以饮用"
+			description: [
+				"Добавим в водоочиститель немного угля, бутылку с водой - вуаля! У нас есть чистая вода."
+				"Также чистую воду можно набрать из сборщика дождя."
+				""
+				"Кстати, бутылочки можно сделать из &eстеклянных осколков&r. Получить их можно, разбив киркой блок стекла."
+			]
+			dependencies: ["75AB6F00997CC58A"]
+			hide: true
+			id: "62A2F5F5CC148107"
+			tasks: [
+				{
+					id: "3AFC61F63D501663"
+					type: "item"
+					item: "toughasnails:purified_water_bottle"
+					count: 8L
+				}
+				{
+					id: "06C9FED62DF5AF68"
+					type: "item"
+					item: "quark:clear_shard"
+					count: 24L
+				}
+				{
+					id: "3FA456BCC4D4CA47"
+					type: "item"
+					item: "minecraft:glass_bottle"
+					count: 8L
+				}
+			]
+			rewards: [{
+				id: "4BC2D7B084F27EA5"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			title: "烘焙与烧烤"
+			icon: "minecraft:furnace"
+			x: 1.0d
+			y: 4.0d
+			subtitle: "制造熔炉"
+			description: [
+				"Чтобы сделать печь, понадобится раздобыть немного глины и сделать из неё &eГлиняные кирпичи&r не без помощи специального &eГлиняного инструмента&r. Обжарим получившиеся кирпичи на &eкостре&r. Из полученных кирпичей собираем Печь - готово!"
+				""
+				"Также с помощью &eГлиняного Инструмента&r можно создавать из блоков глины различные глиняные заготовки для керамических изделий — от керамического кувшина или ведра до керамического горшка для цветов! Для этого кликните &2Правой Кнопкой Мыши&r по блоку глины несколько раз, а затем сломайте получившуюся заготовку и прожарьте её на огне."
+			]
+			dependencies: ["07208DB58DDE9E47"]
+			hide: true
+			id: "1367F0CB450B5E16"
+			tasks: [
+				{
+					id: "2E5B328D7340F6D8"
+					type: "item"
+					item: "minecraft:furnace"
+					only_from_crafting: false
+				}
+				{
+					id: "3EF59DB6E848B5E1"
+					type: "item"
+					item: "minecraft:brick"
+					count: 8L
+				}
+				{
+					id: "6743CEC3B0DF9806"
+					type: "item"
+					item: {
+						id: "notreepunching:clay_tool"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+					only_from_crafting: false
+				}
+				{
+					id: "1812EF4D27C9A8DB"
+					type: "item"
+					item: "notreepunching:clay_brick"
+					count: 8L
+				}
+				{
+					id: "2153AC7665E8D0CB"
+					type: "item"
+					item: "notreepunching:ceramic_bucket"
+				}
+			]
+			rewards: [
+				{
+					id: "4E84B4BEAE571808"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "579D60CE58D91151"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 1678205825642991271L
+				}
+			]
+		}
+		{
+			title: "Антитело не лежит без дела"
+			x: 4.0d
+			y: 5.5d
+			subtitle: "Переболейте гриппом, чтобы получить награду."
+			description: [
+				"Чтобы выработать больше антител, вам нужно переболеть гриппом. Заразиться гриппом можно под дождем или в холодном биоме. Будьте осторожны, не подхватите вдобавок пневмонию и лихорадку!"
+				""
+				"Луковый настой поможет мне укрепить иммунитет и реже болеть. Его можно купить у деревенского жителя"
+			]
+			dependencies: ["2599496071CAA143"]
+			hide: true
+			id: "4C66FB335373A560"
+			tasks: [{
+				id: "15A3FC766F6EEE11"
+				type: "advancement"
+				title: "Переболейте Гриппом"
+				advancement: "trysurvive:strong_immunity_achievement"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "411A83895170F78E"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 1678205825642991271L
+				}
+				{
+					id: "74B60579912DBF7E"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 1678205825642991271L
+				}
+				{
+					id: "63289EB3B91B0B0B"
+					type: "item"
+					item: "trysurvive:special_onion_mixture"
+				}
+			]
+		}
+		{
+			x: 7.0d
+			y: 4.0d
+			subtitle: "要加热一些水吗？"
+			description: ["Котел пригодится мне для подогрева воды в грелках."]
+			dependencies: ["47ABE3EB4F456E8B"]
+			hide: true
+			id: "05D6B71344C49ADE"
+			tasks: [{
+				id: "740F9FDE4D323400"
+				type: "item"
+				item: "cold_sweat:boiler"
+				only_from_crafting: false
+			}]
+			rewards: [{
+				id: "599BBD921C7E6CE4"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			x: 7.0d
+			y: 6.0d
+			subtitle: "需要冷却一下吗？"
+			description: ["А вот в холодильнике можно воду остудить..."]
+			dependencies: ["05D6B71344C49ADE"]
+			hide: true
+			id: "690E3E0E3C3D3827"
+			tasks: [{
+				id: "46FA526F4C187415"
+				type: "item"
+				item: "cold_sweat:icebox"
+				only_from_crafting: false
+			}]
+			rewards: [{
+				id: "6B8857DD9E54C7AD"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			x: 7.0d
+			y: 7.5d
+			subtitle: "Давайте не будем мерзнуть!"
+			description: [
+				"Дома хорошо и уютно. Хорошо, если живешь в тёплом биоме. Но что если нет? Давай скрафтим очаг, чтобы согреть или охладить наше жилище"
+				"P.S. Камин способен охладить или подогреть воздух вокруг себя в радиусе 30 блоков"
+				"P.S.S. Камин эффективнее всего устанавливать в закрытых помещениях"
+			]
+			dependencies: ["690E3E0E3C3D3827"]
+			hide: true
+			id: "5B131F5B4A3E5727"
+			tasks: [{
+				id: "01B82E01DF217445"
+				type: "item"
+				item: "cold_sweat:hearth"
+				only_from_crafting: false
+			}]
+			rewards: [{
+				id: "29B92F7D494A5E0E"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			icon: "hardcore_torches:lit_lantern"
+			x: 1.0d
+			y: 7.5d
+			subtitle: "愿光明降临！"
+			description: [
+				"Пора заливать масло в лампу и пополнить запасы! Зажигать будем, конечно, Кресалом."
+				"P.S. Чтобы наполнить маслёнку жиром, совместите их в сетке крафта."
+				"P.S.S. Используйте наполненную маслёнку на Фонаре, чтобы пополнить его."
+			]
+			dependencies: ["12FF75343E63C6A4"]
+			hide: true
+			id: "70D22AFD891F6784"
+			tasks: [
+				{
+					id: "741FC383D7094237"
+					type: "item"
+					item: {
+						id: "hardcore_torches:lit_lantern"
+						Count: 1b
+						tag: {
+							Fuel: 143947
+						}
+					}
+				}
+				{
+					id: "429EAA7D63326DCD"
+					type: "item"
+					item: {
+						id: "minecraft:flint_and_steel"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+					only_from_crafting: false
+				}
+				{
+					id: "664FF936866C5DE0"
+					type: "item"
+					item: {
+						id: "hardcore_torches:oil_can"
+						Count: 1b
+						tag: {
+							Fuel: 576000
+						}
+					}
+					only_from_crafting: false
+				}
+			]
+			rewards: [{
+				id: "27D0A30B7F60602A"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			title: "章节：下界"
+			icon: "minecraft:nether_gold_ore"
+			x: 4.0d
+			y: 9.0d
+			shape: "hexagon"
+			subtitle: "Готов исследовать пустоши?"
+			dependencies: [
+				"62A2F5F5CC148107"
+				"5B131F5B4A3E5727"
+				"70D22AFD891F6784"
+				"0A0B1FE2AFF92B4C"
+				"48599195917DBC40"
+			]
+			hide: false
+			size: 1.5d
+			id: "6E19DA28E7F0DD58"
+			tasks: [{
+				id: "06CB5D240E53CF17"
+				type: "checkmark"
+			}]
+			rewards: [
+				{
+					id: "498C0E829B7F1126"
+					type: "gamestage"
+					title: "章节：下界"
+					auto: "invisible"
+					ignore_reward_blocking: true
+					stage: "nether"
+				}
+				{
+					id: "5BAB762034FD532A"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 1678205825642991271L
+				}
+				{
+					id: "2CC4C506EE538506"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+				{
+					id: "3F85FC872F96DDA1"
+					type: "item"
+					item: "waystones:warp_dust"
+					count: 2
+				}
+			]
+		}
+		{
+			x: 4.0d
+			y: 7.0d
+			subtitle: "Купить или создать вручную"
+			description: [
+				"Старый рецепт крафта особой мази, помогающий от ожогов в очень жаркую погоду."
+				"P.S. Мазь также можно купить у некоторых NPC"
+			]
+			dependencies: ["4C66FB335373A560"]
+			hide: true
+			id: "0A0B1FE2AFF92B4C"
+			tasks: [{
+				id: "764AB116FC29DE08"
+				type: "item"
+				item: "trysurvive:aloe_based_protective_salve"
+			}]
+			rewards: [{
+				id: "5D4C33175953F81C"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			title: "Дыхательный пузырь"
+			x: 5.5d
+			y: 2.5d
+			subtitle: "Под водой дышать можно?"
+			description: [
+				"Конечно, я могу ненадолго задержать дыхание, но пузырь пловца мне точно не помешает"
+				"P.S. В глубоких пещерах и высоко над землей ваш запас кислорода начинает расходоваться"
+				"P.S.S. В некоторых измерениях, таких как Нижний мир и Край, воздуха совсем нет"
+			]
+			dependencies: ["349B881A94D29C0E"]
+			hide: true
+			hide_text_until_complete: true
+			id: "2E1ACE161F711FBC"
+			tasks: [
+				{
+					id: "0E409C644B0B0910"
+					type: "advancement"
+					advancement: "minerslung:air_bladder"
+					criterion: ""
+				}
+				{
+					id: "484D81A7B2407086"
+					type: "advancement"
+					advancement: "minerslung:root"
+					criterion: ""
+				}
+				{
+					id: "0C7A04C9ABA0B0DD"
+					type: "item"
+					item: {
+						id: "minerslung:air_bladder"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+					only_from_crafting: false
+				}
+			]
+			rewards: [{
+				id: "4A7E06A31B41758A"
+				type: "xp"
+				xp: 150
+			}]
+		}
+		{
+			title: "水下呼吸器"
+			icon: {
+				id: "minerslung:respirator"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: 5.5d
+			y: 4.5d
+			subtitle: "Дышать полной грудью, чтобы набраться сил."
+			description: [
+				"&eРеспиратор&r помогает защитить лёгкие от спёртого воздуха под землёй и отравленного лавой воздуха."
+				""
+				"Чтобы сделать фильтр из бумаги, придётся собрать берёзовую кору при помощи &eкремниевого&r топора или &eпилы&r."
+			]
+			dependencies: ["2E1ACE161F711FBC"]
+			hide: true
+			id: "4ACC1F3F8958F63F"
+			tasks: [
+				{
+					id: "4F331A04B283B19A"
+					type: "item"
+					item: {
+						id: "minerslung:respirator"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+					only_from_crafting: false
+				}
+				{
+					id: "199CBA14686D9B5B"
+					type: "advancement"
+					advancement: "minerslung:protection_from_yellow"
+					criterion: ""
+				}
+				{
+					id: "0721CA776A9A35D4"
+					type: "item"
+					item: "minecraft:paper"
+				}
+			]
+			rewards: [{
+				id: "634F4B5A1469D2B8"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			title: "危险的悬崖高度"
+			x: 5.5d
+			y: 6.5d
+			subtitle: "Здесь точно безопасно, не так ли?"
+			description: [
+				"Фонарь безопасности поможет мне определить, есть ли кислород вокруг."
+				""
+				"Глубиномер нужен, чтобы определить высоту над уровнем моря."
+			]
+			dependencies: ["4ACC1F3F8958F63F"]
+			hide: true
+			id: "48599195917DBC40"
+			tasks: [
+				{
+					id: "6757B50015117F04"
+					type: "item"
+					item: "minerslung:safety_lantern"
+					only_from_crafting: false
+				}
+				{
+					id: "388CB81364C68DDB"
+					type: "item"
+					item: "additionaladditions:depth_meter"
+				}
+			]
+			rewards: [{
+				id: "47DC44694B1C4196"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			title: "шерстяная голова"
+			x: -8.0d
+			y: 0.5d
+			shape: "diamond"
+			subtitle: "Наберите шерсти. Только, пожалуйста, не убивайте овечек."
+			hide_dependency_lines: true
+			dependencies: ["5AE6ADFF7A567DF1"]
+			hide: true
+			size: 1.25d
+			id: "115663A56B52AF55"
+			tasks: [
+				{
+					id: "547EA08E946F077D"
+					type: "item"
+					item: {
+						id: "minecraft:shears"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "3E59990586BC70DA"
+					type: "item"
+					title: "任意 #minecraft:wool"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "minecraft:wool"
+						}
+					}
+					count: 4L
+					only_from_crafting: false
+				}
+			]
+			rewards: [{
+				id: "02B764E7890310EE"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			title: "扁平化的生物"
+			x: -9.5d
+			y: 2.0d
+			shape: "diamond"
+			subtitle: "Скрафтите спальный мешок"
+			description: ["Спальные мешки позволяют спать где угодно, не изменяя точку возрождения. Идеально для путешествий!"]
+			dependencies: ["115663A56B52AF55"]
+			hide: true
+			id: "7FCE0D49C71DDBC2"
+			tasks: [{
+				id: "5C7AAE8A44FE31A2"
+				type: "item"
+				item: "comforts:sleeping_bag_white"
+				only_from_crafting: false
+			}]
+			rewards: [{
+				id: "0F28268150D674D7"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			title: "С милым рай и в гамаке"
+			x: -9.5d
+			y: 5.0d
+			shape: "diamond"
+			subtitle: "白天的梦游症"
+			description: ["Поспать можно и днём! Для этого достаточно повесить гамак у себя на заднем дворе"]
+			dependencies: ["7FCE0D49C71DDBC2"]
+			hide: true
+			id: "688A3329E2D7FB92"
+			tasks: [
+				{
+					id: "072DFEA1F200A438"
+					type: "item"
+					item: "comforts:hammock_white"
+				}
+				{
+					id: "1D480FC473CC11FC"
+					type: "item"
+					item: "comforts:rope_and_nail"
+					count: 2L
+				}
+			]
+			rewards: [
+				{
+					id: "2F89A073432D88D8"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 1678205825642991271L
+				}
+				{
+					id: "1DD04BC1A1F1500E"
+					type: "item"
+					item: "corn_delight:creamy_corn_drink"
+					count: 5
+				}
+			]
+		}
+		{
+			x: -6.5d
+			y: 2.0d
+			shape: "diamond"
+			subtitle: "Нет воздуха, чтобы дышать?"
+			description: ["Сделайте простой дыхательный аппарат, который поможет вам в загрязненных промышленных зонах"]
+			dependencies: ["115663A56B52AF55"]
+			hide: true
+			id: "7BA29759D2B0CEE6"
+			tasks: [{
+				id: "369710F4DF47FDA5"
+				type: "item"
+				item: {
+					id: "adpother:iron_respirator"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				only_from_crafting: false
+			}]
+			rewards: [{
+				id: "23E2B14148BD14A4"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			title: "工业过滤系统"
+			x: -5.5d
+			y: 1.0d
+			shape: "diamond"
+			subtitle: "Создайте свой первый фильтр"
+			description: [
+				"Поместив фильтр (например, шерсть или бумагу) в рамку, можно собирать вещества из вредных выбросов."
+				""
+				"Разместите рамку прямо над механизмом или на выходе системы вентиляции, чтобы очищать воздух."
+				""
+				"Фильтруя вредные вещества, вы получите некоторое количество красителя, который можно использовать в автоматизации."
+				""
+				"P.S. Чтобы отфильтровать несколько видов вредных веществ, рамки можно установить последовательно одну над другой"
+				""
+				"Подробнее об использовании вентиляции читай на нашем &7wiki&r."
+			]
+			dependencies: ["115663A56B52AF55"]
+			hide: true
+			id: "06E5530DE0E7B481"
+			tasks: [{
+				id: "0B693F061F64C6EE"
+				type: "item"
+				item: "adpother:iron_filter_frame"
+				only_from_crafting: false
+			}]
+			rewards: [{
+				id: "168444D4C84E6B94"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			x: -10.5d
+			y: 1.0d
+			shape: "diamond"
+			subtitle: "通风！通！风！可！以！"
+			description: [
+				"Вентиляция нужна, чтобы очистить пещеры и промышленные помещения от копоти. Не забудь скрафтить насос!"
+				""
+				"Вентиляция всасывает вредные вещества на той же высоте в радиусе нескольких блоков. При этом помпы нужно размещать в начале и конце линии из блоков вентиляции."
+				""
+				"Подробнее об использовании вентиляции читай на нашем &7wiki&r."
+			]
+			dependencies: ["115663A56B52AF55"]
+			hide: true
+			id: "65F949C8AAEC01BA"
+			tasks: [
+				{
+					id: "79BD03BD3DCA1AFA"
+					type: "item"
+					item: "adchimneys:stone_vent"
+					only_from_crafting: false
+				}
+				{
+					id: "4B0E79635B288BAB"
+					type: "item"
+					item: "adchimneys:stone_pump"
+				}
+			]
+			rewards: [{
+				id: "4B11F61E72409FFA"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			title: "烟囱"
+			x: -8.0d
+			y: 3.5d
+			shape: "diamond"
+			subtitle: "Создайте первый дымовой канал"
+			description: [
+				"Дымоходы помогают вывести дым и гарь от механизмов вертикально вверх."
+				""
+				"Положите &7трубу&r прямо над механизмом или &7помпой&r, чтобы всасывать вредные вещества через неё."
+				""
+				"Подробнее об использовании вентиляции и труб читай на нашем &7wiki&r."
+			]
+			dependencies: ["115663A56B52AF55"]
+			hide: true
+			id: "056713A6B0BC9AC8"
+			tasks: [{
+				id: "6E9978B321EE60F9"
+				type: "item"
+				item: "adchimneys:stone_chimney"
+				only_from_crafting: false
+			}]
+			rewards: [{
+				id: "2BC707F0C6220069"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			title: "Типы загрязняющих веществ"
+			icon: "adpother:sulfur"
+			x: -10.5d
+			y: 3.5d
+			shape: "diamond"
+			subtitle: "Знай своего врага в лицо"
+			description: [
+				"{image:adpother:textures/block/dust_medium.png width:16 height:16 align:1}"
+				"&lПыль&r — мелкие частицы пыли, образующиеся при работе измельчителей, любых механизмов и печей. Оседает на земле, может попасть в лёгкие и глаза, вызвав кашель и ослепление. Фильтруется при помощи бумаги."
+				""
+				"{image:adpother:textures/block/sulfur_light.png width:16 height:16 align:1}"
+				"&lСера&r — светло-жёлтый порошкообразный неметалл. Вредна для лёгких и растений, а также взрывоопасна. Выделяется при горении и работе практически любых механизмов. Способна формировать облака, вызывающие токсичный дождь и отравление. Фильтр — шерсть."
+				""
+				"{image:adpother:textures/block/carbon_medium.png width:16 height:16 align:1}"
+				"&lУглерод&r — Ещё одни мелкие частицы вредного при высокой концентрации газа. Практически бесцветный. Образует облака на высоте 256 блоков. При высокой концентрации взрывоопасен, но гораздо слабее метана и серы. Фильтруется при помощи листвы."
+				""
+				"{image:minecraft:textures/block/blue_concrete.png width:16 height:16 align:1}"
+				"&lАммиак&r — токсичный газ удушающего и нейротропного действия, к тому же является удобрением. Будьте аккуратны при использовании механизмов, работающих с жидким и биотопливом. Способен концентрироваться на высоте 128 блоков. Фильтруется при помощи мха."
+				""
+				"{image:chipped:textures/block/red_terracotta/red_terracotta_pillarbottom.png width:16 height:16 align:1}"
+				"&lБотулотоксин&r — выбросы от цветков Botania и разбрасывателя маны, опасный яд, безвредный для растений, но смертельный для людей и мобов. Концентрируется на уровне моря. Фильтр — глина."
+				""
+				"{image:adpother:textures/block/carbon_light.png width:16 height:16 align:1}"
+				"&lФосген&r — очень ядовит, но только при вдыхании его паров. Безвреден для растений. Главный источник фосгена — механизмы, использующие сжатый воздух и функциональные цветы из Botania. Фильтруется при помощи пороха. Концентрируется на высоте до 190 блоков."
+			]
+			dependencies: ["65F949C8AAEC01BA"]
+			hide: true
+			id: "5E366E6437BFC016"
+			tasks: [{
+				id: "0E7118B5F49EC630"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "5499DD5FBF16169A"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			x: -8.0d
+			y: 6.0d
+			shape: "diamond"
+			dependencies: ["056713A6B0BC9AC8"]
+			hide: true
+			id: "7679CD813F442100"
+			tasks: [{
+				id: "6ADFD2954CC0AE7A"
+				type: "item"
+				item: "adchimneys:metal_chimney"
+				only_from_crafting: false
+			}]
+			rewards: [{
+				id: "736C8230518ED4BC"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			x: -6.5d
+			y: 3.5d
+			shape: "diamond"
+			subtitle: "Первый компонент пылесоса"
+			description: [
+				"Ручным насосом можно собирать накопившиеся отходы: Серу, Пыль, Углерод"
+				"Но очевидно, что чего-то не хватает..."
+			]
+			dependencies: ["7BA29759D2B0CEE6"]
+			hide: true
+			id: "2F1315036A26C44A"
+			tasks: [{
+				id: "718B41D5C394989F"
+				type: "item"
+				item: {
+					id: "adpother:iron_vacuum_tube"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				only_from_crafting: false
+			}]
+			rewards: [
+				{
+					id: "6CDBD5D73B5CDDD3"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 1678205825642991271L
+				}
+				{
+					id: "439031BD5F4979F1"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			x: -6.5d
+			y: 5.0d
+			shape: "diamond"
+			subtitle: "Теперь точно готово!"
+			description: [
+				"Вакуумный мешок фильтрует собираемые пылесосом отходы"
+				""
+				"Наковальней соедините с нужным фильтром (порох, шерсть или бумага) для сбора вредных выбросов."
+				""
+				"&7注意：&r过滤时需要使用&7两种&r材料。"
+			]
+			dependencies: ["2F1315036A26C44A"]
+			hide: true
+			id: "5A8109EB18B5C36F"
+			tasks: [{
+				id: "4BA504D228978AA3"
+				type: "item"
+				item: {
+					id: "adpother:iron_vacuum_bag"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				only_from_crafting: false
+			}]
+			rewards: [{
+				id: "31368CB53FD0D9F9"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			title: "生态日"
+			icon: "adpother:carbon"
+			x: -8.0d
+			y: 9.0d
+			shape: "diamond"
+			subtitle: "Соберите отходы вручную или с помощью фильтра"
+			description: ["Пришло время очистить воздух вокруг! Воспользуйтесь одним из ранее изученным способом очищения атмосферы: вентиляцией, пылесосом или автоматическим насосом."]
+			dependencies: [
+				"5A8109EB18B5C36F"
+				"46612FA91489ECD7"
+				"7679CD813F442100"
+				"780360C083D9EBD7"
+			]
+			size: 1.5d
+			id: "119452BF8DE08497"
+			tasks: [{
+				id: "6DBB9F112CEC7235"
+				type: "checkmark"
+			}]
+			rewards: [
+				{
+					id: "72DB518C8671E822"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 1678205825642991271L
+				}
+				{
+					id: "215762B1EBCF4BF4"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "07FFB93B9A8501D2"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 6601519554242782432L
+				}
+			]
+		}
+		{
+			x: -5.5d
+			y: 6.5d
+			shape: "diamond"
+			subtitle: "让它成为现实吧"
+			description: [
+				"Не знаю, зачем тебе алмазные рамки. Можешь просто пофлексить перед друзьями."
+				""
+				"Ты ведь уже прочел &7wiki&r про вентиляцию?"
+			]
+			dependencies: ["0F6E9120C81C92DB"]
+			hide: true
+			id: "46612FA91489ECD7"
+			tasks: [{
+				id: "4F32FB1B47A1658B"
+				type: "item"
+				item: "adpother:diamond_filter_frame"
+				only_from_crafting: false
+			}]
+			rewards: [{
+				id: "6CAC5836A52EEB13"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			x: -5.5d
+			y: 3.0d
+			shape: "diamond"
+			subtitle: "升级"
+			description: ["Помимо очистки воздуха, собранные ресурсы можно использовать в качестве топлива."]
+			dependencies: ["06E5530DE0E7B481"]
+			hide: true
+			id: "0F6E9120C81C92DB"
+			tasks: [{
+				id: "74ACB957F1B446DF"
+				type: "item"
+				item: "adpother:gold_filter_frame"
+				only_from_crafting: false
+			}]
+			rewards: [{
+				id: "02A86979F53DABBA"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			x: -10.5d
+			y: 6.5d
+			shape: "diamond"
+			subtitle: "Как пылесос, только блок"
+			description: [
+				"Металлическая версия каменной вентиляции и насоса. Позволяет откачивать вредные вещества в большем радиусе."
+				""
+				"Подробнее об использовании вентиляции читай на нашем &7wiki&r."
+			]
+			dependencies: ["5E366E6437BFC016"]
+			hide: true
+			id: "780360C083D9EBD7"
+			tasks: [
+				{
+					id: "3FB52E6922884FB5"
+					type: "item"
+					item: "adchimneys:metal_pump"
+				}
+				{
+					id: "76C2169066AACC3A"
+					type: "item"
+					item: "adchimneys:pipe"
+				}
+			]
+			rewards: [{
+				id: "22D523804C4FDD8C"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			title: "可选任务"
+			icon: "supplementaries:the_bumblezone/sign_post_beehive_beeswax"
+			x: -4.875d
+			y: -3.25d
+			shape: "circle"
+			subtitle: "并非所有任务都是强制性的"
+			description: [
+				"В большинстве глав есть дополнительные ветви с необязательными квестами. Их можно отличить по форме ромба"
+				""
+				"Обычно такие квесты не открывают новые главы или эпохи. Но за их выполнение можно получить редкие или просто ценные награды!"
+			]
+			hide_dependency_lines: true
+			dependencies: ["5AE6ADFF7A567DF1"]
+			hide: true
+			size: 3.25d
+			id: "2F19CD1BA9D53263"
+			tasks: [{
+				id: "7B96FDC087DC18BB"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "51DAD8800FA70DC9"
+				type: "item"
+				item: "farmersdelight:sweet_berry_cookie"
+			}]
+		}
+		{
+			title: "维度"
+			icon: "twilightforest:twilight_portal_miniature_structure"
+			x: 1.1d
+			y: -3.25d
+			subtitle: "Квесты открывают не только новые моды, но и новые возможности"
+			description: [
+				"За прохождение квестов вам будут постепенно открываться все новые измерения, каждое со своим набором заданий и наград."
+				""
+				"Например, за прохождение основной ветки квестов этой главы Вы откроете измерение Незер."
+			]
+			hide_dependency_lines: true
+			dependencies: ["5AE6ADFF7A567DF1"]
+			hide: true
+			size: 3.25d
+			id: "642200216EE63841"
+			tasks: [{
+				id: "7910226C1803A62A"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "60132E33D83A5B96"
+				type: "item"
+				item: "minecraft:glowstone_dust"
+			}]
+		}
+		{
+			title: "горит, ясно?"
+			icon: "minecraft:campfire"
+			x: 1.0d
+			y: 2.0d
+			subtitle: "Добудьте огонь, чтобы освободить место для новых блоков."
+			description: [
+				"Факелы крафтят негорящими. Поджечь их можно с помощью Огнива во второй руке или от костра. Время горения таких факелов ограничено, и они могут потухнуть под водой."
+				""
+				"Чтобы создать костер, бросьте на землю бревно, несколько палок или листьев, нажмите и удерживайте Правую Кнопку мыши, глядя на лежащие предметы, держа в руках &eПоджигалочку&r."
+			]
+			dependencies: ["349B881A94D29C0E"]
+			hide: true
+			id: "07208DB58DDE9E47"
+			tasks: [
+				{
+					id: "5E06F4218D614A85"
+					type: "item"
+					item: "hardcore_torches:lit_torch"
+				}
+				{
+					id: "2C1914D99EE38017"
+					type: "item"
+					item: {
+						id: "notreepunching:fire_starter"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+					only_from_crafting: false
+				}
+				{
+					id: "39492E890E1C8B26"
+					type: "observation"
+					title: "Создать костёр"
+					icon: "minecraft:campfire"
+					timer: 0L
+					observe_type: 0
+					to_observe: "minecraft:campfire"
+				}
+			]
+			rewards: [
+				{
+					id: "711D96167E4CD232"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 1678205825642991271L
+				}
+				{
+					id: "726C653E7246FDEF"
+					type: "item"
+					item: "minecraft:emerald"
+					random_bonus: 4
+				}
+			]
+		}
+		{
+			title: "日历"
+			icon: "sereneseasons:calendar"
+			x: -0.625d
+			y: 6.875d
+			shape: "diamond"
+			subtitle: "Времена года (The Seasons of the Year)"
+			description: ["Календарь отображает текущий сезон в Верхнем Мире: Лето, Осень, Зиму или Весну."]
+			hide_dependency_lines: true
+			dependencies: ["5AE6ADFF7A567DF1"]
+			hide: true
+			size: 1.25d
+			id: "5E9620A4BB85DD4A"
+			tasks: [{
+				id: "3D969B1F3E0EAEF5"
+				type: "item"
+				item: "sereneseasons:calendar"
+			}]
+			rewards: [{
+				id: "40EE6D9BB1732C3D"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			title: "末地邮政系统"
+			icon: "endermail:stamp"
+			x: -3.125d
+			y: 6.875d
+			shape: "diamond"
+			subtitle: "Ваш персональный эндер-почтальон"
+			description: [
+				"Вы можете отправлять посылки себе или другим игрокам с помощью &1ЭндерПочты&r."
+				""
+				"Для этого вам понадобится &3Марка&r, &eПосылка&r и &5Контроллер Посылки&r."
+				""
+				"Поставьте посылку, сложите в неё предметы. Затем наклейте на неё &3Марку&r, укажите координаты для отправки или id &6Ячейки&r и вызовите почтальона с помощью &5Контроллера Посылки&r."
+				""
+				"Также для получения посылок можно использовать &6Ячейки&r с уникальными id, чтобы не вводить координаты каждый раз, а указывать id ячейки на марке."
+			]
+			hide_dependency_lines: true
+			dependencies: ["5AE6ADFF7A567DF1"]
+			hide: true
+			size: 1.25d
+			id: "7BCA821CB1FCC3E7"
+			tasks: [
+				{
+					id: "3CE77AE6E6F766FD"
+					type: "item"
+					item: "endermail:package"
+				}
+				{
+					id: "4A2442605E547331"
+					type: "item"
+					item: {
+						id: "endermail:package_controller"
+						Count: 1b
+						tag: { }
+					}
+				}
+				{
+					id: "10D6FE4116709E71"
+					type: "item"
+					item: "endermail:packing_tape"
+				}
+				{
+					id: "1233AF6EE81CA783"
+					type: "item"
+					item: "endermail:stamp"
+				}
+				{
+					id: "4A6F10944CEF199A"
+					type: "item"
+					item: "endermail:locker"
+				}
+			]
+			rewards: [{
+				id: "7A70B7C663230C5B"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			title: "&d宠物与挚爱生物"
+			icon: {
+				id: "domesticationinnovation:pet_bed_white"
+				Count: 1b
+				tag: {
+					Enchantments: [{
+						lvl: 1s
+						id: "tombstone:soulbound"
+					}]
+				}
+			}
+			x: -2.0d
+			y: 1.5d
+			subtitle: "打开DLC"
+			description: ["Научитесь пользоваться новыми предметами и механиками приручения, призыва дружелюбных и не очень мобов."]
+			hide_dependency_lines: true
+			dependencies: ["5AE6ADFF7A567DF1"]
+			hide: true
+			size: 1.5d
+			id: "45F03A858DC723A1"
+			tasks: [{
+				id: "31DAC976995DAC50"
+				type: "gamestage"
+				title: "Доступно подписчикам &6Boosty&r и на сервере с пропуском"
+				icon: {
+					id: "supplementaries:globe_sepia"
+					Count: 1b
+					tag: {
+						Enchantments: [{
+							lvl: 1s
+							id: "tombstone:soulbound"
+						}]
+					}
+				}
+				stage: "quest_dlc"
+			}]
+		}
+		{
+			x: -2.0d
+			y: -4.5d
+			shape: "diamond"
+			subtitle: "Покажет не только путь"
+			description: ["Положите компас в инвентарь, и в верхней части экрана появится радар игроков, а также указатель направления взгляда."]
+			hide_dependency_lines: true
+			dependencies: ["5AE6ADFF7A567DF1"]
+			hide: true
+			size: 1.25d
+			id: "377D1CAA42526FC9"
+			tasks: [{
+				id: "666B81F3D1D5E950"
+				type: "item"
+				item: "minecraft:compass"
+			}]
+			rewards: [{
+				id: "461F881E70563E2D"
+				type: "xp"
+				xp: 150
+			}]
+		}
+		{
+			x: -2.0d
+			y: -6.5d
+			shape: "diamond"
+			subtitle: "点与标记（Points and Markers）"
+			description: ["&eАнтичный Атлас&r автоматически рисует ландшафт местности вокруг вас. А еще на нём можно ставить собственные метки с различными картинками и надписями."]
+			dependencies: ["377D1CAA42526FC9"]
+			hide: true
+			size: 1.5d
+			id: "26F247D07857A18A"
+			tasks: [{
+				id: "69FB919DFF8E4530"
+				type: "item"
+				item: "antiqueatlas:empty_antique_atlas"
+			}]
+			rewards: [{
+				id: "447036ACA8487288"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 310419349268982113L
+			}]
+		}
+		{
+			title: "&d农夫的喜悦"
+			icon: {
+				id: "farmersdelight:hamburger"
+				Count: 1b
+				tag: {
+					Enchantments: [{
+						lvl: 1s
+						id: "tombstone:soulbound"
+					}]
+				}
+			}
+			x: -2.0d
+			y: 4.0d
+			subtitle: "打开DLC"
+			description: ["Откройте для себя мир новых рецептов, вкусностей и блюд мода Farmer's Delight, а также нескольких аддонов к нему."]
+			hide_dependency_lines: true
+			dependencies: ["5AE6ADFF7A567DF1"]
+			hide: true
+			size: 1.5d
+			id: "517390FF0F5D7668"
+			tasks: [{
+				id: "51076BDB1BC14DD9"
+				type: "gamestage"
+				title: "Доступно подписчикам &6Boosty&r и на сервере с пропуском"
+				icon: {
+					id: "supplementaries:globe_sepia"
+					Count: 1b
+					tag: {
+						Enchantments: [{
+							lvl: 1s
+							id: "tombstone:soulbound"
+						}]
+					}
+				}
+				stage: "quest_dlc"
+			}]
+		}
+		{
+			title: "饮食计划"
+			x: 4.0d
+			y: 2.5d
+			subtitle: "Ты — это то, что ты ешь, и то, что ты пьёшь, определяет, кем ты станешь."
+			description: [
+				"Ты ведь знаешь, что еда состоит из &7разных&r полезных веществ?"
+				""
+				"Прежде чем съесть какой-либо съедобный предмет, обрати внимание, какие питательные вещества он добавит в твой организм. Это могут быть &cсахара, &aфрукты, &eзлаки, &1протеины&r и &aовощи&r."
+				""
+				"Среднее значение злаков, фруктов и овощей в организме влияет на твой уровень здоровья."
+				""
+				"Уровень белка влияет на силу и скорость атаки. Если переборщить с белком, ты станешь сильным, но медлительным."
+				""
+				"&cСахар&r влияет на скорость реакции персонажа. Чем больше сахарных трубочек или сладких яблок ты съешь, тем быстрее будут твои движения и атаки. Будь осторожен! От переизбытка сахара можно отравиться, а его уровень снижается медленнее, чем у остальных веществ."
+			]
+			dependencies: ["349B881A94D29C0E"]
+			hide: true
+			id: "595A7E6FC84D3448"
+			tasks: [
+				{
+					id: "2E88782DC9F2797A"
+					type: "item"
+					item: "minecraft:apple"
+				}
+				{
+					id: "5787EB43A297107D"
+					type: "item"
+					item: "minecraft:carrot"
+				}
+				{
+					id: "3736DDF18BE1CBF9"
+					type: "item"
+					item: "minecraft:cooked_beef"
+				}
+				{
+					id: "042CD1B2A8648052"
+					type: "item"
+					item: "buzzier_bees:honey_apple"
+				}
+			]
+			rewards: [{
+				id: "20195AC3EFF8D412"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 8885755811588183061L
+			}]
+		}
+		{
+			title: "理智判断"
+			icon: {
+				id: "botania:cosmetic_tiny_potato_mask"
+				Count: 1b
+				tag: { }
+			}
+			x: 4.0d
+			y: 4.0d
+			subtitle: "Саня, ты в порядке? Ты в порядке, Саня?"
+			description: [
+				"Ваш уровень рассудка влияет на самочувствие. Следите за шкалой рассудка слева от панели инвентаря."
+				""
+				"Потерять рассудок, постоянно сражаясь с монстрами, гуляя ночью или в темной пещере, а также убивая неповинных мобов довольно просто, поэтому не забывай время от времени восстанавливать свою адекватность."
+				""
+				"В заданиях ты найдешь лишь некоторые простые способы восстановить шкалу рассудка. Не забывай также, что хорошая компания и здоровый сон, а также выполнение достижений положительно влияют на твой рассудок)"
+				""
+				"При низком уровне рассудка ты можешь начать слышать и видеть странные вещи. Будь осторожен с этим.."
+			]
+			dependencies: ["595A7E6FC84D3448"]
+			hide: true
+			id: "2599496071CAA143"
+			tasks: [
+				{
+					id: "13D2831238957277"
+					type: "observation"
+					title: "Посидеть у костра"
+					icon: "minecraft:campfire"
+					timer: 0L
+					observe_type: 0
+					to_observe: "minecraft:campfire"
+				}
+				{
+					id: "54138C6FECD1BCA3"
+					type: "item"
+					title: "Бросаться скорлупой друг в друга"
+					item: "minecraft:egg"
+					count: 8L
+				}
+				{
+					id: "4A78CC82F4E32A78"
+					type: "item"
+					title: "种植一朵花"
+					item: "minecraft:flower_pot"
+				}
+				{
+					id: "49DC945C725DF641"
+					type: "stat"
+					title: "聆听舒缓的音乐，放松身心"
+					icon: "minecraft:music_disc_cat"
+					stat: "minecraft:play_record"
+					value: 1
+				}
+			]
+			rewards: [
+				{
+					id: "5A29941DF5D2F0A5"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 7817187984711252441L
+				}
+				{
+					id: "7E434981ADEAD7B5"
+					type: "custom"
+					title: "心臓の食いしん坊 (1/5)"
+					icon: "waifucraft:waifu_ring_creative"
+				}
+			]
+		}
+		{
+			title: "Подземные сады"
+			icon: "undergarden:grongle_sapling"
+			x: 3.0d
+			y: 9.0d
+			shape: "hexagon"
+			subtitle: "Здесь явно спокойнее, чем в других местах"
+			description: [
+				"Найди себе новое прочное снаряжение, которое дешевле железного."
+				""
+				"К тому же, здесь всегда прохладно и свежо, в отличие от душных пещер."
+				""
+				"Ты ведь не боишься, что ли?"
+			]
+			hide_dependency_lines: true
+			dependencies: ["1367F0CB450B5E16"]
+			hide: true
+			id: "7F3250386521D2B2"
+			tasks: [{
+				id: "2CD0E4FA98B18E6C"
+				type: "checkmark"
+			}]
+			rewards: [
+				{
+					id: "4486D9BCCB66A992"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 310419349268982113L
+				}
+				{
+					id: "60102F66E816A6F5"
+					type: "gamestage"
+					auto: "invisible"
+					ignore_reward_blocking: true
+					stage: "undergarden"
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+}
