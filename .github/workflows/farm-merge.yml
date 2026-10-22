@@ -33,6 +33,16 @@ on:
         required: false
         default: false
         type: boolean
+      mirrorOnly:
+        description: '只补夸克镜像：给「已有 zip 但分享链接为空」的历史包回填链接，不合并、不打包'
+        required: false
+        default: false
+        type: boolean
+      mirrorLimit:
+        description: 'mirrorOnly 时最多处理多少个包（默认 50，防止一次几千次上传触发风控）'
+        required: false
+        default: '50'
+        type: string
 
 permissions:
   contents: write
@@ -145,7 +155,7 @@ jobs:
             --out "$FARM_DIR/plan.json" --github-output "$GITHUB_OUTPUT"
 
       - name: Check out only the delta
-        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true) && inputs.mirrorOnly != true
         run: |
           set -euo pipefail
           # 逐文件 checkout，不整目录覆盖：main 的 patches/<slug>/ 里可能已经有别台合进来的
@@ -170,16 +180,16 @@ jobs:
       # 结果不是假绿就是误红。所以必须在闸门和打包之前先补一趟布局。
       # 此刻 downloads/<slug>.zip 还没生成（delivered=false），下一轮再补交付状态。
       - name: Build index (layout pass)
-        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
         run: node scripts/build-index.mjs
 
       # 闸门：增量落盘之后、打包之前。npm test 里已经含 build/site 的数据契约测试。
       - name: Run tests
-        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
         run: npm test
 
       - name: Validate quest files
-        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
         run: |
           set -uo pipefail
           # 闸门判红时先「踢掉坏包再校验一次」，而不是整批停摆。
@@ -213,7 +223,7 @@ jobs:
       # 先打包：镜像上传的是 downloads/<slug>.zip，它由 release.mjs 产出（幂等，重跑字节相同）。
       # 必须在 layout pass 之后：release.mjs 用 index-dataset 里的 layout 决定 zip 的目录形态。
       - name: Package patches
-        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true) && inputs.mirrorOnly != true
         run: |
           set -euo pipefail
           # 闸门那步会把坏包从工作区删掉，这里必须按「目录还在」过滤一遍：
@@ -235,7 +245,7 @@ jobs:
       # 路径必须是 <技能根>/qoder/config.json；旧写法的 openclaw/config.json 不生效（实测），
       # 会让 CLI 表现为未登录：绿色通过但零链接。写入后只报字节数，绝不打印内容。
       - name: Restore quark config
-        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
         env:
           QUARK_CONFIG_JSON: ${{ secrets.QUARK_CONFIG_JSON }}
         run: |
@@ -252,14 +262,51 @@ jobs:
       # CLI 是 620KB 自包含单文件，超 secret 48KB 上限，也不入库，只能每次下载。
       # 安装脚本本身容错（失败只警告、exit 0）；本轮「必须」镜像由 QUARK_REQUIRED=1 保证。
       - name: Install quark CLI
-        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
         run: bash scripts/install-quark-cli.sh
+
+      - name: Resolve mirror targets
+        id: mirrorTargets
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
+        run: |
+          set -euo pipefail
+          # 两个来源：
+          #  1) 本轮合进来的包（PACKAGE_SLUGS）；
+          #  2) mirrorOnly 回填模式：有 zip 但 research/quark-mirrors.json 里 shareUrl 为空的历史包。
+          # 为什么要有 (2)：镜像失败只留空不阻断（设计如此），于是「uploaded 但没拿到分享链接」
+          # 会安静地停在空字符串上 —— 2026-10-23 就有 11 个包是这个状态，站点上按钮不渲染，
+          # 没人会发现。回填入口让这件事变成可以一键重跑的动作。
+          LIST=""
+          if [ -n "${PACKAGE_SLUGS:-}" ]; then
+            LIST="$PACKAGE_SLUGS"
+          fi
+          if [ "${{ inputs.mirrorOnly }}" = "true" ]; then
+            LIMIT="${{ inputs.mirrorLimit }}"
+            case "$LIMIT" in ''|*[!0-9]*) LIMIT=50 ;; esac
+            BACKFILL=$(node --input-type=module -e '
+              import { readFileSync, readdirSync } from "node:fs"
+              const mirrors = JSON.parse(readFileSync("research/quark-mirrors.json", "utf8")).mirrors || {}
+              const zips = readdirSync("downloads").filter((f) => f.endsWith(".zip")).map((f) => f.slice(0, -4))
+              const missing = zips.filter((s) => !(mirrors[s] && mirrors[s].shareUrl)).sort()
+              console.log(missing.join(","))
+            ')
+            LIST="${LIST:+$LIST,}$BACKFILL"
+          fi
+          # 去重且保序
+          LIST=$(printf '%s' "$LIST" | tr ',' '\n' | awk 'NF' | awk '!seen[$0]++' | paste -sd, -)
+          if [ "${{ inputs.mirrorOnly }}" = "true" ] && [ -n "$LIST" ]; then
+            LIMIT="${{ inputs.mirrorLimit }}"
+            case "$LIMIT" in ''|*[!0-9]*) LIMIT=50 ;; esac
+            LIST=$(printf '%s' "$LIST" | tr ',' '\n' | head -n "$LIMIT" | paste -sd, -)
+          fi
+          echo "MIRROR_SLUGS=$LIST" >> "$GITHUB_ENV"
+          echo "镜像目标：$(printf '%s' "$LIST" | tr ',' '\n' | grep -c . ) 个"
 
       - name: Mirror to Quark
         id: mirror
         # 镜像失败不阻断入库：译文是主要价值，先把 main 推进去；
         # 但「零链接却绿灯」不可接受，由末尾独立一步统一判红。
-        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
         continue-on-error: true
         run: |
           CLI="$HOME/.pi/agent/skills/quarkclouddrive/scripts/quark-drive.cjs"
@@ -269,15 +316,13 @@ jobs:
           else
             echo "::warning::夸克 CLI 不存在（Install quark CLI 未成功），本轮跳过镜像。"
           fi
-          # 用 PACKAGE_SLUGS 而不是 plan.slugs：被闸门踢掉的包没有 zip，交给 mirror 只会
-          # 报「找不到补丁包」并留空，白烧一次上传尝试。
           # 空值必须显式跳过：mirror.mjs 的 --ids 传空串等于「不限定」，会把全部历史 zip
           # 重新走一遍上传流程（幂等能挡住重复分享，但没必要每周烧几百次调用）。
-          if [ -z "${PACKAGE_SLUGS:-}" ]; then
-            echo "::warning::本轮无可打包的包，跳过夸克镜像"
+          if [ -z "${MIRROR_SLUGS:-}" ]; then
+            echo "::warning::本轮没有需要镜像的包，跳过"
             exit 0
           fi
-          node scripts/mirror.mjs --ids "$PACKAGE_SLUGS"
+          node scripts/mirror.mjs --ids "$MIRROR_SLUGS"
         env:
           QODER_PRODUCT_ID: qoder
           QODER_AGENT: 'true'
@@ -291,14 +336,14 @@ jobs:
       # 换来打包与闸门拿到正确 layout——比在 release/validate 里各自猜布局便宜得多。
       # 索引与站点数据仍须在本轮 zip / 镜像链接落盘之后重算，否则新条目在站点上是「未交付」。
       - name: Rebuild index (delivered pass) and site data
-        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
         run: |
           node scripts/build-index.mjs
           node scripts/build-site-data.mjs
           node scripts/build-site-html.mjs
 
       - name: Stage artifacts
-        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
         run: |
           set -euo pipefail
           node --input-type=module -e '
@@ -319,7 +364,7 @@ jobs:
 
       - name: Commit and push
         id: commit
-        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
