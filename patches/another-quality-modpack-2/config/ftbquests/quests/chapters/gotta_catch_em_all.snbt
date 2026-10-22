@@ -1,0 +1,672 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "rsquare"
+	filename: "gotta_catch_em_all"
+	group: "50115579257378EC"
+	icon: "guardiansgalore:bowl_of_seed"
+	id: "4A06B17F82107FE8"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"守护者宠物一旦设置好，就能阻止怪物生成。走开，苦力...怕。"
+				""
+				"共有12种宠物，每种有4-7种皮肤变化，它们会在锚点休息，直到你回来才会四处走动。"
+			]
+			id: "1065CAB5189B3DD4"
+			size: 1.4d
+			subtitle: "守护者宠物一旦设置好，将阻止怪物生成。"
+			tasks: [{
+				id: "114DC90B3A5D2DA8"
+				item: "guardiansgalore:guardian_block"
+				only_from_crafting: true
+				type: "item"
+			}]
+			title: "阻止生物生成的宠物模组"
+			x: -1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["1065CAB5189B3DD4"]
+			description: [
+				"使用正确的碗来召唤一个守卫者。"
+				""
+				"将碗放在锚的上面，与碗相关的宠物就会生成"
+			]
+			id: "6D893BC304AD9E5B"
+			rewards: [{
+				id: "2A06A0DC04241230"
+				item: "farmersdelight:chicken_sandwich"
+				type: "item"
+			}]
+			subtitle: "守卫会阻止某些生物生成"
+			tasks: [{
+				id: "1BBD90B219E05652"
+				item: {
+					Count: 1b
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "guardiansgalore:bowl_of_seed"
+							}
+							{
+								Count: 1b
+								id: "guardiansgalore:bowl_of_apples"
+							}
+							{
+								Count: 1b
+								id: "guardiansgalore:bowl_of_bones"
+							}
+							{
+								Count: 1b
+								id: "guardiansgalore:bowl_of_carrots"
+							}
+							{
+								Count: 1b
+								id: "guardiansgalore:bowl_of_gold"
+							}
+							{
+								Count: 1b
+								id: "guardiansgalore:bowl_of_mixed_seed"
+							}
+							{
+								Count: 1b
+								id: "guardiansgalore:bowl_of_hay"
+							}
+							{
+								Count: 1b
+								id: "guardiansgalore:bowl_of_potatoes"
+							}
+							{
+								Count: 1b
+								id: "guardiansgalore:bowl_of_toadstools"
+							}
+							{
+								Count: 1b
+								id: "guardiansgalore:bowl_of_melon"
+							}
+							{
+								Count: 1b
+								id: "guardiansgalore:bowl_of_wheat"
+							}
+							{
+								Count: 1b
+								id: "guardiansgalore:bowl_of_emerald"
+							}
+						]
+					}
+				}
+				title: "制作一个碗。"
+				type: "item"
+			}]
+			title: "召唤一个守卫者"
+			x: 0.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["1065CAB5189B3DD4"]
+			description: [
+				"用这个铃铛，右键点击有宠物的锚石，可以扩大消失范围，走得更远"
+				""
+				"要缩短范围，请清空物品栏并右键单击。"
+			]
+			id: "092D6149B54BA8F0"
+			optional: true
+			tasks: [{
+				id: "67F784A1AE84B446"
+				item: "guardiansgalore:blaze_bell"
+				only_from_crafting: true
+				type: "item"
+			}]
+			title: "扩大生物消失范围"
+			x: -1.5d
+			y: 0.0d
+		}
+		{
+			description: ["每种奇美拉颜色都有独特的技能组合。通过不同颜色之间的繁殖可以获得这些技能。更多详情请参阅指南"]
+			id: "334D03E86951F1E6"
+			rewards: [{
+				id: "6A4FD6E6BF99A746"
+				item: "chococraft:gysahl_green"
+				type: "item"
+			}]
+			size: 1.4d
+			subtitle: "想不想骑一只チョコボ（Chocobo）？"
+			tasks: [{
+				icon: "chococraft:gold_chocobo_spawn_egg"
+				id: "1869FD8C81AE2490"
+				observe_type: 5
+				timer: 0L
+				to_observe: "chococraft:chocobo"
+				type: "observation"
+			}]
+			title: "找到并看向一只奇可宝（Chocobo）"
+			x: -1.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["334D03E86951F1E6"]
+			description: ["它们可以自行脱落，你也可以杀死它们来获取。请善待我的巧克力们"]
+			id: "2E90E67AC2943729"
+			rewards: [{
+				id: "784DC35B3E24C103"
+				item: "chococraft:chocobo_drumstick_raw"
+				type: "item"
+			}]
+			subtitle: "巧克力偶尔会掉落的东西"
+			tasks: [{
+				id: "6D4B5AECDDD34402"
+				item: "chococraft:chocobo_feather"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["2E90E67AC2943729"]
+			id: "1C0A35A11BFF4079"
+			rewards: [
+				{
+					exclude_from_claim_all: true
+					id: "631A81EFCD05BF76"
+					table_id: 573515503278690972L
+					type: "random"
+				}
+				{
+					id: "7845B4388C08FC5E"
+					item: "chococraft:gysahl_green"
+					random_bonus: 3
+					type: "item"
+				}
+			]
+			subtitle: "伪装自己，让奇可波不再那么胆小"
+			tasks: [
+				{
+					id: "35D02867EFAE94D5"
+					item: {
+						Count: 1b
+						id: "chococraft:choco_disguise_chestplate"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "31691D75D8CD7AA4"
+					item: {
+						Count: 1b
+						id: "chococraft:choco_disguise_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "7F9DAB64639B3CE5"
+					item: {
+						Count: 1b
+						id: "chococraft:choco_disguise_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "325C48D55CBD3A8E"
+					item: {
+						Count: 1b
+						id: "chococraft:choco_disguise_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			x: 0.5d
+			y: 8.0d
+		}
+		{
+			dependencies: ["283868E45D3BAC91"]
+			description: ["成功率很低，可能需要10-20个Gyashl才能成功"]
+			id: "684BB056AABAAA1E"
+			rewards: [{
+				id: "7E47727C6A27DC20"
+				item: "chococraft:chocobo_drumstick_cooked"
+				type: "item"
+			}]
+			subtitle: "用 Gyashls 驯服你的 Chocobo，也可以用它们来繁殖"
+			tasks: [{
+				checkItem: true
+				entity: "chococraft:chocobo"
+				icon: "chococraft:gysahl_green"
+				id: "0400E992CA56BD34"
+				item: "chococraft:gysahl_green"
+				nbt: { }
+				title: "用 Gyashl 驯服生物"
+				type: "questsadditions:interaction"
+				value: 3L
+			}]
+			x: 3.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["2E90E67AC2943729"]
+			description: ["这些奇妙的作物通常可以在平原中找到"]
+			id: "283868E45D3BAC91"
+			rewards: [{
+				id: "228612B50A248CA5"
+				item: "chococraft:gysahl_green"
+				type: "item"
+			}]
+			subtitle: "在 Gyashl Patches 中发现"
+			tasks: [{
+				id: "0ECD73B3CE0D4102"
+				item: "chococraft:gysahl_green"
+				type: "item"
+			}]
+			title: "收集 Gyashl 的作物"
+			x: 0.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["684BB056AABAAA1E"]
+			description: [
+				"繁殖一组乔克波后，会繁殖出一只雏鸟。"
+				""
+				"给奇可波喂食蛋糕，让它们长大成人"
+			]
+			id: "32782A629C2FC176"
+			rewards: [{
+				id: "1973F377790F8F60"
+				item: "chococraft:chocobo_drumstick_cooked"
+				random_bonus: 2
+				type: "item"
+			}]
+			subtitle: "使用在奇可斯上使其生长"
+			tasks: [{
+				id: "4C2B5B0044DC331A"
+				item: "chococraft:gysahl_cake"
+				type: "item"
+			}]
+			x: 3.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["684BB056AABAAA1E"]
+			description: ["此物品可提高驯服/繁殖的成功率"]
+			id: "679BB57858010CC4"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "53530B8BAA287E9D"
+				table_id: 573515503278690972L
+				type: "random"
+			}]
+			subtitle: "高级驯养与繁殖物品，有20%的几率获得能力"
+			tasks: [{
+				id: "4A01E0F4516D134E"
+				item: "chococraft:loverly_gysahl_green"
+				type: "item"
+			}]
+			x: 3.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["684BB056AABAAA1E"]
+			description: ["Wonder、Follow、Stay 是你可以用来控制你的 Chocobo 的命令"]
+			id: "5F30EAA1BAC9D791"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7EAAA8A8A0E9768B"
+				table_id: 1140926682852401208L
+				type: "random"
+			}]
+			subtitle: "指令奇美拉"
+			tasks: [{
+				id: "36C907C8786497AA"
+				item: "chococraft:chocobo_whistle"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["684BB056AABAAA1E"]
+			id: "1D6A17933AA9DDBC"
+			rewards: [
+				{
+					id: "645A1C268E8AD25E"
+					item: "minecraft:leather"
+					type: "item"
+				}
+				{
+					id: "2E03B587D272E25A"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+			]
+			subtitle: "放在奇可波上即可骑乘"
+			tasks: [{
+				id: "0DF7996FB0D48333"
+				item: "chococraft:chocobo_saddle"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["1D6A17933AA9DDBC"]
+			id: "7AADD27E7613F776"
+			optional: true
+			rewards: [
+				{
+					id: "6D3309B81F70DB6F"
+					item: "minecraft:leather"
+					type: "item"
+				}
+				{
+					id: "46DCB29AC7B6936C"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+			]
+			subtitle: "为您的乔巴添加了18个格子的存储空间"
+			tasks: [{
+				id: "765066C5008F8F9B"
+				item: "chococraft:chocobo_saddle_bags"
+				type: "item"
+			}]
+			x: 8.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["7AADD27E7613F776"]
+			id: "01803E761057965F"
+			optional: true
+			rewards: [
+				{
+					id: "7FE85A6C57839F36"
+					item: "chococraft:gysahl_green"
+					random_bonus: 3
+					type: "item"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "0BB05AF399623AB7"
+					table_id: 573515503278690972L
+					type: "random"
+				}
+			]
+			subtitle: "将槽位升级到45个"
+			tasks: [{
+				id: "77959D074BB70D54"
+				item: "chococraft:chocobo_saddle_pack"
+				type: "item"
+			}]
+			x: 10.0d
+			y: 6.0d
+		}
+		{
+			description: [
+				"包含可驯服和骑乘的陆地、水生和飞行生物。"
+				""
+				"找到后，使用驯服物品驯服，或尝试持续骑乘来驯服（具体取决于生物，这可能需要更长时间，并可能改变它们的态度）"
+				""
+				"强烈建议阅读这本书以了解更多信息。"
+			]
+			id: "666501EEF3D9647A"
+			rewards: [
+				{
+					count: 2
+					id: "4A792EC37A13A4CB"
+					item: "minecraft:bone"
+					random_bonus: 4
+					type: "item"
+				}
+				{
+					count: 2
+					id: "3B394A040E266F2E"
+					item: "minecraft:salmon"
+					random_bonus: 4
+					type: "item"
+				}
+				{
+					count: 2
+					id: "6AA8DDF1AD7315B0"
+					item: "minecraft:rabbit"
+					random_bonus: 4
+					type: "item"
+				}
+				{
+					count: 2
+					id: "72B0C74530A04E6B"
+					item: "minecraft:melon"
+					random_bonus: 4
+					type: "item"
+				}
+				{
+					count: 2
+					id: "27C44AB98AF4CC5F"
+					item: "minecraft:feather"
+					type: "item"
+				}
+			]
+			size: 1.4d
+			subtitle: "神话坐骑 - 驯服、繁殖、超赞。"
+			tasks: [{
+				id: "45D20E91DF55B4E5"
+				item: {
+					Count: 1b
+					id: "patchouli:guide_book"
+					tag: {
+						"patchouli:book": "mythicmounts:mythical_mounts"
+					}
+				}
+				type: "item"
+			}]
+			x: -10.5d
+			y: 10.0d
+		}
+		{
+			dependencies: ["666501EEF3D9647A"]
+			id: "76BAFBA41BD55129"
+			subtitle: "用于在一定范围内召唤你已绑定的生物"
+			tasks: [{
+				id: "4BA5F12FF1B076FD"
+				item: {
+					Count: 1b
+					id: "mythicmounts:summoning_staff"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -10.5d
+			y: 12.5d
+		}
+		{
+			dependencies: ["666501EEF3D9647A"]
+			id: "0481580D9812BB8B"
+			rewards: [{
+				count: 2
+				id: "75A90C373CF2C491"
+				item: "minecraft:potato"
+				random_bonus: 4
+				type: "item"
+			}]
+			subtitle: "驯服后的生物需要这个才能骑乘它"
+			tasks: [{
+				id: "3587EC9E10F4889B"
+				item: "minecraft:saddle"
+				type: "item"
+			}]
+			x: -8.0d
+			y: 10.0d
+		}
+		{
+			dependencies: ["0481580D9812BB8B"]
+			id: "6648B4D9ADA65408"
+			rewards: [{
+				id: "35E0B645FC523148"
+				type: "xp"
+				xp: 20
+			}]
+			subtitle: "一些驯服的生物会接受箱子来增加储物空间"
+			tasks: [{
+				id: "0F91E89475F33B83"
+				item: "minecraft:chest"
+				only_from_crafting: true
+				type: "item"
+			}]
+			x: -5.5d
+			y: 10.0d
+		}
+		{
+			description: ["在草地中找到的物品"]
+			id: "5B8AE5AABD9ED3D7"
+			rewards: [{
+				count: 5
+				id: "1398101C2D8B0FCD"
+				item: "aqm2:copper_coin"
+				type: "item"
+			}]
+			size: 1.33d
+			subtitle: "如果你驯服了它，这个小家伙会帮你给植物浇水"
+			tasks: [{
+				icon: "sprout:elephant_spawn_egg"
+				id: "3ECBBEC37B6C803A"
+				observe_type: 5
+				timer: 0L
+				title: "你发现了大象 Sprout 的身影"
+				to_observe: "sprout:elephant"
+				type: "observation"
+			}]
+			title: "查看树苗，驯服树苗"
+			x: -23.0d
+			y: 9.5d
+		}
+		{
+			dependencies: ["62297AA4F8453CD0"]
+			description: ["驯服后，如果你的树苗在水源旁，它会蓄水并为你的植物和作物浇水"]
+			id: "12398FA13C864E41"
+			rewards: [{
+				count: 10
+				id: "3487DA551E3E2131"
+				item: "aqm2:copper_coin"
+				type: "item"
+			}]
+			tasks: [{
+				checkItem: true
+				entity: "sprout:elephant"
+				id: "66ACBC5525A11674"
+				item: "sprout:peanut"
+				nbt: { }
+				title: "使用花生进行驯服"
+				type: "questsadditions:interaction"
+				value: 4L
+			}]
+			x: -17.5d
+			y: 9.5d
+		}
+		{
+			id: "6FB2B471474BF7EE"
+			rewards: [{
+				count: 5
+				id: "710550B0DF4E1B9D"
+				item: "aqm2:copper_coin"
+				type: "item"
+			}]
+			size: 1.33d
+			subtitle: "这些虫子可以被捕捉，用来帮助种植下界疣和蘑菇"
+			tasks: [{
+				icon: "sprout:bouncebug_spawn_egg"
+				id: "5FBACF2A4D88EF09"
+				observe_type: 5
+				timer: 20L
+				title: "你看到了蹦蹦虫 (Bounce Bugs)"
+				to_observe: "sprout:bounce_bug"
+				type: "observation"
+			}]
+			title: "找到并看向蹦蹦虫 (Bounce Bugs)"
+			x: -23.0d
+			y: 7.5d
+		}
+		{
+			dependencies: ["6FB2B471474BF7EE"]
+			id: "4C6476A42C036209"
+			subtitle: "制作一个瓶子，然后用它来捕捉这个虫子"
+			tasks: [
+				{
+					id: "001C1DBFDC808802"
+					item: "minecraft:glass_bottle"
+					type: "item"
+				}
+				{
+					checkItem: true
+					entity: "sprout:bounce_bug"
+					id: "3A0AE63BD71C25B0"
+					item: "minecraft:glass_bottle"
+					nbt: { }
+					title: "用这个瓶子捕捉昆虫吧"
+					type: "questsadditions:interaction"
+					value: 1L
+				}
+			]
+			title: "捕捉你的蹦蹦虫 (Bounce Bug)"
+			x: -20.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["4C6476A42C036209"]
+			id: "269243A0338FD239"
+			rewards: [{
+				count: 10
+				id: "45AF5AA6E6F12FC8"
+				item: "aqm2:copper_coin"
+				type: "item"
+			}]
+			subtitle: "成功！"
+			tasks: [{
+				id: "706F76ECA52B57BB"
+				item: "sprout:bounce_bug_jar"
+				type: "item"
+			}]
+			x: -17.5d
+			y: 7.5d
+		}
+		{
+			dependencies: ["5B8AE5AABD9ED3D7"]
+			description: ["这些可以被采集和种植生长出来"]
+			id: "62297AA4F8453CD0"
+			rewards: [
+				{
+					id: "7827F1292041EF68"
+					item: "sprout:peanut"
+					random_bonus: 1
+					type: "item"
+				}
+				{
+					id: "3CFD38E625408813"
+					type: "xp"
+					xp: 40
+				}
+			]
+			subtitle: "花生作物可以在草原生物群系中找到"
+			tasks: [{
+				id: "355385939329F95B"
+				item: "sprout:peanut"
+				type: "item"
+			}]
+			x: -20.0d
+			y: 8.0d
+		}
+	]
+	subtitle: ["繁殖，驯养"]
+	title: "必须把它们全部捕捉到手"
+}

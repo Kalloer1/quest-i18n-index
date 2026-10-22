@@ -1,0 +1,697 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "digital_applied_energistics"
+	group: "24F09E0B1AD125E9"
+	icon: "ae2:charged_certus_quartz_crystal"
+	id: "4563107BC3215F01"
+	images: [
+		{
+			click: ""
+			corner: false
+			dev: false
+			height: 4.5d
+			hover: [
+				"A typical example of simple automation for a furnace."
+				""
+				"On top is an ME Interface with Encoded Patterns for processing recipes."
+				""
+				"On the side is an ME Export Bus which is exporting Coal from the ME System into the furnace as fuel."
+				""
+				"On the bottom is an ME Import Bus to import the resulting smelted item back into the ME System."
+			]
+			image: "kubejs:textures/quests/ae2/ae2-furnace-automation.png"
+			rotation: 0.0d
+			width: 4.0d
+			x: -11.0d
+			y: 4.0d
+		}
+		{
+			click: ""
+			corner: false
+			dev: false
+			height: 5.5d
+			hover: [
+				"An example of how you might choose to set up your ME Interfaces and Molecular Assemblers."
+				""
+				"Note that a block this size is bigger than would usually work if channels were enabled."
+			]
+			image: "kubejs:textures/quests/ae2/ae2-molecular-assemblers.png"
+			rotation: 0.0d
+			width: 8.0d
+			x: -12.5d
+			y: 8.5d
+		}
+		{
+			click: ""
+			corner: false
+			dev: false
+			height: 3.5d
+			hover: [
+				"Examples of valid Crafting CPU multi-block structures. From left to right:"
+				"."
+				"A single 1K Crafting Storage block, allowing for single small crafts to be processed."
+				"."
+				"A single 1K Crafting Storage block (as above) with a Crafting Monitor to show what is being crafted."
+				"."
+				"A Crafting Co-Processor Unit, a 4K Crafting Storage, a Crafting Monitor and a 'filler' Crafting Unit. This would be capable of crafting two things at once for slightly more complex recipes."
+				"."
+				"Four 16K Crafting Storage as the Crafting CPU. Only a single job can be processed at a time, but would cater for larger crafts (equivalent of a single 64K Crafting Storage)."
+				"."
+				"A 2x3x2 cuboid Crafting CPU comprised of a Crafting Monitor, multiple Crafting Co-Processor Units and multiple Crafting Storage blocks. Capable of processing multiple crafts simultaneously and dealing with very large crafting jobs."
+			]
+			image: "kubejs:textures/quests/ae2/ae2-crafting-cpus.png"
+			rotation: 0.0d
+			width: 8.0d
+			x: -12.5d
+			y: 13.0d
+		}
+	]
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["2A0BA655B05B5F2D"]
+			description: [
+				"除了提升数字存储能力，现在你还能制作存储组件和各种处理器，ME 系统能做的事情也更多了。"
+				""
+				"本附录旨在为您提供足够的入门知识，希望您能运用 Cuboid Corp (tm) 及我们的合作伙伴 Applied Energistics 的 AlgorithmX2 所提供的这项技术，创造出令人惊叹的成就。"
+			]
+			id: "1828513DFF41506C"
+			shape: "gear"
+			tasks: [{
+				id: "22697D3B1DCA9046"
+				item: "ae2:cell_component_1k"
+				type: "item"
+			}]
+			title: "数字存储：应用能源学 (Applied Energistics)"
+			x: -3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["180567EB6F3528A8"]
+			description: [
+				"ME 存储总线允许您将外部物品栏连接到您的 ME 系统，并通过标准的 ME 终端访问它们，或在自动合成中使用其中的内容。"
+				""
+				"常见用法是当你的抽屉里有很多物品，不想把所有东西都搬过去填满数字存储时。这时，将ME存储总线连接到抽屉控制器（或其从属设备）上，这样你就可以将抽屉视为ME存储系统的一部分了。"
+				""
+				"可以设置优先级，指定物品是先存入外部存储还是先存入ME系统。还可以应用过滤器（分区）来限制只能访问特定物品，并将方向设为双向、仅插入或仅提取以获得更多控制。当连接到存储抽屉时，通常建议将抽屉的优先级设置得高于驱动器，这样在通过终端存取物品时，抽屉会优先被使用。"
+			]
+			id: "36AF60405BD070AE"
+			rewards: [{
+				id: "53218249D89795D7"
+				item: "ae2:storage_bus"
+				random_bonus: 2
+				type: "item"
+			}]
+			tasks: [{
+				id: "445E36BFF3518FB7"
+				item: "ae2:storage_bus"
+				type: "item"
+			}]
+			x: -4.5d
+			y: 6.5d
+		}
+		{
+			dependencies: ["6DE3F70EB4CD0CD9"]
+			description: [
+				"Fluix ME 玻璃线缆是 ME 系统的入门级线缆。通常情况下，这些线缆只能传输 8 个频道——这意味着特定一段的 Fluix 玻璃 ME 线缆上只能连接 8 个设备——任何额外连接的设备都无法正常工作！"
+				""
+				"这些线缆能轻松连接到几乎所有其他线缆，这既是优点也是缺点，如果你需要担心频道的话——幸运的是，你完全不必担心！"
+				""
+				"如果用染料给这些上色，那么上色后的版本只会与同颜色的其他电缆连接。"
+			]
+			id: "43B99DA053AE15C6"
+			rewards: [{
+				count: 8
+				id: "5B7F27346548F39A"
+				item: "ae2:fluix_glass_cable"
+				random_bonus: 17
+				type: "item"
+			}]
+			tasks: [{
+				count: 4L
+				id: "0F64B776FFD75FA2"
+				item: "ae2:fluix_glass_cable"
+				type: "item"
+			}]
+			x: -1.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["6E2690379CD0039D"]
+			description: [
+				"将红石和萤石添加到Fluix ME覆盖电缆中，会生成Fluix ME智能电缆。当你查看电缆时，它会显示通道使用情况的视觉指示。如果你想尝试理解通道的工作原理，不妨在ME网络中偶尔使用这种智能电缆，或许会很有趣。"
+				""
+				"这些线缆也可以用染料上色以保持整洁——它们只会连接到同色或无色的线缆。"
+			]
+			id: "344C915EFD13A8E9"
+			optional: true
+			rewards: [{
+				count: 8
+				id: "70BDFD1040CF52D6"
+				item: "ae2:fluix_smart_cable"
+				random_bonus: 8
+				type: "item"
+			}]
+			tasks: [{
+				id: "1996CB75650E804A"
+				item: "ae2:fluix_smart_cable"
+				type: "item"
+			}]
+			x: 1.5d
+			y: 6.5d
+		}
+		{
+			dependencies: ["43B99DA053AE15C6"]
+			description: [
+				"这些线缆和Fluix ME玻璃线缆基本一样，只是没那么“花哨”。如果不喜欢玻璃版闪烁的效果，就用带盖的版本吧。"
+				""
+				"这些线缆也可以用染料上色以保持整洁——它们只会连接到同色或无色的线缆。"
+			]
+			id: "6E2690379CD0039D"
+			rewards: [{
+				count: 8
+				id: "485420F7035BEB19"
+				item: "ae2:fluix_covered_cable"
+				random_bonus: 8
+				type: "item"
+			}]
+			tasks: [{
+				id: "7EA0931A15C2F38E"
+				item: "ae2:fluix_covered_cable"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 5.0d
+		}
+		{
+			dependencies: ["6E2690379CD0039D"]
+			description: [
+				"ME控制器每个面通常最多可提供32个频道。密集ME电缆允许通过它们传输全部32个频道。通常，你会将密集电缆连接到ME控制器，并从每条密集ME电缆分出4条其他电缆，以便将全部32个频道连接到设备上。"
+				""
+				"这些线缆也可以用染料上色以保持整洁——它们只会连接到同色或无色的线缆。"
+			]
+			id: "565C5E839DFBAEC5"
+			optional: true
+			rewards: [{
+				count: 8
+				id: "65568848382305F3"
+				item: "ae2:fluix_covered_dense_cable"
+				random_bonus: 8
+				type: "item"
+			}]
+			tasks: [{
+				id: "4C5B30D4178D35ED"
+				item: "ae2:fluix_covered_dense_cable"
+				type: "item"
+			}]
+			x: -1.5d
+			y: 6.5d
+		}
+		{
+			dependencies: ["565C5E839DFBAEC5"]
+			description: [
+				"加入一些红石和萤石，就能将密实ME线缆变为密实智能ME线缆，它能直观显示所用通道的数量。在正常情况下，这对规划ME网络大有裨益。如果你想了解通道的工作原理，使用这些线缆会很有启发。"
+				""
+				"和之前的所有线缆一样，这些线缆也可以用染料上色以保持整洁——它们只会连接到同色或无色的线缆上。"
+			]
+			id: "3CACED282D4B8D8C"
+			optional: true
+			rewards: [{
+				count: 8
+				id: "6132FB0E9716ED1C"
+				item: "ae2:fluix_smart_dense_cable"
+				random_bonus: 8
+				type: "item"
+			}]
+			tasks: [{
+				id: "7091325FC917CB4C"
+				item: "ae2:fluix_smart_dense_cable"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["6DE3F70EB4CD0CD9"]
+			description: [
+				"电缆锚点可防止电缆自动连接到机器或其他电缆，确保电力和数据不会混合。"
+				""
+				"次要用途是制作&a电缆饰面&f。4个电缆锚和几乎任何材料的实心方块可以制作一个电缆饰面。然后可以将其连接到电缆（和ME终端）上以隐藏电缆，使其看起来像制作电缆饰面的方块。如果你觉得一堆电缆很难看，那么这就是你的解决方案！"
+			]
+			id: "432597A05BA9C1ED"
+			rewards: [{
+				count: 16
+				id: "07D70B1A09812740"
+				item: "ae2:cable_anchor"
+				random_bonus: 16
+				type: "item"
+			}]
+			tasks: [{
+				id: "6B95D1C5BF0E9528"
+				item: "ae2:cable_anchor"
+				type: "item"
+			}]
+			x: 1.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["1828513DFF41506C"]
+			description: [
+				"石英纤维有多种用途。在物品栏中使用时，它可以在不连接数据通道的情况下，在ME电缆之间传输能量，这在需要共享能量但保持网络或通道分离时非常有用。"
+				""
+				"不过，你的主要用途还是作为制作线缆的配方材料。"
+			]
+			id: "6DE3F70EB4CD0CD9"
+			rewards: [{
+				count: 12
+				id: "024581DEEEA3835D"
+				item: "ae2:quartz_fiber"
+				random_bonus: 20
+				type: "item"
+			}]
+			tasks: [{
+				id: "4D56B9B64AF1F0F7"
+				item: "ae2:quartz_fiber"
+				type: "item"
+			}]
+			title: "正在连接光纤网络"
+			x: 0.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["1828513DFF41506C"]
+			description: [
+				"数字存储解决方案的核心藏着一个肮脏的秘密……放进去的东西会被完全湮灭——其物质被摧毁并转化为能量，再被数字化编码。同理，从数字存储中取出东西，实际上是读取编码数据，生成能量流，再用它以正确构型重组物质。"
+				""
+				"这个过程的核心分别是湮灭核心和形成核心。你已经制作了一些，但如果想用ME系统自动化部分合成，你还需要更多。"
+			]
+			id: "4C2B4423040C29D4"
+			rewards: [
+				{
+					count: 4
+					id: "11CC31228BB97490"
+					item: "ae2:annihilation_core"
+					random_bonus: 4
+					type: "item"
+				}
+				{
+					count: 4
+					id: "735CFD505A37D813"
+					item: "ae2:formation_core"
+					random_bonus: 4
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					count: 2L
+					id: "3DE024DFFA4503EF"
+					item: "ae2:annihilation_core"
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "0C303FEB1A9D98FD"
+					item: "ae2:formation_core"
+					type: "item"
+				}
+			]
+			title: "物质的核心所在 (The Cores of the matter)"
+			x: -6.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["4C2B4423040C29D4"]
+			description: [
+				"说到自动合成，ME 接口或许是你最重要的盟友。"
+				""
+				"方块形态和流线形态之间没有实际区别，除了方块形态可以连接到多个其他方块——这在操作分子组装器时会特别有用。"
+				""
+				"ME 接口的简单用法是将其连接到机器或物品栏，并为想要用该机器自动制作的物品添加最多 9 个不同的编码模式。"
+				""
+				"将一张合成卡添加到ME接口中，如果ME系统中的某个地方能够自动合成，接口就会自动请求缺少的所有材料。"
+			]
+			id: "180567EB6F3528A8"
+			rewards: [
+				{
+					id: "0F976FA3D77E2258"
+					item: "ae2:pattern_provider"
+					random_bonus: 3
+					type: "item"
+				}
+				{
+					id: "4E936F8EF675DC28"
+					item: "ae2:cable_pattern_provider"
+					random_bonus: 3
+					type: "item"
+				}
+				{
+					id: "678A307A51C3824B"
+					item: "ae2:pattern_access_terminal"
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "451596785BD2E33D"
+					item: "ae2:pattern_provider"
+					type: "item"
+				}
+				{
+					id: "47BA10A37065C5BD"
+					item: "ae2:cable_pattern_provider"
+					type: "item"
+				}
+			]
+			x: -6.0d
+			y: 5.0d
+		}
+		{
+			dependencies: ["4C2B4423040C29D4"]
+			description: [
+				"ME导入总线可以连接到任何有物品栏的方块上，包括箱子和机器。ME导入总线会从所连接的物品栏中取出物品，并将其添加到你的ME系统的数字存储中。当然，ME导入总线本身必须通过某种ME线缆连接到你的ME网络。"
+				""
+				"注意：不建议将ME导入总线连接到无限产物的物品上，否则你的ME系统很快就会耗尽空间！"
+				""
+				"ME 导入总线的主要用途是将制作结果放回你的 ME 系统中。"
+				""
+				"可以应用过滤器来限制导入的物品，也可以添加升级来提高物品的导入速度。"
+			]
+			id: "25B5DCD66A623987"
+			rewards: [{
+				id: "7974AA4EEFE86CBE"
+				item: "ae2:import_bus"
+				random_bonus: 3
+				type: "item"
+			}]
+			tasks: [{
+				id: "00D3122F17912915"
+				item: "ae2:import_bus"
+				type: "item"
+			}]
+			title: "将物品自动导入ME系统"
+			x: -7.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["4C2B4423040C29D4"]
+			description: [
+				"ME 导出总线可以连接到任何有物品栏的方块上，包括箱子和机器。它可以被配置为从你的 ME 系统存储中导出特定物品。"
+				""
+				"使用ME导出总线的一个好例子是为冶金注入器提供稳定的红石供应。"
+				""
+				"ME 出口总线可以安装升级，以提高物品的出口速度。"
+				""
+				"将一张合成卡添加到ME导出总线中，如果能在ME系统的某个地方自动合成该物品，总线就会自动请求合成以用于导出。"
+			]
+			id: "522EE9FFDCDF2F41"
+			rewards: [{
+				id: "099590FD6373B39C"
+				item: "ae2:export_bus"
+				random_bonus: 3
+				type: "item"
+			}]
+			tasks: [{
+				id: "215CFB3F950501CB"
+				item: "ae2:export_bus"
+				type: "item"
+			}]
+			title: "自动将物品从ME系统中导出"
+			x: -4.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["180567EB6F3528A8"]
+			description: [
+				"分子组装器是ME系统在自动合成时构建合成配方所用的装置。每个分子组装器一次只能进行一项合成。要指定合成内容，分子组装器必须连接到包含编码配方模式的ME接口上。"
+				""
+				"多个ME接口可以“共享”分子组装器。当请求合成时，ME接口会选择其能访问的未使用的分子组装器。因此，通常会将ME接口和分子组装器以棋盘格模式排列成矩形结构，以最大限度地实现并行合成。"
+				""
+				"ME接口终端可用于远程访问ME接口，这意味着你无需直接访问ME接口即可更改其中的模式。"
+				""
+				"除了ME接口和分子组装器，你的ME网络还需要至少一个制造存储单元组成的制造CPU。"
+			]
+			id: "0B8E819D14DB5D63"
+			rewards: [{
+				count: 4
+				id: "25A87EBC04901650"
+				item: "ae2:molecular_assembler"
+				random_bonus: 12
+				type: "item"
+			}]
+			tasks: [{
+				id: "109C5CBF3A73768F"
+				item: "ae2:molecular_assembler"
+				type: "item"
+			}]
+			x: -6.0d
+			y: 6.5d
+		}
+		{
+			dependencies: ["107150FFDD89FCC2"]
+			description: [
+				"为您的合成 CPU 多方块结构增加 1K 内存。可作为单个任务的合成 CPU 单独使用，适用于小型合成。"
+				""
+				"可以为 Crafting CPU 多区块结构添加多个 Crafting Storage 方块，以增加合成容量。"
+			]
+			id: "01B3726D689E5266"
+			rewards: [{
+				id: "580BE70B1E3BBE8A"
+				item: "ae2:1k_crafting_storage"
+				random_bonus: 2
+				type: "item"
+			}]
+			tasks: [{
+				id: "1815D135E79DCB91"
+				item: "ae2:1k_crafting_storage"
+				type: "item"
+			}]
+			x: -6.0d
+			y: 10.0d
+		}
+		{
+			dependencies: ["0B8E819D14DB5D63"]
+			description: [
+				"Crafting Unit 本身没有功能，但可以用作 Crafting CPU 多方块结构中的填充方块，或在制作 Crafting CPU 结构组件时用作合成材料。"
+				""
+				"合成CPU是一种多区块结构。无论大小，它都占用ME网络的一个通道。它必须是长方体结构，至少包含一个合成存储块（可以是一个以上），并可选地包含一个合成监视器、一个合成协处理器单元和用作填充的合成单元。"
+				""
+				"因此，最小的有效合成CPU是一个单独的合成存储方块，一次只能执行一个合成。若要同时执行多个合成，可以在多方块结构中增加一个或多个合成协处理器单元。"
+				""
+				"要查看多方块结构当前正在合成什么，请添加一个合成监视器。"
+				""
+				"为了让合成CPU能处理更大的合成，请添加更多合成存储方块。"
+				""
+				"通常会有几种不同的 Crafting CPU 结构——一些用于小型任务，另一些则是用于处理大型复杂合成的多方块大型结构。"
+			]
+			id: "107150FFDD89FCC2"
+			rewards: [{
+				count: 4
+				id: "514C22A840EBACC1"
+				item: "ae2:crafting_unit"
+				random_bonus: 12
+				type: "item"
+			}]
+			tasks: [{
+				id: "5EEA68A7FA657F22"
+				item: "ae2:crafting_unit"
+				type: "item"
+			}]
+			x: -6.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["47BABFF51CE7E145"]
+			description: ["可以在 Crafting CPU 的多方块结构中增加一个 Crafting Monitor，以显示 Crafting CPU 当前正在制造的内容。"]
+			id: "7F9F12F66725A42E"
+			rewards: [{
+				id: "3FDEBD85BB1032F8"
+				item: "ae2:crafting_monitor"
+				random_bonus: 3
+				type: "item"
+			}]
+			tasks: [{
+				id: "02C847EEE2712F19"
+				item: "ae2:crafting_monitor"
+				type: "item"
+			}]
+			x: -6.0d
+			y: 14.0d
+		}
+		{
+			dependencies: ["01B3726D689E5266"]
+			description: ["添加到 Crafting CPU 多方块结构的每个 Crafting Co-Processing Unit 都将启用另一个并行制作流程，从而加快制作速度，但对 Crafting Storage 和功耗的要求也会更高。"]
+			id: "47BABFF51CE7E145"
+			rewards: [
+				{
+					id: "0FCDE19BFF56284E"
+					item: "ae2:storage_monitor"
+					type: "item"
+				}
+				{
+					id: "6D13FDF939D96954"
+					item: "ae2:crafting_accelerator"
+					random_bonus: 1
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "65431C90A4A0BB13"
+				item: "ae2:crafting_accelerator"
+				type: "item"
+			}]
+			x: -6.0d
+			y: 12.0d
+		}
+		{
+			dependencies: ["180567EB6F3528A8"]
+			description: [
+				"空白模式会编码在ME模式终端中。它们可以编码为合成配方，也可以是处理配方。"
+				""
+				"&a合成配方&f编码模式本质上就是你在合成网格中使用的配方。这些模式必须放置在ME网络上的ME接口方块内，且至少有一个分子合成器与其相邻。分子合成器是实际进行合成的地方。你还需要在网络上拥有一定的合成存储，以便在开始编码前存储必要的合成信息。合成规模越大，所需的合成存储就越多。"
+				""
+				"&a处理配方&f 编码模式本质上包含要发送到机器的输入，以及ME系统预期的输出，以确认合成完成。这些模式必须放置在连接执行处理机器的ME接口中。生成的物品必须通过其他方式（通常使用ME导入总线）导入回ME系统。"
+				""
+				"创建配方时，配方网格右侧的切换按钮可在合成配方（Crafting Table 图标）和冶炼配方（Furnace 图标）之间切换。你可以将物品从 JEI 拖入网格创建配方，也可以在 JEI 中悬停物品并按 R 键，从配方页面添加。"
+			]
+			id: "07EEAF0509F099EC"
+			rewards: [
+				{
+					id: "40C88D23B2D435FB"
+					item: "ae2:pattern_encoding_terminal"
+					type: "item"
+				}
+				{
+					count: 16
+					id: "3E4A361F658B4DF6"
+					item: "ae2:blank_pattern"
+					random_bonus: 16
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "259BDFEDABD624F9"
+				item: "ae2:blank_pattern"
+				type: "item"
+			}]
+			x: -7.5d
+			y: 6.5d
+		}
+		{
+			dependencies: ["01B3726D689E5266"]
+			description: [
+				"为您的 Crafting CPU 多方块结构增加 4K 内存。可作为单个任务的小型至中型 Crafting CPU 单独使用。"
+				""
+				"可以为 Crafting CPU 多区块结构添加多个 Crafting Storage 方块，以增加合成容量。"
+			]
+			id: "095F7882930EE411"
+			optional: true
+			rewards: [{
+				id: "4520CA46227DF67C"
+				item: "ae2:4k_crafting_storage"
+				random_bonus: 2
+				type: "item"
+			}]
+			tasks: [{
+				id: "4C877C11C06E2C55"
+				item: "ae2:4k_crafting_storage"
+				type: "item"
+			}]
+			x: -4.5d
+			y: 10.0d
+		}
+		{
+			dependencies: ["095F7882930EE411"]
+			description: [
+				"为您的合成CPU多方块结构增加16K内存。可作为单个任务的中大型合成CPU单独使用。"
+				""
+				"可以为 Crafting CPU 多区块结构添加多个 Crafting Storage 方块，以增加合成容量。"
+			]
+			id: "62612FD5DFB76BD4"
+			optional: true
+			rewards: [{
+				id: "547255217A290F4D"
+				item: "ae2:16k_crafting_storage"
+				random_bonus: 2
+				type: "item"
+			}]
+			tasks: [{
+				id: "056628837A00C3C6"
+				item: "ae2:16k_crafting_storage"
+				type: "item"
+			}]
+			x: -3.0d
+			y: 10.0d
+		}
+		{
+			dependencies: ["62612FD5DFB76BD4"]
+			description: [
+				"为您的合成CPU多方块结构增加64K内存。可作为单个任务的大型合成CPU单独使用。"
+				""
+				"可以为 Crafting CPU 多区块结构添加多个 Crafting Storage 方块，以增加合成容量。"
+			]
+			id: "1CD5667305D728A8"
+			optional: true
+			rewards: [{
+				id: "4810E29025151C1E"
+				item: "ae2:64k_crafting_storage"
+				random_bonus: 2
+				type: "item"
+			}]
+			tasks: [{
+				id: "0B9CD7AB1FBA922E"
+				item: "ae2:64k_crafting_storage"
+				type: "item"
+			}]
+			x: -1.5d
+			y: 10.0d
+		}
+		{
+			dependencies: ["1828513DFF41506C"]
+			description: [
+				"通常情况下，Applied Energistics 需要配合通道（Channels）使用。实际上，每个 ME 控制器每个面可以输出 32 个通道，线缆有最大支持通道数，连接到 ME 网络的设备大多会消耗一个通道。这通常意味着，如果需要更多通道，就需要更多的 ME 控制器。"
+				""
+				"在这种情况下，你还需要更仔细地管理线缆。你需要使用彩色线缆来保持线路分离，防止频道意外混合。"
+				""
+				"鉴于你才刚开始，而且在外围42号基地，没必要让本已艰难的生活变得更糟，我们已禁用频道要求。仅供参考，使用智能电缆时仍会显示所需频道数，但若超出限制，一切仍能正常运行（特别感谢我们的科学部AI之一，代号Domaman202）"
+				""
+				"我们还设法为你加入了一个备用 ME 控制器——玩得开心！"
+			]
+			id: "25E84A0A4A537F38"
+			rewards: [
+				{
+					id: "2DAA4ECB1D4B8CCD"
+					item: "ae2:controller"
+					type: "item"
+				}
+				{
+					id: "6F6B34B81A361FF3"
+					item: "ae2:energy_acceptor"
+					type: "item"
+				}
+				{
+					id: "6BD8C17DD5008764"
+					item: {
+						Count: 1b
+						id: "ae2:energy_cell"
+						tag: { }
+					}
+					type: "item"
+				}
+			]
+			shape: "octagon"
+			tasks: [{
+				id: "2F8EBD7B9B3C7DFA"
+				title: "明白了！"
+				type: "checkmark"
+			}]
+			title: "了解频道 (Understanding Channels)"
+			x: -3.0d
+			y: 2.0d
+		}
+	]
+	title: "数字：应用能源学（Applied Energistics）"
+}

@@ -1,0 +1,129 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "the_harbinger_beheader"
+	group: "2160A0BD1700DC33"
+	hide_quest_details_until_startable: true
+	hide_quest_until_deps_visible: true
+	id: "10F796EB40AED59F"
+	order_index: 13
+	quest_links: [ ]
+	quests: [
+		{
+			id: "04997E7F8723482B"
+			rewards: [{
+				auto: "invisible"
+				command: "/tellraw @p {\"text\":\"Ready to embark on your quest!? Open your questbook to find the quest activated to begin searching for the structure!\",\"color\":\"white\",\"bold\":true}"
+				elevate_perms: true
+				id: "581A089680C54C59"
+				type: "command"
+			}]
+			secret: true
+			tasks: [{
+				icon: "quest_token_api:absi_palace_king"
+				id: "342B76F70F1D5362"
+				stage: "fer"
+				title: "Unlock Quest"
+				type: "gamestage"
+			}]
+			x: -0.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["04997E7F8723482B"]
+			id: "3CA7BC00A1D93F8C"
+			tasks: [
+				{
+					id: "3C2F7CD8C829A2D1"
+					structure: "mowziesmobs:wrought_chamber"
+					title: "找到锻造室（wrought chamber）"
+					type: "structure"
+				}
+				{
+					id: "3E5033E45376ECC5"
+					item: "mowzies_cataclysm:wrought_eye"
+					type: "item"
+				}
+			]
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			can_repeat: true
+			dependencies: ["3CA7BC00A1D93F8C"]
+			id: "66486D54CAA907C9"
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/gamestage remove @p fer true"
+					elevate_perms: true
+					id: "482F57CC828BC130"
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 04997E7F8723482B"
+					elevate_perms: true
+					id: "723BE676F0DAD8C4"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 3CA7BC00A1D93F8C"
+					elevate_perms: true
+					id: "39FD8970FBDE6B5B"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					command: "/puffish_skills points add @p puffish_skills:combat 13"
+					elevate_perms: true
+					icon: "minecraft:experience_bottle"
+					id: "19ED5B10F555D398"
+					title: "13 战斗技能点"
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					id: "44585DCE9730E1F7"
+					table_id: 444384640504589334L
+					type: "random"
+				}
+				{
+					auto: "enabled"
+					count: 2
+					id: "361DAFED9EAF412D"
+					item: "steampunkrpg_content:dungeon_token"
+					type: "item"
+				}
+				{
+					auto: "enabled"
+					id: "636F671DC92C8DC8"
+					table_id: 444384640504589334L
+					type: "random"
+				}
+				{
+					auto: "enabled"
+					id: "2C3D88AD1ED57892"
+					table_id: 444384640504589334L
+					type: "random"
+				}
+			]
+			shape: "gear"
+			size: 2.0d
+			tasks: [{
+				entity: "mowziesmobs:ferrous_wroughtnaut"
+				icon: "mowziesmobs:wrought_helmet"
+				id: "59795D2845E0FAB4"
+				type: "kill"
+				value: 1L
+			}]
+			x: 4.0d
+			y: 0.0d
+		}
+	]
+	title: "&d铁质锻造号飞船 (The Ferrous Wroughtnaut)</c1>"
+}

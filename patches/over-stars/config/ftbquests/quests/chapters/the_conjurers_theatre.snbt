@@ -1,0 +1,136 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "the_conjurers_theatre"
+	group: "2160A0BD1700DC33"
+	hide_quest_details_until_startable: true
+	hide_quest_until_deps_visible: true
+	id: "0ADB454C9636F308"
+	order_index: 9
+	quest_links: [ ]
+	quests: [
+		{
+			id: "2761802493FCFC5C"
+			rewards: [{
+				auto: "invisible"
+				command: "/tellraw @p {\"text\":\"Ready to embark on your quest!? Open your questbook to find the quest activated to begin searching for the structure!\",\"color\":\"white\",\"bold\":true}"
+				elevate_perms: true
+				id: "7761C5C3A3EC9C09"
+				type: "command"
+			}]
+			secret: true
+			tasks: [{
+				icon: "quest_token_api:absi_palace_king"
+				id: "0C512BC88C5686F2"
+				stage: "conjurer"
+				title: "使用卷轴解锁"
+				type: "gamestage"
+			}]
+			x: 0.0d
+			y: 1.0d
+		}
+		{
+			can_repeat: true
+			dependencies: ["2761802493FCFC5C"]
+			id: "25C25583599A8084"
+			rewards: [{
+				auto: "invisible"
+				command: "/locate structure conjurer_illager:theatre"
+				elevate_perms: true
+				id: "293BAF584D8C61BC"
+				team_reward: false
+				type: "command"
+			}]
+			tasks: [{
+				id: "22BA2461B1F70848"
+				title: "点击以定位结构物"
+				type: "checkmark"
+			}]
+			x: -2.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["2761802493FCFC5C"]
+			id: "73474E1E20448C93"
+			tasks: [{
+				id: "65F47141DF3A25F0"
+				structure: "conjurer_illager:theatre"
+				title: "找到剧院"
+				type: "structure"
+			}]
+			x: 2.0d
+			y: 1.0d
+		}
+		{
+			can_repeat: true
+			dependencies: ["73474E1E20448C93"]
+			id: "5DBB18CD340FF73B"
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/gamestage remove @p conjurer true"
+					elevate_perms: true
+					id: "3A148AA2E09748C0"
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 2761802493FCFC5C"
+					elevate_perms: true
+					id: "5977B43FD1435AE5"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 73474E1E20448C93"
+					elevate_perms: true
+					id: "32D50EADB649E6EB"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					command: "/puffish_skills points add @p puffish_skills:combat 4"
+					elevate_perms: true
+					icon: "minecraft:experience_bottle"
+					id: "7AAEF6298B66C8DA"
+					title: "4 战斗技能点"
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					id: "01D084BE9C9079C5"
+					item: "steampunkrpg_content:dungeon_token"
+					type: "item"
+				}
+				{
+					auto: "enabled"
+					id: "0F9D6B95DC35DED5"
+					table_id: 444384640504589334L
+					type: "random"
+				}
+			]
+			shape: "hexagon"
+			size: 2.0d
+			tasks: [{
+				entity: "conjurer_illager:conjurer"
+				icon: {
+					Count: 1
+					id: "conjurer_illager:conjurer_hat"
+					tag: {
+						Damage: 0
+					}
+				}
+				id: "77D8641F2BC2FA8D"
+				type: "kill"
+				value: 1L
+			}]
+			title: "任务"
+			x: 4.5d
+			y: 1.0d
+		}
+	]
+	title: "&b召唤师的剧院"
+}

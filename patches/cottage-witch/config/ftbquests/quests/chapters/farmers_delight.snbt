@@ -1,0 +1,1100 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_min_width: 350
+	default_quest_shape: ""
+	filename: "farmers_delight"
+	group: "1E0017DE6773EF00"
+	icon: "farmersdelight:cooking_pot"
+	id: "1E6C7DB3D27545CE"
+	images: [{
+		click: ""
+		corner: false
+		dev: false
+		height: 10.0d
+		hover: [ ]
+		image: "cottagewitch:textures/quest_ui/bgfarming.png"
+		rotation: 0.0d
+		width: 20.0d
+		x: 0.0d
+		y: 0.0d
+	}]
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"你获得了一些&b种子&r，恭喜你！成为一名成功农民（或绿女巫）的第一步，就是要有东西可以种植。"
+				""
+				"作为奖励，试试这个 &b富饶土壤&r。它可以用 &b有机堆肥&r 制作，非常适合种植作物！"
+				""
+				"它会&a定期促进作物生长&r（当提供水源时），并且&a不会被践踏&r。它&a也可以在完全黑暗的环境中用于种植&b蘑菇群落&r。"
+			]
+			id: "4930ECD60EA9ED8D"
+			rewards: [{
+				count: 4
+				id: "2CB2953E77DF6618"
+				item: "farmersdelight:rich_soil"
+				type: "item"
+			}]
+			shape: "rsquare"
+			size: 2.0d
+			subtitle: "有点可疑……"
+			tasks: [{
+				id: "536499531C4C43D5"
+				item: {
+					Count: 1b
+					id: "itemfilters:tag"
+					tag: {
+						value: "forge:seeds"
+					}
+				}
+				title: "任意 #forge:seeds"
+				type: "item"
+			}]
+			title: "获取一些种子"
+			x: -1.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["4930ECD60EA9ED8D"]
+			description: ["蘑菇群可以在完全黑暗的地方用&b富饶土壤&r&a种植出来&r。如果用&r剪刀&6收割，就能得到整个菌落。如果用&r手&6收割，最多能得到5个蘑菇。蘑菇万岁！"]
+			id: "435BD760D0F2E010"
+			rewards: [
+				{
+					id: "236914FF02083F47"
+					item: "farmersdelight:brown_mushroom_colony"
+					type: "item"
+				}
+				{
+					id: "13B21F12709E46BD"
+					item: "farmersdelight:red_mushroom_colony"
+					type: "item"
+				}
+			]
+			shape: "hexagon"
+			subtitle: "能在一起真是太开心了"
+			tasks: [{
+				id: "2A31AF7FF7ED741F"
+				item: {
+					Count: 1b
+					id: "itemfilters:tag"
+					tag: {
+						value: "forge:mushcolony"
+					}
+				}
+				title: "任意 #forge:mushcolony"
+				type: "item"
+			}]
+			title: "获得一个蘑菇群系殖民地"
+			x: 5.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["4930ECD60EA9ED8D"]
+			description: [
+				"&bPies&r from this mod can be eaten one of two ways. You can place them down like a &bcake&r and eat them slice-by-slice, or you can place them on a &bCutting Board&r and use that to cut them into &bportable slices&r."
+				""
+				"吃掉它们，能让你在短时间内获得速度加成！"
+			]
+			id: "57B830324890E32C"
+			rewards: [
+				{
+					count: 3
+					id: "213B8B8FCA9F63AD"
+					item: "farmersdelight:milk_bottle"
+					type: "item"
+				}
+				{
+					count: 3
+					id: "00DD6C79ABA69814"
+					item: "minecraft:wheat"
+					type: "item"
+				}
+				{
+					count: 2
+					id: "4B4379A14669A7EC"
+					item: "minecraft:sugar"
+					type: "item"
+				}
+				{
+					id: "0AECAF9A2986BEF2"
+					table_id: 7917666410282180869L
+					type: "choice"
+				}
+			]
+			shape: "hexagon"
+			subtitle: "味道好极了，能让一个大人都感动得流泪"
+			tasks: [{
+				id: "2DD8FA7DB6BE126D"
+				item: "farmersdelight:pie_crust"
+				type: "item"
+			}]
+			title: "制作一个派 (Make a Pie)"
+			x: -2.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["4930ECD60EA9ED8D"]
+			description: ["&b稻草&r可以用来制作&b绳子&r，非常有用。它还可以用来制作&b帆布&r、&b堆肥&r，以及像&b粗坯&r这样的建筑材料。"]
+			id: "3AE0F1C1159FBDDE"
+			rewards: [{
+				id: "66F2801F9DFA05AC"
+				item: "farmersdelight:straw_bale"
+				type: "item"
+			}]
+			shape: "hexagon"
+			subtitle: "只要别抽到最矮的那一个就行"
+			tasks: [{
+				id: "55C6E492715281CF"
+				item: "farmersdelight:straw"
+				type: "item"
+			}]
+			title: "获取稻草"
+			x: -3.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["3AE0F1C1159FBDDE"]
+			description: ["&bCanvas&r is a versatile material which can create &bMats&r, &bSigns&r, and more!"]
+			id: "548376041885F6D1"
+			rewards: [{
+				id: "4B7C75DB02E57058"
+				table_id: 6941837675484043489L
+				type: "random"
+			}]
+			shape: "hexagon"
+			subtitle: "一张空白的画布是一件强大的东西"
+			tasks: [{
+				id: "7B4B34EE649076A3"
+				item: "farmersdelight:canvas"
+				type: "item"
+			}]
+			x: -5.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["3AE0F1C1159FBDDE"]
+			description: ["&b绳索&r可用于制作工具，如&b安全网&r，&a落在上面可抵消坠落伤害&r。它还能制成&b绳索箭&r，箭矢落地后会在下方展开一段绳索，供你攀爬。"]
+			id: "141887F26E89BAE8"
+			rewards: [{
+				id: "6858B53EC13EE0A2"
+				item: {
+					Count: 1b
+					id: "supplementaries:rope_arrow"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			shape: "hexagon"
+			subtitle: "务必遵守绳索安全规范"
+			tasks: [{
+				id: "45328BF090DF76BC"
+				item: "farmersdelight:rope"
+				type: "item"
+			}]
+			title: "获取绳索"
+			x: -5.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["2CA80140F624D0AE"]
+			description: ["Crops can be easily compacted into Bags or Crates in order to &asave on storage space&r. &6Place 9 of each item in a Crafting Grid&r to obtain a Crate or Bag of it!"]
+			id: "0545DF70043D964A"
+			rewards: [
+				{
+					exclude_from_claim_all: true
+					id: "674A15B3EAEEC114"
+					table_id: 8035711958862449784L
+					type: "random"
+				}
+				{
+					id: "37804E3EB83A5A7A"
+					item: {
+						Count: 1b
+						id: "mcsa:magnus_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "66F2B5ABD87147F3"
+					item: {
+						Count: 1b
+						id: "mcsa:magnus_chestplate"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "5E9AF9D548338732"
+					item: {
+						Count: 1b
+						id: "mcsa:magnus_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "570D4C783597351C"
+					item: {
+						Count: 1b
+						id: "mcsa:magnus_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			shape: "hexagon"
+			subtitle: "作物，但更紧凑"
+			tasks: [
+				{
+					id: "0B3D4A89F7573E0A"
+					item: "farmersdelight:rice_bag"
+					type: "item"
+				}
+				{
+					id: "0D4B4D9B040FC426"
+					item: "farmersdelight:onion_crate"
+					type: "item"
+				}
+				{
+					id: "264A58E9818E845A"
+					item: "farmersdelight:tomato_crate"
+					type: "item"
+				}
+				{
+					id: "3B1250578AA7B5FA"
+					item: "farmersdelight:cabbage_crate"
+					type: "item"
+				}
+				{
+					id: "3B35640DCCB3391D"
+					item: "farmersdelight:beetroot_crate"
+					type: "item"
+				}
+				{
+					id: "3B0EA9557B457B15"
+					item: "farmersdelight:potato_crate"
+					type: "item"
+				}
+				{
+					id: "00992514D9743E5A"
+					item: "farmersdelight:carrot_crate"
+					type: "item"
+				}
+				{
+					id: "0AD2B7503C564CC6"
+					item: "prefab:item_carton_of_eggs"
+					type: "item"
+				}
+				{
+					id: "2C5CCAFE25DA5291"
+					item: "collectorsreap:lime_crate"
+					type: "item"
+				}
+				{
+					id: "09A34C53F2F63CED"
+					item: "collectorsreap:pomegranate_crate"
+					type: "item"
+				}
+				{
+					id: "0C2A58FE05ABEE4C"
+					item: "culturaldelights:avocado_crate"
+					type: "item"
+				}
+				{
+					id: "1A0F4D927B8F0A64"
+					item: "culturaldelights:cucumber_crate"
+					type: "item"
+				}
+				{
+					id: "65F750C0E2B8159A"
+					item: "culturaldelights:pickle_crate"
+					type: "item"
+				}
+				{
+					id: "5EA6B5537664B758"
+					item: "culturaldelights:corn_cob_crate"
+					type: "item"
+				}
+				{
+					id: "542AC82A97801360"
+					item: "culturaldelights:eggplant_crate"
+					type: "item"
+				}
+			]
+			title: "压缩你的农作物"
+			x: 6.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["4930ECD60EA9ED8D"]
+			description: [
+				"本整合包添加了多种新作物！你可以在探索世界时找到它们的野生版本，然后将它们种植在家中的花园里。"
+				""
+				"来自&lFarmer's Delight&r："
+				"-&b番茄&r产自&c炎热干旱的生物群系&r。"
+				"-&b稻米&r可以在&c湿润生物群系&r中找到，但仅限地表。"
+				"-&b卷心菜&r可以在&c海滩&r上找到！"
+				"-&b洋葱&r在&c除蘑菇生物群系和繁茂洞穴外的&r任何地方都会生长。"
+				""
+				""
+				"&lExtra Delight&r:"
+				"- 你可以在&c炎热气候&r中找到&bGinger&r，寻找开红花的叶子！"
+				"- &b肉桂&r常见于&c丛林生物群系&r中。"
+				"- 最后，&b薄荷&r可以在&c寒冷群系&r中找到，并且&a种植后会向5x5的区域蔓延&r。"
+				""
+				"&lCultural Delight&r:"
+				"- &b黄瓜&r产自&c沼泽&r。"
+				"- &b茄子&r和&b牛油果&r可以在&c丛林&r生物群系中找到。"
+				"- &b玉米&r生长在&c平原&r中。"
+				""
+				"&lMiner's Delight&r:"
+				"- &b洞穴胡萝卜&r可以在&c地下&r找到，但茂密洞穴除外。"
+				""
+				"&l收藏家收割&r:"
+				"- &b青柠&r只生长在&c花之森林&r生物群系中，需要&a&e蜜蜂&r授粉才能结果。"
+				"- &b石榴&r只能在&c扭曲森林&r生物群系中找到，并且需要&a在&c下界&r种植，或者&a需要&a&e蜜蜂&r授粉才能结果。"
+			]
+			id: "2CA80140F624D0AE"
+			rewards: [
+				{
+					exclude_from_claim_all: true
+					id: "0FC6614E0D0F4F0F"
+					table_id: 2068679807827730220L
+					type: "choice"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "36BE611D33FDB564"
+					table_id: 6941837675484043489L
+					type: "choice"
+				}
+			]
+			shape: "hexagon"
+			subtitle: "更多，再给我更多，越多越好"
+			tasks: [
+				{
+					id: "7E1608CE39644619"
+					item: "farmersdelight:tomato"
+					type: "item"
+				}
+				{
+					id: "66FBA732EB969822"
+					item: "farmersdelight:onion"
+					type: "item"
+				}
+				{
+					id: "61BC6271FA074A75"
+					item: "farmersdelight:rice_panicle"
+					type: "item"
+				}
+				{
+					id: "6423E31169FF965C"
+					item: "farmersdelight:cabbage"
+					type: "item"
+				}
+				{
+					id: "0BDFE733D3DFC057"
+					item: "extradelight:mint"
+					type: "item"
+				}
+				{
+					id: "2626530F343AAE80"
+					item: "extradelight:ginger"
+					type: "item"
+				}
+				{
+					id: "07F5F24674199C7D"
+					item: "extradelight:cinnamon_stick"
+					type: "item"
+				}
+				{
+					id: "1EADF240201D55B9"
+					item: "culturaldelights:avocado"
+					type: "item"
+				}
+				{
+					id: "7C773D402158367D"
+					item: "culturaldelights:cucumber"
+					type: "item"
+				}
+				{
+					id: "18B6AF987DBC6425"
+					item: "culturaldelights:eggplant"
+					type: "item"
+				}
+				{
+					id: "02B127EB3AECCA48"
+					item: "culturaldelights:corn_cob"
+					type: "item"
+				}
+				{
+					id: "64A7803F87FF0A62"
+					item: "miners_delight:cave_carrot"
+					type: "item"
+				}
+				{
+					id: "394F68843C832AD8"
+					item: "collectorsreap:pomegranate"
+					type: "item"
+				}
+				{
+					id: "25625DD640B5DC08"
+					item: "collectorsreap:lime"
+					type: "item"
+				}
+			]
+			title: "获取新作物"
+			x: 3.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["4930ECD60EA9ED8D"]
+			description: [
+				"此模组使作物有小概率生成&a巨型作物&r，类似于《星露谷物语》。这最有可能&a发生在暴露在月光下的成熟作物上&r。"
+				""
+				"用&b锄头&r打破它们，可以获得比平时多得多的一般作物。用&b斧头&r或手打破它们，可以获得作物方块本身。然后你可以&a烹饪&r、&a去皮&r，或者将它们放在&b砧板&r上收集作物。"
+				""
+				"使用&b种植箱&r时，你甚至还有机会获得超重作物！"
+				""
+				"&b富饶农田&r有更高的几率生成超重作物。"
+			]
+			id: "780D09CCF1A8D814"
+			rewards: [
+				{
+					id: "4529CCBE869330B5"
+					item: "overweight_farming:overweight_baked_potato_block"
+					type: "item"
+				}
+				{
+					id: "6051CF1F7C421946"
+					table_id: 6941837675484043489L
+					type: "loot"
+				}
+			]
+			subtitle: "每个人都喜欢胖乎乎的胡萝卜"
+			tasks: [{
+				id: "1F0CA54801833BEB"
+				item: {
+					Count: 1b
+					id: "itemfilters:tag"
+					tag: {
+						value: "forge:overweightcrops"
+					}
+				}
+				title: "任意 #forge:overweightcrops 作物"
+				type: "item"
+			}]
+			title: "超重作物"
+			x: 2.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["780D09CCF1A8D814"]
+			description: [
+				"可以从&a农民村民&r处交换到&b草帽&r。它能提高作物生长速度，并增加获得&a超重作物&r的几率！"
+				""
+				"还有可能生出双胞胎或三胞胎！……指动物。不是你。大概吧。"
+			]
+			id: "41ACB7D51D1AC9A9"
+			rewards: [
+				{
+					id: "205924214DEAFFAD"
+					item: {
+						Count: 1b
+						id: "minecraft:golden_hoe"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "12DAC34A241B1F8E"
+					table_id: 6941837675484043489L
+					type: "loot"
+				}
+			]
+			shape: "hexagon"
+			subtitle: "这叫时尚，汗流浃背的，去查一下吧"
+			tasks: [{
+				id: "7355E2367EA1596C"
+				item: {
+					Count: 1b
+					id: "overweight_farming:straw_hat"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 2.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["780D09CCF1A8D814"]
+			description: [
+				"剥下你的&b超重作物&r以获得不同外观，并获得&b蔬菜皮&r，可以制成&b堆肥&r或喂给&e猪&r！"
+				""
+				"去皮后的&b甜瓜&r可以用&b斧头&r取出种子，然后用&6瓶子&r右键它们来榨汁。"
+			]
+			id: "4B733744EBC620FC"
+			rewards: [{
+				count: 8
+				id: "47F29C10D0A45984"
+				item: "overweight_farming:vegetable_peels"
+				type: "item"
+			}]
+			shape: "hexagon"
+			tasks: [{
+				id: "3EF80E1AD4F90608"
+				item: "overweight_farming:peeled_overweight_carrot_block"
+				type: "item"
+			}]
+			title: "削一个胡萝卜皮"
+			x: 3.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["4930ECD60EA9ED8D"]
+			description: ["&bPlanter&r 既可作为装饰方块，也可作为实用方块。它无需水即可种植作物，且不会被践踏。"]
+			id: "3D221ECD9106F792"
+			rewards: [
+				{
+					id: "62C1DF9B5627710E"
+					item: "minecraft:lily_of_the_valley"
+					type: "item"
+				}
+				{
+					id: "0BC000C96B54EA2B"
+					table_id: 6941837675484043489L
+					type: "loot"
+				}
+				{
+					id: "592AD857D4ED8118"
+					item: {
+						Count: 1b
+						id: "minecraft:player_head"
+						tag: {
+							SkullOwner: {
+								Id: [I;
+									-530006157
+									1378044281
+									-1862026456
+									306851943
+								]
+								Properties: {
+									textures: [{
+										Value: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTk2NDIyNDk3YTgzZWRlMzk3NGU5N2IzNWE3ODE0NzJiYmIzNzJmN2MzMjQ0YzkyMmU3MTc0M2U2YWYzOWJjYSJ9fX0="
+									}]
+								}
+							}
+							display: {
+								Name: "{\"text\":\"Flower Basket\"}"
+							}
+						}
+					}
+					type: "item"
+				}
+			]
+			shape: "hexagon"
+			subtitle: "嗯，好多东西可以种了"
+			tasks: [{
+				id: "1A82E50D8BBEB46D"
+				item: "supplementaries:planter"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["4930ECD60EA9ED8D"]
+			description: [
+				"人们都说别把钻石浪费在锄头上。但你却把这件事做得更过分了。"
+				""
+				"为了表彰你的承诺，请收下这份奖励。"
+			]
+			id: "2186A6F69ADBE795"
+			rewards: [
+				{
+					id: "2504FA7EFE4F83CE"
+					item: "hexerei:gold_rings"
+					type: "item"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "679B96B27A170259"
+					table_id: 8808494820591225409L
+					type: "loot"
+				}
+			]
+			shape: "octagon"
+			tasks: [{
+				advancement: "minecraft:husbandry/obtain_netherite_hoe"
+				criterion: ""
+				id: "689FF833D614619E"
+				type: "advancement"
+			}]
+			x: -1.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["780D09CCF1A8D814"]
+			description: ["收集每种&b超重作物&r各&6一个，可用于装饰，或在&b砧板&r上&6切掉。"]
+			id: "34C84EC0EC5B8A2E"
+			rewards: [
+				{
+					id: "6E3A73DDE4D0EA58"
+					item: "farmersdelight:cutting_board"
+					type: "item"
+				}
+				{
+					id: "3DCD2B47A882540B"
+					item: {
+						Count: 1b
+						id: "farmersdelight:golden_knife"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "0053D306544A5F22"
+					item: "overweight_farming:overweight_beetroot_block"
+					type: "item"
+				}
+				{
+					id: "6E3DA1FE29488061"
+					item: "overweight_farming:overweight_carrot_block"
+					type: "item"
+				}
+				{
+					id: "1209DA4D38631457"
+					item: "overweight_farming:overweight_cocoa_block"
+					type: "item"
+				}
+				{
+					id: "662C49A7B61B4CE5"
+					item: "overweight_farming:overweight_potato_block"
+					type: "item"
+				}
+				{
+					id: "70AF154777CEAC93"
+					item: "overweight_farming:overweight_nether_wart_block"
+					type: "item"
+				}
+				{
+					id: "7E72F87F49999386"
+					item: "overweight_farming:overweight_poisonous_potato_block"
+					type: "item"
+				}
+				{
+					id: "3CA78D5A08C1F702"
+					item: "overweight_farming:overweight_apple_block"
+					type: "item"
+				}
+				{
+					id: "13847E25D5437927"
+					item: "overweight_farming:overweight_golden_apple_block"
+					type: "item"
+				}
+				{
+					id: "11B9307049059D0E"
+					item: "overweight_farming:overweight_onion_block"
+					type: "item"
+				}
+				{
+					id: "404FFDF985D47549"
+					item: "overweight_farming:overweight_cabbage_block"
+					type: "item"
+				}
+			]
+			title: "收集圆润的农作物"
+			x: 4.5d
+			y: -1.5d
+		}
+		{
+			can_repeat: true
+			dependencies: ["4930ECD60EA9ED8D"]
+			description: [
+				"你&6自动化农场了&r吗？那你肯定知道作物过剩的烦恼。将作物&6交给这个任务&r以赢取奖励。"
+				""
+				"&d此任务可重复完成&r。"
+			]
+			id: "6630D27FC9E3F285"
+			rewards: [
+				{
+					id: "4695B14C75D256F2"
+					type: "xp_levels"
+					xp_levels: 10
+				}
+				{
+					exclude_from_claim_all: true
+					id: "509497F8FDAC8759"
+					table_id: 7049021818423122779L
+					type: "loot"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "5EFC02323DC65CA5"
+					table_id: 1739670786502713488L
+					type: "loot"
+				}
+				{
+					count: 10
+					id: "25673EACEF5A376C"
+					item: "minecraft:emerald_block"
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					consume_items: true
+					count: 10L
+					id: "421CB73C1AE799A5"
+					item: "farmersdelight:onion_crate"
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 10L
+					id: "55035A2527029547"
+					item: "farmersdelight:carrot_crate"
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 10L
+					id: "01215F6EE4B457A4"
+					item: "farmersdelight:potato_crate"
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 10L
+					id: "13803B6E5CB2DF76"
+					item: "farmersdelight:beetroot_crate"
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 10L
+					id: "5CE060E19611C1DE"
+					item: "farmersdelight:cabbage_crate"
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 10L
+					id: "241C1EBB473D9D1B"
+					item: "farmersdelight:tomato_crate"
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 10L
+					id: "52AD3CA306639035"
+					item: "quark:apple_crate"
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 10L
+					id: "3BBA4F97ADF44CD9"
+					item: "prefab:item_carton_of_eggs"
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 10L
+					id: "335176CD3CC595F9"
+					item: "culturaldelights:avocado_crate"
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 10L
+					id: "095EF4EE475C4250"
+					item: "culturaldelights:cucumber_crate"
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 10L
+					id: "6D6FE18F9E75CBC3"
+					item: "culturaldelights:corn_cob_crate"
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 10L
+					id: "30F3D5F7FA50469A"
+					item: "culturaldelights:eggplant_crate"
+					type: "item"
+				}
+			]
+			title: "将作物运回村庄"
+			x: 3.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["2CA80140F624D0AE"]
+			description: ["和&b木箱&r一样，许多作物都可以压缩成&b麻袋&r。它们既可用于装饰，也可&a用来腾出储物空间&r！"]
+			id: "2973338AB622C5D6"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "380BDD48693BCD8F"
+				table_id: 8808494820591225409L
+				type: "loot"
+			}]
+			tasks: [
+				{
+					id: "1B1F3AA7E0786E0D"
+					item: "delightful:salmonberry_sack"
+					type: "item"
+				}
+				{
+					id: "4ACD20B0FA4352AE"
+					item: "delightful:acorn_sack"
+					type: "item"
+				}
+				{
+					id: "591F577CDB915FCB"
+					item: "farmersrespite:green_tea_leaves_sack"
+					type: "item"
+				}
+				{
+					id: "58946F323CDABEBC"
+					item: "farmersrespite:yellow_tea_leaves_sack"
+					type: "item"
+				}
+				{
+					id: "10E1654908FAE623"
+					item: "farmersrespite:black_tea_leaves_sack"
+					type: "item"
+				}
+				{
+					id: "301E69DAB8861731"
+					item: "quark:cocoa_beans_sack"
+					type: "item"
+				}
+				{
+					id: "0E7043FAB4B5E3FC"
+					item: "quark:nether_wart_sack"
+					type: "item"
+				}
+				{
+					id: "0571F824465F5029"
+					item: "quark:berry_sack"
+					type: "item"
+				}
+				{
+					id: "35AE1CBDD601223B"
+					item: "quark:glowberry_sack"
+					type: "item"
+				}
+			]
+			title: "把东西收起来"
+			x: 7.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["4930ECD60EA9ED8D"]
+			description: [
+				"有一种方法可以&a更快地种植作物&r。如果你&6制作一些堆肥&r，然后&6把它放在水源附近&r，它就会慢慢变成&b富饶的土壤&r。这个过程可以用&b瓶中时光&r来&a加快。"
+				""
+				"翻耕后，&b富饶的土壤&r会&a为植物提供额外的生长&r时间。它&a不会被践踏&r，并且&a不需要浇水&r。"
+				""
+				"如果你打算种植任何&b蘑菇群落&r，你也需要它。"
+			]
+			id: "02F91E51E86F71F6"
+			rewards: [{
+				count: 5
+				id: "01F30CBF19893E1D"
+				item: "farmersdelight:organic_compost"
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "727B56ABB96944F2"
+					item: "farmersdelight:rich_soil"
+					type: "item"
+				}
+				{
+					id: "2E1CD7C0732CD9F2"
+					item: "farmersdelight:organic_compost"
+					type: "item"
+				}
+			]
+			x: -4.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["02F91E51E86F71F6"]
+			description: [
+				"和它的棕色兄弟一样，&b富饶灵魂土&r是由被&a置于熔岩旁&r的&b土壤堆肥&r形成的。"
+				"你可以用它来更快地种植&b下界作物&r！"
+			]
+			id: "60445E736AE3B5B4"
+			rewards: [{
+				count: 5
+				id: "4DBD2CF2969F8A46"
+				item: "nethersdelight:soul_compost"
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "04C5336A8E4F2D84"
+					item: "nethersdelight:rich_soul_soil"
+					type: "item"
+				}
+				{
+					id: "4BFE6D9C74C69930"
+					item: "nethersdelight:soul_compost"
+					type: "item"
+				}
+			]
+			x: -5.5d
+			y: 1.5d
+		}
+		{
+			id: "7814F0DBA486B635"
+			invisible: true
+			optional: true
+			secret: true
+			tasks: [{
+				id: "4F3BAE85C8194B15"
+				item: "ftbquests:barrier"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["4930ECD60EA9ED8D"]
+			description: [
+				"&b收割工具&r，在某些圈子中被称为镰刀，能让你施展一种名为&a收割&r的棘手魔法。"
+				""
+				"用&b镰刀&r&6右键&r收割动物。成功的话，你&a会获得掉落物而不会杀死它&r，取而代之的是偷走它的青春并将其变成幼崽。但如果失败，&a自然法则将发挥作用&r。"
+				""
+				"使用&b更好的材料&r可以确保&a更高的成功率&r，而&b下界合金&r的成功率接近100%。将鼠标悬停在每种工具上并按住&rshift&6键，即可查看基础失败率。"
+				""
+				"此仪式对没有幼崽阶段的生物无效，例如 &e鳕鱼&r。它对 &e敌对生物&r 也无效，即使它们有幼崽阶段。"
+				""
+				"如果你&d收割幼崽，它们会死掉&r，所以别太贪心！记住，可持续农业的关键是&a负责任地收获&r。"
+				""
+				"&b收割工具&r可以被&b分配器&r使用。"
+				""
+				"将&b收割工具&r放入&b附魔台&r中，&d99%的情况下只会获得无限附魔&r。最好用书本附魔。"
+				""
+				"&b收割工具&r可以附魔&a修补、锋利度和耐久度&r，正如你所料。"
+				"不过，它们也可以用&aExecutioner&r附魔，但&d目前没有任何效果&r。"
+			]
+			id: "78CB4E7CEB48941A"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "3CCD4E605779C068"
+				table_id: 7049021818423122779L
+				type: "random"
+			}]
+			shape: "hexagon"
+			subtitle: "别怕死神...说真的，别怕死神...认真的"
+			tasks: [{
+				id: "006BA9F88102C536"
+				item: {
+					Count: 1b
+					id: "itemfilters:tag"
+					tag: {
+						value: "forge:scythe"
+					}
+				}
+				title: "任意 #forge:scythe"
+				type: "item"
+			}]
+			title: "获取一把收割工具"
+			x: 0.5d
+			y: -2.0d
+		}
+		{
+			description: [
+				"你知道生活需要的是什么吗？多样性。而你知道谁最爱多样性吗？你猜对了——&e蜜蜂&r。"
+				"哦，不是你猜的那样吗？"
+				""
+				"算了，别管了。每种类型的&b蜂巢&r各收集一个，看看你的&e蜜蜂&r会多高兴。"
+			]
+			id: "1FF3A036CE58CCC9"
+			rewards: [{
+				id: "3CA3A10AD6506A17"
+				item: "plushies:bee"
+				type: "item"
+			}]
+			shape: "octagon"
+			tasks: [{
+				advancement: "friendsandfoes:husbandry/beehive"
+				criterion: ""
+				id: "28E5384ECA31D155"
+				type: "advancement"
+			}]
+			x: -3.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["4930ECD60EA9ED8D"]
+			description: [
+				"这些&b手推车&r可用于运输&a物品和实体&r。默认情况下，&6骑上或站在手推车上时，按“r”&r键可&a拉起手推车&r。再按一次 R 键即可放下。"
+				""
+				"&b补给车&r的作用显而易见。 &6右键单击并按住Shift&r即可打开其物品栏，然后&a将物品装进去&r！之后你就可以用它在陆地上运输这些物品了。不过，&a破坏补给车&r会使其物品栏掉落。"
+				""
+				"&b动物推车&r能帮你&a运输实体&r！&6右键推车物品&r，放到要移动的生物上。然后像平时一样运输。 &a打破推车&r即可释放动物。"
+				""
+				"{image:cottagewitch:textures/quest_images/cart.png width:100 height:80 align:1 fit:true}"
+			]
+			id: "04BD2724E24B4125"
+			rewards: [
+				{
+					id: "78C0D516B0CB0241"
+					item: "minecraft:horse_spawn_egg"
+					type: "item"
+				}
+				{
+					id: "73CBD7FB040007FD"
+					item: "farmersdelight:horse_feed"
+					type: "item"
+				}
+			]
+			shape: "hexagon"
+			subtitle: "物品和生物运输器"
+			tasks: [{
+				id: "099CE793A38F980E"
+				item: {
+					Count: 1b
+					id: "itemfilters:tag"
+					tag: {
+						value: "forge:carts"
+					}
+				}
+				title: "任意 #forge:carts"
+				type: "item"
+			}]
+			title: "制作一辆矿车"
+			x: 0.0d
+			y: 3.0d
+		}
+	]
+	title: "农业与园艺 \\nFarming \& Gardening"
+}

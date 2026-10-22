@@ -1,0 +1,109 @@
+# AI 初翻，未人工校对
+{
+	consume_items: true
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "flower_hunt"
+	group: "691ECEA9A5501200"
+	id: "55A0A37214A7673B"
+	order_index: 21
+	quest_links: [ ]
+	quests: [
+		{
+			can_repeat: true
+			dependencies: [
+				"27D4A734520B9E03"
+				"37E11B72FBC261E8"
+			]
+			description: [""]
+			hide_details_until_startable: true
+			hide_until_deps_visible: true
+			id: "4A7069107C97C7BA"
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/gamestage remove @p florist1 true"
+					elevate_perms: true
+					id: "03EA6DE2CF1BF095"
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 27D4A734520B9E03"
+					elevate_perms: true
+					id: "68030B80A88C679E"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/tellraw @p {\"text\":\"Thanks for helping us Sir! Your rewards have been granted!\",\"color\":\"white\",\"bold\":true}"
+					elevate_perms: true
+					id: "1D9D7CF2B5DF5666"
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 2
+					id: "2A18ABE5172FA539"
+					item: "quest_token_api:quest_token"
+					type: "item"
+				}
+				{
+					auto: "enabled"
+					exclude_from_claim_all: true
+					id: "39F235DC9C02D382"
+					table_id: 5618260505225790032L
+					type: "random"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 37E11B72FBC261E8"
+					elevate_perms: true
+					id: "767E399574C2E733"
+					silent: true
+					type: "command"
+				}
+			]
+			tasks: [{
+				id: "2F88B339CB133D36"
+				title: "点击以完成"
+				type: "checkmark"
+			}]
+			title: "点击以完成"
+			x: 1.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["27D4A734520B9E03"]
+			description: ["冒险家，你好！我需要一些不同的花来装饰我的花园，能帮我收集清单上的这些吗？"]
+			hide_details_until_startable: true
+			hide_until_deps_visible: true
+			id: "37E11B72FBC261E8"
+			tasks: [
+				{
+					count: 20L
+					id: "075BFBC7DAA6BBBF"
+					item: { Count: 20, id: "minecraft:poppy" }
+					type: "item"
+				}
+				{
+					count: 3L
+					id: "37D3C7C064D8B1BF"
+					item: { Count: 3, id: "minecraft:oxeye_daisy" }
+					type: "item"
+				}
+				{
+					count: 20L
+					id: "5BD00E05F95BD3B0"
+					item: { Count: 20, id: "minecraft:dandelion" }
+					type: "item"
+				}
+			]
+			title: "任务"
+			x: 0.0d
+			y: 1.0d
+		}
+	]
+	title: "&7寻花之旅"
+}

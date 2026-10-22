@@ -1,0 +1,168 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "fort_of_the_illagers"
+	group: "2160A0BD1700DC33"
+	hide_quest_details_until_startable: true
+	hide_quest_until_deps_visible: true
+	id: "12F069B4E23C3713"
+	order_index: 3
+	quest_links: [ ]
+	quests: [
+		{
+			id: "0F970826487A37C8"
+			rewards: [{
+				auto: "invisible"
+				command: "/tellraw @p {\"text\":\"Ready to embark on your quest!? Open your questbook to find the quest activated to begin searching for the structure!\",\"color\":\"white\",\"bold\":true}"
+				elevate_perms: true
+				id: "3054E243C67AC74F"
+				type: "command"
+			}]
+			secret: true
+			tasks: [{
+				icon: "quest_token_api:absi_palace_king"
+				id: "4E61CAC1E1321E12"
+				stage: "illagerfort"
+				title: "使用卷轴解锁"
+				type: "gamestage"
+			}]
+			x: 0.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["0F970826487A37C8"]
+			id: "20DF08209823B19B"
+			tasks: [{
+				id: "6142E779AE83AA2F"
+				structure: "dungeons_arise:illager_fort"
+				title: "找到掠夺者堡垒"
+				type: "structure"
+			}]
+			x: 2.0d
+			y: 0.5d
+		}
+		{
+			can_repeat: true
+			dependencies: ["0F970826487A37C8"]
+			id: "37ADF40FB787DA77"
+			rewards: [{
+				auto: "invisible"
+				command: "/locate structure dungeons_arise:illager_fort"
+				elevate_perms: true
+				id: "20B3BC0D93097519"
+				team_reward: false
+				type: "command"
+			}]
+			tasks: [{
+				id: "180657B7EF652A22"
+				title: "点击以定位结构物"
+				type: "checkmark"
+			}]
+			x: -2.0d
+			y: 0.5d
+		}
+		{
+			can_repeat: true
+			dependencies: ["20DF08209823B19B"]
+			id: "09D3C25F16A73736"
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/gamestage remove @p illagerfort true"
+					elevate_perms: true
+					id: "192E5794803280CC"
+					team_reward: false
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 0F970826487A37C8"
+					elevate_perms: true
+					id: "0C59B76FA4093463"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 20DF08209823B19B"
+					elevate_perms: true
+					id: "2EF723C35B27DF05"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					command: "/puffish_skills points add @p puffish_skills:combat 4"
+					elevate_perms: true
+					icon: "minecraft:experience_bottle"
+					id: "030542C230C657D9"
+					title: "4 战斗技能点"
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					id: "294FF6E47ED920C7"
+					table_id: 444384640504589334L
+					type: "random"
+				}
+				{
+					auto: "enabled"
+					id: "2FCF1CC05AB05CDC"
+					item: "steampunkrpg_content:dungeon_token"
+					type: "item"
+				}
+			]
+			shape: "octagon"
+			size: 2.0d
+			tasks: [
+				{
+					entity: "minecraft:evoker"
+					id: "53E0DF498294C482"
+					type: "kill"
+					value: 5L
+				}
+				{
+					entity: "minecraft:illusioner"
+					id: "6FB262142370D358"
+					type: "kill"
+					value: 5L
+				}
+				{
+					entity: "minecraft:vindicator"
+					id: "339B1C2FAA36C37D"
+					type: "kill"
+					value: 5L
+				}
+				{
+					entity: "minecraft:pillager"
+					id: "7944C3C63DCC527F"
+					type: "kill"
+					value: 10L
+				}
+				{
+					block: "lootr:lootr_chest"
+					block_type: 0
+					checkItem: false
+					id: "540B154FBE9969B4"
+					isItemInteraction: false
+					type: "questsadditions:use"
+					value: 5L
+				}
+				{
+					block: "lootr:lootr_barrel"
+					block_type: 0
+					checkItem: false
+					id: "18A743FC02CCEE3E"
+					isItemInteraction: false
+					type: "questsadditions:use"
+					value: 5L
+				}
+			]
+			title: "任务"
+			x: 4.5d
+			y: 0.5d
+		}
+	]
+	title: "&b掠夺者堡垒 (Fort Of The Illagers)"
+}

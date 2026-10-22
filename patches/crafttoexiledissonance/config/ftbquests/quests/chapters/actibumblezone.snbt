@@ -1,0 +1,877 @@
+# AI 初翻，未人工校对
+{
+	id: 82,
+	filename: "actibumblezone",
+	order_index: 2,
+	title: "第一幕：大黄蜂地带（可选）",
+	icon: "minecraft:bee_nest",
+	always_invisible: false,
+	group: 0,
+	default_quest_shape: "default",
+	images: [],
+	quests: [
+		{
+			title: "嗡嗡作响的蜜蜂们",
+			x: 0.0d,
+			y: 0.0d,
+			shape: "hexagon",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"欢迎来到蜜蜂区！这里有无数充满蜂蜜、蜜蜂等生物的群系！探索蜜蜂区，满载而归吧！但要小心，向蜜蜂取蜜可能存在风险……",
+				"要访问此任务，你必须完成《序幕》中的“大黄蜂地带”。"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;64],
+			dependency_requirement: "all_completed",
+			id: 86,
+			tasks: [
+				{
+					id: 87,
+					type: "item",
+					item: "minecraft:honey_bottle",
+					count: 2L
+				},
+				{
+					id: 88,
+					type: "item",
+					item: "the_bumblezone:honey_crystal_shards",
+					count: 4L
+				}
+			],
+			rewards: [
+				{
+					id: 89,
+					type: "item",
+					item: {
+						id: "mmorpg:ore1",
+						Count: 3b
+					}
+				},
+				{
+					id: 1757,
+					type: "item",
+					title: "8250 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 8250
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "阻止嗡嗡声",
+			x: 1.5d,
+			y: 0.0d,
+			shape: "hexagon",
+			subtitle: "",
+			size: 1.0d,
+			description: ["你可能已经被蜜蜂烦得不行了……所以，让我们来消灭一些吧！"],
+			min_required_dependencies: 0,
+			dependencies: [I;86],
+			dependency_requirement: "all_completed",
+			id: 95,
+			tasks: [{
+				id: 96,
+				type: "kill",
+				entity: "minecraft:bee",
+				value: 6L
+			}],
+			rewards: [
+				{
+					id: 97,
+					type: "item",
+					item: {
+						id: "minecraft:honey_bottle",
+						Count: 3b
+					}
+				},
+				{
+					id: 1758,
+					type: "item",
+					title: "12000 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 12000
+						}
+					}
+				},
+				{
+					id: 2499,
+					type: "item",
+					item: {
+						id: "mmorpg:loot_crate",
+						Count: 1b,
+						tag: {
+							REGISTRY_ID: "weaponcrafter_crate",
+							LVL: 15,
+							SCORE: "GOOD",
+							TIER: 2
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "感觉甜蜜蜜的",
+			x: 3.0d,
+			y: 0.0d,
+			shape: "hexagon",
+			subtitle: "",
+			size: 1.0d,
+			description: ["糖水仅限Bumblezone使用，可储存在瓶子里。饮用糖水会恢复少量饥饿度并提高移动速度。"],
+			min_required_dependencies: 0,
+			dependencies: [I;95],
+			dependency_requirement: "all_completed",
+			id: 108,
+			tasks: [{
+				id: 109,
+				type: "item",
+				item: "the_bumblezone:sugar_water_bottle",
+				count: 2L
+			}],
+			rewards: [{
+				id: 1759,
+				type: "item",
+				title: "21000 经验值",
+				item: {
+					id: "mmorpg:give_exp",
+					Count: 1b,
+					tag: {
+						exp: 21000
+					}
+				}
+			}]
+		},
+		{
+			title: "下界区域 (The Nether Regions)",
+			icon: "minecraft:netherrack",
+			x: 7.5d,
+			y: 0.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["在20级，你就能挑战下界了。制作一个黑曜石传送门进入下界——你也可以用同一个传送门返回主世界。进入下界，阻止恶魔领主入侵主世界！"],
+			min_required_dependencies: 0,
+			dependencies: [I;2339],
+			dependency_requirement: "all_completed",
+			id: 125,
+			tasks: [{
+				id: 248,
+				type: "dimension",
+				dimension: "minecraft:the_nether"
+			}],
+			rewards: [
+				{
+					id: 127,
+					type: "item",
+					item: {
+						id: "minecraft:gold_ingot",
+						Count: 5b
+					}
+				},
+				{
+					id: 1761,
+					type: "item",
+					title: "33750 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 33750
+						}
+					}
+				},
+				{
+					id: 2095,
+					type: "item",
+					item: "calemiutils:coin_nickel"
+				}
+			]
+		},
+		{
+			title: "甜蜜的复仇",
+			x: 3.0d,
+			y: -1.5d,
+			shape: "hexagon",
+			subtitle: "",
+			size: 1.0d,
+			description: ["在《流放者物语》中，紧急情况下可以制作盾牌作为副手物品。制作的盾牌遵循大致流程：盾牌 -> 蜂蜜水晶盾 -> 重型板甲盾 -> 岩菇盾。"],
+			min_required_dependencies: 0,
+			dependencies: [I;108],
+			dependency_requirement: "all_completed",
+			id: 460,
+			tasks: [{
+				id: 461,
+				type: "item",
+				item: {
+					id: "the_bumblezone:honey_crystal_shield",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}],
+			rewards: [
+				{
+					id: 710,
+					type: "item",
+					item: {
+						id: "mmorpg:ore1",
+						Count: 25b
+					}
+				},
+				{
+					id: 1763,
+					type: "item",
+					title: "30000 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 30000
+						}
+					}
+				},
+				{
+					id: 2497,
+					type: "item",
+					item: {
+						id: "mmorpg:loot_crate",
+						Count: 1b,
+						tag: {
+							REGISTRY_ID: "armorcrafter_crate",
+							LVL: 15,
+							SCORE: "GOOD",
+							TIER: 2
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "向心力",
+			x: 7.5d,
+			y: 1.5d,
+			shape: "hexagon",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"离心机是一种能将蜂巢产出的资源转化为宝贵物资的强大装置。你可以将高级蜂巢中蜜蜂产出的资源放入离心机，甚至可以制造黄铜或钨！",
+				"你也可以用离心机将蜂瓶中的遗传物质分离成基因。"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;2341],
+			dependency_requirement: "all_completed",
+			id: 462,
+			tasks: [{
+				id: 463,
+				type: "item",
+				item: "productivebees:centrifuge"
+			}],
+			rewards: [
+				{
+					id: 712,
+					type: "item",
+					item: {
+						id: "productivebees:bee_cage",
+						Count: 4b
+					}
+				},
+				{
+					id: 1764,
+					type: "item",
+					title: "30000 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 30000
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "储备物资",
+			x: 7.5d,
+			y: 3.0d,
+			shape: "hexagon",
+			subtitle: "",
+			size: 1.0d,
+			description: ["用离心机可以从末地蜂巢中提取末影珍珠。你之后会需要一些，所以现在最好就转换掉！"],
+			min_required_dependencies: 0,
+			dependencies: [I;462],
+			dependency_requirement: "all_completed",
+			id: 464,
+			tasks: [{
+				id: 465,
+				type: "item",
+				item: "productivebees:honeycomb_ender",
+				count: 4L
+			}],
+			rewards: [
+				{
+					id: 720,
+					type: "item",
+					item: {
+						id: "minecraft:ender_pearl",
+						Count: 3b
+					}
+				},
+				{
+					id: 2363,
+					type: "item",
+					title: "15000 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 15000
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "直击要害，痛击敌人",
+			x: 1.5d,
+			y: -1.5d,
+			shape: "hexagon",
+			subtitle: "",
+			size: 1.0d,
+			description: ["这些蜂群区似乎是蜜蜂的产卵地。摧毁方块，收获蜂蜜吧。"],
+			min_required_dependencies: 0,
+			dependencies: [I;95],
+			dependency_requirement: "all_completed",
+			id: 468,
+			tasks: [{
+				id: 469,
+				type: "item",
+				item: "the_bumblezone:dead_honeycomb_larva_block",
+				count: 12L
+			}],
+			rewards: [
+				{
+					id: 1766,
+					type: "item",
+					title: "26250 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 26250
+						}
+					}
+				},
+				{
+					id: 2454,
+					type: "item",
+					item: "buzzierbees:honey_bread"
+				},
+				{
+					id: 2495,
+					type: "item",
+					item: {
+						id: "mmorpg:loot_crate",
+						Count: 1b,
+						tag: {
+							REGISTRY_ID: "currency_crate",
+							LVL: 15,
+							SCORE: "GOOD",
+							TIER: 2
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "史莱姆的意味 (Slimey Means)",
+			icon: "buzzierbees:honey_slime_spawn_egg",
+			x: 1.5d,
+			y: -3.0d,
+			shape: "hexagon",
+			subtitle: "",
+			size: 1.0d,
+			description: ["蜂蜜史莱姆是获取蜂蜜的绝佳方式。杀死它们，收集蜂蜜吧！"],
+			min_required_dependencies: 0,
+			dependencies: [I;468],
+			dependency_requirement: "all_completed",
+			id: 470,
+			tasks: [{
+				id: 471,
+				type: "kill",
+				icon: "minecraft:slime_ball",
+				entity: "buzzierbees:honey_slime",
+				value: 3L
+			}],
+			rewards: [
+				{
+					id: 718,
+					type: "item",
+					item: {
+						id: "mmorpg:ore3",
+						Count: 3b
+					}
+				},
+				{
+					id: 1767,
+					type: "item",
+					title: "28125 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 28125
+						}
+					}
+				},
+				{
+					id: 2094,
+					type: "item",
+					item: "calemiutils:coin_nickel"
+				},
+				{
+					id: 2496,
+					type: "item",
+					item: {
+						id: "mmorpg:loot_crate",
+						Count: 1b,
+						tag: {
+							REGISTRY_ID: "jewerlycrafter_crate",
+							LVL: 15,
+							SCORE: "GOOD",
+							TIER: 2
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "别当自私的蜜蜂！Don't Bee Shelfish!",
+			x: 1.5d,
+			y: 1.5d,
+			shape: "hexagon",
+			subtitle: "",
+			size: 1.0d,
+			description: ["Apotheosis 带来的可不止一种书架类型！"],
+			min_required_dependencies: 0,
+			dependencies: [I;95],
+			dependency_requirement: "all_completed",
+			id: 1958,
+			tasks: [{
+				id: 1959,
+				type: "item",
+				item: "apotheosis:beeshelf",
+				count: 4L
+			}],
+			rewards: [{
+				id: 1960,
+				type: "item",
+				title: "25000 经验值",
+				item: {
+					id: "mmorpg:give_exp",
+					Count: 1b,
+					tag: {
+						exp: 25000
+					}
+				}
+			}]
+		},
+		{
+			title: "蜜蜂养殖",
+			x: 4.5d,
+			y: 0.0d,
+			shape: "hexagon",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"蜂笼是易于制作和使用的一次性物品。用蜂笼与蜜蜂互动即可捕捉。再次右键可将其释放——就是这么简单！注意：使用蜂笼会消耗掉它。",
+				"注意：以下任务系列最好在主世界完成，但有些蜜蜂在嗡嗡区更容易找到！"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;108],
+			dependency_requirement: "all_completed",
+			id: 2337,
+			tasks: [{
+				id: 2338,
+				type: "item",
+				item: "productivebees:bee_cage"
+			}],
+			rewards: [
+				{
+					id: 2355,
+					type: "item",
+					title: "25000 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 25000
+						}
+					}
+				},
+				{
+					id: 2498,
+					type: "item",
+					item: {
+						id: "mmorpg:loot_crate",
+						Count: 1b,
+						tag: {
+							REGISTRY_ID: "weaponcrafter_crate",
+							LVL: 15,
+							SCORE: "GOOD",
+							TIER: 2
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "蜜蜂殖民地",
+			x: 6.0d,
+			y: 0.0d,
+			shape: "hexagon",
+			subtitle: "",
+			size: 1.0d,
+			description: ["蜂巢是原版方块，可以饲养蜜蜂。在刚开始玩的时候尤其有用。"],
+			min_required_dependencies: 0,
+			dependencies: [I;2337],
+			dependency_requirement: "all_completed",
+			id: 2339,
+			tasks: [{
+				id: 2340,
+				type: "item",
+				item: "minecraft:beehive"
+			}],
+			rewards: [{
+				id: 2356,
+				type: "item",
+				title: "27000 经验值",
+				item: {
+					id: "mmorpg:give_exp",
+					Count: 1b,
+					tag: {
+						exp: 27000
+					}
+				}
+			}]
+		},
+		{
+			title: "高级文明",
+			x: 6.0d,
+			y: 1.5d,
+			shape: "hexagon",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"高级蜂箱的制造成本高于普通蜂箱，但它是一款来自 Productive Bees 的极其强大的方块。右键点击高级蜂箱会打开一个 GUI。",
+				"在GUI中，你可以指定蜂箱要饲养的蜜蜂种类。你也可以储存瓶子以便自动填充。蜜蜂生成的资源蜂巢将储存在右侧一个特殊的9格储物栏中！",
+				"空的玻璃瓶将使用生成的蜂蜜来制作蜂蜜瓶。",
+				"确保为蜜蜂提供合适的开花物品——大多数蜜蜂需要蜂巢周围有花，但有些需要特定方块。例如，骨蜜蜂需要附近有骨块。"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;2339],
+			dependency_requirement: "all_completed",
+			id: 2341,
+			tasks: [{
+				id: 2342,
+				type: "item",
+				item: "productivebees:advanced_oak_beehive"
+			}],
+			rewards: [
+				{
+					id: 2358,
+					type: "item",
+					title: "15000 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 15000
+						}
+					}
+				},
+				{
+					id: 2365,
+					type: "item",
+					item: {
+						id: "minecraft:honey_bottle",
+						Count: 4b
+					}
+				}
+			]
+		},
+		{
+			title: "筑巢之地",
+			x: 6.0d,
+			y: -1.5d,
+			shape: "hexagon",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				'你可能会注意到一些带有“洞”的原木。这些巢穴里其实可以住蜜蜂！根据原木或其他方块（如砾石）的不同，会栖息着不同的蜜蜂。例如，木匠蜂可以在大多数原木巢穴中找到。然而，',
+				"挖掘蜂只出现在砾石和石巢中。通过信息丰富的JEI探索巢穴中的蜜蜂，你可以看到蜜蜂的筑巢偏好。"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;2339],
+			dependency_requirement: "all_completed",
+			id: 2343,
+			tasks: [{
+				id: 2344,
+				type: "item",
+				item: "productivebees:oak_wood_nest"
+			}],
+			rewards: [{
+				id: 2357,
+				type: "item",
+				title: "25000 经验值",
+				item: {
+					id: "mmorpg:give_exp",
+					Count: 1b,
+					tag: {
+						exp: 25000
+					}
+				}
+			}]
+		},
+		{
+			title: "杂交培育",
+			icon: "minecraft:yellow_dye",
+			x: 4.5d,
+			y: 1.5d,
+			shape: "hexagon",
+			subtitle: "",
+			size: 1.0d,
+			description: ["使用“高效蜜蜂”模组，可以杂交蜜蜂以获得新类型的蜜蜂！染料蜜蜂是一种有用的蜜蜂，可以为附近的花朵授粉，并根据授粉的花朵生成染料！"],
+			min_required_dependencies: 0,
+			dependencies: [I;2341],
+			dependency_requirement: "all_completed",
+			id: 2345,
+			tasks: [{
+				id: 2346,
+				type: "kill",
+				icon: "productivebees:spawn_egg_dye_bee",
+				entity: "productivebees:dye_bee",
+				value: 1L
+			}],
+			rewards: [
+				{
+					id: 2359,
+					type: "item",
+					title: "15000 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 15000
+						}
+					}
+				},
+				{
+					id: 2367,
+					type: "item",
+					item: "minecraft:red_dye"
+				},
+				{
+					id: 2368,
+					type: "item",
+					item: "minecraft:yellow_dye"
+				},
+				{
+					id: 2369,
+					type: "item",
+					item: "minecraft:blue_dye"
+				}
+			]
+		},
+		{
+			title: "蜂巢思维",
+			x: 6.0d,
+			y: 3.0d,
+			shape: "hexagon",
+			subtitle: "",
+			size: 1.0d,
+			description: ["高级蜂巢也可以升级。目前共有 5 种可用的升级。"],
+			min_required_dependencies: 0,
+			dependencies: [I;2341],
+			dependency_requirement: "all_completed",
+			id: 2347,
+			tasks: [{
+				id: 2348,
+				type: "item",
+				item: "productivebees:upgrade_productivity"
+			}],
+			rewards: [
+				{
+					id: 2360,
+					type: "item",
+					title: "15000 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 15000
+						}
+					}
+				},
+				{
+					id: 2366,
+					type: "item",
+					item: "productivebees:upgrade_base"
+				},
+				{
+					id: 2500,
+					type: "item",
+					item: {
+						id: "mmorpg:loot_crate",
+						Count: 1b,
+						tag: {
+							REGISTRY_ID: "currency_crate",
+							LVL: 15,
+							SCORE: "GOOD",
+							TIER: 2
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "能量增强",
+			x: 7.5d,
+			y: 4.5d,
+			shape: "hexagon",
+			subtitle: "",
+			size: 1.0d,
+			description: ["动力离心机需要能量（来自Create或Immersive Engineering）来运行，但它能更快地处理你的梳子！"],
+			min_required_dependencies: 0,
+			dependencies: [I;464],
+			dependency_requirement: "all_completed",
+			id: 2349,
+			tasks: [{
+				id: 2350,
+				type: "item",
+				item: "productivebees:powered_centrifuge"
+			}],
+			rewards: [
+				{
+					id: 2364,
+					type: "item",
+					title: "15000 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 15000
+						}
+					}
+				},
+				{
+					id: 2370,
+					type: "item",
+					item: {
+						id: "create:belt_connector",
+						Count: 8b
+					}
+				},
+				{
+					id: 2502,
+					type: "item",
+					item: {
+						id: "mmorpg:loot_crate",
+						Count: 1b,
+						tag: {
+							REGISTRY_ID: "currency_crate",
+							LVL: 15,
+							SCORE: "GOOD",
+							TIER: 2
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "基因重组 (Genetic Recombination)",
+			x: 9.0d,
+			y: 1.5d,
+			shape: "hexagon",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"被压扁的蜜蜂材料瓶包含蜜蜂的混合基因。你可以用活塞将蜜蜂压入瓶子收集器中。确保瓶子收集器有空的瓶子。将蜜蜂困在瓶子收集器和活塞之间。",
+				"你可以将压扁的蜜蜂材料带到离心机中，提取每种蜜蜂属性的基因样本。"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;462],
+			dependency_requirement: "all_completed",
+			id: 2351,
+			tasks: [{
+				id: 2352,
+				type: "item",
+				item: "productivebees:bottler"
+			}],
+			rewards: [{
+				id: 2361,
+				type: "item",
+				title: "15000 经验值",
+				item: {
+					id: "mmorpg:give_exp",
+					Count: 1b,
+					tag: {
+						exp: 15000
+					}
+				}
+			}]
+		},
+		{
+			x: 10.5d,
+			y: 1.5d,
+			shape: "hexagon",
+			subtitle: "",
+			size: 1.0d,
+			description: ["你可以将基因样本与蜂蜜点心结合，喂给蜜蜂。这样就能转移基因！"],
+			min_required_dependencies: 0,
+			dependencies: [I;2351],
+			dependency_requirement: "all_completed",
+			id: 2353,
+			tasks: [{
+				id: 2354,
+				type: "item",
+				item: "productivebees:honey_treat"
+			}],
+			rewards: [
+				{
+					id: 2362,
+					type: "item",
+					title: "15000 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 15000
+						}
+					}
+				},
+				{
+					id: 2501,
+					type: "item",
+					item: {
+						id: "mmorpg:loot_crate",
+						Count: 1b,
+						tag: {
+							REGISTRY_ID: "currency_crate",
+							LVL: 15,
+							SCORE: "GOOD",
+							TIER: 2
+						}
+					}
+				}
+			]
+		}
+	]
+}

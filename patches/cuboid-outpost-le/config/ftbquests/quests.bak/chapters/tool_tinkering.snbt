@@ -1,0 +1,633 @@
+# AI 初翻，未人工校对
+{
+	id: "33F4535B8E4C3579"
+	group: "6E3D5CD175F7344D"
+	order_index: 0
+	filename: "tool_tinkering"
+	title: "工具改造 (Tool Tinkering)"
+	icon: {
+		id: "tconstruct:cleaver"
+		Count: 1b
+		tag: {
+			tic_multipliers: {
+				"tconstruct:mining_speed": 0.25f
+				"tconstruct:attack_damage": 1.5f
+				"tconstruct:durability": 3.5f
+			}
+			tic_stats: {
+				"tconstruct:attack_speed": 0.85499996f
+				"tconstruct:mining_speed": 1.4625f
+				"tconstruct:attack_damage": 13.125f
+				"tconstruct:harvest_level": 4.0f
+				"tconstruct:durability": 4812.5f
+			}
+			tic_broken: 0b
+			tic_modifiers: [
+				{
+					name: "tconstruct:insatiable"
+					level: 4s
+				}
+				{
+					name: "tconstruct:severing"
+					level: 2s
+				}
+				{
+					name: "tconstruct:silky_aoe_shears"
+					level: 1s
+				}
+				{
+					name: "tconstruct:two_handed"
+					level: 1s
+				}
+			]
+			HideFlags: 3
+			tic_materials: [
+				"tconstruct:manyullyn"
+				"tconstruct:manyullyn"
+				"tconstruct:manyullyn"
+				"tconstruct:manyullyn"
+			]
+			Damage: 0
+			tic_persistent_data: {
+				abilities: 1
+				traits: 0
+				upgrades: 2
+			}
+		}
+	}
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "工具改造 (Tool Tinkering)"
+			x: 0.0d
+			y: 0.0d
+			shape: "gear"
+			description: ["有了木材，你现在可以制作其他工具了。有一种模块化方法，需要一点巧思来构造我们认为你可能会用到的工具。你可以先开始其中一部分，但之后需要其他材料才能在本章中继续推进。"]
+			dependencies: ["164AA3AA7EEDB5DC"]
+			id: "32E874AAA865CA9C"
+			tasks: [{
+				id: "5AC52B6410FD097D"
+				type: "item"
+				item: "minecraft:oak_log"
+			}]
+			rewards: [{
+				id: "1BB158FA4FBADD5D"
+				type: "item"
+				item: "minecraft:crafting_table"
+			}]
+		}
+		{
+			title: "模式识别测试"
+			x: 0.0d
+			y: 2.0d
+			description: [
+				"要开始，你需要制作一些图案。幸运的是，这很简单！"
+				""
+				"图案用于某些合成配方，但更重要的是，它们将在部件构建器中用于制作构成你工具的各个部件。"
+			]
+			dependencies: ["32E874AAA865CA9C"]
+			id: "2407EB86462E9AA4"
+			tasks: [{
+				id: "28220A10052165B5"
+				type: "item"
+				item: "tconstruct:pattern"
+				count: 6L
+			}]
+			rewards: [{
+				id: "66D5889ED751D476"
+				type: "item"
+				item: "tconstruct:pattern"
+				count: 16
+				random_bonus: 16
+			}]
+		}
+		{
+			title: "一个更出色的合成台"
+			x: -1.5d
+			y: 4.0d
+			description: [
+				"工作台本质上是一个合成台，但可以连接到旁边的物品栏（例如，一个箱子），以及本部分的其它工作站。"
+				""
+				"它只会与合成台相邻的背包连接，但对于其他工作台，它也能通过它们连接，这意味着从一个工作台换到另一个时，无需离开用户界面——非常方便！"
+			]
+			dependencies: ["2407EB86462E9AA4"]
+			id: "225F2F452807CAE0"
+			tasks: [{
+				id: "2B4D2D42C82CC5EF"
+				type: "item"
+				title: "任意的制作台"
+				item: {
+					id: "tconstruct:crafting_station"
+					Count: 1b
+					tag: { }
+				}
+			}]
+		}
+		{
+			title: "建造零件的地方，某个地方"
+			x: 0.0d
+			y: 4.0d
+			description: [
+				"部件合成器用于输入空白模式和原材料（如木材或石头），然后选择要建造的部件类型。部件可存储在部件箱中，但通常会在匠人台上组装工具。"
+				""
+				"零件制造机适合木材和石头等低阶材料，但要制作金属和更高级的材料，你需要先取得更多进展。"
+			]
+			dependencies: ["2407EB86462E9AA4"]
+			id: "441E5C590FD64D90"
+			tasks: [{
+				id: "0728C460FC46D219"
+				type: "item"
+				title: "任意零件建造者 (Any Part Builder)"
+				item: {
+					id: "tconstruct:part_builder"
+					Count: 1b
+					tag: { }
+				}
+			}]
+		}
+		{
+			title: "一站式改造工坊"
+			x: 1.5d
+			y: 4.0d
+			description: [
+				"Tinker Station 是你组装基础工具的地方。只需选择要制作的工具类型，提供所需部件，搞定！新工具！"
+				""
+				"建议将工作台、部件合成器和匠人台都放在一起，这样你就不用离开各自的界面也能在它们之间切换。"
+			]
+			dependencies: ["2407EB86462E9AA4"]
+			id: "7DED5CD6998498A6"
+			tasks: [{
+				id: "77ED20CAC5FB6FAD"
+				type: "item"
+				title: "任意一个Tinker Station工作台"
+				item: {
+					id: "tconstruct:tinker_station"
+					Count: 1b
+					tag: { }
+				}
+			}]
+		}
+		{
+			title: "你的第一件可修改工具"
+			icon: {
+				id: "tconstruct:hand_axe"
+				Count: 1b
+				tag: {
+					tic_multipliers: { }
+					tic_stats: {
+						"tconstruct:attack_speed": 0.9f
+						"tconstruct:mining_speed": 2.0f
+						"tconstruct:attack_damage": 6.0f
+						"tconstruct:harvest_level": 0.0f
+						"tconstruct:durability": 60.0f
+					}
+					tic_broken: 0b
+					tic_modifiers: [
+						{
+							name: "tconstruct:cultivated"
+							level: 3s
+						}
+						{
+							name: "tconstruct:axe_transform_hidden"
+							level: 1s
+						}
+					]
+					HideFlags: 3
+					tic_materials: [
+						"tconstruct:wood"
+						"tconstruct:wood"
+						"tconstruct:wood"
+					]
+					Damage: 0
+					tic_persistent_data: {
+						abilities: 1
+						traits: 0
+						upgrades: 3
+					}
+				}
+			}
+			x: 0.0d
+			y: 8.0d
+			description: [
+				"在Tinker Station中，选择左侧的Hand Axe。界面会变化，显示你需要提供一个Small Axe Head、一个Tool Handle和一个Tool Binding。插入你之前制作的部件，为自己制作一把Wooden Hand Axe。"
+				""
+				"好，这工具不算太好，但可以让你了解系统。为了进一步说明——走出去，用你的新斧头，直到它坏掉……"
+				""
+				"你会发现，当它损坏时，并不会像其他工具一样消失，而是直接变得无法使用。你有两种选择来修理损坏的工具（或修理工具）。"
+				""
+				"第一种方法是把坏掉的工具放进 Tinkering Station，选择左边的砧图标，放入坏掉的工具和制作该工具的材料，这样工具就能被修复了。"
+				""
+				"第二种方法是使用与修复工具相同材质的修复包。修复包可以直接在合成网格中用于损坏的工具（或需要修复的工具）。这包括玩家背包中的 2x2 合成网格！"
+			]
+			dependencies: ["047F3185F9885869"]
+			id: "0FBD70A678F713DE"
+			tasks: [{
+				id: "7959A44CD51C7394"
+				type: "item"
+				item: {
+					id: "tconstruct:hand_axe"
+					Count: 1b
+					tag: {
+						tic_multipliers: { }
+						tic_stats: {
+							"tconstruct:attack_speed": 0.9f
+							"tconstruct:mining_speed": 2.0f
+							"tconstruct:attack_damage": 6.0f
+							"tconstruct:harvest_level": 0.0f
+							"tconstruct:durability": 60.0f
+						}
+						tic_broken: 0b
+						tic_modifiers: [
+							{
+								name: "tconstruct:cultivated"
+								level: 3s
+							}
+							{
+								name: "tconstruct:axe_transform_hidden"
+								level: 1s
+							}
+						]
+						HideFlags: 3
+						tic_materials: [
+							"tconstruct:wood"
+							"tconstruct:wood"
+							"tconstruct:wood"
+						]
+						Damage: 0
+						tic_persistent_data: { }
+					}
+				}
+			}]
+			rewards: [{
+				id: "6B43BD0CBA8A9B08"
+				type: "item"
+				item: {
+					id: "tconstruct:repair_kit"
+					Count: 1b
+					tag: {
+						Material: "tconstruct:wood"
+					}
+				}
+			}]
+		}
+		{
+			title: "正在尝试使用这个整合包的任务书"
+			x: 0.0d
+			y: 6.0d
+			description: [
+				"使用零件合成器，用木头制作一个小斧头、一个工具柄和一个工具绑带。"
+				""
+				"&a在继续之前，请务必将这些物品放入你的玩家背包以获得奖励！&f"
+			]
+			dependencies: [
+				"225F2F452807CAE0"
+				"441E5C590FD64D90"
+				"7DED5CD6998498A6"
+			]
+			id: "047F3185F9885869"
+			tasks: [
+				{
+					id: "4B3D02A02FD4EBA7"
+					type: "item"
+					item: {
+						id: "tconstruct:small_axe_head"
+						Count: 1b
+						tag: {
+							Material: "tconstruct:wood"
+						}
+					}
+				}
+				{
+					id: "53C9F514978FED05"
+					type: "item"
+					item: {
+						id: "tconstruct:tool_binding"
+						Count: 1b
+						tag: {
+							Material: "tconstruct:wood"
+						}
+					}
+				}
+				{
+					id: "44E6521EE5059874"
+					type: "item"
+					item: {
+						id: "tconstruct:tool_handle"
+						Count: 1b
+						tag: {
+							Material: "tconstruct:wood"
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "对现有工具进行改造升级"
+			x: 0.0d
+			y: 10.0d
+			description: [
+				"一旦你获得了石头，就可以将斧头升级为石质斧头。"
+				""
+				"在升级之前，需要注意的是，你的木制手斧具有一些普通木制斧头所没有的额外属性和数值……"
+				""
+				"上面写着“Cultivated III”，如果你查看斧头的工具提示并按住 Shift，你会发现它还有“升级”和“能力”等信息。所有这些信息都可以在“材料与你的关系”一书中找到——你应该已经有一本了，如果找不到，可以在附录 E 的“应急物品”中领取一本一次性替换品。"
+				""
+				"不同统计数据的具体含义我们就不详细说明了，但需要注意的是，当我们将斧头改为石质斧头时，这些数据也会随之改变。现在就动手吧——回到 Tinkering Station，在 Anvil 中，将你的现有工具和新的石质斧头（放在左侧槽位）组合，制作一把 Stone Hand Axe。"
+				""
+				"查看工具提示中石质手斧的统计数据，你会发现“耕作”已从 III 级降至 II 级，并且你的工具现在还拥有“石质绑定 I”。重点在于，工具的属性取决于制作该工具的材料。"
+			]
+			dependencies: ["0FBD70A678F713DE"]
+			id: "30E592B9968A4B46"
+			tasks: [
+				{
+					id: "2B6EF24D09E52C6E"
+					type: "item"
+					item: {
+						id: "tconstruct:small_axe_head"
+						Count: 1b
+						tag: {
+							Material: "tconstruct:stone"
+						}
+					}
+				}
+				{
+					id: "25B26DD231CDA123"
+					type: "checkmark"
+					title: "我在此确认，我已用石质斧头制作了一把斧子。"
+				}
+			]
+		}
+		{
+			title: "更好的升级选项"
+			x: 2.0d
+			y: 10.0d
+			shape: "gear"
+			description: [
+				"&aComplete \"Smelt or Melt\" in \"Getting Tinks Done\" to activate this section.&f"
+				""
+				"当你能使用熔炉或冶炼炉时，下一阶段的升级就解锁了。这是因为要用二级材料（通常是金属）制作部件，你需要先制作合适的模具，将其放在铸造台上，然后将材料倒入模具中。现在，去制作一个铁质小斧头吧。"
+			]
+			dependencies: [
+				"30E592B9968A4B46"
+				"54493C0419586822"
+			]
+			id: "382ACEA3B14FE049"
+			tasks: [{
+				id: "69287F70ED08AFB3"
+				type: "item"
+				item: {
+					id: "tconstruct:small_axe_head"
+					Count: 1b
+					tag: {
+						Material: "tconstruct:iron"
+					}
+				}
+			}]
+			rewards: [{
+				id: "694E20EFF1595E50"
+				type: "item"
+				item: "tconstruct:puny_smelting"
+			}]
+		}
+		{
+			title: "再次进行升级"
+			x: 4.0d
+			y: 10.0d
+			description: [
+				"在Tinker Station里，把你的石质手斧升级为铁质手斧。统计数据又会发生变化。现在你应该已经知道如何制作易于升级和修理的基础工具了。"
+				""
+				"你还获得了《Puny Smelting》的副本，其中包含了可用于制作工具的Tier II材料信息，以及如何应用和使用工具升级和修饰器的说明。"
+				""
+				"那么接下来呢？更多工具！"
+				""
+				"走到这里的奖励是5个丝滑布。你可以将它们应用到Tinkers工具上（最好用于稿子或锄头），这样就能像丝绸之触附魔一样，拾起方块而不是破坏它们。这需要你的工具至少有1个可用能力槽。"
+			]
+			dependencies: ["382ACEA3B14FE049"]
+			id: "2497581D002D9694"
+			tasks: [{
+				id: "10BFDB20C95492E7"
+				type: "checkmark"
+				title: "好的！"
+			}]
+			rewards: [{
+				id: "1F8C64E72C38CD62"
+				type: "item"
+				item: "tconstruct:silky_cloth"
+				count: 5
+			}]
+		}
+		{
+			title: "一个特殊的锻造台"
+			x: 6.0d
+			y: 10.0d
+			description: [
+				"&aComplete \"Alloy Aloha!\" in \"Getting Tinks Done\" to activate this section.&f"
+				""
+				"要获得更多模块化工具和更好的升级选项，你需要制作一个特殊的砧。这里有几种不同的类型可供选择——选一个适合你的，然后开始吧！"
+				""
+				"作为奖励，我们将赠送你一份免费的《Mighty Smelting》，其中不仅介绍了 Tier III 材料，还提供了关于能力的一些额外信息！"
+			]
+			dependencies: ["2497581D002D9694"]
+			id: "32BD594EE5DEF1FA"
+			tasks: [{
+				id: "5D94B2B948A1287E"
+				type: "item"
+				title: "任意一个匠人砧（Tinker's Anvil）"
+				item: {
+					id: "tconstruct:tinkers_anvil"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "19C5D1294A115DA8"
+				type: "item"
+				item: "tconstruct:mighty_smelting"
+			}]
+		}
+		{
+			title: "不要弄丢你的头（字面意思）"
+			x: 8.0d
+			y: 10.0d
+			description: [
+				"你现在能用的新工具和武器之一是手斧。和剑这类武器相比，它的速度较慢，但伤害高，并且自带“斩首 II”效果，能增加斩首敌人的几率。如果你在寻找头颅，手斧在紧急情况下会非常有用，所以最好备一把好的。"
+				""
+				"在决定你的劈砍者用什么材料建造时，多了解不同材料，并考虑利用一些升级和能力槽来专注于你想用它做什么。例如，你可以考虑添加更高阶的“斩首”效果，每提升一级，击败对手时掉落头颅的几率就会增加。"
+			]
+			dependencies: ["32BD594EE5DEF1FA"]
+			id: "048DD287EC811A58"
+			tasks: [
+				{
+					id: "0078E5803F22C337"
+					type: "item"
+					title: "任意2个坚固手柄"
+					item: {
+						id: "tconstruct:tough_handle"
+						Count: 1b
+						tag: { }
+					}
+					count: 2L
+				}
+				{
+					id: "3F4F3433F923AD5F"
+					type: "item"
+					title: "任意宽刃武器"
+					item: {
+						id: "tconstruct:broad_blade"
+						Count: 1b
+						tag: { }
+					}
+				}
+				{
+					id: "6D2B1ACB5BDAD035"
+					type: "item"
+					title: "任意的大号金属板"
+					item: {
+						id: "tconstruct:large_plate"
+						Count: 1b
+						tag: { }
+					}
+				}
+				{
+					id: "259D65F2CE40E689"
+					type: "item"
+					title: "任意一把阔剑（Any Cleaver）"
+					item: {
+						id: "tconstruct:cleaver"
+						Count: 1b
+						tag: {
+							tic_multipliers: {
+								"tconstruct:mining_speed": 0.25f
+								"tconstruct:attack_damage": 1.5f
+								"tconstruct:durability": 3.5f
+							}
+							tic_stats: {
+								"tconstruct:attack_speed": 0.9f
+								"tconstruct:mining_speed": 0.25f
+								"tconstruct:attack_damage": 5.25f
+								"tconstruct:durability": 3.5f
+							}
+							tic_broken: 0b
+							tic_modifiers: [
+								{
+									name: "tconstruct:severing"
+									level: 2s
+								}
+								{
+									name: "tconstruct:silky_aoe_shears"
+									level: 1s
+								}
+								{
+									name: "tconstruct:two_handed"
+									level: 1s
+								}
+							]
+							HideFlags: 3
+							Damage: 0
+							tic_persistent_data: { }
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "4F1D4F7B7956ADEF"
+				type: "item"
+				item: {
+					id: "tconstruct:creative_slot"
+					Count: 1b
+					tag: {
+						slot: "abilities"
+					}
+				}
+			}]
+		}
+		{
+			title: "用于粉碎泥土和雪的工具"
+			x: 8.0d
+			y: 8.0d
+			description: [
+				"破碎机是好工具，但对岩石类材料才有效。对于雪、泥土、沙子和砾石，你需要的是挖掘机。"
+				""
+				"挖掘机的默认挖掘范围是3x3，和破碎机一样，非常适合用更可控的方式快速清理区域，比使用脉矿机要好。"
+			]
+			dependencies: ["32BD594EE5DEF1FA"]
+			id: "4E4BD248C7BF3A19"
+			tasks: [
+				{
+					id: "3875AF169ED6A46C"
+					type: "item"
+					title: "任意2个大号烤盘"
+					item: {
+						id: "tconstruct:large_plate"
+						Count: 1b
+						tag: { }
+					}
+					count: 2L
+				}
+				{
+					id: "6B550B487627AC35"
+					type: "item"
+					title: "任意2个坚固手柄"
+					item: {
+						id: "tconstruct:tough_handle"
+						Count: 1b
+						tag: { }
+					}
+					count: 2L
+				}
+				{
+					id: "145BF10E5A813E30"
+					type: "item"
+					title: "任意一台挖掘机"
+					item: {
+						id: "tconstruct:excavator"
+						Count: 1b
+						tag: {
+							tic_multipliers: {
+								"tconstruct:mining_speed": 0.3f
+								"tconstruct:attack_damage": 1.2f
+								"tconstruct:durability": 3.75f
+							}
+							tic_stats: {
+								"tconstruct:attack_speed": 1.0f
+								"tconstruct:mining_speed": 0.3f
+								"tconstruct:attack_damage": 1.8000001f
+								"tconstruct:durability": 3.75f
+							}
+							tic_broken: 0b
+							tic_modifiers: [
+								{
+									name: "tconstruct:knockback"
+									level: 2s
+								}
+								{
+									name: "tconstruct:shovel_transform_hidden"
+									level: 1s
+								}
+								{
+									name: "tconstruct:two_handed"
+									level: 1s
+								}
+							]
+							HideFlags: 3
+							Damage: 0
+							tic_persistent_data: { }
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "3E52F9E4C37915EC"
+				type: "item"
+				item: {
+					id: "tconstruct:creative_slot"
+					Count: 1b
+					tag: {
+						slot: "upgrades"
+					}
+				}
+			}]
+		}
+	]
+}

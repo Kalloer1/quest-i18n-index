@@ -1,0 +1,102 @@
+# AI 初翻，未人工校对
+{
+	consume_items: true
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "aquatic_gather"
+	group: "691ECEA9A5501200"
+	id: "7534C671BEED1DC4"
+	order_index: 18
+	quest_links: [ ]
+	quests: [
+		{
+			can_repeat: true
+			dependencies: [
+				"6EF607DEA08322FA"
+				"5C2DE927929D5E00"
+			]
+			description: [""]
+			hide_details_until_startable: true
+			hide_until_deps_visible: true
+			id: "22E388753021BB7D"
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/gamestage remove @p oceanographer1 true"
+					elevate_perms: true
+					id: "109104CCED96C346"
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 6EF607DEA08322FA"
+					elevate_perms: true
+					id: "0AC82B9BB48E9449"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/tellraw @p {\"text\":\"Thanks for helping us Sir! Your rewards have been granted!\",\"color\":\"white\",\"bold\":true}"
+					elevate_perms: true
+					id: "457952B07574D3B5"
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 2
+					id: "5049FD28E57ADD18"
+					item: "quest_token_api:quest_token"
+					type: "item"
+				}
+				{
+					auto: "enabled"
+					id: "71142369611AC69C"
+					table_id: 5618260505225790032L
+					type: "random"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 5C2DE927929D5E00"
+					elevate_perms: true
+					id: "25B33DE64DBFB4B8"
+					silent: true
+					type: "command"
+				}
+			]
+			tasks: [{
+				id: "354E0FFDAF106B6F"
+				title: "点击以完成"
+				type: "checkmark"
+			}]
+			title: "点击以完成"
+			x: 0.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["6EF607DEA08322FA"]
+			description: ["嗨，潜水员！我需要从海洋里拿几样东西，但我的潜水装备正在维修中，能帮我收集一下清单上的物品吗？"]
+			hide_details_until_startable: true
+			hide_until_deps_visible: true
+			id: "5C2DE927929D5E00"
+			tasks: [
+				{
+					count: 150L
+					id: "4CE4159E6525C1FB"
+					item: { Count: 150, id: "minecraft:kelp" }
+					type: "item"
+				}
+				{
+					count: 200L
+					id: "497EC1DCF1242CB8"
+					item: { Count: 200, id: "minecraft:seagrass" }
+					type: "item"
+				}
+			]
+			title: "任务"
+			x: -0.5d
+			y: 1.5d
+		}
+	]
+	title: "&7水生采集者"
+}

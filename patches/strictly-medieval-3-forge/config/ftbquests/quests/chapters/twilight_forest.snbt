@@ -1,0 +1,851 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "gear"
+	filename: "twilight_forest"
+	group: "63BC73F831F7A250"
+	icon: "twilightforest:twilight_portal_miniature_structure"
+	id: "383C7A60FEC096D4"
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["你需要 55 个 &c耐力 &f和 55 点 &c战斗 &f才能进入暮色森林。"]
+			icon: "twilightforest:twilight_portal_miniature_structure"
+			id: "66B3FA486264B5F2"
+			rewards: [
+				{
+					id: "2A1E3FA77CD604E0"
+					type: "xp"
+					xp: 100
+				}
+				{
+					auto: "invisible"
+					command: "/say Hi, @p! Word of warning the twilight forest has been insanely buffed! mobs are very strong!! "
+					id: "52D0E4BF79BCE59E"
+					type: "command"
+				}
+			]
+			size: 1.5d
+			subtitle: "欢迎~！"
+			tasks: [{
+				dimension: "twilightforest:twilight_forest"
+				icon: "twilightforest:twilight_portal_miniature_structure"
+				id: "0CEE10FDCC845BB5"
+				type: "dimension"
+			}]
+			title: "进入暮色森林 (Enter The Twilight Forest)"
+			x: -5.25d
+			y: -2.25d
+		}
+		{
+			dependencies: ["66B3FA486264B5F2"]
+			icon: "twilightforest:naga_trophy"
+			id: "55F8E8629F98173D"
+			rewards: [
+				{
+					id: "612D4AD0C380A270"
+					type: "xp"
+					xp: 100
+				}
+				{
+					amount: 83L
+					id: "41C29DC3F3B9AA34"
+					ignoreBonuses: false
+					skill: "slayer"
+					type: "pmmo:xpreward"
+				}
+				{
+					amount: 1
+					id: "23E7422A6782F8D3"
+					skill: "combat"
+					type: "pmmo:levelreward"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "5CFD6D541131C3D7"
+					table_id: 7425475955515657121L
+					type: "loot"
+				}
+			]
+			tasks: [{
+				entity: "twilightforest:naga"
+				id: "00B8679095A8AF37"
+				title: "击杀纳迦（Naga）"
+				type: "kill"
+				value: 1L
+			}]
+			x: -2.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["55F8E8629F98173D"]
+			icon: "twilightforest:lich_trophy"
+			id: "6DE275ACF917AED6"
+			rewards: [
+				{
+					id: "4053910148040EE7"
+					type: "xp"
+					xp: 100
+				}
+				{
+					amount: 1
+					id: "0C285C2BA3DD4A55"
+					skill: "mining"
+					type: "pmmo:levelreward"
+				}
+				{
+					command: "/skilltree points add @p 1"
+					icon: "forbidden_arcanus:xpetrified_orb"
+					id: "24E1E8A31006F53F"
+					title: "1 技能点"
+					type: "command"
+				}
+			]
+			tasks: [{
+				entity: "twilightforest:lich"
+				id: "7778327A7101E3FD"
+				title: "杀死巫妖之王！"
+				type: "kill"
+				value: 1L
+			}]
+			x: -0.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["6DE275ACF917AED6"]
+			icon: "twilightforest:minoshroom_trophy"
+			id: "2027109D939002F2"
+			rewards: [
+				{
+					amount: 1
+					auto: "invisible"
+					id: "143A9A3301753D7D"
+					skill: "alchemy"
+					type: "pmmo:levelreward"
+				}
+				{
+					id: "66451DE5BD43951D"
+					item: "minecraft:mooshroom_spawn_egg"
+					type: "item"
+				}
+			]
+			tasks: [{
+				entity: "twilightforest:minoshroom"
+				id: "7A29BC6A8B31EA6F"
+				title: "杀死牛头怪！"
+				type: "kill"
+				value: 1L
+			}]
+			x: 1.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["2027109D939002F2"]
+			description: ["21600 &cHP"]
+			icon: "twilightforest:hydra_trophy"
+			id: "7BBAC7FF72D8C2E6"
+			rewards: [
+				{
+					id: "39FABCE764C5D2DB"
+					type: "xp"
+					xp: 100
+				}
+				{
+					amount: 1
+					id: "1F1E4DDF62990DE0"
+					skill: "smithing"
+					type: "pmmo:levelreward"
+				}
+				{
+					id: "0457C1CF84583C16"
+					item: {
+						Count: 1b
+						id: "minecraft:enchanted_book"
+						tag: {
+							StoredEnchantments: [{
+								id: "minecraft:fire_protection"
+								lvl: 4s
+							}]
+						}
+					}
+					type: "item"
+				}
+				{
+					amount: 1
+					id: "36B93BE821CEF962"
+					skill: "combat"
+					type: "pmmo:levelreward"
+				}
+				{
+					id: "0E8CB225DAE7CA7E"
+					item: {
+						Count: 1b
+						id: "simplyswords:tainted_relic"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			subtitle: "瞄准头部！"
+			tasks: [{
+				entity: "twilightforest:hydra"
+				id: "463DAFFD04B487AE"
+				title: "杀死九头蛇！"
+				type: "kill"
+				value: 1L
+			}]
+			x: 3.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["7BBAC7FF72D8C2E6"]
+			icon: "twilightforest:knight_phantom_trophy"
+			id: "565AA93EB67FD08E"
+			rewards: [
+				{
+					id: "4FA08F92584DA54A"
+					type: "xp"
+					xp: 100
+				}
+				{
+					amount: 1
+					id: "000CD11A8EFBD281"
+					skill: "fishing"
+					type: "pmmo:levelreward"
+				}
+				{
+					id: "1567C39AD25CBDA7"
+					item: {
+						Count: 1b
+						id: "twilightforest:phantom_chestplate"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					amount: 1
+					id: "7E243AB76FF9A4BC"
+					skill: "combat"
+					type: "pmmo:levelreward"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7C5D399E9880CACC"
+					table_id: 7425475955515657121L
+					type: "loot"
+				}
+			]
+			tasks: [{
+				entity: "twilightforest:knight_phantom"
+				id: "505ABA20F85302F4"
+				title: "击杀骑士幻影！"
+				type: "kill"
+				value: 1L
+			}]
+			x: 3.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["565AA93EB67FD08E"]
+			icon: "twilightforest:ur_ghast_trophy"
+			id: "4943A1FC7AEA2BC5"
+			rewards: [
+				{
+					id: "02BA7ED232CAB8FF"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "51515ABE9E56781D"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					amount: 5
+					id: "277FF488A06CCE68"
+					skill: "archery"
+					title: "弓箭 5个等级"
+					type: "pmmo:levelreward"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "6EAF3F2AB9E1F911"
+					table_id: 7425475955515657121L
+					type: "loot"
+				}
+			]
+			tasks: [{
+				advancement: "twilightforest:progress_ur_ghast"
+				criterion: ""
+				icon: "twilightforest:ur_ghast_trophy"
+				id: "77CA6A9D6296CECE"
+				title: "远古幻翼的终结者！"
+				type: "advancement"
+			}]
+			title: "击杀远古灾厄兽 (Ur-Ghast)"
+			x: 1.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["4943A1FC7AEA2BC5"]
+			description: ["6000 &cHP"]
+			icon: {
+				Count: 1b
+				id: "twilightforest:alpha_yeti_trophy"
+				tag: { }
+			}
+			id: "65DCD2B78CACE3D7"
+			rewards: [
+				{
+					id: "0FF7B04075EBA5F3"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					amount: 1
+					id: "32AD654F10184645"
+					skill: "combat"
+					type: "pmmo:levelreward"
+				}
+				{
+					count: 12
+					id: "4391DEE751659E83"
+					item: {
+						Count: 1b
+						id: "twilightforest:alpha_yeti_fur"
+						tag: { }
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				entity: "twilightforest:alpha_yeti"
+				icon: "twilightforest:alpha_yeti_trophy"
+				id: "588385809F21A77C"
+				title: "击杀阿尔法雪怪！"
+				type: "kill"
+				value: 1L
+			}]
+			x: -0.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["65DCD2B78CACE3D7"]
+			description: ["6000 &cHP"]
+			icon: "twilightforest:snow_queen_trophy"
+			id: "28A3978B276B3195"
+			rewards: [
+				{
+					id: "278C1D6F32FC9444"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "286E5603DAC5A19B"
+					item: {
+						Count: 1b
+						id: "endrem:cold_eye"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				advancement: "twilightforest:progress_glacier"
+				criterion: ""
+				id: "4C1BA6ACB5AAAEF8"
+				title: "杀死雪后（Snow Queen）"
+				type: "advancement"
+			}]
+			x: -2.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["55F8E8629F98173D"]
+			id: "314A34198A842651"
+			rewards: [
+				{
+					id: "0F947A2F9C6AC606"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					count: 4
+					id: "0F81D68DD9C6A025"
+					item: "minecraft:diamond"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "155B56A2FFC3BEE1"
+				item: {
+					Count: 1b
+					id: "twilightforest:naga_chestplate"
+					tag: {
+						Damage: 0
+						Enchantments: [{
+							id: "minecraft:fire_protection"
+							lvl: 3s
+						}]
+					}
+				}
+				type: "item"
+			}]
+			title: "制作长袍 (Craft The Tunic)"
+			x: -3.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["55F8E8629F98173D"]
+			id: "5586F36FAAD95545"
+			rewards: [{
+				id: "652826E2A7691F05"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				id: "5038CE2F0B4D9A8B"
+				item: {
+					Count: 1b
+					id: "twilightforest:naga_leggings"
+					tag: {
+						Damage: 0
+						Enchantments: [{
+							id: "minecraft:protection"
+							lvl: 3s
+						}]
+					}
+				}
+				type: "item"
+			}]
+			title: "制作护腿装备！"
+			x: -2.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["2027109D939002F2"]
+			id: "40869DE4792D4E74"
+			rewards: [
+				{
+					id: "2E3492910D8473E2"
+					type: "xp"
+					xp: 100
+				}
+				{
+					amount: 1000L
+					id: "48D22C483F0CFBA4"
+					ignoreBonuses: false
+					skill: "cooking"
+					type: "pmmo:xpreward"
+				}
+			]
+			tasks: [{
+				id: "01A9307E9A2320D7"
+				item: "twilightforest:meef_stroganoff"
+				type: "item"
+			}]
+			x: 1.5d
+			y: -4.5d
+		}
+		{
+			dependencies: ["7BBAC7FF72D8C2E6"]
+			id: "46BBB5C618CE5D0F"
+			rewards: [
+				{
+					id: "69F7FB8CE5F99EB0"
+					type: "xp"
+					xp: 300
+				}
+				{
+					id: "39B679CB55812B62"
+					table_id: 4324331771948795312L
+					type: "loot"
+				}
+				{
+					id: "04455094C086FC15"
+					table_id: 162941360134059119L
+					type: "loot"
+				}
+				{
+					id: "1F83CF943AE42DE5"
+					item: {
+						Count: 1b
+						id: "endrem:magical_eye"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "35E4CBFBB4D433B1"
+				item: "twilightforest:fiery_blood"
+				type: "item"
+			}]
+			x: 5.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["7BBAC7FF72D8C2E6"]
+			id: "33796CC971F73B5F"
+			rewards: [
+				{
+					id: "5990D27CB6492581"
+					type: "xp"
+					xp: 100
+				}
+				{
+					exclude_from_claim_all: true
+					id: "2A3B51C92C12F782"
+					table_id: 6140479905622921234L
+					type: "loot"
+				}
+				{
+					amount: 500L
+					id: "05348C1020252379"
+					ignoreBonuses: false
+					skill: "mining"
+					type: "pmmo:xpreward"
+				}
+			]
+			tasks: [{
+				id: "238BAE35D63886D7"
+				item: "twilightforest:fiery_ingot"
+				type: "item"
+			}]
+			title: "制作一个火焰锭 (Fiery Ingot)"
+			x: 5.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["65DCD2B78CACE3D7"]
+			id: "2400AA6714CFBE4B"
+			rewards: [
+				{
+					id: "15CB1C0855DE83DD"
+					type: "xp"
+					xp: 100
+				}
+				{
+					exclude_from_claim_all: true
+					id: "446AB0C6784077FD"
+					table_id: 7425475955515657121L
+					type: "loot"
+				}
+			]
+			tasks: [{
+				id: "54042A63D87E7713"
+				item: {
+					Count: 1b
+					id: "twilightforest:yeti_helmet"
+					tag: {
+						Damage: 0
+						Enchantments: [{
+							id: "minecraft:protection"
+							lvl: 2s
+						}]
+					}
+				}
+				type: "item"
+			}]
+			x: 0.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["2400AA6714CFBE4B"]
+			id: "788A371574A26AF8"
+			rewards: [
+				{
+					id: "2DC321CD09CB2AE7"
+					type: "xp"
+					xp: 100
+				}
+				{
+					amount: 1
+					id: "196868C4A2228538"
+					skill: "crafting"
+					type: "pmmo:levelreward"
+				}
+			]
+			tasks: [{
+				id: "4C18F2CDC85F4339"
+				item: {
+					Count: 1b
+					id: "twilightforest:yeti_chestplate"
+					tag: {
+						Damage: 0
+						Enchantments: [{
+							id: "minecraft:protection"
+							lvl: 2s
+						}]
+					}
+				}
+				type: "item"
+			}]
+			x: -1.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["788A371574A26AF8"]
+			id: "57878AF7A82768A8"
+			rewards: [
+				{
+					id: "5D4DD03171D0BD72"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					amount: 1
+					id: "47A379983DE26A69"
+					skill: "crafting"
+					type: "pmmo:levelreward"
+				}
+			]
+			tasks: [{
+				id: "4CF633928BDF8D98"
+				item: {
+					Count: 1b
+					id: "twilightforest:yeti_leggings"
+					tag: {
+						Damage: 0
+						Enchantments: [{
+							id: "minecraft:protection"
+							lvl: 2s
+						}]
+					}
+				}
+				type: "item"
+			}]
+			x: -3.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["57878AF7A82768A8"]
+			id: "40746FB666CC44B7"
+			rewards: [{
+				id: "50B0BAB72741C83F"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+			tasks: [{
+				id: "1419A067C900146E"
+				item: {
+					Count: 1b
+					id: "twilightforest:yeti_boots"
+					tag: {
+						Damage: 0
+						Enchantments: [
+							{
+								id: "minecraft:protection"
+								lvl: 2s
+							}
+							{
+								id: "minecraft:feather_falling"
+								lvl: 4s
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			x: -5.0d
+			y: 4.0d
+		}
+		{
+			description: ["合成。"]
+			id: "3601FACE0D9AA614"
+			rewards: [
+				{
+					id: "011CFB6D3A039FF3"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "5F1A2FAF5348C980"
+					table_id: 6368590923468895226L
+					type: "loot"
+				}
+				{
+					id: "31B5C78CB1E3E76B"
+					item: {
+						Count: 1b
+						id: "endrem:rogue_eye"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "31C055EAC2CF87A7"
+				item: {
+					Count: 1b
+					id: "twilightforest:giant_sword"
+					tag: {
+						Damage: 0
+					}
+				}
+				only_from_crafting: true
+				type: "item"
+			}]
+			title: "弄一个大的回来"
+			x: -5.0d
+			y: 1.0d
+		}
+		{
+			description: ["合成。"]
+			id: "3DA7EC6A8E2B01B5"
+			rewards: [
+				{
+					id: "293FEFDAC3DA1282"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "64020E1AF4650169"
+					table_id: 162941360134059119L
+					type: "loot"
+				}
+			]
+			tasks: [{
+				id: "2A40880765C74E49"
+				item: {
+					Count: 1b
+					id: "twilightforest:giant_pickaxe"
+					tag: {
+						Damage: 0
+					}
+				}
+				only_from_crafting: true
+				type: "item"
+			}]
+			title: "这个也弄一个大的出来吧。"
+			x: -5.0d
+			y: 2.5d
+		}
+		{
+			id: "56C2965A499B2C3C"
+			rewards: [
+				{
+					id: "022C61EEBA3D402F"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "57127E0D300514D8"
+					table_id: 4541931633169242376L
+					type: "loot"
+				}
+			]
+			tasks: [{
+				id: "1A63824FA68ADA92"
+				item: {
+					Count: 1b
+					id: "twilightforest:lamp_of_cinders"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: -5.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["28A3978B276B3195"]
+			id: "661AE7040E8B6965"
+			rewards: [
+				{
+					amount: 3
+					id: "1431C2B4AE232130"
+					skill: "agility"
+					type: "pmmo:levelreward"
+				}
+				{
+					id: "7A8F8E78205C48E3"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "7367952119A0EA77"
+					item: "arthys_rpg_arms:purifying_pendant"
+					type: "item"
+				}
+			]
+			subtitle: "哇！真棒！"
+			tasks: [{
+				id: "71115FC41FF729A9"
+				item: "twilightforest:quest_ram_trophy"
+				type: "item"
+			}]
+			title: "获得奖杯！"
+			x: -2.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["661AE7040E8B6965"]
+			id: "2D473B8945B434ED"
+			rewards: [
+				{
+					id: "0E21327A865FBD53"
+					item: {
+						Count: 1b
+						id: "twilightforest:quest_ram_trophy"
+						tag: {
+							display: {
+								Lore: ["\"Worn by and the sworn protector of the Ram, The Mr. Glace 27's Personal Ram Head\""]
+								Name: "\"Questing Glace\""
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "4CFEC98C4AC59FA7"
+					item: {
+						Count: 1b
+						id: "relics:wool_mitten"
+						tag: {
+							abilities: {
+								mold: {
+									points: 0
+									stats: {
+										damage: 0.19616d
+										freeze: 1.74245d
+										size: 29.01944d
+										stun: 0.04987d
+									}
+								}
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "1B94D75613771E30"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				consume_items: true
+				id: "60D3552A36EA7F8F"
+				item: "twilightforest:quest_ram_trophy"
+				type: "item"
+			}]
+			title: "宣誓守护者的头颅"
+			x: -0.5d
+			y: 1.0d
+		}
+	]
+	title: "&l&c暮色森林"
+}

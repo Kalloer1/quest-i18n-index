@@ -1,0 +1,890 @@
+# AI 初翻，未人工校对
+{
+	id: "0000000000000B66"
+	group: "34B7FB260B6AEB81"
+	order_index: 1
+	filename: "expert__tier_1_wip"
+	title: "科技 - 机械大乱斗"
+	icon: "create:large_cogwheel"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "粗合金“熔炉”"
+			x: 3.0d
+			y: 0.0d
+			description: [
+				"不如我们先来个开门红，怎么样？"
+				""
+				"四周皆是废墟。怪物在土地上游荡，村民们在夜晚躲进小屋，不敢走出昏暗的灯光。但这里曾经有过更多东西。"
+				""
+				"利用所有可用资源，探索领地以寻找任何爆炸物。找到后，将材料掉落在地上并引爆。爆炸会将它们融合成新的化合物。"
+				""
+				"注意：单次爆炸的能量足以将大批材料进行转化。"
+			]
+			dependencies: ["1D574D041D9164AD"]
+			id: "6AADF6A0814C29D4"
+			tasks: [
+				{
+					id: "17152C3290B7D560"
+					type: "item"
+					item: "create:andesite_alloy"
+				}
+				{
+					id: "7D6B5C1ED8564A15"
+					type: "item"
+					item: "emendatusenigmatica:invar_dust"
+				}
+			]
+		}
+		{
+			x: 6.0d
+			y: 0.0d
+			description: [
+				"虽然粗糙，但能用就行。"
+				""
+				"制作一些板材和齿轮，开始建造基础能源基础设施和机械。"
+			]
+			dependencies: ["1D574D041D9164AD"]
+			id: "2357CCF3A0758B0C"
+			tasks: [
+				{
+					id: "10768509F8F36CE9"
+					type: "item"
+					item: "thermal:dynamo_stirling"
+				}
+				{
+					id: "1A9617FC53ED59BE"
+					type: "item"
+					item: {
+						id: "emendatusenigmatica:enigmatic_hammer"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			icon: "create:mechanical_mixer"
+			x: 2.0d
+			y: 2.5d
+			shape: "diamond"
+			description: [
+				""
+				"热起来了！不，是真的，你把炉子开着就走了。"
+				""
+				"等等，那个加热元件是在看着我吗？"
+				""
+				"勇闯下界，带回你能找到的所有宝藏。路上不妨顺手抓一两个友好的烈焰人。"
+			]
+			dependencies: ["10890B170755A6D5"]
+			dependency_requirement: "one_started"
+			optional: true
+			id: "4399B01214307E59"
+			tasks: [
+				{
+					id: "6F436217C7C8E2C0"
+					type: "item"
+					item: "create:mechanical_mixer"
+				}
+				{
+					id: "0D72E1875F30E74C"
+					type: "item"
+					item: "create:blaze_burner"
+				}
+				{
+					id: "7B79FCC58E931447"
+					type: "item"
+					item: "create:basin"
+				}
+			]
+		}
+		{
+			title: "按下以提高效率"
+			x: 1.0d
+			y: 2.5d
+			shape: "diamond"
+			description: [
+				"你一直锤制的那些粗糙的板子，嗯……该怎么说好呢？勉强够用。"
+				""
+				"骗谁呢？它们简直一塌糊涂。看看这些乱七八糟的废料？而且完全没有任何统一性。"
+			]
+			dependencies: ["10890B170755A6D5"]
+			optional: true
+			id: "5647CE9AC8F56F4D"
+			tasks: [{
+				id: "2A2571F7DFC9C4F4"
+				type: "item"
+				item: "create:mechanical_press"
+			}]
+		}
+		{
+			title: "已获得基础旋转能力！"
+			x: 1.5d
+			y: 1.5d
+			description: ["在资源匮乏的情况下，一点可再生能源就能发挥大作用。利用风能、水能，一切能启动基本机械的方法。我们得先学会爬，才能学会走。"]
+			dependencies: ["6AADF6A0814C29D4"]
+			id: "10890B170755A6D5"
+			tasks: [{
+				id: "6F7E34D112D43E07"
+				type: "item"
+				title: "基础旋转发电装置"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "create:hand_crank"
+								Count: 1b
+							}
+							{
+								id: "create:water_wheel"
+								Count: 1b
+							}
+							{
+								id: "create:encased_fan"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+		}
+		{
+			x: 1.5d
+			y: 3.0d
+			shape: "diamond"
+			description: ["黄铜在手，诸多新可能随之而来。让我们看看这会引向何方……"]
+			dependencies: ["4399B01214307E59"]
+			id: "6F3E31687E06AA19"
+			tasks: [{
+				id: "2B77C401C033F97D"
+				type: "item"
+				item: "emendatusenigmatica:brass_ingot"
+			}]
+		}
+		{
+			title: "比你想象的还要大 (Bigger Than You Thought)"
+			x: 1.5d
+			y: 4.0d
+			description: [
+				"让这些小狗把东西都掉出来吧。"
+				""
+				"建造一个大型黄铜制造台，并获取一对巨大的压轮。"
+			]
+			dependencies: ["6F3E31687E06AA19"]
+			id: "1FF1E4E11F6A5745"
+			tasks: [
+				{
+					id: "188613747DBDF702"
+					type: "item"
+					item: "create:mechanical_crafter"
+					count: 21L
+				}
+				{
+					id: "65DFBB37E7D75590"
+					type: "item"
+					item: "create:crushing_wheel"
+					count: 2L
+				}
+			]
+		}
+		{
+			x: 1.5d
+			y: 5.0d
+			description: [
+				"一点黏土，些许细腻的玄武岩粉，还有千个灵魂留下的粉末残骸……"
+				""
+				"一天的工作就这些，轻松搞定！"
+			]
+			dependencies: ["1FF1E4E11F6A5745"]
+			id: "1AA1AAE2DA37A44F"
+			tasks: [
+				{
+					id: "5470B75D9A088C52"
+					type: "item"
+					item: "create:cinder_flour"
+				}
+				{
+					id: "491EEC5AE95DDAE0"
+					type: "item"
+					item: "kubejs:basalt_powder"
+				}
+				{
+					id: "2FA897D7047480DE"
+					type: "item"
+					item: "minecraft:clay_ball"
+				}
+			]
+		}
+		{
+			x: 3.0d
+			y: 6.5d
+			shape: "octagon"
+			description: [
+				"需要一条装配线来正确放置这些砖块。"
+				""
+				"请注意，序列组装可以通过在传送带上执行每个合成步骤来轻松自动化。物品将在适当的步骤停止进行处理。"
+				""
+				"你可以选择用27个焦炭砖建造焦炭炉，或用17个焦炭砖建造热解炉。"
+			]
+			dependencies: ["1AA1AAE2DA37A44F"]
+			id: "737FEF84207E1AD5"
+			tasks: [{
+				id: "45F596F7AFA8BFFF"
+				type: "item"
+				item: "immersiveengineering:cokebrick"
+				count: 17L
+			}]
+		}
+		{
+			x: 4.5d
+			y: 6.0d
+			description: [
+				"充足的液态燃料很快就会派上用场。在此之前，需要一些副产品来代替。"
+				""
+				"建造一台机器来开始生产焦油。别忘了准备好燃料！"
+			]
+			dependencies: ["4A45210857A2FE10"]
+			id: "155D0B93052756E8"
+			tasks: [{
+				id: "11D4AFF923BA438E"
+				type: "item"
+				title: "焦油生产机器"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "thermal:machine_refinery"
+								Count: 1b
+							}
+							{
+								id: "thermal:machine_pyrolyzer"
+								Count: 1b
+							}
+							{
+								id: "thermal:machine_centrifuge"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+		}
+		{
+			x: 4.5d
+			y: 8.0d
+			shape: "diamond"
+			description: [
+				"让锭子砸向地板吧！"
+				""
+				"放下收集的材料，准备好再次引爆。分批操作是使用TNT的好方法，但要确保正确计算投入量，否则材料可能会丢失。"
+				""
+				"小心！这些刚出炉的时候可烫手了。"
+			]
+			dependencies: [
+				"62895312DA739FBF"
+				"1A3727BA37EA4F6D"
+				"354FE8210390E793"
+			]
+			id: "3DD1F984ED880148"
+			tasks: [{
+				id: "0CDA65B3EB419AE4"
+				type: "item"
+				title: "超高温钢（Superheated Steel）"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "kubejs:superheated_steel_ingot"
+								Count: 1b
+							}
+							{
+								id: "kubejs:superheated_steel_block"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+		}
+		{
+			x: 4.5d
+			y: 9.0d
+			description: ["现在要在水浴中迅速冷却前将其挤压一下。"]
+			dependencies: ["3DD1F984ED880148"]
+			id: "00EF0CAB3FB28938"
+			tasks: [{
+				id: "1B2F44B4F78173E4"
+				type: "item"
+				title: "高温压缩铁"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "kubejs:hot_compressed_iron_ingot"
+								Count: 1b
+							}
+							{
+								id: "kubejs:hot_compressed_iron_block"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+		}
+		{
+			x: 4.5d
+			y: 10.0d
+			shape: "octagon"
+			description: ["随着压缩铁的出现，我们得以接触到更先进的制造技术，并最终掌握久未在此地出现的尖端科技。"]
+			dependencies: ["00EF0CAB3FB28938"]
+			id: "60DF22034242502E"
+			tasks: [{
+				id: "58F6F9B04F87F83E"
+				type: "item"
+				item: "pneumaticcraft:ingot_iron_compressed"
+				count: 16L
+			}]
+		}
+		{
+			x: 4.5d
+			y: 1.5d
+			description: ["随着更精密的机器需要更优质的材料，更高效的合金冶炼方式将至关重要。我们不能指望靠炸毁一切来成功，对吧？"]
+			dependencies: [
+				"2357CCF3A0758B0C"
+				"6AADF6A0814C29D4"
+			]
+			id: "508E396542F84E94"
+			tasks: [{
+				id: "48D3578471D55A69"
+				type: "item"
+				item: "thermal:machine_smelter"
+			}]
+		}
+		{
+			x: 6.0d
+			y: 3.0d
+			description: ["制作一个岩浆熔炉，为工具改造和高级冶金铺平道路。"]
+			dependencies: ["508E396542F84E94"]
+			id: "15C239A8575142B1"
+			tasks: [{
+				id: "1FF36C55EC7E0648"
+				type: "item"
+				item: "thermal:machine_crucible"
+			}]
+		}
+		{
+			title: "树木中的乳胶"
+			icon: "minecraft:acacia_sapling"
+			x: 4.0d
+			y: 2.5d
+			shape: "diamond"
+			description: [
+				"寻找可靠乳胶来源的旅程，将从最茂密的丛林延伸至最深邃的海洋。"
+				""
+				"寻找适合提取乳胶的树木，并潜入海岸线采集珊瑚。动作要轻柔，这些珍贵的生物很脆弱，采集时需要格外小心。据说海豹也会将珊瑚作为礼物，回馈那些赠予它们礼物的人。"
+			]
+			dependencies: ["508E396542F84E94"]
+			id: "4082766981B24A44"
+			tasks: [
+				{
+					id: "671E424988B48284"
+					type: "item"
+					item: "thermal:device_tree_extractor"
+				}
+				{
+					id: "06ECC057A46741D7"
+					type: "item"
+					title: "生产乳胶的树木"
+					item: {
+						id: "itemfilters:or"
+						Count: 1b
+						tag: {
+							items: [
+								{
+									id: "byg:baobab_log"
+									Count: 1b
+								}
+								{
+									id: "byg:rainbow_eucalyptus_log"
+									Count: 1b
+								}
+								{
+									id: "minecraft:jungle_log"
+									Count: 1b
+								}
+								{
+									id: "byg:mahogany_log"
+									Count: 1b
+								}
+								{
+									id: "minecraft:acacia_log"
+									Count: 1b
+								}
+								{
+									id: "minecraft:acacia_sapling"
+									Count: 1b
+								}
+								{
+									id: "byg:baobab_sapling"
+									Count: 1b
+								}
+								{
+									id: "byg:rainbow_eucalyptus_sapling"
+									Count: 1b
+								}
+								{
+									id: "byg:mahogany_sapling"
+									Count: 1b
+								}
+								{
+									id: "minecraft:jungle_sapling"
+									Count: 1b
+								}
+							]
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 4.5d
+			y: 3.0d
+			shape: "diamond"
+			description: [
+				"就像给石头用的意式浓缩咖啡机！听起来太可怕了！"
+				""
+				"流体封装器不仅能用于填充桶以进行其他处理，还能产生足够高的压力来灌注混凝土、橡胶和加固石等工业材料。"
+			]
+			dependencies: [
+				"4082766981B24A44"
+				"4A5B10B9E4F2440D"
+			]
+			dependency_requirement: "one_completed"
+			id: "63B1F7BACD7CCD5D"
+			tasks: [{
+				id: "035C29A43AEA51CB"
+				type: "item"
+				item: "thermal:machine_bottler"
+			}]
+		}
+		{
+			x: 4.5d
+			y: 4.0d
+			shape: "diamond"
+			description: [
+				"将液态乳胶治愈成可用橡胶所需的硫磺，确实可能很难获得。"
+				""
+				"从矿石中提取意味着需要更温和的采集方法和机械处理，才能回收足够有用的量。"
+			]
+			dependencies: ["63B1F7BACD7CCD5D"]
+			id: "0616453B4BBEFB11"
+			tasks: [{
+				id: "75BAF49D78BF95C0"
+				type: "item"
+				item: "industrialforegoing:dryrubber"
+			}]
+		}
+		{
+			x: 7.5d
+			y: 3.0d
+			dependencies: ["2803A0750EE32FBC"]
+			optional: true
+			id: "6BAC6A8BB59E458E"
+			tasks: [
+				{
+					id: "4635A9AA2AFB35C4"
+					type: "item"
+					title: "xNet 电缆"
+					item: {
+						id: "itemfilters:or"
+						Count: 1b
+						tag: {
+							items: [
+								{
+									id: "xnet:connector_red"
+									Count: 1b
+								}
+								{
+									id: "xnet:connector_green"
+									Count: 1b
+								}
+								{
+									id: "xnet:connector_blue"
+									Count: 1b
+								}
+								{
+									id: "xnet:connector_yellow"
+									Count: 1b
+								}
+							]
+						}
+					}
+				}
+				{
+					id: "629C5937D3BF4203"
+					type: "item"
+					title: "xNet 电缆"
+					item: {
+						id: "itemfilters:or"
+						Count: 1b
+						tag: {
+							items: [
+								{
+									id: "xnet:netcable_red"
+									Count: 1b
+								}
+								{
+									id: "xnet:netcable_green"
+									Count: 1b
+								}
+								{
+									id: "xnet:netcable_blue"
+									Count: 1b
+								}
+								{
+									id: "xnet:netcable_yellow"
+									Count: 1b
+								}
+							]
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 7.5d
+			y: 4.0d
+			dependencies: ["6BAC6A8BB59E458E"]
+			optional: true
+			id: "5FD0550A79C3F850"
+			tasks: [{
+				id: "7F89F46E4234C872"
+				type: "item"
+				item: "xnet:controller"
+			}]
+		}
+		{
+			x: 3.0d
+			y: 1.5d
+			description: [
+				"放下那个漏斗。不，放低一点。就…就那样放着吧。"
+				""
+				"更好了。"
+				""
+				"听着，别整天跑来跑去地搬来搬去。投资点管道，生活会轻松得多。"
+			]
+			dependencies: ["6AADF6A0814C29D4"]
+			optional: true
+			id: "514A0FC52ADBE1DD"
+			tasks: [
+				{
+					id: "63BE4DE5D52BA7FD"
+					type: "item"
+					item: "prettypipes:pipe"
+					count: 8L
+				}
+				{
+					id: "7F749FB1AD173412"
+					type: "item"
+					item: "prettypipes:low_extraction_module"
+				}
+				{
+					id: "42285973A3B8F1B0"
+					type: "item"
+					item: "prettypipes:low_retrieval_module"
+				}
+			]
+		}
+		{
+			x: 3.0d
+			y: 4.0d
+			shape: "hexagon"
+			description: [
+				"用线和强力胶能固定住，但有了合成终端，就能集中管理那边的成堆箱子。还能按需自动合成。"
+				""
+				"听起来很不错，不是吗？"
+			]
+			dependencies: ["514A0FC52ADBE1DD"]
+			optional: true
+			id: "4607CD4FC64387B3"
+			tasks: [{
+				id: "52DED6EEEEB4E244"
+				type: "item"
+				item: "prettypipes:crafting_terminal"
+			}]
+		}
+		{
+			x: 6.0d
+			y: 9.5d
+			shape: "hexagon"
+			description: [
+				"有些人喜欢热的。非常非常热的。"
+				""
+				"保持钢的温度，并用熔化的焦石注入其中，开始使用高级的Tinker材料。"
+			]
+			dependencies: ["3DD1F984ED880148"]
+			id: "720C5EDF3E3B37A6"
+			tasks: [{
+				id: "11608309A9D6E501"
+				type: "item"
+				item: "tconstruct:foundry_controller"
+			}]
+		}
+		{
+			x: 6.0d
+			y: 4.0d
+			shape: "hexagon"
+			description: [
+				"需要少量熔化的铜来正确设置熔炉的温度控制。"
+				""
+				"在岩浆熔炉中熔化一些，然后将其倒在焦灼加热器上。"
+			]
+			dependencies: ["15C239A8575142B1"]
+			id: "1F777AA9D474D17C"
+			tasks: [
+				{
+					id: "1DD4546D37449EB3"
+					type: "item"
+					item: "tconstruct:seared_heater"
+				}
+				{
+					id: "3D1FA15C2CFF46C3"
+					type: "item"
+					item: "tconstruct:seared_basin"
+				}
+				{
+					id: "1831E181039C1FBA"
+					type: "item"
+					item: "tconstruct:smeltery_controller"
+				}
+			]
+		}
+		{
+			title: "技术进阶 第一阶"
+			icon: "create:large_cogwheel"
+			x: 4.5d
+			y: -1.5d
+			shape: "rsquare"
+			dependencies: ["0000000000000FEB"]
+			hide: true
+			id: "1D574D041D9164AD"
+			tasks: [{
+				id: "1AFB699186CA1AAC"
+				type: "checkmark"
+			}]
+		}
+		{
+			x: 6.0d
+			y: 1.5d
+			description: [
+				"好柔软，而且……等等，这东西不是用炉渣做的吗？"
+				""
+				"虽然可以作为其他加工的副产品获得，但炉渣也可以直接从熔炉中用大量砾石直接获得。"
+			]
+			dependencies: ["508E396542F84E94"]
+			id: "2803A0750EE32FBC"
+			tasks: [{
+				id: "64759DEEB6AF63CA"
+				type: "item"
+				title: "岩棉（Rockwool）"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "thermal:rockwool"
+					}
+				}
+			}]
+		}
+		{
+			x: 4.5d
+			y: 0.0d
+			description: [
+				"在这些野兽四处游荡的情况下，陆路旅行可能很危险。"
+				""
+				"在探索实用工具时，一艘好船是无价的。考虑制作一艘，以便快速穿越海洋和内陆的众多河流。"
+			]
+			dependencies: ["1D574D041D9164AD"]
+			id: "1348985516A60B72"
+			tasks: [{
+				id: "31BE7B445BC9FC71"
+				type: "item"
+				title: "小型船只"
+				item: {
+					id: "itemfilters:id_regex"
+					Count: 1b
+					tag: {
+						value: "smallships:(?!\\w*(?:sail_item))"
+					}
+				}
+			}]
+		}
+		{
+			x: 4.5d
+			y: 7.0d
+			shape: "diamond"
+			description: ["继续加油！"]
+			dependencies: ["155D0B93052756E8"]
+			id: "1A3727BA37EA4F6D"
+			tasks: [{
+				id: "56E32EE158B78F90"
+				type: "item"
+				item: "thermal:tar"
+			}]
+		}
+		{
+			x: 4.0d
+			y: 7.5d
+			shape: "diamond"
+			description: [
+				"干净、耐用的钢材。因其强度和耐用性，备受众多工程项目的青睐。"
+				""
+				"制作过程相当复杂，成本也因此相当高昂。所以，这似乎是个完美的东西，可以把它炸得粉碎。"
+			]
+			dependencies: ["737FEF84207E1AD5"]
+			id: "62895312DA739FBF"
+			tasks: [{
+				id: "01569489009ABEDD"
+				type: "item"
+				item: "emendatusenigmatica:steel_ingot"
+			}]
+		}
+		{
+			x: 5.0d
+			y: 7.5d
+			shape: "diamond"
+			description: ["收集一些黑曜石加入混合物中。"]
+			dependencies: ["1A3727BA37EA4F6D"]
+			id: "354FE8210390E793"
+			tasks: [{
+				id: "7913A39A566A6943"
+				type: "item"
+				item: "minecraft:obsidian"
+			}]
+		}
+		{
+			x: 4.5d
+			y: 5.0d
+			description: ["将橡胶煮熟制成熟化橡胶，适合用于密封流体单元。"]
+			dependencies: ["0616453B4BBEFB11"]
+			id: "4A45210857A2FE10"
+			tasks: [{
+				id: "5D74174DF5F08D7E"
+				type: "item"
+				item: {
+					id: "thermal:fluid_cell"
+					Count: 1b
+					tag: {
+						BlockEntityTag: {
+							TankInv: [{
+								FluidName: "minecraft:empty"
+								Capacity: 32000
+								Tank: 0b
+								Amount: 0
+							}]
+						}
+					}
+				}
+			}]
+		}
+		{
+			x: 6.0d
+			y: 6.5d
+			description: [
+				"制作像样的电路很难，但现在先用点简陋的凑合一下吧。"
+				""
+				"工程师电路表将作为早期电路的基础。它无法自动化，但之后会有更好的选择出现。"
+			]
+			dependencies: ["4A45210857A2FE10"]
+			id: "555BF630B1097FE2"
+			tasks: [{
+				id: "1219720F5782198E"
+				type: "item"
+				item: "immersiveengineering:circuit_table"
+			}]
+		}
+		{
+			title: "植物中提取的乳胶"
+			icon: "minecraft:dandelion"
+			x: 5.0d
+			y: 2.5d
+			shape: "diamond"
+			description: [
+				"树木并非乳胶的唯一来源，不过从其他植物中提取需要花费一些时间和精力。"
+				""
+				"种植一些藤蔓或蒲公英来采集乳胶。"
+			]
+			dependencies: ["508E396542F84E94"]
+			id: "4A5B10B9E4F2440D"
+			tasks: [
+				{
+					id: "60C1CC77F18EE9EF"
+					type: "item"
+					title: "生产乳胶的植物 (Latex Producing Plants)"
+					item: {
+						id: "itemfilters:or"
+						Count: 1b
+						tag: {
+							items: [
+								{
+									id: "minecraft:dandelion"
+									Count: 1b
+								}
+								{
+									id: "minecraft:vine"
+									Count: 1b
+								}
+							]
+						}
+					}
+				}
+				{
+					id: "30453B6039FD25BE"
+					type: "item"
+					item: "create:basin"
+				}
+				{
+					id: "5D78B207DC1EBB03"
+					type: "item"
+					item: "create:mechanical_press"
+				}
+				{
+					id: "4689407918AFE07B"
+					type: "item"
+					item: "create:blaze_burner"
+				}
+			]
+		}
+		{
+			x: 7.5d
+			y: 1.5d
+			description: ["无边无际的海洋蕴藏着无数宝藏，但没有合适的机器，打捞它们将是一项徒劳无功的任务。一个简单的捕鱼驳船既能打捞宝藏，又能提供绝佳的营养来源。"]
+			dependencies: ["2357CCF3A0758B0C"]
+			id: "31A1002C96D4DC64"
+			tasks: [
+				{
+					id: "3CA6E011378BC3A3"
+					type: "item"
+					item: "littlelogistics:tug"
+				}
+				{
+					id: "4027EC3C87869F9C"
+					type: "item"
+					item: "littlelogistics:fishing_barge"
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,178 @@
+# AI 初翻，未人工校对
+{
+	always_invisible: true
+	autofocus_id: "2F3111F10E564AF4"
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "fast_travel_basics"
+	group: ""
+	id: "0B42678D29D9C695"
+	order_index: 3
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"&6快速旅行：&r 许多整合包中一个常被滥用且过于强大的组件，但在 &e&oSuperior&r 中处理方式不同，你不能只放置一块传送石就能传送到世界各处。"
+				""
+				""
+				"本整合包的快速旅行是通过&bVia Romana&r实现的。要使用&bVia Romana&r快速旅行，你必须先建造并走过一条路径才能进行传送。这种快速旅行方式鼓励玩家在探索世界的同时建设基础设施，而不是直接跳过世界。"
+			]
+			id: "2F3111F10E564AF4"
+			rewards: [{
+				id: "3DBC282EB100FE67"
+				item: {
+					Count: 1
+					id: "patchouli:guide_book"
+					tag: {
+						"patchouli:book": "via_romana:guide"
+					}
+				}
+				type: "item"
+			}]
+			shape: "square"
+			size: 1.5d
+			tasks: [{
+				id: "16A22409403261F4"
+				title: "快速旅行基础教程"
+				type: "checkmark"
+			}]
+			x: -1.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["2F3111F10E564AF4"]
+			id: "656734660915B7EC"
+			tasks: [{
+				id: "482B4378653660BA"
+				item: {
+					Count: 1
+					id: "itemfilters:tag"
+					tag: {
+						value: "supplementaries:sign_posts"
+					}
+				}
+				title: "任何 #supplementaries:sign_posts 类型的补充物"
+				type: "item"
+			}]
+			title: "制作一个路标指示牌"
+			x: 0.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["2F3111F10E564AF4"]
+			id: "20FF751BDEC59503"
+			subtitle: "在路径方块上移动比普通方块快得多"
+			tasks: [{
+				id: "267C707B746769B2"
+				item: {
+					Count: 1
+					id: "itemfilters:tag"
+					tag: {
+						value: "forge:via_romana_path_item"
+					}
+				}
+				title: "任意 #forge:via_romana_path_item"
+				type: "item"
+			}]
+			title: "获得任意路径物品"
+			x: -2.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["20FF751BDEC59503"]
+			id: "3327DC56EBC39148"
+			subtitle: "路径宽度至少为3格，长度至少为25格"
+			tasks: [{
+				block: "forge:via_romana_path_block"
+				block_type: 1
+				id: "2358FD94C39E27FE"
+				replace: false
+				replaced: "minecraft:air"
+				type: "questsadditions:place"
+				value: 100L
+			}]
+			title: "放置 100x 路径方块"
+			x: -2.0d
+			y: -0.5d
+		}
+		{
+			dependencies: [
+				"656734660915B7EC"
+				"3327DC56EBC39148"
+			]
+			id: "426DC7E256B96EA0"
+			subtitle: "敲击告示牌以开始绘制图表"
+			tasks: [
+				{
+					block: "supplementaries:sign_post"
+					block_type: 0
+					id: "0073EF98CF80F4D5"
+					replace: false
+					replaced: "minecraft:air"
+					type: "questsadditions:place"
+					value: 1L
+				}
+				{
+					id: "133806C7AC7C32EE"
+					item: {
+						Count: 1
+						id: "itemfilters:tag"
+						tag: {
+							value: "supplementaries:sign_posts"
+						}
+					}
+					title: "任何 #supplementaries:sign_posts 类型的补充物"
+					type: "item"
+				}
+			]
+			title: "在路径的&6起点&r放置一个路标"
+			x: -2.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["426DC7E256B96EA0"]
+			id: "2C65B195E8257B6D"
+			subtitle: "敲击告示牌以完成绘制图表"
+			tasks: [
+				{
+					block: "supplementaries:sign_post"
+					block_type: 0
+					id: "0344A0C85C532E1F"
+					replace: false
+					replaced: "minecraft:air"
+					type: "questsadditions:place"
+					value: 1L
+				}
+				{
+					id: "2497992029C2E972"
+					item: {
+						Count: 1
+						id: "itemfilters:tag"
+						tag: {
+							value: "supplementaries:sign_posts"
+						}
+					}
+					title: "任何 #supplementaries:sign_posts 类型的补充物"
+					type: "item"
+				}
+			]
+			title: "在路径的 &cEND&r 处放置一个路标"
+			x: -2.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["2C65B195E8257B6D"]
+			description: ["{image:ldlib:textures/2024-08-11_14.02.59.png width:350 height:258 align:center}"]
+			id: "6CD30E0E3830F276"
+			subtitle: "使用路标可以轻松设置分叉路径"
+			tasks: [{
+				id: "644CCFD140BABAF7"
+				title: "完成快速旅行教程"
+				type: "checkmark"
+			}]
+			x: -2.0d
+			y: 4.0d
+		}
+	]
+	title: "快速旅行基础教程"
+}

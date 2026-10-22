@@ -1,0 +1,194 @@
+# AI 初翻，未人工校对
+{
+	id: "230C715B7463AAE8"
+	group: "184B63E2FCAAF2EB"
+	order_index: 0
+	filename: "industrial_foregoing"
+	title: "Industrial Foregoing"
+	icon: "industrialforegoing:plastic"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: 0.0d
+			y: 0.0d
+			description: ["乳胶可以通过几种方式获得，最简单的方法是使用多压伺服。将乳胶泵入流体封装器中以制作一桶乳胶"]
+			dependencies: ["7BD0D652B4B27460"]
+			id: "6BFAC871575B1014"
+			tasks: [{
+				id: "03A07B455D612105"
+				type: "item"
+				item: "thermal:latex_bucket"
+			}]
+			rewards: [{
+				id: "03C888B03FA8A851"
+				type: "item"
+				item: "kubejs:sea_bucks"
+			}]
+		}
+		{
+			x: 1.5d
+			y: 0.0d
+			description: ["将乳胶转化为橡胶"]
+			dependencies: ["6BFAC871575B1014"]
+			id: "61EB7050A1E368D0"
+			tasks: [{
+				id: "0CC9464B0BF7DC94"
+				type: "item"
+				item: "thermal:machine_refinery"
+			}]
+			rewards: [{
+				id: "07D4DA04E8BE499E"
+				type: "item"
+				item: "kubejs:sea_bucks"
+			}]
+		}
+		{
+			x: 3.0d
+			y: 0.0d
+			description: ["在分馏塔中制作而成"]
+			dependencies: ["61EB7050A1E368D0"]
+			id: "5EDA1A65FE49756C"
+			tasks: [{
+				id: "2F414171BA935CF6"
+				type: "item"
+				item: "thermal:rubber"
+			}]
+			rewards: [{
+				id: "57BF395EC8694EA4"
+				type: "item"
+				item: "kubejs:sea_bucks"
+			}]
+		}
+		{
+			title: "干燥与风干"
+			x: 6.0d
+			y: 0.0d
+			description: ["干燥和熟成的橡胶来自热解器"]
+			dependencies: ["64F65D48E0A23B76"]
+			id: "4D973C08EAFB1B0F"
+			tasks: [
+				{
+					id: "7C5976028729F8D7"
+					type: "item"
+					item: "industrialforegoing:dryrubber"
+				}
+				{
+					id: "36CF8C04B3E28312"
+					type: "item"
+					item: "thermal:cured_rubber"
+				}
+			]
+			rewards: [{
+				id: "4598EA22284A66CA"
+				type: "item"
+				item: "kubejs:sea_bucks"
+			}]
+		}
+		{
+			x: 7.5d
+			y: 0.0d
+			description: ["使用干燥和熟成的橡胶，你现在可以制作塑料片了"]
+			dependencies: ["4D973C08EAFB1B0F"]
+			id: "402C0724DCB0A385"
+			tasks: [{
+				id: "2107B49309EBC94F"
+				type: "item"
+				item: "industrialforegoing:plastic"
+			}]
+			rewards: [{
+				id: "12762EA4085AA575"
+				type: "item"
+				item: "kubejs:sea_bucks"
+			}]
+		}
+		{
+			x: 4.5d
+			y: 0.0d
+			description: ["处理橡胶制品"]
+			dependencies: [
+				"5EDA1A65FE49756C"
+				"08BA0B6941FC61FD"
+			]
+			id: "64F65D48E0A23B76"
+			tasks: [{
+				id: "694F4592EFC2235B"
+				type: "item"
+				item: "thermal:machine_pyrolyzer"
+			}]
+			rewards: [{
+				id: "22BB5132EC5B9817"
+				type: "item"
+				item: "kubejs:sea_bucks"
+			}]
+		}
+		{
+			x: 9.0d
+			y: 0.0d
+			description: ["允许使用工业模组来创造机器，无需前置模组"]
+			dependencies: ["402C0724DCB0A385"]
+			id: "44DE6BBC33FAA78B"
+			tasks: [{
+				id: "0B62E4E77E0E4872"
+				type: "item"
+				item: "industrialforegoing:machine_frame_pity"
+			}]
+			rewards: [{
+				id: "63554FF2046D4C45"
+				type: "item"
+				item: "kubejs:sea_bucks"
+			}]
+		}
+		{
+			x: 9.0d
+			y: 1.5d
+			description: ["允许创建各种不同的升级物品"]
+			dependencies: ["44DE6BBC33FAA78B"]
+			id: "18ADC4A5E01A11FC"
+			tasks: [{
+				id: "1507F471A88FBC5A"
+				type: "item"
+				item: "industrialforegoing:dissolution_chamber"
+			}]
+			rewards: [{
+				id: "6EBEABF14CB454FE"
+				type: "item"
+				item: "kubejs:sea_bucks"
+			}]
+		}
+		{
+			x: 7.5d
+			y: 1.5d
+			description: ["允许使用更先进的工业机器"]
+			dependencies: ["18ADC4A5E01A11FC"]
+			id: "7892662CDCD030D4"
+			tasks: [{
+				id: "45E186E2E842083E"
+				type: "item"
+				item: "industrialforegoing:machine_frame_simple"
+			}]
+			rewards: [{
+				id: "4A867EE0446C5AF7"
+				type: "item"
+				item: "kubejs:sea_bucks"
+			}]
+		}
+		{
+			x: 6.0d
+			y: 1.5d
+			description: ["允许创建 rftools 机器"]
+			dependencies: ["7892662CDCD030D4"]
+			id: "27E69C876CFDB186"
+			tasks: [{
+				id: "757A525F64865880"
+				type: "item"
+				item: "rftoolsbase:machine_frame"
+			}]
+			rewards: [{
+				id: "7B98CF039B1786DA"
+				type: "item"
+				item: "kubejs:sea_bucks"
+			}]
+		}
+	]
+}

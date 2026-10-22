@@ -1,0 +1,1488 @@
+# AI 初翻，未人工校对
+{
+	id: "5A62415E6BEF0970"
+	group: ""
+	order_index: 5
+	filename: "my_colony"
+	title: "我的殖民地"
+	icon: "minecolonies:supplycampdeployer"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "补给营地"
+			x: -1.0d
+			y: 0.0d
+			description: [
+				"在开始建立新殖民地之前，你应该先找到完美的地点。你需要一个足够大的区域来容纳整座城市——至少8x8个区块，并且地势较为平坦。"
+				""
+				"你还要尽可能多地收集资源——木材、鹅卵石、煤炭、铁、花朵、线、皮革、羊毛、树苗和食物。"
+				""
+				"选定殖民地位置后，你必须放置一艘补给船或补给营。每个世界只能放置一个。补给营/船会为你提供用于正式建立殖民地的市政厅方块。"
+				"他们还有一些你可能在建造殖民地期间需要的其他物资。一旦你有了市政厅方块和建造工具，剩下的营地/船只就只是装饰品了。你可以留下它，也可以把它拆掉。"
+			]
+			dependencies: ["00000000000000F0"]
+			id: "00000000000000CC"
+			tasks: [{
+				id: "4E354A738A8DA865"
+				type: "item"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "minecolonies:supplycampdeployer"
+								Count: 1b
+							}
+							{
+								id: "minecolonies:supplychestdeployer"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "0000000000000204"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+				{
+					id: "0000000000000372"
+					type: "item"
+					item: "minecraft:oak_log"
+					count: 16
+				}
+			]
+		}
+		{
+			x: 0.5d
+			y: 0.0d
+			description: [
+				"市政厅方块是真正创建殖民地的一部分，同时也是殖民地的中心。在这里，你可以开始使用建筑工具来放置建筑。使用建筑工具能确保你清楚地看到建筑的确切位置，这"
+				"朝向，以及它是否处于正确的Y轴高度（某些建筑需要抬高到正确的Y轴高度）。"
+				""
+				"放置市政厅方块后，你将开始收到最初的4名市民。"
+			]
+			dependencies: ["00000000000000CC"]
+			dependency_requirement: "one_completed"
+			id: "00000000000000D7"
+			tasks: [
+				{
+					id: "00000000000000D8"
+					type: "item"
+					item: "minecolonies:blockhuttownhall"
+				}
+				{
+					id: "00000000000000D9"
+					type: "item"
+					item: "structurize:sceptergold"
+				}
+			]
+			rewards: [
+				{
+					id: "0000000000000203"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+				{
+					id: "000000000000020D"
+					type: "item"
+					item: "minecraft:stone"
+					count: 64
+				}
+			]
+		}
+		{
+			x: 2.0d
+			y: 0.0d
+			description: ["在建造任何东西之前，你需要一个建造者。建造者必须先建造自己的建造小屋，才能建造其他小屋，并且不能建造或升级小屋至高于自己小屋等级的水平。"]
+			dependencies: ["00000000000000D7"]
+			id: "00000000000000DA"
+			tasks: [{
+				id: "00000000000000DB"
+				type: "item"
+				item: "minecolonies:blockhutbuilder"
+			}]
+			rewards: [
+				{
+					id: "0000000000000202"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+				{
+					id: "0000000000000207"
+					type: "item"
+					item: "minecraft:emerald"
+				}
+				{
+					id: "000000000000020C"
+					type: "item"
+					item: "minecraft:cobblestone"
+					count: 64
+				}
+			]
+		}
+		{
+			x: 3.5d
+			y: 0.0d
+			description: ["你的定居者需要睡觉的地方和住所，所以建议接下来建造一家酒馆。酒馆还能让访客来到你的殖民地，你可以招募他们成为公民。"]
+			dependencies: ["00000000000000DA"]
+			id: "00000000000000DC"
+			tasks: [{
+				id: "00000000000000DD"
+				type: "item"
+				item: "minecolonies:blockhuttavern"
+			}]
+			rewards: [
+				{
+					id: "00000000000001CB"
+					type: "item"
+					item: {
+						id: "minecraft:potion"
+						Count: 1b
+						tag: {
+							Potion: "minecraft:swiftness"
+						}
+					}
+				}
+				{
+					id: "00000000000001F2"
+					type: "item"
+					item: "minecraft:emerald"
+				}
+				{
+					id: "0000000000000373"
+					type: "item"
+					item: "minecraft:red_bed"
+				}
+			]
+		}
+		{
+			x: 2.5d
+			y: 1.5d
+			description: [
+				"殖民地接下来需要的主要物资是食物。获取食物的最快方式是建造渔夫小屋。你也可以建造农场或动物牧场，但渔夫更快。如果你不...建造一家餐厅可能也是个好主意。"
+				"想亲手喂养你的定居者（或烹饪他们的食物）。"
+			]
+			dependencies: ["00000000000000DC"]
+			id: "00000000000000DE"
+			tasks: [{
+				id: "00000000000000DF"
+				type: "item"
+				item: "minecolonies:blockhutfisherman"
+			}]
+			rewards: [
+				{
+					id: "00000000000001F3"
+					type: "item"
+					item: "minecraft:emerald"
+				}
+				{
+					id: "0000000000000201"
+					type: "item"
+					item: {
+						id: "minecraft:fishing_rod"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "70C8A958F04CFF40"
+					type: "ftbmoney:money"
+					ftb_money: 5L
+				}
+			]
+		}
+		{
+			x: 6.0d
+			y: 1.5d
+			description: [
+				"农场是农民为您的殖民地种植作物的地方。农民目前种植的作物有小麦、胡萝卜、土豆、甜菜、甜瓜、南瓜以及其他模组的大多数作物。"
+				"农民开始工作前，你必须先给他一把锄头、一把斧头（用于收割作物）以及你想要种植的作物。"
+				""
+				"农夫还会制作种子、雕刻过的南瓜和干草捆。只有在学会配方、收到物品请求并拥有所需材料时，他们才会制作物品。"
+				""
+				"要让农夫开始工作，你还需要放置田地。将田地方块（看起来像稻草人）放置在你希望农夫耕种的农田地块上，并右键单击以打开其GUI。在这里，你将放置希望农夫种植的作物。"
+				"要耕种的特定作物。如果之后想改变农田的作物类型，只需进入农田的GUI界面，在那里切换作物即可。"
+				""
+				"注意：农夫只会耕种距离农田方块五格以内的作物。可以通过在可耕地旁放置实心方块（不可耕地：沙子、鹅卵石、木头等）或空气方块来界定农田边界。"
+				"blocks. 这将导致农夫在此停止耕作，即使在该实心/空气方块之后仍有可耕作或可翻耕的土地。请据此规划，以任何你想要的形状和形式创建你的地块，同时考虑到"
+				"每个农田，农夫最多只会耕种到离农田方块5格远的地方。请记住，泥土要可耕作并能种植作物，就必须有水源来保持其耕作状态。"
+			]
+			dependencies: ["00000000000000DC"]
+			id: "00000000000000E0"
+			tasks: [
+				{
+					id: "00000000000000E1"
+					type: "item"
+					item: "minecolonies:blockhutfarmer"
+				}
+				{
+					id: "00000000000000FC"
+					type: "item"
+					item: "minecolonies:blockhutfield"
+				}
+			]
+			rewards: [
+				{
+					id: "00000000000001F4"
+					type: "item"
+					item: "minecraft:emerald"
+				}
+				{
+					id: "0000000000000200"
+					type: "item"
+					item: {
+						id: "minecraft:stone_hoe"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "00000000000002EB"
+					type: "item"
+					item: "minecraft:wheat_seeds"
+					count: 16
+				}
+				{
+					id: "00000000000002EF"
+					type: "item"
+					item: "minecolonies:compost"
+					count: 32
+				}
+				{
+					id: "4E4E444F1CB01826"
+					type: "ftbmoney:money"
+					ftb_money: 5L
+				}
+			]
+		}
+		{
+			x: 4.5d
+			y: 2.5d
+			dependencies: ["00000000000000E0"]
+			id: "00000000000000E2"
+			tasks: [{
+				id: "00000000000000E3"
+				type: "item"
+				item: "minecolonies:blockhutswineherder"
+			}]
+			rewards: [
+				{
+					id: "00000000000001F7"
+					type: "item"
+					item: "minecraft:emerald"
+				}
+				{
+					id: "0000000000000281"
+					type: "item"
+					item: "minecraft:paper"
+					count: 8
+				}
+				{
+					id: "4688EFA6AAA59E81"
+					type: "ftbmoney:money"
+					ftb_money: 5L
+				}
+			]
+		}
+		{
+			x: 5.0d
+			y: 3.5d
+			dependencies: ["00000000000000E0"]
+			id: "00000000000000E4"
+			tasks: [{
+				id: "00000000000000E5"
+				type: "item"
+				item: "minecolonies:blockhutchickenherder"
+			}]
+			rewards: [
+				{
+					id: "00000000000001F8"
+					type: "item"
+					item: "minecraft:emerald"
+				}
+				{
+					id: "0000000000000282"
+					type: "item"
+					item: "minecraft:paper"
+					count: 8
+				}
+				{
+					id: "05E144B0451D156E"
+					type: "ftbmoney:money"
+					ftb_money: 5L
+				}
+			]
+		}
+		{
+			x: 6.0d
+			y: 0.5d
+			description: [
+				"伐木工小屋是伐木工在砍树间隙会去的地方。伐木工会砍下自身周围约150格范围内的所有树木"
+				"不在小屋蓝图内，且下方未放置鹅卵石的结构。"
+			]
+			dependencies: ["00000000000000DC"]
+			id: "00000000000000E6"
+			tasks: [{
+				id: "00000000000000E7"
+				type: "item"
+				item: "minecolonies:blockhutlumberjack"
+			}]
+			rewards: [
+				{
+					id: "00000000000001F5"
+					type: "item"
+					item: "minecraft:emerald"
+				}
+				{
+					id: "00000000000001FF"
+					type: "item"
+					item: {
+						id: "minecraft:stone_axe"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 6.0d
+			y: -0.5d
+			description: [
+				"矿井是矿工挖掘矿石和材料的地方。一旦雇佣，矿工会向下挖掘一条竖井，然后向四周延伸。"
+				""
+				"提示：矿工向下挖掘的竖井会到达特定深度，具体取决于矿井的等级。所以，如果你想让他们挖得更深，获取优质矿石，就必须升级矿井。"
+			]
+			dependencies: ["00000000000000DC"]
+			id: "00000000000000E8"
+			tasks: [{
+				id: "00000000000000E9"
+				type: "item"
+				item: "minecolonies:blockhutminer"
+			}]
+			rewards: [
+				{
+					id: "00000000000001F0"
+					type: "item"
+					item: "minecraft:emerald"
+				}
+				{
+					id: "00000000000001FE"
+					type: "item"
+					item: {
+						id: "minecraft:stone_pickaxe"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "0332FAF9543049C1"
+					type: "ftbmoney:money"
+					ftb_money: 5L
+				}
+			]
+		}
+		{
+			x: 6.0d
+			y: -1.5d
+			description: [
+				"瞭望塔将雇佣并安置1名守卫来保护你的殖民地。新守卫需要在房子里的床上才能生成。不过，一旦他们在瞭望塔被雇佣，那里就会成为他们的新住所，而房子里的床就会空出来"
+				"为另一位新市民（儿童或新兵）准备的礼物。"
+				""
+				"注意：在殖民地边界附近放置并升级守卫塔，你的边界将会扩张。"
+			]
+			dependencies: ["00000000000000DC"]
+			id: "00000000000000EA"
+			tasks: [{
+				id: "00000000000000EB"
+				type: "item"
+				item: "minecolonies:blockhutguardtower"
+			}]
+			rewards: [
+				{
+					id: "00000000000001ED"
+					type: "item"
+					item: "minecraft:emerald"
+				}
+				{
+					id: "00000000000001FC"
+					type: "item"
+					item: {
+						id: "minecraft:bow"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "00000000000001FD"
+					type: "item"
+					item: "minecraft:arrow"
+					count: 32
+				}
+				{
+					id: "4A5CC29A324E647A"
+					type: "ftbmoney:money"
+					ftb_money: 5L
+				}
+			]
+		}
+		{
+			x: 13.0d
+			y: -1.5d
+			dependencies: ["0000000000000105"]
+			id: "00000000000000EC"
+			tasks: [{
+				id: "00000000000000ED"
+				type: "item"
+				item: "minecolonies:blockhuthospital"
+			}]
+			rewards: [
+				{
+					id: "00000000000001E7"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 2
+				}
+				{
+					id: "000000000000027F"
+					type: "item"
+					item: {
+						id: "minecraft:potion"
+						Count: 1b
+						tag: {
+							Potion: "minecraft:long_regeneration"
+						}
+					}
+				}
+				{
+					id: "00000000000002F0"
+					type: "item"
+					item: "minecraft:carrot"
+					count: 16
+				}
+				{
+					id: "00000000000002F1"
+					type: "item"
+					item: "minecraft:potato"
+					count: 16
+				}
+				{
+					id: "31F4A575987307DA"
+					type: "ftbmoney:money"
+					ftb_money: 5L
+				}
+			]
+		}
+		{
+			title: "安定下来"
+			x: -2.5d
+			y: 0.0d
+			description: [
+				"MineColonies 是一款互动式建筑模组，让你能在 Minecraft 中创建自己的繁荣小镇。它能提供建造王国所需的一切，让你的领导才能得以施展。MineColonies 给予你灵活性"
+				"打造独一无二的殖民地。众多选项任你选择，可适应任何生物群系，建造在山脉中、山顶、海底或空中。"
+				""
+				"MineColonies 拥有建造者、农民、渔夫、伐木工、守卫、矿工、熔炼工、面包师、厨师、快递员、四种类型的牧羊人、堆肥工等 NPC 工人，更多类型仍在开发中。"
+				"生长。"
+				"还包括了仓库、公民小屋、市政厅、兵营、图书馆、大学乃至学校等专业建筑。"
+			]
+			size: 1.5d
+			id: "00000000000000F0"
+			tasks: [{
+				id: "00000000000000F1"
+				type: "checkmark"
+				icon: "itemfilters:not"
+			}]
+			rewards: [
+				{
+					id: "0000000000000206"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+				{
+					id: "000000000000020B"
+					type: "item"
+					item: "minecraft:emerald"
+				}
+			]
+		}
+		{
+			x: 7.5d
+			y: 2.5d
+			dependencies: ["00000000000000E0"]
+			id: "00000000000000F2"
+			tasks: [{
+				id: "00000000000000F3"
+				type: "item"
+				item: "minecolonies:blockhutcowboy"
+			}]
+			rewards: [
+				{
+					id: "00000000000001FA"
+					type: "item"
+					item: "minecraft:emerald"
+				}
+				{
+					id: "0000000000000284"
+					type: "item"
+					item: "minecraft:paper"
+					count: 8
+				}
+			]
+		}
+		{
+			x: 13.0d
+			y: 1.5d
+			dependencies: ["0000000000000105"]
+			id: "00000000000000F4"
+			tasks: [{
+				id: "00000000000000F5"
+				type: "item"
+				item: "minecolonies:blockhutcomposter"
+			}]
+			rewards: [
+				{
+					id: "00000000000001EA"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 2
+				}
+				{
+					id: "7469C5AB50F94D85"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+				{
+					id: "6CB4F511E6E23976"
+					type: "ftbmoney:money"
+					ftb_money: 5L
+				}
+			]
+		}
+		{
+			x: 4.0d
+			y: 1.5d
+			description: ["餐厅是厨师烹饪食物的地方，前提是他们有必要的食材和燃料。当市民饥饿时，他们会来餐厅，厨师会给他们食物。"]
+			dependencies: ["00000000000000E0"]
+			id: "00000000000000F6"
+			tasks: [{
+				id: "00000000000000F7"
+				type: "item"
+				item: "minecolonies:blockhutcook"
+			}]
+			rewards: [
+				{
+					id: "00000000000001F6"
+					type: "item"
+					item: "minecraft:emerald"
+				}
+				{
+					id: "18C66693990B96BF"
+					type: "ftbmoney:money"
+					ftb_money: 5L
+				}
+			]
+		}
+		{
+			x: 8.0d
+			y: 1.5d
+			dependencies: ["00000000000000E0"]
+			id: "00000000000000F8"
+			tasks: [{
+				id: "00000000000000F9"
+				type: "item"
+				item: "minecolonies:blockhutbaker"
+			}]
+			rewards: [
+				{
+					id: "00000000000001FB"
+					type: "item"
+					item: "minecraft:emerald"
+				}
+				{
+					id: "0000000000000280"
+					type: "item"
+					item: "minecraft:paper"
+					count: 8
+				}
+				{
+					id: "00000000000002ED"
+					type: "item"
+					item: "minecraft:bread"
+					count: 8
+				}
+			]
+		}
+		{
+			x: 7.0d
+			y: 3.5d
+			dependencies: ["00000000000000E0"]
+			id: "00000000000000FA"
+			tasks: [{
+				id: "00000000000000FB"
+				type: "item"
+				item: "minecolonies:blockhutshepherd"
+			}]
+			rewards: [
+				{
+					id: "00000000000001F9"
+					type: "item"
+					item: "minecraft:emerald"
+				}
+				{
+					id: "0000000000000283"
+					type: "item"
+					item: "minecraft:paper"
+					count: 8
+				}
+			]
+		}
+		{
+			x: 2.5d
+			y: -1.5d
+			description: [
+				"公民小屋是你的公民住所。他们会在夜间前往指定的公民小屋睡觉。这也是殖民地获取更多公民的唯一途径。公民小屋的每层可容纳一名公民。"
+				""
+				"要生成更多居民，你的居民小屋必须能容纳前四名居民。为前四名居民腾出足够空间后，你的殖民地有两种发展方式。"
+				"第一种方法是，至少有一个至少2级的公民小屋，里面住着一男一女公民，这样当殖民地有空间时，就会有孩子出生。你也可以为新公民腾出空间，去酒馆，等待"
+				"让旅人出现，然后给他们想要的物品来招募他们。"
+				""
+				"注意：要拥有超过25名居民，你必须先完成大学里的研究。"
+			]
+			dependencies: ["00000000000000DC"]
+			id: "00000000000000FD"
+			tasks: [{
+				id: "00000000000000FE"
+				type: "item"
+				item: "minecolonies:blockhutcitizen"
+			}]
+			rewards: [
+				{
+					id: "00000000000001DC"
+					type: "item"
+					item: {
+						id: "minecraft:clock"
+						Count: 1b
+						tag: {
+							"quark:clock_calculated": 1
+						}
+					}
+				}
+				{
+					id: "00000000000001F1"
+					type: "item"
+					item: "minecraft:emerald"
+				}
+				{
+					id: "00000000000002EC"
+					type: "item"
+					item: "minecraft:cooked_beef"
+					count: 16
+				}
+				{
+					id: "75ADB66FEF203539"
+					type: "ftbmoney:money"
+					ftb_money: 5L
+				}
+			]
+		}
+		{
+			x: 15.5d
+			y: -1.0d
+			dependencies: ["0000000000000101"]
+			id: "00000000000000FF"
+			tasks: [{
+				id: "0000000000000100"
+				type: "item"
+				item: "minecolonies:blockhutcombatacademy"
+			}]
+			rewards: [
+				{
+					id: "00000000000001DE"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 2
+				}
+				{
+					id: "00000000000002F6"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+				{
+					id: "7ABBD85B0F9CEA6E"
+					type: "ftbmoney:money"
+					ftb_money: 5L
+				}
+			]
+		}
+		{
+			x: 14.0d
+			y: -1.0d
+			dependencies: ["0000000000000105"]
+			id: "0000000000000101"
+			tasks: [{
+				id: "0000000000000102"
+				type: "item"
+				item: "minecolonies:blockhutbarracks"
+			}]
+			rewards: [
+				{
+					id: "00000000000001DF"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 2
+				}
+				{
+					id: "00000000000002F7"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+		}
+		{
+			x: 14.0d
+			y: -2.5d
+			dependencies: ["0000000000000101"]
+			id: "0000000000000103"
+			tasks: [{
+				id: "0000000000000104"
+				type: "item"
+				item: "minecolonies:blockhutarchery"
+			}]
+			rewards: [
+				{
+					id: "00000000000001DD"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 2
+				}
+				{
+					id: "00000000000002F5"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+				{
+					id: "062551B6DFDF249F"
+					type: "ftbmoney:money"
+					ftb_money: 5L
+				}
+			]
+		}
+		{
+			x: 11.5d
+			y: 0.0d
+			description: ["大学是研究员研究各种殖民地升级方案的地方。"]
+			dependencies: ["000000000000010B"]
+			id: "0000000000000105"
+			tasks: [{
+				id: "0000000000000106"
+				type: "item"
+				item: "minecolonies:blockhutuniversity"
+			}]
+			rewards: [
+				{
+					id: "00000000000001EC"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 2
+				}
+				{
+					id: "000000000000027B"
+					type: "item"
+					item: "minecraft:paper"
+					count: 8
+				}
+				{
+					id: "00000000000002EE"
+					type: "item"
+					item: "minecraft:book"
+					count: 16
+				}
+			]
+		}
+		{
+			x: 12.0d
+			y: 2.0d
+			dependencies: ["0000000000000105"]
+			id: "0000000000000107"
+			tasks: [{
+				id: "0000000000000108"
+				type: "item"
+				item: "minecolonies:blockhutsawmill"
+			}]
+			rewards: [
+				{
+					id: "00000000000001E0"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 2
+				}
+				{
+					id: "00000000000002F8"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+		}
+		{
+			x: 10.0d
+			y: 1.5d
+			dependencies: ["0000000000000105"]
+			id: "0000000000000109"
+			tasks: [{
+				id: "000000000000010A"
+				type: "item"
+				item: "minecolonies:blockhutplantation"
+			}]
+			rewards: [
+				{
+					id: "00000000000001EB"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 2
+				}
+				{
+					id: "000000000000027C"
+					type: "item"
+					item: "minecraft:sugar_cane"
+					count: 8
+				}
+			]
+		}
+		{
+			x: 8.5d
+			y: 0.0d
+			description: [
+				"仓库是中央存储设施，快递员会在此存放和取回你工人采集、制作或需要的一切物品。物品将储存在货架上。"
+				""
+				"仓库的等级决定了有多少快递员可以同时使用它。升级仓库可以增加在其中工作的快递员数量。"
+				"升级仓库也会增加其存储容量。"
+			]
+			dependencies: [
+				"00000000000000EA"
+				"00000000000000E8"
+				"00000000000000E6"
+				"00000000000000E0"
+			]
+			id: "000000000000010B"
+			tasks: [{
+				id: "000000000000010C"
+				type: "item"
+				item: "minecolonies:blockhutwarehouse"
+			}]
+			rewards: [
+				{
+					id: "00000000000001CC"
+					type: "item"
+					item: {
+						id: "minecraft:potion"
+						Count: 1b
+						tag: {
+							Potion: "minecraft:swiftness"
+						}
+					}
+				}
+				{
+					id: "00000000000001EF"
+					type: "item"
+					item: "minecraft:emerald"
+				}
+			]
+		}
+		{
+			x: 8.5d
+			y: -1.5d
+			description: [
+				"送货员往返于仓库和殖民地所有工人小屋之间，为工人运送材料并将成品放入仓库。"
+				""
+				"注意：仓库必须至少建造到1级，否则快递员将无法完成工作。"
+				""
+				"送货小屋的等级决定了送货员能携带多少物品/方块往返于小屋和仓库之间，所以如果想让他们携带更多，请务必升级送货小屋。"
+				"另外，小屋等级越高，快递员在小屋和仓库之间移动的速度就越快。"
+			]
+			dependencies: ["000000000000010B"]
+			id: "000000000000010D"
+			tasks: [{
+				id: "000000000000010E"
+				type: "item"
+				item: "minecolonies:blockhutdeliveryman"
+			}]
+			rewards: [
+				{
+					id: "00000000000001CD"
+					type: "item"
+					item: {
+						id: "minecraft:potion"
+						Count: 1b
+						tag: {
+							Potion: "minecraft:swiftness"
+						}
+					}
+				}
+				{
+					id: "00000000000001EE"
+					type: "item"
+					item: "minecraft:emerald"
+				}
+				{
+					id: "0000000000000285"
+					type: "item"
+					item: "minecraft:paper"
+					count: 8
+				}
+				{
+					id: "5C4599D7AF31F2DE"
+					type: "ftbmoney:money"
+					ftb_money: 5L
+				}
+			]
+		}
+		{
+			x: 11.0d
+			y: -2.0d
+			dependencies: ["0000000000000105"]
+			id: "000000000000010F"
+			tasks: [{
+				id: "0000000000000110"
+				type: "item"
+				item: "minecolonies:blockhutlibrary"
+			}]
+			rewards: [
+				{
+					id: "00000000000001E9"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 2
+				}
+				{
+					id: "000000000000027D"
+					type: "item"
+					item: "minecraft:paper"
+					count: 8
+				}
+				{
+					id: "00000000000002F3"
+					type: "item"
+					item: "minecraft:book"
+					count: 16
+				}
+				{
+					id: "00000000000002F4"
+					type: "item"
+					item: {
+						id: "minecraft:enchanted_book"
+						Count: 1b
+						tag: {
+							StoredEnchantments: [{
+								lvl: 3
+								id: "minecraft:fortune"
+							}]
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 14.0d
+			y: 2.5d
+			dependencies: ["0000000000000117"]
+			id: "0000000000000111"
+			tasks: [{
+				id: "0000000000000112"
+				type: "item"
+				item: "minecolonies:blockhutmechanic"
+			}]
+			rewards: [
+				{
+					id: "00000000000001E2"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 2
+				}
+				{
+					id: "00000000000002FA"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+				{
+					id: "3F8CD2D6716F0D7B"
+					type: "ftbmoney:money"
+					ftb_money: 5L
+				}
+			]
+		}
+		{
+			x: 12.0d
+			y: -2.0d
+			dependencies: ["0000000000000105"]
+			id: "0000000000000113"
+			tasks: [{
+				id: "0000000000000114"
+				type: "item"
+				item: "minecolonies:blockhutschool"
+			}]
+			rewards: [
+				{
+					id: "00000000000001E8"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 2
+				}
+				{
+					id: "000000000000027E"
+					type: "item"
+					item: "minecraft:paper"
+					count: 8
+				}
+				{
+					id: "00000000000002F2"
+					type: "item"
+					item: {
+						id: "minecraft:enchanted_book"
+						Count: 1b
+						tag: {
+							StoredEnchantments: [{
+								lvl: 3
+								id: "minecraft:unbreaking"
+							}]
+						}
+					}
+				}
+				{
+					id: "26A7F7BDBC1BADB6"
+					type: "ftbmoney:money"
+					ftb_money: 5L
+				}
+			]
+		}
+		{
+			x: 17.0d
+			y: 2.5d
+			dependencies: ["000000000000011D"]
+			id: "0000000000000115"
+			tasks: [{
+				id: "0000000000000116"
+				type: "item"
+				item: "minecolonies:blockhutstonesmeltery"
+			}]
+			rewards: [
+				{
+					id: "00000000000001E6"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 2
+				}
+				{
+					id: "00000000000002FE"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+				{
+					id: "14BE290320E6B849"
+					type: "ftbmoney:money"
+					ftb_money: 5L
+				}
+			]
+		}
+		{
+			x: 14.0d
+			y: 1.0d
+			dependencies: ["0000000000000105"]
+			id: "0000000000000117"
+			tasks: [{
+				id: "0000000000000118"
+				type: "item"
+				item: "minecolonies:blockhutblacksmith"
+			}]
+			rewards: [
+				{
+					id: "00000000000001E1"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 2
+				}
+				{
+					id: "00000000000002F9"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+		}
+		{
+			x: 15.5d
+			y: 1.0d
+			dependencies: ["0000000000000117"]
+			id: "0000000000000119"
+			tasks: [{
+				id: "000000000000011A"
+				type: "item"
+				item: "minecolonies:blockhutstonemason"
+			}]
+			rewards: [
+				{
+					id: "00000000000001E4"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 2
+				}
+				{
+					id: "00000000000002FC"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+				{
+					id: "2CA8A50DE6FAA106"
+					type: "ftbmoney:money"
+					ftb_money: 5L
+				}
+			]
+		}
+		{
+			x: 15.5d
+			y: 2.5d
+			dependencies: ["0000000000000119"]
+			id: "000000000000011B"
+			tasks: [{
+				id: "000000000000011C"
+				type: "item"
+				item: "minecolonies:blockhutcrusher"
+			}]
+			rewards: [
+				{
+					id: "00000000000001E5"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 2
+				}
+				{
+					id: "00000000000002FD"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+				{
+					id: "1A53675CE6803D94"
+					type: "ftbmoney:money"
+					ftb_money: 5L
+				}
+			]
+		}
+		{
+			x: 17.0d
+			y: 1.0d
+			dependencies: ["0000000000000119"]
+			id: "000000000000011D"
+			tasks: [{
+				id: "000000000000011E"
+				type: "item"
+				item: "minecolonies:blockhutsmeltery"
+			}]
+			rewards: [
+				{
+					id: "00000000000001E3"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 2
+				}
+				{
+					id: "00000000000002FB"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+				{
+					id: "3F556F06533E43DF"
+					type: "ftbmoney:money"
+					ftb_money: 5L
+				}
+			]
+		}
+		{
+			title: "更多信息请访问....."
+			x: -1.5d
+			y: 1.5d
+			description: [
+				"更多信息请访问 MineColonies 维基："
+				"https://wiki.minecolonies.ldtteam.com"
+			]
+			dependencies: ["00000000000000F0"]
+			id: "0000000000000374"
+			tasks: [{
+				id: "0000000000000375"
+				type: "checkmark"
+				title: "更多信息请访问维基："
+				icon: {
+					id: "minecraft:enchanted_book"
+					Count: 1b
+					tag: {
+						StoredEnchantments: [{
+							lvl: 1
+							id: "charm:magnetic"
+						}]
+					}
+				}
+			}]
+			rewards: [{
+				id: "0000000000000376"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+		}
+		{
+			x: -1.0d
+			y: -1.5d
+			id: "00000000000004B4"
+			tasks: [{
+				id: "00000000000004B5"
+				type: "item"
+				title: "一堆箱子"
+				disable_toast: true
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "forge:chests/wooden"
+					}
+				}
+				count: 32L
+			}]
+			rewards: [{
+				id: "00000000000004B6"
+				type: "item"
+				item: "minecraft:chest"
+				count: 32
+			}]
+		}
+		{
+			x: 13.5d
+			y: 0.0d
+			dependencies: ["0000000000000105"]
+			id: "62A9D63A27D727DD"
+			tasks: [{
+				id: "3CBE7656399FA5BC"
+				type: "item"
+				item: "minecolonies:blockhutsifter"
+			}]
+			rewards: [
+				{
+					id: "6BEE2FF6BDE52BE5"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 2
+				}
+				{
+					id: "7BB5A978D7F4852B"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+				{
+					id: "05569AD263E689F0"
+					type: "ftbmoney:money"
+					ftb_money: 5L
+				}
+			]
+		}
+		{
+			x: 11.0d
+			y: 2.0d
+			dependencies: ["0000000000000105"]
+			id: "4DDA20FE0826542C"
+			tasks: [{
+				id: "06C69330AF0E4DBA"
+				type: "item"
+				item: "minecolonies:blockhutflorist"
+			}]
+			rewards: [
+				{
+					id: "6BC0DC0C1AB0D399"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 2
+				}
+				{
+					id: "71736AC44145B84B"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+				{
+					id: "4CEBB177205D44C7"
+					type: "ftbmoney:money"
+					ftb_money: 5L
+				}
+			]
+		}
+		{
+			x: 10.0d
+			y: -1.5d
+			dependencies: ["0000000000000105"]
+			id: "013B3247EA230BF7"
+			tasks: [{
+				id: "5C905C3C08B28AF9"
+				type: "item"
+				item: "minecolonies:blockhutenchanter"
+			}]
+			rewards: [
+				{
+					id: "3CA1B1700678B3D2"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 2
+				}
+				{
+					id: "362B005716D19773"
+					type: "item"
+					item: "minecraft:book"
+					count: 6
+				}
+				{
+					id: "1147F371FDF3B192"
+					type: "ftbmoney:money"
+					ftb_money: 5L
+				}
+			]
+		}
+		{
+			x: 18.5d
+			y: 1.0d
+			dependencies: ["000000000000011D"]
+			id: "33D4E31A895D1B1C"
+			tasks: [{
+				id: "63FB446754882BD0"
+				type: "item"
+				item: "minecolonies:blockhutglassblower"
+			}]
+			rewards: [
+				{
+					id: "474B40FC6EF69CA8"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 2
+				}
+				{
+					id: "32CB8574C8DAE58F"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+				{
+					id: "0E36DB65AB505CC3"
+					type: "ftbmoney:money"
+					ftb_money: 5L
+				}
+			]
+		}
+		{
+			x: 11.0d
+			y: 3.5d
+			dependencies: ["4DDA20FE0826542C"]
+			id: "56156B2771545E54"
+			tasks: [{
+				id: "141C1C26BFF2F943"
+				type: "item"
+				item: "minecolonies:blockhutdyer"
+			}]
+			rewards: [
+				{
+					id: "24482693AEC4AEA1"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 2
+				}
+				{
+					id: "10B63EE421C4E9F0"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+				{
+					id: "05431178151B2FC8"
+					type: "ftbmoney:money"
+					ftb_money: 5L
+				}
+			]
+		}
+		{
+			x: 12.0d
+			y: 3.5d
+			dependencies: ["0000000000000107"]
+			id: "3CB43749C678B163"
+			tasks: [{
+				id: "792AFF5A2F474FC6"
+				type: "item"
+				item: "minecolonies:blockhutfletcher"
+			}]
+			rewards: [
+				{
+					id: "414D704BBC187708"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 2
+				}
+				{
+					id: "3DF543AF58D2B0E6"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+				{
+					id: "1DCA87C4E61266EB"
+					type: "ftbmoney:money"
+					ftb_money: 5L
+				}
+			]
+		}
+		{
+			x: 15.5d
+			y: 4.0d
+			dependencies: ["000000000000011B"]
+			id: "1DF2DBA84A81F375"
+			tasks: [{
+				id: "409E9960D6DA64EC"
+				type: "item"
+				item: "minecolonies:blockhutconcretemixer"
+			}]
+			rewards: [
+				{
+					id: "62AFD4F5ADC98BD0"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 2
+				}
+				{
+					id: "115A68BAEB91122E"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+				{
+					id: "118702EAC7519DE6"
+					type: "ftbmoney:money"
+					ftb_money: 5L
+				}
+			]
+		}
+		{
+			x: 6.0d
+			y: 4.0d
+			dependencies: ["00000000000000E0"]
+			id: "4DAE221F0AD08541"
+			tasks: [{
+				id: "426DEC7C8D86CEF6"
+				type: "item"
+				item: "minecolonies:blockhutbeekeeper"
+			}]
+			rewards: [{
+				id: "00748BE882FC75DA"
+				type: "ftbmoney:money"
+				ftb_money: 5L
+			}]
+		}
+	]
+}

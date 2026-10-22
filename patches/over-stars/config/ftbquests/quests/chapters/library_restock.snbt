@@ -1,0 +1,116 @@
+# AI 初翻，未人工校对
+{
+	consume_items: true
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "library_restock"
+	group: "691ECEA9A5501200"
+	id: "281E596057AA0EFB"
+	order_index: 12
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["2709D4DB43929AA0"]
+			description: ["冒险家，你好！最近有人偷走了我们村庄图书馆的书，我需要你帮忙把清单上的物品收集回来，可以吗？"]
+			hide_details_until_startable: true
+			hide_until_deps_visible: true
+			id: "13777439C77BFD93"
+			tasks: [
+				{
+					count: 5L
+					id: "14B2A9B924422673"
+					item: {
+						Count: 1
+						id: "itemfilters:tag"
+						tag: {
+							value: "forge:bookshelves"
+						}
+					}
+					title: "任意数量的 #forge:bookshelves"
+					type: "item"
+				}
+				{
+					count: 15L
+					id: "0D318E36AABD344D"
+					item: { Count: 15, id: "minecraft:book" }
+					type: "item"
+				}
+				{
+					count: 20L
+					id: "5C257627912B90A3"
+					item: "minecraft:paper"
+					type: "item"
+				}
+			]
+			title: "任务"
+			x: 0.5d
+			y: 1.5d
+		}
+		{
+			can_repeat: true
+			dependencies: [
+				"2709D4DB43929AA0"
+				"13777439C77BFD93"
+			]
+			description: [""]
+			hide_details_until_startable: true
+			hide_until_deps_visible: true
+			id: "039460C8AEF168DC"
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/gamestage remove @p librarian1 true"
+					elevate_perms: true
+					id: "132A8BF325C027B6"
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 2709D4DB43929AA0"
+					elevate_perms: true
+					id: "5A9AE4A74CB1E1A2"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/tellraw @p {\"text\":\"Thanks for helping us Sir! Your rewards have been granted!\",\"color\":\"white\",\"bold\":true}"
+					elevate_perms: true
+					id: "00C15057894B3A1E"
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 2
+					id: "2602EEDB75502C70"
+					item: "quest_token_api:quest_token"
+					type: "item"
+				}
+				{
+					auto: "enabled"
+					exclude_from_claim_all: true
+					id: "546153BC94ED1AF3"
+					table_id: 5618260505225790032L
+					type: "random"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 13777439C77BFD93"
+					elevate_perms: true
+					id: "4FD05FB6622CDCC2"
+					silent: true
+					type: "command"
+				}
+			]
+			tasks: [{
+				id: "5F6E80AE2C216449"
+				title: "点击以完成"
+				type: "checkmark"
+			}]
+			title: "点击以完成"
+			x: 1.5d
+			y: 1.5d
+		}
+	]
+	title: "&7图书馆补货任务"
+}

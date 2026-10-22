@@ -1,0 +1,156 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "gas_transport"
+	group: "033EC740B2EF1FC1"
+	icon: "mekanism:basic_mechanical_pipe"
+	id: "7245BEC5B17E8B67"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["使用或产生气体的机器不多，但如果你想制作 Mekanism 中更高级的机器，就需要知道如何运输气体。"]
+			id: "4D50DCFC7ABA3DE0"
+			shape: "gear"
+			size: 1.5d
+			tasks: [{
+				id: "7EE8E8F937DD11DB"
+				type: "checkmark"
+			}]
+			title: "气体运输系统"
+			x: 0.8d
+			y: -0.8d
+		}
+		{
+			description: [
+				"基础增压管可用于在机器和/或化学储罐之间输送气体。"
+				""
+				"在管道末端使用配置器，将其更改为吸入、推出、断开或连接。"
+				""
+				"基础增压管以每刻1000mb的速率输送气体。"
+			]
+			id: "0D3FF9FC5DB9F402"
+			tasks: [{
+				id: "1A607E38F25046D3"
+				item: "mekanism:basic_pressurized_tube"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["0D3FF9FC5DB9F402"]
+			description: [
+				"高级增压管每刻能传输4000mb的气体。"
+				""
+				"你可以在其中一个基础加压管上使用浸渍合金，将最多8个相连的管道进行“世界内”升级。"
+			]
+			id: "115406F6904219FA"
+			tasks: [{
+				id: "3DAB2F18FDB037AC"
+				item: "mekanism:advanced_pressurized_tube"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["115406F6904219FA"]
+			description: [
+				"精英增压管每刻能传输128,000mb的气体。"
+				""
+				"你可以在其中一个高级压力管上，使用强化合金来升级最多8个相连的“世界内”高级压力管。"
+			]
+			id: "77C9370879035020"
+			tasks: [{
+				id: "6236FC5CDD50AAE7"
+				item: "mekanism:elite_pressurized_tube"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["77C9370879035020"]
+			description: [
+				"终极增压管能以每秒1,024,000 mb的速率传输气体。"
+				""
+				"使用原子合金升级其中一个，即可将最多8个相连的精英增压管升级为终极版。"
+			]
+			id: "2E07B0C35F4790C5"
+			tasks: [{
+				id: "33D8789465679EA5"
+				item: "mekanism:ultimate_pressurized_tube"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 6.0d
+		}
+		{
+			dependency_requirement: "one_completed"
+			description: [
+				"XNet 连接器和网络电缆（配合 XNet 控制器）也可用于传输气体。只需确保将频道设置为处理气体即可。"
+				""
+				"如果想了解一些使用示例，可以查看本附录中的“XMen 网络”主题。"
+				""
+				"&c很遗憾，由于本生存指南在传输过程中发生了损坏，你无法直接在此处查询配方。请使用 JEI 的搜索功能。&f"
+			]
+			id: "48E08A97659F6B85"
+			tasks: [
+				{
+					icon: "xnet:connector_blue"
+					id: "4D4094409BDB2182"
+					item: {
+						Count: 1b
+						id: "itemfilters:tag"
+						tag: {
+							value: "xnet:connectors"
+						}
+					}
+					title: "连接器"
+					type: "item"
+				}
+				{
+					icon: "xnet:netcable_blue"
+					id: "1FFF9541C491E2DF"
+					item: {
+						Count: 1b
+						id: "itemfilters:tag"
+						tag: {
+							value: "xnet:cables"
+						}
+					}
+					title: "网络电缆"
+					type: "item"
+				}
+			]
+			title: "气体传输网络（XNet for Gasses）"
+			x: -2.0d
+			y: 1.5d
+		}
+		{
+			description: ["化学储罐（基础、高级、精英和终极版）可用于运输气体。你可以在机器中填充气体（或通过管道导入），拾取后气体仍会保留，方便你根据需要手动放置（或放入目标机器中）。"]
+			id: "3CFDC5A35FD9DD08"
+			tasks: [{
+				id: "5137DFA5FFDA6EDA"
+				item: "mekanism:basic_chemical_tank"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 1.5d
+		}
+		{
+			description: ["传输气体。使用管道扳手进行配置。可通过管道升级进行升级。"]
+			id: "73F2525F3CE42FAE"
+			tasks: [{
+				id: "49F8D19837FA125D"
+				item: "pipez:gas_pipe"
+				type: "item"
+			}]
+			x: 4.0d
+			y: 1.5d
+		}
+	]
+	title: "气体运输系统"
+}

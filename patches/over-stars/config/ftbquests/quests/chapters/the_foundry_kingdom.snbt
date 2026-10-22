@@ -1,0 +1,180 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "the_foundry_kingdom"
+	group: "2160A0BD1700DC33"
+	hide_quest_details_until_startable: true
+	hide_quest_until_deps_visible: true
+	id: "62653B0512802C29"
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			id: "0A12A08C0A316257"
+			rewards: [{
+				auto: "invisible"
+				command: "/tellraw @p {\"text\":\"Ready to embark on your quest!? Open your questbook to find the quest activated to begin searching for the structure!\",\"color\":\"white\",\"bold\":true}"
+				elevate_perms: true
+				id: "66BDF6D199B72893"
+				type: "command"
+			}]
+			secret: true
+			tasks: [{
+				icon: "quest_token_api:absi_palace_king"
+				id: "24B7AFB503DF38A7"
+				stage: "foundry"
+				title: "使用卷轴解锁"
+				type: "gamestage"
+			}]
+			x: -0.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0A12A08C0A316257"]
+			id: "4CECEC244B5343C3"
+			tasks: [{
+				id: "4EAD82ED459A211A"
+				structure: "dungeons_arise:foundry"
+				title: "找到铸造厂"
+				type: "structure"
+			}]
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			can_repeat: true
+			dependencies: ["0A12A08C0A316257"]
+			id: "0643B00EA68AE4FA"
+			rewards: [{
+				auto: "invisible"
+				command: "/locate structure dungeons_arise:foundry"
+				elevate_perms: true
+				id: "33234F1B13A50F1C"
+				team_reward: false
+				type: "command"
+			}]
+			tasks: [{
+				id: "6F30E994080DDB65"
+				title: "点击以定位结构物"
+				type: "checkmark"
+			}]
+			x: -2.5d
+			y: 0.0d
+		}
+		{
+			can_repeat: true
+			dependencies: ["4CECEC244B5343C3"]
+			id: "153FCCEF2E4A9B7E"
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/gamestage remove @p foundry true"
+					elevate_perms: true
+					id: "056B6C3BAD20CAC5"
+					team_reward: false
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 0A12A08C0A316257"
+					elevate_perms: true
+					id: "1EA4ECC730CAE298"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 4CECEC244B5343C3"
+					elevate_perms: true
+					id: "54A8CB4455EAA7FE"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					command: "/puffish_skills points add @p puffish_skills:combat 8"
+					elevate_perms: true
+					icon: "minecraft:experience_bottle"
+					id: "071D823107FD7523"
+					title: "8 战斗技能点"
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					exclude_from_claim_all: true
+					id: "0AD15B225E69ED4A"
+					table_id: 444384640504589334L
+					type: "random"
+				}
+				{
+					auto: "enabled"
+					id: "773607C4BC4D3652"
+					item: "steampunkrpg_content:dungeon_token"
+					type: "item"
+				}
+				{
+					auto: "enabled"
+					id: "76579366662A14B7"
+					table_id: 444384640504589334L
+					type: "random"
+				}
+			]
+			shape: "hexagon"
+			size: 2.0d
+			tasks: [
+				{
+					entity: "minecraft:piglin_brute"
+					id: "28FF8313C17FF1E5"
+					title: "击杀：10x Debris Miner"
+					type: "kill"
+					value: 10L
+				}
+				{
+					entity: "minecraft:magma_cube"
+					id: "3F86729DFDF004D5"
+					type: "kill"
+					value: 10L
+				}
+				{
+					entity: "minecraft:phantom"
+					id: "752CACDBE1079B3F"
+					type: "kill"
+					value: 10L
+				}
+				{
+					entity: "minecraft:hoglin"
+					id: "66D9FE40F055A006"
+					type: "kill"
+					value: 5L
+				}
+				{
+					entity: "minecraft:blaze"
+					id: "49415E9D53730A8E"
+					title: "击杀：15x 熔炉守卫"
+					type: "kill"
+					value: 15L
+				}
+				{
+					entity: "minecraft:wither_skeleton"
+					id: "06B9FE4A55AA41B4"
+					title: "击杀：15x 锻造哨兵"
+					type: "kill"
+					value: 15L
+				}
+				{
+					block: "minecraft:spawner"
+					block_type: 0
+					checkItem: false
+					id: "36BDF5C7AD185D4C"
+					type: "questsadditions:break"
+					value: 10L
+				}
+			]
+			title: "任务"
+			x: 4.0d
+			y: 0.0d
+		}
+	]
+	title: "&b铸造王国 The Foundry Kingdom"
+}

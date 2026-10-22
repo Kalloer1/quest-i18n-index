@@ -1,0 +1,103 @@
+# AI 初翻，未人工校对
+{
+	consume_items: true
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "wood_harvest"
+	group: "691ECEA9A5501200"
+	id: "53AA1AECFD465464"
+	order_index: 19
+	quest_links: [ ]
+	quests: [
+		{
+			can_repeat: true
+			dependencies: [
+				"31BC530C350F0BCE"
+				"53307C25C003FC31"
+			]
+			description: [""]
+			hide_details_until_startable: true
+			hide_until_deps_visible: true
+			id: "480D0238A241AECB"
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/gamestage remove @p woodworker1 true"
+					elevate_perms: true
+					id: "030E01BB6C65AF4C"
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 31BC530C350F0BCE"
+					elevate_perms: true
+					id: "67D0811648012C4B"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/tellraw @p {\"text\":\"Thanks for helping us Sir! Your rewards have been granted!\",\"color\":\"white\",\"bold\":true}"
+					elevate_perms: true
+					id: "573810AE4EBB67C9"
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 2
+					id: "3D3CE2CF78908739"
+					item: "quest_token_api:quest_token"
+					type: "item"
+				}
+				{
+					auto: "enabled"
+					exclude_from_claim_all: true
+					id: "4BEC00DABC484CAC"
+					table_id: 5618260505225790032L
+					type: "random"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 53307C25C003FC31"
+					elevate_perms: true
+					id: "0B64DD9A3C1800B4"
+					silent: true
+					type: "command"
+				}
+			]
+			tasks: [{
+				id: "01E53E257F86E05D"
+				title: "点击以完成"
+				type: "checkmark"
+			}]
+			title: "点击以完成"
+			x: 0.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["31BC530C350F0BCE"]
+			description: ["嗨，我需要你帮我弄些木头来用，谢谢了！"]
+			hide_details_until_startable: true
+			hide_until_deps_visible: true
+			id: "53307C25C003FC31"
+			tasks: [
+				{
+					count: 30L
+					id: "2FA58A6B1C012D3E"
+					item: "minecraft:oak_log"
+					type: "item"
+				}
+				{
+					count: 10L
+					id: "6BF9C7582777867F"
+					item: "minecraft:birch_log"
+					type: "item"
+				}
+			]
+			title: "任务"
+			x: -0.5d
+			y: 0.5d
+		}
+	]
+	title: "&7木材采集任务"
+}

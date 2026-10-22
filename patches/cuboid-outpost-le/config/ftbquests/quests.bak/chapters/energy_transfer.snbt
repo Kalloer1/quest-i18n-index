@@ -1,0 +1,330 @@
+# AI 初翻，未人工校对
+{
+	id: "74CA2AF06834E7BC"
+	group: "033EC740B2EF1FC1"
+	order_index: 2
+	filename: "energy_transfer"
+	title: "能量传输"
+	icon: "immersiveengineering:wirecoil_copper"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: 0.0d
+			y: 3.5d
+			description: [
+				"MV Wire Coils 在烧毁前可连续传输 8192 FE/t，每传输一个方块距离会损失约 0.156% 的 FE（最大传输距离为 16 个方块）。"
+				""
+				"和LV Wire Coils一样，MV Wire Coil也有标准和绝缘两种版本，标准版触摸后会触电。"
+			]
+			dependencies: ["7040588235EC486C"]
+			id: "63CD676C5C5D1C1D"
+			tasks: [
+				{
+					id: "1D32E3E557C4ACEF"
+					type: "item"
+					item: "immersiveengineering:wirecoil_electrum"
+				}
+				{
+					id: "1AB05EB25B535C22"
+					type: "item"
+					item: "immersiveengineering:wirecoil_electrum_ins"
+				}
+				{
+					id: "65329895A71BBD37"
+					type: "item"
+					item: "immersiveengineering:connector_mv"
+				}
+				{
+					id: "003426107E3CD473"
+					type: "item"
+					item: "immersiveengineering:connector_mv_relay"
+				}
+			]
+		}
+		{
+			x: 0.0d
+			y: 5.0d
+			description: [
+				"HV Wire Coils 在烧毁前可连续传输 32768 FE/t，每传输一个方块距离会损失约 0.078% 的 FE（最大传输距离为 32 方块）。"
+				""
+				"高压线圈没有绝缘版本，使用时必须小心。"
+			]
+			dependencies: ["63CD676C5C5D1C1D"]
+			id: "7F1EFBCEB7CF828D"
+			tasks: [
+				{
+					id: "7FA9708B1D381AC3"
+					type: "item"
+					item: "immersiveengineering:wirecoil_steel"
+				}
+				{
+					id: "452B3629D415F349"
+					type: "item"
+					item: "immersiveengineering:connector_hv"
+				}
+				{
+					id: "1B9FBAC9EB84AFB0"
+					type: "item"
+					item: "immersiveengineering:connector_hv_relay"
+				}
+			]
+		}
+		{
+			x: 0.0d
+			y: 2.0d
+			description: [
+				"对于低压（LV）应用，能量电缆可通过 LV 线圈在 LV 连接器和 LV 继电器之间传输。"
+				""
+				"连接器必须添加到能源源（即提取能源的位置）和能源消耗器（如机器）上。连接器只能连接一根电缆。"
+				""
+				"中继器最多可连接8根电缆，不会向所连接的方块或机器传输电力，只是将电力转接到其他连接的LV电缆上，而这些电缆又可以连接到更多中继器或机器的连接器上。"
+				""
+				"注意，LV 电缆有标准和绝缘两种。带电的标准 LV 电缆会触电，而绝缘 LV 电缆触摸安全。"
+				""
+				"LV Wire Coils 可以连接在 LV Connector 和 LV Relay 之间，只需在需要连接的每个端点使用即可。可以通过破坏连接器或中继器，或使用 Engineer's Wire Cutters 来移除它们。"
+				""
+				"LV Wire Coils 在烧毁前可连续传输 2048 FE/t，每传输一个方块距离会损失约 0.312% 的 FE（最大传输距离为 16 个方块）。"
+			]
+			id: "7040588235EC486C"
+			tasks: [
+				{
+					id: "0988E26F33A8A08C"
+					type: "item"
+					item: "immersiveengineering:wirecoil_copper"
+				}
+				{
+					id: "14AE4077C4CAABA2"
+					type: "item"
+					item: "immersiveengineering:connector_lv"
+				}
+				{
+					id: "1914C243D1285C74"
+					type: "item"
+					item: "immersiveengineering:connector_lv_relay"
+				}
+			]
+		}
+		{
+			x: -2.0d
+			y: 2.0d
+			description: [
+				"基础通用线缆的传输速率为 3.2kFE/t。"
+				""
+				"通用线缆可通过配置器进行设置。默认情况下，线缆放置后会尝试与任何可连接的对象相连，并允许能量双向流动。这通常是所需效果，但在某些情况下，你可能需要更改此行为。使用配置器，你可以将连接更改为仅允许能量拉入、推入，甚至可以断开线缆在特定方向上的连接。"
+				""
+				"通用线缆可以自动转换不同能量类型，包括FE、EU和焦耳。"
+			]
+			id: "7579E2A5FD29894A"
+			tasks: [{
+				id: "658D67B29297EFAD"
+				type: "item"
+				item: "mekanism:basic_universal_cable"
+			}]
+		}
+		{
+			x: -2.0d
+			y: 3.5d
+			description: [
+				"高级通用电缆的传输速率为 51.2kFE/t。"
+				""
+				"你可以使用一个 Infused Alloy 将最多 8 根 Basic Universal Cables 升级为 Advanced 版本。"
+			]
+			dependencies: ["7579E2A5FD29894A"]
+			id: "549C0E94F29DCF32"
+			tasks: [{
+				id: "0C6379F9ADDF5FB4"
+				type: "item"
+				item: "mekanism:advanced_universal_cable"
+			}]
+		}
+		{
+			x: -2.0d
+			y: 5.0d
+			description: [
+				"精英通用电缆的传输速率为 409.6kFE/t。"
+				""
+				"你可以在其中一个电缆上使用强化合金，将最多8个相连的高级通用电缆进行“世界内”升级。"
+			]
+			dependencies: ["549C0E94F29DCF32"]
+			id: "025DEAF9BABC8F66"
+			tasks: [{
+				id: "614FF834720CF255"
+				type: "item"
+				item: "mekanism:elite_universal_cable"
+			}]
+		}
+		{
+			x: -2.0d
+			y: 6.5d
+			description: [
+				"终极通用线缆的传输速率为 3.27MFE/t。"
+				""
+				"最多8根相连的Elite Universal Cable可以通过在其中一个上使用Atomic Alloy进行“世界内”升级。"
+			]
+			dependencies: ["025DEAF9BABC8F66"]
+			id: "6366AE3C13655BD1"
+			tasks: [{
+				id: "6CEEFE981FAA33C2"
+				type: "item"
+				item: "mekanism:ultimate_universal_cable"
+			}]
+		}
+		{
+			title: "用于传输能量的 XNet 网络"
+			x: 2.0d
+			y: 2.0d
+			description: [
+				"XNet 也可以用来传输能量。你需要一个已连接的控制器、一个能量通道、一个带有连接器的能源，然后在要传输能量的方块上放置连接器。在控制器中，将通道设置为从电源提取，并插入目标方块。"
+				""
+				"普通连接器最大传输速率为 50,000 FE/t。高级连接器传输速率为 500,000 FE/t。"
+				""
+				"关于高级连接器的一点说明：即使使用高级连接器，也无法从源能量块的其它侧面消耗能量——能量只能从提供能量的源侧面消耗。不过，高级连接器可以为它未实际连接的侧面提供能量。"
+				""
+				"如果想了解一些使用示例，可以查看本附录中的“XMen 网络”主题。"
+				""
+				"&c很遗憾，由于本生存指南在传输过程中发生了损坏，你无法直接在此处查询配方。请使用 JEI 的搜索功能。&f"
+			]
+			id: "4684D4B747C9FBB4"
+			tasks: [
+				{
+					id: "054FBCCC43077EAE"
+					type: "item"
+					title: "连接器"
+					icon: "xnet:connector_blue"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "xnet:connectors"
+						}
+					}
+				}
+				{
+					id: "478A405F85CF52D6"
+					type: "item"
+					title: "网络电缆"
+					icon: "xnet:netcable_blue"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "xnet:cables"
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 4.0d
+			y: 2.0d
+			description: [
+				"能量电缆的容量相当高，而且很特别，因为它们不会阻挡移动。"
+				""
+				"初级能量电缆的传输速率为 100 FE/t"
+			]
+			id: "10449893EC1BD735"
+			tasks: [{
+				id: "220E0886E740783B"
+				type: "item"
+				item: "powah:energy_cable_starter"
+			}]
+		}
+		{
+			x: 4.0d
+			y: 3.5d
+			description: ["基础能量电缆的传输速率为 1.4k FE/t"]
+			dependencies: ["10449893EC1BD735"]
+			id: "52CAE4A078362D76"
+			tasks: [{
+				id: "20E22F0D3834D78F"
+				type: "item"
+				item: "powah:energy_cable_basic"
+			}]
+		}
+		{
+			x: 4.0d
+			y: 5.0d
+			description: ["硬化能量电缆的传输速率为 5k FE/t"]
+			dependencies: ["52CAE4A078362D76"]
+			id: "4B22B5E60F8E1C9D"
+			tasks: [{
+				id: "638AEF4BDBA08929"
+				type: "item"
+				item: "powah:energy_cable_hardened"
+			}]
+		}
+		{
+			x: 4.0d
+			y: 6.5d
+			description: ["炽热能量电缆的传输速率为 18k FE/t"]
+			dependencies: ["4B22B5E60F8E1C9D"]
+			id: "34D8BA1A3C031B0B"
+			tasks: [{
+				id: "6D1A02B8C2261208"
+				type: "item"
+				item: "powah:energy_cable_blazing"
+			}]
+		}
+		{
+			x: 4.0d
+			y: 8.0d
+			description: ["Niotic Energy Cables 的传输速率为 40k FE/t"]
+			dependencies: ["34D8BA1A3C031B0B"]
+			id: "367D6CD950F4E48B"
+			tasks: [{
+				id: "5821E1C8FA8BAEBF"
+				type: "item"
+				item: "powah:energy_cable_niotic"
+			}]
+		}
+		{
+			x: 4.0d
+			y: 9.5d
+			description: ["Spirited Energy Cables 的传输速率为 90k FE/t"]
+			dependencies: ["367D6CD950F4E48B"]
+			id: "573B2B8B63121C43"
+			tasks: [{
+				id: "18910295FFD96E58"
+				type: "item"
+				item: "powah:energy_cable_spirited"
+			}]
+		}
+		{
+			x: 4.0d
+			y: 11.0d
+			description: ["Nitro Energy Cables 的传输速率为 200k FE/t"]
+			dependencies: ["573B2B8B63121C43"]
+			id: "09D9978BC183F61F"
+			tasks: [{
+				id: "671EC127685853D3"
+				type: "item"
+				item: "powah:energy_cable_nitro"
+			}]
+		}
+		{
+			title: "能量传输选项"
+			x: 2.0d
+			y: 0.0d
+			shape: "gear"
+			description: ["当我们需要你制造各种机器时，能量的传输将变得至关重要。本指南部分旨在向你介绍主要可用的选项。"]
+			size: 1.5d
+			id: "12F66403A13D4B05"
+			tasks: [{
+				id: "0E67762453A2B546"
+				type: "checkmark"
+			}]
+		}
+		{
+			x: 6.0d
+			y: 2.0d
+			description: ["传输能量。使用管道扳手进行配置。可通过管道升级进行升级。"]
+			id: "6E50D5E02D8FBDD3"
+			tasks: [{
+				id: "7104A049A0F84693"
+				type: "item"
+				item: "pipez:energy_pipe"
+			}]
+		}
+	]
+}

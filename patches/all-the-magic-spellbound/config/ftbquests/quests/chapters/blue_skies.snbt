@@ -1,0 +1,412 @@
+# AI 初翻，未人工校对
+{
+	id: "2DE2DCB9F8311244"
+	group: "441E2D2CD3ABE6DE"
+	order_index: 5
+	filename: "blue_skies"
+	title: "蔚蓝的天空"
+	icon: {
+		id: "blue_skies:zeal_lighter"
+		Count: 1b
+		tag: {
+			Damage: 0
+		}
+	}
+	subtitle: ["一个将你送往冰雪世界，或是永恒黄昏与虫群之地的维度模组。请谨慎选择。"]
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "山中的隐士 The Hermit in the Hills"
+			x: -0.5d
+			y: 0.0d
+			description: ["Blue Skies 会在世界外生成一个村民住所，由一到两栋建筑组成。他身穿黑金镶边服饰，用一本书和8个绿宝石换取蓝色传说之书和狂热打火机。获得这两样物品后，右键传说之书，它就会变成你的物品栏标签！不仅如此，在房子的阁楼或侧屋里，你还可以偷走他用绿松石砖或月球砖建造的传送门。这些方块无法在主世界合成，所以你得碰运气才能找到两者。幸运的是，狂热打火机就像打火石和钢一样，不会立即损坏。"]
+			id: "07F925C1AC5C2A26"
+			tasks: [
+				{
+					id: "47E4F06E402C9D0C"
+					type: "item"
+					item: "blue_skies:blue_journal"
+				}
+				{
+					id: "1DCA62632E2FB284"
+					type: "item"
+					item: {
+						id: "blue_skies:zeal_lighter"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "79262CBB8316F8F9"
+					type: "item"
+					item: "blue_skies:lunar_stonebrick"
+					count: 12L
+				}
+				{
+					id: "0D7D13D4EBD1E12A"
+					type: "item"
+					item: "blue_skies:turquoise_stonebrick"
+					count: 12L
+				}
+			]
+			rewards: [{
+				id: "005E6D5BD741ED51"
+				type: "item"
+				item: "blue_skies:moonstone_shard"
+				count: 12
+			}]
+		}
+		{
+			title: "冰雪与霜冻的国度"
+			icon: "blue_skies:everbright_portal"
+			x: 1.0d
+			y: -1.5d
+			description: ["旅行提示：请携带保暖衣物。"]
+			dependencies: ["07F925C1AC5C2A26"]
+			id: "3568BE3CEEF4D199"
+			tasks: [
+				{
+					id: "55B970BC038C75C5"
+					type: "dimension"
+					dimension: "blue_skies:everbright"
+				}
+				{
+					id: "57F8CCADBE6E5C4F"
+					type: "advancement"
+					advancement: "blue_skies:everbright/enter"
+					criterion: ""
+				}
+			]
+		}
+		{
+			title: "永恒的黄昏所笼罩的国度"
+			icon: "blue_skies:everdawn_portal"
+			x: 1.0d
+			y: 2.0d
+			description: ["旅行建议：带上解药和烧伤膏。"]
+			dependencies: ["07F925C1AC5C2A26"]
+			hide: true
+			id: "7DFED08EFFA59B6A"
+			tasks: [
+				{
+					id: "35EC4FBBE92BEBF1"
+					type: "dimension"
+					dimension: "blue_skies:everdawn"
+				}
+				{
+					id: "398AC2C6C380465B"
+					type: "advancement"
+					advancement: "blue_skies:everdawn/enter"
+					criterion: ""
+				}
+			]
+		}
+		{
+			title: "这把工具在我手里感觉更弱了……"
+			x: 2.5d
+			y: 0.0d
+			description: ["非 BSkies 工具/武器在此维度效果较差。是时候再次装备了。制作一套木制 BSkies 工具。注意：Everdawn 工具在此处可用。"]
+			dependencies: [
+				"3568BE3CEEF4D199"
+				"7DFED08EFFA59B6A"
+			]
+			id: "41B7CCB5E612E5F0"
+			tasks: [{
+				id: "7C8B126B81F1E735"
+				type: "item"
+				title: "任意 #blue_skies:wooden_tools"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "blue_skies:wooden_tools"
+					}
+				}
+			}]
+			rewards: [{
+				id: "33DE4E4557A403F4"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "蓝色岩石"
+			x: 4.0d
+			y: -1.5d
+			description: [
+				"普通石头换成了绿松石。做些绿松石工具。Ventium 应该是这个世界的顶级金属。Ventium 能制作桶和剪刀。"
+				"Ventium 存在于 Everbright 的大多数非山地生物群系中。"
+			]
+			dependencies: ["41B7CCB5E612E5F0"]
+			id: "1A46CBBA4B75AA5A"
+			tasks: [
+				{
+					id: "264DDF6FD701BFB7"
+					type: "item"
+					item: {
+						id: "blue_skies:turquoise_stone_pickaxe"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "2830AD7260977B4E"
+					type: "item"
+					item: "blue_skies:ventium_ore"
+				}
+			]
+		}
+		{
+			title: "黑色的岩石"
+			x: 4.0d
+			y: 2.0d
+			description: [
+				"普通的石头被月石取代了。制作一些月石工具吧。我想 horizonite 是这个世界的顶级金属。"
+				"Horizonite 可以在 Crystal Dunes 中找到。"
+			]
+			dependencies: ["41B7CCB5E612E5F0"]
+			id: "70760AE3B6F9CD31"
+			tasks: [
+				{
+					id: "6190D30DE8357A8B"
+					type: "item"
+					item: {
+						id: "blue_skies:lunar_stone_pickaxe"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "4501819021DFBE30"
+					type: "item"
+					item: "blue_skies:horizonite_ore"
+				}
+			]
+			rewards: [{
+				id: "4EE1CE71E315F688"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "冰霜怪物"
+			x: 6.0d
+			y: -1.5d
+			dependencies: ["1A46CBBA4B75AA5A"]
+			id: "3790AAF00A63EA14"
+			tasks: [{
+				id: "70A7F7BECB70F72E"
+				type: "kill"
+				title: "装甲霜冻之灵"
+				entity: "blue_skies:armored_frost_spirit"
+				value: 5L
+			}]
+			rewards: [{
+				id: "5644D5369395416A"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "漏洞！"
+			icon: "blue_skies:bug_guts"
+			x: 6.0d
+			y: 2.0d
+			subtitle: "在永昼中消灭一些虫子。小心，余烬背会燃烧。"
+			dependencies: ["70760AE3B6F9CD31"]
+			id: "221D662BC9AA39DE"
+			tasks: [
+				{
+					id: "652CC7A2F52BC1B2"
+					type: "kill"
+					entity: "blue_skies:emberback"
+					value: 10L
+				}
+				{
+					id: "766756769B041642"
+					type: "kill"
+					title: "5x 毒蜘蛛"
+					icon: "blue_skies:venom_spider_spawn_egg"
+					entity: "blue_skies:venom_spider"
+					value: 5L
+				}
+			]
+			rewards: [{
+				id: "51079169F7018795"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "召唤师的城堡"
+			x: 8.0d
+			y: -1.5d
+			description: [
+				"这里有一座鲜为人知的巨大城堡，居住着召唤者。他是此维度的首领之一。收集他的四把钥匙，在塔顶与他战斗。"
+				"注意：召唤台是战利品袋的一部分，并不像我以为的那么常见。你可能需要多次进行这场战斗才能获得此物品。"
+			]
+			dependencies: ["3790AAF00A63EA14"]
+			id: "333D7614C9764F6D"
+			tasks: [{
+				id: "64EEC127DF9BCE70"
+				type: "item"
+				item: "blue_skies:summoning_table"
+			}]
+			rewards: [{
+				id: "0F9A6E6EF47E8832"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			title: "炼金术士的城堡"
+			x: 8.0d
+			y: 2.0d
+			description: [
+				"这里有一座鲜为人知的巨大城堡，居住着炼金术士。他是此维度的首领之一。收集他的四把钥匙，在塔顶与他战斗。"
+				"注意：炼金术台是战利品的一部分，并不像最初想的那么常见。你可能需要多次战斗才能获得它。"
+			]
+			dependencies: ["221D662BC9AA39DE"]
+			id: "5C2CBB1B54BA5A4E"
+			tasks: [{
+				id: "36259675DE82453D"
+				type: "item"
+				item: "blue_skies:alchemy_table"
+			}]
+			rewards: [{
+				id: "62B986B8441FD152"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			title: "自然地下城"
+			x: 10.0d
+			y: -1.5d
+			description: ["1.16.5 新增了一个自然地下城。击败这里的领主，拿走他的奖杯。"]
+			dependencies: ["333D7614C9764F6D"]
+			id: "34D333FBF845717A"
+			tasks: [{
+				id: "46191F823285DA18"
+				type: "item"
+				item: "blue_skies:nature_key"
+			}]
+			rewards: [{
+				id: "00AADED7D1EB4DEC"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			title: "毒物地牢"
+			x: 10.0d
+			y: 2.0d
+			description: ["1.16.5 新增了一个巨型蜘蛛地牢。击败这里的领主，拿走她的奖杯。"]
+			dependencies: ["5C2CBB1B54BA5A4E"]
+			id: "4FC19142B392DC91"
+			tasks: [{
+				id: "1EF850245BCC5786"
+				type: "item"
+				item: "blue_skies:poison_key"
+			}]
+			rewards: [{
+				id: "04DAC2F9607EE755"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			title: "王国的奖杯"
+			x: 12.5d
+			y: 0.0d
+			shape: "gear"
+			dependencies: [
+				"34D333FBF845717A"
+				"4FC19142B392DC91"
+			]
+			id: "105CE51FED230C61"
+			tasks: [
+				{
+					id: "0EDCC1D69F20C7B8"
+					type: "item"
+					item: {
+						id: "blue_skies:summoner_trophy"
+						Count: 1b
+						tag: {
+							BlockStateTag: {
+								tier: "bronze"
+							}
+						}
+					}
+				}
+				{
+					id: "4EA6E57F88FF660D"
+					type: "item"
+					item: {
+						id: "blue_skies:alchemist_trophy"
+						Count: 1b
+						tag: {
+							BlockStateTag: {
+								tier: "bronze"
+							}
+						}
+					}
+				}
+				{
+					id: "5243097FF9DAD031"
+					type: "item"
+					item: {
+						id: "blue_skies:starlit_crusher_trophy"
+						Count: 1b
+						tag: {
+							BlockStateTag: {
+								tier: "bronze"
+							}
+						}
+					}
+				}
+				{
+					id: "0A41F25B6FA387B2"
+					type: "item"
+					item: {
+						id: "blue_skies:arachnarch_trophy"
+						Count: 1b
+						tag: {
+							BlockStateTag: {
+								tier: "bronze"
+							}
+						}
+					}
+				}
+				{
+					id: "67A2833E6829D17B"
+					type: "item"
+					item: "lootr:trophy"
+				}
+			]
+			rewards: [{
+				id: "1B7C27CD52CCED43"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			x: 9.0d
+			y: 0.0d
+			description: ["每个地牢需要4把钥匙才能开启首领战。有些钥匙藏得很巧妙，把看到的一切都打开，杀死所有敌对生物。"]
+			id: "2F156B85BEFB822B"
+			tasks: [{
+				id: "65FD2D70B5BF3EC8"
+				type: "checkmark"
+				title: "诡异的钥匙孔"
+			}]
+		}
+	]
+}

@@ -1,0 +1,366 @@
+# AI 初翻，未人工校对
+{
+	id: "735DEAEFF3A146B5"
+	group: ""
+	order_index: 2
+	filename: "tech"
+	title: "科技"
+	icon: "pneumaticcraft:pneumatic_wrench"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: 6.5d
+			y: 0.0d
+			description: ["你可以用它来自动从背包中取出物品（例如石头和矿石），并为你提供有用的东西（如食物）"]
+			dependencies: ["4FBD0763DD3107D6"]
+			id: "1BA96D8CB5EFE2E2"
+			tasks: [{
+				id: "4120844D01D81AD0"
+				type: "item"
+				item: "pneumaticcraft:aerial_interface"
+			}]
+			rewards: [{
+				id: "5730A14C73A109FC"
+				type: "item"
+				item: "pneumaticcraft:logistics_frame_requester"
+			}]
+		}
+		{
+			x: -4.0d
+			y: 0.0d
+			description: ["在地上扔些铁，然后用TNT引爆。部分铁会消失，部分会变成压缩铁"]
+			id: "664211ADBC457F83"
+			tasks: [{
+				id: "24CDC64F116F8377"
+				type: "item"
+				item: "pneumaticcraft:ingot_iron_compressed"
+			}]
+			rewards: [{
+				id: "242FBD74698E4428"
+				type: "item"
+				item: {
+					id: "patchouli:guide_book"
+					Count: 1b
+					tag: {
+						"patchouli:book": "pneumaticcraft:book"
+					}
+				}
+			}]
+		}
+		{
+			x: -2.5d
+			y: -1.0d
+			description: [
+				"要更高效地制作压缩铁，可以建造压力室。它也会用于其他配方中"
+				""
+				"可以是3x3x3、4x4x4或5x5x5"
+			]
+			dependencies: ["664211ADBC457F83"]
+			id: "1C06282FA1802767"
+			tasks: [
+				{
+					id: "13A5066F02B8F6FB"
+					type: "item"
+					item: "pneumaticcraft:pressure_chamber_wall"
+				}
+				{
+					id: "4714C6D15B17A977"
+					type: "item"
+					item: "pneumaticcraft:pressure_chamber_valve"
+				}
+				{
+					id: "7DE9F86DF5D32771"
+					type: "item"
+					item: "pneumaticcraft:pressure_chamber_interface"
+					count: 2L
+				}
+			]
+			rewards: [{
+				id: "7EE96ED63B362F9C"
+				type: "item"
+				item: "pneumaticcraft:pressure_chamber_glass"
+				count: 10
+				random_bonus: 22
+			}]
+		}
+		{
+			x: -2.5d
+			y: 1.0d
+			description: ["要制造压力，你需要一个压缩机"]
+			dependencies: ["664211ADBC457F83"]
+			id: "67EA3E68E5BC4436"
+			tasks: [{
+				id: "41FA9960F7CE7410"
+				type: "item"
+				item: "pneumaticcraft:air_compressor"
+			}]
+			rewards: [{
+				id: "321E679885F97A85"
+				type: "item"
+				item: "pneumaticcraft:pressure_tube"
+				count: 8
+				random_bonus: 8
+			}]
+		}
+		{
+			x: -4.0d
+			y: 2.0d
+			description: ["如果压力超过机器或管道所能承受的范围，就会发生爆炸。安全管可以解决这个问题"]
+			dependencies: ["67EA3E68E5BC4436"]
+			id: "30E2832085AADBDE"
+			tasks: [{
+				id: "45DC52B998752482"
+				type: "item"
+				item: "pneumaticcraft:safety_tube_module"
+			}]
+			rewards: [{
+				id: "5B31030A3A535B04"
+				type: "item"
+				item: "pneumaticcraft:pressure_gauge_module"
+			}]
+		}
+		{
+			x: 3.5d
+			y: 0.0d
+			description: ["它能让你更轻松地制作物品，并解锁新内容"]
+			dependencies: ["6AB3C46AA4D9E7B5"]
+			id: "170C899DDD30BD87"
+			tasks: [
+				{
+					id: "27DDBE1723BBC78E"
+					type: "item"
+					item: "pneumaticcraft:assembly_laser"
+				}
+				{
+					id: "3D1C21F92408FFE3"
+					type: "item"
+					item: "pneumaticcraft:assembly_controller"
+				}
+				{
+					id: "1D12A00F4B934D53"
+					type: "item"
+					item: "pneumaticcraft:assembly_drill"
+				}
+				{
+					id: "56CD217A507BE5B4"
+					type: "item"
+					item: "pneumaticcraft:assembly_io_unit_export"
+				}
+				{
+					id: "7967C944CE5B4800"
+					type: "item"
+					item: "pneumaticcraft:assembly_io_unit_import"
+				}
+				{
+					id: "0B4CE056E1615471"
+					type: "item"
+					item: "pneumaticcraft:assembly_platform"
+				}
+			]
+			rewards: [
+				{
+					id: "69233791486661DE"
+					type: "item"
+					item: "pneumaticcraft:assembly_program_laser"
+				}
+				{
+					id: "3F9468DAD9B9671A"
+					type: "item"
+					item: "pneumaticcraft:assembly_program_drill"
+				}
+				{
+					id: "01E1A5AAF802E591"
+					type: "item"
+					item: "pneumaticcraft:assembly_program_drill_laser"
+				}
+			]
+		}
+		{
+			x: -1.0d
+			y: 0.0d
+			description: ["将空白的PCB放入UV灯箱。这将提高下一步获得未组装PCB的几率。几率越高，获得额外成功几率所需的时间就越长"]
+			dependencies: [
+				"1C06282FA1802767"
+				"67EA3E68E5BC4436"
+				"4F68D87A8FD44A04"
+			]
+			id: "4F2CDB4B503F12FC"
+			tasks: [{
+				id: "004890F1FF2CFEB3"
+				type: "item"
+				item: "pneumaticcraft:empty_pcb"
+			}]
+			rewards: [{
+				id: "7F648D16CFDF3005"
+				type: "item"
+				item: "pneumaticcraft:uv_light_box"
+			}]
+		}
+		{
+			x: 0.5d
+			y: 1.5d
+			description: ["你可以加热它来让它变得更快"]
+			dependencies: ["219A7C1639AE68C7"]
+			id: "619711E6F3BD4346"
+			tasks: [{
+				id: "4C65E60BCA122916"
+				type: "item"
+				item: "pneumaticcraft:etching_tank"
+			}]
+			rewards: [{
+				id: "3BC51A08B4920476"
+				type: "item"
+				item: "pneumaticcraft:vortex_tube"
+			}]
+		}
+		{
+			x: 0.5d
+			y: 3.0d
+			description: ["用于在蚀刻槽中制作未组装的PCB板"]
+			dependencies: ["45C503E3E886ADA1"]
+			id: "219A7C1639AE68C7"
+			tasks: [{
+				id: "59AC2B9D30506E73"
+				type: "item"
+				item: "pneumaticcraft:etching_acid_bucket"
+			}]
+			rewards: [{
+				id: "0008D1B67B106A08"
+				type: "item"
+				item: "minecraft:rotten_flesh"
+				count: 64
+			}]
+		}
+		{
+			x: -1.0d
+			y: 3.0d
+			description: ["可用于制作酸和塑料片"]
+			dependencies: ["0DAC0A39DE1E34FA"]
+			id: "45C503E3E886ADA1"
+			tasks: [{
+				id: "24787E0714AE86A7"
+				type: "item"
+				item: "pneumaticcraft:plastic_bucket"
+			}]
+			rewards: [{
+				id: "2F2D848CA235839B"
+				type: "item"
+				item: "pneumaticcraft:heat_frame"
+			}]
+		}
+		{
+			x: -2.5d
+			y: 3.0d
+			description: ["塑料可以从生物柴油或液化石油气中获得。两者都可以通过“工厂”章节中介绍的沉浸式石油相关内容制作。"]
+			dependencies: ["67EA3E68E5BC4436"]
+			id: "0DAC0A39DE1E34FA"
+			tasks: [{
+				id: "7253499339828E78"
+				type: "item"
+				item: "pneumaticcraft:thermopneumatic_processing_plant"
+			}]
+			rewards: [{
+				id: "3F3CFBE29D0BBE51"
+				type: "item"
+				item: "pneumaticcraft:liquid_hopper"
+			}]
+		}
+		{
+			x: -1.0d
+			y: 1.5d
+			description: ["将熔融塑料倒入世界并稍作等待。它会变成塑料片"]
+			dependencies: ["45C503E3E886ADA1"]
+			id: "4F68D87A8FD44A04"
+			tasks: [{
+				id: "27A2FAC45B59A4EB"
+				type: "item"
+				item: "pneumaticcraft:plastic"
+			}]
+			rewards: [{
+				id: "6A74EF7D20EA34C9"
+				type: "item"
+				item: "pneumaticcraft:charging_station"
+			}]
+		}
+		{
+			x: 0.5d
+			y: 0.0d
+			description: [
+				"失败的PCB可以回收，未组装的PCB可以变成印刷电路板"
+				""
+				"用amadron tablet订购物品后，需要飞到大约250的高度来更新送货无人机，让它传送到箱子里，抱歉 :( 如果你知道怎么解决，请在discord上告诉我"
+			]
+			dependencies: [
+				"4F2CDB4B503F12FC"
+				"619711E6F3BD4346"
+			]
+			id: "3E78F27FED8EA31C"
+			tasks: [{
+				id: "52A8E4188C5FA9E9"
+				type: "item"
+				item: "pneumaticcraft:unassembled_pcb"
+			}]
+			rewards: [{
+				id: "72FC63C49CA17DD5"
+				type: "item"
+				item: "pneumaticcraft:amadron_tablet"
+			}]
+		}
+		{
+			x: 2.0d
+			y: 0.0d
+			description: ["获得一个装配台之后就会容易很多了"]
+			dependencies: ["3E78F27FED8EA31C"]
+			id: "6AB3C46AA4D9E7B5"
+			tasks: [{
+				id: "55311DA67765C432"
+				type: "item"
+				item: "pneumaticcraft:printed_circuit_board"
+			}]
+			rewards: [
+				{
+					id: "1CE3710D483D0A98"
+					type: "item"
+					item: "pneumaticcraft:transistor"
+					count: 16
+				}
+				{
+					id: "657A303978BA9E12"
+					type: "item"
+					item: "pneumaticcraft:capacitor"
+					count: 16
+				}
+			]
+		}
+		{
+			x: 5.0d
+			y: 0.0d
+			description: ["这些管道能承受更大的压力"]
+			dependencies: ["170C899DDD30BD87"]
+			id: "4FBD0763DD3107D6"
+			tasks: [{
+				id: "208DA0BE89FCED1E"
+				type: "item"
+				item: "pneumaticcraft:advanced_pressure_tube"
+			}]
+			rewards: [{
+				id: "40F59C7F2356AFA8"
+				type: "item"
+				item: "pneumaticcraft:logistics_drone"
+			}]
+		}
+		{
+			x: 2.0d
+			y: 4.5d
+			shape: "diamond"
+			description: ["自动化印刷电路板的生产过程"]
+			id: "79C9A9EAC0E217E4"
+			tasks: [{
+				id: "1020BCE32F22CD86"
+				type: "checkmark"
+				title: "自动PCB电路"
+			}]
+		}
+	]
+}
