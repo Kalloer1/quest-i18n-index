@@ -1,0 +1,441 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "bice_maze"
+	group: "57998D3C4767D1DE"
+	icon: "aquamirae:rune_of_the_storm"
+	id: "77E7D7BDB02207D6"
+	images: [{
+		click: ""
+		corner: false
+		dev: false
+		height: 15.0d
+		hover: [ ]
+		image: "kubejs:textures/cornelia.png"
+		rotation: 0.0d
+		width: 20.0d
+		x: 2.0d
+		y: 0.0d
+	}]
+	order_index: 5
+	quest_links: [ ]
+	quests: [
+		{
+			icon: "aquamirae:ship_graveyard_echo"
+			id: "25A7EA5D4817EC97"
+			rewards: [
+				{
+					id: "532EFADC280AE1A3"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "291C8698F2FE5F25"
+					item: "rottencreatures:treasure_chest"
+					type: "item"
+				}
+				{
+					id: "44FB5D357559920F"
+					item: "skilltree:wisdom_scroll"
+					type: "item"
+				}
+			]
+			subtitle: "&b冰迷宫&7可以在&8深海&b冰冻&1海洋中找到"
+			tasks: [{
+				biome: "#aquamirae:ice_maze"
+				icon: "aquamirae:rune_of_the_storm"
+				id: "2B4EA5CEEB5A15D1"
+				type: "biome"
+			}]
+			title: "前往 &b冰迷宫"
+			x: -2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["25A7EA5D4817EC97"]
+			id: "1A98CD5294288098"
+			rewards: [
+				{
+					id: "6E357CE66691CD5C"
+					item: "artifacts:snorkel"
+					type: "item"
+				}
+				{
+					id: "3461FD8E23E4B51B"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+			subtitle: "&3贝壳号角&7可以在&6船只的&b冰迷宫&7生物群系中找到"
+			tasks: [{
+				id: "42D95834F23BD94A"
+				item: "aquamirae:shell_horn"
+				type: "item"
+			}]
+			title: "获取 &3贝壳号角"
+			x: -0.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["25A7EA5D4817EC97"]
+			id: "49E37B881957FC23"
+			rewards: [{
+				id: "15FA3E85204E0853"
+				type: "xp"
+				xp: 2
+			}]
+			subtitle: "&3天使鱼&7通常生成在&b冰迷宫的下方"
+			tasks: [{
+				entity: "aquamirae:anglerfish"
+				icon: "aquamirae:sharp_bones"
+				id: "68380295EDF3EAEB"
+				type: "kill"
+				value: 1L
+			}]
+			title: "杀死一只 &3Anglerfish"
+			x: -0.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["25A7EA5D4817EC97"]
+			id: "784E60A0102E8EAC"
+			rewards: [{
+				id: "537B98D623243849"
+				type: "xp"
+				xp: 2
+			}]
+			subtitle: "&3巨口怪&7在&b迷宫的顶部可以找到"
+			tasks: [{
+				entity: "aquamirae:maw"
+				icon: "aquamirae:fin"
+				id: "0B38B41A6B1425F5"
+				type: "kill"
+				value: 1L
+			}]
+			title: "杀死一只 &3Maw"
+			x: -0.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["49E37B881957FC23"]
+			id: "23B5FFD354C55F00"
+			rewards: [
+				{
+					id: "7028B5F95D83B399"
+					item: {
+						Count: 1b
+						id: "aquamirae:maze_rose"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "32CB807FC7667E6F"
+					type: "xp_levels"
+					xp_levels: 10
+				}
+				{
+					count: 5
+					id: "407530A821B9FDFE"
+					item: "aquamirae:abyssal_amethyst"
+					type: "item"
+				}
+			]
+			subtitle: "&5迷宫之母&7很少在&b冰迷宫下生成"
+			tasks: [{
+				entity: "aquamirae:maze_mother"
+				icon: "aquamirae:abyssal_amethyst"
+				id: "6F30C7949AB58C3B"
+				type: "kill"
+				value: 1L
+			}]
+			title: "杀死&5迷宫之母 (Mother of The Maze)"
+			x: 1.0d
+			y: -1.5d
+		}
+		{
+			can_repeat: true
+			dependencies: [
+				"49E37B881957FC23"
+				"1A98CD5294288098"
+			]
+			icon: "aquamirae:rune_of_the_storm"
+			id: "4F0F6BF4C82E3A07"
+			rewards: [
+				{
+					id: "52C8EF3E5B9BB0C6"
+					type: "xp_levels"
+					xp_levels: 10
+				}
+				{
+					id: "5772A76C13A58C41"
+					item: "aquamirae:ship_graveyard_echo"
+					random_bonus: 2
+					type: "item"
+				}
+				{
+					id: "579BC5D4ECBD64E9"
+					item: "minecraft:netherite_scrap"
+					random_bonus: 3
+					type: "item"
+				}
+				{
+					id: "2D4991E23BF3A360"
+					item: "skilltree:wisdom_scroll"
+					type: "item"
+				}
+				{
+					auto: "enabled"
+					command: "/hostility player @p difficulty base add 20"
+					icon: {
+						Count: 1b
+						id: "cisco_mod:band_of_brilliance"
+						tag: {
+							affix_data: {
+								affixes: {
+									"apotheosis:socket": 0.0f
+								}
+							}
+						}
+					}
+					id: "44C846F094775B3E"
+					title: "&4难度提升，所有生物难度+20"
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					command: "/hostility player @p difficulty base add 10"
+					icon: {
+						Count: 1b
+						id: "cisco_mod:band_of_brilliance"
+						tag: {
+							affix_data: {
+								affixes: {
+									"apotheosis:socket": 0.0f
+								}
+							}
+						}
+					}
+					id: "22B7BDE39C7D487B"
+					title: "&4难度提升，所有生物难度+10"
+					type: "command"
+				}
+			]
+			subtitle: "在&1水&7附近用&3贝壳号角&7右键即可召唤出&d科妮莉亚船长的鬼魂"
+			tasks: [{
+				entity: "aquamirae:captain_cornelia"
+				icon: "aquamirae:rune_of_the_storm"
+				id: "374EDFCAFFF3912C"
+				type: "kill"
+				value: 1L
+			}]
+			title: "&7击杀&d科妮莉亚船长的鬼魂"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["4F0F6BF4C82E3A07"]
+			icon: "aquamirae:frozen_key"
+			id: "4FDC114DF2DD4195"
+			rewards: [
+				{
+					id: "4D8AA13353444CC8"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "21624E6F276922C6"
+					item: "rottencreatures:treasure_chest"
+					type: "item"
+				}
+			]
+			subtitle: "&6避难所&7很少在&b冰迷宫中生成，&7你可以用&6地图&7来找到它们，&d这张地图由&7科妮莉亚船长掉落"
+			tasks: [{
+				id: "5023F2C480E45C2B"
+				structure: "aquamirae:shelter"
+				type: "structure"
+			}]
+			title: "找到一个 &6庇护所"
+			x: 3.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["4FDC114DF2DD4195"]
+			id: "7E3E4AD6D003913A"
+			rewards: [
+				{
+					count: 3
+					id: "6566FAEC661B4AA6"
+					item: "aquamirae:abyssal_amethyst"
+					type: "item"
+				}
+				{
+					id: "5C7EBDE9F3E5595E"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+			subtitle: "&3冰冻宝箱&7可以在&6避难所的底部找到，&7用&3冰冻钥匙打开"
+			tasks: [{
+				id: "5CD0F1385A3AFC3E"
+				item: "aquamirae:frozen_chest"
+				type: "item"
+			}]
+			title: "打开一个 &3冰冻的箱子"
+			x: 4.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["4FDC114DF2DD4195"]
+			id: "30DAE31AC9E06256"
+			rewards: [
+				{
+					id: "551F101D5D0E15C6"
+					type: "xp_levels"
+					xp_levels: 10
+				}
+				{
+					id: "3C7747D5574364F2"
+					item: "skilltree:wisdom_scroll"
+					type: "item"
+				}
+			]
+			subtitle: "一种在&6避难所中生成的&b鱼形&7怪物。"
+			tasks: [{
+				entity: "aquamirae:eel"
+				icon: "aquamirae:treasure_pouch"
+				id: "265624E3FADA189C"
+				type: "kill"
+				value: 1L
+			}]
+			title: "杀死 &3鳗鱼"
+			x: 4.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["23B5FFD354C55F00"]
+			id: "262BDC8D689F4C83"
+			rewards: [
+				{
+					id: "43096EFA5CF3A21B"
+					type: "xp_levels"
+					xp_levels: 15
+				}
+				{
+					count: 3
+					id: "607122F7C5C95F0D"
+					item: "aquamirae:shell_horn"
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "2D82B748FECB2905"
+					item: {
+						Count: 1b
+						id: "aquamirae:abyssal_heaume"
+						tag: {
+							Damage: 0
+							affix_data: {
+								affixes: {
+									"apotheosis:socket": 0.0f
+								}
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "01ABA52791CDC53C"
+					item: {
+						Count: 1b
+						id: "aquamirae:abyssal_brigantine"
+						tag: {
+							Damage: 0
+							affix_data: {
+								affixes: {
+									"apotheosis:socket": 0.0f
+								}
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "77636DDC83788E2D"
+					item: {
+						Count: 1b
+						id: "aquamirae:abyssal_leggings"
+						tag: {
+							Damage: 0
+							affix_data: {
+								affixes: {
+									"apotheosis:socket": 0.0f
+								}
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "1BC68060BCBDC7C3"
+					item: {
+						Count: 1b
+						id: "aquamirae:abyssal_boots"
+						tag: {
+							Damage: 0
+							affix_data: {
+								affixes: {
+									"apotheosis:socket": 0.0f
+								}
+							}
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "合成&dBlinding Abyss&7盔甲"
+			x: 2.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["23B5FFD354C55F00"]
+			id: "33E17E7D228699AC"
+			rewards: [
+				{
+					id: "619CCBF9AEEA3D0D"
+					type: "xp_levels"
+					xp_levels: 10
+				}
+				{
+					id: "4FC1D246092C2024"
+					item: "l2artifacts:abyss_medal_body_5"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "1983616FD4EA3E5B"
+				item: {
+					Count: 1b
+					id: "aquamirae:whisper_of_the_abyss"
+					tag: {
+						Damage: 0
+						affix_data: {
+							affixes: {
+								"apotheosis:socket": 0.0f
+							}
+						}
+					}
+				}
+				type: "item"
+			}]
+			title: "合成&d深渊的低语"
+			x: 1.0d
+			y: -3.0d
+		}
+	]
+	title: "&b冰迷宫"
+}

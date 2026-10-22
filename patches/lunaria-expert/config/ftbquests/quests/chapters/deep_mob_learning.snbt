@@ -1,0 +1,722 @@
+# AI 初翻，未人工校对
+{
+	id: "51B9DBCFE22B0B66"
+	group: "1DCE2EACF5078227"
+	order_index: 5
+	filename: "deep_mob_learning"
+	title: "深层生物学习模组（Deep Mob Learning）"
+	icon: "hostilenetworks:sim_chamber"
+	default_quest_shape: "hexagon"
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: 4.5d
+			y: 0.0d
+			shape: "hexagon"
+			description: ["&a模拟室&f：允许生产预测，用于战利品制造机。"]
+			hide_dependency_lines: true
+			dependencies: ["5F819AB5A06F78EB"]
+			size: 1.5d
+			id: "0B0E3965BE8A022E"
+			tasks: [{
+				id: "3ED90923175DCB07"
+				type: "item"
+				item: "hostilenetworks:sim_chamber"
+			}]
+			rewards: [{
+				id: "0476C4643013AA7B"
+				type: "item"
+				item: "hostilenetworks:empty_prediction"
+				count: 8
+			}]
+		}
+		{
+			x: 3.5d
+			y: -1.0d
+			shape: "octagon"
+			description: ["&a预测矩阵&f：用作模拟舱的燃料。"]
+			hide_dependency_lines: true
+			id: "5F819AB5A06F78EB"
+			tasks: [{
+				id: "31C045823C0CB5D8"
+				type: "item"
+				item: "hostilenetworks:empty_prediction"
+				count: 16L
+			}]
+			rewards: [{
+				id: "762EC5D01DAEDB33"
+				type: "item"
+				item: "hostilenetworks:empty_prediction"
+				count: 8
+			}]
+		}
+		{
+			x: 7.5d
+			y: 1.5d
+			shape: "octagon"
+			description: ["能让你在&2主世界&f中合成生物掉落物的预测。"]
+			dependencies: ["0B0E3965BE8A022E"]
+			id: "22913597EF662C74"
+			tasks: [{
+				id: "7DF216B4F6F586B5"
+				type: "item"
+				item: "hostilenetworks:overworld_prediction"
+			}]
+			rewards: [{
+				id: "7E6842E8E31425A5"
+				type: "item"
+				item: "minecraft:rotten_flesh"
+				count: 8
+			}]
+		}
+		{
+			x: 7.5d
+			y: 2.5d
+			shape: "octagon"
+			description: ["能让你在&4The Nether&f中合成生物掉落物的预测。"]
+			dependencies: ["0B0E3965BE8A022E"]
+			id: "37655110335BF844"
+			tasks: [{
+				id: "07E64441B9151FBF"
+				type: "item"
+				item: "hostilenetworks:nether_prediction"
+			}]
+			rewards: [{
+				id: "2FD698343D2507E7"
+				type: "item"
+				item: {
+					id: "forbidden_arcanus:reinforced_arcane_golden_sword"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			x: 6.5d
+			y: 2.5d
+			shape: "octagon"
+			description: ["能让你在&5The End&f中合成生物掉落物的预测。"]
+			dependencies: ["0B0E3965BE8A022E"]
+			id: "34CF756EF4B6A0DD"
+			tasks: [{
+				id: "582C9D13A79FD6BF"
+				type: "item"
+				item: "hostilenetworks:end_prediction"
+			}]
+			rewards: [{
+				id: "065A53F55D6A129E"
+				type: "item"
+				item: "minecraft:purpur_block"
+				count: 16
+			}]
+		}
+		{
+			x: 1.5d
+			y: 0.0d
+			shape: "hexagon"
+			description: ["&6Loot Fabricator&f：用于根据预测生成生物掉落物。一定要看看。"]
+			hide_dependency_lines: true
+			dependencies: ["78AE7E8451B8B99A"]
+			size: 1.5d
+			id: "6B0C1B3DF2601369"
+			tasks: [{
+				id: "0FEC963D99136F81"
+				type: "item"
+				item: "hostilenetworks:loot_fabricator"
+			}]
+			rewards: [{
+				id: "4560752A0C93BB30"
+				type: "item"
+				item: "minecraft:nether_star"
+			}]
+		}
+		{
+			x: 2.5d
+			y: -1.0d
+			shape: "octagon"
+			description: ["&6Model Framework&f：基本上可以让你获取生物的ID。要选择的生物，用Model Framework右键点击它。"]
+			hide_dependency_lines: true
+			id: "78AE7E8451B8B99A"
+			tasks: [{
+				id: "0DAFBD339C8D2B14"
+				type: "item"
+				item: "hostilenetworks:blank_data_model"
+				count: 4L
+			}]
+			rewards: [{
+				id: "6BB5A6490335D971"
+				type: "item"
+				item: "hostilenetworks:deep_learner"
+			}]
+		}
+		{
+			x: -0.5d
+			y: 3.0d
+			description: ["把这个放进战利品生成器里，就能获得&e烈焰人掉落物&f。"]
+			dependencies: ["6B0C1B3DF2601369"]
+			id: "632336340E5A088C"
+			tasks: [{
+				id: "29903C8A13C779D3"
+				type: "item"
+				item: {
+					id: "hostilenetworks:prediction"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:blaze"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "7A170161513FAB1F"
+				type: "item"
+				item: {
+					id: "create_stuff_additions:blaze_flame_thrower"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			x: -4.0d
+			y: 2.0d
+			description: ["把这个放进战利品生成器里，就能获得&a苦力怕&f掉落物。"]
+			dependencies: ["6B0C1B3DF2601369"]
+			id: "1AC142D31099D396"
+			tasks: [{
+				id: "55573317C21FE2AF"
+				type: "item"
+				item: {
+					id: "hostilenetworks:prediction"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:creeper"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "340AD7818428D7DE"
+				type: "item"
+				item: "minecraft:gunpowder"
+				count: 8
+			}]
+		}
+		{
+			x: -3.5d
+			y: 5.0d
+			description: ["把这个放进战利品生成器里，就能获得&e远古守卫者&f的掉落物。"]
+			dependencies: ["6B0C1B3DF2601369"]
+			id: "1DCCDF8F97352F40"
+			tasks: [{
+				id: "234EA78BC6D820B9"
+				type: "item"
+				item: {
+					id: "hostilenetworks:prediction"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:elder_guardian"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "763628C30E9BE66B"
+				type: "item"
+				item: "minecraft:pufferfish_bucket"
+			}]
+		}
+		{
+			x: -3.0d
+			y: 2.0d
+			description: ["把这个放进战利品生成器里，就能获得&5末影龙的掉落物&f。"]
+			dependencies: ["6B0C1B3DF2601369"]
+			id: "0A2BFBB9FDC21424"
+			tasks: [{
+				id: "554D69A2374F85C1"
+				type: "item"
+				item: {
+					id: "hostilenetworks:prediction"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:ender_dragon"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "7034F12D2905C18E"
+				type: "item"
+				item: "minecraft:dragon_breath"
+				count: 4
+			}]
+		}
+		{
+			x: -1.5d
+			y: 3.0d
+			description: ["把这个放进战利品生成器里，就能获得&0末影人掉落物&f。"]
+			dependencies: ["6B0C1B3DF2601369"]
+			id: "0C25D6BA0335713C"
+			tasks: [{
+				id: "7C024864DA84EFBF"
+				type: "item"
+				item: {
+					id: "hostilenetworks:prediction"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:enderman"
+						}
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "6D9CDBD448275AB2"
+					type: "item"
+					item: "minecraft:ender_pearl"
+				}
+				{
+					id: "5CD5BA30B6CA058C"
+					type: "item"
+					item: "torchmaster:frozen_pearl"
+				}
+				{
+					id: "37294C14FCEA2359"
+					type: "item"
+					item: "botania:mana_pearl"
+				}
+				{
+					id: "6466992E4CD59D70"
+					type: "item"
+					item: "rftoolsbase:infused_enderpearl"
+				}
+			]
+		}
+		{
+			x: -1.0d
+			y: 4.0d
+			description: ["把这个放进战利品生成器里，就能获得&eEvoker&f的掉落物。"]
+			dependencies: ["6B0C1B3DF2601369"]
+			id: "2B391FED7A404D97"
+			tasks: [{
+				id: "28EAF8610E2A04AE"
+				type: "item"
+				item: {
+					id: "hostilenetworks:prediction"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:evoker"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "4CE3663ED69D6A40"
+				type: "item"
+				item: "minecraft:totem_of_undying"
+			}]
+		}
+		{
+			x: -5.0d
+			y: 4.0d
+			description: ["把这个放进战利品生成器里，就能获得&7Ghast&f掉落物。"]
+			dependencies: ["6B0C1B3DF2601369"]
+			id: "524A0E88463C8A9B"
+			tasks: [{
+				id: "1BAE73EE06EA4811"
+				type: "item"
+				item: {
+					id: "hostilenetworks:prediction"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:ghast"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "0369A7065D3094B4"
+				type: "item"
+				item: "minecraft:ghast_tear"
+				count: 8
+			}]
+		}
+		{
+			x: -4.0d
+			y: 6.0d
+			description: ["把这个放进战利品生成器里，就能获得&7Ghast&f掉落物。"]
+			dependencies: ["6B0C1B3DF2601369"]
+			id: "51188828A8B22CC1"
+			tasks: [{
+				id: "587B52111AC0B02A"
+				type: "item"
+				item: {
+					id: "hostilenetworks:prediction"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:ghast"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "39CD18365F050931"
+				type: "item"
+				item: "minecraft:ghast_tear"
+				count: 8
+			}]
+		}
+		{
+			x: -2.0d
+			y: 2.0d
+			description: ["把这个放进战利品生成器里，就能获得&9Guardian&f掉落物。"]
+			dependencies: ["6B0C1B3DF2601369"]
+			id: "2F4C6A5C0D5C1CC3"
+			tasks: [{
+				id: "2A7E79F74A651813"
+				type: "item"
+				item: {
+					id: "hostilenetworks:prediction"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:guardian"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "44565D3BE90FF1B8"
+				type: "item"
+				item: "minecraft:prismarine_shard"
+				count: 8
+			}]
+		}
+		{
+			x: -2.0d
+			y: 6.0d
+			description: ["把这个放进战利品生成器里，就能获得&4岩浆立方体&f掉落物。"]
+			dependencies: ["6B0C1B3DF2601369"]
+			id: "00A4A153C7AD1F9E"
+			tasks: [{
+				id: "5DE3F53A5FA91D06"
+				type: "item"
+				item: {
+					id: "hostilenetworks:prediction"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:magma_cube"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "286190D336D38C6A"
+				type: "item"
+				item: "minecraft:magma_cream"
+				count: 8
+			}]
+		}
+		{
+			x: -4.5d
+			y: 3.0d
+			description: ["将此物品放入战利品生成器中，即可获得&2幻影&f掉落物。"]
+			dependencies: ["6B0C1B3DF2601369"]
+			id: "4E70BA700FA88B09"
+			tasks: [{
+				id: "4D2255ED1701EB87"
+				type: "item"
+				item: {
+					id: "hostilenetworks:prediction"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:phantom"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "5887EA11B9A75C89"
+				type: "item"
+				item: "minecraft:phantom_membrane"
+				count: 8
+			}]
+		}
+		{
+			x: -4.5d
+			y: 5.0d
+			description: ["把这个放进战利品生成器里，就能获得&5潜行者的掉落物&f。"]
+			dependencies: ["6B0C1B3DF2601369"]
+			id: "6A3B3468BB4BD66A"
+			tasks: [{
+				id: "3D10291619CF02DA"
+				type: "item"
+				item: {
+					id: "hostilenetworks:prediction"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:shulker"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "5F587DCCE00B1A09"
+				type: "item"
+				item: "bountifulbaubles:shulker_heart"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 5.0d
+			description: ["你可以将此物品放入战利品生成器中，以获得&7骷髅&f掉落物。"]
+			dependencies: ["6B0C1B3DF2601369"]
+			id: "4972CB6239E7CA5E"
+			tasks: [{
+				id: "3622FE6F404595A8"
+				type: "item"
+				item: {
+					id: "hostilenetworks:prediction"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:skeleton"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "1694290216CB71DC"
+				type: "item"
+				item: {
+					id: "eidolon:bonechill_wand"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			x: -2.5d
+			y: 5.0d
+			description: ["把这个放进战利品生成器里，就能获得&a史莱姆&f掉落物。"]
+			dependencies: ["6B0C1B3DF2601369"]
+			id: "0FAAFC243C73C984"
+			tasks: [{
+				id: "461577FFB80EB0AC"
+				type: "item"
+				item: {
+					id: "hostilenetworks:prediction"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:slime"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "1F6198D8A4DA9EC1"
+				type: "item"
+				item: "tconstruct:earth_cake"
+			}]
+		}
+		{
+			x: -1.0d
+			y: 6.0d
+			description: ["把这个放进战利品生成器里，就能获得&4蜘蛛&f掉落物。"]
+			dependencies: ["6B0C1B3DF2601369"]
+			id: "61799276AA707641"
+			tasks: [{
+				id: "21B0AD50E4195DC9"
+				type: "item"
+				item: {
+					id: "hostilenetworks:prediction"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:spider"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "103840BCF95E06FB"
+				type: "item"
+				item: "minecraft:fermented_spider_eye"
+				count: 8
+			}]
+		}
+		{
+			x: -4.0d
+			y: 4.0d
+			description: ["把这个放进战利品生成器里，就能获得&1Vindicator&f的掉落物。"]
+			dependencies: ["6B0C1B3DF2601369"]
+			id: "6C9736A8A119E29A"
+			tasks: [{
+				id: "0C19A35D62550D80"
+				type: "item"
+				item: {
+					id: "hostilenetworks:prediction"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:vindicator"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "7319C9E733CAB310"
+				type: "item"
+				item: "minecraft:emerald"
+				count: 8
+			}]
+		}
+		{
+			x: -0.5d
+			y: 5.0d
+			description: ["把这个放进战利品生成器里，就能获得&5女巫&f掉落物。"]
+			dependencies: ["6B0C1B3DF2601369"]
+			id: "441405431D5762A1"
+			tasks: [{
+				id: "0807F2BA04E7BF1B"
+				type: "item"
+				item: {
+					id: "hostilenetworks:prediction"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:witch"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "04305B3064DC1A38"
+				type: "item"
+				item: "hexerei:blood_bottle"
+			}]
+		}
+		{
+			x: -3.0d
+			y: 6.0d
+			description: ["把这个放进战利品生成器里，就能获得&0凋零&f掉落物。"]
+			dependencies: ["6B0C1B3DF2601369"]
+			id: "02A591B67A3A7154"
+			tasks: [{
+				id: "4701CF1128CEF7F9"
+				type: "item"
+				item: {
+					id: "hostilenetworks:prediction"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:wither"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "4C6A6FA8776083F1"
+				type: "item"
+				item: "minecraft:wither_skeleton_skull"
+				count: 3
+			}]
+		}
+		{
+			x: -3.5d
+			y: 3.0d
+			description: ["把这个放进战利品生成器里，就能获得&0凋零骷髅&f的掉落物。"]
+			dependencies: ["6B0C1B3DF2601369"]
+			id: "59017D24052D0EDB"
+			tasks: [{
+				id: "756B06A4DB8884DC"
+				type: "item"
+				item: {
+					id: "hostilenetworks:prediction"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:wither_skeleton"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "04A0D818084AF2B9"
+				type: "item"
+				item: "iceandfire:witherbone"
+				count: 4
+			}]
+		}
+		{
+			x: 0.0d
+			y: 4.0d
+			description: ["把这个放进战利品生成器里，就能获得&2僵尸&f掉落物。"]
+			dependencies: ["6B0C1B3DF2601369"]
+			id: "5390B8B2E244059D"
+			tasks: [{
+				id: "3816AD3C59F0E572"
+				type: "item"
+				item: {
+					id: "hostilenetworks:prediction"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:zombie"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "7CD7132CEC399B8D"
+				type: "item"
+				item: "eidolon:zombie_heart"
+				count: 2
+			}]
+		}
+		{
+			x: -1.0d
+			y: 2.0d
+			description: ["把这个放进战利品生成器里，就能获得&2Zombified Piglin &f掉落物。"]
+			dependencies: ["6B0C1B3DF2601369"]
+			id: "412B084694E54B2B"
+			tasks: [{
+				id: "0D32538544193EA5"
+				type: "item"
+				item: {
+					id: "hostilenetworks:prediction"
+					Count: 1b
+					tag: {
+						data_model: {
+							id: "hostilenetworks:zombified_piglin"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "5B77C0BD4F7D6726"
+				type: "item"
+				item: "minecraft:gold_ingot"
+				count: 32
+			}]
+		}
+	]
+}
