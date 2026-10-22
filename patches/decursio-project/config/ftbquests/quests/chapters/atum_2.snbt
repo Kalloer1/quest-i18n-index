@@ -1,0 +1,686 @@
+# AI 初翻，未人工校对
+{
+	id: "222293B1B23BA988"
+	group: "1390A8D800379122"
+	order_index: 3
+	filename: "atum_2"
+	title: "阿图姆"
+	icon: "minecraft:sandstone"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "沙漠大师"
+			icon: "atum:scarab"
+			x: -4.0d
+			y: 1.0d
+			shape: "square"
+			subtitle: "好的，想去阿图姆？你需要一个圣甲虫来点亮传送门。左键点击查看更多信息"
+			description: [
+				"既然你来了，说明你已经准备好进入阿图姆了。如果不是，我们也不知道你为什么会来。去玩创造模式什么的吧 :/"
+				""
+				"好了，既然你准备好了，就来看看如何制作这个维度的传送门吧。事情并不复杂，只需要49块砂岩和一个水池即可完成。"
+				""
+				"下面，你可以看到传送门框架应该是什么样子："
+				""
+				"{image:kubejs:textures/atum2/portal_example.png width:100 height:100 align:1}"
+				""
+				"装满水，然后把圣甲虫扔进去。传送门就会亮起来，你就能进入阿图姆了。很棒吧？☻"
+			]
+			hide_dependency_lines: true
+			dependencies: ["4A3AF0119A31CFF3"]
+			size: 2.0d
+			id: "347EFD1D11627798"
+			tasks: [{
+				id: "5523ED7C19A0C660"
+				type: "checkmark"
+				title: "我拿到圣甲虫了！"
+			}]
+			rewards: [{
+				id: "3C38E63A232BAD03"
+				type: "command"
+				title: "适应以进入阿图姆世界"
+				icon: "atum:idol_of_labor"
+				command: "/thitemstages add @p atum_2"
+				player_command: false
+			}]
+		}
+		{
+			title: "阿图姆"
+			icon: "minecraft:sand"
+			x: -1.0d
+			y: 1.0d
+			shape: "square"
+			subtitle: "风所统治的地方"
+			dependencies: ["347EFD1D11627798"]
+			id: "212AEE831223DB8A"
+			tasks: [{
+				id: "3DCE4111844F0721"
+				type: "dimension"
+				title: "前往阿图姆遗迹探险"
+				icon: "atum:scarab"
+				dimension: "atum:atum"
+			}]
+		}
+		{
+			x: 0.0d
+			y: -0.5d
+			shape: "gear"
+			subtitle: "可用于获取神格碎片，进一步用于多种用途。只需放入一件神器，加入一些熔岩作为燃料，即可获得珍贵的神格碎片，可用来合成神格锻造方块"
+			dependencies: [
+				"5929690A5286D4C0"
+				"76755DBE7F614234"
+			]
+			id: "4F15C680328EB263"
+			tasks: [{
+				id: "1F97667D45C4D1D8"
+				type: "item"
+				item: "atum:godforge"
+			}]
+		}
+		{
+			title: "你可能需要不止一个这样的东西"
+			x: 1.5d
+			y: 1.0d
+			shape: "square"
+			subtitle: "需要 Nebu 火把才能打开金字塔的入口，并且唤醒法老"
+			dependencies: ["76755DBE7F614234"]
+			id: "51FDCBFC2D9B52F3"
+			tasks: [{
+				id: "3464B0E81284531B"
+				type: "item"
+				item: "atum:nebu_torch"
+			}]
+		}
+		{
+			title: "金字塔"
+			x: 2.5d
+			y: 1.0d
+			shape: "square"
+			subtitle: "可以找到法老的地方 The place where you can find a Pharaoh"
+			dependencies: ["51FDCBFC2D9B52F3"]
+			id: "20B04A3B19552E09"
+			tasks: [{
+				id: "0A2C8E376D1D88F2"
+				type: "advancement"
+				title: "进入一座金字塔"
+				advancement: "atum:core/pyramidscheme"
+				criterion: ""
+			}]
+		}
+		{
+			title: "沙漠大师"
+			icon: {
+				id: "atum:eyes_of_atem"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: 5.0d
+			y: 1.0d
+			shape: "diamond"
+			subtitle: "精通阿图姆。左键点击查看更多信息"
+			description: [
+				"法老是由 Atum 2 添加的 boss。他有 13 种变体，你可以在金字塔结构的 boss 房间内找到他。"
+				""
+				"要生成他，你必须前往首领房间，在雕饰石灰岩的棺材周围放置4个Nebu火把。"
+				""
+				"法老会暂时生成木乃伊并恢复生命。每种法老变体都有不同的攻击、纹理和战利品。"
+				""
+				"你也可以使用特殊法老火把来指定要召唤的法老，这些火把可以用对应的神之碎片制作。"
+				""
+				"要获得神碎片，你需要在神锻造炉中熔炼法老死亡时掉落的遗物。"
+				""
+				"假设你已经击败了暮色幻翼后的法老，我们将在下一个时代再见。"
+			]
+			dependencies: ["20B04A3B19552E09"]
+			size: 2.0d
+			id: "3A5628BD9FC57446"
+			tasks: [{
+				id: "41EE5CC178CE1181"
+				type: "kill"
+				title: "击败一位法老"
+				icon: {
+					id: "atum:eyes_of_atem"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				entity: "atum:pharaoh"
+				value: 1L
+			}]
+			rewards: [
+				{
+					id: "21E21048307CE5E7"
+					type: "item"
+					item: {
+						id: "endrem:witch_eye"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "049B3EF19861D527"
+					type: "item"
+					item: {
+						id: "endrem:rogue_eye"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "46754E0E322CB90F"
+					type: "loot"
+					table_id: 8587500481418189075L
+				}
+			]
+		}
+		{
+			title: "Ra 盔甲"
+			icon: {
+				id: "atum:body_of_ra"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: 7.0d
+			y: -0.5d
+			shape: "heart"
+			subtitle: "Ra's Radiance: The Armor of Ra 是 Godforged Armor 套装之一。它基于阿图姆的神祇之一，拉。每件盔甲单独穿戴可提供相同的加成，但穿戴全套时可获得阿特姆特有的额外加成：免疫火焰和熔岩伤害。"
+			dependencies: ["6E4696FF5806D411"]
+			id: "7330B845370EC8E4"
+			tasks: [
+				{
+					id: "0D3A5FF98E61051B"
+					type: "item"
+					item: {
+						id: "atum:halo_of_ra"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "0D9CC55EFD09043F"
+					type: "item"
+					item: {
+						id: "atum:body_of_ra"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "496E1B3F96B384E9"
+					type: "item"
+					item: {
+						id: "atum:legs_of_ra"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "72CD568F8E1CE634"
+					type: "item"
+					item: {
+						id: "atum:feet_of_ra"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "Atem 盔甲"
+			icon: {
+				id: "atum:body_of_atem"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: 7.0d
+			y: 2.5d
+			shape: "heart"
+			subtitle: "阿特姆的神性：阿特姆的盔甲是神铸盔甲套装之一。它以阿图姆的一位神祇——阿特姆为基础。每件盔甲单独穿戴可提供相同的加成，但穿戴全套时可获得阿特姆特有的额外加成：每日可免受一次死亡伤害。"
+			dependencies: ["6E4696FF5806D411"]
+			id: "68833CF96D677BA3"
+			tasks: [
+				{
+					id: "5F6FEBD58BBAD975"
+					type: "item"
+					item: {
+						id: "atum:eyes_of_atem"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "0ED68907549E134F"
+					type: "item"
+					item: {
+						id: "atum:body_of_atem"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "288BAD9EC6ED6026"
+					type: "item"
+					item: {
+						id: "atum:legs_of_atem"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "48A0E9DB7DC858B9"
+					type: "item"
+					item: {
+						id: "atum:feet_of_atem"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			x: -2.0d
+			y: 2.5d
+			shape: "gear"
+			subtitle: "2x2 熔炼。左键点击查看更多信息"
+			description: [
+				"熔炉一次可以冶炼4个物品。"
+				""
+				"这个冶炼装置需要多方块结构才能工作。方块列表："
+				"- 2x 熔炉"
+				"- 6x 小型石灰岩砖块"
+				""
+				"下面你可以看到熔炉应该呈现的样子示例："
+				""
+				"{image:kubejs:textures/atum2/kiln_example.png width:100 height:100 align:1}"
+			]
+			dependencies: ["212AEE831223DB8A"]
+			id: "2713F7BBF8FB0612"
+			tasks: [{
+				id: "7B6A0841229B050C"
+				type: "item"
+				item: "atum:kiln"
+			}]
+		}
+		{
+			x: 0.0d
+			y: 2.5d
+			shape: "gear"
+			subtitle: "石灰岩熔炉和原版熔炉非常相似，但制作成本要低得多"
+			dependencies: ["212AEE831223DB8A"]
+			id: "10220D96C4505A8B"
+			tasks: [{
+				id: "06D0A7A0F68790C9"
+				type: "item"
+				item: "atum:limestone_furnace"
+			}]
+		}
+		{
+			x: -1.0d
+			y: 3.0d
+			shape: "gear"
+			subtitle: "纺锤轮是一个不错的装置，可用于获取与线相关的物品，例如亚麻线。它还可以将某些物品回收成线。使用时，右键点击方块顶部，直到中间部分被你的材料填满。只需右键点击方块中间即可取出产物。"
+			dependencies: ["212AEE831223DB8A"]
+			id: "6FB742CE0D72E094"
+			tasks: [{
+				id: "000F26C10FDB6EFF"
+				type: "item"
+				item: "atum:spinning_wheel"
+			}]
+		}
+		{
+			title: "神祇火把"
+			x: -1.0d
+			y: -2.0d
+			shape: "gear"
+			subtitle: "神祇火把用于将特定法老从其石棺中召唤出来。只需将4个特殊火把放置在石棺旁的标记位置，即可提高被召唤的几率"
+			dependencies: ["4F15C680328EB263"]
+			id: "2C370C387AD15F2F"
+			tasks: [{
+				id: "4CCD912B6C2B2D8D"
+				type: "item"
+				title: "任意的神明火把"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "forge:atum_god_torches"
+					}
+				}
+			}]
+		}
+		{
+			title: "神锻造方块"
+			x: 1.0d
+			y: -2.0d
+			shape: "gear"
+			subtitle: "神锻造方块用于从阿图姆添加的特定神祇处获取神器。只需放置并用尼布锤打破即可。你也可以制作特定神祇的神锻造方块，以提高获取特定神器的几率。"
+			dependencies: ["4F15C680328EB263"]
+			id: "588FE9FDFE81BF57"
+			tasks: [{
+				id: "3F63B0121AC6ECBF"
+				type: "item"
+				title: "任意的神锻造方块"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "forge:godforged_blocks"
+					}
+				}
+			}]
+		}
+		{
+			x: 0.5d
+			y: 1.0d
+			shape: "square"
+			subtitle: "Nebu 矿石是一种神秘金属，只能在阿图姆维度中找到"
+			dependencies: ["212AEE831223DB8A"]
+			id: "76755DBE7F614234"
+			tasks: [{
+				id: "32A2CBC31A6735BA"
+				type: "item"
+				item: "atum:nebu_ore"
+			}]
+		}
+		{
+			x: 1.0d
+			y: -0.5d
+			subtitle: "用于从 Godforged 方块中获得 GodShards"
+			dependencies: ["76755DBE7F614234"]
+			id: "43AC794F4E0F8ADD"
+			tasks: [{
+				id: "37F785C77F14FA5B"
+				type: "item"
+				item: "atum:nebu_hammer"
+			}]
+		}
+		{
+			title: "获取远古残骸"
+			icon: {
+				id: "botania:cosmetic_questgiver_mark"
+				Count: 1b
+				tag: { }
+			}
+			x: 7.0d
+			y: 1.0d
+			subtitle: "阿图姆遗物是具有独特能力的稀有物品。它们可能作为稀有物品出现在战利品箱中，或是法老和用尼布锤破坏神锻造方块时掉落。"
+			hide_dependency_lines: true
+			dependencies: ["212AEE831223DB8A"]
+			id: "6E4696FF5806D411"
+			tasks: [{
+				id: "1C771EBDE6E7A640"
+				type: "checkmark"
+				title: "明白了！"
+			}]
+		}
+		{
+			title: "流浪者套装"
+			icon: {
+				id: "atum:wanderer_chest"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: -1.0d
+			y: 4.5d
+			subtitle: "这些衣物可用于升级你的原版盔甲套装。将其与铁、金或钻石盔甲部件结合，即可获得原版盔甲套装的更高耐久度版本"
+			dependencies: ["6FB742CE0D72E094"]
+			id: "7BD8E13BD4BAD04B"
+			tasks: [
+				{
+					id: "1D5BB256C03CD840"
+					type: "item"
+					item: {
+						id: "atum:wanderer_helmet"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "60812570CF0967DD"
+					type: "item"
+					item: {
+						id: "atum:wanderer_chest"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "027D69E619D73DF9"
+					type: "item"
+					item: {
+						id: "atum:wanderer_legs"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "2C8B31D732556EFF"
+					type: "item"
+					item: {
+						id: "atum:wanderer_boots"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			icon: {
+				id: "atum:desert_chest_iron"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: -1.0d
+			y: 5.5d
+			subtitle: "每件护甲大约增加20点耐久度"
+			dependencies: ["7BD8E13BD4BAD04B"]
+			id: "5B25FFAF5D0A14FE"
+			tasks: [
+				{
+					id: "1C30F5300B0B058F"
+					type: "item"
+					item: {
+						id: "atum:desert_helmet_iron"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "3E5E084E93CBF675"
+					type: "item"
+					item: {
+						id: "atum:desert_chest_iron"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "50E650101812A3F4"
+					type: "item"
+					item: {
+						id: "atum:desert_legs_iron"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "730BE3EF3DD8059B"
+					type: "item"
+					item: {
+						id: "atum:desert_boots_iron"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			icon: {
+				id: "atum:desert_chest_gold"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: -2.0d
+			y: 4.5d
+			subtitle: "每件护甲约 +17 耐久度点数"
+			dependencies: ["7BD8E13BD4BAD04B"]
+			id: "7959AC7445BBD06D"
+			tasks: [
+				{
+					id: "0F7C7119DB70CB90"
+					type: "item"
+					item: {
+						id: "atum:desert_helmet_gold"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "35685EBD0F0F5A81"
+					type: "item"
+					item: {
+						id: "atum:desert_chest_gold"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "06ABAB0233E24F2F"
+					type: "item"
+					item: {
+						id: "atum:desert_legs_gold"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "1F19A56C2C62AFE3"
+					type: "item"
+					item: {
+						id: "atum:desert_boots_gold"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			icon: {
+				id: "atum:desert_chest_diamond"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: 0.0d
+			y: 4.5d
+			subtitle: "每件护甲约 +50 耐久度点数"
+			dependencies: ["7BD8E13BD4BAD04B"]
+			id: "3352326AAF361DD7"
+			tasks: [
+				{
+					id: "7873E5ECBAC8A060"
+					type: "item"
+					item: {
+						id: "atum:desert_helmet_diamond"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "54F19D9320FA1AE5"
+					type: "item"
+					item: {
+						id: "atum:desert_chest_diamond"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "13E0AF2CB5F00E9A"
+					type: "item"
+					item: {
+						id: "atum:desert_legs_diamond"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "30114DECF18E150F"
+					type: "item"
+					item: {
+						id: "atum:desert_boots_diamond"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+	]
+}
