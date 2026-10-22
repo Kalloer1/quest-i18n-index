@@ -73,7 +73,7 @@ export function buildSiteData({ index, vmStatus, packMeta, quarkMirrors }, { now
   const quarkBySlug = new Map(Object.entries(quarkSource?.mirrors ?? {})
     .map(([slug, v]) => [slug, typeof v === 'string' ? v : (v?.shareUrl || '')]))
 
-  const packs = index.dataset.map(row => {
+  const allPacks = index.dataset.map(row => {
     const meta = metaBySlug.get(row.slug) || null
     const vmEntry = row.vm
       ? vmBySlug.get(row.vm.vmSlug) || vmBySlug.get(String(row.vm.vmSlug).replace(/\/index$/, '')) || null
@@ -93,6 +93,9 @@ export function buildSiteData({ index, vmStatus, packMeta, quarkMirrors }, { now
       authors: meta?.authors ?? null,
 
       state: row.state,
+      // D4：站点要能按平台区分/筛选。原实现漏了这行，导致 `platform` 恒为
+      // undefined，下游的跨平台合并永远拿不到平台（2026-10-22 实测发现）。
+      platform: row.platform ?? null,
       stateLabel: row.state ? (nonFtb ? NON_FTB_LABEL : STATE_LABEL[row.state]) : null,
       stateWhy: row.stateWhy || (row.state ? (nonFtb ? NON_FTB_EXPLAIN : STATE_EXPLAIN[row.state]) : null),
       probeIncomplete: !!row.probeIncomplete,
@@ -133,6 +136,45 @@ export function buildSiteData({ index, vmStatus, packMeta, quarkMirrors }, { now
     }
   })
 
+  // ---- 站点只显示「有 FTB 任务书」的包 ----
+  //
+  // 2026-10-22 用户裁决：28816 行一次性渲染会把浏览器卡死，页面只保留
+  // 「确认含 FTB 任务书」的包，其余不显示。
+  //
+  // 收窄只发生在**站点数据层**：`research/index-dataset.json` 仍是全量、一条不丢，
+  // 将来补探测还能把这些包捞回来。被剔除的两类：
+  //   · `no-quests` —— 确认不含 FTB 任务书，没有可汉化的东西
+  //   · `probeIncomplete` —— 探测没跑完，我们不知道它有没有任务书。
+  //     未知不该冒充「有」，所以一并隐藏；它仍是全量数据集的一部分。
+  const visible = allPacks.filter(p => p.state && p.state !== 'no-quests' && !p.probeIncomplete)
+
+  // ---- 跨平台合并：同一 slug 在 CF 与 Modrinth 各有一条记录 ----
+  //
+  // 实测（2026-10-22）：424 个 slug 在数据集里出现两次，`platform` 分别是 `cf` 与 `mr`。
+  // 这不是脏数据 —— 同一个包确实存在于两个平台。但页面上它是**一张卡片**，
+  // 所以这里按 slug 合并，把平台收进 `platforms` 数组，绝不丢信息。
+  // 合并时以先出现的那条为基准（字段实质相同），只补 `platforms`。
+  const bySlug = new Map()
+  for (const p of visible) {
+    const prev = bySlug.get(p.slug)
+    if (!prev) {
+      bySlug.set(p.slug, {
+        ...p,
+        platforms: p.platform ? [p.platform] : [],
+        // 平台 → 该平台上的状态。绝大多数包两个平台同态，不必额外展示；
+        // 实测有 1 个包不同态（`whispers-in-the-void`：CF 是 gap-uncovered、
+        // Modrinth 是 embedded），卡片上带 `stateConflict` 让页面能提示玩家。
+        platformStates: p.platform ? { [p.platform]: p.state } : {},
+        stateConflict: false,
+      })
+      continue
+    }
+    if (p.platform && !prev.platforms.includes(p.platform)) prev.platforms.push(p.platform)
+    if (p.platform) prev.platformStates[p.platform] = p.state
+    if (p.state !== prev.state) prev.stateConflict = true
+  }
+  const packs = [...bySlug.values()]
+
   const stateCounts = {}
   for (const key of Object.keys(STATE_LABEL)) stateCounts[key] = 0
   for (const p of packs) if (p.state) stateCounts[p.state]++
@@ -157,8 +199,13 @@ export function buildSiteData({ index, vmStatus, packMeta, quarkMirrors }, { now
       nonCommercial: true,
     },
     stat: {
+      // `total` 是**页面可见的包数**（按 slug 合并后），与 packs.length 一致。
       total: packs.length,
+      // 被站点隐藏的原始行数（no-quests + 探测未完成 + 跨平台重复行）。
+      // 口径可追溯：total + hidden === 数据集原始行数。
+      hidden: index.dataset.length - packs.length,
       stateCounts,
+      // 可见包里的探测未完成数恒为 0（它们已被隐藏），保留字段是为了口径不突变。
       probeIncomplete: packs.filter(p => p.probeIncomplete).length,
       withProvider: packs.filter(p => p.providers.length > 0).length,
     },
@@ -182,6 +229,6 @@ if (isMain) {
   mkdirSync('site', { recursive: true })
   writeFileSync('site/data.json', JSON.stringify(out, null, 2) + '\n')
   console.log('→ site/data.json')
-  console.log('  条数', out.stat.total, '| 有汉化来源', out.stat.withProvider, '| 探测未完成', out.stat.probeIncomplete)
+  console.log('  可见条数', out.stat.total, '| 已隐藏', out.stat.hidden, '| 有汉化来源', out.stat.withProvider)
   console.log('  六态', JSON.stringify(out.stat.stateCounts))
 }

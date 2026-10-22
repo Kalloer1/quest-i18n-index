@@ -10,19 +10,44 @@ const inputs = () => ({
   packMeta: read('research/pack-metadata.json'),
 })
 
-test('全部记录进入站点数据（条数随数据集，不写死）', () => {
+test('站点数据只收「有 FTB 任务书」的包（2026-10-22 裁决：其余不上页面）', () => {
   const inp = inputs()
   const out = buildSiteData(inp)
-  // 不写死 500/2000：数据集会随扫描范围变化（500 → 2000 → …）。
-  // 真正要守的是「一条都不丢」。
-  assert.equal(out.stat.total, inp.index.dataset.length)
-  assert.equal(out.packs.length, inp.index.dataset.length)
+  // 旧契约是「一条不丢」，已被推翻：28816 行一次渲染会把浏览器卡死。
+  // 新契约：no-quests 与探测未完成都不进站点数据，但**全量数据集不丢**。
+  assert.equal(out.packs.length, new Set(out.packs.map(p => p.slug)).size, '按 slug 合并后不应有重复卡片')
+  assert.ok(out.packs.length > 0)
+  assert.equal(out.stat.total, out.packs.length)
+  assert.equal(out.stat.total + out.stat.hidden, inp.index.dataset.length)
 })
 
-test('六态计数与 index-dataset 对账', () => {
+test('六态计数与可见卡片对账（no-quests 恒为 0，每张卡片恰好一个状态）', () => {
   const inp = inputs()
   const out = buildSiteData(inp)
-  assert.deepEqual(out.stat.stateCounts, inp.index.stat.stateCounts)
+  assert.equal(out.stat.stateCounts['no-quests'], 0, 'no-quests 已不上页面')
+  // 关键契约：计数是**卡片**维度，总和必须等于可见卡片数。
+  const sum = Object.values(out.stat.stateCounts).reduce((a, b) => a + b, 0)
+  assert.equal(sum, out.stat.total, '六态计数总和应等于可见卡片数')
+  assert.equal(out.stat.total, new Set(out.packs.map(p => p.slug)).size)
+})
+
+test('每张卡片的状态必须是该包在某个平台上的真实状态（不凭空造态）', () => {
+  const inp = inputs()
+  const out = buildSiteData(inp)
+  const statesBySlug = new Map()
+  for (const r of inp.index.dataset) {
+    if (!statesBySlug.has(r.slug)) statesBySlug.set(r.slug, new Set())
+    if (r.state) statesBySlug.get(r.slug).add(r.state)
+  }
+  for (const card of out.packs) {
+    const real = statesBySlug.get(card.slug)
+    assert.ok(real, `${card.slug} 不在数据集里`)
+    assert.ok(real.has(card.state), `${card.slug} 的 state=${card.state} 不是任何平台上的真实状态`)
+    // 跨平台同态就不应标冲突
+    const visibleStates = [...real].filter(s => s !== 'no-quests')
+    assert.equal(card.stateConflict, visibleStates.length > 1,
+      `${card.slug} 的 stateConflict 标记不对（真实状态：${visibleStates.join('/')}）`)
+  }
 })
 
 test('每条已分类的包都有 stateLabel 与 stateWhy', () => {
@@ -33,21 +58,20 @@ test('每条已分类的包都有 stateLabel 与 stateWhy', () => {
   }
 })
 
-test('探测未完成的包 state 为 null，不冒充六态', () => {
+test('探测未完成的包不上页面（未知不冒充有任务书）', () => {
   const inp = inputs()
   const out = buildSiteData(inp)
-  const inc = out.packs.filter(p => p.probeIncomplete)
-  // 条数随扫描范围变化（500 条时 105，2000 条时 226）：
-  // 守的是「probeIncomplete 与 dataset 一致」和「state 必须为 null」。
-  assert.equal(inc.length, inp.index.dataset.filter(r => r.probeIncomplete).length)
-  assert.ok(inc.length > 0, '数据集里应有探测未完成的条目')
-  for (const p of inc) assert.equal(p.state, null, `${p.slug} 探测未完成却有 state`)
+  assert.equal(out.packs.filter(p => p.probeIncomplete).length, 0,
+    'probeIncomplete 的包已被隐藏')
+  // 但数据集里确实有这类条目（被隐藏而非消失）
+  assert.ok(inp.index.dataset.filter(r => r.probeIncomplete).length > 0,
+    '数据集里应有探测未完成的条目')
 })
 
 test('VM 覆盖的包都带上了 provider，含 status 与 versions', () => {
   const inp = inputs()
   const out = buildSiteData(inp)
-  const covered = inp.index.dataset.filter(r => r.vm)
+  const covered = inp.index.dataset.filter(r => r.vm && r.state && r.state !== 'no-quests' && !r.probeIncomplete)
   assert.ok(covered.length > 0)
   const bySlug = new Map(out.packs.map(p => [p.slug, p]))
   for (const r of covered) {
@@ -71,15 +95,22 @@ test('sb4/index 这类带后缀的 vmSlug 也能匹配上（数据链不断裂�
 
 test('元数据字段从 pack-metadata 合并进来', () => {
   const out = buildSiteData(inputs())
-  // 元数据覆盖全部条目（不是只覆盖「可产出」的那批）：
-  // 图标与标题是列表页的全部可见内容，缺一条就是一个占位块。
-  // 注意：元数据只覆盖 CurseForge（fetch-pack-metadata 只拉 cf），
-  // 故 Modrinth 条目没有图标是预期的，不应当成缺陷。
+  const meta = inputs().packMeta
+  const metaSlugs = new Set((meta.packs || []).map(p => p.slug))
+  // 元数据只覆盖已抓取的那批（2026-10-22 实测：1000 条，而扫描已扩到 28816 行），
+  // 所以「缺图标」不代表合并出错。真正要守的是：
+  //   ① 有元数据的包，图标/标题必须合进来（合并链路不断）
+  //   ② 无元数据的包不得伪造字段（不得凭空造图标）
   const cfPacks = out.packs.filter((p) => p.platform === 'cf')
-  const withIcon = cfPacks.filter((p) => p.iconUrl)
-  assert.equal(withIcon.length, cfPacks.length, `CF 条目都应有图标（缺 ${cfPacks.length - withIcon.length}）`)
-  const withoutTitle = cfPacks.filter((p) => !p.title)
-  assert.equal(withoutTitle.length, 0, `缺标题：${withoutTitle.map((p) => p.slug).join(', ')}`)
+  const shouldHave = cfPacks.filter(p => metaSlugs.has(p.slug))
+  assert.ok(shouldHave.length > 0, '应至少有一个包能合上元数据')
+  for (const p of shouldHave) {
+    assert.ok(p.iconUrl, `${p.slug} 在 pack-metadata 里却有没图标`)
+    assert.ok(p.title, `${p.slug} 在 pack-metadata 里却有没标题`)
+  }
+  // 未抓元数据的包不得造出图标
+  const noMeta = cfPacks.filter(p => !metaSlugs.has(p.slug))
+  assert.equal(noMeta.filter(p => p.iconUrl).length, 0, '无元数据的包不得凭空有图标')
   const sb4 = out.packs.find(p => p.slug === 'ftb-stoneblock-4')
   assert.ok(sb4.downloads > 0)
   assert.ok(sb4.gameVersions.length > 0)
@@ -97,14 +128,13 @@ test('许可与非商业声明存在（ADR-0004）', () => {
   assert.equal(out.meta.nonCommercial, true)
 })
 
-test('skyfactory-5：state 仍是 no-quests（六态不变），文案区分非 FTB', () => {
+test('skyfactory-5：no-quests 不再上页面（六态词表保留，但该包被隐藏）', () => {
   const out = buildSiteData(inputs())
   const sf5 = out.packs.find(p => p.slug === 'skyfactory-5')
-  assert.ok(sf5, '应有 skyfactory-5')
-  assert.equal(sf5.state, 'no-quests')
-  assert.equal(sf5.stateLabel, '无任务书（非 FTB Quests）')
-  // 六态计数不变：skyfactory-5 仍计入 no-quests
-  assert.deepEqual(out.stat.stateCounts, inputs().index.stat.stateCounts)
+  // 2026-10-22 裁决后：no-quests 的包不上页面，skyfactory-5 不再出现在 packs 里。
+  assert.equal(sf5, undefined, 'no-quests 的包不应出现在站点数据')
+  // 六态词表本身仍在 meta 里（将来补探测或扩范围还能用）
+  assert.ok(out.meta.stateLabel['no-quests'])
 })
 
 test('幂等：同一输入连跑两次结果相同', () => {
@@ -180,4 +210,72 @@ test('模板：不能混装警告是普通可见块，不在 <details> 等可折
   assert.doesNotMatch(code, /<details/i)
   assert.match(template, /不同来源的汉化不能同时安装/)
   assert.match(template, /class="warn" role="note"/)
+})
+
+// ---- 站点只显示「有 FTB 任务书」的包（2026-10-22 用户裁决） ----
+//
+// 背景：28816 行一次性渲染到一页会让浏览器卡死。用户裁决：
+// 「只显示有 FTB 任务的整合包，其他的不放在网页上」。
+// 收窄发生在**站点数据层**（site/data.json 的 packs），
+// `research/index-dataset.json` 仍是全量、一条不丢 —— 将来补探测还能捞回来。
+
+test('站点数据剔除 no-quests：页面只显示有 FTB 任务书的包', () => {
+  const inp = inputs()
+  const out = buildSiteData(inp)
+  assert.equal(out.packs.filter(p => p.state === 'no-quests').length, 0,
+    'no-quests 的包不得进入站点数据')
+  // 除 no-quests 外，其余五态的包一个不少（按 slug 去重后比对）
+  const expected = new Set(inp.index.dataset
+    .filter(r => r.state && r.state !== 'no-quests' && !r.probeIncomplete)
+    .map(r => r.slug))
+  assert.equal(out.packs.length, expected.size, '可见卡片数应与「有任务书的包数」一致')
+  for (const slug of expected) {
+    assert.ok(out.packs.some(p => p.slug === slug), `${slug} 丢了`)
+  }
+})
+
+test('站点数据剔除探测未完成的包：未知不冒充「有任务书」', () => {
+  const inp = inputs()
+  const out = buildSiteData(inp)
+  assert.equal(out.packs.filter(p => p.probeIncomplete).length, 0,
+    'probeIncomplete 的包不得进入站点数据')
+})
+
+test('剔除后 stat.total 等于可见包数，且给出被剔除的计数（口径可追溯）', () => {
+  const inp = inputs()
+  const out = buildSiteData(inp)
+  const hidden = inp.index.dataset.length - out.packs.length
+  assert.equal(out.stat.total, out.packs.length)
+  assert.equal(out.stat.hidden, hidden)
+  assert.ok(out.stat.hidden > 0, '本数据集应有被剔除的包')
+  // 隐藏原因可追溯：两个数字相加必须等于原始行数
+  assert.equal(out.stat.total + out.stat.hidden, inp.index.dataset.length)
+})
+
+test('同一 slug 在多平台各有记录时不丢平台：合并成一条卡片，platforms 保留全部', () => {
+  const inp = inputs()
+  const out = buildSiteData(inp)
+  const slugs = out.packs.map(p => p.slug)
+  assert.equal(new Set(slugs).size, slugs.length, '站点数据里一个 slug 只能出现一次')
+
+  // 找一个原始数据里跨平台重复的 slug 来验证 platforms 字段
+  const counts = new Map()
+  for (const r of inp.index.dataset) counts.set(r.slug, (counts.get(r.slug) || 0) + 1)
+  const dupSlug = [...counts].find(([slug, n]) => n > 1 && out.packs.some(p => p.slug === slug))?.[0]
+  if (dupSlug) {
+    const card = out.packs.find(p => p.slug === dupSlug)
+    const raw = inp.index.dataset.filter(r => r.slug === dupSlug)
+    assert.ok(Array.isArray(card.platforms), `${dupSlug} 应带 platforms 数组`)
+    assert.deepEqual(
+      [...card.platforms].sort(),
+      [...new Set(raw.map(r => r.platform).filter(Boolean))].sort(),
+      `${dupSlug} 的 platforms 应保留全部来源平台`,
+    )
+  }
+})
+
+test('幂等：剔除与合并后连跑两次结果相同', () => {
+  const a = buildSiteData(inputs(), { now: 'X' })
+  const b = buildSiteData(inputs(), { now: 'X' })
+  assert.deepEqual(a, b)
 })
