@@ -1,0 +1,594 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "mars"
+	group: "38EEBBEC8E6E197C"
+	icon: "ad_astra:mars_globe"
+	id: "7A4F881832FC01FA"
+	images: [{
+		click: ""
+		corner: false
+		dev: false
+		height: 12.0d
+		hover: [ ]
+		image: "craftofus:textures/gui/mars_art.png"
+		rotation: 0.0d
+		width: 18.82d
+		x: 14.5d
+		y: 2.0d
+	}]
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["185660DFFB169F77"]
+			hide: true
+			id: "6B605DC53833732B"
+			tasks: [{
+				dimension: "ad_astra:mars"
+				icon: "ad_astra:mars_sand"
+				id: "130E9FBC999E7DCF"
+				title: "飞往火星"
+				type: "dimension"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["6B605DC53833732B"]
+			id: "2E86BA5BAC21C0DC"
+			tasks: [{
+				id: "705F2A18594D2CEF"
+				item: "ad_astra:raw_ostrum"
+				type: "item"
+			}]
+			x: -1.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["2E86BA5BAC21C0DC"]
+			description: ["将原始奥斯特姆精炼成奥斯特姆板"]
+			id: "7942BF3F44EF4C4F"
+			rewards: [{
+				count: 8
+				id: "55E1EBE33C627D27"
+				item: "ad_astra:desh_ingot"
+				type: "item"
+			}]
+			tasks: [{
+				id: "63BCC40FA3BEEC32"
+				item: "ad_astra:ostrum_plate"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["6B605DC53833732B"]
+			description: ["找到一个废弃的地下储藏设施"]
+			hide: true
+			hide_text_until_complete: true
+			id: "0487DE202174E411"
+			rewards: [
+				{
+					id: "6FF86630391386B0"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+				{
+					auto: "enabled"
+					command: "/teleport @e[team=,tag=!correctspawn,type=cataclysm:netherite_monstrosity] ~ ~-10000 ~10000"
+					icon: {
+						Count: 1b
+						id: "ad_astra:tier_3_rocket"
+						tag: {
+							BotariumData: { }
+						}
+					}
+					id: "7528A698885ACE83"
+					silent: true
+					title: "火星火箭筒仓"
+					type: "command"
+				}
+			]
+			tasks: [{
+				icon: "abyssal_decor:deepbronze_pillar"
+				id: "0A026003931DAFAC"
+				structure: "craftofus:mars_rocket_silo"
+				title: "找到一个火星火箭筒仓"
+				type: "structure"
+			}]
+			x: 4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"7942BF3F44EF4C4F"
+				"07538AD514FA64A5"
+			]
+			description: ["升级到下界合金盔甲。你需要这个才能在炎热气候中生存"]
+			id: "78DB03EE6356BBBF"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "3A7B1BFD84BA8D63"
+				table_id: 3975649257847980149L
+				type: "random"
+			}]
+			tasks: [
+				{
+					id: "4D5B63A6DF2CDB28"
+					item: {
+						Count: 1b
+						id: "ad_astra:netherite_space_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "39A59AF8D099E426"
+					item: {
+						Count: 1b
+						id: "ad_astra:netherite_space_suit"
+						tag: {
+							BotariumData: { }
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "660FEA602F458404"
+					item: {
+						Count: 1b
+						id: "ad_astra:netherite_space_pants"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "16C30D5E90F5F606"
+					item: {
+						Count: 1b
+						id: "ad_astra:netherite_space_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "下界合金太空服"
+			x: 2.0d
+			y: 4.0d
+		}
+		{
+			dependencies: [
+				"78DB03EE6356BBBF"
+				"2F096ED00796F517"
+			]
+			id: "3AD06426E578FF60"
+			rewards: [{
+				id: "575C59F271631578"
+				item: "ad_astra:fuel_bucket"
+				type: "item"
+			}]
+			tasks: [{
+				id: "649F9CB1FE4B9F48"
+				item: {
+					Count: 1b
+					id: "ad_astra:tier_3_rocket"
+					tag: {
+						BotariumData: { }
+					}
+				}
+				type: "item"
+			}]
+			x: 4.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["7942BF3F44EF4C4F"]
+			description: ["冷冻机将让你能为火箭制造出更高效的燃料"]
+			id: "5CF982300B6A51A1"
+			rewards: [{
+				id: "49BECBB757F8C376"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			tasks: [{
+				id: "425150C9B6B18638"
+				item: "ad_astra:cryo_freezer"
+				type: "item"
+			}]
+			x: -1.5d
+			y: 5.5d
+		}
+		{
+			dependencies: ["5CF982300B6A51A1"]
+			id: "2AA1732859B8A869"
+			rewards: [{
+				id: "08D09CA0F73AF923"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			tasks: [{
+				id: "683745375EB6106F"
+				item: "ad_astra:ice_shard"
+				type: "item"
+			}]
+			x: -3.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["2AA1732859B8A869"]
+			description: ["用冷冻器将冰晶提炼成更高效的燃料，火箭只需一桶即可起飞"]
+			id: "1121688635DFDABC"
+			rewards: [{
+				id: "7409ADAD750597B6"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			tasks: [{
+				id: "0092BA6FE7C4104D"
+				item: "ad_astra:cryo_fuel_bucket"
+				type: "item"
+			}]
+			x: -4.5d
+			y: 5.5d
+		}
+		{
+			dependencies: ["0487DE202174E411"]
+			id: "2F096ED00796F517"
+			rewards: [{
+				id: "73214A21CD06867A"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			tasks: [{
+				id: "218A0C9DC9916F6B"
+				item: "ad_astra:ostrum_engine"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["6B605DC53833732B"]
+			description: ["这座塔过去曾用于与地球联系……或许经过一些改造，它就能用来联系其他星球了……"]
+			id: "14F704C2B136B99D"
+			invisible: true
+			rewards: [{
+				id: "2BB925E3B3E924C3"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			tasks: [{
+				icon: "abyssal_decor:small_deepbronze_pipes"
+				id: "12762964234F7B68"
+				structure: "craftofus:mars_comms_tower"
+				title: "找到一个火星通信塔"
+				type: "structure"
+			}]
+			x: -1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["14F704C2B136B99D"]
+			description: ["找到无线电塔使用的主要通信设备。你可能需要爬得很高……"]
+			hide: true
+			id: "2A1AD2667A7B5C9F"
+			rewards: [{
+				id: "07F8CCA07A783767"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			tasks: [{
+				id: "0CB8376E1D0BF308"
+				item: {
+					Count: 1b
+					id: "etched:radio"
+					tag: {
+						display: {
+							Name: "{\"text\":\"Mars Communication Device\",\"color\":\"gold\",\"italic\":false}"
+						}
+					}
+				}
+				match_nbt: true
+				type: "item"
+			}]
+			title: "火星通信设备"
+			x: -3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["2A1AD2667A7B5C9F"]
+			description: ["此升级将增加其攻击范围"]
+			hide: true
+			id: "1C071EE8A590ABFA"
+			rewards: [{
+				id: "455E3EB69101C95A"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+			tasks: [
+				{
+					consume_items: true
+					id: "586635A0D13A9812"
+					item: {
+						Count: 1b
+						id: "etched:radio"
+						tag: {
+							display: {
+								Name: "{\"text\":\"Mars Communication Device\",\"color\":\"gold\",\"italic\":false}"
+							}
+						}
+					}
+					match_nbt: true
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 2L
+					id: "4F921A64F64C0146"
+					item: "minecraft:netherite_ingot"
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 32L
+					id: "49242C457D9CDAC3"
+					item: "ad_astra:ostrum_plate"
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 64L
+					id: "7B9631AA0CC8A7D9"
+					item: "ad_astra:calorite_plate"
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 64L
+					id: "555EECEEF800D40E"
+					item: "minecraft:redstone"
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 32L
+					id: "28ED663BD1CCD224"
+					item: "minecraft:diamond"
+					type: "item"
+				}
+			]
+			title: "升级火星通信设备"
+			x: -4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["1C071EE8A590ABFA"]
+			id: "7434ECDDB4850E9A"
+			tasks: [{
+				id: "3EDB68F34AA57F8B"
+				title: "向附近的行星发送信号"
+				type: "checkmark"
+			}]
+			title: "交流？"
+			x: -6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["6B605DC53833732B"]
+			description: ["在地下找到一个废弃的火星矿井"]
+			id: "66ACBD5BF2EA8882"
+			rewards: [{
+				count: 8
+				id: "533AD2198F816AB6"
+				item: "spelunkery:mineomite"
+				type: "item"
+			}]
+			tasks: [{
+				icon: {
+					Count: 1b
+					id: "minecraft:netherite_pickaxe"
+					tag: {
+						Damage: 0
+					}
+				}
+				id: "13339ED60F337C76"
+				structure: "craftofus:mars_mineshaft"
+				title: "找到一个火星矿井入口"
+				type: "structure"
+			}]
+			x: 0.0d
+			y: -1.5d
+		}
+		{
+			dependencies: [
+				"7434ECDDB4850E9A"
+				"35A75D91990FCF21"
+			]
+			id: "54557891409210ED"
+			rewards: [{
+				command: "/say Hi, @p!"
+				id: "59E643FBD0802F48"
+				title: "收到消息"
+				type: "command"
+			}]
+			tasks: [{
+				disable_toast: true
+				id: "30290A8CC7DC5530"
+				structure: "craftofus:mars_comms_tower"
+				title: "找到回通讯塔的路"
+				type: "structure"
+			}]
+			title: "通信"
+			x: -7.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["54557891409210ED"]
+			hide: true
+			icon: {
+				Count: 1b
+				id: "ad_astra:tier_3_rocket"
+				tag: {
+					BotariumData: { }
+				}
+			}
+			id: "6764F2D4AC15DAEE"
+			tasks: [
+				{
+					consume_items: true
+					id: "6A193F54A41B85B0"
+					item: {
+						Count: 1b
+						id: "ad_astra:tier_3_rocket"
+						tag: {
+							BotariumData: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 64L
+					id: "7FBC8B6C306E7CE8"
+					item: "ad_astra:calorite_plate"
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 48L
+					id: "79313D1F268EF300"
+					item: "sculksickness:ambrosia_herb"
+					type: "item"
+				}
+			]
+			title: "正在准备数据包"
+			x: -7.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["6764F2D4AC15DAEE"]
+			id: "55E872E8DDDC14EE"
+			tasks: [{
+				id: "3E488834B088E3BF"
+				structure: "craftofus:mars_comms_tower"
+				title: "返回通信塔以发送治愈包裹"
+				type: "structure"
+			}]
+			title: "返回塔楼"
+			x: -6.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["55E872E8DDDC14EE"]
+			id: "743D169171E34D77"
+			tasks: [{
+				id: "27BCC6A133E517A1"
+				title: "发送包裹 Send the Package"
+				type: "checkmark"
+			}]
+			x: -4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: [
+				"499E7B6D992E0FAA"
+				"6B605DC53833732B"
+			]
+			description: ["这可能会引导你找到一些重要的东西……"]
+			hide: true
+			id: "3141BE4AA21EE4C6"
+			rewards: [{
+				id: "036F3AE40372954F"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			tasks: [{
+				id: "0BEFDAF69D613106"
+				item: "cataclysm:monstrous_eye"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0487DE202174E411"]
+			icon: {
+				Count: 1b
+				id: "cataclysm:monstrous_helm"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "07538AD514FA64A5"
+			rewards: [
+				{
+					exclude_from_claim_all: true
+					id: "7FD4E1890DCB8B31"
+					table_id: 9168976841127857980L
+					type: "random"
+				}
+				{
+					id: "40D7AA26A7DD0318"
+					item: "minecraft:netherite_ingot"
+					type: "item"
+				}
+				{
+					command: "/sh_health add @p 1"
+					icon: "artifacts:crystal_heart"
+					id: "59F4859315E7ACDE"
+					title: "+1 颗心"
+					type: "command"
+				}
+				{
+					command: "/thitemstages add @p NetheriteSuit"
+					icon: {
+						Count: 1b
+						id: "ad_astra:netherite_space_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					id: "6E0749BAA4F970A2"
+					title: "解锁下界合金太空服"
+					type: "command"
+				}
+			]
+			tasks: [{
+				entity: "cataclysm:netherite_monstrosity"
+				id: "05DCF48533CABE9E"
+				title: "击败下界合金巨兽"
+				type: "kill"
+				value: 1L
+			}]
+			x: 2.0d
+			y: 2.0d
+		}
+		{
+			dependencies: [
+				"07538AD514FA64A5"
+				"16D922171B8039C2"
+			]
+			description: ["这可以作为 Ignitium 头盔的替代品来升级你的下界合金头盔"]
+			hide: true
+			id: "5F91AD551BD32366"
+			tasks: [{
+				id: "6768E3CE40AB5C5F"
+				item: "cataclysm:monstrous_horn"
+				type: "item"
+			}]
+			x: 3.5d
+			y: 2.0d
+		}
+	]
+	title: "火星"
+}
