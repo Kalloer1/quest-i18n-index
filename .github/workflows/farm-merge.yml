@@ -113,7 +113,9 @@ jobs:
             echo "::error::hosts 含非法值:$BAD（只允许小写字母/数字开头，后接小写字母、数字或连字符）"
             exit 1
           fi
-          echo "hosts=$LIST" >> "$GITHUB_ENV"
+          # 变量名必须与后面 `for h in $HOSTS` 一致（大写）。GitHub Actions 的环境变量
+          # 名区分大小写，写成小写会让下一步在 `set -u` 下直接 "HOSTS: unbound variable"。
+          echo "HOSTS=$LIST" >> "$GITHUB_ENV"
           echo "list=$LIST" >> "$GITHUB_OUTPUT"
           [ -n "$LIST" ] || echo "::warning::远端没有 farm/* 分支，本轮无事可做"
 
