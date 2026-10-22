@@ -1,0 +1,77 @@
+# AI 初翻，未人工校对
+{
+	id: "7499FECFEDCCFD61"
+	group: "152BDA7E54E8554A"
+	order_index: 1
+	filename: "simple_magnets"
+	title: "简易磁铁"
+	icon: {
+		id: "simplemagnets:basicmagnet"
+		Count: 1b
+		tag: { }
+	}
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: -1.5d
+			y: 1.5d
+			subtitle: "5 块磁性好东西的方块"
+			description: ["这个磁铁会吸起你周围5格半径内的任何东西"]
+			id: "1E17508AE9729E4B"
+			tasks: [{
+				id: "688C04AF6D68A377"
+				type: "item"
+				item: {
+					id: "simplemagnets:basicmagnet"
+					Count: 1b
+					tag: { }
+				}
+			}]
+		}
+		{
+			x: -1.5d
+			y: -0.5d
+			subtitle: "11 块磁化方块"
+			description: ["这个磁铁要强得多，它的生效范围是以你为中心11格以内。"]
+			dependencies: ["1E17508AE9729E4B"]
+			id: "1267963234B34993"
+			tasks: [{
+				id: "1DE227D663F9156B"
+				type: "item"
+				item: {
+					id: "simplemagnets:advancedmagnet"
+					Count: 1b
+					tag: { }
+				}
+			}]
+		}
+		{
+			x: 0.5d
+			y: 1.5d
+			subtitle: "让小范围内的磁铁停止工作"
+			description: ["这将使放置点周围3格范围内的磁体停止工作。"]
+			optional: true
+			id: "5C696CA186477214"
+			tasks: [{
+				id: "0FD1861BF79E565B"
+				type: "item"
+				item: "simplemagnets:basic_demagnetization_coil"
+			}]
+		}
+		{
+			x: 0.5d
+			y: -0.5d
+			subtitle: "在5格范围内阻止你的磁铁工作"
+			description: ["和下层一样，但这个有5格半径"]
+			dependencies: ["5C696CA186477214"]
+			optional: true
+			id: "2A8B6A1F1C8E3FDA"
+			tasks: [{
+				id: "3CB3CBF92F592F25"
+				type: "item"
+				item: "simplemagnets:advanced_demagnetization_coil"
+			}]
+		}
+	]
+}

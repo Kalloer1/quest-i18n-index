@@ -1,0 +1,247 @@
+# AI 初翻，未人工校对
+{
+	id: "1570BD6FCF1E1FFA"
+	group: "201230E95162B967"
+	order_index: 1
+	filename: "psi"
+	title: "Psi"
+	icon: "psi:psidust"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: -2.0d
+			y: 0.0d
+			subtitle: "Psi 是一个非常酷的魔法模组，能做些相当有趣和好玩的事情"
+			description: [
+				"Psi 很酷，不过如果你不熟悉它，可能会觉得有点难。我们提供了手册，你可以慢慢阅读"
+				""
+				"我们还提供了一些基础任务来帮助你入门（因为你需要使用 Psi 才能更深入地探索整合包）"
+			]
+			id: "25ED0379C6CD9131"
+			tasks: [{
+				id: "68B6F779F7BD0EA9"
+				type: "checkmark"
+				title: "Psi"
+			}]
+			rewards: [{
+				id: "1303F832201D7FEA"
+				type: "item"
+				item: {
+					id: "patchouli:guide_book"
+					Count: 1b
+					tag: {
+						"patchouli:book": "psi:encyclopaedia_psionica"
+					}
+				}
+			}]
+		}
+		{
+			x: -2.0d
+			y: -1.5d
+			description: ["制造CAD设备需要CAD组装器，而CAD设备是Psi的基础"]
+			dependencies: ["25ED0379C6CD9131"]
+			id: "15972AE4A30BEDD3"
+			tasks: [{
+				id: "0F71585CC2C9CCE4"
+				type: "item"
+				item: "psi:cad_assembler"
+			}]
+		}
+		{
+			x: -2.0d
+			y: -3.0d
+			description: ["第一步，获取一个铁质CAD组件"]
+			dependencies: ["15972AE4A30BEDD3"]
+			id: "48AEC5488F0D521A"
+			tasks: [{
+				id: "5B196F23CF8C8277"
+				type: "item"
+				item: "psi:cad_assembly_iron"
+			}]
+		}
+		{
+			x: -2.0d
+			y: -4.5d
+			description: ["将你的 CAD 组件放入 CAD 组装器，然后取出得到的铸造助手装置。你之后会获得更好的版本。"]
+			dependencies: ["48AEC5488F0D521A"]
+			id: "60F84598E07DF3F1"
+			tasks: [{
+				id: "5E5198F0542DA619"
+				type: "item"
+				item: {
+					id: "psi:cad"
+					Count: 1b
+					tag: {
+						componentASSEMBLY: {
+							id: "psi:cad_assembly_iron"
+							Count: 1b
+						}
+					}
+					ForgeCaps: {
+						Parent: {
+							Memory: [ ]
+							Battery: 0
+							Time: 0
+						}
+					}
+				}
+			}]
+		}
+		{
+			x: -2.0d
+			y: -6.0d
+			description: [
+				"Psidust 是 Psi Mod 的重要组成部分。它也被用于制作 Mystical Agriculture 的 Prosperity Shards。"
+				""
+				"要制作 Psidust，将一些 restone 扔在地上，手持 CAD 右键点击。"
+			]
+			dependencies: ["60F84598E07DF3F1"]
+			id: "7C56047D49CA1F5E"
+			tasks: [{
+				id: "3BD7646F4CE9C513"
+				type: "item"
+				item: "psi:psidust"
+				count: 4L
+			}]
+			rewards: [{
+				id: "7D1A6A1607885BC7"
+				type: "item"
+				item: "psi:cad_assembly_iron"
+			}]
+		}
+		{
+			x: -3.0d
+			y: -7.5d
+			subtitle: "CAD Cores 升级复杂度和投影（更好的核心 = 更高的复杂度和更大的法术）"
+			dependencies: ["7C56047D49CA1F5E"]
+			id: "7E6DC485E91E513C"
+			tasks: [{
+				id: "792100B6D6F30544"
+				type: "item"
+				item: "psi:cad_core_basic"
+			}]
+		}
+		{
+			x: -2.0d
+			y: -7.5d
+			subtitle: "CAD Sockets 升级带宽、插槽数量和保存的向量（基本上就是有更多空间来做酷炫的事情）"
+			dependencies: ["7C56047D49CA1F5E"]
+			id: "62933DB19B92FC98"
+			tasks: [{
+				id: "2553D68B502B7196"
+				type: "item"
+				item: "psi:cad_socket_basic"
+			}]
+		}
+		{
+			x: -1.0d
+			y: -7.5d
+			subtitle: "CAD电池可为你的法术提供溢出缓冲。"
+			description: [
+				"你施放法术的Psi能量有限。如果能量不足，法术会从你的生命能量中汲取"
+				""
+				"-这可能很致命。电池就能派上用场了。它能让你将法术过度抽取至电池极限，才开始受到伤害"
+			]
+			dependencies: ["7C56047D49CA1F5E"]
+			id: "0C7385BDF3A3E8F7"
+			tasks: [{
+				id: "4D0C1D0B5F30F9F3"
+				type: "item"
+				item: "psi:cad_battery_basic"
+			}]
+		}
+		{
+			icon: "mysticalagriculture:soulium_dust"
+			x: -10.5d
+			y: -6.0d
+			shape: "gear"
+			subtitle: "你需要灵魂石和灵魂石圆石来完成神秘农业中的一些配方"
+			description: ["将火药或圆石投掷在地面上，然后用你的CAD Infusion Spell施放（右键）以获得灵魂锭和灵魂圆石"]
+			dependencies: ["6C45FF43E07823C6"]
+			id: "6C631669475C9F50"
+			tasks: [
+				{
+					id: "07D8CAE905161DAD"
+					type: "item"
+					item: "mysticalagriculture:soulium_dust"
+				}
+				{
+					id: "694E35B90B6AF357"
+					type: "item"
+					item: "mysticalagriculture:soulstone_cobble"
+				}
+			]
+		}
+		{
+			icon: "psi:cad_assembler"
+			x: -2.0d
+			y: -9.0d
+			subtitle: "回到CAD组装器，进行另一次CAD组装（我们为你提供了另一个铁的）"
+			description: [
+				"将新制作的初级CAD组件放入对应槽位，并将CAD组装器置于中间，以制作升级后的CAD"
+				""
+				""
+				"你之前制作的普通CAD只有效率和威力，没有其他属性。如果其他属性都从0增加了，就说明你操作正确"
+			]
+			dependencies: [
+				"0C7385BDF3A3E8F7"
+				"7E6DC485E91E513C"
+				"62933DB19B92FC98"
+			]
+			id: "1AF193249FE6A3A3"
+			tasks: [{
+				id: "79FBD9473CD80166"
+				type: "checkmark"
+				title: "使用基础CAD组件，你现在可以升级CAD设备了"
+			}]
+		}
+		{
+			x: -7.0d
+			y: -6.0d
+			subtitle: "咒语编程器就是你编程咒语的地方（真是个新颖的想法）"
+			description: [
+				"咒语编程器看起来很吓人，但一旦掌握了基础知识，它就会变得相当酷。"
+				""
+				"你的第一个法术将是 Infusion。只需在编程器中右键单击一个槽位，然后搜索 Infusion（不是 Greater Infusion）"
+				""
+				"如果正确添加了 Trick: Infusion，你应该会在左侧 CAD 旁边看到一个绿色的对勾，显示 Compilation Successful"
+				""
+				"注意：你可以在程序员的底部重命名这个技巧，但这并非必需"
+			]
+			dependencies: [
+				"7C56047D49CA1F5E"
+				"1AF193249FE6A3A3"
+			]
+			id: "0A5E39C024D1DD6D"
+			tasks: [{
+				id: "1399D784A00D7F4A"
+				type: "item"
+				item: "psi:programmer"
+			}]
+		}
+		{
+			x: -9.0d
+			y: -6.0d
+			subtitle: "第一次的精准射击技巧"
+			description: [
+				"在上一步骤编程好法术后，只需拿起子弹，右键点击法术编程器即可"
+				""
+				"一切顺利的话，你应该会听到提示音，表示子弹已成功编程（子弹上还应标有法术名称）"
+				""
+				"只需将升级后的 CAD 投入装配器，左侧就会出现可用插槽。放入子弹，再将 CAD 取出"
+			]
+			dependencies: ["0A5E39C024D1DD6D"]
+			id: "6C45FF43E07823C6"
+			tasks: [{
+				id: "620CB7D20022C50B"
+				type: "item"
+				item: {
+					id: "psi:spell_bullet"
+					Count: 1b
+					tag: { }
+				}
+			}]
+		}
+	]
+}

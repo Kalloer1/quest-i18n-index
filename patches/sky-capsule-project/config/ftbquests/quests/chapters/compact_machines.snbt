@@ -1,0 +1,133 @@
+# AI 初翻，未人工校对
+{
+	id: "662684DCDB8102F8"
+	group: "152BDA7E54E8554A"
+	order_index: 0
+	filename: "compact_machines"
+	title: "紧凑型机器模组 (Compact Machines)"
+	icon: "compactmachines:personal_shrinking_device"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "你的第一台机器"
+			x: -2.5d
+			y: 0.0d
+			description: [
+				"Compact Machines 是一个能将1格区域扩展成大片空间的模组。第一级机器只有3x3x3，但这只是个开始。"
+				""
+				"作为奖励，你将获得一个个人缩小装置，可以进出这些奇妙的设备。"
+			]
+			id: "0A4255FFAD569748"
+			tasks: [
+				{
+					id: "45D2F2C448AD1675"
+					type: "item"
+					item: "compactmachines:wall"
+					count: 8L
+				}
+				{
+					id: "5134CFCA042EFBE8"
+					type: "item"
+					item: "compactmachines:machine_tiny"
+				}
+			]
+			rewards: [{
+				id: "1C7C10F29E9CFC63"
+				type: "item"
+				item: "compactmachines:personal_shrinking_device"
+			}]
+		}
+		{
+			x: -2.5d
+			y: -1.5d
+			subtitle: "5x5x5 的空间"
+			dependencies: ["0A4255FFAD569748"]
+			id: "22550C565562F5B9"
+			tasks: [{
+				id: "4E298CAB833135ED"
+				type: "item"
+				item: "compactmachines:machine_small"
+			}]
+		}
+		{
+			x: -2.5d
+			y: -3.0d
+			subtitle: "7x7x7 的空间"
+			dependencies: ["22550C565562F5B9"]
+			id: "4DEC152EB026B487"
+			tasks: [{
+				id: "0D2B29A99D300A0F"
+				type: "item"
+				item: "compactmachines:machine_normal"
+			}]
+		}
+		{
+			x: -2.5d
+			y: -4.5d
+			subtitle: "9x9x9 的空间"
+			dependencies: ["4DEC152EB026B487"]
+			id: "2890CAA585E131EF"
+			tasks: [{
+				id: "29641C831C49C84B"
+				type: "item"
+				item: "compactmachines:machine_large"
+			}]
+		}
+		{
+			x: -2.5d
+			y: -6.0d
+			subtitle: "11x11x11 的空间"
+			dependencies: ["2890CAA585E131EF"]
+			id: "7800532D55828069"
+			tasks: [{
+				id: "705CF3542751ECC4"
+				type: "item"
+				item: "compactmachines:machine_giant"
+			}]
+		}
+		{
+			x: -2.5d
+			y: -7.5d
+			subtitle: "13x13x13 的空间"
+			dependencies: ["7800532D55828069"]
+			id: "265398E4885738CF"
+			tasks: [{
+				id: "4FE81AE08299B379"
+				type: "item"
+				item: "compactmachines:machine_maximum"
+			}]
+		}
+		{
+			icon: "compactmachines:personal_shrinking_device"
+			disable_toast: true
+			x: 1.5d
+			y: -1.5d
+			subtitle: "紧急情况发生时请使用！"
+			description: ["如果你弄丢了个人缩小装置，可以完成这个任务来获得一个新的。我们知道意外总会发生，所以原谅你……这一次！"]
+			optional: true
+			id: "73531EE8A0118B2A"
+			tasks: [{
+				id: "14AEFB74C64D039C"
+				type: "checkmark"
+				title: "弄丢你的PSD文件了吗？"
+			}]
+			rewards: [
+				{
+					id: "75329A2E4E78415F"
+					type: "item"
+					auto: "enabled"
+					item: "compactmachines:personal_shrinking_device"
+				}
+				{
+					id: "775BAD7458846972"
+					type: "command"
+					title: "重置"
+					auto: "enabled"
+					command: "/ftbquests change_progress @p reset 73531EE8A0118B2A"
+					player_command: false
+				}
+			]
+		}
+	]
+}

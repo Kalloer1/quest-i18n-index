@@ -1,0 +1,161 @@
+# AI 初翻，未人工校对
+{
+	id: "5FDCFB0CDD9FE878"
+	group: "201230E95162B967"
+	order_index: 5
+	filename: "industrial_foregoing"
+	title: "Industrial Foregoing"
+	icon: "industrialforegoing:machine_frame_advanced"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: 0.0d
+			y: 0.0d
+			shape: "gear"
+			subtitle: "你需要将4个原木与熔化的机器框架融合以获得怜悯框架，并开始工业进程（岩浆熔炉和流体封装器）"
+			description: [
+				"怜悯机器框架可用于制作许多机器。它也可用于制作更高级别的机器框架，因此你至少需要几个。"
+				""
+				""
+			]
+			dependencies: [
+				"0DA716A62957ADB2"
+				"0C46B005C9EB40DC"
+			]
+			id: "700E1C329A9D2DAA"
+			tasks: [{
+				id: "053EB99E89AA45B7"
+				type: "item"
+				item: "industrialforegoing:machine_frame_pity"
+			}]
+		}
+		{
+			x: 0.0d
+			y: -1.5d
+			subtitle: "接下来你需要大量塑料。制作3个这个，并朝向原木放置以开始生产液态乳胶"
+			description: ["查看流体提取器的使用次数，了解原木到乳胶的比例。原木不会无限存在，你可以用精炼存储构造器或放置器来自动化放置原木（但在获得第一批塑料之前，你无法制作放置器）"]
+			dependencies: ["700E1C329A9D2DAA"]
+			id: "0ABD267C28D91093"
+			tasks: [{
+				id: "1D4C9678BE13E8E0"
+				type: "item"
+				item: "industrialforegoing:fluid_extractor"
+				count: 3L
+			}]
+			rewards: [{
+				id: "240003C077A6111A"
+				type: "item"
+				item: "industrialforegoing:fluid_extractor"
+			}]
+		}
+		{
+			x: 0.0d
+			y: -3.0d
+			subtitle: "乳胶的生产过程缓慢，但这是制造后续机器所需塑料的必要步骤。"
+			description: [
+				"提取器不需要电力。你可以通过为其供电或添加速度/效率附加组件来加快液体乳胶的收集（不过要到稍晚些时候你才能制作这些组件）"
+				""
+				"通常，你第一次的乳胶桶会用来制作乳胶处理器。不过我会很慷慨地奖励你那个物品，这样你就可以继续前进了"
+			]
+			dependencies: ["0ABD267C28D91093"]
+			id: "4D9285BFD91EB1FD"
+			tasks: [{
+				id: "2ED5FF6A38474ADE"
+				type: "item"
+				item: "industrialforegoing:latex_bucket"
+			}]
+			rewards: [{
+				id: "5370481C6128F2DA"
+				type: "item"
+				item: "industrialforegoing:latex_processing_unit"
+			}]
+		}
+		{
+			x: 0.0d
+			y: -4.5d
+			subtitle: "乳胶处理单元可生产微型干橡胶。9个可合成1个干橡胶块，可熔炼成塑料块"
+			description: ["乳胶处理单元需要3样东西：动力、液态乳胶和水。我建议使用蓄水池自动供水，不过也可以用桶手动倒入。"]
+			dependencies: ["4D9285BFD91EB1FD"]
+			id: "5A303BD45D4AE9F3"
+			tasks: [{
+				id: "12E35D472FAA4B20"
+				type: "item"
+				item: "industrialforegoing:tinydryrubber"
+				count: 36L
+			}]
+			rewards: [{
+				id: "136641C76A0724A9"
+				type: "item"
+				item: "industrialforegoing:dryrubber"
+				count: 4
+			}]
+		}
+		{
+			x: 0.0d
+			y: -6.0d
+			dependencies: ["5A303BD45D4AE9F3"]
+			id: "7E4EB245FED638FE"
+			tasks: [{
+				id: "0AB49F7B902536F4"
+				type: "item"
+				item: "industrialforegoing:dissolution_chamber"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 0.0d
+			shape: "pentagon"
+			subtitle: "强烈建议为你的生物农场制作一个。超过简易机器框架的任何东西都需要粉色史莱姆才能继续"
+			description: ["这台机器会自动杀死生物（可通过范围升级扩大半径）。它将产生2种液体（粉色史莱姆和液态肉）"]
+			id: "456BE72C30BBDA7A"
+			tasks: [{
+				id: "7144C04B0C44925D"
+				type: "item"
+				item: "industrialforegoing:mob_slaughter_factory"
+			}]
+		}
+		{
+			x: 1.5d
+			y: -6.0d
+			subtitle: "与简易怜悯框架类似，它能制作多种机器。每种机器的用途取决于你想要完成的目标"
+			dependencies: ["7E4EB245FED638FE"]
+			id: "3F9D4C9AB91472E0"
+			tasks: [{
+				id: "3EADC98576223666"
+				type: "item"
+				item: "industrialforegoing:machine_frame_simple"
+			}]
+		}
+		{
+			x: 0.0d
+			y: -9.0d
+			subtitle: "要进入Mekanism，需要高级机器框架。"
+			description: ["到了这一步，你就可以开始玩 Mekanism 了。在流体封装器中用 4 个熔炼钢锭 + 一个高级机器框架，就能得到一个 Mekanism 钢制外壳。"]
+			dependencies: [
+				"3F9D4C9AB91472E0"
+				"7E4EB245FED638FE"
+				"456BE72C30BBDA7A"
+			]
+			id: "51D478F2DF5422D7"
+			tasks: [{
+				id: "70C40B8A3A71982E"
+				type: "item"
+				item: "industrialforegoing:machine_frame_advanced"
+			}]
+		}
+		{
+			icon: "industrialforegoing:meat_feeder"
+			x: -3.0d
+			y: 0.0d
+			subtitle: "肉喂食器真棒。把它放在你的头部饰品栏里，只要里面填满了液态肉，它就会自动补充你的饥饿条。"
+			dependencies: ["456BE72C30BBDA7A"]
+			id: "69F5863FF4FF568B"
+			tasks: [{
+				id: "456398F51EEA5EB9"
+				type: "checkmark"
+				title: "肉类喂食器"
+			}]
+		}
+	]
+}
