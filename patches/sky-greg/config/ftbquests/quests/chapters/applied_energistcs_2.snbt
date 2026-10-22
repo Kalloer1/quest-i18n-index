@@ -1,0 +1,1285 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_min_width: 300
+	default_quest_shape: "square"
+	filename: "applied_energistcs_2"
+	group: "3483E4EBAD9C4714"
+	icon: "ae2:creative_energy_cell"
+	id: "033E8D21A95583DB"
+	images: [{
+		height: 2.0d
+		image: "ae2:block/controller_lights"
+		rotation: 0.0d
+		width: 2.0d
+		x: 0.0d
+		y: -2.5d
+	}]
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"你有一个可用的 ME 制作终端。"
+				""
+				"不客气，这是你应该得到的回报。"
+			]
+			id: "23FD1322DFB4CA86"
+			subtitle: "你不需要把它捡起来！"
+			tasks: [{
+				icon: "ae2:crafting_terminal"
+				id: "6657FEDFA5FAADD0"
+				observe_type: 0
+				timer: 0L
+				title: "ME 制作终端"
+				to_observe: "ae2:cable_bus"
+				type: "observation"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			description: [
+				"ME Drive 是存放 Storage Cells 的装置，而 Storage Cells 才是真正存储物品或流体的容器。"
+				""
+				"标准ME驱动器可容纳10个存储单元。你可以拥有多个ME驱动器来增加存储容量。还有一个升级版，可容纳20个存储单元。"
+				""
+				"你有一个完全加载的ME驱动器，包含8个64k ME物品存储单元和2个64k ME流体存储单元。不过你最终很可能需要更多。"
+				""
+				"ME Drive 下方是一个创意能量电池。"
+				""
+				"不客气，这是你应该得到的回报。"
+			]
+			id: "2B816005CA6F01E2"
+			subtitle: "你不需要把它捡起来！"
+			tasks: [{
+				icon: "ae2:drive"
+				id: "1ABC14B21D30EF8E"
+				observe_type: 0
+				timer: 0L
+				title: "ME 驱动器"
+				to_observe: "ae2:drive"
+				type: "observation"
+			}]
+			x: 0.0d
+			y: 1.0d
+		}
+		{
+			dependencies: [
+				"5E10F448F38B7DE3"
+				"700A3F6157EC6803"
+			]
+			description: [
+				"将空白模式放入槽位，并将配方编码到空白模式中，供模式提供者使用。"
+				""
+				"你可以通过 EMI 配方预览中的 [+] 填充配方按钮，像正常配方一样用所需物品填充网格，也可以从 EMI 右侧的物品查看面板中拖动特定物品。"
+				""
+				"请注意，配方中的模式并不一定需要“准确”。也就是说，你可以规定 1 根木棍 = 1 块原石。虽然这个例子毫无意义，但这种方法可以省略某些可通过其他方式获得的输入。例如，被动生产的橡胶片已经输送到机器中进行合成，因此你可以省略橡胶片，只需列出网络需要提供的、完成合成所需的物品即可。"
+				""
+				"合成任务只有在系统接收到合成模式的最终结果时才会被标记为已完成。"
+				""
+				"处理配方时，可以右键点击输入物品来更改数量。如果使用EMI填充配方网格，通常不需要这样做，但手动设置配方时，可能需要说明需要多少个输入。"
+			]
+			hide_dependency_lines: true
+			icon: "ae2:pattern_encoding_terminal"
+			id: "1D470C8FB386C65B"
+			subtitle: "正在编码空白图案！"
+			tasks: [
+				{
+					id: "3F91B60E94621200"
+					item: "ae2:pattern_encoding_terminal"
+					type: "item"
+				}
+				{
+					id: "00A5A100509DE4A5"
+					item: "ae2:blank_pattern"
+					type: "item"
+				}
+			]
+			x: 4.0d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"5E10F448F38B7DE3"
+				"700A3F6157EC6803"
+			]
+			description: [
+				"为可与其合成的方块提供配方材料。面向分子合成器以解锁基础配方。面向机器以处理配方。"
+				""
+				"基础自动合成只需一个包含配方（最多9个）的此物品，朝向你要合成的方块即可。"
+				""
+				"要注册自动合成完成，系统需要将合成后的物品放回系统中，此方块可实现该功能，放入其中的任何物品都会被放回系统。"
+				""
+				"GregTech 机器有个令人烦恼的小毛病，"
+				""
+				"还有来自附加模组的更高级模式提供者，它们拥有更大的模式存储容量。"
+				""
+				"和终端一样，你也可以制作非完整方块的小型面板版本。"
+			]
+			hide_dependency_lines: true
+			icon: "ae2:pattern_provider"
+			id: "617B498A98E3C9F1"
+			subtitle: "持有图案！"
+			tasks: [
+				{
+					id: "2DB2AE0081D58AE2"
+					item: "ae2:pattern_provider"
+					type: "item"
+				}
+				{
+					id: "78B44095A3F100E6"
+					item: "ae2:cable_pattern_provider"
+					optional_task: true
+					type: "item"
+				}
+			]
+			x: 5.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["700A3F6157EC6803"]
+			description: [
+				"执行合成台配方。需要一个包含合成模式的模式提供者。"
+				""
+				"当你请求合成时，这个方块会实际根据合成配方来合成物品。"
+				""
+				"如果使用加工模板，则不需要此步骤。"
+			]
+			hide_dependency_lines: true
+			id: "4EBD125B7959B412"
+			subtitle: "超级工匠！"
+			tasks: [{
+				id: "1EF6A8F8F6E56C88"
+				item: "ae2:molecular_assembler"
+				type: "item"
+			}]
+			x: 4.0d
+			y: 2.0d
+		}
+		{
+			description: [
+				"用于制造印刷电路板和处理器，这些在AE2中几乎无所不能。"
+				""
+				"压榨机无法在野外找到，需要手工合成。"
+				""
+				"也可用于将 Certus Quartz 和 Fluix Crystals 压成粉末，但如果你有 GregTech Macerator，它会更快。"
+			]
+			hide_dependency_lines: true
+			icon: "ae2:inscriber"
+			id: "5E10F448F38B7DE3"
+			subtitle: "开始了！"
+			tasks: [
+				{
+					id: "4E63A8183F5EFFDD"
+					item: "ae2:inscriber"
+					type: "item"
+				}
+				{
+					id: "39660EFA71231E19"
+					item: "ae2:calculation_processor_press"
+					type: "item"
+				}
+				{
+					id: "2C4FC66F440E711E"
+					item: "ae2:engineering_processor_press"
+					type: "item"
+				}
+				{
+					id: "4DAD5551E49F237B"
+					item: "ae2:logic_processor_press"
+					type: "item"
+				}
+				{
+					id: "3EF13A0EDD5E664A"
+					item: "ae2:silicon_press"
+					type: "item"
+				}
+			]
+			title: "刻印师 \& 压制机"
+			x: 5.0d
+			y: -1.0d
+		}
+		{
+			dependencies: [
+				"5E10F448F38B7DE3"
+				"700A3F6157EC6803"
+			]
+			description: [
+				"可用于导入或导出物品或流体。"
+				""
+				"在某个槽位上方设置过滤器，可将该物品或流体从网络导出到ME接口。"
+				""
+				"将物品或流体放入没有过滤器的槽位以将其插入网络。"
+				""
+				"通常用于在无法通过 Pattern Provider 返回物品时将其送回系统，或被动地为机器补充物品或流体。"
+				""
+				"例如，电路合成器总是需要液态锡合金或液态锡以及输入物品。输入物品会因电路而异，但流体输入则不会。你可以让ME接口持续将流体输入泵入电路合成器，而模式板只需包含物品输入即可。"
+				""
+				"和终端一样，你也可以制作非完整方块的小型面板版本。"
+			]
+			hide_dependency_lines: true
+			icon: "ae2:interface"
+			id: "0D3349AD94971FD6"
+			optional: true
+			shape: "rsquare"
+			subtitle: "导入/导出！"
+			tasks: [
+				{
+					id: "545F00C1AA561209"
+					item: "ae2:interface"
+					type: "item"
+				}
+				{
+					id: "66CDDD564AA7C6DC"
+					item: "ae2:cable_interface"
+					optional_task: true
+					type: "item"
+				}
+			]
+			x: 4.5d
+			y: 4.0d
+		}
+		{
+			dependencies: [
+				"5E10F448F38B7DE3"
+				"700A3F6157EC6803"
+			]
+			description: [
+				"你的合成存储越大，能自动合成的配方就越多。"
+				""
+				"你的网络连接中至少需要其中一个，它们不必靠近或与合成物品的机器相连。"
+				""
+				"更高级别的储物箱能容纳更多内容，你也可以将多个储物箱堆叠起来以扩大容量。"
+				""
+				"请求合成时，会打开“合成计划”窗口。窗口会显示每种材料所需的数量以及合成的“大小”。大小显示在窗口顶部，格式为“合成计划 - 已使用 X 字节”。合成的物品和用于合成的材料越多，大小就越大。如果可用的合成存储不足，你将无法请求合成。"
+			]
+			hide_dependency_lines: true
+			id: "0FC970B194B0BB19"
+			subtitle: "尽可能造得越大越好！"
+			tasks: [{
+				icon: "ae2:1k_crafting_storage"
+				id: "68D873E5432CB0F5"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "ae2:1k_crafting_storage"
+							}
+							{
+								Count: 1b
+								id: "ae2:4k_crafting_storage"
+							}
+							{
+								Count: 1b
+								id: "ae2:16k_crafting_storage"
+							}
+							{
+								Count: 1b
+								id: "ae2:64k_crafting_storage"
+							}
+							{
+								Count: 1b
+								id: "ae2:256k_crafting_storage"
+							}
+						]
+					}
+				}
+				title: "合成存储系统 Crafting Storage"
+				type: "item"
+			}]
+			title: "合成存储系统 Crafting Storage"
+			x: 5.0d
+			y: 2.0d
+		}
+		{
+			description: [
+				"可为物品（如无线终端）充入AE能量，也可将普通锆石石英充能成带电锆石石英晶体。"
+				""
+				"注意：此设备无法用EU为GregTech物品充电，GregTech有专门的充电方法。部分需要FE的物品可以充电，但其他物品可能需要充电台。"
+			]
+			id: "4A3F8DFD73D62E32"
+			subtitle: "正在给物品充能！"
+			tasks: [{
+				id: "6E21CCB85B13F7A3"
+				item: "ae2:charger"
+				type: "item"
+			}]
+			x: 4.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["4A3F8DFD73D62E32"]
+			description: [
+				"用于部分配方，但主要用于制作Fluix晶体。"
+				""
+				"如果需要从AE2获取Certus Quartz Crystals（通常不需要），将GregTech的Certus Quartz放入Autoclave中，并加入一些Water。也可以使用AE2处理Fluix Crystals等方法，将GregTech的Certus Quartz和一小堆Redstone Dust一起投入，即可转换为AE2版本。"
+				""
+				"使用 Certus Quartz Charger 多方块结构，可以更快地制作 Charged Certus Quartz Crystals，并且两种版本的 Certus Quartz 都可以使用。"
+			]
+			hide_dependency_lines: true
+			id: "06209FAA096BADA7"
+			subtitle: "两种版本都可以进行充能！"
+			tasks: [{
+				id: "605EA51312743658"
+				item: "ae2:charged_certus_quartz_crystal"
+				type: "item"
+			}]
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["06209FAA096BADA7"]
+			description: [
+				"Fluix Crystals 和 Fluix Dust 在 AE2 中用途广泛。"
+				""
+				"将 Charged Certus Quartz Crystals、Redstone Dust 和 Nether Quartz 投入世界中的水源方块中即可合成，或使用 Mixer 制作。"
+			]
+			hide_dependency_lines: true
+			id: "700A3F6157EC6803"
+			subtitle: "水源方块未被消耗！"
+			tasks: [{
+				id: "3A583D690E874272"
+				item: "ae2:fluix_crystal"
+				type: "item"
+			}]
+			x: 4.5d
+			y: 1.0d
+		}
+		{
+			description: [
+				"如你所见，你有一个带存储功能的AE2系统。下方有一个创意能量单元为其供电。你的整个AE2系统将可以免费使用。"
+				""
+				"&n通道是无限的。&r 在 GregTech 中，由于需要处理的机器数量庞大，你不会被通道所限制。如果你想增加挑战性，可以在 AE2 配置中启用它们。"
+				""
+				"AE2 的配方未作修改，方便新手上手。仅添加了辅助配方，用于自动化和获取世界生成物品，如 Press molds 和 Certus Quartz Crystals。你也可以制作 Creative Energy Cell，用于独立网络，但它只能为 AE2 供电。"
+				""
+				"还包含多个附加模组，以支持更广泛的AE2扩展和交互，以及一些自定义的多方块结构，例如能将所有原始输入快速转换为成品处理器的巨型刻印机，以及能如你所想的那样快速批量为Certus石英充能的充电器。"
+				""
+				"本章内容远非全部，仅包含搭建基础自动化合成台所需的基础知识。"
+				""
+				"&6AE2 的几乎所有物品，你都可以将鼠标悬停在上面并按住 [G] 来打开游戏内指南。&r"
+			]
+			icon: {
+				Count: 1
+				id: "ftbquests:custom_icon"
+				tag: {
+					Icon: "gtceu:textures/gui/widget/information.png"
+				}
+			}
+			id: "5F6990F09B6ABAE3"
+			optional: true
+			shape: "gear"
+			subtitle: "快速说明一下！"
+			tasks: [{
+				id: "1FA75D7089EB6D46"
+				title: "关于AE2的一点说明"
+				type: "checkmark"
+			}]
+			title: "Applied Energistics 2"
+			x: 0.0d
+			y: -1.0d
+		}
+		{
+			dependencies: [
+				"700A3F6157EC6803"
+				"5E10F448F38B7DE3"
+				"23FD1322DFB4CA86"
+			]
+			description: [
+				"可从物品栏无线访问你的AE2系统。使用时需要能量，可装备在Curio槽位。早期为其充能的不错方法是使用基础/高级无线玩家充电器，将其藏在基地主要区域的地板下，当你在附近时，装备状态下即可为其充电。"
+				""
+				"要将其连接到网络，你需要在网络中某个地方放置一个ME无线接入点。将无线合成终端插入左上角的插槽，它便会与该网络连接。"
+				""
+				"默认无线范围是32格，不算很远，但你可以在ME无线接入点放置无线增强器来增加范围。它们可以叠加，逐步扩大范围。"
+				""
+				"你也可以使用量子桥卡使范围无限，并从你的网络中实现无线充电。相关任务请参见左侧的量子环和量子桥卡。"
+			]
+			hide_dependency_lines: true
+			icon: "ae2:wireless_crafting_terminal"
+			id: "6EAADE4CC19154FD"
+			optional: true
+			rewards: [{
+				count: 4
+				id: "768B03949AB99506"
+				item: "ae2:wireless_booster"
+				type: "item"
+			}]
+			shape: "rsquare"
+			subtitle: "从你的物品栏中访问你的系统！"
+			tasks: [
+				{
+					id: "234CEF5048FF0C0F"
+					item: "ae2:wireless_crafting_terminal"
+					type: "item"
+				}
+				{
+					id: "63F383CF81310C28"
+					item: "ae2:wireless_access_point"
+					type: "item"
+				}
+			]
+			x: 1.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["4A3F8DFD73D62E32"]
+			description: [
+				"一个能快速一次性产出4个带电的Certus石英晶体的多方块结构。"
+				""
+				"基础时间为0.8秒，提供氮气可将时间缩短一半。"
+				""
+				"接受AE2和GregTech的Certus石英。"
+			]
+			hide_dependency_lines: true
+			icon: "gtceu:certus_quartz_charger"
+			id: "6A5CE0941A5B2C26"
+			optional: true
+			shape: "rsquare"
+			subtitle: "多区块充电器！"
+			tasks: [{
+				id: "6FF9B20E7A5B14E9"
+				item: "gtceu:certus_quartz_charger"
+				type: "item"
+			}]
+			title: "Certus Quartz Charger (M)"
+			x: 3.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["5E10F448F38B7DE3"]
+			description: [
+				"Inscriber 的多方块版本。使用基础材料和可重复使用的模具，能非常快速地制作出成品处理器。"
+				""
+				"基础时间为0.4秒，超频可以降低该数值。"
+			]
+			hide_dependency_lines: true
+			id: "24774662E4449286"
+			optional: true
+			shape: "rsquare"
+			subtitle: "刻印术士，嗡嗡嗡地运转起来..."
+			tasks: [{
+				id: "4B12CCD73327C852"
+				item: "gtceu:large_inscriber"
+				type: "item"
+			}]
+			title: "大型刻印机 (M)"
+			x: 6.0d
+			y: -2.0d
+		}
+		{
+			description: [
+				"Cable Facades 可以放置在 AE2 线缆上，以隐藏线缆，使其看起来像另一个方块。"
+				""
+				"配方太多，藏在EMI里了。在合成网格中，用4个电缆锚点围绕任意方块，就能合成4个该方块类型的电缆外立面。"
+				""
+				"注意，GregTech 也有 Facades，它们仅用于 GregTech 电缆。"
+				""
+				"还有来自 Cable Facades 模组的外立面，可用于整合包中的几乎所有模组。"
+			]
+			icon: {
+				Count: 1
+				id: "ae2:facade"
+				tag: {
+					item: "minecraft:stone"
+				}
+			}
+			id: "1635D377F3044B5A"
+			optional: true
+			shape: "rsquare"
+			subtitle: "隐藏线缆！"
+			tasks: [
+				{
+					id: "797D1EFAE7A4F1B4"
+					item: {
+						Count: 2
+						id: "ae2:facade"
+						tag: {
+							item: "minecraft:stone"
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "0E059E95B9475951"
+					item: { Count: 4, id: "ae2:cable_anchor" }
+					type: "item"
+				}
+			]
+			title: "电缆外立面"
+			x: -2.0d
+			y: 5.0d
+		}
+		{
+			dependencies: ["1BD6A1E7927099F1"]
+			description: [
+				"量子环是一个小型的多方块结构，允许通过网络进行无线传输。"
+				""
+				"用8个ME量子环围成一个正方形，中间放一个ME量子链接室。发送和接收端都需要这个装置。"
+				""
+				"正确放置后，方块会组成一个多方块结构。将电缆连接到发送端，即可启动设备。"
+				""
+				"然后你需要 2 个量子纠缠奇点，每个量子环装置各 1 个。将 1 个插入到每个 ME 量子链接室中。这就是将 2 个装置连接起来的方法。"
+				""
+				"现在你可以从接收端运行一根电缆，它将连接到同一个网络。"
+				""
+				"要获得相互关联的2个量子纠缠奇点，你必须将1个奇点和末影珍珠或末影珍珠粉放置在世界中并引爆。这将把1个奇点转化为2个量子纠缠奇点（即它们共享相同的频率）。注意，普通TNT需要制作，微型TNT也可以使用，制作起来相当简单。"
+				""
+				"你可以用它们来无限旅行，进入你的洁净室，甚至其他维度。"
+			]
+			hide_dependency_lines: true
+			icon: "ae2:quantum_link"
+			id: "251EC7D6E32CA5DE"
+			optional: true
+			shape: "rsquare"
+			subtitle: "无线AE2链接！"
+			tasks: [
+				{
+					count: 8L
+					id: "2F7553BEE1E9DD09"
+					item: { Count: 8, id: "ae2:quantum_ring" }
+					type: "item"
+				}
+				{
+					id: "1CA5EF26C19AE9DD"
+					item: "ae2:quantum_link"
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "282C5F9EDB9BA700"
+					item: "ae2:quantum_entangled_singularity"
+					match_nbt: false
+					type: "item"
+				}
+			]
+			title: "量子戒指 (M)"
+			x: 0.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["700A3F6157EC6803"]
+			description: [
+				"既然你理解了量子环和量子纠缠奇点，那么现在就是量子桥梁卡了。"
+				""
+				"将其插入无线终端，即可实现无线充电和无限距离传输。"
+				""
+				"要使其生效，你还需要一个量子纠缠奇点放在量子环中，另一个则放在无线终端的专用插槽里，该插槽位于GUI右侧的“查看单元”和“磁卡”插槽之间。"
+			]
+			hide_dependency_lines: true
+			id: "57B39432E87D4120"
+			optional: true
+			shape: "rsquare"
+			subtitle: "无线充电！"
+			tasks: [{
+				id: "33D7EB5C54316C49"
+				item: "ae2wtlib:quantum_bridge_card"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 5.0d
+		}
+		{
+			description: [
+				"AE2 Things（是的，这就是模组名）是AE2的一个附加模组，包含不占用类型限制的存储单元。"
+				""
+				"不想折腾类型限制的话，可以看看他们从1k到256k的磁盘驱动选项。"
+				""
+				"在EMI中搜索 @ae2things 看看它们能提供什么。"
+			]
+			icon: {
+				Count: 1
+				id: "ftbquests:custom_icon"
+				tag: {
+					Icon: "gtceu:textures/gui/widget/information.png"
+				}
+			}
+			id: "19A404524F2DB799"
+			optional: true
+			shape: "gear"
+			subtitle: "不想受类型限制吗？"
+			tasks: [{
+				id: "69C601BE3BE2F055"
+				title: "AE2 相关物品"
+				type: "checkmark"
+			}]
+			x: -2.0d
+			y: 0.0d
+		}
+		{
+			description: [
+				"Mega Cells 是 AE2 的一个附加模组，支持更大尺寸的单元、存储、接口、配方提供者等。"
+				""
+				"在 EMI 中搜索 @megacells，看看它们能提供什么。"
+			]
+			icon: {
+				Count: 1
+				id: "ftbquests:custom_icon"
+				tag: {
+					Icon: "gtceu:textures/gui/widget/information.png"
+				}
+			}
+			id: "72F895F2FED546F3"
+			optional: true
+			shape: "gear"
+			subtitle: "顾名思义……"
+			tasks: [{
+				id: "1BDFACC936D930C6"
+				title: "巨型细胞"
+				type: "checkmark"
+			}]
+			x: -2.0d
+			y: 1.0d
+		}
+		{
+			description: [
+				"Extended AE 是 AE2 的一个附加模组，提供了一些增强型机器，如扩展模式提供器、接口、刻写器、充电器、驱动器、电路切片器（用方块一次性制作9个）等。"
+				""
+				"在EMI中搜索 @extentedae，看看他们能提供什么。"
+			]
+			icon: {
+				Count: 1
+				id: "ftbquests:custom_icon"
+				tag: {
+					Icon: "gtceu:textures/gui/widget/information.png"
+				}
+			}
+			id: "07EA34F2415FEBB2"
+			optional: true
+			shape: "gear"
+			subtitle: "还有更多内容！"
+			tasks: [{
+				id: "657D34A09FD48527"
+				title: "扩展自动化系统 (Extended AE)"
+				type: "checkmark"
+			}]
+			x: -2.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["23FD1322DFB4CA86"]
+			description: ["Fullblock Energistics 是 AE2 的一个基础附加模组，如你所料，它制作了终端和监视器的完整方块版本。"]
+			hide_dependency_lines: true
+			id: "4D287F0677AAE373"
+			optional: true
+			shape: "rsquare"
+			subtitle: "完整方块能源系统！"
+			tasks: [{
+				id: "6B4A6CAA6E8ECB2F"
+				item: "fulleng:crafting_terminal"
+				type: "item"
+			}]
+			x: 1.0d
+			y: -1.0d
+		}
+		{
+			description: [
+				"Advanced AE 是 AE2 的一个附加模组，包含一些相当强大的功能，涉及制造机、总线、配方提供者、一套可与你的 AE 系统以特定方式配合使用的高度模块化盔甲等等。"
+				""
+				"在EMI中搜索@advanced_ae，看看他们能提供什么。"
+			]
+			icon: {
+				Count: 1
+				id: "ftbquests:custom_icon"
+				tag: {
+					Icon: "gtceu:textures/gui/widget/information.png"
+				}
+			}
+			id: "5814A0DC6E55ACC8"
+			optional: true
+			shape: "gear"
+			subtitle: "更多内容与模块化盔甲！"
+			tasks: [{
+				id: "14AFEB4EC9EB5D5C"
+				title: "高级自动化系统 (Advanced AE)"
+				type: "checkmark"
+			}]
+			x: -2.0d
+			y: 3.0d
+		}
+		{
+			description: [
+				"这里有很多内容要读，但如果你不了解AE2 Crafting CPUs，最好还是通读一遍。"
+				""
+				"AE2 在执行任何自动合成任务时，都会使用所谓的“合成 CPU”。如果你在 EMI 中搜索，是找不到任何东西的。从技术上讲，它们是一个单独方块或由 1 个或多个元素组成的多方块结构。"
+				""
+				"只要连接到网络，制造CPU可以放在任何地方。它们不需要靠近正在制造的东西，只需连接到同一网络即可。"
+				""
+				"唯一技术上必需的物品是 &2Crafting Storage&r。它有多种尺寸，但技术上只需 1 个 Crafting Storage 即可被视为 Crafting CPU，不过还有其他东西可以增强其能力，你也可以将多个 Crafting Storage 堆叠起来以扩大尺寸。"
+				""
+				"另一个可选部件是&2合成协同处理器&r。它能让配方提供者更快地发送更多材料来执行合成任务。你可以拥有多个合成协同处理器，这样在涉及多台机器或机器处理速度极快时，就能并行处理多项事务。"
+				""
+				"另一个可选部件是&2合成监视器&r。它只是用来查看合成CPU当前在做什么。每个合成CPU最多只能有一个。"
+				""
+				"另一个可选部件是&2合成单元&r。虽然它是其他部件的基础合成组件，但如果你没有足够的其他方块来填充，它也可以用来填充合成CPU的空缺以使其形状正确，更多细节见下文。"
+				""
+				"合成CPU &6必须呈特定形状&r才能正常工作，但要求比较灵活。单个合成存储方块有效。任意方向相邻的2个方块也有效。但当3个或以上方块相连时，则有特定条件。基本结构必须为某种长方体。L形的3个方块无效。必须是某种方形或矩形才有效。有效结构中的方块会改变纹理。"
+				""
+				"最后要说明的是，每个合成任务都会使用一个 Crafting CPU。请求1个或1000个同种物品仍然会消耗1个 Crafting CPU，只是合成计划的规模会变化。如果你想请求10个铁板和10个铁齿轮，每个合成任务都需要一个 Crafting CPU。因此，只拥有一个 Crafting CPU 并不是理想的选择。"
+			]
+			icon: {
+				Count: 1
+				id: "ftbquests:custom_icon"
+				tag: {
+					Icon: "gtceu:textures/gui/widget/information.png"
+				}
+			}
+			id: "7264C6CBFF72640F"
+			optional: true
+			shape: "gear"
+			subtitle: "什么是 Crafting CPU？"
+			tasks: [{
+				id: "4A340755045AE51D"
+				title: "“制作CPU”"
+				type: "checkmark"
+			}]
+			x: 6.0d
+			y: 2.0d
+		}
+		{
+			dependencies: [
+				"2B816005CA6F01E2"
+				"5E10F448F38B7DE3"
+				"700A3F6157EC6803"
+			]
+			description: [
+				"ME 扩展驱动器是标准 ME 驱动器的直接升级，可容纳 20 个存储单元而非 10 个。"
+				""
+				"功能上完全一样，只是容量更大。"
+			]
+			hide_dependency_lines: true
+			id: "3CC3887E4BEFA1BD"
+			optional: true
+			shape: "rsquare"
+			subtitle: "最多可容纳 20 个存储单元！"
+			tasks: [{
+				id: "36B11573222E8912"
+				item: "expatternprovider:ex_drive"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 1.0d
+		}
+		{
+			dependencies: [
+				"5E10F448F38B7DE3"
+				"700A3F6157EC6803"
+			]
+			description: [
+				"很简单，ME导入总线将物品导入系统，而ME导出总线则将物品导出系统。"
+				""
+				"你可以在GUI中设置过滤器，并插入加速卡来提高导入或导出的速度。"
+				""
+				"为避免卡顿，若数秒内无操作，系统会进入慢速模式，再次交互时会恢复全速。因此，若持续交互，速度会保持正常，结果会即时显现。但若交互间隔数秒以上，则可能出现延迟。通常每秒有4次操作。每张加速卡可增加每次操作交互的物品数量。"
+			]
+			hide_dependency_lines: true
+			icon: "ae2:import_bus"
+			id: "451698A77103A2E4"
+			optional: true
+			shape: "rsquare"
+			tasks: [
+				{
+					id: "57849F82F89DD104"
+					item: "ae2:import_bus"
+					type: "item"
+				}
+				{
+					id: "3C3C9302135BFBC3"
+					item: "ae2:export_bus"
+					type: "item"
+				}
+			]
+			title: "ME 导入 \& 导出总线"
+			x: 4.5d
+			y: 5.0d
+		}
+		{
+			dependencies: ["5E10F448F38B7DE3"]
+			description: [
+				"AE2 使用“升级卡”，可以安装在大多数设备中，以改变或增强其功能。升级卡的提示文本会说明它可以安装在哪些设备上，以及安装数量。"
+				""
+				"有基础卡和高级卡，可以合成成不同的升级卡。"
+				""
+				"基础卡牌可用于制作以下物品："
+				"红石卡"
+				"容量卡"
+				"溢出破坏卡"
+				"合成配方卡"
+				""
+				"由于升级卡种类繁多，功能各异，如需更多信息，请将鼠标悬停在升级卡上并按住 [G] 键，查看游戏内 AE2 指南。"
+			]
+			hide_dependency_lines: true
+			id: "507CC11A871D3512"
+			optional: true
+			shape: "rsquare"
+			subtitle: "不适用于加速卡！"
+			tasks: [{
+				id: "3F8E23E27080BAAC"
+				item: "ae2:basic_card"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5E10F448F38B7DE3"]
+			description: [
+				"高级卡牌可用于制作以下物品："
+				"毛茸茸的卡片"
+				"加速卡"
+				"反相器卡"
+				"平均分配卡"
+				"能量卡"
+				"更强大的能量卡"
+				"磁卡"
+				"压缩卡"
+				""
+				"由于升级卡种类繁多，功能各异，如需更多信息，请将鼠标悬停在升级卡上并按住 [G] 键，查看游戏内 AE2 指南。"
+			]
+			hide_dependency_lines: true
+			id: "3AD3E1BF7C0888E9"
+			optional: true
+			shape: "rsquare"
+			subtitle: "为了加速卡！"
+			tasks: [{
+				id: "56103A7A678DB5F1"
+				item: "ae2:advanced_card"
+				type: "item"
+			}]
+			x: 7.0d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"5E10F448F38B7DE3"
+				"700A3F6157EC6803"
+			]
+			description: [
+				"物质凝聚器顾名思义，可将物质凝聚成奇点或物质球。物质球实用性不高，但奇点很有用，而且EMI的配方可能有点误导性。"
+				""
+				"物质凝聚器有3种模式，注意默认模式就是个垃圾桶，会把放进去的东西都清空。"
+				""
+				"第二种模式用于制作物质球，第三种模式用于制作奇点。"
+				""
+				"要制作奇点，先将其设为正确模式。然后需要输入一个 64K ME 存储组件或更高，但 256K 的不会有任何增益。"
+				""
+				"物质凝聚器会接受物品或流体，并将输入“凝聚”成一个奇点。制造一个奇点需要256,000个物品或一桶流体。此过程不会消耗ME存储组件。"
+				""
+				"奇点有多种用途，但主要用于与量子环配合使用的量子纠缠奇点。下方的量子环任务会解释这一点，但基本上就是用末影珍珠或末影珍珠粉引爆奇点，以获得2个相互关联的量子纠缠奇点。"
+				""
+				"如果需要大量奇点，可以考虑使用 Expanded IO Port + ME Infinity Water Cell 将物质直接以极快的速度推入 Matter Condenser。"
+			]
+			hide_dependency_lines: true
+			icon: "ae2:condenser"
+			id: "1BD6A1E7927099F1"
+			optional: true
+			shape: "rsquare"
+			subtitle: "正在压缩物质！"
+			tasks: [
+				{
+					id: "721764031CA80A17"
+					item: "ae2:condenser"
+					type: "item"
+				}
+				{
+					id: "3B28D1B350C5D220"
+					item: "ae2:singularity"
+					type: "item"
+				}
+			]
+			x: 0.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["1BD6A1E7927099F1"]
+			description: [
+				"量子计算机是一种多区块的制造CPU，拥有极大的存储容量和众多的协处理器线程。"
+				""
+				"制作最基础版本，你只需要量子计算机核心和26块量子计算机结构玻璃。这将是一个3*3*3的量子计算机结构玻璃立方体，中心放置量子计算机核心。这将提供一个拥有256M存储和8个协处理线程的制造CPU。"
+				""
+				"最大尺寸为 7*7*7，你还可以在内部添加更多方块以获得额外功能。"
+				""
+				"量子计算机必须恰好有1个量子计算机核心，所有外表面都必须是量子计算机结构玻璃。内部不能有任何空隙，也不能包含任何量子计算机结构玻璃。内部的核心在形成时会改变形状和纹理，当有电力时，量子计算机结构玻璃的边缘会发光。"
+				""
+				"128M 和 256M 量子计算机存储将增加量子计算机的总合成存储。"
+				""
+				"量子数据纠缠器将使量子计算机的总合成存储容量乘以4。 &6每个量子计算机仅限1个。&r"
+				""
+				"量子加速器将为量子计算机添加 8 个协处理器线程。"
+				""
+				"量子计算机多线程器将使总协处理线程数乘以4。 &6每台量子计算机限1个。&r"
+				""
+				"量子合成单元可用于填充多方块结构中的空缺，但没有额外功能，它们只是能填充空白的普通合成方块。"
+				""
+				"最基础的 3*3*3 设置。"
+				"{image:kubejs:textures/questimages/quantum_computer.png width:200 height:125 align:center}"
+			]
+			hide_dependency_lines: true
+			icon: "advanced_ae:quantum_core"
+			id: "1A379B2F7BBF9810"
+			optional: true
+			shape: "rsquare"
+			subtitle: "高级自动化工程！"
+			tasks: [
+				{
+					id: "2C286C4D084BE856"
+					item: "advanced_ae:quantum_core"
+					type: "item"
+				}
+				{
+					id: "29EC4A24630349B3"
+					item: "advanced_ae:quantum_structure"
+					type: "item"
+				}
+			]
+			title: "量子计算机"
+			x: 2.0d
+			y: 4.0d
+		}
+		{
+			dependencies: [
+				"5E10F448F38B7DE3"
+				"700A3F6157EC6803"
+			]
+			description: [
+				"EU P2P Tunnel 允许你通过 AE2 网络传输 EU。它仍然遵循正常的 GregTech 规则，例如向低等级机器输入更高电压会导致机器爆炸，电缆也会被烧毁。"
+				""
+				"要将 P2P 隧道与 EU 同步，请使用任意 GregTech 线切割机（无需是动力版）作用于基础 ME P2P 隧道。你也可以在装配器中用编程电路值从任意 P2P 隧道合成。此规则适用于所有 P2P 隧道。"
+				""
+				"它们不会改变电压等级，只是让两个EU P2P隧道之间没有间隔。"
+				""
+				"注意，当 GregTech 电缆或电线存在时，EU Multi P2P Tunnels 无法正常工作。将 EU Multi P2P Tunnels 直接连接到源和目的地可以正常工作，但如果使用了任何电缆或电线，它们将无法正常工作。不过，普通的 EU P2P Tunnel 可以与电缆或电线正常交互。"
+				""
+				"在与单个多区块结构中的变压器和多个标准能量舱互动时也存在问题。在变压器或能量舱前放置电池缓冲器似乎可以解决问题，而使用多个多安能量舱的效果似乎优于多个标准能量舱。"
+				""
+				"虽然它们有时有点固执，但从技术上讲，EU传输永远不需要超导体，只需要配方需要它们，而这些配方通常要到IV场发电机阶段才会用到。"
+			]
+			hide_dependency_lines: true
+			icon: "mae2:eu_p2p_tunnel"
+			id: "31AD9D29F4176C33"
+			optional: true
+			shape: "rsquare"
+			subtitle: "通过AE实现EU自动化！"
+			tasks: [
+				{
+					id: "0385D268078E44AE"
+					item: "mae2:eu_p2p_tunnel"
+					type: "item"
+				}
+				{
+					id: "312D504CA7F1715F"
+					item: "mae2:eu_multi_p2p_tunnel"
+					type: "item"
+				}
+			]
+			title: "EU P2P 隧道"
+			x: 2.0d
+			y: 3.0d
+		}
+		{
+			description: [
+				"Modern AE2 Additions 是 AE2 的一个附加模组，包含从 4x 到 256x 的更大型联合处理单元、一些额外的 P2P 隧道以及其他内容。"
+				""
+				"除了更大的 Crafting Co-Processing Units，EU P2P Tunnels 很可能是本模组的首选。"
+				""
+				"它们的工作符合预期，将EU通过AE2网络传输。它们遵循GregTech的电压规则，即电压等级必须匹配，否则会导致爆炸或烧毁。它们不会转换电压等级，只是表现得像两个EU P2P隧道之间没有电压差一样。"
+			]
+			icon: {
+				Count: 1
+				id: "ftbquests:custom_icon"
+				tag: {
+					Icon: "gtceu:textures/gui/widget/information.png"
+				}
+			}
+			id: "774692037530960C"
+			optional: true
+			shape: "gear"
+			subtitle: "EU P2P \& more!"
+			tasks: [{
+				id: "6E517E5309717946"
+				title: "现代AE2附加内容"
+				type: "checkmark"
+			}]
+			x: -2.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["1BD6A1E7927099F1"]
+			description: [
+				"高级自动化盔甲提供了一套高度模块化的护甲。可以使用升级卡进行升级，所有升级卡都由量子升级基础卡制作而成。这套护甲制作成本较高，但搭配所有升级卡后能发挥巨大作用。"
+				""
+				"要安装升级卡，你需要穿戴盔甲并使用快捷键（在选项中设置），然后选择你穿戴的盔甲部件。"
+				""
+				"要将护甲部件连接到网络，方法与无线终端相同，只需将其插入 ME 无线接入点的右上角插槽即可。"
+				""
+				"每件盔甲的提示框都会显示其可接受的效果。胸甲默认可抵消飞行时的挖掘速度惩罚。靴子默认可抵消坠落伤害。"
+				""
+				"由于有许多升级可用，值得注意的包括 ME Recharging、Night Vision、Flight、Walk/Sprint Speed、Reach、Step Assist 和 Flight Drift。"
+				""
+				"虽然天使环显然已经可以飞行，但飞行漂移卡会取消在空中试图停止时的“滑翔”效果，类似于龙进化套装的惯性抵消效果。要让飞行漂移卡生效，你还需要飞行卡。"
+				""
+				"ME Recharging Card 会为其安装的每件护甲从网络中充电，若安装在胸甲上，还会为背包中的物品充电（可惜不包括 GregTech 物品）。"
+			]
+			hide_dependency_lines: true
+			icon: {
+				Count: 1
+				id: "advanced_ae:quantum_chestplate"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "533294773F44A6C8"
+			optional: true
+			shape: "rsquare"
+			subtitle: "高度模块化的盔甲套装！"
+			tasks: [
+				{
+					id: "1A849E65D4FA1476"
+					item: {
+						Count: 1
+						id: "advanced_ae:quantum_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "4AF59A82245EC1C5"
+					item: {
+						Count: 1
+						id: "advanced_ae:quantum_chestplate"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "1442BDFFD098EADF"
+					item: {
+						Count: 1
+						id: "advanced_ae:quantum_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "6C4E701A23D3D55F"
+					item: {
+						Count: 1
+						id: "advanced_ae:quantum_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "656DACA437D375B7"
+					item: "advanced_ae:quantum_upgrade_base"
+					type: "item"
+				}
+			]
+			title: "量子盔甲"
+			x: 2.0d
+			y: 5.0d
+		}
+		{
+			dependencies: [
+				"24077F274DED7F5B"
+				"507CC11A871D3512"
+			]
+			description: [
+				"插入此卡的模式提供器将更改电路编号，而不是将编程电路推入 GregTech 机器。"
+				""
+				"将程序化电路包含在模式中。即使网络中没有程序化电路，它也能正常工作。每次都手动放置很不方便，因此修改了行为，在从 EMI 注册配方时会包含程序化电路。"
+				""
+				"将编程电路卡放入模式提供器的升级槽中。 &6别忘了将模式提供器设置为阻塞模式。&r"
+				""
+				"注意：如果多个模式提供器相邻于同一机器，阻塞模式可能无法正常工作。"
+				""
+				"编程电路不会出现在合成配方中。如果出现，请检查模式提供器中是否安装了编程电路卡。"
+				""
+				"&a支持大多数AE2附加模组中的模式提供者。&r"
+			]
+			hide_dependency_lines: true
+			id: "749B9175264E4B4D"
+			shape: "rsquare"
+			size: 1.0d
+			subtitle: "自动设置机器电路值！"
+			tasks: [{
+				id: "4E673BCDE5E51A3C"
+				item: "pccard:card_programmed_circuit"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["617B498A98E3C9F1"]
+			description: [
+				"与普通模式提供器相同，但有 72 个模式槽位。"
+				""
+				"Expanded Pattern Provider Upgrade 可以将基础 AE2 Pattern Provider 升级为 Expanded Pattern Provider，同时保留其中的模式。"
+			]
+			hide_dependency_lines: true
+			icon: "expandedae:exp_pattern_provider"
+			id: "64F2CFC5B16C3BBA"
+			optional: true
+			shape: "rsquare"
+			subtitle: "72 个模式栏位！"
+			tasks: [
+				{
+					id: "10D53E8518F9A641"
+					item: "expandedae:exp_pattern_provider"
+					type: "item"
+				}
+				{
+					id: "057B8363897D4B53"
+					item: "expandedae:exp_pattern_provider_part"
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "71C186A19A7612D1"
+					item: "expandedae:exp_pattern_provider_upgrade"
+					type: "item"
+				}
+			]
+			x: 6.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["700A3F6157EC6803"]
+			description: [
+				"可用于拾取大多数AE2方块实体，同时保留其设置和物品栏。"
+				""
+				"非常适合移动模式提供器和ME驱动器。"
+				""
+				"有耐久度，但可以附魔“不损坏”和“修补”。"
+			]
+			hide_dependency_lines: true
+			id: "3870182CB96FD565"
+			optional: true
+			shape: "rsquare"
+			subtitle: "轻松移动物品！"
+			tasks: [{
+				id: "6619A6A208D2BBAD"
+				item: {
+					Count: 1
+					id: "expatternprovider:me_packing_tape"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 3.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["700A3F6157EC6803"]
+			description: [
+				"连接到AE2网络后，与任务相关的物品进入网络时会被检测到，这样你就不用手动拿着物品了。"
+				""
+				"这样就能更轻松地自动化所有结果到网络中，而无需为了任务再把它们取出来。"
+			]
+			hide_dependency_lines: true
+			id: "058CA07134F64471"
+			optional: true
+			shape: "rsquare"
+			tasks: [{
+				id: "00805F9E6FFA29F0"
+				item: "ae2_ftbquest_detector:me_quests_detector"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["49ACC5BBBF501EB4"]
+			description: [
+				"与ME Level Emitter相同，但可以设置最小和最大数量。"
+				""
+				"这样你可以在数量低于某个值时发送红石信号，并在达到某个值时停止。"
+				""
+				"和往常一样，你可以通过左侧的GUI按钮来反转红石的行为。"
+				""
+				"在很多方面都非常有用，比如用聚变反应堆生产等离子燃料。你可以设置当燃料储存的液位下降到一定数量（如3000桶）时启动聚变反应堆，当达到更高数量（如3995桶）时关闭。这能有效避免因少量燃料消耗而导致聚变反应堆频繁启停的情况。"
+				""
+				"显然在许多其他情况下也很有用，但这只是一个你可以借鉴逻辑的实际例子。"
+			]
+			id: "228FD546E3FEEBBB"
+			optional: true
+			shape: "rsquare"
+			subtitle: "基于阈值存储水平的红石信号！"
+			tasks: [{
+				id: "29968E92FF451801"
+				item: "expatternprovider:threshold_level_emitter"
+				type: "item"
+			}]
+			x: 9.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["57849F82F89DD104"]
+			description: [
+				"ME Threshold Export Bus 的工作方式与 ME Export Bus 基本相同，但你可以设置网络中必须满足的物品或流体最小或最大数量才能进行导出。"
+				""
+				"你可以在过滤槽中正常设置要导出的物品或流体，然后通过中键点击过滤槽来为其设置阈值数量。"
+				""
+				"你可以将ME阈值导出总线设置为仅在系统能看到低于或高于该阈值数量时激活。"
+				""
+				"使用界面左侧的按钮来切换阈值以上或以下的设置。"
+				""
+				"例如，你可以设置它导出钌粉，但前提是系统中至少有500个钌粉，这样你的储物空间里还能剩下一些，不至于全部导出。"
+			]
+			id: "263FDC4D3BA7F3CE"
+			optional: true
+			shape: "rsquare"
+			subtitle: "根据存储水平进行导出！"
+			tasks: [{
+				id: "062A189DF8CD586E"
+				item: "expatternprovider:threshold_export_bus"
+				type: "item"
+			}]
+			x: 9.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5E10F448F38B7DE3"]
+			description: [
+				"ME 等级发射器既简单又实用。"
+				""
+				"你可以为其设置一个要读取的物品或流体，以及一个数量。"
+				""
+				"左侧有一个切换按钮，用于在低于或高于设定数量时发出信号之间切换。"
+				""
+				"可以根据存储量轻松开关设备，非常适合控制那些能根据物品存量自动关闭的被动装置。"
+				""
+				"如果使用 GregTech 机器，机器需要安装 Machine Controller Cover 才能接收红石信号。"
+			]
+			hide_dependency_lines: true
+			id: "49ACC5BBBF501EB4"
+			optional: true
+			shape: "rsquare"
+			subtitle: "基于存储水平的红石信号！"
+			tasks: [{
+				id: "5FDA0039E65467A0"
+				item: "ae2:level_emitter"
+				type: "item"
+			}]
+			x: 8.0d
+			y: -1.0d
+		}
+	]
+	subtitle: ["基础操作就够了！"]
+	title: "Applied Energistcs 2"
+}

@@ -1,0 +1,872 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "power_generation"
+	group: "1A13CCEB71BED4A8"
+	id: "1F0B281F0C109FF2"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["创造的能量单位"]
+			icon: "create:cogwheel"
+			id: "42AEFFA5696CBC1E"
+			shape: "square"
+			tasks: [{
+				id: "2B21ADC1FFF260F3"
+				title: "创建压力单位 (Create Stress Units)"
+				type: "checkmark"
+			}]
+			x: -9.5d
+			y: 0.5d
+		}
+		{
+			description: ["本章并非“任务”章节，更像是“信息”章节。你无需“完成”本章中的每一个任务"]
+			id: "2084A0F551D7FCB3"
+			shape: "rsquare"
+			tasks: [{
+				id: "379EEC5A11E9998F"
+				title: "小纸条"
+				type: "checkmark"
+			}]
+			x: -13.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["42AEFFA5696CBC1E"]
+			description: ["将流动的水转化为 SU"]
+			id: "619FD663908BFE00"
+			subtitle: "被动生物"
+			tasks: [{
+				id: "0066D320BC00513F"
+				item: {
+					Count: 1b
+					id: "itemfilters:or"
+					tag: {
+						RepairCost: 0
+						display: {
+							Name: "{\"text\":\"Water Wheels\"}"
+						}
+						items: [
+							{
+								Count: 1b
+								id: "create:water_wheel"
+							}
+							{
+								Count: 1b
+								id: "create:large_water_wheel"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			x: -9.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["42AEFFA5696CBC1E"]
+			description: ["将风力转化为 SU"]
+			id: "66E5B9BBD29A3938"
+			subtitle: "被动生物"
+			tasks: [{
+				id: "7D31B53A8598B33B"
+				item: "create:windmill_bearing"
+				type: "item"
+			}]
+			x: -9.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["42AEFFA5696CBC1E"]
+			description: ["蒸汽进入 SU"]
+			id: "1FF703B9C6367F79"
+			subtitle: "水+加热"
+			tasks: [{
+				id: "17288B064662265B"
+				item: "create:steam_engine"
+				type: "item"
+			}]
+			x: -9.5d
+			y: -3.0d
+		}
+		{
+			description: ["Pneumaticcraft 的能量单位"]
+			icon: "pneumaticcraft:air_compressor"
+			id: "321A0605D0E40407"
+			shape: "square"
+			tasks: [{
+				id: "29A66253DBDA3241"
+				title: "Pneumaticcraft"
+				type: "checkmark"
+			}]
+			title: "Pneumaticcraft 压缩空气"
+			x: -6.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["42AEFFA5696CBC1E"]
+			description: ["将SU转换为Pneumaticcraft的压缩空气"]
+			id: "3F323DC3A4E739A6"
+			subtitle: "创建->Pneumaticcraft"
+			tasks: [{
+				id: "7974A9E9381A0B25"
+				item: "compressedcreativity:rotational_compressor"
+				type: "item"
+			}]
+			x: -8.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["321A0605D0E40407"]
+			description: ["将压缩空气输入 Create SU"]
+			id: "64622A1D9A302FD5"
+			subtitle: "Pneumaticcraft->创建"
+			tasks: [{
+				id: "1D1F38B37F6D8E5D"
+				item: "compressedcreativity:compressed_air_engine"
+				type: "item"
+			}]
+			x: -8.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["321A0605D0E40407"]
+			description: ["将可燃固体燃料转化为压缩空气"]
+			id: "0D0F3EE06639650B"
+			subtitle: "固体燃料"
+			tasks: [{
+				id: "3B880CC68321FBAF"
+				item: {
+					Count: 1b
+					id: "itemfilters:or"
+					tag: {
+						RepairCost: 0
+						display: {
+							Name: "{\"text\":\"Air Compressors\"}"
+						}
+						items: [
+							{
+								Count: 1b
+								id: "pneumaticcraft:air_compressor"
+							}
+							{
+								Count: 1b
+								id: "pneumaticcraft:advanced_air_compressor"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			x: -6.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["321A0605D0E40407"]
+			description: ["将液体燃料转化为压缩空气"]
+			id: "11156A58101C327E"
+			subtitle: "液态燃料"
+			tasks: [{
+				id: "7EE67E1FCD137757"
+				item: {
+					Count: 1b
+					id: "itemfilters:or"
+					tag: {
+						RepairCost: 0
+						display: {
+							Name: "{\"text\":\"Liquid Compressors\"}"
+						}
+						items: [
+							{
+								Count: 1b
+								id: "pneumaticcraft:liquid_compressor"
+							}
+							{
+								Count: 1b
+								id: "pneumaticcraft:advanced_liquid_compressor"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			x: -6.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["321A0605D0E40407"]
+			description: ["将阳光转化为压缩空气。热量提高效率，但若过热则需要维修"]
+			id: "6848FE7CC49186FD"
+			subtitle: "被动生物*"
+			tasks: [{
+				id: "78229EEA2A9ADF2A"
+				item: "pneumaticcraft:solar_compressor"
+				type: "item"
+			}]
+			x: -6.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["321A0605D0E40407"]
+			description: ["将区块温度的差异转化为压缩空气。有温度的区块会显示在JEI中"]
+			id: "5520ECD7AE70BA65"
+			subtitle: "需要温差才能完成此任务"
+			tasks: [{
+				id: "5A0F549EA3404A80"
+				item: "pneumaticcraft:thermal_compressor"
+				type: "item"
+			}]
+			x: -6.5d
+			y: -4.5d
+		}
+		{
+			dependencies: ["321A0605D0E40407"]
+			description: ["通过闪电产生大量压缩空气。难以稳定维持，除非你清楚自己在做什么，否则不建议使用"]
+			id: "18BC1A998D6B86AF"
+			subtitle: "被动生物**"
+			tasks: [{
+				id: "0EAFC7B6F0CBE23C"
+				item: "pneumaticcraft:electrostatic_compressor"
+				type: "item"
+			}]
+			x: -6.5d
+			y: -5.5d
+		}
+		{
+			description: [
+				"统一了众多模组的电力能量单位"
+				"有&l太多&rFE发电机了，这只是其中几个而已"
+			]
+			icon: "mekanism:basic_energy_cube"
+			id: "476F3884D256DE28"
+			shape: "square"
+			tasks: [{
+				id: "0FF97A0CC56847C6"
+				title: "Forge 能量"
+				type: "checkmark"
+			}]
+			x: -3.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["476F3884D256DE28"]
+			description: ["将Forge能量转化为压缩空气。会产生热量，必须冷却"]
+			id: "5F9E5E52C79FAAEA"
+			subtitle: "FE->Pneumaticcraft"
+			tasks: [{
+				id: "243F0B4E77E58D6F"
+				item: "pneumaticcraft:flux_compressor"
+				type: "item"
+			}]
+			x: -5.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["321A0605D0E40407"]
+			description: ["将压缩空气转换为Forge能量。会产生热量，必须冷却"]
+			id: "35735EA533B77963"
+			subtitle: "Pneumaticcraft->FE"
+			tasks: [{
+				id: "35213F174527996F"
+				item: "pneumaticcraft:pneumatic_dynamo"
+				type: "item"
+			}]
+			x: -5.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["42AEFFA5696CBC1E"]
+			description: ["将压力单位转换为Forge能量"]
+			id: "73F51E20DD191DF7"
+			subtitle: "创建->FE"
+			tasks: [{
+				id: "2265D1EF28074FEA"
+				item: "createaddition:alternator"
+				type: "item"
+			}]
+			x: -11.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["476F3884D256DE28"]
+			description: ["将Forge能量转换为压力单位"]
+			id: "604038DE72255C7B"
+			subtitle: "FE->创建"
+			tasks: [{
+				id: "1EF7BBC4DB17F517"
+				item: "createaddition:electric_motor"
+				type: "item"
+			}]
+			x: -2.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["476F3884D256DE28"]
+			description: ["将风车或水车连接到动能发电机，被动地产生FE"]
+			id: "665A1196D2CC650F"
+			subtitle: "被动生物"
+			tasks: [
+				{
+					id: "41724D070B2FB737"
+					item: "immersiveengineering:dynamo"
+					type: "item"
+				}
+				{
+					id: "7674E10A831BD652"
+					item: {
+						Count: 1b
+						id: "itemfilters:or"
+						tag: {
+							RepairCost: 0
+							display: {
+								Name: "{\"text\":\"Kinetic Generators\"}"
+							}
+							items: [
+								{
+									Count: 1b
+									id: "immersiveengineering:watermill"
+								}
+								{
+									Count: 1b
+									id: "immersiveengineering:windmill"
+								}
+							]
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "动能发电机"
+			x: -2.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["476F3884D256DE28"]
+			description: [
+				"利用温差产生FE能量"
+				"与 Pneumaticcraft 的温度不同，请在工程师手册中查询具有温度的方块"
+			]
+			id: "5819E1F09C4635B5"
+			subtitle: "被动生物"
+			tasks: [{
+				id: "34221AE5317751D1"
+				item: "immersiveengineering:thermoelectric_generator"
+				type: "item"
+			}]
+			x: -3.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["476F3884D256DE28"]
+			description: [
+				"将闪电转化为FE能量。"
+				"难以稳定维持，除非你清楚自己在做什么，否则不建议使用"
+			]
+			icon: "immersiveengineering:lightning_rod"
+			id: "0280CA3E47C3F781"
+			subtitle: "被动生物**"
+			tasks: [{
+				icon: "immersiveengineering:lightning_rod"
+				id: "44D21C0A7FFE3FA0"
+				observe_type: 0
+				timer: 0L
+				title: "注视对象：引雷针 (Lightning Rod)"
+				to_observe: "immersiveengineering:lightning_rod"
+				type: "observation"
+			}]
+			title: "引雷针"
+			x: -3.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["476F3884D256DE28"]
+			description: ["Thermal Expansion 的发电机用燃料产生 FE。燃料取决于发电机类型。可升级以提高速度和/或效率"]
+			id: "02C7B53B6B216D63"
+			tasks: [{
+				id: "07B8762AFD97A600"
+				item: {
+					Count: 1b
+					id: "itemfilters:or"
+					tag: {
+						RepairCost: 0
+						display: {
+							Name: "{\"text\":\"Thermal Dynamos\"}"
+						}
+						items: [
+							{
+								Count: 1b
+								id: "thermal:dynamo_stirling"
+							}
+							{
+								Count: 1b
+								id: "thermal:dynamo_compression"
+							}
+							{
+								Count: 1b
+								id: "thermal:dynamo_magmatic"
+							}
+							{
+								Count: 1b
+								id: "thermal:dynamo_numismatic"
+							}
+							{
+								Count: 1b
+								id: "thermal:dynamo_lapidary"
+							}
+							{
+								Count: 1b
+								id: "thermal:dynamo_disenchantment"
+							}
+							{
+								Count: 1b
+								id: "thermal:dynamo_gourmand"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			x: -2.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["476F3884D256DE28"]
+			description: ["Mekanism 发电机可以通过被动方式或消耗燃料来产生 FE。"]
+			id: "6AB2A6AB2D0C74E4"
+			tasks: [{
+				id: "3EDF5371C8310FCB"
+				item: {
+					Count: 1b
+					id: "itemfilters:or"
+					tag: {
+						RepairCost: 0
+						display: {
+							Name: "{\"text\":\"Mekanism Generators\"}"
+						}
+						items: [
+							{
+								Count: 1b
+								id: "mekanismgenerators:heat_generator"
+							}
+							{
+								Count: 1b
+								id: "mekanismgenerators:wind_generator"
+							}
+							{
+								Count: 1b
+								id: "mekanismgenerators:solar_generator"
+							}
+							{
+								Count: 1b
+								id: "mekanismgenerators:gas_burning_generator"
+							}
+							{
+								Count: 1b
+								id: "mekanismgenerators:bio_generator"
+							}
+							{
+								Count: 1b
+								id: "mekanismgenerators:advanced_solar_generator"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			x: -3.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["476F3884D256DE28"]
+			description: [
+				"聚变反应堆每刻能产生极高数量的FE。"
+				"多重方块必须手动组装，请查找相关教程了解方法"
+			]
+			id: "5038BBFE68A808D7"
+			subtitle: "终局力量生成器"
+			tasks: [{
+				id: "523C9B04478D9AF0"
+				item: "mekanismgenerators:fusion_reactor_controller"
+				type: "item"
+			}]
+			title: "聚变反应堆"
+			x: -3.5d
+			y: -4.5d
+		}
+		{
+			dependencies: ["476F3884D256DE28"]
+			description: [
+				"极端反应堆是大型、高度可配置的多方块反应堆，每刻能产生巨量的FE"
+				"有关《极限之书》的更多信息"
+			]
+			id: "2DDA461B6FE46708"
+			tasks: [
+				{
+					id: "35061AEA0EB28C31"
+					item: {
+						Count: 1b
+						id: "itemfilters:or"
+						tag: {
+							RepairCost: 0
+							display: {
+								Name: "{\"text\":\"Extreme Reactors\"}"
+							}
+							items: [
+								{
+									Count: 1b
+									id: "bigreactors:basic_reactorcontroller"
+								}
+								{
+									Count: 1b
+									id: "bigreactors:reinforced_reactorcontroller"
+								}
+							]
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "6A3A026016D81AF9"
+					item: {
+						Count: 1b
+						id: "itemfilters:or"
+						tag: {
+							RepairCost: 0
+							display: {
+								Name: "{\"text\":\"Extreme Turbines\"}"
+							}
+							items: [
+								{
+									Count: 1b
+									id: "bigreactors:basic_turbinecontroller"
+								}
+								{
+									Count: 1b
+									id: "bigreactors:reinforced_turbinecontroller"
+								}
+							]
+						}
+					}
+					type: "item"
+				}
+			]
+			x: -2.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["476F3884D256DE28"]
+			description: ["Iron Generators 是一个简单的模组，添加了分等级的熔炉式发电机。很适合新手入门"]
+			id: "281C5ABC3E8E2A7C"
+			subtitle: "固体燃料"
+			tasks: [{
+				id: "073D4B1687E8D581"
+				item: "irongenerators:iron_generator"
+				type: "item"
+			}]
+			title: "铁质发电机"
+			x: -3.5d
+			y: -0.5d
+		}
+		{
+			description: ["Botania 的能量单位"]
+			icon: {
+				Count: 1b
+				id: "botania:mana_tablet"
+				tag: {
+					creative: 1b
+					mana: 500000
+				}
+			}
+			id: "74EB8311687A2224"
+			shape: "square"
+			tasks: [{
+				id: "0706CCBF5751933D"
+				title: "Botania 法力"
+				type: "checkmark"
+			}]
+			x: -3.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["74EB8311687A2224"]
+			description: ["Botania 的魔力是通过生成花朵来产生的。有关具体花朵的信息，请参阅 Lexica Botania"]
+			id: "5C5D8D2712D85F94"
+			tasks: [{
+				id: "05FE642CE252D1D1"
+				item: {
+					Count: 1b
+					id: "itemfilters:tag"
+					tag: {
+						value: "botania:generating_special_flowers"
+					}
+				}
+				type: "item"
+			}]
+			title: "正在生成花朵"
+			x: -3.5d
+			y: 5.0d
+		}
+		{
+			dependencies: ["74EB8311687A2224"]
+			description: [
+				"将法力转化为FE。"
+				"效率高吗？其实不高。还能做吗？当然可以"
+			]
+			id: "04276A2745F13926"
+			subtitle: "法力->FE"
+			tasks: [{
+				id: "1829D347303E3DD6"
+				item: "botania:mana_fluxfield"
+				type: "item"
+			}]
+			x: -4.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["476F3884D256DE28"]
+			description: ["你可以用这个在整合包里生成法力，只是会让你变得无聊"]
+			id: "5546291CDDACAB8A"
+			subtitle: "FE->法力"
+			tasks: [{
+				id: "157EE87548C29B1C"
+				item: "botanicadds:flowers/energizera"
+				type: "item"
+			}]
+			x: -3.0d
+			y: 2.0d
+		}
+		{
+			description: ["自然光环的能量单位"]
+			icon: "naturesaura:eye"
+			id: "4F9C737A36E4B79B"
+			shape: "square"
+			tasks: [{
+				id: "16EE7BCBFFC39376"
+				title: "自然的气息 (Nature's Aura)"
+				type: "checkmark"
+			}]
+			x: -6.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["4F9C737A36E4B79B"]
+			description: ["有多种方法可以生成灵气，有关各个生成器的更多信息，请参阅自然灵气之书"]
+			id: "5E669D8E02DBD846"
+			tasks: [{
+				id: "0744672B2B3253E3"
+				item: {
+					Count: 1b
+					id: "itemfilters:or"
+					tag: {
+						RepairCost: 0
+						display: {
+							Name: "{\"text\":\"Aura Creating Devices\"}"
+						}
+						items: [
+							{
+								Count: 1b
+								id: "naturesaura:oak_generator"
+							}
+							{
+								Count: 1b
+								id: "naturesaura:animal_generator"
+							}
+							{
+								Count: 1b
+								id: "naturesaura:firework_generator"
+							}
+							{
+								Count: 1b
+								id: "naturesaura:flower_generator"
+							}
+							{
+								Count: 1b
+								id: "naturesaura:slime_split_generator"
+							}
+							{
+								Count: 1b
+								id: "naturesaura:chorus_generator"
+							}
+							{
+								Count: 1b
+								id: "naturesaura:potion_generator"
+							}
+							{
+								Count: 1b
+								id: "naturesaura:end_flower"
+							}
+							{
+								Count: 1b
+								id: "naturesaura:projectile_generator"
+							}
+							{
+								Count: 1b
+								id: "naturesaura:moss_generator"
+							}
+							{
+								Count: 1b
+								id: "naturesaura:ancient_sapling"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			x: -6.5d
+			y: 5.0d
+		}
+		{
+			dependencies: ["5E669D8E02DBD846"]
+			description: ["创世催化剂放置在创世装置下方时，可以绕过其内置限制，使其突破正常的灵气范围。更多信息请参阅《自然灵气之书》"]
+			id: "24C71AB64ED665FC"
+			tasks: [{
+				id: "1108DE40CD08CDF3"
+				item: "naturesaura:generator_limit_remover"
+				type: "item"
+			}]
+			x: -6.5d
+			y: 6.5d
+		}
+		{
+			description: ["Ars Nouveau 的能量单位"]
+			icon: "ars_nouveau:source_gem"
+			id: "271FC4B56C22BBC0"
+			shape: "square"
+			tasks: [{
+				id: "62EFA6DB1BB7DC8F"
+				title: "Ars' Source"
+				type: "checkmark"
+			}]
+			title: "Ars Source"
+			x: -9.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["271FC4B56C22BBC0"]
+			description: ["Sourcelinks 会从各种来源收集源物质，并将其存入附近的源物质罐中。更多信息请参阅旧笔记本。"]
+			id: "67F0F8E807E260D6"
+			tasks: [
+				{
+					id: "1E94F577BAE672CF"
+					item: {
+						Count: 1b
+						id: "itemfilters:or"
+						tag: {
+							RepairCost: 0
+							display: {
+								Name: "{\"text\":\"Any Sourcelink\"}"
+							}
+							items: [
+								{
+									Count: 1b
+									id: "ars_nouveau:agronomic_sourcelink"
+								}
+								{
+									Count: 1b
+									id: "ars_nouveau:volcanic_sourcelink"
+								}
+								{
+									Count: 1b
+									id: "ars_nouveau:alchemical_sourcelink"
+								}
+								{
+									Count: 1b
+									id: "ars_nouveau:vitalic_sourcelink"
+								}
+								{
+									Count: 1b
+									id: "ars_nouveau:mycelial_sourcelink"
+								}
+							]
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "08AD7330C03F2C52"
+					item: "ars_nouveau:source_jar"
+					type: "item"
+				}
+			]
+			title: "来源链接"
+			x: -9.5d
+			y: 5.0d
+		}
+		{
+			dependencies: ["4F9C737A36E4B79B"]
+			description: ["将光环转换为FE能量"]
+			id: "2614D58CB417BD6E"
+			subtitle: "灵气->FE"
+			tasks: [{
+				id: "24B2174D99647C52"
+				item: "naturesaura:rf_converter"
+				type: "item"
+			}]
+			x: -5.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["1FF703B9C6367F79"]
+			description: ["输入柴油，输出旋转动力。"]
+			id: "232C2B6155D8D999"
+			subtitle: "你猜对了……是柴油发动机"
+			tasks: [{
+				id: "351BA4815DA79968"
+				item: {
+					Count: 1b
+					id: "itemfilters:or"
+					tag: {
+						RepairCost: 0
+						display: {
+							Name: "{\"text\":\"Any Create Diesel Engine\"}"
+						}
+						items: [
+							{
+								Count: 1b
+								id: "createdieselgenerators:diesel_engine"
+							}
+							{
+								Count: 1b
+								id: "createdieselgenerators:large_diesel_engine"
+							}
+							{
+								Count: 1b
+								id: "createdieselgenerators:huge_diesel_engine"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "制造柴油发动机"
+			x: -9.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["476F3884D256DE28"]
+			description: ["Powah 模组提供了多种强大的 FE 生成方式。浏览它们提供的多种发电机，选择一个你喜欢的吧。"]
+			id: "2FF4E21E25FC7442"
+			tasks: [{
+				id: "49E1C840F964FA92"
+				item: {
+					Count: 1b
+					id: "itemfilters:mod"
+					tag: {
+						RepairCost: 0
+						display: {
+							Name: "{\"text\":\"Powah Items\"}"
+						}
+						value: "powah"
+					}
+				}
+				type: "item"
+			}]
+			x: -2.5d
+			y: -3.0d
+		}
+	]
+	subtitle: ["Forge Energy 以及其他科技和魔法模组的发电机"]
+	title: "能量生成"
+}
