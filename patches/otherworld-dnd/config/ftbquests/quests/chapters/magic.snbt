@@ -1,0 +1,159 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "magic"
+	group: "25422B67437A4FD8"
+	icon: {
+		Count: 1
+		id: "irons_spellbooks:diamond_spell_book"
+		tag: {
+			"irons_spellbooks:spell_container": {
+				data: [ ]
+				maxSpells: 10
+				mustEquip: 1b
+				spellWheel: 1b
+			}
+		}
+	}
+	id: "28763159CEAB2538"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"许多职业或种族都自带一个基础法术或其他低阶法术。"
+				""
+				"这些法术&o&l未学习&r，并使用与其他法术完全不同的按键绑定。要查看施放方法，请按&bO&r，并阅读你的起源描述。悬停在方形（通常是红色或蓝色）按键上，会显示确切的按键。"
+			]
+			id: "1E8B6B680DED38F8"
+			rewards: [{
+				id: "74C4FD6AD129B41F"
+				item: "irons_spellbooks:arcane_essence"
+				type: "item"
+			}]
+			subtitle: "如何施放和学习新法术"
+			tasks: [{
+				id: "7BB7D118F3960619"
+				title: "魔法入门指南"
+				type: "checkmark"
+			}]
+			x: 15.0d
+			y: 5.0d
+		}
+		{
+			dependencies: ["1E8B6B680DED38F8"]
+			id: "0BD54066854A7F87"
+			rewards: [{
+				id: "00365C981196B02D"
+				type: "xp"
+				xp: 100
+			}]
+			subtitle: "大多数卷轴都可以直接用来施放法术——但如果你有能力学习该法术，通常最好还是先保存起来。"
+			tasks: [{
+				id: "5E96891E0C40C255"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:scroll"
+					tag: {
+						"irons_spellbooks:spell_container": {
+							data: [{
+								id: "irons_spellbooks:gust"
+								index: 0
+								level: 3
+								locked: 1b
+							}]
+							maxSpells: 1
+							mustEquip: 0b
+							spellWheel: 0b
+						}
+					}
+				}
+				match_nbt: false
+				title: "找到一个&d法术卷轴&r"
+				type: "item"
+			}]
+			x: 15.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["0BD54066854A7F87"]
+			id: "270D2FFDE087894C"
+			rewards: [{
+				id: "6E7E32AE0C8AED10"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				id: "20860C4F35E7F7BB"
+				item: {
+					Count: 1
+					id: "itemfilters:tag"
+					tag: {
+						value: "curios:spellbook"
+					}
+				}
+				title: "任意 #curios:spellbook"
+				type: "item"
+			}]
+			title: "找到或制作一本&dSpellbook&r。"
+			x: 15.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["270D2FFDE087894C"]
+			id: "11D723B16803B8D3"
+			rewards: [{
+				id: "1226F5B6C16A3B77"
+				type: "xp"
+				xp: 100
+			}]
+			subtitle: "在这个工作台，你可以将法术卷轴添加到你的法术书中（也可以移除！）。"
+			tasks: [{
+				id: "1966FBFB0DAE9CFA"
+				item: "irons_spellbooks:inscription_table"
+				title: "建造一个&6铭文台&r"
+				type: "item"
+			}]
+			x: 15.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["11D723B16803B8D3"]
+			description: ["&d秘法砧&r的用途如下："]
+			id: "0E383D8790095F1C"
+			rewards: [{
+				id: "7249425875C97EA8"
+				type: "xp"
+				xp: 100
+			}]
+			subtitle: "这个魔法砧可用于&d用墨水升级法术&r、&c将法术附魔到武器上&r，以及&9将升级球编织进盔甲和法杖中&r"
+			tasks: [{
+				id: "3078790C49B97264"
+				item: "irons_spellbooks:arcane_anvil"
+				type: "item"
+			}]
+			x: 15.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["0E383D8790095F1C"]
+			description: ["关于这个世界的魔法，还有更多值得了解的东西……保持好奇心。"]
+			id: "7AE9AE1C4CF766E8"
+			rewards: [{
+				id: "644DDD20A2AC3AAF"
+				type: "xp"
+				xp: 500
+			}]
+			subtitle: "使用这个魔法坩埚，你可以&d从卷轴中提取魔法墨水&r供他处使用。"
+			tasks: [{
+				id: "6C1F3DCFB9766372"
+				item: "irons_spellbooks:alchemist_cauldron"
+				type: "item"
+			}]
+			x: 15.0d
+			y: -2.5d
+		}
+	]
+	title: "&d魔法&r"
+}

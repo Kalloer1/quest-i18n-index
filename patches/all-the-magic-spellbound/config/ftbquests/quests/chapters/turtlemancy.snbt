@@ -1,0 +1,729 @@
+# AI 初翻，未人工校对
+{
+	id: "75F0B965517D735D"
+	group: "3B6EB8546211E897"
+	order_index: 4
+	filename: "turtlemancy"
+	title: "海龟魔法学"
+	icon: "turtlemancy:mine_turtle"
+	subtitle: ["来自诸界中最有耐心的动物的魔法"]
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: -5.5d
+			y: 0.0d
+			subtitle: "每个海龟法师都始于某个地方"
+			description: ["为自己制作一本 turtlenomicon，开启通往一切海龟之物的门户。"]
+			dependency_requirement: "one_completed"
+			id: "0D580F8E01BA5730"
+			tasks: [{
+				id: "6F5801F59FA0A784"
+				type: "item"
+				item: {
+					id: "patchouli:guide_book"
+					Count: 1b
+					tag: {
+						"patchouli:book": "turtlemancy:turtlenomicon"
+					}
+				}
+			}]
+		}
+		{
+			title: "海滩拾贝"
+			icon: "turtlemancy:oyster"
+			x: -4.5d
+			y: -1.0d
+			description: ["收集16x海龟壳和32x牡蛎。牡蛎会作为方块出现在沙滩上，右键可获得贝壳。海龟壳在破坏沙块时有34/1000的几率掉落。这肯定比繁殖海龟、等待孵化和成长要快得多。"]
+			dependencies: ["0D580F8E01BA5730"]
+			id: "5B1928877DAC6E85"
+			tasks: [
+				{
+					id: "2F6F2418DF653965"
+					type: "item"
+					item: "minecraft:scute"
+					count: 16L
+				}
+				{
+					id: "389689151C49EE3F"
+					type: "item"
+					item: "turtlemancy:oyster"
+					count: 32L
+				}
+			]
+			rewards: [
+				{
+					id: "38420DE99659B632"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "4CB5DAF6FC76B642"
+					type: "random"
+					icon: {
+						id: "botania:dice"
+						Count: 1b
+						tag: { }
+					}
+					table_id: 414778086977979556L
+				}
+			]
+		}
+		{
+			title: "Turtlemy？哦，原来是海龟炼金术！"
+			icon: "turtlemancy:turtle_cauldron"
+			x: -3.0d
+			y: -1.0d
+			subtitle: "每个法师都需要一个水槽，也就是炼药锅。"
+			description: ["制作一个海龟法师的坩埚，并制作16个珍珠。将这些牡蛎投入装满的海龟法师的坩埚中，以获得珍珠和熟牡蛎。美味！"]
+			dependencies: ["5B1928877DAC6E85"]
+			id: "531E7F70CEF65C49"
+			tasks: [
+				{
+					id: "365001FD9542378E"
+					type: "item"
+					item: "turtlemancy:turtle_cauldron"
+				}
+				{
+					id: "6CC8036D8A778EE3"
+					type: "item"
+					item: "turtlemancy:pearl"
+					count: 16L
+				}
+			]
+			rewards: [{
+				id: "392699BA65BBE981"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "海龟的祝福"
+			x: -2.0d
+			y: 0.0d
+			subtitle: "向你的主人俯首称臣吧。"
+			description: [
+				"收集5个海龟祝福。当海龟注视你时，用弓（潜行）与它对视。这个模组需要大量的祝福。"
+				"海龟是海滩上的一种被动生物。它们并不常见，可能需要花些时间才能找到。不想找？挖些龟甲，进入中期的自然光环，用诞生祭坛召唤一只。"
+			]
+			dependencies: ["531E7F70CEF65C49"]
+			id: "3C2E765C61682DB7"
+			tasks: [{
+				id: "014A2A02BC31D0F1"
+				type: "item"
+				item: "turtlemancy:turtle_bless"
+				count: 5L
+			}]
+			rewards: [{
+				id: "39B8ACAD0B8DED52"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: -4.0d
+			y: 0.0d
+			subtitle: "在 JEI 中查看一些 Turtlemy 的示例"
+			description: ["Turtlemy 可以让某些资源更容易获取。例如，复制末影珍珠。你需要末影人精华、一颗末影珍珠和一个空珍珠。"]
+			dependencies: ["531E7F70CEF65C49"]
+			id: "39A3D39AD6C15450"
+			tasks: [{
+				id: "3441D651BCFD34C4"
+				type: "checkmark"
+				title: "Cool Turtlemy 的东西们"
+			}]
+			rewards: [{
+				id: "198E52EC85C579B0"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: 6.0d
+			y: 0.0d
+			shape: "gear"
+			subtitle: "制作一个封装外壳！"
+			description: [
+				"这是ATM Star所需的材料。多做一些。"
+				"作为交换，获得一些自然生成无法获得的海带！"
+			]
+			dependencies: ["3A181C1D7203B14A"]
+			id: "440B404E8B582A7F"
+			tasks: [{
+				id: "6516BF511BF6AEAD"
+				type: "item"
+				item: "turtlemancy:shell_of_encapsulation"
+			}]
+			rewards: [
+				{
+					id: "38AA40CA55B03E9D"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "0F7FA9159227DB59"
+					type: "item"
+					item: "xreliquary:kraken_shell"
+				}
+				{
+					id: "6C121EA0F277975B"
+					type: "item"
+					item: "supplementaries:sack"
+				}
+				{
+					id: "135738963066D62A"
+					type: "random"
+					table_id: 414778086977979556L
+				}
+			]
+		}
+		{
+			title: "每个龟术师都会先拥有的魔杖"
+			x: -1.0d
+			y: 0.0d
+			subtitle: "基础海龟法师魔杖"
+			description: ["使用海龟祝福为魔杖补充燃料，耐久度代表“魔法燃料”。"]
+			dependencies: ["3C2E765C61682DB7"]
+			id: "32DB44B937C93285"
+			tasks: [{
+				id: "5D768C2EEE2FF3F9"
+				type: "item"
+				item: {
+					id: "turtlemancy:turtlemancer_basic_wand"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "27F63EB39902AB21"
+				type: "item"
+				item: "minecraft:seagrass"
+				count: 8
+			}]
+		}
+		{
+			title: "鸡蛋？"
+			x: -0.5d
+			y: -1.0d
+			subtitle: "太棒了！这是一条三巫师谜题！它属于一位学校冠军！"
+			description: ["对着海龟蛋右键，用基础海龟魔杖收集海龟蛋。无需丝绸之触！"]
+			dependencies: ["32DB44B937C93285"]
+			id: "2D8FFCA77F996092"
+			tasks: [{
+				id: "0FEB1C3FE75C6FB8"
+				type: "item"
+				item: "minecraft:turtle_egg"
+				count: 4L
+			}]
+			rewards: [
+				{
+					id: "55F86B154FF29190"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "714B8A1B89A5106F"
+					type: "random"
+					table_id: 414778086977979556L
+				}
+			]
+		}
+		{
+			title: "海龟法师的下一步行动"
+			icon: {
+				id: "turtlemancy:turtlemancer_wand"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: 0.5d
+			y: -2.0d
+			description: ["升级你的海龟法师魔杖。"]
+			dependencies: ["32DB44B937C93285"]
+			id: "2CD8746BC0AE583C"
+			tasks: [
+				{
+					id: "4C0A509AEA24D6D0"
+					type: "item"
+					item: "turtlemancy:empty_pearl"
+				}
+				{
+					id: "56973CECD744F63C"
+					type: "item"
+					item: "turtlemancy:blessed_pearl"
+				}
+				{
+					id: "0F5FF2B19234B43E"
+					type: "item"
+					item: {
+						id: "turtlemancy:turtlemancer_wand"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "02A5D0A6732072EE"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "毁灭世界的力量……等等，什么？"
+			x: 0.5d
+			y: -0.5d
+			subtitle: "抱歉，没有无限手套 Infinity gauntlet"
+			description: ["用你的海龟魔杖获得16个基岩碎片。每个碎片会消耗魔杖的全部耐久度，所以多带些海龟祝福。"]
+			dependencies: ["2CD8746BC0AE583C"]
+			id: "446209455165EAD6"
+			tasks: [{
+				id: "2216DEA8FDE135E3"
+				type: "item"
+				item: "turtlemancy:little_fragment_of_bedrock"
+				count: 16L
+			}]
+			rewards: [{
+				id: "3759F870E72663B3"
+				type: "item"
+				item: "minecraft:blaze_rod"
+				count: 2
+			}]
+		}
+		{
+			title: "基岩破碎机！"
+			x: 0.5d
+			y: 0.5d
+			subtitle: "什——么——？！"
+			description: ["之前的基岩碎片？合成基岩镐。恭喜你，现在可以合法地破坏基岩，无需末影珍珠和梯子就能到达下界屋顶，再返回地面。"]
+			dependencies: ["446209455165EAD6"]
+			id: "346E67DFD2ECCCD2"
+			tasks: [{
+				id: "60863C2C795E90C1"
+				type: "item"
+				item: {
+					id: "turtlemancy:bedrock_pickaxe"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "21FAA07104CA01DF"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: 2.0d
+			y: -2.0d
+			description: ["由海龟的祝福所驱动。"]
+			dependencies: ["7AB592A8CD1370C4"]
+			id: "6C8BED440CC3DFF2"
+			tasks: [{
+				id: "0ECE2EEF6A8D31BB"
+				type: "item"
+				item: "turtlemancy:turtle_altar"
+			}]
+			rewards: [
+				{
+					id: "20DC84AC3656F5AE"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "3C81C8B84110ED68"
+					type: "random"
+					table_id: 414778086977979556L
+				}
+				{
+					id: "47AFFFCFF9F8EA6F"
+					type: "item"
+					item: "turtlemancy:turtle_bless"
+					count: 3
+				}
+			]
+		}
+		{
+			title: "不可破坏的..."
+			x: 2.0d
+			y: 0.0d
+			description: ["制作一个不可破坏的珍珠。"]
+			dependencies: ["446209455165EAD6"]
+			id: "10187A1773620AC0"
+			tasks: [{
+				id: "31BF5765DBEB58D4"
+				type: "item"
+				item: "turtlemancy:indestructible_pearl"
+			}]
+			rewards: [{
+				id: "4D2398225974A56C"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: 3.0d
+			y: -1.0d
+			description: ["用祭坛上的不可破坏珍珠来升级你的魔杖吧。"]
+			dependencies: [
+				"446209455165EAD6"
+				"6C8BED440CC3DFF2"
+				"10187A1773620AC0"
+			]
+			id: "3A181C1D7203B14A"
+			tasks: [{
+				id: "44943C90D3371096"
+				type: "item"
+				item: {
+					id: "turtlemancy:turtlemancer_advanced_wand"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "23790C44A168AE63"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "被诅咒了！"
+			x: -1.0d
+			y: 2.0d
+			description: ["这是你杀死海龟或用弓箭直视岩浆龟的结果。为了你好，希望你没刚杀死海龟。"]
+			dependencies: ["45BF6FBF1FFD0FCB"]
+			id: "1F566E898B3FAC65"
+			tasks: [{
+				id: "767E66CDC06B7F96"
+				type: "item"
+				item: "turtlemancy:turtle_curse"
+			}]
+			rewards: [{
+				id: "0B7740DB22BC7890"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: -1.0d
+			y: 1.0d
+			description: ["用那些基岩碎片合成一些改良的鳞片。"]
+			dependencies: [
+				"531E7F70CEF65C49"
+				"446209455165EAD6"
+			]
+			id: "7AB592A8CD1370C4"
+			tasks: [{
+				id: "5598D27B89EDC5C4"
+				type: "item"
+				item: "turtlemancy:improved_scute"
+			}]
+			rewards: [{
+				id: "7AD522499C17F1EF"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "下界龟？不，这才是扮演上帝的方式。"
+			icon: "turtlemancy:magma_turtle_egg"
+			x: -2.5d
+			y: 2.0d
+			shape: "hexagon"
+			subtitle: "岩浆龟壳……呸，龟甲！下界龟不刷新！"
+			description: ["在你的熔岩桶里制作熔岩鳞。用它们来制作熔岩龟蛋。熔岩龟不会在末地生成，如果你不想繁殖它们，就必须制作它们的蛋和鳞。如果你想繁殖熔岩龟（为什么），它们会用扭曲/绯红木根繁殖，并在末地石上产卵。"]
+			dependencies: [
+				"3C2E765C61682DB7"
+				"63EADE25EBA541BF"
+			]
+			id: "45BF6FBF1FFD0FCB"
+			tasks: [
+				{
+					id: "66315C84A0C72648"
+					type: "item"
+					item: "turtlemancy:magma_scute"
+				}
+				{
+					id: "60F640D7BBED310C"
+					type: "item"
+					item: "turtlemancy:magma_turtle_egg"
+				}
+				{
+					id: "26B8C61874A62D4C"
+					type: "item"
+					item: "turtlemancy:improved_magma_scute"
+				}
+			]
+			rewards: [
+				{
+					id: "77C066A641057872"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "3D94E7CED5E3C4E7"
+					type: "random"
+					table_id: 414778086977979556L
+				}
+			]
+		}
+		{
+			x: -4.0d
+			y: 1.5d
+			subtitle: "将动物的精华装瓶？"
+			description: ["查看海龟法师之书里关于精粹的文章吧！"]
+			id: "63EADE25EBA541BF"
+			tasks: [{
+				id: "3F593A78C9D974D6"
+				type: "item"
+				item: "turtlemancy:turtle_essence"
+			}]
+			rewards: [{
+				id: "7B1336ECF9DD63F7"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "“不当”的魔法"
+			icon: {
+				id: "turtlemancy:dark_turtlemancer_wand"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: 0.5d
+			y: 2.0d
+			description: ["若想走这条路，就制作黑暗海龟魔杖。黑暗海龟法师能使用一些不同的法术，也能施展部分原始法术。制作高级黑暗海龟魔杖的仪式与普通魔杖相同。这些魔杖由海龟诅咒提供能量。"]
+			dependencies: ["1F566E898B3FAC65"]
+			id: "09CECEBC2B315210"
+			tasks: [
+				{
+					id: "6A7355263B3DE544"
+					type: "item"
+					item: {
+						id: "turtlemancy:dark_turtlemancer_wand"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "3329C4B3DB5A7713"
+					type: "item"
+					item: {
+						id: "turtlemancy:dark_turtlemancer_advanced_wand"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "520BC40D4E62D76A"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "宽恕我，母亲，因为我犯了罪……"
+			icon: "turtlemancy:nether_star_of_forgiveness"
+			x: -1.0d
+			y: 3.5d
+			description: ["杀死过乌龟的龟术士可以被原谅，但你必须在被诅咒的祭坛上，用一颗下界之星和一滴恶魂之泪来创造“宽恕的下界之星”。吃掉它，你的龟母就会原谅你的罪，黑暗龟术士。"]
+			hide_dependency_lines: true
+			dependencies: [
+				"1F566E898B3FAC65"
+				"09CECEBC2B315210"
+			]
+			optional: true
+			id: "768BC4F026F20B4F"
+			tasks: [{
+				id: "7009C4C36C88B198"
+				type: "checkmark"
+				title: "寻求宽恕！"
+			}]
+			rewards: [{
+				id: "7526F98C1F5FA3DE"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			icon: "endergetic:green_bolloom_balloon"
+			x: 4.0d
+			y: 0.0d
+			subtitle: "谁说海龟是那种躲在暗处的和平生物了。"
+			description: ["海龟法师能用魔杖炸鸡、羊、牛和鱿鱼来获取额外资源。黑暗海龟法师能炸村民，进阶后还能炸海龟。这会杀死生物，但能“免费”获得羽毛、羊毛、皮革、墨囊、绿宝石和海龟壳！"]
+			optional: true
+			id: "455B2F37DAE090AE"
+			tasks: [{
+				id: "7AFFF2508A539BA4"
+				type: "checkmark"
+				title: "吹起气球动物派对"
+			}]
+			rewards: [{
+				id: "428992A01B3022D5"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "越来越奇怪了，越来越奇怪了……"
+			x: 4.5d
+			y: -1.5d
+			description: ["传闻说，大师级的海龟魔法师收藏了许多有趣的与海龟相关的奇珍异宝。"]
+			optional: true
+			id: "4310933A287ADC12"
+			tasks: [{
+				id: "3D57D28DC9DE7399"
+				type: "item"
+				item: "turtlemancy:deep_blue_charm"
+			}]
+			rewards: [{
+				id: "27F44D3FEE21C66C"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "修复一下！"
+			x: 6.0d
+			y: -1.5d
+			description: ["使用红石，可以在海龟法师祭坛上修复物品。修复多少？去问问你的海龟大师吧。"]
+			optional: true
+			id: "39FB6E9DD95BB8F3"
+			tasks: [{
+				id: "6459118B2BF0CBE0"
+				type: "checkmark"
+				icon: "minecraft:redstone"
+			}]
+			rewards: [{
+				id: "7255970AE7FD2FB9"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "穿上盔甲，做好准备！"
+			icon: {
+				id: "turtlemancy:turtle_helmet"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: 4.5d
+			y: 1.0d
+			description: ["穿上龟壳，向你的龟族兄弟表达你的敬意吧。"]
+			optional: true
+			id: "007AFF00F9198775"
+			tasks: [
+				{
+					id: "39CB79B9697184BF"
+					type: "item"
+					item: {
+						id: "turtlemancy:turtle_helmet"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "6745CE452C7DFDDB"
+					type: "item"
+					item: {
+						id: "turtlemancy:turtle_chestplate"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "457CB09EDF2664B2"
+					type: "item"
+					item: {
+						id: "turtlemancy:turtle_leggings"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "01CFD726AAC5C065"
+					type: "item"
+					item: {
+						id: "turtlemancy:turtle_boots"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "18F272B3FB17E140"
+					type: "item"
+					item: {
+						id: "turtlemancy:magmatic_turtle_helmet"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "0089D5D5BB9A2FE9"
+					type: "item"
+					item: {
+						id: "turtlemancy:magmatic_turtle_chestplate"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "2D805CFEA8AF3B30"
+					type: "item"
+					item: {
+						id: "turtlemancy:magmatic_turtle_leggings"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "66E9A210029AFAA6"
+					type: "item"
+					item: {
+						id: "turtlemancy:magmatic_turtle_boots"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "2D308AF6F0CB1EA3"
+				type: "xp"
+				xp: 100
+			}]
+		}
+	]
+}

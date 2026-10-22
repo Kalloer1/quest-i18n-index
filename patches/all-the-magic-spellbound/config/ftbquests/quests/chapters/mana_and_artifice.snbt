@@ -1,0 +1,700 @@
+# AI 初翻，未人工校对
+{
+	id: "18CB6387FD28AEB8"
+	group: "2869CB12B4663D25"
+	order_index: 8
+	filename: "mana_and_artifice"
+	title: "魔法与工艺 (Mana and Artifice)"
+	icon: "mana-and-artifice:ritual_focus_greater"
+	subtitle: ["《Ars Magica》的远房表亲，现已适配 1.16.5！"]
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "一种奇怪的粉末"
+			x: 0.0d
+			y: 1.5d
+			subtitle: "欢迎来到Mana and Artifice。用铁镐/法术开采一些vinteum矿石来开始吧！"
+			description: [
+				"地下有闪闪发光的蓝色矿石块。收集32个。你还需要将它们熔炼。"
+				"多亏了 zettai ars，你的 mana 和 artifice 等级将提升你的 ars nouveau mana！"
+			]
+			id: "45364A54D6E58231"
+			tasks: [
+				{
+					id: "1C1AB9ECEC57F0F3"
+					type: "item"
+					item: "mana-and-artifice:vinteum_dust"
+					count: 32L
+				}
+				{
+					id: "6A12C2DB6836F1E4"
+					type: "item"
+					item: "mana-and-artifice:vinteum_ore"
+					count: 32L
+				}
+			]
+			rewards: [{
+				id: "2804025D04F775D6"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "Vinteum 铁"
+			x: 1.0d
+			y: 1.5d
+			description: ["将一些 vinteum 粉尘与铁锭结合并冶炼，即可制成 vinteum 铁。16 个应该足够开始了，或许。"]
+			dependencies: ["45364A54D6E58231"]
+			id: "1C1AF461D0BA7100"
+			tasks: [
+				{
+					id: "668A7EAE90CDA549"
+					type: "item"
+					item: "mana-and-artifice:vinteum_coated_iron"
+					count: 16L
+				}
+				{
+					id: "08B91F3CDB4B5F93"
+					type: "item"
+					item: "mana-and-artifice:vinteum_ingot"
+					count: 16L
+				}
+			]
+			rewards: [{
+				id: "6B37A0A680C10174"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "你是一名巫师，哈利·波特"
+			x: 0.0d
+			y: 3.0d
+			description: ["获取并打开魔法与工艺之书。若未从阿卡夏卷轴中获得，可在遗迹中作为战利品寻找，或在身穿星夜服饰的村民处用二十个铁锭交换。若白天阅读，请做好入睡准备，此事件会使时间变为夜晚。一本很长的书。"]
+			dependencies: ["45364A54D6E58231"]
+			id: "7349FFA8EB9D4E6E"
+			tasks: [{
+				id: "013881A920CE6DF9"
+				type: "item"
+				item: "mana-and-artifice:guide_book"
+			}]
+			rewards: [{
+				id: "2BECBD55D6814755"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: 1.5d
+			y: 3.0d
+			description: ["请看 Mischief of Mice 的《关于法力与人工的点点滴滴》。这是一个很好的参考资料，共5部分。https://www.youtube.com/watch?v=Hy4PxYEnyCE"]
+			dependencies: ["7349FFA8EB9D4E6E"]
+			id: "041DAEF9259D46AD"
+			tasks: [{
+				id: "2E36BCA9CA42E989"
+				type: "checkmark"
+				title: "致我们听觉领域的魔法师们"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 3.0d
+			description: ["本模组内有多个魔法派系，每个派系都有独特的特殊生物。常见的是亡灵派系的巨型僵尸和刺客骷髅，下界派系的灯笼鬼和恶灵，以及妖精派系的蘑菇士兵。此外还有女巫猎人和盾卫，它们可能也属于某个派系。之后你将选择一个派系加入。每个派系都有优缺点，加入后该派系的敌人会更频繁地攻击你。"]
+			dependencies: ["7349FFA8EB9D4E6E"]
+			id: "32EF3F69970CC03A"
+			tasks: [{
+				id: "0FD0A1573509263E"
+				type: "checkmark"
+				title: "怪物！派系标记？"
+			}]
+		}
+		{
+			title: "魔法花朵"
+			x: -2.0d
+			y: 4.0d
+			description: ["收集一些魔法花朵。每种模组花朵各16个，但你可能想收集所有种类。Cerublossom、tarma root、desert nova、aum 和 wakebloom。"]
+			dependencies: ["7349FFA8EB9D4E6E"]
+			id: "0761CA2DC01E4F88"
+			tasks: [{
+				id: "7BF51B834091908E"
+				type: "item"
+				item: "mana-and-artifice:cerublossom"
+				count: 16L
+			}]
+			rewards: [
+				{
+					id: "5534C28EC97D1A64"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "5F78D59F6EB29D96"
+					type: "random"
+					table_id: 414778086977979556L
+				}
+			]
+		}
+		{
+			title: "议会之眼"
+			x: 0.0d
+			y: 4.0d
+			description: ["制作并放置一个 Oculus，它将引导你完成该模组的每个阶段。"]
+			dependencies: ["0761CA2DC01E4F88"]
+			id: "4AEBE194AC74B162"
+			tasks: [{
+				id: "27F1A69F17A17CCB"
+				type: "item"
+				item: "mana-and-artifice:occulus"
+			}]
+			rewards: [{
+				id: "74481B3D88BB7762"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "宝宝的魔杖和初阶咒语"
+			x: 2.0d
+			y: 4.0d
+			description: ["制作一根织法杖。你将用它来用法力绘制形状并施放法术。潜行右击，选择用于首个法术“点燃”的形状。绘制这些形状，然后施放法术。注意你的法力条，因为重复施放会很快耗尽法力。不过法力恢复速度适中。通过施放“点燃”来尝试达到魔法等级5。左上角法力条下方有一个深蓝色条，那是你的魔法经验。"]
+			dependencies: ["4AEBE194AC74B162"]
+			id: "2F5E5E50A20E8F06"
+			tasks: [{
+				id: "06C09A4224D62106"
+				type: "item"
+				item: {
+					id: "mana-and-artifice:manaweaver_wand"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "020DC812FEBFCB53"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "巫师可不是素食主义者"
+			x: -2.0d
+			y: 5.5d
+			description: ["如果没有牛牧场、纸农场、染料农场、便捷的沙子获取方法等，你可能需要考虑一下。皮革在本模组中用途广泛。尝试右键点击皮革，将其转化为水源方块以获得羊皮纸，即用于书写咒语的魔法纸。收集16x羊皮纸。"]
+			dependencies: ["2F5E5E50A20E8F06"]
+			id: "4CF48435889BC711"
+			tasks: [{
+				id: "75C10020DA1C3289"
+				type: "item"
+				item: "mana-and-artifice:vellum"
+				count: 16L
+			}]
+			rewards: [
+				{
+					id: "0D671F2DE9DC763B"
+					type: "item"
+					item: "minecraft:leather_horse_armor"
+				}
+				{
+					id: "008E17AFA138A7B4"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			title: "符文（Glyphs）"
+			x: 2.0d
+			y: 5.5d
+			subtitle: "符文，铭文。都一样，没区别。"
+			description: ["用普通石头制作空白符文。用原版染料制作符文，就能给它们上色。再做一个符文袋，用来存放彩色符文吧。"]
+			dependencies: ["4CF48435889BC711"]
+			id: "3B52FCD6F0364C0C"
+			tasks: [
+				{
+					id: "2421B0C91251DB69"
+					type: "item"
+					item: "mana-and-artifice:stone_rune_blank"
+					count: 16L
+				}
+				{
+					id: "6978F8E49E9367BE"
+					type: "item"
+					item: "mana-and-artifice:practitioners_pouch"
+				}
+				{
+					id: "29D8B0897A79830C"
+					type: "item"
+					item: "mana-and-artifice:patch_glyph"
+				}
+			]
+			rewards: [{
+				id: "30AB4D0345074F1D"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: 0.0d
+			y: 5.5d
+			description: ["制作或偷窃一个符文锻造台。符文锻造台是咒术师的村民职业。"]
+			dependencies: ["4CF48435889BC711"]
+			id: "178AF2D9218BA3F5"
+			tasks: [{
+				id: "4AA6CC8FFDC9DE1B"
+				type: "item"
+				item: "mana-and-artifice:runeforge"
+			}]
+			rewards: [{
+				id: "0DB79508E35E3585"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: 0.0d
+			y: 7.0d
+			description: ["合成一些神秘化合物，并在符文锻造炉中冶炼。符文锻造炉无需燃料，一次可冶炼最多16个物品，但速度很慢。1个神秘化合物可冶炼成4个神秘灰烬。你需要很多这个。32x神秘灰烬。"]
+			dependencies: ["178AF2D9218BA3F5"]
+			id: "47F3AF066FEEC6AC"
+			tasks: [
+				{
+					id: "6051638FCADB002D"
+					type: "item"
+					item: "mana-and-artifice:arcane_ash"
+					count: 32L
+				}
+				{
+					id: "79EB89FD32820BF3"
+					type: "item"
+					item: "mana-and-artifice:arcane_compound"
+					count: 32L
+				}
+			]
+			rewards: [{
+				id: "5B3A23052CFFB744"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: 0.0d
+			y: 8.0d
+			description: ["制作一个，和一些秘术师墨水。这是你用来制作法术的物品。根据你制作的法术，可能需要羊皮纸、消耗一些秘术师墨水的耐久度，以及秘术灰烬来制作该法术的配方。"]
+			dependencies: ["47F3AF066FEEC6AC"]
+			id: "174BFCF672B30822"
+			tasks: [
+				{
+					id: "6BCC83275065C8F5"
+					type: "item"
+					item: "mana-and-artifice:inscription_table"
+				}
+				{
+					id: "18B65374381B7A92"
+					type: "item"
+					item: {
+						id: "mana-and-artifice:arcanist_ink"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "6E1B020BF840D167"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: 1.5d
+			y: 7.5d
+			description: ["制作或偷窃一个织法祭坛。它能制作出许多你需要的魔法物品，用织法魔杖画出它需要的形状。试着制作一些浸渍丝绸。1x 浸渍丝绸。此物品是 ATM 之星中某些物品的合成材料。"]
+			dependencies: ["174BFCF672B30822"]
+			id: "5567310CC38983AE"
+			tasks: [{
+				id: "4421EF4F0EA708EA"
+				type: "item"
+				item: "mana-and-artifice:manaweaving_altar"
+			}]
+			rewards: [{
+				id: "42E99155E0B70D19"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: -1.5d
+			y: 7.5d
+			description: ["制作一些巫师粉笔。"]
+			dependencies: ["47F3AF066FEEC6AC"]
+			id: "7E7930655C1487E5"
+			tasks: [{
+				id: "0CCA32F09FE4B109"
+				type: "item"
+				item: {
+					id: "mana-and-artifice:wizard_chalk"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			x: 0.0d
+			y: 9.0d
+			description: ["不，不是棒子上的工作台，那太中世纪了。用触摸召唤工作台法术来制作。用这个法术，你可以在触摸范围内的任何地方放置工作台。在9x9的区域里，用神秘仪式来制作法术。你需要魔法编织杖和那块巫师粉笔。按照书上的说明，很快就能制作出法术。"]
+			dependencies: ["174BFCF672B30822"]
+			id: "1CF5BF8D54849949"
+			tasks: [{
+				id: "4CFADBD370B04566"
+				type: "checkmark"
+				title: "便携式工作台"
+			}]
+		}
+		{
+			x: 2.0d
+			y: 8.5d
+			description: ["Rote 表示你已掌握该法术的组件。若拥有 Rote 法术，可将其存入法术书，每次施放消耗的法力更少。"]
+			dependencies: ["1CF5BF8D54849949"]
+			id: "2E80B2A049E8F0CD"
+			tasks: [{
+				id: "237C01B0A3EB51CC"
+				type: "checkmark"
+				title: "配方？"
+			}]
+		}
+		{
+			x: -2.0d
+			y: 8.5d
+			description: ["你注意到屏幕右下角那个带百分比的发光符号了吗？所有法术都有一定元素亲和度，施放法术会提升亲和度。亲和度越高，法术消耗越低。据任务作者所知，一旦某个元素的亲和度达到100%，便无法再更改。"]
+			dependencies: ["1CF5BF8D54849949"]
+			id: "2F40FB34A9C87906"
+			tasks: [{
+				id: "54DF58EAF3A92232"
+				type: "checkmark"
+				title: "亲和力？"
+			}]
+		}
+		{
+			x: 0.0d
+			y: 10.5d
+			description: [
+				"跟随奥库斯的指引，达到魔法的2阶。强烈建议将魔法经验提升至15级，尽可能多地使用你的召唤工作台。"
+				"每个 ocular 等级都会解锁新配方和法术，快去 JEI 看看吧！"
+			]
+			dependencies: ["1CF5BF8D54849949"]
+			id: "36E976F54156C1A6"
+			tasks: [{
+				id: "585B6F623CB5F953"
+				type: "checkmark"
+				title: "Tier 2 巫师"
+			}]
+		}
+		{
+			title: "新咒语：驱散魔法 (Dispel)"
+			x: 1.0d
+			y: 10.0d
+			subtitle: "更强的施法能力"
+			description: ["T2巫师能施放的新法术是Dispel，可用于消除中毒、凋零或挖掘疲劳等负面药水效果。消耗3个形状。"]
+			dependencies: ["36E976F54156C1A6"]
+			id: "48D3253AE2814D74"
+			tasks: [{
+				id: "3E722ACC7B4E90EE"
+				type: "checkmark"
+				title: "新咒语：驱散魔法 (Dispel)"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 10.0d
+			description: ["T2巫师可以通过仪式和获取特定组件（如触摸）的熟记来升级法术。升级在T2解锁，例如速度、范围和延迟。"]
+			dependencies: ["36E976F54156C1A6"]
+			id: "7FABE12DD2FBFD18"
+			tasks: [{
+				id: "1FA95CF72A7FF23D"
+				type: "checkmark"
+				title: "更强大的施法能力"
+			}]
+		}
+		{
+			title: "奇美拉合金"
+			x: -1.5d
+			y: 11.5d
+			description: ["奇美拉矿石是挖掘特定矿石的副产品。在魔法经验5级时，它会和绿宝石一同掉落。10级时，和钻石一同掉落。最后20级时，它还会和煤炭一同掉落。时运会影响它，你需要很多。"]
+			dependencies: ["36E976F54156C1A6"]
+			id: "024B8F7E5C5ABD47"
+			tasks: [{
+				id: "75CC17824EB6958E"
+				type: "item"
+				item: "mana-and-artifice:chimerite_gem"
+				count: 32L
+			}]
+			rewards: [{
+				id: "7B2CFEFD3DF8B010"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "有标记的奇怪透明板？"
+			x: 2.0d
+			y: 11.0d
+			description: ["这些是未烧制的符文板。你可以用任意颜色的符文和4个粘土球来制作。将它们放入符文锻造炉中熔炼，即可得到符文板。你需要准备大量的符文板。32x符文板（橙色那种）。"]
+			dependencies: [
+				"178AF2D9218BA3F5"
+				"36E976F54156C1A6"
+			]
+			id: "46DAD71B7633800D"
+			tasks: [
+				{
+					id: "75E91150F4E0BD84"
+					type: "item"
+					item: "mana-and-artifice:rune_clay_plate"
+				}
+				{
+					id: "48E208CB573A7C08"
+					type: "item"
+					item: "mana-and-artifice:rune_pattern"
+					count: 32L
+				}
+			]
+			rewards: [{
+				id: "012CA6DA5BC474ED"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "图案"
+			x: 3.0d
+			y: 10.0d
+			subtitle: "在空中画画很难。"
+			description: ["在遗迹中作为战利品或与模组村民交易，可以获得符文图案。如果你想制作名为“曼纳编织投影仪”的物品，就可以使用它们。点击该物品，在曼纳编织时就能投射出你想要的标记形状。如果你像我一样，在空中画圆有困难，这或许能帮到你。它叫“奥比乌斯”。找到或获取一个奥比乌斯符文图案。"]
+			dependencies: [
+				"1CF5BF8D54849949"
+				"36E976F54156C1A6"
+			]
+			id: "4AB06876971CA916"
+			tasks: [
+				{
+					id: "1F9EDF1EDCEF9CAF"
+					type: "item"
+					item: {
+						id: "mana-and-artifice:manaweaving_pattern_recipe_paper"
+						Count: 1b
+						tag: {
+							manaweave_pattern_id: "mana-and-artifice:manaweave_patterns/knot3"
+						}
+					}
+				}
+				{
+					id: "306534AC692698E4"
+					type: "item"
+					item: "mana-and-artifice:manaweave_projector"
+				}
+			]
+			rewards: [{
+				id: "5BDEE63F224F3530"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "符文锻造匠"
+			x: -3.0d
+			y: 10.5d
+			description: ["制作符文砧、符文刻写台、符文锻造锤和符文锻造凿。这些是通往后期傀儡术和附魔的入口。有些法术也需要符文锻造锤作为材料。"]
+			dependencies: ["36E976F54156C1A6"]
+			id: "5C9AE5CBE7C22191"
+			tasks: [
+				{
+					id: "10256B6913B120D0"
+					type: "item"
+					item: "mana-and-artifice:runic_anvil"
+				}
+				{
+					id: "28A679E2365E3FEA"
+					type: "item"
+					item: {
+						id: "mana-and-artifice:runesmith_hammer"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "7F61AAE03BBCD127"
+					type: "item"
+					item: {
+						id: "mana-and-artifice:runesmith_chisel"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "2ED4709D0FD5D04F"
+					type: "item"
+					item: "mana-and-artifice:runescribing_table"
+				}
+			]
+			rewards: [{
+				id: "0D58DB9D7713AAE6"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: 0.0d
+			y: 12.0d
+			description: ["在奥库斯的指引下达到第3阶段。强烈建议在此期间将魔法经验提升至30级。尽可能多地使用新法术。"]
+			dependencies: [
+				"36E976F54156C1A6"
+				"5C9AE5CBE7C22191"
+			]
+			id: "41E84AC7DC439F42"
+			tasks: [{
+				id: "0E1F389B15D446C0"
+				type: "checkmark"
+				title: "Tier 3 巫师"
+			}]
+		}
+		{
+			icon: "mana-and-artifice:mark_of_the_fey"
+			x: 3.0d
+			y: 12.0d
+			description: ["此模组中有多个派系，各有不同的增益和负面效果。巫师议会、妖精法庭、下界（恶魔）和亡灵。你需要选择一个派系并完成仪式加入。这能让你获得45级以上的魔法经验。注意：若选择亡灵派系，你的法力不会自然恢复，需通过击杀其他生物获取灵魂来恢复。灵魂将成为你的法力来源。亡灵恢复最少，玩家恢复最多。（具体派系数量待查）。每个派系都有独特的生成结构，留意寻找，但它们很稀有。我还没找到一个。"]
+			dependencies: ["41E84AC7DC439F42"]
+			id: "190DDB00DD4873C0"
+			tasks: [{
+				id: "01AACB83DC3E23AA"
+				type: "checkmark"
+				title: "派系系统"
+			}]
+		}
+		{
+			title: "奇美拉合金，又来了"
+			x: -3.5d
+			y: 12.0d
+			description: ["制作一些奇美拉晶体，放在你的哥布林工坊周围的地面或墙上，正好需要8个。部分颜色的奇美拉晶体还具有特殊属性。更多信息请查阅你的神秘学手册。"]
+			dependencies: [
+				"41E84AC7DC439F42"
+				"178AF2D9218BA3F5"
+			]
+			id: "0D0F662930A34B70"
+			tasks: [{
+				id: "636895B4289E0E97"
+				type: "item"
+				item: "mana-and-artifice:chimerite_crystal_red"
+			}]
+			rewards: [{
+				id: "01835B91119621EA"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: 1.0d
+			y: 12.0d
+			description: ["哥布林有各个部位，你需要对应部位的符文板。用符文凿在橙色符文板上画出图案来制作每个符文板。小心别搞错了，否则符文板会消失，得重新来过。哥布林有头、躯干、腿、左臂和右臂，材料从木头到钻石和玄武岩不等。每种材料都有自己的优缺点。例如，木头可以漂浮，但易燃。你将用制作好的符文板和符文砧上的部件来建造每个部位，然后在哥布林制造台完成。为8个晶体各附上一个特定亲和力的法术，赋予哥布林额外能力，如载重、伤害、速度等，然后用魔法编织者魔杖右键开始。你需要一个导航星和几个符文标记来告诉新朋友该做什么。（检查这个）据我所知，材料部件可以混搭，但你仍然需要头、躯干、腿、左臂和右臂。"]
+			dependencies: [
+				"41E84AC7DC439F42"
+				"5C9AE5CBE7C22191"
+				"46DAD71B7633800D"
+			]
+			id: "054507D7759CF68A"
+			tasks: [{
+				id: "7D38E8C8B7DB8DE3"
+				type: "checkmark"
+				title: "Golemancy"
+			}]
+		}
+		{
+			x: 0.0d
+			y: 13.0d
+			description: ["达到魔法的4级。我猜你必须完成派系仪式才能提升等级。"]
+			dependencies: [
+				"41E84AC7DC439F42"
+				"054507D7759CF68A"
+			]
+			id: "4BF62EC0846D978E"
+			tasks: [{
+				id: "281CBA3D51031D0C"
+				type: "checkmark"
+				title: "第4阶魔法师"
+			}]
+		}
+		{
+			title: "Mote'ive"
+			x: -2.5d
+			y: 13.5d
+			shape: "gear"
+			description: ["现在你可以创造魔法光点。这需要仪式、配方部件和特定地点，但你需要这些来制作高级物品。为我制作一个火焰光点。当然是在下界。你需要至少一个光点来制作ATM之星。"]
+			dependencies: ["4BF62EC0846D978E"]
+			id: "06569DDC48D18E53"
+			tasks: [
+				{
+					id: "5B189624F59A1021"
+					type: "item"
+					item: "mana-and-artifice:greater_mote_fire"
+				}
+				{
+					id: "3EE54F320539C8CD"
+					type: "item"
+					item: "mana-and-artifice:mote_fire"
+				}
+			]
+			rewards: [{
+				id: "5BDFEB5264626AFA"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			x: 0.0d
+			y: 14.0d
+			description: [
+				"达到魔法5阶，并完成派系升级仪式。魔法等级+60，求之不得。希望你现在已经做出了更多酷炫的魔法，而不仅仅是个光谱工作台。"
+				"你还需要5级才能制作一些ATM恒星材料。"
+			]
+			dependencies: [
+				"4BF62EC0846D978E"
+				"06569DDC48D18E53"
+			]
+			id: "4D3EEE9B6947FF40"
+			tasks: [{
+				id: "5CA4DEB26841BFC6"
+				type: "checkmark"
+				title: "第五阶巫师"
+			}]
+			rewards: [{
+				id: "58B2F9F447FE3253"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: 2.5d
+			y: 13.5d
+			description: ["制作一个，把你的符文锻造炉升级为流磺锻造炉。熔炼速度快得多。"]
+			dependencies: ["06569DDC48D18E53"]
+			id: "5C2771AD61023A72"
+			tasks: [{
+				id: "4D1105144AAEBC41"
+				type: "item"
+				item: "mana-and-artifice:brimstone_charm"
+			}]
+			rewards: [{
+				id: "092B95CB1018CFFA"
+				type: "xp"
+				xp: 100
+			}]
+		}
+	]
+}
