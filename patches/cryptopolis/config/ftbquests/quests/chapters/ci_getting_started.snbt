@@ -1,0 +1,512 @@
+# AI 初翻，未人工校对
+{
+	id: "126D79517EC384C6"
+	group: "3C33FB5F17A2BCC3"
+	order_index: 0
+	filename: "ci_getting_started"
+	title: "&b&lC.I-I: &r玫瑰是深红色的..."
+	icon: "minecraft:crimson_hyphae"
+	subtitle: ["...紫罗兰被扭曲了 (Violets are Warped)"]
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "玫瑰与紫罗兰"
+			x: -3.0d
+			y: -2.0d
+			subtitle: "获得 &6[绯红木本] &r或 &6[扭曲橡木本]"
+			dependencies: ["60F1CF0E005D4F29"]
+			size: 1.5d
+			id: "2FF7915F0E85A4AB"
+			tasks: [{
+				id: "4EEC2732EF8CABAB"
+				type: "item"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "minecraft:crimson_stem"
+								Count: 1b
+							}
+							{
+								id: "minecraft:warped_stem"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "2D9C6255BBD79237"
+				type: "item"
+				item: "cryptopolis:c_bucks"
+			}]
+		}
+		{
+			title: "我非得选一个不可吗？"
+			x: -1.5d
+			y: -2.0d
+			subtitle: "获得 &6[扭曲木板] &r或 &6[绯红木板]"
+			dependencies: ["2FF7915F0E85A4AB"]
+			id: "6BE2EB8826F5646C"
+			tasks: [{
+				id: "0DC435A3A0E85632"
+				type: "item"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "minecraft:crimson_planks"
+								Count: 1b
+							}
+							{
+								id: "minecraft:warped_planks"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "6565745D80E3F188"
+				type: "item"
+				item: "cryptopolis:c_bucks"
+			}]
+		}
+		{
+			title: "坚持下去，不要偏离轨道"
+			x: -1.0d
+			y: -0.5d
+			subtitle: "合成一个 &6[木棍]"
+			dependencies: ["6BE2EB8826F5646C"]
+			id: "5D4564F0228C314B"
+			tasks: [{
+				id: "41779E292ACE11B0"
+				type: "item"
+				item: "minecraft:stick"
+			}]
+			rewards: [{
+				id: "5B8C10C0E9E4D549"
+				type: "item"
+				item: "cryptopolis:c_bucks"
+			}]
+		}
+		{
+			title: "是时候制作物品了！"
+			x: -0.5d
+			y: -3.5d
+			subtitle: "制作一个&6[绯红工作台] &r或者&6[扭曲工作台]"
+			dependencies: ["6BE2EB8826F5646C"]
+			id: "49A5A7E3D561A953"
+			tasks: [{
+				id: "58C03A508A9BF24D"
+				type: "item"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "mctb:warped_crafting_table"
+								Count: 1b
+							}
+							{
+								id: "mctb:crimson_crafting_table"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "75C0466C87A6AF44"
+				type: "item"
+				item: "cryptopolis:c_bucks"
+			}]
+		}
+		{
+			title: "为了我那滚烫的浓汤（For My Very Hot Stew）"
+			x: 1.5d
+			y: -3.5d
+			subtitle: "制作一个&6[不可燃碗]"
+			dependencies: ["49A5A7E3D561A953"]
+			id: "44B37F85E1E1BE24"
+			tasks: [{
+				id: "3662B6D336221254"
+				type: "item"
+				item: "cryptopolis:non_flammable_bowl"
+			}]
+			rewards: [{
+				id: "7762EF5C08BEB0CB"
+				type: "item"
+				item: "cryptopolis:c_bucks"
+			}]
+		}
+		{
+			title: "晚餐准备好了！Dinner Is Ready !"
+			x: 3.5d
+			y: -3.5d
+			subtitle: "获得一个 &6[岩浆碗]"
+			description: ["将[不可燃碗]投入熔岩源方块以获得[熔岩碗]"]
+			dependencies: ["44B37F85E1E1BE24"]
+			id: "5CE36A4E47198AA1"
+			tasks: [{
+				id: "7A0C11B84226E6A4"
+				type: "item"
+				item: "cryptopolis:lava_bowl"
+			}]
+			rewards: [{
+				id: "7A44B162147C3DFD"
+				type: "item"
+				item: "cryptopolis:c_bucks"
+			}]
+		}
+		{
+			title: "它肯定坏不了……对吧？"
+			x: 1.5d
+			y: -2.0d
+			subtitle: "用你的&6[坚固木桶]舀起1桶&6[岩浆] &r"
+			dependencies: ["095CCAB187FAEC91"]
+			id: "00479971E618F0F8"
+			tasks: [{
+				id: "46EC612E6A2EDBF1"
+				type: "item"
+				item: {
+					id: "woodenbucket:wooden_bucket"
+					Count: 1b
+					tag: {
+						Fluid: {
+							FluidName: "minecraft:lava"
+							Amount: 1000
+						}
+					}
+				}
+				match_nbt: true
+			}]
+			rewards: [{
+				id: "0D6728050A5E2A71"
+				type: "item"
+				item: "cryptopolis:c_bucks"
+			}]
+		}
+		{
+			title: "不可燃性水桶"
+			x: 0.0d
+			y: -2.0d
+			subtitle: "制作一个 &6[坚固的木桶]"
+			dependencies: ["49A5A7E3D561A953"]
+			id: "095CCAB187FAEC91"
+			tasks: [{
+				id: "58E77C1D8029887B"
+				type: "item"
+				item: "woodenbucket:wooden_bucket"
+				match_nbt: true
+			}]
+			rewards: [{
+				id: "0CA426B5FC2F7285"
+				type: "item"
+				item: "cryptopolis:c_bucks"
+			}]
+		}
+		{
+			title: "我还要更多！"
+			x: 2.0d
+			y: -0.5d
+			subtitle: "合成 &6[Crimson Fungus] &r或 &6[Warped Fungs]"
+			description: ["&6[绯红木菌]&r和&6[扭曲木菌]&r都能提供&b20秒的&r[火焰抗性]&6"]
+			dependencies: ["5D4564F0228C314B"]
+			id: "6F8BD6E7BEBF7F7E"
+			tasks: [{
+				id: "53E9397A350609F3"
+				type: "item"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "minecraft:crimson_fungus"
+								Count: 1b
+							}
+							{
+								id: "minecraft:warped_fungus"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "24090AECBDD35633"
+				type: "item"
+				item: "cryptopolis:c_bucks"
+			}]
+		}
+		{
+			title: "下界纤维"
+			x: -3.0d
+			y: -0.5d
+			subtitle: "采集 &6[哭泣藤] &r或&6[扭曲藤]"
+			dependencies: ["2FF7915F0E85A4AB"]
+			id: "0AF6426DAAF18086"
+			tasks: [{
+				id: "2FC7E5E5947F08CF"
+				type: "item"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "minecraft:weeping_vines"
+								Count: 1b
+							}
+							{
+								id: "minecraft:twisting_vines"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "616903BF7D3C3370"
+				type: "item"
+				item: "cryptopolis:c_bucks"
+			}]
+		}
+		{
+			title: "从纤维到丝绸"
+			x: -3.0d
+			y: 1.0d
+			subtitle: "合成一个 &6[String]"
+			dependencies: ["0AF6426DAAF18086"]
+			id: "490580BD9A6967E8"
+			tasks: [{
+				id: "6F68CF5D50CE5D32"
+				type: "item"
+				item: "minecraft:string"
+			}]
+			rewards: [{
+				id: "075A73129F13A468"
+				type: "item"
+				item: "cryptopolis:c_bucks"
+			}]
+		}
+		{
+			title: "Mesh-anic"
+			x: -0.5d
+			y: 2.5d
+			subtitle: "合成一个 &6[Mesh]"
+			dependencies: ["490580BD9A6967E8"]
+			id: "03F85B803B5F8645"
+			tasks: [{
+				id: "4745B9AAC633E53F"
+				type: "item"
+				item: "cryptopolis:mesh"
+			}]
+			rewards: [{
+				id: "3D0E860718DE1419"
+				type: "item"
+				item: "cryptopolis:c_bucks"
+			}]
+		}
+		{
+			title: "除——什么？"
+			x: 2.010714285714272d
+			y: 1.4071428571428584d
+			shape: "gear"
+			subtitle: "制作一个 &6[手持式熔岩筛]"
+			description: [
+				"解锁内容："
+				""
+				"&b&lC.I-II: &r你从哪里得到的那个？"
+				""
+				"Have the &6[Handheld Lava Sieve] &rIn Your Off Hand And A &6[Bowl Of Lava] &rIn Your Main Hand And Right Click To Get Some Items"
+			]
+			dependencies: [
+				"03F85B803B5F8645"
+				"58215BCB15CEF38F"
+			]
+			size: 2.0d
+			id: "36F6850923002740"
+			tasks: [{
+				id: "48AF4C73FAA0627F"
+				type: "item"
+				item: "cryptopolis:hand_sieve"
+			}]
+			rewards: [{
+				id: "12E51704C6A44A67"
+				type: "item"
+				item: "cryptopolis:c_bucks"
+			}]
+		}
+		{
+			title: "压缩木棍"
+			x: -1.0d
+			y: 1.0d
+			subtitle: "合成一个 &6[木棍束]"
+			dependencies: ["5D4564F0228C314B"]
+			id: "58215BCB15CEF38F"
+			tasks: [{
+				id: "073E92780DFAF4F2"
+				type: "item"
+				item: "cryptopolis:stick_bundle"
+			}]
+			rewards: [{
+				id: "245DDC66DDA174B6"
+				type: "item"
+				item: "cryptopolis:c_bucks"
+			}]
+		}
+		{
+			title: "像大佬一样晾干物品"
+			x: -3.0d
+			y: 2.5d
+			subtitle: "合成一个 &6[晾晒架]"
+			description: ["&6[晾晒架]&r 需要放置在方块底部或悬挂在方块底部"]
+			dependencies: ["490580BD9A6967E8"]
+			id: "38A8FF10D7C7059D"
+			tasks: [{
+				id: "339756BABA10716D"
+				type: "item"
+				item: "hexerei:herb_drying_rack"
+			}]
+			rewards: [{
+				id: "735FFC4FE0A916CF"
+				type: "item"
+				item: "cryptopolis:c_bucks"
+			}]
+		}
+		{
+			title: "充满了 Wart-er 的水源方块"
+			x: -2.0d
+			y: -4.0d
+			subtitle: "采集 &6[下界疣块] &r或 &6[扭曲疣块]"
+			dependencies: ["2FF7915F0E85A4AB"]
+			id: "59B281924F014385"
+			tasks: [{
+				id: "0259209CEF26DCAD"
+				type: "item"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "minecraft:nether_wart_block"
+								Count: 1b
+							}
+							{
+								id: "minecraft:warped_wart_block"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "5ADAB4D0FAA555B5"
+				type: "item"
+				item: "cryptopolis:c_bucks"
+			}]
+		}
+		{
+			title: "这才叫食物"
+			x: 3.5d
+			y: -2.0d
+			shape: "heart"
+			subtitle: "合成 &6[菌菇沙拉]"
+			description: [
+				"食用后效果："
+				""
+				"⁎ Provides &6[Fire Resistance] &rFor &b1 &rMinute And &b30 &rSeconds"
+			]
+			dependencies: [
+				"44B37F85E1E1BE24"
+				"6F8BD6E7BEBF7F7E"
+			]
+			id: "5A1E34DC6D18A38B"
+			tasks: [{
+				id: "662E0EA1FF06C67C"
+				type: "item"
+				item: "cryptopolis:fungus_salad"
+			}]
+			rewards: [{
+				id: "07369853E66E8D2E"
+				type: "item"
+				item: "cryptopolis:c_bucks"
+			}]
+		}
+		{
+			title: "疣体标记 (Wart-er Mark)"
+			x: -0.5d
+			y: -5.0d
+			subtitle: "获得 &6[下界疣] &r或 &6[扭曲疣]"
+			dependencies: ["59B281924F014385"]
+			id: "5972FAF81EA181B5"
+			tasks: [{
+				id: "6031490985145E08"
+				type: "item"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "minecraft:nether_wart"
+							}
+							{
+								Count: 1b
+								id: "cryptopolis:warped_wart"
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "600F2A73F4C8E369"
+				type: "item"
+				item: "cryptopolis:c_bucks"
+			}]
+		}
+		{
+			title: "Nylium 到底是什么意思？"
+			x: 1.5d
+			y: -5.0d
+			subtitle: "观察两种方块：&6[扭曲的泥岩] &r或&6[绯红的泥岩]"
+			description: ["Can Be Made By Right Clicking Regular &6[Netherack] &rwith Either &6[Nether Wart] &rOr &6[Warped Wart]"]
+			dependencies: ["5972FAF81EA181B5"]
+			id: "76CE1926F6737C39"
+			tasks: [
+				{
+					id: "12B5682AC9343078"
+					type: "observation"
+					icon: "minecraft:crimson_nylium"
+					timer: 0L
+					observe_type: 0
+					to_observe: "minecraft:crimson_nylium"
+				}
+				{
+					id: "19B7D8C45953F9D4"
+					type: "observation"
+					icon: "minecraft:warped_nylium"
+					timer: 0L
+					observe_type: 0
+					to_observe: "minecraft:warped_nylium"
+				}
+			]
+			rewards: [{
+				id: "1AF53D2B5B24BC5E"
+				type: "item"
+				item: "cryptopolis:c_bucks"
+			}]
+		}
+	]
+	quest_links: [ ]
+}

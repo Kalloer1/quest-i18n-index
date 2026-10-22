@@ -1,0 +1,646 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "create"
+	group: "43731E7F4BACB580"
+	icon: "create:millstone"
+	id: "57B8F4D55D7177E1"
+	images: [{
+		click: ""
+		corner: false
+		dev: false
+		height: 1.0d
+		hover: [ ]
+		image: "ftbskies:textures/quests/create.png"
+		rotation: 0.0d
+		width: 4.180722891566265d
+		x: 4.0d
+		y: -11.0d
+	}]
+	order_index: 0
+	quest_links: [
+		{
+			id: "215BC2D8DA082C5B"
+			linked_quest: "4451057D4BA76C2C"
+			x: -1.5d
+			y: -6.5d
+		}
+		{
+			id: "72707FA8EDDCADE9"
+			linked_quest: "703631B507075DC1"
+			x: 0.5d
+			y: -8.0d
+		}
+	]
+	quests: [
+		{
+			dependencies: ["4451057D4BA76C2C"]
+			description: [
+				"&bMillstone&r 是最早实现自动粉碎物品的工具之一。"
+				""
+				"它可以自动化所有 &6Hammer&r 配方，以及许多其他配方。"
+			]
+			id: "13F52047EAE94CE7"
+			rewards: [
+				{
+					id: "69F82AA6869C5F8B"
+					item: "create:cogwheel"
+					type: "item"
+				}
+				{
+					id: "2820633C0E54BA69"
+					item: "create:large_cogwheel"
+					type: "item"
+				}
+				{
+					id: "572295BDCA0F174B"
+					item: "cyclic:hopper_gold"
+					type: "item"
+				}
+			]
+			subtitle: "制作磨石 (Millstone)"
+			tasks: [{
+				id: "65F80C8270C54309"
+				item: "create:millstone"
+				type: "item"
+			}]
+			x: 0.5d
+			y: -6.5d
+		}
+		{
+			dependencies: ["13F52047EAE94CE7"]
+			description: ["&b机械压榨机&r会&6处理其下方的物品&r，前提是它们位于储物箱或传送带上。"]
+			id: "55704A5966DC72CC"
+			rewards: [{
+				id: "71CACCD7A263DB85"
+				item: "create:depot"
+				type: "item"
+			}]
+			subtitle: "制作机械压榨机"
+			tasks: [{
+				id: "21533A0A4ADF9BAF"
+				item: "create:mechanical_press"
+				type: "item"
+			}]
+			x: 2.5d
+			y: -6.5d
+		}
+		{
+			dependencies: ["46B27890B3EF957C"]
+			description: ["&bMechanical Crafters&r可以自动合成配方，包括一些大于3x3的配方。"]
+			id: "757DC52392EB674B"
+			subtitle: "阿瓦，现在怎么了？"
+			tasks: [{
+				id: "5BA8B31D505D3F7D"
+				item: "create:mechanical_crafter"
+				type: "item"
+			}]
+			x: 8.5d
+			y: -6.5d
+		}
+		{
+			dependencies: ["757DC52392EB674B"]
+			description: ["当两个&bCrushing Wheels&r相互旋转时，它们会&6碾碎经过其中的东西&r。"]
+			id: "1DF2D0A61539CDEB"
+			subtitle: "制作一个 Crushing Wheel"
+			tasks: [{
+				id: "6ADB01A973539342"
+				item: "create:crushing_wheel"
+				type: "item"
+			}]
+			x: 9.0d
+			y: -8.0d
+		}
+		{
+			dependencies: ["757DC52392EB674B"]
+			description: ["&bAlternator&r 将旋转能量转化为 FE！"]
+			id: "6DD54ABB7D00AB13"
+			rewards: [
+				{
+					count: 8
+					id: "13AD4822061695C7"
+					item: "thermal:energy_duct"
+					type: "item"
+				}
+				{
+					id: "43AACD712E3C614A"
+					item: "create:rotation_speed_controller"
+					type: "item"
+				}
+			]
+			subtitle: "制作一个Alternator"
+			tasks: [{
+				id: "2B0A556EDC61B3F1"
+				item: "createaddition:alternator"
+				type: "item"
+			}]
+			x: 8.0d
+			y: -5.0d
+		}
+		{
+			dependencies: ["757DC52392EB674B"]
+			description: [
+				"来自 &eCreate: Ender Transmission&r 的机器能让你将物品、流体和能量&6远程传输&r。"
+				""
+				"制作两个相同的物品，并将它们设置为相同的频道即可连接！"
+			]
+			icon: "createendertransmission:energy_transmitter"
+			id: "1D8493F8CE66912A"
+			subtitle: "用 Create Ender Expansion 制作物品"
+			tasks: [{
+				id: "4677F2B9141F58A0"
+				item: {
+					Count: 1b
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "createendertransmission:fluid_transmitter"
+							}
+							{
+								Count: 1b
+								id: "createendertransmission:item_transmitter"
+							}
+							{
+								Count: 1b
+								id: "createendertransmission:energy_transmitter"
+							}
+						]
+					}
+				}
+				title: "无线压力"
+				type: "item"
+			}]
+			x: 8.0d
+			y: -8.0d
+		}
+		{
+			dependencies: ["757DC52392EB674B"]
+			description: ["&b电动机&r使用FE来产生旋转能量。"]
+			id: "3F6111879910D997"
+			rewards: [
+				{
+					id: "538FEDB48BF74343"
+					item: "create:speedometer"
+					type: "item"
+				}
+				{
+					id: "32B9C95B98237425"
+					item: "create:clutch"
+					type: "item"
+				}
+			]
+			subtitle: "制作一个电动机 (Electric Motor)"
+			tasks: [{
+				id: "2E08CD3ED0AB842B"
+				item: "createaddition:electric_motor"
+				type: "item"
+			}]
+			x: 9.0d
+			y: -5.0d
+		}
+		{
+			dependencies: ["55704A5966DC72CC"]
+			description: [
+				"&b部署器&r会&6使用给出的物品&r放置在其前方的方块上。"
+				""
+				"可以左键或右键，并选择方块、物品或实体为目标。"
+			]
+			id: "3CBC0294148DF019"
+			subtitle: "Prosthetic"
+			tasks: [{
+				id: "17631476EBD40CBE"
+				item: "create:deployer"
+				type: "item"
+			}]
+			x: 2.0d
+			y: -5.0d
+		}
+		{
+			dependencies: ["3CBC0294148DF019"]
+			description: ["&b机械臂&r比机械传送带能更精确地移动物品。"]
+			id: "2A8562EC7696B873"
+			subtitle: "制作一个机械臂"
+			tasks: [{
+				id: "4CFD8A36E7BBE49E"
+				item: "create:mechanical_arm"
+				type: "item"
+			}]
+			x: 2.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["4451057D4BA76C2C"]
+			description: ["使用&b扳手&r来&6配置Create的机器&r。"]
+			id: "73C75E570155C0DC"
+			rewards: [{
+				count: 8
+				id: "31E8AC03EEE59EFA"
+				item: "create:andesite_alloy"
+				type: "item"
+			}]
+			subtitle: "扭曲与扭转"
+			tasks: [{
+				id: "1391F3430BA44BAA"
+				item: "create:wrench"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -8.0d
+		}
+		{
+			dependencies: ["4451057D4BA76C2C"]
+			description: ["佩戴&b工程师护目镜&r时，你可以&6看到机器的动能信息&r，比如它正在使用的应力单位数。"]
+			id: "17DA73DF6AEE23ED"
+			rewards: [
+				{
+					count: 2
+					id: "2643C9F9283F6F4C"
+					item: "create:shaft"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "57272FDC047D6F29"
+					item: "create:belt_connector"
+					type: "item"
+				}
+			]
+			subtitle: "Nerd Vision"
+			tasks: [{
+				id: "5BF4527184CB2C3A"
+				item: "create:goggles"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -5.0d
+		}
+		{
+			dependencies: ["55704A5966DC72CC"]
+			description: [
+				"无论是单独使用，还是作为装置的一部分，&bMechanical Saw&r都会&6砍掉它前方的树木&r。"
+				""
+				"朝上的锯子可以用来&6处理某些物品&r。"
+			]
+			id: "7642CA0CC82FE01A"
+			rewards: [
+				{
+					id: "5B77AD2D51A6817A"
+					item: {
+						Count: 1b
+						id: "create:super_glue"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 8
+					id: "304BB2E3B54A4A06"
+					item: "create:linear_chassis"
+					type: "item"
+				}
+				{
+					id: "04109BD3967EE164"
+					item: "create:radial_chassis"
+					type: "item"
+				}
+			]
+			subtitle: "制作一个机械锯台"
+			tasks: [{
+				id: "5C1C71997C208ED5"
+				item: "create:mechanical_saw"
+				type: "item"
+			}]
+			x: 3.0d
+			y: -8.0d
+		}
+		{
+			dependencies: ["6F230D05DB07F932"]
+			description: ["作为装置的一部分使用时，&bMechanical Harvester&r会收割并重新种植它所经过的作物。"]
+			id: "4A605373EF916B19"
+			rewards: [
+				{
+					id: "0B6F3DEB3CE31542"
+					item: {
+						Count: 1b
+						id: "pedestals:upgrade_pedestal_fertilizer"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					count: 8
+					id: "51214553792E649F"
+					item: "farmersdelight:rich_soil"
+					type: "item"
+				}
+			]
+			subtitle: "制作一个机械收割机"
+			tasks: [{
+				id: "124D74D6A9AF18A7"
+				item: "create:mechanical_harvester"
+				type: "item"
+			}]
+			x: 0.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["55704A5966DC72CC"]
+			description: ["如果物品在 Depot 或 Belt 中，&bSpout&r 会&6用流体填充其下方的物品&r。"]
+			id: "18DDC163A4ECE484"
+			rewards: [{
+				id: "71ACF23AA951514E"
+				item: "create:depot"
+				type: "item"
+			}]
+			subtitle: "把东西交给我看看"
+			tasks: [{
+				id: "71485AE707B7083D"
+				item: "create:spout"
+				type: "item"
+			}]
+			x: 3.0d
+			y: -5.0d
+		}
+		{
+			dependencies: ["041C4AB18A712925"]
+			description: [
+				"部分混合配方需要被&6加热&r。这需要使用&b烈焰熔炉&r来完成。"
+				""
+				"烈焰燃烧器&6接受熔炉燃料&r以升温。"
+				""
+				"要成为&6过热&r，你必须喂它&6烈焰蛋糕&r！"
+			]
+			icon: "create:blaze_burner"
+			id: "3162D0E1ACEE2D5D"
+			rewards: [
+				{
+					count: 16
+					id: "11B4A47A9C6AA691"
+					item: "archers_paradox:blaze_arrow"
+					type: "item"
+				}
+				{
+					id: "740B9A48B3926CA4"
+					item: "createaddition:chocolate_cake"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "54C4BFC9BDE624AB"
+					item: "create:blaze_cake"
+					type: "item"
+				}
+			]
+			subtitle: "过热中"
+			tasks: [{
+				id: "2DE88EA675B63449"
+				item: "create:blaze_burner"
+				type: "item"
+			}]
+			x: 4.5d
+			y: -5.0d
+		}
+		{
+			dependencies: ["55704A5966DC72CC"]
+			description: ["&b滑道&r的工作方式与漏斗类似，但它会掉落物品实体。"]
+			id: "1E9D75DFCD6A09EC"
+			rewards: [
+				{
+					count: 8
+					id: "67B6CFB1A6606C2F"
+					item: "create:belt_connector"
+					type: "item"
+				}
+				{
+					id: "4D4B680CF499E022"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "坠落星辰"
+			tasks: [{
+				id: "4E9AA07951BAA781"
+				item: "create:chute"
+				type: "item"
+			}]
+			x: 2.0d
+			y: -8.0d
+		}
+		{
+			dependencies: ["1E9D75DFCD6A09EC"]
+			description: ["&b智能滑道&r的功能相同，但可以&6过滤&r。"]
+			id: "7C94AC3DDD309238"
+			rewards: [
+				{
+					count: 4
+					id: "0B51291C67C9855C"
+					item: "create:electron_tube"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "42CC3AFA68730DEC"
+					item: "create:brass_sheet"
+					type: "item"
+				}
+			]
+			subtitle: "制作一个智能滑道"
+			tasks: [{
+				id: "561778F62900BA6E"
+				item: "create:smart_chute"
+				type: "item"
+			}]
+			x: 2.0d
+			y: -9.5d
+		}
+		{
+			dependencies: ["55704A5966DC72CC"]
+			description: [
+				"&b搅拌机&r &6会混合下方盆子里的物品&r。"
+				""
+				"这用于自动化无定形配方，以及一些独特的配方。"
+			]
+			id: "041C4AB18A712925"
+			rewards: [
+				{
+					id: "31AB4BE8131AA133"
+					item: "create:basin"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "536EE3172452C825"
+					item: "create:cinder_flour"
+					type: "item"
+				}
+				{
+					id: "76B28D015F196041"
+					item: "farmersdelight:mixed_salad"
+					type: "item"
+				}
+			]
+			subtitle: "制作一个机械搅拌机"
+			tasks: [{
+				id: "633FD013BAE77FE0"
+				item: "create:mechanical_mixer"
+				type: "item"
+			}]
+			x: 4.5d
+			y: -6.5d
+		}
+		{
+			dependencies: ["041C4AB18A712925"]
+			description: ["&b黄铜&r是一种灵活的合金，也是许多&e创造&r更高级机器的基础。"]
+			id: "46B27890B3EF957C"
+			rewards: [
+				{
+					count: 4
+					id: "3536D177F791F520"
+					item: "supplementaries:brass_lantern"
+					type: "item"
+				}
+				{
+					count: 2
+					id: "206E3EE020307DAA"
+					item: {
+						Count: 1b
+						id: "productivebees:spawn_egg_configurable_bee"
+						tag: {
+							EntityTag: {
+								type: "productivebees:zinc"
+							}
+						}
+					}
+					type: "item"
+				}
+			]
+			subtitle: "制作一个黄铜锭"
+			tasks: [{
+				id: "4A3C6E5EEEEBCDD7"
+				item: "create:brass_ingot"
+				type: "item"
+			}]
+			x: 6.5d
+			y: -6.5d
+		}
+		{
+			dependencies: ["46B27890B3EF957C"]
+			description: [
+				"装置的物品栏无法手动访问。你必须使用一对&b便携式存储接口&r！"
+				""
+				"将一个放在装置上，另一个则不要。当两者对齐时（即装置移动靠近），装置会暂停以允许物品通过。"
+			]
+			id: "48DB5502DE6901BC"
+			rewards: [
+				{
+					id: "50E216E3A1C1EFA5"
+					item: "create:portable_storage_interface"
+					type: "item"
+				}
+				{
+					id: "3398A6627182329A"
+					item: "metalbarrels:obsidian_barrel"
+					type: "item"
+				}
+			]
+			subtitle: "制作一个便携式存储接口"
+			tasks: [{
+				id: "27F45657E7337A7C"
+				item: "create:portable_storage_interface"
+				type: "item"
+			}]
+			x: 6.5d
+			y: -5.0d
+		}
+		{
+			dependencies: ["46B27890B3EF957C"]
+			description: ["&b黄铜漏斗&r和安山岩版一样，但&6可以过滤&r！"]
+			id: "71172016F536CE01"
+			rewards: [
+				{
+					id: "7A604A4B6C284CBF"
+					item: {
+						Count: 1b
+						id: "create:filter"
+						tag: {
+							Items: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "5D52906C7F0BB4DF"
+					item: {
+						Count: 1b
+						id: "create:attribute_filter"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					count: 8
+					id: "3A4DE662CD9998CB"
+					item: "create:brass_casing"
+					type: "item"
+				}
+			]
+			subtitle: "制作一个黄铜漏斗"
+			tasks: [{
+				id: "66D0AED95576C63A"
+				item: "create:brass_funnel"
+				type: "item"
+			}]
+			x: 6.5d
+			y: -8.0d
+		}
+		{
+			dependencies: ["13F52047EAE94CE7"]
+			description: [
+				"&b机械轴承&r是大多数创造&6装置&r的基础，这些装置本质上是自由形式的可移动多方块结构。"
+				""
+				"施加旋转力时，它会&6旋转所连接的装置&r。这使得某些方块，如&6收割机&r、&6切割机&r和&6部署器&r能够工作！"
+				""
+				"你可以用&6胶水&r附加更多方块，并用&6底盘&r来扩大装置。别忘了&6检查沉思者&r！"
+			]
+			id: "6F230D05DB07F932"
+			rewards: [
+				{
+					id: "315A9155688A32D7"
+					item: "create:radial_chassis"
+					type: "item"
+				}
+				{
+					count: 8
+					id: "4179F1965DD858F0"
+					item: "create:linear_chassis"
+					type: "item"
+				}
+				{
+					id: "599F8CB249211F79"
+					item: {
+						Count: 1b
+						id: "create:super_glue"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			subtitle: "背负着沉重的负担，一路前行"
+			tasks: [{
+				id: "1D185D945D61DB04"
+				item: "create:mechanical_bearing"
+				type: "item"
+			}]
+			x: 0.5d
+			y: -5.0d
+		}
+	]
+	title: "创建"
+}
