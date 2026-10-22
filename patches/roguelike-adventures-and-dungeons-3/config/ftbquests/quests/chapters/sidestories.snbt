@@ -1,0 +1,2728 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "sidestories"
+	group: "241F1DC7B6D6E9D6"
+	icon: "kubejs:book2"
+	id: "24B56A274D017BC5"
+	images: [
+		{
+			corner: true
+			height: 9.0d
+			image: "rad3:textures/misc/sstories.png"
+			rotation: 0.0d
+			width: 6.5d
+			x: -9.5d
+			y: 4.0d
+		}
+		{
+			height: 3.0d
+			hover: ["In pursuit of the Questing Sword"]
+			image: "radweaponry:item/questing_sword"
+			rotation: -45.0d
+			width: 3.0d
+			x: -11.5d
+			y: -4.0d
+		}
+		{
+			height: 2.0d
+			image: "kubejs:item/map_fragment"
+			rotation: 0.0d
+			width: 2.0d
+			x: -4.5d
+			y: 9.0d
+		}
+		{
+			height: 2.0d
+			image: "simplyswords:item/iron_claymore"
+			rotation: 45.0d
+			width: 2.0d
+			x: -3.0d
+			y: 5.5d
+		}
+		{
+			height: 1.0d
+			image: "kubejs:item/quest_bundle"
+			rotation: 0.0d
+			width: 1.0d
+			x: -4.5d
+			y: 0.0d
+		}
+	]
+	order_index: 13
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"走近森林时，一棵古橡树下，一个用皮革包裹的小包裹引起了你的注意。你好奇地走近了些。"
+				""
+				"包裹上系着一张用麻绳绑着的旧纸条。上面写着："
+				""
+				"&o&9For the Blacksmith of Willow Creek. Deliver with haste.&r&r"
+				""
+				"&o&8你认出威洛溪是森林边缘的一个小村庄，住着一位名叫西拉斯的著名铁匠。你曾听闻他技艺高超，打造的武器和盔甲都异常坚固。&r&r"
+			]
+			icon: "kubejs:quest_bundle"
+			id: "303C9F12C46AB4A9"
+			progression_mode: "linear"
+			require_sequential_tasks: true
+			rewards: [
+				{
+					id: "4CA5CC8CD9C78DA4"
+					type: "xp"
+					xp: 10
+				}
+				{
+					id: "0483C9393316C3FA"
+					item: "kubejs:quest_bundle"
+					type: "item"
+				}
+			]
+			tasks: [{
+				biome: "regions_unexplored:deciduous_forest"
+				id: "21877238E98437AD"
+				title: "进入落叶林"
+				type: "biome"
+			}]
+			title: "铁匠的负担"
+			x: -5.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["303C9F12C46AB4A9"]
+			description: [
+				"你可以&9打开包裹&r看看里面有什么。 &o(没人会发现的)&r"
+				""
+				"也许是一件&6贵重物品&r，一件&5强力武器&r，甚至是一个指向&o更宏大谜题&r的线索。"
+				""
+				"&4但如果很危险呢？&r"
+				""
+				"&0要是被诅咒了呢？&r"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: "minecraft:chest"
+			id: "14C739F728584105"
+			incompatible: ["04737BABF8D66665"]
+			rewards: [{
+				id: "70EE2B9CB6DD1CA5"
+				item: {
+					Count: 1
+					id: "ftbquests:lootcrate"
+					tag: {
+						type: "dungeon_coin_reward"
+					}
+				}
+				type: "item"
+			}]
+			subtitle: "&4Incompatible with \"Deliver the package\"&r"
+			tasks: [{
+				id: "42FAE8B88B745503"
+				type: "checkmark"
+			}]
+			title: "打开数据包"
+			x: -3.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["303C9F12C46AB4A9"]
+			description: [
+				"你可以选择遵循纸条的指示，将包裹&9交给&r铁匠。"
+				""
+				"这样做固然荣誉，但也可能意味着会错过这个整合包中隐藏的&5秘密&r。"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			id: "04737BABF8D66665"
+			incompatible: ["14C739F728584105"]
+			rewards: [{
+				id: "438C1D0AF013615A"
+				type: "xp"
+				xp: 10
+			}]
+			subtitle: "&4Incompatible with \"Open the package\"&r"
+			tasks: [{
+				id: "0BF283CC7CB4D765"
+				type: "checkmark"
+			}]
+			title: "将包裹送达目的地"
+			x: -3.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["04737BABF8D66665"]
+			description: [
+				"&9你决定&r遵循纸条的指示，将包裹&9交给&r铁匠。"
+				""
+				"&6&o诚实与责任感指引着你。 &r&r"
+				""
+				"然而，通往&2Willow Creek&r的道路并非没有挑战。&l请先收集好你的物资！&r"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			id: "73B68DABF2FA7F97"
+			rewards: [{
+				id: "2224EEE5F5C0EB7B"
+				item: {
+					Count: 1
+					id: "supplementaries:cartographers_quill"
+					tag: {
+						display: {
+							Name: "{\"text\":\"Map to nearest village in plains\"}"
+						}
+						maxSearchRadius: 200
+						skipKnown: 1b
+						targetStructure: "minecraft:village_plains"
+						zoomLevel: 2
+					}
+				}
+				type: "item"
+			}]
+			tasks: [
+				{
+					consume_items: true
+					count: 32L
+					id: "1BE731A363F7DC57"
+					item: "minecraft:torch"
+					type: "item"
+				}
+				{
+					id: "2333369A254577D8"
+					item: {
+						Count: 1
+						id: "roughtweaks:bandage"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 3L
+					id: "0FA517D2C8740D4D"
+					item: "minecraft:bread"
+					type: "item"
+				}
+				{
+					id: "605E5DEA7815EF1C"
+					item: {
+						Count: 1
+						id: "minecraft:iron_axe"
+						tag: {
+							Damage: 0
+							affix_data: {
+								sockets: 1
+							}
+							reinforce_level: 0
+							reinforce_max: 10
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "收集物资"
+			x: -2.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["73B68DABF2FA7F97"]
+			description: [
+				"你走近&8Silas&r，并把&9神秘包裹递给了他&r。他的眼中闪过感激的光芒，但脸上也掠过一丝担忧。"
+				""
+				"&n&8铁匠的故事&r&r"
+				""
+				"“&o&3谢谢你送来了这个&r&r，” - 他说道，小心翼翼地拆着包裹。"
+				"&o&8他走进屋里，发现了一套精心制作的工具，正好能为他的工坊增添不少助力。但他抬起头看着你时，神情变得严肃起来。&r&r"
+				""
+				"“&3&o我的学徒埃利几天前失踪了，&r&r” - 他的声音充满了担忧。"
+				""
+				"“&3&o他最后一次被看见是朝旧爬行地穴方向去的。那是一个充满黑暗传说和诡异故事的地方。许多人说那里闹鬼，靠近的人往往有去无回。&r&r”"
+				""
+				"埃利的命运和地穴的秘密正等待你的抉择！&9你会做出怎样的选择？&r 🌌"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: "minecraft:anvil"
+			id: "13D8979279D22C3A"
+			rewards: [
+				{
+					id: "0232E3B0CF6B6CE5"
+					type: "xp"
+					xp: 50
+				}
+				{
+					count: 10
+					id: "2079DF77F2A0E295"
+					item: "minecraft:iron_ingot"
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "3BF7D671A97E1625"
+					structure: "minecraft:village_plains"
+					type: "structure"
+				}
+				{
+					consume_items: true
+					id: "0CEFE4A5DFAFAF56"
+					item: "kubejs:quest_bundle"
+					type: "item"
+				}
+			]
+			title: "神秘失踪事件"
+			x: -0.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["13D8979279D22C3A"]
+			description: [
+				"漫步在迷人的&2Willow Creek&r街道上，温暖的灯笼照亮了整个村庄，营造出一种舒适宜人的氛围。"
+				""
+				"&8&o新鲜出炉的面包和炖菜的香气扑鼻而来，指引着你走向热闹的村庄厨房。&r&r"
+				""
+				"在里头，你遇到了当地厨师&5Mira&r，她正忙着切菜和搅拌锅里的东西。她抬起头，露出了温暖的笑容。"
+				""
+				"&3“&o啊，一位旅人！你愿意帮我为村民们准备晚餐吗？我正需要多一双帮手！”&r”"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: "farmersdelight:cooking_pot"
+			id: "1EF128BE99F4309D"
+			incompatible: ["7BA2CF8F9F125C31"]
+			rewards: [{
+				id: "2010673A2B2D02AA"
+				item: {
+					Count: 1
+					id: "minecraft:potion"
+					tag: {
+						Potion: "hmag:hmag.ogre"
+					}
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "3E4E70A7C5313EFA"
+				item: "farmersdelight:stuffed_pumpkin_block"
+				type: "item"
+			}]
+			title: "探索村庄"
+			x: 0.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["13D8979279D22C3A"]
+			description: ["在进入未知领域之前，花些时间收集额外的补给和装备。"]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			id: "7BA2CF8F9F125C31"
+			rewards: [{
+				id: "64D427575232FBD9"
+				item: {
+					Count: 1
+					id: "supplementaries:cartographers_quill"
+					tag: {
+						display: {
+							Name: "{\"text\":\"Map to Creeping Crypt\"}"
+						}
+						maxSearchRadius: 200
+						skipKnown: 1b
+						targetStructure: "nova_structures:creeping_crypt"
+						zoomLevel: 2
+					}
+				}
+				type: "item"
+			}]
+			subtitle: "&4离开村庄后，\"探索村庄\"任务将变为不可用状态&r"
+			tasks: [{
+				id: "707D954E78FE980E"
+				title: "准备好踏上旅程吧"
+				type: "checkmark"
+			}]
+			x: 1.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["7BA2CF8F9F125C31"]
+			description: [
+				"随着你深入&0旧爬行地穴&r，空气愈发寒冷，阴影仿佛在低语着过去的秘密。"
+				""
+				"&4你心跳加速&r，穿过潮湿的石质走廊，终于撞见一个隐藏密室。在火把的摇曳光影中，你发现祭坛上有一张皱巴巴的纸条。"
+				""
+				"展开纸条，你读到了埃利匆忙写下的字迹："
+				""
+				"&o&3\"若你见此，须知我已拥抱真理。我们所寻的圣物就在邪教徒的墓穴中。沿着月光之路，找到那棵古橡，入口就藏在它的根部之下。\"&r&r"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: "kubejs:quest_note"
+			id: "5826E13CAB5C44F2"
+			rewards: [
+				{
+					auto: "disabled"
+					exclude_from_claim_all: true
+					id: "4F28A5C27B1D4443"
+					item: {
+						Count: 1
+						id: "supplementaries:cartographers_quill"
+						tag: {
+							display: {
+								Name: "{\"text\":\"Notes how to get to the Crypt\"}"
+							}
+							maxSearchRadius: 200
+							skipKnown: 1b
+							targetStructure: "graveyard:crypt"
+							zoomLevel: 2
+						}
+					}
+					type: "item"
+				}
+				{
+					command: "/locate structure graveyard:crypt"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: {
+						Count: 1
+						id: "ftbquests:custom_icon"
+						tag: {
+							Icon: "kubejs:item/map"
+						}
+					}
+					id: "44A91C09CD71E415"
+					title: "这会将坐标打印到聊天框。请记录下来以免丢失。"
+					type: "command"
+				}
+			]
+			tasks: [
+				{
+					id: "50A7078639942B19"
+					structure: "nova_structures:creeping_crypt"
+					type: "structure"
+				}
+				{
+					count: 40L
+					id: "67C95A7B9CFE7ACF"
+					item: "minecraft:bone"
+					type: "item"
+				}
+			]
+			title: "在地下深处找到 Creeping Crypt"
+			x: 2.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["5826E13CAB5C44F2"]
+			description: [
+				"一阵刺骨的寒风席卷而来，伴随着不死生物的微弱低语。"
+				""
+				"&8就是这里了。&r &0密室就在附近某个地方。&r"
+				""
+				"你开始挖掘，最终入口出现在你面前，&0黑暗而令人不安&r，里面闪烁着幽暗的绿光。"
+				""
+				"你为前方的挑战做好准备，深知&4crypt&r中充满了&0undead&r &4corrupted creatures&r，它们会不惜一切代价来守护秘密。"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			id: "5B0D50FA170721B1"
+			rewards: [{
+				count: 3
+				id: "5DEF8DC1D3762C6F"
+				item: "landsoficaria:healing_flask"
+				type: "item"
+			}]
+			tasks: [{
+				id: "71A7946DEC71D4F5"
+				structure: "graveyard:crypt"
+				type: "structure"
+			}]
+			title: "找到邪教徒的墓穴 (Cultist's Crypt)"
+			x: 4.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["5B0D50FA170721B1"]
+			description: [
+				"&0踏入其中，空气中弥漫着浓重的恶意。 &r"
+				""
+				"&0影子在墙上舞动，远处传来低语的声响回荡在走廊里。 &r"
+				""
+				"&0你的任务很明确：&r &4直面那些学徒，&r &0提取能指引你找到此地邪恶根源的关键线索。&r"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			id: "4011F731FDCAE1BA"
+			rewards: [
+				{
+					count: 4
+					id: "4342FEE955864AAE"
+					item: "graveyard:dark_iron_ingot"
+					type: "item"
+				}
+				{
+					id: "63CDEE2F663C4ABB"
+					item: {
+						Count: 1
+						id: "ftbquests:lootcrate"
+						tag: {
+							type: "blood_magic_loot_crate"
+						}
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					entity: "graveyard:acolyte"
+					id: "77A4D7A5A165D0B6"
+					type: "kill"
+					value: 10L
+				}
+				{
+					entity: "graveyard:corrupted_vindicator"
+					id: "672CD57000A19728"
+					type: "kill"
+					value: 10L
+				}
+			]
+			title: "在地下墓穴内部"
+			x: 5.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["4011F731FDCAE1BA"]
+			description: [
+				"站在&4Cultists' Crypt&r最后一个走廊的尽头，一种紧迫感油然而生。"
+				""
+				"前方的道路被堵住了，&0不死生物的低语在黑暗中不祥地回响着。&r"
+				""
+				"&4&n你走到了死胡同。&r&r &o或者不是吗？&r"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			id: "41E57804435650E5"
+			rewards: [{
+				id: "701C7FDDE1BDE565"
+				item: {
+					Count: 1
+					id: "ftbquests:lootcrate"
+					tag: {
+						type: "blood_magic_loot_crate"
+					}
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "67BB117F7F48494B"
+				title: "死胡同"
+				type: "checkmark"
+			}]
+			x: 7.0d
+			y: 1.0d
+		}
+		{
+			description: [
+				"空气中弥漫着陈年啤酒和未洗之身的恶臭。你，一个孤独的旅人，偶然撞上了一个&4掠夺者营地。"
+				""
+				"无意中听到他们粗俗的吹嘘，你得知了一项残酷的入门仪式：&n袭击毫无防备的村庄&r。"
+				""
+				"&9抉择如强盗的利刃般悬于空中，令人窒息……&r"
+			]
+			id: "424C3DA5FE66B323"
+			rewards: [{
+				id: "652171C906819A66"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				icon: {
+					Count: 1
+					id: "ftbquests:custom_icon"
+					tag: {
+						Icon: "minecraft:textures/mob_effect/bad_omen.png"
+					}
+				}
+				id: "084166061F3F47D1"
+				structure: "nova_structures:illager_camp"
+				type: "structure"
+			}]
+			title: "声名狼藉"
+			x: -5.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["424C3DA5FE66B323"]
+			description: ["加入强盗团伙，袭击村庄。"]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: "graveyard:skull_on_pike"
+			id: "52B281617D229C20"
+			incompatible: ["7FE6E8837582CDB7"]
+			rewards: [
+				{
+					command: "/locate structure #towns_and_towers:town"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "kubejs:map"
+					id: "0F8D37B6656477FA"
+					title: "这会将坐标打印到聊天框。请记录下来以免丢失。"
+					type: "command"
+				}
+				{
+					command: "/supp map structure_map #towns_and_towers:town"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: {
+						Count: 1
+						id: "ftbquests:custom_icon"
+						tag: {
+							Icon: "supplementaries:item/cartographers_quill"
+						}
+					}
+					id: "7A70604AE6BEA566"
+					silent: true
+					team_reward: false
+					title: "在附近找一个城镇"
+					type: "command"
+				}
+			]
+			subtitle: "&4Incompatible with \"The Path of Justice\"&r"
+			tasks: [{
+				id: "3D9E4F8812903A77"
+				type: "checkmark"
+			}]
+			title: "拥抱阴影，融入黑暗的力量。"
+			x: -3.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["424C3DA5FE66B323"]
+			description: ["向附近城镇的守卫报告这些强盗。"]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: {
+				Count: 1
+				id: "deep_aether:wind_shield"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "7FE6E8837582CDB7"
+			incompatible: ["52B281617D229C20"]
+			rewards: [
+				{
+					auto: "disabled"
+					command: "/locate structure #towns_and_towers:town"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "kubejs:map"
+					id: "212981EF1E0528F4"
+					title: "这会将坐标打印到聊天框。请记录下来以免丢失。"
+					type: "command"
+				}
+				{
+					command: "/supp map structure_map #towns_and_towers:town"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: {
+						Count: 1
+						id: "ftbquests:custom_icon"
+						tag: {
+							Icon: "supplementaries:item/cartographers_quill"
+						}
+					}
+					id: "4EEB28759758FEB2"
+					silent: true
+					title: "在附近找一个城镇"
+					type: "command"
+				}
+			]
+			subtitle: "与“拥抱暗影”模组不兼容&4&r"
+			tasks: [{
+				id: "43C9AC749CFAAA54"
+				type: "checkmark"
+			}]
+			title: "正义之路"
+			x: -3.5d
+			y: 7.0d
+		}
+		{
+			dependencies: ["52B281617D229C20"]
+			description: [
+				"通过参加突袭来证明你的价值。"
+				""
+				"回报丰厚——财富、权力，以及在这些无情法外之徒中的地位。"
+				""
+				"但这条道路危机四伏，充满危险。"
+				""
+				"村民们并非手无寸铁，失败可能意味着迅速而残酷的终结。"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: {
+				Count: 1
+				id: "ftbquests:custom_icon"
+				tag: {
+					Icon: "attributeslib:textures/mob_effect/bleeding.png"
+				}
+			}
+			id: "548F6CFC69DF205D"
+			rewards: [
+				{
+					id: "358024E002288A50"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "68F7FDC6FA906B1B"
+					item: "graveyard:vial_of_blood"
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					entity: "minecraft:villager"
+					id: "71BEB50C3C9633FD"
+					type: "kill"
+					value: 10L
+				}
+				{
+					entity: "minecraft:iron_golem"
+					id: "528CAC7C894B7A9B"
+					type: "kill"
+					value: 1L
+				}
+				{
+					id: "36F7BD55EBDCE7DE"
+					item: "minecraft:bell"
+					type: "item"
+				}
+			]
+			title: "血腥的试炼"
+			x: -2.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["7FE6E8837582CDB7"]
+			description: [
+				"正义终将得到伸张。"
+				""
+				"但这些强盗狡猾且善于隐藏。要将他们绳之以法，需要周密的计划、战略性的联盟，以及不惜冒险的觉悟。"
+				""
+				"你能在它们发动攻击前，揭露藏身之处并将其捕获吗？村庄的命运就掌握在你手中。"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			id: "003ED95E5ACEA59E"
+			rewards: [{
+				id: "03921C3EEB0D2F0C"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				id: "032EBEAE58B40D81"
+				observe_type: 5
+				timer: 0L
+				to_observe: "guardvillagers:guard"
+				type: "observation"
+			}]
+			x: -2.0d
+			y: 7.0d
+		}
+		{
+			dependencies: ["003ED95E5ACEA59E"]
+			description: ["村庄守卫解释说，村庄急需物资来为即将到来的掠夺者团伙袭击做准备。你的任务很明确：必须收集必需品，帮助加固村庄并保护村民。"]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			id: "1575E8A79C805DDB"
+			rewards: [{
+				id: "3D0E89109ACFCE30"
+				type: "xp"
+				xp: 5
+			}]
+			tasks: [{
+				id: "6D5A9EC3D1214720"
+				type: "checkmark"
+			}]
+			title: "收集物资"
+			x: -0.5d
+			y: 7.0d
+		}
+		{
+			dependencies: ["548F6CFC69DF205D"]
+			description: [
+				"&o&8成功完成突袭后，你站在战利品中，肾上腺素仍在血管中奔流。空气中弥漫着浓重的硝烟和恐惧，这正是今夜事件的最好证明。你小心地整理自己，行动的重量落在你的肩上。&r&r"
+				""
+				"你面前的下一步是：联系&4掠夺者首领Krag&r，以加入他们的行列。你用木炭和从村庄里找到的羊皮纸碎片，小心翼翼地制作了一张信纸。"
+				""
+				"\""
+				"&o&3任务已完成。"
+				"&o&3如我所承诺的，我已经证明了自己的价值。"
+				"&o&3我等待着你关于藏身之处位置的指示。"
+				"&o&3我准备好加入你的队伍了。&r&r"
+				"\""
+				""
+				"&o&8你小心地折起纸条，将其藏在一个小小的空心石头里。这将成为你的信使，是你新发现的忠诚的无声证明。你在匪巢边缘附近选择一个隐蔽的地点，将石头放在只有匪徒才知道的预定位置。 &r&r"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: "minecraft:paper"
+			id: "5D52212630DE2EE7"
+			rewards: [{
+				id: "6581C48B9339591D"
+				type: "xp"
+				xp: 30
+			}]
+			tasks: [
+				{
+					id: "47E11818BC917091"
+					item: "spelunkery:charcoal_lump"
+					type: "item"
+				}
+				{
+					id: "5ED6D51BB88B45FE"
+					item: "minecraft:paper"
+					type: "item"
+				}
+			]
+			title: "掠夺者巢穴"
+			x: -0.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["5D52212630DE2EE7"]
+			description: [
+				"现在，你等待着，空气中弥漫着沉重的期待感。"
+				""
+				"你选择的路充满危险与未知，但对力量与归属感的渴望却难以抗拒。"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			id: "0B08811AC3483A75"
+			rewards: [{
+				id: "245EA40480D1742E"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				elapsedTime: 300L
+				id: "3C2F9A4A0F148A6A"
+				type: "questsadditions:time"
+			}]
+			x: 1.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["0B08811AC3483A75"]
+			description: [
+				"紧张而充满期待的几天过去了。"
+				""
+				"在营地醒来后，你发现了一张没有文字的小纸条。"
+				""
+				"&e&n坐标！&r&r"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			id: "367683643CE78873"
+			rewards: [
+				{
+					command: "/locate structure takesapillage:bastille"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "kubejs:map"
+					id: "3BC5A1FE9AC17738"
+					title: "这会将坐标打印到聊天框。请记录下来以免丢失。"
+					type: "command"
+				}
+				{
+					id: "7BC9B882CD5861CF"
+					item: {
+						Count: 1
+						id: "supplementaries:cartographers_quill"
+						tag: {
+							display: {
+								Name: "{\"text\":\"Map to Illager's Bastille\"}"
+							}
+							maxSearchRadius: 200
+							skipKnown: 1b
+							targetStructure: "takesapillage:bastille"
+							zoomLevel: 2
+						}
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "05A9A2069337B1A1"
+				type: "checkmark"
+			}]
+			title: "回复的内容是？"
+			x: 2.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["2256D8378C8CA364"]
+			description: [
+				"终于，在硝烟与尘埃中，你看到了他：&4Krag&r，那张布满疤痕的脸扭曲着，充满了愤怒。他冲了过来，手中的剑如钢影般闪烁。碰撞异常激烈，刀剑与鲜血交织成一片旋风。你格挡着他的攻击，自己的剑也一次又一次地命中目标。你带着绝望的愤怒，在日益增长的复仇欲望的驱使下奋力战斗。"
+				""
+				"在最后一次绝望的冲刺中，你缴械了 &4Krag&r，你的刀刃刺入了他的心脏。他倒下了，眼中充满了难以置信的神色。"
+				""
+				"战斗结束了。寂静笼罩着空地，只有幸存者粗重的喘息声。你站在尸横遍野之中，心跳如鼓，双手颤抖。你赢了，但代价惨重。你杀死了匪首克拉格，夺走了他的剑，这既是胜利的象徵，也是你拥抱黑暗的提醒。"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			id: "4ADB9500DDDE28EA"
+			rewards: [
+				{
+					id: "6D45F9BA5FA5AB1D"
+					item: {
+						Count: 1
+						id: "simplyswords:iron_claymore"
+						tag: {
+							Damage: 0
+							affix_data: {
+								affixes: {
+									"apotheosis:durable": 0.3f
+									"apotheosis:heavy_weapon/attribute/decimating": 0.99166036f
+									"apotheosis:heavy_weapon/attribute/forceful": 0.12843049f
+									"apotheosis:heavy_weapon/attribute/giant_slaying": 0.3165658f
+									"apotheosis:heavy_weapon/mob_effect/caustic": 0.86358905f
+									"apotheosis:heavy_weapon/special/cleaving": 0.20121396f
+								}
+								name: "{\"color\":\"#BB00BB\",\"translate\":\"misc.apotheosis.affix_name.three\",\"with\":[{\"translate\":\"affix.apotheosis:heavy_weapon/special/cleaving\"},\"\",{\"translate\":\"affix.apotheosis:heavy_weapon/attribute/decimating.suffix\"}]}"
+								rarity: "apotheosis:epic"
+								sockets: 3
+								uuids: [[I;
+									-851804215
+									-913227618
+									-1461956452
+									82075583
+								]]
+							}
+							display: {
+								Name: "{\"text\":\"Krag's Claymore\"}"
+							}
+							gems_count: 3
+							itemModifier: "modifiers:legendary"
+							reinforce_level: 0
+							reinforce_max: 10
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "3847362C1DD905D8"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [
+				{
+					entity: "takesapillage:skirmisher"
+					id: "74D99A9ADEFE3C80"
+					type: "kill"
+					value: 15L
+				}
+				{
+					entity: "takesapillage:archer"
+					id: "6545E2319F777337"
+					type: "kill"
+					value: 5L
+				}
+				{
+					entity: "takesapillage:legioner"
+					id: "24234DCAF32E8217"
+					type: "kill"
+					value: 3L
+				}
+				{
+					entity: "minecraft:pillager"
+					id: "211124592BF82E10"
+					type: "kill"
+					value: 10L
+				}
+			]
+			x: 5.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["367683643CE78873"]
+			description: [
+				"你到达了指定的集合地点。"
+				""
+				"但总感觉有些不对劲。空气凝重，充满了紧张的氛围。"
+				""
+				"愤怒的强盗们从四面八方冲来。他们精心策划了这场伏击，一直在等着你。"
+				""
+				"你被诱入了陷阱，一场由你以为是盟友的那个人精心策划的伏击。"
+				""
+				"你寡不敌众，但并非不堪一击。无数战斗中磨砺的技能，此刻派上了用场。你穿梭于混乱之中，感官敏锐，反应如电。你接连击败一名又一名强盗，每倒下的一名都让你愈发感到胜利的喜悦。但战斗远未结束。更多强盗从阴影中现身，数量似乎无穷无尽。"
+				""
+				"战斗仍在继续，一场残酷的死亡之舞。你被包围了，但像困兽一样奋力反抗。你的刀刃奏响死亡的乐章，每一击都彰显着你的求生本能。"
+				""
+				"你不确定还能撑多久，但你决心战斗到最后一刻。"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			id: "2256D8378C8CA364"
+			rewards: [{
+				auto: "enabled"
+				id: "2C71AE9796AB2F96"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				id: "7F977070645C19AF"
+				structure: "takesapillage:bastille"
+				type: "structure"
+			}]
+			x: 4.0d
+			y: 4.0d
+		}
+		{
+			dependencies: [
+				"70B131FECAD482C7"
+				"75F8CFA5E1AE007E"
+				"4D1D09DC5BAAD5D0"
+			]
+			description: [
+				"现在我帮村庄做好了准备，也收集了足够的证据来定位掠夺者的藏身之处。"
+				""
+				"镇上的一些居民也决定加入我这边了。"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			id: "63D38B0DBF63AF4D"
+			rewards: [
+				{
+					command: "/locate structure nova_structures:illager_hideout"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "kubejs:map"
+					id: "69091720EB6B70D2"
+					title: "这会将坐标打印到聊天框。请记录下来以免丢失。"
+					type: "command"
+				}
+				{
+					count: 6
+					id: "26643786E6528246"
+					item: "guardvillagers:guard_spawn_egg"
+					type: "item"
+				}
+				{
+					id: "35D003345C056C54"
+					item: {
+						Count: 1
+						id: "supplementaries:cartographers_quill"
+						tag: {
+							display: {
+								Name: "{\"text\":\"Map to Illager Hideout\"}"
+							}
+							maxSearchRadius: 200
+							skipKnown: 1b
+							targetStructure: "nova_structures:illager_hideout"
+							zoomLevel: 2
+						}
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "141ADD0A8565327E"
+				title: "收集证据中"
+				type: "checkmark"
+			}]
+			x: 2.5d
+			y: 7.0d
+		}
+		{
+			dependencies: ["381F497D537D074D"]
+			description: [
+				"随着你深入黑暗，空气变得愈发寒冷潮湿。你能听到隧道里微弱的回声，暗示着强盗的存在。"
+				""
+				"战斗开始了。"
+				""
+				"你寡不敌众，但并非不堪一击。无数战斗中磨砺的技能，此刻派上了用场。你穿梭于混乱之中，感官敏锐，反应如电。你接连击败一名又一名强盗，每倒下的一名都让你愈发感到胜利的喜悦。但战斗远未结束。更多强盗从阴影中现身，数量似乎无穷无尽。"
+				""
+				"战斗仍在继续，一场残酷的死亡之舞。你被包围了，但像困兽一样奋力反抗。你的刀刃奏响死亡的乐章，每一击都彰显着你的求生本能。"
+				""
+				"你不确定还能撑多久，但你决心战斗到最后一刻。"
+			]
+			id: "11AC81CE6384C5F5"
+			rewards: [
+				{
+					id: "7C20B635877054F3"
+					item: {
+						Count: 1
+						id: "ftbquests:lootcrate"
+						tag: {
+							type: "dungeon_artifact_crate"
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "6305513D59C2491E"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [
+				{
+					entity: "minecraft:evoker"
+					id: "0FC287C97E325C94"
+					type: "kill"
+					value: 1L
+				}
+				{
+					entity: "minecraft:pillager"
+					id: "76B85EA5620E0FAD"
+					type: "kill"
+					value: 20L
+				}
+				{
+					entity: "minecraft:vindicator"
+					id: "24285CDDE9448795"
+					type: "kill"
+					value: 10L
+				}
+				{
+					entity: "minecraft:ravager"
+					id: "2E0069861A7EA47F"
+					type: "kill"
+					value: 3L
+				}
+				{
+					entity: "minecraft:witch"
+					id: "6ECAFCDDAEFD28F9"
+					type: "kill"
+					value: 1L
+				}
+			]
+			title: "最终的对决"
+			x: 5.5d
+			y: 7.0d
+		}
+		{
+			dependencies: ["1575E8A79C805DDB"]
+			description: ["在协助铁匠的过程中，他分享了一些关于强盗巢穴的重要线索，这对你的任务至关重要。"]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			id: "70B131FECAD482C7"
+			rewards: [{
+				id: "75684207E858A555"
+				item: {
+					Count: 1
+					id: "minecraft:bow"
+					tag: {
+						Damage: 0
+						Enchantments: [
+							{
+								id: "minecraft:power"
+								lvl: 2s
+							}
+							{
+								id: "minecraft:punch"
+								lvl: 2s
+							}
+						]
+						RepairCost: 3
+						affix_data: {
+							affixes: {
+								"apotheosis:durable": 0.09f
+								"apotheosis:ranged/attribute/elven": 0.10268295f
+								"apotheosis:ranged/attribute/windswept": 0.8680264f
+								"apotheosis:ranged/mob_effect/fleeting": 0.43698692f
+								"apotheotic_additions:ranged/mob_effect/inebriation": 0.93198025f
+							}
+							name: "{\"color\":\"#5555FF\",\"translate\":\"misc.apotheosis.affix_name.three\",\"with\":[{\"translate\":\"affix.apotheosis:ranged/attribute/elven\"},\"\",{\"translate\":\"affix.apotheosis:ranged/mob_effect/fleeting.suffix\"}]}"
+							rarity: "apotheosis:rare"
+							sockets: 1
+							uuids: [[I;
+								-2064885824
+								-1010218967
+								-2145675556
+								-1247861512
+							]]
+						}
+					}
+				}
+				type: "item"
+			}]
+			tasks: [
+				{
+					count: 64L
+					id: "6FA3D4B5A76F01AC"
+					item: { Count: 64, id: "minecraft:arrow" }
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "0F071BE9240155BC"
+					item: {
+						Count: 1
+						id: "minecraft:bow"
+						tag: {
+							Damage: 0
+							affix_data: {
+								sockets: 1
+							}
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "武器和防御装备"
+			x: 1.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["1575E8A79C805DDB"]
+			description: ["与铁匠合作后，你转向厨师，他分享了一些有趣的谣言，或许能提供更多关于强盗活动的线索。"]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			id: "75F8CFA5E1AE007E"
+			rewards: [{
+				id: "445EF4DFA3305B7F"
+				item: {
+					Count: 1
+					id: "roughtweaks:medkit_enchanted"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "0B5139F167C67F1B"
+					item: "fruitsdelight:lychee_chicken"
+					type: "item"
+				}
+				{
+					id: "74E94446433CCCBE"
+					item: "fruitsdelight:orange_marinated_pork"
+					type: "item"
+				}
+			]
+			title: "食物补给品"
+			x: 1.0d
+			y: 7.0d
+		}
+		{
+			dependencies: ["63D38B0DBF63AF4D"]
+			description: [
+				"怀着决心，你决定用地图找到藏在地下的强盗巢穴。铁匠、厨师和牧师提供的线索将指引你完成这项重要任务。"
+				""
+				"地图上显示，藏身处的入口隐藏在偏远地区，可能被自然植被覆盖或藏在岩石中。"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			id: "381F497D537D074D"
+			rewards: [{
+				id: "125A144DD993C7D9"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				id: "29DEF943866E9A13"
+				structure: "nova_structures:illager_hideout"
+				type: "structure"
+			}]
+			title: "找到掠夺者巢穴"
+			x: 4.0d
+			y: 7.0d
+		}
+		{
+			dependencies: ["1575E8A79C805DDB"]
+			description: ["与牧师交谈时，他分享了一些有趣的谣言，或许能为你提供有关强盗活动和计划的宝贵线索。"]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			id: "4D1D09DC5BAAD5D0"
+			rewards: [{
+				count: 3
+				id: "100F6D5F683BD623"
+				item: "fruitsdelight:melon_jello"
+				type: "item"
+			}]
+			tasks: [{
+				consume_items: true
+				id: "5446C9082A7673F4"
+				item: {
+					Count: 1
+					id: "roughtweaks:bandage"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "医疗用品"
+			x: 1.0d
+			y: 8.0d
+		}
+		{
+			description: ["&6宝藏地图奖励&r会定位最近的建筑，所以站在已访问过的建筑旁边时要留意这一点"]
+			icon: {
+				Count: 1
+				id: "ftbquests:custom_icon"
+				tag: {
+					Icon: "kubejs:item/help"
+				}
+			}
+			id: "422BEAD5E7E588A4"
+			tasks: [{
+				id: "2029645486E1A709"
+				type: "checkmark"
+			}]
+			title: "提示：查找结构奖励的位置"
+			x: -9.5d
+			y: 8.5d
+		}
+		{
+			dependencies: ["39939BF03332602B"]
+			description: ["&o&8\"这些碎片……看起来像是旧地图的一部分。如果我们能拼凑起来，谁知道会揭示出什么秘密呢？你应该去和制图师Eldrin谈谈——他最擅长解读这类谜题了。\"&r&r"]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			id: "038AF7B7C3DAC3CA"
+			rewards: [{
+				id: "420814052C0CB61F"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [
+				{
+					id: "2B292FB125EDE0B9"
+					structure: "#minecraft:village"
+					title: "寻找最近的村庄"
+					type: "structure"
+				}
+				{
+					id: "25BB7426A025DCBE"
+					observe_type: 0
+					timer: 0L
+					title: "寻找制图台 (Cartography Table)"
+					to_observe: "minecraft:cartography_table"
+					type: "observation"
+				}
+			]
+			title: "在最近的村庄里找到制图师NPC"
+			x: -4.0d
+			y: 11.0d
+		}
+		{
+			description: [
+				"在探索并搜刮宝箱时，你发现了一些&3破旧不堪的纸片&r——它们是遗失在时间长河中的地图残片。被其潜力所吸引，你决定去寻找一位能帮你拼凑出其中含义的知情人士。"
+				""
+				"或许城镇里的&6制图师&r或&6图书管理员&r能解开这些古老残篇的谜团。"
+			]
+			id: "39939BF03332602B"
+			rewards: [{
+				command: "/supplementaries map structure_map #minecraft:village"
+				console: true
+				elevate_perms: true
+				icon: "kubejs:map"
+				id: "75E711B26AD65E18"
+				silent: true
+				title: "我好像在附近某个地方见过村庄……"
+				type: "command"
+			}]
+			tasks: [{
+				id: "515EF6B78FC62A98"
+				item: "kubejs:map_fragment"
+				type: "item"
+			}]
+			title: "调查神秘的地图碎片"
+			x: -5.0d
+			y: 10.0d
+		}
+		{
+			dependencies: ["038AF7B7C3DAC3CA"]
+			description: [
+				"&o&7\"啊，好眼力，好胆识！我是&6制图师埃尔德林&r。 &o&7我长久以来都在寻找值得托付之人，协助我绘制这个世界被遗忘的角落。你愿意接受挑战吗？\"&r&r"
+				""
+				"Eldrin 给了你一支 Pathfinder's Quill，用来揭示第一个遗迹的位置。据说那里是一座废弃的瞭望塔，藏着解开制图师之谜的线索。"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: "minecraft:cartography_table"
+			id: "48BC42A1AD81B480"
+			rewards: [{
+				id: "797D5F512B9831AD"
+				item: {
+					Count: 1
+					id: "supplementaries:cartographers_quill"
+					tag: {
+						display: {
+							Name: "{\"text\":\"Estimated location of some old Tower\"}"
+						}
+						maxSearchRadius: 200
+						skipKnown: 1b
+						targetStructure: "dungeons_enhanced:tower_of_the_undead"
+						zoomLevel: 2
+					}
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "4A1A551EC9712C80"
+				type: "checkmark"
+			}]
+			x: -3.0d
+			y: 9.5d
+		}
+		{
+			dependencies: ["48BC42A1AD81B480"]
+			description: [
+				"清理了塔里所有的亡灵后，我空手而归。"
+				""
+				"&6Eldrin &r让我收集一些东西，用于他进一步的研究……"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: {
+				Count: 1
+				id: "ftbquests:custom_icon"
+				tag: {
+					Icon: "supplementaries:textures/map_marker/waystone.png"
+				}
+			}
+			icon_scale: 0.7d
+			id: "7A72CBC73FE616AD"
+			rewards: [{
+				id: "1290FF9B88023D30"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [
+				{
+					id: "0B77BEFA3E678450"
+					structure: "dungeons_enhanced:tower_of_the_undead"
+					type: "structure"
+				}
+				{
+					entity: "minecraft:zombie"
+					id: "679170707E3D326C"
+					type: "kill"
+					value: 5L
+				}
+			]
+			title: "找到不死者之塔 (Tower of the Undead)"
+			x: -2.5d
+			y: 11.0d
+		}
+		{
+			dependencies: ["7A72CBC73FE616AD"]
+			description: [
+				"当埃尔德林研究着古老的残片时，他想起一个可能掌握着重要知识的奇特人物——神秘的旧哥布林商人。"
+				""
+				"Eldrin 派你前去寻找他，希望这位商人的秘密能揭开神秘地图残片的谜团。"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			id: "11B76339E844FE72"
+			rewards: [{
+				id: "71B4C7B9DA5F31FA"
+				item: "kubejs:map_fragment"
+				type: "item"
+			}]
+			tasks: [
+				{
+					consume_items: true
+					count: 3L
+					id: "34C47B87CCB67435"
+					item: { Count: 10, id: "minecraft:ink_sac" }
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 3L
+					id: "2EAA7886EE7A87A5"
+					item: { Count: 3, id: "minecraft:paper" }
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "12A079D4781BD061"
+					item: "minecraft:writable_book"
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "7E2B9A7EF530A1C7"
+					item: { Count: 2, id: "minecraft:slime_ball" }
+					type: "item"
+				}
+			]
+			title: "补给品"
+			x: -0.5d
+			y: 10.0d
+		}
+		{
+			dependencies: ["11B76339E844FE72"]
+			description: [
+				"&2老哥布林商人&r是一个狡猾而神秘的人物，他很少在一个地方停留太久。"
+				""
+				"他的巢穴位于地表深处，隐藏在蜿蜒的地下隧道中。他的位置经常变动，因此相当难以找到。"
+				""
+				""
+				"&o&8\"哥布林商人是个滑头的家伙，总是搬家来躲避不速之客。你费尽了心思和耐心才找到他，但现在，真正的挑战才刚刚开始。\"&r&r"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			id: "7C9B25FFE3D57F83"
+			rewards: [{
+				id: "1423A32A07ADA238"
+				item: "kubejs:map_fragment"
+				type: "item"
+			}]
+			tasks: [{
+				id: "7EB34A6A26D73614"
+				observe_type: 5
+				timer: 0L
+				to_observe: "goblintraders:goblin_trader"
+				type: "observation"
+			}]
+			title: "找到哥布林商人"
+			x: 1.0d
+			y: 10.5d
+		}
+		{
+			dependencies: ["7C9B25FFE3D57F83"]
+			description: [
+				"一番搜寻和坚持之后，你终于找到了他的藏身之处。"
+				""
+				"&2Goblin Trader&r 暗示着他的知识需要付出代价。要赢得他的信任，你必须冒险进入危险的 &4Nether Dimension&r，取回一朵稀有的 &6Nether Lily&r。"
+				""
+				"把它带回去给他，也许他会透露自己知道的一切。"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: "sorcerousnether:lava_lily"
+			id: "13379B923D5E59DB"
+			rewards: [{
+				id: "5C48F73F703AF614"
+				item: {
+					Count: 1
+					id: "supplementaries:cartographers_quill"
+					tag: {
+						display: {
+							Name: "{\"text\":\"Should be used in Nether...\"}"
+						}
+						maxSearchRadius: 200
+						skipKnown: 1b
+						targetStructure: "incendium:pipeline"
+						zoomLevel: 2
+					}
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "1FF62EF6A4061FBB"
+				type: "checkmark"
+			}]
+			x: 2.5d
+			y: 9.5d
+		}
+		{
+			dependencies: ["13379B923D5E59DB"]
+			description: [
+				"手持着&6下界百合&r，你寻找神秘&2哥布林商人&r的旅程仍在继续。"
+				""
+				"他的行动依然难以预测，你必须再次深入地下才能追踪到他。"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			id: "4DAF35E5B8291B90"
+			rewards: [{
+				id: "5A5309B071D787BE"
+				type: "xp"
+				xp: 5
+			}]
+			tasks: [{
+				id: "770544C215DE76B7"
+				observe_type: 5
+				timer: 0L
+				to_observe: "goblintraders:goblin_trader"
+				type: "observation"
+			}]
+			title: "再次寻找哥布林商人……又一次"
+			x: 4.0d
+			y: 10.0d
+		}
+		{
+			dependencies: ["4DAF35E5B8291B90"]
+			description: [
+				"终于，你找到了&2Goblin Trader&r，并向他追问关于&emap fragments&r的答案。然而，他否认曾作任何承诺，并暗示很可能是他的某个亲戚提到了这些事。"
+				""
+				"他透露，许多哥布林商人游荡于主世界和下界，各自拥有秘密和货物。"
+				""
+				"&o&2\"承诺？我从不轻易承诺。或许是族人谈论过这些。要知道——有许多像我一样的人，游荡于地上与地下。若想了解更多，就去寻找他们吧。\"&r&r"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: "kubejs:map_fragment"
+			id: "32996B8992B1FF07"
+			rewards: [{
+				id: "6A2A39AEAF95CDB1"
+				item: "kubejs:map_fragment"
+				type: "item"
+			}]
+			tasks: [{
+				id: "78577CB7EBAAD584"
+				type: "checkmark"
+			}]
+			x: 5.0d
+			y: 11.0d
+		}
+		{
+			dependencies: ["32996B8992B1FF07"]
+			description: [
+				"没有明确的答案，碎片仍在手中，你感到不知所措。前路未卜，但有一点很明确：&6碎片&r在卖给博学的制图师、神秘的哥布林商人，或许还有其他人时，会很有价值？"
+				""
+				"或许这就是解锁它们真正力量的关键所在。"
+				""
+				"&o&8\"道路虽蜿蜒曲折，充满死胡同，但这些碎片并非毫无价值。你的下一步是建立联盟，明智地交易。\"&r&r"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: "vinery:wandering_winemaker_spawn_egg"
+			id: "734E10F295C10D21"
+			rewards: [{
+				id: "1F1391D3EB0459BD"
+				item: "kubejs:map_fragment"
+				type: "item"
+			}]
+			tasks: [{
+				id: "7F03260F2197B524"
+				type: "checkmark"
+			}]
+			x: 5.5d
+			y: 10.0d
+		}
+		{
+			description: [
+				"钉在公告板上，被一张丢失的山羊海报半遮着，是一张用褪色的红墨水写的通知。"
+				""
+				"&6&l悬赏 — 情报&r"
+				""
+				"&o&3\"Any soul with knowledge of the final resting place of &n&4Desram the Unbroken&r&r&3&o, once &6King of the Shattered Coves&r, &3is sought by the order of the Quill and Anchor.&r"
+				"&3奖励：知晓刀刃的下落。&r"
+				""
+				"&o&8你以前听说过这个名字。每个水手都听说过。德斯拉姆是一位海盗王，他消失了却并未死去——没有海难，没有战斗，没有坟墓。就这么消失了。据说，他的剑也随他而去。而那把剑，据说会选中自己的持有者。&r&r"
+				""
+				"通知上没有地址。只有一个名字：&6The Wandering Hold。&r"
+			]
+			icon: "minecraft:paper"
+			id: "00ED99B6105C9DE1"
+			rewards: [
+				{
+					auto: "enabled"
+					command: "/gamestage add @p sidestory_crate"
+					elevate_perms: true
+					icon: {
+						Count: 1
+						id: "ftbquests:custom_icon"
+						tag: {
+							Icon: "dungeonsdelight:block/dungeon_stove_front_on"
+						}
+					}
+					id: "022A93BC29B1DF10"
+					silent: true
+					title: "地牢开始骚动。里面现在有东西在等待着你。"
+					type: "command"
+				}
+				{
+					id: "0432450B26B8DC1D"
+					type: "xp"
+					xp: 20
+				}
+			]
+			tasks: [{
+				id: "08326936A1F188F8"
+				structure: "#minecraft:village"
+				title: "找到一个村庄公告板"
+				type: "structure"
+			}]
+			title: "通缉令公告板"
+			x: -11.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["00ED99B6105C9DE1"]
+			description: [
+				"你四处打听。水手、商人，还有个半聋的制图师。渐渐地，一幅画面浮出水面。"
+				""
+				"&6不屈的德斯兰。&r"
+				""
+				"&o&8他生于无名渔村，十七岁驾首船，二十三岁掌首支舰队。他从未称王——他说王冠属于需要他人承认胜利的人。但破碎海湾都听从他。每位船长、走私者、在南部航线走私的码头主，都在他的阴影下行动。&r&r"
+				""
+				"使他成为传奇的并非征服，而是那把&6探索之刃。&r"
+				""
+				"&o&8据说，是他亲手锻造的。不是用铁匠的技艺，而是用&4三项试炼&r &o&8——他独自闯过地牢，以证明自己配得上这钢铁。锻造完成后，他定下了一条规矩：&r&r"
+				""
+				"&6这把剑从不被收藏，只为被携带。当持有者证明自己时，便会将其传承。剑刃会找到下一个配得上它的人。&r"
+				""
+				"他在自己传递下去之前就已经消失了。"
+				""
+				"&o&8他故事的碎片散落在他曾通关过的同一座地牢中。找到它们，或许就能找到他。&r&r"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: "kubejs:map_fragment"
+			id: "0859A97708084F0D"
+			rewards: [
+				{
+					id: "098D2F129A31E399"
+					type: "xp"
+					xp: 20
+				}
+				{
+					id: "0B633D084DB59A54"
+					item: {
+						Count: 1
+						id: "supplementaries:cartographers_quill"
+						tag: {
+							display: {
+								Name: "{\"text\":\"Rumoured location of an old crypt\"}"
+							}
+							maxSearchRadius: 250
+							skipKnown: 1b
+							targetStructure: "nova_structures:undead_crypt"
+							zoomLevel: 2
+						}
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: true
+				count: 3L
+				id: "0C45289C21D93E27"
+				item: "kubejs:map_fragment"
+				title: "收集传闻——收集3个地图碎片"
+				type: "item"
+			}]
+			title: "国王的传说"
+			x: -9.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["0859A97708084F0D"]
+			description: [
+				"墓穴开在一个当地人拒绝命名的山丘之下。"
+				""
+				"&o&8里面弥漫着咸水和铁锈的气味——不是古墓常见的腐臭，而是一种能让人想起大海的味道。"
+				""
+				"他的船员们仍然还在这里。"
+				""
+				"&4并非作为人，而是作为向一位永生不灭、永不复返的国王宣誓效忠时所化成的存在。&r"
+				""
+				"&o&8他们并非出于憎恨而攻击。他们攻击，只因誓言所求。守护试炼。将不配者驱逐。唯有被利刃选中者，方可通行。&r&r"
+				""
+				"在倒下的残骸中，你发现了一个意想不到的东西：一个带铁箍的小木箱。无论里面是什么，它注定会被找到。"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: {
+				Count: 1
+				id: "ftbquests:custom_icon"
+				tag: {
+					Icon: "minecraft:textures/block/deepslate_bricks.png"
+				}
+			}
+			id: "0E8BBA51A55DB446"
+			require_sequential_tasks: true
+			rewards: [
+				{
+					id: "11A4BAED5925FB69"
+					type: "xp"
+					xp: 40
+				}
+				{
+					count: 16
+					id: "11D2574D8A9995D9"
+					item: "minecraft:bone"
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "132C085C8914FB8C"
+					structure: "nova_structures:undead_crypt"
+					title: "进入不死者地穴"
+					type: "structure"
+				}
+				{
+					entity: "minecraft:skeleton"
+					id: "134EEE52DB9FA0D4"
+					title: "击败德斯拉姆的不朽船员"
+					type: "kill"
+					value: 10L
+				}
+				{
+					entity: "minecraft:zombie"
+					id: "13B49786B5B44131"
+					type: "kill"
+					value: 10L
+				}
+				{
+					id: "14D8B814406C71E9"
+					item: "kubejs:quest_crate"
+					title: "取回带有铁带的木箱"
+					type: "item"
+				}
+			]
+			title: "试炼一 — 不灭船员"
+			x: -7.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["0E8BBA51A55DB446"]
+			description: [
+				"你撬开了这个木箱。"
+				""
+				"&o&8内部：一个密封的玻璃瓶，里面装着卷起的羊皮纸。几枚因盐分而发绿的旧硬币。一块折叠的布，可能曾是旗帜。还有一种气味——橡木和海风，不知为何在黑暗中存放了这么多年却依然保存着。&r&r"
+				""
+				"羊皮纸是从日志簿上撕下的一页。字迹紧凑而工整："
+				""
+				"&6&o“——第一重考验已通过。如果你在读这段话，说明你穿过了我的船员，并走了出来。很好。他们是我最好的伙伴。别太得意——他们待在那里很久了，已经不如从前了。但你还是出现了。大多数人可不会出现。”&r&r"
+				""
+				"&6&o\"这把剑需要三度赢取。找到迷宫。找到大海。找到我剩下的部分。然后我们再谈。\"&r&r"
+				""
+				"&o&8没有签名。只是在角落里用一笔画出的罗盘玫瑰。&r&r"
+				""
+				"你将碎片收入囊中。空无一物的木箱，感觉比应有的重量要轻。 &8仿佛它在等待被再次填满一般。&r"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: "kubejs:quest_crate"
+			id: "1667BAF165D33764"
+			rewards: [
+				{
+					id: "1803DE701EE90E5F"
+					type: "xp"
+					xp: 25
+				}
+				{
+					id: "1A0294F1C9C3877D"
+					item: {
+						Count: 1
+						id: "minecraft:paper"
+						tag: {
+							display: {
+								Lore: [
+									"{\"text\":\"\\\"Trial the First is passed...\\\"\"}"
+									"{\"text\":\"Torn from an old captain's logbook.\"}"
+								]
+								Name: "{\"text\":\"Desram's Log — Fragment I\"}"
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "2D8B3031DAA7A678"
+					item: {
+						Count: 1
+						id: "supplementaries:cartographers_quill"
+						tag: {
+							display: {
+								Name: "{\"text\":\"Rumoured location of a Monster Maze\"}"
+							}
+							maxSearchRadius: 150
+							skipKnown: 1b
+							targetStructure: "dungeons_enhanced:monster_maze"
+							zoomLevel: 2
+						}
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: true
+				id: "1A3ED13A32E97CC3"
+				item: "kubejs:quest_crate"
+				title: "打开带有铁带的木箱"
+				type: "item"
+			}]
+			title: "木箱里有什么东西"
+			x: -9.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["1667BAF165D33764"]
+			description: [
+				"日志残片提到了一个迷宫。你曾听说过它的传闻——一个会自我重组的地下城，或者至少看起来是这样。在那里，&4怪物以不可能数量的巢穴聚集&r，墙壁上覆盖着你在德斯拉姆遗迹中反复发现的相同符文。"
+				""
+				"&o&8入口被刻意隐藏了起来，等你找到它的时候。有人费尽心思将其藏起。或是为了将其保存。&r&r"
+				""
+				"里面，迷宫完全如描述的那样。黑暗、喧闹，而且充满生机。"
+				""
+				"&4德斯拉姆独自完成了这件事。你最好不要想得太深。&r"
+				""
+				"&o&8在最深处的某个密室里，又有一个木箱。同样的铁带，同样的罗盘玫瑰。似乎在等待着你一样。&r&r"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: {
+				Count: 1
+				id: "ftbquests:custom_icon"
+				tag: {
+					Icon: "minecraft:textures/block/stone_bricks.png"
+				}
+			}
+			id: "1DD4C4E26F375008"
+			require_sequential_tasks: true
+			rewards: [{
+				id: "1F932881FE71D7B8"
+				type: "xp"
+				xp: 40
+			}]
+			tasks: [
+				{
+					id: "224ECDE331CE692E"
+					structure: "dungeons_enhanced:monster_maze"
+					title: "进入怪物迷宫 (Enter the Monster Maze)"
+					type: "structure"
+				}
+				{
+					entity: "minecraft:zombie"
+					id: "225B5FED4A824882"
+					title: "将迷宫中的所有生物清除干净"
+					type: "kill"
+					value: 15L
+				}
+				{
+					entity: "minecraft:skeleton"
+					id: "24B941BBF8710654"
+					type: "kill"
+					value: 10L
+				}
+				{
+					id: "2595C78740F8F350"
+					item: "kubejs:quest_crate"
+					title: "找到第二个铁带木箱"
+					type: "item"
+				}
+			]
+			title: "试炼二 — 地下迷宫"
+			x: -7.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["1DD4C4E26F375008"]
+			description: [
+				"你在迷宫最深处的半暗光中，打开了第二个木箱。"
+				""
+				"&o&8同样的仪式。玻璃瓶。羊皮纸。还有那股不可能存在的海腥味。&r&r"
+				""
+				"&6&o“——第二重试炼。我打赌，你是在没有地图、没有多少理智的情况下，硬着头皮穿过这片黑暗的。很好。迷宫不尊重准备，它尊重的是固执。&r&r"
+				""
+				"&6&o\"你想知道关于这把剑的事。大家都想知道。我能告诉你的有这些：&r&r"
+				""
+				"&6&o“我锻造它是为了传承。并非因为我慷慨——我可不——而是因为我明白大多数人不懂的事：一把武器若只留在同一双手中，终会腐朽。它需要新的血液，新的战斗，新的证明，证明它值得被携带。”&r&r"
+				""
+				"&6&o“当它找到右手时，它便会知晓。当那只手证明自己时，他们也会知晓。然后他们将之传递下去，循环便得以维系。”&r&r"
+				""
+				"&6&o\"弄丢了？那就回来拿另一个。试炼不会关闭，这正是重点所在。\"&r&r"
+				""
+				"&o&8第二块碎片与背包中的第一块契合。你能感觉到第三块的存在——在某个寒冷潮湿的地方。&r&r"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: "kubejs:quest_crate"
+			id: "2A340FEEA67FFAC5"
+			rewards: [
+				{
+					id: "2B7E8A00DFAC6D3B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					id: "2C7BAC1C74030E8F"
+					item: {
+						Count: 1
+						id: "minecraft:paper"
+						tag: {
+							display: {
+								Lore: [
+									"{\"text\":\"\\\"The maze doesn't respect preparation...\\\"\"}"
+									"{\"text\":\"Torn from an old captain's logbook.\"}"
+								]
+								Name: "{\"text\":\"Desram's Log — Fragment II\"}"
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "592B93FDD3F47110"
+					item: {
+						Count: 1
+						id: "supplementaries:cartographers_quill"
+						tag: {
+							display: {
+								Name: "{\"text\":\"Rumoured location of a sunken ship\"}"
+							}
+							maxSearchRadius: 150
+							skipKnown: 1b
+							targetStructure: "minecraft:shipwreck"
+							zoomLevel: 2
+						}
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: true
+				id: "2E0D2242A00C3520"
+				item: "kubejs:quest_crate"
+				title: "打开第二个铁带木箱"
+				type: "item"
+			}]
+			title: "碎片 II"
+			x: -9.5d
+			y: -5.0d
+		}
+		{
+			dependencies: ["2A340FEEA67FFAC5"]
+			description: [
+				"第三块碎片在海上。或者在海底。"
+				""
+				"&o&8地图指引你到一片陌生的海岸。船已残破，半埋在沙子和海带中，桅杆折断，船体向内塌陷，宛如肋骨。船首像已不见，但船首仍保留着缠绕在罗盘玫瑰上的蛇形装饰。&r&r"
+				""
+				"&6这是德斯拉姆的船。&r 至少是其中一艘。"
+				""
+				"&o&8守护它的溺尸不同于墓穴里的。那些是士兵。而这些是水手——与船一同沉没、再未浮起的船员。 &r&r"
+				""
+				"&4第三个木箱在船长室里。在水下。用某种非蜡质的东西封着。&r"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: "minecraft:nautilus_shell"
+			id: "2F471E27ABF6B261"
+			require_sequential_tasks: true
+			rewards: [
+				{
+					id: "2F803D7CAF9FE9B8"
+					type: "xp"
+					xp: 50
+				}
+				{
+					count: 5
+					id: "31B768447F4E71D7"
+					item: "minecraft:nautilus_shell"
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "354EB1C6CE03109B"
+					structure: "minecraft:shipwreck"
+					title: "找到德斯拉姆的沉没船只"
+					type: "structure"
+				}
+				{
+					entity: "minecraft:drowned"
+					id: "35FF4B7936D61998"
+					title: "击败溺亡船员队伍"
+					type: "kill"
+					value: 5L
+				}
+				{
+					count: 3L
+					id: "37D16A3B73A0CC16"
+					item: "minecraft:nautilus_shell"
+					title: "从残骸中收集鹦鹉螺壳"
+					type: "item"
+				}
+				{
+					id: "39C0CB52F511D9CB"
+					item: "kubejs:quest_crate"
+					secret: true
+					title: "从船长室取回密封的木箱"
+					type: "item"
+				}
+			]
+			title: "试炼三 — 溺亡者巢穴"
+			x: -7.5d
+			y: -6.0d
+		}
+		{
+			dependencies: ["2F471E27ABF6B261"]
+			description: [
+				"潮水涌来，你打开了船甲板上第三个木箱。"
+				""
+				"&o&8同样的仪式。小瓶。羊皮纸。但这个闻起来不一样——咸水，底下还有一股更古老的气味，像是几个世纪以来从未流动过的空气。&r&r"
+				""
+				"&6&o“——第三试炼。很好。你湿了，冷了，但还在这里。说实话，这就是全部考验。迷宫和地穴只是为了筛选掉一部分人。”&r&r"
+				""
+				"&6&o“我没死。我想把话说清楚。我比死亡更深处——超越了万物的根源，超越了光明放弃的地方。但我仍能听见有人通过我的考验。我听到的声音越来越少了。很高兴能再次听见它。”&r&r"
+				""
+				"&6&o\"把三页纸合在一起。在边界模糊的地方念出我的名字。我会找到你的。\"&r&r"
+				""
+				"&o&8你看着手中的三块碎片。分开时，它们只是残片。合在一起，它们拼成了半张地图——另一半已在你的记忆中，由废墟、水和黑暗拼凑而成。&r&r"
+				""
+				"&4一个边界模糊的地方。&r你知道这意味着什么。找个亡灵出没的地方。"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: "minecraft:paper"
+			id: "3BB7AECAAE68AED1"
+			rewards: [
+				{
+					id: "3C5EB40F1B7CBA7C"
+					type: "xp"
+					xp: 30
+				}
+				{
+					id: "1AFA6EA1F337BB6F"
+					item: {
+						Count: 1
+						id: "minecraft:paper"
+						tag: {
+							display: {
+								Lore: [
+									"{\"text\":\"\\\"...bring the three pages together.\\\"\"}"
+									"{\"text\":\"Torn from an old captain's logbook.\"}"
+								]
+								Name: "{\"text\":\"Desram's Log — Fragment III\"}"
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "1F8877B074A1300F"
+					item: {
+						Count: 1
+						id: "supplementaries:cartographers_quill"
+						tag: {
+							display: {
+								Name: "{\"text\":\"Rumoured location of an old Crypt\"}"
+							}
+							maxSearchRadius: 150
+							skipKnown: 1b
+							targetStructure: "graveyard:crypt"
+							zoomLevel: 2
+						}
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					consume_items: true
+					id: "3D74C3035DF4A6F8"
+					item: "kubejs:quest_crate"
+					title: "打开第三个铁带木箱"
+					type: "item"
+				}
+				{
+					id: "46F99F9D519FDB29"
+					item: {
+						Count: 1
+						id: "minecraft:paper"
+						tag: {
+							display: {
+								Lore: [
+									"{\"text\":\"\\\"Trial the First is passed...\\\"\"}"
+									"{\"text\":\"Torn from an old captain's logbook.\"}"
+								]
+								Name: "{\"text\":\"Desram's Log — Fragment I\"}"
+							}
+						}
+					}
+					match_nbt: true
+					type: "item"
+				}
+				{
+					id: "749575A2FB4ED7C8"
+					item: {
+						Count: 1
+						id: "minecraft:paper"
+						tag: {
+							display: {
+								Lore: [
+									"{\"text\":\"\\\"The maze doesn't respect preparation...\\\"\"}"
+									"{\"text\":\"Torn from an old captain's logbook.\"}"
+								]
+								Name: "{\"text\":\"Desram's Log — Fragment II\"}"
+							}
+						}
+					}
+					match_nbt: true
+					type: "item"
+				}
+			]
+			title: "国王不会忘记一切"
+			x: -9.5d
+			y: -7.0d
+		}
+		{
+			dependencies: ["3BB7AECAAE68AED1"]
+			description: [
+				"他并不是你所期望的那个人。"
+				""
+				"&o&8不是骷髅，也不是幽灵。更难归类——一个由深海般的黑暗和古老的意图构成的形态，披着曾擅长掌控危险局势之人的轮廓。&r&r"
+				""
+				"&6&o\"你找到了三块碎片。你去了我让你去的地方。干得不错。\"&r&r"
+				""
+				"他用一双几乎不存在的眼神上下打量着你。"
+				""
+				"&6&o\"现在证明你能挥舞利刃。不是对抗我的船员——那已是很久以前，他们不再是公平的对手。要对抗的是&4聚集于此的一切&r &6&o自从边界变薄以来。如果你做完后仍有东西矗立，那就是你的本事了。\"&r&r"
+				""
+				"&4他在看着。他总爱看第三部分。那是他最喜欢的。&r"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: {
+				Count: 1
+				id: "ftbquests:custom_icon"
+				tag: {
+					Icon: "attributeslib:textures/mob_effect/bleeding.png"
+				}
+			}
+			id: "440CEA2759A64D36"
+			rewards: [
+				{
+					id: "449F728588753B93"
+					type: "xp"
+					xp: 60
+				}
+				{
+					count: 3
+					id: "4AF6B1BA1CD91FC5"
+					item: "landsoficaria:healing_flask"
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "5B218569206D700A"
+					structure: "graveyard:crypt"
+					title: "找到一个边界薄弱的地方"
+					type: "structure"
+				}
+				{
+					entity: "graveyard:acolyte"
+					id: "4B0AB01468EB41E4"
+					title: "切开那些随从们的阻碍"
+					type: "kill"
+					value: 5L
+				}
+				{
+					entity: "graveyard:corrupted_vindicator"
+					id: "4C95A9ABADAEA479"
+					title: "放下被腐化的复仇者守卫们"
+					type: "kill"
+					value: 10L
+				}
+				{
+					entity: "graveyard:corrupted_pillager"
+					id: "4D5AF9CBB07FCC9B"
+					title: "击退被腐化的掠夺者（Corrupted Pillagers）"
+					type: "kill"
+					value: 8L
+				}
+			]
+			title: "证明自己实力的时刻到了"
+			x: -11.5d
+			y: -7.0d
+		}
+		{
+			dependencies: ["440CEA2759A64D36"]
+			description: [
+				"最后一个倒下了。"
+				""
+				"&o&8寂静。一种紧随暴力之后的寂静——厚重而独特。&r&r"
+				""
+				"德斯拉姆的身影从阴影中重组。他凝视着你许久。"
+				""
+				"&6&o\"三项试炼。三个木箱。三块大多数人早已放弃的碎片。而你，满身都是那最后一样东西的污渍，&n依然屹立不倒。\" &r&r\""
+				""
+				"&o&8他走到你面前站立着。&r&r"
+				""
+				"&6&o\"我封你为寻剑之刃的持有者。而非所有者——不存在所有者。持有者。它只在手中流转，而非归属。你握住它，使用它，证明它锻造的价值。然后回来取下一把。这就是约定。\"&r&r"
+				""
+				"&o&8他伸出一只手。动作正式而熟练。他以前也这样做过——或者至少试图这样做——但从未走到这一步。&r&r"
+				""
+				"&6&o\"流浪者营地会记住你的名字。带上地牢探险的证明——任何一次探险，任何一个木箱——它就会给你一把新刀。弄丢了，坏了，扔进火山里了都没关系。回来就好。营地永存。\"&r&r"
+				""
+				"&o&8然后，小声点：&r&r"
+				""
+				"&6&o“近来我的灵魂愈发飘远。向着万物的根源。几乎深入到了这个世界所不能企及的更深处。若你曾抵达那般幽深之处——请寻找那刻在黑暗中的罗盘玫瑰。”&r&r"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: "minecraft:compass"
+			id: "4DF386E8ED4C6E8D"
+			rewards: [{
+				id: "4F87FD7312742BC9"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				id: "50D5F4FF1A5CAF29"
+				title: "接受誓言"
+				type: "checkmark"
+			}]
+			title: "誓言"
+			x: -11.5d
+			y: -8.5d
+		}
+		{
+			dependencies: ["4DF386E8ED4C6E8D"]
+			description: [
+				"一把剑从某个并不完全存在的空间里降临。"
+				""
+				"&6寻剑之刃。&r"
+				""
+				"&o&8它看起来像一把剑，用起来也像——坚固、平衡，是用来用的，而非用来欣赏的。但握柄中有一种不同于重量的东西。一种积淀感。每一双握住它的手，每一次它见证的考验。它都铭记于心。&r&r"
+				""
+				"&6&o\"当你弄丢它的时候——你肯定会弄丢的——你就知道去哪儿找我了。\"&r&r"
+				""
+				"&o&8声音仿佛同时从四面八方传来。你抬起头。德斯拉姆消失了。 &r&r"
+				""
+				"在你的整合包里：刀刃。在世界上：更多地牢、更多木箱、更多要收集的证明。"
+				""
+				"&8循环仍在继续。&r"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: {
+				Count: 1
+				id: "radweaponry:questing_sword"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "51F2FDBFFC5C087A"
+			rewards: [
+				{
+					id: "52E1D11BC898515A"
+					item: {
+						Count: 1
+						id: "radweaponry:questing_sword"
+						tag: {
+							Damage: 0
+							HideFlags: 2
+							display: {
+								Lore: [
+									"{\"color\":\"#888888\",\"italic\":true,\"text\":\"\\\"When you lose it — and you will —\"}"
+									"{\"color\":\"#888888\",\"italic\":true,\"text\":\"you know where to find me.\\\"\"}"
+									"{\"color\":\"#555555\",\"italic\":true,\"text\":\"— Desram the Unbroken\"}"
+								]
+								Name: "{\"color\":\"#C8A020\",\"text\":\"Desram's Questing Blade\"}"
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "54871F7DE569324E"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "5B823778254659CA"
+				title: "拿起这把刀刃"
+				type: "checkmark"
+			}]
+			title: "第一把剑刃"
+			x: -9.5d
+			y: -8.5d
+		}
+		{
+			dependencies: ["51F2FDBFFC5C087A"]
+			description: [
+				"酒馆公告牌上写着：&6The Wandering Hold。&r"
+				""
+				"&o&8现在你知道是什么了。不是一个地方——确切地说。是德斯兰在消失前建立的体系，用来维持循环运转。一套与经纪人、商人和旧识达成的固定安排，他们欠他的比愿意承认的要多得多。&r&r"
+				""
+				"带上一个&6铁带木箱&r——证明你闯过地牢，证明你一直在努力——他们会给你新刀刃、资源或其他东西，具体取决于你带什么和买家是谁。"
+				""
+				"&o&8经纪人从不提问。他们核对箱子上罗盘玫瑰的印记，再核对一次，然后交易。这就是德斯拉姆对任何人唯一的要求：干好活，爽快交易，然后离开。&r&r"
+				""
+				"&8船坞已经开放。&r"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: "vinery:wandering_winemaker_spawn_egg"
+			id: "5F0EF1F7393E8C68"
+			rewards: [{
+				id: "605CDF6B8933605A"
+				type: "xp"
+				xp: 30
+			}]
+			tasks: [{
+				id: "626C7D4BCE8F8233"
+				title: "堡垒已经开放"
+				type: "checkmark"
+			}]
+			title: "The Wandering Hold — 已解锁"
+			x: -7.5d
+			y: -8.5d
+		}
+		{
+			dependencies: ["5F0EF1F7393E8C68"]
+			description: [
+				"&6Wandering Hold&r 的经纪人交易着地牢保险的物品。"
+				""
+				"&o&8铁带箱——刻着德斯拉姆的罗盘玫瑰，出现在地窖、迷宫和沉船里——就是货币。经纪人不在乎里面是什么。印记意味着有人去过危险的地方并回来了。这就是他们要买的。&r&r"
+				""
+				"能换回什么取决于你带了什么，以及你用了哪种协议。"
+				""
+				"&8现有的协议列于上方。部分协议从一开始就可见，而另一些则随着你与公会的关系加深而解锁。&r"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: "kubejs:quest_crate"
+			id: "627290690A270635"
+			tasks: [{
+				id: "62A0B3655BC91029"
+				title: "打开堡垒的账簿"
+				type: "checkmark"
+			}]
+			title: "The Wandering Hold"
+			x: -9.5d
+			y: -10.5d
+		}
+		{
+			can_repeat: true
+			dependencies: ["627290690A270635"]
+			description: [
+				"&6&o\"弄丢了？很好。说明你用过了。\"&r&r"
+				""
+				"&o&8柜台后的经纪人没抬头，你滑过木箱。他检查了印章，拇指划过罗盘玫瑰，点了一下头。&r&r"
+				""
+				"&6&o\"德斯拉姆的常设命令。一箱换一刃。协议持续有效。\"&r&r"
+				""
+				"&o&8他探身到柜台下，拿出一把剑，看起来和你丢失的那把一模一样。重量相同。握感相同。同样承载着历史的厚重感。&r&r"
+				""
+				"&4这把剑和那把不一样。从来都不是。这正是重点所在。&r"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: {
+				Count: 1
+				id: "radweaponry:questing_sword"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "638B34FA78135933"
+			rewards: [{
+				id: "640CA4B8601EE8D9"
+				item: {
+					Count: 1
+					id: "radweaponry:questing_sword"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			shape: "octagon"
+			tasks: [{
+				consume_items: true
+				id: "6426FAE9480469A7"
+				item: "kubejs:quest_crate"
+				title: "出示一个带有印章的地牢木箱"
+				type: "item"
+			}]
+			title: "刀刃交易所"
+			x: -9.5d
+			y: -12.5d
+		}
+		{
+			can_repeat: true
+			dependencies: ["627290690A270635"]
+			description: [
+				"并非所有人都来堡垒是为了寻找一把利刃。"
+				""
+				"&o&8有些人来是为了协议的另一面——战利品。地牢探险带来证据，证据带来钱币，钱币则能换来堡垒货架上的任何东西。中间商很务实，他们不问你需要它做什么。&r&r"
+				""
+				"将木箱滑过去。拿走提供的东西。离开。"
+				""
+				"&8安排很简单。守城者喜欢简单的事物。&r"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: "minecraft:chest"
+			id: "6585DD1FADB6BF4C"
+			rewards: [
+				{
+					id: "67AF40C5BACB508D"
+					type: "xp"
+					xp: 30
+				}
+				{
+					id: "698E3B36A45C17FF"
+					item: {
+						Count: 1
+						id: "ftbquests:lootcrate"
+						tag: {
+							type: "dungeon_coin_reward"
+						}
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: true
+				id: "6F4C76FF8B24F98B"
+				item: "kubejs:quest_crate"
+				title: "在地牢宝箱中进行交易"
+				type: "item"
+			}]
+			title: "地牢战利品"
+			x: -10.5d
+			y: -12.0d
+		}
+		{
+			can_repeat: true
+			dependencies: ["627290690A270635"]
+			description: [
+				"港口的经纪人交易凭证。但他们也交易&4别的东西。&r"
+				""
+				"&o&8违禁品——未经清单登记，沿任何港务长账簿上都没有的路线运输的货物。船舱对此一直有私下安排。德斯拉姆从一开始就将其纳入设计。&r&r"
+				""
+				"&6&o“我们不问它来自何处。你也不问它将去往何方。”&r&r"
+				""
+				"&o&8经纪人将一张空白收据滑过柜台。没有名字，没有货物描述，只有货舱的水印和一个拇指按压的空白处。&r&r"
+				""
+				"&4严格来说，完全合法。&r"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: "kubejs:contraband"
+			id: "7155AD5B4FD8755F"
+			invisible: true
+			rewards: [{
+				id: "737EC218A5DCA330"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				consume_items: true
+				id: "7399F4FA49AB097E"
+				item: "kubejs:contraband"
+				title: "将违禁品运过这个船舱区域"
+				type: "item"
+			}]
+			title: "热门货物"
+			x: -7.5d
+			y: -10.0d
+		}
+		{
+			can_repeat: true
+			dependencies: ["627290690A270635"]
+			description: [
+				"宝库的账簿上出现了一条新记录，墨水散发着某种&5深邃而矿物般的气味。&r"
+				""
+				"&o&8经纪人看了看它，又看了看你，脸上露出了近乎惊讶的表情。&r&r"
+				""
+				"&6&o“这个装置是国王本人放置的。很久以前。上面写着‘在有人带来证据证明自己曾去过地下之前，保持休眠状态’。地下指的是&n很深的地下&r&6&o。”&r&r"
+				""
+				"&o&8他把硬币拍在柜台上，然后翻了过来。&r&r"
+				""
+				"&6&o“Undergarden 硬币。无法伪造——这种金属在别处根本不存在。Desram 留下了关于交换物品的说明。”&r&r"
+				""
+				"&o&8他伸手探到柜台下面。&r&r"
+				""
+				"&6&o\"他说你会知道该怎么处理这个的。\"&r&r"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: "kubejs:coin_undergarden"
+			id: "76A7E11914A85F87"
+			rewards: [
+				{
+					id: "76C985016F1F2473"
+					type: "xp"
+					xp: 700
+				}
+				{
+					exclude_from_claim_all: true
+					id: "5EBDEC4AEBAE0DC0"
+					table_id: 9122232193753176215L
+					type: "random"
+				}
+			]
+			tasks: [{
+				consume_items: true
+				count: 10L
+				id: "76F057FD1A8F5631"
+				item: "kubejs:coin_undergarden"
+				title: "兑换 Undergarden 硬币"
+				type: "item"
+			}]
+			title: "地下花园的比率"
+			x: -11.5d
+			y: -10.0d
+		}
+		{
+			can_repeat: true
+			dependencies: ["6585DD1FADB6BF4C"]
+			description: [
+				"经纪人将第二页账本滑过柜台递给你。"
+				""
+				"&6&o\"你最近很忙。当有人重复跑同一个地牢时，守卫会注意到。大多数人跑一次就认为自己完成了。而你显然认为自己&n还没完成。&r&r\""
+				""
+				"&o&8他在账簿上记录了一项新条目。&r&r"
+				""
+				"&6&o\"一次三箱，价格更优。德斯拉姆的安排——他称之为'批量折扣'，海盗王用这个词挺奇怪的，但他对商业很有幽默感。\"&r&r"
+				""
+				"&o&8经纪人露出一丝浅浅的微笑。&r&r"
+				""
+				"&6&o\"他给很多人留了笔记。你现在也在里面。\"&r&r"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: {
+				Count: 1
+				id: "ftbquests:custom_icon"
+				tag: {
+					Icon: "minecraft:textures/item/bundle.png"
+				}
+			}
+			id: "777B54C1DAA2F322"
+			rewards: [
+				{
+					id: "7A4F7CA41077395B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "477E96CDE3F559CD"
+					table_id: 1950373705698130098L
+					type: "random"
+				}
+			]
+			tasks: [{
+				consume_items: true
+				count: 3L
+				id: "7E8CB19D851A496B"
+				item: "kubejs:quest_crate"
+				title: "一次性提交三个地牢宝箱"
+				type: "item"
+			}]
+			title: "批量运行任务书文本"
+			x: -11.5d
+			y: -11.5d
+		}
+		{
+			can_repeat: true
+			dependencies: ["627290690A270635"]
+			description: [
+				"城堡的柜台前出现一条信息，封蜡未署名："
+				""
+				"&4&o\"如果有人符合你的描述，并且一直在给掠夺者首领们惹麻烦，那我们有些事情要谈。\"&r&r"
+				""
+				"&o&8经纪人有些不情愿地解释道：有一笔债务。一笔旧账，是德斯兰和一群掠夺者船长之间的。在国王还运作的时候，他们曾使用同一条走私路线。他们欠德斯兰一笔通行费，却从未支付。这座堡垒已经等了好几年了。&r&r"
+				""
+				"&6&o“我们不是士兵，只是中间人。不过，既然你已经开始埋葬掠夺者首领，那就有得谈了。”&r&r"
+				""
+				"&o&8他推过一本小账簿。上面写着：&4“已收回的债务——收到的旗帜作为凭证。”&r&r"
+				""
+				"&6&o\"国王很宽容地对待这笔债务。他说过，总有一天会来一个合适的人。显然，那个人就是你。\"&r&r"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: {
+				Count: 1
+				id: "ftbquests:custom_icon"
+				tag: {
+					Icon: "kubejs:item/skull3"
+				}
+			}
+			id: "7EA78D6EBC569381"
+			rewards: [
+				{
+					id: "482FCE1249E30E7C"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7ED9C9DAF12FDB44"
+					table_id: 7814385668974450015L
+					type: "random"
+				}
+			]
+			tasks: [
+				{
+					entity: "minecraft:pillager"
+					id: "241B405C71119D7A"
+					type: "kill"
+					value: 10L
+				}
+				{
+					entity: "minecraft:vindicator"
+					id: "7421E9AF54D80E55"
+					type: "kill"
+					value: 10L
+				}
+			]
+			title: "旧日之债"
+			x: -8.5d
+			y: -12.0d
+		}
+		{
+			can_repeat: true
+			dependencies: ["627290690A270635"]
+			description: [
+				"经纪人举起一块暗铁锭。"
+				""
+				"&6&o\"你肯定去过墓地。我看得出来。这金属和德斯兰船员守卫的地方出自同一处。\"&r&r"
+				""
+				"&o&8他把它放在秤上。重量比应有的要重。&r&r"
+				""
+				"&6&o\"德斯拉姆称之为&n幽灵什一税。&r&6&o不死者不花金币，但他们会携带来自生前世界的物品。活人能用到的东西。他说这是他收过的唯一公平的税——死者从不讨价还价。\"&r&r"
+				""
+				"&o&8经纪人又在账簿上添加了第二笔记录。一项长期协议，排在其他条目之下——字体更小，仿佛只是临时加上去的。&r&r"
+				""
+				"&6&o\"把死者留下的东西带给我。我会给你生者所需之物。\"&r&r"
+			]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			icon: "graveyard:dark_iron_ingot"
+			id: "4F79C7F70109F97A"
+			rewards: [
+				{
+					id: "52197EC18B41D1B2"
+					type: "xp"
+					xp: 20
+				}
+				{
+					id: "67C2AEA3EC60A1EC"
+					item: {
+						Count: 1
+						id: "ftbquests:lootcrate"
+						tag: {
+							type: "blood_magic_loot_crate"
+						}
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: true
+				count: 8L
+				id: "46695D04DCC837AE"
+				item: "graveyard:dark_iron_ingot"
+				title: "上交黑暗铁质什一税"
+				type: "item"
+			}]
+			title: "光谱贡品"
+			x: -7.5d
+			y: -11.5d
+		}
+	]
+	title: "支线故事"
+}
