@@ -211,13 +211,15 @@
 | 12 | 指令判定放行 JSON 文本组件那类例外（D12） | D12 | — |
 | 13 | ~~英文源只在本机、CI 红灯~~ **已于 `a1830e2` 入库 + `34ac096` 加 `verify:ci`** | D13 | ✅ 关闭 |
 | 14 | ~~入库裸 `git add -A`~~ **已于 `878f259` 改显式路径** | D14 | ✅ 关闭 |
-| 15 | 批量翻译 `separate` 包（实测约 9.2 小时） | — | 已跑 **93 个**（第一批 20 + 第二批 73），**剩 348 个**；`embedded` 与 Modrinth 未开战线 |
+| 15 | ~~批量翻译 `separate` 包（实测约 9.2 小时）~~ **已于 2026-10-22 全部跑完：375 个产出，687,308 键全绿** | — | ✅ 关闭（可翻 376 个：产出 375 + 1 个无文本跳过） |
 | 17 | 5 个已发布包的重跑版取源不一致（`peace-of-mind-21-1` 等），暂不覆盖 | — | 需查 serv00 `research/packs/` 残留旧章节文件为何让布局判定走内嵌路 |
 | 18 | 第二批 273 条漏译（`tensura-waka-edition` 78 条最多） | — | 未处置；漏译率 0.4%，与第一批 0.63% 同量级 |
 | 19 | `fids-cobblemon-server` 产出含 `config/ftbquests - Copy/`、`verlac` 产出在 `saved/` 下 | — | 能过闸门，但补丁包路径可能不被游戏加载 |
 | 20 | ~~serv00 凭据用可写 GitHub token~~ **已改只读 deploy key**（`77a5c9f` 后的运维动作） | — | ✅ 关闭 |
 | 21 | ~~断点续跑只信本机 state，跨机丢进度~~ **已改看 `patches/` 产物实况** | — | ✅ 关闭（`77a5c9f`） |
 | 16 | ~~模型凭空造占位符不拦~~ **已修：`placeholdersPreserved`** | D16 | ✅ 关闭 |
+| 22 | ~~站点数据过载卡死~~ **2026-10-22 裁决落地：只显示有 FTB 任务书的整合包（2055 张卡片），no-quests 与探测未完成不进入页面，跨平台 slug 合并** | — | ✅ 关闭 |
+| 23 | ~~375 个补丁包全量发布与部署~~ **2026-10-22 落地：375 个 zip 已打包、site 数据与 HTML 重新生成、Cloudflare Pages 部署成功** | — | ✅ 关闭 |
 
 ### 2026-10-20 复核
 
@@ -668,3 +670,41 @@ serv00 的 SSH **拒绝 stdin 管道与 scp**（实测 50 KB / 300 KB / 20 KB ba
 - `verlac` 的源与产出都在 `ftbquests/saved/2025-09-02-*/lang/`（存档备份目录，不是运行目录）
 
 两者都能过闸门（键集一致），但打出来的补丁包路径可能不被游戏加载。
+
+#### 2026-10-22 第三批：separate 战线全量收官、站点卡死根治与 375 包发布上线
+
+用户于 2026-10-22 裁决了收尾顺序与站点过载处置方案。
+
+##### 1. separate 战线 100% 收官
+
+- **`separate` 候选包（376 个）全部清零**：
+  - 产出 **375 个包**（`patches/` 375 目录 / 687,308 个键）
+  - 1 个包确认无任何可译文本（`untitled-modpack-hard-survival`，记为 skipped，不重试）
+- **两条阻断级红线彻底根治**：
+  - `create-cogs-cataclysm`：上游源文件包含纯 0x00 空文件，扩展 `validate-quests.mjs` 判据，纯 NUL 视同空文件放行，真实损坏仍严拦；
+  - `realms-of-reverie`：上游源文件出现「列表内混入键值对」（`quest_desc: [` 后接 `quest.X.title: ...`），扩展 `scripts/lib/snbt-repair.mjs` 的 `repairKeyInsideList`，TDD 验证后救回整包解析并跑完翻译（417/418 条）。
+- 质量验收：`npm test` → **467 passed**（0 failed）；`npm run validate:quests` → **375 个产出全绿**；`npm run verify:ci` → **干净克隆零失败**。
+
+##### 2. 站点卡死彻底根治（28,816 行 → 2,055 张卡片）
+
+- **原因**：全量扫描扩到 2.8 万行后，23,827 个无任务书包 + 2,905 个探测未完成包全部打入 `site/data.json`（15.9 MB），前端一次渲染直接卡死。
+- **用户裁决**：网页只显示有 FTB 任务书的整合包，其余不上页面。
+- **落地**：
+  - `scripts/build-site-data.mjs` 过滤掉 `no-quests` 与 `probeIncomplete`，`research/index-dataset.json` 保持全量（一条不丢）；
+  - 跨平台合并：424 个在 CF 与 Modrinth 同时存在的重复 slug 合并为单张卡片，保留 `platforms: ['cf', 'mr']` 与冲突状态标记；
+  - 产物瘦身：`site/data.json` 从 15.9 MB → **1.6 MB**，`dist/index.html` 从 16 MB → **1.8 MB**；
+  - 页面可见卡片共 **2,055 张**，无任何卡顿。
+
+##### 3. 375 个补丁包全量发布与部署
+
+- `node scripts/release.mjs --all` 成功执行：
+  - `downloads/*.zip` 从 61 个扩充至 **375 个**补丁包；
+  - `build-index` 自动标记 375 个包 `delivered=true`；
+  - `site/data.json` 标记 375 个包为 `downloadable`；
+  - Cloudflare Pages 成功部署（最新页面上线）。
+
+##### 4. embedded 内嵌包（1273 个）实测实据
+
+- 以 `twilight-forest-plus` 实跑内嵌翻译：
+  - 翻译与写盘本身链路通畅（4/4 条 5s 产出）；
+  - **关键发现**：内嵌布局下 `sourceFileNames` 仅提取 `chapters/*.snbt`，而 `validate-quests` 会拿全部英文源（含 `data.snbt`、`reward_tables/*.snbt`）比对键集，导致缺键。开跑内嵌战线前，必须先在 ADR 里确立内嵌包的完整文件集合与覆盖规范。
