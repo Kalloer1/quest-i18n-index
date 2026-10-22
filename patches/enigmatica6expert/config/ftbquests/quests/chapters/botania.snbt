@@ -1,0 +1,1548 @@
+# AI 初翻，未人工校对
+{
+	id: "0000000000000500"
+	group: "5A8B89F87F77CF4C"
+	order_index: 4
+	filename: "botania"
+	title: "Botania"
+	icon: "botania:mana_pylon"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "Botania"
+			icon: {
+				id: "botania:lexicon"
+				Count: 1b
+				tag: {
+					"botania:elven_unlock": 1b
+				}
+			}
+			x: 4.5d
+			y: -0.5d
+			shape: "gear"
+			description: [
+				"虽然没人能确切地把 Botania 归到哪一类，但有一点很清楚：它能做几乎所有事情。或许把它比作一个工具箱最恰当不过了。单个组件本身作用有限，但经过玩家的创造性组合，它们能发挥出远超预期的效果。"
+				""
+				"Botania 是一个内容丰富的模组，因此无法在此涵盖所有内容。如需深入了解和有趣技巧，请经常查阅 Lexica Botania。"
+				""
+				"~MuteTiefling"
+			]
+			optional: true
+			id: "0000000000000501"
+			tasks: [{
+				id: "26553788817F4728"
+				type: "item"
+				title: "任意的神秘花朵"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "botania:mystical_flowers"
+					}
+				}
+			}]
+			rewards: [{
+				id: "0000000000000504"
+				type: "item"
+				title: "研钵和研杵"
+				item: "botania:pestle_and_mortar"
+			}]
+		}
+		{
+			title: "神秘的花朵"
+			icon: "botania:magenta_mystical_flower"
+			x: -3.0d
+			y: 1.5d
+			subtitle: "不自然鲜艳的色彩"
+			description: [
+				"世界各地都散落着一些异常鲜亮的花朵。收集一些，开始探索花占术的奥秘吧。"
+				""
+				"你也可以将花瓣放在地上并使用骨粉来吸引这些花朵生长。收割高个子变种时要小心，因为它们比矮个子品种要脆弱得多。"
+			]
+			dependencies: ["0000000000000501"]
+			id: "0000000000000505"
+			tasks: [{
+				id: "0000000000000507"
+				type: "item"
+				title: "任意的神秘花朵"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "botania:mystical_flowers"
+					}
+				}
+				count: 16L
+			}]
+			rewards: [
+				{
+					id: "0000000000000508"
+					type: "item"
+					title: "花朵袋"
+					item: "botania:flower_bag"
+				}
+				{
+					id: "000000000000050D"
+					type: "item"
+					title: "Shears"
+					item: {
+						id: "minecraft:shears"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "0000000000000A70"
+					type: "command"
+					title: "拾荒者之乐"
+					icon: "kubejs:scavengers_delight"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_scavengers_delight"
+					player_command: false
+				}
+			]
+		}
+		{
+			x: -4.0d
+			y: 1.0d
+			subtitle: "奇迹生长药水"
+			description: ["找不到某些颜色的神秘花？一点花卉肥料就能让它们瞬间发芽。"]
+			dependencies: ["0000000000000505"]
+			id: "0000000000000509"
+			tasks: [{
+				id: "000000000000050A"
+				type: "item"
+				item: "botania:fertilizer"
+			}]
+			rewards: [{
+				id: "00000000000005E6"
+				type: "item"
+				title: "花卉肥料"
+				item: "botania:fertilizer"
+				count: 16
+			}]
+		}
+		{
+			title: "花瓣药剂师"
+			icon: "botania:apothecary_default"
+			x: -3.0d
+			y: 2.5d
+			subtitle: "也许是纳米机器人干的？"
+			description: ["当神秘花瓣与某些试剂和种子结合时，会发生奇怪的现象。它们似乎会自发地展开和重组，劫持种子并创造出全新的结构。"]
+			dependencies: ["0000000000000505"]
+			id: "000000000000050B"
+			tasks: [
+				{
+					id: "000000000000050C"
+					type: "item"
+					item: "botania:apothecary_default"
+				}
+				{
+					id: "000000000000050E"
+					type: "item"
+					item: "botania:pure_daisy"
+				}
+			]
+			rewards: [
+				{
+					id: "000000000000064A"
+					type: "command"
+					title: "稀有博塔尼亚战利品箱"
+					icon: "kubejs:rare_lootbox"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_rare"
+					player_command: false
+				}
+				{
+					id: "0000000000000A71"
+					type: "command"
+					title: "农夫的欢乐时光"
+					icon: "kubejs:farmers_delight"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_farmers_delight"
+					player_command: false
+				}
+			]
+		}
+		{
+			title: "活木 \& 活岩"
+			x: -3.0d
+			y: 3.5d
+			subtitle: "赋予新生的生命力"
+			description: ["纯雏菊似乎从大地本身汲取了某种精华，并将其注入附近的某些材料中。或许这种精华可以被更直接地利用？"]
+			dependencies: ["000000000000050B"]
+			id: "000000000000050F"
+			tasks: [
+				{
+					id: "000000000000051D"
+					type: "item"
+					item: "botania:livingwood"
+					count: 16L
+				}
+				{
+					id: "000000000000051E"
+					type: "item"
+					item: "botania:livingrock"
+					count: 16L
+				}
+			]
+			rewards: [{
+				id: "00000000000005E7"
+				type: "command"
+				title: "稀有博塔尼亚战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: 2.0d
+			y: 1.5d
+			subtitle: "程序化响应"
+			description: [
+				"如果神秘花瓣中的潜在能量足以在花瓣药房中引发自发重组，那么在更集中的能量场中会发生什么呢？"
+				""
+				"花瓣会枯萎，这是个问题。或许可以利用Livingrock储存法力特性，编码特定模式，向药剂师的神秘花瓣传递新信息？"
+				""
+				"将物品放置在符文祭坛上以开始制作。必须通过连接法力扩散器来为祭坛提供法力，法力供应越迅速，制作进度就越快。使用森林魔杖右键点击祭坛以完成操作。"
+				""
+				"比较器可用于读取符文祭坛的“状态”，从而为自动化提供便捷的控制器。更多详情请参阅 Lexica Botania。"
+			]
+			dependencies: ["0000000000000501"]
+			id: "0000000000000513"
+			tasks: [{
+				id: "0000000000000514"
+				type: "item"
+				item: "botania:runic_altar"
+			}]
+			rewards: [{
+				id: "00000000000005E5"
+				type: "command"
+				title: "稀有博塔尼亚战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			title: "通往阿尔弗雷姆的传送门"
+			icon: "botania:natura_pylon"
+			x: 7.0d
+			y: 4.5d
+			subtitle: "Weasel Town"
+			description: [
+				"奥尔夫海姆，我们最神秘的贸易伙伴。打开城门，让我揭开你的秘密，掠夺你的财富。"
+				""
+				"阿尔芙海姆的居民是个神秘的民族，但他们愿意在公平交换下分享一些知识。或许来点面包？"
+				""
+				"建造传送门的说明请参阅 Lexica Botania。Lexica 应是最先通过传送门传送的物品，以解锁更多知识"
+			]
+			dependencies: ["0000000000000517"]
+			id: "0000000000000515"
+			tasks: [
+				{
+					id: "0000000000000516"
+					type: "item"
+					item: "botania:alfheim_portal"
+				}
+				{
+					id: "000000000000057A"
+					type: "item"
+					item: "botania:natura_pylon"
+					count: 2L
+				}
+				{
+					id: "000000000000057B"
+					type: "item"
+					item: "botania:mana_pool"
+					count: 2L
+				}
+				{
+					id: "000000000000057C"
+					type: "item"
+					item: "botania:glimmering_livingwood"
+					count: 3L
+				}
+				{
+					id: "000000000000057D"
+					type: "item"
+					item: "botania:livingwood"
+					count: 8L
+				}
+			]
+			rewards: [{
+				id: "00000000000005D8"
+				type: "command"
+				title: "史诗级博塔尼亚战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			icon: "botania:terra_plate"
+			x: 7.0d
+			y: 3.0d
+			description: [
+				"满足导致懈怠，懈怠导致停滞。难道没有一种材料能帮助我们控制火花中的法力流动，从而将它们也驯服于我们的意志之下吗？"
+				""
+				"放置一块曼纳钢锭、一颗曼纳钻石，最后是一颗曼纳珍珠后，会发生一些奇怪的事情。珍珠似乎会扭曲周围的法力，并沿着火花形成的导管将其牵引。这再次导致了现有材料的自发重组，形成一种新物质。"
+			]
+			dependencies: ["0000000000000559"]
+			id: "0000000000000517"
+			tasks: [
+				{
+					id: "0000000000000518"
+					type: "item"
+					item: "botania:terra_plate"
+				}
+				{
+					id: "000000000000056F"
+					type: "item"
+					item: "botania:livingrock"
+					count: 5L
+				}
+				{
+					id: "0000000000000570"
+					type: "item"
+					item: "minecraft:lapis_block"
+					count: 4L
+				}
+				{
+					id: "0000000000000599"
+					type: "item"
+					item: "botania:terrasteel_ingot"
+				}
+			]
+			rewards: [{
+				id: "00000000000005D9"
+				type: "command"
+				title: "史诗级博塔尼亚战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			x: -4.0d
+			y: 5.0d
+			subtitle: "并非看起来那么浅显易懂"
+			description: [
+				"活岩是储存魔力的绝佳容器，能随时安全地释放魔力。"
+				""
+				"破坏法力池会导致所有储存的法力丢失。在其旁放置比较器，可用于自动化读取其容量。"
+			]
+			dependencies: ["000000000000050F"]
+			id: "0000000000000519"
+			tasks: [{
+				id: "000000000000051A"
+				type: "item"
+				item: "botania:mana_pool"
+			}]
+			rewards: [{
+				id: "00000000000005EA"
+				type: "command"
+				title: "稀有博塔尼亚战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: -2.0d
+			y: 5.0d
+			subtitle: "指哪打哪"
+			description: [
+				"这个活木构造体是个绝佳的导管。"
+				""
+				"Mana Spreaders 可以直接连接到 Generating Flora，将花中的法力传输到 Mana Pool 储存。它们也可以通过连锁连接，自动从相邻的 Mana Pool 中吸取法力。"
+				""
+				"注意，它们离目的地越近，传输法力就越快，因为在前一次传输到达目的地之前，它们不会再次发射。"
+			]
+			dependencies: ["000000000000050F"]
+			id: "000000000000051B"
+			tasks: [{
+				id: "000000000000051C"
+				type: "item"
+				item: "botania:mana_spreader"
+			}]
+			rewards: [{
+				id: "00000000000005E9"
+				type: "command"
+				title: "稀有博塔尼亚战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: -3.0d
+			y: 5.0d
+			description: [
+				"活木似乎擅长引导来自大地的神秘精华。制作一根森林魔杖，可以更精准地引导它。"
+				""
+				"森林魔杖是连接生成植物、法力扩散器和法力池的首选工具。潜行+右键点击源，然后点击目标。"
+			]
+			dependencies: ["000000000000050F"]
+			id: "000000000000051F"
+			tasks: [{
+				id: "0000000000000520"
+				type: "item"
+				item: {
+					id: "botania:twig_wand"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "00000000000005EB"
+				type: "command"
+				title: "稀有博塔尼亚战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: -3.0d
+			y: 6.5d
+			subtitle: "世界转动以来，火焰从未熄灭"
+			description: [
+				"奇幻作品中常有这样一个桥段：人类一发现新的力量来源，就会立即滥用，给地球带来灾难。现在，你也可以成为这段传奇历史的一部分！"
+				""
+				"将 Endoflame 放置在草地或泥土上以开始。Mana Spreader 和 Mana Pool 也应放置在附近。使用 Wand of the Forest 将花朵连接到 Spreader，再将 Spreader 连接到 Pool。"
+				""
+				"The Endoflame 可以使用任何熔炉燃料，并且只有在前一个燃料燃烧完毕后才会接受新的燃料。"
+				""
+				"一个简单的自动燃料输送装置可以用开放木箱、某种压力板和红石建造。但请注意，法力扩散器对红石敏感，收到信号会关闭。考虑在主法力池满时设置一个总开关。"
+			]
+			dependencies: [
+				"0000000000000519"
+				"000000000000051B"
+				"000000000000051F"
+			]
+			id: "0000000000000521"
+			tasks: [{
+				id: "0000000000000522"
+				type: "item"
+				title: "Endoflame"
+				icon: "botania:endoflame"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "botania:endoflame"
+								Count: 1b
+							}
+							{
+								id: "botania:gourmaryllis"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "0000000000000523"
+					type: "item"
+					title: "打开木箱"
+					item: "botania:open_crate"
+				}
+				{
+					id: "00000000000005E8"
+					type: "item"
+					title: "Manaseer Monacle"
+					item: {
+						id: "botania:monocle"
+						Count: 1b
+						tag: { }
+					}
+				}
+			]
+		}
+		{
+			title: "盖亚的守护者"
+			icon: "botania:life_essence"
+			x: 12.0d
+			y: 3.0d
+			subtitle: "如何失去朋友和疏远他人"
+			description: [
+				"大地在流血。若非听见机器榨干她生命的声音，或许还能听到她的哭泣。"
+				""
+				"召唤出地球最后的防线，让她彻底停止哭泣。"
+			]
+			dependencies: ["0000000000000528"]
+			id: "0000000000000524"
+			tasks: [{
+				id: "0000000000000527"
+				type: "item"
+				item: "botania:life_essence"
+			}]
+			rewards: [{
+				id: "00000000000005D2"
+				type: "command"
+				title: "传说级博塔尼亚战利品箱"
+				icon: "kubejs:legendary_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_legendary"
+				player_command: false
+			}]
+		}
+		{
+			title: "盖亚竞技场"
+			icon: "botania:gaia_pylon"
+			x: 12.0d
+			y: 1.5d
+			subtitle: "准备最后的政变行动"
+			description: [
+				"地球肯定还有更多未解之谜。或许能用这些外星材料制造一个陷阱？"
+				""
+				"平整一大片区域，半径约十一格的圆形即可。布置陷阱并用泰拉钢做诱饵，看看会有什么出现。"
+				""
+				"Lexica Botania 会显示建造竞技场所需的精确结构。"
+			]
+			dependencies: ["0000000000000501"]
+			id: "0000000000000528"
+			tasks: [
+				{
+					id: "0000000000000529"
+					type: "item"
+					item: "botania:gaia_pylon"
+					count: 4L
+				}
+				{
+					id: "000000000000052C"
+					type: "item"
+					item: "minecraft:beacon"
+				}
+			]
+			rewards: [{
+				id: "00000000000005D3"
+				type: "command"
+				title: "史诗级博塔尼亚战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			title: "命运骰子"
+			icon: "botania:dice"
+			x: 12.0d
+			y: 4.5d
+			subtitle: "扭转刀刃"
+			description: [
+				"看来你费了这么多功夫，却还是没能彻底击败盖亚的守护者，更别提盖亚本人了。是时候加倍努力了。"
+				""
+				"在盖亚竞技场中使用盖亚之魂锭代替泰拉钢，即可召唤盖亚守护者的第二形态。"
+			]
+			dependencies: ["0000000000000524"]
+			id: "000000000000052A"
+			tasks: [{
+				id: "000000000000052B"
+				type: "item"
+				item: "botania:dice"
+			}]
+			rewards: [{
+				id: "00000000000005CC"
+				type: "command"
+				title: "传说级博塔尼亚战利品箱"
+				icon: "kubejs:legendary_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_legendary"
+				player_command: false
+			}]
+		}
+		{
+			title: "元素符文 Elemental Runes"
+			x: 2.0d
+			y: 3.0d
+			subtitle: "就像一张点卡一样"
+			description: [
+				"Livingstone 是编码信息的绝佳基底，而 Manasteel 则提供了便携的魔力容器。再提供几样物品来设定亲和性，并用 Mana powder 将它们全部绑定在一起。"
+				""
+				"现在我们有了向Petal Apothecary传递新指令的有效方法，既不会过载敏感的花瓣，也能向祭坛本身传递更精细的指令集。这些方法几乎肯定也能用于手持工具中。"
+			]
+			dependencies: ["0000000000000513"]
+			id: "000000000000052D"
+			tasks: [
+				{
+					id: "000000000000052E"
+					type: "item"
+					item: "botania:rune_water"
+				}
+				{
+					id: "000000000000052F"
+					type: "item"
+					item: "botania:rune_fire"
+				}
+				{
+					id: "0000000000000530"
+					type: "item"
+					item: "botania:rune_earth"
+				}
+				{
+					id: "0000000000000531"
+					type: "item"
+					item: "botania:rune_air"
+				}
+				{
+					id: "0000000000000532"
+					type: "item"
+					item: "botania:rune_mana"
+				}
+			]
+			rewards: [{
+				id: "00000000000005E4"
+				type: "command"
+				title: "稀有博塔尼亚战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: -4.5d
+			y: 7.0d
+			subtitle: "玻色-末影人凝聚物"
+			description: ["末影珍珠本身就已经够令人费解了，当它们被法力浸透时，似乎会对周围区域的法力产生扭曲效应，导致其表现异常。"]
+			dependencies: ["0000000000000521"]
+			id: "0000000000000533"
+			tasks: [{
+				id: "0000000000000534"
+				type: "item"
+				item: "botania:mana_pearl"
+			}]
+			rewards: [{
+				id: "00000000000005EC"
+				type: "command"
+				title: "稀有博塔尼亚战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: -1.5d
+			y: 7.0d
+			subtitle: "超辐射散射 (Superradiant Scattering)"
+			description: ["这颗宝石的切面似乎在放大其内部蕴含的能量。毫无疑问，这种材料非常适合用作进一步开发的焦点。"]
+			dependencies: ["0000000000000521"]
+			id: "0000000000000535"
+			tasks: [{
+				id: "0000000000000536"
+				type: "item"
+				item: "botania:mana_diamond"
+			}]
+			rewards: [{
+				id: "00000000000005F0"
+				type: "command"
+				title: "稀有博塔尼亚战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: -2.5d
+			y: 9.0d
+			subtitle: "永恒不灭的 Everlasting"
+			description: ["即使短暂接触法力池，铁也会变成一种法力蓄积器，储存更多法力以备后用，甚至在剧烈撞击后能自发重组。这似乎是制作工具或盔甲的明显材料，但或许还能找到其他更精细的用途。"]
+			dependencies: ["0000000000000521"]
+			id: "0000000000000537"
+			tasks: [{
+				id: "0000000000000538"
+				type: "item"
+				item: "botania:manasteel_ingot"
+			}]
+			rewards: [{
+				id: "00000000000005F1"
+				type: "command"
+				title: "稀有博塔尼亚战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: -2.0d
+			y: 8.0d
+			subtitle: "难道说……它在扭来扭去吗？"
+			description: ["普通的绳子似乎不适合狂野的魔力。它看起来几乎要散架了。"]
+			dependencies: ["0000000000000521"]
+			id: "0000000000000539"
+			tasks: [{
+				id: "000000000000053A"
+				type: "item"
+				item: "botania:mana_string"
+			}]
+			rewards: [{
+				id: "00000000000005EF"
+				type: "command"
+				title: "稀有博塔尼亚战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: -4.0d
+			y: 8.0d
+			subtitle: "晶体结合化合物"
+			description: ["看来大多数粉末，只要浸泡在浓缩的魔力中，就会变成强大的粘合剂。这应该会很有用"]
+			dependencies: ["0000000000000521"]
+			id: "000000000000053B"
+			tasks: [{
+				id: "000000000000053C"
+				type: "item"
+				item: "botania:mana_powder"
+			}]
+			rewards: [{
+				id: "00000000000005ED"
+				type: "command"
+				title: "稀有博塔尼亚战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: -3.0d
+			y: 8.0d
+			subtitle: "环游世界 All Around the World"
+			description: [
+				"法力带将我们迄今发现的多种材料结合成一件实用物品，可作为便携式法力池。制作一个将开启新可能，法力利用从此变得触手可及。"
+				""
+				"魔力带主要用于为某些手持设备供电，但它们也是远距离传输魔力的绝佳方式，因为它们充放电速度极快。"
+			]
+			dependencies: ["0000000000000538"]
+			id: "000000000000053D"
+			tasks: [{
+				id: "000000000000053F"
+				type: "item"
+				item: {
+					id: "botania:mana_ring"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "00000000000005EE"
+				type: "command"
+				title: "稀有博塔尼亚战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: 2.0d
+			y: 7.5d
+			subtitle: "来一杯康普恰茶怎么样？"
+			description: [
+				"与符文祭坛的自发重组类似，传统酿造台可通过添加符文之髓来增强，以重现强效饮品。"
+				""
+				"将所需试剂放在酿酒器上，并用法力扩散器指向它即可开始。"
+				""
+				"药水有多种用途，而熏香棒则能在广阔区域施加效果。"
+			]
+			dependencies: ["000000000000052D"]
+			id: "0000000000000540"
+			tasks: [{
+				id: "0000000000000541"
+				type: "item"
+				item: "botania:brewery"
+			}]
+			rewards: [
+				{
+					id: "00000000000005DB"
+					type: "item"
+					title: "Managlass Vial"
+					item: "botania:vial"
+					count: 8
+				}
+				{
+					id: "0000000000000A74"
+					type: "command"
+					title: "炼金术师的喜悦"
+					icon: "kubejs:alchemists_delight"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_alchemists_delight"
+					player_command: false
+				}
+			]
+		}
+		{
+			x: 2.0d
+			y: 6.5d
+			description: ["原因不明，生命终结后会短暂出现不纯的魔力球。Rosa Arcana 能够吸收并净化这些球体以供后续使用。"]
+			dependencies: ["000000000000052D"]
+			id: "0000000000000542"
+			tasks: [{
+				id: "0000000000000543"
+				type: "item"
+				item: "botania:rosa_arcana"
+			}]
+			rewards: [{
+				id: "00000000000005DC"
+				type: "command"
+				title: "稀有博塔尼亚战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: 1.0d
+			y: 6.0d
+			subtitle: "不要往下看"
+			description: ["一阵狂风席卷而来，将佩戴者包裹在保护性的气流中，将其带入高空，并在下落时提供缓冲。"]
+			dependencies: ["000000000000052D"]
+			id: "0000000000000544"
+			tasks: [{
+				id: "0000000000000545"
+				type: "item"
+				item: {
+					id: "botania:tornado_rod"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [
+				{
+					id: "0000000000000556"
+					type: "item"
+					title: "活木化身 (Livingwood Avatar)"
+					item: "botania:avatar"
+				}
+				{
+					id: "0000000000000A76"
+					type: "command"
+					title: "拾荒者之乐"
+					icon: "kubejs:scavengers_delight"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_scavengers_delight"
+					player_command: false
+				}
+			]
+		}
+		{
+			x: 1.5d
+			y: 5.0d
+			subtitle: "鬼魅般的超距作用"
+			description: [
+				"局部化的爱迪生风围绕奇特的Hopperhock循环，将附近的物品吸向它，并储存在相邻的容器中。有趣的是，它们似乎有些“智能”，会响应传入的信号来限制自己的行为。"
+				""
+				"将物品放入箱上的物品框架以控制拾取物。Hopperhock 能区分满的 Mana Tablet 和空的 Mana Band。提供红石信号可完全禁用该花朵。"
+			]
+			dependencies: ["000000000000052D"]
+			id: "0000000000000546"
+			tasks: [{
+				id: "0000000000000547"
+				type: "item"
+				item: "botania:hopperhock"
+			}]
+			rewards: [{
+				id: "00000000000005E0"
+				type: "command"
+				title: "稀有博塔尼亚战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: 3.0d
+			y: 6.0d
+			subtitle: "高山还是小山丘？"
+			description: ["激活此装置时会听到轰鸣声，地面随之移动，泥土被推起以填充接触点处的区域。"]
+			dependencies: ["000000000000052D"]
+			id: "0000000000000548"
+			tasks: [{
+				id: "0000000000000549"
+				type: "item"
+				item: "botania:dirt_rod"
+			}]
+			rewards: [{
+				id: "00000000000005DD"
+				type: "command"
+				title: "稀有博塔尼亚战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: 2.5d
+			y: 5.0d
+			subtitle: "达到平衡状态"
+			description: ["虽然它和纯雏菊类似，但粘土科尼亚所需的法力远超其自身能吸收的量。需要附近有法力源，才能驱动它将沙子纳米晶体重组为黏土。"]
+			dependencies: ["000000000000052D"]
+			id: "000000000000054A"
+			tasks: [{
+				id: "000000000000054B"
+				type: "item"
+				item: "botania:clayconia"
+			}]
+			rewards: [{
+				id: "00000000000005DE"
+				type: "command"
+				title: "稀有博塔尼亚战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: 3.5d
+			y: 4.5d
+			subtitle: "高潮来袭"
+			description: ["能随时从地里引出水，这能力确实很方便。"]
+			dependencies: ["000000000000052D"]
+			id: "000000000000054C"
+			tasks: [{
+				id: "000000000000054D"
+				type: "item"
+				item: "botania:water_rod"
+			}]
+			rewards: [{
+				id: "00000000000005DF"
+				type: "command"
+				title: "稀有博塔尼亚战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: 0.5d
+			y: 4.5d
+			subtitle: "深海地平线"
+			description: ["将深层含水层的水与液态岩浆混合，从地底开采原石。可以想象这造成的破坏有多大。"]
+			dependencies: ["000000000000052D"]
+			id: "000000000000054E"
+			tasks: [{
+				id: "000000000000054F"
+				type: "item"
+				item: "botania:cobble_rod"
+			}]
+			rewards: [{
+				id: "00000000000005E1"
+				type: "command"
+				title: "稀有博塔尼亚战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: 1.0d
+			y: 3.5d
+			subtitle: "生命，嗯……总能找到出路"
+			description: [
+				"家畜有时会很固执，只有用手喂才会吃东西。更糟的是，只有在吃了零食后才会繁殖。真奇怪它们能活这么久。"
+				""
+				"Pollidisiac 通过驱使野兽至少能自己觅食来解决这个问题。"
+			]
+			dependencies: ["000000000000052D"]
+			id: "0000000000000550"
+			tasks: [{
+				id: "0000000000000558"
+				type: "item"
+				item: "botania:pollidisiac"
+			}]
+			rewards: [{
+				id: "00000000000005E2"
+				type: "command"
+				title: "稀有博塔尼亚战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: 3.0d
+			y: 3.5d
+			subtitle: "禁忌的果冻 (Forbidden Jello)"
+			description: [
+				"乍一看，史莱姆似乎有生命，但仔细观察，它们不过是真正生物死亡后留下的凝冻残骸。给予足够的伤害会释放出可转化为法力的高纯度球体，但这种方式会造成大量损耗。"
+				""
+				"Narslimmus 会吸收并处理整个史莱姆，分解其基本结构，释放的魔力远多于原始方法所能获得的量。"
+			]
+			dependencies: ["000000000000052D"]
+			id: "0000000000000552"
+			tasks: [{
+				id: "0000000000000553"
+				type: "item"
+				item: "botania:narslimmus"
+			}]
+			rewards: [{
+				id: "00000000000005E3"
+				type: "command"
+				title: "稀有博塔尼亚战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: -3.5d
+			y: 9.0d
+			subtitle: "清晰视野"
+			description: ["注入此玻璃中的法力提供了明亮的来源。透过它，你将看到一个隐藏的世界。"]
+			dependencies: ["0000000000000521"]
+			id: "0000000000000554"
+			tasks: [{
+				id: "0000000000000555"
+				type: "item"
+				item: "botania:mana_glass"
+			}]
+			rewards: [{
+				id: "00000000000005F2"
+				type: "command"
+				title: "稀有博塔尼亚战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			title: "火花（Sparks）"
+			x: 7.0d
+			y: 1.5d
+			subtitle: "脱下手套，展现真面目"
+			description: [
+				"虽然Mana Spreaders的Livingwood外壳使其在远程传导上效率很高，但这并非最快的方法。移除外壳可形成Spark，它虽没有Spreader的方向性，但能以巨大的处理量弥补。"
+				""
+				"法力不会自发地流过火花导管。需要引诱它才行。"
+			]
+			dependencies: ["0000000000000501"]
+			id: "0000000000000559"
+			tasks: [{
+				id: "000000000000055A"
+				type: "item"
+				item: "botania:spark"
+				count: 2L
+			}]
+			rewards: [{
+				id: "00000000000005DA"
+				type: "command"
+				title: "史诗级博塔尼亚战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			x: 6.0d
+			y: 5.5d
+			subtitle: "粉色才是新黑色"
+			description: [
+				"无法确定阿尔芙海姆的居民使用了何种原材料，但经检查，他们似乎采用了与魔钢类似的处理工艺。无论其基础材料是什么，其特性显然与贸易中提供的材料截然不同。"
+				""
+				"探索使用Elementium可以获取的新工具和物品。"
+			]
+			dependencies: ["0000000000000515"]
+			id: "000000000000057F"
+			tasks: [{
+				id: "0000000000000580"
+				type: "item"
+				item: "botania:elementium_ingot"
+			}]
+			rewards: [{
+				id: "00000000000005D7"
+				type: "command"
+				title: "史诗级博塔尼亚战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			x: 8.0d
+			y: 5.5d
+			subtitle: "水晶鳞片"
+			description: [
+				"龙之石似乎与末地和那里的原生物种——巨龙有着某种联系……或许，是时候去那里走一遭了。"
+				""
+				"探索用龙石可以获取的新工具和物品。"
+			]
+			dependencies: ["0000000000000515"]
+			id: "0000000000000581"
+			tasks: [{
+				id: "0000000000000582"
+				type: "item"
+				item: "botania:dragonstone"
+			}]
+			rewards: [{
+				id: "00000000000005D5"
+				type: "command"
+				title: "史诗级博塔尼亚战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			x: 7.0d
+			y: 6.0d
+			subtitle: "不适合空中使用"
+			description: [
+				"终于，找到了一个适合通过火花网络操控魔能的催化剂。"
+				""
+				"探索用仙女粉尘可以获取的新工具和物品。"
+			]
+			dependencies: ["0000000000000515"]
+			id: "0000000000000583"
+			tasks: [{
+				id: "0000000000000584"
+				type: "item"
+				item: "botania:pixie_dust"
+			}]
+			rewards: [{
+				id: "00000000000005D6"
+				type: "command"
+				title: "史诗级博塔尼亚战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			title: "火花增强组件"
+			x: 7.0d
+			y: 7.0d
+			subtitle: "潮起潮落"
+			description: ["火花增幅器是通过火花导管直接操控法力所缺失的一环，能让你指定法力流动的时间和地点。"]
+			dependencies: ["0000000000000583"]
+			id: "0000000000000585"
+			tasks: [
+				{
+					id: "0000000000000586"
+					type: "item"
+					item: "botania:spark_upgrade_recessive"
+				}
+				{
+					id: "000000000000058B"
+					type: "item"
+					item: "botania:spark_upgrade_dominant"
+				}
+			]
+			rewards: [{
+				id: "000000000000058F"
+				type: "item"
+				title: "火花匠人"
+				item: "botania:spark_changer"
+			}]
+		}
+		{
+			x: 6.0d
+			y: 6.5d
+			description: [
+				"到目前为止，基础的法力扩散器已经足够，但随着更高级材料的出现，显然可以获得更好的效果。"
+				""
+				"元素核心和梦境木稳定器似乎能同时发射更长的脉冲，极大地提升了吞吐量。"
+			]
+			dependencies: ["000000000000057F"]
+			id: "0000000000000589"
+			tasks: [{
+				id: "000000000000058A"
+				type: "item"
+				item: "botania:elven_spreader"
+			}]
+			rewards: [{
+				id: "00000000000005D4"
+				type: "command"
+				title: "史诗级博塔尼亚战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			title: "Corporea Networks"
+			icon: "botania:corporea_spark_master"
+			x: 8.0d
+			y: 6.5d
+			description: [
+				"看来玛纳操控物品的能力是无限的，能自由地将物质转化为能量，再转化回来，以将它们通过火花网络传输。"
+				""
+				"Corporea 系统是一个强大的物品管理系统，允许物品在远距离之间传输。请查阅 Lexica Botania 中关于 Corporea 的章节以了解更多。"
+			]
+			dependencies: ["0000000000000581"]
+			id: "000000000000058C"
+			tasks: [
+				{
+					id: "000000000000058D"
+					type: "item"
+					item: "botania:corporea_index"
+				}
+				{
+					id: "000000000000058E"
+					type: "item"
+					item: "botania:corporea_spark_master"
+				}
+			]
+			rewards: [{
+				id: "0000000000000590"
+				type: "item"
+				title: "Corporea 火花"
+				item: "botania:corporea_spark"
+				count: 8
+			}]
+		}
+		{
+			title: "法力透镜"
+			x: 2.0d
+			y: 9.0d
+			subtitle: "立体魔法能量操控术"
+			description: [
+				"对各种符文进行的实验表明，它们也能通过结合魔力透镜来增强魔力扩散器的行为。此外，可以通过在两个透镜之间放入一些史莱姆来将它们永久粘合在一起。"
+				""
+				"需要进一步实验，因为原始法力爆发似乎可以通过多种不同方式进行增强。"
+				""
+				"将速度和效力透镜组合成复合透镜，这样法力扩散器就能发送速度更快、威力更大的脉冲。"
+			]
+			dependencies: [
+				"0000000000000531"
+				"000000000000052F"
+			]
+			id: "0000000000000591"
+			tasks: [
+				{
+					id: "0000000000000592"
+					type: "item"
+					item: {
+						id: "botania:lens_speed"
+						Count: 1b
+						tag: { }
+					}
+				}
+				{
+					id: "0000000000000593"
+					type: "item"
+					item: {
+						id: "botania:lens_power"
+						Count: 1b
+						tag: { }
+					}
+				}
+			]
+			rewards: [
+				{
+					id: "0000000000000594"
+					type: "item"
+					title: "绿色史莱姆方块"
+					item: "minecraft:slime_block"
+				}
+				{
+					id: "0000000000000A75"
+					type: "command"
+					title: "拾荒者之乐"
+					icon: "kubejs:scavengers_delight"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_scavengers_delight"
+					player_command: false
+				}
+			]
+		}
+		{
+			icon: "mythicbotany:mana_infuser"
+			x: 7.0d
+			y: 8.0d
+			subtitle: "不切实际的电学不稳定化实验"
+			description: [
+				"当暴露于强烈的法力场中时，阿尔弗雷姆的原生材料似乎会自发地结合成一种新物质，这与泰拉钢的形成方式极为相似。"
+				""
+				"与 Terrestrial Agglomeration Plate 不同，此配方需要 Spark 上安装了 Dominant Spark Augment 才能吸收法力进行合成。"
+			]
+			dependencies: [
+				"0000000000000582"
+				"0000000000000584"
+				"0000000000000580"
+			]
+			id: "0000000000000595"
+			tasks: [
+				{
+					id: "0000000000000596"
+					type: "item"
+					item: "mythicbotany:mana_infuser"
+				}
+				{
+					id: "000000000000059A"
+					type: "item"
+					item: "minecraft:gold_block"
+					count: 4L
+				}
+				{
+					id: "000000000000059B"
+					type: "item"
+					item: "botania:shimmerrock"
+					count: 5L
+				}
+				{
+					id: "000000000000059C"
+					type: "item"
+					item: "mythicbotany:alfsteel_ingot"
+				}
+			]
+			rewards: [{
+				id: "00000000000005CB"
+				type: "command"
+				title: "传说级博塔尼亚战利品箱"
+				icon: "kubejs:legendary_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_legendary"
+				player_command: false
+			}]
+		}
+		{
+			x: 7.0d
+			y: 9.0d
+			subtitle: "建造额外的金字塔结构物"
+			description: [
+				"众所周知，法力非常适合进行自发性重组。一些有限的魔法通过吸收生物经过时留下的球体中的潜在法力，成功利用了这一点。阿尔弗斯钢尖塔有助于加快这一过程，将纯法力直接注入这些可修复的物品中。"
+				""
+				"使用法力扩散器向方尖碑输送法力。任何附魔了修补的方块放置在方尖碑上，都会以消耗法力为代价快速修复。"
+			]
+			dependencies: ["0000000000000595"]
+			id: "0000000000000597"
+			tasks: [{
+				id: "0000000000000598"
+				type: "item"
+				item: "mythicbotany:alfsteel_pylon"
+			}]
+			rewards: [{
+				id: "00000000000005CA"
+				type: "command"
+				title: "传说级博塔尼亚战利品箱"
+				icon: "kubejs:legendary_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_legendary"
+				player_command: false
+			}]
+		}
+		{
+			x: 11.0d
+			y: 4.0d
+			subtitle: "康威生命游戏"
+			description: [
+				"规则简单，结果复杂，就像它所模仿的生态系统一样。解开它的奥秘，能以极少的投入获得巨额的法力。"
+				""
+				"完整规则列表请参阅 Lexica Botania。"
+			]
+			dependencies: ["0000000000000524"]
+			id: "00000000000005A0"
+			tasks: [{
+				id: "00000000000005A1"
+				type: "item"
+				item: "botania:dandelifeon"
+			}]
+			rewards: [
+				{
+					id: "00000000000005CF"
+					type: "item"
+					title: "细胞状方块"
+					item: "botania:cell_block"
+					count: 8
+				}
+				{
+					id: "00000000000005D0"
+					type: "command"
+					title: "传说级博塔尼亚战利品箱"
+					icon: "kubejs:legendary_lootbox"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_legendary"
+					player_command: false
+				}
+			]
+		}
+		{
+			x: 13.0d
+			y: 4.0d
+			subtitle: "它会让你逐渐习惯它的存在"
+			description: [
+				"并非所有材料都容易被玛纳自发重组，但通过与仍在脉动的盖亚之魂绑定，这一特性几乎可以强加于任何物体之上。"
+				""
+				"永恒常春藤可以与任何通常可在铁砧上修复的物品结合。将物品、一根永恒常春藤以及三种用于修复该物品的材料放置在工作台中进行绑定。例如，一把钻石剑需要三颗钻石。"
+			]
+			dependencies: ["0000000000000524"]
+			id: "00000000000005A2"
+			tasks: [{
+				id: "00000000000005A3"
+				type: "item"
+				item: "botaniaadditions:regen_ivy"
+			}]
+			rewards: [{
+				id: "00000000000005CD"
+				type: "command"
+				title: "传说级博塔尼亚战利品箱"
+				icon: "kubejs:legendary_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_legendary"
+				player_command: false
+			}]
+		}
+		{
+			x: 14.0d
+			y: 3.5d
+			subtitle: "打开矿脉"
+			description: ["终极版法力扩散器，注入了盖亚本身的精髓以最大化吞吐量。"]
+			dependencies: ["0000000000000524"]
+			id: "00000000000005A4"
+			tasks: [{
+				id: "00000000000005A5"
+				type: "item"
+				item: "botania:gaia_spreader"
+			}]
+			rewards: [{
+				id: "00000000000005CE"
+				type: "command"
+				title: "传说级博塔尼亚战利品箱"
+				icon: "kubejs:legendary_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_legendary"
+				player_command: false
+			}]
+		}
+		{
+			x: 10.0d
+			y: 3.5d
+			subtitle: "注意间隙"
+			description: ["借助盖亚的强大能量来稳定它，就可以形成一个能储存海量物品的小型口袋维度。"]
+			dependencies: ["0000000000000524"]
+			id: "00000000000005A6"
+			tasks: [{
+				id: "00000000000005A7"
+				type: "item"
+				item: {
+					id: "botania:black_hole_talisman"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "00000000000005D1"
+				type: "command"
+				title: "传说级博塔尼亚战利品箱"
+				icon: "kubejs:legendary_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_legendary"
+				player_command: false
+			}]
+		}
+		{
+			title: "来自米米尔之井的水"
+			icon: "mythicbotany:gjallar_horn_full"
+			x: 12.0d
+			y: 5.5d
+			subtitle: "只需一口，妖精便会爱上你！"
+			description: [
+				"源自生命之树的圣水，其根系深达所有维度。你敢饮用那专为神祇留存的水吗？"
+				""
+				"要获得这杯禁忌饮品，你需要制作一个能与之绑定的代理，从而连接到世界树本身。"
+				""
+				"制作一个世界树之枝，用约尔加尼尔之角右键点击，并用法力扩散器为其提供法力。一段时间后，号角会充满并可以被消耗。"
+			]
+			dependencies: ["0000000000000524"]
+			id: "5584BFC2DE3C29D7"
+			tasks: [
+				{
+					id: "16324032C65F1E46"
+					type: "item"
+					item: "mythicbotany:yggdrasil_branch"
+				}
+				{
+					id: "7F1EEC9AD6E865F7"
+					type: "item"
+					item: "mythicbotany:gjallar_horn_empty"
+				}
+				{
+					id: "2971617F05C67734"
+					type: "item"
+					item: "mythicbotany:gjallar_horn_full"
+				}
+			]
+			rewards: [{
+				id: "620D77CA6FA8C011"
+				type: "command"
+				title: "传说级博塔尼亚战利品箱"
+				icon: "kubejs:legendary_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_legendary"
+				player_command: false
+			}]
+		}
+		{
+			x: 11.0d
+			y: 8.0d
+			subtitle: "汲取源头能量"
+			description: [
+				"一旦放血开始，就永不停止。找到一个流浪商人，引诱他们站在你的符文阵中央。"
+				""
+				"至少这会很快完成。"
+				""
+				"按照《植物学词典》的描述设置仪式。符文必须放置在符文座上，石板则放置在主符文座上。所需物品需放置在交易者附近的地上。"
+				""
+				"用森林魔杖右键主符文以激活仪式。法力由你携带的符文石板或戒指提供。"
+			]
+			dependencies: ["3EA3751B482189B7"]
+			id: "1C1D719B824FB0AB"
+			tasks: [{
+				id: "0BFCAE28C250A671"
+				type: "item"
+				item: "mythicbotany:kvasir_blood"
+			}]
+			rewards: [{
+				id: "195C2F28DEEC1AE6"
+				type: "command"
+				title: "传说级博塔尼亚战利品箱"
+				icon: "kubejs:legendary_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_legendary"
+				player_command: false
+			}]
+		}
+		{
+			title: "阿尔弗雷姆"
+			x: 12.0d
+			y: 9.0d
+			subtitle: "从黑暗走向光明"
+			description: [
+				"饮用这杯令人不安的饮品后，通往阿尔弗雷姆的传送门便会为你开启，让你得以通行。"
+				""
+				"另一边等待着你的究竟是什么？"
+			]
+			dependencies: ["1C1D719B824FB0AB"]
+			id: "47CDA7739244CE6F"
+			tasks: [{
+				id: "6D37E48268B35E38"
+				type: "item"
+				item: "mythicbotany:kvasir_mead"
+			}]
+			rewards: [{
+				id: "3542522DA81D210F"
+				type: "command"
+				title: "传说级博塔尼亚战利品箱"
+				icon: "kubejs:legendary_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_legendary"
+				player_command: false
+			}]
+		}
+		{
+			x: 12.0d
+			y: 7.0d
+			subtitle: "诗意盎然 (Waxing Poetic)"
+			description: [
+				"在安全地获得了艾西尔的智慧后，唯一的出路就是退后一步，加倍努力对抗这片土地的守护者盖亚。再次用盖亚之魂锭引诱她，召唤她进行下一场战斗。"
+				""
+				"借助米米尔的知识，击败盖亚守护者 II 后，你将获得芬布尔特尔的符文石板。"
+			]
+			dependencies: ["0000000000000524"]
+			id: "3EA3751B482189B7"
+			tasks: [{
+				id: "1F77ECAE16AF537E"
+				type: "item"
+				item: "mythicbotany:fimbultyr_tablet"
+			}]
+			rewards: [{
+				id: "44A3C1F87AB6977B"
+				type: "command"
+				title: "传说级博塔尼亚战利品箱"
+				icon: "kubejs:legendary_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_botania_loot_legendary"
+				player_command: false
+			}]
+		}
+	]
+}

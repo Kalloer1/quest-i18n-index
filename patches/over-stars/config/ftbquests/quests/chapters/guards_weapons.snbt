@@ -1,0 +1,109 @@
+# AI 初翻，未人工校对
+{
+	consume_items: true
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "guards_weapons"
+	group: "691ECEA9A5501200"
+	id: "166D1C02B12131AF"
+	order_index: 17
+	quest_links: [ ]
+	quests: [
+		{
+			can_repeat: true
+			dependencies: [
+				"746F364E74D8AD93"
+				"539BEEB9A5417E86"
+			]
+			description: [""]
+			hide_details_until_startable: true
+			hide_until_deps_visible: true
+			id: "061B7E7431526F4B"
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/gamestage remove @p weaponsmith1 true"
+					elevate_perms: true
+					id: "62C6A3694F1E3F60"
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 746F364E74D8AD93"
+					elevate_perms: true
+					id: "59B5D36B5FFBD4FE"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/tellraw @p {\"text\":\"Thanks for helping us Sir! Your rewards have been granted!\",\"color\":\"white\",\"bold\":true}"
+					elevate_perms: true
+					id: "7214428B188EAE84"
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 6
+					id: "437EC08A6C623AE7"
+					item: "quest_token_api:quest_token"
+					type: "item"
+				}
+				{
+					auto: "enabled"
+					exclude_from_claim_all: true
+					id: "4AF7E0299B0AA201"
+					table_id: 5618260505225790032L
+					type: "random"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 539BEEB9A5417E86"
+					elevate_perms: true
+					id: "5004F3C0EE22E69B"
+					silent: true
+					type: "command"
+				}
+			]
+			tasks: [{
+				id: "4A6851F19EF8398E"
+				title: "点击以完成"
+				type: "checkmark"
+			}]
+			title: "点击以完成"
+			x: 1.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["746F364E74D8AD93"]
+			description: ["嗨，我们村的守卫需要些新武器，能帮我收集一下清单上的东西吗？"]
+			hide_details_until_startable: true
+			hide_until_deps_visible: true
+			id: "539BEEB9A5417E86"
+			tasks: [
+				{
+					count: 15L
+					id: "6551422ADED56EA2"
+					item: { Count: 15, id: "minecraft:iron_ingot" }
+					type: "item"
+				}
+				{
+					count: 30L
+					id: "72E6A098CF49C46E"
+					item: { Count: 30, id: "minecraft:stick" }
+					type: "item"
+				}
+				{
+					count: 10L
+					id: "6D5FA4A608CEF52B"
+					item: { Count: 10, id: "minecraft:flint" }
+					type: "item"
+				}
+			]
+			title: "任务"
+			x: 0.0d
+			y: 1.5d
+		}
+	]
+	title: "&7守卫武器"
+}

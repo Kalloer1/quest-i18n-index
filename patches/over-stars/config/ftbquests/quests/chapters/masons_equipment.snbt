@@ -1,0 +1,103 @@
+# AI 初翻，未人工校对
+{
+	consume_items: true
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "masons_equipment"
+	group: "691ECEA9A5501200"
+	id: "4F17293073FFB85C"
+	order_index: 13
+	quest_links: [ ]
+	quests: [
+		{
+			can_repeat: true
+			dependencies: [
+				"3F3032F63F7A356A"
+				"55A4F5AE7731218E"
+			]
+			description: [""]
+			hide_details_until_startable: true
+			hide_until_deps_visible: true
+			id: "141C42D89593490F"
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/gamestage remove @p mason1 true"
+					elevate_perms: true
+					id: "1F0E6D203D760BE6"
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 3F3032F63F7A356A"
+					elevate_perms: true
+					id: "52CCE75F8A9EF434"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/tellraw @p {\"text\":\"Thanks for helping us Sir! Your rewards have been granted!\",\"color\":\"white\",\"bold\":true}"
+					elevate_perms: true
+					id: "569C19B7E171CD64"
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 3
+					id: "5889915D13C679FC"
+					item: "quest_token_api:quest_token"
+					type: "item"
+				}
+				{
+					auto: "enabled"
+					exclude_from_claim_all: true
+					id: "2F024ABB7921EDAE"
+					table_id: 5618260505225790032L
+					type: "random"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 55A4F5AE7731218E"
+					elevate_perms: true
+					id: "2E4EC4FE7A4357B7"
+					silent: true
+					type: "command"
+				}
+			]
+			tasks: [{
+				id: "7E0F2C73ECEFD632"
+				title: "点击以完成"
+				type: "checkmark"
+			}]
+			title: "点击以完成"
+			x: 0.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["3F3032F63F7A356A"]
+			description: ["嘿！我有个大项目需要收集装备和资源，能帮我收集清单上的物品吗？"]
+			hide_details_until_startable: true
+			hide_until_deps_visible: true
+			id: "55A4F5AE7731218E"
+			tasks: [
+				{
+					count: 6L
+					id: "1B2BDFF6C9B111BD"
+					item: "minecraft:stonecutter"
+					type: "item"
+				}
+				{
+					count: 50L
+					id: "4F614453B5DF6A92"
+					item: { Count: 50, id: "minecraft:stone" }
+					type: "item"
+				}
+			]
+			title: "任务"
+			x: -0.5d
+			y: 1.5d
+		}
+	]
+	title: "&7石匠装备"
+}

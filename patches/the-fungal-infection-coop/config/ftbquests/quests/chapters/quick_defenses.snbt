@@ -1,0 +1,229 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "quick_defenses"
+	group: "2CAC297F84835B88"
+	icon: "minecraft:book"
+	id: "56DF62F4ED7795AE"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["3EBF6A40E97F6D68"]
+			description: ["&7用锋利的竹尖，我们可以在基地周围放置这些尖刺，以获得更好的保护。"]
+			id: "45A41F1A8771F6C5"
+			shape: "hexagon"
+			subtitle: "&8点击阅读页面"
+			tasks: [{
+				id: "3858EED9FD1509A8"
+				item: "supplementaries:bamboo_spikes"
+				type: "item"
+			}]
+			title: "&e第2页：&7第一道防线：尖刺陷阱"
+			x: -0.5d
+			y: -5.5d
+		}
+		{
+			can_repeat: false
+			dependencies: ["2B1A17EC2F39D710"]
+			description: [
+				"&7真菌感染正在全球蔓延，本指南将教你如何防御基地周边区域。"
+				""
+				"&7也来看看第二卷，我们用回收材料建造炮塔！"
+				""
+				"&6索引："
+				"- &e1-5:&7 尖刺陷阱"
+				"- &e6-10:&7 大炮"
+			]
+			hide_until_deps_complete: true
+			icon: "minecraft:writable_book"
+			id: "3F8AB407BFE74F15"
+			shape: "square"
+			subtitle: "&e“原始武器” - 作者：史蒂夫。"
+			tasks: [{
+				id: "3E317746269B7203"
+				title: "继续"
+				type: "checkmark"
+			}]
+			title: "&bSteve's Defense Guide™ Vol.1"
+			x: -2.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["3F8AB407BFE74F15"]
+			description: [
+				"&7竹子是一种很棒的廉价资源，可以砍下来用作武器。"
+				""
+				"&7你可以在主世界自然生长的地方找到它。"
+			]
+			id: "3EBF6A40E97F6D68"
+			subtitle: "&8点击阅读页面"
+			tasks: [{
+				id: "5FF70F6F28A40742"
+				item: "minecraft:bamboo"
+				type: "item"
+			}]
+			title: "&e第1页：&7竹子"
+			x: -0.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["45A41F1A8771F6C5"]
+			description: [
+				"&7酿造台在村庄中很少见，但也可以用名为“烈焰人”的地狱生物的材料来制作"
+				""
+				"&e&o底部注释：&r&7\"酿造药水并不容易，你可能需要下地狱去弄些材料来加热它们\""
+				"&e- 史蒂夫"
+			]
+			id: "3D75D3CDEE30AC95"
+			subtitle: "&8点击阅读页面"
+			tasks: [{
+				id: "6DE6C33A886B8B4A"
+				item: "minecraft:brewing_stand"
+				type: "item"
+			}]
+			title: "&e第3页：&7酿造学"
+			x: 1.0d
+			y: -5.5d
+		}
+		{
+			dependencies: ["3D75D3CDEE30AC95"]
+			description: ["&7药水可以投掷给敌人，施加减速、虚弱或伤害等效果。"]
+			id: "27447825604AC8C2"
+			subtitle: "&8点击阅读页面"
+			tasks: [{
+				id: "7718CE58D014C57A"
+				item: {
+					Count: 1
+					id: "ftbfiltersystem:smart_filter"
+					tag: {
+						"ftbfiltersystem:filter": "or(item_tag(c:potions))not(nbt(fuzzy:{Potion:\"minecraft:mundane\"}))not(nbt(fuzzy:{Potion:\"minecraft:water\"}))"
+					}
+				}
+				title: "酿造一瓶药水"
+				type: "item"
+			}]
+			title: "&e第4页：&7药水（Potions）"
+			x: 1.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["27447825604AC8C2"]
+			description: ["&7Alchemy is an interesting science, we can pour some potions such as harming, slowness or weakness on top of our spikes, making them apply these effects when enemies get damaged."]
+			id: "1AAD684A6ECDCEE2"
+			shape: "hexagon"
+			subtitle: "&8点击阅读页面"
+			tasks: [{
+				id: "30647F3FFC793B29"
+				item: {
+					Count: 1
+					id: "ftbfiltersystem:smart_filter"
+					tag: {
+						"ftbfiltersystem:filter": "or(item(supplementaries:bamboo_spikes_tipped))"
+					}
+				}
+				title: "&e第5页：&7Tipped Spikes（带尖刺的箭）"
+				type: "item"
+			}]
+			x: 1.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["3F8AB407BFE74F15"]
+			description: ["&7弹弓可以用来远程投掷和放置方块，但我们还可以更进一步，用它们来制造一种新型机器。"]
+			id: "457F9ECB7473E725"
+			subtitle: "&8点击阅读页面"
+			tasks: [{
+				id: "685193D7D3FA1EF8"
+				item: {
+					Count: 1
+					id: "supplementaries:slingshot"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "&e第6页：&7弹弓"
+			x: -0.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["457F9ECB7473E725"]
+			description: ["&7用那个弹弓做了个小装置，这门大炮能投掷更重的东西并造成实际伤害，但我们首先需要弹药和射击方法！"]
+			id: "2008388BC411E59A"
+			shape: "hexagon"
+			subtitle: "&8点击阅读页面"
+			tasks: [{
+				id: "4EFE243BA5F148E6"
+				item: "supplementaries:cannon"
+				type: "item"
+			}]
+			title: "&e第7页：&7大炮"
+			x: -2.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["2008388BC411E59A"]
+			description: ["&7铅可以在主世界洞穴的矿石中找到。你需要至少45个铅来发射几枚炮弹。"]
+			id: "5BB4967E9FB64691"
+			subtitle: "&8点击阅读页面"
+			tasks: [{
+				count: 45L
+				id: "2F0C354B97456C7E"
+				item: "immersiveengineering:raw_lead"
+				title: "Mine 45 铅锭"
+				type: "item"
+			}]
+			title: "&e第8页：&7铅锭"
+			x: -3.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["4BDEB28AD205E848"]
+			description: ["&7终于，火药是你击退那些球状生物所需的物品，它们可以由名为苦力怕的绿色怪物掉落。"]
+			id: "3B709DD08A67A2D7"
+			subtitle: "&8点击阅读页面"
+			tasks: [{
+				id: "7DB6E258B6F26F22"
+				item: "minecraft:gunpowder"
+				type: "item"
+			}]
+			title: "&e第10页：&7准备开火！"
+			x: -3.5d
+			y: -5.5d
+		}
+		{
+			dependencies: ["5BB4967E9FB64691"]
+			description: ["&7现在你有了足够的铅，可以把它做成方块，再制作一些炮弹。炮弹由主世界中最重的金属之一制成。"]
+			id: "4BDEB28AD205E848"
+			subtitle: "&8点击阅读页面"
+			tasks: [{
+				id: "0670DCAD2155D4B8"
+				item: "supplementaries:cannonball"
+				type: "item"
+			}]
+			title: "&e第9页：&7炮弹（Cannon Balls）"
+			x: -3.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["48DFBC04BFC76D87"]
+			description: [""]
+			icon: "minecraft:book"
+			id: "2B1A17EC2F39D710"
+			shape: "square"
+			subtitle: "&7Unlocked after &e\"The World\" &7quest in &eThe Infection&7 questline. "
+			tasks: [{
+				id: "6715F40143940BAB"
+				title: "继续"
+				type: "checkmark"
+			}]
+			title: "&6指南解锁"
+			x: -2.0d
+			y: -5.5d
+		}
+	]
+	title: " &bSteve's Defense Guide™ Vol.1"
+}

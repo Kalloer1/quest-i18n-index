@@ -1,0 +1,205 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "introduction"
+	group: "4AAD00DF5B6AB90F"
+	hide_quest_until_deps_complete: true
+	icon: "unearthed_journey:archstone_pillar"
+	id: "7F4F5D623EB62C1D"
+	images: [{
+		height: 20.0d
+		image: "minecraft:textures/gui/quests/image_general.png"
+		rotation: 0.0d
+		width: 35.0d
+		x: 4.0d
+		y: -4.5d
+	}]
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["09BC0E6631FF2657"]
+			description: [
+				"要开启你的时空冒险，不妨先制作一个&3自然指南针。&r你需要找到一个遥远的寺庙，"
+				"远离出生点，又没有指南针，那可不是什么好玩的事。"
+			]
+			id: "7B42609AC3937087"
+			rewards: [{
+				id: "5613132453ABB018"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			shape: "gear"
+			size: 1.4d
+			subtitle: "你可能需要制作一个自然罗盘来寻找远古神庙……"
+			tasks: [{
+				id: "3C478BA972E12005"
+				item: {
+					Count: 1
+					id: "naturescompass:naturescompass"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "&3&l自然指南针"
+			x: 1.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["7B42609AC3937087"]
+			description: ["只有在丛林中，你才能找到麦瑟列拉的远古神庙。你可能要穿过好几个丛林，神庙很远很远……"]
+			id: "6595D4D901F98841"
+			min_required_tasks: 1
+			rewards: [{
+				id: "20EB755606604E0F"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			subtitle: "使用指南针，找到一片丛林并前往。在那里，你可能会发现神庙。"
+			tasks: [
+				{
+					biome: "minecraft:jungle"
+					id: "06CEC95CFBEB5DDD"
+					title: "找到一个丛林生物群系"
+					type: "biome"
+				}
+				{
+					biome: "minecraft:sparse_jungle"
+					id: "052222A7CC28CDC5"
+					title: "找到一个稀疏的丛林"
+					type: "biome"
+				}
+			]
+			title: "&3&l寻找一片丛林"
+			x: 3.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["6595D4D901F98841"]
+			id: "518AB120FE26D948"
+			rewards: [
+				{
+					id: "4FACD6C5B07E0B6F"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+				{
+					exclude_from_claim_all: true
+					id: "5EFFAD463B3A581B"
+					table_id: 7770373541787713970L
+					type: "choice"
+				}
+			]
+			shape: "gear"
+			size: 1.4d
+			subtitle: "这座古老的寺庙是个死亡之地。小心陷阱、敌人和其他危险……"
+			tasks: [{
+				icon: "unearthed_journey:polished_archstone"
+				id: "1540E7154B1A5507"
+				structure: "unearthed_journey:temple_to_methuselah"
+				title: "找到麦瑟列拉的寺庙"
+				type: "structure"
+			}]
+			title: "&3&l麦瑟列拉的圣殿"
+			x: 4.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["518AB120FE26D948"]
+			description: ["要开启你的出土之旅，你必须击败 Methuselah 以获得他的眼睛。这能让你穿越到其他时代！"]
+			id: "7606EAE37AD59208"
+			rewards: [
+				{
+					id: "16B0D632FFBFAE8C"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					exclude_from_claim_all: true
+					id: "18B8357EF311EC13"
+					table_id: 1365136238275176325L
+					type: "random"
+				}
+			]
+			subtitle: "在他们的神庙下，有一个致命的生物在等着你——Methuselah。"
+			tasks: [{
+				entity: "unearthed_journey:methuselah_boss"
+				icon: {
+					Count: 1
+					id: "unearthed_journey:eye_of_methuselah"
+					tag: {
+						Damage: 0
+					}
+				}
+				id: "3462280884C76BC4"
+				title: "&3&l击杀玛土撒拉"
+				type: "kill"
+				value: 1L
+			}]
+			x: 4.0d
+			y: -6.5d
+		}
+		{
+			dependencies: ["7606EAE37AD59208"]
+			description: [
+				"要开始时间旅行，你必须为每个维度建造传送门。在神庙里，你可以找到或制作拱石门柱，"
+				"然后你需要找到传送门的角。接着像去下界时一样建造传送门，但用以下物品替换角："
+				"角落的方块。确保所有角落都匹配（必须是同一种动物）。然后，&3用眼睛点燃传送门&r，就可以出发了！"
+			]
+			id: "28771DFADADC1306"
+			rewards: [
+				{
+					id: "2D08FC70BA032009"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					exclude_from_claim_all: true
+					id: "06DF0A621A150E10"
+					table_id: 7770373541787713970L
+					type: "random"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "69521EA220D48EE5"
+					table_id: 1365136238275176325L
+					type: "random"
+				}
+			]
+			shape: "octagon"
+			size: 1.5d
+			subtitle: "你必须建造传送门来开启你的时空旅行冒险。但为此，你需要资源。"
+			tasks: [
+				{
+					count: 30L
+					id: "2EDE7B321A8B3F15"
+					item: { Count: 30, id: "unearthed_journey:archstone_pillar" }
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "7A20D92C03AFDC39"
+					item: { Count: 4, id: "unearthed_journey:paleogene_portal_corner" }
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "11E700170858004C"
+					item: { Count: 4, id: "unearthed_journey:neogene_portal_corner" }
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "5B896BD970A4A4A9"
+					item: { Count: 4, id: "unearthed_journey:pleistocene_portal_corner" }
+					type: "item"
+				}
+			]
+			title: "&3&l获取传送门材料"
+			x: 1.5d
+			y: -6.5d
+		}
+	]
+	title: "&b 简介"
+}

@@ -1,0 +1,108 @@
+# AI 初翻，未人工校对
+{
+	consume_items: true
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "feast_prep"
+	group: "691ECEA9A5501200"
+	id: "1707DAC121172D72"
+	order_index: 3
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["500BE1221209451B"]
+			description: [
+				"你好，先生！我们正在筹备一场盛大的宴会，但需要几个帮手。"
+				""
+				"能帮我们准备 &e8 个苹果派 &f和 &e3 份牛排土豆&f吗？"
+			]
+			hide_details_until_startable: true
+			hide_until_deps_visible: true
+			id: "6A72C2AD3B850FF9"
+			tasks: [
+				{
+					count: 8L
+					id: "0008B83D809540FE"
+					item: { Count: 8, id: "farmersdelight:apple_pie" }
+					type: "item"
+				}
+				{
+					count: 3L
+					id: "004B9006996EBD16"
+					item: { Count: 3, id: "farmersdelight:steak_and_potatoes" }
+					type: "item"
+				}
+			]
+			title: "任务"
+			x: 0.0d
+			y: 0.5d
+		}
+		{
+			can_repeat: true
+			dependencies: [
+				"500BE1221209451B"
+				"6A72C2AD3B850FF9"
+			]
+			description: [""]
+			hide_details_until_startable: true
+			hide_until_deps_visible: true
+			id: "384D626B4114C003"
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/gamestage remove @p farmer3 true"
+					elevate_perms: true
+					id: "54B4F07B9ED1BCC0"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 500BE1221209451B"
+					elevate_perms: true
+					id: "469168BE675E11CB"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/tellraw @p {\"text\":\"Thanks for helping us Sir! Your rewards have been granted!\",\"color\":\"white\",\"bold\":true}"
+					elevate_perms: true
+					id: "4CC7D0EC6E3B3240"
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 3
+					id: "6DED434704722672"
+					item: "quest_token_api:quest_token"
+					type: "item"
+				}
+				{
+					auto: "enabled"
+					exclude_from_claim_all: true
+					id: "6A11E75CF447B32E"
+					table_id: 5618260505225790032L
+					type: "random"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 6A72C2AD3B850FF9"
+					elevate_perms: true
+					id: "603C3149C2DA3214"
+					silent: true
+					type: "command"
+				}
+			]
+			tasks: [{
+				id: "52553BF2F503E0F8"
+				title: "点击以完成"
+				type: "checkmark"
+			}]
+			title: "点击以完成"
+			x: 1.0d
+			y: 0.5d
+		}
+	]
+	title: "&7盛宴筹备"
+}

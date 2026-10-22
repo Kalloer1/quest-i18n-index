@@ -1,0 +1,133 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "void_blossom_beheader"
+	group: "2160A0BD1700DC33"
+	hide_quest_details_until_startable: true
+	hide_quest_until_deps_visible: true
+	id: "7FDBE07B62AB8F01"
+	order_index: 17
+	quest_links: [ ]
+	quests: [
+		{
+			id: "7E10C927B99A3294"
+			rewards: [{
+				auto: "invisible"
+				command: "/tellraw @p {\"text\":\"Ready to embark on your quest!? Open your questbook to find the quest activated to begin searching for the structure!\",\"color\":\"white\",\"bold\":true}"
+				elevate_perms: true
+				id: "17DE3AEE5E147000"
+				type: "command"
+			}]
+			secret: true
+			tasks: [{
+				icon: "quest_token_api:the_ferrous_wroughtnaut"
+				id: "77B2ABF58B1B4113"
+				stage: "blossom"
+				title: "Unlock quest"
+				type: "gamestage"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7E10C927B99A3294"]
+			id: "03AE8DA4FCA34B87"
+			rewards: [{
+				auto: "invisible"
+				command: "/locate structure bosses_of_mass_destruction:void_blossom"
+				elevate_perms: true
+				id: "3A3328A740F9D93A"
+				type: "command"
+			}]
+			tasks: [{
+				id: "5D1BFB319256B81A"
+				title: "点击以定位结构物"
+				type: "checkmark"
+			}]
+			x: -2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7E10C927B99A3294"]
+			id: "6B5D45B31547214E"
+			tasks: [{
+				id: "636588C16D3F8F45"
+				structure: "bosses_of_mass_destruction:void_blossom"
+				title: "找到虚空之花 (void blossom)"
+				type: "structure"
+			}]
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["6B5D45B31547214E"]
+			id: "153EEDD98CBEC98D"
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/gamestage remove @p blossom true"
+					elevate_perms: true
+					id: "4DE683D411E4B342"
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 7E10C927B99A3294"
+					elevate_perms: true
+					id: "673598BBE4A10419"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 6B5D45B31547214E"
+					elevate_perms: true
+					id: "56D4D9E9D38DF513"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					command: "/puffish_skills points add @p puffish_skills:combat 11"
+					elevate_perms: true
+					icon: "minecraft:experience_bottle"
+					id: "302880D848C4352F"
+					title: "11 战斗技能点"
+					type: "command"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "4CA713149130422A"
+					table_id: 444384640504589334L
+					type: "random"
+				}
+				{
+					auto: "enabled"
+					count: 2
+					id: "608C3A255CEA140D"
+					item: "steampunkrpg_content:dungeon_token"
+					type: "item"
+				}
+				{
+					auto: "enabled"
+					id: "581E6E3FBD0C9CAA"
+					table_id: 444384640504589334L
+					type: "random"
+				}
+			]
+			shape: "pentagon"
+			size: 1.5d
+			tasks: [{
+				entity: "bosses_of_mass_destruction:void_blossom"
+				icon: "bosses_of_mass_destruction:crystal_fruit"
+				id: "4EBBCAB84730ADB7"
+				type: "kill"
+				value: 1L
+			}]
+			x: 4.5d
+			y: 0.0d
+		}
+	]
+	title: "&d虚空之花收割者"
+}

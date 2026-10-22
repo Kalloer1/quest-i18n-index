@@ -1,0 +1,169 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "temple_of_the_infested"
+	group: "2160A0BD1700DC33"
+	hide_quest_details_until_startable: true
+	hide_quest_until_deps_visible: true
+	id: "75543916A9F6C2EA"
+	order_index: 4
+	quest_links: [ ]
+	quests: [
+		{
+			id: "709CF711316474E1"
+			rewards: [{
+				auto: "invisible"
+				command: "/tellraw @p {\"text\":\"Ready to embark on your quest!? Open your questbook to find the quest activated to begin searching for the structure!\",\"color\":\"white\",\"bold\":true}"
+				elevate_perms: true
+				id: "5B26A4EBF180D34B"
+				type: "command"
+			}]
+			secret: true
+			tasks: [{
+				icon: "quest_token_api:absi_palace_king"
+				id: "771773BC148F52E7"
+				stage: "infestedtemple"
+				title: "使用卷轴解锁"
+				type: "gamestage"
+			}]
+			x: 0.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["709CF711316474E1"]
+			id: "6022F5DBFE7E6B55"
+			tasks: [{
+				id: "0B72D25C0A46005B"
+				structure: "dungeons_arise:infested_temple"
+				title: "找到被感染的寺庙"
+				type: "structure"
+			}]
+			x: 2.5d
+			y: 1.5d
+		}
+		{
+			can_repeat: true
+			dependencies: ["709CF711316474E1"]
+			id: "7CA134B91D2E2B64"
+			rewards: [{
+				auto: "invisible"
+				command: "/locate structure dungeons_arise:infested_temple"
+				elevate_perms: true
+				id: "72DA0FB95CF42040"
+				team_reward: false
+				type: "command"
+			}]
+			tasks: [{
+				id: "5A86FCE893B68236"
+				title: "点击以定位结构物"
+				type: "checkmark"
+			}]
+			x: -1.5d
+			y: 1.5d
+		}
+		{
+			can_repeat: true
+			dependencies: ["6022F5DBFE7E6B55"]
+			id: "7948A6949DCD8170"
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/gamestage remove @p infestedtemple true"
+					elevate_perms: true
+					id: "55821C9FCC8CD69A"
+					team_reward: false
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 709CF711316474E1"
+					elevate_perms: true
+					id: "51B91B0871DD6573"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 6022F5DBFE7E6B55"
+					elevate_perms: true
+					id: "4E8B2AD4F0174C9D"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					command: "/puffish_skills points add @p puffish_skills:combat 6"
+					elevate_perms: true
+					icon: "minecraft:experience_bottle"
+					id: "3FB68D4B1A2A2D74"
+					title: "6 战斗技能点"
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					exclude_from_claim_all: true
+					id: "6C95CA3A007B012D"
+					table_id: 444384640504589334L
+					type: "random"
+				}
+				{
+					auto: "enabled"
+					id: "436BEC473D82A270"
+					item: "steampunkrpg_content:dungeon_token"
+					type: "item"
+				}
+			]
+			shape: "circle"
+			size: 2.0d
+			tasks: [
+				{
+					entity: "minecraft:spider"
+					id: "6D411B866059EC55"
+					type: "kill"
+					value: 15L
+				}
+				{
+					entity: "minecraft:cave_spider"
+					id: "18A0DBE5804285E8"
+					type: "kill"
+					value: 15L
+				}
+				{
+					entity: "minecraft:wither_skeleton"
+					id: "583192236EFF3FC6"
+					type: "kill"
+					value: 10L
+				}
+				{
+					block: "minecraft:spawner"
+					block_type: 0
+					checkItem: false
+					id: "5DBA94A2C8FE99DD"
+					type: "questsadditions:break"
+					value: 10L
+				}
+				{
+					entity: "minecraft:skeleton"
+					id: "3C550F2719E9FE52"
+					title: "击杀：10x 迪纳本（Dinnerbone）"
+					type: "kill"
+					value: 10L
+				}
+				{
+					block: "lootr:lootr_chest"
+					block_type: 0
+					checkItem: false
+					id: "4E4305F021669BEC"
+					isItemInteraction: false
+					type: "questsadditions:use"
+					value: 10L
+				}
+			]
+			title: "任务"
+			x: 5.0d
+			y: 1.5d
+		}
+	]
+	title: "&b被感染的巢穴神殿"
+}

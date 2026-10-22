@@ -1,0 +1,123 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "the_ignis_slayer"
+	group: "2160A0BD1700DC33"
+	hide_quest_details_until_startable: true
+	hide_quest_until_deps_visible: true
+	id: "0D8360201ED12BDE"
+	order_index: 14
+	quest_links: [ ]
+	quests: [
+		{
+			id: "6EA1BE8B50395969"
+			rewards: [{
+				auto: "invisible"
+				command: "/tellraw @p {\"text\":\"Ready to embark on your quest!? Open your questbook to find the quest activated to begin searching for the structure!\",\"color\":\"white\",\"bold\":true}"
+				elevate_perms: true
+				id: "0BD4F57D1FB0E6E6"
+				type: "command"
+			}]
+			secret: true
+			tasks: [{
+				icon: "quest_token_api:absi_palace_king"
+				id: "3BCD12C1E24D2C32"
+				stage: "sunbird"
+				title: "Unlock Quest"
+				type: "gamestage"
+			}]
+			x: -0.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["6EA1BE8B50395969"]
+			id: "223E527BFA06DA30"
+			tasks: [
+				{
+					id: "5C519568B5F5FA7F"
+					structure: "mowziesmobs:umvuthana_grove"
+					title: "找到 umvuthana 小树林"
+					type: "structure"
+				}
+				{
+					id: "122BA1AA1D6C0A71"
+					item: "mowzies_cataclysm:sun_eye"
+					type: "item"
+				}
+			]
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			can_repeat: true
+			dependencies: ["223E527BFA06DA30"]
+			id: "7373B0F93F15CB23"
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/gamestage remove @p sunbird true"
+					elevate_perms: true
+					id: "3D274A5525C670CE"
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 6EA1BE8B50395969"
+					elevate_perms: true
+					id: "02EC5DE76BA2841B"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 223E527BFA06DA30"
+					elevate_perms: true
+					id: "2E7B81EDDEC92B6C"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					command: "/puffish_skills points add @p puffish_skills:combat 10"
+					elevate_perms: true
+					icon: "minecraft:experience_bottle"
+					id: "49FC019F78981E84"
+					title: "10 战斗技能点"
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					id: "47606EA6C4D6A575"
+					table_id: 444384640504589334L
+					type: "random"
+				}
+				{
+					auto: "enabled"
+					count: 2
+					id: "7BB39061560752B6"
+					item: "steampunkrpg_content:dungeon_token"
+					type: "item"
+				}
+				{
+					auto: "enabled"
+					id: "01B66FE5E587B4CD"
+					table_id: 444384640504589334L
+					type: "random"
+				}
+			]
+			shape: "square"
+			size: 2.0d
+			tasks: [{
+				entity: "mowziesmobs:umvuthi"
+				icon: "mowziesmobs:sol_visage"
+				id: "07C01A97AE0B6D51"
+				type: "kill"
+				value: 1L
+			}]
+			x: 4.0d
+			y: 0.0d
+		}
+	]
+	title: "&d太阳鸟的终结者"
+}

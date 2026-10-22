@@ -1,0 +1,151 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "the_ferrous_wroughtnaut"
+	group: "2160A0BD1700DC33"
+	hide_quest_details_until_startable: true
+	hide_quest_until_deps_visible: true
+	id: "259FF31589D1E1D4"
+	order_index: 11
+	quest_links: [ ]
+	quests: [
+		{
+			id: "497C9463885296B2"
+			rewards: [{
+				auto: "invisible"
+				command: "/tellraw @p {\"text\":\"Ready to embark on your quest!? Open your questbook to find the quest activated to begin searching for the structure!\",\"color\":\"white\",\"bold\":true}"
+				elevate_perms: true
+				id: "3A585930D0ECC197"
+				type: "command"
+			}]
+			secret: true
+			tasks: [{
+				icon: "quest_token_api:absi_palace_king"
+				id: "30A73CDBD1DD9BD0"
+				stage: "labyrinth"
+				title: "Unlock Quest"
+				type: "gamestage"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			can_repeat: true
+			dependencies: ["497C9463885296B2"]
+			id: "3DA443D9FB6604FD"
+			rewards: [{
+				auto: "invisible"
+				command: "/locate structure dungeonnowloading:labyrinth"
+				elevate_perms: true
+				id: "4FC571E80E5E72F2"
+				type: "command"
+			}]
+			tasks: [{
+				id: "67988C0D3133474E"
+				title: "查找结构物"
+				type: "checkmark"
+			}]
+			x: -2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["497C9463885296B2"]
+			id: "511927FFA5C88853"
+			tasks: [{
+				id: "2F8B22A8304A550E"
+				structure: "dungeonnowloading:labyrinth"
+				title: "找到迷宫"
+				type: "structure"
+			}]
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			can_repeat: true
+			dependencies: ["511927FFA5C88853"]
+			description: ["通过击杀混沌生成器来获得混沌六面体"]
+			id: "1449E48E43D4CF17"
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/gamestage remove @p labyrinth true"
+					elevate_perms: true
+					id: "3A22C6A5ABE6A8F5"
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 497C9463885296B2"
+					elevate_perms: true
+					id: "0FEEA5E230AABB23"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 511927FFA5C88853"
+					elevate_perms: true
+					id: "22CAFF9B728CB181"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					command: "/puffish_skills points add @p puffish_skills:combat 8"
+					elevate_perms: true
+					icon: "minecraft:experience_bottle"
+					id: "4D802A5A05B55C47"
+					title: "8 战斗技能点"
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					id: "520EDA4CADDA624B"
+					table_id: 444384640504589334L
+					type: "random"
+				}
+				{
+					auto: "enabled"
+					id: "420906FBD3E14BC6"
+					table_id: 444384640504589334L
+					type: "random"
+				}
+				{
+					auto: "enabled"
+					count: 2
+					id: "54993D7F773D551F"
+					item: "steampunkrpg_content:dungeon_token"
+					type: "item"
+				}
+			]
+			shape: "hexagon"
+			size: 2.0d
+			tasks: [
+				{
+					entity: "dungeonnowloading:spawner_carrier"
+					icon: "dungeonnowloading:spawn_egg_spawner_carrier"
+					id: "08FC173FB74BFC28"
+					type: "kill"
+					value: 5L
+				}
+				{
+					block: "minecraft:spawner"
+					block_type: 0
+					checkItem: false
+					id: "481E8ED439536DFC"
+					type: "questsadditions:break"
+					value: 5L
+				}
+				{
+					id: "1DE4AC63579423A7"
+					item: "dungeonnowloading:chaotic_hexahedron"
+					type: "item"
+				}
+			]
+			x: 4.5d
+			y: 0.0d
+		}
+	]
+	title: "&d迷宫 The Labyrinth"
+}

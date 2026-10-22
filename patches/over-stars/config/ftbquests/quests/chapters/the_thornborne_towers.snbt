@@ -1,0 +1,183 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "the_thornborne_towers"
+	group: "2160A0BD1700DC33"
+	hide_quest_details_until_startable: true
+	hide_quest_until_deps_visible: true
+	id: "24C4D72B9D70032F"
+	order_index: 8
+	quest_links: [ ]
+	quests: [
+		{
+			id: "01542B8C2273B650"
+			rewards: [{
+				auto: "invisible"
+				command: "/tellraw @p {\"text\":\"Ready to embark on your quest!? Open your questbook to find the quest activated to begin searching for the structure!\",\"color\":\"white\",\"bold\":true}"
+				elevate_perms: true
+				id: "72BED589A02C89BF"
+				type: "command"
+			}]
+			secret: true
+			tasks: [{
+				icon: "quest_token_api:absi_palace_king"
+				id: "5C7AF89487F335DC"
+				stage: "thornborntowers"
+				title: "使用卷轴解锁"
+				type: "gamestage"
+			}]
+			x: 1.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["01542B8C2273B650"]
+			id: "45D3A925993FB567"
+			tasks: [{
+				id: "5F1869C9D6FF7077"
+				structure: "dungeons_arise:thornborn_towers"
+				title: "找到荆棘之塔 (thornborn towers)"
+				type: "structure"
+			}]
+			x: 3.0d
+			y: 1.5d
+		}
+		{
+			can_repeat: true
+			dependencies: ["01542B8C2273B650"]
+			id: "6AEC23D018D92443"
+			rewards: [{
+				auto: "invisible"
+				command: "/locate structure dungeons_arise:thornborn_towers"
+				elevate_perms: true
+				id: "2ADD17E52DD03314"
+				team_reward: false
+				type: "command"
+			}]
+			tasks: [{
+				id: "34E1432A53378ACA"
+				title: "点击以定位结构物"
+				type: "checkmark"
+			}]
+			x: -1.0d
+			y: 1.5d
+		}
+		{
+			can_repeat: true
+			dependencies: ["45D3A925993FB567"]
+			id: "0CAF4558EF29DB04"
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/gamestage remove @p thornborntowers true"
+					elevate_perms: true
+					id: "3C5FA05A10AF10E2"
+					team_reward: false
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 01542B8C2273B650"
+					elevate_perms: true
+					id: "639487D8E2DD7BB1"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 45D3A925993FB567"
+					elevate_perms: true
+					id: "1D8447E35F86B56C"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					command: "/puffish_skills points add @p puffish_skills:combat 9"
+					elevate_perms: true
+					icon: "minecraft:experience_bottle"
+					id: "6DF2A46347003CC8"
+					title: "9 战斗技能点"
+					type: "command"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "3A3491E3DAB97A06"
+					table_id: 444384640504589334L
+					type: "random"
+				}
+				{
+					auto: "enabled"
+					id: "3810F55AC92F83F9"
+					table_id: 444384640504589334L
+					type: "random"
+				}
+				{
+					auto: "enabled"
+					count: 2
+					id: "3437B4A196E3574E"
+					item: "steampunkrpg_content:dungeon_token"
+					type: "item"
+				}
+				{
+					auto: "enabled"
+					id: "636911F016695D3D"
+					table_id: 444384640504589334L
+					type: "random"
+				}
+			]
+			shape: "diamond"
+			size: 2.0d
+			tasks: [
+				{
+					entity: "minecraft:skeleton"
+					id: "26ED59F6D00A8A5F"
+					type: "kill"
+					value: 50L
+				}
+				{
+					entity: "minecraft:witch"
+					id: "2DE09D6A8BDB7904"
+					type: "kill"
+					value: 30L
+				}
+				{
+					entity: "minecraft:phantom"
+					id: "577CF6D956FE0C64"
+					type: "kill"
+					value: 15L
+				}
+				{
+					block: "minecraft:spawner"
+					block_type: 0
+					checkItem: false
+					id: "63ABB6EE170E0852"
+					type: "questsadditions:break"
+					value: 15L
+				}
+				{
+					block: "lootr:lootr_chest"
+					block_type: 0
+					checkItem: false
+					id: "0F0166AEDAF5F7BA"
+					isItemInteraction: false
+					type: "questsadditions:use"
+					value: 20L
+				}
+				{
+					block: "lootr:lootr_barrel"
+					block_type: 0
+					checkItem: false
+					id: "7BF30F8801F42A0B"
+					isItemInteraction: false
+					type: "questsadditions:use"
+					value: 25L
+				}
+			]
+			title: "任务"
+			x: 5.5d
+			y: 1.5d
+		}
+	]
+	title: "&d荆棘之塔群 (The Thornborn Towers)</c1>"
+}

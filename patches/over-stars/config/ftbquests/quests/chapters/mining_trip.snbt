@@ -1,0 +1,127 @@
+# AI 初翻，未人工校对
+{
+	consume_items: true
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "mining_trip"
+	group: "691ECEA9A5501200"
+	id: "68F61A9C89B20670"
+	order_index: 25
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["7E22DCCACF791CB6"]
+			description: ["你好，不知道你能不能帮我一起去挖矿，收集一下清单上的资源，拜托了，谢谢！"]
+			hide_details_until_startable: true
+			hide_until_deps_visible: true
+			id: "4D6E1E13D4B95687"
+			tasks: [
+				{
+					count: 30L
+					id: "4077F70056F3AF1A"
+					item: { Count: 30, id: "minecraft:raw_iron" }
+					type: "item"
+				}
+				{
+					count: 40L
+					id: "4334EBEC9CA85792"
+					item: { Count: 40, id: "minecraft:raw_copper" }
+					type: "item"
+				}
+				{
+					count: 30L
+					id: "311EE33FCA74DDDC"
+					item: { Count: 30, id: "minecraft:redstone" }
+					type: "item"
+				}
+				{
+					count: 10L
+					id: "33B27339AED0DC05"
+					item: { Count: 10, id: "minecraft:raw_gold" }
+					type: "item"
+				}
+				{
+					count: 60L
+					id: "4572CBF8803C022B"
+					item: { Count: 60, id: "minecraft:cobblestone" }
+					type: "item"
+				}
+				{
+					count: 10L
+					id: "187DD7D6EA5D2614"
+					item: { Count: 10, id: "minecraft:lapis_lazuli" }
+					type: "item"
+				}
+			]
+			title: "任务"
+			x: 0.5d
+			y: 0.5d
+		}
+		{
+			can_repeat: true
+			dependencies: [
+				"7E22DCCACF791CB6"
+				"4D6E1E13D4B95687"
+			]
+			description: [""]
+			hide_details_until_startable: true
+			hide_until_deps_visible: true
+			id: "6A562A8726BFA4AE"
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/gamestage remove @p miner2 true"
+					elevate_perms: true
+					id: "28AE4F43538F5E82"
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 7E22DCCACF791CB6"
+					elevate_perms: true
+					id: "27819CD120E8EA71"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/tellraw @p {\"text\":\"Thanks for helping us Sir! Your rewards have been granted!\",\"color\":\"white\",\"bold\":true}"
+					elevate_perms: true
+					id: "30712F0A11749F57"
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 11
+					id: "0FEE26328F7BDA86"
+					item: "quest_token_api:quest_token"
+					type: "item"
+				}
+				{
+					auto: "enabled"
+					exclude_from_claim_all: true
+					id: "2815F876073F9A6E"
+					table_id: 5618260505225790032L
+					type: "random"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 4D6E1E13D4B95687"
+					elevate_perms: true
+					id: "19869B32D989EFBE"
+					silent: true
+					type: "command"
+				}
+			]
+			tasks: [{
+				id: "195BE379DCDF7156"
+				title: "点击以完成"
+				type: "checkmark"
+			}]
+			title: "点击以完成"
+			x: 1.5d
+			y: 0.5d
+		}
+	]
+	title: "&7采矿之旅"
+}

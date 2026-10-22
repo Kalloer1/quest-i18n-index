@@ -1,0 +1,129 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "the_netherite_monstrosity"
+	group: "2160A0BD1700DC33"
+	hide_quest_details_until_startable: true
+	hide_quest_until_deps_visible: true
+	id: "4889C0F9A093015E"
+	order_index: 15
+	quest_links: [ ]
+	quests: [
+		{
+			id: "17DD0D89277BE9F3"
+			rewards: [{
+				auto: "invisible"
+				command: "/tellraw @p {\"text\":\"Ready to embark on your quest!? Open your questbook to find the quest activated to begin searching for the structure!\",\"color\":\"white\",\"bold\":true}"
+				elevate_perms: true
+				id: "6D69EC94F2CCE613"
+				type: "command"
+			}]
+			secret: true
+			tasks: [{
+				icon: "quest_token_api:absi_palace_king"
+				id: "3468005E6089B7F6"
+				stage: "sculpt"
+				title: "Unlock Quest"
+				type: "gamestage"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["17DD0D89277BE9F3"]
+			id: "039A8E4D1F628721"
+			tasks: [
+				{
+					id: "1F2E5A3F39D3D944"
+					structure: "mowziesmobs:monastery"
+					title: "找到那座修道院"
+					type: "structure"
+				}
+				{
+					id: "16C5B4A28585F410"
+					item: "mowzies_cataclysm:tongbi_eye"
+					type: "item"
+				}
+			]
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			can_repeat: true
+			dependencies: ["039A8E4D1F628721"]
+			id: "34B59B5AD9F5A167"
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/gamestage remove @p sculpt"
+					elevate_perms: true
+					id: "651EE2628616B5AB"
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 17DD0D89277BE9F3"
+					elevate_perms: true
+					id: "720B0322C6EF5CBC"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 039A8E4D1F628721"
+					elevate_perms: true
+					id: "5B92B6B38AEFBB52"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					command: "/puffish_skills points add @p puffish_skills:combat 12"
+					elevate_perms: true
+					icon: "minecraft:experience_bottle"
+					id: "45446DC6C7165C8E"
+					title: "12 战斗技能点"
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					id: "4EA0473C0AD47058"
+					table_id: 444384640504589334L
+					type: "random"
+				}
+				{
+					auto: "enabled"
+					count: 2
+					id: "388F4BCBAB166C5C"
+					item: "steampunkrpg_content:dungeon_token"
+					type: "item"
+				}
+				{
+					auto: "enabled"
+					id: "09920E75B80BEB3E"
+					table_id: 444384640504589334L
+					type: "random"
+				}
+			]
+			shape: "pentagon"
+			size: 2.0d
+			tasks: [{
+				entity: "mowziesmobs:sculptor"
+				icon: {
+					Count: 1
+					id: "mowziesmobs:earthrend_gauntlet"
+					tag: {
+						Damage: 0
+					}
+				}
+				id: "142B88B38D98C89C"
+				type: "kill"
+				value: 1L
+			}]
+			x: 4.5d
+			y: 0.0d
+		}
+	]
+	title: "&d地球雕塑家"
+}

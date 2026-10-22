@@ -1,0 +1,1363 @@
+# AI 初翻，未人工校对
+{
+	id: "000000000000016E"
+	group: "72A9465344128AF9"
+	order_index: 5
+	filename: "powah"
+	title: "太棒了！"
+	icon: "powah:dielectric_casing"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			icon: "powah:book"
+			x: 1.5d
+			y: -1.5d
+			shape: "gear"
+			subtitle: "现在你正在玩 Powah 模组！"
+			description: [
+				"欢迎来到 Powah！在本章中，你将了解 Minecraft 最新用于发电、储能和运输的模组之一。"
+				"我们将涵盖该模组的大部分内容：从基础的发电到多区块反应堆和无线输电！"
+				""
+				"除了这个任务链，模组导航的最佳帮手是 Powah Manual。迷路或想了解更多信息时，随时查阅它吧。"
+				"好了，那么，我们开始吧，怎么样？"
+				""
+				"~梅洛（Merlo）"
+			]
+			optional: true
+			id: "000000000000016F"
+			tasks: [{
+				id: "4C763494FAB6F8A2"
+				type: "item"
+				item: "powah:dielectric_paste"
+			}]
+			rewards: [{
+				id: "413EB9C7629D2B60"
+				type: "item"
+				title: "扳手"
+				item: {
+					id: "powah:wrench"
+					Count: 1b
+					tag: {
+						PowahWrenchNBT: { }
+					}
+				}
+			}]
+		}
+		{
+			icon: {
+				id: "powah:wrench"
+				Count: 1b
+				tag: {
+					PowahWrenchNBT: { }
+				}
+			}
+			x: 0.5d
+			y: -2.0d
+			shape: "diamond"
+			subtitle: "不，等等，我的意思是……别哭了！"
+			description: [
+				"Powah 中的所有物品都分为不同等级，从入门级到基础、硬化、烈焰、Niotic、Spirited 和 Nitro 级。"
+				"同一机器的不同等级有不同的属性，均显示在机器的工具提示中。"
+				""
+				"例如，入门级熔炉每秒产生80 FE，燃烧一块煤炭需要600个游戏刻（即30秒）；而氮气级熔炉每秒产生4800 FE，仅需半秒就能产生同等功率。"
+				"玩模组时请记住这一点，随时查看 JEI 的各种提示，看看哪个等级适合你当前的情况。"
+			]
+			dependencies: ["000000000000016F"]
+			id: "0000000000000172"
+			tasks: [{
+				id: "0000000000000173"
+				type: "checkmark"
+				title: "关于等级制度"
+			}]
+			rewards: [{
+				id: "0000000000000CA8"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "基础资源"
+			icon: "powah:dielectric_casing"
+			x: 1.5d
+			y: 0.0d
+			shape: "hexagon"
+			subtitle: "把所有东西都变成介电体！"
+			description: [
+				"在了解 Powah 提供的各种酷炫方块和物品之前，先熟悉一下模组要求你制作的一些基本资源。大多数基础组件都需要介电浆，所以要习惯经常看到它。"
+				""
+				"自动化它，在某个地方放置熔岩池或烈焰人农场会很有用！你可以立即看到它如何用于制造 Powah 的一些基本组件，例如介电棒，而介电棒本身又被用于制作介电外壳。"
+				"这将是你用来制作本章中大部分机器的起点，所以让我们来做几个吧！"
+			]
+			dependencies: ["000000000000016F"]
+			size: 1.5d
+			id: "0000000000000174"
+			tasks: [{
+				id: "0000000000000175"
+				type: "item"
+				item: "powah:dielectric_casing"
+			}]
+			rewards: [{
+				id: "7698C3956B71648E"
+				type: "item"
+				title: "介电外壳"
+				item: "powah:dielectric_casing"
+				count: 2
+			}]
+		}
+		{
+			title: "熔炉制造机"
+			icon: "powah:furnator_basic"
+			x: 1.5d
+			y: 1.5d
+			shape: "rsquare"
+			subtitle: "现在所有人都能看到我燃烧的样子了"
+			description: [
+				"来发电吧！你会发现 Powah 有各种能为你产生 FE 的发电机，最基本的是熔炉发电机。"
+				""
+				"名字应该很好理解，它相当于一个熔炉，但可以燃烧燃料来产生电力！"
+				"制作一个试试吧，任何等级都可以。如果你是新手，可以试试入门级，甚至是基础级。"
+			]
+			dependencies: ["0000000000000174"]
+			id: "0000000000000176"
+			tasks: [{
+				id: "0000000000000177"
+				type: "item"
+				title: "熔炉（任意等级）"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "powah:furnator_basic"
+								Count: 1b
+							}
+							{
+								id: "powah:furnator_hardened"
+								Count: 1b
+							}
+							{
+								id: "powah:furnator_blazing"
+								Count: 1b
+							}
+							{
+								id: "powah:furnator_niotic"
+								Count: 1b
+							}
+							{
+								id: "powah:furnator_spirited"
+								Count: 1b
+							}
+							{
+								id: "powah:furnator_nitro"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "00000000000001B2"
+					type: "item"
+					title: "煤炭块 (Block of Coal)"
+					item: "minecraft:coal_block"
+					count: 4
+				}
+				{
+					id: "0000000000000288"
+					type: "command"
+					title: "Powah 战利品箱"
+					icon: "kubejs:epic_lootbox"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_powah_loot"
+					player_command: false
+				}
+			]
+		}
+		{
+			title: "能量电缆"
+			x: 0.0d
+			y: 1.5d
+			subtitle: "发现我的充电线坏了。我惊呆了。"
+			description: [
+				"既然到处都在产生能量，我们就需要一种方法把它们运送到我们需要的地方去。"
+				"Powah 线缆在这方面很厉害！它们能在高阶段传输大量电力，还能让装置保持整洁，因为放置后你甚至可以穿过它们，方便维护。"
+				""
+				"让我们来试试它们吧！"
+			]
+			dependencies: ["0000000000000174"]
+			optional: true
+			id: "000000000000017C"
+			tasks: [{
+				id: "000000000000017D"
+				type: "item"
+				title: "能量电缆（任意等级）"
+				icon: "powah:energy_cable_basic"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "powah:energy_cable_starter"
+								Count: 1b
+							}
+							{
+								id: "powah:energy_cable_basic"
+								Count: 1b
+							}
+							{
+								id: "powah:energy_cable_hardened"
+								Count: 1b
+							}
+							{
+								id: "powah:energy_cable_blazing"
+								Count: 1b
+							}
+							{
+								id: "powah:energy_cable_niotic"
+								Count: 1b
+							}
+							{
+								id: "powah:energy_cable_spirited"
+								Count: 1b
+							}
+							{
+								id: "powah:energy_cable_nitro"
+								Count: 1b
+							}
+							{
+								id: "powah:ender_gate_starter"
+								Count: 1b
+								tag: {
+									lollipoptile_stack_nbt: {
+										energy_stored_main_energy: 0L
+									}
+								}
+							}
+							{
+								id: "powah:ender_gate_basic"
+								Count: 1b
+								tag: {
+									lollipoptile_stack_nbt: {
+										energy_stored_main_energy: 0L
+									}
+								}
+							}
+							{
+								id: "powah:ender_gate_hardened"
+								Count: 1b
+								tag: {
+									lollipoptile_stack_nbt: {
+										energy_stored_main_energy: 0L
+									}
+								}
+							}
+							{
+								id: "powah:ender_gate_blazing"
+								Count: 1b
+								tag: {
+									lollipoptile_stack_nbt: {
+										energy_stored_main_energy: 0L
+									}
+								}
+							}
+							{
+								id: "powah:ender_gate_niotic"
+								Count: 1b
+								tag: {
+									lollipoptile_stack_nbt: {
+										energy_stored_main_energy: 0L
+									}
+								}
+							}
+							{
+								id: "powah:ender_gate_spirited"
+								Count: 1b
+								tag: {
+									lollipoptile_stack_nbt: {
+										energy_stored_main_energy: 0L
+									}
+								}
+							}
+							{
+								id: "powah:ender_gate_nitro"
+								Count: 1b
+								tag: {
+									lollipoptile_stack_nbt: {
+										energy_stored_main_energy: 0L
+									}
+								}
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "0000000000000289"
+				type: "command"
+				title: "Powah 战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_powah_loot"
+				player_command: false
+			}]
+		}
+		{
+			title: "岩浆怪（Magmator）"
+			icon: "powah:magmator_basic"
+			x: 1.5d
+			y: 3.0d
+			subtitle: "那不是宝可梦吗？"
+			description: ["另一种发电方式是使用 Magmator，名字就说明了一切。给这个坏家伙一些岩浆，看着它燃烧吧！一桶岩浆产生的能量略少于熔炉中两块煤炭产生的能量。"]
+			dependencies: ["0000000000000176"]
+			optional: true
+			id: "000000000000017E"
+			tasks: [{
+				id: "000000000000017F"
+				type: "item"
+				title: "岩浆怪（任意等级）"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "powah:magmator_basic"
+								Count: 1b
+							}
+							{
+								id: "powah:magmator_hardened"
+								Count: 1b
+							}
+							{
+								id: "powah:magmator_blazing"
+								Count: 1b
+							}
+							{
+								id: "powah:magmator_niotic"
+								Count: 1b
+							}
+							{
+								id: "powah:magmator_spirited"
+								Count: 1b
+							}
+							{
+								id: "powah:magmator_nitro"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "00000000000001B4"
+				type: "item"
+				title: "岩浆桶"
+				item: "minecraft:lava_bucket"
+			}]
+		}
+		{
+			title: "热能发电机"
+			icon: "powah:thermo_generator_basic"
+			x: 0.0d
+			y: 3.0d
+			subtitle: "超级。热门。"
+			description: [
+				"Ever wondered if you could use lava as a renewable, self sufficient power source? Well the Thermo Generator is for you!"
+				""
+				"只要将此便携装置放置在热源（如岩浆、岩浆块等）上方，且内部储液罐中有冷却液（如水），它就能产生少量电力。"
+				""
+				"注意：JEI中显示的FE/t值仅为基准值。液体冷却剂在能量生产中起着重要作用。"
+			]
+			dependencies: ["0000000000000176"]
+			optional: true
+			id: "0000000000000180"
+			tasks: [{
+				id: "0000000000000181"
+				type: "item"
+				title: "热能发电机（任意等级）"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "powah:thermo_generator_basic"
+								Count: 1b
+							}
+							{
+								id: "powah:thermo_generator_hardened"
+								Count: 1b
+							}
+							{
+								id: "powah:thermo_generator_blazing"
+								Count: 1b
+							}
+							{
+								id: "powah:thermo_generator_niotic"
+								Count: 1b
+							}
+							{
+								id: "powah:thermo_generator_spirited"
+								Count: 1b
+							}
+							{
+								id: "powah:thermo_generator_nitro"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "00000000000001B6"
+					type: "item"
+					item: "industrialforegoing:water_condensator"
+				}
+				{
+					id: "000000000000064D"
+					type: "command"
+					title: "Powah 战利品箱"
+					icon: "kubejs:epic_lootbox"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_powah_loot"
+					player_command: false
+				}
+			]
+		}
+		{
+			title: "太阳能电池板"
+			x: 3.0d
+			y: 3.0d
+			subtitle: "为了未来而奋斗的周五！"
+			description: [
+				"这并不意外，每个正经的发电模组都需要太阳能电池板！只要白天且能看见天空，它们就能被动地产生FE。"
+				"非常适合用于被动发电！"
+			]
+			dependencies: ["0000000000000176"]
+			optional: true
+			id: "0000000000000182"
+			tasks: [{
+				id: "0000000000000183"
+				type: "item"
+				title: "太阳能电池板（任意等级）"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "powah:solar_panel_basic"
+								Count: 1b
+							}
+							{
+								id: "powah:solar_panel_hardened"
+								Count: 1b
+							}
+							{
+								id: "powah:solar_panel_blazing"
+								Count: 1b
+							}
+							{
+								id: "powah:solar_panel_niotic"
+								Count: 1b
+							}
+							{
+								id: "powah:solar_panel_spirited"
+								Count: 1b
+							}
+							{
+								id: "powah:solar_panel_nitro"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "000000000000028A"
+				type: "command"
+				title: "Powah 战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_powah_loot"
+				player_command: false
+			}]
+		}
+		{
+			title: "末影透镜"
+			x: 3.0d
+			y: 4.5d
+			shape: "diamond"
+			subtitle: "X射线模式！"
+			description: ["末影透镜是任何 Powah 太阳能电池板的实用升级。只需右键点击末影人，它就能在没有直接天空视野的情况下生成能量！"]
+			dependencies: ["0000000000000182"]
+			optional: true
+			id: "0000000000000184"
+			tasks: [{
+				id: "0000000000000185"
+				type: "item"
+				item: "powah:lens_of_ender"
+			}]
+			rewards: [{
+				id: "000000000000064C"
+				type: "command"
+				title: "Powah 战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_powah_loot"
+				player_command: false
+			}]
+		}
+		{
+			title: "铀矿石"
+			x: 3.0d
+			y: -1.5d
+			subtitle: "我身上有放射性！"
+			description: [
+				"你已经了解了Powah生成FE的所有基本方法，现在是时候升级，进入更高级的领域了：建造一个反应堆！"
+				""
+				"不过别太快，你首先需要燃料，所以来收集一些铀矿石吧！通常是一种矿石，你可以用 Powah 的充能球和普通铀来获取。快去弄点吧！"
+			]
+			dependencies: ["000000000000018C"]
+			id: "0000000000000186"
+			tasks: [{
+				id: "0000000000000187"
+				type: "item"
+				item: "powah:uraninite"
+				count: 32L
+			}]
+			rewards: [{
+				id: "00000000000001BB"
+				type: "item"
+				title: "铀矿块 (Uraninite Block)"
+				item: "powah:uraninite_block"
+				count: 8
+			}]
+		}
+		{
+			title: "反应堆"
+			icon: "powah:reactor_basic"
+			x: 3.0d
+			y: -3.0d
+			shape: "hexagon"
+			subtitle: "这可是一项大工程！"
+			description: [
+				"反应堆是 Powah 最好的发电方式，需要大型多方块结构和更高级的维护。"
+				"只需制作36个任意等级（全部同等级）的反应炉方块，并放置一个在地面上即可自动建造3x4结构。"
+				""
+				"由于反应堆相当复杂，无法在此详尽描述其工作原理，我将引导你前往 Powah 手册的条目。你可以在那里了解所有使其运行的方法。"
+				"祝能源供应顺利！"
+				""
+				"注意：JEI中显示的FE/t值仅为基准值。这些反应堆会受到添加的碳和红石等辅助材料的影响。液体和固体冷却剂也对燃料效率起着重要作用。"
+			]
+			dependencies: ["0000000000000186"]
+			size: 1.5d
+			id: "0000000000000188"
+			tasks: [{
+				id: "0000000000000189"
+				type: "item"
+				title: "反应堆（任意等级）"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "powah:reactor_basic"
+								Count: 1b
+							}
+							{
+								id: "powah:reactor_hardened"
+								Count: 1b
+							}
+							{
+								id: "powah:reactor_blazing"
+								Count: 1b
+							}
+							{
+								id: "powah:reactor_niotic"
+								Count: 1b
+							}
+							{
+								id: "powah:reactor_spirited"
+								Count: 1b
+							}
+							{
+								id: "powah:reactor_nitro"
+								Count: 1b
+							}
+						]
+					}
+				}
+				count: 36L
+			}]
+			rewards: [
+				{
+					id: "00000000000001BD"
+					type: "item"
+					title: "铀矿石"
+					item: "powah:uraninite"
+					count: 32
+					only_one: true
+				}
+				{
+					id: "00000000000001BE"
+					type: "item"
+					title: "蓝色冰块"
+					item: "minecraft:blue_ice"
+					count: 32
+					only_one: true
+				}
+			]
+		}
+		{
+			x: 1.5d
+			y: -3.0d
+			shape: "diamond"
+			subtitle: "还真是挺冷门的幽默感呢！"
+			description: ["你的反应堆超酷的，对吧？呃…不是吗？那你得赶紧去给它降温！任何冰都行，但 Powah 的新材料干冰是最好的。快去弄点来！"]
+			dependencies: ["0000000000000188"]
+			optional: true
+			id: "000000000000018A"
+			tasks: [{
+				id: "000000000000018B"
+				type: "item"
+				item: "powah:dry_ice"
+				count: 16L
+			}]
+			rewards: [{
+				id: "00000000000001C2"
+				type: "item"
+				title: "充能雪球"
+				item: "powah:charged_snowball"
+				count: 8
+			}]
+		}
+		{
+			title: "能量补给装置设置"
+			icon: "powah:energizing_orb"
+			x: 3.0d
+			y: 0.0d
+			shape: "rsquare"
+			subtitle: "不，不是能量饮料！"
+			description: [
+				"既然你已经获得了基础资源和电力，就该升级并开启通往下一层级 Powah 物品的大门了。隆重推出能量球和能量棒！"
+				""
+				"要开始制作，先放置球体，然后在旁边放置一些连接到电源的棒子。"
+				"现在，鱼竿将开始为球体充能（速度取决于鱼竿等级和数量），并将能量注入你放入球体的物品中。"
+				"这就是合成所有基础资源的方法，用来在 Powah 中向上攀登，那么，开始向顶峰进发吧！"
+			]
+			dependencies: ["000000000000016F"]
+			id: "000000000000018C"
+			tasks: [
+				{
+					id: "000000000000018D"
+					type: "item"
+					item: "powah:energizing_orb"
+				}
+				{
+					id: "00000000000001C3"
+					type: "item"
+					title: "能量棒（任意等级）"
+					item: {
+						id: "itemfilters:or"
+						Count: 1b
+						tag: {
+							items: [
+								{
+									id: "powah:energizing_rod_basic"
+									Count: 1b
+								}
+								{
+									id: "powah:energizing_rod_hardened"
+									Count: 1b
+								}
+								{
+									id: "powah:energizing_rod_blazing"
+									Count: 1b
+								}
+								{
+									id: "powah:energizing_rod_niotic"
+									Count: 1b
+								}
+								{
+									id: "powah:energizing_rod_spirited"
+									Count: 1b
+								}
+								{
+									id: "powah:energizing_rod_nitro"
+									Count: 1b
+								}
+							]
+						}
+					}
+					count: 2L
+				}
+			]
+			rewards: [{
+				id: "00000000000001C5"
+				type: "item"
+				title: "能量棒（基础版）"
+				item: "powah:energizing_rod_basic"
+				count: 2
+			}]
+		}
+		{
+			title: "能量电池"
+			icon: "powah:energy_cell_basic"
+			x: 3.0d
+			y: 1.5d
+			subtitle: "得把那股能量存到什么地方去才行……"
+			description: [
+				"有了这么多能量，你总得有个地方来储存它们。隆重推出能量电池！"
+				"这些方便的方块可以为你储存能量，并充当大型缓冲器，等级越高，容量就越大。"
+				""
+				"想了解各等级的详细数据，请查阅 Powah 手册。"
+			]
+			dependencies: ["0000000000000174"]
+			id: "000000000000018E"
+			tasks: [{
+				id: "000000000000018F"
+				type: "item"
+				title: "能量电池（任意等级）"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "powah:energy_cell_basic"
+								Count: 1b
+							}
+							{
+								id: "powah:energy_cell_hardened"
+								Count: 1b
+							}
+							{
+								id: "powah:energy_cell_blazing"
+								Count: 1b
+							}
+							{
+								id: "powah:energy_cell_niotic"
+								Count: 1b
+							}
+							{
+								id: "powah:energy_cell_spirited"
+								Count: 1b
+							}
+							{
+								id: "powah:energy_cell_nitro"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "000000000000028E"
+				type: "command"
+				title: "Powah 战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_powah_loot"
+				player_command: false
+			}]
+		}
+		{
+			title: "末影细胞"
+			icon: "powah:ender_cell_basic"
+			x: 4.5d
+			y: 1.5d
+			subtitle: "几乎就像 Wi-Fi 一样！"
+			description: [
+				"末影单元是 Powah 无线传输能量的方式，也是该模组最棒的功能之一。刚开始使用时可能不太直观，但一旦理解透彻就会变得很容易。"
+				""
+				"首先，你将拥有多个可用频道（更高级的细胞可解锁更多频道），默认情况下存储 0 FE。"
+				"这些频道适用于你的所有玩家，因此你在世界中放置的每个末影单元都能访问相同的频道（前提是其等级足以访问这些频道）。"
+				"现在选择一个频道，将能量单元 Shift+右键到末影单元中。它将被消耗，其缓冲区将成为该频道的缓冲区"
+				"（所以对于总最大FE为0的新通道，插入一个基础单元会增加其缓冲量1M FE，因为这是基础单元的最大缓冲量）。"
+				""
+				"你可以不断堆叠这些单元，持续升级你的通道。一旦在该通道中储存了能量，你就可以在任何有末影单元的地方使用它，从而轻松地将电力传输到很远的地方。"
+			]
+			dependencies: ["000000000000018E"]
+			min_width: 300
+			id: "0000000000000190"
+			tasks: [{
+				id: "0000000000000191"
+				type: "item"
+				title: "末影细胞（任意等级）"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "powah:ender_cell_basic"
+								Count: 1b
+							}
+							{
+								id: "powah:ender_cell_hardened"
+								Count: 1b
+							}
+							{
+								id: "powah:ender_cell_blazing"
+								Count: 1b
+							}
+							{
+								id: "powah:ender_cell_niotic"
+								Count: 1b
+							}
+							{
+								id: "powah:ender_cell_spirited"
+								Count: 1b
+							}
+							{
+								id: "powah:ender_cell_nitro"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "0000000000000226"
+				type: "item"
+				title: "硬化能量电池 (Hardened Energy Cell)"
+				item: "powah:energy_cell_hardened"
+			}]
+		}
+		{
+			title: "玩家传输器"
+			icon: "powah:player_transmitter_basic"
+			x: 4.5d
+			y: 3.0d
+			subtitle: "让你保持电量满满！"
+			description: [
+				"你身上可能有很多需要充能的物品。但总是记得给它们充电，是不是超级麻烦？"
+				"有没有想过，要是能有个东西能接入你的能量源，无线给你的物品栏里的一切充电就好了？别担心，你的好运来了！"
+				""
+				"制作一张绑定卡并右键绑定到自己身上，然后制作一个玩家发射器并将卡片放入其中。"
+				"只要发射器有电，你的所有物品都会保持充电状态！"
+			]
+			dependencies: ["000000000000018E"]
+			id: "0000000000000192"
+			tasks: [
+				{
+					id: "0000000000000193"
+					type: "item"
+					title: "玩家传输器"
+					item: {
+						id: "itemfilters:or"
+						Count: 1b
+						tag: {
+							items: [
+								{
+									id: "powah:player_transmitter_basic"
+									Count: 1b
+								}
+								{
+									id: "powah:player_transmitter_hardened"
+									Count: 1b
+								}
+								{
+									id: "powah:player_transmitter_blazing"
+									Count: 1b
+								}
+								{
+									id: "powah:player_transmitter_niotic"
+									Count: 1b
+								}
+								{
+									id: "powah:player_transmitter_spirited"
+									Count: 1b
+								}
+								{
+									id: "powah:player_transmitter_nitro"
+									Count: 1b
+								}
+							]
+						}
+					}
+				}
+				{
+					id: "0000000000000224"
+					type: "item"
+					item: "powah:binding_card"
+				}
+			]
+			rewards: [{
+				id: "000000000000028F"
+				type: "command"
+				title: "Powah 战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_powah_loot"
+				player_command: false
+			}]
+		}
+		{
+			title: "末地传送门"
+			icon: "powah:ender_gate_basic"
+			x: 6.0d
+			y: 1.5d
+			shape: "diamond"
+			subtitle: "超级紧凑！"
+			description: [
+				"末地传送门是末地传送门方块更小、更方便的变种。它们可以直接放置在 Powah 能量电缆上，并且只占用一个方块空间。"
+				"不过这有个缺点：你无法通过末地传送门升级频道，所以必须至少保留一个末地单元。"
+			]
+			dependencies: ["0000000000000190"]
+			optional: true
+			id: "0000000000000194"
+			tasks: [{
+				id: "0000000000000195"
+				type: "item"
+				title: "末地传送门（任意等级）"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "powah:ender_gate_basic"
+								Count: 1b
+							}
+							{
+								id: "powah:ender_gate_hardened"
+								Count: 1b
+							}
+							{
+								id: "powah:ender_gate_blazing"
+								Count: 1b
+							}
+							{
+								id: "powah:ender_gate_niotic"
+								Count: 1b
+							}
+							{
+								id: "powah:ender_gate_spirited"
+								Count: 1b
+							}
+							{
+								id: "powah:ender_gate_nitro"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "0000000000000227"
+				type: "item"
+				title: "末地核心"
+				item: "powah:ender_core"
+				count: 4
+			}]
+		}
+		{
+			title: "维度绑定卡"
+			x: 4.5d
+			y: 4.5d
+			shape: "diamond"
+			subtitle: "它能找到你在任何地方的踪迹……"
+			description: ["维度绑定卡是对标准卡片的绝佳更新。右键末影人上的绑定卡即可升级：现在它能在任何维度为你的物品栏充能，而不仅仅是发射器所在的维度。真棒！"]
+			dependencies: ["0000000000000192"]
+			optional: true
+			id: "0000000000000198"
+			tasks: [{
+				id: "0000000000000199"
+				type: "item"
+				item: "powah:binding_card_dim"
+			}]
+			rewards: [{
+				id: "0000000000000290"
+				type: "command"
+				title: "Powah 战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_powah_loot"
+				player_command: false
+			}]
+		}
+		{
+			title: "充能钢"
+			x: 4.5d
+			y: 0.0d
+			subtitle: "在黑暗中会发光！"
+			description: ["能量钢是第三级（硬化）所有物品的基本材料。拿出你的金子和铁，开始合金吧！"]
+			dependencies: ["000000000000018C"]
+			id: "000000000000019A"
+			tasks: [{
+				id: "000000000000019B"
+				type: "item"
+				item: "powah:steel_energized"
+			}]
+			rewards: [{
+				id: "0000000000000215"
+				type: "item"
+				title: "电池（硬化版）"
+				item: {
+					id: "powah:battery_hardened"
+					Count: 1b
+					tag: { }
+				}
+			}]
+		}
+		{
+			x: 6.0d
+			y: 0.0d
+			subtitle: "水晶般清澈！"
+			description: ["众多晶体中的首个，烈焰晶体是第4层级（烈焰）所有物品的基础材料。快去下界看看吧！"]
+			dependencies: ["000000000000019A"]
+			id: "000000000000019C"
+			tasks: [{
+				id: "000000000000019D"
+				type: "item"
+				item: "powah:crystal_blazing"
+			}]
+			rewards: [{
+				id: "0000000000000217"
+				type: "item"
+				title: "能量化钢块"
+				item: "powah:energized_steel_block"
+				count: 4
+			}]
+		}
+		{
+			x: 7.5d
+			y: 0.0d
+			subtitle: "这些名字到底是从哪里来的呢？"
+			description: [
+				"接下来是尼奥特水晶，它是第4级（尼奥特）所有物品的基础材料。希望你一直在挖掘那些闪闪发光的蓝色矿物！"
+				""
+				"如果你发现能量球在合成水晶时变得非常慢，最好加一两根棒子。"
+			]
+			dependencies: ["000000000000019C"]
+			id: "000000000000019E"
+			tasks: [{
+				id: "000000000000019F"
+				type: "item"
+				item: "powah:crystal_niotic"
+			}]
+			rewards: [{
+				id: "0000000000000219"
+				type: "item"
+				title: "活力棒 (Niotic)"
+				item: "powah:energizing_rod_niotic"
+				count: 2
+			}]
+		}
+		{
+			x: 9.0d
+			y: 0.0d
+			subtitle: "千与千寻！ Spirited Away!"
+			description: ["快到顶了！灵性水晶是第五层级（灵性）所有物品的基础材料。快去和村民们交交朋友吧！"]
+			dependencies: ["000000000000019E"]
+			id: "00000000000001A0"
+			tasks: [{
+				id: "00000000000001A1"
+				type: "item"
+				item: "powah:crystal_spirited"
+			}]
+			rewards: [
+				{
+					id: "000000000000021B"
+					type: "item"
+					title: "铀矿块 (Uraninite Block)"
+					item: "powah:uraninite_block"
+					count: 8
+				}
+				{
+					id: "000000000000021C"
+					type: "item"
+					title: "Niotic 晶体块"
+					item: "powah:niotic_crystal_block"
+					count: 8
+				}
+				{
+					id: "000000000000021D"
+					type: "item"
+					title: "干冰"
+					item: "powah:dry_ice"
+					count: 8
+				}
+			]
+		}
+		{
+			x: 10.5d
+			y: 0.0d
+			shape: "hexagon"
+			subtitle: "Discord Nitro？"
+			description: [
+				"不，你不需要购买 Discord Nitro 来支持我们的服务器（尽管你真的很应该这么做）。"
+				"这只是氮晶，第6层（氮）所有物品的基础材料！你现在处于食物链的顶端，所以会获得非常昂贵和强大的东西。拿出你的重武器吧！"
+			]
+			dependencies: ["00000000000001A0"]
+			size: 1.5d
+			id: "00000000000001A2"
+			tasks: [{
+				id: "00000000000001A3"
+				type: "item"
+				item: "powah:crystal_nitro"
+			}]
+			rewards: [
+				{
+					id: "000000000000021F"
+					type: "item"
+					title: "能量电池（氮气）"
+					item: "powah:energy_cell_nitro"
+				}
+				{
+					id: "0000000000000294"
+					type: "command"
+					title: "Powah 战利品箱"
+					icon: "kubejs:epic_lootbox"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_powah_loot"
+					player_command: false
+				}
+			]
+		}
+		{
+			title: "硬核挑战！"
+			x: 4.5d
+			y: -1.5d
+			shape: "diamond"
+			subtitle: "反正你迟早会需要它们的……"
+			description: [
+				"这是硬化等级所有物品所需的电容器。准备好制作一大堆吧！"
+				""
+				"注意，从现在开始的所有电容器任务都将是可选的“挑战”。你需要完成一些才能继续，所以最好开始自动化！"
+			]
+			dependencies: ["000000000000019A"]
+			optional: true
+			id: "00000000000001A4"
+			tasks: [{
+				id: "00000000000001A5"
+				type: "item"
+				item: "powah:capacitor_hardened"
+				count: 16L
+			}]
+			rewards: [{
+				id: "0000000000000291"
+				type: "command"
+				title: "Powah 战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_powah_loot"
+				player_command: false
+			}]
+		}
+		{
+			title: "烈焰挑战！"
+			x: 6.0d
+			y: -1.5d
+			shape: "diamond"
+			subtitle: "太棒了！"
+			description: ["这是烈焰等级所有物品所需的电容器。你能造出这么多吗？"]
+			dependencies: ["000000000000019C"]
+			optional: true
+			id: "00000000000001A6"
+			tasks: [{
+				id: "00000000000001A7"
+				type: "item"
+				item: "powah:capacitor_blazing"
+				count: 24L
+			}]
+			rewards: [{
+				id: "0000000000000292"
+				type: "command"
+				title: "Powah 战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_powah_loot"
+				player_command: false
+			}]
+		}
+		{
+			title: "Niotic 挑战！"
+			x: 7.5d
+			y: -1.5d
+			shape: "diamond"
+			subtitle: "Niotic 到底要怎么念才正确？"
+			description: ["这是制作所有尼奥特等级物品所需的电容器。事情开始变得有趣了，不是吗？"]
+			dependencies: ["000000000000019E"]
+			optional: true
+			id: "00000000000001A8"
+			tasks: [{
+				id: "00000000000001A9"
+				type: "item"
+				item: "powah:capacitor_niotic"
+				count: 32L
+			}]
+			rewards: [{
+				id: "0000000000000293"
+				type: "command"
+				title: "Powah 战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_powah_loot"
+				player_command: false
+			}]
+		}
+		{
+			title: "充满活力的挑战！"
+			x: 9.0d
+			y: -1.5d
+			shape: "diamond"
+			subtitle: "事情变得越来越紧张了……"
+			description: ["这是精神层所有物品所需的电容器。这些挑战开始变得有点难了，不是吗？"]
+			dependencies: ["00000000000001A0"]
+			optional: true
+			id: "00000000000001AA"
+			tasks: [{
+				id: "00000000000001AB"
+				type: "item"
+				item: "powah:capacitor_spirited"
+				count: 48L
+			}]
+			rewards: [{
+				id: "000000000000021E"
+				type: "xp_levels"
+				xp_levels: 50
+			}]
+		}
+		{
+			title: "终极挑战！"
+			x: 10.5d
+			y: -1.5d
+			shape: "diamond"
+			subtitle: "就像那首歌一样！我想应该是这样……"
+			description: ["欢迎来到我们的 Powah 终极挑战！你能自动化球体并磨出完成此挑战所需的所有资源吗？祝你好运，记住：自动化是关键！"]
+			dependencies: ["00000000000001A2"]
+			optional: true
+			id: "00000000000001AC"
+			tasks: [{
+				id: "00000000000001AD"
+				type: "item"
+				item: "powah:capacitor_nitro"
+				count: 64L
+			}]
+			rewards: [
+				{
+					id: "0000000000000221"
+					type: "xp_levels"
+					xp_levels: 100
+				}
+				{
+					id: "0000000000000223"
+					type: "command"
+					title: "展示你的进度吧！"
+					icon: "powah:ender_core"
+					command: "/say @p has completed Powah's final crafting challenge! I bet you can't!"
+					player_command: false
+				}
+				{
+					id: "0000000000000295"
+					type: "command"
+					title: "Powah 战利品箱"
+					icon: "kubejs:epic_lootbox"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_powah_loot"
+					player_command: false
+				}
+			]
+		}
+		{
+			title: "终极力量！"
+			icon: {
+				id: "powah:battery_nitro"
+				Count: 1b
+				tag: { }
+			}
+			x: 4.5d
+			y: -3.0d
+			shape: "hexagon"
+			subtitle: "十亿？带B的那种十亿？"
+			description: [
+				"欢迎来到终极 Powah 能量挑战！"
+				"你能建造一个可持续高效的反应堆装置来产生所有这些电力吗？"
+				""
+				"别作弊——我知道你想用Mekanism。我挑战你只用Powah来发电，赚取这十亿。"
+				"你可以的！祝你好运！"
+				""
+				"将基础感应单元放入感应单元多方块结构中，然后为其提供能量即可填充。"
+			]
+			dependencies: ["0000000000000188"]
+			hide: true
+			optional: true
+			id: "00000000000001AE"
+			tasks: [{
+				id: "4D1EA493FB926104"
+				type: "item"
+				title: "完全充能的初级感应电池"
+				icon: {
+					id: "mekanism:basic_induction_cell"
+					Count: 1b
+					tag: {
+						mekData: {
+							EnergyContainers: [{
+								Container: 0b
+								stored: "8000000000"
+							}]
+						}
+					}
+				}
+				item: {
+					id: "itemfilters:and"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "mekanism:basic_induction_cell"
+								Count: 1b
+								tag: {
+									mekData: {
+										EnergyContainers: [{
+											Container: 0b
+											stored: "8000000000"
+										}]
+									}
+								}
+							}
+							{
+								id: "itemfilters:strong_nbt"
+								Count: 1b
+								tag: {
+									value: {
+										mekData: {
+											EnergyContainers: [{
+												Container: 0b
+												stored: "8000000000"
+											}]
+										}
+									}
+								}
+							}
+						]
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "00000000000001C0"
+					type: "xp_levels"
+					xp_levels: 100
+				}
+				{
+					id: "00000000000001C1"
+					type: "command"
+					title: "展示你的成就吧！"
+					icon: {
+						id: "powah:battery_nitro"
+						Count: 1b
+						tag: { }
+					}
+					auto: "enabled"
+					command: "/say @p completed Powah's Ultimate Power Quest! Woot!"
+					player_command: false
+				}
+				{
+					id: "000000000000064B"
+					type: "command"
+					title: "Powah 战利品箱"
+					icon: "kubejs:epic_lootbox"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:chests/quest_powah_loot"
+					player_command: false
+				}
+			]
+		}
+	]
+}

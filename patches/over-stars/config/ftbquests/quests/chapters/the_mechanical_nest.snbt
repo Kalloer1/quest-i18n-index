@@ -1,0 +1,180 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "the_mechanical_nest"
+	group: "2160A0BD1700DC33"
+	hide_quest_details_until_startable: true
+	hide_quest_until_deps_visible: true
+	id: "5801D3CE1CDE299E"
+	order_index: 12
+	quest_links: [ ]
+	quests: [
+		{
+			id: "7EDB531EFBFDC601"
+			rewards: [{
+				auto: "invisible"
+				command: "/tellraw @p {\"text\":\"Ready to embark on your quest!? Open your questbook to find the quest activated to begin searching for the structure!\",\"color\":\"white\",\"bold\":true}"
+				elevate_perms: true
+				id: "3F777E8F334620E5"
+				type: "command"
+			}]
+			secret: true
+			tasks: [{
+				icon: "quest_token_api:absi_palace_king"
+				id: "31A0DB08988EAD4B"
+				stage: "mechnest"
+				title: "Unlock Quest"
+				type: "gamestage"
+			}]
+			x: -0.5d
+			y: 0.0d
+		}
+		{
+			can_repeat: true
+			dependencies: ["7EDB531EFBFDC601"]
+			id: "04337C956AD02B0E"
+			rewards: [{
+				auto: "invisible"
+				command: "/locate structure dungeons_arise:mechanical_nest"
+				elevate_perms: true
+				id: "23DE1C3D496B7F95"
+				type: "command"
+			}]
+			tasks: [{
+				id: "06BCF16A9A2C2C5E"
+				title: "查找结构物"
+				type: "checkmark"
+			}]
+			x: -2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7EDB531EFBFDC601"]
+			id: "3F4BFC3D213DD2D5"
+			tasks: [{
+				id: "275D1C2D5EF09955"
+				structure: "dungeons_arise:mechanical_nest"
+				title: "找到机械巢穴"
+				type: "structure"
+			}]
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			can_repeat: true
+			dependencies: ["3F4BFC3D213DD2D5"]
+			id: "346708750D3ED63F"
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/gamestage remove @p mechnest true"
+					elevate_perms: true
+					id: "62ED66FEBF6A0F9C"
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 7EDB531EFBFDC601"
+					elevate_perms: true
+					id: "2DFCF36B5E04D103"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 3F4BFC3D213DD2D5"
+					elevate_perms: true
+					id: "1A851C363BDF7A51"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					command: "/puffish_skills points add @p puffish_skills:combat 12"
+					elevate_perms: true
+					icon: "minecraft:experience_bottle"
+					id: "66D3020DEA280170"
+					title: "12 战斗技能点"
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					id: "73461F18470BB50C"
+					table_id: 444384640504589334L
+					type: "random"
+				}
+				{
+					auto: "enabled"
+					id: "1E06FC86459E9777"
+					table_id: 444384640504589334L
+					type: "random"
+				}
+				{
+					auto: "enabled"
+					count: 2
+					id: "17CFC1E120F4B535"
+					item: "steampunkrpg_content:dungeon_token"
+					type: "item"
+				}
+				{
+					auto: "enabled"
+					id: "1D9CB46CE964E0E6"
+					table_id: 444384640504589334L
+					type: "random"
+				}
+			]
+			shape: "diamond"
+			size: 2.0d
+			tasks: [
+				{
+					entity: "minecraft:skeleton"
+					id: "591C17294104B2C5"
+					type: "kill"
+					value: 90L
+				}
+				{
+					entity: "minecraft:wither_skeleton"
+					id: "4FA3986951A1C9CE"
+					type: "kill"
+					value: 25L
+				}
+				{
+					entity: "minecraft:ravager"
+					id: "63A5691BB00C0CB8"
+					type: "kill"
+					value: 5L
+				}
+				{
+					block: "minecraft:spawner"
+					block_type: 0
+					checkItem: false
+					id: "556DCA6EE565036C"
+					type: "questsadditions:break"
+					value: 20L
+				}
+				{
+					block: "lootr:lootr_chest"
+					block_type: 0
+					checkItem: false
+					id: "74BD2AE9C859F6BC"
+					isItemInteraction: false
+					type: "questsadditions:use"
+					value: 30L
+				}
+				{
+					block: "lootr:lootr_barrel"
+					block_type: 0
+					checkItem: false
+					id: "385E194F333BF345"
+					isItemInteraction: false
+					type: "questsadditions:use"
+					value: 40L
+				}
+			]
+			x: 4.0d
+			y: 0.0d
+		}
+	]
+	title: "&d机械巢穴 The Mechanical Nest"
+}

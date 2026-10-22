@@ -1,0 +1,157 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "absi_palace_king"
+	group: "2160A0BD1700DC33"
+	hide_quest_details_until_startable: true
+	hide_quest_until_deps_visible: true
+	id: "7F46C9712E1D06E0"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			hide_details_until_startable: true
+			id: "7951B24DA01DB67C"
+			rewards: [{
+				auto: "invisible"
+				command: "/tellraw @p {\"text\":\"Ready to embark on your quest!? Open your questbook to find the quest activated to begin searching for the structure!\",\"color\":\"white\",\"bold\":true}"
+				elevate_perms: true
+				id: "22BE66B6779E903A"
+				type: "command"
+			}]
+			secret: true
+			tasks: [{
+				icon: "quest_token_api:absi_palace_king"
+				id: "7AF79E385BF053A3"
+				stage: "absipalace"
+				title: "Unlock Quest"
+				type: "gamestage"
+			}]
+			title: "Unlock Quest"
+			x: -1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7951B24DA01DB67C"]
+			id: "10BD65E8C55749DE"
+			tasks: [{
+				id: "02A7D04AC11A47BE"
+				structure: "awesomedungeonnether:nth_absi_palace"
+				title: "找到 absi 宫殿"
+				type: "structure"
+			}]
+			x: 0.5d
+			y: 0.0d
+		}
+		{
+			can_repeat: true
+			dependencies: ["10BD65E8C55749DE"]
+			id: "76A6481A32932C7F"
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/gamestage remove @p absipalace true"
+					elevate_perms: true
+					id: "26FACF2E97FF99AC"
+					team_reward: false
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 7951B24DA01DB67C"
+					elevate_perms: true
+					id: "72AA41545A7DB572"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 10BD65E8C55749DE"
+					elevate_perms: true
+					id: "15FA2B018852BE0C"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					command: "/puffish_skills points add @p puffish_skills:combat 3"
+					elevate_perms: true
+					icon: "minecraft:experience_bottle"
+					id: "0BA6EC2298FACC3B"
+					title: "3 战斗技能点"
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					id: "3DFD8193B4928204"
+					item: "steampunkrpg_content:dungeon_token"
+					type: "item"
+				}
+				{
+					auto: "enabled"
+					id: "7EEB095CDCA07580"
+					table_id: 444384640504589334L
+					type: "random"
+				}
+			]
+			shape: "pentagon"
+			size: 2.0d
+			tasks: [
+				{
+					entity: "minecraft:witch"
+					id: "4E7203EE13B010B3"
+					type: "kill"
+					value: 5L
+				}
+				{
+					entity: "minecraft:piglin_brute"
+					id: "0DF3E4CB860E4E9B"
+					type: "kill"
+					value: 10L
+				}
+				{
+					block: "minecraft:spawner"
+					block_type: 0
+					checkItem: false
+					id: "5F6D11B2D6A239EA"
+					type: "questsadditions:break"
+					value: 3L
+				}
+				{
+					block: "lootr:lootr_barrel"
+					block_type: 0
+					checkItem: false
+					id: "39B582DC1983916E"
+					isItemInteraction: false
+					type: "questsadditions:use"
+					value: 5L
+				}
+			]
+			title: "任务"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			can_repeat: true
+			dependencies: ["7951B24DA01DB67C"]
+			id: "6D05E89D0991ABB3"
+			rewards: [{
+				auto: "invisible"
+				command: "/locate structure awesomedungeonnether:nth_absi_palace"
+				elevate_perms: true
+				id: "1A7E8C4865B2BC1A"
+				team_reward: false
+				type: "command"
+			}]
+			tasks: [{
+				id: "42E7FDB159BCB1A9"
+				title: "查找结构物"
+				type: "checkmark"
+			}]
+			x: -3.5d
+			y: 0.0d
+		}
+	]
+	title: "&b阿比宫殿之王"
+}

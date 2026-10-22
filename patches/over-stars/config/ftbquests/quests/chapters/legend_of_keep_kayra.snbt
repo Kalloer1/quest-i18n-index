@@ -1,0 +1,175 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "legend_of_keep_kayra"
+	group: "2160A0BD1700DC33"
+	hide_quest_details_until_startable: true
+	hide_quest_until_deps_visible: true
+	id: "4AB99A89D8FFFE33"
+	order_index: 5
+	quest_links: [ ]
+	quests: [
+		{
+			id: "2A6C6E13246330DE"
+			rewards: [{
+				auto: "invisible"
+				command: "/tellraw @p {\"text\":\"Ready to embark on your quest!? Open your questbook to find the quest activated to begin searching for the structure!\",\"color\":\"white\",\"bold\":true}"
+				elevate_perms: true
+				id: "54F49348EEC7BA5C"
+				type: "command"
+			}]
+			secret: true
+			tasks: [{
+				icon: "quest_token_api:absi_palace_king"
+				id: "06D4D9F904145DA8"
+				stage: "keepkayra"
+				type: "gamestage"
+			}]
+			title: "使用卷轴解锁"
+			x: 0.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["2A6C6E13246330DE"]
+			id: "5539522E37015F50"
+			tasks: [{
+				id: "4F39C98C750709EC"
+				structure: "dungeons_arise:keep_kayra"
+				title: "找到凯拉堡垒 keep kayra"
+				type: "structure"
+			}]
+			x: 2.5d
+			y: 1.0d
+		}
+		{
+			can_repeat: true
+			dependencies: ["2A6C6E13246330DE"]
+			id: "70C6CDD6B3CD368E"
+			rewards: [{
+				auto: "invisible"
+				command: "/locate structure dungeons_arise:keep_kayra"
+				elevate_perms: true
+				id: "1ADBAA4E9073C1B5"
+				team_reward: false
+				type: "command"
+			}]
+			tasks: [{
+				id: "15C55491903DA1E0"
+				title: "点击以定位结构物"
+				type: "checkmark"
+			}]
+			x: -1.5d
+			y: 1.0d
+		}
+		{
+			can_repeat: true
+			dependencies: ["5539522E37015F50"]
+			id: "1F4D92134F212EC9"
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/gamestage remove @p keepkayra true"
+					elevate_perms: true
+					id: "6BEE46A8E1D7B89B"
+					team_reward: false
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 2A6C6E13246330DE"
+					elevate_perms: true
+					id: "7447C8585FAA6171"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 5539522E37015F50"
+					elevate_perms: true
+					id: "6B58C18561774F2C"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					command: "/puffish_skills points add @p puffish_skills:combat 10"
+					elevate_perms: true
+					icon: "minecraft:experience_bottle"
+					id: "391D5EB34EFA4497"
+					title: "10 战斗技能点"
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					exclude_from_claim_all: true
+					id: "34C362C5B2003FC8"
+					table_id: 444384640504589334L
+					type: "random"
+				}
+				{
+					auto: "enabled"
+					id: "5E0693E2FA2726F4"
+					table_id: 444384640504589334L
+					type: "random"
+				}
+				{
+					auto: "enabled"
+					count: 2
+					id: "3A5A2E7587828E36"
+					item: "steampunkrpg_content:dungeon_token"
+					type: "item"
+				}
+				{
+					auto: "enabled"
+					id: "4F76BF06E679F414"
+					table_id: 444384640504589334L
+					type: "random"
+				}
+			]
+			shape: "gear"
+			size: 2.0d
+			tasks: [
+				{
+					entity: "minecraft:skeleton"
+					id: "0299C74A3B6A1B38"
+					type: "kill"
+					value: 70L
+				}
+				{
+					entity: "minecraft:wither_skeleton"
+					id: "540CC9098FB9BEFC"
+					type: "kill"
+					value: 60L
+				}
+				{
+					entity: "minecraft:slime"
+					id: "1908BDE5F8875210"
+					type: "kill"
+					value: 20L
+				}
+				{
+					block: "minecraft:spawner"
+					block_type: 0
+					checkItem: false
+					id: "30C0EB781B5B0376"
+					type: "questsadditions:break"
+					value: 20L
+				}
+				{
+					block: "lootr:lootr_chest"
+					block_type: 0
+					checkItem: false
+					id: "35ACB5887B4AB36B"
+					isItemInteraction: false
+					type: "questsadditions:use"
+					value: 30L
+				}
+			]
+			title: "任务"
+			x: 5.0d
+			y: 1.0d
+		}
+	]
+	title: "&d凯拉堡的传说"
+}

@@ -1,0 +1,115 @@
+# AI 初翻，未人工校对
+{
+	consume_items: true
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "tools_restock"
+	group: "691ECEA9A5501200"
+	id: "23D76BCC250C4B2A"
+	order_index: 15
+	quest_links: [ ]
+	quests: [
+		{
+			can_repeat: true
+			dependencies: [
+				"7A85C158D1E9DC4A"
+				"0C1BD50996508DDE"
+			]
+			description: [""]
+			hide_details_until_startable: true
+			hide_until_deps_visible: true
+			id: "0344B7019D2A3CF4"
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/gamestage remove @p toolsmith1 true"
+					elevate_perms: true
+					id: "5FDCFCC33749187F"
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 7A85C158D1E9DC4A"
+					elevate_perms: true
+					id: "7549907A7E62C965"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/tellraw @p {\"text\":\"Thanks for helping us Sir! Your rewards have been granted!\",\"color\":\"white\",\"bold\":true}"
+					elevate_perms: true
+					id: "13CE662D6EEF1BC4"
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 5
+					id: "194CA314625A80ED"
+					item: "quest_token_api:quest_token"
+					type: "item"
+				}
+				{
+					auto: "enabled"
+					exclude_from_claim_all: true
+					id: "4C85E1BE713ACB32"
+					table_id: 5618260505225790032L
+					type: "random"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 0C1BD50996508DDE"
+					elevate_perms: true
+					id: "1C6BA51AE22FEB67"
+					silent: true
+					type: "command"
+				}
+			]
+			tasks: [{
+				id: "16968F7E48905603"
+				title: "点击以完成"
+				type: "checkmark"
+			}]
+			title: "点击以完成"
+			x: 1.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7A85C158D1E9DC4A"]
+			description: ["冒险家！我们村的农民需要一些工具，因为很多工具都旧了，快坏了。能帮我们收集清单上的物品吗？"]
+			hide_details_until_startable: true
+			hide_until_deps_visible: true
+			id: "0C1BD50996508DDE"
+			tasks: [
+				{
+					count: 20L
+					id: "1E50BC8447F31C7A"
+					item: { Count: 20, id: "minecraft:oak_planks" }
+					type: "item"
+				}
+				{
+					count: 50L
+					id: "55588C1A7334E0D0"
+					item: { Count: 50, id: "minecraft:stick" }
+					type: "item"
+				}
+				{
+					count: 15L
+					id: "24FD541F62505CAC"
+					item: { Count: 15, id: "minecraft:iron_ingot" }
+					type: "item"
+				}
+				{
+					count: 10L
+					id: "2FAF3F030A4D1261"
+					item: { Count: 10, id: "minecraft:stone" }
+					type: "item"
+				}
+			]
+			title: "任务"
+			x: 0.0d
+			y: 1.5d
+		}
+	]
+	title: "&7工具补给站"
+}

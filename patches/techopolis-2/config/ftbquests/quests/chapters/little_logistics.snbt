@@ -1,0 +1,353 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "little_logistics"
+	group: "2E909DF337DB0A54"
+	icon: "littlelogistics:steam_locomotive"
+	id: "14C0C41B4A669963"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["32953767237ABD2F"]
+			description: [
+				"解锁小物流模组。使用火车和船只通过铁路或水路运输物品和流体。"
+				"指南书非常有用"
+			]
+			id: "67234EB7B4F995EC"
+			rewards: [
+				{
+					auto: "enabled"
+					command: "/gamestage add @p little_logistics"
+					id: "5A79355C74DF5A74"
+					type: "command"
+				}
+				{
+					id: "2675531CDBCB85A1"
+					item: {
+						Count: 1b
+						id: "patchouli:guide_book"
+						tag: {
+							"patchouli:book": "littlelogistics:guide"
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "1AD768DB22E2D6EE"
+					item: "opolisutilities:b_bucks"
+					type: "item"
+				}
+			]
+			shape: "square"
+			tasks: [{
+				consume_items: true
+				id: "495D2FEC8C3F6E49"
+				item: "techopolis:research_papers_little_logistic"
+				type: "item"
+			}]
+			x: -0.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["67234EB7B4F995EC"]
+			description: ["比普通漏斗更快，连接到火车停靠轨道的侧面，将物品添加到火车车厢的箱子里"]
+			id: "2977A2F9419ED35D"
+			rewards: [{
+				id: "7322304CFEBA1792"
+				item: "opolisutilities:b_bucks"
+				type: "item"
+			}]
+			tasks: [{
+				id: "50214FABAD80C805"
+				item: "littlelogistics:rapid_hopper"
+				type: "item"
+			}]
+			x: -0.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["67234EB7B4F995EC"]
+			description: ["火车的基地，也可以坐在里面"]
+			id: "5893DCA31476BFDB"
+			optional: true
+			rewards: [{
+				id: "0731E0DBD2C84EB9"
+				item: "opolisutilities:b_bucks"
+				type: "item"
+			}]
+			tasks: [{
+				id: "6B8A644798201665"
+				item: "littlelogistics:seater_car"
+				type: "item"
+			}]
+			x: 2.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["5893DCA31476BFDB"]
+			description: ["用煤炭为火车的引擎提供动力"]
+			id: "706C4ADDB0F9BDAD"
+			optional: true
+			rewards: [{
+				id: "5194146CFF898B73"
+				item: "opolisutilities:b_bucks"
+				type: "item"
+			}]
+			tasks: [{
+				id: "4C43B3D339FE119A"
+				item: "littlelogistics:steam_locomotive"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5893DCA31476BFDB"]
+			description: ["连接到你的火车以移动物品"]
+			id: "5F91BAAA4FCFEDAA"
+			optional: true
+			rewards: [{
+				id: "4B62D22AD7B3A3FC"
+				item: "opolisutilities:b_bucks"
+				type: "item"
+			}]
+			tasks: [{
+				id: "79C36E5516E12D6A"
+				item: "littlelogistics:chest_car"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["5893DCA31476BFDB"]
+			description: ["连接到你的火车以移动流体"]
+			id: "795D503CC516E040"
+			optional: true
+			rewards: [{
+				id: "41BB0A81CA42AC26"
+				item: "opolisutilities:b_bucks"
+				type: "item"
+			}]
+			tasks: [{
+				id: "4C16737D1330AB30"
+				item: "littlelogistics:fluid_car"
+				type: "item"
+			}]
+			x: 0.5d
+			y: -1.0d
+		}
+		{
+			dependencies: [
+				"795D503CC516E040"
+				"706C4ADDB0F9BDAD"
+				"5F91BAAA4FCFEDAA"
+				"01A2D0E5D6816660"
+				"49D5C51180BBFCD9"
+				"0AF910E62C3F474E"
+			]
+			dependency_requirement: "one_completed"
+			description: ["用于将火车和拖车连接在一起"]
+			id: "7AD21A558BEF79A1"
+			optional: true
+			rewards: [{
+				id: "59D4C95348C46D76"
+				item: "opolisutilities:b_bucks"
+				type: "item"
+			}]
+			tasks: [{
+				id: "09FD3FAA7E5979A6"
+				item: "littlelogistics:spring"
+				type: "item"
+			}]
+			x: -0.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["67234EB7B4F995EC"]
+			description: ["一艘基础的蒸汽拖船"]
+			id: "6B0BADB8625A9B3F"
+			optional: true
+			rewards: [{
+				id: "266D06A478F84C45"
+				item: "opolisutilities:b_bucks"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0D9DD2FE18A31CAE"
+				item: "littlelogistics:tug"
+				type: "item"
+			}]
+			x: -3.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["6B0BADB8625A9B3F"]
+			description: ["连接到你的拖车以移动物品"]
+			id: "01A2D0E5D6816660"
+			optional: true
+			rewards: [{
+				id: "1BB1E3009D54678C"
+				item: "opolisutilities:b_bucks"
+				type: "item"
+			}]
+			tasks: [{
+				id: "788FFDD9DEAC2872"
+				item: "littlelogistics:barge"
+				type: "item"
+			}]
+			x: -3.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["6B0BADB8625A9B3F"]
+			description: ["连接到你的拖船，会自动为你钓鱼"]
+			id: "49D5C51180BBFCD9"
+			optional: true
+			rewards: [{
+				id: "0A55D35351B5D82A"
+				item: "opolisutilities:b_bucks"
+				type: "item"
+			}]
+			tasks: [{
+				id: "4F76281C924FC364"
+				item: "littlelogistics:fishing_barge"
+				type: "item"
+			}]
+			x: -2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["6B0BADB8625A9B3F"]
+			description: ["允许你骑上你的驳船进行移动"]
+			id: "6C81CFA213151204"
+			optional: true
+			rewards: [{
+				id: "509465EC695EA1A8"
+				item: "opolisutilities:b_bucks"
+				type: "item"
+			}]
+			tasks: [{
+				id: "16789491DD21257C"
+				item: "littlelogistics:seater_barge"
+				type: "item"
+			}]
+			x: -4.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["6B0BADB8625A9B3F"]
+			description: ["连接到你的拖车以移动流体"]
+			id: "0AF910E62C3F474E"
+			optional: true
+			rewards: [{
+				id: "6690FA764C9755C4"
+				item: "opolisutilities:b_bucks"
+				type: "item"
+			}]
+			tasks: [{
+				id: "74EB8A1D8A914709"
+				item: "littlelogistics:fluid_barge"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["7AD21A558BEF79A1"]
+			description: ["用于停止火车机车"]
+			id: "7C93A3FBB3598383"
+			optional: true
+			rewards: [{
+				id: "12B91341F2DEDEA5"
+				item: "opolisutilities:b_bucks"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0639382EE1E3CA5D"
+				item: "littlelogistics:locomotive_dock_rail"
+				type: "item"
+			}]
+			x: -1.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["7AD21A558BEF79A1"]
+			description: [
+				"停靠轨道的长度必须与火车的长度完全一致。"
+				"Shift+右键切换模式，蓝色为出，橙色为入"
+			]
+			id: "48CF32326407A570"
+			optional: true
+			rewards: [{
+				id: "54986800901710DE"
+				item: "opolisutilities:b_bucks"
+				type: "item"
+			}]
+			tasks: [{
+				id: "5C2740429F576F48"
+				item: "littlelogistics:car_dock_rail"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["7AD21A558BEF79A1"]
+			description: ["有许多不同的轨道，可以让你建造的火车网络变得简单或复杂，随心所欲！"]
+			id: "597E07D4B65FF32F"
+			optional: true
+			rewards: [{
+				id: "5363888A597D1F9C"
+				item: "opolisutilities:b_bucks"
+				type: "item"
+			}]
+			tasks: [{
+				id: "69BB7998AF0019BA"
+				title: "铁轨"
+				type: "checkmark"
+			}]
+			x: -0.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["6B0BADB8625A9B3F"]
+			description: ["有助于引导你的牵引车方向"]
+			id: "1100898F1F1158BD"
+			optional: true
+			rewards: [{
+				id: "17EF00521B836647"
+				item: "opolisutilities:b_bucks"
+				type: "item"
+			}]
+			tasks: [{
+				id: "5C94D9B54B9518EB"
+				item: "littlelogistics:tug_route"
+				type: "item"
+			}]
+			x: -3.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["5893DCA31476BFDB"]
+			description: ["有助于引导你的火车行驶方向"]
+			id: "2DDD9E2CDA263E99"
+			optional: true
+			rewards: [{
+				id: "1482A56B8396DE14"
+				item: "opolisutilities:b_bucks"
+				type: "item"
+			}]
+			tasks: [{
+				id: "779A4FD125122C4A"
+				item: "littlelogistics:locomotive_route"
+				type: "item"
+			}]
+			x: 2.0d
+			y: -2.0d
+		}
+	]
+	title: "小物流系统 (Little Logistics)"
+}

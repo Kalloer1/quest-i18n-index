@@ -1,0 +1,120 @@
+# AI 初翻，未人工校对
+{
+	consume_items: true
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "fishing_help"
+	group: "691ECEA9A5501200"
+	id: "7A8B49D1E1DED076"
+	order_index: 9
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["09DF87959A016593"]
+			description: ["先生，不介意的话，能帮我把鱼钓一下吗！"]
+			hide_details_until_startable: true
+			hide_until_deps_visible: true
+			id: "252A317AA19A69F1"
+			tasks: [
+				{
+					count: 10L
+					id: "64130B7C1992378C"
+					item: { Count: 10, id: "minecraft:cod" }
+					type: "item"
+				}
+				{
+					count: 10L
+					id: "6FD0E87F045A0C6C"
+					item: { Count: 10, id: "minecraft:salmon" }
+					type: "item"
+				}
+				{
+					count: 5L
+					id: "564CD222B073F3FD"
+					item: { Count: 5, id: "minecraft:string" }
+					type: "item"
+				}
+				{
+					count: 5L
+					id: "7DBC7BA3A6A8966A"
+					item: { Count: 5, id: "minecraft:stick" }
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "16BF09421C75B643"
+					item: { Count: 2, id: "minecraft:porkchop" }
+					type: "item"
+				}
+			]
+			title: "任务"
+			x: -0.5d
+			y: 0.5d
+		}
+		{
+			can_repeat: true
+			dependencies: [
+				"09DF87959A016593"
+				"252A317AA19A69F1"
+			]
+			description: [""]
+			hide_details_until_startable: true
+			hide_until_deps_visible: true
+			id: "108EC6B21B97998A"
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/gamestage remove @p fisherman1 true"
+					elevate_perms: true
+					id: "7B26ECBE8A03487D"
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 09DF87959A016593"
+					elevate_perms: true
+					id: "23123A3EBA6196C3"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/tellraw @p {\"text\":\"Thanks for helping us Sir! Your rewards have been granted!\",\"color\":\"white\",\"bold\":true}"
+					elevate_perms: true
+					id: "32FC8E4495D8AD6F"
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 2
+					id: "05148882E37CE064"
+					item: "quest_token_api:quest_token"
+					type: "item"
+				}
+				{
+					auto: "enabled"
+					id: "66B67ACD4841C8EC"
+					table_id: 5618260505225790032L
+					type: "random"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p reset 252A317AA19A69F1"
+					elevate_perms: true
+					id: "53159177B2CB6CE7"
+					silent: true
+					type: "command"
+				}
+			]
+			tasks: [{
+				id: "478DC7290DD41377"
+				title: "点击以完成"
+				type: "checkmark"
+			}]
+			title: "点击以完成"
+			x: 0.5d
+			y: 0.5d
+		}
+	]
+	title: "&7钓鱼帮助"
+}
