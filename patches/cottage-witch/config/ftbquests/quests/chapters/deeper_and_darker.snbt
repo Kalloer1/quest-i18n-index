@@ -1,0 +1,603 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_min_width: 350
+	default_quest_shape: ""
+	filename: "deeper_and_darker"
+	group: "5FB460EFA0A2567E"
+	icon: "deeperdarker:heart_of_the_deep"
+	id: "41296202479D0531"
+	images: [{
+		click: ""
+		corner: false
+		dev: false
+		height: 10.0d
+		hover: [ ]
+		image: "cottagewitch:textures/quest_ui/bgdeeperdarker.png"
+		rotation: 0.0d
+		width: 20.0d
+		x: 0.0d
+		y: 0.0d
+	}]
+	order_index: 4
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"想不想探索&c异世界&r？这是一个黑暗危险的维度，只能通过&d远古城市的传送门&r进入。要进去，你只需要&6杀死坚守者&r。应该很简单吧？当然！"
+				"首先，你需要找到&c远古城市&r，通常可以通过&b潜行者&r来辨认。"
+			]
+			id: "4C2DDEC05C13A3FB"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "0031AF7FD8F1D235"
+				table_id: 8808494820591225409L
+				type: "random"
+			}]
+			shape: "rsquare"
+			size: 2.0d
+			subtitle: "打破障碍，通往另一侧的世界"
+			tasks: [{
+				icon: "minecraft:sculk"
+				id: "0789C9B2C27437FD"
+				observe_type: 0
+				timer: 0L
+				to_observe: "minecraft:sculk"
+				type: "observation"
+			}]
+			title: "越深入，越黑暗"
+			x: -6.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["4C2DDEC05C13A3FB"]
+			description: [
+				"&bSculk&r是&cDeep Dark&r的代表性方块，这是一种生物群系，其中坐落着&cAncient Cities&r，只有Sculk及其相关生物居住。"
+				""
+				"&bSculk&r 的来历和用途尚不完全清楚……但可以肯定的是，它是&l活的&r。"
+			]
+			id: "001E117581BE05D5"
+			rewards: [{
+				count: 4
+				id: "726C1FBD6907C3A9"
+				item: "minecraft:echo_shard"
+				type: "item"
+			}]
+			tasks: [{
+				id: "2D6833DA8607A66A"
+				item: "minecraft:sculk"
+				type: "item"
+			}]
+			title: "潜行生物合成台"
+			x: -6.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["001E117581BE05D5"]
+			description: ["获得&b回响碎片&r后，可通过&6向&b斯卡ulk催化剂&r投入经验值来制造自己的&b斯卡ulk&r和&b斯卡ulk脉&r，它会&a转化周围的方块&r。主要方法是&6在附近击杀怪物&r。"]
+			id: "767A4A04E0D72FBE"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "4686C91C60D13FC4"
+				table_id: 5036677739913042344L
+				type: "choice"
+			}]
+			subtitle: "伟大的催化剂。或者至少是潜声催化剂。"
+			tasks: [{
+				id: "0A1EDEAC75343862"
+				item: "minecraft:sculk_catalyst"
+				type: "item"
+			}]
+			title: "制造更多的潜声方块 (Making More Sculk)"
+			x: -4.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["767A4A04E0D72FBE"]
+			description: [
+				"&bSculk Sensors&r 是一种既可爱又略带恐怖的生物，当受到惊扰时会&a发出红石信号&r。它们会聆听附近的声响，例如&a脚步声、放置或破坏方块，或是打开物品栏的声音&r。"
+				""
+				"你可以用羊毛&6定向地阻止它们的监听&r，或者用羊毛&6将它们包围起来&r来使其失活。"
+			]
+			id: "22929AEECAF3B467"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7DC0CB0243A44FAE"
+				table_id: 8808494820591225409L
+				type: "random"
+			}]
+			subtitle: "可能对自动化有所帮助的模组名称、物品ID等专有名词"
+			tasks: [{
+				id: "5490EAF572C61B6A"
+				item: "minecraft:sculk_sensor"
+				type: "item"
+			}]
+			title: "制作潜声传感器"
+			x: -2.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["2384853DE131A8A7"]
+			description: [
+				"&e卫道士&r下手毫不留情。它能一击秒杀毫无防备的女巫，而且&a极其坚固&r。不过，只要准备得当，或许就能直面它！"
+				""
+				"&e卫道士&r是盲的，会通过&a气味和听觉&r来寻找玩家。如果一分钟内没有发现任何玩家，它就会&a钻回地下&r。"
+			]
+			id: "386BBE6DCF3DAB78"
+			rewards: [
+				{
+					exclude_from_claim_all: true
+					id: "0CED9339CCA7D950"
+					table_id: 5525848455660196930L
+					type: "choice"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "51BF318F203675E3"
+					table_id: 8891211325592123080L
+					type: "choice"
+				}
+			]
+			shape: "diamond"
+			tasks: [{
+				entity: "minecraft:warden"
+				id: "710D37620D1E3299"
+				type: "kill"
+				value: 1L
+			}]
+			title: "击败坚守者 (Warden)"
+			x: -1.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["386BBE6DCF3DAB78"]
+			description: ["想炫耀自己有多硬吗？击败100个守卫者，赢取&a声望极高的&b盔甲套装&r和&b独特的头盔&r。"]
+			id: "450F3E6A4A93E2AA"
+			rewards: [
+				{
+					id: "257D53FD2FA431B8"
+					item: {
+						Count: 1b
+						id: "minecraft:player_head"
+						tag: {
+							SkullOwner: {
+								Id: [I;
+									-647750768
+									466960818
+									-1894687672
+									-1823489811
+								]
+								Properties: {
+									textures: [{
+										Value: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzNmYWJkZGRlZDQ0ZDBmYTE2YTQ4NmRkNTQwODY5Nzc5ZWY0MmY5YzNkODgyMDA1MDllYTAwMmM5ZWYxZWQ0MCJ9fX0="
+									}]
+								}
+							}
+							display: {
+								Name: "{\"text\":\"Warden\"}"
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "3DB05FB0DA05A025"
+					item: {
+						Count: 1b
+						id: "mcsa:gabriel_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "276C18C55EC37054"
+					item: {
+						Count: 1b
+						id: "mcsa:gabriel_chestplate"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "168D9A02FFF3BE31"
+					item: {
+						Count: 1b
+						id: "mcsa:gabriel_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "1B40707D5E412FC1"
+					item: {
+						Count: 1b
+						id: "mcsa:gabriel_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "636194976A45108A"
+					table_id: 5525848455660196930L
+					type: "choice"
+				}
+				{
+					id: "36FA088D44048D78"
+					item: "plushies:warden"
+					type: "item"
+				}
+			]
+			shape: "diamond"
+			subtitle: "或者，事情并没有那么简单？"
+			tasks: [{
+				entity: "minecraft:warden"
+				id: "38248E59E664A922"
+				type: "kill"
+				value: 100L
+			}]
+			title: "一项不可能完成的任务"
+			x: -1.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["6CB7050DA080301E"]
+			description: [
+				"&c彼岸世界&r是一个黑暗而危险的地方。你很可能&a无法看到&r前方几英尺以外的景象。"
+				"幸运的是，&bWarden Helmet&r可以缓解这个问题。"
+				"在异次元中有&a三种不同的生物群系&r，每一种都相当不友好。"
+			]
+			id: "5F0CA7A2F5C478F0"
+			tasks: [{
+				dimension: "deeperdarker:otherside"
+				icon: "deeperdarker:heart_of_the_deep"
+				id: "2497633125368050"
+				type: "dimension"
+			}]
+			title: "探索另一个世界 (Explore the Otherside)"
+			x: 5.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["77C585EDABB88B3E"]
+			description: [
+				"为了勇闯&c异世界&r，你需要做好充分的装备，但最需要的盔甲部件是&b潜声头盔&r。"
+				""
+				"除了防御和护甲韧性，它还赋予你&b黑暗免疫&r，让你能够看见。"
+			]
+			id: "6CB7050DA080301E"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "594005C455FC1DE9"
+				table_id: 5161092699925703455L
+				type: "loot"
+			}]
+			tasks: [{
+				id: "67CE3D92E102FE5B"
+				item: {
+					Count: 1b
+					id: "deeperdarker:warden_helmet"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "制作一个 Warden 头盔"
+			x: 3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["4C2DDEC05C13A3FB"]
+			description: ["你找到了通往&b远古城市&r的道路。祝你好运，冒险家，这里既有无数宝藏，也有同样多的危险。"]
+			id: "2384853DE131A8A7"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "2EB9B1725AEF032B"
+				table_id: 7062805133306069640L
+				type: "loot"
+			}]
+			tasks: [{
+				advancement: "deeperdarker:main/find_ancient_city"
+				criterion: ""
+				icon: "minecraft:reinforced_deepslate"
+				id: "47007A2CC7CD820F"
+				type: "advancement"
+			}]
+			x: -4.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["2384853DE131A8A7"]
+			description: [
+				"&b远古花瓶&r是一种战利品容器，罕见情况下会包含&b潜袭者甲壳&r。这或许能帮你在杀死&e潜袭者&r前，先&a制作潜袭者头盔&r。"
+				""
+				"不过要小心，因为&a每次花瓶被打破&r，都有几率生成&eThe Stalker&r，它是&eWarden&r的亲戚。"
+			]
+			id: "352E14C80B863AF3"
+			rewards: [{
+				id: "19017034A85E9D4F"
+				item: "deeperdarker:warden_carapace"
+				type: "item"
+			}]
+			tasks: [{
+				block: "deeperdarker:ancient_vase"
+				block_type: 0
+				checkItem: false
+				id: "72F3473498B917FB"
+				type: "questsadditions:break"
+				value: 1L
+			}]
+			x: -2.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["386BBE6DCF3DAB78"]
+			description: [
+				"在&c远古城市的中心&r有一个&a巨大的传送门&r。要使用它，你必须先&6清除掉&b潜行根须&r。"
+				""
+				"等它变透明后，你就可以用&b深海之心&r&6右键点击&r来激活它。"
+			]
+			id: "77C585EDABB88B3E"
+			tasks: [{
+				block: "minecraft:sculk_vein"
+				block_type: 0
+				checkItem: false
+				id: "25C516803865C303"
+				type: "questsadditions:break"
+				value: 1L
+			}]
+			title: "清除潜声菌的踪迹"
+			x: 1.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["3BED9B52B38D87AC"]
+			description: ["遇到一个&bGeyser&r，这个方块会&a把你弹向空中&r，并&a让你获得一段时间的缓慢降落&r。"]
+			id: "27223492884E5638"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "36928C0C797ED580"
+				table_id: 5161092699925703455L
+				type: "loot"
+			}]
+			subtitle: "我是一名服务器管理员"
+			tasks: [{
+				icon: "deeperdarker:gloomy_geyser"
+				id: "70D76BE360099AF1"
+				observe_type: 0
+				timer: 0L
+				to_observe: "deeperdarker:gloomy_geyser"
+				type: "observation"
+			}]
+			title: "观察间歇泉（Geyser）"
+			x: 7.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["766AE03208AE8F4B"]
+			description: [
+				"击败&e潜行蜈蚣&r，获取&c深层地&r中的&b潜行骨骼&r。"
+				""
+				"“但是等等，”我听见你说道，“蜈蚣没有骨头！”"
+				""
+				"对此我答道，\"&a如果他们最近吃过东西，就会有的&r。\" 从它们的肚子里获取这些物品，因为它们确实&a非常珍贵&r。"
+			]
+			id: "292410101F374A38"
+			rewards: [{
+				id: "4A5E1F1A7CF8F332"
+				item: "fantasyfurniture:decorations/bone_skeleton_pile"
+				type: "item"
+			}]
+			subtitle: "那些骨头，那些骨头"
+			tasks: [{
+				id: "6656F9B1F1635666"
+				item: "deeperdarker:sculk_bone"
+				type: "item"
+			}]
+			x: 3.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["292410101F374A38"]
+			description: [
+				"从 &eLeechers&r 和 &eSnappers&r 处获得 &bSoul Dust&d，通过击败 &eStalkers&r 获得 &bSoul Crystal&r，并从被击败的 &eSculk Centipedes&r 处获得 &bSculk Bones&r。"
+				""
+				"准备好这些材料后，你就可以将你的 &bElytra&r 转换成 &bSoul Elytra&r。"
+			]
+			id: "5998F88F411634AE"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "4A81ECB1706412E0"
+				table_id: 5525848455660196930L
+				type: "choice"
+			}]
+			tasks: [{
+				id: "78DCBDC7E04BA66A"
+				item: {
+					Count: 1b
+					id: "deeperdarker:soul_elytra"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 1.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["5F0CA7A2F5C478F0"]
+			description: [
+				"根据古老的典籍记载："
+				""
+				"该生物群系通常由&bSculk、Sculk Stone和Echo Soil&r分层生成。Echo树遍布其中，紫色的叶子和&bSculk Gleam&r使The Otherside更加生动。该生物群系的雾气颜色与树叶一样呈紫色，而且&a唯一会在此生成的生物是&eShattered&r，这使得该生物群系成为Otherside Deeplands众多恐怖景象中难得的清新变化。"
+				""
+				"然而，这片区域并不安全，因为&a潜行者&eWarden&r可能随时出现。"
+			]
+			id: "3A279B0A5E1E6805"
+			rewards: [
+				{
+					id: "619BE759CBA940F3"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					exclude_from_claim_all: true
+					id: "396A6CA8D1E70AD7"
+					table_id: 7062805133306069640L
+					type: "loot"
+				}
+			]
+			tasks: [{
+				biome: "deeperdarker:echoing_forest"
+				icon: "deeperdarker:echo_soil"
+				id: "017FE61F8E149DEA"
+				type: "biome"
+			}]
+			title: "回响森林"
+			x: 6.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["5F0CA7A2F5C478F0"]
+			description: [
+				"根据古老的典籍记载："
+				""
+				"&cOvercast Columns&r是一片广袤的无人荒地。它由多根琥珀柱组成，每根柱内都含有该生物群系独有的&bCrystallized Amber&r方块。Overcast Columns的地形中还散布着多个&bGeysers&r，地形由&bGloomslate&r和&bGloom Sculk&r构成。由于环境&a充满敌意且贫瘠&r，目前已知没有任何生物能在此生存。"
+			]
+			id: "3BED9B52B38D87AC"
+			rewards: [
+				{
+					id: "551A0D1A2FDBB3EB"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					exclude_from_claim_all: true
+					id: "59AD3B2CEC179D1F"
+					table_id: 7062805133306069640L
+					type: "loot"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "25E102D74077C7B9"
+					table_id: 8035711958862449784L
+					type: "random"
+				}
+			]
+			tasks: [{
+				biome: "deeperdarker:overcast_columns"
+				icon: "deeperdarker:crystallized_amber"
+				id: "48CE45BC84A3B5C3"
+				type: "biome"
+			}]
+			title: "阴沉的柱廊 (The Overcast Columns)"
+			x: 5.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["5F0CA7A2F5C478F0"]
+			description: [
+				"根据古老的典籍记载："
+				""
+				"第一个生物群系叫&cOtherside Deeplands&r。Deeplands主要由&bSculk&r和&bSculk Stone&r构成。大群的&ePhantoms&r会在这片生物群系的洞穴里飞来飞去，还有成群的&eSculk Snappers&r。Deeplands里很常见&bSculk Jaws&r和&bInfested Sculk&r，这使得&a更难穿行&r。小心藏在&bInfested Sculk&r下的&eShriekworms&r，它们随时会发起攻击。"
+				""
+				"&eWarden&r 也可以在这里被召唤出来。"
+			]
+			id: "766AE03208AE8F4B"
+			rewards: [
+				{
+					id: "0EE9B187EC87288A"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					exclude_from_claim_all: true
+					id: "74BD6B3D76A8195E"
+					table_id: 7062805133306069640L
+					type: "loot"
+				}
+			]
+			tasks: [{
+				biome: "deeperdarker:deeplands"
+				icon: "minecraft:sculk"
+				id: "5E1E3DC987B09351"
+				type: "biome"
+			}]
+			title: "The Otherside Deeplands"
+			x: 3.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["766AE03208AE8F4B"]
+			description: [
+				"在&c异世深境&r中，可以找到一座&a远古神殿&r。这些建筑里充满了&a先人留下的战利品&r。"
+				""
+				"在&d神庙中心&r，有一些方块，打破它们可以让你&6更深入地进入神庙&r。"
+			]
+			id: "010F9401493DDB2B"
+			rewards: [
+				{
+					id: "2F2E2DC23CF31689"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					exclude_from_claim_all: true
+					id: "18BDD7B8E334E2EE"
+					table_id: 5161092699925703455L
+					type: "loot"
+				}
+			]
+			tasks: [{
+				icon: "deeperdarker:sculk_stone_bricks"
+				id: "4BF7396D5FA09AEF"
+				structure: "deeperdarker:ancient_temple"
+				type: "structure"
+			}]
+			title: "探索远古神殿"
+			x: 5.5d
+			y: 3.0d
+		}
+		{
+			can_repeat: true
+			dependencies: ["386BBE6DCF3DAB78"]
+			description: ["别问我为什么，但我&a需要一堆&b深海之心&r。用这个&a可重复的委托&r来跟我交易，我会给你一些超赞的奖励。"]
+			id: "5AA23C847AD13B06"
+			rewards: [
+				{
+					exclude_from_claim_all: true
+					id: "30EB6B842A36C3F2"
+					table_id: 7062805133306069640L
+					type: "loot"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "321C8316CF3135E9"
+					table_id: 8844042123582301969L
+					type: "random"
+				}
+			]
+			shape: "pentagon"
+			tasks: [{
+				consume_items: true
+				id: "0D268135EB5A0C2B"
+				item: "deeperdarker:heart_of_the_deep"
+				type: "item"
+			}]
+			title: "黑暗之心 (Hearts of Darkness)"
+			x: 0.5d
+			y: -2.0d
+		}
+	]
+	title: "深层黑暗"
+}

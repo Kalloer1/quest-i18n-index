@@ -1,0 +1,486 @@
+# AI 初翻，未人工校对
+{
+	id: "009B29948DDFF001"
+	group: ""
+	order_index: 6
+	filename: "magic"
+	title: "探索"
+	icon: "twilightforest:lich_trophy"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: -2.5d
+			y: 1.0d
+			description: [
+				"建造一个2x2的水池，用花朵围起来，然后将一个龙蛋扔进水里以创建一个传送门"
+				""
+				"这个维度主要讲的是里面的首领们"
+			]
+			id: "54E4F67C49D8034A"
+			tasks: [{
+				id: "1F52BAC9D4120143"
+				type: "item"
+				item: "minecraft:dragon_egg"
+			}]
+			rewards: [{
+				id: "5B46F04002C6F67B"
+				type: "item"
+				item: "minecraft:dandelion"
+				count: 8
+			}]
+		}
+		{
+			x: -2.5d
+			y: 2.5d
+			description: [
+				"在暮色森林中，你需要击败特定生物群系的领主才能进入下一个生物群系。"
+				""
+				"否则它会伤害你，或者不让你进入"
+			]
+			dependencies: ["54E4F67C49D8034A"]
+			id: "50392595761FE917"
+			tasks: [{
+				id: "7DE8484BEF3C9841"
+				type: "checkmark"
+				title: "暮色森林的生物群系"
+			}]
+			rewards: [{
+				id: "14305ADF32F41D7F"
+				type: "xp"
+				xp: 10
+			}]
+		}
+		{
+			x: -1.5d
+			y: 3.5d
+			description: [
+				"为了方便导航，你可以创建一张特殊地图来显示首领的位置"
+				""
+				"你可以在森林里找到渡鸦，在洞穴里找到发光浆果，而发光石你早就知道怎么获得了"
+			]
+			dependencies: ["50392595761FE917"]
+			id: "18F68843612C1AB1"
+			tasks: [{
+				id: "4788179E92BFAAD8"
+				type: "item"
+				item: "twilightforest:magic_map_empty"
+			}]
+			rewards: [{
+				id: "0B0A59F6CB4728B3"
+				type: "item"
+				item: "twilightforest:cooked_venison"
+				random_bonus: 7
+			}]
+		}
+		{
+			x: -2.5d
+			y: 4.0d
+			description: ["要对付的第一个首领是naga，用地图找到一个并杀死它"]
+			dependencies: ["50392595761FE917"]
+			id: "42014FC14D75555A"
+			tasks: [{
+				id: "731A6964C215FB97"
+				type: "item"
+				item: "twilightforest:naga_trophy"
+			}]
+			rewards: [{
+				id: "5DF0B549DC30004F"
+				type: "item"
+				item: "twilightforest:naga_scale"
+				count: 12
+				random_bonus: 12
+			}]
+		}
+		{
+			x: -2.5d
+			y: 5.5d
+			description: [
+				"下一个是巫妖王，战斗开始时他会有一个魔法护盾，无法造成伤害。要打破它，你需要反射末影珍珠类投射物"
+				""
+				"他的克隆体也会攻击你，而且无法被杀死"
+				""
+				"从他身上掉落的僵尸权杖能让你召唤为你战斗的僵尸，生命吸取权杖则能吸取敌人的生命（同时补充饥饿度）"
+			]
+			dependencies: ["42014FC14D75555A"]
+			id: "04AAF59C0C2657AC"
+			tasks: [{
+				id: "43B24AF109AABBD1"
+				type: "item"
+				item: "twilightforest:lich_trophy"
+			}]
+			rewards: [
+				{
+					id: "47F32248B2000F95"
+					type: "item"
+					item: {
+						id: "minecraft:potion"
+						Count: 1b
+						tag: {
+							Potion: "minecraft:strength"
+						}
+					}
+				}
+				{
+					id: "0947E933286F5D50"
+					type: "item"
+					item: "minecraft:rotten_flesh"
+				}
+				{
+					id: "58F61B97746D72DC"
+					type: "item"
+					item: "minecraft:fermented_spider_eye"
+				}
+			]
+		}
+		{
+			x: -1.0d
+			y: 7.0d
+			description: ["阿尔法雪怪可以在雪林群系的空心雪丘中找到"]
+			dependencies: ["04AAF59C0C2657AC"]
+			id: "588112BD2017763A"
+			tasks: [{
+				id: "1D08C56A42303E9C"
+				type: "item"
+				item: "twilightforest:yeti_trophy"
+			}]
+			rewards: [{
+				id: "2152D8DD7B029917"
+				type: "item"
+				item: "twilightforest:alpha_fur"
+				count: 12
+				random_bonus: 12
+			}]
+		}
+		{
+			x: -2.5d
+			y: 7.0d
+			description: [
+				"在暗森林中找到一座堡垒 - 要进入，你需要将任意类型的首领奖杯放置在奖杯底座上。入口解锁后，你就可以取回奖杯了"
+				""
+				"首领可以在迷宫的第二层或第三层找到"
+			]
+			dependencies: ["04AAF59C0C2657AC"]
+			id: "036CA7E207BCCFBE"
+			tasks: [{
+				id: "113476CBEB35C3DF"
+				type: "item"
+				item: "twilightforest:knight_phantom_trophy"
+			}]
+			rewards: [{
+				id: "27ED7DE21BE187B7"
+				type: "item"
+				item: {
+					id: "twilightforest:block_and_chain"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			x: -4.0d
+			y: 7.0d
+			description: ["暮色沼泽生物群系里有个小土丘下藏着迷宫。找到它，击败 minoshroom 并吃掉 meef straganoff，就能解锁火焰沼泽生物群系。"]
+			dependencies: ["04AAF59C0C2657AC"]
+			id: "451A55FF0321FE90"
+			tasks: [{
+				id: "536CD3496A3FADA4"
+				type: "item"
+				item: "twilightforest:minoshroom_trophy"
+			}]
+			rewards: [{
+				id: "1D23AFA08E4B3E9E"
+				type: "item"
+				item: "twilightforest:maze_slime_spawn_egg"
+			}]
+		}
+		{
+			x: -2.5d
+			y: 8.5d
+			description: [
+				"在塔顶，你会找到首领Ur-Ghast和4个带有恶魂陷阱的房间。要激活它们，你需要杀死附近的卡米尼特恶魂。激活后，陷阱会吸住上方的实体，所以你要等到Ur-Ghast在恶魂陷阱上方再激活。"
+				"他也可以通过吃掉较小的恶魂来恢复生命值"
+			]
+			dependencies: ["036CA7E207BCCFBE"]
+			id: "77A304FDC6534671"
+			tasks: [{
+				id: "6CE72D2005A7FB2A"
+				type: "item"
+				item: "twilightforest:ur_ghast_trophy"
+			}]
+			rewards: [{
+				id: "53C404A202D6CF80"
+				type: "item"
+				item: "twilightforest:fiery_tears"
+				random_bonus: 11
+			}]
+		}
+		{
+			x: -1.0d
+			y: 8.5d
+			description: [
+				"你可以在极光宫殿的最高塔中找到雪后"
+				""
+				"它会掉落三箭弓（消耗1支箭射出3支箭）或追踪弓（箭会尝试寻找目标）"
+			]
+			dependencies: ["588112BD2017763A"]
+			id: "0A5EAB4DC1F966BE"
+			tasks: [{
+				id: "093AABB6CE37435E"
+				type: "item"
+				item: "twilightforest:snow_queen_trophy"
+			}]
+			rewards: [{
+				id: "3AB94F7A8AA53CA8"
+				type: "item"
+				item: {
+					id: "minecraft:enchanted_book"
+					Count: 1b
+					tag: {
+						StoredEnchantments: [{
+							lvl: 5s
+							id: "minecraft:power"
+						}]
+					}
+				}
+			}]
+		}
+		{
+			x: -4.0d
+			y: 8.5d
+			description: [
+				"击败九头蛇的最佳策略是将伤害分散到各个头上，这样它们就不会复制了"
+				""
+				"将投射物反射到张开的大口中能造成最大伤害"
+			]
+			dependencies: ["451A55FF0321FE90"]
+			id: "038233F4CCB1B5F3"
+			tasks: [{
+				id: "5CEFD1B933D66725"
+				type: "item"
+				item: "twilightforest:hydra_trophy"
+			}]
+			rewards: [{
+				id: "4274B6C95EC67CED"
+				type: "item"
+				item: "twilightforest:fiery_blood"
+				random_bonus: 11
+			}]
+		}
+		{
+			x: -5.5d
+			y: 7.0d
+			description: ["可在迷你蘑菇迷宫的宝箱中找到"]
+			id: "5ADD305DB64F6F9A"
+			tasks: [{
+				id: "69BDED1C2E890C18"
+				type: "item"
+				item: "twilightforest:maze_map_focus"
+			}]
+			rewards: [{
+				id: "2DD87A31CC6CC532"
+				type: "item"
+				item: "minecraft:paper"
+				count: 8
+			}]
+		}
+		{
+			x: -7.0d
+			y: 7.0d
+			description: ["迷宫地图，在寻找迷宫破坏者（能快速破坏迷宫方块的一种镐）时可能特别有用"]
+			dependencies: ["5ADD305DB64F6F9A"]
+			id: "254B19AAE9F5E90C"
+			tasks: [{
+				id: "1FD7D6B665E03BD2"
+				type: "item"
+				item: "twilightforest:maze_map_empty"
+			}]
+			rewards: [{
+				id: "72A3BBE95E4A1F9A"
+				type: "item"
+				item: "twilightforest:maze_map_focus"
+				count: 4
+			}]
+		}
+		{
+			x: -8.5d
+			y: 7.0d
+			shape: "diamond"
+			description: [
+				"挑战"
+				""
+				"可在秘密房间中找到，使用迷宫地图最容易找到"
+				""
+				"你需要闯进去，但要小心——一旦搞砸，整个地方都会爆炸"
+				""
+				"木制压力板上方有沙子方块，所以破坏方块时要小心"
+			]
+			dependencies: ["254B19AAE9F5E90C"]
+			id: "219AD17EDB6EFA68"
+			tasks: [{
+				id: "2BD0FC68D99CA884"
+				type: "item"
+				item: {
+					id: "twilightforest:mazebreaker_pickaxe"
+					Count: 1b
+					tag: {
+						Damage: 0
+						Enchantments: [
+							{
+								lvl: 4s
+								id: "minecraft:efficiency"
+							}
+							{
+								lvl: 3s
+								id: "minecraft:unbreaking"
+							}
+							{
+								lvl: 2s
+								id: "minecraft:fortune"
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "647F34AF5DE10B9C"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: -2.5d
+			y: 10.0d
+			description: [
+				"在暮色高地上找到一个巨魔洞穴（在某个山丘附近）"
+				""
+				"里面有一个巨大的黑曜石立方体和一个较小的，打破较小的那个并从里面获取战利品。"
+				""
+				"然后用豆子和泥土在云层结构下种一棵大树"
+			]
+			dependencies: [
+				"0A5EAB4DC1F966BE"
+				"77A304FDC6534671"
+				"038233F4CCB1B5F3"
+			]
+			id: "54D340533342446E"
+			tasks: [
+				{
+					id: "7CAB011CE01F2A54"
+					type: "item"
+					item: "twilightforest:magic_beans"
+				}
+				{
+					id: "29D9FE9E13635666"
+					type: "item"
+					item: "twilightforest:uberous_soil"
+				}
+			]
+			rewards: [{
+				id: "77DC90BE16CE2974"
+				type: "item"
+				item: "twilightforest:unripe_trollber"
+				count: 32
+				random_bonus: 32
+			}]
+		}
+		{
+			x: -2.5d
+			y: 11.5d
+			description: ["在云端你会找到...你自己。不过是个巨大的。去拿一把巨大的镐子，从...你那里，然后回到巨大的黑曜石立方体"]
+			dependencies: ["54D340533342446E"]
+			id: "4CBD49CB0490A292"
+			tasks: [{
+				id: "4EE955D6B25BFAE6"
+				type: "item"
+				item: {
+					id: "twilightforest:giant_pickaxe"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "234044675F9BA96D"
+				type: "item"
+				item: {
+					id: "twilightforest:giant_sword"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			x: -2.5d
+			y: 13.0d
+			description: ["它能让你烧穿城堡下方的荆棘障碍"]
+			dependencies: ["4CBD49CB0490A292"]
+			id: "15A820C021C6CA06"
+			tasks: [{
+				id: "5E0B9A4B08857D2F"
+				type: "item"
+				item: {
+					id: "twilightforest:lamp_of_cinders"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "1B0CC3A3AABB1B9E"
+				type: "item"
+				item: "create:brass_casing"
+			}]
+		}
+		{
+			x: -1.0d
+			y: 13.0d
+			description: ["最终Boss还没出现，不过你现在就能拿到这些不错的方块了"]
+			dependencies: ["15A820C021C6CA06"]
+			id: "034E19BAD1D14C95"
+			tasks: [{
+				id: "785021D119881583"
+				type: "item"
+				item: "twilightforest:castle_brick"
+			}]
+			rewards: [{
+				id: "279445832F82AF48"
+				type: "item"
+				item: "ftbultimine:ultiminer"
+			}]
+		}
+		{
+			x: -3.5d
+			y: 3.5d
+			description: [
+				"经典的潜影盒，帮你管理背包里的物品，真好用"
+				"As well as a backpack"
+			]
+			dependencies: ["50392595761FE917"]
+			id: "5E4E884076BFD4F9"
+			tasks: [{
+				id: "7D0B706158CFD8FF"
+				type: "checkmark"
+				title: "物品栏管理"
+			}]
+			rewards: [
+				{
+					id: "3F0A830414A00C09"
+					type: "item"
+					item: "minecraft:shulker_box"
+				}
+				{
+					id: "1DDE93BE626DE401"
+					type: "item"
+					item: "sophisticatedbackpacks:backpack"
+				}
+			]
+		}
+	]
+}
