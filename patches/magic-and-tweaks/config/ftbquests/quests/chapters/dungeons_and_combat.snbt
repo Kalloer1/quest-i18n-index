@@ -1,0 +1,128 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "square"
+	filename: "dungeons_and_combat"
+	group: ""
+	icon: {
+		Count: 1
+		id: "dungeons_and_combat:acid_molten_blazing_sword"
+		tag: {
+			Damage: 0
+		}
+	}
+	id: "68689C97642AA018"
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			can_repeat: true
+			icon: "dungeons_and_combat:fractured_soul"
+			id: "7DD5389DBEB699F0"
+			rewards: [{
+				auto: "enabled"
+				command: "/advancement revoke @s only dungeons_and_combat:origin"
+				elevate_perms: true
+				icon: {
+					Count: 1
+					id: "ias_spellbooks:book_of_dark_mutations"
+					tag: {
+						ISB_Spells: {
+							data: [
+								{
+									id: "ias_spellbooks:dragline"
+									index: 0
+									level: 10
+									locked: 1b
+								}
+								{
+									id: "ias_spellbooks:pumpkin_spice"
+									index: 1
+									level: 3
+									locked: 1b
+								}
+							]
+							maxSpells: 12
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				id: "6202F25F860F1993"
+				title: "起源重置"
+				type: "command"
+			}]
+			shape: "diamond"
+			size: 2.0d
+			subtitle: "点击对勾以重置原点"
+			tasks: [{
+				id: "7977CB94E3863EC3"
+				title: "重置起源点"
+				type: "checkmark"
+			}]
+			x: 0.5d
+			y: -2.0d
+		}
+		{
+			description: ["获取书籍"]
+			id: "4F7008252563F338"
+			rewards: [{
+				id: "5C50B7E3BC412728"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				id: "2A316F9E6D0C05A4"
+				item: "minecraft:book"
+				type: "item"
+			}]
+			x: -1.5d
+			y: 1.0d
+		}
+		{
+			description: ["获得铁剑"]
+			id: "163F5EA76176757E"
+			rewards: [{
+				id: "48F302869AF8AE85"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				id: "4FFBC2E2A5F9BC50"
+				item: {
+					Count: 1
+					id: "minecraft:iron_sword"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 2.5d
+			y: 1.0d
+		}
+		{
+			dependencies: [
+				"163F5EA76176757E"
+				"4F7008252563F338"
+			]
+			description: ["点击书籍查看配方..."]
+			id: "7C6ED2AD5182D8CF"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "6618D53657182E2D"
+				table_id: 2501998888776764148L
+				type: "random"
+			}]
+			subtitle: "使用此手册来设置你的起源 (Origin)"
+			tasks: [{
+				id: "0024A30BB1ED93B6"
+				item: "dungeons_and_combat:combat_style_manual"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 0.0d
+		}
+	]
+	title: "地牢与战斗模组包任务书"
+}
