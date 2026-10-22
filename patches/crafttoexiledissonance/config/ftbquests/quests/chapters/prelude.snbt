@@ -1,0 +1,2610 @@
+# AI 初翻，未人工校对
+{
+	id: 2,
+	filename: "prelude",
+	order_index: 1,
+	title: "序幕：主世界 (Overworld)",
+	icon: "minecraft:grass_block",
+	always_invisible: false,
+	group: 0,
+	default_quest_shape: "default",
+	images: [],
+	quests: [
+		{
+			title: "入门指南",
+			x: 0.0d,
+			y: 0.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"欢迎来到Craft to Exile！本进度日志旨在为你指明下一步方向。首先，建议你在主世界进行一些轻度探索，就像平时一样，并搭建营地。",
+				"请确保在进度推进时领取你的奖励！",
+				"别忘了，你可以将任务固定在游戏内HUD上显示！主线任务用圆角方块表示。"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 3,
+			tasks: [{
+				id: 4,
+				type: "item",
+				item: "minecraft:crafting_table"
+			}],
+			rewards: [
+				{
+					id: 5,
+					type: "item",
+					item: {
+						id: "minecraft:apple",
+						Count: 5b
+					}
+				},
+				{
+					id: 6,
+					type: "item",
+					item: "mmorpg:newbie_gear_bag"
+				},
+				{
+					id: 15,
+					type: "item",
+					item: {
+						id: "mmorpg:ore0",
+						Count: 3b
+					}
+				},
+				{
+					id: 1715,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 375
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "核心枢纽",
+			icon: {
+				id: "minecraft:wooden_sword",
+				Count: 1b,
+				tag: {
+					Damage: 0
+				}
+			},
+			x: 1.5d,
+			y: 0.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"你可能注意到背包里的袋子了——右键使用。在《Craft to Exile》中，装备主要通过击杀生物获得。制作的装备也可以使用，但威力会有限制。",
+				"掉落装备与怪物等级相关，怪物越强，装备越好！试着杀些骷髅（不是恶心的骷髅！）——希望能找到新装备。",
+				"注意：目前任务GUI存在bug。如果你不确定该击杀或收集什么，可以将任务固定到GUI上。"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;3],
+			dependency_requirement: "all_completed",
+			id: 7,
+			tasks: [{
+				id: 8,
+				type: "kill",
+				icon: "minecraft:skeleton_skull",
+				entity: "minecraft:skeleton",
+				value: 2L
+			}],
+			rewards: [
+				{
+					id: 1716,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 750
+						}
+					}
+				},
+				{
+					id: 2482,
+					type: "item",
+					item: {
+						id: "mmorpg:loot_crate",
+						Count: 1b,
+						tag: {
+							REGISTRY_ID: "weaponcrafter_crate",
+							LVL: 5,
+							SCORE: "GOOD",
+							TIER: 2
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "变得越来越强了",
+			icon: "minecraft:experience_bottle",
+			x: 3.0d,
+			y: 0.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"击败生物并完成任务，你就能获得经验。经验足够后，你就能升级变强。升级时，你会获得属性点、技能点和天赋点。",
+				"按 H 键打开 Mine and Slash 中心，分配点数并自定义你的角色！别担心弄乱属性，游戏后期有重置药水可用。",
+				"击杀僵尸、骷髅和苦力怕！"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;7],
+			dependency_requirement: "all_completed",
+			id: 10,
+			tasks: [
+				{
+					id: 11,
+					type: "kill",
+					icon: "minecraft:skeleton_skull",
+					entity: "minecraft:skeleton",
+					value: 4L
+				},
+				{
+					id: 12,
+					type: "kill",
+					icon: "minecraft:zombie_head",
+					entity: "minecraft:zombie",
+					value: 2L
+				},
+				{
+					id: 13,
+					type: "kill",
+					icon: "minecraft:creeper_head",
+					entity: "minecraft:creeper",
+					value: 1L
+				}
+			],
+			rewards: [
+				{
+					id: 14,
+					type: "item",
+					item: {
+						id: "mmorpg:identify_tome",
+						Count: 8b
+					}
+				},
+				{
+					id: 1720,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 1500
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "货币物品",
+			x: 4.5d,
+			y: 0.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["货币物品是一种强大的物品，能够重掷你装备上的属性。要使用它们，你必须先制作一个修改台。"],
+			min_required_dependencies: 0,
+			dependencies: [I;10],
+			dependency_requirement: "all_completed",
+			id: 16,
+			tasks: [{
+				id: 17,
+				type: "item",
+				title: "1x Orb of Transmutation",
+				item: "mmorpg:currency/orb_of_transmutation"
+			}],
+			rewards: [
+				{
+					id: 1721,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 2000
+						}
+					}
+				},
+				{
+					id: 2485,
+					type: "item",
+					item: {
+						id: "mmorpg:loot_crate",
+						Count: 1b,
+						tag: {
+							REGISTRY_ID: "currency_crate",
+							LVL: 10,
+							SCORE: "GOOD",
+							TIER: 2
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "矿石",
+			x: 1.5d,
+			y: 1.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["在《流放者柯南》中，特殊矿石会生成在主世界。这些重要矿石有不同的稀有度，可用于修复装备或制作特殊物品。更多信息请查看JEI。"],
+			min_required_dependencies: 0,
+			dependencies: [I;3],
+			dependency_requirement: "all_completed",
+			id: 19,
+			tasks: [{
+				id: 20,
+				type: "item",
+				item: "mmorpg:ore0",
+				count: 25L
+			}],
+			rewards: [
+				{
+					id: 21,
+					type: "item",
+					item: {
+						id: "mmorpg:ore0",
+						Count: 20b
+					}
+				},
+				{
+					id: 1726,
+					type: "item",
+					title: "750 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 750
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "损坏的刀剑",
+			x: 1.5d,
+			y: 3.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"使用维修站，你可以用矿石修复装备。此外，还可以将电容器连接到维修站以提高矿石修复效率。注意：普通矿石的效率非常低，你至少应该使用不常见的矿石。",
+				"你也可以使用原版锭，如铁、金和钻石，为你的修理台添加燃料！"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;19],
+			dependency_requirement: "all_completed",
+			id: 22,
+			tasks: [{
+				id: 23,
+				type: "item",
+				item: "mmorpg:repair_station"
+			}],
+			rewards: [
+				{
+					id: 24,
+					type: "item",
+					item: "mmorpg:capacitor0"
+				},
+				{
+					id: 1736,
+					type: "item",
+					title: "3000 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 3000
+						}
+					}
+				},
+				{
+					id: 2633,
+					type: "item",
+					item: {
+						id: "mmorpg:loot_crate",
+						Count: 1b,
+						tag: {
+							REGISTRY_ID: "strength_req_crate",
+							LVL: 10,
+							SCORE: "GOOD",
+							TIER: 3
+						}
+					}
+				},
+				{
+					id: 2705,
+					type: "item",
+					item: {
+						id: "minecraft:gold_ingot",
+						Count: 8b
+					}
+				}
+			]
+		},
+		{
+			title: "请出示身份证明，谢谢配合",
+			x: 4.5d,
+			y: -1.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["你经常会发现未鉴定的装备，必须先鉴定才能查看其属性。鉴定卷轴是消耗品，可鉴定背包中右上角的第一个未鉴定物品。"],
+			min_required_dependencies: 0,
+			dependencies: [I;10],
+			dependency_requirement: "all_completed",
+			id: 25,
+			tasks: [{
+				id: 26,
+				type: "item",
+				item: "mmorpg:identify_tome",
+				count: 10L
+			}],
+			rewards: [
+				{
+					id: 55,
+					type: "item",
+					item: "mmorpg:ore1"
+				},
+				{
+					id: 1727,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 1750
+						}
+					}
+				},
+				{
+					id: 2634,
+					type: "item",
+					item: {
+						id: "mmorpg:loot_crate",
+						Count: 1b,
+						tag: {
+							REGISTRY_ID: "wisdom_req_crate",
+							LVL: 10,
+							SCORE: "GOOD",
+							TIER: 3
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "优化算法 (Optimization Algorithms)",
+			x: 1.5d,
+			y: 4.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["将电容器放入维修站是提高矿石效率的好方法。你知道吗？更好的电容器效率更高！"],
+			min_required_dependencies: 0,
+			dependencies: [I;22],
+			dependency_requirement: "all_completed",
+			id: 29,
+			tasks: [{
+				id: 30,
+				type: "item",
+				item: "mmorpg:capacitor2"
+			}],
+			rewards: [
+				{
+					id: 33,
+					type: "item",
+					item: {
+						id: "mmorpg:ore2",
+						Count: 3b
+					}
+				},
+				{
+					id: 1739,
+					type: "item",
+					title: "6000 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 6000
+						}
+					}
+				},
+				{
+					id: 2490,
+					type: "item",
+					item: {
+						id: "mmorpg:loot_crate",
+						Count: 1b,
+						tag: {
+							REGISTRY_ID: "currency_crate",
+							LVL: 10,
+							SCORE: "GOOD",
+							TIER: 2
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "制作装备 Crafting Equipment",
+			x: 3.0d,
+			y: 3.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"在《流放者柯南》中，你可以制作装备。遇到困难时，不妨制作一些装备。制作的装备也遵循一个进阶系统。通常，来自更强大维度的装备适合更高等级。",
+				"更多信息请访问维基页面。"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;22],
+			dependency_requirement: "all_completed",
+			id: 36,
+			tasks: [
+				{
+					id: 37,
+					type: "item",
+					item: {
+						id: "minecraft:iron_helmet",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 38,
+					type: "item",
+					item: {
+						id: "minecraft:iron_chestplate",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 39,
+					type: "item",
+					item: {
+						id: "minecraft:iron_leggings",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 40,
+					type: "item",
+					item: {
+						id: "minecraft:iron_boots",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			],
+			rewards: [
+				{
+					id: 41,
+					type: "item",
+					item: {
+						id: "minecraft:iron_sword",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 42,
+					type: "item",
+					item: {
+						id: "minecraft:crossbow",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 1737,
+					type: "item",
+					title: "4500 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 4500
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "弓箭专精 (Archery Specialization)",
+			x: 6.0d,
+			y: 4.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["箭袋是Craft to Exile中用于存放箭的特殊物品。放置在箭袋中的箭会优先被使用。如果移除箭袋，其中的箭将自动倒入你的物品栏中。"],
+			min_required_dependencies: 0,
+			dependencies: [I;1948],
+			dependency_requirement: "all_completed",
+			id: 44,
+			tasks: [{
+				id: 45,
+				type: "item",
+				item: "quiver:quiver"
+			}],
+			rewards: [
+				{
+					id: 46,
+					type: "item",
+					item: {
+						id: "minecraft:arrow",
+						Count: 64b
+					}
+				},
+				{
+					id: 1740,
+					type: "item",
+					title: "4500 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 4500
+						}
+					}
+				},
+				{
+					id: 2491,
+					type: "item",
+					item: {
+						id: "mmorpg:loot_crate",
+						Count: 1b,
+						tag: {
+							REGISTRY_ID: "dexterity_req_crate",
+							LVL: 15,
+							SCORE: "GOOD",
+							TIER: 4
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "指引方向",
+			x: 0.0d,
+			y: 1.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"Waystones 是一款允许玩家使用传送石或卷轴在传送石之间传送的模组。它们会自然生成在世界各地的大型塔中。可以将传送石重命名或配置为全球传送石。",
+				"全局传送石可以跨维度传送。传送石允许你以一定代价传送到任何传送石。它的冷却时间比使用卷轴更长。"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;3],
+			dependency_requirement: "all_completed",
+			id: 48,
+			tasks: [{
+				id: 49,
+				type: "item",
+				item: {
+					id: "waystones:warp_stone",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}],
+			rewards: [
+				{
+					id: 50,
+					type: "item",
+					item: "minecraft:ender_pearl"
+				},
+				{
+					id: 1744,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 1000
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "召唤方面 (Summoning Aspect)",
+			x: 1.5d,
+			y: -3.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"完成此任务以解锁召唤任务标签页。Lycanites Mobs 的召唤功能在 Craft to Exile 中完全支持。召唤物将根据你的等级和伤害属性进行缩放。在 CtE 中，你只能召唤原始元素生物。",
+				"不过，可以同时召唤2个元素生物，让它们融合成一个更强大的元素生物。",
+				"按下生物图鉴（默认：G）可切换召唤栏中装备的元素，并长按法杖右键以打开召唤该元素的传送门。"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;2057],
+			dependency_requirement: "all_completed",
+			id: 57,
+			tasks: [{
+				id: 58,
+				type: "item",
+				item: {
+					id: "lycanitesmobs:sturdysummoningstaff",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}],
+			rewards: [
+				{
+					id: 1722,
+					type: "item",
+					title: "1500 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 1500
+						}
+					}
+				},
+				{
+					id: 2493,
+					type: "item",
+					item: {
+						id: "mmorpg:loot_crate",
+						Count: 1b,
+						tag: {
+							REGISTRY_ID: "weaponcrafter_crate",
+							LVL: 10,
+							SCORE: "GOOD",
+							TIER: 2
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "升级你的装备",
+			x: 3.0d,
+			y: 1.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["使用修改台，你可以用怪物掉落的货币来升级或重制装备。快制作一个吧！"],
+			min_required_dependencies: 0,
+			dependencies: [I;19],
+			dependency_requirement: "all_completed",
+			id: 60,
+			tasks: [{
+				id: 61,
+				type: "item",
+				item: "mmorpg:modify_station"
+			}],
+			rewards: [
+				{
+					id: 62,
+					type: "item",
+					item: {
+						id: "mmorpg:identify_tome",
+						Count: 8b
+					}
+				},
+				{
+					id: 1728,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 1500
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "嗡嗡虫地带",
+			icon: "minecraft:bee_nest",
+			x: 3.0d,
+			y: -1.5d,
+			shape: "rsquare",
+			subtitle: "可选的",
+			size: 1.0d,
+			description: [
+				"Craft to Exile 主要围绕一个维度进阶系统。虽然你可以待在主世界直到30级，但 Bumblezone 是14-18级的推荐区域。各维度的推荐等级如下：",
+				"主世界 (1-30), 嗡嗡区 (14-18), 下界 (16-26), 末地 (26-30), 阿图姆 (30-40), 安眠 (40-50), 热带与午夜 (50-58), 盖亚 (58-74), 地图 (30-99).",
+				"要前往蜜蜂区，向任意蜂巢投掷末影珍珠。你可以通过向下挖掘或爬到 Y = 256 以上离开蜜蜂区。",
+				"Bumblezone 是一个可选维度。如果你想跳过，不妨完成“绕远路”来进入下界！"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;10],
+			dependency_requirement: "all_completed",
+			id: 64,
+			tasks: [{
+				id: 247,
+				type: "dimension",
+				title: "访问维度：大黄蜂地带 (The Bumblezone)",
+				dimension: "the_bumblezone:bumblezone"
+			}],
+			rewards: [
+				{
+					id: 66,
+					type: "item",
+					item: {
+						id: "mmorpg:ore0",
+						Count: 10b
+					}
+				},
+				{
+					id: 1729,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 2500
+						}
+					}
+				},
+				{
+					id: 2101,
+					type: "item",
+					item: "calemiutils:coin_nickel"
+				},
+				{
+					id: 2631,
+					type: "item",
+					item: {
+						id: "mmorpg:loot_crate",
+						Count: 1b,
+						tag: {
+							REGISTRY_ID: "currency_crate",
+							LVL: 10,
+							SCORE: "GOOD",
+							TIER: 3
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "太.多.的.战.利.品.了.",
+			x: 4.5d,
+			y: 1.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["苦于囤积战利品？别担心！你可以制作一个 Salvage Station 将未使用的装备转化为矿石！注意：此功能不适用于合成装备。"],
+			min_required_dependencies: 0,
+			dependencies: [I;60],
+			dependency_requirement: "all_completed",
+			id: 68,
+			tasks: [{
+				id: 69,
+				type: "item",
+				item: "mmorpg:salvage_station"
+			}],
+			rewards: [
+				{
+					id: 70,
+					type: "item",
+					item: {
+						id: "minecraft:diamond",
+						Count: 3b
+					}
+				},
+				{
+					id: 1738,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 2250
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "还是太多了……",
+			x: 6.0d,
+			y: 1.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["你可以制作货币袋和装备袋，它们会自动帮你拾取货币和装备，同时提供额外的储物空间。在JEI中查看制作配方！"],
+			min_required_dependencies: 0,
+			dependencies: [I;68],
+			dependency_requirement: "all_completed",
+			id: 72,
+			tasks: [
+				{
+					id: 73,
+					type: "item",
+					item: "mmorpg:loot_bag"
+				},
+				{
+					id: 74,
+					type: "item",
+					item: "mmorpg:currency_bag"
+				}
+			],
+			rewards: [
+				{
+					id: 77,
+					type: "item",
+					item: {
+						id: "mmorpg:ore2",
+						Count: 3b
+					}
+				},
+				{
+					id: 1741,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 4000
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "大师背包",
+			x: 6.0d,
+			y: 3.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["将三种背包类型组合在一起，就能制作出大师背包！"],
+			min_required_dependencies: 0,
+			dependencies: [I;72],
+			dependency_requirement: "all_completed",
+			id: 75,
+			tasks: [{
+				id: 76,
+				type: "item",
+				item: "mmorpg:master_bag"
+			}],
+			rewards: [
+				{
+					id: 1742,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 10000
+						}
+					}
+				},
+				{
+					id: 2489,
+					type: "item",
+					item: {
+						id: "mmorpg:loot_crate",
+						Count: 1b,
+						tag: {
+							REGISTRY_ID: "currency_crate",
+							LVL: 20,
+							SCORE: "GOOD",
+							TIER: 3
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "我再也拿不动了",
+			x: -1.5d,
+			y: -1.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"有时候你只需要一个老派的旅行储物方案。你可以通过 Curios 装备背包，并用 V 键访问！",
+				"注意：背包在物品栏时不要切换到创造模式。这可能会导致背包清空！"
+			],
+			hide_dependency_lines: false,
+			min_required_dependencies: 0,
+			dependencies: [I;3],
+			dependency_requirement: "one_completed",
+			id: 91,
+			tasks: [{
+				id: 92,
+				type: "item",
+				item: "usefulbackpacks:backpack_small"
+			}],
+			rewards: [
+				{
+					id: 93,
+					type: "item",
+					item: "minecraft:diamond"
+				},
+				{
+					id: 1723,
+					type: "item",
+					title: "1500 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 1500
+						}
+					}
+				},
+				{
+					id: 2487,
+					type: "item",
+					item: {
+						id: "mmorpg:loot_crate",
+						Count: 1b,
+						tag: {
+							REGISTRY_ID: "jewerlycrafter_crate",
+							LVL: 10,
+							SCORE: "GOOD",
+							TIER: 2
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "盾之勇者",
+			x: 4.5d,
+			y: 3.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["在《Craft to Exile》中，急需用副手物品时可以制作盾牌。盾牌的制作流程大致为：盾牌 -> 蜂蜜水晶盾 -> 重型板甲盾 -> 岩菇盾。"],
+			min_required_dependencies: 0,
+			dependencies: [I;36],
+			dependency_requirement: "all_completed",
+			id: 424,
+			tasks: [{
+				id: 425,
+				type: "item",
+				item: {
+					id: "minecraft:shield",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}],
+			rewards: [
+				{
+					id: 679,
+					type: "item",
+					item: {
+						id: "mmorpg:ore1",
+						Count: 15b
+					}
+				},
+				{
+					id: 1730,
+					type: "item",
+					title: "2250 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 2250
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "储物解决方案",
+			x: -3.0d,
+			y: -1.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["Storage Drawers 是一款让整理战利品变得更容易的模组！使用储物抽屉来标记和自动整理物品，更多功能等你探索！访问维基了解 Storage Drawers 的全部功能！"],
+			min_required_dependencies: 0,
+			dependencies: [I;91],
+			dependency_requirement: "all_completed",
+			id: 426,
+			tasks: [{
+				id: 427,
+				type: "item",
+				item: "storagedrawers:oak_full_drawers_1"
+			}],
+			rewards: [
+				{
+					id: 677,
+					type: "item",
+					item: "storagedrawers:oak_half_drawers_1"
+				},
+				{
+					id: 1724,
+					type: "item",
+					title: "1875 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 1875
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "塞尔达传说：时之笛",
+			x: -3.0d,
+			y: 4.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["奥卡里纳是一种强大的套索类工具，可以制作。潜行并右键点击友方实体即可“认领”该实体。再次右键可将其带到你身边。此物品一次只能绑定一个实体！"],
+			min_required_dependencies: 0,
+			dependencies: [I;2330],
+			dependency_requirement: "all_completed",
+			id: 428,
+			tasks: [{
+				id: 429,
+				type: "item",
+				item: {
+					id: "dwmh:ocarina",
+					Count: 1b,
+					tag: {}
+				}
+			}],
+			rewards: [
+				{
+					id: 681,
+					type: "item",
+					item: "minecraft:saddle"
+				},
+				{
+					id: 1731,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 4500
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "水牛坐骑模组",
+			x: -3.0d,
+			y: 6.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"Bufflon 是由 Pandora's Creatures 引入的独特可骑生物。它们可以用在末地找到的特殊 Bufflon 鞍进行定制。不过，完成此任务后，会提供一个基础的 Bufflon 鞍给你。",
+				"布法隆可以在寒冷和冰雪生物群系中找到，并使用草药束来驯服。"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;428],
+			dependency_requirement: "all_completed",
+			id: 430,
+			tasks: [{
+				id: 431,
+				type: "item",
+				item: "pandoras_creatures:herb_bundle"
+			}],
+			rewards: [
+				{
+					id: 684,
+					type: "item",
+					item: "pandoras_creatures:bufflon_saddle"
+				},
+				{
+					id: 1732,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 7500
+						}
+					}
+				},
+				{
+					id: 2100,
+					type: "item",
+					item: "calemiutils:coin_nickel"
+				}
+			]
+		},
+		{
+			title: "为我指明道路",
+			x: 0.0d,
+			y: 3.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["卷轴是快速传送到传送石的好方法。它们是一次性的，但比传送石更便宜、更快。"],
+			min_required_dependencies: 0,
+			dependencies: [I;48],
+			dependency_requirement: "all_completed",
+			id: 432,
+			tasks: [{
+				id: 433,
+				type: "item",
+				item: "waystones:return_scroll",
+				count: 3L
+			}],
+			rewards: [
+				{
+					id: 686,
+					type: "item",
+					item: {
+						id: "minecraft:ender_pearl",
+						Count: 3b
+					}
+				},
+				{
+					id: 1745,
+					type: "item",
+					title: "3000 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 3000
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "指引我前往乳清所在之处",
+			x: 0.0d,
+			y: 4.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["传送卷轴是消耗品，能让你传送到一个路标点。你也可以使用传送石，但传送石的冷却时间长，使用成本也更高。"],
+			min_required_dependencies: 0,
+			dependencies: [I;432],
+			dependency_requirement: "all_completed",
+			id: 434,
+			tasks: [{
+				id: 435,
+				type: "item",
+				item: "waystones:warp_scroll",
+				count: 3L
+			}],
+			rewards: [
+				{
+					id: 688,
+					type: "item",
+					item: "waystones:bound_scroll"
+				},
+				{
+					id: 689,
+					type: "item",
+					item: {
+						id: "waystones:return_scroll",
+						Count: 5b
+					}
+				},
+				{
+					id: 1746,
+					type: "item",
+					title: "5000 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 5000
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "共享体验",
+			x: -3.0d,
+			y: 3.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["如果你无法传送回身体，我有解决办法！经验块是可合成的方块，可以储存经验。甚至可以与其他玩家共享！"],
+			min_required_dependencies: 0,
+			dependencies: [I;1686],
+			dependency_requirement: "all_completed",
+			id: 436,
+			tasks: [{
+				id: 437,
+				type: "item",
+				item: "globalxp:xp_block"
+			}],
+			rewards: [
+				{
+					id: 691,
+					type: "item",
+					item: {
+						id: "minecraft:experience_bottle",
+						Count: 10b
+					}
+				},
+				{
+					id: 1747,
+					type: "item",
+					title: "8000 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 8000
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "勇攀高峰",
+			x: -1.5d,
+			y: 4.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["厌倦了爬慢梯子或走上塔楼的路标？制作石梯更快登顶！升级你的石梯，速度再提升！！！"],
+			min_required_dependencies: 1,
+			dependencies: [I;432],
+			dependency_requirement: "all_completed",
+			id: 440,
+			tasks: [{
+				id: 441,
+				type: "item",
+				item: "speedyladders:stone_ladder",
+				count: 8L
+			}],
+			rewards: [
+				{
+					id: 1749,
+					type: "item",
+					title: "4000 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 4000
+						}
+					}
+				},
+				{
+					id: 2097,
+					type: "item",
+					item: "calemiutils:coin_nickel"
+				}
+			]
+		},
+		{
+			title: "生物图鉴 I",
+			icon: "minecraft:writable_book",
+			x: -3.0d,
+			y: 7.5d,
+			shape: "octagon",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"找到克苏鲁和远古守卫者并杀死它们！你将在主世界的海洋中找到它们。",
+				"要访问此任务，你必须完成第三幕的「末影龙」。"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;288],
+			dependency_requirement: "all_completed",
+			id: 442,
+			tasks: [
+				{
+					id: 2682,
+					type: "kill",
+					icon: "outvoted:kraken_tooth",
+					entity: "outvoted:kraken",
+					value: 2L
+				},
+				{
+					id: 2683,
+					type: "kill",
+					icon: "upgrade_aquatic:elder_eye",
+					entity: "minecraft:elder_guardian",
+					value: 3L
+				}
+			],
+			rewards: [
+				{
+					id: 696,
+					type: "item",
+					item: "mmorpg:lootbox/big_currency_lootbox_3"
+				},
+				{
+					id: 1750,
+					type: "item",
+					title: "200000 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 200000
+						}
+					}
+				},
+				{
+					id: 2105,
+					type: "item",
+					item: "calemiutils:coin_nickel"
+				}
+			]
+		},
+		{
+			title: "Beastiary II",
+			icon: "minecraft:writable_book",
+			x: -1.5d,
+			y: 7.5d,
+			shape: "octagon",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"Pandora's Creatures 为地表带来了独特的生物。其中之一是一种强大的蜘蛛迷你首领，可在平原或山地生物群系中找到。",
+				"杀死蜘蛛怪！",
+				"要访问此任务，你必须完成第三幕的「末影龙」。"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;288],
+			dependency_requirement: "all_completed",
+			id: 447,
+			tasks: [{
+				id: 448,
+				type: "kill",
+				icon: "pandoras_creatures:arachnon_crystal",
+				entity: "pandoras_creatures:arachnon",
+				value: 8L
+			}],
+			rewards: [
+				{
+					id: 698,
+					type: "item",
+					item: "mmorpg:lootbox/big_currency_lootbox_3"
+				},
+				{
+					id: 1751,
+					type: "item",
+					title: "200000 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 200000
+						}
+					}
+				},
+				{
+					id: 2104,
+					type: "item",
+					item: "calemiutils:coin_nickel"
+				}
+			]
+		},
+		{
+			title: "野性生物",
+			icon: "betteranimalsplus:feralwolfhead_red",
+			x: 0.0d,
+			y: -4.5d,
+			shape: "octagon",
+			subtitle: "",
+			size: 1.0d,
+			description: ["Better Animals Plus 带来了大量能与主世界融为一体的生物。你可能没注意到，其中许多生物可以被驯服和骑乘。"],
+			min_required_dependencies: 0,
+			dependencies: [I;1557],
+			dependency_requirement: "all_completed",
+			id: 449,
+			tasks: [{
+				id: 450,
+				type: "kill",
+				icon: "betteranimalsplus:feralwolfhead_brown",
+				entity: "betteranimalsplus:feralwolf",
+				value: 3L
+			}],
+			rewards: [
+				{
+					id: 2734,
+					type: "item",
+					item: {
+						id: "minecraft:bone",
+						Count: 4b
+					}
+				},
+				{
+					id: 2735,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 2000
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "生物图鉴 IV",
+			icon: "minecraft:writable_book",
+			x: 1.5d,
+			y: 7.5d,
+			shape: "octagon",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"Rotten Creatures 是一款以生物为中心的模组，为地表世界带来了强大的僵尸。如果你已经通关了 Beastiary I，可能已经遇到过一些了。",
+				"The Immortal 和 Deadbeard 是两个强大的僵尸首领。The Immortal 可在雷雨天的主世界找到，而 Deadbeard 则出现在沙滩群系中。注意：这两种首领的刷新率极低。",
+				"要访问此任务，你必须完成第三幕的「末影龙」。"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;288],
+			dependency_requirement: "all_completed",
+			id: 451,
+			tasks: [
+				{
+					id: 452,
+					type: "kill",
+					icon: "lycanitesmobs:lightballcharge",
+					entity: "rotten_creatures:inmortal",
+					value: 1L
+				},
+				{
+					id: 453,
+					type: "kill",
+					icon: {
+						id: "minecolonies:pirate_top",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					},
+					entity: "rotten_creatures:dead_beard",
+					value: 1L
+				}
+			],
+			rewards: [
+				{
+					id: 702,
+					type: "item",
+					item: "mmorpg:lootbox/big_currency_lootbox_3"
+				},
+				{
+					id: 1753,
+					type: "item",
+					title: "200000 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 200000
+						}
+					}
+				},
+				{
+					id: 2107,
+					type: "item",
+					item: "calemiutils:coin_nickel"
+				}
+			]
+		},
+		{
+			title: "生物图鉴 V",
+			icon: "minecraft:writable_book",
+			x: 3.0d,
+			y: 7.5d,
+			shape: "octagon",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"在末地的外围岛屿上，你会发现守护巨大结构的守卫者。但要小心，这些类哥斯拉的生物攻击力很强。",
+				"要访问此任务，你必须完成第三幕的「末影龙」。"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;288],
+			dependency_requirement: "all_completed",
+			id: 454,
+			tasks: [{
+				id: 455,
+				type: "kill",
+				icon: "endreborn:purpur_eye",
+				entity: "endreborn:endguard",
+				value: 5L
+			}],
+			rewards: [
+				{
+					id: 704,
+					type: "item",
+					item: "mmorpg:lootbox/big_currency_lootbox_3"
+				},
+				{
+					id: 1754,
+					type: "item",
+					title: "200000 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 200000
+						}
+					}
+				},
+				{
+					id: 2108,
+					type: "item",
+					item: "calemiutils:coin_nickel"
+				}
+			]
+		},
+		{
+			title: "生物图鉴 VI",
+			icon: "minecraft:writable_book",
+			x: 4.5d,
+			y: 7.5d,
+			shape: "octagon",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"这些怪异的生物可以在末地监狱中找到。小心……它们被关起来是有原因的。",
+				"要访问此任务，你必须完成第三幕的「末影龙」。"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;288],
+			dependency_requirement: "all_completed",
+			id: 456,
+			tasks: [{
+				id: 457,
+				type: "kill",
+				icon: "pandoras_creatures:end_troll_skin",
+				entity: "pandoras_creatures:end_troll",
+				value: 5L
+			}],
+			rewards: [
+				{
+					id: 706,
+					type: "item",
+					item: "mmorpg:lootbox/big_currency_lootbox_3"
+				},
+				{
+					id: 1755,
+					type: "item",
+					title: "200000 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 200000
+						}
+					}
+				},
+				{
+					id: 2109,
+					type: "item",
+					item: "calemiutils:coin_nickel"
+				}
+			]
+		},
+		{
+			title: "八条腿的生物",
+			icon: "minecraft:spider_eye",
+			x: 0.0d,
+			y: -1.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["在《Craft to Exile》中，有3种主要防御选项：护甲、闪避和魔法护盾。护甲能减少所受伤害，闪避能让你有机会完全躲避攻击，而魔法护盾则能增加你的生命总量。"],
+			min_required_dependencies: 0,
+			dependencies: [I;3],
+			hide: false,
+			dependency_requirement: "all_completed",
+			id: 1542,
+			tasks: [
+				{
+					id: 1543,
+					type: "kill",
+					icon: "minecraft:fermented_spider_eye",
+					entity: "minecraft:cave_spider",
+					value: 4L
+				},
+				{
+					id: 2720,
+					type: "kill",
+					icon: "minecraft:spider_eye",
+					entity: "minecraft:spider",
+					value: 4L
+				}
+			],
+			rewards: [
+				{
+					id: 1717,
+					type: "item",
+					title: "1000 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 1000
+						}
+					}
+				},
+				{
+					id: 2483,
+					type: "item",
+					item: {
+						id: "mmorpg:loot_crate",
+						Count: 1b,
+						tag: {
+							REGISTRY_ID: "armorcrafter_crate",
+							LVL: 5,
+							SCORE: "GOOD",
+							TIER: 2
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "双倍双倍辛劳与麻烦",
+			icon: "minecraft:cauldron",
+			x: 0.0d,
+			y: -3.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["旅途中，你会发现盾牌、火把和球体。这些是副手装备，能为你的角色提供增益。右键盾牌可以减少所受伤害。"],
+			min_required_dependencies: 0,
+			dependencies: [I;1542],
+			dependency_requirement: "all_completed",
+			id: 1557,
+			tasks: [{
+				id: 1558,
+				type: "kill",
+				icon: "minecraft:cauldron",
+				entity: "minecraft:witch",
+				value: 3L
+			}],
+			rewards: [
+				{
+					id: 1718,
+					type: "item",
+					title: "1250 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 1250
+						}
+					}
+				},
+				{
+					id: 2484,
+					type: "item",
+					item: {
+						id: "mmorpg:loot_crate",
+						Count: 1b,
+						tag: {
+							REGISTRY_ID: "jewerlycrafter_crate",
+							LVL: 5,
+							SCORE: "GOOD",
+							TIER: 2
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "走远一点的路总是好的",
+			icon: "extendednether:crimson_nylium",
+			x: 7.5d,
+			y: 0.0d,
+			shape: "rsquare",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"如果你还没去，就需要前往下界。下界是下一个区域，覆盖第18-26层。凋灵被视为此处的维度末影BOSS。",
+				"解锁此任务需要满足两个前置条件。"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;
+				1680,
+				72
+			],
+			dependency_requirement: "all_completed",
+			id: 1676,
+			tasks: [{
+				id: 1677,
+				type: "dimension",
+				title: "访问维度：下界 (The Nether)",
+				dimension: "minecraft:overworld"
+			}],
+			rewards: [
+				{
+					id: 1743,
+					type: "item",
+					title: "10000 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 10000
+						}
+					}
+				},
+				{
+					id: 2102,
+					type: "item",
+					item: "calemiutils:coin_quarter"
+				},
+				{
+					id: 2632,
+					type: "item",
+					item: {
+						id: "mmorpg:loot_crate",
+						Count: 1b,
+						tag: {
+							REGISTRY_ID: "currency_crate",
+							LVL: 10,
+							SCORE: "GOOD",
+							TIER: 5
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "犯下了一些错误",
+			icon: "mmorpg:alchemy/instant/misc/reset_talents",
+			x: 6.0d,
+			y: 0.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["重置药水可用于重新分配你的属性或技能！"],
+			min_required_dependencies: 0,
+			dependencies: [I;16],
+			dependency_requirement: "all_completed",
+			id: 1680,
+			tasks: [{
+				id: 1681,
+				type: "item",
+				item: "mmorpg:alchemy/instant/misc/remove_spell"
+			}],
+			rewards: [
+				{
+					id: 1682,
+					type: "item",
+					item: "mmorpg:alchemy/instant/misc/reset_stats"
+				},
+				{
+					id: 1683,
+					type: "item",
+					item: "mmorpg:alchemy/instant/misc/reset_spells"
+				},
+				{
+					id: 1685,
+					type: "item",
+					item: "mmorpg:alchemy/instant/misc/reset_talents"
+				},
+				{
+					id: 1719,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 2500
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "友谊地久天长（派对指南）",
+			icon: "telepass:gold_telepass",
+			x: -1.5d,
+			y: 1.5d,
+			shape: "heart",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"TelePass 与制作它们的玩家绑定。将它们给其他玩家，他们就能传送到你身边！",
+				"",
+				"想和玩家组队的话，可以用“/slash party”命令！这样你们就不会互相造成伤害，还能共享经验。事实上，组队还能让你获得更多经验！",
+				"目前还没有办法共享任务进度（但至少可以共享物品）。"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;3],
+			dependency_requirement: "all_completed",
+			id: 1686,
+			tasks: [{
+				id: 1698,
+				type: "item",
+				item: "telepass:gold_telepass"
+			}],
+			rewards: [
+				{
+					id: 1688,
+					type: "item",
+					item: "minecraft:ender_pearl"
+				},
+				{
+					id: 1735,
+					type: "item",
+					title: "500 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 500
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "Dank Storage",
+			x: -6.0d,
+			y: -1.5d,
+			shape: "gear",
+			subtitle: "",
+			size: 1.0d,
+			description: ["Dank Storage 方块用途广泛——可用作背包、箱子，甚至是工具！手持方块时使用 Dank 键查看更多。"],
+			min_required_dependencies: 0,
+			dependencies: [I;2117],
+			dependency_requirement: "all_completed",
+			id: 1689,
+			tasks: [{
+				id: 1690,
+				type: "item",
+				item: "dankstorage:dank_1"
+			}],
+			rewards: [
+				{
+					id: 1691,
+					type: "item",
+					item: {
+						id: "minecraft:leather",
+						Count: 4b
+					}
+				},
+				{
+					id: 1725,
+					type: "item",
+					title: "2000 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 2000
+						}
+					}
+				},
+				{
+					id: 2098,
+					type: "item",
+					item: "calemiutils:coin_nickel"
+				}
+			]
+		},
+		{
+			title: "收拾行囊，准备出发",
+			icon: "endermail:stamp",
+			x: -3.0d,
+			y: 1.5d,
+			shape: "heart",
+			subtitle: "",
+			size: 1.0d,
+			description: ["Endermail 可以让你将包裹发送到特定坐标。你需要在包裹上盖章，并使用控制器操作包裹。"],
+			min_required_dependencies: 0,
+			dependencies: [I;1686],
+			dependency_requirement: "all_completed",
+			id: 1692,
+			tasks: [
+				{
+					id: 1693,
+					type: "item",
+					item: "endermail:package"
+				},
+				{
+					id: 1694,
+					type: "item",
+					item: "endermail:stamp"
+				},
+				{
+					id: 1695,
+					type: "item",
+					item: {
+						id: "endermail:package_controller",
+						Count: 1b,
+						tag: {}
+					}
+				}
+			],
+			rewards: [
+				{
+					id: 1696,
+					type: "item",
+					item: {
+						id: "endermail:packing_tape",
+						Count: 2b
+					}
+				},
+				{
+					id: 1697,
+					type: "item",
+					item: {
+						id: "endermail:stamp",
+						Count: 2b
+					}
+				},
+				{
+					id: 1733,
+					type: "item",
+					title: "1000 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 1000
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "锁上它",
+			x: -4.5d,
+			y: 1.5d,
+			shape: "heart",
+			subtitle: "",
+			size: 1.0d,
+			description: ["末影邮箱有唯一的ID。寄送包裹时，你可以把它寄给某个玩家的邮箱！"],
+			min_required_dependencies: 0,
+			dependencies: [I;1692],
+			dependency_requirement: "all_completed",
+			id: 1699,
+			tasks: [{
+				id: 1700,
+				type: "item",
+				item: "endermail:locker"
+			}],
+			rewards: [
+				{
+					id: 1734,
+					type: "item",
+					title: "1000 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 1000
+						}
+					}
+				},
+				{
+					id: 2096,
+					type: "item",
+					item: "calemiutils:coin_penny"
+				}
+			]
+		},
+		{
+			title: "弗莱彻的天堂",
+			x: 4.5d,
+			y: 4.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["Apotheosis 为 [Dissonance] 带来了全新的升级箭台。它的制箭效率比普通工作台更高！"],
+			min_required_dependencies: 0,
+			dependencies: [I;36],
+			dependency_requirement: "all_completed",
+			id: 1948,
+			tasks: [{
+				id: 1949,
+				type: "item",
+				item: "minecraft:fletching_table"
+			}],
+			rewards: [
+				{
+					id: 1950,
+					type: "item",
+					title: "4000 经验值",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 4000
+						}
+					}
+				},
+				{
+					id: 2492,
+					type: "item",
+					item: {
+						id: "mmorpg:loot_crate",
+						Count: 1b,
+						tag: {
+							REGISTRY_ID: "dexterity_req_crate",
+							LVL: 15,
+							SCORE: "GOOD",
+							TIER: 4
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "Apotheosis",
+			x: 3.0d,
+			y: -3.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"Apotheosis 对附魔系统进行了全面革新。现在采用了一个使用三种属性的新附魔系统，取代了原有的单一属性系统。部分属性保持不变（Eterna 就是原有的附魔强度）。",
+				"Eterna 是控制你的附魔台等级的属性。",
+				"Quanta 决定了你的附魔过程中有多少能量。当你开始附魔并消耗经验后，你的 Quanta 等级会在幕后改变你的附魔等级。但这并不总是有利的，因为",
+				"能够同时提高和降低实际的附魔等级。",
+				"Arcana 决定了获得稀有附魔的难度。在 0% 时，适用基础的附魔稀有度规则，但随着 Arcana 的增加，稀有附魔会变得更常见，而普通附魔则会变得相当罕见。",
+				"它还带来了许多新附魔 - 查看维基了解更多详情！",
+				"注意：某些附魔与 Mine and Slash 的伤害系统不兼容。敬请注意！"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;2057],
+			dependency_requirement: "all_completed",
+			id: 1951,
+			tasks: [{
+				id: 1952,
+				type: "item",
+				item: "minecraft:enchanting_table"
+			}],
+			rewards: [
+				{
+					id: 1953,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 2500
+						}
+					}
+				},
+				{
+					id: 1957,
+					type: "item",
+					item: {
+						id: "minecraft:enchanted_book",
+						Count: 1b,
+						tag: {
+							StoredEnchantments: [{
+								lvl: 1s,
+								id: "apotheosis:icy_thorns"
+							}]
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "海底世界",
+			x: 4.5d,
+			y: -3.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ['每种书架都能为特定的附魔属性提供增益。各种物品的属性可见于其工具提示，也可在JEI中通过搜索“附魔属性”来查找。'],
+			min_required_dependencies: 0,
+			dependencies: [I;1951],
+			dependency_requirement: "all_completed",
+			id: 1954,
+			tasks: [{
+				id: 1955,
+				type: "item",
+				item: "apotheosis:seashelf",
+				count: 4L
+			}],
+			rewards: [{
+				id: 1956,
+				type: "item",
+				item: {
+					id: "mmorpg:give_exp",
+					Count: 1b,
+					tag: {
+						exp: 3250
+					}
+				}
+			}]
+		},
+		{
+			title: "我自愿作为贡品献上自己",
+			x: 6.0d,
+			y: -3.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"海祭坛是一个可以回收无价值附魔物品的方块。开始前，你需要四个附魔物品和大量经验。然后，将每个附魔物品放在柱子上（瞄准柱子并右键点击）",
+				"手持物品)。当所有四根柱子都放置了物品后，祭坛将开始从附近的玩家身上吸取经验值。",
+				"所需经验值取决于所提供的附魔的等级和稀有度。经验值消耗完毕后，所有四项物品将被消耗，并生成一本全新的附魔书。"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;1954],
+			dependency_requirement: "all_completed",
+			id: 1964,
+			tasks: [{
+				id: 1965,
+				type: "item",
+				item: "apotheosis:prismatic_altar"
+			}],
+			rewards: [
+				{
+					id: 1966,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 5000
+						}
+					}
+				},
+				{
+					id: 2099,
+					type: "item",
+					item: "calemiutils:coin_nickel"
+				},
+				{
+					id: 2486,
+					type: "item",
+					item: {
+						id: "mmorpg:loot_crate",
+						Count: 1b,
+						tag: {
+							REGISTRY_ID: "currency_crate",
+							LVL: 10,
+							SCORE: "GOOD",
+							TIER: 2
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "魔法！",
+			x: 1.5d,
+			y: -1.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"在 Craft to Exile [Dissonance] 中，你可以用 Atum 制作法杖！更多信息请查看 JEI。",
+				'你知道吗？把脏兮兮的权杖放在水里“清洗”一下，就能揭示它的真面目？'
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;7],
+			dependency_requirement: "all_completed",
+			id: 2057,
+			tasks: [{
+				id: 2058,
+				type: "item",
+				item: "atum:loot_dirty_scepter"
+			}],
+			rewards: [
+				{
+					id: 2059,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 1500
+						}
+					}
+				},
+				{
+					id: 2630,
+					type: "item",
+					item: {
+						id: "mmorpg:loot_crate",
+						Count: 1b,
+						tag: {
+							REGISTRY_ID: "intelligence_req_crate",
+							LVL: 10,
+							SCORE: "GOOD",
+							TIER: 3
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "（快）要超过9000了！",
+			x: -4.5d,
+			y: -1.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"Iron Chests 是一个提供海量存储空间的模组。泥土箱是一种独特的箱子，专门用于存放泥土，而且效果极佳！泥土箱还可以用来制作 Danks——一种独特的存储设备，不受普通物品 64 个堆叠的限制",
+				"不要申请！"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;426],
+			dependency_requirement: "all_completed",
+			id: 2117,
+			tasks: [{
+				id: 2118,
+				type: "item",
+				item: "ironchest:dirt_chest"
+			}],
+			rewards: [{
+				id: 2121,
+				type: "item",
+				title: "500 经验值",
+				item: {
+					id: "mmorpg:give_exp",
+					Count: 1b,
+					tag: {
+						exp: 500
+					}
+				}
+			}]
+		},
+		{
+			title: "铁质箱子",
+			x: -3.0d,
+			y: -3.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["Iron Chests 是一款基于进度系统的储物模组。在 [Dissonance] 中，铁质箱子易于制作，是前期储物安全的解决方案。"],
+			min_required_dependencies: 0,
+			dependencies: [I;426],
+			dependency_requirement: "all_completed",
+			id: 2119,
+			tasks: [{
+				id: 2120,
+				type: "item",
+				item: "ironchest:iron_chest"
+			}],
+			rewards: [{
+				id: 2122,
+				type: "item",
+				title: "500 经验值",
+				item: {
+					id: "mmorpg:give_exp",
+					Count: 1b,
+					tag: {
+						exp: 500
+					}
+				}
+			}]
+		},
+		{
+			title: "与万物合为一体",
+			x: -1.5d,
+			y: 3.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"自然罗盘是定位群系的好工具。随着众多群系的加入，随机找到目标变得困难！",
+				"同样，结构指南针能让你找到任何结构！"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;432],
+			dependency_requirement: "all_completed",
+			id: 2330,
+			tasks: [
+				{
+					id: 2331,
+					type: "item",
+					item: {
+						id: "naturescompass:naturescompass",
+						Count: 1b,
+						tag: {}
+					}
+				},
+				{
+					id: 2748,
+					type: "item",
+					item: "structurescompass:structures_compass"
+				}
+			],
+			rewards: [{
+				id: 2332,
+				type: "item",
+				item: {
+					id: "mmorpg:give_exp",
+					Count: 1b,
+					tag: {
+						exp: 3000
+					}
+				}
+			}]
+		},
+		{
+			title: "贪得无厌的饥饿者",
+			icon: {
+				id: "create:sand_paper",
+				Count: 1b,
+				tag: {
+					Damage: 0
+				}
+			},
+			x: -1.5d,
+			y: -3.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"大饥荒是一种在沙漠和沼泽中出现的生物，对付起来会非常令人沮丧。它能消耗物品及其附魔，甚至会从玩家正在穿戴的装备上移除附魔！",
+				"小心这些生物，它们很危险。"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;1557],
+			dependency_requirement: "all_completed",
+			id: 2706,
+			tasks: [{
+				id: 2707,
+				type: "kill",
+				entity: "outvoted:hunger",
+				value: 4L
+			}],
+			rewards: [
+				{
+					id: 2708,
+					type: "item",
+					item: {
+						id: "minecraft:smooth_sandstone",
+						Count: 12b
+					}
+				},
+				{
+					id: 2709,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 1250
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "战利品过滤器",
+			x: 3.0d,
+			y: 4.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"厌倦了翻找一堆垃圾普通装备？有了拾荒袋，拾取时就能立刻按你选的稀有度来拾荒！要配置袋子，就拿着袋子右键它",
+				"将想要过滤的稀有度物品放在副手。若想自动拾取普通及以下稀有度的符文，请在副手持一个普通符文，并用背包右键！"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;22],
+			dependency_requirement: "all_completed",
+			id: 2710,
+			tasks: [{
+				id: 2711,
+				type: "item",
+				item: "mmorpg:auto_salvage_bag0"
+			}],
+			rewards: [
+				{
+					id: 2712,
+					type: "item",
+					item: "mmorpg:alchemy/instant/misc/reset_stats"
+				},
+				{
+					id: 2713,
+					type: "item",
+					item: "mmorpg:ore2"
+				},
+				{
+					id: 2714,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 5000
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "生物图鉴 III",
+			icon: "minecraft:writable_book",
+			x: 0.0d,
+			y: 7.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"霜织者是寒冷生物群系中的霜蜘蛛。当你被它们的投射蛛网困住时，就说明你找到它们了！",
+				"要访问此任务，你必须完成第三幕的「末影龙」。"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;288],
+			dependency_requirement: "all_completed",
+			id: 2725,
+			tasks: [{
+				id: 2742,
+				type: "kill",
+				icon: "lycanitesmobs:frostweb",
+				entity: "lycanitesmobs:frostweaver",
+				value: 16L
+			}],
+			rewards: [
+				{
+					id: 2731,
+					type: "item",
+					item: "mmorpg:lootbox/big_currency_lootbox_3"
+				},
+				{
+					id: 2732,
+					type: "item",
+					item: "calemiutils:coin_nickel"
+				},
+				{
+					id: 2733,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 200000
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "腐坏的生物",
+			icon: "betteranimalsplus:wolf_pelt_snowy",
+			x: 1.5d,
+			y: -4.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["Rotten Creatures 带来了许多新的主世界生物——大多是僵尸。在雪地群系中寻找腐烂的爱斯基摩人，在沼泽中寻找沼泽怪，还有更多！"],
+			min_required_dependencies: 0,
+			dependencies: [I;449],
+			dependency_requirement: "all_completed",
+			id: 2728,
+			tasks: [
+				{
+					id: 2729,
+					type: "kill",
+					icon: "betteranimalsplus:wolf_pelt_snowy",
+					entity: "rotten_creatures:eskimo",
+					value: 3L
+				},
+				{
+					id: 2730,
+					type: "kill",
+					icon: "minecraft:stick",
+					entity: "rotten_creatures:spear_eskimo",
+					value: 3L
+				}
+			],
+			rewards: [
+				{
+					id: 2736,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 2000
+						}
+					}
+				},
+				{
+					id: 2739,
+					type: "item",
+					item: {
+						id: "mmorpg:loot_crate",
+						Count: 1b,
+						tag: {
+							REGISTRY_ID: "currency_crate",
+							LVL: 10,
+							SCORE: "BAD",
+							TIER: 1
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "倒影",
+			icon: "minecraft:white_stained_glass_pane",
+			x: -1.5d,
+			y: 0.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"传言说，有一个主世界的镜像世界……",
+				"有人说，用九格罂粟花，再围上石砖就能进入其中...",
+				"他们说用骨粉可以激活传送门，但他们还说你必须保持蹲伏状态……",
+				"注意：主世界镜像维度应与主世界相同。但是，你无法在此维度中建立殖民地！"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;3],
+			dependency_requirement: "all_completed",
+			id: 2743,
+			tasks: [{
+				id: 2744,
+				type: "dimension",
+				dimension: "overworldmirror:dimension"
+			}],
+			rewards: [
+				{
+					id: 2745,
+					type: "item",
+					item: {
+						id: "minecraft:iron_ore",
+						Count: 4b
+					}
+				},
+				{
+					id: 2746,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 500
+						}
+					}
+				}
+			]
+		}
+	]
+}
