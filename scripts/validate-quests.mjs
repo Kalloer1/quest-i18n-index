@@ -85,9 +85,17 @@ export function validatePair(enFiles, zhFiles, { layout = LAYOUT.EMBEDDED, label
   }
 
   // SNBT 结构：英文源与产出都必须可解析、可序列化。
+  //
+  // 例外：**纯 NUL 文件等同空文件**，跳过。
+  // 实测（2026-10-22，`create-cogs-cataclysm`）：重下两次后仍有 3 个 `.snbt`
+  // 大小 565/291/474 字节但内容全是 0x00 —— 上游作者写坏的。这类文件没有
+  // 任何可翻译文本，重下治不好它；判红只会让整批闸门红着。
+  // 注意判据收得很窄：只有「去掉 NUL 后为空」才算，真损坏（有内容但结构错）仍判红。
+  const isPureNul = (text) => String(text ?? '').replace(/\u0000/g, '').trim() === ''
   const parseAll = (files, kind) => {
     const map = new Map()
     for (const f of files) {
+      if (isPureNul(f.text)) continue
       try {
         const root = parse(f.text)
         serialize(root) // 可序列化性也属验收

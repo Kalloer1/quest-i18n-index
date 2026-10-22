@@ -16,7 +16,7 @@ import {
 import { parse } from './snbt.mjs'
 import { readFileSync } from 'node:fs'
 import { fetchRetry } from './lib/fetch-retry.mjs'
-import { repairUnclosedStringLists } from './lib/snbt-repair.mjs'
+import { repairUnclosedStringLists, repairKeyInsideList } from './lib/snbt-repair.mjs'
 
 // ---------- format-codes ----------
 
@@ -259,4 +259,58 @@ test('fetchRetry：所有尝试都失败则抛出最后一次错误', async () =
     await assert.rejects(() => fetchRetry('https://x/y', {}, 3, 60_000, 1), /fetch failed/)
     assert.equal(n, 3, '应尝试 tries 次')
   })
+})
+
+// ---------- snbt-repair：列表里混进键值对 ----------
+// 实测（2026-10-22，realms-of-reverie 的 en_us.snbt 第 165 行）：
+// `quest_desc: [` 开了列表，紧接着却是一整行 `quest.XXX.title: "..."`，
+// 列表元素位置出现了键值对 —— 结构非法，解析器报「无法解析的值：":"」。
+// 这是与「忘了收尾 "]"」不同的第三种损坏形态：**列表里混进了一个键值对**。
+//
+// 正确语义：那个 title 是**同级**的另一个键，不该被吞进列表里。
+// 修法是把它移到列表闭合之后。
+
+test('repairKeyInsideList：列表里混进的键值对挪到列表外，列表照常闭合', () => {
+  const bad = [
+    '{',
+    '\tquest.A.quest_desc: [',
+    '\tquest.A.title: "&4The Dark Tower"',
+    '\t\t"The tower looms in the dark forest."',
+    '\t\t""',
+    '\t\t"Bring tears."',
+    '\t]',
+    '}',
+  ].join('\n')
+  const { text, repaired } = repairKeyInsideList(bad)
+  assert.equal(repaired.length, 1)
+  assert.equal(repaired[0].key, 'quest.A.title')
+  // 修完必须能解析
+  const root = parse(text).value
+  const byKey = Object.fromEntries(root.entries.map((e) => [e.key.value, e.value]))
+  assert.equal(byKey['quest.A.title'].value, '&4The Dark Tower', 'title 必须是字符串值，不能丢')
+  assert.equal(byKey['quest.A.quest_desc'].type, 'list', 'quest_desc 必须仍是列表')
+  assert.deepEqual(byKey['quest.A.quest_desc'].items.map((it) => it.value.value),
+    ['The tower looms in the dark forest.', '', 'Bring tears.'],
+    '列表内容不得被 title 行污染')
+})
+
+test('repairKeyInsideList：正常文件一字不动', () => {
+  const ok = [
+    '{',
+    '\tquest.A.quest_desc: [',
+    '\t\t"line one"',
+    '\t\t"line two"',
+    '\t]',
+    '\tquest.A.title: "Hello"',
+    '}',
+  ].join('\n')
+  const { text, repaired } = repairKeyInsideList(ok)
+  assert.equal(repaired.length, 0)
+  assert.equal(text, ok)
+})
+
+test('repairKeyInsideList：列表里只有正常字符串时不误判', () => {
+  const ok = '{\n\tquest.A.quest_desc: ["a: b", "c: d"]\n}'
+  const { repaired } = repairKeyInsideList(ok)
+  assert.equal(repaired.length, 0)
 })

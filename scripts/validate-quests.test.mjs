@@ -198,3 +198,40 @@ test('失败：原文 \& 数量多于译文裸 & 时仍判畸形（不许凭空�
   const r = validatePair(en, zh, { layout: LAYOUT.SEPARATE_SINGLE })
   assert.ok(r.problems.some((p) => p.includes('畸形色码')), '多出的裸 & 应判畸形')
 })
+
+// ---- 纯 NUL 文件：上游写坏的空文件，不是「损坏的结构」 ----
+//
+// 实测（2026-10-22，create-cogs-cataclysm）：重下两次后仍有 3 个 .snbt
+// 大小分别 565 / 291 / 474 字节，但**内容全是 0x00**。大小对、内容空，
+// 是上游作者用某种工具写坏的。这类文件没有任何可翻译文本，
+// 判红只会让整批闸门红着，而重下治不好它。
+// 口径：纯 NUL（去掉 NUL 后为空）等同于空文件 —— 跳过校验，不判失败。
+
+const NUL_TEXT = '\u0000'.repeat(565)
+
+test('纯 NUL 文件等同空文件：跳过校验，不判「不可解析」', () => {
+  const en = [{ name: 'chapters/a.snbt', text: '{ title: "Hello &aWorld" }' }]
+  const zh = [
+    { name: 'chapters/a.snbt', text: '{ title: "你好 &a世界" }' },
+    { name: 'chapters/empty.snbt', text: NUL_TEXT },
+  ]
+  const r = validatePair(en, zh, { layout: LAYOUT.EMBEDDED })
+  assert.deepEqual(r.problems, [], '纯 NUL 文件不应判失败')
+})
+
+test('英文源是纯 NUL 时也不判失败（上游坏文件不该拖死整包）', () => {
+  const en = [
+    { name: 'chapters/a.snbt', text: '{ title: "Hello" }' },
+    { name: 'chapters/broken.snbt', text: NUL_TEXT },
+  ]
+  const zh = [{ name: 'chapters/a.snbt', text: '{ title: "你好" }' }]
+  const r = validatePair(en, zh, { layout: LAYOUT.EMBEDDED })
+  assert.deepEqual(r.problems, [])
+})
+
+test('真正损坏（有内容但结构错）仍判失败 —— 跳过只针对纯 NUL', () => {
+  const en = [{ name: 'chapters/a.snbt', text: '{ title: "Hello" }' }]
+  const zh = [{ name: 'chapters/a.snbt', text: '{ title: "未闭合 }' }]
+  const r = validatePair(en, zh, { layout: LAYOUT.EMBEDDED })
+  assert.ok(r.problems.some((p) => p.includes('不可解析')))
+})

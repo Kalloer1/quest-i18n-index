@@ -76,3 +76,73 @@ export function repairUnclosedStringLists(text) {
   if (!repaired.length) return { text: src, repaired: [] }
   return { text: out.join(eol), repaired }
 }
+
+/**
+ * 修复另一种上游损坏：**列表里混进了一个键值对**。
+ *
+ * 实测（2026-10-22，`realms-of-reverie` 的 `en_us.snbt` 第 165 行）：
+ *
+ * ```
+ *   quest.252DDDBC5923DE1E.quest_desc: [
+ *   quest.252DDDBC5923DE1E.title: "&4The Dark Tower"     ← 键值对出现在列表元素位置
+ *       "The &4Dark Tower&r looms in the dark forest…"
+ *       ""
+ *       "Bring your fiery tears: she has many."
+ *   ]
+ * ```
+ *
+ * 列表元素位置只能是值，出现 `key:` 就是结构非法。解析器把它当成裸 token 读到 `:`
+ * 时报「无法解析的值：\":\"」。
+ *
+ * **正确语义**：那个 `title` 是同级键，本该在列表**之后**。所以修法是把这一行
+ * 移到列表闭合行之后，而不是删掉它（删掉就是丢内容）。
+ *
+ * 判据收窄到三条，避免误伤：
+ *   1. 当前行以 `key: [` 结尾（列表在这个位置打开，元素从下一行开始）；
+ *   2. 下一非空行是 `key:` 形式的键值对（不是字符串、不是 `]`）；
+ *   3. 从该处向后能找到与之配对的闭合 `]` 行。
+ *
+ * @param {string} text
+ * @returns {{text: string, repaired: Array<{line: number, key: string}>}}
+ */
+export function repairKeyInsideList(text) {
+  const src = String(text ?? '')
+  if (!src.includes(DQ)) return { text: src, repaired: [] }
+  const eol = src.includes('\r\n') ? '\r\n' : '\n'
+  const lines = src.split(/\r?\n/)
+  const out = []
+  const repaired = []
+  const OPENS_LIST = /^\s*[A-Za-z0-9_.\-]+:\s*\[\s*$/
+  const KEY_LINE_ONLY = /^\s*[A-Za-z0-9_.\-]+:\s/
+  const CLOSES_LIST = /^\s*\]\s*$/
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i]
+    if (!OPENS_LIST.test(line)) { out.push(line); continue }
+    // 找下一非空行
+    let j = i + 1
+    while (j < lines.length && !lines[j].trim()) j++
+    const next = lines[j]
+    if (next === undefined || !KEY_LINE_ONLY.test(next)) { out.push(line); continue }
+    // 找与该 `[` 配对的闭合 `]` 行
+    let k = j + 1
+    while (k < lines.length && !CLOSES_LIST.test(lines[k])) k++
+    if (k >= lines.length) { out.push(line); continue }
+    // 收窄判据 2 的补充：中间不得再出现别的 `key: [` 打开新列表
+    // （那样说明我们对齐错了层级，宁可不动）
+    let nested = false
+    for (let m = j + 1; m < k; m++) if (OPENS_LIST.test(lines[m])) { nested = true; break }
+    if (nested) { out.push(line); continue }
+
+    // 执行：列表内容 = j+1..k-1；把第 j 行挪到 k 之后
+    out.push(line)
+    for (let m = j + 1; m < k; m++) out.push(lines[m])
+    out.push(lines[k])
+    out.push(next)
+    const key = next.trim().slice(0, next.trim().indexOf(':'))
+    repaired.push({ line: j + 1, key })
+    i = k // 跳过已处理区间（next 已搬走）
+  }
+  if (!repaired.length) return { text: src, repaired: [] }
+  return { text: out.join(eol), repaired }
+}

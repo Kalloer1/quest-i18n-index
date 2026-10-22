@@ -51,7 +51,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, rmdirSync, rmSync, st
 import { fileURLToPath } from 'node:url'
 import { dirname, join, relative } from 'node:path'
 import { extractFromBuffer, isQuestFile, toOutputPath } from './extract-pack.mjs'
-import { repairUnclosedStringLists } from './lib/snbt-repair.mjs'
+import { repairUnclosedStringLists, repairKeyInsideList } from './lib/snbt-repair.mjs'
 import { classifyLayout } from './lib/candidates.mjs'
 import { resolveLatestMrpack } from './lib/modrinth.mjs'
 import { fetchZipTexts, listZip } from './lib/zip-range.mjs'
@@ -282,7 +282,9 @@ function writeQuestTexts(files, outDir) {
 }
 
 /**
- * 落盘后修一遍上游源文件里「忘了收尾 `"]`」的损坏（见 lib/snbt-repair.mjs）。
+ * 落盘后修一遍上游源文件里的结构损坏（见 lib/snbt-repair.mjs）：
+ *   ① 「忘了收尾 `"]`」
+ *   ② 列表里混进键值对（`quest_desc: [` 后紧跟 `quest.X.title: …`）
  *
  * 为什么在落盘后统一修、而不是在两条写盘路各写一遍：Range 路（`writeQuestTexts`）
  * 与整包路（`extractFromBuffer`）写的是同一批文件，修一处覆盖两条路。
@@ -301,14 +303,17 @@ function repairSources(slug, outDir, written, log) {
     const dest = join(outDir, rel)
     if (!existsSync(dest)) continue
     const before = readFileSync(dest, 'utf8')
-    const { text, repaired } = repairUnclosedStringLists(before)
+    // 两种损坏可能同时存在（实测 realms-of-reverie 只有第二种），依次修。
+    const a = repairUnclosedStringLists(before)
+    const b = repairKeyInsideList(a.text)
+    const repaired = [...a.repaired, ...b.repaired]
     if (!repaired.length) continue
-    writeFileSync(dest, text)
+    writeFileSync(dest, b.text)
     files++
     for (const r of repaired.slice(0, 3)) keys.push(`${rel}::${r.key}`)
   }
   if (files) {
-    log(`[${slug}] 修正上游源文件的未闭合 [" ：${files} 个文件（${keys.slice(0, 3).join('、')}${keys.length > 3 ? ' …' : ''}）`)
+    log(`[${slug}] 修正上游源文件的结构损坏：${files} 个文件（${keys.slice(0, 3).join('、')}${keys.length > 3 ? ' …' : ''}）`)
   }
   return files
 }
