@@ -1,0 +1,136 @@
+# AI 初翻，未人工校对
+{
+	id: "67EC7FC0F24E1E23"
+	group: "357818B443F9748C"
+	order_index: 5
+	filename: "animal_tamer"
+	title: "动物驯养师"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "驯服卡普钦猴 Capuchin Monkey"
+			x: 0.0d
+			y: 0.0d
+			subtitle: "跟随、游荡、攻击和坐在肩膀上"
+			description: [
+				"与其他在丛林中生活的灵长类动物一样，卷尾猴喜欢吃香蕉，可以用香蕉来驯服它们。被驯服的卷尾猴比其他生物（如狼）更高级，能够跟随、停留和漫游，并且能使用远程和近战攻击。它们还可以骑在主人的肩膀上，并从那里向目标投掷石头进行攻击。"
+				""
+				"卷尾猴可以吃各种其他物品。喂食鸡蛋可以治愈它们，也可以用蛆来繁殖。偶尔，它们吃香蕉时会掉落香蕉皮。这些香蕉皮可以用来制作一道名为“Sopa De Macaco”的独特菜肴。"
+				""
+				"有了远古飞镖，它们就能获得穿透攻击，无视护甲，无视抗性直接对目标造成伤害。"
+			]
+			id: "5DCE41D31152328B"
+			tasks: [
+				{
+					id: "188E7C706602F69C"
+					type: "item"
+					title: "获取4个香蕉"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "forge:crops/banana"
+						}
+					}
+					count: 4L
+				}
+				{
+					id: "63C3E41AD86AD50E"
+					type: "observation"
+					title: "用4-5个香蕉驯服卡普钦猴"
+					icon: "alexsmobs:spawn_egg_capuchin_monkey"
+					timer: 3L
+					observe_type: 5
+					to_observe: "alexsmobs:capuchin_monkey"
+				}
+			]
+			rewards: [{
+				id: "60D452D1A8BC1987"
+				type: "random"
+				table_id: 6433163600064979277L
+			}]
+		}
+		{
+			title: "用蛆虫来繁殖猴子"
+			x: 1.5d
+			y: 0.0d
+			subtitle: "你需要幼虫 (Maggots)"
+			description: ["杀死苍蝇时会掉落，或被喂食了红石鸭嘴兽挖掘出来"]
+			dependencies: ["5DCE41D31152328B"]
+			id: "68A29330C5BAE1BD"
+			tasks: [{
+				id: "46E6D00B945171F8"
+				type: "item"
+				item: "alexsmobs:maggot"
+			}]
+			rewards: [{
+				id: "320AE2A666C2B0C9"
+				type: "random"
+				table_id: 6433163600064979277L
+			}]
+		}
+		{
+			title: "找到一个远古飞镖（Ancient Dart）"
+			x: 1.5d
+			y: -1.0d
+			subtitle: "把这个给你的猴子，让它发起攻击"
+			dependencies: ["5DCE41D31152328B"]
+			id: "62E796355F63AA85"
+			tasks: [{
+				id: "7B545F4F8F84E887"
+				type: "item"
+				item: "alexsmobs:ancient_dart"
+			}]
+			rewards: [{
+				id: "118E083C6DC8FC0A"
+				type: "item"
+				item: "alexsmobs:ancient_dart"
+			}]
+		}
+		{
+			x: 0.0d
+			y: 1.5d
+			subtitle: "驯服物品 = 宇宙之杖（在另一个任务中找到）"
+			description: ["Cosmaws 是飞行生物，外形酷似石炭纪的稀有生物 Tullimonstrum。它们是中立生物，栖息于末地，可以被驯服。喂食它们 Cosmic Cod 即可驯服它们，让它们跟随你，它们对于穿越末地维度非常有用。虽然无法骑乘，但它们能用长鼻子抓住你，把你放到最近的末地岛屿上，从而防止你坠入虚空。"]
+			id: "09AB6962C302CB31"
+			tasks: [{
+				id: "5271D37D7B104321"
+				type: "observation"
+				title: "驯服一只宇宙之翼生物"
+				icon: "alexsmobs:spawn_egg_cosmaw"
+				timer: 100L
+				observe_type: 5
+				to_observe: "alexsmobs:cosmaw"
+			}]
+			rewards: [{
+				id: "7B23C6D2C3046BD1"
+				type: "random"
+				table_id: 2573245064785096990L
+			}]
+		}
+		{
+			x: 0.0d
+			y: 3.0d
+			subtitle: "种植 Foliaath 种子，看着它在原地攻击你的敌人"
+			description: ["杀死Foliaath后即可获得种子，这是前置任务"]
+			dependencies: ["22ABD96DC2D48468"]
+			id: "258F04149673A74E"
+			tasks: [{
+				id: "362E58ACB43DD433"
+				type: "observation"
+				title: "创造你的宝宝福利亚斯怪物植物"
+				icon: "mowziesmobs:foliaath_seed"
+				timer: 50L
+				observe_type: 5
+				to_observe: "mowziesmobs:baby_foliaath"
+			}]
+			rewards: [{
+				id: "20CAC4B1A282669E"
+				type: "item"
+				item: "chancecubes:chance_cube"
+			}]
+		}
+	]
+	quest_links: [ ]
+}

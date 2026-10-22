@@ -1,0 +1,181 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "island"
+	group: "79D719DA3CD355B5"
+	icon: {
+		Count: 1b
+		id: "inventorypets:pet_house"
+		tag: {
+			Damage: 0
+		}
+	}
+	id: "281FD4081FA5ACD4"
+	images: [
+		{
+			alpha: 50
+			click: ""
+			corner: false
+			dev: false
+			height: 6.0d
+			hover: [ ]
+			image: "bloodmagic:models/alchemyarrays/voidsigil"
+			order: 10
+			rotation: 0.0d
+			width: 6.0d
+			x: -4.5d
+			y: 0.5d
+		}
+		{
+			click: ""
+			corner: false
+			dev: false
+			height: 80.0d
+			hover: [ ]
+			image: "skilltree:textures/screen/skill_tree_background.png"
+			rotation: 0.0d
+			width: 80.0d
+			x: -4.5d
+			y: -2.5d
+		}
+	]
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			can_repeat: true
+			dependencies: ["118E575EA28556D5"]
+			description: [
+				"如果你还没有岛屿，可以使用此任务来自动创建一个新岛屿。"
+				""
+				"或者："
+				"你可以使用 \"/skyblock create\"。这将创建一个团队，并且指定的玩家将被添加到新团队中"
+			]
+			hide: true
+			icon: {
+				Count: 1b
+				id: "inventorypets:pet_house"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "15268C6FC6C6C201"
+			rewards: [{
+				auto: "enabled"
+				command: "/execute as @p run skyblock manage teams createAndJoin"
+				elevate_perms: true
+				exclude_from_claim_all: true
+				id: "4F7E37CD2B65718B"
+				ignore_reward_blocking: true
+				team_reward: true
+				type: "command"
+			}]
+			tasks: [{
+				id: "6BB538B716891820"
+				title: "点击以创建岛屿"
+				type: "checkmark"
+			}]
+			title: "创建一个新岛屿"
+			x: -4.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["15268C6FC6C6C201"]
+			description: ["使用 /skyblock manage teams delete <name> 来删除指定名称的岛屿。"]
+			icon: {
+				Count: 1b
+				id: "irons_spellbooks:scroll"
+				tag: {
+					ISB_spell: {
+						id: "irons_spellbooks:acupuncture"
+						level: 1
+					}
+				}
+			}
+			id: "25C282C3D60A580E"
+			title: "删除岛屿"
+			x: -4.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["15268C6FC6C6C201"]
+			description: [
+				"你可以使用 /skyblock visit <island> 来访问岛屿。"
+				""
+				"启用访客模式："
+				"使用 /skyblock team allowVisits 可查看岛屿当前访问状态，使用 /skyblock team allowVisits <true/false> 可启用/禁用。新岛屿默认为 false"
+			]
+			icon: {
+				Count: 1b
+				id: "irons_spellbooks:scroll"
+				tag: {
+					ISB_spell: {
+						id: "irons_spellbooks:acupuncture"
+						level: 1
+					}
+				}
+			}
+			id: "09464E5A96CA1702"
+			title: "离开岛屿"
+			x: -3.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["15268C6FC6C6C201"]
+			description: [
+				"如果你当前不在任何队伍中，可以使用 /skyblock join <island> 向所有队伍发送加入请求。"
+				""
+				"这将向团队发送请求，团队中的每个玩家都可以接受或拒绝你的请求。"
+				""
+				"团队中的每个成员都可以使用 /skyblock team accept <player> 来接受指定的玩家。这将把该玩家传送到你的岛屿上。"
+				""
+				"你也可以使用 /skyblock team deny <player> 来拒绝请求。"
+			]
+			icon: {
+				Count: 1b
+				id: "irons_spellbooks:scroll"
+				tag: {
+					ISB_spell: {
+						id: "irons_spellbooks:acupuncture"
+						level: 1
+					}
+				}
+			}
+			id: "281A9BC24C797017"
+			title: "加入岛屿中"
+			x: -4.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["15268C6FC6C6C201"]
+			description: [
+				"邀请用户："
+				"邀请用户 团队中的每个人都可以邀请其他玩家。"
+				"为此，你可以使用 /skyblock invite <player>。这将向指定的玩家发送邀请。"
+				"只有没有加入任何队伍的玩家可以被邀请。"
+				""
+				"正在接受邀请："
+				"所有持有邀请的人都可以接受邀请。"
+				"只有在没有加入任何队伍的情况下才能接受邀请。"
+				"为此，请使用命令 /skyblock accept <island>。"
+				"你也可以使用命令 /skyblock decline <island> 来拒绝邀请"
+			]
+			icon: {
+				Count: 1b
+				id: "irons_spellbooks:scroll"
+				tag: {
+					ISB_spell: {
+						id: "irons_spellbooks:acupuncture"
+						level: 1
+					}
+				}
+			}
+			id: "22F713A3F7839688"
+			title: "邀请你前往一个岛屿"
+			x: -6.5d
+			y: 0.5d
+		}
+	]
+	title: "岛屿工具包"
+}
