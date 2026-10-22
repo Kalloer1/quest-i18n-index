@@ -1,0 +1,925 @@
+# AI 初翻，未人工校对
+{
+	id: "34C369ABB3D5C129"
+	group: "258B5ED587988A28"
+	order_index: 7
+	filename: "modular_routers"
+	title: "模块化路由器 (Modular Routers)"
+	icon: "modularrouters:item_router"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: 1.5d
+			y: -2.5d
+			shape: "gear"
+			description: [
+				"模块化路由器是系统的核心：它有一个物品缓冲槽、九个模块槽和五个升级槽。"
+				""
+				"模块化路由器有一个单格物品缓冲器。"
+			]
+			hide_dependency_lines: true
+			dependencies: [
+				"676FFA9DD41D1C7B"
+				"3F05D033EBD0710D"
+			]
+			size: 2.0d
+			id: "0D75699BDE7C982E"
+			tasks: [{
+				id: "37FB8D5265226670"
+				type: "item"
+				item: "modularrouters:item_router"
+				count: 4L
+			}]
+			rewards: [{
+				id: "479B48665DAC81F8"
+				type: "item"
+				item: "modularrouters:item_router"
+				count: 2
+			}]
+		}
+		{
+			x: -0.5d
+			y: 2.5d
+			description: [
+				"此模块尝试破坏模块配置方向上路由器相邻的方块。"
+				""
+				"大多数方块都可以被破坏，但硬度为不可破坏的方块和任何流体方块都无法被破坏。"
+				""
+				"如果方块被破坏，其主要掉落物将被吸入物品路由器的缓冲区。"
+			]
+			dependencies: ["676FFA9DD41D1C7B"]
+			id: "28CA5D182909F7FC"
+			tasks: [{
+				id: "122B8B9ECC5F8977"
+				type: "item"
+				item: {
+					id: "modularrouters:breaker_module"
+					Count: 1b
+					tag: {
+						modularrouters: {
+							ModuleFilter: { }
+							Direction: "NONE"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "0ED7C24DE518B4FA"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: 0.5d
+			y: 2.5d
+			description: [
+				"此模块并不直接操作物品，而是检测路由器缓冲区中的特定物品。"
+				""
+				"如果缓冲区内容匹配模块的过滤器，路由器将在配置的方向（若未配置则为所有方向）发出红石信号。"
+				""
+				"信号强度（默认：15）和信号类型（默认：弱）可通过模块GUI进行调整。"
+			]
+			dependencies: ["676FFA9DD41D1C7B"]
+			id: "027466EE4BD38EEF"
+			tasks: [{
+				id: "2E56DE1F31D33BB8"
+				type: "item"
+				item: {
+					id: "modularrouters:detector_module"
+					Count: 1b
+					tag: {
+						modularrouters: {
+							StrongSignal: 0b
+							SignalLevel: 15
+							ModuleFilter: { }
+							Direction: "NONE"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "59EE0A8833218E92"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: 1.5d
+			y: 2.5d
+			description: [
+				"此模块尝试将路由器缓冲区中的物品作为物品实体掉落至世界中。"
+				""
+				"掉落物将出现在路由器相邻的、模块所配置的方向上。"
+				""
+				"物品实体将以零速度放置，与原版投掷器给物品添加恼人的随机速度不同。"
+			]
+			dependencies: ["676FFA9DD41D1C7B"]
+			id: "2BFC5D50E48EF8D8"
+			tasks: [{
+				id: "35FB2391DED9CC52"
+				type: "item"
+				item: {
+					id: "modularrouters:dropper_module"
+					Count: 1b
+					tag: {
+						modularrouters: {
+							ModuleFilter: { }
+							Direction: "NONE"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "05FD433E837A9561"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: 2.5d
+			y: 2.5d
+			description: [
+				"此模块会朝其配置的方向，将一排方块（来自路由器的缓冲区）伸出或收回。"
+				""
+				"默认情况下，当路由器有红石信号时，模块会伸出方块，没有信号时则缩回，但可以通过添加红石增强模块来定制此行为。"
+				""
+				"使用此模组，可以建造大型可延伸的桥梁和门洞。"
+			]
+			dependencies: ["676FFA9DD41D1C7B"]
+			id: "28F234B9F2B2B93A"
+			tasks: [{
+				id: "6B35F3D57CAC8D29"
+				type: "item"
+				item: {
+					id: "modularrouters:extruder_module_1"
+					Count: 1b
+					tag: {
+						modularrouters: {
+							ModuleFilter: { }
+							Direction: "NONE"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "628FD6E3FAB4BDCC"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: 3.5d
+			y: 2.5d
+			description: ["该模块的行为与 Extruder Module Mk1 类似，但存在一些重要差异。"]
+			dependencies: ["676FFA9DD41D1C7B"]
+			id: "30F94CD5C9186245"
+			tasks: [{
+				id: "0BEB7C0B4C0F22EA"
+				type: "item"
+				item: {
+					id: "modularrouters:extruder_module_2"
+					Count: 1b
+					tag: {
+						modularrouters: {
+							ModuleFilter: { }
+							Direction: "NONE"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "585EB8F406592642"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: -0.5d
+			y: 3.5d
+			description: [
+				"此模块的行为与投掷器模块相同，但不同的是，它还会赋予投掷物品一个可配置的初速度，使其可能被抛出相当远的距离。"
+				""
+				"你可以通过模块的GUI来调整物品的速度、俯仰和偏航。"
+			]
+			dependencies: ["676FFA9DD41D1C7B"]
+			id: "5E3C7C319AA21AB8"
+			tasks: [{
+				id: "635AA9DAA716EC5E"
+				type: "item"
+				item: {
+					id: "modularrouters:flinger_module"
+					Count: 1b
+					tag: {
+						modularrouters: {
+							Pitch: 0.0f
+							Speed: 0.0f
+							ModuleFilter: { }
+							Direction: "NONE"
+							Yaw: 0.0f
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "6366E986E444D3B2"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: 0.5d
+			y: 3.5d
+			description: [
+				"物品路由器无法直接处理流体，但如果缓冲区中有流体容器物品，它们就能操控流体。"
+				""
+				"这包括水桶和其他模组添加的任何流体容器。"
+			]
+			dependencies: ["676FFA9DD41D1C7B"]
+			id: "1F5088B13A188C32"
+			tasks: [{
+				id: "4C9432CE15CBDCE3"
+				type: "item"
+				item: {
+					id: "modularrouters:fluid_module"
+					Count: 1b
+					tag: {
+						modularrouters: {
+							FluidDir: 0b
+							MaxTransfer: 1000
+							ModuleFilter: { }
+							Direction: "NONE"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "5EB142BBD3C2455F"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: 1.5d
+			y: 3.5d
+			dependencies: ["676FFA9DD41D1C7B"]
+			id: "042BDF95EE0DD27A"
+			tasks: [{
+				id: "219B9A6C08E69900"
+				type: "item"
+				item: {
+					id: "modularrouters:fluid_module_2"
+					Count: 1b
+					tag: {
+						modularrouters: {
+							FluidDir: 0b
+							MaxTransfer: 1000
+							ModuleFilter: { }
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "52987B9FCFF98FD9"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: 2.5d
+			y: 3.5d
+			description: ["此模块尝试将路由器缓冲区中的物品作为方块放置在路由器旁，方向由模块配置决定。"]
+			dependencies: ["676FFA9DD41D1C7B"]
+			id: "749CE006BFD3624F"
+			tasks: [{
+				id: "1E4EE6FE76564CA5"
+				type: "item"
+				item: {
+					id: "modularrouters:placer_module"
+					Count: 1b
+					tag: {
+						modularrouters: {
+							ModuleFilter: { }
+							Direction: "NONE"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "5AAE9DF82A3D2170"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: 3.5d
+			y: 3.5d
+			description: [
+				"此模块尝试在路由器与玩家的个人物品栏之间传输物品。"
+				""
+				"玩家可以位于任何维度的任何地方，这使得该模组相当强大。"
+			]
+			dependencies: ["676FFA9DD41D1C7B"]
+			id: "611066ADE407DAD4"
+			tasks: [{
+				id: "32111E96180312BA"
+				type: "item"
+				item: {
+					id: "modularrouters:player_module"
+					Count: 1b
+					tag: {
+						modularrouters: {
+							ModuleFilter: { }
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "359ABE3B68CA53E9"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: -0.5d
+			y: 4.5d
+			description: [
+				"此模块尝试从相邻物品栏的指定方向，将第一个符合条件的物品拉入路由器的缓冲区。"
+				""
+				"如果缓冲区已满或包含与物品栏中无物品可堆叠的物品，则不会拉取任何东西。"
+			]
+			dependencies: ["676FFA9DD41D1C7B"]
+			id: "6E9E01E19C83C325"
+			tasks: [{
+				id: "22FE2151667B1768"
+				type: "item"
+				item: {
+					id: "modularrouters:puller_module_1"
+					Count: 1b
+					tag: {
+						modularrouters: {
+							ModuleFilter: { }
+							Direction: "NONE"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "4B1A9C24BFB9BCC9"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: 0.5d
+			y: 4.5d
+			dependencies: ["676FFA9DD41D1C7B"]
+			id: "48DAD3838D78299B"
+			tasks: [{
+				id: "0B040E9AC743F964"
+				type: "item"
+				item: {
+					id: "modularrouters:puller_module_2"
+					Count: 1b
+					tag: {
+						modularrouters: {
+							ModuleFilter: { }
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "0274D48C78CBC7B6"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: 1.5d
+			y: 4.5d
+			description: ["此模块尝试将物品从路由器的缓冲区发送到模块配置方向上的一个物品栏。"]
+			dependencies: ["676FFA9DD41D1C7B"]
+			id: "50E7C3F442BE8CB1"
+			tasks: [{
+				id: "052513AD3C99A718"
+				type: "item"
+				item: {
+					id: "modularrouters:sender_module_1"
+					Count: 1b
+					tag: {
+						modularrouters: {
+							ModuleFilter: { }
+							Direction: "NONE"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "75E225B89730FF5E"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: 2.5d
+			y: 4.5d
+			description: ["这个更强大的发送模块试图将物品从路由器的缓冲区发送到附近的物品栏。"]
+			dependencies: ["676FFA9DD41D1C7B"]
+			id: "4A79A2DDD3191FDD"
+			tasks: [{
+				id: "65E799FE23C1102F"
+				type: "item"
+				item: {
+					id: "modularrouters:sender_module_2"
+					Count: 1b
+					tag: {
+						modularrouters: {
+							ModuleFilter: { }
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "544C4444988FFCB7"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: 3.5d
+			y: 4.5d
+			description: [
+				"这款顶级发送器模块与 Mk2 发送器非常相似，但可以向任何维度中的任何物品栏发送物品，没有任何限制！"
+				""
+				"注意：目标物品栏必须处于加载状态；Modular Routers 不会为你执行此操作。"
+			]
+			dependencies: ["676FFA9DD41D1C7B"]
+			id: "752DEFE1FA398569"
+			tasks: [{
+				id: "1CA987BCEEA8281E"
+				type: "item"
+				item: {
+					id: "modularrouters:sender_module_3"
+					Count: 1b
+					tag: {
+						modularrouters: {
+							ModuleFilter: { }
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "0ABB7BC7ABB0CABF"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: 1.0d
+			y: 5.5d
+			description: ["此模块会扫描路由器周围13x13x13立方区域内的掉落物品，并在可能时将其吸入路由器的缓冲区。"]
+			dependencies: ["676FFA9DD41D1C7B"]
+			id: "7ACE8A5366B2C8E7"
+			tasks: [{
+				id: "2BB4594E91D09C65"
+				type: "item"
+				item: {
+					id: "modularrouters:vacuum_module"
+					Count: 1b
+					tag: {
+						modularrouters: {
+							ModuleFilter: { }
+							Direction: "NONE"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "5B4BB22BCBFE42D8"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: 2.0d
+			y: 5.5d
+			description: [
+				"这个危险的模组会永久销毁路由器缓冲区中的物品！"
+				""
+				"强烈建议通过白名单配置此模块，以防止意外删除贵重物品..."
+			]
+			dependencies: ["676FFA9DD41D1C7B"]
+			id: "77AEF0D577609696"
+			tasks: [{
+				id: "4DD858A4FEF5A7B1"
+				type: "item"
+				item: {
+					id: "modularrouters:void_module"
+					Count: 1b
+					tag: {
+						modularrouters: {
+							ModuleFilter: { }
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "7DB9B0EE685F333C"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: 7.5d
+			y: 2.5d
+			description: [
+				"此增强模块只能添加到真空模块上。"
+				""
+				"它能让真空模块忽略拾取掉落物品的正常延迟——玩家掉落为40个游戏刻，其他方式掉落为10个游戏刻，一看到物品就能拾取。"
+			]
+			dependencies: ["2D14CB33B5AAAA1E"]
+			id: "073ACB80546C43F4"
+			tasks: [{
+				id: "2A210C5DBC352D1E"
+				type: "item"
+				item: "modularrouters:fast_pickup_augment"
+			}]
+			rewards: [{
+				id: "5E18113A52449766"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: 8.5d
+			y: 2.5d
+			description: [
+				"此增强模块只能添加到 Dropper 和 Flinger 模块上。"
+				""
+				"可堆叠；每添加一个增强，拾取掉落/投掷物品的延迟将增加10个游戏刻（0.5秒）。"
+				"例如，如果你不想让玩家误拾附近的掉落物品，这可能会很有用。"
+			]
+			dependencies: ["2D14CB33B5AAAA1E"]
+			id: "42EE3A0124C64E5F"
+			tasks: [{
+				id: "53C96650D0FA84C8"
+				type: "item"
+				item: "modularrouters:pickup_delay_augment"
+			}]
+			rewards: [{
+				id: "1543E09DCB096AC0"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: 9.5d
+			y: 2.5d
+			description: [
+				"此增强模块可添加至任何模块。通常，模块在路由器运行时无条件执行。"
+				""
+				"不过，如果将此增强添加到模块中，该模块可以定义自己的红石行为；模块的GUI中会添加一个额外的按钮来控制此功能。"
+			]
+			dependencies: ["2D14CB33B5AAAA1E"]
+			id: "35BA016AB3DD849A"
+			tasks: [{
+				id: "0445186C0DDA7190"
+				type: "item"
+				item: "modularrouters:redstone_augment"
+			}]
+			rewards: [{
+				id: "46878E93BDCCE318"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: 6.5d
+			y: 2.5d
+			description: [
+				"调节器增强组件可精确控制发送到或从物品栏或路由器缓冲区中取出的物品数量。"
+				""
+				"当模块激活了调节器增强后，你将在其GUI中看到一个额外的数字文本框，用于配置限制。"
+				""
+				"模块的提示文本也会显示该限制。"
+			]
+			dependencies: ["2D14CB33B5AAAA1E"]
+			id: "372036272877DEBD"
+			tasks: [{
+				id: "59FD0AADA6B378D0"
+				type: "item"
+				item: "modularrouters:regulator_augment"
+			}]
+			rewards: [{
+				id: "44DFA59C7D59886A"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: 7.5d
+			y: 3.5d
+			description: [
+				"此增强模块可添加至任何具有范围的模块（Sender Mk1/Mk2、Puller Mk1/Mk2、Extruder Mk1/Mk2、Vacuum）。"
+				""
+				"可堆叠；每个增强模块都会使该模块的范围减少一个方块。"
+				"这可能只有在与真空模块配合使用时才有用，以控制其扫描物品的范围。"
+			]
+			dependencies: ["2D14CB33B5AAAA1E"]
+			id: "701F48A7B4FCDEE5"
+			tasks: [{
+				id: "6F2960E57F2419F3"
+				type: "item"
+				item: "modularrouters:range_down_augment"
+			}]
+			rewards: [{
+				id: "041457E63F0FC83E"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: 8.5d
+			y: 3.5d
+			description: [
+				"此增强模块可添加至任何具有范围的模块（Sender Mk1/Mk2、Puller Mk1/Mk2、Extruder Mk1/Mk2、Vacuum）。"
+				""
+				"可堆叠；每个增幅器都将使模块的射程增加一个方块。"
+			]
+			dependencies: ["2D14CB33B5AAAA1E"]
+			id: "5F2D574381FCC1A1"
+			tasks: [{
+				id: "7305B4F205837BE8"
+				type: "item"
+				item: "modularrouters:range_up_augment"
+			}]
+			rewards: [{
+				id: "317FDF69472A5D03"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: 9.5d
+			y: 3.5d
+			description: [
+				"此增强模块只能添加到真空模块上。"
+				""
+				"添加此增强模块后，真空模块将吸收经验球而非物品。"
+				"光球将按每瓶 7XP 的比率转换为附魔瓶"
+			]
+			dependencies: ["2D14CB33B5AAAA1E"]
+			id: "79A216B15E9CE449"
+			tasks: [{
+				id: "5F3E94D77E986165"
+				type: "item"
+				item: "modularrouters:xp_vacuum_augment"
+			}]
+			rewards: [{
+				id: "2A3C1C39E672D86A"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: 6.5d
+			y: 3.5d
+			description: [
+				"此模块可添加到任何处理物品（而非方块或流体）的模块中。"
+				""
+				"为模块添加堆叠增强器可增加其每刻处理的物品数量；每个堆叠增强器使物品数量翻倍，最多不超过该物品的自然堆叠上限（大多数物品为64）。"
+			]
+			dependencies: ["2D14CB33B5AAAA1E"]
+			id: "4EAA50100BB956DD"
+			tasks: [{
+				id: "6A69EA5E97AC2A8E"
+				type: "item"
+				item: "modularrouters:stack_augment"
+			}]
+			rewards: [{
+				id: "19FA4795469D36EC"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: -3.5d
+			y: 2.5d
+			description: ["此升级使路由器完全免疫爆炸伤害，也免疫被首领生物摧毁。"]
+			dependencies: ["4B9C3FF93FF9C045"]
+			id: "2A5A043966490A80"
+			tasks: [{
+				id: "5B33FCFDF23540D4"
+				type: "item"
+				item: "modularrouters:blast_upgrade"
+			}]
+			rewards: [{
+				id: "714A6D5556E3B7F4"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: -4.5d
+			y: 2.5d
+			description: [
+				"此升级可将路由器伪装成其他方块。潜行+右键模块，将模块放置于方块上以记录该方块至伪装升级中。"
+				""
+				"插入路由器后，该路由器将呈现出所记录方块的外观。"
+			]
+			dependencies: ["4B9C3FF93FF9C045"]
+			id: "5094EA0D3FD3FA55"
+			tasks: [{
+				id: "3679A61A4DFD9F2B"
+				type: "item"
+				item: "modularrouters:camouflage_upgrade"
+			}]
+			rewards: [{
+				id: "04D5A8E28464CCE9"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: -5.5d
+			y: 2.5d
+			description: [
+				"此升级仅影响流体模块（Fluid Module）。"
+				"它将物品路由器的整体流体传输速率在基础速率 50mB/刻的基础上增加 10mB/刻，最高可达 400mB/刻。"
+				""
+				"因此，路由器中流体传输升级的最大有效数量为35。"
+			]
+			dependencies: ["4B9C3FF93FF9C045"]
+			id: "75734DF9AF03F150"
+			tasks: [{
+				id: "78C152CCF69F06E1"
+				type: "item"
+				item: "modularrouters:fluid_upgrade"
+			}]
+			rewards: [{
+				id: "28FCB257A972AC74"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: -6.5d
+			y: 2.5d
+			description: ["此升级可用于抑制物品路由器产生的声音和粒子效果，如果嘈杂的模块经常在玩家常待的地方运行，会很有用。"]
+			dependencies: ["4B9C3FF93FF9C045"]
+			id: "7DA1F44463B1E740"
+			tasks: [{
+				id: "62A454C3E87219D5"
+				type: "item"
+				item: "modularrouters:muffler_upgrade"
+			}]
+			rewards: [{
+				id: "3F2783EBDBCAE5CB"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: -5.5d
+			y: 3.5d
+			description: [
+				"插入此升级后，将限制可以打开路由器GUI的玩家。"
+				""
+				"默认情况下，它只允许制作升级的玩家使用。"
+			]
+			dependencies: ["4B9C3FF93FF9C045"]
+			id: "60C757015216A3D8"
+			tasks: [{
+				id: "29B1B6698CBF62AF"
+				type: "item"
+				item: "modularrouters:security_upgrade"
+			}]
+			rewards: [{
+				id: "6369164771CF8739"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: -3.5d
+			y: 3.5d
+			description: [
+				"默认情况下，路由器每 20 个服务器计时器更新一次，即每秒一次。"
+				""
+				"在每个游戏循环中，所有已安装的模块都会按从左到右的顺序依次执行。"
+			]
+			dependencies: ["4B9C3FF93FF9C045"]
+			id: "6B9D2DA31BE870B1"
+			tasks: [{
+				id: "1AE1C0EDE1C93B29"
+				type: "item"
+				item: "modularrouters:speed_upgrade"
+			}]
+			rewards: [{
+				id: "1E05A344D3AA5F48"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: -4.5d
+			y: 3.5d
+			description: ["路由器中的模块一次只处理一个物品：例如，发送器模块会从路由器的缓冲区中发送单个物品，无论缓冲区中有多少物品。"]
+			dependencies: ["4B9C3FF93FF9C045"]
+			id: "366259D585136795"
+			tasks: [{
+				id: "1FB984480DF2B505"
+				type: "item"
+				item: "modularrouters:stack_upgrade"
+			}]
+			rewards: [{
+				id: "3FB54A395C6AD7BB"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: -6.5d
+			y: 3.5d
+			description: [
+				"此升级用于确保两个或多个路由器同时运行。"
+				""
+				"同步升级的调节值为 0 .. 19（即比基础路由器 20 的滴答率少 1）。"
+				""
+				"右键单击同步升级可打开其GUI来设置此调节值，或按住潜行键右键单击升级可快速将其设为随机值。"
+			]
+			dependencies: ["4B9C3FF93FF9C045"]
+			id: "7641B274574E1F06"
+			tasks: [{
+				id: "7638A24498700653"
+				type: "item"
+				item: "modularrouters:sync_upgrade"
+			}]
+			rewards: [{
+				id: "542C33E55D7CF25D"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: 1.5d
+			y: 0.5d
+			shape: "octagon"
+			dependencies: ["088D692E25F62BFD"]
+			size: 1.5d
+			id: "676FFA9DD41D1C7B"
+			tasks: [{
+				id: "57E2989D4AD2906B"
+				type: "item"
+				item: "modularrouters:blank_module"
+				count: 6L
+			}]
+			rewards: [{
+				id: "03FE63E6EA25D861"
+				type: "item"
+				item: "modularrouters:blank_module"
+				count: 6
+			}]
+		}
+		{
+			x: -5.0d
+			y: 0.5d
+			shape: "octagon"
+			dependencies: ["088D692E25F62BFD"]
+			size: 1.5d
+			id: "4B9C3FF93FF9C045"
+			tasks: [{
+				id: "426DBCA45B308CBA"
+				type: "item"
+				item: "modularrouters:blank_upgrade"
+				count: 4L
+			}]
+			rewards: [{
+				id: "49B3C6EB8741566C"
+				type: "item"
+				item: "modularrouters:blank_upgrade"
+				count: 4
+			}]
+		}
+		{
+			x: 8.0d
+			y: 0.5d
+			shape: "octagon"
+			dependencies: ["088D692E25F62BFD"]
+			size: 1.5d
+			id: "2D14CB33B5AAAA1E"
+			tasks: [{
+				id: "4A0E3F3067B44AF0"
+				type: "item"
+				item: "modularrouters:augment_core"
+				count: 4L
+			}]
+			rewards: [{
+				id: "3AEC9EFC5CE8A16A"
+				type: "item"
+				item: "modularrouters:augment_core"
+				count: 4
+			}]
+		}
+	]
+}

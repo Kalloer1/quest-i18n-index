@@ -1,0 +1,534 @@
+# AI 初翻，未人工校对
+{
+	id: "20C2584FEB4665AE"
+	group: "09D95AA2ECEC2884"
+	order_index: 5
+	filename: "edimensional_dungeons"
+	title: "&e维度地牢 (Dimensional Dungeons)"
+	icon: "dimdungeons:block_portal_keyhole"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "正在组装传送门"
+			x: 0.5d
+			y: 2.5d
+			subtitle: "你的第一个传送门"
+			description: ["建造你的第一个传送门。你可以在指南书中找到说明。"]
+			dependencies: ["24BC7EFC805D1E61"]
+			id: "3F52FE03D556A2BE"
+			tasks: [
+				{
+					id: "005E965E239EDEC6"
+					type: "item"
+					item: "dimdungeons:block_gilded_portal"
+					count: 2L
+				}
+				{
+					id: "5CDCE69E6F3B72F8"
+					type: "item"
+					item: "dimdungeons:block_portal_keyhole"
+				}
+				{
+					id: "3AB74EF9C12AA946"
+					type: "item"
+					item: "minecraft:stone_bricks"
+					count: 9L
+				}
+			]
+			rewards: [{
+				id: "7297995349A21F64"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			x: 0.5d
+			y: 1.0d
+			subtitle: "正在激活钥匙"
+			description: ["要刻写钥匙，请将其用于末地传送门框架的孔洞中。如果所有框架都已镶嵌末影之眼，你可以用钥匙将其打破。这不会关闭末地传送门。"]
+			dependencies: ["3F52FE03D556A2BE"]
+			id: "36A5A4DE364D9FD7"
+			tasks: [
+				{
+					id: "38C99C292D210B9B"
+					type: "item"
+					item: "dimdungeons:item_portal_key"
+				}
+				{
+					id: "10D3E1288DB7BCB7"
+					type: "advancement"
+					advancement: "dimdungeons:dungeons/activate_basic_key"
+					criterion: ""
+				}
+			]
+			rewards: [{
+				id: "523F82239933F278"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			title: "你的第一个地牢"
+			x: 0.5d
+			y: -0.5d
+			subtitle: "一场全新的冒险正在等待着你"
+			description: ["探索你的第一个地牢。注意：你不能破坏或放置方块，也不能从物品展示框和盔甲架上取走物品。有些房间可能看起来一样，但实际不同。还要注意寻找秘密，其中一些需要末影珍珠。"]
+			dependencies: ["36A5A4DE364D9FD7"]
+			id: "0DB480261CBD275E"
+			tasks: [{
+				id: "334124A390B53814"
+				type: "dimension"
+				icon: "dimdungeons:block_portal_keyhole"
+				dimension: "dimdungeons:dungeon_dimension"
+			}]
+			rewards: [{
+				id: "421B6553A793A6BA"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			x: -1.0d
+			y: -3.5d
+			subtitle: "秘密探测器"
+			description: ["在维度地牢中罕见发现。可用于在维度地牢中寻找未开启的宝箱。"]
+			dependencies: ["0DB480261CBD275E"]
+			id: "2E113F1EBBBD79B6"
+			tasks: [{
+				id: "4CACD631C078E2C1"
+				type: "item"
+				item: "dimdungeons:item_secret_bell"
+			}]
+			rewards: [
+				{
+					id: "1B025E778DD3CC6F"
+					type: "item"
+					item: "minecraft:netherite_scrap"
+				}
+				{
+					id: "71E350A37B07DAD7"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+		{
+			x: 2.0d
+			y: -3.5d
+			subtitle: "在家中刻写钥匙的配方"
+			description: ["在维度地牢中罕见发现。可用于激活钥匙，类似于末地传送门框架。只能使用3次。"]
+			dependencies: ["0DB480261CBD275E"]
+			id: "435FC4431BBEAAFF"
+			tasks: [{
+				id: "0C9E8458C61691A5"
+				type: "item"
+				item: "dimdungeons:block_key_charger"
+			}]
+			rewards: [
+				{
+					id: "6E92E59EBA52D652"
+					type: "item"
+					item: "minecraft:netherite_scrap"
+				}
+				{
+					id: "370CCC598B9DE0A0"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+		{
+			x: 0.0d
+			y: -2.5d
+			subtitle: "升级传送门"
+			description: ["要进入高级地牢，你需要升级传送门。将皇冠方块放置在基石的左右两侧，并在镀金方块上放置紫色或白色的旗帜。"]
+			dependencies: ["0DB480261CBD275E"]
+			id: "2873C9E3671DF9E1"
+			tasks: [{
+				id: "00094F79E5653021"
+				type: "item"
+				item: "dimdungeons:block_portal_crown"
+				count: 2L
+			}]
+			rewards: [
+				{
+					id: "52D5506FCDC91B6E"
+					type: "item"
+					item: "minecraft:netherite_scrap"
+					count: 2
+				}
+				{
+					id: "741BDF0200D09840"
+					type: "item"
+					item: "minecraft:purple_banner"
+					count: 2
+				}
+				{
+					id: "070651234A8F0A89"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+		{
+			x: -1.0d
+			y: -4.5d
+			subtitle: "..."
+			description: ["你找到了一个奖杯。总共有 8 个。把它们全部收集起来吧。"]
+			hide_dependency_lines: true
+			dependencies: ["0DB480261CBD275E"]
+			optional: true
+			secret: true
+			id: "52D91BE4EEB3F0F3"
+			tasks: [{
+				id: "4A25CBE173188AC8"
+				type: "item"
+				item: "dimdungeons:item_trophy_1"
+			}]
+			rewards: [
+				{
+					id: "7A15E9B2C4100CB2"
+					type: "item"
+					item: "minecraft:netherite_scrap"
+					count: 2
+				}
+				{
+					id: "5AFE2E40C382EDB2"
+					type: "xp_levels"
+					xp_levels: 10
+				}
+			]
+		}
+		{
+			x: -1.0d
+			y: -5.5d
+			subtitle: "..."
+			description: ["你找到了一个奖杯。共有8个。收集它们全部。"]
+			hide_dependency_lines: true
+			dependencies: ["0DB480261CBD275E"]
+			optional: true
+			secret: true
+			id: "7533E2113E89C53F"
+			tasks: [{
+				id: "578C753443C6232C"
+				type: "item"
+				item: "dimdungeons:item_trophy_2"
+			}]
+			rewards: [
+				{
+					id: "034FF7B37B7CE16C"
+					type: "item"
+					item: "minecraft:netherite_scrap"
+					count: 2
+				}
+				{
+					id: "056FBF4A62C00789"
+					type: "xp_levels"
+					xp_levels: 10
+				}
+			]
+		}
+		{
+			x: -1.0d
+			y: -6.5d
+			subtitle: "..."
+			description: ["你找到了一个奖杯。总共有 8 个。把它们全部收集起来吧。"]
+			hide_dependency_lines: true
+			dependencies: ["0DB480261CBD275E"]
+			optional: true
+			secret: true
+			id: "6161C9BC6F433201"
+			tasks: [{
+				id: "1BB13AB954A9B52B"
+				type: "item"
+				item: "dimdungeons:item_trophy_3"
+			}]
+			rewards: [
+				{
+					id: "469AD08609C67186"
+					type: "item"
+					item: "minecraft:netherite_scrap"
+					count: 2
+				}
+				{
+					id: "1547FAA4674FB1B3"
+					type: "xp_levels"
+					xp_levels: 10
+				}
+			]
+		}
+		{
+			x: 0.0d
+			y: -7.0d
+			subtitle: "..."
+			description: ["你找到了一个奖杯。共有8个。收集它们全部。"]
+			hide_dependency_lines: true
+			dependencies: ["0DB480261CBD275E"]
+			optional: true
+			secret: true
+			id: "37E0A111AFB46B9B"
+			tasks: [{
+				id: "50E4570DDA5AA5CF"
+				type: "item"
+				item: "dimdungeons:item_trophy_4"
+			}]
+			rewards: [
+				{
+					id: "54E87839068C01CD"
+					type: "item"
+					item: "minecraft:netherite_scrap"
+					count: 2
+				}
+				{
+					id: "175B01C8AF1E6144"
+					type: "xp_levels"
+					xp_levels: 10
+				}
+			]
+		}
+		{
+			x: 1.0d
+			y: -7.0d
+			subtitle: "..."
+			description: ["你找到了一个奖杯。共有8个。收集它们全部。"]
+			hide_dependency_lines: true
+			dependencies: ["0DB480261CBD275E"]
+			optional: true
+			secret: true
+			id: "1E92AF4530733E04"
+			tasks: [{
+				id: "42DC4180EDE26FCD"
+				type: "item"
+				item: "dimdungeons:item_trophy_5"
+			}]
+			rewards: [
+				{
+					id: "4810950DA2AC003C"
+					type: "item"
+					item: "minecraft:netherite_scrap"
+					count: 2
+				}
+				{
+					id: "52A6FCBCF34E7873"
+					type: "xp_levels"
+					xp_levels: 10
+				}
+			]
+		}
+		{
+			x: 2.0d
+			y: -6.5d
+			subtitle: "..."
+			description: ["你找到了一个奖杯。总共有 8 个。把它们全部收集起来吧。"]
+			hide_dependency_lines: true
+			dependencies: ["0DB480261CBD275E"]
+			optional: true
+			secret: true
+			id: "1E8BE13DC148C435"
+			tasks: [{
+				id: "783F3AA17393DD95"
+				type: "item"
+				item: "dimdungeons:item_trophy_6"
+			}]
+			rewards: [
+				{
+					id: "5A3812638FC9EB72"
+					type: "item"
+					item: "minecraft:netherite_scrap"
+					count: 2
+				}
+				{
+					id: "373E50CAB0190853"
+					type: "xp_levels"
+					xp_levels: 10
+				}
+			]
+		}
+		{
+			x: 2.0d
+			y: -4.5d
+			subtitle: "..."
+			description: ["你找到了一个奖杯。总共有 8 个。把它们全部收集起来吧。"]
+			hide_dependency_lines: true
+			dependencies: ["0DB480261CBD275E"]
+			hide: false
+			optional: true
+			secret: true
+			id: "72BFF2A3FFEA894C"
+			tasks: [{
+				id: "2E014567C2BEB9A1"
+				type: "item"
+				item: "dimdungeons:item_trophy_7"
+			}]
+			rewards: [
+				{
+					id: "7BC6E085FC3BB4D2"
+					type: "item"
+					item: "minecraft:netherite_scrap"
+					count: 2
+				}
+				{
+					id: "143E3E443391C30D"
+					type: "xp_levels"
+					xp_levels: 10
+				}
+			]
+		}
+		{
+			x: 2.0d
+			y: -5.5d
+			subtitle: "..."
+			description: ["你找到了一个奖杯。总共有 8 个。把它们全部收集起来吧。"]
+			hide_dependency_lines: true
+			dependencies: ["0DB480261CBD275E"]
+			optional: true
+			secret: true
+			id: "7C1D75A53C52CDB0"
+			tasks: [{
+				id: "1F7711CA211F35B1"
+				type: "item"
+				item: "dimdungeons:item_trophy_8"
+			}]
+			rewards: [
+				{
+					id: "0EBC20C37B8E7AEF"
+					type: "item"
+					item: "minecraft:netherite_scrap"
+					count: 2
+				}
+				{
+					id: "407E6062AFC6F477"
+					type: "xp_levels"
+					xp_levels: 10
+				}
+			]
+		}
+		{
+			title: "找到一个高级钥匙"
+			x: 1.0d
+			y: -2.5d
+			subtitle: "一把稀有的钥匙"
+			description: ["偶尔，你可能会发现一个带有传送门基石的房间，基石里会包含一把高级钥匙。这是此类钥匙的唯一来源。"]
+			dependencies: [
+				"2873C9E3671DF9E1"
+				"0DB480261CBD275E"
+			]
+			id: "0F749811EAFD4281"
+			tasks: [{
+				id: "670DB1F6390187F6"
+				type: "advancement"
+				advancement: "dimdungeons:dungeons/find_advanced_key"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "07514C73DEF0F5FE"
+					type: "item"
+					item: "minecraft:netherite_scrap"
+					count: 2
+				}
+				{
+					id: "4BE19DE48A46F49A"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+		{
+			title: "维度地牢入门指南"
+			x: -1.0d
+			y: 2.5d
+			subtitle: "欢迎来到维度地牢！Welcome to Dimensional Dungeons!"
+			description: ["指南书中包含了大部分相关信息。请注意，地牢中会出现新的、等级极高的生物。"]
+			id: "24BC7EFC805D1E61"
+			tasks: [{
+				id: "174223E171524EC7"
+				type: "checkmark"
+			}]
+			rewards: [
+				{
+					id: "5E0971D3BE88A520"
+					type: "item"
+					item: {
+						id: "patchouli:guide_book"
+						Count: 1b
+						tag: {
+							"patchouli:book": "dimdungeons:guide_book"
+						}
+					}
+				}
+				{
+					id: "0A6BE821803699B0"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+			]
+		}
+		{
+			title: "快把我从这里弄出去！"
+			x: -1.0d
+			y: -0.5d
+			subtitle: "我迷路了……"
+			description: ["一次性物品，可立即将你传送到出口传送门。"]
+			dependencies: ["0DB480261CBD275E"]
+			id: "7A1E12B6B9EF6410"
+			tasks: [{
+				id: "4810EEEE889DAEBD"
+				type: "item"
+				item: "dimdungeons:item_homeward_pearl"
+			}]
+			rewards: [
+				{
+					id: "2E2E8A4D29410CB0"
+					type: "item"
+					item: "dimdungeons:item_homeward_pearl"
+					count: 3
+				}
+				{
+					id: "5A27DD0CDA31EC7F"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+		{
+			x: 0.5d
+			y: -5.5d
+			subtitle: "你真的把它们全收集齐了吗？"
+			description: ["恭喜你！你值得拥有这份奖励。请谨慎选择，一旦选定便无法更改。"]
+			dependencies: [
+				"52D91BE4EEB3F0F3"
+				"7533E2113E89C53F"
+				"6161C9BC6F433201"
+				"37E0A111AFB46B9B"
+				"1E92AF4530733E04"
+				"1E8BE13DC148C435"
+				"7C1D75A53C52CDB0"
+				"72BFF2A3FFEA894C"
+			]
+			optional: true
+			secret: true
+			id: "34988FA10E21F20B"
+			tasks: [{
+				id: "2DFD171AE9E5F4F5"
+				type: "advancement"
+				icon: "minecraft:nether_star"
+				advancement: "dimdungeons:dungeons/all_trophies"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "39D2CC89CD8E0B30"
+				type: "choice"
+				icon: {
+					id: "curios:crown"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				table_id: 6841289571864810167L
+			}]
+		}
+	]
+}
