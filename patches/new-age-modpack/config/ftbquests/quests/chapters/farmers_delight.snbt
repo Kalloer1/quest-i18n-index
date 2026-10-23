@@ -1,0 +1,182 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "farmers_delight"
+	group: "609C3E0A9575DD77"
+	id: "6F9A9F0360121F39"
+	order_index: 6
+	quest_links: [ ]
+	quests: [
+		{
+			id: "3E19409B73F9591F"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "13710D966AA1BA64"
+				table_id: 5699529449623842498L
+				type: "choice"
+			}]
+			subtitle: "篝火在烹饪方面的实用性几乎超过任何其他方块——至少目前是这样！"
+			tasks: [{
+				block: "minecraft:campfire"
+				block_type: 0
+				id: "4E62657FB790FCAB"
+				replace: false
+				replaced: "minecraft:air"
+				title: "放置一个篝火"
+				type: "questsadditions:place"
+				value: 1L
+			}]
+			title: "&2&l篝火"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["3E19409B73F9591F"]
+			id: "2EB08112C20070A6"
+			rewards: [
+				{
+					id: "2756ECB892BB418A"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+				{
+					exclude_from_claim_all: true
+					id: "00857F6ED46ED7FE"
+					table_id: 5699529449623842498L
+					type: "choice"
+				}
+			]
+			shape: "rsquare"
+			size: 1.4d
+			subtitle: "要想开始正经烹饪，你需要先弄些厨房用具。"
+			tasks: [
+				{
+					id: "24B7ED4BFB53705F"
+					item: "farmersdelight:stove"
+					type: "item"
+				}
+				{
+					id: "4B322872CCBD46BA"
+					item: "farmersdelight:cooking_pot"
+					type: "item"
+				}
+				{
+					id: "3F83D59B6B13F509"
+					item: {
+						Count: 1
+						id: "farmersdelight:skillet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "471F2FDC3240E6EB"
+					item: "farmersdelight:cutting_board"
+					type: "item"
+				}
+			]
+			title: "&2&l厨房用具"
+			x: 0.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["2EB08112C20070A6"]
+			id: "22641F31CFAD109B"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "37D67A8F3FCC34AA"
+				table_id: 3710718200219029633L
+				type: "random"
+			}]
+			subtitle: "碗装食物很有用，因为它们能随时恢复你的生命值，无论多饿！"
+			tasks: [{
+				advancement: "farmersdelight:main/eat_comfort_food"
+				criterion: ""
+				id: "2F8CC0D3057AD6F0"
+				title: "制作一份碗装料理"
+				type: "advancement"
+			}]
+			title: "&2&l碗装餐食"
+			x: 0.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["3E19409B73F9591F"]
+			id: "6D661302644EFA6D"
+			subtitle: "刀可以用来屠宰动物。这样它们会掉落额外的肉！"
+			tasks: [{
+				id: "59FAB337EC72BDCF"
+				item: {
+					Count: 1
+					id: "farmersdelight:iron_knife"
+					tag: {
+						Damage: 0
+					}
+				}
+				title: "获得一把刀"
+				type: "item"
+			}]
+			title: "&2&l一把刀"
+			x: 1.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["22641F31CFAD109B"]
+			id: "4BB3215093C0E3A1"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "43C80B59A20534EE"
+				table_id: 1404902952723356929L
+				type: "random"
+			}]
+			subtitle: "盘装餐食能让你更长时间地保持精力充沛。"
+			tasks: [{
+				advancement: "farmersdelight:main/eat_nourishing_food"
+				criterion: ""
+				id: "21F7F40584FE7751"
+				title: "制作一份盘装美食"
+				type: "advancement"
+			}]
+			title: "&2&l盘装美食"
+			x: 0.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["6D661302644EFA6D"]
+			id: "7E5464350D9C50DE"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "4C073DCEE6843F80"
+				table_id: 3710718200219029633L
+				type: "random"
+			}]
+			shape: "rsquare"
+			size: 1.2d
+			subtitle: "用刀子杀死猪，猪会掉落火腿。"
+			tasks: [{
+				checkItem: true
+				entity: "minecraft:pig"
+				icon: "farmersdelight:ham"
+				id: "7307D1D8994177F1"
+				item: {
+					Count: 1
+					id: "farmersdelight:iron_knife"
+					tag: {
+						Damage: 0
+					}
+				}
+				nbt: { }
+				title: "用刀杀死一头猪"
+				type: "questsadditions:killnbt"
+				value: 1L
+			}]
+			title: "&2&l屠夫一名"
+			x: 1.5d
+			y: -2.5d
+		}
+	]
+	title: "农夫的欢乐时光"
+}

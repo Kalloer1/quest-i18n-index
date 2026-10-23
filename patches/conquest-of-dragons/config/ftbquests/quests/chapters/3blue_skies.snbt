@@ -1,0 +1,459 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "3blue_skies"
+	group: "101FB9788679C4F0"
+	icon: "blue_skies:everdawn_portal"
+	id: "261D11EFE191C2BA"
+	images: [
+		{
+			height: 4.0d
+			image: "kubejs:textures/fotos/blueskies.png"
+			rotation: 0.0d
+			width: 4.0d
+			x: -4.0d
+			y: -10.5d
+		}
+		{
+			height: 4.0d
+			image: "blue_skies:item/misc/everbright_portal"
+			rotation: 0.0d
+			width: 4.0d
+			x: -5.0d
+			y: -6.5d
+		}
+		{
+			height: 4.0d
+			image: "blue_skies:item/misc/everdawn_portal"
+			rotation: 0.0d
+			width: 4.0d
+			x: -3.0d
+			y: -6.5d
+		}
+		{
+			height: 1.0d
+			image: "kubejs:textures/fotos/everbright.png"
+			rotation: 0.0d
+			width: 1.0d
+			x: -5.0d
+			y: -8.0d
+		}
+		{
+			height: 1.0d
+			image: "kubejs:textures/fotos/everdawn.png"
+			rotation: 0.0d
+			width: 1.0d
+			x: -3.0d
+			y: -8.0d
+		}
+	]
+	order_index: 5
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"&e在平原、山脉或雪地群系中找到守门人的房子。"
+				"&9&fFind a Gatekeeper’s house in plains, mountain, or snowy biomes.  &b&fTrade an Emerald Book for the &dBlue Journal &fand a &6Zeal Lighter&f, your essentials to explore the &2Everbright &fand &aEverdawn &fdimensions.  "
+			]
+			id: "746F056F2161520E"
+			rewards: [
+				{
+					id: "376D82DC2FEA642B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					count: 4
+					id: "2D34BD94C4D09BA5"
+					item: "minecraft:stone_bricks"
+					type: "item"
+				}
+			]
+			shape: "heart"
+			subtitle: "&7通往天际彼岸的指南"
+			tasks: [
+				{
+					id: "62156F778660BDA2"
+					item: {
+						Count: 1
+						id: "blue_skies:zeal_lighter"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "50C2B5247BAA27CD"
+					item: "blue_skies:blue_journal"
+					type: "item"
+				}
+			]
+			title: "&e&l与守门人相遇"
+			x: -4.0d
+			y: -8.5d
+		}
+		{
+			dependencies: ["746F056F2161520E"]
+			description: [
+				"&d&f使用 Zeal Lighter 激活守门人小屋中未点燃的传送门。"
+				"&c&f选择&bEverbright&f（寒冷与迷雾）或&6Everdawn&f（温暖与潮湿），踏入其中，开启你的冒险。"
+			]
+			icon: "blue_skies:everbright_portal"
+			id: "60A036E2C4718175"
+			rewards: [
+				{
+					id: "3107EC9C7E1C6078"
+					type: "xp"
+					xp: 15
+				}
+				{
+					count: 4
+					id: "0AB4F4922158ECFF"
+					item: "minecraft:torch"
+					type: "item"
+				}
+			]
+			subtitle: "&2&7踏入光明或永恒日出的国度"
+			tasks: [{
+				id: "7715E72EAFE04BF6"
+				observe_type: 0
+				timer: 0L
+				title: "&a&l进入 Everbright / Everdawn"
+				to_observe: "blue_skies:everbright_portal"
+				type: "observation"
+			}]
+			title: "&a&l进入永恒光明之地"
+			x: -5.0d
+			y: -6.5d
+		}
+		{
+			dependencies: ["746F056F2161520E"]
+			description: [
+				"&d&f使用 Zeal Lighter 激活守门人小屋中未点燃的传送门。"
+				"&c&f选择&bEverbright&f（寒冷与迷雾）或&6Everdawn&f（温暖与潮湿），踏入其中，开启你的冒险。"
+			]
+			icon: "blue_skies:everdawn_portal"
+			id: "616A5BB574411795"
+			rewards: [
+				{
+					id: "09B401ED681E3494"
+					type: "xp"
+					xp: 15
+				}
+				{
+					count: 3
+					id: "5641CBF59C274B63"
+					item: "minecraft:golden_apple"
+					type: "item"
+				}
+			]
+			subtitle: "&2&7踏入光明或永恒日出的国度"
+			tasks: [{
+				id: "03FA1710A5ED015D"
+				observe_type: 0
+				timer: 0L
+				title: "&a&l进入永恒黎明"
+				to_observe: "blue_skies:everdawn_portal"
+				type: "observation"
+			}]
+			x: -3.0d
+			y: -6.5d
+		}
+		{
+			dependencies: ["60A036E2C4718175"]
+			description: ["&6&f在 Everbright 中：征服 &9Blinding Dungeon&f，击败 &bSummoner&f，解锁 &2Nature Dungeon&f。"]
+			icon: {
+				Count: 1
+				id: "blue_skies:loot_bag_summoner"
+				tag: {
+					LootTable: "blue_skies:loot_bags/summoner/common"
+					Rarity: 0
+				}
+			}
+			id: "34098450F3F9424E"
+			rewards: [
+				{
+					id: "5DDD979521D4D0BF"
+					item: {
+						Count: 1
+						id: "blue_skies:ethereal_arc"
+						tag: {
+							ArcLevel: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 5
+					id: "427CD511EFBB4235"
+					item: "minecraft:emerald"
+					type: "item"
+				}
+				{
+					id: "4B2B0A4FB8BE2540"
+					type: "xp"
+					xp: 50
+				}
+			]
+			shape: "rsquare"
+			subtitle: "&5&7直面闪电与毒素的掌控者"
+			tasks: [{
+				entity: "blue_skies:summoner"
+				id: "0460EF70817B79CC"
+				type: "kill"
+				value: 1L
+			}]
+			title: "&d&l致盲地牢：召唤者"
+			x: -5.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["616A5BB574411795"]
+			description: ["&4&fIn Everdawn: defeat the &cAlchemist&f in his Blinding Dungeon to access the Poison Dungeon.  "]
+			icon: {
+				Count: 1
+				id: "blue_skies:loot_bag_alchemist"
+				tag: {
+					LootTable: "blue_skies:loot_bags/alchemist/common"
+					Rarity: 0
+				}
+			}
+			id: "41ED2E63A05E4E1B"
+			rewards: [
+				{
+					id: "65776D26AB710BDE"
+					type: "xp"
+					xp: 100
+				}
+				{
+					count: 8
+					id: "5F1A950AADD822BD"
+					item: "minecraft:emerald"
+					type: "item"
+				}
+				{
+					count: 2
+					id: "55B8D5182D2BC490"
+					item: "blue_skies:aquite"
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			subtitle: "&5&7直面闪电与毒素的掌控者"
+			tasks: [{
+				entity: "blue_skies:alchemist"
+				id: "47CED50549568AC2"
+				type: "kill"
+				value: 1L
+			}]
+			title: "&d&l致盲地牢：炼金术士"
+			x: -3.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["41ED2E63A05E4E1B"]
+			id: "2F4A566FE0AB526A"
+			rewards: [{
+				id: "3A145F38D6F99182"
+				type: "xp"
+				xp: 100
+			}]
+			subtitle: "你之后需要它们来对抗蜘蛛了"
+			tasks: [{
+				id: "011418D3741DBB4D"
+				item: {
+					Count: 1
+					id: "blue_skies:spike_shield"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: -2.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["34098450F3F9424E"]
+			description: [
+				"&3&f探索位于 Everbright 的 4 层自然地下城。"
+				""
+			]
+			id: "37E4422E5DC02977"
+			rewards: [
+				{
+					id: "02C22F48955DCFC6"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "6519E8B5DAA58EDC"
+					item: "blue_skies:regrowth_armor_trim_smithing_template"
+					type: "item"
+				}
+				{
+					count: 3
+					id: "445F00F6EBD3B075"
+					item: "blue_skies:comet_sapling"
+					type: "item"
+				}
+			]
+			subtitle: "&9&7击败树形首领，登顶自然地牢"
+			tasks: [{
+				icon: "blue_skies:nature_keystone"
+				id: "40FD29DF51E90CAE"
+				observe_type: 0
+				timer: 0L
+				to_observe: "blue_skies:nature_keystone"
+				type: "observation"
+			}]
+			title: "&6&l挑战星光破碎机"
+			x: -5.0d
+			y: -3.5d
+		}
+		{
+			description: ["&2&f收集所有钥匙，躲避石怪，并用斧头或长矛与&a星光破碎机&f决斗。"]
+			id: "179CFCD8290E0C66"
+			rewards: [
+				{
+					id: "5EF8D05D48B388DB"
+					type: "xp"
+					xp: 250
+				}
+				{
+					id: "2FBB59858225087D"
+					item: "blue_skies:falsite_ingot"
+					random_bonus: 3
+					type: "item"
+				}
+				{
+					id: "7FEC895AFE93991B"
+					item: "blue_skies:starlit_log"
+					random_bonus: 32
+					type: "item"
+				}
+			]
+			shape: "diamond"
+			subtitle: "全力以赴，击败这个强大的首领"
+			tasks: [{
+				entity: "blue_skies:starlit_crusher"
+				id: "2E7543CE96842322"
+				type: "kill"
+				value: 1L
+			}]
+			title: "&6&l挑战星光破碎机"
+			x: -6.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["41ED2E63A05E4E1B"]
+			description: ["&c&f前往埃弗多恩的毒物地牢探险。"]
+			id: "00C06CD479E7CC56"
+			rewards: [
+				{
+					id: "478A39D2D511BC67"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "054E8E3DC7ECA91B"
+					item: "blue_skies:toxic_armor_trim_smithing_template"
+					random_bonus: 1
+					type: "item"
+				}
+				{
+					count: 16
+					id: "1D21847F1C0BD442"
+					item: "minecraft:string"
+					type: "item"
+				}
+			]
+			subtitle: "&e&7潜入毒蛛迷宫，击败蜘蛛女王"
+			tasks: [{
+				icon: "blue_skies:poison_keystone"
+				id: "77E2E728D12F6128"
+				observe_type: 0
+				timer: 0L
+				to_observe: "blue_skies:poison_keystone"
+				type: "observation"
+			}]
+			title: "&4&l直面蛛王（Arachnarch）"
+			x: -3.0d
+			y: -3.5d
+		}
+		{
+			description: ["&d&f收集4把钥匙，穿越蜘蛛迷宫，并击败&b蛛王&f——在她冲锋时使用盾牌使其眩晕。"]
+			id: "63CC38F2A29BD635"
+			rewards: [
+				{
+					id: "6430E1733BE4F759"
+					type: "xp"
+					xp: 250
+				}
+				{
+					id: "53B2425942E31B41"
+					item: {
+						Count: 1
+						id: "blue_skies:poison_arc"
+						tag: {
+							ArcLevel: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 16
+					id: "6923E2C08EDA5738"
+					item: "blue_skies:aquite"
+					type: "item"
+				}
+			]
+			shape: "diamond"
+			subtitle: "蜘蛛毒液需要格外小心处理"
+			tasks: [{
+				entity: "blue_skies:arachnarch"
+				id: "425586D070EBF8BC"
+				type: "kill"
+				value: 1L
+			}]
+			title: "&4&l击败蜘蛛领主 (Aracnarca)"
+			x: -2.0d
+			y: -3.0d
+		}
+		{
+			description: [
+				"在主世界或其他维度中挖掘&e月亮石碎片&e&f，并合成&b月亮石&f。"
+				"&a&fBuild a cluster of at least &e10 Moonstones&f, optionally stained glass accent, to light your path with a soft glow.  "
+			]
+			id: "5B8521F1001A5270"
+			ignore_reward_blocking: true
+			rewards: [
+				{
+					id: "0163812E0DF6E373"
+					item: "blue_skies:moonstone"
+					random_bonus: 10
+					type: "item"
+				}
+				{
+					id: "2AF6362DDB1571C0"
+					type: "xp"
+					xp: 50
+				}
+			]
+			shape: "rsquare"
+			subtitle: "&f&7利用月光石营造天体氛围"
+			tasks: [{
+				count: 10L
+				id: "4AD2B6CBFC9258D6"
+				item: { Count: 10, id: "blue_skies:moonstone" }
+				type: "item"
+			}]
+			title: "&b&l点亮世界"
+			x: -4.0d
+			y: -2.0d
+		}
+	]
+	title: "&3蔚蓝的天空"
+}

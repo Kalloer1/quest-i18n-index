@@ -1,0 +1,439 @@
+# AI 初翻，未人工校对
+{
+	id: "0CBD59C3933D2540"
+	group: "37BCB3363E396B37"
+	order_index: 4
+	filename: "undergarden"
+	title: "Undergarden"
+	icon: "undergarden:deepturf_block"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	images: [{
+		x: -3.0d
+		y: 5.0d
+		width: 10.0d
+		height: 2.0d
+		rotation: 0.0d
+		image: "kubejs:textures/other/undergarden.png"
+		hover: [ ]
+		click: ""
+		dev: false
+		corner: false
+	}]
+	quests: [
+		{
+			x: -8.0d
+			y: 6.5d
+			subtitle: "激活一个Undergarden传送门。由石砖建造，外观类似下界传送门"
+			id: "010232099D54EF1D"
+			tasks: [{
+				id: "36E2EFC390911664"
+				type: "item"
+				item: "undergarden:catalyst"
+			}]
+			rewards: [
+				{
+					id: "193A9D3B27B859A9"
+					type: "item"
+					item: "minecraft:stone_bricks"
+					count: 10
+				}
+				{
+					id: "49251BEF63F0BED2"
+					type: "xp"
+					xp: 30
+				}
+			]
+		}
+		{
+			title: "进入地下花园 (Undergarden)"
+			icon: "undergarden:blood_mushroom"
+			x: -8.0d
+			y: 3.5d
+			subtitle: "用石砖建造一个传送门，进入地下花园"
+			description: [""]
+			dependencies: ["010232099D54EF1D"]
+			id: "3EB0BD1CE49BEEAD"
+			tasks: [{
+				id: "2C2252C5CB9A7731"
+				type: "advancement"
+				advancement: "undergarden:undergarden/enter_undergarden"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "752E48DD82CCE052"
+				type: "item"
+				item: "simplefarming:fish_and_chips"
+			}]
+		}
+		{
+			x: -8.5d
+			y: 0.5d
+			subtitle: "在地下花园的高处被发现"
+			description: ["Storagium 是一种可塑形却坚固的金属，其独特性质使其成为存储设备的理想材料。"]
+			dependencies: ["3EB0BD1CE49BEEAD"]
+			id: "226289E3ED4CD13F"
+			tasks: [{
+				id: "68A2C09A0E545D3F"
+				type: "item"
+				item: "kubejs:storagium_ore"
+			}]
+			rewards: [{
+				id: "2D3A42F4D2F2BCE6"
+				type: "item"
+				item: "kubejs:storagium_ore"
+				count: 4
+			}]
+		}
+		{
+			x: -4.5d
+			y: 3.5d
+			subtitle: "从Undergarden的底部捞一些小鱼上来"
+			dependencies: ["3EB0BD1CE49BEEAD"]
+			id: "36F9BBFAB358464B"
+			tasks: [{
+				id: "71437BA3FC9F631B"
+				type: "item"
+				item: "undergarden:gwibling_bucket"
+			}]
+			rewards: [{
+				id: "37E24BCFF1BC6978"
+				type: "item"
+				item: "simplefarming:fish_and_chips"
+			}]
+		}
+		{
+			x: -11.0d
+			y: 2.5d
+			subtitle: "用鹅卵石作为弹药进行射击"
+			dependencies: ["3EB0BD1CE49BEEAD"]
+			id: "1BB8C5EC60695FA5"
+			tasks: [{
+				id: "56F68912ADE19AE5"
+				type: "item"
+				item: {
+					id: "undergarden:slingshot"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "2534969D413EE211"
+				type: "item"
+				item: "undergarden:depthrock_pebble"
+				count: 64
+			}]
+		}
+		{
+			title: "找到地下墓穴（Catacombs）"
+			x: -10.5d
+			y: 1.5d
+			subtitle: "在地下花园的深处被发现"
+			dependencies: ["3EB0BD1CE49BEEAD"]
+			id: "13BF989A08445040"
+			tasks: [{
+				id: "1108F3210C1BE1EF"
+				type: "advancement"
+				advancement: "undergarden:undergarden/catacombs"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "411D970742EBBE14"
+				type: "item"
+				item: {
+					id: "undergarden:cloggrum_chestplate"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			x: -9.5d
+			y: 1.0d
+			subtitle: "由被遗忘的守卫者掉落的金块制成"
+			dependencies: ["3EB0BD1CE49BEEAD"]
+			id: "5DC6E60162B778FA"
+			tasks: [{
+				id: "46D2BD8CAFDC4A32"
+				type: "item"
+				item: "undergarden:forgotten_ingot"
+			}]
+			rewards: [{
+				id: "35326B364A73FD78"
+				type: "item"
+				item: {
+					id: "tconstruct:dagger"
+					Count: 1b
+					tag: {
+						tic_multipliers: {
+							"tconstruct:mining_speed": 0.75f
+							"tconstruct:attack_damage": 0.5f
+							"tconstruct:durability": 1.0f
+						}
+						tic_stats: {
+							"tconstruct:attack_speed": 2.5080001f
+							"tconstruct:mining_speed": 8.208f
+							"tconstruct:attack_damage": 2.0f
+							"tconstruct:harvest_level": 4.0f
+							"tconstruct:durability": 675.0f
+						}
+						tic_broken: 0b
+						tic_modifiers: [
+							{
+								name: "tconstruct:lightweight"
+								level: 2s
+							}
+							{
+								name: "tconstruct:padded"
+								level: 1s
+							}
+							{
+								name: "tconstruct:offhand_attack"
+								level: 1s
+							}
+							{
+								name: "tconstruct:momentum"
+								level: 2s
+							}
+							{
+								name: "tconstruct:silky_shears"
+								level: 1s
+							}
+						]
+						tic_materials: [
+							"tconstruct:forgotten"
+							"tconstruct:forgotten"
+						]
+						Damage: 0
+						tic_volatile_data: {
+							"tconstruct:duel_wielding": 1b
+						}
+						tic_persistent_data: {
+							abilities: 1
+							upgrades: 3
+						}
+					}
+				}
+			}]
+		}
+		{
+			x: -7.5d
+			y: 0.5d
+			subtitle: "看起来有点像铁块的样子"
+			dependencies: ["3EB0BD1CE49BEEAD"]
+			id: "34F99C2A116DD138"
+			tasks: [{
+				id: "461C10CF7EA78492"
+				type: "item"
+				item: "undergarden:cloggrum_ore"
+			}]
+			rewards: [{
+				id: "495146399B64509C"
+				type: "item"
+				item: {
+					id: "undergarden:cloggrum_pickaxe"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			x: -6.5d
+			y: 1.0d
+			subtitle: "看起来很好吃"
+			dependencies: ["3EB0BD1CE49BEEAD"]
+			id: "49067162882DDA3E"
+			tasks: [{
+				id: "7DE9991B43D8F2A9"
+				type: "item"
+				item: "undergarden:gloomgourd_pie"
+			}]
+			rewards: [{
+				id: "455F0AD76215F49A"
+				type: "item"
+				item: "minecraft:pumpkin_pie"
+			}]
+		}
+		{
+			title: "杀死一只闪烁幼虫"
+			x: -5.0d
+			y: 2.5d
+			subtitle: "请不要把小蜗牛压扁了，拜托了"
+			description: ["你这个怪物！"]
+			dependencies: ["3EB0BD1CE49BEEAD"]
+			id: "75530A8905C4627B"
+			tasks: [{
+				id: "1DC65A6E52F25404"
+				type: "kill"
+				entity: "undergarden:scintling"
+				value: 1L
+			}]
+			rewards: [{
+				id: "325024118F343BF0"
+				type: "item"
+				item: "minecraft:ghast_tear"
+			}]
+		}
+		{
+			x: -11.5d
+			y: 3.5d
+			subtitle: "可以伤害附近的腐化生物（Rotspawn）"
+			dependencies: ["3EB0BD1CE49BEEAD"]
+			id: "1D5FC381182C64C6"
+			tasks: [{
+				id: "1BAF977F7C277339"
+				type: "item"
+				item: "undergarden:shard_torch"
+			}]
+			rewards: [{
+				id: "4863F256B3887E9F"
+				type: "item"
+				item: {
+					id: "undergarden:cloggrum_battleaxe"
+					Count: 1b
+					tag: {
+						Damage: 0
+						Enchantments: [{
+							lvl: 4s
+							id: "minecraft:knockback"
+						}]
+					}
+				}
+			}]
+		}
+		{
+			x: -5.5d
+			y: 1.5d
+			subtitle: "由腐化生物及其同类掉落的材料制成"
+			dependencies: ["3EB0BD1CE49BEEAD"]
+			id: "30EE4E0864CB2B5A"
+			tasks: [{
+				id: "3BE028CCA75EE5F5"
+				type: "item"
+				item: "undergarden:utherium_ingot"
+			}]
+			rewards: [{
+				id: "1B8AD8B12CBAC805"
+				type: "item"
+				item: {
+					id: "undergarden:utheric_sword"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			x: -7.5d
+			y: -0.5d
+			subtitle: "用于Undergarden工具"
+			dependencies: ["34F99C2A116DD138"]
+			id: "3D83060F9B63A64A"
+			tasks: [{
+				id: "3DBA94E95118EE6A"
+				type: "item"
+				item: "undergarden:cloggrum_ingot"
+			}]
+			rewards: [{
+				id: "1F4A4FAFB274D05A"
+				type: "xp"
+				xp: 30
+			}]
+		}
+		{
+			x: -8.5d
+			y: -0.5d
+			subtitle: "升级一把 Cloggrum 剑"
+			dependencies: ["5DC6E60162B778FA"]
+			id: "47A3F95DC5D5E630"
+			tasks: [{
+				id: "27B5A2D1D0267EF5"
+				type: "item"
+				item: {
+					id: "undergarden:forgotten_sword"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "626E5C8AD14C47DA"
+					type: "item"
+					item: {
+						id: "undergarden:forgotten_pickaxe"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "65E3A6097C7A1A71"
+					type: "command"
+					title: "两个领地标记"
+					icon: {
+						id: "ftbquests:custom_icon"
+						Count: 1b
+						tag: {
+							Icon: "cc:textures/block/claim_block.png"
+						}
+					}
+					command: "/ftbchunks admin extra_claim_chunks @p add 2"
+					player_command: false
+				}
+			]
+		}
+		{
+			title: "与石生者进行交易"
+			x: -11.0d
+			y: 4.5d
+			subtitle: "地下资本主义！"
+			dependencies: ["3EB0BD1CE49BEEAD"]
+			id: "586C1C651DB80DAD"
+			tasks: [{
+				id: "5B0BF29AE7C558F8"
+				type: "advancement"
+				advancement: "undergarden:undergarden/trade_with_stoneborn"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "7D57233AF938A7A1"
+				type: "item"
+				item: "undergarden:regalium_ingot"
+			}]
+		}
+		{
+			x: -10.5d
+			y: 5.5d
+			subtitle: "烤过的咖啡豆可以用来制作咖啡！"
+			dependencies: ["3EB0BD1CE49BEEAD"]
+			id: "02E32C5E66ACD671"
+			tasks: [{
+				id: "613B01A9AD2D536F"
+				type: "item"
+				item: "undergarden:underbeans"
+			}]
+			rewards: [
+				{
+					id: "295E681351DAA846"
+					type: "item"
+					item: "minecraft:clay_ball"
+				}
+				{
+					id: "1E0E1D21B8D54422"
+					type: "xp"
+					xp: 10
+				}
+			]
+		}
+	]
+}

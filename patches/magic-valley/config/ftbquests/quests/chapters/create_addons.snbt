@@ -1,0 +1,853 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "circle"
+	filename: "create_addons"
+	group: "A100000000000002"
+	icon: "numismatics:bank_terminal"
+	id: "60ECE3688FB9BD9C"
+	order_index: 5
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["创造模组应解决运输、动力、物流或移动问题。先完成相关创造基础，保持旋转网络分区，并为每条自动化线路设置手动停止和可见溢出路径。"]
+			id: "DFE777280134C6A9"
+			rewards: [{
+				id: "5C3D2CB39DFDAD5D"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "12B40EF058CEE4E0"
+				title: "确认：扩建一个稳定的创造工厂"
+				type: "checkmark"
+			}]
+			title: "扩建一个稳定的创造模式工厂"
+			x: -0.238d
+			y: 0.439d
+		}
+		{
+			dependencies: ["DFE777280134C6A9"]
+			description: ["Diesel Generators 添加了石油开采、精炼、可再生能源和旋转引擎。将开采、流体处理、存储和发电作为独立阶段，这样一条堵塞的线路不会导致整个工厂停工。"]
+			id: "F53B08FA5A58668E"
+			rewards: [{
+				id: "346CCA6865B66EED"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "4E5774D640899E9B"
+				title: "确认：创建柴油发电机"
+				type: "checkmark"
+			}]
+			title: "建造柴油发电机"
+			x: 0.094d
+			y: -2.379d
+		}
+		{
+			dependencies: ["F53B08FA5A58668E"]
+			description: ["使用油扫描仪定位可行矿床，再建造开采机械。记录地点并为完整抽油机预留足够空间。"]
+			id: "95131429B258DCEA"
+			shape: "circle"
+			tasks: [{
+				id: "218BFE1EAB203E54"
+				item: "createdieselgenerators:oil_scanner"
+				type: "item"
+			}]
+			title: "石油勘探任务书"
+			x: 0.640d
+			y: -3.332d
+		}
+		{
+			dependencies: ["95131429B258DCEA"]
+			description: ["将抽油机井放置在勘测的提取点。保持工作区整洁，并将输出导入缓冲罐。"]
+			id: "52C9F324721E1DDB"
+			shape: "circle"
+			tasks: [{
+				id: "0DED647782074850"
+				item: "createdieselgenerators:pumpjack_hole"
+				type: "item"
+			}]
+			title: "Pumpjack 洞穴"
+			x: 1.674d
+			y: -3.706d
+		}
+		{
+			dependencies: ["52C9F324721E1DDB"]
+			description: ["轴承固定了活动组件。在施加旋转动力前，请检查方向和间隙。"]
+			id: "D4CA30695CE3BE72"
+			shape: "circle"
+			tasks: [{
+				id: "885ED28A24BA7E0F"
+				item: "createdieselgenerators:pumpjack_bearing"
+				type: "item"
+			}]
+			title: "Pumpjack 轴承"
+			x: 2.530d
+			y: -4.397d
+		}
+		{
+			dependencies: ["D4CA30695CE3BE72"]
+			description: ["曲柄将旋转转化为抽油杆运动。从保守的速度开始，并注意应力的影响。"]
+			id: "B41B3B70FED9A330"
+			shape: "circle"
+			tasks: [{
+				id: "4A1ABA73EA694298"
+				item: "createdieselgenerators:pumpjack_crank"
+				type: "item"
+			}]
+			title: "Pumpjack Crank"
+			x: 3.014d
+			y: -3.410d
+		}
+		{
+			dependencies: ["B41B3B70FED9A330"]
+			description: ["将头部对准沉积物，完成提取装置组装。在连接永久流体输送前，先测试一个循环。"]
+			id: "001B0C1B4AE41FC4"
+			shape: "circle"
+			tasks: [{
+				id: "D93517E6E6CC398E"
+				item: "createdieselgenerators:pumpjack_head"
+				type: "item"
+			}]
+			title: "Pumpjack 头颅"
+			x: 3.870d
+			y: -4.100d
+		}
+		{
+			dependencies: ["001B0C1B4AE41FC4"]
+			description: ["精炼前缓冲原油。提供溢出容量，防止满载炼油厂反复加载提取区块却无实际产出。"]
+			id: "F61A52FCE38A468D"
+			shape: "circle"
+			tasks: [{
+				id: "BB0D8C6BD086E049"
+				item: "createdieselgenerators:crude_oil_bucket"
+				type: "item"
+			}]
+			title: "原油"
+			x: 4.040d
+			y: -3.014d
+		}
+		{
+			dependencies: ["F61A52FCE38A468D"]
+			description: ["使用专用、带标签的石油储罐和精确流体过滤器。将原油和成品油储存在不同管道上。"]
+			id: "7308E47600D9D62E"
+			shape: "circle"
+			tasks: [{
+				id: "FA38BAB7733C3BA3"
+				item: "createdieselgenerators:oil_barrel"
+				type: "item"
+			}]
+			title: "油桶"
+			x: 4.918d
+			y: -3.677d
+		}
+		{
+			dependencies: ["7308E47600D9D62E"]
+			description: ["用缓冲输入和独立产品输出建造蒸馏结构。在连续运行前，证明每个输出都有容量。"]
+			id: "D929B19B2F0DE0C3"
+			shape: "circle"
+			tasks: [{
+				id: "58BCBD877E535E79"
+				item: "createdieselgenerators:distillation_controller"
+				type: "item"
+			}]
+			title: "蒸馏控制器 (Distillation Controller)"
+			x: 5.170d
+			y: -2.607d
+		}
+		{
+			dependencies: ["D929B19B2F0DE0C3"]
+			description: ["汽油是一种精炼产品。将其储存在专用油箱中，防止通用流体标签混合燃料系统。"]
+			id: "E7981FAD52A28D66"
+			shape: "circle"
+			tasks: [{
+				id: "7DA2E6F5AE559FF7"
+				item: "createdieselgenerators:gasoline_bucket"
+				type: "item"
+			}]
+			title: "汽油"
+			x: 5.920d
+			y: -4.131d
+		}
+		{
+			dependencies: ["D929B19B2F0DE0C3"]
+			description: ["柴油为支持的发动机提供动力。测量负载下的消耗量，并为工厂安全关闭保留足够的储备。"]
+			id: "871CF9626BD83D4B"
+			shape: "circle"
+			tasks: [{
+				id: "49BFED28C7114062"
+				item: "createdieselgenerators:diesel_bucket"
+				type: "item"
+			}]
+			title: "柴油发动机"
+			x: 6.172d
+			y: -3.061d
+		}
+		{
+			dependencies: ["F53B08FA5A58668E"]
+			description: ["植物油开启了可再生燃料之路。通过有界作物加工为其供料，当储罐满时停止。"]
+			id: "5688DDE5CDBA0D06"
+			shape: "circle"
+			tasks: [{
+				id: "07C775EF257632D7"
+				item: "createdieselgenerators:plant_oil_bucket"
+				type: "item"
+			}]
+			title: "种植油料作物"
+			x: 2.158d
+			y: -2.719d
+		}
+		{
+			dependencies: ["5688DDE5CDBA0D06"]
+			description: ["通过受控发酵，使用过滤后的原料和溢流容器来生产乙醇。"]
+			id: "F46B5F7FA0DEB651"
+			shape: "circle"
+			tasks: [{
+				id: "F975F48D759476EB"
+				item: "createdieselgenerators:ethanol_bucket"
+				type: "item"
+			}]
+			title: "乙醇"
+			x: 3.184d
+			y: -2.324d
+		}
+		{
+			dependencies: ["F46B5F7FA0DEB651"]
+			description: ["批量发酵器可大规模处理可再生输入。限制上游农场的速率，并将不相关的食物排除在其输入之外。"]
+			id: "C5228E306B2090CF"
+			shape: "circle"
+			tasks: [{
+				id: "3B93A26A3B342B0E"
+				item: "createdieselgenerators:bulk_fermenter"
+				type: "item"
+			}]
+			title: "批量发酵器"
+			x: 4.209d
+			y: -1.927d
+		}
+		{
+			dependencies: ["C5228E306B2090CF" "5688DDE5CDBA0D06"]
+			description: ["生物柴油整合了可再生能源链。在扩大规模前，比较其生产成本和发动机输出与精炼柴油的差异。"]
+			id: "DBC0A22BD01A8D64"
+			shape: "circle"
+			tasks: [{
+				id: "8F5DACCBA2317A3C"
+				item: "createdieselgenerators:biodiesel_bucket"
+				type: "item"
+			}]
+			title: "生物柴油"
+			x: 5.225d
+			y: -1.508d
+		}
+		{
+			dependencies: ["871CF9626BD83D4B" "DBC0A22BD01A8D64"]
+			description: ["使用第一台柴油发动机确定燃料率、旋转方向、速度和应力容量。用离合器或变速箱将其隔离。"]
+			id: "F99B716129034942"
+			shape: "circle"
+			tasks: [{
+				id: "95BEE223B6163BBB"
+				item: "createdieselgenerators:diesel_engine"
+				type: "item"
+			}]
+			title: "柴油发动机"
+			x: 6.227d
+			y: -1.962d
+		}
+		{
+			dependencies: ["F99B716129034942"]
+			description: ["仅在炼油厂和储油罐能够维持其需求且不消耗紧急储备的情况下，才将其扩展为大型引擎。"]
+			id: "BAFD16057DE951B3"
+			shape: "circle"
+			tasks: [{
+				id: "A7FAA63D8F8522B8"
+				item: "createdieselgenerators:large_diesel_engine"
+				type: "item"
+			}]
+			title: "大型柴油发动机"
+			x: 7.096d
+			y: -3.657d
+		}
+		{
+			dependencies: ["BAFD16057DE951B3"]
+			description: ["巨型引擎应置于受监控的主干道上，具备独立关机、应力裕度和受保护的燃料供应。"]
+			id: "34CDDCCCD59BD88E"
+			shape: "circle"
+			tasks: [{
+				id: "E6B4F27D2F741529"
+				item: "createdieselgenerators:huge_diesel_engine"
+				type: "item"
+			}]
+			title: "巨型柴油发动机"
+			x: 8.075d
+			y: -3.155d
+		}
+		{
+			dependencies: ["F99B716129034942"]
+			description: ["引擎活塞是发电机生产线的关键组件。请在材料统一返回所需部件后再进行自动化。"]
+			id: "8CC9A3876BBB1934"
+			shape: "circle"
+			tasks: [{
+				id: "6840C8BCF8CF0DE3"
+				item: "createdieselgenerators:engine_piston"
+				type: "item"
+			}]
+			title: "引擎活塞"
+			x: 7.151d
+			y: -2.559d
+		}
+		{
+			dependencies: ["8CC9A3876BBB1934"]
+			description: ["在引擎噪音影响共享基地时使用消音器。确认其未掩盖仍需监控的停滞或过载机器。"]
+			id: "B3A871ABF89FC629"
+			shape: "circle"
+			tasks: [{
+				id: "566A6D5D8B52CB96"
+				item: "createdieselgenerators:engine_silencer"
+				type: "item"
+			}]
+			title: "引擎消音器"
+			x: 7.778d
+			y: -1.656d
+		}
+		{
+			dependencies: ["B3A871ABF89FC629"]
+			description: ["涡轮增压器会提升性能与需求。离开升级后的发动机前，请再次检查燃料流量和旋转应力。"]
+			id: "F2FB292E10FFBA06"
+			shape: "circle"
+			tasks: [{
+				id: "3D75DDC34C5B5D5C"
+				item: "createdieselgenerators:engine_turbocharger"
+				type: "item"
+			}]
+			title: "发动机涡轮增压器"
+			x: 8.702d
+			y: -2.252d
+		}
+		{
+			dependencies: ["34CDDCCCD59BD88E" "F2FB292E10FFBA06"]
+			description: ["展示已勘测的提取、缓冲原油、分离的炼油产品、可再生燃料限制、发动机停机、应力裕度和无全油箱工作循环。"]
+			id: "FF6C644C8BC5BE23"
+			rewards: [{
+				id: "8F5D937888CA254B"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "54D8291F663C20B6"
+				title: "确认：一个受控燃料工厂"
+				type: "checkmark"
+			}]
+			title: "可控燃料发电厂"
+			x: 9.171d
+			y: -3.247d
+		}
+		{
+			dependencies: ["DFE777280134C6A9"]
+			description: ["Stuff and Additions 扩展了个人装备和紧凑型旋转引擎。将喷气背包、钻头、无人机和流体工具视为受控装备，而非普通的物品栏杂物。"]
+			id: "AAD43288F14AC14C"
+			rewards: [{
+				id: "E14918A8616E19B2"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "AAD8F5E97EFED1D2"
+				title: "确认：创建：物品与附加内容 (Stuff and Additions)"
+				type: "checkmark"
+			}]
+			title: "创造：物品与附加内容"
+			x: -0.408d
+			y: -0.647d
+		}
+		{
+			dependencies: ["AAD43288F14AC14C"]
+			description: ["在热量需求和输出适合紧凑型机器时使用热引擎。为热源提供屏蔽并加入离合器。"]
+			id: "A9BEEB4A6D4E3A6D"
+			shape: "circle"
+			tasks: [{
+				id: "A909CAEA7DD0937F"
+				item: "create_sa:heat_engine"
+				type: "item"
+			}]
+			title: "热引擎"
+			x: 1.302d
+			y: -2.029d
+		}
+		{
+			dependencies: ["AAD43288F14AC14C"]
+			description: ["液压引擎可将支持的流体转化为旋转。请使用过滤储罐，并在流体耗尽时测试其行为。"]
+			id: "38B047012B12D869"
+			shape: "circle"
+			tasks: [{
+				id: "68F3206586963508"
+				item: "create_sa:hydraulic_engine"
+				type: "item"
+			}]
+			title: "液压引擎"
+			x: 0.447d
+			y: -1.337d
+		}
+		{
+			dependencies: ["AAD43288F14AC14C"]
+			description: ["蒸汽引擎扩展提供了另一种紧凑的动力选项。将其实际应力输出和运营成本与原版 Create 蒸汽引擎进行比较。"]
+			id: "DD63E5D1455A3779"
+			shape: "circle"
+			tasks: [{
+				id: "4517198A93F10059"
+				item: "create_sa:steam_engine"
+				type: "item"
+			}]
+			title: "紧凑型蒸汽发动机"
+			x: 0.788d
+			y: 0.834d
+		}
+		{
+			dependencies: ["A9BEEB4A6D4E3A6D"]
+			description: ["在安全的测试区配置便携式钻机。避免在领地、建筑、电缆或隐藏机房附近进行区域挖掘。"]
+			id: "54C6A61EA45A6A18"
+			shape: "circle"
+			tasks: [{
+				id: "4141AA2896113E70"
+				item: "create_sa:portable_drill"
+				type: "item"
+			}]
+			title: "便携式钻头"
+			x: 2.328d
+			y: -1.634d
+		}
+		{
+			dependencies: ["38B047012B12D869"]
+			description: ["在规划好预定路线和安全操作空间后，再准备黄铜无人机。"]
+			id: "239321F4CFA15C04"
+			shape: "circle"
+			tasks: [{
+				id: "F84175740175A539"
+				item: "create_sa:brass_drone_item"
+				type: "item"
+			}]
+			title: "黄铜无人机"
+			x: 0.618d
+			y: -0.252d
+		}
+		{
+			dependencies: ["239321F4CFA15C04"]
+			description: ["近距离配对并测试控制器。在无人机穿越未加载区块前，确认其恢复行为。"]
+			id: "13C0CA241510AC0D"
+			shape: "circle"
+			tasks: [{
+				id: "BBBDA55D14866926"
+				item: "create_sa:drone_controller"
+				type: "item"
+			}]
+			title: "无人机控制器"
+			x: 3.354d
+			y: -1.238d
+		}
+		{
+			dependencies: ["DD63E5D1455A3779"]
+			description: ["从低风险移动测试开始推进喷气背包。检查燃料或压力、按键绑定、坠落保护和服务器飞行行为。"]
+			id: "83BF1DD10F2491DD"
+			shape: "circle"
+			tasks: [{
+				id: "F7EA1590E50FBCC8"
+				item: "create_sa:copper_jetpack_chestplate"
+				type: "item"
+			}]
+			title: "铜制喷气背包"
+			x: 1.643d
+			y: 0.144d
+		}
+		{
+			dependencies: ["83BF1DD10F2491DD"]
+			description: ["黄铜喷气背包能提升机动性。保持降落储备，避免在推进燃料耗尽时穿越维度。"]
+			id: "7976A7E60B121C2E"
+			shape: "circle"
+			tasks: [{
+				id: "B0E334A9C07F7ABE"
+				item: "create_sa:brass_jetpack_chestplate"
+				type: "item"
+			}]
+			title: "黄铜喷气背包"
+			x: 3.524d
+			y: -0.152d
+		}
+		{
+			dependencies: ["7976A7E60B121C2E"]
+			description: ["最高阶的喷气背包仍需安全的降落方案。解决与 Origins、法术及其他飞行装备的按键冲突。"]
+			id: "327DE7DACEA9EC26"
+			shape: "circle"
+			tasks: [{
+				id: "5C064EFB140E5A36"
+				item: "create_sa:netherite_jetpack_chestplate"
+				type: "item"
+			}]
+			title: "下界合金喷气背包"
+			x: 2.670d
+			y: 0.538d
+		}
+		{
+			dependencies: ["54C6A61EA45A6A18"]
+			description: ["将外骨骼作为特定任务装备，并在战斗或维度旅行前验证所有加成和惩罚。"]
+			id: "88FDAD7E75255280"
+			shape: "circle"
+			tasks: [{
+				id: "C3C9A149491107A8"
+				item: "create_sa:andesite_exoskeleton_chestplate"
+				type: "item"
+			}]
+			title: "安山岩外骨骼"
+			x: 1.473d
+			y: -0.943d
+		}
+		{
+			dependencies: ["327DE7DACEA9EC26"]
+			description: ["在远离虚空和脆弱建筑的地方练习缠斗。保持第二个恢复性移动选项可用。"]
+			id: "E9F7913C08BBA4CE"
+			shape: "circle"
+			tasks: [{
+				id: "37B201E211CFF469"
+				item: "create_sa:grapplin_whisk"
+				type: "item"
+			}]
+			title: "Grapplin Whisk"
+			x: 4.478d
+			y: 0.397d
+		}
+		{
+			dependencies: ["88FDAD7E75255280"]
+			description: ["将火焰喷射器视为危险品。在受保护的不可燃区域测试射程和燃料，切勿随意自动化使用。"]
+			id: "E48293E10F0B9C0F"
+			shape: "circle"
+			tasks: [{
+				id: "C781DADB473CD82A"
+				item: "create_sa:flamethrower"
+				type: "item"
+			}]
+			title: "火焰喷射器"
+			x: 2.499d
+			y: -0.548d
+		}
+		{
+			dependencies: ["13C0CA241510AC0D" "E9F7913C08BBA4CE" "E48293E10F0B9C0F"]
+			description: ["验证引擎关闭、无人机回收、可控采矿、飞行储备、无冲突键位和危险工具的 безопасное 使用。"]
+			id: "E037072E215FDACA"
+			rewards: [{
+				id: "112595EFAAAA8B2B"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "7EE895CC5DF8E527"
+				title: "确认：安全个人机械装置"
+				type: "checkmark"
+			}]
+			title: "安全个人机械装置"
+			x: 4.477d
+			y: -0.702d
+		}
+		{
+			dependencies: ["DFE777280134C6A9"]
+			description: ["建造超管道作为有明确入口、出口、分支、加速和紧急通道的运输网络。在公开使用前测试每条路线。"]
+			id: "B419338FCD760C48"
+			rewards: [{
+				id: "348A010FF64E0E18"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "BCD03C63E38CE2AD"
+				title: "确认：超管隧道交通系统"
+				type: "checkmark"
+			}]
+			title: "超管运输系统"
+			x: -0.067d
+			y: 1.526d
+		}
+		{
+			dependencies: ["B419338FCD760C48"]
+			description: ["先铺一段短试管，并确保路线上没有移动装置和窒息危险。"]
+			id: "C1E6A997D5D87761"
+			shape: "circle"
+			tasks: [{
+				id: "0577FDC7B24677C1"
+				item: "create_hypertube:hypertube"
+				type: "item"
+			}]
+			title: "超管状物"
+			x: 0.959d
+			y: 1.921d
+		}
+		{
+			dependencies: ["C1E6A997D5D87761"]
+			description: ["入口设计要有安全的站立空间和明显的返回路径。防止从繁忙通道意外进入。"]
+			id: "CA062AFF1CD1E4C3"
+			shape: "circle"
+			tasks: [{
+				id: "3BF1D80EA678B143"
+				item: "create_hypertube:hypertube_entrance"
+				type: "item"
+			}]
+			title: "超管入口"
+			x: 1.814d
+			y: 1.230d
+		}
+		{
+			dependencies: ["CA062AFF1CD1E4C3"]
+			description: ["逐步加速并测试未加载区块的过渡。更快的旅行需要更长的制动距离和更安全的出口。"]
+			id: "D0C8DEF5A809DD1F"
+			shape: "circle"
+			tasks: [{
+				id: "99F1A4000F419450"
+				item: "create_hypertube:hypertube_accelerator"
+				type: "item"
+			}]
+			title: "超管加速器"
+			x: 1.986d
+			y: 2.316d
+		}
+		{
+			dependencies: ["D0C8DEF5A809DD1F"]
+			description: ["为每个分支命名，并确保其选择行为无歧义。失败的筛选器应导向一个安全的默认路径。"]
+			id: "B77BA4B16AE60842"
+			shape: "circle"
+			tasks: [{
+				id: "CF7CD88A077C7274"
+				item: "create_hypertube:hypertube_junction"
+				type: "item"
+			}]
+			title: "超管交汇点"
+			x: 2.841d
+			y: 1.624d
+		}
+		{
+			dependencies: ["B77BA4B16AE60842"]
+			description: ["确认方向和碰撞行为后再使用漏斗。将服务入口设在乘客路径之外。"]
+			id: "A5220ECCD06FA49F"
+			shape: "circle"
+			tasks: [{
+				id: "4AFBB15B241D61DF"
+				item: "create_hypertube:hypertube_funnel"
+				type: "item"
+			}]
+			title: "超管漏斗"
+			x: 3.901d
+			y: 1.334d
+		}
+		{
+			dependencies: ["B77BA4B16AE60842"]
+			description: ["使用乘客检测来触发门、信号或调度逻辑。避免快速反馈循环重新触发同一路线。"]
+			id: "334FD15CF7BE4271"
+			shape: "circle"
+			tasks: [{
+				id: "BF40BFF1116711DE"
+				item: "create_hypertube:redstone_detector_tube_attachment"
+				type: "item"
+			}]
+			title: "红石探测器附加组件"
+			x: 3.361d
+			y: 2.593d
+		}
+		{
+			dependencies: ["334FD15CF7BE4271"]
+			description: ["精确配置扫描仪条件，并为不符合条件的乘客提供安全路线。"]
+			id: "9B48981D773CB275"
+			shape: "circle"
+			tasks: [{
+				id: "C56D847B32B07B80"
+				item: "create_hypertube:tube_scanner_attachment"
+				type: "item"
+			}]
+			title: "管状扫描仪附件"
+			x: 4.424d
+			y: 2.311d
+		}
+		{
+			dependencies: ["A5220ECCD06FA49F" "9B48981D773CB275"]
+			description: ["以预定速度完成从入口到出口的测试，包括所有岔路口、未匹配的扫描结果、未加载的边界和返回路线。"]
+			id: "DFC1EFEFA1A21F56"
+			rewards: [{
+				id: "16B6EB6DD8990749"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "DA47D5CD58A779B3"
+				title: "确认：一条公共安全的管道路线"
+				type: "checkmark"
+			}]
+			title: "一条公共安全的管道路线"
+			x: 5.001d
+			y: 1.375d
+		}
+		{
+			dependencies: ["DFE777280134C6A9"]
+			description: ["工厂物流负责协调包裹、流体和网络链接。在稳定的创造机械带和储物箱上建造，并设置明确的地址和错误处理目的地。"]
+			id: "E73B8EFBD5266DA4"
+			rewards: [{
+				id: "3E7CCD93BBA3F039"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "26A62935B7D3C0C4"
+				title: "确认：工厂物流系统"
+				type: "checkmark"
+			}]
+			title: "工厂物流系统"
+			x: 5.577d
+			y: 0.438d
+		}
+		{
+			dependencies: ["E73B8EFBD5266DA4"]
+			description: ["先连接一个已知的源和目的地。记录其地址，并确保无关网络不共享模糊名称。"]
+			id: "6DF5B93F8C4CDD81"
+			shape: "circle"
+			tasks: [{
+				id: "AB1D0B2C526B384B"
+				item: "create_factory_logistics:network_link"
+				type: "item"
+			}]
+			title: "网络连接"
+			x: 5.876d
+			y: -0.620d
+		}
+		{
+			dependencies: ["6DF5B93F8C4CDD81"]
+			description: ["仅使用具有确切流体身份和足够目标容量的流体机制。"]
+			id: "24F4E7AE7A5A5CF8"
+			shape: "circle"
+			tasks: [{
+				id: "C3D91DC6C64CEB11"
+				item: "create_factory_logistics:fluid_mechanism"
+				type: "item"
+			}]
+			title: "流体机制模组"
+			x: 6.643d
+			y: 0.167d
+		}
+		{
+			dependencies: ["24F4E7AE7A5A5CF8"]
+			description: ["在操作员启动或停止生产线前，显示流体状态。根据实际储罐容量进行校准。"]
+			id: "1F587B764273099A"
+			shape: "circle"
+			tasks: [{
+				id: "D239F39CF21AB1E5"
+				item: "create_factory_logistics:factory_fluid_gauge"
+				type: "item"
+			}]
+			title: "工厂流体计量表"
+			x: 7.636d
+			y: -0.305d
+		}
+		{
+			dependencies: ["1F587B764273099A"]
+			description: ["仅在验证容器类型、数量、地址和拒绝输出行为后，再包装流体或产品。"]
+			id: "4839D8C698A78D88"
+			shape: "circle"
+			tasks: [{
+				id: "23018ACCDA22782B"
+				item: "create_factory_logistics:jar_packager"
+				type: "item"
+			}]
+			title: "Jar Packager"
+			x: 6.895d
+			y: 1.237d
+		}
+		{
+			dependencies: ["4839D8C698A78D88"]
+			description: ["复合包裹会合并多个包裹。如果目的地缺失或已满，请保持其内容物封闭且可恢复。"]
+			id: "1E848CE09E99FD82"
+			shape: "circle"
+			tasks: [{
+				id: "43FB7316AA2763BD"
+				item: "create_factory_logistics:composite_package"
+				type: "item"
+			}]
+			title: "复合包"
+			x: 7.889d
+			y: 0.766d
+		}
+		{
+			dependencies: ["1E848CE09E99FD82"]
+			description: ["展示唯一地址、精确筛选、可见库存、拒收包裹处理、无重发循环，以及目的地离线时的手动恢复。"]
+			id: "9A582CB7055D7440"
+			rewards: [{
+				id: "9D56A9413267C4F2"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "42C1715D6EF0F2AE"
+				title: "确认：一条容错率高的运输线路"
+				type: "checkmark"
+			}]
+			title: "一条容错率高的运输线路"
+			x: 8.690d
+			y: 0.012d
+		}
+		{
+			dependencies: ["DFE777280134C6A9"]
+			description: ["使用贸易站来组织受支持的村民贸易，而不会替换与进度相关的交易。保护村民的安全，并保留他们正常的交易内容。"]
+			id: "5532CE38B10DB464"
+			shape: "circle"
+			tasks: [{
+				id: "917BFB22B236676B"
+				item: "trading_floor:trading_depot"
+				type: "item"
+			}]
+			title: "贸易站"
+			x: 5.527d
+			y: 2.340d
+		}
+		{
+			dependencies: ["5532CE38B10DB464" "9A582CB7055D7440"]
+			description: ["货币学银行、社会贸易商店和货运箱销售在经济与贸易章节中均有说明。将工厂生产与货币存储分开，并防止预留材料被自动出售。"]
+			id: "6DED3783F1DF9F00"
+			rewards: [{
+				id: "C12831529C8D2585"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "693E858A15728F23"
+				title: "确认：连接到经济章节 Economy Chapter"
+				type: "checkmark"
+			}]
+			title: "连接到经济章节 Economy Chapter"
+			x: 8.956d
+			y: 1.493d
+		}
+		{
+			dependencies: ["FF6C644C8BC5BE23" "E037072E215FDACA" "DFC1EFEFA1A21F56" "6DED3783F1DF9F00"]
+			description: ["操作一个附加电源、一条安全运输路线、一条可恢复物流线和一件受控个人工具，而不会过载创造应力、区块加载、领地、存储或经济系统。"]
+			id: "E5A762E65E78B3CF"
+			rewards: [{
+				id: "D3E311C80AA26A79"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "C63C40B4BD9856A3"
+				title: "确认：一个整合包附加组件工厂"
+				type: "checkmark"
+			}]
+			title: "一个整合包附加内容工厂"
+			x: 10.149d
+			y: 0.000d
+		}
+	]
+	title: "创建附加组件和物流系统"
+}

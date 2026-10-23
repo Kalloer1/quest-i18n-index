@@ -1,0 +1,1036 @@
+# AI 初翻，未人工校对
+{
+	id: "694AB2680FF20EA7"
+	group: "0FA952FB21E9D48F"
+	order_index: 0
+	filename: "create"
+	title: "基础知识"
+	icon: "create:cogwheel"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	images: [{
+		x: -4.5d
+		y: 0.0d
+		width: 10.0d
+		height: 2.0d
+		rotation: 0.0d
+		image: "kubejs:textures/other/basics.png"
+		hover: [ ]
+		click: ""
+		dev: false
+		corner: false
+	}]
+	quests: [
+		{
+			x: -4.0d
+			y: -5.0d
+			subtitle: "在地下发现，或用石英合成而成"
+			description: ["你需要大量的安山岩来制作创造模组的东西"]
+			id: "0DEAD40F51649417"
+			tasks: [{
+				id: "7237F975522E0E3E"
+				type: "item"
+				item: "minecraft:andesite"
+			}]
+			rewards: [{
+				id: "33EBD0CFAA0CA920"
+				type: "item"
+				item: "minecraft:iron_ingot"
+			}]
+		}
+		{
+			x: -2.5d
+			y: -3.5d
+			subtitle: "通用创造合成材料"
+			description: ["Create 有一个叫 Ponder 的绝佳功能，只需在查看背包中的 Create 方块或物品时按住 'W' 键即可。"]
+			dependencies: ["0DEAD40F51649417"]
+			id: "0D7CA630061AEABB"
+			tasks: [{
+				id: "1022AFC93D5631D1"
+				type: "item"
+				item: "create:andesite_alloy"
+			}]
+			rewards: [{
+				id: "471CF24134B0E71A"
+				type: "item"
+				item: "simplefarming:egg_sandwich"
+			}]
+		}
+		{
+			x: 0.5d
+			y: -5.0d
+			subtitle: "利用水流运动产生旋转能量"
+			dependencies: ["2B6CDA3D5CB1B104"]
+			id: "5D91F0D9778C3E5A"
+			tasks: [{
+				id: "773C7DFB39997EA6"
+				type: "item"
+				item: "create:water_wheel"
+			}]
+			rewards: [
+				{
+					id: "6CBCD9F49855C02E"
+					type: "item"
+					item: "minecraft:water_bucket"
+				}
+				{
+					id: "24B39101532958BA"
+					type: "xp"
+					xp: 10
+				}
+			]
+		}
+		{
+			x: -1.0d
+			y: -3.5d
+			subtitle: "用于传递旋转。也用于为机器提供旋转动力"
+			dependencies: ["0D7CA630061AEABB"]
+			id: "2B6CDA3D5CB1B104"
+			tasks: [
+				{
+					id: "1EE263815B2E1F50"
+					type: "item"
+					item: "create:cogwheel"
+				}
+				{
+					id: "595DDFF7A9FE1FBA"
+					type: "item"
+					item: "create:large_cogwheel"
+				}
+			]
+			rewards: [{
+				id: "4F481E736B5A9CEB"
+				type: "item"
+				item: "simplefarming:oat_bread"
+				count: 4
+			}]
+		}
+		{
+			x: -5.5d
+			y: -3.5d
+			subtitle: "利用风力产生旋转。安装风车叶片，右键点击风车轴承即可开始"
+			dependencies: ["4861B12A599DD8E5"]
+			id: "5CCD28C6D2CAEEDB"
+			tasks: [{
+				id: "4D47BD1BE282D6F0"
+				type: "item"
+				item: "create:windmill_bearing"
+			}]
+			rewards: [{
+				id: "2D777754EBE8570B"
+				type: "item"
+				item: "create:white_sail"
+				count: 8
+			}]
+		}
+		{
+			title: "建造一个最大强度的风力发电机"
+			x: -7.0d
+			y: -1.5d
+			subtitle: "将 128+ 个风车叶片安装到风车轴承上"
+			dependencies: ["5CCD28C6D2CAEEDB"]
+			id: "012828925DBC966C"
+			tasks: [{
+				id: "1B1886AE7BF7F2B4"
+				type: "advancement"
+				advancement: "create:maxed_windmill"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "0BFF8B803219F453"
+					type: "item"
+					item: "minecraft:diamond"
+					count: 3
+				}
+				{
+					id: "6883A1F8F2552F13"
+					type: "command"
+					title: "两个领地标记"
+					icon: {
+						id: "ftbquests:custom_icon"
+						Count: 1b
+						tag: {
+							Icon: "cc:textures/block/claim_block.png"
+						}
+					}
+					command: "/ftbchunks admin extra_claim_chunks @p add 2"
+					player_command: false
+				}
+			]
+		}
+		{
+			x: -1.0d
+			y: -1.5d
+			subtitle: "用于研磨多种材料"
+			dependencies: ["2B6CDA3D5CB1B104"]
+			id: "1663B92D0C572317"
+			tasks: [{
+				id: "0BAD7B795058BF3B"
+				type: "item"
+				item: "create:millstone"
+			}]
+			rewards: [{
+				id: "3865F4BDBB897284"
+				type: "item"
+				item: "create:crushed_iron_ore"
+				count: 4
+			}]
+		}
+		{
+			x: -4.0d
+			y: -3.5d
+			subtitle: "中继器沿直线方向旋转"
+			dependencies: ["0D7CA630061AEABB"]
+			id: "4861B12A599DD8E5"
+			tasks: [{
+				id: "20E9D20429D61048"
+				type: "item"
+				item: "create:shaft"
+			}]
+			rewards: [{
+				id: "7AF8133925C70AC1"
+				type: "item"
+				item: "create:andesite_alloy"
+				count: 4
+			}]
+		}
+		{
+			x: 2.0d
+			y: 0.0d
+			subtitle: "用于制作板，应用于多种合成配方中"
+			dependencies: ["2B6CDA3D5CB1B104"]
+			id: "227441E314FF89EA"
+			tasks: [{
+				id: "0DDC3D019A9EE6BD"
+				type: "item"
+				item: "create:mechanical_press"
+			}]
+			rewards: [
+				{
+					id: "63F496E0782031AE"
+					type: "item"
+					item: "minecraft:iron_ingot"
+					count: 2
+				}
+				{
+					id: "4E821BC5A47BAA74"
+					type: "item"
+					item: "minecraft:gold_ingot"
+					count: 2
+				}
+			]
+		}
+		{
+			x: 2.0d
+			y: -3.5d
+			subtitle: "在暮色森林的矿石中发现"
+			id: "29C627C3D0CB0EC4"
+			tasks: [{
+				id: "6127B18C4069B0D6"
+				type: "item"
+				item: "create:copper_ingot"
+			}]
+			rewards: [{
+				id: "2F148F76FBDB0FF3"
+				type: "item"
+				item: "create:copper_ore"
+				count: 3
+			}]
+		}
+		{
+			x: 3.5d
+			y: -3.5d
+			subtitle: "用于合成物品时使用"
+			dependencies: ["29C627C3D0CB0EC4"]
+			id: "5CBEB1A0E1B78A3D"
+			tasks: [{
+				id: "04B2467FE7447C4A"
+				type: "item"
+				item: "create:copper_casing"
+			}]
+			rewards: [{
+				id: "420FA53C6C50A9A5"
+				type: "item"
+				item: "minecraft:iron_bars"
+				count: 16
+			}]
+		}
+		{
+			x: 5.0d
+			y: -2.0d
+			subtitle: "用于将流体填充到容器中"
+			dependencies: ["1B3505F2216C8AA4"]
+			id: "20AEBB3E4364EF59"
+			tasks: [{
+				id: "6493F071472D7AE9"
+				type: "item"
+				item: "create:spout"
+			}]
+			rewards: [{
+				id: "35BB6B33651C7B4F"
+				type: "item"
+				item: "create:copper_ingot"
+				count: 4
+			}]
+		}
+		{
+			x: 5.0d
+			y: -3.5d
+			subtitle: "储存流体，以2x2或3x3模式放置即可相互连接"
+			dependencies: ["5CBEB1A0E1B78A3D"]
+			id: "1B3505F2216C8AA4"
+			tasks: [{
+				id: "597201316E6E5D10"
+				type: "item"
+				item: "create:fluid_tank"
+			}]
+			rewards: [
+				{
+					id: "1C0416E5889437F2"
+					type: "item"
+					item: "create:fluid_tank"
+					count: 2
+				}
+				{
+					id: "1F34EDFDCFA06C79"
+					type: "xp"
+					xp: 20
+				}
+			]
+		}
+		{
+			x: 2.0d
+			y: -2.0d
+			subtitle: "用于输送液体从A到B的流体管道"
+			dependencies: [
+				"227441E314FF89EA"
+				"29C627C3D0CB0EC4"
+			]
+			id: "56D5901035BE2C15"
+			tasks: [{
+				id: "116538BA915B7F62"
+				type: "item"
+				item: "create:fluid_pipe"
+			}]
+			rewards: [{
+				id: "2F159AC9F3EB969A"
+				type: "item"
+				item: "minecraft:lava_bucket"
+			}]
+		}
+		{
+			x: 0.5d
+			y: -3.5d
+			subtitle: "通电后能沿着箭头的方向流畅移动"
+			dependencies: [
+				"56D5901035BE2C15"
+				"2B6CDA3D5CB1B104"
+			]
+			id: "338BB93398804B1F"
+			tasks: [{
+				id: "2E422362386B0D06"
+				type: "item"
+				item: "create:mechanical_pump"
+			}]
+			rewards: [
+				{
+					id: "61FDBF0096850AED"
+					type: "item"
+					item: "create:gearbox"
+				}
+				{
+					id: "17C11F1285DFCAA9"
+					type: "item"
+					item: "create:cogwheel"
+				}
+			]
+		}
+		{
+			x: 4.0d
+			y: 0.0d
+			subtitle: "用途广泛，包括旋转方块和快速破坏方块"
+			dependencies: ["227441E314FF89EA"]
+			id: "715CCF493FF7572A"
+			tasks: [{
+				id: "1805A47A649C9E26"
+				type: "item"
+				item: "create:wrench"
+			}]
+			rewards: [{
+				id: "26BF367BE1212F57"
+				type: "item"
+				item: "create:andesite_encased_shaft"
+				count: 4
+			}]
+		}
+		{
+			x: 0.5d
+			y: -6.5d
+			subtitle: "可以中继旋转并移动放置在顶部的物品"
+			dependencies: ["31203C06709BB51B"]
+			id: "07403F064EA8F7CD"
+			tasks: [{
+				id: "5801A1CD951A4439"
+				type: "item"
+				item: "create:belt_connector"
+			}]
+			rewards: [{
+				id: "003F5FEDB3A58802"
+				type: "item"
+				item: "create:shaft"
+				count: 4
+			}]
+		}
+		{
+			title: "齿轮的转动与变换"
+			x: -1.0d
+			y: -5.0d
+			subtitle: "将一个小齿轮斜着放置在大齿轮旁边。可以使转速加倍或减半"
+			dependencies: ["2B6CDA3D5CB1B104"]
+			id: "453BC8BA8D769C3D"
+			tasks: [{
+				id: "450E84EA11EE2849"
+				type: "advancement"
+				advancement: "create:shifting_gears"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "6F1A00F40D6FFADC"
+					type: "item"
+					item: "minecraft:oak_log"
+					count: 16
+				}
+				{
+					id: "4A007BB5E7957897"
+					type: "xp"
+					xp: 20
+				}
+			]
+		}
+		{
+			x: -1.0d
+			y: -6.5d
+			subtitle: "用砂纸打磨玫瑰石英块"
+			id: "427842B30972F201"
+			tasks: [{
+				id: "638007B24B363FF9"
+				type: "item"
+				item: "create:electron_tube"
+			}]
+			rewards: [{
+				id: "7A69EDDB8001A7C6"
+				type: "item"
+				item: {
+					id: "create:red_sand_paper"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				count: 2
+			}]
+		}
+		{
+			x: 4.0d
+			y: -1.0d
+			subtitle: "移动中也能看到旋转速度！可与头盔结合使用，或放入护目镜槽中"
+			dependencies: ["227441E314FF89EA"]
+			id: "74B478824652051B"
+			tasks: [{
+				id: "2C55DC4FD612EADE"
+				type: "item"
+				item: "create:goggles"
+			}]
+			rewards: [
+				{
+					id: "0024CB8B6FE80907"
+					type: "item"
+					item: {
+						id: "minecraft:chainmail_helmet"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "59D2B6E49956D094"
+					type: "xp"
+					xp: 30
+				}
+			]
+		}
+		{
+			x: 4.0d
+			y: 1.0d
+			subtitle: "也可用于利用热量产生旋转能量"
+			dependencies: ["227441E314FF89EA"]
+			id: "2FC30570F133AA37"
+			tasks: [{
+				id: "5E8D264033FD4C45"
+				type: "item"
+				item: "create:encased_fan"
+			}]
+			rewards: [
+				{
+					id: "1D982CF6A63A6E45"
+					type: "item"
+					item: "minecraft:magma_block"
+				}
+				{
+					id: "056BA73D76676DD5"
+					type: "item"
+					item: "minecraft:lever"
+				}
+			]
+		}
+		{
+			title: "机械工具"
+			x: -2.5d
+			y: -1.5d
+			subtitle: "用于与世界互动。用机械锯建造伐木场，用机械钻建造采石场，用机械收割机建造自动化农场"
+			dependencies: ["0D7CA630061AEABB"]
+			id: "235E8992A781AED1"
+			tasks: [
+				{
+					id: "6D82F232B9D188AC"
+					type: "item"
+					item: "create:mechanical_drill"
+				}
+				{
+					id: "148F00E06B7DBAAA"
+					type: "item"
+					item: "create:mechanical_saw"
+				}
+				{
+					id: "16F0D359FEBF4066"
+					type: "item"
+					item: "create:mechanical_harvester"
+				}
+			]
+			rewards: [{
+				id: "7CBE53C2979C491D"
+				type: "choice"
+				table_id: 5153218200219243257L
+			}]
+		}
+		{
+			x: -2.5d
+			y: -6.5d
+			subtitle: "使用过滤器控制输入和输出"
+			id: "3315EB58ECFEC9E3"
+			tasks: [{
+				id: "54677463CE61C32D"
+				type: "item"
+				item: {
+					id: "create:filter"
+					Count: 1b
+					tag: {
+						Items: { }
+					}
+				}
+			}]
+			rewards: [{
+				id: "20A6C89368F9E6BC"
+				type: "item"
+				item: "minecraft:iron_ingot"
+			}]
+		}
+		{
+			x: 3.5d
+			y: -6.5d
+			subtitle: "用于向物品栏中输入和输出物品"
+			dependencies: ["31203C06709BB51B"]
+			id: "3CB5BA0ED0C3A422"
+			tasks: [{
+				id: "279C04832A7BE983"
+				type: "item"
+				item: "create:andesite_funnel"
+			}]
+			rewards: [{
+				id: "4F35109F1E3BB55D"
+				type: "item"
+				item: "ironchest:iron_chest"
+			}]
+		}
+		{
+			x: 0.0d
+			y: -1.0d
+			subtitle: "可通过容器向下传送物品，或使用机械风扇向上传送"
+			dependencies: ["227441E314FF89EA"]
+			id: "47852A693B5CE8A5"
+			tasks: [{
+				id: "6AD03DF63A0C9CB5"
+				type: "item"
+				item: "create:chute"
+			}]
+			rewards: [{
+				id: "3C6560215FC1B612"
+				type: "item"
+				item: "minecraft:chest"
+				count: 4
+			}]
+		}
+		{
+			x: 1.0d
+			y: 2.0d
+			subtitle: "用于加热混合器配方中的物品"
+			dependencies: ["227441E314FF89EA"]
+			id: "04C147662C9B4A6F"
+			tasks: [{
+				id: "357BAC0FF156DE63"
+				type: "item"
+				item: "create:empty_blaze_burner"
+			}]
+			rewards: [
+				{
+					id: "4CC8A4DF0587D39D"
+					type: "item"
+					item: {
+						id: "minecraft:golden_helmet"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "4452010A9B4D2C3B"
+					type: "xp"
+					xp: 20
+				}
+			]
+		}
+		{
+			x: 1.0d
+			y: 3.5d
+			subtitle: "将烈焰人塞进一个空的烈焰人燃烧器中"
+			dependencies: ["04C147662C9B4A6F"]
+			id: "688E6DCCA4AD57C0"
+			tasks: [{
+				id: "4BA78F60B5B1E54C"
+				type: "item"
+				item: "create:blaze_burner"
+			}]
+			rewards: [
+				{
+					id: "2C611C4FD41B977F"
+					type: "item"
+					item: "minecraft:blaze_rod"
+					count: 3
+				}
+				{
+					id: "6A788D419A83C849"
+					type: "command"
+					title: "一个区块声明"
+					icon: {
+						id: "ftbquests:custom_icon"
+						Count: 1b
+						tag: {
+							Icon: "cc:textures/block/claim_block.png"
+						}
+					}
+					command: "/ftbchunks admin extra_claim_chunks @p add 1"
+					player_command: false
+				}
+			]
+		}
+		{
+			x: -2.5d
+			y: -5.0d
+			subtitle: "可用于制作火车。别忘了用强力胶水把方块粘在一起"
+			dependencies: ["0D7CA630061AEABB"]
+			id: "33CA29C748648266"
+			tasks: [{
+				id: "598A3E469EC53542"
+				type: "item"
+				item: "create:cart_assembler"
+			}]
+			rewards: [
+				{
+					id: "0B51827B1BA3E418"
+					type: "item"
+					item: "minecraft:minecart"
+				}
+				{
+					id: "7141E1643792C814"
+					type: "item"
+					item: "minecraft:lever"
+				}
+			]
+		}
+		{
+			x: 3.0d
+			y: 2.0d
+			subtitle: "用于将两辆矿车连接在一起"
+			dependencies: ["227441E314FF89EA"]
+			id: "5D939288E374BFDC"
+			tasks: [{
+				id: "5B760F6D861EB382"
+				type: "item"
+				item: "create:minecart_coupling"
+			}]
+			rewards: [
+				{
+					id: "141A405B03DA8DED"
+					type: "item"
+					item: "minecraft:minecart"
+				}
+				{
+					id: "41BF8C7C8F46B9B9"
+					type: "item"
+					item: "minecraft:furnace_minecart"
+				}
+			]
+		}
+		{
+			title: "计量器"
+			x: -5.5d
+			y: -1.5d
+			subtitle: "显示当前系统的速度和压力情况"
+			dependencies: ["4861B12A599DD8E5"]
+			id: "685854099BDC6D1C"
+			tasks: [
+				{
+					id: "68831ACD4B45065B"
+					type: "item"
+					item: "create:speedometer"
+				}
+				{
+					id: "3CC62A7CED9F0EDD"
+					type: "item"
+					item: "create:stressometer"
+				}
+			]
+			rewards: [{
+				id: "00CA3DF8C2C31E16"
+				type: "item"
+				item: "minecraft:gold_ingot"
+				count: 3
+			}]
+		}
+		{
+			x: 0.0d
+			y: 0.0d
+			subtitle: "粘性物品。放在副手可自动使用"
+			dependencies: ["227441E314FF89EA"]
+			id: "043A79BC0EDFB77D"
+			tasks: [{
+				id: "798B7E8B1CD532B7"
+				type: "item"
+				item: {
+					id: "create:super_glue"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "008D86FC664D07D5"
+				type: "item"
+				item: "minecraft:slime_block"
+			}]
+		}
+		{
+			x: 0.0d
+			y: 1.0d
+			subtitle: "用于制作各种物品、食物、药水以及无定形配方"
+			dependencies: ["227441E314FF89EA"]
+			id: "4C569FC5E920667D"
+			tasks: [{
+				id: "61E85739410CF6FF"
+				type: "item"
+				item: "create:mechanical_mixer"
+			}]
+			rewards: [{
+				id: "0EB974344CE781E6"
+				type: "item"
+				item: "minecraft:iron_ingot"
+				count: 4
+			}]
+		}
+		{
+			x: -4.0d
+			y: -1.5d
+			subtitle: "可用于多种类型的合成，从混合到压缩等等！"
+			dependencies: ["0D7CA630061AEABB"]
+			id: "3573A5A641D066A7"
+			tasks: [{
+				id: "4A32968BB1CE9633"
+				type: "item"
+				item: "create:basin"
+			}]
+			rewards: [
+				{
+					id: "44F0D479C79486C5"
+					type: "item"
+					item: "create:basin"
+				}
+				{
+					id: "0B9FD807C2917594"
+					type: "xp"
+					xp: 20
+				}
+			]
+		}
+		{
+			x: 2.0d
+			y: -6.5d
+			subtitle: "用熔炉烘干一些海带（Kelp）"
+			id: "31203C06709BB51B"
+			tasks: [{
+				id: "5E0FD043D48B9A87"
+				type: "item"
+				item: "minecraft:dried_kelp"
+			}]
+			rewards: [{
+				id: "2605DBA6FEDE37A3"
+				type: "item"
+				item: "minecraft:dried_kelp_block"
+			}]
+		}
+		{
+			x: 3.5d
+			y: -5.0d
+			subtitle: "在移动装置和固定接口之间传输流体"
+			dependencies: [
+				"3CB5BA0ED0C3A422"
+				"5CBEB1A0E1B78A3D"
+			]
+			id: "10102144BFB6BD89"
+			tasks: [{
+				id: "2913BF20167CA252"
+				type: "item"
+				item: "create:portable_fluid_interface"
+			}]
+			rewards: [{
+				id: "75B9BD1CC59BEBAF"
+				type: "item"
+				item: "create:fluid_pipe"
+				count: 16
+			}]
+		}
+		{
+			x: -4.0d
+			y: -6.5d
+			subtitle: "像画作一样放置，可用于快速制作物品"
+			id: "3855D4494C6C909B"
+			tasks: [{
+				id: "11D8906FA6F8805D"
+				type: "item"
+				item: "create:crafting_blueprint"
+			}]
+			rewards: [
+				{
+					id: "7E408F39678AD6A4"
+					type: "item"
+					item: "minecraft:oak_log"
+					count: 2
+				}
+				{
+					id: "23DE7A7B5DBBF1C5"
+					type: "xp"
+					xp: 10
+				}
+			]
+		}
+		{
+			x: -5.5d
+			y: -5.0d
+			subtitle: "无线红石。将钥匙设为相同组合即可传输红石信号"
+			id: "51F369B788650EF3"
+			tasks: [{
+				id: "20985BEF9015840F"
+				type: "item"
+				item: "create:redstone_link"
+			}]
+			rewards: [{
+				id: "1D14D902DA640AAE"
+				type: "item"
+				item: "create:cuckoo_clock"
+			}]
+		}
+		{
+			x: -5.5d
+			y: -6.5d
+			subtitle: "可以用来亲手控制许多不同的链接"
+			dependencies: ["51F369B788650EF3"]
+			id: "16A7AFD245654968"
+			tasks: [{
+				id: "1D49878312B3BA78"
+				type: "item"
+				item: "create:linked_controller"
+			}]
+			rewards: [{
+				id: "7D26104CA6371789"
+				type: "item"
+				item: "create:rope_pulley"
+			}]
+		}
+		{
+			x: 2.0d
+			y: -5.0d
+			subtitle: "用于土豆大炮和潜水装备"
+			dependencies: ["29C627C3D0CB0EC4"]
+			id: "606B7A776FDF3C9F"
+			tasks: [{
+				id: "0D0335F1B590A01E"
+				type: "item"
+				item: {
+					id: "create:copper_backtank"
+					Count: 1b
+					tag: {
+						Air: 900
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "2C3F6232EE20C829"
+					type: "item"
+					item: "create:shaft"
+					count: 3
+				}
+				{
+					id: "3ACC83573858BEBE"
+					type: "item"
+					item: "create:vertical_gearbox"
+				}
+			]
+		}
+		{
+			x: 3.5d
+			y: -2.0d
+			subtitle: "需要铜制背囊才能呼吸空气！"
+			dependencies: ["29C627C3D0CB0EC4"]
+			id: "13011595D1C93FC4"
+			tasks: [
+				{
+					id: "48483C94F62795BF"
+					type: "item"
+					item: {
+						id: "create:diving_helmet"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "71AAAA75E818FA6A"
+					type: "item"
+					item: {
+						id: "create:diving_boots"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [
+				{
+					id: "410542FFBA852BBA"
+					type: "item"
+					item: "artifacts:flippers"
+				}
+				{
+					id: "12CD828F4B82F180"
+					type: "command"
+					title: "一个区块声明"
+					icon: {
+						id: "ftbquests:custom_icon"
+						Count: 1b
+						tag: {
+							Icon: "cc:textures/block/claim_block.png"
+						}
+					}
+					command: "/ftbchunks admin extra_claim_chunks @p add 1"
+					player_command: false
+				}
+			]
+		}
+		{
+			x: 5.0d
+			y: -5.0d
+			subtitle: "从桶和瓶子中排出液体"
+			dependencies: ["5CBEB1A0E1B78A3D"]
+			id: "14F6D502822E3F09"
+			tasks: [{
+				id: "5BDEDD00FE77FF98"
+				type: "item"
+				item: "create:item_drain"
+			}]
+			rewards: [
+				{
+					id: "0450B8BEC607AA8A"
+					type: "item"
+					item: "minecraft:milk_bucket"
+				}
+				{
+					id: "78919EE00362D1B3"
+					type: "xp"
+					xp: 30
+				}
+			]
+		}
+		{
+			x: 5.0d
+			y: -6.5d
+			subtitle: "直接从你身上吸走经验值！"
+			dependencies: ["14F6D502822E3F09"]
+			id: "57B2F8F5B0B54B7E"
+			tasks: [{
+				id: "768D0763DD37811C"
+				type: "item"
+				item: "witherutilsexp:xpsucker"
+			}]
+			rewards: [{
+				id: "02B4A85C091681FE"
+				type: "xp_levels"
+				xp_levels: 3
+			}]
+		}
+		{
+			title: "工具箱"
+			x: -7.0d
+			y: -3.5d
+			subtitle: "创建一个创造工具箱"
+			id: "1A119B9695E42E2B"
+			tasks: [{
+				id: "4E64988451E2F37C"
+				type: "item"
+				title: "任意数量的 #create:toolboxes"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "create:toolboxes"
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "05C20138EA1852F4"
+					type: "item"
+					item: "minecraft:oak_planks"
+					count: 256
+				}
+				{
+					id: "3411D45192C6E93B"
+					type: "item"
+					item: "minecraft:stone"
+					count: 256
+				}
+				{
+					id: "63FA8AFA14F33910"
+					type: "xp"
+					xp: 50
+				}
+			]
+		}
+	]
+}

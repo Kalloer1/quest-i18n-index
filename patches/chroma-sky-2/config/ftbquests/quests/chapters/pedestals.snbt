@@ -1,0 +1,1053 @@
+# AI 初翻，未人工校对
+{
+	id: "338A9C5C3F08EEE2"
+	group: "7F090E96EFD94B43"
+	order_index: 1
+	filename: "pedestals"
+	title: "基座 (Pedestals)"
+	icon: "pedestals:pedestal/stone333"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: -2.0d
+			y: -3.0d
+			shape: "gear"
+			description: [
+				"基座可以通过相互连接来转移展示的物品。在升级后，它们也可以通过这种方式转移流体、FE和XP。"
+				""
+				"使用链接工具：潜行右击底座选择接收底座，再重复操作选择发送底座。如果感觉反了，就潜行右击空中的链接工具，将其转换为反向链接工具，用于连接发送端 -> 接收端。"
+				""
+				"每个传送基座最多可连接8个接收器；接收器可连接任意数量的发送器。右键点击发送器并使用链接魔杖，即可查看其信息，并以粒子颜色直观显示其连接的基座。默认情况下，传送机制使用优先级系统，由发出的彩色粒子表示——黑色为最高优先级，白色为最低。"
+			]
+			dependencies: ["088D692E25F62BFD"]
+			size: 2.0d
+			min_width: 300
+			id: "43DFC2A03C6EF24A"
+			tasks: [{
+				id: "4E0990AE8ACB2BFE"
+				type: "item"
+				item: "pedestals:linkingtool"
+			}]
+			rewards: [{
+				id: "2B6DFA1DCE5D71CE"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: -2.0d
+			y: -1.5d
+			hide_dependency_lines: true
+			dependencies: ["43DFC2A03C6EF24A"]
+			id: "1D2789B55007A753"
+			tasks: [{
+				id: "7B9FB210482531A3"
+				type: "item"
+				item: "pedestals:pedestal/stone333"
+			}]
+			rewards: [{
+				id: "261282705AFC6816"
+				type: "item"
+				item: "pedestals:pedestal/stone333"
+			}]
+		}
+		{
+			x: -0.5d
+			y: -3.0d
+			description: [
+				"可以将增强模块添加到基座上，以增强基座的物品传送行为。前3种增强模块每种最多可添加5个，其余3种各需1个。"
+				""
+				"&b速度&f - 减少传输之间的延迟。"
+				""
+				"&a容量&f - 增加物品传输的数量。"
+				""
+				"&e范围&f - 增加连锁踏板之间允许的最大距离。"
+				""
+				"&8消音器&f - 移除升级产生的所有声音（工具装备音效除外）。"
+				""
+				"&5粒子扩散器&f - 移除升级产生的所有粒子。"
+				""
+				"&4循环轮询增强&f - 将基座的发送行为从优先改为循环轮询。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["43DFC2A03C6EF24A"]
+			min_width: 250
+			id: "396BBF5AB77EDEFF"
+			tasks: [{
+				id: "25180B82E0EF3B2E"
+				type: "item"
+				title: "增强组件"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "pedestals:upgradespeed"
+								Count: 1b
+							}
+							{
+								id: "pedestals:upgradecapacity"
+								Count: 1b
+							}
+							{
+								id: "pedestals:upgraderange"
+								Count: 1b
+							}
+							{
+								id: "pedestals:upgradesoundmuffler"
+								Count: 1b
+							}
+							{
+								id: "pedestals:upgraderoundrobin"
+								Count: 1b
+							}
+							{
+								id: "pedestals:upgradeparticlediffuser"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "1D4168FA30C57ADD"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: -2.0d
+			y: -0.5d
+			description: [
+				"调色板可用于自定义基座的颜色。将调色板投掷到地面，最多可添加3份红色、绿色和/或蓝色染料，然后用链接工具右键点击以设置颜色。之后，你可以右键点击基座来为其上色。即使你破坏了基座，其颜色也会保留。"
+				""
+				"用发光石块右键基座即可点亮。也可以用水桶潜行右键使其被水淹没。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["43DFC2A03C6EF24A"]
+			id: "4CEC3B33F8235E65"
+			tasks: [{
+				id: "2AD560C1B7C6B664"
+				type: "item"
+				item: "pedestals:itemcolorpalletdefault"
+			}]
+			rewards: [{
+				id: "364A30844ED69572"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			title: "基座过滤器"
+			x: -5.5d
+			y: -3.0d
+			description: [
+				"过滤器可以控制哪些物品能出现在基座展示中。通过蹲下右键空气可以更改过滤器类型（白名单/黑名单）。需要编程的过滤器（如物品或模组过滤器）可以通过蹲下右键点击物品栏，将其设置为该物品栏的内容。"
+				""
+				"将过滤器放在非主手，右键点击基座即可添加。同样操作，非主手持过滤器或过滤器工具即可移除。"
+				""
+				"过滤器工具可以让你移除过滤器（如上文所示），也可以通过右键点击基座上的过滤器来获取相关信息。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["048071A21C3C5B2F"]
+			min_width: 250
+			id: "4DC2698177EB5DE7"
+			tasks: [
+				{
+					id: "6788196A060381BD"
+					type: "item"
+					item: "pedestals:filter/filterbase"
+				}
+				{
+					id: "1CF95CC84AF94B19"
+					type: "item"
+					item: "pedestals:filterswapper"
+				}
+			]
+			rewards: [{
+				id: "02C4168562235BDC"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: -2.0d
+			y: -10.0d
+			shape: "rsquare"
+			description: [
+				"显示物品并在底座之间移动它们固然很好，但通过升级可以添加更多功能。你需要几个这样的升级底座才能开始。"
+				""
+				"将升级物放在副手，右键基座即可添加。将其他升级物或升级工具放在副手，左键基座即可移除。"
+			]
+			dependencies: [
+				"71E4BB753498AB6B"
+				"39DB67EE674F41A4"
+				"1CCB64CF9751C0B8"
+			]
+			size: 2.0d
+			id: "71C0556DED31352E"
+			tasks: [{
+				id: "149E5AAFEFD82040"
+				type: "item"
+				item: "pedestals:coin/default"
+			}]
+			rewards: [{
+				id: "0E4DEF061DE56511"
+				type: "item"
+				item: "pedestals:coin/default"
+			}]
+		}
+		{
+			x: 0.5d
+			y: -3.0d
+			description: ["能为升级附魔固然很棒，但结果可能太...随机了。这些书能让你确保获得所需的特定附魔。注意，这些书无法在原版砧板中与升级结合使用——你必须使用 Pedestals 的 XP 砧板。"]
+			hide_dependency_lines: true
+			dependencies: ["43DFC2A03C6EF24A"]
+			id: "3196F5ED8C0078BA"
+			tasks: [{
+				id: "1431389A3D0C86FB"
+				type: "item"
+				title: "附魔专注之书 Enchantment Focus Books"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "pedestals:bookspeed"
+								Count: 1b
+							}
+							{
+								id: "pedestals:bookrange"
+								Count: 1b
+							}
+							{
+								id: "pedestals:bookarea"
+								Count: 1b
+							}
+							{
+								id: "pedestals:bookcapacity"
+								Count: 1b
+							}
+							{
+								id: "pedestals:bookmagnet"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "186B1D3832F5C5B7"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: 1.5d
+			y: -3.0d
+			description: [
+				"高级附魔允许升级，使基座下方的物品栏能与实体物品栏互动。例如，使用合适的升级，可以借此向或从生物处导入/导出物品。"
+				""
+				"高级附魔需要附魔等级为92；因此，它需要像XP附魔台升级这样的模组附魔方法。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["43DFC2A03C6EF24A"]
+			id: "6270F7DDF6B9610D"
+			tasks: [{
+				id: "3357EFD532A9269F"
+				type: "item"
+				item: "pedestals:bookadvanced"
+			}]
+			rewards: [{
+				id: "0F0732223A31A2C7"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: -4.5d
+			y: -3.0d
+			description: [
+				"工具交换器可以让你为某些升级添加或移除工具。将想添加的工具放在非主手，右键交换器和底座即可插入工具；若非主手为空，则右键底座和工具即可移除工具。"
+				""
+				"工具放入基座时不会消耗耐久度，但会将工具的任何附魔（如时运或丝绸之触）赋予升级操作。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["1E0561F4B6056A07"]
+			id: "048071A21C3C5B2F"
+			tasks: [{
+				id: "5D333C137111EBC2"
+				type: "item"
+				item: "pedestals:toolswapper"
+			}]
+			rewards: [{
+				id: "225D0E8A9990311E"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: -3.5d
+			y: -3.0d
+			description: ["右键点击带有升级工具的基座，以获取其上升级的信息。"]
+			dependencies: ["088D692E25F62BFD"]
+			id: "1E0561F4B6056A07"
+			tasks: [{
+				id: "27409CC96D264467"
+				type: "item"
+				item: "pedestals:upgradetool"
+			}]
+			rewards: [{
+				id: "1492EB6F600C7E60"
+				type: "random"
+				table_id: 7381842975596526002L
+			}]
+		}
+		{
+			x: -1.0d
+			y: -11.0d
+			shape: "diamond"
+			dependencies: ["71C0556DED31352E"]
+			id: "2FF647C77E221031"
+			tasks: [{
+				id: "32DA45DD4E4EBFAA"
+				type: "item"
+				title: "储物箱"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "pedestals:coin/itemtank"
+								Count: 1b
+							}
+							{
+								id: "pedestals:coin/rftank"
+								Count: 1b
+							}
+							{
+								id: "pedestals:coin/xptank"
+								Count: 1b
+							}
+							{
+								id: "pedestals:coin/fluidtank"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "61EF9E6576749563"
+				type: "random"
+				table_id: 5535491811443382877L
+			}]
+		}
+		{
+			x: -3.0d
+			y: -11.0d
+			shape: "diamond"
+			dependencies: ["71C0556DED31352E"]
+			id: "47E436A4E1C8FD28"
+			tasks: [{
+				id: "60866A9438EDDF6B"
+				type: "item"
+				title: "中继器"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "pedestals:coin/rfrelay"
+								Count: 1b
+							}
+							{
+								id: "pedestals:coin/xprelay"
+								Count: 1b
+							}
+							{
+								id: "pedestals:coin/fluidrelay"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "493A5E75C2A183B6"
+				type: "random"
+				table_id: 5535491811443382877L
+			}]
+		}
+		{
+			title: "能量传输"
+			x: -8.0d
+			y: -8.0d
+			shape: "diamond"
+			description: [
+				"&c从方块/机器或放置的物品中导入能量&f，并将其送入基座能量网络（PEN）。可向PEN中其他相连的基座发送能量。"
+				""
+				"&cExports Energy&f from the PEN, into Inserted Items, or Attached Blocks/Machines. Cannot Send Energy to Other Connected Pedestals."
+			]
+			dependencies: ["71C0556DED31352E"]
+			size: 1.6d
+			id: "323C2D29AD2483B1"
+			tasks: [
+				{
+					id: "536C7EE286B5C6A5"
+					type: "item"
+					title: "能量导入升级组件"
+					item: "pedestals:coin/rfimport"
+				}
+				{
+					id: "70DA0B83402BDF34"
+					type: "item"
+					title: "能量导出升级"
+					item: "pedestals:coin/rfexport"
+				}
+			]
+			rewards: [{
+				id: "06EA29A1155437FB"
+				type: "random"
+				table_id: 5535491811443382877L
+			}]
+		}
+		{
+			title: "物品运输升级模组"
+			x: -4.0d
+			y: -8.0d
+			shape: "diamond"
+			description: [
+				"&b将物品从&f“下方”的背包导入到基座物品网络。默认速度为每秒传输1个物品，但可提升至每刻64个物品（20tps下为每秒1280个物品）。"
+				""
+				"&bExports items&f from the Pedestal Item Network into a 'below' inventory. Default speed is 1 item transferred per second, but can be increased to 64 items per tick (1280 items per second at 20tps)."
+			]
+			dependencies: ["71C0556DED31352E"]
+			size: 1.6d
+			id: "6F4399BA259FD31B"
+			tasks: [
+				{
+					id: "27311051BE3D7195"
+					type: "item"
+					title: "物品导入升级组件"
+					item: "pedestals:coin/import"
+				}
+				{
+					id: "670102E4F51C48A8"
+					type: "item"
+					title: "物品导出升级器"
+					item: "pedestals:coin/export"
+				}
+			]
+			rewards: [{
+				id: "0F6B8F05348AE026"
+				type: "random"
+				table_id: 5535491811443382877L
+			}]
+		}
+		{
+			title: "流体传输"
+			x: 0.0d
+			y: -8.0d
+			shape: "diamond"
+			description: [
+				"&3将流体&f从物品（放置在基座上）或储罐（基座下方）导入PEN。基座中的物品在流体排空后，会自动发送到已连接的基座。"
+				""
+				"&3通过填充放置在基座上的桶或物品，或基座下方的储罐，将流体&f从PEN导出。放置在基座上的物品在充满流体后，只要存在可发送物品的基座，就会自动被发送。"
+			]
+			dependencies: ["71C0556DED31352E"]
+			size: 1.6d
+			id: "0CA6ADB72FE2E00B"
+			tasks: [
+				{
+					id: "1526CC380D3ABBE0"
+					type: "item"
+					title: "流体导入升级组件"
+					item: "pedestals:coin/fluidimport"
+				}
+				{
+					id: "2BFE35CE8FA18FA9"
+					type: "item"
+					title: "流体导出升级"
+					item: "pedestals:coin/fluidexport"
+				}
+			]
+			rewards: [{
+				id: "4661B6690C8384A0"
+				type: "random"
+				table_id: 5535491811443382877L
+			}]
+		}
+		{
+			title: "经验值输入"
+			x: 4.0d
+			y: -8.0d
+			shape: "diamond"
+			description: [
+				"与磁化升级类似，但它会&a收集经验值&f，并将其储存在内部缓冲区中。当玩家的身体接触到带有此升级的基座时，它还会吸收经验值。速度附魔会加快其吸收经验值的速度，容量附魔则会增加单次吸收的等级数。"
+				""
+				"你需要将另一个经验升级，如 &bExp Tank&f 连接到这个升级上以转移等级，因为缓冲器的最大存储量为30级。"
+				""
+				"&bExp Grindstone&f 需要在下方放置一个物品栏。此升级会从下方的物品栏中取出附魔物品，将其附魔效果移除，并将未附魔的物品留在基座上以便取出。被“磨掉”的附魔会转化为经验值，存储在升级的内部缓冲区中，可以通过将其连接到消耗或存储经验的另一个经验升级来提取。"
+			]
+			dependencies: ["71C0556DED31352E"]
+			size: 1.6d
+			min_width: 300
+			id: "07F19EABD2ACC992"
+			tasks: [{
+				id: "7EB96F2D89CC026D"
+				type: "item"
+				title: "经验值输入"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "pedestals:coin/xpmagnet"
+								Count: 1b
+							}
+							{
+								id: "pedestals:coin/xpgrindstone"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "1A34C19D8CD29EF5"
+				type: "random"
+				table_id: 5535491811443382877L
+			}]
+		}
+		{
+			x: 3.5d
+			y: -6.5d
+			shape: "diamond"
+			description: [
+				"&a装瓶器&f会从底座“下方”的背包中取出空瓶，将其装满，并将经验瓶输出到底座上。"
+				""
+				"&b经验掉落器&f与物品掉落器类似，但掉落的是经验。将其连接到经验源，当红石未供电时，它会在世界中掉落经验球供拾取。"
+			]
+			dependencies: ["07F19EABD2ACC992"]
+			id: "72CF41807BBA9033"
+			tasks: [{
+				id: "65B5289E356B18C3"
+				type: "item"
+				title: "经验值输出"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "pedestals:coin/xpbottler"
+								Count: 1b
+							}
+							{
+								id: "pedestals:coin/xpdropper"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "3B19FF451C120C32"
+				type: "random"
+				table_id: 5535491811443382877L
+			}]
+		}
+		{
+			x: 4.0d
+			y: -6.0d
+			shape: "diamond"
+			description: [
+				"&5经验附魔台&f与普通附魔台类似，需要在其周围放置书架或其他具有附魔能量的方块，但它可以从堆叠3层高的书架中获取附魔能量。"
+				""
+				"这意味着，一个完全被包围的附魔台，仅用原版书架就能在96级附魔。附魔师会始终尝试以最高等级附魔物品，因此如果想附魔低于最高等级，就需要一个将书架移出范围的系统。由于该附魔台可在水下工作，附魔台与书架之间的火把不会降低附魔等级。"
+			]
+			dependencies: ["07F19EABD2ACC992"]
+			min_width: 250
+			id: "1B3C0DDDD3F90F61"
+			tasks: [{
+				id: "63102E9CAF4EC3EA"
+				type: "item"
+				title: "附魔师升级"
+				item: "pedestals:coin/xpenchanter"
+			}]
+			rewards: [{
+				id: "2193E2B0BFD68330"
+				type: "random"
+				table_id: 5535491811443382877L
+			}]
+		}
+		{
+			x: 4.5d
+			y: -6.5d
+			shape: "diamond"
+			description: ["&6经验砧台&f可以用储存的经验值修复“下方”物品栏中的物品，修复成本与修补附魔相似。"]
+			dependencies: ["07F19EABD2ACC992"]
+			id: "15A70F0575328EAA"
+			tasks: [{
+				id: "58FFAB4FB5A018D4"
+				type: "item"
+				title: "经验修补台"
+				item: "pedestals:coin/xpanvil"
+			}]
+			rewards: [{
+				id: "01122B85A57E87D3"
+				type: "random"
+				table_id: 5535491811443382877L
+			}]
+		}
+		{
+			x: 2.0d
+			y: -7.0d
+			shape: "diamond"
+			hide_dependency_lines: true
+			dependencies: [
+				"0CA6ADB72FE2E00B"
+				"07F19EABD2ACC992"
+			]
+			id: "7910805C2F285303"
+			tasks: [{
+				id: "6F7511B86CC72D50"
+				type: "item"
+				title: "流体转经验值转换"
+				item: "pedestals:coin/fluidxpconverter"
+			}]
+			rewards: [{
+				id: "4067978F700FB348"
+				type: "random"
+				table_id: 5535491811443382877L
+			}]
+		}
+		{
+			x: 0.5d
+			y: -6.5d
+			shape: "diamond"
+			description: ["&3Pumps fluids &ffrom its work area and into its internal buffer. If the pedestal has items in it, it will replace the pumped spaces with the provided blocks"]
+			dependencies: ["0CA6ADB72FE2E00B"]
+			id: "043F0CD98510E950"
+			tasks: [{
+				id: "7F5B08237DEF236A"
+				type: "item"
+				title: "流体泵升级"
+				item: "pedestals:coin/fluidpump"
+			}]
+			rewards: [{
+				id: "6EE543DF5404AF63"
+				type: "random"
+				table_id: 5535491811443382877L
+			}]
+		}
+		{
+			x: 0.0d
+			y: -6.0d
+			shape: "diamond"
+			description: ["将内部缓冲区的流体放置到世界中。"]
+			dependencies: ["0CA6ADB72FE2E00B"]
+			id: "6BAE87C49ED936A0"
+			tasks: [{
+				id: "049205E38F350711"
+				type: "item"
+				title: "流体抽取升级组件"
+				item: "pedestals:coin/fluiddrain"
+			}]
+			rewards: [{
+				id: "68E9009711E50432"
+				type: "random"
+				table_id: 5535491811443382877L
+			}]
+		}
+		{
+			x: -0.5d
+			y: -6.5d
+			shape: "diamond"
+			description: [
+				"需要在底座下方放置一个用于输入空桶的箱子。此升级会搜寻附近的奶牛并挤奶，将牛奶倒入输入箱中的桶里，然后将装满的桶放入底座以便转移出去。"
+				""
+				"大型牧场中的奶牛农场可以扩展升级范围，但由于原版奶牛可以无限挤奶，默认范围内在基座旁放置1头奶牛就足够了。"
+			]
+			dependencies: ["0CA6ADB72FE2E00B"]
+			id: "497463A6D8A0B3CB"
+			tasks: [{
+				id: "4AD367BB08CB9E06"
+				type: "item"
+				title: "挤奶机升级"
+				item: "pedestals:coin/milker"
+			}]
+			rewards: [{
+				id: "0ACE19FBE2F4CDEA"
+				type: "random"
+				table_id: 5535491811443382877L
+			}]
+		}
+		{
+			x: -2.0d
+			y: -7.0d
+			shape: "diamond"
+			hide_dependency_lines: true
+			dependencies: [
+				"6F4399BA259FD31B"
+				"0CA6ADB72FE2E00B"
+			]
+			id: "38BD5E8DF40AC9D6"
+			tasks: [{
+				id: "2FF682BC3B6EA9C4"
+				type: "item"
+				title: "合成升级 (Crafting Upgrades)"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "pedestals:coin/compactor2"
+								Count: 1b
+							}
+							{
+								id: "pedestals:coin/compactor3"
+								Count: 1b
+							}
+							{
+								id: "pedestals:coin/crafter1"
+								Count: 1b
+							}
+							{
+								id: "pedestals:coin/crafter2"
+								Count: 1b
+							}
+							{
+								id: "pedestals:coin/crafter3"
+								Count: 1b
+							}
+							{
+								id: "pedestals:coin/fluidcrafter1"
+								Count: 1b
+							}
+							{
+								id: "pedestals:coin/fluidcrafter2"
+								Count: 1b
+							}
+							{
+								id: "pedestals:coin/fluidcrafter3"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "7CDC9576DCE8423B"
+				type: "random"
+				table_id: 5535491811443382877L
+			}]
+		}
+		{
+			x: -3.5d
+			y: -6.5d
+			shape: "diamond"
+			dependencies: ["6F4399BA259FD31B"]
+			id: "167329D561B615D4"
+			tasks: [{
+				id: "6D512E5C8138EC5D"
+				type: "item"
+				title: "农业升级模组"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "pedestals:coin/planter"
+								Count: 1b
+							}
+							{
+								id: "pedestals:coin/grower"
+								Count: 1b
+							}
+							{
+								id: "pedestals:coin/harvester"
+								Count: 1b
+							}
+							{
+								id: "pedestals:coin/chopper"
+								Count: 1b
+							}
+							{
+								id: "pedestals:coin/choppershrooms"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "4AD2559B0593DA39"
+				type: "random"
+				table_id: 5535491811443382877L
+			}]
+		}
+		{
+			x: -4.0d
+			y: -6.0d
+			shape: "diamond"
+			description: [
+				"将此物放置于基座中可生成基座内的原矿。当基座内堆叠满后，其余部分将被缓冲。最大缓冲量约为23亿。由于基座内已有堆叠，你无法直接添加原矿。若想将原矿存入基座（如采矿获得大量原矿时），可用“Q”键（默认）将原矿丢在基座上，或在基座正前方将物品从背包中拖出，使其落在基座上而非地面。"
+				""
+				"使用&5Exp Anvil&f，你可以用“丝绸之触”附魔升级，这样生成的是石头而不是圆石。"
+			]
+			dependencies: ["6F4399BA259FD31B"]
+			min_width: 250
+			id: "14B4A0702420E481"
+			tasks: [{
+				id: "1F231C905DAD5EA3"
+				type: "item"
+				title: "Cobble 生成器升级"
+				item: "pedestals:coin/cobble"
+			}]
+			rewards: [{
+				id: "714AA4E4809B28A3"
+				type: "random"
+				table_id: 5535491811443382877L
+			}]
+		}
+		{
+			x: -4.5d
+			y: -6.5d
+			shape: "diamond"
+			dependencies: ["6F4399BA259FD31B"]
+			id: "32C6A0D15E78114C"
+			tasks: [{
+				id: "4E3F510308D4B14E"
+				type: "item"
+				title: "操控升级组件"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "pedestals:coin/dropper"
+								Count: 1b
+							}
+							{
+								id: "pedestals:coin/placer"
+								Count: 1b
+							}
+							{
+								id: "pedestals:coin/breaker"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "5AC3C6C8A7FC1937"
+				type: "random"
+				table_id: 5535491811443382877L
+			}]
+		}
+		{
+			x: -4.5d
+			y: -5.5d
+			shape: "diamond"
+			dependencies: ["6F4399BA259FD31B"]
+			id: "059FAF99484C860F"
+			tasks: [{
+				id: "2F7B191F52EAAFF4"
+				type: "item"
+				title: "生物群系刷怪塔"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "pedestals:coin/attack"
+								Count: 1b
+							}
+							{
+								id: "pedestals:coin/fan"
+								Count: 1b
+							}
+							{
+								id: "pedestals:coin/magnet"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "2FE801CFA7730349"
+				type: "random"
+				table_id: 5535491811443382877L
+			}]
+		}
+		{
+			x: -3.5d
+			y: -5.5d
+			shape: "diamond"
+			description: ["和普通采石场升级一样，但需要连接到PEN，因为它会消耗能量，不需要使用固体燃料。"]
+			dependencies: ["6F4399BA259FD31B"]
+			id: "5935171F0132CF70"
+			tasks: [{
+				id: "55B9BABC73CB1113"
+				type: "item"
+				title: "采石场升级"
+				item: "pedestals:coin/quarry"
+			}]
+			rewards: [{
+				id: "0AC3E753EE0EA246"
+				type: "random"
+				table_id: 5535491811443382877L
+			}]
+		}
+		{
+			x: -7.5d
+			y: -6.5d
+			shape: "diamond"
+			description: ["和普通熔炉升级一样，但需要连接到PEN，因为它会消耗能量，不需要使用固体燃料。"]
+			dependencies: ["323C2D29AD2483B1"]
+			id: "3A759F5B5FFFD73F"
+			tasks: [{
+				id: "3D7559192EE4F5FF"
+				type: "item"
+				title: "冶炼升级模组 (Smelting Upgrades)"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "pedestals:coin/smelter"
+								Count: 1b
+							}
+							{
+								id: "pedestals:coin/rfsmelter"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "66DC9E7EA9816449"
+				type: "random"
+				table_id: 5535491811443382877L
+			}]
+		}
+		{
+			x: -8.0d
+			y: -6.0d
+			shape: "diamond"
+			description: ["和普通破碎机升级一样，但需要连接到PEN，因为它会消耗能量，不需要使用固体燃料。"]
+			dependencies: ["323C2D29AD2483B1"]
+			id: "1708C1453DF45949"
+			tasks: [{
+				id: "2BB3E91ED7493B3E"
+				type: "item"
+				title: "破碎机升级组件"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "pedestals:coin/crusher"
+								Count: 1b
+							}
+							{
+								id: "pedestals:coin/rfcrusher"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "18BEC28E66203FC1"
+				type: "random"
+				table_id: 5535491811443382877L
+			}]
+		}
+		{
+			x: -8.5d
+			y: -6.5d
+			shape: "diamond"
+			description: ["和普通锯木厂升级一样，但需要连接到PEN，因为它会消耗能量，不需要使用固体燃料。"]
+			dependencies: ["323C2D29AD2483B1"]
+			id: "488E843694678903"
+			tasks: [{
+				id: "7C3DD60B50E88AA7"
+				type: "item"
+				title: "锯木厂升级"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "pedestals:coin/sawmill"
+								Count: 1b
+							}
+							{
+								id: "pedestals:coin/rfsawmill"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "5FDACBA174CBDA92"
+				type: "random"
+				table_id: 5535491811443382877L
+			}]
+		}
+		{
+			x: -6.0d
+			y: -7.0d
+			shape: "diamond"
+			hide_dependency_lines: true
+			dependencies: ["323C2D29AD2483B1"]
+			id: "242A0EA1D1F55204"
+			tasks: [{
+				id: "6314A1F5BF66E355"
+				type: "item"
+				title: "FE发电机"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "pedestals:coin/rffuelgen"
+								Count: 1b
+							}
+							{
+								id: "pedestals:coin/rfexpgen"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "642DD12463787F25"
+				type: "random"
+				table_id: 5535491811443382877L
+			}]
+		}
+	]
+}

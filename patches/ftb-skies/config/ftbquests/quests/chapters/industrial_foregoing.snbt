@@ -1,0 +1,800 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "industrial_foregoing"
+	group: "43731E7F4BACB580"
+	icon: "industrialforegoing:laser_drill"
+	id: "4C0785489624C4E8"
+	images: [{
+		click: ""
+		corner: false
+		dev: false
+		height: 1.0d
+		hover: [ ]
+		image: "ftbskies:textures/quests/industrial_foregoing.png"
+		rotation: 0.0d
+		width: 12.710843373493976d
+		x: 5.0d
+		y: -3.0d
+	}]
+	order_index: 3
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"&eIndustrial Foregoing&r 是一个主要专注于&6自动化采集&r的模组，无论是作物、生物群系还是其他资源。"
+				""
+				"大多数 IF 机器在配方中都需要 &6橡胶&r。获取橡胶的第一步是制作 &b流体提取器&r。"
+				""
+				"将流体提取器对准原木放置，它会&6缓慢生成液态乳胶&r。这最终会摧毁原木，所以最好自动化放置更多原木。"
+				""
+				"FE 并非必需，但能加快进度。"
+			]
+			id: "6FC5E2FEE462A5E4"
+			min_width: 250
+			rewards: [
+				{
+					id: "0E0C7C8E3EDCFC51"
+					item: "industrialforegoing:latex_bucket"
+					type: "item"
+				}
+				{
+					id: "5F05B647FEB854AF"
+					item: {
+						Count: 1b
+						id: "patchouli:guide_book"
+						tag: {
+							"patchouli:book": "industrialforegoing:industrial_foregoing"
+						}
+					}
+					type: "item"
+				}
+			]
+			subtitle: "粘性树脂"
+			tasks: [{
+				id: "57D87525D82B2BF3"
+				item: "industrialforegoing:fluid_extractor"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["6FC5E2FEE462A5E4"]
+			description: ["&b乳胶处理单元&r使用FE将&6水和乳胶&r结合成&b橡胶&r！"]
+			id: "7DB9660E0AFC5C9A"
+			subtitle: "制作一个乳胶处理单元"
+			tasks: [{
+				id: "7DA8D6D4479FAC35"
+				item: "industrialforegoing:latex_processing_unit"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["7DB9660E0AFC5C9A"]
+			description: [
+				"&bDissolution Chamber&r 让你可以 &6将物品与流体一起合成&r，以创造新物品。"
+				""
+				"所有配方都是无形状的，所以物品的摆放位置并不重要。"
+			]
+			id: "4A32B2D21ECAAB70"
+			subtitle: "制作一个溶解室 (Dissolution Chamber)"
+			tasks: [{
+				id: "308656C1E747AF93"
+				item: "industrialforegoing:dissolution_chamber"
+				type: "item"
+			}]
+			x: 3.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["798B3790689ECD39"]
+			description: [
+				"&b动物喂食器&r会&6用其背包中的物品喂食工作区域内的生物&r，从而使其繁殖。"
+				""
+				"&b动物幼崽分离器&r会将工作区域内的幼崽生物&6传送到自身后方&r。你也可以设置它传送成年生物。"
+				""
+				"组合使用时，可以让你&6保留一群繁殖用的成年个体&r，并自动收集它们产下的幼崽。"
+				""
+				"然后，等幼崽长大后，用第二个 Baby Separator 将成年个体传送到第三个围栏，准备屠宰。"
+			]
+			icon: "industrialforegoing:animal_feeder"
+			id: "62B39503B248C00E"
+			min_width: 250
+			subtitle: "制作动物繁殖机器"
+			tasks: [
+				{
+					id: "319723614A6E2FBF"
+					item: "industrialforegoing:animal_feeder"
+					type: "item"
+				}
+				{
+					id: "04584B1289BF9181"
+					item: "industrialforegoing:animal_baby_separator"
+					type: "item"
+				}
+			]
+			title: "动物养殖（Animal Husbandry）"
+			x: 2.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["798B3790689ECD39"]
+			description: [
+				"&bMob Slaughter Factory&r会杀死生物，&c摧毁它们的掉落物&r，并生成&6Meat&r和&6Pink Slime&r。"
+				""
+				"被动生物会产出更多粉色史莱姆，所以你应该自动化它们的繁殖。"
+			]
+			icon: "industrialforegoing:mob_slaughter_factory"
+			id: "37B4ADEAD08AC53D"
+			min_required_tasks: 1
+			subtitle: "没有笑声，就无法拼写出屠杀这个词！"
+			tasks: [{
+				id: "5D6A969DF58C3A00"
+				item: "industrialforegoing:mob_slaughter_factory"
+				type: "item"
+			}]
+			title: "人道主义"
+			x: 3.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["798B3790689ECD39"]
+			description: [
+				"&b植物播种机&r会&6在自身上方种植种子和树苗&r。"
+				""
+				"它有9个槽位，对应上方田地的9个区域。例如：在3x3的田地里，每个槽位是一个方块。在9x9的田地里，每个槽位是一个3x3的区域。"
+				""
+				"&b植物采集器&r会&6在工作区收割作物和树木&r。副产品会产生一些&6污泥&r，需要将其通过管道排出。"
+				""
+				"默认情况下，它&c不会重新种植&r作物。但如果给予一些&6以太&r，它就会重新种植。"
+			]
+			icon: "industrialforegoing:plant_sower"
+			id: "38AA5E2D2C2EF919"
+			min_width: 250
+			rewards: [{
+				id: "3DE1B8E5EC4EF596"
+				item: "industrialforegoing:sludge_refiner"
+				type: "item"
+			}]
+			subtitle: "制作农作物种植机器的任务书文本"
+			tasks: [
+				{
+					id: "78E5E41570BF7F08"
+					item: "industrialforegoing:plant_sower"
+					type: "item"
+				}
+				{
+					id: "12B13B5F8A5EF2B2"
+					item: "industrialforegoing:plant_gatherer"
+					type: "item"
+				}
+			]
+			x: 0.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["62B39503B248C00E"]
+			description: [
+				"当动物在工作区时，&b下水道&r会生成&6污水&r。"
+				""
+				"污水可以在&b污水堆肥机&r中用来生产&6肥料&r！"
+				""
+				"下水道还会收集经验掉落物并将其转化为&6精粹&r。"
+			]
+			icon: "industrialforegoing:sewer"
+			id: "522CA08A4FCEB960"
+			rewards: [{
+				count: 64
+				id: "12FF5ED66F9F8655"
+				item: "industrialforegoing:fertilizer"
+				type: "item"
+			}]
+			subtitle: "建造一个下水道 Sewer"
+			tasks: [
+				{
+					id: "09D7CA1A5BEC7C2F"
+					item: "industrialforegoing:sewer"
+					type: "item"
+				}
+				{
+					id: "4B114B647ABB79F7"
+					item: "industrialforegoing:sewage_composter"
+					type: "item"
+				}
+			]
+			x: 0.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["131CD4C1FC0EF496"]
+			description: [
+				"&b水培床&r会&6加速其上方作物的生长&r。"
+				""
+				"它需要水&6和能量才能运作&r。"
+			]
+			id: "759747F69000A279"
+			subtitle: "制作一个水培床 (Hydroponic Bed)"
+			tasks: [{
+				id: "6DE9CDC258743469"
+				item: "industrialforegoing:hydroponic_bed"
+				type: "item"
+			}]
+			x: 8.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["7DB9660E0AFC5C9A"]
+			description: [
+				"&bPity Machine Generator&r 用于制作第一级机器。"
+				""
+				"你肯定已经造过一个了，毕竟上一个任务的机器也需要一个。这个任务只是为了对称性。我道歉。"
+			]
+			id: "798B3790689ECD39"
+			subtitle: "嘿！这个任务已经是蓝色的了！"
+			tasks: [{
+				id: "2495A6418AC1A9A6"
+				item: "industrialforegoing:machine_frame_pity"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["4A32B2D21ECAAB70"]
+			description: ["&b简易机械框架&r能让你制造更复杂的机器。"]
+			id: "131CD4C1FC0EF496"
+			subtitle: "制作一个简单的机器框架"
+			tasks: [{
+				id: "4146E0BB6A7F25F6"
+				item: "industrialforegoing:machine_frame_simple"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 0.5d
+		}
+		{
+			dependencies: [
+				"131CD4C1FC0EF496"
+				"37B4ADEAD08AC53D"
+			]
+			description: ["&b高级机械框架&r可以制造更复杂的机器。"]
+			id: "63AC318EF1756053"
+			subtitle: "肉块机器框架"
+			tasks: [{
+				id: "20DA43F69ECAE540"
+				item: "industrialforegoing:machine_frame_advanced"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["63AC318EF1756053"]
+			description: [
+				"&bOre&r 和 &bFluid Lasers&r 使用 FE 来 &6凭空生成矿石/流体&r。"
+				""
+				"某些矿石/流体需要激光在&6特定生物群系中&r。"
+				""
+				"此外，要制作以太气体，流体激光器&6必须置于凋灵&r上方。这有点棘手，但&6停滞室&r会使其更容易。"
+				""
+				"激光基地不直接供电。而是将&b激光钻头&r放置在1格外，并为&o它&r供电。"
+			]
+			icon: "industrialforegoing:ore_laser_base"
+			id: "7D423153EACFABA1"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "5A239465B715C7E9"
+				table_id: 392020771426855546L
+				type: "choice"
+			}]
+			subtitle: "Ex Nihil"
+			tasks: [
+				{
+					id: "3BD9FD0B59376B30"
+					item: {
+						Count: 1b
+						id: "itemfilters:or"
+						tag: {
+							items: [
+								{
+									Count: 1b
+									id: "industrialforegoing:fluid_laser_base"
+								}
+								{
+									Count: 1b
+									id: "industrialforegoing:ore_laser_base"
+								}
+							]
+						}
+					}
+					title: "激光基地"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "04CCFB427593B201"
+					item: "industrialforegoing:laser_drill"
+					type: "item"
+				}
+			]
+			x: 6.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["7D423153EACFABA1"]
+			description: ["&bSupremium Machine Frames&r 用于制作最高等级的机器。"]
+			id: "1DA41A6839C5BA8C"
+			subtitle: "Supremium"
+			tasks: [{
+				id: "0249C4115E79D562"
+				item: "industrialforegoing:machine_frame_supreme"
+				type: "item"
+			}]
+			x: 8.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["131CD4C1FC0EF496"]
+			description: ["&b植物肥料&r将使用骨粉或肥料来&6为作物施肥&r。"]
+			id: "1BCE20772114DB4F"
+			subtitle: "制作植物肥料 Plant Fertilizer"
+			tasks: [{
+				id: "472727D82ACA3300"
+				item: "industrialforegoing:plant_fertilizer"
+				type: "item"
+			}]
+			x: 6.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["63AC318EF1756053"]
+			description: [
+				"&b附魔工厂&r将&6使用精华来附魔物品&r，相当于30级经验。"
+				""
+				"&b附魔提取器&r会摧毁附魔物品，将附魔转移到书中，或直接将其转换为精华。"
+				""
+				"完成任一任务即视为完成该任务。"
+			]
+			icon: "industrialforegoing:enchantment_factory"
+			id: "43FCAE64D4513222"
+			min_required_tasks: 1
+			subtitle: "制作一台附魔机器"
+			tasks: [
+				{
+					id: "09D1C2FFD9C310E1"
+					item: "industrialforegoing:enchantment_factory"
+					type: "item"
+				}
+				{
+					id: "5A6F5BD4AE50536C"
+					item: "industrialforegoing:enchantment_extractor"
+					type: "item"
+				}
+			]
+			x: 5.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["63AC318EF1756053"]
+			description: [
+				"&bMob Crusher&r 会杀死工作区域内的生物，&6收集掉落物&r并将经验值转化为 &6Essence&r。"
+				""
+				"可选地，你可以设置为不生成精华，而是&6应用掠夺&r。"
+			]
+			id: "5D4D1AC1912552CE"
+			subtitle: "制作一个生物破碎机 Mob Crusher"
+			tasks: [{
+				id: "3D9F5D6B23953EE4"
+				item: "industrialforegoing:mob_crusher"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["63AC318EF1756053"]
+			description: [
+				"&bMob Duplicator&r 将使用 Essence&r 来 &6克隆特定的生物。"
+				""
+				"放入一个已填充的 &bMob Imprisonment Device&r 来指定生物。"
+			]
+			icon: "industrialforegoing:mob_duplicator"
+			id: "109AFC072E62C1FC"
+			subtitle: "小心苍蝇！"
+			tasks: [
+				{
+					id: "311B547C40D9529F"
+					item: "industrialforegoing:mob_duplicator"
+					type: "item"
+				}
+				{
+					id: "4BDE2AA5CDBF9962"
+					item: "industrialforegoing:mob_imprisonment_tool"
+					type: "item"
+				}
+			]
+			x: 5.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["37B4ADEAD08AC53D"]
+			description: [
+				"&bMechanical Dirt&r 在提供 FE 和 &6Liquid Meat&r 时会&6快速生成敌对生物&r。"
+				""
+				"放置多个相邻的方块时，肉会平均分配。"
+			]
+			id: "427CA49FB1EDA175"
+			subtitle: "被诅咒的土地"
+			tasks: [{
+				id: "24DA9AC788062136"
+				item: "industrialforegoing:mechanical_dirt"
+				type: "item"
+			}]
+			x: 3.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["4A32B2D21ECAAB70"]
+			description: [
+				"&bAddons&r 可以安装在机器上，让机器在某些方面运行得更好。"
+				""
+				"&b范围扩展&r &6将机器的作业区域&r每级扩大一个方块。"
+				""
+				"三种类型的&b范围增强&r能以三种不同方式使机器&6运行得更快&r。"
+			]
+			icon: {
+				Count: 1b
+				id: "industrialforegoing:range_addon7"
+				tag: {
+					TitaniumAugment: {
+						Range: 7.0f
+					}
+				}
+			}
+			id: "572BD1844694B7FC"
+			subtitle: "机器升级"
+			tasks: [
+				{
+					id: "3E75DBA2E0191731"
+					item: {
+						Count: 1b
+						id: "itemfilters:id_regex"
+						tag: {
+							value: "range_addon"
+						}
+					}
+					title: "范围增强模组"
+					type: "item"
+				}
+				{
+					id: "353E251073A974D9"
+					item: {
+						Count: 1b
+						id: "itemfilters:or"
+						tag: {
+							items: [
+								{
+									Count: 1b
+									id: "industrialforegoing:speed_addon_1"
+									tag: {
+										TitaniumAugment: {
+											Speed: 2.0f
+										}
+									}
+								}
+								{
+									Count: 1b
+									id: "industrialforegoing:speed_addon_2"
+									tag: {
+										TitaniumAugment: {
+											Speed: 3.0f
+										}
+									}
+								}
+								{
+									Count: 1b
+									id: "industrialforegoing:efficiency_addon_1"
+									tag: {
+										TitaniumAugment: {
+											Efficiency: 0.9f
+										}
+									}
+								}
+								{
+									Count: 1b
+									id: "industrialforegoing:efficiency_addon_2"
+									tag: {
+										TitaniumAugment: {
+											Efficiency: 0.8f
+										}
+									}
+								}
+								{
+									Count: 1b
+									id: "industrialforegoing:processing_addon_1"
+									tag: {
+										TitaniumAugment: {
+											Processing: 2.0f
+										}
+									}
+								}
+								{
+									Count: 1b
+									id: "industrialforegoing:processing_addon_2"
+									tag: {
+										TitaniumAugment: {
+											Processing: 3.0f
+										}
+									}
+								}
+							]
+						}
+					}
+					title: "速度增强模组"
+					type: "item"
+				}
+			]
+			title: "附加组件"
+			x: 3.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["37B4ADEAD08AC53D"]
+			description: ["当&bMeat Feeder&r供应有Liquid Meat时，它将&6自动保持你饱腹&r，无论它在你的物品栏中何处。"]
+			id: "086D19A143DB1205"
+			subtitle: "肉类注射剂"
+			tasks: [{
+				id: "2881A14C3D8BEE80"
+				item: "industrialforegoing:meat_feeder"
+				type: "item"
+			}]
+			x: 3.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["572BD1844694B7FC"]
+			description: [
+				"&bInfinity Tools&r 由 &6Biofuel&r 提供动力，但 &6拥有的 FE 越多，威力就越强&r。"
+				""
+				"共有7个等级，每个等级的FE消耗都比前一个呈指数级增长，但威力也呈指数级提升。"
+			]
+			icon: {
+				Count: 1b
+				id: "industrialforegoing:infinity_saw"
+				tag: {
+					CanCharge: 1b
+					Energy: 0L
+					Fluid: {
+						Amount: 0
+						FluidName: "biofuel"
+					}
+					Selected: "POOR"
+					Special: 0b
+				}
+			}
+			id: "3AE1F34F833B0320"
+			subtitle: "And Beyond"
+			tasks: [{
+				id: "0937CC68195913A1"
+				item: {
+					Count: 1b
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "industrialforegoing:infinity_drill"
+								tag: {
+									CanCharge: 1b
+									Energy: 0L
+									Fluid: {
+										Amount: 0
+										FluidName: "biofuel"
+									}
+									Selected: "POOR"
+									Special: 0b
+								}
+							}
+							{
+								Count: 1b
+								id: "industrialforegoing:infinity_saw"
+								tag: {
+									CanCharge: 1b
+									Energy: 0L
+									Fluid: {
+										Amount: 0
+										FluidName: "biofuel"
+									}
+									Selected: "POOR"
+									Special: 0b
+								}
+							}
+							{
+								Count: 1b
+								id: "industrialforegoing:infinity_hammer"
+								tag: {
+									Beheading: 0
+									CanCharge: 1b
+									Energy: 0L
+									Fluid: {
+										Amount: 0
+										FluidName: "biofuel"
+									}
+									Selected: "POOR"
+									Special: 0b
+								}
+							}
+							{
+								Count: 1b
+								id: "industrialforegoing:infinity_trident"
+								tag: {
+									CanCharge: 1b
+									Channeling: 0b
+									Energy: 0L
+									Fluid: {
+										Amount: 0
+										FluidName: "biofuel"
+									}
+									Loyalty: 0
+									Riptide: 0
+									Selected: "POOR"
+									Special: 0b
+								}
+							}
+							{
+								Count: 1b
+								id: "industrialforegoing:infinity_backpack"
+								tag: {
+									CanCharge: 1b
+									Energy: 0L
+									Selected: "POOR"
+									Special: 0b
+								}
+							}
+						]
+					}
+				}
+				title: "Infinity Tools"
+				type: "item"
+			}]
+			title: "Infinity Tools"
+			x: 5.0d
+			y: -1.0d
+		}
+		{
+			description: [
+				"&b黑洞单元&r可以储存大量单一物品。越高的等级能储存得越多。"
+				""
+				"&bBlack Hole Tanks&r 也是如此，不过是针对流体而非物品。"
+			]
+			icon: "industrialforegoing:supreme_black_hole_unit"
+			id: "6EEFD1E7446E48FC"
+			subtitle: "你的意思是，抽屉这种东西存在吗？"
+			tasks: [
+				{
+					id: "0AC9B0F9921F45DA"
+					item: {
+						Count: 1b
+						id: "itemfilters:id_regex"
+						tag: {
+							value: "black_hole_unit"
+						}
+					}
+					title: "黑洞单位"
+					type: "item"
+				}
+				{
+					id: "6E16D54D5593D0C4"
+					item: {
+						Count: 1b
+						id: "itemfilters:id_regex"
+						tag: {
+							value: "black_hole_tank"
+						}
+					}
+					title: "黑洞坦克"
+					type: "item"
+				}
+			]
+			x: 6.5d
+			y: 3.5d
+		}
+		{
+			dependencies: [
+				"1DA41A6839C5BA8C"
+				"6EEFD1E7446E48FC"
+			]
+			description: [
+				"&b黑洞控制器&r可容纳&616个黑洞单元/储罐&r，并能访问其内容。"
+				""
+				"基本上，这意味着你可以将多个 BHU 组合成一个方块。"
+			]
+			id: "1C64CFC36623389B"
+			subtitle: "你愿意来，冲刷掉这雨水吗？"
+			tasks: [{
+				id: "36A578CF7B4A2B6C"
+				item: "industrialforegoing:black_hole_controller"
+				type: "item"
+			}]
+			title: "黑洞太阳"
+			x: 8.0d
+			y: 3.5d
+		}
+		{
+			dependencies: [
+				"1DA41A6839C5BA8C"
+				"0CC64B9C5B17388B"
+			]
+			description: [
+				"&bMycelial Reactor&r 能产生 &6巨量的 FE&r，而且 &c不需要燃料&r。"
+				""
+				"相反，&6所有菌丝生成器都必须同时运行&r。如果有任何一个没有运行，反应堆就会保持关闭。"
+			]
+			id: "083B37F665802544"
+			subtitle: "彩虹发电机！"
+			tasks: [{
+				id: "348C66B295559B03"
+				item: "industrialforegoing:mycelial_reactor"
+				type: "item"
+			}]
+			x: 9.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["131CD4C1FC0EF496"]
+			description: [
+				"Industrial Foregoing 添加了 16 个 &bMycelial Generators&r，它们可以通过多种燃料来产生 FE。"
+				""
+				"需要附魔物品，需要下界之星，需要粉色，等等。"
+				""
+				"然而，它们之所以特殊，是因为它们与&6Mycelial Reactor&r有关联。"
+			]
+			id: "0CC64B9C5B17388B"
+			rewards: [{
+				count: 64
+				id: "385EBF702A828139"
+				item: "ae2:pink_lumen_paint_ball"
+				random_bonus: 64
+				type: "item"
+			}]
+			subtitle: "制作一个菌丝体发电机"
+			tasks: [{
+				id: "30A9823803B15A1F"
+				item: {
+					Count: 1b
+					id: "itemfilters:and"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "itemfilters:id_regex"
+								tag: {
+									value: "going:mycelial"
+								}
+							}
+							{
+								Count: 1b
+								id: "itemfilters:not"
+								tag: {
+									items: [{
+										Count: 1b
+										id: "industrialforegoing:mycelial_reactor"
+									}]
+								}
+							}
+						]
+					}
+				}
+				title: "菌丝体生成器"
+				type: "item"
+			}]
+			x: 9.5d
+			y: 0.5d
+		}
+	]
+	title: "Industrial Foregoing"
+}

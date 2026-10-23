@@ -1,0 +1,323 @@
+# AI 初翻，未人工校对
+{
+	id: "1891C2B2EF523F1A"
+	group: "5D40E5EE4101D213"
+	order_index: 3
+	filename: "dimensions"
+	title: "维度（Dimensions）"
+	icon: "minecraft:end_portal_frame"
+	subtitle: ["探索各个维度吧。"]
+	default_quest_shape: "octagon"
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "访问主世界"
+			disable_toast: true
+			x: 0.0d
+			y: 0.0d
+			size: 1.5d
+			id: "0D7896295D5195F4"
+			tasks: [{
+				id: "09EE1EB140F88795"
+				type: "dimension"
+				dimension: "minecraft:overworld"
+			}]
+		}
+		{
+			title: "访问下界维度"
+			icon: "minecraft:netherrack"
+			disable_toast: true
+			x: 0.0d
+			y: 1.5d
+			description: ["使用原版传送门进入下界。"]
+			dependencies: ["0D7896295D5195F4"]
+			id: "205B84F86A6472B9"
+			tasks: [{
+				id: "249BD9F746DF30D5"
+				type: "dimension"
+				dimension: "minecraft:the_nether"
+			}]
+			rewards: [
+				{
+					id: "342A0CF000EB27FE"
+					type: "xp"
+					xp: 30
+				}
+				{
+					id: "6214D324C8F5489C"
+					type: "item"
+					item: "minecraft:netherrack"
+					count: 16
+				}
+			]
+		}
+		{
+			title: "前往采矿维度进行探索"
+			icon: {
+				id: "minecraft:diamond_pickaxe"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: -1.5d
+			y: 0.0d
+			description: [
+				"制作一个 The Mining Portal 并站到上面去。"
+				"这个维度可用于太阳能电池板或风力发电机。"
+			]
+			dependencies: ["0D7896295D5195F4"]
+			id: "3FB591A9AFE721A6"
+			tasks: [
+				{
+					id: "4041E41482F4DC97"
+					type: "item"
+					item: "jamd:mine_portal_block"
+				}
+				{
+					id: "545A34B691E2ACC7"
+					type: "dimension"
+					dimension: "jamd:mining"
+				}
+			]
+			rewards: [
+				{
+					id: "217747B4D9604A70"
+					type: "item"
+					item: "minecraft:iron_ore"
+					count: 8
+				}
+				{
+					id: "7AEDE1AD0C612BBA"
+					type: "item"
+					item: "minecraft:gold_ore"
+					count: 8
+				}
+				{
+					id: "62140BF74E3EF80B"
+					type: "item"
+					item: "minecraft:redstone_ore"
+					count: 8
+				}
+			]
+		}
+		{
+			title: "访问末地维度"
+			icon: "exnihilosequentia:end_cake"
+			x: 0.0d
+			y: 2.5d
+			description: [
+				"合成一个末地蛋糕以进入末地。"
+				"警告：返程时请带上一个传送石。"
+			]
+			dependencies: ["205B84F86A6472B9"]
+			id: "43CA9B932A11088B"
+			tasks: [
+				{
+					id: "17BDE91F333691BF"
+					type: "item"
+					item: "exnihilosequentia:end_cake"
+				}
+				{
+					id: "2578D49AC840ABB5"
+					type: "dimension"
+					dimension: "minecraft:the_end"
+				}
+			]
+			rewards: [
+				{
+					id: "5BC2065261214CE2"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "77E312517ABEF7C3"
+					type: "item"
+					item: "minecraft:ender_pearl"
+					count: 8
+				}
+			]
+		}
+		{
+			x: 0.0d
+			y: -1.5d
+			description: ["右键点击带有 Personal S. Device 的紧凑型机器，即可访问紧凑型维度。"]
+			dependencies: ["0D7896295D5195F4"]
+			id: "710E5B2DA5E59728"
+			tasks: [{
+				id: "745DA9805B91D9F3"
+				type: "item"
+				item: "compactmachines:personal_shrinking_device"
+			}]
+			rewards: [{
+				id: "1734C2C8F4E07200"
+				type: "xp"
+				xp: 20
+			}]
+		}
+		{
+			x: 0.0d
+			y: -2.5d
+			description: ["像虚空维度一样，紧凑型机器可用于建造农场和机器，而不会在主世界造成延迟。"]
+			dependencies: ["710E5B2DA5E59728"]
+			id: "16B899043654E54D"
+			tasks: [{
+				id: "6CA2BA6D3BEB6D41"
+				type: "item"
+				item: "compactmachines:wall"
+				count: 32L
+			}]
+			rewards: [{
+				id: "3B1FDE66198E596A"
+				type: "item"
+				item: "compactmachines:wall"
+				count: 16
+			}]
+		}
+		{
+			x: -0.5d
+			y: -4.0d
+			dependencies: ["16B899043654E54D"]
+			id: "49242063E6245E6C"
+			tasks: [{
+				id: "398681074EC426A1"
+				type: "item"
+				item: "compactmachines:machine_normal"
+			}]
+			rewards: [
+				{
+					id: "71EB85B20B731682"
+					type: "xp"
+					xp: 40
+				}
+				{
+					id: "71EF832468F8224F"
+					type: "item"
+					item: "minecraft:gold_ingot"
+					count: 5
+				}
+			]
+		}
+		{
+			x: -1.0d
+			y: -3.0d
+			dependencies: ["16B899043654E54D"]
+			id: "7C985CA35B8E4225"
+			tasks: [{
+				id: "0BA76D15F9B5755C"
+				type: "item"
+				item: "compactmachines:machine_small"
+			}]
+			rewards: [
+				{
+					id: "2FC1F1294B20121E"
+					type: "xp"
+					xp: 30
+				}
+				{
+					id: "0C8DF60006181696"
+					type: "item"
+					item: "minecraft:iron_ingot"
+					count: 5
+				}
+			]
+		}
+		{
+			x: -1.0d
+			y: -2.0d
+			dependencies: ["16B899043654E54D"]
+			id: "6ADD3FA375EE4CD2"
+			tasks: [{
+				id: "25D0B02CD2A12FE2"
+				type: "item"
+				item: "compactmachines:machine_tiny"
+			}]
+			rewards: [
+				{
+					id: "1A857922C62BAFE2"
+					type: "xp"
+					xp: 20
+				}
+				{
+					id: "319FA51E392B3A6A"
+					type: "item"
+					item: "minecraft:oak_log"
+					count: 5
+				}
+			]
+		}
+		{
+			x: 0.5d
+			y: -4.0d
+			dependencies: ["16B899043654E54D"]
+			dependency_requirement: "one_completed"
+			id: "225E69CB838DCC80"
+			tasks: [{
+				id: "6633157EECEADCEE"
+				type: "item"
+				item: "compactmachines:machine_large"
+			}]
+			rewards: [
+				{
+					id: "7EEC5F646239A8FC"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "2B282FE279E1E0D5"
+					type: "item"
+					item: "minecraft:obsidian"
+					count: 5
+				}
+			]
+		}
+		{
+			x: 1.0d
+			y: -3.0d
+			dependencies: ["16B899043654E54D"]
+			id: "1390EF643833A47A"
+			tasks: [{
+				id: "64FDABF5D53CE705"
+				type: "item"
+				item: "compactmachines:machine_giant"
+			}]
+			rewards: [
+				{
+					id: "526224C40D3A69DE"
+					type: "xp"
+					xp: 60
+				}
+				{
+					id: "4C32F26B7704650F"
+					type: "item"
+					item: "minecraft:diamond"
+					count: 5
+				}
+			]
+		}
+		{
+			x: 1.0d
+			y: -2.0d
+			dependencies: ["16B899043654E54D"]
+			id: "19CA21511F99CBF9"
+			tasks: [{
+				id: "6CB94B03987F9B4A"
+				type: "item"
+				item: "compactmachines:machine_maximum"
+			}]
+			rewards: [
+				{
+					id: "0FD686425C005C2B"
+					type: "xp"
+					xp: 70
+				}
+				{
+					id: "6A596FD94322F398"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 5
+				}
+			]
+		}
+	]
+}

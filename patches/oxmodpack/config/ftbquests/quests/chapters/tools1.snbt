@@ -1,0 +1,713 @@
+# AI 初翻，未人工校对
+{
+	id: "1045587517869500"
+	group: "1161B047D6D4BAA9"
+	order_index: 0
+	filename: "tools1"
+	title: "工具 I"
+	icon: {
+		id: "tetra:holo"
+		Count: 1b
+		tag: {
+			"holo/core_material": "frame/dim"
+			"holo/frame": "holo/frame"
+			"holo/core": "holo/core"
+			"holo/frame_material": "core/ancient"
+		}
+	}
+	subtitle: ["Tetra 入门指南"]
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	images: [{
+		x: 2.0d
+		y: 1.5d
+		width: 18.0d
+		height: 18.0d
+		rotation: 0.0d
+		image: "tetra:textures/blocks/crafting_table_top.png"
+		hover: [ ]
+		click: ""
+		dev: false
+		corner: false
+	}]
+	quests: [
+		{
+			title: "тетра: Начало"
+			x: -2.0d
+			y: 1.5d
+			subtitle: "Изготовьте свой первый молот"
+			dependencies: ["05409A03482FF275"]
+			hide: true
+			id: "044E68014FDD2591"
+			tasks: [{
+				id: "640ECD1A4C742DEB"
+				type: "item"
+				item: {
+					id: "tetra:modular_double"
+					Count: 1b
+					tag: {
+						"double/handle": "double/basic_handle"
+						"double/head_left": "double/basic_hammer_left"
+						"double/head_right": "double/basic_hammer_right"
+						id: "62dd7e75-bddd-40c1-b770-bad3f4f907cf"
+						"double/basic_hammer_right_material": "basic_hammer/oak"
+						Damage: 0
+						"double/basic_handle_material": "basic_handle/stick"
+						"double/basic_hammer_left_material": "basic_hammer/oak"
+					}
+				}
+				only_from_crafting: false
+			}]
+			rewards: [
+				{
+					id: "79E27D505258D6F8"
+					type: "item"
+					item: "minecraft:crafting_table"
+				}
+				{
+					id: "50CFC0FB6C2ECEDC"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 1678205825642991271L
+				}
+			]
+		}
+		{
+			title: "工作台？"
+			x: 0.0d
+			y: 1.5d
+			subtitle: "Улучшите верстак с помощью деревянного молота"
+			description: ["Для этого достаточно использовать Молот на обычном Верстаке."]
+			dependencies: ["044E68014FDD2591"]
+			hide: true
+			id: "7FC3810FF89BC7CE"
+			tasks: [{
+				id: "5BF324A9C67DB428"
+				type: "advancement"
+				advancement: "tetra:upgrades/workbench"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "4FF99B3019B116B9"
+				type: "item"
+				item: "minecraft:oak_planks"
+				count: 32
+			}]
+		}
+		{
+			title: "Кто здесь новенький, а кто старый знакомый?"
+			x: 2.0d
+			y: 3.5d
+			subtitle: "Замените лезвие на верстаке Tetra"
+			description: ["Кремниевый нож слабоват, нужно установить новое лезвие на верстаке Tetra"]
+			dependencies: ["7FC3810FF89BC7CE"]
+			id: "046D6EBB856265C5"
+			tasks: [{
+				id: "1CF92585432DB06B"
+				type: "advancement"
+				advancement: "tetra:upgrades/sword_upgrade"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "70F182F75FF1828A"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			title: "真正的工具"
+			x: 2.0d
+			y: -0.5d
+			subtitle: "Замените навершие на инструменте Tetra"
+			description: ["Чтобы превратить обычный инструмент в модульный, создайте любой модуль на верстаке Тетра. Для начала замените слабую кремниевую насадку топора или лопаты на каменную или железную."]
+			dependencies: ["7FC3810FF89BC7CE"]
+			id: "3F833631C90ABD72"
+			tasks: [{
+				id: "5299B1D6ED74C6C7"
+				type: "advancement"
+				title: "Первый настоящий инструмент"
+				disable_toast: true
+				advancement: "tetra:upgrades/tool_upgrade"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "3C1126EBA13846D8"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			title: "工具 I"
+			icon: {
+				id: "tetra:holo"
+				Count: 1b
+				tag: {
+					"holo/core_material": "frame/dim"
+					"holo/frame": "holo/frame"
+					"holo/core": "holo/core"
+					"holo/frame_material": "core/ancient"
+				}
+			}
+			x: -4.0d
+			y: 1.5d
+			shape: "rsquare"
+			dependencies: ["5554D9B00AE6AC26"]
+			size: 1.25d
+			id: "05409A03482FF275"
+			tasks: [{
+				id: "328FD524C0CA28FD"
+				type: "gamestage"
+				title: "章节：工具 I"
+				stage: "tools"
+			}]
+		}
+		{
+			title: "锤子 II"
+			x: 4.0d
+			y: 1.5d
+			subtitle: "Изготовьте каменный молот"
+			description: [
+				"Чтобы создать железный молот, сначала улучшите деревянный молот"
+				"на верстаке Тетра. Затем сделайте насадку из камня с двух сторон"
+			]
+			dependencies: [
+				"046D6EBB856265C5"
+				"3F833631C90ABD72"
+			]
+			hide: true
+			id: "49EFB4E51AEDABBA"
+			tasks: [
+				{
+					id: "7886E561C5F4E801"
+					type: "item"
+					item: "minecraft:cobblestone"
+					count: 4L
+				}
+				{
+					id: "1E43C0C433E0B0E7"
+					type: "advancement"
+					advancement: "tetra:upgrades/hammer_2"
+					criterion: ""
+				}
+			]
+			rewards: [{
+				id: "762FE47B0843E19C"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			title: "章节：科技 I"
+			icon: "create:cogwheel"
+			x: -4.0d
+			y: 3.5d
+			shape: "gear"
+			dependencies: ["4D6B7A08E8CFF943"]
+			size: 1.25d
+			id: "097F820358870113"
+			tasks: [{
+				id: "7EC1298D83862C56"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "563E6C8C7A1DFC63"
+				type: "gamestage"
+				title: "章节：科技 I"
+				auto: "invisible"
+				ignore_reward_blocking: true
+				stage: "tech1"
+			}]
+		}
+		{
+			title: "锤子 III：铁"
+			x: 6.0d
+			y: 3.5d
+			subtitle: "Зачем мне два молота?"
+			description: [
+				"Новый молот позволит работать с более твёрдыми материалами."
+				""
+				"Придётся сделать второй молот, чтобы улучшить уже существующий."
+			]
+			dependencies: ["49EFB4E51AEDABBA"]
+			hide: true
+			id: "3C7B960B6FCE3468"
+			tasks: [{
+				id: "02120CB5133886D9"
+				type: "advancement"
+				advancement: "tetra:upgrades/hammer_3"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "5FC10A24671E240B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "5265D87071B470C3"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 1678205825642991271L
+				}
+			]
+		}
+		{
+			x: 4.0d
+			y: 5.5d
+			subtitle: "Пора отправиться в недра планеты"
+			description: ["Чернит — особый вид камня, встречающийся в вулканических породах Верхнего мира, а чаще — в Незере."]
+			dependencies: ["3C7B960B6FCE3468"]
+			hide: true
+			id: "0285F838A182FB8D"
+			tasks: [{
+				id: "2C689671A2AF54EE"
+				type: "advancement"
+				title: "锤子 IV：黑曜石"
+				advancement: "tetra:upgrades/hammer_4"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "1735DEB8DCBBAA42"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "4AABE342598DD79E"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 1678205825642991271L
+				}
+			]
+		}
+		{
+			title: "简单的实用工具"
+			x: 8.0d
+			y: 1.5d
+			subtitle: "Создайте простой пояс"
+			description: [
+				"Пояс нужен, чтобы расширить инвентарь и легко переключаться между инструментами. Обычный пояс можно создать из четырех ниток."
+				""
+				"В дальнейшем пояс можно улучшить при помощи шерсти, кожи, железа и шалкера."
+			]
+			dependencies: ["3C7B960B6FCE3468"]
+			hide: true
+			id: "0F4AAE684A8E2207"
+			tasks: [
+				{
+					id: "197A99747830C61D"
+					type: "advancement"
+					advancement: "tetra:upgrades/toolbelt"
+					criterion: ""
+				}
+				{
+					id: "674012C33EBA34D2"
+					type: "item"
+					item: {
+						id: "tetra:modular_toolbelt"
+						Count: 1b
+						tag: {
+							"toolbelt/belt_material": "belt/rope"
+							id: "4c5f6099-99e1-4d52-a555-db85bad8e55d"
+							"toolbelt/belt": "toolbelt/belt"
+							"toolbelt/slot1": "toolbelt/strap_slot1"
+							"toolbelt/strap_slot1_material": "strap1/leather"
+						}
+					}
+					only_from_crafting: false
+				}
+			]
+			rewards: [
+				{
+					id: "08E18757EEAE4D89"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "0EFCE916E286333C"
+					type: "item"
+					item: "minecraft:leather"
+					count: 8
+				}
+			]
+		}
+		{
+			title: "Крепко сбитый"
+			x: 2.0d
+			y: 7.5d
+			subtitle: "Повысьте интеграцию меча"
+			description: [
+				"Чтобы повысить возможность установки новых модулей для инструмента, необходимо повысить его Интеграцию."
+				""
+				"Самый простой способ — установить перевязь или заменить основную рукоять на Верстаке Тетра."
+			]
+			dependencies: ["0285F838A182FB8D"]
+			id: "0892EA00C5ED9FE5"
+			tasks: [{
+				id: "0C168190FEE06C17"
+				type: "advancement"
+				advancement: "tetra:upgrades/sword_integrity"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "538F51819C8040FD"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "26A4CC661AFCD6AD"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 1678205825642991271L
+				}
+			]
+		}
+		{
+			title: "Отточенное лезвие"
+			x: 0.0d
+			y: 5.5d
+			subtitle: "Используйте меч, пока его нельзя будет заточить повторно"
+			description: ["Чтобы заточить инструменты, воспользуйтесь Верстаком Тетра, как только заточка будет готова."]
+			dependencies: ["0892EA00C5ED9FE5"]
+			id: "2220AA4CC52CFF4C"
+			tasks: [{
+				id: "185ED0B9D39488C2"
+				type: "advancement"
+				advancement: "tetra:upgrades/sword_hone"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "5B49290AC9B6F778"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "3064C55862757565"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 1678205825642991271L
+				}
+			]
+		}
+		{
+			title: "Двойное количество!"
+			x: -2.0d
+			y: 3.5d
+			subtitle: "Примените улучшение к модулю меча, а затем отточите это улучшение"
+			description: ["Примените одно из трёх улучшений к мечу - закалку, крюк, зазубренность - и отточите это улучшение на верстаке."]
+			dependencies: ["2220AA4CC52CFF4C"]
+			id: "4D6B7A08E8CFF943"
+			tasks: [{
+				id: "4EE968A154223164"
+				type: "advancement"
+				advancement: "tetra:upgrades/sword_improvement_hone"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "6273776DC3EB5030"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 1678205825642991271L
+				}
+				{
+					id: "0664457AEEF66D3A"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 1678205825642991271L
+				}
+				{
+					id: "655FFE088A9E6A54"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 1678205825642991271L
+				}
+			]
+		}
+		{
+			title: "Прочная сборка"
+			x: -2.0d
+			y: -0.5d
+			subtitle: "5次磨砺你的剑刃"
+			description: [
+				"Используя оружие или инструменты, вы постепенно их оттачиваете. Как только основная заточка будет готова, вы сможете выбрать улучшение на верстаке Тетра."
+				""
+				"P.S. Для выполнения квеста необходимо сделать любую заточку 5 уровня."
+			]
+			dependencies: ["000000000000092B"]
+			id: "2DC00BB572077FBC"
+			tasks: [{
+				id: "44BF2505AF4C179F"
+				type: "advancement"
+				advancement: "tetra:upgrades/sword_hone_peak"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "2EC0DE1D57A84C93"
+				type: "item"
+				item: {
+					id: "minecraft:enchanted_book"
+					Count: 1b
+					tag: {
+						StoredEnchantments: [{
+							lvl: 4s
+							id: "minecraft:sharpness"
+						}]
+					}
+				}
+			}]
+		}
+		{
+			title: "弯曲的弓"
+			icon: {
+				id: "tetra:modular_bow"
+				Count: 1b
+				tag: {
+					"bow/stave": "bow/recurve_stave"
+					honing_progress: 112
+					"bow/recurve_stave_material": "recurve_stave/spruce"
+					HideFlags: 1
+					"bow/basic_string_material": "basic_string/string"
+					"bow/string": "bow/basic_string"
+					id: "c507b5f7-5d4d-4224-b8d8-fb7c5a9a670e"
+					AS_Amulet_Holder: [I;
+						-449486007
+						118443153
+						-1822806901
+						-231257592
+					]
+					Damage: 0
+				}
+			}
+			x: 4.0d
+			y: -2.5d
+			description: [
+				"Изогнутые луки наносят меньше урона, имеют меньшее натяжение, но зато обладают повышенной скоростью атаки."
+				""
+				"Поместите Лук в верстак Tetra и измените его древко на &eизогнутое&r."
+			]
+			dependencies: ["000000000000093D"]
+			id: "0000000000000A35"
+			tasks: [
+				{
+					id: "04B6A15C27CEBB67"
+					type: "item"
+					title: "弯曲的弓"
+					item: {
+						id: "tetra:modular_bow"
+						Count: 1b
+						tag: {
+							"bow/string/settle_progress": 349
+							"bow/stave": "bow/recurve_stave"
+							honing_progress: 106
+							"bow/recurve_stave_material": "recurve_stave/oak"
+							HideFlags: 1
+							"bow/stave/settle_progress": 381
+							"bow/basic_string_material": "basic_string/string"
+							"bow/string": "bow/basic_string"
+							id: "e4a20329-458c-43c3-b995-6af4e23aa1da"
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "00D4331365F8AEC0"
+					type: "checkmark"
+				}
+			]
+			rewards: [
+				{
+					id: "0000000000000A3A"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "10E630B74265B58A"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 1678205825642991271L
+				}
+			]
+		}
+		{
+			title: "伟大的支架"
+			x: 6.0d
+			y: -0.5d
+			subtitle: "Сделайте стойку для инструментов"
+			description: ["Поставьте стойку рядом с верстаком. На неё можно повесить молот и нож, чтобы использовать при создании предметов."]
+			dependencies: ["0F4AAE684A8E2207"]
+			id: "000000000000093D"
+			tasks: [{
+				id: "000000000000093E"
+				type: "item"
+				item: "tetra:rack"
+				only_from_crafting: false
+			}]
+			rewards: [{
+				id: "3CB52679B9CB6E8E"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 7817187984711252441L
+			}]
+		}
+		{
+			title: "快刀斩乱麻！"
+			x: 2.0d
+			y: -4.5d
+			subtitle: "Изготовьте нож с коротким лезвием"
+			description: [
+				"Чтобы использовать в верстаке материалы, требующие нарезки (нить, кожа, шерсть, и т.д.), Вам понадобится клинок с коротким лезвием, сделанный где? Правильно, в верстаке Tetra."
+				""
+				"P.S. Клинок также можно повесить на Стойку для быстрого доступа"
+			]
+			dependencies: ["0000000000000A35"]
+			id: "000000000000093B"
+			tasks: [{
+				id: "2689984C80F43B76"
+				type: "item"
+				item: {
+					id: "tetra:modular_sword"
+					Count: 1b
+					tag: {
+						"sword/guard": "sword/makeshift_guard"
+						weapon_attributes: "{\"parent\":\"bettercombat:dagger\"}"
+						"sword/short_blade_material": "short_blade/iron"
+						"sword/blade": "sword/short_blade"
+						"sword/pommel": "sword/decorative_pommel"
+						honing_progress: 240
+						"sword/basic_hilt_material": "basic_hilt/stick"
+						HideFlags: 1
+						"sword/hilt": "sword/basic_hilt"
+						"sword/makeshift_guard_material": "makeshift_guard/iron"
+						Damage: 0
+						"sword/decorative_pommel_material": "decorative_pommel/iron"
+					}
+				}
+				weak_nbt_match: true
+			}]
+			rewards: [{
+				id: "75635502E1294CF8"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			title: "Копьё"
+			x: 0.0d
+			y: -2.5d
+			subtitle: "Изготовьте простое копьё"
+			description: [
+				"Копья чрезвычайно эффективны в ближнем бою, если вы не хотите подпускать противника слишком близко. Их крафтят на верстаке Тетра из лопат, заменив основной модуль."
+				""
+				"P.S. Чтобы сделать копьё двуручным, установите длинную ручку."
+			]
+			dependencies: ["000000000000093B"]
+			id: "000000000000092B"
+			tasks: [{
+				id: "000000000000092C"
+				type: "item"
+				item: {
+					id: "tetra:modular_single"
+					Count: 1b
+					tag: {
+						honing_progress: 112
+						HideFlags: 1
+						"single/handle": "single/basic_handle"
+						"single/head": "single/spearhead"
+						id: "43afce20-b42c-4a69-ae56-75b73098c8c4"
+						Damage: 0
+						"single/basic_handle_material": "basic_handle/stick"
+						"single/spearhead_material": "spearhead/iron"
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "0000000000000AA1"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "34388CCC49CCA94B"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 1678205825642991271L
+				}
+			]
+		}
+		{
+			title: "章节：工具 II"
+			icon: {
+				id: "tetra:scroll_rolled"
+				Count: 1b
+				tag: {
+					BlockEntityTag: {
+						data: [{
+							intricate: 0b
+							effects: ["tetra:gem_expertise"]
+							material: 0
+							ribbon: "2bffee"
+							glyphs: [
+								14
+								13
+								14
+								15
+							]
+							key: "gem_expertise"
+						}]
+					}
+				}
+			}
+			x: -4.0d
+			y: -0.5d
+			shape: "rsquare"
+			dependencies: ["2DC00BB572077FBC"]
+			size: 1.25d
+			id: "57ED61AF20E1F814"
+			tasks: [{
+				id: "56DB8ACC300428FF"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "1FB6A526D63C1A67"
+				type: "gamestage"
+				title: "章节：工具 II"
+				auto: "invisible"
+				ignore_reward_blocking: true
+				stage: "tools2"
+			}]
+		}
+		{
+			title: "&d建筑师调色板"
+			icon: {
+				id: "chipped:carpenters_table"
+				Count: 1b
+				tag: {
+					Enchantments: [{
+						lvl: 1s
+						id: "tombstone:soulbound"
+					}]
+				}
+			}
+			x: 2.0d
+			y: 1.5d
+			subtitle: "打开DLC"
+			hide_dependency_lines: true
+			dependencies: ["7FC3810FF89BC7CE"]
+			hide: true
+			size: 1.5d
+			id: "50CE04234232DF73"
+			tasks: [{
+				id: "34B7FC1D4E0BFDCA"
+				type: "checkmark"
+			}]
+		}
+	]
+	quest_links: [ ]
+}

@@ -1,0 +1,879 @@
+# AI 初翻，未人工校对
+{
+	id: "5FEE6CAF4308056B"
+	group: "09D95AA2ECEC2884"
+	order_index: 4
+	filename: "6return_to_the_sands"
+	title: "&6重返沙海"
+	icon: "atum:scarab"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "制作一个&e圣甲虫"
+			x: -1.0d
+			y: 1.5d
+			id: "629F76278AE00DE4"
+			tasks: [{
+				id: "7F5B4F518374E51A"
+				type: "item"
+				item: "atum:scarab"
+			}]
+			rewards: [{
+				id: "0ABC2A4FCA049DD0"
+				type: "xp_levels"
+				xp_levels: 4
+			}]
+		}
+		{
+			title: "进入 &e阿图姆世界"
+			x: -1.0d
+			y: 0.0d
+			subtitle: "The Portal can be constructed using &eSandstone, &7and is a structure made of two &6layers &7of 5×5 blocks, the upper &6layer &7being a \"donut\" with a 3×3 hole in the middle. The corners are 2 blocks tall. Fill the center with &9water. &7Then you need to throw the &eScarab into the &9water &7to open up the &5portal."
+			dependencies: ["629F76278AE00DE4"]
+			id: "3B5F84C0567FFBCA"
+			tasks: [{
+				id: "4A20095377A449DA"
+				type: "dimension"
+				icon: "minecraft:sandstone"
+				dimension: "atum:atum"
+			}]
+			rewards: [{
+				id: "39DC3279CC3A567B"
+				type: "xp_levels"
+				xp_levels: 4
+			}]
+		}
+		{
+			title: "获得一个 &eNebu Drop"
+			x: -2.5d
+			y: 0.0d
+			subtitle: "&eNebu Drop &7可以通过&6熔炼&eNebu Ore来获得"
+			dependencies: ["3B5F84C0567FFBCA"]
+			id: "75AB82494080269D"
+			tasks: [{
+				id: "477FEBC55A8AA2A1"
+				type: "item"
+				item: "atum:nebu_drop"
+			}]
+			rewards: [{
+				id: "2A8E92D09E1D36C3"
+				type: "xp_levels"
+				xp_levels: 4
+			}]
+		}
+		{
+			title: "制作一个 &eNebu 火把"
+			x: -2.5d
+			y: -1.5d
+			subtitle: "用于开启&e金字塔&7的大门，并召唤&5法老们"
+			dependencies: ["75AB82494080269D"]
+			id: "770DBE5A1D482B23"
+			tasks: [{
+				id: "1C45C395815C2231"
+				type: "item"
+				item: "atum:nebu_torch"
+			}]
+			rewards: [{
+				id: "4897C802FD4D4DBB"
+				type: "xp_levels"
+				xp_levels: 2
+			}]
+		}
+		{
+			title: "找到一个&e金字塔"
+			x: 0.5d
+			y: 0.0d
+			dependencies: ["3B5F84C0567FFBCA"]
+			id: "23024E8258A43EE5"
+			tasks: [{
+				id: "081EE7F6480B35D0"
+				type: "structure"
+				icon: "atum:limestone_brick_small"
+				structure: "atum:pyramid"
+			}]
+			rewards: [{
+				id: "7A16B4C64226C6B8"
+				type: "xp_levels"
+				xp_levels: 4
+			}]
+		}
+		{
+			title: "观察一个 &6石棺 Sarcophagus"
+			x: 0.5d
+			y: -1.5d
+			subtitle: "在&e金字塔的底部可以找到"
+			dependencies: ["23024E8258A43EE5"]
+			id: "65D33650BA7E38EF"
+			tasks: [{
+				id: "4FBD25D2E1A016DC"
+				type: "observation"
+				icon: "atum:sarcophagus"
+				timer: 0L
+				observe_type: 0
+				to_observe: "atum:sarcophagus"
+			}]
+			rewards: [{
+				id: "0A44222BD3456295"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			title: "杀死一只 &5法老"
+			x: -1.0d
+			y: -2.5d
+			subtitle: "将4个&eNebu Torches&7放在4个&6Quandary blocks上即可召唤"
+			dependencies: [
+				"770DBE5A1D482B23"
+				"65D33650BA7E38EF"
+			]
+			id: "573CD9948B09656A"
+			tasks: [{
+				id: "42A6CEC0332174B2"
+				type: "kill"
+				icon: "atum:pharaoh_spawn_egg"
+				entity: "atum:pharaoh"
+				value: 1L
+			}]
+			rewards: [
+				{
+					id: "51A1D2DC7DD69B54"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "3D0AE38655105EC3"
+					type: "item"
+					item: "minecraft:nether_star"
+				}
+			]
+		}
+		{
+			title: "获取 &8Anput's Artifacts"
+			x: -4.0d
+			y: -4.0d
+			dependencies: ["573CD9948B09656A"]
+			id: "4A1AE6BA32CFB8E5"
+			tasks: [
+				{
+					id: "5297685683DF5512"
+					type: "item"
+					item: {
+						id: "atum:anputs_grounding"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "2FB266816146B8C8"
+					type: "item"
+					item: {
+						id: "atum:anputs_hunger"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "031E2CA33F508CA8"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			title: "获得 &4阿努比斯的愤怒"
+			x: -2.0d
+			y: -5.0d
+			dependencies: ["573CD9948B09656A"]
+			id: "544451BF31D27107"
+			tasks: [{
+				id: "53E3EB7E472B99ED"
+				type: "item"
+				item: {
+					id: "atum:anubis_wrath"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "41F3F9BD4D3007A2"
+				type: "xp_levels"
+				xp_levels: 12
+			}]
+		}
+		{
+			title: "获取&b阿特姆的遗物"
+			x: -1.0d
+			y: -4.0d
+			dependencies: ["573CD9948B09656A"]
+			id: "2B76C49F03446B10"
+			tasks: [
+				{
+					id: "7D292CA349FC0720"
+					type: "item"
+					item: {
+						id: "atum:eyes_of_atem"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "1F60E3B5581343DE"
+					type: "item"
+					item: {
+						id: "atum:body_of_atem"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "4B391B937445545E"
+					type: "item"
+					item: {
+						id: "atum:legs_of_atem"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "3358FB9D0398A943"
+					type: "item"
+					item: {
+						id: "atum:feet_of_atem"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "4AC53525F5A14523"
+					type: "item"
+					item: {
+						id: "atum:atems_bounty"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "3C3476895E8ED1B3"
+					type: "item"
+					item: {
+						id: "atum:atems_homecoming"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "1E2353178DD5930C"
+					type: "item"
+					item: {
+						id: "atum:atems_protection"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "0DC83968696A35ED"
+					type: "item"
+					item: {
+						id: "atum:atems_will"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "0151A30D7533F160"
+				type: "xp_levels"
+				xp_levels: 15
+			}]
+		}
+		{
+			title: "获取&cGeb的遗物</c1>"
+			x: -4.0d
+			y: -5.0d
+			dependencies: ["573CD9948B09656A"]
+			id: "3E94A54C7B38BF2C"
+			tasks: [
+				{
+					id: "281A3A4E6D347BDE"
+					type: "item"
+					item: {
+						id: "atum:gebs_might"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "6BC9558EE73AE31E"
+					type: "item"
+					item: {
+						id: "atum:gebs_toil"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "4DE8BEF6927194A4"
+					type: "item"
+					item: {
+						id: "atum:gebs_undoing"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "460995596C802684"
+				type: "xp_levels"
+				xp_levels: 8
+			}]
+		}
+		{
+			title: "获取 &9荷鲁斯的遗物"
+			x: 1.0d
+			y: -4.0d
+			dependencies: ["573CD9948B09656A"]
+			id: "696C88B65FD6D6B1"
+			tasks: [
+				{
+					id: "3E046E580260F820"
+					type: "item"
+					item: {
+						id: "atum:horus_ascension"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "0461D4AB80D8A115"
+					type: "item"
+					item: {
+						id: "atum:horus_soaring"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "613559792F2A3504"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			title: "获取&d伊西斯的遗物"
+			x: -2.0d
+			y: -4.0d
+			dependencies: ["573CD9948B09656A"]
+			id: "31E38547A930E2A9"
+			tasks: [
+				{
+					id: "42F745CCF285191A"
+					type: "item"
+					item: {
+						id: "atum:isis_division"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "43B9DC08B2886863"
+					type: "item"
+					item: "atum:isis_healing"
+				}
+			]
+			rewards: [{
+				id: "730B3EA56315CA8B"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			title: "获取 &c蒙图的遗物"
+			x: -1.0d
+			y: -6.0d
+			dependencies: ["573CD9948B09656A"]
+			id: "1CE7E139EBDE8A9A"
+			tasks: [
+				{
+					id: "216219277EE48830"
+					type: "item"
+					item: {
+						id: "atum:montus_blast"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "243D5D3299B44DB5"
+					type: "item"
+					item: {
+						id: "atum:montus_strike"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "3B647D7B1C3BE0D7"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			title: "获取 &d涅普西斯的遗物"
+			x: 2.0d
+			y: -5.0d
+			dependencies: ["573CD9948B09656A"]
+			id: "7DFFAB7BA35EC03A"
+			tasks: [
+				{
+					id: "1E7ECE465C0E791D"
+					type: "item"
+					item: {
+						id: "atum:nepthys_banishing"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "20A703D217116AAF"
+					type: "item"
+					item: "atum:nepthys_guard"
+				}
+			]
+			rewards: [{
+				id: "6133989FEE09495E"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			title: "获取&1Nuit的遗物</c1>"
+			x: 1.0d
+			y: -5.0d
+			dependencies: ["573CD9948B09656A"]
+			id: "14D349B2D3A0D777"
+			tasks: [
+				{
+					id: "45BE540CA3E5D1E2"
+					type: "item"
+					item: {
+						id: "atum:nuits_ire"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "47664236438B6E03"
+					type: "item"
+					item: {
+						id: "atum:nuits_quarter"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "5309AF585EF707D2"
+					type: "item"
+					item: "atum:nuits_vanishing"
+				}
+			]
+			rewards: [{
+				id: "1655C65291B80EF6"
+				type: "xp_levels"
+				xp_levels: 8
+			}]
+		}
+		{
+			title: "获取 &a奥西里斯的遗物"
+			x: 2.0d
+			y: -4.0d
+			dependencies: ["573CD9948B09656A"]
+			id: "650462E6E068BCC5"
+			tasks: [
+				{
+					id: "2D21A9C116186196"
+					type: "item"
+					item: {
+						id: "atum:osiris_blessing"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "3425EA084003C891"
+					type: "item"
+					item: {
+						id: "atum:osiris_mercy"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "7F81D95C839E37AE"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			title: "获得 &6Ptah's Decandence"
+			x: 0.0d
+			y: -5.0d
+			dependencies: ["573CD9948B09656A"]
+			id: "3B7EB8BE15773FCF"
+			tasks: [{
+				id: "2C62CBE5B74A350E"
+				type: "item"
+				item: {
+					id: "atum:ptahs_decadence"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "31507F04A31AE56A"
+				type: "xp_levels"
+				xp_levels: 12
+			}]
+		}
+		{
+			title: "获取 &c拉的神器"
+			x: -1.0d
+			y: -5.0d
+			dependencies: ["573CD9948B09656A"]
+			id: "0A5533E3D586B317"
+			tasks: [
+				{
+					id: "2C6839DFD69057A8"
+					type: "item"
+					item: {
+						id: "atum:halo_of_ra"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "5CA1911C7751F23D"
+					type: "item"
+					item: {
+						id: "atum:body_of_ra"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "0B6ABCE0A3BD68D0"
+					type: "item"
+					item: {
+						id: "atum:legs_of_ra"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "5289A7E110F00FEB"
+					type: "item"
+					item: {
+						id: "atum:feet_of_ra"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "0E963C9EA6FF20F6"
+					type: "item"
+					item: {
+						id: "atum:ras_fury"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "745A1B27568300C5"
+					type: "item"
+					item: "atum:ras_step"
+				}
+			]
+			rewards: [{
+				id: "529E0A5703652565"
+				type: "xp_levels"
+				xp_levels: 15
+			}]
+		}
+		{
+			title: "获取 &a塞斯的遗物"
+			x: 0.0d
+			y: -4.0d
+			dependencies: ["573CD9948B09656A"]
+			id: "53DF8F31A8EA29C5"
+			tasks: [
+				{
+					id: "4FC1DDD082F0B809"
+					type: "item"
+					item: {
+						id: "atum:seths_sting"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "359C53187C4DDBA5"
+					type: "item"
+					item: {
+						id: "atum:seths_venom"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "29412D4057981CEE"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			title: "获取 &eShu's Artifacts"
+			x: -3.0d
+			y: -5.0d
+			dependencies: ["573CD9948B09656A"]
+			id: "5BD839AEAB353064"
+			tasks: [
+				{
+					id: "402637EA9A954C49"
+					type: "item"
+					item: {
+						id: "atum:shus_breath"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "7B8DBCB88B4304E8"
+					type: "item"
+					item: {
+						id: "atum:shus_exile"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "18FDFFC13FBA669C"
+					type: "item"
+					item: "atum:shus_swiftness"
+				}
+			]
+			rewards: [{
+				id: "3CBBA535CFB5D739"
+				type: "xp_levels"
+				xp_levels: 8
+			}]
+		}
+		{
+			title: "获取 &9特芙努特的遗物"
+			x: -3.0d
+			y: -4.0d
+			dependencies: ["573CD9948B09656A"]
+			id: "09244A9A8F184164"
+			tasks: [
+				{
+					id: "49E8374B0601886B"
+					type: "item"
+					item: {
+						id: "atum:tefnuts_call"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "1B11EF99D2CF2378"
+					type: "item"
+					item: {
+						id: "atum:tefnuts_rain"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "77AFCD1789AEE0A9"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			title: "杀死一个 &e野蛮人"
+			x: -1.0d
+			y: -1.0d
+			dependencies: ["3B5F84C0567FFBCA"]
+			id: "0A1FB531292CE12A"
+			tasks: [{
+				id: "4C6EB35488BE10A7"
+				type: "kill"
+				icon: "atum:barbarian_spawn_egg"
+				entity: "atum:barbarian"
+				value: 1L
+			}]
+			rewards: [{
+				id: "5CB5DFCA9C8719FF"
+				type: "xp_levels"
+				xp_levels: 4
+			}]
+		}
+		{
+			title: "制作一把 &eNebu Hammer"
+			x: -4.0d
+			y: 0.0d
+			dependencies: ["75AB82494080269D"]
+			id: "281FC3DD0B6AB85B"
+			tasks: [{
+				id: "02EB22159684F7CD"
+				type: "item"
+				item: "atum:nebu_hammer"
+			}]
+			rewards: [{
+				id: "703511A7BAC17253"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			title: "制作一个 &eGodforge"
+			x: -5.5d
+			y: 0.0d
+			description: ["这样你就可以将重复的遗物分解成碎片，再与 nebula 锭结合，重铸你的遗物。"]
+			dependencies: ["281FC3DD0B6AB85B"]
+			id: "6C04298441B368C8"
+			tasks: [{
+				id: "618D7D62D637FE37"
+				type: "item"
+				item: "atum:godforge"
+			}]
+			rewards: [{
+				id: "0F98DC7DFB72CAA3"
+				type: "item"
+				item: "atum:godforged_block"
+			}]
+		}
+		{
+			x: -1.0d
+			y: -7.5d
+			dependencies: [
+				"4A1AE6BA32CFB8E5"
+				"544451BF31D27107"
+				"2B76C49F03446B10"
+				"3E94A54C7B38BF2C"
+				"696C88B65FD6D6B1"
+				"31E38547A930E2A9"
+				"1CE7E139EBDE8A9A"
+				"7DFFAB7BA35EC03A"
+				"14D349B2D3A0D777"
+				"650462E6E068BCC5"
+				"3B7EB8BE15773FCF"
+				"0A5533E3D586B317"
+				"53DF8F31A8EA29C5"
+				"5BD839AEAB353064"
+				"09244A9A8F184164"
+			]
+			id: "1C871EED9FB39378"
+			tasks: [{
+				id: "2CC0BB8884EDC737"
+				type: "item"
+				item: "atum:idol_of_labor"
+			}]
+			rewards: [
+				{
+					id: "56805F97B4C1A725"
+					type: "item"
+					item: "alexsmobs:maraca"
+				}
+				{
+					id: "004E06106F8EB6AC"
+					type: "item"
+					item: {
+						id: "alexsmobs:sombrero"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+	]
+}

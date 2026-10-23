@@ -1,0 +1,415 @@
+# AI 初翻，未人工校对
+{
+	id: "37F5AB89BC0A6707"
+	group: "6E6F1BF3B228176D"
+	order_index: 0
+	filename: "beginning"
+	title: "开始"
+	icon: "minecraft:stick"
+	subtitle: [
+		"Добро пожаловать в OxFORTPACK"
+		""
+		"NoTreePunching"
+	]
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	images: [
+		{
+			x: 2.5d
+			y: 0.5d
+			width: 20.0d
+			height: 20.0d
+			rotation: 0.0d
+			image: "ftbchunks:textures/faces/minecraft/guardian.png"
+			hover: [ ]
+			click: ""
+			dev: false
+			corner: false
+			dependency: "260EF7AC98382B42"
+		}
+		{
+			x: 2.5d
+			y: 1.0d
+			width: 4.0d
+			height: 2.0d
+			rotation: 0.0d
+			image: "minecraft:textures/block/red_concrete.png"
+			hover: [ ]
+			click: ""
+			dev: false
+			corner: false
+			dependency: "514FA15E17842C61"
+		}
+	]
+	quests: [
+		{
+			title: "开始"
+			x: -3.0d
+			y: 0.5d
+			shape: "rsquare"
+			subtitle: "Изготовьте свой первый стержень из древесной листвы"
+			description: ["Как выяснил наш герой, дерево руками сломать не получится. Но вот палки все же можно найти в листве деревьев. Посмотрим, как это можно использовать"]
+			hide_dependency_lines: true
+			dependencies: ["260EF7AC98382B42"]
+			size: 1.25d
+			id: "514FA15E17842C61"
+			tasks: [{
+				id: "232BA0C976BC7342"
+				type: "item"
+				item: "minecraft:stick"
+			}]
+			rewards: [{
+				id: "4A52C6F492ED0079"
+				type: "item"
+				item: "additionaladditions:honeyed_apple"
+				count: 2
+			}]
+		}
+		{
+			title: "闪闪发光的鹅卵石"
+			x: -1.0d
+			y: 0.5d
+			subtitle: "Найдите немного кремния, копая гравий"
+			description: ["От камней, разбросанных по округе мало толку, попробуем сделать что-то из кремния."]
+			dependencies: ["514FA15E17842C61"]
+			hide: true
+			id: "3668C07A7B02ACEA"
+			tasks: [{
+				id: "3DB43F00ED312858"
+				type: "item"
+				item: "minecraft:flint"
+			}]
+			rewards: [{
+				id: "5E67E6B97CF32EF4"
+				type: "item"
+				item: "minecraft:flint"
+				count: 2
+			}]
+		}
+		{
+			title: "点击！"
+			x: 1.0d
+			y: 0.5d
+			subtitle: "Разбейте кремний на мелкие кусочки, используя его на твёрдом блоке"
+			description: ["Кремний найден, теперь нужно подготовить его к крафту. Может, ударить им о камень?"]
+			dependencies: ["3668C07A7B02ACEA"]
+			hide: true
+			id: "721F00D9E35CAA7F"
+			tasks: [{
+				id: "2B59447FC5615011"
+				type: "item"
+				item: "notreepunching:flint_shard"
+			}]
+			rewards: [{
+				id: "1B6DE47D99437271"
+				type: "xp"
+				xp: 75
+			}]
+		}
+		{
+			title: "切片处理"
+			x: 3.0d
+			y: 0.5d
+			subtitle: "Изготовьте новый вид ниток, используя следующие материалы:"
+			description: [
+				"Что ж, похоже, без верстака я смогу сделать только &eнож&r. Но как же без топора?"
+				""
+				"Так, чтобы сделать &eтопор&r, нужна нить. Пауков поблизости не видно, но что если нарезать траву ножом? Хмм, похоже, что из &eрастительного волокна&r можно сделать &eрастительную нить&r."
+			]
+			dependencies: ["721F00D9E35CAA7F"]
+			hide: true
+			id: "05430189CE36CFC0"
+			tasks: [
+				{
+					id: "38F4D443E0EAC36C"
+					type: "item"
+					item: {
+						id: "notreepunching:flint_knife"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+					only_from_crafting: false
+				}
+				{
+					id: "002892A68C279640"
+					type: "item"
+					item: "notreepunching:plant_string"
+					only_from_crafting: false
+				}
+				{
+					id: "3C060B80BEC1F2AB"
+					type: "item"
+					item: "notreepunching:plant_fiber"
+					count: 3L
+				}
+			]
+			rewards: [{
+				id: "3F73B1D811E8E824"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1678205825642991271L
+			}]
+		}
+		{
+			title: "还有我的斧头！"
+			x: 5.0d
+			y: 0.5d
+			subtitle: "Изготовьте свой первый топор из кремния"
+			description: ["Наконец-то! Можно сделать свой первый топор из собранных материалов. Соберу прямо руками, без верстака"]
+			dependencies: ["05430189CE36CFC0"]
+			hide: true
+			id: "35D001803C2A6C78"
+			tasks: [{
+				id: "78C78F1BF19FFE7D"
+				type: "item"
+				item: {
+					id: "notreepunching:flint_axe"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				only_from_crafting: false
+			}]
+			rewards: [
+				{
+					id: "790DE47E5D259213"
+					type: "item"
+					item: "additionaladditions:mysterious_bundle"
+				}
+				{
+					id: "2CAC718085E25355"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 1678205825642991271L
+				}
+			]
+		}
+		{
+			title: "章节：工具 I"
+			icon: {
+				id: "tetra:holo"
+				Count: 1b
+				tag: {
+					"holo/core_material": "frame/dim"
+					"holo/frame": "holo/frame"
+					"holo/core": "holo/core"
+					"holo/frame_material": "core/ancient"
+				}
+			}
+			x: 7.0d
+			y: 2.5d
+			shape: "rsquare"
+			dependencies: ["59CEEF17A5137C46"]
+			hide: true
+			size: 1.25d
+			ignore_reward_blocking: true
+			id: "5554D9B00AE6AC26"
+			tasks: [{
+				id: "409F8DC974C881F4"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "286EBAC6A223A167"
+				type: "gamestage"
+				title: "章节：工具 I"
+				auto: "invisible"
+				ignore_reward_blocking: true
+				stage: "tools"
+			}]
+		}
+		{
+			title: "Глава: Выживание"
+			icon: "minecraft:campfire"
+			x: 9.375d
+			y: 0.5d
+			shape: "rsquare"
+			dependencies: ["59CEEF17A5137C46"]
+			hide: true
+			size: 1.25d
+			id: "004C8CDBAB0228BE"
+			tasks: [{
+				id: "37D6B2F1795F4301"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "4421B4601EB1E1FD"
+				type: "gamestage"
+				title: "Глава: Выживание"
+				auto: "invisible"
+				ignore_reward_blocking: true
+				stage: "survive"
+			}]
+		}
+		{
+			title: "&d容器类物品"
+			icon: {
+				id: "sophisticatedbackpacks:backpack"
+				Count: 1b
+				tag: {
+					Enchantments: [{
+						lvl: 1s
+						id: "tombstone:soulbound"
+					}]
+				}
+			}
+			x: 7.0d
+			y: -1.5d
+			shape: "rsquare"
+			subtitle: "打开DLC"
+			description: ["Рюкзаки, железные сундуки и бочки из мода SophisticatedStorage позволят укомплектовать и автоматизировать весь ваш инвентарь и даже больше."]
+			dependencies: ["59CEEF17A5137C46"]
+			hide: true
+			size: 1.25d
+			id: "0D4B56099A415528"
+			tasks: [{
+				id: "09396CE883653385"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "3F6D61EAF62B7A07"
+				type: "gamestage"
+				title: "Глава: Хранение"
+				auto: "invisible"
+				ignore_reward_blocking: true
+				stage: "storage"
+			}]
+		}
+		{
+			title: "任务列表"
+			icon: "minecraft:writable_book"
+			disable_toast: true
+			x: 2.0d
+			y: -2.25d
+			shape: "rsquare"
+			subtitle: "完成所有任务以通过考验"
+			description: [
+				"Добро пожаловать!"
+				""
+				"Как ты уже заметил, чтобы открыть новые предметы и измерения в этой сборке, тебе нужно будет постепенно выполнять различные задания (и, конечно, получать за них награды)."
+				""
+				"Чтобы посмотреть требования к квесту, нажми на него и обрати внимание на вкладку \"Задачи\"."
+				"Награды, доступные после прохождения квеста, отображаются в правом столбце. Ты сможешь получить их после выполнения всех заданий."
+				""
+				"Также не забывай читать описания к квестам, там содержится очень много полезной информации о прохождении!"
+				""
+				"Если у вас есть вопросы, напишите нам в Discord: &3discord.gg/oxfortpack"
+			]
+			size: 3.25d
+			id: "5002CD2B0FBB306C"
+			tasks: [{
+				id: "03189919EC42C991"
+				type: "checkmark"
+			}]
+			rewards: [
+				{
+					id: "3805DC651B2DC375"
+					type: "item"
+					item: "minecraft:golden_apple"
+				}
+				{
+					id: "2EF2FCFA470D4073"
+					type: "item"
+					item: "ftbquests:book"
+				}
+			]
+		}
+		{
+			title: "Wiki"
+			icon: "minecraft:bookshelf"
+			x: 0.0d
+			y: 3.25d
+			shape: "rsquare"
+			subtitle: "有用的资源来源"
+			description: [
+				"Конечно, невозможно описать все 256 модификаций сборника только в квестах, поэтому без дополнительных источников не обойтись."
+				""
+				"您可以在我们的维基上找到有关服务器、整合包和模组的实用文章：&bhttps://github.com/Proxwian/OxFORTPACK/wiki"
+				""
+				"Также всегда готовы ответить на ваши вопросы в нашем Discord: &bhttps://discord.gg/oxfortpack"
+				""
+				"Ну и конечно, не стесняйтесь пользоваться открытыми источниками! В интернете полно видео и текстовых обзоров модификаций из сборки, Google и YouTube ваши лучшие друзья."
+			]
+			hide_dependency_lines: true
+			dependencies: ["5002CD2B0FBB306C"]
+			hide: true
+			size: 3.25d
+			id: "49C2A6943179AC19"
+			tasks: [{
+				id: "2162A6AE233B712B"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "7B62DAEA607BE71B"
+				type: "item"
+				item: "alexsmobs:animal_dictionary"
+			}]
+		}
+		{
+			title: "&4重要！"
+			icon: "engineersdecor:sign_caution"
+			disable_toast: true
+			x: 4.0d
+			y: 3.25d
+			shape: "rsquare"
+			subtitle: "常见问题解答"
+			description: [
+				"Чтобы выполнить квест, требующий крафта предмета, нужно кликнуть по нему БЕЗ зажатой клавиши Shift, чтобы задание засчиталось."
+				""
+				"Если после открытия эпохи или главы новые рецепты недоступны, перезаайдите на сервер."
+				""
+			]
+			hide_dependency_lines: true
+			dependencies: ["49C2A6943179AC19"]
+			hide: true
+			size: 3.25d
+			id: "260EF7AC98382B42"
+			tasks: [{
+				id: "11FCD4030AEEAED6"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "4C6C6B311E756297"
+				type: "item"
+				item: "artifacts:whoopee_cushion"
+			}]
+		}
+		{
+			title: "工作台"
+			x: 7.0d
+			y: 0.5d
+			subtitle: "Создайте верстак (crafting table)"
+			description: [
+				"Наконец-то у меня есть всё необходимое, чтобы сделать &eВерстак&r. Пора приступить к сборке!"
+				""
+				"P.S. Не забудьте обтесать пару бревён &eкремниевым топором&r или &eпилой&r, чтобы использовать их в рецепте."
+				"P.S. Инструменты, используемые для крафта верстака, &cне должны быть повреждены&r."
+			]
+			dependencies: ["35D001803C2A6C78"]
+			hide: true
+			id: "59CEEF17A5137C46"
+			tasks: [{
+				id: "22038E7E2BD88137"
+				type: "item"
+				item: "minecraft:crafting_table"
+				only_from_crafting: false
+			}]
+			rewards: [
+				{
+					id: "0910702D1050DE74"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 1678205825642991271L
+				}
+				{
+					id: "5A9B396FB6DFD75B"
+					type: "xp"
+					xp: 150
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+}

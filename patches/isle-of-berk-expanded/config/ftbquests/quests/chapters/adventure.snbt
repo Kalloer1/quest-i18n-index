@@ -1,0 +1,849 @@
+# AI 初翻，未人工校对
+{
+	id: "2BCD203EA230DB57"
+	group: "1169898B7AA67FBD"
+	order_index: 0
+	filename: "adventure"
+	title: "冒险与附魔 \\n 冒险与附魔"
+	icon: "apotheosis:reforging_table"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "入门指南"
+			x: 0.0d
+			y: 0.0d
+			subtitle: "点击查看更多信息！"
+			description: [
+				"欢迎来到 Apotheosis，"
+				""
+				"Apotheosis 分为六个模块，本任务也是如此。"
+				""
+				"此整合包中，所有模组均已启用。"
+			]
+			size: 2.0d
+			id: "193735441915491E"
+			tasks: [{
+				id: "50B88F0A2AA73D89"
+				type: "checkmark"
+				title: "请阅读我"
+			}]
+			rewards: [{
+				id: "2A9A0C5D6C7250A6"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: -2.0d
+			y: -1.0d
+			subtitle: "点击查看更多信息！"
+			description: [
+				"怪物掉落物和宝箱现在有几率给你一个附魔物品。"
+				""
+				"目前共有五种不同稀有度的词缀：普通、不常见、稀有、史诗和神话。"
+				""
+				"附魔有多种用途，从提高物品耐久度，到在特定条件下赋予药水效果，它们都非常实用。"
+			]
+			dependencies: ["193735441915491E"]
+			id: "0F055A8AE7018CD0"
+			tasks: [{
+				id: "135E6CFEE19D64CD"
+				type: "advancement"
+				title: "附魔物品"
+				advancement: "apotheosis:affix/root"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "573BF2F5E966EF56"
+					type: "random"
+					icon: "minecraft:bundle"
+					table_id: 6629935245342054445L
+				}
+				{
+					id: "329578BC68B3CAA5"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			x: -2.0d
+			y: 1.0d
+			subtitle: "点击查看更多信息！"
+			description: [
+				"一块凝聚了力量的水晶。"
+				""
+				"这些可用于为附魔的物品添加额外属性。"
+				""
+				"属性的强度和类型取决于给定宝石的类型和质量。"
+				""
+				"宝石可以在世界各地的宝箱中找到，也可以从生物和 Apotheosis 首领身上收集"
+			]
+			dependencies: ["193735441915491E"]
+			id: "75F8E5BA7C2ABC4F"
+			tasks: [{
+				id: "08303619378DC09B"
+				type: "advancement"
+				title: "宝石"
+				icon: {
+					id: "apotheosis:gem"
+					Count: 1b
+					tag: {
+						variant: 0
+						purity: 0.64285713f
+						modifier: {
+							Operation: 1
+							attribute: "apotheosis:draw_speed"
+							UUID: [I;
+								-728532723
+								-1289337630
+								-1646935587
+								1178524167
+							]
+							Amount: 0.44999998807907104d
+							Name: "GemBonus_apotheosis:draw_speed"
+						}
+					}
+				}
+				advancement: "apotheosis:affix/gem"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "63751907F9184506"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: -3.5d
+			y: 1.0d
+			subtitle: "点击查看更多信息！"
+			description: [
+				"将砧锤放在任何宝石上即可制作宝石粉尘。"
+				""
+				"铁砧现在也可以附魔了"
+			]
+			dependencies: ["75F8E5BA7C2ABC4F"]
+			id: "609BF0185CBFAB0D"
+			tasks: [
+				{
+					id: "13728FFEBA3DB063"
+					type: "item"
+					item: "apotheosis:gem_dust"
+				}
+				{
+					id: "40710634A39BF073"
+					type: "item"
+					item: "minecraft:anvil"
+				}
+			]
+			rewards: [
+				{
+					id: "62A81F989A01BA92"
+					type: "item"
+					item: "apotheosis:gem_dust"
+					count: 5
+					random_bonus: 10
+				}
+				{
+					id: "0C2D4496C1FA1FC0"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			x: -3.5d
+			y: -1.0d
+			subtitle: "点击查看更多信息！"
+			description: ["任何不需要的附魔物品都可以拆解，用于重铸同等品质的材料。"]
+			dependencies: ["0F055A8AE7018CD0"]
+			id: "0278DC98EFB08A1F"
+			tasks: [
+				{
+					id: "04D6202D767600A1"
+					type: "item"
+					title: "重铸材料"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "apotheosis:reforge_material"
+						}
+					}
+				}
+				{
+					id: "38846DAB632EA4AD"
+					type: "item"
+					item: "apotheosis:salvaging_table"
+				}
+			]
+			rewards: [
+				{
+					id: "04DCC7C884C98CAD"
+					type: "random"
+					icon: "minecraft:bundle"
+					table_id: 6629935245342054445L
+				}
+				{
+					id: "78D83099BD2214C1"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			x: -5.0d
+			y: 0.0d
+			subtitle: "点击查看更多信息！"
+			description: [
+				"使用经验值、重铸材料和宝石粉尘可以重掷物品附加属性。"
+				""
+				"这些可以无限次地重新掷出结果。"
+			]
+			dependencies: [
+				"609BF0185CBFAB0D"
+				"0278DC98EFB08A1F"
+			]
+			id: "11D5FDA1DC9CC378"
+			tasks: [{
+				id: "6B3D96F37FAB5D85"
+				type: "item"
+				item: "apotheosis:reforging_table"
+			}]
+			rewards: [
+				{
+					id: "408F880FF6818D6C"
+					type: "random"
+					icon: "minecraft:bundle"
+					table_id: 6629935245342054445L
+				}
+				{
+					id: "2A55E36EA9DB16E6"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			title: "基础附魔系统"
+			icon: "minecraft:enchanting_table"
+			x: 3.5d
+			y: 0.0d
+			subtitle: "点击查看更多信息！"
+			description: [
+				"最基础的附魔设置，让人联想到原版设置，并添加了头颅、蜡烛和紫水晶簇。"
+				""
+				"附魔台现在有三种不同的属性（&aEterna&r、&4Quanta&r/&eRectification&r 和 &5Arcana&r），它们各有三种不同的功能"
+				""
+				"&aEterna&r 是主要属性，专注于你的附魔等级，从而影响附魔强度和可用附魔数量。"
+				""
+				"&4Quanta&r/&eRectification&r 决定了你的附魔等级。 &4Quanta&r 数值越高，附魔范围就越广，&o例如&r：锋利度 I - 锋利度 IX"
+				"&eRectification&r closes the gap between the enchantment level &oe.g.&r Sharpness V - Sharpness IX, and minimizes the chances of a minor negative enchantment appearing."
+				""
+				"&5Arcana&r 负责管理附魔的稀有度。你的物品的 &5Arcana&r 越高，获得的附魔就越稀有。"
+				"&5Arcana&r 还保证了你至少能获得多少附魔。在 25% &5Arcana&r 时，你至少会获得 2 个附魔，而在 75% 时，你至少会获得 3 个。"
+			]
+			dependencies: ["689F3ABCDBD936C4"]
+			id: "247717144BA48848"
+			tasks: [
+				{
+					id: "61E11231F1E54F0E"
+					type: "item"
+					item: "minecraft:enchanting_table"
+				}
+				{
+					id: "56A03A7A6142B49E"
+					type: "item"
+					title: "Bookshelves"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "forge:bookshelves"
+						}
+					}
+					count: 15L
+				}
+				{
+					id: "74C89BF65DECEAD9"
+					type: "item"
+					title: "蜡烛"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "minecraft:candles"
+						}
+					}
+					count: 16L
+				}
+				{
+					id: "67634D8FF683614A"
+					type: "item"
+					title: "生物头颅模组"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "apotheosis:quanta_skulls"
+						}
+					}
+					count: 2L
+				}
+				{
+					id: "2210B099937FC0D2"
+					type: "item"
+					item: "minecraft:amethyst_cluster"
+					count: 7L
+				}
+			]
+			rewards: [{
+				id: "3052B3A8E536442B"
+				type: "xp_levels"
+				xp_levels: 30
+			}]
+		}
+		{
+			title: "宝石镶嵌系统"
+			x: -2.0d
+			y: 2.5d
+			subtitle: "点击查看更多信息！"
+			description: ["将任何宝石与带有开放插槽的物品结合，即可完成宝石镶嵌"]
+			dependencies: ["75F8E5BA7C2ABC4F"]
+			id: "60AEBA6D0A2101DB"
+			tasks: [{
+				id: "7718AF7C6FEF4114"
+				type: "item"
+				item: "minecraft:smithing_table"
+			}]
+			rewards: [{
+				id: "2E75699DCA558B3A"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: -2.5d
+			y: 5.0d
+			subtitle: "点击查看更多信息！"
+			description: [
+				"在锻造台中使用物品来提取宝石。"
+				""
+				"&l&4注意&r：使用奥数萃取瓶会摧毁所提取的物品。"
+			]
+			dependencies: ["0D8E8C89657E00DE"]
+			id: "0EB377A64AB465AA"
+			tasks: [{
+				id: "35E79AE6B915679F"
+				type: "item"
+				item: "apotheosis:vial_of_extraction"
+			}]
+			rewards: [{
+				id: "26E3D2B500742D19"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: -1.5d
+			y: 5.0d
+			subtitle: "点击查看更多信息！"
+			description: [
+				"在锻造台中使用，配合物品可移除宝石。"
+				""
+				"&l&4注意&r：使用灼烧驱逐瓶会摧毁物品中的宝石。"
+			]
+			dependencies: ["0D8E8C89657E00DE"]
+			id: "55B72C93DFBB3ECA"
+			tasks: [{
+				id: "40047585CE0F067E"
+				type: "item"
+				item: "apotheosis:vial_of_expulsion"
+			}]
+			rewards: [{
+				id: "14D0B815DDC8CDF2"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: -2.0d
+			y: 4.0d
+			subtitle: "点击查看更多信息！"
+			description: [
+				"这可以通过灼烧驱逐瓶或奥术提取瓶来完成"
+				""
+				"每种药剂在移除宝石方面都有其独特的用途。"
+			]
+			dependencies: ["60AEBA6D0A2101DB"]
+			id: "0D8E8C89657E00DE"
+			tasks: [{
+				id: "0AD5845172692B40"
+				type: "checkmark"
+				title: "宝石移除任务书文本"
+			}]
+			rewards: [{
+				id: "0139380FD9B3D2AA"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "中阶附魔台"
+			x: 5.0d
+			y: 0.0d
+			subtitle: "点击查看更多信息！"
+			description: ["更高级的书架除了提供&aEterna&r，还可以提供&4Quanta&r/&eRectification&r和&5Arcana&r"]
+			dependencies: ["247717144BA48848"]
+			id: "6942F9EC0595F462"
+			tasks: [
+				{
+					id: "356A50E4EADFF4C7"
+					type: "item"
+					item: "apotheosis:seashelf"
+					count: 8L
+				}
+				{
+					id: "213D69849B737857"
+					type: "item"
+					item: "apotheosis:hellshelf"
+					count: 8L
+				}
+				{
+					id: "355544CF2BDE3943"
+					type: "item"
+					item: "minecraft:amethyst_cluster"
+					count: 8L
+				}
+				{
+					id: "38B60D98919DE046"
+					type: "item"
+					title: "蜡烛"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "minecraft:candles"
+						}
+					}
+					count: 16L
+				}
+			]
+			rewards: [{
+				id: "76282A5A9B527B51"
+				type: "xp_levels"
+				xp_levels: 50
+			}]
+		}
+		{
+			title: "书架灌注"
+			x: 6.5d
+			y: 0.0d
+			subtitle: "点击查看更多信息！"
+			description: ["你可以通过注入经验来进一步升级某些书架。"]
+			dependencies: ["6942F9EC0595F462"]
+			id: "41F160E74F56FF9A"
+			tasks: [
+				{
+					id: "487DEB63E4B105FE"
+					type: "item"
+					item: "apotheosis:hellshelf"
+					count: 18L
+				}
+				{
+					id: "5F973DBA8BEF2A7B"
+					type: "item"
+					item: "minecraft:amethyst_cluster"
+					count: 6L
+				}
+				{
+					id: "2A29E0B4BC3FFFD0"
+					type: "item"
+					title: "蜡烛"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "minecraft:candles"
+						}
+					}
+					count: 32L
+				}
+			]
+			rewards: [{
+				id: "3AE8CF702E6FD9A6"
+				type: "xp_levels"
+				xp_levels: 75
+			}]
+		}
+		{
+			title: "亚历山大图书馆的注入物"
+			x: 6.5d
+			y: -3.0d
+			subtitle: "点击查看更多信息！"
+			description: ["某些物品有特定的灌注范围，必须满足该范围才能完成操作"]
+			dependencies: ["41BB8EA7C7A30780"]
+			id: "58A476E86761B5DB"
+			tasks: [
+				{
+					id: "201D7792F31D9C53"
+					type: "item"
+					item: "apotheosis:melonshelf"
+					count: 3L
+				}
+				{
+					id: "09EAE7D5AA4E8E46"
+					type: "item"
+					item: "apotheosis:draconic_endshelf"
+					count: 4L
+				}
+				{
+					id: "7EFF4CFB51F35B4F"
+					type: "item"
+					item: "apotheosis:rectifier_t3"
+					count: 4L
+				}
+				{
+					id: "42AB568134CCA474"
+					type: "item"
+					item: "apotheosis:pearl_endshelf"
+					count: 13L
+				}
+			]
+			rewards: [{
+				id: "458F678D80264BC9"
+				type: "xp_levels"
+				xp_levels: 25
+			}]
+		}
+		{
+			title: "最高等级附魔台"
+			x: 8.0d
+			y: 0.0d
+			subtitle: "点击查看更多信息！"
+			description: ["某些方块还能提供提示/&3附魔线索&r，告诉你会获得哪些附魔，而其他方块则会提供大量&e修正&r。"]
+			dependencies: ["41F160E74F56FF9A"]
+			id: "109864C7CFB68B0B"
+			tasks: [
+				{
+					id: "670F5ECF01017805"
+					type: "item"
+					item: "apotheosis:rectifier_t3"
+					count: 5L
+				}
+				{
+					id: "31466D78CD603E8F"
+					type: "item"
+					item: "apotheosis:draconic_endshelf"
+					count: 2L
+				}
+				{
+					id: "5F9DCF7BFD2D807D"
+					type: "item"
+					item: "apotheosis:pearl_endshelf"
+					count: 17L
+				}
+				{
+					id: "6396596860E5ECD7"
+					type: "item"
+					item: "apotheosis:sightshelf_t2"
+					count: 2L
+				}
+			]
+			rewards: [{
+				id: "7F18103B5C5D06C4"
+				type: "xp_levels"
+				xp_levels: 100
+			}]
+		}
+		{
+			title: "魅力灌注 (Charm Infusion)"
+			x: 0.0d
+			y: -3.5d
+			subtitle: "点击查看更多信息！"
+			description: ["药水护符可以被附魔，使其无法被破坏，从而为你提供无限量的该效果。"]
+			dependencies: ["40CFF30543F44A35"]
+			id: "4CE9D89F911B6F90"
+			tasks: [
+				{
+					id: "5B77D6CC696D331F"
+					type: "item"
+					item: "apotheosis:crystal_seashelf"
+					count: 6L
+				}
+				{
+					id: "7AFF704978FB5514"
+					type: "item"
+					item: "apotheosis:melonshelf"
+					count: 8L
+				}
+				{
+					id: "47B7F293CB0AAEE9"
+					type: "item"
+					item: "apotheosis:pearl_endshelf"
+					count: 10L
+				}
+				{
+					id: "775C49E96D4D4122"
+					type: "item"
+					item: "apotheosis:draconic_endshelf"
+					count: 4L
+				}
+				{
+					id: "6AE344B248521A38"
+					type: "item"
+					item: "minecraft:skeleton_skull"
+				}
+			]
+			rewards: [{
+				id: "61EFB8A11512B2AB"
+				type: "xp_levels"
+				xp_levels: 50
+			}]
+		}
+		{
+			x: 0.0d
+			y: -2.0d
+			subtitle: "点击查看更多信息！"
+			description: [
+				"将你的药水制作成药水护身符，发挥它们的最大效用。"
+				""
+				"只要这些物品处于激活状态并在你的物品栏（或护身符栏位）中，它们就会为你提供所需的药水效果。"
+				""
+				"激活后，它们会像信标一样，在禁用前提供短时间的效果爆发。但这会消耗魅力耐久度"
+			]
+			dependencies: ["193735441915491E"]
+			id: "40CFF30543F44A35"
+			tasks: [{
+				id: "68492C6BB4B4D45D"
+				type: "item"
+				title: "药水护身符"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "apotheosis:potion_charm"
+					}
+				}
+			}]
+			rewards: [{
+				id: "7AF9D4347CB7FF6D"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: 6.5d
+			y: -1.5d
+			subtitle: "点击查看更多信息！"
+			description: [
+				"附魔图书馆最多可容纳每种附魔的16个等级。"
+				""
+				"只需放入一本附魔书以备后用，点击附魔名称即可提取使用。"
+			]
+			dependencies: ["41F160E74F56FF9A"]
+			id: "41BB8EA7C7A30780"
+			tasks: [{
+				id: "2AA4ADC6212ECC3C"
+				type: "item"
+				item: "apotheosis:library"
+			}]
+		}
+		{
+			x: 6.5d
+			y: -4.5d
+			subtitle: "点击查看更多信息！"
+			description: [
+				"与附魔图书馆类似，亚历山大图书馆用于存储附魔书籍及其等级。"
+				""
+				"现在可以存储的东西多多了，足足有惊人的31个等级"
+			]
+			dependencies: ["58A476E86761B5DB"]
+			id: "395EA0670889F618"
+			tasks: [{
+				id: "0A493C613FD88CA2"
+				type: "item"
+				item: "apotheosis:ender_library"
+			}]
+			rewards: [{
+				id: "0DAB1131468A9A89"
+				type: "xp_levels"
+				xp_levels: 50
+			}]
+		}
+		{
+			title: "添加插槽（Adding Sockets）"
+			x: -0.5d
+			y: 2.5d
+			subtitle: "点击查看更多信息！"
+			description: ["在锻造台与物品结合，最多可为单个物品添加三个插槽。"]
+			dependencies: ["60AEBA6D0A2101DB"]
+			id: "5036D57A727F3C60"
+			tasks: [{
+				id: "586A615E0FA8C9F8"
+				type: "item"
+				item: "apotheosis:sigil_of_socketing"
+			}]
+			rewards: [
+				{
+					id: "3C7F08B2F94082A4"
+					type: "item"
+					item: "minecraft:netherite_ingot"
+				}
+				{
+					id: "10E89A51D48127BD"
+					type: "xp_levels"
+					xp_levels: 20
+				}
+			]
+		}
+		{
+			title: "更多插槽模组 (Even More Sockets)"
+			x: 1.0d
+			y: 2.5d
+			subtitle: "点击查看更多信息！"
+			description: ["在锻造台与物品结合，最多可为单个物品添加四个插槽。"]
+			dependencies: ["5036D57A727F3C60"]
+			id: "5246235C999EF556"
+			tasks: [{
+				id: "3B2AE78481331D2B"
+				type: "item"
+				item: "apotheosis:superior_sigil_of_socketing"
+			}]
+			rewards: [
+				{
+					id: "1BA0E8A48C8AE72C"
+					type: "item"
+					item: "minecraft:netherite_ingot"
+				}
+				{
+					id: "6AC6871A99635F95"
+					type: "xp_levels"
+					xp_levels: 20
+				}
+			]
+		}
+		{
+			title: "附魔卷轴 Enchanting Tomes"
+			x: 5.0d
+			y: 1.5d
+			subtitle: "点击查看更多信息！"
+			description: [
+				"可以用卷轴代替书来收集附魔。"
+				""
+				"它们会根据所使用的魔典，对特定附魔起到过滤作用。"
+			]
+			dependencies: ["247717144BA48848"]
+			id: "2C9C22C71B0CE23E"
+			tasks: [{
+				id: "65731633A4802D46"
+				type: "item"
+				title: "任意数量的 #apotheosis:enchanting_tomes"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "apotheosis:enchanting_tomes"
+					}
+				}
+			}]
+			rewards: [{
+				id: "6EB3154EDF856423"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: 6.5d
+			y: 1.5d
+			subtitle: "点击查看更多信息！"
+			description: [
+				"这本魔典的运作方式与其他魔典略有不同。"
+				""
+				"它无法被附魔，而是会移除物品上的附魔，并将附魔转移到自己身上。"
+				""
+				"&l&4注意&r：将魔典用于物品会使其被销毁。"
+			]
+			dependencies: ["2C9C22C71B0CE23E"]
+			id: "3F6CD5B657189FE3"
+			tasks: [{
+				id: "037FB39847ABDB8E"
+				type: "item"
+				item: "apotheosis:scrap_tome"
+			}]
+		}
+		{
+			x: 2.0d
+			y: 0.0d
+			subtitle: "点击查看更多信息！"
+			description: [
+				"某些曾经互斥（只能二选一）的附魔，现在可以组合了！"
+				"锋利度及其专属附魔，还有保护和其他所有类型的保护。"
+				""
+				"不过，这改变了伤害和防护的计算方式。如果你对数学感兴趣，请仔细阅读本书。"
+				""
+				"除此之外，剪刀现在可以在附魔台用效率、时运和无限附魔；三叉戟也可以制作了。"
+			]
+			dependencies: ["193735441915491E"]
+			id: "689F3ABCDBD936C4"
+			tasks: [{
+				id: "0461BACFDCF056F1"
+				type: "checkmark"
+				title: "附魔改动说明"
+			}]
+			rewards: [{
+				id: "7F84B9DA4C53BA65"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: 3.0d
+			y: -1.5d
+			subtitle: "点击查看更多信息！"
+			description: ["在砧砧中与物品结合以移除所有附魔。"]
+			dependencies: ["247717144BA48848"]
+			id: "27ADBCBE9488E0B6"
+			tasks: [{
+				id: "504E30F66620D4EB"
+				type: "item"
+				item: "minecraft:cobweb"
+			}]
+		}
+		{
+			x: 4.0d
+			y: -1.5d
+			subtitle: "点击查看更多信息！"
+			description: ["在砧板中与物品结合以移除所有诅咒。"]
+			dependencies: ["247717144BA48848"]
+			id: "7BBD877A4443870C"
+			tasks: [{
+				id: "6A92032C6B0E0E3A"
+				type: "item"
+				item: "apotheosis:prismatic_web"
+			}]
+		}
+		{
+			x: 3.5d
+			y: 2.5d
+			subtitle: "点击查看更多信息！"
+			description: ["现在你可以通过注入经验值来制作自己的附魔瓶了！"]
+			dependencies: ["247717144BA48848"]
+			id: "30F4B66BB39DBB8B"
+			tasks: [{
+				id: "21A6DE655AB2DDFD"
+				type: "item"
+				item: "minecraft:experience_bottle"
+			}]
+			rewards: [{
+				id: "663BAED4FD091C41"
+				type: "xp"
+				xp: 100
+			}]
+		}
+	]
+	quest_links: [ ]
+}

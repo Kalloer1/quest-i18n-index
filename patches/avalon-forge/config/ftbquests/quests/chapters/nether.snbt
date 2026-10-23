@@ -1,0 +1,376 @@
+# AI 初翻，未人工校对
+{
+	id: "1AEF1E59437A1025"
+	group: "09D95AA2ECEC2884"
+	order_index: 0
+	filename: "nether"
+	title: "&4下界"
+	icon: "minecraft:netherrack"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "前往 &4下界"
+			x: -1.0d
+			y: -0.5d
+			id: "3877AB1EF4624390"
+			tasks: [{
+				id: "5457065BF31BFC56"
+				type: "dimension"
+				icon: "minecraft:netherrack"
+				dimension: "minecraft:the_nether"
+			}]
+			rewards: [{
+				id: "2CDE6BAFCAB8CC1E"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			x: -2.5d
+			y: -0.5d
+			subtitle: "生成于 &8玄武岩三角洲"
+			dependencies: ["3877AB1EF4624390"]
+			id: "156868492CCA3A42"
+			tasks: [{
+				id: "2327686FC598BB12"
+				type: "kill"
+				title: "杀死一只 &8Straddler"
+				icon: "alexsmobs:straddlite"
+				entity: "alexsmobs:straddler"
+				value: 1L
+			}]
+			rewards: [
+				{
+					id: "41AAB946E980D74D"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+				{
+					id: "07936FA8F709A749"
+					type: "item"
+					item: "alexsmobs:straddlite"
+				}
+			]
+		}
+		{
+			title: "观察一个 &6矿脉哥布林商人"
+			x: -1.0d
+			y: -3.5d
+			subtitle: "当你在&4下界&6中&6探索时生成"
+			dependencies: ["3877AB1EF4624390"]
+			id: "4C4618DB804B6102"
+			tasks: [{
+				id: "5FA974F8A2681385"
+				type: "observation"
+				icon: "goblintraders:vein_goblin_trader_spawn_egg"
+				timer: 0L
+				observe_type: 5
+				to_observe: "goblintraders:vein_goblin_trader"
+			}]
+			rewards: [{
+				id: "677608106210C5D0"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			title: "制作一个 &3Straddleboard"
+			x: -4.0d
+			y: -0.5d
+			subtitle: "&3Straddleboard &7可以通过&6右键&7&6点击&7放置和骑行。可用于探索广阔的&6岩浆&7湖"
+			dependencies: ["156868492CCA3A42"]
+			id: "15CB62259EB35754"
+			tasks: [{
+				id: "1983537DCA4A4882"
+				type: "item"
+				item: {
+					id: "alexsmobs:straddleboard"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "3C9AC2C101F0CD7D"
+				type: "xp_levels"
+				xp_levels: 10
+			}]
+		}
+		{
+			title: "杀死一只 &c绯红蚊子"
+			x: -1.0d
+			y: 1.0d
+			subtitle: "生成于 &c绯红森林"
+			dependencies: ["3877AB1EF4624390"]
+			id: "1825930A72C5BF9D"
+			tasks: [{
+				id: "53C63B5562D998AD"
+				type: "kill"
+				icon: "alexsmobs:mosquito_proboscis"
+				entity: "alexsmobs:crimson_mosquito"
+				value: 1L
+			}]
+			rewards: [{
+				id: "106DF7D6F26D4831"
+				type: "xp_levels"
+				xp_levels: 3
+			}]
+		}
+		{
+			title: "合成 &4Blood Sprayer"
+			x: -2.5d
+			y: 1.0d
+			subtitle: "造成 &c4 点伤害/次"
+			dependencies: ["1825930A72C5BF9D"]
+			id: "6EDDC201C63CDDB0"
+			tasks: [{
+				id: "1A963A45576DC2F9"
+				type: "item"
+				item: {
+					id: "alexsmobs:blood_sprayer"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "4C6145F276D6155A"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			title: "击败一只 &bWarped Mosco"
+			x: 0.5d
+			y: 2.5d
+			subtitle: "如果一只&c绯红蚊子&7吸了被&9扭曲菌丝&7覆盖的&5蒙格斯&7&c血液&7，那么这只&c绯红蚊子&7就会变成&9蓝色&7并开始变大，最终变成一只&b扭曲蚊。"
+			dependencies: ["47FC931C5A0B075B"]
+			id: "298CF37593511F17"
+			tasks: [{
+				id: "72CF8C55423B7289"
+				type: "kill"
+				icon: "alexsmobs:warped_muscle"
+				entity: "alexsmobs:warped_mosco"
+				value: 1L
+			}]
+			rewards: [
+				{
+					id: "619D241D032AE8C8"
+					type: "xp_levels"
+					xp_levels: 10
+				}
+				{
+					id: "7ABD9B3C5EEA037F"
+					type: "item"
+					item: "minecraft:netherite_scrap"
+					random_bonus: 2
+				}
+			]
+		}
+		{
+			title: "观察一只 &5Mungus"
+			x: 0.5d
+			y: 1.0d
+			subtitle: "生成于 &b蘑菇田"
+			dependencies: ["1825930A72C5BF9D"]
+			id: "47FC931C5A0B075B"
+			tasks: [{
+				id: "60824BDECF7EEB52"
+				type: "observation"
+				icon: "minecraft:warped_fungus"
+				timer: 0L
+				observe_type: 5
+				to_observe: "alexsmobs:mungus"
+			}]
+			rewards: [{
+				id: "672B26F2102390CD"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			title: "合成 &bHemolyph Blaster"
+			x: -2.5d
+			y: 2.5d
+			subtitle: "造成 &c7 点伤害/次"
+			dependencies: [
+				"6EDDC201C63CDDB0"
+				"298CF37593511F17"
+			]
+			id: "23E977E1A1BCF621"
+			tasks: [{
+				id: "27E738153EC05550"
+				type: "item"
+				item: {
+					id: "alexsmobs:hemolymph_blaster"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "2CCC1B8C5EA0349F"
+					type: "xp_levels"
+					xp_levels: 10
+				}
+				{
+					id: "542241F65F10EDBB"
+					type: "item"
+					item: "minecraft:netherite_ingot"
+				}
+			]
+		}
+		{
+			title: "找到一个&c堡垒"
+			x: -1.0d
+			y: -2.0d
+			subtitle: "在&4下界中生成"
+			dependencies: ["3877AB1EF4624390"]
+			id: "2DE6AC9E854A02AD"
+			tasks: [{
+				id: "225410E6318C7D05"
+				type: "structure"
+				icon: "minecraft:nether_bricks"
+				structure: "minecraft:fortress"
+			}]
+			rewards: [{
+				id: "5B55808B1C9AA815"
+				type: "xp_levels"
+				xp_levels: 3
+			}]
+		}
+		{
+			title: "击杀 5 只 &8凋零骷髅"
+			x: -2.5d
+			y: -2.0d
+			dependencies: ["2DE6AC9E854A02AD"]
+			id: "0DAFD35D7C508D50"
+			tasks: [{
+				id: "761EA65F3468CE25"
+				type: "item"
+				icon: "iceandfire:witherbone"
+				item: "minecraft:wither_skeleton_spawn_egg"
+			}]
+			rewards: [
+				{
+					id: "1D1E78B67534FD1C"
+					type: "item"
+					item: "iceandfire:witherbone"
+					count: 2
+				}
+				{
+					id: "14011F56CD9C8772"
+					type: "item"
+					item: "minecraft:wither_skeleton_skull"
+				}
+			]
+		}
+		{
+			title: "击败&8凋零王"
+			x: -2.5d
+			y: -3.5d
+			dependencies: ["0DAFD35D7C508D50"]
+			id: "04217B809E21D7B7"
+			tasks: [{
+				id: "0EE2CCE8B999213E"
+				type: "kill"
+				icon: "minecraft:wither_skeleton_skull"
+				entity: "minecraft:wither"
+				value: 1L
+			}]
+			rewards: [
+				{
+					id: "24278B5C1CA4CDA4"
+					type: "xp_levels"
+					xp_levels: 10
+				}
+				{
+					id: "0F9BA879B8B0FA1E"
+					type: "item"
+					item: "minecraft:netherite_ingot"
+				}
+			]
+		}
+		{
+			title: "找到&3灵魂锻造匠"
+			x: 1.0d
+			y: -1.0d
+			subtitle: "存放着&4下界合金怪物&7的建筑"
+			dependencies: ["3877AB1EF4624390"]
+			id: "69B75174D701A098"
+			tasks: [{
+				id: "532D5247C377C9C2"
+				type: "structure"
+				icon: "cataclysm:music_disc_netherite_monstrosity"
+				structure: "cataclysm:soul_black_smith"
+			}]
+			rewards: [{
+				id: "50B8B7572637552E"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			title: "找到&6燃烧竞技场"
+			x: 1.0d
+			y: 0.0d
+			subtitle: "&6Ignis &7所在的结构位置"
+			dependencies: ["3877AB1EF4624390"]
+			id: "01CB945852BAC239"
+			tasks: [{
+				id: "2025D06FBE5A82AC"
+				type: "structure"
+				icon: "cataclysm:altar_of_fire"
+				structure: "cataclysm:burning_arena"
+			}]
+			rewards: [{
+				id: "1EF873D19B4A0C70"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			title: "合成一个&c绯红蚊子幼虫"
+			x: -1.0d
+			y: 3.5d
+			dependencies: ["3877AB1EF4624390"]
+			id: "60F1F15D1AA64878"
+			tasks: [{
+				id: "576F0172BEC36EA3"
+				type: "item"
+				item: "alexsmobs:mosquito_larva"
+			}]
+			rewards: [{
+				id: "0A566C58E3336229"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			x: 2.5d
+			y: 0.0d
+			shape: "circle"
+			subtitle: "它们可以在&6燃烧竞技场中找到，&7会掉落名为&8燃烧灰烬的物品"
+			dependencies: ["01CB945852BAC239"]
+			id: "02D45D34827F1899"
+			tasks: [{
+				id: "07A81983EEB0081F"
+				type: "kill"
+				title: "击杀一只 &6Ignited Revenant"
+				icon: "cataclysm:burning_ashes"
+				entity: "cataclysm:ignited_revenant"
+				value: 1L
+			}]
+			rewards: [{
+				id: "48320739CB791CB3"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+	]
+}

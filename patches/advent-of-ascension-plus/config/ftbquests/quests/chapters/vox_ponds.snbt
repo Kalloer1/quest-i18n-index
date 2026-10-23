@@ -1,0 +1,141 @@
+# AI 初翻，未人工校对
+{
+	id: "2A5E539C378D8480"
+	group: "27E842E0B8E64FD1"
+	order_index: 0
+	filename: "vox_ponds"
+	title: "Vox 池塘"
+	icon: "aoa3:vox_ponds_portal"
+	subtitle: ["世界现在安静了。我们只需倾听。倾听，就能听见神的计划。"]
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: -3.0d
+			y: 0.0d
+			shape: "gear"
+			subtitle: "穿戴Hazmat Armor，向Creep Banker、Creeponia Lottoman或Explosives Expert展示Blank Realmstone。"
+			dependencies: ["1C2AFBB466D1B2C7"]
+			size: 2.0d
+			id: "4E8246ABF0DF71DA"
+			tasks: [{
+				id: "75620108B98EAB51"
+				type: "item"
+				item: "aoa3:vox_ponds_realmstone"
+			}]
+			rewards: [{
+				id: "52C822D3A913B483"
+				type: "random"
+				table_id: 5443316806117404082L
+			}]
+		}
+		{
+			title: "Vox 池塘"
+			x: 0.0d
+			y: 0.0d
+			shape: "octagon"
+			subtitle: "一个充满末日气息的废土维度。"
+			size: 3.0d
+			id: "49AE0573880E444D"
+			tasks: [{
+				id: "3AB743CDC662724F"
+				type: "dimension"
+				icon: "aoa3:vox_ponds_portal"
+				dimension: "aoa3:vox_ponds"
+			}]
+			rewards: [{
+				id: "3042334A09610EC2"
+				type: "random"
+				table_id: 1690515336149473535L
+			}]
+		}
+		{
+			x: 3.0d
+			y: 0.0d
+			shape: "diamond"
+			subtitle: "在 Voxxulon 平台上找到的 Voxxulon 祭坛上使用（右键）Vile Stone"
+			description: [
+				"Voxxulon 是一个固定型 boss，可以在天空中召唤陨石、对玩家施加中毒效果，并且会进行传送。"
+				""
+				"&aVile Stone 是通过熔炼 Toxic Water Bucket 获得的，而这种水来自 Vox Ponds。"
+			]
+			dependencies: ["49AE0573880E444D"]
+			size: 2.0d
+			id: "2C5358824D94E954"
+			tasks: [{
+				id: "60E682C452929379"
+				type: "kill"
+				icon: "aoa3:vile_stone"
+				entity: "aoa3:voxxulon"
+				value: 1L
+			}]
+			rewards: [{
+				id: "702AE5F7C3B798A5"
+				type: "item"
+				item: "aoa3:apoco_upgrade_kit"
+			}]
+		}
+		{
+			title: "商店店主"
+			icon: "kubejs:store_keeper"
+			x: -0.5d
+			y: 2.5d
+			shape: "rsquare"
+			subtitle: "商人"
+			description: [
+				"&eSpawns when breaking Vox Store Crate in Destroyed Store, which generate in Vox Ponds."
+				""
+				"交易内容："
+				""
+				"铜币"
+				"Vox 玻璃"
+				"有毒原木"
+				"滞留药水"
+				""
+				"{image:custompics:textures/misc/Store_Keeper.png width:100 height:100 align:1}"
+			]
+			id: "3C0108D72D2A3012"
+			tasks: [{
+				id: "54B6392BD50E0C11"
+				type: "observation"
+				icon: "aoa3:store_keeper_spawn_egg"
+				timer: 0L
+				observe_type: 5
+				to_observe: "aoa3:store_keeper"
+			}]
+		}
+		{
+			title: "有毒的乐透人"
+			icon: "kubejs:toxic_lottoman"
+			x: 0.5d
+			y: 2.5d
+			shape: "rsquare"
+			subtitle: "Lottoman"
+			description: [
+				"&eSpawns when breaking Vox Crate in Vox Lotto Outpost, which generate in Vox Ponds."
+				""
+				"交易内容："
+				""
+				"武器箱"
+				"符文箱"
+				"宝箱"
+				"Lotto 图腾"
+				""
+				"毒沼泽商人可以在沃克斯池塘中找到。他似乎采用了与店主相同的隐藏策略，通常躲在被毁商店内的沃克斯木箱里。"
+				""
+				"但与商店店主不同，毒物乐透贩子不感兴趣讨论或闲聊，他只专注于出售自己的商品。"
+				""
+				"{image:custompics:textures/misc/Toxic_Lottoman.png width:100 height:100 align:1}"
+			]
+			id: "6944DF6BE569DDFF"
+			tasks: [{
+				id: "21AB54D132AD4FA0"
+				type: "observation"
+				icon: "aoa3:toxic_lottoman_spawn_egg"
+				timer: 0L
+				observe_type: 5
+				to_observe: "aoa3:toxic_lottoman"
+			}]
+		}
+	]
+}

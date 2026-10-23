@@ -1,0 +1,510 @@
+# AI 初翻，未人工校对
+{
+	id: "0F373DCA0FF90BD9"
+	group: "2BDFA6283B227A86"
+	order_index: 3
+	filename: "misc"
+	title: "火车与水上的机械装置"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			disable_toast: true
+			x: -1.5d
+			y: 2.0d
+			subtitle: "漂浮或轨道装置，包括 Create 模组"
+			id: "33DABB81377680AF"
+			tasks: [{
+				id: "7308F38D40D0221E"
+				type: "item"
+				item: {
+					id: "patchouli:guide_book"
+					Count: 1b
+					tag: {
+						"patchouli:book": "littlelogistics:guide"
+					}
+				}
+			}]
+		}
+		{
+			x: 0.5d
+			y: 0.0d
+			description: ["船是此模组的核心。船有两种类型：驳船（能做各种有用的事）和拖船（负责拖动驳船）。如果船卡住了，可以用鱼竿稍微移动它们（就像其他实体一样）。拖船也可以用牵引绳拖动，右键点击船尾的挂钩即可连接。利用现有的天然水道或创建自己的水道，来运输物品和流体，或者自动捕鱼！"]
+			dependencies: ["2CB030EC47B87DF5"]
+			id: "53D1F618BD80B934"
+			tasks: [{
+				id: "4C73BF384E3ACE0D"
+				type: "item"
+				item: "littlelogistics:barge"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 0.0d
+			subtitle: "拖船拉动驳船，驳船负责有趣的自动化运输……在水里的船上！"
+			dependencies: ["33DABB81377680AF"]
+			id: "2CB030EC47B87DF5"
+			tasks: [{
+				id: "041282544197D10D"
+				type: "item"
+				item: "littlelogistics:tug"
+			}]
+			rewards: [{
+				id: "6EDA7385A9AED855"
+				type: "item"
+				item: "minecraft:chest"
+			}]
+		}
+		{
+			x: -2.5d
+			y: -0.5d
+			subtitle: "建议阅读此码头的指南，因为内容太多无法在此写出"
+			dependencies: ["2CB030EC47B87DF5"]
+			size: 0.6d
+			id: "6765ADB2D9D32394"
+			tasks: [{
+				id: "12610523CF61E320"
+				type: "item"
+				item: "littlelogistics:tug_dock"
+			}]
+			rewards: [{
+				id: "27F2D6652BC9C8A1"
+				type: "item"
+				item: "minecraft:iron_ingot"
+				count: 2
+			}]
+		}
+		{
+			x: 0.5d
+			y: 2.0d
+			subtitle: "用于驳船的输入/输出接口"
+			description: ["在驳船路径下方放置漏斗，使其吸取资源"]
+			dependencies: ["53D1F618BD80B934"]
+			id: "1AE548F64008E689"
+			tasks: [{
+				id: "59EEB18D735351B1"
+				type: "item"
+				item: "littlelogistics:barge_dock"
+			}]
+			rewards: [{
+				id: "099E2C1BD335E12C"
+				type: "item"
+				item: "chanceglobe:chance_globe"
+			}]
+		}
+		{
+			x: -2.5d
+			y: 0.5d
+			subtitle: "强制为拖船指定路径。放置在水下最高一层"
+			description: ["放置后 Shift+右键可旋转方块"]
+			dependencies: ["2CB030EC47B87DF5"]
+			size: 0.6d
+			id: "467771503A2DC0BF"
+			tasks: [{
+				id: "67CA895FA7493C20"
+				type: "item"
+				item: "littlelogistics:guide_rail_tug"
+			}]
+			rewards: [{
+				id: "4CCEF17C1AEC63B2"
+				type: "item"
+				item: "minecraft:iron_ingot"
+				random_bonus: 1
+			}]
+		}
+		{
+			x: 0.6d
+			y: -1.2d
+			subtitle: "骑上你的火车头 locomotive 吧"
+			dependencies: ["53D1F618BD80B934"]
+			size: 0.6d
+			optional: true
+			id: "36F6023AFF668005"
+			tasks: [{
+				id: "43678F67ED1D542D"
+				type: "item"
+				item: "littlelogistics:seater_barge"
+			}]
+			rewards: [{
+				id: "393899596BE4BA56"
+				type: "item"
+				item: "minecraft:firework_rocket"
+			}]
+		}
+		{
+			x: -3.5d
+			y: 6.0d
+			subtitle: "用于将创造装置连接到小型物流火车车厢顶部"
+			dependencies: ["68B7CBAC0900DC7E"]
+			id: "5825383A9A9254AE"
+			tasks: [{
+				id: "1CBD7680B0D1452D"
+				type: "item"
+				item: "create:cart_assembler"
+			}]
+			rewards: [{
+				id: "2C218B924B8786F4"
+				type: "item"
+				item: "chanceglobe:chance_globe"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 6.0d
+			subtitle: "由 Rails 提供动力，将 Little Logistics 连接到火车上，实现陆地自动化运输，取代水上运输"
+			dependencies: ["4149C4FB6F309B7B"]
+			id: "68B7CBAC0900DC7E"
+			tasks: [{
+				id: "3305821035E1F9CC"
+				type: "item"
+				item: "littlelogistics:seater_car"
+			}]
+			rewards: [{
+				id: "0854DB18165D5228"
+				type: "item"
+				item: "minecraft:andesite"
+				count: 2
+				random_bonus: 2
+			}]
+		}
+		{
+			x: -4.5d
+			y: 4.0d
+			subtitle: "用于停靠你的火车"
+			description: ["此装置应在机车停靠轨道之后使用"]
+			dependencies: ["6E54565305595353"]
+			id: "2D4A0FC89E9ED458"
+			tasks: [{
+				id: "3464D7616BC638FF"
+				type: "item"
+				item: "littlelogistics:car_dock_rail"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 4.0d
+			dependencies: ["33DABB81377680AF"]
+			id: "4149C4FB6F309B7B"
+			tasks: [{
+				id: "42E53CE6DFAE8878"
+				type: "item"
+				item: "littlelogistics:steam_locomotive"
+			}]
+		}
+		{
+			x: 1.5d
+			y: -1.2d
+			subtitle: "将你的驳船加载到一个 3x3 的区域中"
+			dependencies: ["53D1F618BD80B934"]
+			size: 0.6d
+			id: "154A64710498A063"
+			tasks: [{
+				id: "28F30AC30FAF65AF"
+				type: "item"
+				item: "littlelogistics:chunk_loader_barge"
+			}]
+			rewards: [{
+				id: "42267A2A297128D6"
+				type: "item"
+				item: "littlelogistics:spring"
+			}]
+		}
+		{
+			x: 1.5d
+			y: -0.3d
+			subtitle: "在深水区长途航行时自动捕鱼"
+			description: ["必须在开阔水域才能部署渔网。避免浅水区，否则可能导致过度捕捞。"]
+			dependencies: ["53D1F618BD80B934"]
+			size: 0.6d
+			id: "4C8992B6F4CB6F23"
+			tasks: [{
+				id: "404D25BE6BC9C979"
+				type: "item"
+				item: "littlelogistics:fishing_barge"
+			}]
+			rewards: [{
+				id: "604213B40F1FC6A3"
+				type: "item"
+				item: "littlelogistics:spring"
+			}]
+		}
+		{
+			x: 1.5d
+			y: 0.6d
+			subtitle: "可运输流体，可用流体漏斗装载"
+			dependencies: ["53D1F618BD80B934"]
+			size: 0.6d
+			id: "13BA1FC0E0D8E81D"
+			tasks: [{
+				id: "72B688838BBEDD04"
+				type: "item"
+				item: "littlelogistics:fluid_barge"
+			}]
+			rewards: [{
+				id: "5E6A77DA4B06FD46"
+				type: "item"
+				item: "littlelogistics:spring"
+			}]
+		}
+		{
+			x: -3.5d
+			y: 2.0d
+			subtitle: "用于将你的拖船、矿车、驳船连接在一起"
+			dependencies: ["33DABB81377680AF"]
+			id: "7F63ED080D31340C"
+			tasks: [{
+				id: "6096BAD0017ADD85"
+				type: "item"
+				item: "littlelogistics:spring"
+			}]
+		}
+		{
+			x: -1.5d
+			y: -2.5d
+			subtitle: "用于为你的能源牵引车和机车储存Forge能量"
+			description: ["可在车辆充电器中停靠以充电。附带一个用于电容器的额外插槽"]
+			dependencies: ["2CB030EC47B87DF5"]
+			id: "64ADFE52311B7D2A"
+			tasks: [{
+				id: "39E17EFDEE3DEA7A"
+				type: "item"
+				item: "littlelogistics:vessel_charger"
+			}]
+			rewards: [{
+				id: "6568EA83E18DB97B"
+				type: "item"
+				item: "littlelogistics:energy_tug"
+			}]
+		}
+		{
+			x: -3.0d
+			y: 0.0d
+			subtitle: "用于存储和设置拖船的路线"
+			description: ["在 Little Contraption 指南中阅读相关内容"]
+			dependencies: ["2CB030EC47B87DF5"]
+			size: 0.6d
+			id: "42773CCE51C322BC"
+			tasks: [{
+				id: "11428DB98C8BA57A"
+				type: "item"
+				item: "littlelogistics:tug_route"
+			}]
+			rewards: [{
+				id: "004E79C673014A54"
+				type: "item"
+				item: "minecraft:iron_ingot"
+				count: 3
+			}]
+		}
+		{
+			x: -0.5d
+			y: 6.0d
+			subtitle: "运输物品"
+			dependencies: ["68B7CBAC0900DC7E"]
+			size: 0.6d
+			id: "7C0ADEEA81FFE016"
+			tasks: [{
+				id: "7AEFE1C7B8AE14AE"
+				type: "item"
+				item: "littlelogistics:chest_car"
+			}]
+			rewards: [{
+				id: "3EAD0A54E79DB931"
+				type: "item"
+				item: "littlelogistics:spring"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 7.0d
+			subtitle: "用于储存流体以进行运输。可用流体漏斗装载"
+			dependencies: ["68B7CBAC0900DC7E"]
+			size: 0.6d
+			id: "6DD55A73AE9A463A"
+			tasks: [{
+				id: "412FDE6C81BB1B70"
+				type: "item"
+				item: "littlelogistics:fluid_car"
+			}]
+			rewards: [{
+				id: "70CDF30705E99BC0"
+				type: "item"
+				item: "littlelogistics:spring"
+			}]
+		}
+		{
+			x: -0.5d
+			y: 7.0d
+			subtitle: "加载你的火车路线。这是一个小型区块加载，3x3。"
+			dependencies: ["68B7CBAC0900DC7E"]
+			size: 0.6d
+			id: "4C116F03D4F19ABF"
+			tasks: [{
+				id: "2C2A4F8AFDD31F36"
+				type: "item"
+				item: "littlelogistics:chunk_loader_car"
+			}]
+			rewards: [{
+				id: "79564D03D245D567"
+				type: "item"
+				item: "minecraft:apple"
+			}]
+		}
+		{
+			x: -2.5d
+			y: -4.0d
+			subtitle: "与能量牵引器类似，可为你的火车储存能量。"
+			dependencies: ["64ADFE52311B7D2A"]
+			id: "3E6D3E7757D0A3D5"
+			tasks: [{
+				id: "7C22672B4B66DE2F"
+				type: "item"
+				item: "littlelogistics:energy_locomotive"
+			}]
+			rewards: [{
+				id: "0A54B97EDAE8A202"
+				type: "item"
+				item: "minecraft:coal"
+				count: 6
+			}]
+		}
+		{
+			x: -3.5d
+			y: 4.0d
+			subtitle: "用于给机车停靠的设施"
+			description: ["这应该用于任何对接轨道设置，火车车厢对接轨道应紧随其后呈直线排列。"]
+			dependencies: ["4149C4FB6F309B7B"]
+			id: "6E54565305595353"
+			tasks: [{
+				id: "453E8195183C9793"
+				type: "item"
+				item: "littlelogistics:locomotive_dock_rail"
+			}]
+		}
+		{
+			x: -5.5d
+			y: 4.0d
+			subtitle: "所有可用的小轨道都与原版轨道兼容"
+			dependencies: ["2D4A0FC89E9ED458"]
+			id: "3113B9858E22674A"
+			tasks: [
+				{
+					id: "0AE6D0FADE83356B"
+					type: "item"
+					item: "littlelogistics:junction_rail"
+				}
+				{
+					id: "3D4F836AE843C178"
+					type: "item"
+					item: "littlelogistics:automatic_tee_junction_rail"
+				}
+				{
+					id: "44EF3516BD5A876B"
+					type: "item"
+					item: "littlelogistics:tee_junction_rail"
+				}
+				{
+					id: "6AC9E3C4A1949D7D"
+					type: "item"
+					item: "littlelogistics:automatic_switch_rail"
+				}
+				{
+					id: "0DCEDB7D4AED62FC"
+					type: "item"
+					item: "littlelogistics:switch_rail"
+				}
+			]
+			rewards: [{
+				id: "5A7DEAFCCC347C2E"
+				type: "random"
+				table_id: 5396437845961881468L
+			}]
+		}
+		{
+			x: -0.5d
+			y: -4.0d
+			dependencies: ["64ADFE52311B7D2A"]
+			id: "19C8AE144788CB72"
+			tasks: [{
+				id: "7FD5F2C4A3B5F7F8"
+				type: "item"
+				item: "littlelogistics:energy_tug"
+			}]
+			rewards: [{
+				id: "3D683B612323B4D8"
+				type: "item"
+				item: "minecraft:coal"
+				count: 6
+			}]
+		}
+		{
+			x: 0.5d
+			y: 4.0d
+			subtitle: "存储并设置火车的运行路线"
+			description: ["建议阅读 Little Logistics 指南以了解如何使用此物品"]
+			dependencies: ["4149C4FB6F309B7B"]
+			id: "1673C8CDF4C66B47"
+			tasks: [{
+				id: "67B80B61257FAA0C"
+				type: "item"
+				item: "littlelogistics:locomotive_route"
+			}]
+			rewards: [{
+				id: "66FAD5CC3B994FF2"
+				type: "item"
+				item: "littlelogistics:transmitter_component"
+			}]
+		}
+		{
+			x: -4.5d
+			y: 2.5d
+			dependencies: ["33DABB81377680AF"]
+			id: "0963911C3A9992FA"
+			tasks: [{
+				id: "4AF6D3715DE52479"
+				type: "item"
+				item: "littlelogistics:fluid_hopper"
+			}]
+			rewards: [{
+				id: "525F665DC22DD76A"
+				type: "item"
+				item: "littlelogistics:guide_rail_tug"
+			}]
+		}
+		{
+			x: -2.4d
+			y: 4.8d
+			subtitle: "旋转原版和小型物流铁轨"
+			dependencies: ["4149C4FB6F309B7B"]
+			size: 0.6d
+			id: "5B76B90B65770B56"
+			tasks: [{
+				id: "2B73FAE0A7AE17F4"
+				type: "item"
+				item: "littlelogistics:conductors_wrench"
+			}]
+			rewards: [{
+				id: "132A47E7F220F52B"
+				type: "item"
+				item: "minecraft:iron_ingot"
+			}]
+		}
+		{
+			x: -4.5d
+			y: 1.5d
+			dependencies: ["33DABB81377680AF"]
+			id: "1B379AD0F9934688"
+			tasks: [{
+				id: "7BBF11403395B3D8"
+				type: "item"
+				item: "littlelogistics:rapid_hopper"
+			}]
+			rewards: [{
+				id: "782918D41088FC9F"
+				type: "item"
+				item: "littlelogistics:vessel_detector"
+			}]
+		}
+	]
+	quest_links: [ ]
+}

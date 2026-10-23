@@ -1,0 +1,514 @@
+# AI 初翻，未人工校对
+{
+	id: "59E2FB088175246E"
+	group: "0691FC64F1BE5DFC"
+	order_index: 5
+	filename: "companions"
+	title: "伙伴（Companions）"
+	icon: {
+		id: "waifucraft:book_of_love"
+		Count: 1b
+		tag: {
+			Damage: 0
+		}
+	}
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "Waifucraft"
+			x: 0.0d
+			y: 0.0d
+			shape: "hexagon"
+			subtitle: "在Minecraft里寻找爱情？"
+			description: [
+				"现在你可以借助某本书来召唤女孩了。"
+				""
+				"送他们礼物，他们或许会喜欢你。"
+				""
+				"这本书似乎知道他们所有的兴趣所在。"
+			]
+			size: 1.25d
+			id: "7E006794F1596F04"
+			tasks: [{
+				id: "74F0334C47DE58B1"
+				type: "item"
+				item: {
+					id: "waifucraft:book_of_love"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "10879CE03FCBAC45"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: -2.0d
+			y: -1.0d
+			shape: "octagon"
+			subtitle: "生物实验（Experiments with mobs）"
+			description: ["如果把Minecraft的生物变成老婆会怎么样？"]
+			dependencies: ["7E006794F1596F04"]
+			id: "3D2E2A84BE145A47"
+			tasks: [{
+				id: "5BBA1F08C00B8CE3"
+				type: "item"
+				item: "waifucraft:waifu_potion"
+			}]
+		}
+		{
+			title: "钻石戒指"
+			x: 1.5d
+			y: -1.0d
+			shape: "octagon"
+			subtitle: "接下来的步骤。"
+			description: [
+				"将所选同伴的好感度提升至10级。"
+				""
+				"祝你们俩一生幸福，白头偕老。"
+			]
+			dependencies: ["7E006794F1596F04"]
+			id: "256D03E6AADFE1DB"
+			tasks: [{
+				id: "6D01A3F8036B97A9"
+				type: "item"
+				item: "waifucraft:waifu_ring"
+			}]
+		}
+		{
+			title: "图腾"
+			icon: "waifucraft:totem_aqua"
+			x: 0.0d
+			y: -2.25d
+			shape: "octagon"
+			subtitle: "便携的二次元老婆？"
+			description: ["然后她就把自己变成了一个图腾。"]
+			dependencies: ["256D03E6AADFE1DB"]
+			id: "529F2885A875DF59"
+			tasks: [{
+				id: "34ACFFDEF4075B8F"
+				type: "item"
+				title: "Waifu 图腾"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "waifucraft:waifu_totems"
+					}
+				}
+			}]
+		}
+		{
+			title: "东方小女仆"
+			x: 3.75d
+			y: 0.0d
+			shape: "hexagon"
+			subtitle: "Touhou in Minecraft?"
+			description: [
+				"&cGensokyo &f是一个偏远之地，远离任何人类居住区。"
+				""
+				"在古代，这里栖息着大量妖怪，靠近的人类都会被它们吃掉。"
+			]
+			size: 1.25d
+			id: "0114576A12343C9E"
+			tasks: [{
+				id: "1689B09A0B9DA6CE"
+				type: "item"
+				item: {
+					id: "patchouli:guide_book"
+					Count: 1b
+					tag: {
+						"patchouli:book": "touhou_little_maid:memorizable_gensokyo"
+					}
+				}
+			}]
+			rewards: [{
+				id: "4B8FDBE6B5260CD6"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "击败妖怪 Youkai"
+			icon: {
+				id: "touhou_little_maid:entity_placeholder"
+				Count: 1b
+				tag: {
+					RecipeId: "touhou_little_maid:altar/reborn_maid"
+				}
+			}
+			x: 4.0d
+			y: -1.5d
+			shape: "octagon"
+			subtitle: "夜晚会出现调皮的仙女们。"
+			description: [
+				"击败它们，即可获得 &c点数。"
+				""
+				"挥舞Gohei会显示你当前的点数。"
+			]
+			dependencies: ["0114576A12343C9E"]
+			id: "41B778E33A545788"
+			tasks: [{
+				id: "00BF53447A6C1230"
+				type: "kill"
+				entity: "touhou_little_maid:fairy"
+				value: 1L
+			}]
+			rewards: [{
+				id: "1C41500CB54C0AB9"
+				type: "item"
+				item: "touhou_little_maid:power_point"
+			}]
+		}
+		{
+			title: "Gohei"
+			x: 5.5d
+			y: -1.0d
+			shape: "octagon"
+			subtitle: "灵梦的净化之杖"
+			description: [
+				"在祭坛上使用以进行神道教仪式。"
+				""
+				"&c大多数任务都需要使用&f能量点。"
+			]
+			dependencies: ["41B778E33A545788"]
+			id: "10532BD2AC52C6AA"
+			tasks: [{
+				id: "7E0FCAAC356205D0"
+				type: "item"
+				item: {
+					id: "touhou_little_maid:hakurei_gohei"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "141FF49CC493F31A"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "神道教神社"
+			icon: "touhou_little_maid:shrine"
+			x: 6.5d
+			y: 0.5d
+			shape: "octagon"
+			subtitle: "为供奉神祇而建的神圣之地。"
+			description: [
+				"&cMemorizable Gensokyo &f包含一个蓝图。"
+				""
+				"祭坛建造完成后，用你的 &cGohei 激活它。"
+				""
+				"{image:custompics:textures/misc/altar.png width:240 height:135 align:1}"
+			]
+			dependencies: ["10532BD2AC52C6AA"]
+			id: "4F2107152BCD7C4E"
+			tasks: [
+				{
+					id: "5D78A0F1609B934F"
+					type: "item"
+					disable_toast: true
+					item: "minecraft:oak_log"
+					count: 18L
+				}
+				{
+					id: "710C7DDDD2C7E034"
+					type: "item"
+					disable_toast: true
+					item: "minecraft:red_wool"
+					count: 20L
+				}
+			]
+		}
+		{
+			title: "召唤女仆"
+			x: 5.5d
+			y: 2.5d
+			shape: "octagon"
+			subtitle: "箱子里面是什么东西？"
+			description: [
+				"祭坛最重要的用途之一，甚至是最重要的用途。"
+				""
+				"确保你的 &cGohei &f已充满能量。"
+				""
+				"最后，被召唤者可能想要你的蛋糕。"
+				""
+				"{image:custompics:textures/misc/altar2.png width:240 height:135 align:1}"
+			]
+			dependencies: ["4F2107152BCD7C4E"]
+			id: "238602911EF3DC35"
+			tasks: [{
+				id: "5CE983DCE663B79F"
+				type: "observation"
+				title: "生成新女仆"
+				icon: {
+					id: "touhou_little_maid:entity_placeholder"
+					Count: 1b
+					tag: {
+						RecipeId: "touhou_little_maid:altar/spawn_box"
+					}
+				}
+				timer: 0L
+				observe_type: 5
+				to_observe: "touhou_little_maid:maid"
+			}]
+			rewards: [{
+				id: "7A736EBB7A649334"
+				type: "item"
+				item: {
+					id: "touhou_little_maid:garage_kit"
+					Count: 1b
+					tag: {
+						EntityInfo: {
+							MaidIsHome: 0b
+							Brain: {
+								memories: { }
+							}
+							HurtByTimestamp: 0
+							Owner: [I;
+								47669287
+								-46444594
+								-1834122734
+								-1629586809
+							]
+							Attributes: [
+								{
+									Base: 0.08d
+									Name: "forge:entity_gravity"
+								}
+								{
+									Base: 0.699999988079071d
+									Name: "minecraft:generic.movement_speed"
+								}
+							]
+							Invulnerable: 0b
+							AbsorptionAmount: 0.0f
+							FallDistance: 0.0f
+							InLove: 0
+							MaidBackpackType: "touhou_little_maid:empty"
+							CanUpdate: 1b
+							StruckByLightning: 0b
+							ForgeCaps: {
+								"tinkerleveling:entityxp": [ ]
+							}
+							HandDropChances: [
+								0.085f
+								0.085f
+							]
+							PersistenceRequired: 0b
+							id: "touhou_little_maid:maid"
+							UUID: [I;
+								-100779076
+								-933277999
+								-1964769750
+								-1080902583
+							]
+							SoundPackId: "touhou_little_maid"
+							MaidGameSkillData: { }
+							MaidBaubleInventory: {
+								Size: 9
+								Items: [ ]
+							}
+							MaidScriptBook: [ ]
+							Air: 300s
+							HandItems: [
+								{ }
+								{ }
+							]
+							ArmorDropChances: [
+								0.085f
+								0.085f
+								0.085f
+								0.085f
+							]
+							FavorabilityManagerCounter: { }
+							MaidHunger: 0
+							Pos: [
+								49.69999998807907d
+								79.9375d
+								-481.49612888859707d
+							]
+							MaidTask: "touhou_little_maid:idle"
+							MaidIsPickup: 1b
+							CanPickUpLoot: 0b
+							MaidFavorability: 0
+							HurtTime: 0s
+							Sitting: 0b
+							FallFlying: 0b
+							ForcedAge: 0
+							PortalCooldown: 0
+							DeathTime: 0s
+							MaidExperience: 0
+							Age: 0
+							ModelId: "touhou_little_maid:hakurei_reimu"
+							Motion: [
+								0.0d
+								-0.0784000015258789d
+								0.0d
+							]
+							Health: 20.0f
+							MaidIsRideable: 1b
+							KubeJSPersistentData: { }
+							LeftHanded: 0b
+							OnGround: 1b
+							MaidBackpackData: { }
+							Rotation: [
+								0.0f
+								-36.913006f
+							]
+							MaidInventory: {
+								Size: 36
+								Items: [ ]
+							}
+							Fire: -1s
+							ArmorItems: [
+								{ }
+								{ }
+								{ }
+								{ }
+							]
+							MaidSchedulePos: {
+								Work: {
+									X: 0
+									Y: 0
+									Z: 0
+								}
+								Sleep: {
+									X: 0
+									Y: 0
+									Z: 0
+								}
+								Dimension: "minecraft:overworld"
+								Idle: {
+									X: 0
+									Y: 0
+									Z: 0
+								}
+								Configured: 0b
+							}
+							MaidScheduleMode: "DAY"
+						}
+					}
+				}
+			}]
+		}
+		{
+			x: 4.0d
+			y: 3.0d
+			shape: "octagon"
+			subtitle: "抓捕女仆们"
+			description: ["……从多种意义上来说都是如此。"]
+			dependencies: ["238602911EF3DC35"]
+			id: "2FF363DE5782AE98"
+			tasks: [{
+				id: "5A9E2C0778C6F835"
+				type: "item"
+				item: {
+					id: "touhou_little_maid:camera"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			x: 4.5d
+			y: 4.0d
+			shape: "octagon"
+			subtitle: "制作你自己的小雕像吧"
+			description: [
+				"只需要一点粘土和一张参考图片就够了。"
+				""
+				"在下方放置下界岩并点燃火焰，将塑形黏土变为车库套件。"
+			]
+			dependencies: ["2FF363DE5782AE98"]
+			id: "0797AB123C9EC208"
+			tasks: [{
+				id: "559865D22F1B8187"
+				type: "item"
+				item: {
+					id: "touhou_little_maid:chisel"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			x: 5.5d
+			y: 4.5d
+			shape: "octagon"
+			subtitle: "睡觉时间到了"
+			description: ["给你的女仆一张床，让她在忙碌的一天后好好休息。"]
+			dependencies: ["238602911EF3DC35"]
+			id: "4D8D6F56565FF3D3"
+			tasks: [{
+				id: "0B264564D178C13C"
+				type: "item"
+				item: "touhou_little_maid:maid_bed"
+			}]
+		}
+		{
+			x: 7.0d
+			y: 3.0d
+			shape: "octagon"
+			subtitle: "传送女仆们到指定位置"
+			description: ["吹响小号，所有女仆都会来听你演奏。"]
+			dependencies: ["238602911EF3DC35"]
+			id: "2A5527727158D28B"
+			tasks: [{
+				id: "42AB1E06524C6790"
+				type: "item"
+				item: "touhou_little_maid:trumpet"
+			}]
+		}
+		{
+			x: 6.5d
+			y: 4.0d
+			shape: "octagon"
+			subtitle: "铺着厚重毯子或日式被子的低矮木桌框架。"
+			description: ["完全可自定义，可以是任何东西，没有限制。"]
+			dependencies: ["238602911EF3DC35"]
+			id: "2ED369437A281766"
+			tasks: [{
+				id: "2D6FCE40FC8449AE"
+				type: "item"
+				item: {
+					id: "touhou_little_maid:chair"
+					Count: 1b
+					tag: {
+						IsNoGravity: 0b
+						MountedHeight: 0.625f
+						TameableCanRide: 0b
+						ModelId: "touhou_little_maid:kotatsu"
+					}
+				}
+			}]
+		}
+		{
+			title: "气泡水"
+			x: 1.5d
+			y: -3.5d
+			shape: "octagon"
+			subtitle: "一种类似啤酒的酒精饮料，其气泡由溶解的 Neroids 产生。"
+			description: ["Aqua 可能会喜欢这个。"]
+			dependencies: ["529F2885A875DF59"]
+			id: "505900B92A485120"
+			tasks: [{
+				id: "12EAC7652D21817E"
+				type: "item"
+				item: "waifucraft:bubbly"
+			}]
+		}
+	]
+}

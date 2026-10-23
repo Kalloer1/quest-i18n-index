@@ -1,0 +1,935 @@
+# AI 初翻，未人工校对
+{
+	id: "4FC1F11961127127"
+	group: "38B05DBD41E58236"
+	order_index: 3
+	filename: "eidolon"
+	title: "Eidolon"
+	icon: "eidolon:crucible"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	images: [{
+		x: 4.0d
+		y: -4.5d
+		width: 10.0d
+		height: 2.0d
+		rotation: 0.0d
+		image: "kubejs:textures/other/eidolon.png"
+		hover: [ ]
+		click: ""
+		dev: false
+		corner: false
+	}]
+	quests: [
+		{
+			x: 4.0d
+			y: -1.0d
+			subtitle: "由铅和铁制成的合金"
+			id: "29096C7CAD9451CC"
+			tasks: [{
+				id: "4DB7AD18E5DA0931"
+				type: "item"
+				item: "eidolon:pewter_ingot"
+			}]
+			rewards: [{
+				id: "63F15BF81CB72FA7"
+				type: "item"
+				item: "eidolon:pewter_inlay"
+			}]
+		}
+		{
+			x: -0.5d
+			y: -3.0d
+			subtitle: "用于魔法仪式的物品"
+			id: "4EFEB8947D14AC4B"
+			tasks: [{
+				id: "0FDD2863FDAB4C35"
+				type: "item"
+				item: "eidolon:brazier"
+			}]
+			rewards: [{
+				id: "4F861DAE8E47B422"
+				type: "item"
+				item: "minecraft:stone_slab"
+				count: 6
+			}]
+		}
+		{
+			x: 2.5d
+			y: -3.0d
+			subtitle: "放置后可阻止生物靠近"
+			id: "0217A354FE422A76"
+			tasks: [{
+				id: "264770E66B02798D"
+				type: "item"
+				item: "eidolon:enchanted_ash"
+			}]
+			rewards: [{
+				id: "0738D512223B89EA"
+				type: "item"
+				item: "minecraft:bone_block"
+			}]
+		}
+		{
+			x: -2.0d
+			y: -2.0d
+			subtitle: "放置在熔炉旁，并将物品放在手中以执行仪式"
+			id: "7F2F3E800C1CB25B"
+			tasks: [{
+				id: "68425B526D31F736"
+				type: "item"
+				item: "eidolon:stone_hand"
+				count: 2L
+			}]
+			rewards: [{
+				id: "52F1D66A6582FE57"
+				type: "item"
+				item: "byg:glowstone_lantern"
+				count: 2
+			}]
+		}
+		{
+			x: 2.5d
+			y: -1.0d
+			subtitle: "用于仪式。注意 Ars Eccelsia 中的图标"
+			dependencies: ["29096C7CAD9451CC"]
+			id: "2DBBA73362AB13BE"
+			tasks: [{
+				id: "6CB3FDA2D4C1D366"
+				type: "item"
+				item: "eidolon:necrotic_focus"
+			}]
+			rewards: [{
+				id: "0AD3ED86A373B9B1"
+				type: "item"
+				item: "losttrinkets:serpent_tooth"
+			}]
+		}
+		{
+			title: "结晶化仪式"
+			x: -0.5d
+			y: -1.0d
+			subtitle: "会摧毁附近的生物并留下灵魂碎片。更多详情请参阅《Ars Eccelsia》。"
+			dependencies: [
+				"7F2F3E800C1CB25B"
+				"4EFEB8947D14AC4B"
+			]
+			id: "460266B649BAD054"
+			tasks: [{
+				id: "2939C6B7A1644E6B"
+				type: "item"
+				item: "eidolon:soul_shard"
+			}]
+			rewards: [{
+				id: "6928E47B8000542F"
+				type: "item"
+				item: "minecraft:prismarine_crystals"
+			}]
+		}
+		{
+			x: 9.0d
+			y: -5.0d
+			subtitle: "Eidolon 指南。也包含吟唱咒语的能力"
+			id: "4F6FC57A4628CA6A"
+			tasks: [{
+				id: "155AFF1EDF091FB9"
+				type: "item"
+				item: "eidolon:codex"
+			}]
+			rewards: [{
+				id: "6B2D9C49C4663721"
+				type: "item"
+				item: "simplefarming:banana_bread"
+			}]
+		}
+		{
+			title: "召唤仪式"
+			icon: "minecraft:zombie_head"
+			x: 1.0d
+			y: 0.0d
+			subtitle: "召唤一个僵尸。更多详情请参阅 Ars Eccelsia"
+			dependencies: [
+				"460266B649BAD054"
+				"2DBBA73362AB13BE"
+			]
+			id: "641012D3652DEFDF"
+			tasks: [
+				{
+					id: "7BF4ACFEACA4C983"
+					type: "item"
+					item: "eidolon:soul_shard"
+				}
+				{
+					id: "54A06020C4A83846"
+					type: "item"
+					item: "minecraft:rotten_flesh"
+					count: 2L
+				}
+				{
+					id: "03A162CB5D102B92"
+					type: "item"
+					item: "minecraft:charcoal"
+				}
+			]
+			rewards: [
+				{
+					id: "54148264D2158C5C"
+					type: "xp"
+					xp: 30
+				}
+				{
+					id: "4D3A9DDB08BD6447"
+					type: "command"
+					title: "一个区块声明"
+					icon: {
+						id: "ftbquests:custom_icon"
+						Count: 1b
+						tag: {
+							Icon: "cc:textures/block/claim_block.png"
+						}
+					}
+					command: "/ftbchunks admin extra_claim_chunks @p add 1"
+					player_command: false
+				}
+			]
+		}
+		{
+			title: "魅惑的仪式 (Ritual of Alluring)"
+			icon: "losttrinkets:piggy"
+			x: 1.0d
+			y: -2.0d
+			subtitle: "将动物召唤进来。更多详情请查看 Ars Eccelsia！"
+			dependencies: [
+				"460266B649BAD054"
+				"2DBBA73362AB13BE"
+			]
+			id: "2EB1C8401F568C35"
+			tasks: [
+				{
+					id: "7CEECB44D028BB77"
+					type: "item"
+					item: "eidolon:soul_shard"
+					count: 2L
+				}
+				{
+					id: "02A99F72475D8865"
+					type: "item"
+					item: "minecraft:red_dye"
+					count: 2L
+				}
+				{
+					id: "76336A9DF222227E"
+					type: "item"
+					item: "minecraft:golden_apple"
+				}
+				{
+					id: "5D60397BC736C8D0"
+					type: "item"
+					item: "minecraft:rose_bush"
+				}
+			]
+			rewards: [
+				{
+					id: "6636CA8065E1C1F7"
+					type: "item"
+					item: "minecraft:wheat"
+					count: 8
+				}
+				{
+					id: "56844D5EE0E2791D"
+					type: "command"
+					title: "一个区块声明"
+					icon: {
+						id: "ftbquests:custom_icon"
+						Count: 1b
+						tag: {
+							Icon: "cc:textures/block/claim_block.png"
+						}
+					}
+					command: "/ftbchunks admin extra_claim_chunks @p add 1"
+					player_command: false
+				}
+			]
+		}
+		{
+			title: "驱逐仪式 (Ritual of Repelling)"
+			icon: {
+				id: "minecraft:shield"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: 1.0d
+			y: -1.0d
+			subtitle: "能驱赶怪物。更多详情请参阅 Ars Eccelsia"
+			dependencies: [
+				"460266B649BAD054"
+				"2DBBA73362AB13BE"
+			]
+			id: "46126C3D18C81207"
+			tasks: [
+				{
+					id: "769186B91CA1714F"
+					type: "item"
+					item: "eidolon:soul_shard"
+					count: 2L
+				}
+				{
+					id: "26622F88B9AFF80F"
+					type: "item"
+					item: "minecraft:quartz"
+				}
+				{
+					id: "5A2E3313E70812DA"
+					type: "item"
+					item: "minecraft:leather"
+				}
+				{
+					id: "1C7F13DB9A609484"
+					type: "item"
+					item: "minecraft:iron_ingot"
+				}
+				{
+					id: "6088565409B2D451"
+					type: "item"
+					item: "minecraft:nautilus_shell"
+				}
+			]
+			rewards: [
+				{
+					id: "1C0D038F24BAD208"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "3D9DAA56E0C7DB41"
+					type: "command"
+					title: "一个区块声明"
+					icon: {
+						id: "ftbquests:custom_icon"
+						Count: 1b
+						tag: {
+							Icon: "cc:textures/block/claim_block.png"
+						}
+					}
+					command: "/ftbchunks admin extra_claim_chunks @p add 1"
+					player_command: false
+				}
+			]
+		}
+		{
+			title: "时间操控 Time Manipulation"
+			icon: "minecraft:clock"
+			x: -2.0d
+			y: 0.0d
+			subtitle: "设置时间。更多详情请参阅 Ars Eccelsia。"
+			dependencies: ["460266B649BAD054"]
+			id: "4A86FBB9794C13F7"
+			tasks: [
+				{
+					id: "5962E6B35A825744"
+					type: "item"
+					item: "eidolon:soul_shard"
+					count: 2L
+				}
+				{
+					id: "25E24890CBB6EBED"
+					type: "item"
+					item: "minecraft:wheat_seeds"
+				}
+				{
+					id: "4F2827CD653446E2"
+					type: "item"
+					item: "minecraft:charcoal"
+				}
+				{
+					id: "642DB8982264A54D"
+					type: "item"
+					item: "minecraft:sunflower"
+				}
+			]
+			rewards: [{
+				id: "749939EDAD13FE69"
+				type: "item"
+				item: "create:cuckoo_clock"
+			}]
+		}
+		{
+			x: 4.0d
+			y: 1.0d
+			subtitle: "用于创造许多爱多隆物品"
+			dependencies: ["29096C7CAD9451CC"]
+			id: "6172CFDB0DE16634"
+			tasks: [{
+				id: "661BBD95E8E2EF11"
+				type: "item"
+				item: "eidolon:crucible"
+			}]
+			rewards: [{
+				id: "2074728BD3AAC7E0"
+				type: "item"
+				item: "minecraft:gold_ore"
+			}]
+		}
+		{
+			x: 5.5d
+			y: 1.0d
+			subtitle: "将红石、灵魂碎片和金块放入坩埚中混合"
+			dependencies: ["6172CFDB0DE16634"]
+			id: "320C31961960A085"
+			tasks: [{
+				id: "7C1FA3A4B192B31C"
+				type: "item"
+				item: "eidolon:arcane_gold_ingot"
+			}]
+			rewards: [{
+				id: "565EAD2847A918AA"
+				type: "item"
+				item: "minecraft:enchanted_golden_apple"
+			}]
+		}
+		{
+			x: -0.5d
+			y: 1.0d
+			subtitle: "多种魔法物品的合成材料之一"
+			dependencies: [
+				"460266B649BAD054"
+				"6172CFDB0DE16634"
+			]
+			id: "3C501C7CFC4B8977"
+			tasks: [{
+				id: "5B09FF8440BB5ABE"
+				type: "item"
+				item: "eidolon:lesser_soul_gem"
+			}]
+			rewards: [{
+				id: "468FE8CB17B3464E"
+				type: "item"
+				item: "eidolon:soul_shard"
+				count: 4
+			}]
+		}
+		{
+			x: 4.0d
+			y: -3.0d
+			subtitle: "无需烈焰粉即可酿造药水"
+			dependencies: ["29096C7CAD9451CC"]
+			id: "04A2FAF50B5C73B4"
+			tasks: [{
+				id: "6A32D3656DE3F193"
+				type: "item"
+				item: "eidolon:wooden_brewing_stand"
+			}]
+			rewards: [{
+				id: "330D5124A67AA0EF"
+				type: "item"
+				item: "minecraft:brewing_stand"
+			}]
+		}
+		{
+			x: 6.5d
+			y: 1.0d
+			subtitle: "利用灵魂的力量来附魔物品"
+			dependencies: [
+				"320C31961960A085"
+				"629D498AFBBB886C"
+			]
+			id: "6766366D2CBC47AB"
+			tasks: [{
+				id: "22FD273BBD24BCB5"
+				type: "item"
+				item: "eidolon:soul_enchanter"
+			}]
+			rewards: [{
+				id: "16AAF76D790F63C0"
+				type: "item"
+				item: "minecraft:enchanting_table"
+			}]
+		}
+		{
+			x: 6.5d
+			y: -1.0d
+			subtitle: "用于制作各种爱德隆物品"
+			dependencies: ["29096C7CAD9451CC"]
+			id: "629D498AFBBB886C"
+			tasks: [{
+				id: "3403B8D51BBBE394"
+				type: "item"
+				item: "eidolon:worktable"
+			}]
+			rewards: [{
+				id: "7FD0E4C2340C3233"
+				type: "item"
+				item: "minecraft:bookshelf"
+				count: 7
+			}]
+		}
+		{
+			x: 10.0d
+			y: 2.5d
+			subtitle: "收割灵魂！"
+			dependencies: ["7D635E8A02508FB0"]
+			id: "0FC85880B0F2FDAB"
+			tasks: [{
+				id: "6D2561A06728E1D7"
+				type: "item"
+				item: {
+					id: "eidolon:reaper_scythe"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "68F848903E587C24"
+				type: "item"
+				item: "twilightforest:charm_of_life_1"
+			}]
+		}
+		{
+			x: 9.0d
+			y: 2.5d
+			subtitle: "适合收集生物头颅的模组"
+			dependencies: ["7D635E8A02508FB0"]
+			id: "4BE995CFCF95F62B"
+			tasks: [{
+				id: "3FF9FFF53AE67F0B"
+				type: "item"
+				item: {
+					id: "eidolon:cleaving_axe"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "74BD26412E037A68"
+				type: "item"
+				item: "losttrinkets:butchers_cleaver"
+			}]
+		}
+		{
+			x: -0.5d
+			y: 2.5d
+			subtitle: "会喷出魔法火花！"
+			dependencies: [
+				"5D94061E96AB8D35"
+				"3C501C7CFC4B8977"
+			]
+			id: "24958042E40A8F18"
+			tasks: [{
+				id: "2E44F3D6B73E7E43"
+				type: "item"
+				item: {
+					id: "eidolon:soulfire_wand"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "59982BAF1EA4B43C"
+				type: "item"
+				item: "losttrinkets:fire_mind"
+			}]
+		}
+		{
+			title: "Warlock Armor"
+			x: 8.0d
+			y: 2.5d
+			subtitle: "穿戴后可提升魔法属性"
+			dependencies: ["7D635E8A02508FB0"]
+			id: "1DA8E68E002C3EE3"
+			tasks: [
+				{
+					id: "609DA56770293CD7"
+					type: "item"
+					item: {
+						id: "eidolon:warlock_hat"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "1839C04C99001CA0"
+					type: "item"
+					item: {
+						id: "eidolon:warlock_cloak"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "0B95E814F6386384"
+					type: "item"
+					item: {
+						id: "eidolon:warlock_boots"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "7BB66DBAED61E40F"
+				type: "item"
+				item: "losttrinkets:tha_wizard"
+			}]
+		}
+		{
+			x: 6.5d
+			y: -3.0d
+			subtitle: "放置在祭坛的顶部使用。"
+			id: "3548485FF0AD4A56"
+			tasks: [{
+				id: "483D573E0AACB749"
+				type: "item"
+				item: "eidolon:straw_effigy"
+			}]
+			rewards: [{
+				id: "6E5D12CA3B329AEB"
+				type: "item"
+				item: "simplefarming:cornbread"
+			}]
+		}
+		{
+			x: 7.5d
+			y: -3.0d
+			subtitle: "用于 Theurgical Rites。更多详情请参阅 Ars Eccelsia"
+			id: "5128655011116C2F"
+			tasks: [{
+				id: "4BA74771134E0547"
+				type: "item"
+				item: "eidolon:wooden_altar"
+			}]
+			rewards: [{
+				id: "34343FD8A07FFAEE"
+				type: "item"
+				item: "simplefarming:vegetable_medley"
+			}]
+		}
+		{
+			x: 7.5d
+			y: -1.0d
+			subtitle: "从木制祭坛进行升级"
+			dependencies: ["629D498AFBBB886C"]
+			id: "73D3E2AC7BD6326A"
+			tasks: [{
+				id: "5A447DC26720B285"
+				type: "item"
+				item: "eidolon:stone_altar"
+			}]
+			rewards: [{
+				id: "3A2715D135520DEA"
+				type: "item"
+				item: "minecraft:skeleton_skull"
+			}]
+		}
+		{
+			x: 11.0d
+			y: 2.5d
+			subtitle: "由稻草人模型进行的一项升级"
+			dependencies: ["7D635E8A02508FB0"]
+			id: "693E1CB47C76C3D9"
+			tasks: [{
+				id: "2AB9DF6EDCCE907D"
+				type: "item"
+				item: "eidolon:unholy_effigy"
+			}]
+			rewards: [{
+				id: "577F84029178133A"
+				type: "item"
+				item: "eidolon:arcane_gold_block"
+				count: 2
+			}]
+		}
+		{
+			x: 5.5d
+			y: 2.5d
+			subtitle: "用于祭坛上"
+			dependencies: ["320C31961960A085"]
+			id: "277F87ABB91EDF70"
+			tasks: [{
+				id: "240C9F80757B884B"
+				type: "item"
+				item: "eidolon:candlestick"
+			}]
+			rewards: [{
+				id: "6B3FBED9E1C7AC8B"
+				type: "item"
+				item: "eidolon:gold_inlay"
+			}]
+		}
+		{
+			icon: "losttrinkets:minds_eye"
+			x: 9.5d
+			y: -3.5d
+			subtitle: "将你的 Ars Eccelsia 交给女巫"
+			dependencies: ["4F6FC57A4628CA6A"]
+			id: "454608AFAE30734D"
+			tasks: [{
+				id: "05D3E37D00B92EA6"
+				type: "checkmark"
+				title: "邪恶告示牌"
+			}]
+			rewards: [{
+				id: "0A724F768B2F62D7"
+				type: "xp"
+				xp: 20
+			}]
+		}
+		{
+			icon: "bountifulbaubles:amulet_cross"
+			x: 8.5d
+			y: -3.5d
+			subtitle: "将你的 Ars Eccelsia 交给一个牧师村民"
+			dependencies: ["4F6FC57A4628CA6A"]
+			id: "77D1BDE8B956517A"
+			tasks: [{
+				id: "5E922542DA4210EE"
+				type: "checkmark"
+				title: "神圣的符号"
+			}]
+			rewards: [{
+				id: "58D945F21FE94C44"
+				type: "xp"
+				xp: 20
+			}]
+		}
+		{
+			icon: "blue_skies:soul_fragment"
+			x: 9.5d
+			y: -0.5d
+			subtitle: "杀死一只动物来装满圣杯，然后念诵献祭动物的咒语"
+			dependencies: ["10A597606D6740EC"]
+			id: "32AF173F657658CA"
+			tasks: [
+				{
+					id: "361A99543C745356"
+					type: "checkmark"
+					title: "灵魂告示牌"
+				}
+				{
+					id: "6A884FD69A9947A7"
+					type: "item"
+					item: "eidolon:lesser_soul_gem"
+				}
+			]
+			rewards: [{
+				id: "7789827F6B7C1BDA"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			icon: "twilightforest:fiery_blood"
+			x: 9.5d
+			y: -2.0d
+			subtitle: "执行黑暗祈祷仪式"
+			dependencies: ["454608AFAE30734D"]
+			id: "10A597606D6740EC"
+			tasks: [{
+				id: "6DD87895990A1896"
+				type: "checkmark"
+				title: "血液印记"
+			}]
+			rewards: [{
+				id: "3BDE63C47CEF83D1"
+				type: "xp"
+				xp: 30
+			}]
+		}
+		{
+			title: "心智指示牌"
+			icon: "minecraft:writable_book"
+			x: 11.0d
+			y: -0.5d
+			subtitle: "用村民的血液装满圣杯，然后念诵“献祭村民”的咒语"
+			dependencies: ["32AF173F657658CA"]
+			id: "330D267EC43D8881"
+			tasks: [
+				{
+					id: "7C36D9CE8F427750"
+					type: "checkmark"
+					title: "心智指示牌"
+				}
+				{
+					id: "501FBCD4B09295BE"
+					type: "kill"
+					entity: "minecraft:villager"
+					value: 1L
+				}
+			]
+			rewards: [
+				{
+					id: "431624C41945390B"
+					type: "item"
+					item: "minecraft:brain_coral_block"
+					count: 16
+				}
+				{
+					id: "48441B8886AC2311"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			title: "不洁的象征"
+			x: 9.5d
+			y: 1.0d
+			subtitle: "将锡镶嵌物扔到地板上，并念诵黑暗之触的咒语"
+			description: [""]
+			dependencies: ["32AF173F657658CA"]
+			id: "7D635E8A02508FB0"
+			tasks: [
+				{
+					id: "55C05E32936F64C1"
+					type: "item"
+					item: "eidolon:pewter_inlay"
+				}
+				{
+					id: "0BBFD5C442960EBC"
+					type: "item"
+					item: "eidolon:unholy_symbol"
+				}
+			]
+			rewards: [{
+				id: "20C2428DAFE8D348"
+				type: "item"
+				item: "losttrinkets:dark_dagger"
+			}]
+		}
+		{
+			x: -2.0d
+			y: 1.0d
+			subtitle: "发射能冻结敌人的冰箭"
+			dependencies: ["3C501C7CFC4B8977"]
+			id: "5DF1686579FD58CC"
+			tasks: [{
+				id: "490F6AB5C172CDF6"
+				type: "item"
+				item: {
+					id: "eidolon:bonechill_wand"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "228A40D1AD04EA0D"
+				type: "item"
+				item: {
+					id: "tconstruct:kama"
+					Count: 1b
+					tag: {
+						tic_multipliers: {
+							"tconstruct:attack_damage": 0.75f
+						}
+						tic_stats: {
+							"tconstruct:attack_speed": 1.98f
+							"tconstruct:mining_speed": 5.0f
+							"tconstruct:attack_damage": 2.25f
+							"tconstruct:harvest_level": 3.0f
+							"tconstruct:durability": 550.0f
+						}
+						tic_broken: 0b
+						tic_modifiers: [
+							{
+								name: "tconstruct:temperate"
+								level: 3s
+							}
+							{
+								name: "tconstruct:shears"
+								level: 1s
+							}
+							{
+								name: "tconstruct:harvest"
+								level: 1s
+							}
+							{
+								name: "tconstruct:hoe_transform_hidden"
+								level: 1s
+							}
+						]
+						tic_materials: [
+							"tconstruct:froststeel"
+							"tconstruct:froststeel"
+							"tconstruct:froststeel"
+						]
+						Damage: 0
+						tic_persistent_data: {
+							abilities: 1
+							upgrades: 3
+						}
+					}
+				}
+			}]
+		}
+		{
+			x: 4.0d
+			y: 2.5d
+			subtitle: "用于合成暗影宝石的原材料"
+			dependencies: ["6172CFDB0DE16634"]
+			id: "214FAEFAC40CBA7A"
+			tasks: [{
+				id: "16EFEACF9E2A4E5B"
+				type: "item"
+				item: "eidolon:death_essence"
+			}]
+			rewards: [{
+				id: "74BAA9980BFF01AD"
+				type: "item"
+				item: "minecraft:coal_block"
+			}]
+		}
+		{
+			x: 1.5d
+			y: 2.5d
+			subtitle: "用于制作灵魂火杖和邪恶编织物"
+			dependencies: ["214FAEFAC40CBA7A"]
+			id: "5D94061E96AB8D35"
+			tasks: [{
+				id: "528132A425F173E5"
+				type: "item"
+				item: "eidolon:shadow_gem"
+			}]
+			rewards: [
+				{
+					id: "78647475160F3D29"
+					type: "item"
+					item: "eidolon:gold_inlay"
+				}
+				{
+					id: "1B1738146E4FE55E"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "72537E59B113C088"
+					type: "command"
+					title: "一个区块声明"
+					icon: {
+						id: "ftbquests:custom_icon"
+						Count: 1b
+						tag: {
+							Icon: "cc:textures/block/claim_block.png"
+						}
+					}
+					command: "/ftbchunks admin extra_claim_chunks @p add 1"
+					player_command: false
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,681 @@
+# AI 初翻，未人工校对
+{
+	id: "66C0DCCD3430449A"
+	group: "624F1AA88859C23E"
+	order_index: 0
+	filename: "basic_resources"
+	title: "基本资源"
+	icon: {
+		id: "custommachinery:custom_machine_item"
+		Count: 1b
+		tag: {
+			machine: "custommachinery:tier_1_resource_generator"
+		}
+	}
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "我们要去冒险了！"
+			x: -2.0d
+			y: -0.5d
+			shape: "pentagon"
+			subtitle: "典型的天空方块开局方式"
+			description: [
+				"打一棵树"
+				""
+				"用锤子把鹅卵石->砾石->沙子->沙粒"
+				""
+				"制作一个 Tinkers 熔炉"
+				""
+				"P.S. 别担心，虽然包里包含 Ex Nihilo，但你不需要进行任何筛分操作"
+				""
+				"主要的资源获取方式将是自定义资源胶囊、ProjectE的EMC、Resourceful Bees和Mystical Agriculture"
+				""
+				"P.S. 我们为想使用不同变种开始建造的玩家们，每种原木都准备了一份 &6(别忘了先 EMC 它们)"
+			]
+			id: "10A053E4EBA2063E"
+			tasks: [{
+				id: "0A2F5904A155FFDE"
+				type: "checkmark"
+				title: "阅读我"
+			}]
+			rewards: [
+				{
+					id: "1EC1626F27A3B9EF"
+					type: "item"
+					item: "minecraft:bread"
+					count: 8
+				}
+				{
+					id: "19ADA7DEDBD9BB9F"
+					type: "item"
+					item: "projecte:transmutation_table"
+				}
+				{
+					id: "5DA1C6216103BF35"
+					type: "item"
+					item: "minecraft:spruce_log"
+				}
+				{
+					id: "2C3477A8C0623F12"
+					type: "item"
+					item: "minecraft:birch_log"
+				}
+				{
+					id: "4E6420964271B364"
+					type: "item"
+					item: "minecraft:jungle_log"
+				}
+				{
+					id: "403E4378C350DCED"
+					type: "item"
+					item: "minecraft:acacia_log"
+				}
+				{
+					id: "58A59BF4509D0EE5"
+					type: "item"
+					item: "minecraft:dark_oak_log"
+				}
+			]
+		}
+		{
+			title: "收集 27 个砾石"
+			x: -3.0d
+			y: -1.5d
+			subtitle: "正在努力获取压缩砂浆 (Compressed Grout)"
+			hide_dependency_lines: false
+			dependencies: ["10A053E4EBA2063E"]
+			id: "12BEE3285FF33A24"
+			tasks: [{
+				id: "275C5021AC8AC0EE"
+				type: "item"
+				item: "minecraft:gravel"
+				count: 27L
+				consume_items: false
+			}]
+			rewards: [{
+				id: "60F1EA075F21A457"
+				type: "item"
+				item: "minecraft:gravel"
+				count: 27
+			}]
+		}
+		{
+			title: "收集 27 个沙子"
+			x: -2.0d
+			y: -1.5d
+			subtitle: "正在努力获取压缩砂浆 (Compressed Grout)"
+			dependencies: ["10A053E4EBA2063E"]
+			id: "098316B4DD9E7D83"
+			tasks: [{
+				id: "041C307FE47A55D8"
+				type: "item"
+				item: "minecraft:sand"
+				count: 27L
+				consume_items: false
+				only_from_crafting: false
+			}]
+			rewards: [{
+				id: "36D38C7F2E85F07A"
+				type: "item"
+				item: "minecraft:sand"
+				count: 27
+			}]
+		}
+		{
+			title: "收集 27 个尘埃"
+			x: -1.0d
+			y: -1.5d
+			subtitle: "正在努力获取压缩砂浆 (Compressed Grout)"
+			dependencies: ["10A053E4EBA2063E"]
+			id: "650A8B8468F91C06"
+			tasks: [{
+				id: "53F9B73633B101B0"
+				type: "item"
+				item: "exnihilosequentia:dust"
+				count: 27L
+			}]
+			rewards: [{
+				id: "3314D86B0DCA7C82"
+				type: "item"
+				item: "exnihilosequentia:dust"
+				count: 27
+			}]
+		}
+		{
+			x: -2.0d
+			y: -2.5d
+			subtitle: "可在 Tinkers Smeltery/Melter 中熔炼为 100mb 的熔岩砂浆"
+			description: ["你总共需要 10 个压缩砂浆 (Compressed Grout)"]
+			dependencies: [
+				"650A8B8468F91C06"
+				"12BEE3285FF33A24"
+				"098316B4DD9E7D83"
+			]
+			id: "33B5B6C73F5CA103"
+			tasks: [{
+				id: "3F9505C6218DB122"
+				type: "item"
+				item: "kubejs:compressed_grout"
+			}]
+			rewards: [{
+				id: "61CD4EE55037A4D8"
+				type: "item"
+				item: "kubejs:compressed_grout"
+				count: 2
+			}]
+		}
+		{
+			title: "制作你的第一个迷你资源碎片 Tier 1"
+			x: -2.0d
+			y: -3.5d
+			subtitle: "可放置于 Tier 1 资源生成器中（每台机器仅需一个，碎片不会被消耗）"
+			description: ["将1000mb的熔炼砂浆倒入熔炉/熔解炉，再倒入空的铸造台"]
+			dependencies: [
+				"33B5B6C73F5CA103"
+				"533A6D9C7C306C62"
+			]
+			id: "69D05E0D728D0EFD"
+			tasks: [{
+				id: "11C3C591690491B1"
+				type: "item"
+				icon: "kubejs:tier_1_catalyst_mini"
+				item: "kubejs:tier_1_catalyst_mini"
+			}]
+		}
+		{
+			x: -2.0d
+			y: -5.0d
+			subtitle: "收集 9 个胶囊"
+			dependencies: [
+				"6B9A2C9598D57476"
+				"69D05E0D728D0EFD"
+			]
+			id: "18BDF9EBEF800712"
+			tasks: [{
+				id: "01460F6F750C1080"
+				type: "item"
+				item: "kubejs:tier_1_capsule"
+				count: 9L
+				consume_items: false
+				only_from_crafting: false
+			}]
+			rewards: [{
+				id: "3C606A6E79F59943"
+				type: "item"
+				item: "minecraft:bread"
+				count: 8
+			}]
+		}
+		{
+			x: -3.0d
+			y: -5.0d
+			subtitle: "制作 Tier 1 资源生成器"
+			description: [
+				"这将是你首次尝试资源自动化"
+				""
+				"注意：所有自定义机器的任务与 FTB 任务不兼容，因此每个自定义机器任务的图标可能显示为部分完成。我们制作了自定义的进阶目标，以在获得不同机器时正确标记任务为完成。"
+			]
+			dependencies: ["43C2FEE60B8BB19D"]
+			id: "6B9A2C9598D57476"
+			tasks: [
+				{
+					id: "6438B4AD3C1F8867"
+					type: "advancement"
+					icon: {
+						id: "custommachinery:custom_machine_item"
+						Count: 1b
+						tag: {
+							machine: "custommachinery:tier_1_resource_generator"
+						}
+					}
+					advancement: "custommachinery:machines/tier_1_resource_generator"
+					criterion: ""
+				}
+				{
+					id: "5338209A876A9DCA"
+					type: "item"
+					disable_toast: true
+					item: {
+						id: "custommachinery:custom_machine_item"
+						Count: 1b
+						tag: {
+							machine: "custommachinery:tier_1_resource_generator"
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "第一金属与更多物品"
+			x: -2.0d
+			y: -6.5d
+			subtitle: "Tier 1胶囊用于获取铁、锡、铜、红石、煤炭和骨粉"
+			dependencies: ["18BDF9EBEF800712"]
+			id: "6343C313038B08AF"
+			tasks: [
+				{
+					id: "7056B68DA7D0DD1F"
+					type: "item"
+					item: "minecraft:iron_nugget"
+					count: 3L
+				}
+				{
+					id: "3FA89C360CDA00AB"
+					type: "item"
+					item: "mekanism:nugget_tin"
+					count: 3L
+				}
+				{
+					id: "03B492AEB58209D7"
+					type: "item"
+					item: "mekanism:nugget_copper"
+					count: 3L
+				}
+				{
+					id: "40CF229ADD1190FE"
+					type: "item"
+					item: "minecraft:redstone"
+					count: 3L
+				}
+				{
+					id: "7BD18375B03BCD0B"
+					type: "item"
+					item: "minecraft:coal"
+				}
+				{
+					id: "6883D185009D6363"
+					type: "item"
+					item: "minecraft:bone_meal"
+					count: 3L
+				}
+			]
+		}
+		{
+			x: -5.0d
+			y: -0.5d
+			subtitle: "在熔炉中熔炼泥土以获得焦砖"
+			description: ["不确定如何获取泥土，请看泥土任务说明"]
+			dependencies: ["10A053E4EBA2063E"]
+			id: "26864D0B40E35604"
+			tasks: [{
+				id: "6648E533384D90CF"
+				type: "item"
+				item: "tconstruct:seared_brick"
+				count: 27L
+			}]
+			rewards: [
+				{
+					id: "413386C1149FAB51"
+					type: "item"
+					item: "minecraft:dirt"
+					count: 27
+				}
+				{
+					id: "0A1DDDF94BC89E13"
+					type: "item"
+					item: "minecraft:bread"
+					count: 8
+				}
+			]
+		}
+		{
+			x: -4.0d
+			y: -2.5d
+			subtitle: "制作一个Tinker's Melter和必要的物品来开始使用它。"
+			dependencies: [
+				"26864D0B40E35604"
+				"24F5BB8FEDE39546"
+			]
+			id: "533A6D9C7C306C62"
+			tasks: [
+				{
+					id: "077D99D5B54FA9B5"
+					type: "item"
+					item: "tconstruct:seared_melter"
+				}
+				{
+					id: "11929714D7ECDB92"
+					type: "item"
+					item: "tconstruct:seared_table"
+				}
+				{
+					id: "4862A7B6B2AD2D9C"
+					type: "item"
+					item: "tconstruct:seared_faucet"
+				}
+				{
+					id: "54E33001D0A5A4C4"
+					type: "item"
+					item: "tconstruct:seared_heater"
+				}
+			]
+		}
+		{
+			x: -4.0d
+			y: -1.0d
+			subtitle: "你需要 5 个玻璃来制作熔炉"
+			dependencies: ["10A053E4EBA2063E"]
+			id: "24F5BB8FEDE39546"
+			tasks: [{
+				id: "1930A3A2B5BF6DBE"
+				type: "item"
+				item: "minecraft:glass"
+				count: 5L
+			}]
+			rewards: [{
+				id: "5B722BF1C163F34A"
+				type: "item"
+				item: "minecraft:glass"
+				count: 64
+			}]
+		}
+		{
+			x: -4.0d
+			y: -5.0d
+			shape: "pentagon"
+			subtitle: "右键点击大多数有机物，将其放入木桶中即可获得泥土"
+			description: [
+				"前期可以用木制漏斗轻松自动化"
+				""
+				"-提示：本整合包包含木制剪刀，可以剪树叶来轻松制作泥土。或者，如果你想要更耐用的工具，可以选择 Tinkers Kama（参见 Tinkers 部分）"
+			]
+			id: "43C2FEE60B8BB19D"
+			tasks: [{
+				id: "39932FDD0AAFA832"
+				type: "item"
+				item: "minecraft:dirt"
+				count: 8L
+			}]
+			rewards: [{
+				id: "4AD858FF7A0E14A3"
+				type: "item"
+				item: "minecraft:dirt"
+				count: 8
+			}]
+		}
+		{
+			x: -0.5d
+			y: -0.5d
+			subtitle: "为你设置了一个基础的原版鹅卵石生成器。别忘了你有Ultimine，所以应该很快。达到铁器时代后，你可以获得自动鹅卵石生成器。"
+			description: ["只需打破水旁边的4个抛光安山岩，再打破上方装有熔岩的方块，原石就会开始生成"]
+			hide_dependency_lines: false
+			dependencies: ["10A053E4EBA2063E"]
+			id: "17F1236F36460D68"
+			tasks: [{
+				id: "12402D32B06B852B"
+				type: "item"
+				item: "minecraft:cobblestone"
+				count: 64L
+			}]
+			rewards: [{
+				id: "1F866636A3758C2E"
+				type: "item"
+				item: "minecraft:stone"
+				count: 64
+			}]
+		}
+		{
+			x: 1.0d
+			y: -2.5d
+			subtitle: "如果你从树上折断树叶，应该能获得更多的树苗，并且有机会获得蚕宝宝"
+			id: "669464D5F0704F0F"
+			tasks: [{
+				id: "0E96B90970C515A5"
+				type: "item"
+				item: {
+					id: "exnihilosequentia:crook_wood"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			x: 1.0d
+			y: -4.0d
+			subtitle: "右键点击叶子上的蚕来寄生。寄生过程结束后，用曲柄镰刀打破叶子获取线"
+			id: "13A403B26C88D398"
+			tasks: [{
+				id: "42671EB113DDBA25"
+				type: "item"
+				item: "minecraft:string"
+			}]
+		}
+		{
+			x: 1.0d
+			y: -7.0d
+			subtitle: "红石和一桶熔岩可以制作下界岩"
+			description: [
+				"用岩浆填满石桶，再用红石右键即可获得1个下界岩。"
+				""
+				"可以用熔炉（岩浆生产）和管道实现自动化"
+			]
+			id: "19A8580B6C43BEA2"
+			tasks: [{
+				id: "73E569BF7A26A43F"
+				type: "item"
+				item: "minecraft:netherrack"
+				count: 36L
+			}]
+		}
+		{
+			x: 2.0d
+			y: -7.0d
+			subtitle: "右键点击装满水的桶上的尘埃方块，可获得一个黏土方块。"
+			description: ["有了铁和红石，你就可以用流体收集器和管道来自动化注水了"]
+			id: "6C65CD960F2AF9EE"
+			tasks: [{
+				id: "4AEDA2CFE4D4B696"
+				type: "item"
+				item: "minecraft:clay"
+				count: 9L
+			}]
+		}
+		{
+			x: 1.0d
+			y: -5.5d
+			subtitle: "桶在流体顶部/流体转换配方中很有用。石头可用于水或熔岩配方，不建议用木桶尝试熔岩配方"
+			description: ["注意：此整合包中女巫药水已被禁用。"]
+			id: "70613B8F61279D43"
+			tasks: [{
+				id: "7B278E584133BB60"
+				type: "item"
+				item: "exnihilosequentia:barrel_stone"
+			}]
+		}
+		{
+			x: 2.0d
+			y: -5.5d
+			subtitle: "橡木桶可用于任何需要水的流体转换/流体在上配方（如尘土制陶），不建议尝试用木桶装熔岩"
+			description: ["注意：此整合包中女巫药水已禁用"]
+			id: "6AB7B7A7A097D251"
+			tasks: [{
+				id: "51EB2C535D106D5A"
+				type: "item"
+				item: "exnihilosequentia:barrel_wood"
+			}]
+		}
+		{
+			title: "动物诱饵"
+			x: 2.0d
+			y: -4.0d
+			subtitle: "只要满足条件，你就可以用诱饵来召唤动物"
+			description: [
+				"我建议你至少养几头牛来生产皮革。"
+				""
+				"你需要草方块、水源、树木和/或高草丛来满足条件。大约5x5的区域就足够了"
+				""
+				"在已准备好的区域右键点击地上的诱饵。如果条件满足，系统会提示你，否则请尝试添加更多方块"
+			]
+			id: "22F3CFDD5A53408F"
+			tasks: [{
+				id: "61F6761742559354"
+				type: "item"
+				title: "任何 #excompressum:baits 类型的物品"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "excompressum:baits"
+					}
+				}
+			}]
+		}
+		{
+			title: "自动化合成"
+			x: -2.0d
+			y: -8.0d
+			subtitle: "你需要为资源生成器生产的每种资源都设置自动化收集系统。"
+			description: [
+				"Sequential Fabricator 需要某种电源。鉴于你有无限煤炭，我推荐先用 Thermal Expansion 的 Stirling Dynamo。早期也可以用 EMC 从桌子上取回 Stirling Dynamo，方便扩展电源。"
+				""
+				"我还提供了一些管道和扳手，方便你移动物品"
+				""
+				"升级到 Tier 2 Catalyst 需要大量 Tier 1 Generator 的资源，强烈建议为每种配方（铁、锡、煤炭、红石和铜）设置多个资源生成器"
+			]
+			dependencies: ["6343C313038B08AF"]
+			id: "5B4E33E1EC70CECE"
+			tasks: [{
+				id: "26757424D4FE8748"
+				type: "item"
+				item: "thermal:machine_crafter"
+			}]
+			rewards: [
+				{
+					id: "18BCF7E09A0A37D1"
+					type: "item"
+					item: "pipez:item_pipe"
+					count: 4
+				}
+				{
+					id: "29389E55B81AC537"
+					type: "item"
+					item: "pipez:wrench"
+				}
+				{
+					id: "763378E54C90C150"
+					type: "item"
+					item: "thermal:dynamo_stirling"
+				}
+			]
+		}
+		{
+			x: 2.0d
+			y: -2.5d
+			subtitle: "将熔炉放置在热源上，并投入所需方块（通常是原石）即可生成岩浆"
+			description: ["你需要骨粉来制作坩埚。我建议使用原版堆肥桶。或者如果你有资源生成器，可以用胶囊来制作骨粉。"]
+			id: "5F5825F1FF5B3BB6"
+			tasks: [{
+				id: "7DBF6FA31FED7C42"
+				type: "item"
+				item: "minecraft:lava_bucket"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 0.5d
+			subtitle: "在聊天中输入/sethome 即可设置你的 /home"
+			description: [
+				"你可以使用/sethome命令来设置你的家园点"
+				""
+				"然后你只需使用 /home 即可传回你的 /sethome 位置（此功能跨维度有效）"
+			]
+			dependencies: ["10A053E4EBA2063E"]
+			id: "5AE09E52B969604B"
+			tasks: [{
+				id: "396E86A2D97ABA6C"
+				type: "checkmark"
+				title: "别忘了设置你的家园坐标"
+			}]
+		}
+		{
+			x: 5.5d
+			y: -5.5d
+			description: ["在水、草地和树木附近使用牛诱饵，可以让牛生成。用剑或拳头轻轻抚摸它们以获得皮革。"]
+			dependencies: ["22F3CFDD5A53408F"]
+			id: "019EEAB7E48CA2AB"
+			tasks: [{
+				id: "4934E3D8E306CCF9"
+				type: "item"
+				item: "minecraft:leather"
+			}]
+		}
+		{
+			x: 5.5d
+			y: -4.0d
+			description: ["鸡饲料能让鸡生成。想尽办法收集它们的羽毛。"]
+			dependencies: ["22F3CFDD5A53408F"]
+			id: "2058B346E51F8ED4"
+			tasks: [{
+				id: "7D7D19DF2FFF33BF"
+				type: "item"
+				item: "minecraft:feather"
+			}]
+		}
+		{
+			x: 5.5d
+			y: -2.5d
+			description: ["鸡偶尔也会下蛋，收集起来以备后用。"]
+			dependencies: ["22F3CFDD5A53408F"]
+			id: "001483418FBFE6D6"
+			tasks: [{
+				id: "43AC91121AC63B12"
+				type: "item"
+				item: "minecraft:egg"
+			}]
+		}
+		{
+			icon: "minecraft:cake"
+			x: -2.5d
+			y: 0.5d
+			subtitle: "2023年8月15日"
+			description: ["蛋糕4天！"]
+			dependencies: ["10A053E4EBA2063E"]
+			id: "52E950D6D243F489"
+			tasks: [{
+				id: "22410135C3292CBC"
+				type: "checkmark"
+				title: "三周年庆典！"
+			}]
+			rewards: [
+				{
+					id: "5C4C16867D301264"
+					type: "xp_levels"
+					xp_levels: 30
+				}
+				{
+					id: "0ED61362940235DC"
+					type: "item"
+					item: "minecraft:cake"
+					count: 16
+				}
+				{
+					id: "1AACCF51FAD41125"
+					type: "item"
+					item: "thermal:carrot_cake"
+					count: 16
+				}
+				{
+					id: "699DCD3678130EA5"
+					type: "item"
+					item: "createaddition:chocolate_cake"
+					count: 16
+				}
+				{
+					id: "4D1710CB2761FE2F"
+					type: "item"
+					item: "create:blaze_cake"
+					count: 16
+				}
+				{
+					id: "1AC74D76466E5384"
+					type: "item"
+					item: "exnihilosequentia:end_cake"
+				}
+			]
+		}
+	]
+}

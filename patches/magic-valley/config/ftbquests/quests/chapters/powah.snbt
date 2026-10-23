@@ -1,0 +1,1594 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "circle"
+	filename: "powah"
+	group: "A100000000000002"
+	icon: "powah:reactor_nitro"
+	id: "99CCB712FEF9FA8A"
+	order_index: 8
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["Powah 是一个七层级的能源生态系统。横向推进，依次经过 Starter、Basic、Hardened、Blazing、Niotic、Spirited 和 Nitro，同时纵向比较发电机。仅在测量到的需求、传输能力和存储储备足以证明材料成本时进行升级。"]
+			id: "937F654D74EFD65F"
+			rewards: [{
+				id: "1AAB633037529C05"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "E00275E584651C89"
+				title: "确认：一个分级的电力系统"
+				type: "checkmark"
+			}]
+			title: "分级供电系统"
+			x: -0.913d
+			y: -0.954d
+		}
+		{
+			dependencies: ["937F654D74EFD65F"]
+			description: ["请保留 Powah 手册以了解精确的生成率、环境加成、反应堆输入和每级的传输限制。任务会解释进度决策，而手册和 JEI 仍然是整合包配方的权威来源。"]
+			id: "A30FC2B67E15AA99"
+			shape: "circle"
+			tasks: [{
+				id: "0102BE5C5BF0B39D"
+				item: "powah:book"
+				type: "item"
+			}]
+			title: "Powah 手册"
+			x: -0.559d
+			y: 0.087d
+		}
+		{
+			dependencies: ["937F654D74EFD65F"]
+			description: ["在投入反应堆前，先建立可再生或储量充足的铀矿石供应。普通、一般和致密矿石的产量不同，能量球能将原材料转化为可用的铀矿石。"]
+			id: "0DAB9192A0251F62"
+			shape: "circle"
+			tasks: [{
+				id: "7A67B211D9EA22D7"
+				item: "powah:uraninite_raw"
+				type: "item"
+			}]
+			title: "铀矿供应"
+			x: 0.793d
+			y: -1.642d
+		}
+		{
+			dependencies: ["937F654D74EFD65F"]
+			description: ["介电浆是Powah基础设施常用的绝缘材料。尽早自动化其配方，因为每个等级都会持续消耗它。"]
+			id: "155DD300661B86B2"
+			shape: "circle"
+			tasks: [{
+				id: "198A5CE5EA84334A"
+				item: "powah:dielectric_paste"
+				type: "item"
+			}]
+			title: "介电质浆料"
+			x: 0.165d
+			y: -0.739d
+		}
+		{
+			dependencies: ["155DD300661B86B2"]
+			description: ["将介电棒作为浆料和机器外壳之间的结构步骤。保持缓冲库存，以免在重建电源时升级中断。"]
+			id: "2735CCA3B8D74383"
+			shape: "circle"
+			tasks: [{
+				id: "0AE97C5E6603072E"
+				item: "powah:dielectric_rod"
+				type: "item"
+			}]
+			title: "介电棒 (Dielectric Rods)"
+			x: 1.245d
+			y: -0.534d
+		}
+		{
+			dependencies: ["2735CCA3B8D74383" "0DAB9192A0251F62"]
+			description: ["介电外壳是大多数 Powah 机器可重复使用的核心。只有在准备好足够的浆料和棒材来扩展系统后，才能建造第一个外壳。"]
+			id: "9FA6F8F92B1D2CD7"
+			shape: "circle"
+			tasks: [{
+				id: "1B48B3718F485A85"
+				item: "powah:dielectric_casing"
+				type: "item"
+			}]
+			title: "介电外壳 (Dielectric Casing)"
+			x: -0.199d
+			y: 1.125d
+		}
+		{
+			dependencies: ["9FA6F8F92B1D2CD7"]
+			description: ["Energizing Orb 能将普通材料转化为 Powah 级资源。它能接受自动化输入的物品，但配方仅在连锁导线能输送全部能量成本时才会完成。"]
+			id: "0EF331CAF8F4DC75"
+			shape: "circle"
+			tasks: [{
+				id: "4A2DC5B21B5F16FC"
+				item: "powah:energizing_orb"
+				type: "item"
+			}]
+			title: "能量球 (Energizing Orb)"
+			x: 1.872d
+			y: -1.435d
+		}
+		{
+			dependencies: ["0EF331CAF8F4DC75"]
+			description: ["使用扳手将 Energizing Rods 连接到球体上，并配置 Powah 方块。在自动化存取前，请先手动测试第一个配方。"]
+			id: "0A7EE1B319E2508D"
+			shape: "circle"
+			tasks: [{
+				id: "072D3FE66D538FDA"
+				item: "powah:wrench"
+				type: "item"
+			}]
+			title: "链接与配置"
+			x: 0.528d
+			y: 0.299d
+		}
+		{
+			dependencies: ["9FA6F8F92B1D2CD7"]
+			description: ["使用入门装备低成本验证布局，不要指望它能支撑起一个成熟基地。"]
+			id: "02DCB0F4A0C76BE8"
+			rewards: [{
+				id: "8704B8FAC9F411AF"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "E1E15D3522C7CCC4"
+				title: "确认：入门级（Starter Tier）"
+				type: "checkmark"
+			}]
+			title: "入门级任务包"
+			x: 2.950d
+			y: -1.225d
+		}
+		{
+			dependencies: ["02DCB0F4A0C76BE8"]
+			description: ["更高级的钓竿能更快地将能量传输到球体中。球体的配方成本不变，因此当能量传输效率成为瓶颈时，再升级钓竿。在替换现有设施前，请将此入门版与前一版本进行比较，并记录实际配置下的速率或容量。"]
+			id: "0C19BE4D8798402A"
+			shape: "circle"
+			tasks: [{
+				id: "85425FB61844692D"
+				item: "powah:energizing_rod_starter"
+				type: "item"
+			}]
+			title: "入门活力棒"
+			x: 3.409d
+			y: -0.154d
+		}
+		{
+			dependencies: ["02DCB0F4A0C76BE8"]
+			description: ["Furnators将熔炉燃料转化为FE。比较每FE的燃料成本并提供溢出安全的燃料缓冲。将此入门版与前一个等级进行比较，并在替换工作基础设施之前记录实际的包配置速率或容量。"]
+			id: "C03E2F76B64B4279"
+			shape: "circle"
+			tasks: [{
+				id: "330DB1877576149E"
+				item: "powah:furnator_starter"
+				type: "item"
+			}]
+			title: "入门熔炼器"
+			x: 8.086d
+			y: 4.528d
+		}
+		{
+			dependencies: ["02DCB0F4A0C76BE8"]
+			description: ["Magmator消耗岩浆。将岩浆的生产和传输视为发电机的一部分，并在存储已满时干净地停止输入。在替换现有基础设施前，请将此入门版与前一等级进行比较，并记录实际的配置速率或容量。"]
+			id: "AD439085A6D6D256"
+			shape: "circle"
+			tasks: [{
+				id: "1DE4BA350A498950"
+				item: "powah:magmator_starter"
+				type: "item"
+			}]
+			title: "初级岩浆怪培育器"
+			x: 2.324d
+			y: -0.327d
+		}
+		{
+			dependencies: ["02DCB0F4A0C76BE8"]
+			description: ["热发电机需要下方的热块和内部的冷却剂。在依赖被动输出前，测试热源倍率并确保冷却剂供应。将此入门版与前一个等级比较，并在替换工作基础设施前记录实际的配置速率或容量。"]
+			id: "16FB6D7E5F4D3705"
+			shape: "circle"
+			tasks: [{
+				id: "147FAA1815004D17"
+				item: "powah:thermo_generator_starter"
+				type: "item"
+			}]
+			title: "入门级热能发电机"
+			x: 1.607d
+			y: 3.415d
+		}
+		{
+			dependencies: ["02DCB0F4A0C76BE8"]
+			description: ["太阳能电池板干净但间歇性供电。评估夜间和天气情况下的储能，而不仅仅是正午。将此入门版与前一个等级进行比较，并在替换现有基础设施前记录实际的配置速率或容量。"]
+			id: "9F447A3F55C33ABD"
+			shape: "circle"
+			tasks: [{
+				id: "C500EB9BB9CC378F"
+				item: "powah:solar_panel_starter"
+				type: "item"
+			}]
+			title: "入门太阳能电池板"
+			x: 0.877d
+			y: 1.340d
+		}
+		{
+			dependencies: ["02DCB0F4A0C76BE8"]
+			description: ["Powah 反应堆需要平衡铀矿、碳、红石、冷却剂和可选的干冰。监控所有输入，并在燃料加注期间保持备用发电机可用。将此入门版与前一个等级进行比较，并在替换现有基础设施前记录实际的配置速率或容量。"]
+			id: "A69BE820A937076C"
+			shape: "circle"
+			tasks: [{
+				id: "57957B4E3FEDB535"
+				item: "powah:reactor_starter"
+				type: "item"
+			}]
+			title: "入门反应堆"
+			x: 0.162d
+			y: 2.173d
+		}
+		{
+			dependencies: ["02DCB0F4A0C76BE8"]
+			description: ["电缆等级限制总传输量。分离关键线路，避免意外环路，并确保容量高于预期最大突发流量。在替换现有基础设施前，将此入门版与上一等级进行比较，并记录实际配置速率或容量。"]
+			id: "0DD4D99EC758EBD9"
+			shape: "circle"
+			tasks: [{
+				id: "53C126A630B396EF"
+				item: "powah:energy_cable_starter"
+				type: "item"
+			}]
+			title: "入门能量电缆"
+			x: 0.517d
+			y: 3.470d
+		}
+		{
+			dependencies: ["02DCB0F4A0C76BE8"]
+			description: ["能量单元可缓冲发电与用电。将储能装置置于能吸收峰值的位置，避免隐藏一个长期容量不足的发电机。在替换现有设施前，请将此入门版与前一等级进行比较，并记录实际的配置速率或容量。"]
+			id: "CE2DBFE62F315B54"
+			shape: "circle"
+			tasks: [{
+				id: "331FA98328766A64"
+				item: "powah:energy_cell_starter"
+				type: "item"
+			}]
+			title: "入门能量电池"
+			x: 1.239d
+			y: 2.380d
+		}
+		{
+			dependencies: ["02DCB0F4A0C76BE8"]
+			description: ["电池提供便携能源，可为背包中的设备充电。携带分层方块前，请确认激活状态和容量。将此入门版与前一个层级进行比较，并在替换工作基础设施前记录实际的包配置速率或容量。"]
+			id: "B68A37FE33F457E0"
+			shape: "circle"
+			tasks: [{
+				id: "E4D69D60E20B82AA"
+				item: "powah:battery_starter"
+				type: "item"
+			}]
+			title: "入门电池"
+			x: 0.880d
+			y: 4.504d
+		}
+		{
+			dependencies: ["02DCB0F4A0C76BE8"]
+			description: ["末影单元构成共享无线能源池。使用独立频道并记录所有权，以免无关基地耗尽同一储备。在替换现有设施前，将此入门版与前一个等级比较，并记录实际的配置速率或容量。"]
+			id: "068EB07B0B7AA822"
+			shape: "circle"
+			tasks: [{
+				id: "6C482A3A8C1AA6DD"
+				item: "powah:ender_cell_starter"
+				type: "item"
+			}]
+			title: "入门末影细胞"
+			x: 3.054d
+			y: 4.651d
+		}
+		{
+			dependencies: ["02DCB0F4A0C76BE8"]
+			description: ["Ender Gates 会在机器上暴露一个未接电缆的绑定 Ender Cell 通道。请确认两端的绑定和传输等级。在替换现有基础设施前，将此 Starter 版本与前一等级进行比较，并记录实际的配置速率或容量。"]
+			id: "3C9FB9EFFC274E02"
+			shape: "circle"
+			tasks: [{
+				id: "B5A4EE93F8D5FFC3"
+				item: "powah:ender_gate_starter"
+				type: "item"
+			}]
+			title: "新手末地传送门"
+			x: 1.247d
+			y: 5.541d
+		}
+		{
+			dependencies: ["02DCB0F4A0C76BE8"]
+			description: ["Player Transmitters 可为远程绑定的玩家充电。使用正确的绑定卡，并将其消耗计入基础负载。在替换现有设施前，请将此 Starter 版本与前一等级进行比较，并记录实际的配置速率或容量。"]
+			id: "C88B6FBEB6957E91"
+			shape: "circle"
+			tasks: [{
+				id: "D58A3AE48D18AACF"
+				item: "powah:player_transmitter_starter"
+				type: "item"
+			}]
+			title: "新手玩家发射器"
+			x: 2.713d
+			y: 6.520d
+		}
+		{
+			dependencies: ["02DCB0F4A0C76BE8"]
+			description: ["基础电容器是发电机、传输器和存储器的通用升级组件。仅在能源材料供应可重复使用后批量制作。"]
+			id: "1146345AF92616BB"
+			shape: "circle"
+			tasks: [{
+				id: "85D6F300D3B3ABB3"
+				item: "powah:capacitor_basic"
+				type: "item"
+			}]
+			title: "基础电容器"
+			x: 3.303d
+			y: -3.097d
+		}
+		{
+			dependencies: ["1146345AF92616BB"]
+			description: ["基本组件是首个实用升级，并确立了后续层级使用的电容器模式。"]
+			id: "B2C16C1EF0673441"
+			rewards: [{
+				id: "53E3C582B8FFEF20"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "ABDCD0CFDE025A70"
+				title: "确认：基础等级"
+				type: "checkmark"
+			}]
+			title: "基础等级"
+			x: 6.185d
+			y: -0.621d
+		}
+		{
+			dependencies: ["B2C16C1EF0673441" "0C19BE4D8798402A"]
+			description: ["更高级的钓竿能更快地将能量传输到球体中。球体的配方成本不变，因此当能量传输效率成为瓶颈时，再升级钓竿。在替换现有设施前，请将此基础版本与前一等级进行比较，并记录实际配置下的速率或容量。"]
+			id: "AA4257169CBB0806"
+			shape: "circle"
+			tasks: [{
+				id: "E7EC4D63B861C57C"
+				item: "powah:energizing_rod_basic"
+				type: "item"
+			}]
+			title: "基础能量化装置棒"
+			x: 10.500d
+			y: 2.964d
+		}
+		{
+			dependencies: ["B2C16C1EF0673441" "C03E2F76B64B4279"]
+			description: ["Furnators将熔炉燃料转换为FE。比较每FE的燃料成本并提供溢出安全的燃料缓冲。在替换运行基础设施前，将此基础版本与前一个等级进行比较，并记录实际的包配置速率或容量。"]
+			id: "D3CCEEC8FFB29DB0"
+			shape: "circle"
+			tasks: [{
+				id: "5CC405F7A51CFD26"
+				item: "powah:furnator_basic"
+				type: "item"
+			}]
+			title: "基础熔炉器"
+			x: 4.743d
+			y: -1.859d
+		}
+		{
+			dependencies: ["B2C16C1EF0673441" "AD439085A6D6D256"]
+			description: ["Magmator消耗岩浆。将岩浆的生产和传输视为发电机的一部分，并在存储已满时干净地停止输入。在替换现有基础设施前，将此基础版本与前一等级进行比较，并记录实际配置速率或容量。"]
+			id: "EDAD0948389E2B66"
+			shape: "circle"
+			tasks: [{
+				id: "DD96F4988BA59B44"
+				item: "powah:magmator_basic"
+				type: "item"
+			}]
+			title: "基础岩浆怪制造机"
+			x: 6.615d
+			y: 3.327d
+		}
+		{
+			dependencies: ["B2C16C1EF0673441" "16FB6D7E5F4D3705"]
+			description: ["热发电机需要下方的热块和内部的冷却剂。在依赖被动输出前，请先测试热源倍率并确保冷却剂供应。将此基础版本与前一个等级进行比较，并在替换现有设施前记录实际的配置速率或容量。"]
+			id: "311740E09DBCAEFF"
+			shape: "circle"
+			tasks: [{
+				id: "9C29BDEA1C863DF7"
+				item: "powah:thermo_generator_basic"
+				type: "item"
+			}]
+			title: "基础热能发电机"
+			x: 1.606d
+			y: 0.505d
+		}
+		{
+			dependencies: ["B2C16C1EF0673441" "9F447A3F55C33ABD"]
+			description: ["太阳能电池板干净但间歇性供电。评估夜间和天气情况下的储能，而不仅仅是正午的系统表现。将此基础版与前一个等级进行比较，并在替换现有基础设施前，记录实际配置下的速率或容量。"]
+			id: "53E046A29E042819"
+			shape: "circle"
+			tasks: [{
+				id: "E57DAEC0BD76BDA8"
+				item: "powah:solar_panel_basic"
+				type: "item"
+			}]
+			title: "基础太阳能电池板"
+			x: 5.879d
+			y: 1.264d
+		}
+		{
+			dependencies: ["B2C16C1EF0673441" "A69BE820A937076C"]
+			description: ["Powah 反应堆需要平衡铀矿、碳、红石、冷却剂和可选的干冰。监控所有输入，并在燃料加注期间保持备用发电机可用。将此基础版本与前一个等级进行比较，并在替换现有基础设施前记录实际的配置速率或容量。"]
+			id: "EFFA82933FE28582"
+			shape: "circle"
+			tasks: [{
+				id: "B8332B2DA8C13498"
+				item: "powah:reactor_basic"
+				type: "item"
+			}]
+			title: "基础反应堆"
+			x: 5.165d
+			y: 2.118d
+		}
+		{
+			dependencies: ["B2C16C1EF0673441" "0DD4D99EC758EBD9"]
+			description: ["电缆等级限制总传输量。分离关键线路，避免意外环路，并确保容量高于预期最大突发流量。在替换现有基础设施前，将此基础版与上一等级进行比较，并记录实际配置速率或容量。"]
+			id: "6B7F481DB9AFD878"
+			shape: "circle"
+			tasks: [{
+				id: "35F4B5807B5BE0F7"
+				item: "powah:energy_cable_basic"
+				type: "item"
+			}]
+			title: "基础能量电缆"
+			x: 7.398d
+			y: 7.029d
+		}
+		{
+			dependencies: ["B2C16C1EF0673441" "CE2DBFE62F315B54"]
+			description: ["能量单元可缓冲发电与用电。将储能装置放置在能吸收峰值负荷的位置，避免隐藏一个长期容量不足的发电机。在替换现有设施前，请将此基础版与前一等级进行比较，并记录实际配置下的速率或容量。"]
+			id: "4BD3A2F2CCDDC707"
+			shape: "circle"
+			tasks: [{
+				id: "FEC9CDA509CE320E"
+				item: "powah:energy_cell_basic"
+				type: "item"
+			}]
+			title: "基础能量电池"
+			x: 2.314d
+			y: 2.581d
+		}
+		{
+			dependencies: ["B2C16C1EF0673441" "B68A37FE33F457E0"]
+			description: ["电池提供便携能源，可为背包中的设备充电。携带分层方块前，请确认激活状态和容量。将此基础版与前一个层级进行比较，并在替换工作基础设施前记录实际的包配置速率或容量。"]
+			id: "922AD1B5857228B1"
+			shape: "circle"
+			tasks: [{
+				id: "1DBD93ED2FAAF6DA"
+				item: "powah:battery_basic"
+				type: "item"
+			}]
+			title: "基础电池"
+			x: 5.580d
+			y: 6.076d
+		}
+		{
+			dependencies: ["B2C16C1EF0673441" "068EB07B0B7AA822"]
+			description: ["末影单元构成共享无线能源池。使用独立频道并记录所有权，以免无关基地共用同一储备。在替换现有设施前，将此基础版与前一个等级比较，并记录实际的配置速率或容量。"]
+			id: "EF17D62E1AC1FF53"
+			shape: "circle"
+			tasks: [{
+				id: "12D2C3A5C9AC7353"
+				item: "powah:ender_cell_basic"
+				type: "item"
+			}]
+			title: "基础末影细胞"
+			x: 2.345d
+			y: 5.486d
+		}
+		{
+			dependencies: ["B2C16C1EF0673441" "3C9FB9EFFC274E02"]
+			description: ["Ender Gates 会在无电缆连接的机器上暴露一个绑定的 Ender Cell 通道。请确认两端的绑定和传输等级。在替换现有基础设施前，将此基础版本与前一等级进行比较，并记录实际的配置速率或容量。"]
+			id: "C5B08C15195B8CBC"
+			shape: "circle"
+			tasks: [{
+				id: "1CCFF8DD3C4C8418"
+				item: "powah:ender_gate_basic"
+				type: "item"
+			}]
+			title: "基础末地传送门"
+			x: 3.795d
+			y: 6.719d
+		}
+		{
+			dependencies: ["B2C16C1EF0673441" "C88B6FBEB6957E91"]
+			description: ["Player Transmitters 可远程为绑定的玩家充电。使用正确的绑定卡，并将其消耗计入基础负载。在替换现有设施前，将此基础版与前一等级进行比较，并记录实际配置速率或容量。"]
+			id: "4C24763F08A5886D"
+			shape: "circle"
+			tasks: [{
+				id: "54FEA1B7BD208AFA"
+				item: "powah:player_transmitter_basic"
+				type: "item"
+			}]
+			title: "基础玩家传输器"
+			x: 3.423d
+			y: 5.683d
+		}
+		{
+			dependencies: ["B2C16C1EF0673441" "0EF331CAF8F4DC75"]
+			description: ["硬化装备以充能钢为基础，是早期基地的合理标配。在充能球中生产该层级材料，并确保杆、电缆和储能装置能承受其能耗。"]
+			id: "C3497A76A182AE9A"
+			shape: "circle"
+			tasks: [{
+				id: "7A4D57954B48BFBD"
+				item: "powah:steel_energized"
+				type: "item"
+			}]
+			title: "硬化充能材料"
+			x: 5.355d
+			y: -3.771d
+		}
+		{
+			dependencies: ["C3497A76A182AE9A"]
+			description: ["硬化电容器是发电机、传输器和存储器的通用升级组件。仅在能源材料供应可重复使用后批量制作。"]
+			id: "380A7FA2615BD9BE"
+			shape: "circle"
+			tasks: [{
+				id: "B6D59605914787C4"
+				item: "powah:capacitor_hardened"
+				type: "item"
+			}]
+			title: "硬化电容器"
+			x: 9.452d
+			y: 2.804d
+		}
+		{
+			dependencies: ["380A7FA2615BD9BE"]
+			description: ["硬化装备以能量钢为基础，是早期基地的合理标配。"]
+			id: "529E9D80ECC38EA7"
+			rewards: [{
+				id: "15B485CAC97DCB77"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "0DECCA2A61557196"
+				title: "确认：硬化等级（Hardened Tier）"
+				type: "checkmark"
+			}]
+			title: "硬化等级（Hardened Tier）"
+			x: 5.817d
+			y: -1.651d
+		}
+		{
+			dependencies: ["529E9D80ECC38EA7" "AA4257169CBB0806"]
+			description: ["更高级的钓竿能更快地将能量传输到球体中。球体的配方成本不变，因此当能量传输效率成为瓶颈时，再升级钓竿。在替换现有设施前，请将此硬化版与前一等级进行比较，并记录实际的配置速率或容量。"]
+			id: "28795E6BA178008E"
+			shape: "circle"
+			tasks: [{
+				id: "559A161CD0FAAFDF"
+				item: "powah:energizing_rod_hardened"
+				type: "item"
+			}]
+			title: "硬化充能棒"
+			x: 7.247d
+			y: -0.451d
+		}
+		{
+			dependencies: ["529E9D80ECC38EA7" "D3CCEEC8FFB29DB0"]
+			description: ["Furnators将熔炉燃料转化为FE。比较每FE的燃料成本并提供溢出安全的燃料缓冲。将此硬化版与前一个等级进行比较，并在替换工作基础设施之前记录实际的包配置速率或容量。"]
+			id: "4599E548F0893032"
+			shape: "circle"
+			tasks: [{
+				id: "C1BB9678C83C0453"
+				item: "powah:furnator_hardened"
+				type: "item"
+			}]
+			title: "硬化熔炉器"
+			x: 5.506d
+			y: 0.234d
+		}
+		{
+			dependencies: ["529E9D80ECC38EA7" "EDAD0948389E2B66"]
+			description: ["Magmator消耗岩浆。将岩浆的生产和传输视为发电机的一部分，并在存储已满时干净地停止输入。在替换现有基础设施前，将此硬化版与前一等级进行比较，并记录实际的配置速率或容量。"]
+			id: "DA5F942B2015710A"
+			shape: "circle"
+			tasks: [{
+				id: "760C7F930B687FAE"
+				item: "powah:magmator_hardened"
+				type: "item"
+			}]
+			title: "硬化岩浆怪"
+			x: 8.708d
+			y: 0.751d
+		}
+		{
+			dependencies: ["529E9D80ECC38EA7" "311740E09DBCAEFF"]
+			description: ["热发电机需要下方的热块和内部的冷却剂。在依赖被动输出前，先测试热源倍率和冷却剂供应。将此硬化版与前一个等级比较，并记录实际配置速率或容量后再替换现有设施。"]
+			id: "0F26A9FAFB34DFB4"
+			shape: "circle"
+			tasks: [{
+				id: "881BF3A0FEB0353F"
+				item: "powah:thermo_generator_hardened"
+				type: "item"
+			}]
+			title: "硬化型热能发电机"
+			x: 3.026d
+			y: 1.745d
+		}
+		{
+			dependencies: ["529E9D80ECC38EA7" "53E046A29E042819"]
+			description: ["太阳能电池板干净但间歇性供电。评估夜间和天气情况下的储能，而不仅仅是正午的系统表现。在替换现有设施前，请将此硬化版与前一个等级进行比较，并记录实际的配置速率或容量。"]
+			id: "8A16BD362339710A"
+			shape: "circle"
+			tasks: [{
+				id: "7E52B3E258584F54"
+				item: "powah:solar_panel_hardened"
+				type: "item"
+			}]
+			title: "硬化太阳能板"
+			x: 4.829d
+			y: 1.092d
+		}
+		{
+			dependencies: ["529E9D80ECC38EA7" "EFFA82933FE28582"]
+			description: ["Powah 反应堆需要平衡铀矿、碳、红石、冷却剂和可选的干冰。监控所有输入，并在燃料加注期间保持备用发电机可用。将此硬化版与前一个等级进行比较，并在替换现有基础设施前记录实际的配置速率或容量。"]
+			id: "26AB6846B11E6E91"
+			shape: "circle"
+			tasks: [{
+				id: "CE20CA27B24EEF34"
+				item: "powah:reactor_hardened"
+				type: "item"
+			}]
+			title: "硬化反应堆"
+			x: 10.886d
+			y: 1.064d
+		}
+		{
+			dependencies: ["529E9D80ECC38EA7" "6B7F481DB9AFD878"]
+			description: ["电缆等级限制总传输量。分离关键线路，避免意外环路，并确保容量高于预期最大突发流量。在替换现有基础设施前，将此硬化版与前一等级进行比较，并记录实际配置速率或容量。"]
+			id: "A2B596EF8932780E"
+			shape: "circle"
+			tasks: [{
+				id: "D3D3F24FA96A5747"
+				item: "powah:energy_cable_hardened"
+				type: "item"
+			}]
+			title: "硬化能量电缆"
+			x: 1.975d
+			y: 4.451d
+		}
+		{
+			dependencies: ["529E9D80ECC38EA7" "4BD3A2F2CCDDC707"]
+			description: ["能量单元缓冲了生成与消耗。将储能装置放置在能吸收峰值的位置，而无需隐藏一个长期容量不足的发电机。在替换现有基础设施前，将此硬化版与前一等级进行比较，并记录实际的配置速率或容量。"]
+			id: "30C72405D6E40F84"
+			shape: "circle"
+			tasks: [{
+				id: "2D03612A1ACA5F1C"
+				item: "powah:energy_cell_hardened"
+				type: "item"
+			}]
+			title: "硬化能量单元"
+			x: 1.953d
+			y: 1.544d
+		}
+		{
+			dependencies: ["529E9D80ECC38EA7" "922AD1B5857228B1"]
+			description: ["电池提供便携能源，可为背包中的设备充电。使用分级方块携带前，请确认激活状态和容量。将此硬化版与前一级别进行比较，并在替换运行基础设施前记录实际的包装配置速率或容量。"]
+			id: "6CE240CE8B4E7D94"
+			shape: "circle"
+			tasks: [{
+				id: "741990D6D55C1E25"
+				item: "powah:battery_hardened"
+				type: "item"
+			}]
+			title: "硬化电池"
+			x: 7.386d
+			y: 5.386d
+		}
+		{
+			dependencies: ["529E9D80ECC38EA7" "EF17D62E1AC1FF53"]
+			description: ["末影单元构成共享无线能量池。使用独立频道并记录所有权，以免无关基地耗尽同一储备。在替换现有设施前，将此硬化版与前一个等级比较，并记录实际的配置速率或容量。"]
+			id: "AEF01FF040879B35"
+			shape: "circle"
+			tasks: [{
+				id: "1B9BBF5339FA357C"
+				item: "powah:ender_cell_hardened"
+				type: "item"
+			}]
+			title: "硬化末地细胞"
+			x: 7.315d
+			y: 2.484d
+		}
+		{
+			dependencies: ["529E9D80ECC38EA7" "C5B08C15195B8CBC"]
+			description: ["Ender Gates 会在无电缆连接的机器上暴露一个绑定的 Ender Cell 通道。请确认两端的绑定和传输等级。在替换现有基础设施前，将此硬化版与前一等级进行比较，并记录实际的配置速率或容量。"]
+			id: "308ED011CD086269"
+			shape: "circle"
+			tasks: [{
+				id: "AAE1503285AB78F0"
+				item: "powah:ender_gate_hardened"
+				type: "item"
+			}]
+			title: "硬化末地传送门"
+			x: 2.686d
+			y: 3.617d
+		}
+		{
+			dependencies: ["529E9D80ECC38EA7" "4C24763F08A5886D"]
+			description: ["Player Transmitters 可远程为绑定玩家充电。使用正确的绑定卡，并将其功耗计入基础负载。在替换现有设施前，请将此硬化版与前一等级进行比较，并记录实际的配置速率或容量。"]
+			id: "45908EAE5858C928"
+			shape: "circle"
+			tasks: [{
+				id: "58999961E828FF66"
+				item: "powah:player_transmitter_hardened"
+				type: "item"
+			}]
+			title: "硬化玩家发射器 (Hardened Player Transmitter)"
+			x: 4.506d
+			y: 5.880d
+		}
+		{
+			dependencies: ["529E9D80ECC38EA7" "0EF331CAF8F4DC75"]
+			description: ["烈焰水晶使网络进入高级自动化阶段；升级反应堆前，请确认冷却和燃料供应。在能量球中生产此层级材料，并确保棒材、电缆和存储设施能承受其能耗。"]
+			id: "29D938A3CFEA8E3B"
+			shape: "circle"
+			tasks: [{
+				id: "69168E7F4C740A39"
+				item: "powah:crystal_blazing"
+				type: "item"
+			}]
+			title: "炽热的能量化材料"
+			x: 7.070d
+			y: -4.966d
+		}
+		{
+			dependencies: ["29D938A3CFEA8E3B"]
+			description: ["烈焰电容器是发电机、传输器和存储器的通用升级组件。仅在能源材料供应可重复使用后批量制作。"]
+			id: "226EF272660F7D71"
+			shape: "circle"
+			tasks: [{
+				id: "AF5D51FD5E69808A"
+				item: "powah:capacitor_blazing"
+				type: "item"
+			}]
+			title: "烈焰电容器"
+			x: 6.400d
+			y: -4.094d
+		}
+		{
+			dependencies: ["226EF272660F7D71"]
+			description: ["烈焰水晶使网络进入高级自动化模式；升级反应堆前请检查冷却和燃料输送。"]
+			id: "96B97A8C74CF9B6B"
+			rewards: [{
+				id: "E158AD86930BF1DA"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "4F84945222ED9A7E"
+				title: "确认：烈焰等级（Blazing Tier）"
+				type: "checkmark"
+			}]
+			title: "烈焰等级"
+			x: 7.981d
+			y: -1.312d
+		}
+		{
+			dependencies: ["96B97A8C74CF9B6B" "28795E6BA178008E"]
+			description: ["更高级的钓竿能更快地将能量传输到球体中。球体的配方成本不变，因此当能量传输效率成为瓶颈时，再升级钓竿。在替换现有设施前，请将此烈焰版本与前一等级的实际配置速率或容量进行比较并记录下来。"]
+			id: "4B7430FA00214BDC"
+			shape: "circle"
+			tasks: [{
+				id: "134E337F9C158558"
+				item: "powah:energizing_rod_blazing"
+				type: "item"
+			}]
+			title: "烈焰能量棒"
+			x: 7.658d
+			y: 0.579d
+		}
+		{
+			dependencies: ["96B97A8C74CF9B6B" "4599E548F0893032"]
+			description: ["Furnators将熔炉燃料转化为FE。比较每FE的燃料成本并提供溢出安全的燃料缓冲。将此Blazing版本与前一等级进行比较，并在替换工作基础设施前记录实际的包配置速率或容量。"]
+			id: "5775506C53CA81D2"
+			shape: "circle"
+			tasks: [{
+				id: "C37DF1D6A87077E7"
+				item: "powah:furnator_blazing"
+				type: "item"
+			}]
+			title: "烈焰熔炉匠人"
+			x: 4.384d
+			y: -2.897d
+		}
+		{
+			dependencies: ["96B97A8C74CF9B6B" "DA5F942B2015710A"]
+			description: ["Magmator消耗岩浆。将岩浆的生产和传输视为发电机的一部分，并在存储已满时干净地停止输入。在替换现有基础设施前，请先比较此Blazing版本与前一档次的实际配置速率或容量。"]
+			id: "B733EDCE3A4572D2"
+			shape: "circle"
+			tasks: [{
+				id: "07422F3E2E13B7B1"
+				item: "powah:magmator_blazing"
+				type: "item"
+			}]
+			title: "烈焰岩浆怪"
+			x: 8.031d
+			y: 1.606d
+		}
+		{
+			dependencies: ["96B97A8C74CF9B6B" "0F26A9FAFB34DFB4"]
+			description: ["热发电机需要下方的热块和内部的冷却剂。在依赖被动输出前，先测试热源倍率并确保冷却剂供应。将此烈焰版本与前一个等级进行比较，并在替换现有设施前记录实际的配置速率或容量。"]
+			id: "33FE26E30879BB80"
+			shape: "circle"
+			tasks: [{
+				id: "F36D32B47B9EA7A9"
+				item: "powah:thermo_generator_blazing"
+				type: "item"
+			}]
+			title: "烈焰热能发电机"
+			x: 4.441d
+			y: 0.053d
+		}
+		{
+			dependencies: ["96B97A8C74CF9B6B" "8A16BD362339710A"]
+			description: ["太阳能电池板干净但间歇性供电。评估夜间和天气情况下的储能，而不仅仅是正午。在替换现有设施前，将此炽热版本与前一等级进行比较，并记录实际的配置速率或容量。"]
+			id: "513784D9CF3A2514"
+			shape: "circle"
+			tasks: [{
+				id: "1314D4A2B0DF5A06"
+				item: "powah:solar_panel_blazing"
+				type: "item"
+			}]
+			title: "烈焰太阳能板"
+			x: 6.304d
+			y: 5.202d
+		}
+		{
+			dependencies: ["96B97A8C74CF9B6B" "26AB6846B11E6E91"]
+			description: ["Powah 反应堆需要平衡铀矿、碳、红石、冷却剂和可选的干冰。监控所有输入，并在燃料加注期间保持备用发电机可用。将此烈焰版本与前一个等级进行比较，在替换现有基础设施前，记录实际配置的运行速率或容量。"]
+			id: "E361F6D546878DC9"
+			shape: "circle"
+			tasks: [{
+				id: "520D3185370ACC1D"
+				item: "powah:reactor_blazing"
+				type: "item"
+			}]
+			title: "烈焰反应堆"
+			x: 4.029d
+			y: -1.025d
+		}
+		{
+			dependencies: ["96B97A8C74CF9B6B" "A2B596EF8932780E"]
+			description: ["电缆等级限制总传输量。分离关键线路，避免意外环路，并确保容量高于预期最大突发流量。在替换现有基础设施前，将此烈焰版本与前一等级进行比较，并记录实际的配置速率或容量。"]
+			id: "6984E6EB734796FF"
+			shape: "circle"
+			tasks: [{
+				id: "C46ED32113E06B57"
+				item: "powah:energy_cable_blazing"
+				type: "item"
+			}]
+			title: "烈焰能量电缆"
+			x: 6.673d
+			y: 6.226d
+		}
+		{
+			dependencies: ["96B97A8C74CF9B6B" "30C72405D6E40F84"]
+			description: ["能量单元缓冲了生成与消耗。将储能装置放置在能吸收峰值的位置，而无需隐藏一个长期容量不足的发电机。在替换现有基础设施前，将此炽热版本与前一等级进行比较，并记录实际的配置速率或容量。"]
+			id: "38704A8F9B9AB2CE"
+			shape: "circle"
+			tasks: [{
+				id: "8AD263C7AD5BED39"
+				item: "powah:energy_cell_blazing"
+				type: "item"
+			}]
+			title: "烈焰能量电池"
+			x: 4.107d
+			y: 1.940d
+		}
+		{
+			dependencies: ["96B97A8C74CF9B6B" "6CE240CE8B4E7D94"]
+			description: ["电池提供便携能源，可为背包中的设备充电。携带分层方块前，请确认激活状态和容量。将此烈焰版本与前一个层级进行比较，并在替换工作基础设施前记录实际的包配置速率或容量。"]
+			id: "5A45C67097DF5B6B"
+			shape: "circle"
+			tasks: [{
+				id: "AA59257A1BBA3BDC"
+				item: "powah:battery_blazing"
+				type: "item"
+			}]
+			title: "烈焰电池"
+			x: 4.838d
+			y: 4.008d
+		}
+		{
+			dependencies: ["96B97A8C74CF9B6B" "AEF01FF040879B35"]
+			description: ["末影单元构成共享无线能源池。使用独立频道并记录所有权，以免无关基地耗尽同一储备。在替换现有设施前，将此烈焰版本与前一等级比较，并记录实际的配置速率或容量。"]
+			id: "97B995286F6C9E64"
+			shape: "circle"
+			tasks: [{
+				id: "A82607BABADCC41E"
+				item: "powah:ender_cell_blazing"
+				type: "item"
+			}]
+			title: "烈焰末影细胞"
+			x: 4.133d
+			y: 4.847d
+		}
+		{
+			dependencies: ["96B97A8C74CF9B6B" "308ED011CD086269"]
+			description: ["Ender Gates 会在无电缆连接的机器上暴露一个绑定的 Ender Cell 通道。请确认两端的绑定和传输等级。在替换现有基础设施前，将此 Blazing 版本与前一等级进行比较，并记录实际的配置速率或容量。"]
+			id: "4A924B4E2DEA2982"
+			shape: "circle"
+			tasks: [{
+				id: "3EC71F7FD19E345D"
+				item: "powah:ender_gate_blazing"
+				type: "item"
+			}]
+			title: "烈焰末地传送门"
+			x: 3.764d
+			y: 3.815d
+		}
+		{
+			dependencies: ["96B97A8C74CF9B6B" "45908EAE5858C928"]
+			description: ["Player Transmitters 可远程为绑定玩家充电。使用正确的绑定卡，并将其消耗计入基础负载。在替换现有设施前，请将此 Blazing 版本与前一等级进行比较，并记录实际的配置速率或容量。"]
+			id: "7EA6B1B11020F85F"
+			shape: "circle"
+			tasks: [{
+				id: "1A988F2EE3A13E2E"
+				item: "powah:player_transmitter_blazing"
+				type: "item"
+			}]
+			title: "烈焰玩家传输器"
+			x: 5.216d
+			y: 5.041d
+		}
+		{
+			dependencies: ["96B97A8C74CF9B6B" "0EF331CAF8F4DC75"]
+			description: ["Niotic晶体需要更强大的充能装置来支持游戏中期的持续高能耗。请在Energizing Orb中生产该材料，并确保相关组件能承受其能量消耗。"]
+			id: "F32D8A498C26C895"
+			shape: "circle"
+			tasks: [{
+				id: "EE6F84583700E29A"
+				item: "powah:crystal_niotic"
+				type: "item"
+			}]
+			title: "Niotic 能量化材料"
+			x: 7.898d
+			y: -4.244d
+		}
+		{
+			dependencies: ["F32D8A498C26C895"]
+			description: ["Niotic电容器是发电机、传输器和存储器的通用升级组件。仅在能源材料供应可重复使用后批量制作。"]
+			id: "8B904BAFCD7E8EF1"
+			shape: "circle"
+			tasks: [{
+				id: "444F058BA0E9D01F"
+				item: "powah:capacitor_niotic"
+				type: "item"
+			}]
+			title: "Niotic Capacitor"
+			x: 7.227d
+			y: -3.375d
+		}
+		{
+			dependencies: ["8B904BAFCD7E8EF1"]
+			description: ["Niotic 晶体需要更强大的能量装置来支持游戏中期的持续电力需求。"]
+			id: "F93B844E71470EAC"
+			rewards: [{
+				id: "2D41BC51B6141286"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "1B6EA8EBACCF464A"
+				title: "确认：Niotic 等级"
+				type: "checkmark"
+			}]
+			title: "Niotic 等级"
+			x: 10.148d
+			y: -0.995d
+		}
+		{
+			dependencies: ["F93B844E71470EAC" "4B7430FA00214BDC"]
+			description: ["更高级的钓竿能更快地将能量传输到球体中。球体的配方成本不变，因此当能量传输效率成为瓶颈时，再升级钓竿。在替换现有设施前，请将此 Niotic 版本与前一等级进行比较，并记录实际的配置速率或容量。"]
+			id: "D93344FBFD5EE53C"
+			shape: "circle"
+			tasks: [{
+				id: "5F676F96BB8E8970"
+				item: "powah:energizing_rod_niotic"
+				type: "item"
+			}]
+			title: "Niotic 活力棒"
+			x: 7.623d
+			y: -2.346d
+		}
+		{
+			dependencies: ["F93B844E71470EAC" "5775506C53CA81D2"]
+			description: ["Furnators将熔炉燃料转化为FE。比较每FE的燃料成本并提供溢出安全的燃料缓冲。在替换现有基础设施前，将此Niotic版本与前一等级进行比较，并记录实际的包配置速率或容量。"]
+			id: "5FBC05C7BE1330E0"
+			shape: "circle"
+			tasks: [{
+				id: "5320985C37C06933"
+				item: "powah:furnator_niotic"
+				type: "item"
+			}]
+			title: "Niotic Furnator"
+			x: 11.533d
+			y: 0.085d
+		}
+		{
+			dependencies: ["F93B844E71470EAC" "B733EDCE3A4572D2"]
+			description: ["Magmator消耗岩浆。将岩浆的生产和传输视为发电机的一部分，并在存储已满时干净地停止输入。在替换现有基础设施前，请将此Niotic版本与前一等级进行比较，并记录实际的配置速率或容量。"]
+			id: "11B8EA780A5BC064"
+			shape: "circle"
+			tasks: [{
+				id: "0A59C1B9B3B1E4EA"
+				item: "powah:magmator_niotic"
+				type: "item"
+			}]
+			title: "Niotic Magmator"
+			x: 3.666d
+			y: -2.060d
+		}
+		{
+			dependencies: ["F93B844E71470EAC" "33FE26E30879BB80"]
+			description: ["Thermo Generators 使用下方的热块和内部的冷却剂。在依赖被动输出前，测试热源倍率并保持冷却剂供应。将此 Niotic 版本与前一个等级进行比较，并在替换现有设施前记录实际的配置速率或容量。"]
+			id: "6439F5C6E6B99D0B"
+			shape: "circle"
+			tasks: [{
+				id: "5AC5118B63533C1C"
+				item: "powah:thermo_generator_niotic"
+				type: "item"
+			}]
+			title: "Niotic 热能发电机"
+			x: 8.780d
+			y: 3.675d
+		}
+		{
+			dependencies: ["F93B844E71470EAC" "513784D9CF3A2514"]
+			description: ["太阳能电池板干净但间歇性供电。评估夜间和天气情况下的储能，而不仅仅是正午的系统表现。在替换现有设施前，请将此 Niotic 版本与前一等级进行比较，并记录实际的配置速率或容量。"]
+			id: "40CD2E440E83DF8A"
+			shape: "circle"
+			tasks: [{
+				id: "9A268775FD76CDB1"
+				item: "powah:solar_panel_niotic"
+				type: "item"
+			}]
+			title: "Niotic 太阳能电池板"
+			x: 6.542d
+			y: -2.519d
+		}
+		{
+			dependencies: ["F93B844E71470EAC" "E361F6D546878DC9"]
+			description: ["Powah 反应堆需要平衡铀矿、碳、红石、冷却剂和可选的干冰。监控所有输入，并在加注燃料期间保持备用发电机可用。将此 Niotic 版本与前一个等级进行比较，并在替换现有基础设施前记录实际的配置速率或容量。"]
+			id: "7DF862B828FAACA2"
+			shape: "circle"
+			tasks: [{
+				id: "2FE46639CACC454A"
+				item: "powah:reactor_niotic"
+				type: "item"
+			}]
+			title: "Niotic Reactor"
+			x: 2.717d
+			y: 0.690d
+		}
+		{
+			dependencies: ["F93B844E71470EAC" "6984E6EB734796FF"]
+			description: ["电缆等级限制总传输量。分离关键线路，避免意外环路，并确保容量高于预期最大突发流量。在替换现有基础设施前，将此 Niotic 版本与前一等级进行比较，并记录实际配置速率或容量。"]
+			id: "9AB4976CB33E5DB7"
+			shape: "circle"
+			tasks: [{
+				id: "E7A3929DCFD426D0"
+				item: "powah:energy_cable_niotic"
+				type: "item"
+			}]
+			title: "Niotic 能量电缆"
+			x: 5.541d
+			y: 3.155d
+		}
+		{
+			dependencies: ["F93B844E71470EAC" "38704A8F9B9AB2CE"]
+			description: ["能量单元缓冲了生成与消耗。将储能装置放置在能吸收峰值的位置，而无需隐藏一个长期容量不足的发电机。在替换现有基础设施前，请将此 Niotic 版本与前一等级进行比较，并记录实际配置速率或容量。"]
+			id: "218825510082A595"
+			shape: "circle"
+			tasks: [{
+				id: "F1058D6A7539E7E6"
+				item: "powah:energy_cell_niotic"
+				type: "item"
+			}]
+			title: "Niotic 能量电池"
+			x: 8.117d
+			y: 6.202d
+		}
+		{
+			dependencies: ["F93B844E71470EAC" "5A45C67097DF5B6B"]
+			description: ["电池提供便携能源，可为背包中的设备充电。携带分层方块前，请确认激活状态和容量。将此 Niotic 版本与上一层级进行比较，并在替换运行基础设施前记录实际的包配置速率或容量。"]
+			id: "5FF795B758CB9B99"
+			shape: "circle"
+			tasks: [{
+				id: "83101E8AF5475A75"
+				item: "powah:battery_niotic"
+				type: "item"
+			}]
+			title: "Niotic 电池"
+			x: 4.472d
+			y: 2.973d
+		}
+		{
+			dependencies: ["F93B844E71470EAC" "97B995286F6C9E64"]
+			description: ["末影单元构成共享无线能源池。使用独立频道并记录所有权，以免无关基地共用同一储备。在替换现有设施前，将此 Niotic 版本与前一等级进行比较，并记录实际的配置速率或容量。"]
+			id: "F1622C941C88CFA9"
+			shape: "circle"
+			tasks: [{
+				id: "48F7C13A27936501"
+				item: "powah:ender_cell_niotic"
+				type: "item"
+			}]
+			title: "Niotic 末影单元"
+			x: 9.859d
+			y: 3.844d
+		}
+		{
+			dependencies: ["F93B844E71470EAC" "4A924B4E2DEA2982"]
+			description: ["Ender Gates 会在机器上暴露一个未接电缆的绑定 Ender Cell 通道。请确认两端的绑定和传输层级。在替换现有基础设施前，将此 Niotic 版本与前一层级进行比较，并记录实际的配置速率或容量。"]
+			id: "36CD566C2E2C9DA2"
+			shape: "circle"
+			tasks: [{
+				id: "6D8B56A7EEF70B65"
+				item: "powah:ender_gate_niotic"
+				type: "item"
+			}]
+			title: "Niotic 末地传送门"
+			x: 8.383d
+			y: 2.650d
+		}
+		{
+			dependencies: ["F93B844E71470EAC" "7EA6B1B11020F85F"]
+			description: ["Player Transmitters 可为远程绑定的玩家充电。使用正确的绑定卡，并将其消耗计入基础负载。在替换现有设施前，请将此 Niotic 版本与上一等级进行比较，并记录实际配置速率或容量。"]
+			id: "01D6655B9C816268"
+			shape: "circle"
+			tasks: [{
+				id: "E20F637ECA270F23"
+				item: "powah:player_transmitter_niotic"
+				type: "item"
+			}]
+			title: "Niotic 玩家发射器"
+			x: 5.924d
+			y: 4.180d
+		}
+		{
+			dependencies: ["F93B844E71470EAC" "0EF331CAF8F4DC75"]
+			description: ["有灵装备应作为基础设施规划，配备冗余生成和足够的储能来吸收负载峰值。在 Energizing Orb 中生产此层级材料，并确认其杆、电缆和储能装置能够承受其能耗。"]
+			id: "DE93136F311D4A5C"
+			shape: "circle"
+			tasks: [{
+				id: "5C4497FCC628A48A"
+				item: "powah:crystal_spirited"
+				type: "item"
+			}]
+			title: "充满活力的活化材料"
+			x: 5.458d
+			y: -2.688d
+		}
+		{
+			dependencies: ["DE93136F311D4A5C"]
+			description: ["灵性电容器是发电机、传输器和存储器的通用升级组件。仅在能源材料供应可重复使用后批量制作。"]
+			id: "45F5A56051BA0ADA"
+			shape: "circle"
+			tasks: [{
+				id: "6C46B9B33FE64D7C"
+				item: "powah:capacitor_spirited"
+				type: "item"
+			}]
+			title: "灵性电容器"
+			x: 9.000d
+			y: -4.085d
+		}
+		{
+			dependencies: ["45F5A56051BA0ADA"]
+			description: ["有灵装备应作为基础设施规划，配备冗余生成和足够的存储以吸收负载峰值。"]
+			id: "16C1BCB141B07CE6"
+			rewards: [{
+				id: "2B6347DEDE2AAB79"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "24C695808AE40C54"
+				title: "确认：充满活力的等级"
+				type: "checkmark"
+			}]
+			title: "Spirited Tier"
+			x: 5.111d
+			y: -0.820d
+		}
+		{
+			dependencies: ["16C1BCB141B07CE6" "D93344FBFD5EE53C"]
+			description: ["更高级的钓竿能更快地将能量传输到球体中。球体的配方成本不变，因此当能量传输效率成为瓶颈时，再升级钓竿。在替换现有设施前，请将此活力版与前一等级进行比较，并记录实际的配置速率或容量。"]
+			id: "300269CE8C4FB16E"
+			shape: "circle"
+			tasks: [{
+				id: "D94F57091E846E66"
+				item: "powah:energizing_rod_spirited"
+				type: "item"
+			}]
+			title: "充满活力的能量棒"
+			x: 9.065d
+			y: -1.171d
+		}
+		{
+			dependencies: ["16C1BCB141B07CE6" "5FBC05C7BE1330E0"]
+			description: ["Furnators将熔炉燃料转化为FE。比较每FE的燃料成本并提供溢出安全的燃料缓冲。将此Spirited版本与前一个等级进行比较，并在替换工作基础设施之前记录实际的包配置速率或容量。"]
+			id: "887452836CB08413"
+			shape: "circle"
+			tasks: [{
+				id: "198CFE7EB2E64102"
+				item: "powah:furnator_spirited"
+				type: "item"
+			}]
+			title: "充满活力的熔炼器"
+			x: 6.899d
+			y: -1.480d
+		}
+		{
+			dependencies: ["16C1BCB141B07CE6" "11B8EA780A5BC064"]
+			description: ["Magmator消耗岩浆。将岩浆的生产和传输视为发电机的一部分，并在存储已满时干净地停止输入。在替换现有基础设施前，将此Spirited版本与前一等级进行比较，并记录实际配置速率或容量。"]
+			id: "129C5D67B25F2640"
+			shape: "circle"
+			tasks: [{
+				id: "8BEEF10851551C75"
+				item: "powah:magmator_spirited"
+				type: "item"
+			}]
+			title: "充满活力的岩浆怪"
+			x: 3.766d
+			y: 0.906d
+		}
+		{
+			dependencies: ["16C1BCB141B07CE6" "6439F5C6E6B99D0B"]
+			description: ["热发电机需要下方的热块和内部的冷却剂。在依赖被动输出前，先测试热源倍率并确保冷却剂供应。将此活力版与前一个等级进行比较，并在替换现有设施前记录实际的配置速率或容量。"]
+			id: "E61D594735E13535"
+			shape: "circle"
+			tasks: [{
+				id: "26241C7432E999C4"
+				item: "powah:thermo_generator_spirited"
+				type: "item"
+			}]
+			title: "活力热能发电机"
+			x: 8.313d
+			y: -0.274d
+		}
+		{
+			dependencies: ["16C1BCB141B07CE6" "40CD2E440E83DF8A"]
+			description: ["太阳能电池板干净但间歇性供电。评估夜间和天气下的储能，而非仅在正午判断系统。将此活力版与前一个等级比较，并在替换现有基础设施前记录实际的配置速率或容量。"]
+			id: "9A22728C27909C7E"
+			shape: "circle"
+			tasks: [{
+				id: "8B59196A17483B76"
+				item: "powah:solar_panel_spirited"
+				type: "item"
+			}]
+			title: "充满活力的太阳能电池板"
+			x: 10.204d
+			y: 1.931d
+		}
+		{
+			dependencies: ["16C1BCB141B07CE6" "7DF862B828FAACA2"]
+			description: ["Powah 反应堆需要平衡铀矿、碳、红石、冷却剂和可选的干冰。监控所有输入，并在加注燃料期间保持备用发电机可用。将此活力版与前一等级进行比较，在替换现有基础设施前，记录实际的配置速率或容量。"]
+			id: "BCD2CFF544AD9879"
+			shape: "circle"
+			tasks: [{
+				id: "94224F71C95390F0"
+				item: "powah:reactor_spirited"
+				type: "item"
+			}]
+			title: "Spirited Reactor"
+			x: 10.438d
+			y: 0.061d
+		}
+		{
+			dependencies: ["16C1BCB141B07CE6" "9AB4976CB33E5DB7"]
+			description: ["电缆等级限制总传输量。分离关键线路，避免意外环路，并确保容量高于预期最大突发流量。在替换现有基础设施前，将此活力版与前一等级进行比较，并记录实际配置速率或容量。"]
+			id: "A88541FE9353168E"
+			shape: "circle"
+			tasks: [{
+				id: "CA82B4D9042DCF94"
+				item: "powah:energy_cable_spirited"
+				type: "item"
+			}]
+			title: "灵性能量电缆"
+			x: 6.235d
+			y: 2.302d
+		}
+		{
+			dependencies: ["16C1BCB141B07CE6" "218825510082A595"]
+			description: ["能量单元缓冲了生成与消耗。将储能装置放置在能吸收峰值的位置，而无需隐藏一个长期容量不足的发电机。在替换现有设施前，将此活力版与前一等级进行比较，并记录实际配置速率或容量。"]
+			id: "D84D88278BDE9139"
+			shape: "circle"
+			tasks: [{
+				id: "9ABEB15BB03A2634"
+				item: "powah:energy_cell_spirited"
+				type: "item"
+			}]
+			title: "充满活力的能量单元"
+			x: 7.007d
+			y: 4.358d
+		}
+		{
+			dependencies: ["16C1BCB141B07CE6" "5FF795B758CB9B99"]
+			description: ["电池提供便携能源，可为背包中的设备充电。携带分层方块前，请确认激活状态和容量。将此活力版与前一等级进行比较，并在替换工作基础设施前记录实际的包配置速率或容量。"]
+			id: "2F63AC711957D98A"
+			shape: "circle"
+			tasks: [{
+				id: "295DE7F4621FE33E"
+				item: "powah:battery_spirited"
+				type: "item"
+			}]
+			title: "活力电池"
+			x: 9.138d
+			y: 5.799d
+		}
+		{
+			dependencies: ["16C1BCB141B07CE6" "F1622C941C88CFA9"]
+			description: ["末影单元构成共享无线能源池。使用独立频道并记录所有权，以免无关基地共用同一储备。在替换现有设施前，将此活力版与前一个等级比较，并记录实际的配置速率或容量。"]
+			id: "ACC2BFD9369F939C"
+			shape: "circle"
+			tasks: [{
+				id: "E83E6A852D336995"
+				item: "powah:ender_cell_spirited"
+				type: "item"
+			}]
+			title: "充满活力的末影细胞"
+			x: 11.609d
+			y: 3.138d
+		}
+		{
+			dependencies: ["16C1BCB141B07CE6" "36CD566C2E2C9DA2"]
+			description: ["Ender Gates 会在无电缆连接的机器上暴露一个绑定的 Ender Cell 通道。请确认两端的绑定和传输等级。在替换现有基础设施前，将此 Spirited 版本与前一等级进行比较，并记录实际的配置速率或容量。"]
+			id: "3477BA404199B0F5"
+			shape: "circle"
+			tasks: [{
+				id: "0E345A9F8A514D2F"
+				item: "powah:ender_gate_spirited"
+				type: "item"
+			}]
+			title: "充满活力的末地传送门"
+			x: 3.391d
+			y: 2.777d
+		}
+		{
+			dependencies: ["16C1BCB141B07CE6" "01D6655B9C816268"]
+			description: ["玩家发射器可为远程绑定的玩家充电。使用正确的绑定卡，并将其消耗计入基础负载。在替换现有设施前，将此灵动版与前一等级进行比较，并记录实际的配置速率或容量。"]
+			id: "342D82D7DA66147F"
+			shape: "circle"
+			tasks: [{
+				id: "F65FCD0ECF2913E1"
+				item: "powah:player_transmitter_spirited"
+				type: "item"
+			}]
+			title: "灵魂玩家传输器"
+			x: 7.698d
+			y: 3.504d
+		}
+		{
+			dependencies: ["16C1BCB141B07CE6" "0EF331CAF8F4DC75"]
+			description: ["Nitro 是最终层级。在建造前请评估吞吐量需求，不要盲目替换稳定的低层级系统。请在 Energizing Orb 中生产该层级材料，并确保其杆、电缆和存储单元能够承受其能耗。"]
+			id: "AB12F70CEA665BBD"
+			shape: "circle"
+			tasks: [{
+				id: "17A6C33101DCDC6C"
+				item: "powah:crystal_nitro"
+				type: "item"
+			}]
+			title: "氮化能量材料"
+			x: 9.403d
+			y: -3.062d
+		}
+		{
+			dependencies: ["AB12F70CEA665BBD"]
+			description: ["氮化电容是发电机、传输器和存储器的通用升级组件。仅在能源材料供应可重复使用后批量制作。"]
+			id: "FBFF32F3B6F26352"
+			shape: "circle"
+			tasks: [{
+				id: "F7E65531096C2D86"
+				item: "powah:capacitor_nitro"
+				type: "item"
+			}]
+			title: "氮化镓电容器"
+			x: 8.314d
+			y: -3.228d
+		}
+		{
+			dependencies: ["FBFF32F3B6F26352"]
+			description: ["Nitro 是最终层级。在需要精确吞吐量时建造，而非盲目替换稳定的低层级系统。"]
+			id: "38FD8EF9567264C9"
+			rewards: [{
+				id: "51ACB581419E2BAD"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "EAD40963D87342A0"
+				title: "确认：氮气等级 Nitro Tier"
+				type: "checkmark"
+			}]
+			title: "氮气等级"
+			x: 10.951d
+			y: -1.747d
+		}
+		{
+			dependencies: ["38FD8EF9567264C9" "300269CE8C4FB16E"]
+			description: ["更高级的钓竿能更快地将能量传输到球体中。球体的配方成本不变，因此当能量传输效率成为瓶颈时，再升级钓竿。在替换现有设施前，请将此氮气版与前一等级进行比较，并记录实际的配置速率或容量。"]
+			id: "9BB3D077A1813A10"
+			shape: "circle"
+			tasks: [{
+				id: "2BD8F091A45A9F1E"
+				item: "powah:energizing_rod_nitro"
+				type: "item"
+			}]
+			title: "氮化能量棒"
+			x: 9.799d
+			y: -2.035d
+		}
+		{
+			dependencies: ["38FD8EF9567264C9" "887452836CB08413"]
+			description: ["Furnators将熔炉燃料转化为FE。比较每FE的燃料成本并提供溢出安全的燃料缓冲。将此Nitro版本与前一个等级进行比较，并在替换工作基础设施之前记录实际的包配置速率或容量。"]
+			id: "03F527BFE1C7266D"
+			shape: "circle"
+			tasks: [{
+				id: "0639DA673BDC217A"
+				item: "powah:furnator_nitro"
+				type: "item"
+			}]
+			title: "Nitro Furnator"
+			x: 8.712d
+			y: -2.203d
+		}
+		{
+			dependencies: ["38FD8EF9567264C9" "129C5D67B25F2640"]
+			description: ["Magmator消耗岩浆。将岩浆的生产和传输视为发电机的一部分，并在存储已满时干净地停止输入。在替换现有基础设施前，将此Nitro版本与前一等级进行比较，并记录实际配置速率或容量。"]
+			id: "C955D1F20630359A"
+			shape: "circle"
+			tasks: [{
+				id: "5327599EDDEA7949"
+				item: "powah:magmator_nitro"
+				type: "item"
+			}]
+			title: "氮化岩浆怪"
+			x: 6.955d
+			y: 1.444d
+		}
+		{
+			dependencies: ["38FD8EF9567264C9" "E61D594735E13535"]
+			description: ["热发电机需要下方的热块和内部的冷却剂。在依赖被动输出前，先测试热源倍率并确保冷却剂供应。将此氮化镓版本与前一个等级进行比较，并在替换现有设施前记录实际的配置速率或容量。"]
+			id: "95F4F1D95A799DEF"
+			shape: "circle"
+			tasks: [{
+				id: "0A942F972EF5CF44"
+				item: "powah:thermo_generator_nitro"
+				type: "item"
+			}]
+			title: "氮化热发电机"
+			x: 9.377d
+			y: -0.119d
+		}
+		{
+			dependencies: ["38FD8EF9567264C9" "9A22728C27909C7E"]
+			description: ["太阳能电池板干净但间歇性供电。评估夜间和天气情况下的储能，而不仅仅是正午的系统表现。在替换现有设施前，请比较此Nitro版本与前一个等级，并记录实际配置下的速率或容量。"]
+			id: "723F2B140970F285"
+			shape: "circle"
+			tasks: [{
+				id: "D2E36C2B410F5692"
+				item: "powah:solar_panel_nitro"
+				type: "item"
+			}]
+			title: "氮化镓太阳能电池板"
+			x: 11.286d
+			y: 2.087d
+		}
+		{
+			dependencies: ["38FD8EF9567264C9" "BCD2CFF544AD9879"]
+			description: ["Powah 反应堆需要平衡铀矿、碳、红石、冷却剂和可选的干冰。监控所有输入，并在加注燃料期间保持备用发电机可用。将此 Nitro 版本与前一个等级进行比较，在替换现有基础设施前，记录实际配置好的速率或容量。"]
+			id: "E55FA4243AC94DDA"
+			shape: "circle"
+			tasks: [{
+				id: "A171BD48AA8D6930"
+				item: "powah:reactor_nitro"
+				type: "item"
+			}]
+			title: "氮化镓反应堆"
+			x: 6.571d
+			y: 0.414d
+		}
+		{
+			dependencies: ["38FD8EF9567264C9" "A88541FE9353168E"]
+			description: ["电缆等级限制总传输量。分离关键线路，避免意外环路，并确保容量高于预期最大突发流量。在替换现有基础设施前，将此 Nitro 版本与前一等级进行比较，并记录实际配置速率或容量。"]
+			id: "D0AD49D7FFF55204"
+			shape: "circle"
+			tasks: [{
+				id: "9264DB933129CEA2"
+				item: "powah:energy_cable_nitro"
+				type: "item"
+			}]
+			title: "氮化镓能量电缆"
+			x: 9.790d
+			y: 0.916d
+		}
+		{
+			dependencies: ["38FD8EF9567264C9" "D84D88278BDE9139"]
+			description: ["能量单元可缓冲发电与用电。将储能装置置于能吸收峰值的位置，避免隐藏一个长期容量不足的发电机。在替换现有设施前，将此Nitro版本与前一个等级进行比较，并记录实际配置下的速率或容量。"]
+			id: "306CD8F29D588EB7"
+			shape: "circle"
+			tasks: [{
+				id: "6FA4049F398F8283"
+				item: "powah:energy_cell_nitro"
+				type: "item"
+			}]
+			title: "氮气能量电池"
+			x: 9.174d
+			y: 4.700d
+		}
+		{
+			dependencies: ["38FD8EF9567264C9" "2F63AC711957D98A"]
+			description: ["电池提供便携能源，可为背包中的设备充电。使用分级方块携带前，请确认激活状态和容量。将此氮化镓版本与前一级别进行比较，并在更换现有基础设施前记录实际的配置速率或容量。"]
+			id: "E13E2F032081FB42"
+			shape: "circle"
+			tasks: [{
+				id: "349A5316B723A11E"
+				item: "powah:battery_nitro"
+				type: "item"
+			}]
+			title: "氮气电池"
+			x: 9.112d
+			y: 1.782d
+		}
+		{
+			dependencies: ["38FD8EF9567264C9" "ACC2BFD9369F939C"]
+			description: ["末影单元构成共享无线能源池。使用独立频道并记录所有权，以免无关基地共用同一储备。在替换现有设施前，将此氮气版与前一等级比较，并记录实际的配置速率或容量。"]
+			id: "5AF2A51ED03D0B78"
+			shape: "circle"
+			tasks: [{
+				id: "EDDE75E0C0FA8E7C"
+				item: "powah:ender_cell_nitro"
+				type: "item"
+			}]
+			title: "氮化末影细胞"
+			x: 10.259d
+			y: 4.869d
+		}
+		{
+			dependencies: ["38FD8EF9567264C9" "3477BA404199B0F5"]
+			description: ["Ender Gates 会在无电缆连接的机器上暴露一个绑定的 Ender Cell 通道。请确认两端的绑定和传输等级。在替换现有基础设施前，将此 Nitro 版本与前一等级进行比较，并记录实际的配置速率或容量。"]
+			id: "0927A64B4FA9BCB6"
+			shape: "circle"
+			tasks: [{
+				id: "2617FB8E8A1B44C7"
+				item: "powah:ender_gate_nitro"
+				type: "item"
+			}]
+			title: "氮气末地传送门"
+			x: 10.947d
+			y: 4.013d
+		}
+		{
+			dependencies: ["38FD8EF9567264C9" "342D82D7DA66147F"]
+			description: ["Player Transmitters 可远程为绑定玩家充电。使用正确的绑定卡，并将其消耗计入基础负载。在替换现有设施前，请先将此 Nitro 版本与前一个等级进行比较，并记录实际配置速率或容量。"]
+			id: "859D8457FCFEBFBF"
+			shape: "circle"
+			tasks: [{
+				id: "13FE35A078EF47C0"
+				item: "powah:player_transmitter_nitro"
+				type: "item"
+			}]
+			title: "氮气玩家传输器"
+			x: 10.225d
+			y: 5.968d
+		}
+	]
+	title: "Powah 能量"
+}

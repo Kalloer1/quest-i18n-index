@@ -1,0 +1,366 @@
+# AI 初翻，未人工校对
+{
+	id: "3E67C6049BB13707"
+	group: "03CF34AA16D16B6F"
+	order_index: 4
+	filename: "power"
+	title: "基础泰克尼乌姆"
+	icon: {
+		id: "custommachinery:custom_machine_item"
+		Count: 1b
+		tag: {
+			machine: "custommachinery:resource_combiner"
+		}
+	}
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: -1.5d
+			y: 0.0d
+			description: ["发电机将煤炭和木材等物品燃烧成RF"]
+			dependencies: [
+				"2B92CE8C755020CF"
+				"64E77C46133649B8"
+			]
+			id: "5748CCD2E11E882E"
+			tasks: [{
+				id: "2E8F8D218BB92307"
+				type: "item"
+				item: {
+					id: "custommachinery:custom_machine_item"
+					Count: 1b
+					tag: {
+						machine: "custommachinery:coal_gen"
+					}
+				}
+			}]
+			rewards: [{
+				id: "59405DB5D0A3BDFD"
+				type: "item"
+				item: "techopolis:tech_bucks"
+			}]
+		}
+		{
+			x: 1.5d
+			y: 0.0d
+			description: ["允许将流体注入物品和方块中"]
+			dependencies: [
+				"64E77C46133649B8"
+				"1CD5B934DA276DD7"
+			]
+			id: "6245993A1D2DD90F"
+			tasks: [{
+				id: "74626B52C09AFF0F"
+				type: "item"
+				item: {
+					id: "custommachinery:custom_machine_item"
+					Count: 1b
+					tag: {
+						machine: "custommachinery:fluid_crafter"
+					}
+				}
+			}]
+			rewards: [{
+				id: "58991A226F9A26AA"
+				type: "item"
+				item: "techopolis:tech_bucks"
+			}]
+		}
+		{
+			x: 0.0d
+			y: 0.0d
+			description: ["Creosote 加木板 加能量 等于 处理木材"]
+			dependencies: [
+				"5748CCD2E11E882E"
+				"6245993A1D2DD90F"
+			]
+			id: "007137385558BC3B"
+			tasks: [{
+				id: "3C07C4AAA39366A2"
+				type: "item"
+				item: "immersiveengineering:treated_wood_horizontal"
+			}]
+			rewards: [{
+				id: "2521FD9081FA7408"
+				type: "item"
+				item: "techopolis:tech_bucks"
+			}]
+		}
+		{
+			x: 0.0d
+			y: -1.5d
+			description: ["将各种资源组合成另一种不同的资源"]
+			dependencies: ["007137385558BC3B"]
+			id: "52187E0C2DB527F8"
+			tasks: [{
+				id: "046AF5586829A20B"
+				type: "item"
+				item: {
+					id: "custommachinery:custom_machine_item"
+					Count: 1b
+					tag: {
+						machine: "custommachinery:resource_combiner"
+					}
+				}
+			}]
+			rewards: [{
+				id: "11E8DBD464FBB3DD"
+				type: "item"
+				item: "techopolis:tech_bucks"
+			}]
+		}
+		{
+			x: 0.0d
+			y: -3.0d
+			description: ["不同一阶材料的组合配方"]
+			dependencies: ["52187E0C2DB527F8"]
+			id: "6B9CED19735046B3"
+			tasks: [{
+				id: "1A531DBD5C19074F"
+				type: "item"
+				item: "techopolis:basic_technium_ingot"
+			}]
+			rewards: [{
+				id: "779E91BB5E1F3011"
+				type: "item"
+				item: "techopolis:tech_bucks"
+			}]
+		}
+		{
+			x: 0.0d
+			y: -4.5d
+			description: ["让你可以收集一阶矿石并将其移动到更合适的地方"]
+			dependencies: ["6B9CED19735046B3"]
+			id: "51B85A3EC15EABBE"
+			tasks: [{
+				id: "5AABDD0F551522E2"
+				type: "item"
+				item: {
+					id: "techopolis:basic_technium_pickaxe"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "4F409EBE038DF99B"
+				type: "item"
+				item: "techopolis:tech_bucks"
+			}]
+		}
+		{
+			x: 3.0d
+			y: 0.0d
+			description: ["一侧放置岩浆，另一侧放置水，产生的原石会比5x5x5的矿工还快"]
+			dependencies: ["6245993A1D2DD90F"]
+			id: "5FD0E9D9DADD678F"
+			tasks: [{
+				id: "005C30BC6196BE2F"
+				type: "item"
+				item: "thermal:device_rock_gen"
+			}]
+			rewards: [{
+				id: "558B2B07A08ACA8F"
+				type: "item"
+				item: "techopolis:tech_bucks"
+			}]
+		}
+		{
+			x: -3.0d
+			y: 0.0d
+			description: ["当树木建造在树木吸收器上时，它会生成本应掉落物品的副本。点击机器上的箭头，然后点击绿色的加号以查看所需结构"]
+			dependencies: ["5748CCD2E11E882E"]
+			id: "69A015E6F6CAFB7F"
+			tasks: [{
+				id: "0E371E1D85E9B1E9"
+				type: "item"
+				item: {
+					id: "custommachinery:custom_machine_item"
+					Count: 1b
+					tag: {
+						machine: "custommachinery:tree_absorber"
+					}
+				}
+			}]
+			rewards: [{
+				id: "4ACB366493AA6396"
+				type: "item"
+				item: "techopolis:tech_bucks"
+			}]
+		}
+		{
+			x: 1.5d
+			y: -3.0d
+			description: ["将生物吸收器放置在生物下方即可开始收集掉落物。更多信息请参阅 Techopolis 指南"]
+			dependencies: ["6B9CED19735046B3"]
+			id: "2333451962DC5933"
+			tasks: [{
+				id: "0860A8183039D03B"
+				type: "item"
+				item: {
+					id: "custommachinery:custom_machine_item"
+					Count: 1b
+					tag: {
+						machine: "custommachinery:mob_absorber"
+					}
+				}
+			}]
+			rewards: [{
+				id: "1C645554C3361DED"
+				type: "item"
+				item: "techopolis:tech_bucks"
+			}]
+		}
+		{
+			x: -1.5d
+			y: -3.0d
+			description: ["将物品放入方块内并从顶部跳下，即可将物品挤压成其他物品。红石信号会重置挤压器"]
+			dependencies: ["6B9CED19735046B3"]
+			id: "7A2517FD92DA7936"
+			tasks: [{
+				id: "2FE688C18CDBAAF7"
+				type: "item"
+				item: "integrateddynamics:squeezer"
+			}]
+			rewards: [{
+				id: "5111F25763669DC2"
+				type: "item"
+				item: "techopolis:tech_bucks"
+			}]
+		}
+		{
+			x: -3.0d
+			y: -3.0d
+			description: ["压榨机可将曼里尔原木压成曼里尔树脂。该树脂可与曼里尔浆果在流体合成器中制成曼里尔块。"]
+			dependencies: ["7A2517FD92DA7936"]
+			id: "29AE708C4132C671"
+			tasks: [{
+				id: "59FC3D73B849D374"
+				type: "item"
+				item: "integrateddynamics:crystalized_menril_chunk"
+			}]
+			rewards: [{
+				id: "333521C8CBBC9204"
+				type: "item"
+				item: "techopolis:tech_bucks"
+			}]
+		}
+		{
+			x: 1.5d
+			y: -4.5d
+			description: ["太阳的力量！"]
+			dependencies: ["6B9CED19735046B3"]
+			id: "4F2D8121C4CE18B8"
+			tasks: [{
+				id: "14E736ACB8867894"
+				type: "item"
+				item: "powah:solar_panel_starter"
+			}]
+			rewards: [{
+				id: "323251B607EEF4EB"
+				type: "item"
+				item: "techopolis:tech_bucks"
+			}]
+		}
+		{
+			x: -1.5d
+			y: -4.5d
+			description: ["可以用漏斗和管道实现自动化"]
+			dependencies: ["6B9CED19735046B3"]
+			id: "146F575AEDFB614F"
+			tasks: [{
+				id: "14745D8C14563FFD"
+				type: "item"
+				item: "recycler:advanced_recycler"
+			}]
+			rewards: [{
+				id: "75620A161F7B5BEC"
+				type: "item"
+				item: "techopolis:tech_bucks"
+			}]
+		}
+		{
+			x: -3.0d
+			y: -4.5d
+			description: ["将废料转换为科技币和其他一些物品"]
+			dependencies: ["146F575AEDFB614F"]
+			id: "464EF9F4D369C2B0"
+			tasks: [{
+				id: "377A6E7A06B2D510"
+				type: "item"
+				item: {
+					id: "custommachinery:custom_machine_item"
+					Count: 1b
+					tag: {
+						machine: "custommachinery:scrap_box"
+					}
+				}
+			}]
+			rewards: [{
+				id: "33437420C4B54B17"
+				type: "item"
+				item: "techopolis:tech_bucks"
+			}]
+		}
+		{
+			x: 1.5d
+			y: -1.5d
+			description: ["巨型熔炉里每多放一个，熔炼的物品数量就会增加"]
+			dependencies: ["6B9CED19735046B3"]
+			id: "4E64B87EE139388D"
+			tasks: [{
+				id: "5A771F04848C0B9E"
+				type: "item"
+				item: "jumbofurnace:orthodimensional_hyperfurnace"
+			}]
+			rewards: [{
+				id: "1DBB4CA04FDA6C58"
+				type: "item"
+				item: "techopolis:tech_bucks"
+			}]
+		}
+		{
+			title: "生物掉落物复制机"
+			x: 3.0d
+			y: -3.0d
+			description: ["提供能量、生物精华和选定的生物掉落物后，它会复制该物品。更多信息请参阅 Techopolis 指南"]
+			dependencies: ["2333451962DC5933"]
+			id: "6EF72429E31D6A0D"
+			tasks: [{
+				id: "0F4367E5B501592C"
+				type: "item"
+				item: {
+					id: "custommachinery:custom_machine_item"
+					Count: 1b
+					tag: {
+						machine: "custommachinery:mob_drop_duplicator"
+					}
+				}
+			}]
+			rewards: [{
+				id: "743473061663984F"
+				type: "item"
+				item: "techopolis:tech_bucks"
+			}]
+		}
+		{
+			x: 0.0d
+			y: -6.0d
+			description: ["可放置于石质矿机内以提高速度。最多可堆叠8个"]
+			dependencies: ["51B85A3EC15EABBE"]
+			id: "7AC262110C4B38D4"
+			tasks: [{
+				id: "6022E5D1972B26AD"
+				type: "item"
+				item: "techopolis:stone_miner_upgrade"
+			}]
+			rewards: [{
+				id: "7D78DE93F38B1621"
+				type: "item"
+				item: "techopolis:tech_bucks"
+			}]
+		}
+	]
+}

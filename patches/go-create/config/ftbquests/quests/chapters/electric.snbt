@@ -1,0 +1,545 @@
+# AI 初翻，未人工校对
+{
+	id: "53E354C4DFE8BCA1"
+	group: "0FA952FB21E9D48F"
+	order_index: 2
+	filename: "electric"
+	title: "电动的"
+	icon: "createaddition:gold_spool"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	images: [{
+		x: 5.0d
+		y: -5.5d
+		width: 10.0d
+		height: 2.0d
+		rotation: 0.0d
+		image: "kubejs:textures/other/electric.png"
+		hover: [ ]
+		click: ""
+		dev: false
+		corner: false
+	}]
+	quests: [
+		{
+			x: 2.0d
+			y: 2.0d
+			subtitle: "制作金属棒和金属丝"
+			id: "63D6B739D8CF2D64"
+			tasks: [{
+				id: "70BEBC45B0CAC297"
+				type: "item"
+				item: "createaddition:rolling_mill"
+			}]
+			rewards: [{
+				id: "0FE885CD79BF88A6"
+				type: "item"
+				item: "minecraft:gold_ingot"
+				count: 2
+			}]
+		}
+		{
+			x: 4.0d
+			y: -2.5d
+			subtitle: "第二层电路。用于制作更先进的设备"
+			dependencies: ["5AF03BAE19DF3C6B"]
+			id: "7B81843C13F48949"
+			tasks: [{
+				id: "1ED2F68D49953971"
+				type: "item"
+				item: "kubejs:advanced_circuit"
+			}]
+			rewards: [{
+				id: "1472FA68ADB382C1"
+				type: "item"
+				item: "minecraft:ender_eye"
+				count: 2
+			}]
+		}
+		{
+			x: 2.0d
+			y: -2.5d
+			subtitle: "用于制作电气设备的手册文本"
+			id: "5AF03BAE19DF3C6B"
+			tasks: [{
+				id: "7E98763B47F49B7A"
+				type: "item"
+				item: "createaddition:capacitor"
+			}]
+			rewards: [{
+				id: "5DF2F2B9F8E5B3BB"
+				type: "item"
+				item: "create:mechanical_press"
+			}]
+		}
+		{
+			x: 4.0d
+			y: 0.5d
+			subtitle: "利用旋转能量产生RF能量"
+			dependencies: [
+				"61C93BBA952DD091"
+				"7B81843C13F48949"
+			]
+			id: "385EBD9D5E1369AB"
+			tasks: [{
+				id: "733E019BCB3236EA"
+				type: "item"
+				item: "createaddition:alternator"
+			}]
+			rewards: [
+				{
+					id: "64CC2F4E1AFE944A"
+					type: "item"
+					item: "create:rotation_speed_controller"
+					count: 2
+				}
+				{
+					id: "76358D363CAB7689"
+					type: "command"
+					title: "两个领地标记"
+					icon: {
+						id: "ftbquests:custom_icon"
+						Count: 1b
+						tag: {
+							Icon: "cc:textures/block/claim_block.png"
+						}
+					}
+					command: "/ftbchunks admin extra_claim_chunks @p add 2"
+					player_command: false
+				}
+			]
+		}
+		{
+			x: 4.0d
+			y: 2.0d
+			subtitle: "用导线将能量从一个机器传输到另一个机器"
+			dependencies: ["63D6B739D8CF2D64"]
+			id: "40287B17747CD6E2"
+			tasks: [{
+				id: "794015FED4E116C8"
+				type: "item"
+				item: "createaddition:connector"
+			}]
+			rewards: [{
+				id: "426ADE484CACEE7F"
+				type: "item"
+				item: "createaddition:copper_wire"
+				count: 2
+			}]
+		}
+		{
+			title: "电线卷轴"
+			x: 2.0d
+			y: 0.5d
+			subtitle: "用于在两个连接器之间传输能量"
+			dependencies: ["63D6B739D8CF2D64"]
+			id: "61C93BBA952DD091"
+			tasks: [
+				{
+					id: "5E467E054C91D73A"
+					type: "item"
+					item: "createaddition:copper_spool"
+				}
+				{
+					id: "09D9E79C63D863CC"
+					type: "item"
+					item: "createaddition:gold_spool"
+				}
+			]
+			rewards: [{
+				id: "0DABAD2AC60D32D7"
+				type: "item"
+				item: "createaddition:connector"
+				count: 2
+			}]
+		}
+		{
+			x: 2.0d
+			y: -1.0d
+			subtitle: "利用RF产生旋转能量"
+			dependencies: [
+				"61C93BBA952DD091"
+				"5AF03BAE19DF3C6B"
+			]
+			id: "33DF787AFB5AE4FA"
+			tasks: [{
+				id: "4B297ED754C7E9D9"
+				type: "item"
+				item: "createaddition:electric_motor"
+			}]
+			rewards: [
+				{
+					id: "233DCD6F8D6540E8"
+					type: "item"
+					item: "create:gearbox"
+				}
+				{
+					id: "71BDB5FC06194C96"
+					type: "item"
+					item: "create:shaft"
+					count: 8
+				}
+			]
+		}
+		{
+			x: 5.5d
+			y: -1.0d
+			subtitle: "用于为各种物品进行充能"
+			dependencies: ["7B81843C13F48949"]
+			id: "65092D268F4B49FC"
+			tasks: [{
+				id: "6A0BFC8FF36FEB7C"
+				type: "item"
+				item: "createaddition:charger"
+			}]
+			rewards: [
+				{
+					id: "0790E63C7B4229B2"
+					type: "item"
+					item: "createaddition:connector"
+					count: 2
+				}
+				{
+					id: "32EEB679D8C21534"
+					type: "item"
+					item: "createaddition:gold_spool"
+				}
+			]
+		}
+		{
+			x: 7.0d
+			y: -2.5d
+			subtitle: "第三层电路。用于制作中后期物品"
+			dependencies: [
+				"4632A6AD3004BC0D"
+				"7B81843C13F48949"
+			]
+			id: "0CDE8D7DBAFA0FF1"
+			tasks: [{
+				id: "58500D7611546541"
+				type: "item"
+				item: "kubejs:microprocessor"
+			}]
+			rewards: [
+				{
+					id: "43F860886CA1D69A"
+					type: "item"
+					item: "kubejs:go_energy_pink"
+					count: 8
+				}
+				{
+					id: "10F9E1B549C92C64"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+		{
+			x: 7.0d
+			y: -4.0d
+			subtitle: "注入能量的结晶硅薄膜。用于制造微处理器"
+			description: [""]
+			dependencies: ["3A33743420905D6D"]
+			id: "4632A6AD3004BC0D"
+			tasks: [{
+				id: "01BB2EDBE64A52A4"
+				type: "item"
+				item: "kubejs:silicon_wafer"
+			}]
+			rewards: [
+				{
+					id: "7595DD656F8A5FBE"
+					type: "item"
+					item: "refinedstorage:silicon"
+					count: 64
+				}
+				{
+					id: "3FC8773A14E95E95"
+					type: "command"
+					title: "两个领地标记"
+					icon: {
+						id: "ftbquests:custom_icon"
+						Count: 1b
+						tag: {
+							Icon: "cc:textures/block/claim_block.png"
+						}
+					}
+					command: "/ftbchunks admin extra_claim_chunks @p add 2"
+					player_command: false
+				}
+			]
+		}
+		{
+			x: 8.5d
+			y: -4.0d
+			subtitle: "由两个维度的沙子混合而成"
+			id: "3A33743420905D6D"
+			tasks: [{
+				id: "4063B6D36DF8F3C5"
+				type: "item"
+				item: "kubejs:silicon_blend"
+			}]
+			rewards: [
+				{
+					id: "2C46356CEFD1CC06"
+					type: "item"
+					item: "refinedstorage:silicon"
+					count: 64
+				}
+				{
+					id: "3F250C4C32EF9B67"
+					type: "command"
+					title: "一个区块声明"
+					icon: {
+						id: "ftbquests:custom_icon"
+						Count: 1b
+						tag: {
+							Icon: "cc:textures/block/claim_block.png"
+						}
+					}
+					command: "/ftbchunks admin extra_claim_chunks @p add 1"
+					player_command: false
+				}
+			]
+		}
+		{
+			x: 0.5d
+			y: 0.5d
+			subtitle: "将熔炉加热，将其变为电熔炉"
+			dependencies: ["61C93BBA952DD091"]
+			id: "63ECF5E480261C0B"
+			tasks: [{
+				id: "087512B1D7B69AB7"
+				type: "item"
+				item: "createaddition:heater"
+			}]
+			rewards: [
+				{
+					id: "3D5CCDA5FBD6759F"
+					type: "item"
+					item: "createaddition:copper_spool"
+				}
+				{
+					id: "679DAFB768D1100A"
+					type: "item"
+					item: "createaddition:connector"
+				}
+				{
+					id: "0B2E8BF19F0DBC39"
+					type: "item"
+					item: "minecraft:blast_furnace"
+				}
+			]
+		}
+		{
+			x: 7.0d
+			y: -1.0d
+			subtitle: "以各种方式协助建造！"
+			dependencies: ["65092D268F4B49FC"]
+			id: "78879D823409E262"
+			tasks: [{
+				id: "0F61DECCE26A3C72"
+				type: "item"
+				item: {
+					id: "buildinggadgets:gadget_building"
+					Count: 1b
+					tag: {
+						state: {
+							serializer: "buildinggadgets:dummy_serializer"
+							state: {
+								Name: "minecraft:air"
+							}
+							data: { }
+						}
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "01F6B29DD2CFF187"
+					type: "item"
+					item: "minecraft:grass_block"
+					count: 16
+				}
+				{
+					id: "6263409BC4105C8B"
+					type: "xp"
+					xp: 50
+				}
+			]
+		}
+		{
+			x: 8.5d
+			y: -2.5d
+			subtitle: "昂贵，但可以产生巨量的电力"
+			dependencies: [
+				"785B3EDD351331C7"
+				"0CDE8D7DBAFA0FF1"
+			]
+			id: "6936F03EF6701DEB"
+			tasks: [{
+				id: "43C10E2BAC0C87BB"
+				type: "item"
+				item: "solarflux:sp_5"
+			}]
+			rewards: [
+				{
+					id: "10F37B21B170BF46"
+					type: "item"
+					item: "kubejs:silicon_wafer"
+				}
+				{
+					id: "6EECB07574CDD744"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+				{
+					id: "6A77EBBC60D691A0"
+					type: "command"
+					title: "两个领地标记"
+					icon: {
+						id: "ftbquests:custom_icon"
+						Count: 1b
+						tag: {
+							Icon: "cc:textures/block/claim_block.png"
+						}
+					}
+					command: "/ftbchunks admin extra_claim_chunks @p add 2"
+					player_command: false
+				}
+			]
+		}
+		{
+			x: 8.5d
+			y: -1.0d
+			subtitle: "能产生相当可观的电力"
+			dependencies: ["3619B591CC0B4907"]
+			id: "785B3EDD351331C7"
+			tasks: [{
+				id: "396AC9D87BE02A95"
+				type: "item"
+				item: "solarflux:sp_4"
+			}]
+			rewards: [
+				{
+					id: "2F3A67A938EE876E"
+					type: "item"
+					item: "minecraft:blaze_powder"
+					count: 16
+				}
+				{
+					id: "066C5E677030A850"
+					type: "xp"
+					xp: 200
+				}
+			]
+		}
+		{
+			x: 8.5d
+			y: 0.5d
+			subtitle: "能产生相当可观的电量"
+			dependencies: ["0D46A5C5A93B9770"]
+			id: "3619B591CC0B4907"
+			tasks: [{
+				id: "285ECFAF051A4E71"
+				type: "item"
+				item: "solarflux:sp_3"
+			}]
+			rewards: [{
+				id: "597DF6E622D650C9"
+				type: "item"
+				item: "minecraft:glowstone_dust"
+				count: 32
+			}]
+		}
+		{
+			x: 7.0d
+			y: 0.5d
+			subtitle: "比一级太阳能板好8倍"
+			dependencies: ["580CE3D46FC5ED25"]
+			id: "0D46A5C5A93B9770"
+			tasks: [{
+				id: "514C3E06E0859A0D"
+				type: "item"
+				item: "solarflux:sp_2"
+			}]
+			rewards: [{
+				id: "48B34C6DB3D8F24D"
+				type: "item"
+				item: "minecraft:lapis_lazuli"
+				count: 16
+			}]
+		}
+		{
+			x: 5.5d
+			y: 0.5d
+			subtitle: "产生的能量少得可怜，聊胜于无"
+			id: "580CE3D46FC5ED25"
+			tasks: [{
+				id: "33B46208F418EA2E"
+				type: "item"
+				item: "solarflux:sp_1"
+			}]
+			rewards: [{
+				id: "0E0D7EAD26051023"
+				type: "item"
+				item: "minecraft:piston"
+			}]
+		}
+		{
+			title: "创建区块加载器"
+			x: 2.0d
+			y: -4.0d
+			subtitle: "用于在移动装置上加载区块"
+			dependencies: ["7B81843C13F48949"]
+			id: "77F270D2419A7E6B"
+			tasks: [{
+				id: "7618EFEA8C694A5A"
+				type: "item"
+				item: "createchunkloading:chunk_loader"
+			}]
+			rewards: [
+				{
+					id: "55AB2DC9DF747C72"
+					type: "item"
+					item: {
+						id: "create:super_glue"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "56E0AC4CEC7CB530"
+					type: "xp"
+					xp: 50
+				}
+			]
+		}
+		{
+			x: 5.5d
+			y: -4.0d
+			subtitle: "食用后可获得一个额外的已加载区块"
+			dependencies: ["7B81843C13F48949"]
+			id: "1B267B22D06A574F"
+			tasks: [{
+				id: "23274FEEEE829BEF"
+				type: "item"
+				item: "kubejs:chunkolate"
+			}]
+			rewards: [
+				{
+					id: "7BD01E86FA4C6A7D"
+					type: "item"
+					item: "kubejs:chunkolate"
+				}
+				{
+					id: "0C918E0862F0E464"
+					type: "xp"
+					xp: 50
+				}
+			]
+		}
+	]
+}

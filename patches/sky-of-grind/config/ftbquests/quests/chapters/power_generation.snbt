@@ -1,0 +1,733 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "rsquare"
+	filename: "power_generation"
+	group: "457C1F56243DA4F7"
+	icon: "solarflux:sp_avaritia.infinity"
+	id: "29B29E88FA00DAB5"
+	images: [
+		{
+			height: 2.0d
+			image: "gtceu:item/lapotronic_energy_orb_cluster/8"
+			rotation: 0.0d
+			width: 2.0d
+			x: -2.5d
+			y: 8.0d
+		}
+		{
+			height: 1.0d
+			image: "gtceu:block/generators/boiler/solar/overlay_top_active"
+			rotation: 0.0d
+			width: 1.0d
+			x: -2.5d
+			y: 9.5d
+		}
+		{
+			height: 1.0d
+			image: "gtceu:block/generators/boiler/solar/overlay_top_active"
+			rotation: 0.0d
+			width: 1.0d
+			x: 2.5d
+			y: 9.5d
+		}
+		{
+			height: 2.0d
+			image: "gtceu:item/lapotronic_energy_orb_cluster/8"
+			rotation: 0.0d
+			width: 2.0d
+			x: 2.5d
+			y: 8.0d
+		}
+		{
+			height: 1.0d
+			image: "gtceu:block/generators/boiler/solar/overlay_top_active"
+			rotation: 0.0d
+			width: 1.0d
+			x: 2.5d
+			y: 6.5d
+		}
+		{
+			height: 1.0d
+			image: "gtceu:block/generators/boiler/solar/overlay_top_active"
+			rotation: 0.0d
+			width: 1.0d
+			x: -2.5d
+			y: 6.5d
+		}
+	]
+	order_index: 2
+	quest_links: [
+		{
+			id: "5EDD42B61F6E8685"
+			linked_quest: "0D7E4F804F054A37"
+			x: 1.0d
+			y: 7.5d
+		}
+		{
+			id: "2CBAFC4D33911D55"
+			linked_quest: "1AAD55E80A86E225"
+			x: 4.5d
+			y: 17.5d
+		}
+	]
+	quests: [
+		{
+			description: ["算是吧。不过在这里你可以学到获取能量的方法，以及我们自己的见解。"]
+			id: "416CD638E3291E16"
+			subtitle: "这条任务线也很重要"
+			tasks: [{
+				id: "075C66BE446D026E"
+				title: "发电是非常非常重要的事情"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["416CD638E3291E16"]
+			description: [
+				"是啊，唯一低电压的选项就是蒸汽了，抱歉！"
+				""
+				"好吧，这是个玩笑，你可以在LV里做别的事，但不推荐，所以才有了这个说明。"
+				"要开始发电，先制作一个LV燃气或蒸汽涡轮机。"
+			]
+			id: "567ECBB12C33B460"
+			subtitle: "Cracker 和煤炭气体何时出现"
+			tasks: [{
+				id: "22C6B8ECEE4134A9"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "gtceu:lv_steam_turbine"
+							}
+							{
+								Count: 1b
+								id: "gtceu:lv_gas_turbine"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "LV 选项"
+			x: 0.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["567ECBB12C33B460"]
+			description: [
+				"将油蒸馏成苯等不同气体，轻松实现前期发电。"
+				""
+				"它们算是被MV锁住了，因为你需要石油，而最容易获得石油的方法就是在石油钻井平台上。"
+			]
+			id: "4FC4ADD13A66783E"
+			tasks: [{
+				id: "4115CD8B2AB3BF45"
+				item: "gtceu:mv_gas_turbine"
+				type: "item"
+			}]
+			title: "燃气能源"
+			x: -1.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["567ECBB12C33B460"]
+			description: [
+				"将油蒸馏成石脑油、轻质燃料油等不同燃料，或制成柴油。目前还无法制作汽油，因为那需要EV解锁。"
+				""
+				"它们算是被MV锁住了，因为你需要石油，而最容易获得石油的方法就是在石油钻井平台上。"
+			]
+			id: "17DF3F05D95B034F"
+			tasks: [{
+				id: "2A02F1F01E8B3350"
+				item: "gtceu:mv_combustion"
+				type: "item"
+			}]
+			title: "燃烧能量"
+			x: 1.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["61214815D71A61B7"]
+			description: [""]
+			id: "0C1CB0D2915650F1"
+			rewards: [{
+				id: "1EE5407D71466CF3"
+				item: "gtceu:double_resonant_naquadah_plate"
+				type: "item"
+			}]
+			subtitle: "1 UIV 放大器"
+			tasks: [{
+				id: "7E518C25FEF8A513"
+				item: "gtceu:naquadria_plasma_plasma_bucket"
+				type: "item"
+			}]
+			x: -4.5d
+			y: 14.5d
+		}
+		{
+			dependencies: ["28E8CCAF48716EA7"]
+			id: "0C1A865D531DB711"
+			tasks: [{
+				id: "19271FF17FABF2AD"
+				item: "gtceu:starcondenser"
+				type: "item"
+			}]
+			x: 4.5d
+			y: 19.0d
+		}
+		{
+			dependencies: ["74177146493E4003"]
+			id: "28E8CCAF48716EA7"
+			tasks: [{
+				id: "6F8F3894916708B5"
+				item: "kubejs:condensed_star_matter"
+				type: "item"
+			}]
+			x: 3.0d
+			y: 19.0d
+		}
+		{
+			dependencies: [
+				"0C1A865D531DB711"
+				"28E8CCAF48716EA7"
+			]
+			id: "3FF29C8D7C6E691F"
+			subtitle: "1 UEV 放大器"
+			tasks: [{
+				id: "6AF33355726F9BD0"
+				item: "gtceu:condensed_star_matter_bucket"
+				type: "item"
+			}]
+			x: 3.0d
+			y: 17.5d
+		}
+		{
+			dependencies: [
+				"62DB1817C349C6F5"
+				"1AAD55E80A86E225"
+			]
+			description: [""]
+			hide_text_until_complete: false
+			icon: "gtceu:reactable_fissioned_matter_plasma_bucket"
+			id: "00D749A4BC17C724"
+			subtitle: "1 UXV 放大器"
+			tasks: [
+				{
+					id: "32200EEEEF037F12"
+					item: "gtceu:antimatter_ingot"
+					type: "item"
+				}
+				{
+					id: "06A25A29029B9E5C"
+					item: "gtceu:condensed_star_matter_bucket"
+					type: "item"
+				}
+			]
+			title: "&5可反应裂变物质 (React-Able Fissioned Matter)"
+			x: 3.0d
+			y: 16.0d
+		}
+		{
+			dependencies: ["251FBD9F0A55D451"]
+			id: "62DB1817C349C6F5"
+			tasks: [{
+				id: "6C9280AF7E5C14A5"
+				item: "gtceu:atomicompressor"
+				type: "item"
+			}]
+			x: 4.5d
+			y: 16.0d
+		}
+		{
+			dependencies: ["17DF3F05D95B034F"]
+			id: "123CC98AF6062D74"
+			tasks: [{
+				id: "0E43EE60427674FF"
+				item: "gtceu:bio_diesel_bucket"
+				type: "item"
+			}]
+			x: 3.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["17DF3F05D95B034F"]
+			id: "012A3165BC3A9230"
+			tasks: [{
+				id: "6C76C41A9FB927B1"
+				item: "gtceu:diesel_bucket"
+				type: "item"
+			}]
+			x: 3.0d
+			y: 5.5d
+		}
+		{
+			can_repeat: false
+			dependencies: [
+				"123CC98AF6062D74"
+				"012A3165BC3A9230"
+			]
+			dependency_requirement: "one_completed"
+			id: "303E6FC68DDBA358"
+			tasks: [{
+				id: "765038A7277DC6A7"
+				item: "gtceu:cetane_boosted_diesel_bucket"
+				type: "item"
+			}]
+			x: 4.5d
+			y: 5.5d
+		}
+		{
+			dependencies: [
+				"123CC98AF6062D74"
+				"012A3165BC3A9230"
+				"303E6FC68DDBA358"
+				"662A82CC426CE109"
+			]
+			dependency_requirement: "one_completed"
+			id: "48EA518B25180EC6"
+			tasks: [{
+				id: "6EDF697317301EA8"
+				item: "gtceu:large_combustion_engine"
+				type: "item"
+			}]
+			title: "大型燃烧装置"
+			x: 4.5d
+			y: 4.0d
+		}
+		{
+			dependencies: [
+				"74376A0FFFA0F050"
+				"1866CD4E4F61053A"
+				"48EA518B25180EC6"
+			]
+			id: "167B6FC43010934B"
+			tasks: [{
+				id: "79161360B5408B95"
+				item: "gtceu:high_octane_gasoline_bucket"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["48EA518B25180EC6"]
+			id: "59436BEAA8E686C5"
+			tasks: [{
+				id: "4E41832FB10CBEBB"
+				item: "gtceu:rocket_fuel_bucket"
+				type: "item"
+			}]
+			x: 4.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["17DF3F05D95B034F"]
+			dependency_requirement: "one_completed"
+			id: "662A82CC426CE109"
+			tasks: [{
+				id: "74976F2404105F97"
+				item: "gtceu:mercury_vapor_bucket"
+				type: "item"
+			}]
+			x: 3.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["1866CD4E4F61053A"]
+			description: [
+				"燃烧在中期和前期确实很棒，但对于ZPM-UHV等后期阶段来说就不够用了。"
+				""
+				"所以，也去研究下别的方法，比如用氦气、纳夸德里亚或星尘等离子体获取等离子能……或者直接通过AE申请100个太阳能电池板。"
+			]
+			id: "0A06D1A8A5115B47"
+			shape: "gear"
+			tasks: [{
+				id: "66036D43A97536C2"
+				title: "燃烧可解决不了问题！"
+				type: "checkmark"
+			}]
+			x: 7.5d
+			y: 5.5d
+		}
+		{
+			dependencies: ["4FC4ADD13A66783E"]
+			id: "552AD46F1BCA2F44"
+			tasks: [{
+				id: "75B0260D4DE5A5D5"
+				item: "gtceu:benzene_bucket"
+				type: "item"
+			}]
+			x: -3.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["4FC4ADD13A66783E"]
+			id: "6E40FE9E5EF64CD0"
+			tasks: [{
+				id: "42AEFC39D6086316"
+				item: "gtceu:lpg_bucket"
+				type: "item"
+			}]
+			x: -3.0d
+			y: 4.0d
+		}
+		{
+			dependencies: [
+				"552AD46F1BCA2F44"
+				"6E40FE9E5EF64CD0"
+				"08FEA54C90AB174E"
+				"61214815D71A61B7"
+			]
+			dependency_requirement: "one_completed"
+			id: "5E2178FFAED6B5DF"
+			tasks: [{
+				id: "7530264C1EABC51E"
+				item: "gtceu:gas_large_turbine"
+				type: "item"
+			}]
+			title: "大型燃气能源"
+			x: -4.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["4FC4ADD13A66783E"]
+			id: "08FEA54C90AB174E"
+			tasks: [{
+				id: "0B9603701A580532"
+				item: "gtceu:methane_bucket"
+				type: "item"
+			}]
+			x: -3.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["552AD46F1BCA2F44"]
+			id: "61214815D71A61B7"
+			tasks: [{
+				id: "07F6ABD5B902AE9F"
+				item: "gtceu:nitrobenzene_bucket"
+				type: "item"
+			}]
+			x: -4.5d
+			y: 5.5d
+		}
+		{
+			dependencies: ["5E2178FFAED6B5DF"]
+			description: [
+				"虽然燃气能源在前中期的确很不错，但GregTech在IV-UHV等后期阶段就不够用了。"
+				""
+				"所以，也去试试别的方法，比如用氦气、钠克德里亚或星质等离子体获取燃烧能或等离子能……或者直接通过AE申请100个太阳能电池板。"
+			]
+			id: "240D3E4E4614D936"
+			shape: "gear"
+			tasks: [{
+				id: "3F4C05E134651813"
+				title: "燃烧可解决不了问题！"
+				type: "checkmark"
+			}]
+			title: "光靠燃气能源可不行！"
+			x: -6.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["567ECBB12C33B460"]
+			id: "58330AF3FEFDEB6C"
+			subtitle: "1 ULV 放大器"
+			tasks: [{
+				id: "52B11049949CE844"
+				item: "solarflux:sp_1"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["58330AF3FEFDEB6C"]
+			id: "3D6D327221BC36C2"
+			subtitle: "1 LV 放大器"
+			tasks: [{
+				id: "292A38A9357A27BD"
+				item: "solarflux:sp_2"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["3D6D327221BC36C2"]
+			id: "0D7E4F804F054A37"
+			subtitle: "1 MV 放大器"
+			tasks: [{
+				id: "2266F52CF2646C0F"
+				item: "solarflux:sp_3"
+				type: "item"
+			}]
+			x: -1.0d
+			y: 7.5d
+		}
+		{
+			dependencies: ["0D7E4F804F054A37"]
+			id: "3EF44481FDF07DB0"
+			subtitle: "1 HV 放大器"
+			tasks: [{
+				id: "4E02ACBCD4108AAF"
+				item: "solarflux:sp_4"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 9.0d
+		}
+		{
+			dependencies: ["3EF44481FDF07DB0"]
+			id: "4A8BC1D68AA5DD97"
+			subtitle: "1 EV 增幅器"
+			tasks: [{
+				id: "0A5DDC65A7659697"
+				item: "solarflux:sp_5"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 10.5d
+		}
+		{
+			dependencies: ["0A1A5937B85A90BB"]
+			id: "2B9961947BC3D60C"
+			subtitle: "1 LuV 增幅器"
+			tasks: [{
+				id: "53D2EE9AFB802B82"
+				item: "solarflux:sp_7"
+				type: "item"
+			}]
+			x: -1.0d
+			y: 12.0d
+		}
+		{
+			dependencies: ["4A8BC1D68AA5DD97"]
+			id: "0A1A5937B85A90BB"
+			subtitle: "1 IV 放大器"
+			tasks: [{
+				id: "43E8045E8F27055F"
+				item: "solarflux:sp_6"
+				type: "item"
+			}]
+			x: -1.0d
+			y: 10.5d
+		}
+		{
+			dependencies: ["2B9961947BC3D60C"]
+			id: "7854117334570661"
+			subtitle: "1 ZPM 增幅器"
+			tasks: [{
+				id: "75E4618F0BF6F9EC"
+				item: "solarflux:sp_8"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 12.0d
+		}
+		{
+			description: [
+				"这是一个大型太阳能电池板。"
+				"太阳能电池板只能放在这里面才能用，不过你不用担心昼夜循环的问题。"
+				""
+				"FE 转 EU 转换器已禁用，所以这是唯一使用它们的方法。"
+			]
+			id: "17169E18FCB4C6CF"
+			shape: "octagon"
+			tasks: [{
+				id: "003A2BC24E48A8D2"
+				item: "gtceu:large_solar_panel"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 7.5d
+		}
+		{
+			dependencies: [
+				"0C1CB0D2915650F1"
+				"3FF29C8D7C6E691F"
+				"00D749A4BC17C724"
+			]
+			id: "1A9857EDE427797B"
+			tasks: [{
+				id: "18FBEAAC18D1A8D0"
+				item: "gtceu:xl_plasma_turbine"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 17.0d
+		}
+		{
+			description: [
+				"非常适合IV-UV（或许甚至是UHV）的强电"
+				""
+				"需要一点操作，不像太阳能电池板那样傻瓜式发电。但它能产生惊人的电力！"
+			]
+			id: "7EAE0D5F4231C0E9"
+			tasks: [{
+				id: "72FF2B9C050D128F"
+				item: "gtceu:tesla_tower"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 13.5d
+		}
+		{
+			dependencies: ["7EAE0D5F4231C0E9"]
+			id: "1CA2DAF9B49B14EE"
+			subtitle: "1 UV 放大器"
+			tasks: [{
+				id: "5E9829916EB6F9D0"
+				item: "kubejs:tesla_coil_mk1"
+				type: "item"
+			}]
+			x: -1.0d
+			y: 14.5d
+		}
+		{
+			dependencies: ["7EAE0D5F4231C0E9"]
+			id: "270DB0756477B914"
+			subtitle: "1 UEV 放大器"
+			tasks: [{
+				id: "624FB36B004FFDE9"
+				item: "kubejs:tesla_coil_mk2"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 14.5d
+		}
+		{
+			dependencies: [
+				"1CA2DAF9B49B14EE"
+				"270DB0756477B914"
+			]
+			id: "666032C0E824F3F4"
+			subtitle: "1 UXV 放大器"
+			tasks: [{
+				id: "0676B96B33DBAE8F"
+				item: "kubejs:tesla_coil_mk3"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 15.5d
+		}
+		{
+			dependencies: [
+				"3B606E680E7317ED"
+				"6F442AC629958898"
+			]
+			id: "6FE6B17B9193CAB2"
+			tasks: [{
+				id: "3206500A0AF444C2"
+				item: "gtceu:chaotic_singularity_reactor"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 18.5d
+		}
+		{
+			dependencies: ["6FE6B17B9193CAB2"]
+			description: [""]
+			id: "2FA03148CCD8CA22"
+			subtitle: "1 MAX+1 放大器"
+			tasks: [{
+				id: "07D51ADAC430CF70"
+				item: "kubejs:reactive_chaos_pellet"
+				type: "item"
+			}]
+			x: 1.5d
+			y: 18.0d
+		}
+		{
+			dependencies: ["6FE6B17B9193CAB2"]
+			id: "3DB256A33B446134"
+			subtitle: "1 MAX+4 放大器"
+			tasks: [{
+				id: "2187263355A44217"
+				item: "kubejs:infused_reactive_chaos_pellet"
+				type: "item"
+			}]
+			x: 1.5d
+			y: 19.5d
+		}
+		{
+			description: ["恭喜！这是一个巨大的里程碑。"]
+			id: "00B8E2FD349C58C3"
+			shape: "octagon"
+			size: 3.0d
+			tasks: [{
+				id: "373E4FF0115A86DE"
+				item: "gtceu:creative_energy"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 21.0d
+		}
+		{
+			dependencies: [
+				"7EAE0D5F4231C0E9"
+				"167B6FC43010934B"
+				"03EF4F0A0D5E136C"
+			]
+			id: "15415878D572DBB5"
+			subtitle: "1 MAX 放大器"
+			tasks: [{
+				id: "2A63DD48826085EE"
+				item: "gtceu:naquadria_plasma_mk3_plasma_bucket"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 13.5d
+		}
+		{
+			dependencies: [
+				"303E6FC68DDBA358"
+				"0C1CB0D2915650F1"
+				"401F575C95AC1E00"
+				"62DB1817C349C6F5"
+			]
+			id: "03EF4F0A0D5E136C"
+			subtitle: "2 UXV 放大器"
+			tasks: [{
+				id: "6D648BBAB52ED6A3"
+				item: "gtceu:naquadria_plasma_mk2_plasma_bucket"
+				type: "item"
+			}]
+			x: 4.5d
+			y: 14.5d
+		}
+		{
+			dependencies: [
+				"48EA518B25180EC6"
+				"1866CD4E4F61053A"
+			]
+			id: "74376A0FFFA0F050"
+			tasks: [{
+				id: "6EEB7B7940DB908A"
+				item: "gtceu:gasoline_bucket"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["48EA518B25180EC6"]
+			id: "1866CD4E4F61053A"
+			tasks: [{
+				id: "66843EE580F00B37"
+				item: "gtceu:extreme_combustion_engine"
+				type: "item"
+			}]
+			title: "极端燃烧模组 (Extreme Combustion)"
+			x: 7.5d
+			y: 4.0d
+		}
+	]
+	title: "电力生成"
+}

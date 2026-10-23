@@ -1,0 +1,635 @@
+# AI 初翻，未人工校对
+{
+	id: "326B1F3EF15C1F4F"
+	group: "201230E95162B967"
+	order_index: 11
+	filename: "humble_beginnings"
+	title: "卑微的开端"
+	icon: "create:cogwheel"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "AndeNICE"
+			x: -7.0d
+			y: 0.0d
+			subtitle: "获取安山岩"
+			id: "1DD62FE514B07997"
+			tasks: [{
+				id: "3D3238B6E17ACE12"
+				type: "item"
+				item: "minecraft:andesite"
+			}]
+		}
+		{
+			title: "最硬的矿石块（The Hardest Nugget）"
+			icon: "minecraft:iron_nugget"
+			x: -5.0d
+			y: 0.0d
+			subtitle: "合成铁粒"
+			dependencies: ["1DD62FE514B07997"]
+			id: "6ECBC6D28EE1E0F8"
+			tasks: [{
+				id: "379E61CC4FE4F5C8"
+				type: "item"
+				item: "minecraft:iron_nugget"
+			}]
+		}
+		{
+			title: "安山岩合金"
+			x: -3.0d
+			y: 0.0d
+			shape: "hexagon"
+			subtitle: "合成安山合金"
+			dependencies: ["6ECBC6D28EE1E0F8"]
+			size: 2.0d
+			id: "13ECF926E0602979"
+			tasks: [{
+				id: "206FCC451301E6A3"
+				type: "item"
+				item: "create:andesite_alloy"
+				match_nbt: false
+			}]
+			rewards: [{
+				id: "3AEF188509EE9758"
+				type: "xp_levels"
+				xp_levels: 2
+			}]
+		}
+		{
+			title: "你在锌（Zinc）什么鬼事情呢？"
+			icon: "create:zinc_ingot"
+			x: 1.0d
+			y: 0.0d
+			subtitle: "获取锌矿石 (Aquire Zinc)"
+			description: ["要获得锌，请在底部一行使用3个2级胶囊！"]
+			dependencies: ["13ECF926E0602979"]
+			id: "10237E2B346EDD62"
+			tasks: [{
+				id: "05A717917876B6AC"
+				type: "item"
+				item: "create:zinc_ingot"
+			}]
+		}
+		{
+			x: 1.0d
+			y: 4.0d
+			subtitle: "合成安山岩外壳"
+			dependencies: ["13ECF926E0602979"]
+			size: 2.0d
+			id: "6F35043ED3015D57"
+			tasks: [{
+				id: "08329C69CA5E7579"
+				type: "item"
+				item: "create:andesite_casing"
+			}]
+		}
+		{
+			title: "向大众分发黄铜制品"
+			x: 5.0d
+			y: 0.0d
+			shape: "hexagon"
+			subtitle: "制作黄铜！"
+			dependencies: [
+				"10237E2B346EDD62"
+				"3F15420EC2265ACD"
+				"665303C448C703B5"
+			]
+			size: 2.0d
+			id: "3517C18CC054284A"
+			tasks: [{
+				id: "1D17C30CF5967347"
+				type: "item"
+				item: "create:brass_ingot"
+			}]
+			rewards: [
+				{
+					id: "5E61020C8861A967"
+					type: "item"
+					item: "create:brass_ingot"
+					count: 4
+				}
+				{
+					id: "341FFEE39C1E9096"
+					type: "command"
+					auto: "enabled"
+					command: "/say @p just reached the Brass Age!"
+					player_command: false
+				}
+			]
+		}
+		{
+			title: "我的混音带"
+			x: 3.75d
+			y: 1.25d
+			shape: "gear"
+			subtitle: "制作一个机械搅拌机"
+			dependencies: ["6F35043ED3015D57"]
+			size: 1.25d
+			id: "3F15420EC2265ACD"
+			tasks: [{
+				id: "37B2BC94283F952E"
+				type: "item"
+				item: "create:mechanical_mixer"
+			}]
+		}
+		{
+			title: "绑架事件"
+			x: 7.0d
+			y: 0.0d
+			subtitle: "用你的烈焰燃烧器捕捉一只烈焰人"
+			dependencies: [
+				"38770C1C8E9E59F0"
+				"070484BCF48A7C32"
+			]
+			id: "665303C448C703B5"
+			tasks: [{
+				id: "542EC4D84AB9BA54"
+				type: "item"
+				item: "create:blaze_burner"
+			}]
+		}
+		{
+			title: "一个空笼子"
+			x: 6.0d
+			y: 2.0d
+			subtitle: "制作一个烈焰燃烧器"
+			id: "38770C1C8E9E59F0"
+			tasks: [{
+				id: "2F77D2779F2E8B51"
+				type: "item"
+				item: "create:empty_blaze_burner"
+			}]
+		}
+		{
+			title: "通往地狱的高速公路"
+			x: 8.5d
+			y: 2.000000000000007d
+			shape: "hexagon"
+			subtitle: "前往下界 (Nether)"
+			size: 1.5d
+			id: "2AB21C14A4A4A19E"
+			tasks: [{
+				id: "3BC3CE7B29AE993A"
+				type: "dimension"
+				dimension: "minecraft:the_nether"
+			}]
+			rewards: [{
+				id: "3593FCE2FA6ED6B3"
+				type: "xp_levels"
+				xp_levels: 10
+			}]
+		}
+		{
+			title: "烈焰游客"
+			x: 8.5d
+			y: 0.0d
+			subtitle: "拜访一个下界堡垒"
+			dependencies: ["2AB21C14A4A4A19E"]
+			id: "070484BCF48A7C32"
+			tasks: [{
+				id: "39FBE032A22246CA"
+				type: "structure"
+				title: "下界堡垒"
+				icon: "minecraft:nether_brick_fence"
+				structure: "minecraft:fortress"
+			}]
+		}
+		{
+			x: 10.5d
+			y: 2.0d
+			subtitle: "获取下界石英"
+			dependencies: ["2AB21C14A4A4A19E"]
+			id: "0C88F5DE157A5E4B"
+			tasks: [{
+				id: "3AAA81F5EA28967B"
+				type: "item"
+				item: "minecraft:quartz"
+			}]
+		}
+		{
+			x: 10.5d
+			y: 0.5d
+			subtitle: "制作玫瑰石英"
+			dependencies: ["0C88F5DE157A5E4B"]
+			id: "3B9CF27062C134FC"
+			tasks: [{
+				id: "11FFA376862812A7"
+				type: "item"
+				item: "create:rose_quartz"
+			}]
+		}
+		{
+			title: "真闪亮！"
+			x: 10.5d
+			y: -1.0d
+			subtitle: "打磨一些玫瑰石英块（rose quartz）"
+			dependencies: ["3B9CF27062C134FC"]
+			id: "1B6090D4DA94E70F"
+			tasks: [
+				{
+					id: "38E11755DD61E414"
+					type: "item"
+					item: "create:polished_rose_quartz"
+				}
+				{
+					id: "0AD50D149FC3FA09"
+					type: "item"
+					title: "任意数量的 #create:sandpaper"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "create:sandpaper"
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "口红？Lipstick?"
+			x: 10.5d
+			y: -3.0d
+			shape: "hexagon"
+			subtitle: "制作一个电子管 (electron tube)"
+			dependencies: ["1B6090D4DA94E70F"]
+			size: 1.5d
+			id: "72505B5141E94282"
+			tasks: [{
+				id: "148EFD8BBBC4F628"
+				type: "item"
+				item: "create:electron_tube"
+			}]
+			rewards: [
+				{
+					id: "7BE27E92089ADE13"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "1E375E0584DFCE8D"
+					type: "item"
+					item: "create:andesite_alloy"
+					count: 32
+				}
+			]
+		}
+		{
+			x: -3.5d
+			y: 7.0d
+			dependencies: ["6F35043ED3015D57"]
+			optional: true
+			id: "1B316835DA05F7CF"
+			tasks: [{
+				id: "2F4C29EB2CBEAA05"
+				type: "item"
+				item: "create:mechanical_press"
+			}]
+		}
+		{
+			x: 3.5d
+			y: 7.0d
+			dependencies: ["6F35043ED3015D57"]
+			optional: true
+			id: "66ABE84DC254BD4A"
+			tasks: [{
+				id: "617AE9E353A705BB"
+				type: "item"
+				item: "create:gearbox"
+			}]
+		}
+		{
+			x: 0.5d
+			y: 7.0d
+			dependencies: ["6F35043ED3015D57"]
+			optional: true
+			id: "10DE00343A378DCE"
+			tasks: [{
+				id: "237D011A7AF23CBA"
+				type: "item"
+				item: "create:gantry_carriage"
+			}]
+		}
+		{
+			x: 2.5d
+			y: 7.0d
+			dependencies: ["6F35043ED3015D57"]
+			optional: true
+			id: "630672009546E59D"
+			tasks: [{
+				id: "0A2BA462889DC700"
+				type: "item"
+				item: "create:speedometer"
+			}]
+		}
+		{
+			x: 6.5d
+			y: 7.0d
+			dependencies: ["6F35043ED3015D57"]
+			optional: true
+			id: "74287D4902C57317"
+			tasks: [{
+				id: "47B0F1EBA151DE78"
+				type: "item"
+				item: "create:analog_lever"
+			}]
+		}
+		{
+			x: -8.5d
+			y: 7.0d
+			dependencies: ["6F35043ED3015D57"]
+			optional: true
+			id: "0587C49A9CC2DFC2"
+			tasks: [{
+				id: "0C285D9B7613EC80"
+				type: "item"
+				item: "create:mechanical_piston"
+			}]
+		}
+		{
+			x: -9.5d
+			y: 7.0d
+			dependencies: ["0587C49A9CC2DFC2"]
+			optional: true
+			id: "3609B90F6F555830"
+			tasks: [{
+				id: "32463D789288B43E"
+				type: "item"
+				item: "create:sticky_mechanical_piston"
+			}]
+		}
+		{
+			x: 7.5d
+			y: 7.0d
+			dependencies: ["6F35043ED3015D57"]
+			optional: true
+			id: "448B3F5AD08D6D6B"
+			tasks: [{
+				id: "0D22A4A510339F6F"
+				type: "item"
+				item: "create:encased_chain_drive"
+			}]
+		}
+		{
+			x: 8.5d
+			y: 7.0d
+			dependencies: ["6F35043ED3015D57"]
+			optional: true
+			id: "3ACF20817C3F28A7"
+			tasks: [{
+				id: "37F9C5EF03DE21AF"
+				type: "item"
+				item: "create:portable_storage_interface"
+			}]
+		}
+		{
+			x: 5.5d
+			y: 7.0d
+			dependencies: ["6F35043ED3015D57"]
+			optional: true
+			id: "39FCC8AFFA0C737B"
+			tasks: [{
+				id: "4AAFCFE532F0BCF9"
+				type: "item"
+				item: "create:rope_pulley"
+			}]
+		}
+		{
+			x: 10.5d
+			y: 7.0d
+			dependencies: ["6F35043ED3015D57"]
+			optional: true
+			id: "40ADDF3D7D851DED"
+			tasks: [{
+				id: "0801FB2131DB35B2"
+				type: "item"
+				item: "create:cuckoo_clock"
+			}]
+		}
+		{
+			x: 1.5d
+			y: 7.0d
+			dependencies: ["6F35043ED3015D57"]
+			optional: true
+			id: "4B1AB9635578A079"
+			tasks: [{
+				id: "44556E62088441E7"
+				type: "item"
+				item: "create:millstone"
+			}]
+		}
+		{
+			x: -5.5d
+			y: 7.0d
+			dependencies: ["6F35043ED3015D57"]
+			optional: true
+			id: "10F1BCB9957672E1"
+			tasks: [{
+				id: "45949770C8CFDA48"
+				type: "item"
+				item: "create:mechanical_saw"
+			}]
+		}
+		{
+			x: -2.5d
+			y: 7.0d
+			dependencies: ["6F35043ED3015D57"]
+			optional: true
+			id: "1F80ED78B69983B8"
+			tasks: [{
+				id: "7F0BCE39C9C9A702"
+				type: "item"
+				item: "create:depot"
+			}]
+		}
+		{
+			x: -7.5d
+			y: 7.0d
+			dependencies: ["6F35043ED3015D57"]
+			optional: true
+			id: "5890A46C66781CAC"
+			tasks: [{
+				id: "4D6E00A6802339F5"
+				type: "item"
+				item: "create:mechanical_plough"
+			}]
+		}
+		{
+			x: -4.5d
+			y: 7.0d
+			dependencies: ["6F35043ED3015D57"]
+			optional: true
+			id: "0C3DD74D2425C06A"
+			tasks: [{
+				id: "00E0DD81B293BACB"
+				type: "item"
+				item: "create:mechanical_drill"
+			}]
+		}
+		{
+			x: -6.5d
+			y: 7.0d
+			dependencies: ["6F35043ED3015D57"]
+			optional: true
+			id: "7ECB56C04A92B7BD"
+			tasks: [{
+				id: "1A1D5938F891EFBA"
+				type: "item"
+				item: "create:mechanical_harvester"
+			}]
+		}
+		{
+			x: 4.5d
+			y: 7.0d
+			dependencies: ["6F35043ED3015D57"]
+			optional: true
+			id: "2BA12DF1F033A100"
+			tasks: [{
+				id: "559389A6704F48CB"
+				type: "item"
+				item: "create:gearshift"
+			}]
+		}
+		{
+			x: 9.5d
+			y: 7.0d
+			dependencies: ["6F35043ED3015D57"]
+			optional: true
+			id: "1ACD06DE1D5DF819"
+			tasks: [{
+				id: "69F1A33E7A0A0629"
+				type: "item"
+				item: "create:clutch"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 7.0d
+			dependencies: ["6F35043ED3015D57"]
+			optional: true
+			id: "0F879F41991FDAEC"
+			tasks: [{
+				id: "61AF3AB9A3628705"
+				type: "item"
+				item: "create:encased_fan"
+			}]
+		}
+		{
+			x: -0.5d
+			y: 7.0d
+			dependencies: ["6F35043ED3015D57"]
+			optional: true
+			id: "6AE23F882AB1CF5A"
+			tasks: [{
+				id: "4550E657AAB79A84"
+				type: "item"
+				item: "create:mechanical_bearing"
+			}]
+		}
+		{
+			title: "这有点不公平了……"
+			x: -2.625d
+			y: -1.875d
+			subtitle: "建造一个竖井"
+			dependencies: ["13ECF926E0602979"]
+			size: 0.75d
+			optional: true
+			id: "113A304480864FDE"
+			tasks: [{
+				id: "35F1018EA4112966"
+				type: "item"
+				item: "create:shaft"
+			}]
+		}
+		{
+			title: "这个齿轮的齿数比较少"
+			x: -3.375d
+			y: -1.875d
+			subtitle: "制作一个齿轮组件"
+			dependencies: ["13ECF926E0602979"]
+			size: 0.75d
+			optional: true
+			id: "32A10259DD799826"
+			tasks: [{
+				id: "1DAD103AA8C1A2E3"
+				type: "item"
+				item: "create:cogwheel"
+			}]
+		}
+		{
+			title: "这玩意儿真够复杂的"
+			x: -4.125d
+			y: -1.5d
+			subtitle: "制作一个大齿轮"
+			dependencies: ["13ECF926E0602979"]
+			size: 0.75d
+			optional: true
+			id: "7EFA653793489C9A"
+			tasks: [{
+				id: "132EF33446472464"
+				type: "item"
+				item: "create:large_cogwheel"
+			}]
+		}
+		{
+			title: "体力劳动"
+			x: -1.875d
+			y: -1.5d
+			subtitle: "制作一个手摇曲柄"
+			dependencies: ["13ECF926E0602979"]
+			size: 0.75d
+			optional: true
+			id: "7E407F42E6F122E0"
+			tasks: [{
+				id: "2B7B1A4A1A73A661"
+				type: "item"
+				item: "create:hand_crank"
+			}]
+		}
+		{
+			title: "安山岩大师"
+			icon: "minecraft:nether_star"
+			x: 1.0d
+			y: 10.0d
+			shape: "hexagon"
+			subtitle: "用安山岩制作所有东西。"
+			description: ["如果你能坚持制作这21种物品，你将被奖励一颗下界之星。"]
+			dependencies: [
+				"1B316835DA05F7CF"
+				"10DE00343A378DCE"
+				"74287D4902C57317"
+				"448B3F5AD08D6D6B"
+				"39FCC8AFFA0C737B"
+				"4B1AB9635578A079"
+				"1F80ED78B69983B8"
+				"0C3DD74D2425C06A"
+				"2BA12DF1F033A100"
+				"0F879F41991FDAEC"
+				"66ABE84DC254BD4A"
+				"630672009546E59D"
+				"0587C49A9CC2DFC2"
+				"3609B90F6F555830"
+				"3ACF20817C3F28A7"
+				"40ADDF3D7D851DED"
+				"10F1BCB9957672E1"
+				"5890A46C66781CAC"
+				"7ECB56C04A92B7BD"
+				"1ACD06DE1D5DF819"
+				"6AE23F882AB1CF5A"
+			]
+			dependency_requirement: "all_started"
+			size: 1.5d
+			optional: true
+			id: "7ED371FF5957497F"
+			tasks: [{
+				id: "6D0BFAF9B788DDF8"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "62A28B45C8172550"
+				type: "item"
+				item: "minecraft:nether_star"
+			}]
+		}
+	]
+}

@@ -1,0 +1,168 @@
+# AI 初翻，未人工校对
+{
+	id: "79FD426346697704"
+	group: "000A286551FED281"
+	order_index: 1
+	filename: "chemistry"
+	title: "化学实验台"
+	icon: "chemlib:element_hydrogen"
+	default_quest_shape: "square"
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "化学真有趣！"
+			x: 0.0d
+			y: 0.0d
+			subtitle: "现在你不需要化学工程学位了……至少暂时还不需要……"
+			id: "101E93E40DDEC3F3"
+			tasks: [{
+				id: "4DBB3FEA28E37A32"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "1FE929DECCFC3FE3"
+				type: "item"
+				item: {
+					id: "patchouli:guide_book"
+					Count: 1b
+					tag: {
+						"patchouli:book": "alchemistry:alchemistry_book"
+					}
+				}
+			}]
+		}
+		{
+			x: -1.0d
+			y: 0.0d
+			dependencies: ["101E93E40DDEC3F3"]
+			size: 0.5d
+			id: "7497D0E17B119448"
+			tasks: [{
+				id: "54C041EF3228A450"
+				type: "item"
+				item: "alchemistry:slot_filler"
+			}]
+		}
+		{
+			x: -0.5d
+			y: -1.5d
+			hide_dependency_lines: true
+			dependencies: ["101E93E40DDEC3F3"]
+			id: "063C2017DDE6765C"
+			tasks: [{
+				id: "4671000BFC31880F"
+				type: "item"
+				item: "alchemistry:chemical_dissolver"
+			}]
+		}
+		{
+			x: 0.5d
+			y: -1.5d
+			hide_dependency_lines: true
+			dependencies: ["101E93E40DDEC3F3"]
+			id: "2CEC4E67CEC20F7A"
+			tasks: [{
+				id: "150476FE3A19DC42"
+				type: "item"
+				item: "alchemistry:chemical_combiner"
+			}]
+		}
+		{
+			title: "石头变黄金"
+			icon: {
+				id: "mekanism:creative_energy_cube"
+				Count: 1b
+				tag: {
+					mekData: {
+						EnergyContainers: [{
+							Container: 0b
+							stored: "18446744073709551615.9999"
+						}]
+					}
+				}
+			}
+			x: 2.5d
+			y: -1.5d
+			subtitle: "分解分子和原子需要消耗惊人的能量。所以请确保你有一个可靠的电源。"
+			dependencies: ["101E93E40DDEC3F3"]
+			id: "4C3E82DC4B4866D8"
+			tasks: [{
+				id: "6897F02325882758"
+				type: "checkmark"
+			}]
+		}
+		{
+			x: 4.5d
+			y: -1.5d
+			subtitle: "2.87%"
+			description: [
+				"虽然不固定，但大约8组石网能换16个金样本。价值约512 EMC。"
+				""
+				"它还有其他副产品，比如铁、二氧化硅（更多石头）和铝，以及其他有价值的矿物/金属。"
+			]
+			dependencies: ["4C3E82DC4B4866D8"]
+			id: "778BB082230DE5CB"
+			tasks: [{
+				id: "0CFF85FF570D756C"
+				type: "item"
+				item: "minecraft:stone"
+			}]
+		}
+		{
+			x: 5.5d
+			y: -1.5d
+			subtitle: "每锭16个"
+			dependencies: ["778BB082230DE5CB"]
+			id: "29F49CDB3C9FE588"
+			tasks: [{
+				id: "3BF26556B645834C"
+				type: "item"
+				item: "chemlib:element_gold"
+			}]
+		}
+		{
+			x: 6.5d
+			y: -1.5d
+			subtitle: "4096 EMC - 512 EMC = 3584 EMC"
+			description: ["即使在一个能轻松挖穿20组石头的世界里，你仍然能净赚大约2816 EMC。"]
+			dependencies: ["29F49CDB3C9FE588"]
+			id: "0410128D831786BD"
+			tasks: [{
+				id: "6AC11B54DD9D0D22"
+				type: "checkmark"
+				title: "金锭"
+				icon: "minecraft:gold_ingot"
+			}]
+			rewards: [{
+				id: "406951BAF3EF4525"
+				type: "item"
+				item: "chemlib:element_gold"
+				count: 32
+			}]
+		}
+		{
+			x: 5.5d
+			y: -2.5d
+			dependencies: ["778BB082230DE5CB"]
+			optional: true
+			id: "279BB707A7B74245"
+			tasks: [{
+				id: "61701BA61D4EA73A"
+				type: "item"
+				item: "chemlib:element_aluminum"
+			}]
+		}
+		{
+			x: 5.5d
+			y: -0.5d
+			dependencies: ["778BB082230DE5CB"]
+			optional: true
+			id: "551B84EF00F9F8AA"
+			tasks: [{
+				id: "6A55B2472AA0DF7B"
+				type: "item"
+				item: "chemlib:element_iron"
+			}]
+		}
+	]
+}

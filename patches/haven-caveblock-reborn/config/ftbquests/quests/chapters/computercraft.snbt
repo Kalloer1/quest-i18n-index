@@ -1,0 +1,1072 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_min_width: 300
+	default_quest_shape: ""
+	filename: "computercraft"
+	group: "2B51AC12041E3F89"
+	icon: "computercraft:computer_advanced"
+	id: "000000000000004A"
+	images: [
+		{
+			height: 1.0d
+			image: "kubejs:textures/gui/titles/computercraft.png"
+			rotation: 0.0d
+			width: 9.227272727272727d
+			x: 0.0d
+			y: -33.5d
+		}
+		{
+			click: "https://tweaked.cc/"
+			height: 0.75d
+			hover: ["CC:Tweaked Wiki"]
+			image: "ftblibrary:icons/notes"
+			rotation: 0.0d
+			width: 0.75d
+			x: 4.0d
+			y: -28.25d
+		}
+	]
+	order_index: 3
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"在本章中，你将学会如何使用 ComputerCraft。我并非专家，但这应该能帮助你入门。"
+				""
+				"你不再用拳头打木头，而是用海龟壳做原木；不再用镐挖掘或向上建造，而是编写程序。"
+				""
+				"本章不会考虑你在整合包中的进度，会把你当作新玩家对待。"
+			]
+			disable_toast: true
+			icon: {
+				Count: 1
+				id: "ftbquests:custom_icon"
+				tag: {
+					Icon: "kubejs:textures/gui/mark.png"
+				}
+			}
+			id: "000000000000004B"
+			min_width: 300
+			shape: "gear"
+			size: 1.5d
+			subtitle: "本章仅为信息，非强制要求。"
+			tasks: [{
+				id: "53A02E3263B725EC"
+				type: "checkmark"
+			}]
+			title: "欢迎来到计算机工艺模组"
+			x: 0.0d
+			y: -31.0d
+		}
+		{
+			dependencies: ["000000000000004B"]
+			description: [
+				"是时候为自己制作一只Felling Turtle了！"
+				""
+				"和往常一样，在新世界里第一件事就是去砍树。"
+				"不过，和平时不一样，你不应该开始撸树了。"
+				""
+				"你掌握了一项先进的科技，只需稍加努力，就能轻松砍伐整棵树（甚至是整片森林！）。"
+				""
+				"让你的新伙伴对着树干编程，挖掘一个方块，然后前进，并在上方有原木时向上挖掘。"
+				""
+				"（你的海龟需要燃料才能移动，将奖励的煤炭放入指定槽位并&6加油&r）"
+			]
+			hide_text_until_complete: false
+			icon: {
+				Count: 1
+				id: "computercraft:turtle_normal"
+				tag: {
+					RightUpgrade: "minecraft:diamond_axe"
+					RightUpgradeNbt: {
+						Tag: {
+							Damage: 0
+						}
+					}
+				}
+			}
+			id: "000000000000004F"
+			rewards: [{
+				id: "4559E47FF5FB8079"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "rsquare"
+			tasks: [
+				{
+					consume_items: false
+					count: 16L
+					id: "0000000000000050"
+					item: {
+						Count: 1
+						id: "itemfilters:tag"
+						tag: {
+							value: "minecraft:logs"
+						}
+					}
+					only_from_crafting: false
+					title: "用海龟来采集木头，用命令方块记录日志"
+					type: "item"
+				}
+				{
+					id: "2C10F9C6507199CA"
+					item: {
+						Count: 1
+						id: "computercraft:turtle_normal"
+						tag: {
+							RightUpgrade: "minecraft:diamond_axe"
+							RightUpgradeNbt: {
+								Tag: {
+									Damage: 0
+								}
+							}
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "获取木材"
+			x: 0.0d
+			y: -29.5d
+		}
+		{
+			dependencies: ["000000000000004B"]
+			description: [
+				"在本章中，你需要用 Lua 语言编写程序。"
+				"Lua 是一种小型脚本语言，通常嵌入在其他应用程序中使用。"
+				""
+				"网上有很多 Lua 指南和教程，包括语言规范（推荐！）。"
+				"这些任务不会尝试教授语言，但这些可选的装备任务会提供围绕计算机Craft海龟的提示。"
+				""
+				"注意：在这些任务中，代码和命令将被包裹在&6此颜色&r中。"
+			]
+			disable_toast: true
+			hide_text_until_complete: false
+			id: "0000000000000052"
+			optional: true
+			rewards: [{
+				id: "3A9A9AD5E60B4D8F"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "gear"
+			tasks: [{
+				disable_toast: true
+				icon: {
+					Count: 1
+					id: "computercraft:disk"
+					tag: {
+						Color: 1118481
+					}
+				}
+				id: "0000000000000053"
+				title: "编程？！"
+				type: "checkmark"
+			}]
+			x: -1.5d
+			y: -30.0d
+		}
+		{
+			dependencies: ["000000000000004B"]
+			description: [
+				"在编写第一个程序之前，你已经可以控制你的海龟了。"
+				"当你第一次与海龟互动时，会看到 ComputerCraft 的外壳。"
+				"你可以使用外壳来浏览和编辑海龟的文件，并执行程序。"
+				""
+				"海龟自带一套用于发出&6即时&r命令的内置程序。"
+				"第一个你需要的是 &6refuel&r，它会消耗活动槽中的燃料来为海龟提供动力（允许移动）。"
+				"&6refuel&r 命令可以接受一个数字参数来指定消耗多少燃料，而 &6refuel 0&r 会显示当前的燃料水平。"
+				""
+				"接下来你可以使用 &6go&r 命令来驱使海龟。"
+				"移动需要指定方向，可选地指定距离。"
+				"你也可以将多个方向串起来，以完成多次移动。"
+				"例如 &6go up forward 5&r（也有缩写，如 &6fd&r 代表 &6forward&r）。"
+			]
+			disable_toast: true
+			hide_text_until_complete: false
+			id: "0000000000000055"
+			optional: true
+			rewards: [{
+				id: "42C3436F6BBB3CDE"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "gear"
+			tasks: [{
+				disable_toast: true
+				icon: {
+					Count: 1
+					id: "computercraft:disk"
+					tag: {
+						Color: 13388876
+					}
+				}
+				id: "0000000000000056"
+				title: "交互式"
+				type: "checkmark"
+			}]
+			x: 1.5d
+			y: -30.0d
+		}
+		{
+			dependencies: ["000000000000004F"]
+			description: [
+				"在这个挑战中，你仍然需要进行大量的合成。"
+				"最好有一个存储系统来处理这个，但这并非必需。"
+			]
+			icon: "createdeco:decal_warning"
+			id: "0000000000000058"
+			rewards: [{
+				id: "4D1F5E0E9ACCA5F6"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "73DEA5EAFAFE3859"
+				type: "checkmark"
+			}]
+			title: "合成 合成"
+			x: 0.0d
+			y: -28.0d
+		}
+		{
+			dependencies: ["0000000000000058"]
+			description: [
+				"一旦你获得了木材作为燃料，将其转化为木炭会更为高效。"
+				"为此你需要一个熔炉，因此需要鹅卵石。"
+				""
+				"编写一个挖矿程序来挖些石头，聪明的话，你还可以用它来为你的物品做一个藏身之处。"
+				"先别太担心向下挖掘的事，接下来还有另一个任务要完成。"
+			]
+			id: "000000000000005B"
+			rewards: [{
+				id: "56997BFFF522E554"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "000000000000005C"
+				item: "minecraft:furnace"
+				type: "item"
+			}]
+			title: "热门话题"
+			x: 0.0d
+			y: -26.5d
+		}
+		{
+			dependencies: ["0000000000000058"]
+			description: [
+				"巧手的乌龟可以用一条命令操作：&6turtle.craft(n)&r"
+				"可选参数 &6n&r 决定要制作的物品数量，省略则制作尽可能多。"
+				"例如，&6turtle.craft(5)&r 将合成 5 个物品。"
+				""
+				"要制作任何东西，配方都必须放在海龟的背包里。"
+				""
+				"使用的槽位顺序无关紧要，但不能有任何多余的方块。"
+				""
+				"合成产物会放置在开放的物品栏槽位中（从而阻止进一步合成）。"
+			]
+			disable_toast: true
+			id: "000000000000005E"
+			optional: true
+			rewards: [{
+				id: "074364E25A8CC9F7"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "gear"
+			tasks: [{
+				disable_toast: true
+				icon: {
+					Count: 1
+					id: "computercraft:turtle_advanced"
+					tag: {
+						RightUpgrade: "minecraft:crafting_table"
+					}
+				}
+				id: "000000000000005F"
+				title: "发挥创造力"
+				type: "checkmark"
+			}]
+			x: 1.5d
+			y: -28.0d
+		}
+		{
+			dependencies: ["0000000000000058"]
+			description: [
+				"编程时被饥饿打断，或者去储备龟饲料，真是太不方便了。"
+				""
+				"海龟可以使用 &6place[Up/Down]()&r 与世界进行多种意想不到的互动"
+				"选中锄头使用，可以翻耕下方一格泥土，然后你就可以 &6placeDown()&r 种子来种植了。"
+				""
+				"你可以使用 &6inspectDown()&r 来查看作物的状态，当 &6state.age&r 达到 7 或以上时，小麦就成熟了。"
+				"然后你可以用锄头 &6placeDown()&r 收割小麦，并使用 &6suckDown()&r 直接收集海龟下方的掉落物。"
+			]
+			id: "0000000000000061"
+			optional: true
+			rewards: [{
+				id: "512CDBDD7098FA08"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "gear"
+			tasks: [{
+				disable_toast: true
+				icon: "minecraft:piston"
+				id: "0000000000000062"
+				title: "自动化"
+				type: "checkmark"
+			}]
+			x: -1.5d
+			y: -28.0d
+		}
+		{
+			dependencies: ["000000000000005B"]
+			description: [
+				"海龟可以操作熔炉等物品栏，实现无需漏斗的自动化。"
+				"先在一个特定槽位(16)里放燃料，另一个槽位(1)里放原木，然后把海龟移到熔炉上方。"
+				""
+				"使用 &6select(1)&r 选择日志，并使用 &6dropDown()&r 将其插入熔炉顶部。"
+				"接下来向后向下移动，&6select(16)&r 和 &6drop()&r 以在背面插入燃料。"
+				"最后向下并向前移动，&6suckUp()&r 以拉出木炭。"
+				""
+				"冶炼需要时间，所以你需要&6sleep(seconds)&r直到烹饪完成。"
+				"你可以检查熔炉，但只能看到是否点燃，也可以数原木和木炭来判断是否完成。"
+				""
+				"你可以检查它是否点燃，如果使用迷你煤炭，它就能熔炼1个物品，保持睡眠状态。"
+				""
+				"更好的方法是建造多个熔炉，这样当一个在冶炼时，你可以给下一个填燃料。"
+				"你也可以从箱子里捡起原木，再把木炭丢出来……"
+			]
+			disable_toast: true
+			id: "000000000000007E"
+			optional: true
+			rewards: [{
+				id: "6C3FCC121438EAB7"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "gear"
+			tasks: [{
+				disable_toast: true
+				icon: "minecraft:charcoal"
+				id: "000000000000007F"
+				title: "木炭（Charcoal）"
+				type: "checkmark"
+			}]
+			x: -1.5d
+			y: -26.5d
+		}
+		{
+			dependencies: ["000000000000005B"]
+			description: [
+				"牛能产出牛奶、皮革和牛排，这些都是很有用的资源。"
+				""
+				"海龟和实体互动性差，所以最好手动屠宰。"
+				"最终，你的农场盈余应该能让你繁殖足够多的，这样斧龟就能接手清理工作了。"
+				"（只需从地面以上一格处&6攻击&r，即可避免被小牛撞到）"
+				""
+				"你也可以用桶让海龟收集牛奶，方法是使用 &6place&r 对准奶牛。"
+			]
+			id: "0000000000000080"
+			optional: true
+			rewards: [{
+				id: "59C7B1D7A3489EA6"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "gear"
+			tasks: [{
+				disable_toast: true
+				icon: "minecraft:leather"
+				id: "0000000000000081"
+				title: "牧场经营"
+				type: "checkmark"
+			}]
+			x: 1.5d
+			y: -26.5d
+		}
+		{
+			dependencies: ["000000000000005B"]
+			description: [
+				"此时你应该已经编写了几个实用程序，并且如果完成了支线任务，可能已经搭建了一些农场。"
+				"可能花去了你几个游戏日，或是好几天现实时间，无论如何，这都算是一项成就。"
+				""
+				"现在你可能已经看到海龟的强大和多功能，它们能帮你处理许多杂务。"
+				"如果你在乌龟运行时退出游戏或去探索了，可能会发现一个问题："
+				"海龟（以及计算机）在卸载时会停止运行，在重新加载时会重新启动。"
+				""
+				"这意味着一旦你走得太远，所有农场和自动化装置都会损坏，不过也有一些可能的解决方法。"
+				"首先，你可以在根文件夹中创建一个名为 &6startup.lua&r 的文件，计算机启动时就会运行它。"
+				"你的程序还可以将状态写入文件，以便在停止后恢复。"
+				"最终你可以设置一个海龟GPS，帮助它们找到回家的路和位置。"
+				""
+				"说到家——你的程序应该有一个明确的初始位置，并且如果可以的话，应该经常在那里&6睡眠&r。"
+				"这样更容易停止和重启它们，也提高了它们在正确位置重启以继续任务的可能性..."
+				""
+				"重启后无效，但包里有个chunkloader，能让你离开时保持运行。"
+				"&o(取决于你玩的服务器，如果有的话)&r"
+			]
+			hide: false
+			id: "0000000000000087"
+			min_width: 375
+			rewards: [{
+				id: "7D5833839CF54689"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "gear"
+			tasks: [{
+				icon: "minecraft:skeleton_skull"
+				id: "0000000000000088"
+				title: "致命的缺陷"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: -25.0d
+		}
+		{
+			dependencies: ["000000000000004B"]
+			description: [
+				"以下是一些操作计算机（和乌龟）的小技巧。"
+				""
+				"> 使用 &6ls&r 列出文件/目录"
+				""
+				"使用 &6cd&r 更改目录，&6mkdir&r 创建目录，以及 &6rm&r 删除目录"
+				""
+				"使用 &6edit name&r 在当前目录创建一个 lua 文件"
+				""
+				"运行交互式 Lua 提示符，使用 &6lua&r"
+				""
+				"使用上下箭头键可浏览之前的命令和自动补全"
+				""
+				"长按 &6ctrl-t&r 强制终止正在运行的程序"
+				""
+				"> 有一个内置的 &6help&r 命令"
+			]
+			icon: "createdeco:decal_warning"
+			id: "000000000000008A"
+			min_width: 300
+			optional: true
+			rewards: [{
+				id: "2A4423D0448C57E4"
+				type: "xp"
+				xp: 25
+			}]
+			tasks: [{
+				disable_toast: true
+				icon: "quark:soul_compass"
+				id: "000000000000008B"
+				title: "提示与技巧"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: -32.25d
+		}
+		{
+			dependencies: ["0000000000000087"]
+			description: [
+				"你的下一个目标是建造更多计算机和海龟来改进自动化，而建造计算机所需的许多资源都来自世界底部。"
+				""
+				"有许多种海龟矿场，但现阶段你需要的是一个适合单个矿工、简单又安全的地方。"
+				""
+				"最基本的采石场是矿石钻探机，一个能直上直下的程序。"
+				""
+				"挖矿循环是&6向下挖掘&r，下降，检查四周（挖掘任何矿石），重复。"
+				""
+				"{@pagebreak}"
+				"尽管很简单，但仍有一些细节需要考虑："
+				""
+				"你需要保持燃料水平，不要烧完所有你开采的煤炭"
+				""
+				"你挖掘的方块可能超过乌龟背包的容量"
+				""
+				"> 当碰到基岩、空气或流体时，&6digDown&r 会返回 false"
+				""
+				"要回到地表，你需要知道自己下潜了多深"
+				""
+				"使用 &6inspect&r 可查看方块标签（查找 &6forge:ores&r）"
+				""
+				"用鹅卵石封住洞口可以防止坠落，并标记你走过的地方"
+				""
+				"> 海龟几乎免疫一切伤害，包括岩浆"
+			]
+			icon: "minecraft:bedrock"
+			id: "000000000000008E"
+			rewards: [{
+				id: "66E261AC069D26CC"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "rsquare"
+			tasks: [{
+				count: 4L
+				id: "000000000000008F"
+				item: "minecraft:redstone"
+				type: "item"
+			}]
+			title: "挖矿时间到了"
+			x: 1.5d
+			y: -23.5d
+		}
+		{
+			dependencies: ["0000000000000087"]
+			description: [
+				"海龟用煤炭/木炭运行效率很高，但持续生产燃料会分散你编程的注意力。"
+				"稍加努力，你就能搭建一个自动伐木机来收集木材，制作木炭。"
+				""
+				"海龟可以放置树苗，并能检查方块以区分树苗和原木，你只需要规划好农场即可。"
+				"树木间隔3-5格呈网格状即可，你可以在树干之间规划一条蜿蜒的小路。"
+				""
+				"种什么树也很重要：橡木不太好，因为它们有时会分叉，而金合欢则很差。"
+				"如果你了解我的世界的水，也可以把农场建在溪流上，收集树苗、木棍和苹果。"
+				""
+				"最后，你只需设置一个木材投放点、燃料站和树苗收集点，就能实现自给自足的农场。"
+			]
+			id: "0000000000000092"
+			rewards: [{
+				id: "5BDC4222EE98BA8C"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "rsquare"
+			tasks: [{
+				count: 128L
+				id: "0000000000000093"
+				item: {
+					Count: 1
+					id: "itemfilters:tag"
+					tag: {
+						value: "minecraft:logs"
+					}
+				}
+				title: "日志"
+				type: "item"
+			}]
+			title: "树木农场"
+			x: -1.5d
+			y: -23.5d
+		}
+		{
+			dependencies: ["0000000000000087"]
+			description: [
+				"恭喜你成功制作了第一只海龟！"
+				""
+				"你可能注意到这个整合包里没有管道、传送带或其他运输设施。"
+				"本整合包旨在利用海龟完成所有物品/流体运输（辅以原版机制）。"
+				""
+				"如果你有自动熔炼，完成树木农场任务后，下一步是将两者连接起来，实现木炭无限循环。"
+				"从树木农场开始，你还可以创建木炭燃料库，让你的每个农场都能持续运行。"
+				""
+				"目前最简单的办法是直接硬编码树木农场和木炭种植园之间的路径，但将来你将能建造自动定位的堆料场。"
+				"如果你手巧，甚至可以用农场多余的木棍和树苗来为你的熔炉供电。"
+			]
+			id: "000000000000009B"
+			rewards: [{
+				id: "2A05B91D28E30B8D"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "000000000000009C"
+				item: {
+					Count: 1
+					id: "itemfilters:tag"
+					tag: {
+						value: "computercraft:turtle"
+					}
+				}
+				only_from_crafting: true
+				title: "任意 computercraft:turtle"
+				type: "item"
+			}]
+			title: "物品运输"
+			x: 0.0d
+			y: -23.5d
+		}
+		{
+			dependencies: ["0000000000000092"]
+			description: [
+				"木材之后，最重要的可再生资源就是各种形式的石头了。"
+				"你只需要一个原版鹅卵石生成器和一个采矿海龟，就能生产出无限的石头。"
+				"（在四格宽一格深的沟渠中，在一端向下挖一格，然后在该端放置水，另一端放置岩浆）"
+				""
+				"如果你的原石机搭配另一个熔炉，你还可以制造干净的石头，而技艺精湛的乌龟能制作石砖。"
+				"虽然你的采石场会产出一些石头，但稳定的供应在后期会很有用..."
+			]
+			icon: "minecraft:cobblestone"
+			id: "000000000000009F"
+			rewards: [{
+				id: "54E20A6A2D24F0D4"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "rsquare"
+			tasks: [{
+				count: 128L
+				id: "00000000000000A0"
+				item: "minecraft:cobblestone"
+				type: "item"
+			}]
+			title: "Cobble Gen"
+			x: -3.0d
+			y: -23.5d
+		}
+		{
+			dependencies: ["000000000000008E"]
+			description: [
+				"现在开始挖掘后，你需要追踪的方块种类和数量都会越来越多。"
+				"只要付出足够的努力（和空间），你就能创建一个堪比Applied Energistics功能的自动化存储系统。"
+				""
+				"这将是一个长期项目，但你可以立即开始制作早期原型。"
+				"先建造一排桶或箱子，然后用 `turtle.getItemDetail` 将特定物品放置到相应位置。"
+				""
+				"为了在开始时保持整洁，你可以在存放前从每个容器中取出并检查一件物品，或者写入一个文件来存储每种新物品类型。"
+				"你可以设置专用计算机无线追踪和协调交易，并添加手工海龟和配方以实现按需自动合成，从而扩展该系统。"
+			]
+			id: "00000000000000A1"
+			rewards: [{
+				id: "5D4FFD653895E66E"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "rsquare"
+			tasks: [
+				{
+					id: "00000000000000A3"
+					item: "minecraft:gold_ore"
+					type: "item"
+				}
+				{
+					id: "00000000000000A4"
+					item: "minecraft:iron_ore"
+					type: "item"
+				}
+			]
+			title: "自动化存储系统"
+			x: 3.0d
+			y: -23.5d
+		}
+		{
+			dependencies: ["000000000000008E"]
+			description: [
+				"运气好的话，第一次钻孔就能挖到红石、铁，甚至是钻石。"
+				"一旦能稳定地上下移动，下一步就是自动重复这个过程。"
+				""
+				"盲目地钻孔会浪费大量时间和燃料，幸运的是，钻孔有最佳模式。"
+				"它被称为“骑士走法”，源自国际象棋的骑士，可以向前一格再向侧两格，或向前两格再向侧一格。"
+				""
+				"当你挖掘时，会挖出四面所有的矿石，这样向任何方向移动一步都会覆盖你已经挖掘过的区域。"
+				"骑士移动的技巧在于控制挖掘位置，可以通过左右和长短跳跃交替来保持在同一区域内。"
+				"（尝试一些模式，找到一个不重叠的序列）"
+			]
+			id: "00000000000000A7"
+			rewards: [{
+				id: "56AFF161DDD7D9BA"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "00000000000000A8"
+				item: "minecraft:iron_ingot"
+				type: "item"
+			}]
+			title: "自动化采矿"
+			x: 1.5d
+			y: -22.0d
+		}
+		{
+			dependencies: ["0000000000000092"]
+			description: [
+				"海龟也可以采集其他可再生资源，如甘蔗、竹子、仙人掌等。"
+				"甘蔗可以造纸，村民会交易，用途广泛。"
+				""
+				"你的海龟需要工具来破坏这些作物，铲子消耗的钻石最少，但并非最实用的。"
+				""
+				"你可以使用 &6equipLeft/Right&r 将未使用的工具添加到任何海龟上，替换掉已装备的任何物品。"
+				"（这包括制作台）"
+			]
+			id: "00000000000000AA"
+			rewards: [{
+				id: "4B2166FB44BD19DA"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "rsquare"
+			tasks: [{
+				count: 64L
+				id: "00000000000000AC"
+				item: "minecraft:sugar_cane"
+				type: "item"
+			}]
+			title: "其他农场"
+			x: -1.5d
+			y: -22.0d
+		}
+		{
+			dependencies: ["000000000000009F"]
+			description: [
+				"如果你一直跟着任务线走，那已经有一段时间住在洞穴里了。"
+				"既然你现在有很多建筑材料，就该让你的海龟们干活了。"
+				""
+				"放置方块比破坏方块要棘手，不妨先试试用自动铺路机。"
+				"制作一个 &6S&r 图案会提高效率，向下移动时放在上方，向上移动时放在下方。"
+				"另一个技巧是面向墙壁边缘，一边向后移动一边&6放置&r新方块。"
+			]
+			id: "00000000000000B0"
+			rewards: [{
+				id: "5BBB3DC2E1FF5D58"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "rsquare"
+			tasks: [{
+				count: 64L
+				id: "00000000000000B1"
+				item: "minecraft:stone_bricks"
+				type: "item"
+			}]
+			title: "自动化建造"
+			x: -3.0d
+			y: -22.0d
+		}
+		{
+			dependencies: ["00000000000000A7"]
+			description: [
+				"无聊的采石场效率很高，但为什么要让海龟独占鳌头呢？"
+				"岩石下面有很多东西，你只需要一个安全的方法去那里。"
+				""
+				"编写一个程序向下挖掘楼梯，填补空隙并返回地表可加分。"
+				"运气好的话，你会遇到地牢、矿井，或者至少一个不错的洞穴来探索。"
+				"（推荐建造三格宽的竖井，并留足顶部空间）"
+				""
+				"如果能下到 Y 坐标 12，你可以挖一条隧道来更高效地寻找钻石。"
+				"记得编程让它填满（岩浆）洞窟，并返回卸载物品。"
+			]
+			id: "00000000000000B2"
+			rewards: [{
+				id: "1BBB251890BC31D5"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "rsquare"
+			tasks: [
+				{
+					id: "00000000000000B3"
+					item: "minecraft:oak_fence"
+					type: "item"
+				}
+				{
+					id: "00000000000000B4"
+					item: "minecraft:oak_planks"
+					type: "item"
+				}
+				{
+					id: "00000000000000B5"
+					item: "minecraft:oak_fence"
+					type: "item"
+				}
+			]
+			title: "挖掘隧道"
+			x: 3.0d
+			y: -22.0d
+		}
+		{
+			dependencies: ["0000000000000087"]
+			description: [
+				"程序运行时可以接受输入参数，例如 &6mine 9 9&r 用于挖掘一个 9x9 的区域。"
+				"这种参数化方式能让你编写一个能在多种情况下运行的程序。"
+				""
+				"要访问参数，只需将特殊值分配给变量：&6local tArgs = \{\{...}}&r"
+				"你的变量将包含一个参数数组，可以通过 &6tArgs[1]&r 访问第一个参数。"
+				""
+				"你也可以将数组直接拆分成变量：&6local x, y, z = ...&r"
+			]
+			disable_toast: true
+			icon: "minecraft:composter"
+			id: "00000000000000B9"
+			optional: true
+			rewards: [{
+				id: "6753DFD4B66B14FD"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "gear"
+			tasks: [{
+				id: "00000000000000BA"
+				title: "参数"
+				type: "checkmark"
+			}]
+			x: -1.5d
+			y: -25.0d
+		}
+		{
+			dependencies: ["0000000000000087"]
+			description: [
+				"可靠运行的程序有其复杂性上限，经验会提升你的处理能力，但还有其他管理方法。"
+				""
+				"一个简单的办法是将逻辑封装到函数中，这样你就可以命名一个概念，避免重复自己。"
+				"ComputerCraft 还在函数之上提供了一层额外的接口：外壳。"
+				""
+				"ComputerCraft 提供了一个 shell API，允许你在一个程序中执行另一个程序。"
+				"使用 &6shell.run(program, arg1, etc)&r 后，你的程序会暂停，直到指定的程序运行完毕，然后恢复执行。"
+				"(&6shell.run&r 如果程序成功运行则返回 true)"
+				""
+				"这之所以有用，是因为你可以创建一个可靠且参数化的简单脚本，并在更大的程序中加以使用。"
+				"例如，你可以在树木农场程序中复用基础的日志记录程序。"
+				""
+				"这种包装方式还可以为易出错的程序提供一层容错能力。"
+				"例如，你可以封装你的挖矿程序，这样即使程序出错，你的海龟也能返回地表。"
+			]
+			disable_toast: true
+			icon: "minecraft:tropical_fish_bucket"
+			id: "00000000000000BB"
+			optional: true
+			rewards: [{
+				id: "5F70BBABA22DAFBF"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "gear"
+			tasks: [{
+				id: "00000000000000BC"
+				title: "正在运行的程序 程序列表"
+				type: "checkmark"
+			}]
+			title: "程序中的程序"
+			x: 1.5d
+			y: -25.0d
+		}
+		{
+			dependencies: ["0000000000000087"]
+			description: [
+				"除了函数、参数化程序和从一个程序中运行另一个程序外，Lua 还通过模块提供代码共享。"
+				"模块允许你编写一次代码，并在多个程序中重复使用。"
+				""
+				"模块是一个返回表格的普通lua文件，你把可重用的函数放在这个表格里。"
+				"要在程序中模块，只需将其 require 的结果赋值给一个变量：&6local foo = require(foo)&r"
+				""
+				"Require 使用模块搜索路径来查找你的代码，首先在当前目录查找 &6name.lua&r，然后是 &6./name/init.lua&r，再深入 rom 文件夹和其他位置。"
+				"Require 不理解路径表达式，但会将点号转换为斜杠，所以要引用 &6foo&r 文件夹中的模块，可以使用 &6require(foo.name)&r"
+			]
+			disable_toast: true
+			id: "00000000000000BF"
+			optional: true
+			rewards: [{
+				id: "1FC940A9282ED55E"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "gear"
+			tasks: [{
+				icon: {
+					Count: 1
+					id: "computercraft:disk"
+					tag: {
+						Color: 5744206
+					}
+				}
+				id: "00000000000000C0"
+				title: "模块化代码"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: -22.0d
+		}
+		{
+			dependencies: ["00000000000000B9"]
+			description: [
+				"你可以在计算机编程计算机上，使用任意编辑器在 Minecraft 之外编辑文件。"
+				"棘手之处在于找出你的世界存档存储位置，以及哪台电脑是哪台。"
+				""
+				"如果使用 MultiMC，有一个 &6实例文件夹&r 按钮，Twitch 启动器也有类似的隐藏在下拉菜单中的选项。"
+				"进入 Modpack 文件夹后，前往 &6saves/yourWorld/computercraft/computer&r，你会看到一系列编号文件夹。"
+				""
+				"放置计算机/海龟后，它会被分配一个数字，拾起即可查看。"
+				"你也可以使用 &6id&r 命令来查看计算机的编号，即使你用 &6label&r 命名了计算机。"
+				""
+				"在正确的文件夹中，你可以在游戏时编辑lua文件，更改会即时生效。"
+				"我推荐使用 VSCode 作为编辑器：它甚至有专为 ComputerCraft 设计的扩展，包括一个嵌入的 CraftOS 模拟器窗口。"
+			]
+			disable_toast: true
+			id: "00000000000000C4"
+			optional: true
+			rewards: [{
+				id: "746F3B00C55D91A5"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "gear"
+			tasks: [{
+				disable_toast: true
+				icon: "computercraft:printed_book"
+				id: "00000000000000C5"
+				title: "外部编辑"
+				type: "checkmark"
+			}]
+			x: -3.0d
+			y: -25.0d
+		}
+		{
+			dependencies: ["00000000000000A1"]
+			description: [
+				"控制和协调你的海龟的终极解决方案是全球定位系统（GPS）。"
+				"ComputerCraft 提供了一些工具，可根据基站距离计算无线收发器之间的位置。"
+				""
+				"幸运的是，你不需要将GPS星座送入轨道（尽管高度会影响范围），任何几台支持无线传输的电脑就足够了。"
+				"具体来说，你需要4台电脑、4个无线调制解调器，以及找到坐标的方法（小地图或F3）。"
+				""
+				"为获得最佳效果，请将计算机放置在高处，彼此间隔至少5格，并确保每台计算机的x、y和z坐标各不相同。"
+				"放置每个计算机，然后按 shift+rmb 在其上放置调制解调器，接着站在计算机上并记录坐标。"
+				""
+				"拿到坐标后，编辑计算机的启动文件，然后输入："
+				"&6shell.run(gps, host, x, y, z)&r 其中 x, y, z 是坐标（y 坐标减 1）。"
+				""
+				"保存每台计算机的 GPS 主机启动设置（并重启它们）后，你就可以用另一台无线计算机进行测试了。"
+				"使用任意无线电脑/海龟类型的 &6gps locate&r 来尝试获取坐标（程序中也有 API 供我们使用）。"
+				""
+				"你可以对系统进行的升级之一，是将无线调制解调器更换为末地调制解调器。"
+				"末地调制解调器没有距离限制，不像普通无线传输（在服务器上，还需要加载主机所在的区块）。"
+			]
+			disable_toast: true
+			icon: "computercraft:wireless_modem_advanced"
+			id: "00000000000000C6"
+			optional: true
+			rewards: [{
+				id: "0CF6993B86EFB3B7"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "gear"
+			tasks: [
+				{
+					id: "000000000000015A"
+					item: {
+						Count: 1
+						id: "itemfilters:tag"
+						tag: {
+							value: "computercraft:computer"
+						}
+					}
+					title: "计算机"
+					type: "item"
+				}
+				{
+					id: "035C3F6DA39A48A3"
+					item: "computercraft:wireless_modem_normal"
+					type: "item"
+				}
+			]
+			title: "GPS"
+			x: 3.0d
+			y: -25.0d
+		}
+		{
+			dependencies: ["00000000000000BF"]
+			description: [
+				"完成所有任务后，仍然有更多事情要做。"
+				""
+				"要来到这里，你很可能得先研究一下，至少是研究一下 Lua 语言。"
+				""
+				"现在你应该去 CC:Tweaked API 文档里找找更多灵感。"
+				""
+				"查看 Redstone API 以与原版机器互动。"
+				""
+				"使用 Shell 和 OS 以获得对系统的更多控制权。"
+				""
+				"fs 和 io 库用于读写文件和流。"
+				""
+				"然后还有所有的终端和图形 API 接口。"
+				""
+				"还有显示器、扬声器、有线调制解调器等外围设备可供玩耍。"
+				""
+				"最新版本甚至允许使用 &6peripheral.wrap&r 来包装原版物品，如箱子和熔炉。"
+			]
+			disable_toast: true
+			id: "00000000000000CA"
+			optional: true
+			rewards: [{
+				id: "4A721CEF84AE49F8"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "gear"
+			tasks: [{
+				disable_toast: true
+				icon: "minecraft:diamond_ore"
+				id: "00000000000000CB"
+				title: "还有更多内容等你探索"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: -20.5d
+		}
+		{
+			dependencies: ["00000000000000A1"]
+			description: [
+				"你的挖掘海龟可以瞬间挖掘黑曜石，这对于进入下界很有用。"
+				"要找到可以开采的黑曜石，可以在运行钻孔程序前，将水源放在你的乌龟上方。"
+				""
+				"如果你的海龟碰到岩浆，它会被转化，别忘了在侧边检查中添加挖掘 &6minecraft:obsidian&r 的代码。"
+				"返程时最好也带上一个 &6digUp&r，以防突然生成原石。"
+			]
+			id: "000000000000015F"
+			rewards: [{
+				id: "5012B9B62A20BC4E"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "rsquare"
+			tasks: [{
+				count: 2L
+				id: "0000000000000160"
+				item: "minecraft:obsidian"
+				type: "item"
+			}]
+			x: 4.5d
+			y: -23.5d
+		}
+		{
+			dependencies: ["000000000000009F"]
+			description: [
+				"一个非常实用的建筑辅助工具是清理或平整程序。"
+				"思路是在起始高度挖掘上方或周围的任何方块，并在空洞中放置填充方块。"
+				""
+				"设置此功能的一个简单方法是使用两个嵌套的 for 循环：一个用于 y/列，另一个用于 x/行。"
+				"难点在于以固定方向移动的同时，在每个列的末端之字形移动。"
+				""
+				"有个数学技巧可以帮忙：许多编程语言都提供了一个&6取模&r运算符，它能返回&6除法的余数&r"
+				"更好的理解方式是，取模运算会让数字循环。"
+				""
+				"在 Lua 中，模数是 &6%&r，用法是 &65%4&r（结果为 4）。"
+				"试试在 Lua 提示符中输入这个：&6for i=1,10 do print(i..%3=..(i%3)) end&r，注意数值会循环 0-1-2。"
+				""
+				"转向的话，可以检查&6if y%2 == 0 then&r 左转 &6else&r 右转。"
+				"检查 &6%2&r 会在每个 y 值上在 0 和 1 之间交替，而交替方向的前进和后退将形成之字形移动。"
+			]
+			icon: "minecraft:grass_block"
+			id: "0000000000000163"
+			rewards: [{
+				id: "31309D0DD34749AA"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "rsquare"
+			tasks: [{
+				count: 128L
+				id: "0000000000000164"
+				item: "minecraft:dirt"
+				type: "item"
+			}]
+			title: "清理与填充"
+			x: -4.5d
+			y: -23.5d
+		}
+	]
+	title: "计算机工艺模组 (Computer Craft)"
+}

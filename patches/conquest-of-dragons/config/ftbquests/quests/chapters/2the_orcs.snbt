@@ -1,0 +1,238 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "2the_orcs"
+	group: "49FDD79D2384A7A4"
+	icon: {
+		Count: 1
+		id: "twilightforest:zombie_skull_candle"
+		tag: {
+			BlockEntityTag: {
+				CandleAmount: 1
+				CandleColor: 0
+			}
+		}
+	}
+	id: "0E5B8D3E804E6A38"
+	images: [{
+		height: 4.0d
+		image: "kubejs:textures/fotos/theorc.png"
+		rotation: 0.0d
+		width: 4.0d
+		x: -1.5d
+		y: -5.5d
+	}]
+	order_index: 5
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"&aExplore your world &and discover an &cOrc Camp&a.  "
+				"&b见证他们的建筑、帐篷，感受他们的敌意。"
+				"&8你踏入兽人土地的旅程，现在开始。"
+			]
+			id: "561C4FB2C0C4A3A2"
+			rewards: [{
+				id: "0501642253967579"
+				type: "xp"
+				xp: 25
+			}]
+			shape: "octagon"
+			subtitle: "&7世界因新的威胁而变得更加黑暗"
+			tasks: [{
+				id: "3BB4B49F42CF302A"
+				title: "&e&l兽人来袭"
+				type: "checkmark"
+			}]
+			x: -1.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["561C4FB2C0C4A3A2"]
+			description: [
+				"&aWithin an Orc Camp, defeat several &cGrunts&a—their basic melee soldiers.  "
+				"&b它们守卫营地，能抵抗轻型武器。"
+				"&8让他们知道他们并非不可触碰。"
+			]
+			id: "1699E13CD26402DD"
+			rewards: [
+				{
+					id: "58A29F3D16179B47"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "486BD530D4FC0FFB"
+					item: "minecraft:golden_apple"
+					random_bonus: 4
+					type: "item"
+				}
+			]
+			subtitle: "&7解决前线的兽人问题"
+			tasks: [{
+				entity: "theorcs:orc_grunt"
+				icon: "theorcs:orc_grunt_spawn_egg"
+				id: "240775F1206A4342"
+				type: "kill"
+				value: 5L
+			}]
+			title: "&e&l清除一个杂兵小队"
+			x: -3.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["561C4FB2C0C4A3A2"]
+			description: [
+				"&a击败一名&c兽人游侠&a——营地的弓箭手。"
+				"&b它们可以从远处倾泻箭雨。"
+				"&8缩短距离，发起攻击。"
+			]
+			id: "372368CC8B35A2CB"
+			rewards: [
+				{
+					id: "6D5F6506F4B87322"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "7472E78245FF4BA0"
+					item: "minecraft:diamond_ore"
+					random_bonus: 3
+					type: "item"
+				}
+			]
+			subtitle: "&7阻止他们的箭和远程攻击"
+			tasks: [{
+				entity: "theorcs:orc_ranger"
+				icon: "theorcs:orc_ranger_spawn_egg"
+				id: "6150D65B726AA94E"
+				type: "kill"
+				value: 1L
+			}]
+			title: "&e&l击败一名游侠（Ranger）"
+			x: -2.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["561C4FB2C0C4A3A2"]
+			description: [
+				"&a击败营地里精通毒魔法的&c兽人萨满&a。"
+				"&b它们会向入侵者投掷有害药水。"
+				"&8消灭他们的法术并生存下来。"
+			]
+			id: "7428F46027624CDE"
+			rewards: [
+				{
+					id: "27F4CEDE5884D03D"
+					type: "xp"
+					xp: 105
+				}
+				{
+					id: "14A5A8A60AF9D58C"
+					item: "minecraft:tnt"
+					random_bonus: 4
+					type: "item"
+				}
+				{
+					id: "5938BE9ADED0EECF"
+					item: "minecraft:emerald"
+					random_bonus: 3
+					type: "item"
+				}
+			]
+			subtitle: "&7再也不会被毒雨淋到你了"
+			tasks: [{
+				entity: "theorcs:orc_shaman"
+				icon: "theorcs:orc_shaman_spawn_egg"
+				id: "3549607EC127EC76"
+				type: "kill"
+				value: 1L
+			}]
+			title: "&e&l让萨满安静下来"
+			x: 0.5d
+			y: -3.5d
+		}
+		{
+			dependencies: [
+				"372368CC8B35A2CB"
+				"7428F46027624CDE"
+				"1699E13CD26402DD"
+				"47E7968738E1EEA3"
+			]
+			description: [
+				"&aLocate and free the &cVillager hostage&a held in the Orc Camp.  "
+				"&b护送他们到安全地带，或杀死他们的俘虏。"
+				"&8他们会记住你的仁慈。"
+			]
+			id: "7AB97AB04A45CCDF"
+			rewards: [
+				{
+					id: "64446145FF0E99B1"
+					type: "xp"
+					xp: 55
+				}
+				{
+					id: "5DBE6F21A92C87C5"
+					item: "artifacts:everlasting_beef"
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			subtitle: "&7英雄拯救生命"
+			tasks: [{
+				id: "493DFC6A7E17D7E1"
+				title: "&e&l拯救村民"
+				type: "checkmark"
+			}]
+			x: -1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["561C4FB2C0C4A3A2"]
+			description: [
+				"&aInside the camp, confront and defeat the &cOrc Boss&a—armed with a devastating extendable mace.  "
+				"&b它们领导着兽人，给敌人带来恐惧。"
+				"&8坚强起来，战胜一切。"
+			]
+			id: "47E7968738E1EEA3"
+			rewards: [
+				{
+					id: "4A44DD8BCD398834"
+					type: "xp"
+					xp: 200
+				}
+				{
+					count: 4
+					id: "3E784BBA04146445"
+					item: "minecraft:emerald_block"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "7BD32AA278571BB4"
+					item: "minecraft:diamond_block"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "6E4248DA0E845191"
+					item: "minecraft:iron_block"
+					type: "item"
+				}
+			]
+			subtitle: "&7展示谁才是真正的清算者"
+			tasks: [{
+				entity: "theorcs:orc_boss"
+				icon: "theorcs:orc_boss_spawn_egg"
+				id: "7F78451D29DBAFD7"
+				type: "kill"
+				value: 1L
+			}]
+			title: "&e&l击败兽人首领"
+			x: -0.5d
+			y: -3.0d
+		}
+	]
+	title: "&2兽人部落 (The Orcs)</c1>"
+}

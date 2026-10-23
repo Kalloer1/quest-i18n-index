@@ -1,0 +1,913 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "circle"
+	filename: "pneumaticcraft"
+	group: "A100000000000002"
+	icon: "pneumaticcraft:air_compressor"
+	id: "274E7C6635782317"
+	order_index: 11
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["PneumaticCraft 使用压缩空气、压力限制、热交换、可编程物流和先进制造。将每个压力网络视为需要仪表、调节和安全故障路径的储能装置。"]
+			id: "4854A2F03E9339FF"
+			rewards: [{
+				id: "D8786A1FDA85615E"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "7F7CBA0F7919069E"
+				title: "确认：压力与热量的工程学应用"
+				type: "checkmark"
+			}]
+			title: "压力与热量的工程学应用"
+			x: -0.534d
+			y: 0.050d
+		}
+		{
+			dependencies: ["4854A2F03E9339FF"]
+			description: ["手册记录了压力范围、热规则、多区块、无人机组件和机器详情。在增压或自动化不熟悉流程前，请先查阅手册。"]
+			id: "FC57964FD496A7A1"
+			shape: "circle"
+			tasks: [{
+				id: "15FA96A2219B49BC"
+				item: "pneumaticcraft:manual"
+				type: "item"
+			}]
+			title: "PneumaticCraft 手册"
+			x: -0.298d
+			y: -1.024d
+		}
+		{
+			dependencies: ["4854A2F03E9339FF"]
+			description: ["Compressed Iron 开启了模组。使用受控配方区并立即回收产物；后续进展会提供更安全的生产方法。"]
+			id: "AFE7ACA676F0EF8B"
+			shape: "circle"
+			tasks: [{
+				id: "1523C6D487E03F28"
+				item: "pneumaticcraft:ingot_iron_compressed"
+				type: "item"
+			}]
+			title: "压缩铁块 (Compressed Iron)"
+			x: 0.284d
+			y: 0.785d
+		}
+		{
+			dependencies: ["AFE7ACA676F0EF8B"]
+			description: ["使用墙壁、玻璃、阀门和接口建造一个有效的封闭舱室。保留服务通道，但不要削弱压力边界。"]
+			id: "C5906D04C814D6EB"
+			shape: "circle"
+			tasks: [{
+				id: "0E06932059274972"
+				item: "pneumaticcraft:pressure_chamber_wall"
+				type: "item"
+			}]
+			title: "压力舱室墙壁"
+			x: 0.519d
+			y: -0.289d
+		}
+		{
+			dependencies: ["C5906D04C814D6EB"]
+			description: ["阀门将腔室与空气网络相连。每次使用新配方时，注意腔室压力，避免向结构输送的压力超过其安全使用范围。"]
+			id: "39CA577E413CCACE"
+			shape: "circle"
+			tasks: [{
+				id: "83DBA1083E60DE2A"
+				item: "pneumaticcraft:pressure_chamber_valve"
+				type: "item"
+			}]
+			title: "压力舱阀门"
+			x: 0.747d
+			y: -1.364d
+		}
+		{
+			dependencies: ["C5906D04C814D6EB"]
+			description: ["接口能让物品穿过舱壁而无需打开。请分别配置导入和导出，以免材料无限循环。"]
+			id: "96E985195D217373"
+			shape: "circle"
+			tasks: [{
+				id: "BF98DC604AA9719C"
+				item: "pneumaticcraft:pressure_chamber_interface"
+				type: "item"
+			}]
+			title: "压力舱接口"
+			x: 1.278d
+			y: 1.256d
+		}
+		{
+			dependencies: ["39CA577E413CCACE" "96E985195D217373"]
+			description: ["完成一个带有压力监测、独立接口、有界输入和可靠输出提取的单室配方。"]
+			id: "A345FA3D96F3E8DF"
+			rewards: [{
+				id: "3DE32C7CF2F8E8EC"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "7305B914AE0A4A66"
+				title: "确认：一个可用的压力舱室"
+				type: "checkmark"
+			}]
+			title: "一个可用的压力舱室"
+			x: 1.512d
+			y: 0.183d
+		}
+		{
+			dependencies: ["A345FA3D96F3E8DF"]
+			description: ["空气压缩机燃烧燃料来加压网络。请逐渐添加燃料，切勿在没有压力表和安全压力限制的情况下运行。"]
+			id: "5126316420E09883"
+			shape: "circle"
+			tasks: [{
+				id: "92314CC5B462B1AB"
+				item: "pneumaticcraft:air_compressor"
+				type: "item"
+			}]
+			title: "空气压缩机"
+			x: 2.395d
+			y: 0.838d
+		}
+		{
+			dependencies: ["5126316420E09883"]
+			description: ["压力管输送压缩空气并平衡相连体积。更大的网络在损坏时充电更慢，储存的能量也更多。"]
+			id: "F9109855252EDDEE"
+			shape: "circle"
+			tasks: [{
+				id: "2788633C5DC9AEB0"
+				item: "pneumaticcraft:pressure_tube"
+				type: "item"
+			}]
+			title: "压力管道 (Pressure Tubes)"
+			x: 1.740d
+			y: -0.893d
+		}
+		{
+			dependencies: ["F9109855252EDDEE"]
+			description: ["压力表能让网络状态可视化。在操作员与压缩机或消耗器互动前，将仪表放置在显眼位置。"]
+			id: "9CF0FBA4789C780B"
+			shape: "circle"
+			tasks: [{
+				id: "86383D4B6B7ABFBB"
+				item: "pneumaticcraft:pressure_gauge"
+				type: "item"
+			}]
+			title: "压力计"
+			x: 1.867d
+			y: -1.985d
+		}
+		{
+			dependencies: ["9CF0FBA4789C780B"]
+			description: ["压力计模块可显示管道网络本身的压力。将其安装在分支末端，以便查看局部限制和压力损失。"]
+			id: "068987B24E03C806"
+			shape: "circle"
+			tasks: [{
+				id: "38FBF7CCEAB5CE87"
+				item: "pneumaticcraft:pressure_gauge_module"
+				type: "item"
+			}]
+			title: "测量模块"
+			x: 2.622d
+			y: -0.237d
+		}
+		{
+			dependencies: ["9CF0FBA4789C780B"]
+			description: ["安全模块会在组件爆炸前排出多余压力。将其设置在最弱方块的最大压力以下，并测试排气速度能否快于生成速度。"]
+			id: "DA4AC9F453757D52"
+			shape: "circle"
+			tasks: [{
+				id: "B73CB60538897763"
+				item: "pneumaticcraft:safety_tube_module"
+				type: "item"
+			}]
+			title: "安全模块"
+			x: 2.877d
+			y: -2.422d
+		}
+		{
+			dependencies: ["9CF0FBA4789C780B"]
+			description: ["调节器可分离高低压分支。用它来保护早期机器，同时让高级主循环在更高压力下运行。"]
+			id: "0C282A3426F0A5C1"
+			shape: "circle"
+			tasks: [{
+				id: "A95A56E40CD973AA"
+				item: "pneumaticcraft:regulator_tube_module"
+				type: "item"
+			}]
+			title: "调节器模块"
+			x: 2.749d
+			y: -1.329d
+		}
+		{
+			dependencies: ["0C282A3426F0A5C1"]
+			description: ["充电站可为气动工具和容器充气。限制目标压力，使便携设备保持在额定范围内。"]
+			id: "608EDC167615A821"
+			shape: "circle"
+			tasks: [{
+				id: "DBB788A48357D8EF"
+				item: "pneumaticcraft:charging_station"
+				type: "item"
+			}]
+			title: "充电站"
+			x: 3.630d
+			y: -0.673d
+		}
+		{
+			dependencies: ["608EDC167615A821"]
+			description: ["空气罐可储存便携式压力。将已充能的恢复罐存放在主网络外部，并在安装前检查其压力。"]
+			id: "7876289B372E0D69"
+			shape: "circle"
+			tasks: [{
+				id: "CC24B1D0730ED37B"
+				item: "pneumaticcraft:air_canister"
+				type: "item"
+			}]
+			title: "空气罐"
+			x: 4.765d
+			y: -2.201d
+		}
+		{
+			dependencies: ["7876289B372E0D69"]
+			description: ["加固罐体可在更高压力下储存更多空气。仅可通过额定压力相符的设备为其充气。"]
+			id: "33BC2C20951DF745"
+			shape: "circle"
+			tasks: [{
+				id: "82DC9332FBFB2CAB"
+				item: "pneumaticcraft:reinforced_air_canister"
+				type: "item"
+			}]
+			title: "加固空气罐"
+			x: 3.505d
+			y: 0.418d
+		}
+		{
+			dependencies: ["DA4AC9F453757D52" "068987B24E03C806" "33BC2C20951DF745"]
+			description: ["证明网络具有可见压力、自动过压保护、受控分支、可控充压，以及带完整压缩机的停机功能。"]
+			id: "6461038776E550E7"
+			rewards: [{
+				id: "5BDFD8A89F301E44"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "2C63A267744BE282"
+				title: "确认：一个安全的压力支柱"
+				type: "checkmark"
+			}]
+			title: "安全的压力脊柱组件"
+			x: 3.757d
+			y: -1.765d
+		}
+		{
+			dependencies: ["6461038776E550E7"]
+			description: ["液体压缩机可将流体燃料转化为压力。隔离燃料存储，并与固体燃料压缩机比较净效率。"]
+			id: "6F25557E1A1D8EDC"
+			shape: "circle"
+			tasks: [{
+				id: "030F6F6BA2414120"
+				item: "pneumaticcraft:liquid_compressor"
+				type: "item"
+			}]
+			title: "液体压缩机"
+			x: 6.656d
+			y: -1.983d
+		}
+		{
+			dependencies: ["6461038776E550E7"]
+			description: ["高级空气压缩机支持更高的压力和吞吐量。在提高目标压力前，请先升级管道和所有已连接的组件。"]
+			id: "2A7E9C43849518D1"
+			shape: "circle"
+			tasks: [{
+				id: "55A4AD9B51BD8440"
+				item: "pneumaticcraft:advanced_air_compressor"
+				type: "item"
+			}]
+			title: "高级空气压缩机"
+			x: 4.513d
+			y: -0.018d
+		}
+		{
+			dependencies: ["2A7E9C43849518D1"]
+			description: ["高级管道能承受高压，但可能暴露较弱的连接部分。在仅更换主管道前，请先检查整个网络。"]
+			id: "41DBF18862508C76"
+			shape: "circle"
+			tasks: [{
+				id: "7E4E5626440A487C"
+				item: "pneumaticcraft:advanced_pressure_tube"
+				type: "item"
+			}]
+			title: "高级压力管系统 (Advanced Pressure Tubes)"
+			x: 4.639d
+			y: -1.110d
+		}
+		{
+			dependencies: ["41DBF18862508C76"]
+			description: ["太阳能压缩机在环境限制下提供可再生空气。间歇性生产需搭配足够的网络容量和调节储备。"]
+			id: "6221F96E9CEF9EB3"
+			shape: "circle"
+			tasks: [{
+				id: "5C29E236D5E2C044"
+				item: "pneumaticcraft:solar_compressor"
+				type: "item"
+			}]
+			title: "太阳能压缩机"
+			x: 4.892d
+			y: -3.294d
+		}
+		{
+			dependencies: ["41DBF18862508C76"]
+			description: ["Flux Compressor 将 Forge 能量转化为压力。设置能量限制，以免在填充大型网络时耗尽基地其余部分的能量。"]
+			id: "2F8CB3D798A4B524"
+			shape: "circle"
+			tasks: [{
+				id: "1DD13411982A8492"
+				item: "pneumaticcraft:flux_compressor"
+				type: "item"
+			}]
+			title: "Flux Compressor"
+			x: 5.901d
+			y: -3.730d
+		}
+		{
+			dependencies: ["2F8CB3D798A4B524"]
+			description: ["气动发电机将压力转化为锻造能量。测量往返效率，用于有意集成而非造成损耗的循环。"]
+			id: "FAED063CFA3E6203"
+			shape: "circle"
+			tasks: [{
+				id: "15FC35BCBC1CB849"
+				item: "pneumaticcraft:pneumatic_dynamo"
+				type: "item"
+			}]
+			title: "气动发电机"
+			x: 8.422d
+			y: -0.674d
+		}
+		{
+			dependencies: ["6F25557E1A1D8EDC" "6221F96E9CEF9EB3" "FAED063CFA3E6203"]
+			description: ["操作高压主输气管道，为低压分支供气。确认安全模块、压缩机、管道和消耗器均具有兼容的极限值。"]
+			id: "0033DFE47814FE29"
+			rewards: [{
+				id: "CEE8F116638547CD"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "C9331CA57554C535"
+				title: "确认：可控高压系统已启动"
+				type: "checkmark"
+			}]
+			title: "可控高压环境"
+			x: 7.792d
+			y: -3.512d
+		}
+		{
+			dependencies: ["6461038776E550E7"]
+			description: ["热气动加工厂结合了压力、热量、流体和物品。自动化前请先稳定温度并提供独立的流体输入。"]
+			id: "86CAB8AC97C0FFFF"
+			shape: "circle"
+			tasks: [{
+				id: "80E71C2AD9288FB2"
+				item: "pneumaticcraft:thermopneumatic_processing_plant"
+				type: "item"
+			}]
+			title: "热气动加工"
+			x: 5.522d
+			y: -0.454d
+		}
+		{
+			dependencies: ["86CAB8AC97C0FFFF"]
+			description: ["炼油塔将石油分成多种燃料。包含所有输出方块和储罐，因为一个分馏塔装满就会停止整列运行。"]
+			id: "6DCDD15E654BEDE9"
+			shape: "circle"
+			tasks: [{
+				id: "1618632384F61108"
+				item: "pneumaticcraft:refinery"
+				type: "item"
+			}]
+			title: "精炼厂"
+			x: 5.649d
+			y: -1.545d
+		}
+		{
+			dependencies: ["86CAB8AC97C0FFFF"]
+			description: ["涡管利用压力产生冷热两侧。请隔热并防止一侧温度过高。"]
+			id: "4D0263BFA6FAC524"
+			shape: "circle"
+			tasks: [{
+				id: "905332FE136BAAFB"
+				item: "pneumaticcraft:vortex_tube"
+				type: "item"
+			}]
+			title: "涡旋管"
+			x: 5.270d
+			y: 1.729d
+		}
+		{
+			dependencies: ["4D0263BFA6FAC524"]
+			description: ["热管在机器和散热器之间传输温度。考虑环境损失，避免连接需要相反温度的系统。"]
+			id: "602E687C5CCDFA3E"
+			shape: "circle"
+			tasks: [{
+				id: "8177FBA222D4BC68"
+				item: "pneumaticcraft:heat_pipe"
+				type: "item"
+			}]
+			title: "热管道"
+			x: 5.397d
+			y: 0.637d
+		}
+		{
+			dependencies: ["602E687C5CCDFA3E"]
+			description: ["散热器与环境交换热量。提供气流和足够的表面积，以实现持续而非脉冲式运行。"]
+			id: "435949EEDC6712BA"
+			shape: "circle"
+			tasks: [{
+				id: "E56A5735DE6A8C0F"
+				item: "pneumaticcraft:heat_sink"
+				type: "item"
+			}]
+			title: "散热片"
+			x: 7.162d
+			y: 1.947d
+		}
+		{
+			dependencies: ["6DCDD15E654BEDE9" "435949EEDC6712BA"]
+			description: ["运行热气动配方和完整的精炼循环，同时监控压力、温度、燃料分馏和输出能力。"]
+			id: "C1E6D4FA7964DAF6"
+			rewards: [{
+				id: "B83013E51D68756D"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "305B627D02EA7692"
+				title: "确认：稳定的热量和精炼系统"
+				type: "checkmark"
+			}]
+			title: "稳定的热量与精炼系统"
+			x: 6.405d
+			y: 0.200d
+		}
+		{
+			dependencies: ["0033DFE47814FE29"]
+			description: ["印刷电路板最初是空白板。将PCB生产线与通用塑料生产隔离，以免中间阶段被消耗。"]
+			id: "E68CF8A3D9556BBF"
+			shape: "circle"
+			tasks: [{
+				id: "8A2987923D7DB7C7"
+				item: "pneumaticcraft:empty_pcb"
+				type: "item"
+			}]
+			title: "空白的印刷电路板"
+			x: 5.775d
+			y: -2.638d
+		}
+		{
+			dependencies: ["E68CF8A3D9556BBF"]
+			description: ["紫外线灯箱会暴露一块PCB。在正确进度时移除它，并保护线路，防止再次插入成品电路板。"]
+			id: "A9A6545CA719BA36"
+			shape: "circle"
+			tasks: [{
+				id: "C82C2BA5201EA474"
+				item: "pneumaticcraft:uv_light_box"
+				type: "item"
+			}]
+			title: "紫外线灯盒"
+			x: 6.783d
+			y: -3.074d
+		}
+		{
+			dependencies: ["A9A6545CA719BA36"]
+			description: ["蚀刻槽在酸中完成裸露PCB。需密封液体、防止物品丢失，并将失败的电路板单独导出。"]
+			id: "BFD714A722C4294D"
+			shape: "circle"
+			tasks: [{
+				id: "DA5A7E3138FDEFF6"
+				item: "pneumaticcraft:etching_tank"
+				type: "item"
+			}]
+			title: "蚀刻槽"
+			x: 6.532d
+			y: -0.892d
+		}
+		{
+			dependencies: ["BFD714A722C4294D"]
+			description: ["印刷电路板可驱动高级设备。先批量制作并保留备件，再用于自动化。"]
+			id: "18A1D750A5DFC36A"
+			shape: "circle"
+			tasks: [{
+				id: "52376C431F6F96DC"
+				item: "pneumaticcraft:printed_circuit_board"
+				type: "item"
+			}]
+			title: "印刷电路板"
+			x: 7.666d
+			y: -2.421d
+		}
+		{
+			dependencies: ["18A1D750A5DFC36A"]
+			description: ["重复完整的PCB流程，包括定时控制、酸液 containment、废板处理和成品 protected storage。"]
+			id: "06CEE3BA339B050A"
+			rewards: [{
+				id: "C31A1AA414587AEF"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "2726D31A6121F03E"
+				title: "确认：可重复的PCB制造任务"
+				type: "checkmark"
+			}]
+			title: "可重复的PCB制造任务"
+			x: 8.675d
+			y: -2.857d
+		}
+		{
+			dependencies: ["18A1D750A5DFC36A"]
+			description: ["装配控制器负责协调平台、IO单元、钻头和激光。每次只提供一个配方程序，并为多区块结构留出清晰的工作空间。"]
+			id: "69354A5381C96535"
+			shape: "circle"
+			tasks: [{
+				id: "FAD0891AEDAA87B5"
+				item: "pneumaticcraft:assembly_controller"
+				type: "item"
+			}]
+			title: "装配控制器"
+			x: 7.415d
+			y: -0.237d
+		}
+		{
+			dependencies: ["69354A5381C96535"]
+			description: ["平台在组装时用于固定工件。确保每个机械臂都能到达，且无关物品无法进入工作区。"]
+			id: "38BF424C0FE0F3B4"
+			shape: "circle"
+			tasks: [{
+				id: "B9E08E62C92001F3"
+				item: "pneumaticcraft:assembly_platform"
+				type: "item"
+			}]
+			title: "组装平台"
+			x: 7.541d
+			y: -1.329d
+		}
+		{
+			dependencies: ["38BF424C0FE0F3B4"]
+			description: ["钻头会执行编程的组装步骤。在投入稀有组件前，请验证所选程序和输出。"]
+			id: "4C878B56738BBA6B"
+			shape: "circle"
+			tasks: [{
+				id: "0754182C9B058843"
+				item: "pneumaticcraft:assembly_drill"
+				type: "item"
+			}]
+			title: "组装钻头"
+			x: 10.566d
+			y: -2.639d
+		}
+		{
+			dependencies: ["38BF424C0FE0F3B4"]
+			description: ["激光可启用额外的组装程序。保护其工作区，并确认控制器能看到所有组件。"]
+			id: "8A23FCE94AAF450A"
+			shape: "circle"
+			tasks: [{
+				id: "A0FDEFE6B3DE83FA"
+				item: "pneumaticcraft:assembly_laser"
+				type: "item"
+			}]
+			title: "组装激光"
+			x: 8.549d
+			y: -1.764d
+		}
+		{
+			dependencies: ["4C878B56738BBA6B" "8A23FCE94AAF450A"]
+			description: ["使用过滤IO、已知压力成本、安全间隙和可回收中间物品来运行钻头和激光程序。"]
+			id: "FE89E89D4541B406"
+			rewards: [{
+				id: "6D0E23A33E344B68"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "2EB9C5BB39387872"
+				title: "确认：自动化装配生产线"
+				type: "checkmark"
+			}]
+			title: "自动化装配生产线"
+			x: 9.558d
+			y: -2.202d
+		}
+		{
+			dependencies: ["06CEE3BA339B050A"]
+			description: ["程序员用组件构建无人机程序。从一个有边界的小区域、明确的条件和返回基地的路径开始。"]
+			id: "E87BD6A10D6C3F2C"
+			shape: "circle"
+			tasks: [{
+				id: "E8FB398893E6E42C"
+				item: "pneumaticcraft:programmer"
+				type: "item"
+			}]
+			title: "程序员"
+			x: 7.289d
+			y: 0.855d
+		}
+		{
+			dependencies: ["E87BD6A10D6C3F2C"]
+			description: ["无人机通过压力执行编程流程。在分配重要任务前，请先用可替换货物和可见目的地进行测试。"]
+			id: "A38D2B54343A122B"
+			shape: "circle"
+			tasks: [{
+				id: "466B7E4BDC50D00F"
+				item: "pneumaticcraft:drone"
+				type: "item"
+			}]
+			title: "可编程无人机"
+			x: 9.432d
+			y: -1.109d
+		}
+		{
+			dependencies: ["A38D2B54343A122B"]
+			description: ["收集无人机会在编程区域内收集物品。添加过滤器和卸载目的地，以免它们永远携带混合货物。"]
+			id: "A16BF0D77CE6E75B"
+			shape: "circle"
+			tasks: [{
+				id: "B4C5D411AF6593FB"
+				item: "pneumaticcraft:collector_drone"
+				type: "item"
+			}]
+			title: "收集者无人机"
+			x: 9.181d
+			y: 1.073d
+		}
+		{
+			dependencies: ["A38D2B54343A122B"]
+			description: ["Harvesting Drones 会在限定区域内收割作物。保证重新种植，并保持路径远离其他农场。"]
+			id: "660FC70FCC72D8C8"
+			shape: "circle"
+			tasks: [{
+				id: "A626EFFE856D18B7"
+				item: "pneumaticcraft:harvesting_drone"
+				type: "item"
+			}]
+			title: "Harvesting Drone"
+			x: 9.935d
+			y: 2.821d
+		}
+		{
+			dependencies: ["A38D2B54343A122B"]
+			description: ["守卫无人机会依据实体过滤器行动，可能误伤目标。武装前请仔细配置团队和区域。"]
+			id: "0AA34DD948B78639"
+			shape: "circle"
+			tasks: [{
+				id: "EE302F464CA42EE4"
+				item: "pneumaticcraft:guard_drone"
+				type: "item"
+			}]
+			title: "守卫无人机"
+			x: 8.045d
+			y: 2.603d
+		}
+		{
+			dependencies: ["A38D2B54343A122B"]
+			description: ["物流无人机服务已配置框架和物品栏。避免请求循环，并在已加载的基础设施周围限制活动范围。"]
+			id: "C4F116BA06A29D50"
+			shape: "circle"
+			tasks: [{
+				id: "021BF57CA702EC1C"
+				item: "pneumaticcraft:logistics_drone"
+				type: "item"
+			}]
+			title: "物流无人机"
+			x: 8.298d
+			y: 0.418d
+		}
+		{
+			dependencies: ["C4F116BA06A29D50"]
+			description: ["使用配置器定义请求者、提供者和存储器的行为。记录优先级，并测试当没有提供者能满足请求时会发生什么。"]
+			id: "60329A1A4029F2F0"
+			shape: "circle"
+			tasks: [{
+				id: "7400142C7CA216E0"
+				item: "pneumaticcraft:logistics_configurator"
+				type: "item"
+			}]
+			title: "物流配置器 (Logistics Configurator)"
+			x: 10.189d
+			y: 0.637d
+		}
+		{
+			dependencies: ["60329A1A4029F2F0"]
+			description: ["请求框架定义了所需的库存。使用有限的数量，这样未满足的请求就不会让所有物流无人机持续忙碌。"]
+			id: "6F5F010B9E407206"
+			shape: "circle"
+			tasks: [{
+				id: "EC362F96C9EEBBF4"
+				item: "pneumaticcraft:logistics_frame_requester"
+				type: "item"
+			}]
+			title: "请求者框架"
+			x: 9.306d
+			y: -0.018d
+		}
+		{
+			dependencies: ["60329A1A4029F2F0"]
+			description: ["Provider Frames 将物品栏暴露给物流系统。过滤预留物资，避免为手动恢复而宣传所需容器。"]
+			id: "E077A14D5387F442"
+			shape: "circle"
+			tasks: [{
+				id: "DDC346224680831E"
+				item: "pneumaticcraft:logistics_frame_active_provider"
+				type: "item"
+			}]
+			title: "提供者框架"
+			x: 10.315d
+			y: -0.454d
+		}
+		{
+			dependencies: ["60329A1A4029F2F0"]
+			description: ["存储框架定义了可接受的目的地和优先级。连接高产量生产者前，请先测试溢出行为。"]
+			id: "E74C6BF064305066"
+			shape: "circle"
+			tasks: [{
+				id: "F0B8C223EA319EC1"
+				item: "pneumaticcraft:logistics_frame_storage"
+				type: "item"
+			}]
+			title: "存储框架"
+			x: 10.064d
+			y: 1.730d
+		}
+		{
+			dependencies: ["A16BF0D77CE6E75B" "660FC70FCC72D8C8" "0AA34DD948B78639" "6F5F010B9E407206" "E077A14D5387F442" "E74C6BF064305066"]
+			description: ["展示无人机任务，包括限定区域、有效路径、筛选货物、充足空气、有限请求、受保护供应商以及对受阻目的地的安全响应。"]
+			id: "CFC644CBE9912B6B"
+			rewards: [{
+				id: "997255EFD34A9822"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "63F3F4FA4E87F4B2"
+				title: "确认：有界无人机自动化"
+				type: "checkmark"
+			}]
+			title: "有界无人机自动化系统"
+			x: 11.204d
+			y: 1.062d
+		}
+		{
+			dependencies: ["06CEE3BA339B050A"]
+			description: ["Amadron 提供基于物品栏、流体和 GPS 定位的远程交易。确认订单前，请核实两端点位置和库存。"]
+			id: "473CABC6BCCD4DAD"
+			shape: "circle"
+			tasks: [{
+				id: "CDB59C67388C3963"
+				item: "pneumaticcraft:amadron_tablet"
+				type: "item"
+			}]
+			title: "阿马德龙石板"
+			x: 9.054d
+			y: 2.165d
+		}
+		{
+			dependencies: ["608EDC167615A821"]
+			description: ["头盔支持可安装的升级，并消耗压力。请逐个启用模块，并在正常游戏时监控空气使用情况。"]
+			id: "C6E910E30D86AF53"
+			shape: "circle"
+			tasks: [{
+				id: "F4BAC03F16B57E99"
+				item: "pneumaticcraft:pneumatic_helmet"
+				type: "item"
+			}]
+			title: "气动头盔"
+			x: 3.379d
+			y: 1.511d
+		}
+		{
+			dependencies: ["C6E910E30D86AF53"]
+			description: ["胸甲扩展了气动设备的功能。请保持手动充能计划，并在了解控制方法前避免启用移动效果。"]
+			id: "F744948F2F004120"
+			shape: "circle"
+			tasks: [{
+				id: "6D43BCDB1B0688F1"
+				item: "pneumaticcraft:pneumatic_chestplate"
+				type: "item"
+			}]
+			title: "气动胸甲"
+			x: 4.388d
+			y: 1.075d
+		}
+		{
+			dependencies: ["F744948F2F004120"]
+			description: ["气动护腿支持额外的机动性和功能性升级。在探索中依赖它们之前，请先测试控制绑定和空气消耗。"]
+			id: "DF870FDA7B395B51"
+			shape: "circle"
+			tasks: [{
+				id: "0A19BBA6C394B0A6"
+				item: "pneumaticcraft:pneumatic_leggings"
+				type: "item"
+			}]
+			title: "气动护腿 (Pneumatic Leggings)"
+			x: 5.144d
+			y: 2.822d
+		}
+		{
+			dependencies: ["DF870FDA7B395B51"]
+			description: ["气动靴可通过升级改变移动和坠落行为。在压力和控制系统得到验证前，请保留普通坠落保护。"]
+			id: "A9371CDFC28EB942"
+			shape: "circle"
+			tasks: [{
+				id: "A0EB45C2EB4087F1"
+				item: "pneumaticcraft:pneumatic_boots"
+				type: "item"
+			}]
+			title: "气动靴子"
+			x: 6.279d
+			y: 1.293d
+		}
+		{
+			dependencies: ["18A1D750A5DFC36A"]
+			description: ["安全站控制着 PneumaticCraft 的交互。请谨慎配置权限，并记录紧急所有者访问权限。"]
+			id: "5112592DE098BC18"
+			shape: "circle"
+			tasks: [{
+				id: "1DDA370C82894657"
+				item: "pneumaticcraft:security_station"
+				type: "item"
+			}]
+			title: "安全站点"
+			x: 8.171d
+			y: 1.510d
+		}
+		{
+			dependencies: ["6461038776E550E7"]
+			description: ["气动电梯利用气压来移动平台。请提供足够的竖井空间、安全着陆区和完成全程所需的备用空气。"]
+			id: "A7C985B842154A41"
+			shape: "circle"
+			tasks: [{
+				id: "69893C733BB28C19"
+				item: "pneumaticcraft:elevator_base"
+				type: "item"
+			}]
+			title: "气动电梯"
+			x: 4.262d
+			y: 2.167d
+		}
+		{
+			dependencies: ["A7C985B842154A41"]
+			description: ["电梯呼叫器定义了可访问的楼层和控制装置。标记目的地，并验证低压时每个楼层是否安全。"]
+			id: "20107A320765F5A8"
+			shape: "circle"
+			tasks: [{
+				id: "786E022A2C33D097"
+				item: "pneumaticcraft:elevator_caller"
+				type: "item"
+			}]
+			title: "电梯呼叫器"
+			x: 6.153d
+			y: 2.385d
+		}
+		{
+			dependencies: ["FE89E89D4541B406"]
+			description: ["空中接口通过其所有者与玩家的物品栏和经验互动。请仔细过滤自动化流程，以免消耗个人恢复物资。"]
+			id: "9294FA8403233E57"
+			shape: "circle"
+			tasks: [{
+				id: "5EEE2246BA671444"
+				item: "pneumaticcraft:aerial_interface"
+				type: "item"
+			}]
+			title: "空中接口"
+			x: 10.442d
+			y: -1.547d
+		}
+		{
+			dependencies: ["C1E6D4FA7964DAF6" "FE89E89D4541B406" "CFC644CBE9912B6B" "473CABC6BCCD4DAD" "A9371CDFC28EB942" "5112592DE098BC18" "20107A320765F5A8" "9294FA8403233E57"]
+			description: ["成熟的 PneumaticCraft 基地拥有受控压力、稳定热量、完整精炼产出、可重复的 PCB、受保护的装配、有界无人机、记录的安全措施、经过测试的设备以及便携式恢复空气。"]
+			id: "5F46C03EA22A9418"
+			rewards: [{
+				id: "79BED35D553B2AAB"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "D2D5220934463154"
+				title: "确认：一个安全的气动设施"
+				type: "checkmark"
+			}]
+			title: "一个安全的充气设施"
+			x: 11.331d
+			y: -0.030d
+		}
+	]
+	title: "PneumaticCraft"
+}

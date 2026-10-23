@@ -1,0 +1,412 @@
+# AI 初翻，未人工校对
+{
+	id: "461CEFD7C0F99645"
+	group: "2364C56D0EF66650"
+	order_index: 0
+	filename: "hammer_time"
+	title: "是时候用锤子了"
+	icon: {
+		id: "exnihilosequentia:stone_hammer"
+		Count: 1b
+		tag: {
+			Damage: 0
+		}
+	}
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "制作一把锤子"
+			x: -2.0d
+			y: 0.0d
+			description: ["用于特定方块上会将其分解为其他方块"]
+			dependencies: ["34F5E7090A10CE4C"]
+			id: "4919FB3EEB2A649F"
+			tasks: [{
+				id: "46863AFC8E232431"
+				type: "item"
+				title: "任意 #exnihilosequentia:hammer"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "exnihilosequentia:hammer"
+					}
+				}
+			}]
+			rewards: [{
+				id: "1BAA402849A1EFF0"
+				type: "item"
+				item: "opolisutilities:b_bucks"
+			}]
+		}
+		{
+			x: -1.0d
+			y: 1.0d
+			description: ["用锤子敲碎鹅卵石会产生砾石"]
+			dependencies: ["4919FB3EEB2A649F"]
+			id: "35E6BAA34E011024"
+			tasks: [{
+				id: "6553D8026B453154"
+				type: "item"
+				item: "minecraft:gravel"
+			}]
+			rewards: [{
+				id: "12803CA37B7E0CFB"
+				type: "item"
+				item: "minecraft:gravel"
+				count: 4
+			}]
+		}
+		{
+			x: -1.0d
+			y: 2.5d
+			description: ["用锤子敲碎砾石会生成沙子"]
+			dependencies: ["35E6BAA34E011024"]
+			id: "2F92317E16E0BC94"
+			tasks: [{
+				id: "31F1043C79327EB0"
+				type: "item"
+				item: "minecraft:sand"
+			}]
+			rewards: [{
+				id: "3095088A78B585DF"
+				type: "item"
+				item: "minecraft:sand"
+				count: 4
+			}]
+		}
+		{
+			x: -1.0d
+			y: 4.5d
+			description: ["用锤子敲碎沙子会产生粉尘"]
+			dependencies: ["2F92317E16E0BC94"]
+			id: "5AD6ABA2C7415787"
+			tasks: [{
+				id: "14E92230F4CB449F"
+				type: "item"
+				item: "exnihilosequentia:dust"
+			}]
+			rewards: [{
+				id: "04E412373EC7CAA8"
+				type: "item"
+				item: "exnihilosequentia:dust"
+				count: 4
+			}]
+		}
+		{
+			x: 0.0d
+			y: 1.0d
+			description: ["第一种资源，通过筛选砾石获得"]
+			dependencies: ["35E6BAA34E011024"]
+			id: "245DC823579CEA20"
+			tasks: [{
+				id: "183AB2F0756EE135"
+				type: "item"
+				item: "minecraft:flint"
+			}]
+			rewards: [{
+				id: "48B908CB8F2ED8CC"
+				type: "item"
+				item: "minecraft:flint"
+				count: 4
+			}]
+		}
+		{
+			x: 2.5d
+			y: 1.0d
+			description: ["将物品从一个地方移动到另一个地方"]
+			dependencies: ["245DC823579CEA20"]
+			id: "0106B22F524D5DE9"
+			tasks: [{
+				id: "6DA1BDF4FC32F1A1"
+				type: "item"
+				item: "pipez:item_pipe"
+			}]
+			rewards: [{
+				id: "02351EDCDADB9250"
+				type: "item"
+				item: "pipez:item_pipe"
+				count: 8
+			}]
+		}
+		{
+			x: 1.0d
+			y: 2.5d
+			description: [
+				"熔炼过的沙子可以制作玻璃"
+				""
+			]
+			dependencies: ["2F92317E16E0BC94"]
+			id: "5B4495C2162E8726"
+			tasks: [{
+				id: "49CC551874D18D73"
+				type: "item"
+				item: "minecraft:glass"
+			}]
+			rewards: [{
+				id: "532BD3DA69CE3437"
+				type: "item"
+				item: "opolisutilities:b_bucks"
+			}]
+		}
+		{
+			x: 2.0d
+			y: 4.5d
+			description: ["将水倒入桶中，右键桶上的尘土块即可制作陶土块。水也可以用装有叶子的坩埚收集"]
+			dependencies: [
+				"5AD6ABA2C7415787"
+				"3D85936FEA6A3DCA"
+			]
+			id: "72371B83E366DBC3"
+			tasks: [{
+				id: "64AB0248EB198F71"
+				type: "item"
+				item: "minecraft:clay"
+			}]
+			rewards: [{
+				id: "50E377F8C82A9DA8"
+				type: "item"
+				item: "opolisutilities:b_bucks"
+			}]
+		}
+		{
+			x: 2.0d
+			y: 2.0d
+			description: ["将流体从一个地方移动到另一个地方"]
+			dependencies: [
+				"245DC823579CEA20"
+				"5B4495C2162E8726"
+			]
+			id: "3D85936FEA6A3DCA"
+			tasks: [{
+				id: "532D949423DBEC58"
+				type: "item"
+				item: "pipez:fluid_pipe"
+			}]
+			rewards: [{
+				id: "2C05587DAE895E15"
+				type: "item"
+				item: "pipez:fluid_pipe"
+				count: 8
+			}]
+		}
+		{
+			x: 2.0d
+			y: 0.0d
+			description: ["用于在普通、禁用和提取模式之间切换管道"]
+			dependencies: ["245DC823579CEA20"]
+			id: "110E1A7B932A86FA"
+			tasks: [{
+				id: "4675CE2D7338724A"
+				type: "item"
+				item: "pipez:wrench"
+			}]
+			rewards: [{
+				id: "225C341A50E6DC70"
+				type: "item"
+				item: "opolisutilities:b_bucks"
+			}]
+		}
+		{
+			x: -1.0d
+			y: 5.5d
+			description: ["筛分粉尘可制成更细小的粉尘"]
+			dependencies: ["5AD6ABA2C7415787"]
+			id: "416B2248F5359613"
+			tasks: [{
+				id: "3DF1901AAB1B57B9"
+				type: "item"
+				item: "seaopolis:dust"
+			}]
+			rewards: [{
+				id: "35C026B8786815A3"
+				type: "item"
+				item: "opolisutilities:b_bucks"
+			}]
+		}
+		{
+			x: -2.0d
+			y: 2.5d
+			description: ["用筛子筛沙子来获得"]
+			dependencies: ["2F92317E16E0BC94"]
+			id: "6761A2956525918B"
+			tasks: [{
+				id: "47118FD33B9CFB77"
+				type: "item"
+				item: "minecraft:seagrass"
+			}]
+			rewards: [{
+				id: "179DDFF00AC48CCE"
+				type: "item"
+				item: "opolisutilities:b_bucks"
+			}]
+		}
+		{
+			x: -3.0d
+			y: 1.5d
+			description: ["由海草制成"]
+			dependencies: ["6761A2956525918B"]
+			id: "011F7B8EF5117036"
+			tasks: [{
+				id: "0943612BAC3D03D9"
+				type: "item"
+				item: "minecraft:bamboo"
+			}]
+			rewards: [{
+				id: "42C2375411A57D51"
+				type: "item"
+				item: "opolisutilities:b_bucks"
+			}]
+		}
+		{
+			x: -3.5d
+			y: 2.5d
+			description: ["由海草制成"]
+			dependencies: ["6761A2956525918B"]
+			id: "627C43E1FB4FBCB5"
+			tasks: [{
+				id: "226A51A20225C467"
+				type: "item"
+				item: "minecraft:sugar_cane"
+			}]
+			rewards: [{
+				id: "14780DF744D85AC8"
+				type: "item"
+				item: "opolisutilities:b_bucks"
+			}]
+		}
+		{
+			x: -3.0d
+			y: 3.5d
+			description: ["由海草制成"]
+			dependencies: ["6761A2956525918B"]
+			id: "3F52ECAFEDA99838"
+			tasks: [{
+				id: "7A60B93747A12E07"
+				type: "item"
+				item: "minecraft:cactus"
+			}]
+			rewards: [{
+				id: "07D8DA9B445D4465"
+				type: "item"
+				item: "opolisutilities:b_bucks"
+			}]
+		}
+		{
+			x: 3.5d
+			y: 2.0d
+			description: ["允许红石控制"]
+			dependencies: [
+				"3D85936FEA6A3DCA"
+				"0106B22F524D5DE9"
+			]
+			dependency_requirement: "one_completed"
+			id: "0BE0BB46F136B202"
+			tasks: [{
+				id: "022D86C741E44474"
+				type: "item"
+				item: "pipez:basic_upgrade"
+			}]
+			rewards: [{
+				id: "2310E13C5E8A2273"
+				type: "item"
+				item: "pipez:basic_upgrade"
+			}]
+		}
+		{
+			x: 3.5d
+			y: 3.0d
+			description: ["允许控制分配方式"]
+			dependencies: ["0BE0BB46F136B202"]
+			id: "3DC1E526ECC06AA4"
+			tasks: [{
+				id: "0584DD9A302BB595"
+				type: "item"
+				item: "pipez:improved_upgrade"
+			}]
+			rewards: [{
+				id: "22BCE3DE591666FE"
+				type: "item"
+				item: "pipez:improved_upgrade"
+			}]
+		}
+		{
+			x: 3.5d
+			y: 4.0d
+			description: ["允许通过管道进行过滤"]
+			dependencies: ["3DC1E526ECC06AA4"]
+			id: "5EC938A9A1C5ACD4"
+			tasks: [{
+				id: "1921CAC21C1269FA"
+				type: "item"
+				item: "pipez:advanced_upgrade"
+			}]
+			rewards: [{
+				id: "2B384CA1C33E0EF0"
+				type: "item"
+				item: "pipez:advanced_upgrade"
+			}]
+		}
+		{
+			x: 0.5d
+			y: 0.0d
+			description: ["可以更高效地制作楼梯和石板等石块"]
+			dependencies: ["245DC823579CEA20"]
+			id: "443AA17DCEE533EE"
+			tasks: [{
+				id: "086175B1D41E088F"
+				type: "item"
+				item: "minecraft:stonecutter"
+			}]
+			rewards: [{
+				id: "7209D271545397AB"
+				type: "item"
+				item: "opolisutilities:b_bucks"
+			}]
+		}
+		{
+			title: "伐木工人"
+			x: -0.5d
+			y: 0.0d
+			description: ["可以更高效地制作楼梯和半砖等木块"]
+			dependencies: ["245DC823579CEA20"]
+			id: "0B80A07BDA5DD2A1"
+			tasks: [{
+				id: "5806D349D37AF17C"
+				type: "item"
+				title: "任何 #corail_woodcutter:woodcutters 的玩家"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "corail_woodcutter:woodcutters"
+					}
+				}
+			}]
+			rewards: [{
+				id: "6FDB3EFFB0E08103"
+				type: "item"
+				item: "opolisutilities:b_bucks"
+			}]
+		}
+		{
+			x: 3.5d
+			y: 5.0d
+			description: ["无所不能！"]
+			dependencies: ["5EC938A9A1C5ACD4"]
+			id: "0E914A7CF57C6FF5"
+			tasks: [{
+				id: "4396F4FE5D55D4A3"
+				type: "item"
+				item: "pipez:ultimate_upgrade"
+			}]
+			rewards: [{
+				id: "557771CE68DC240C"
+				type: "item"
+				item: "pipez:ultimate_upgrade"
+			}]
+		}
+	]
+	quest_links: [ ]
+}

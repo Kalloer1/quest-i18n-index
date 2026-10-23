@@ -1,0 +1,769 @@
+# AI 初翻，未人工校对
+{
+	id: "4C8FC3DD1DB51E96"
+	group: ""
+	order_index: 1
+	filename: "the_stone_age"
+	title: "石器时代！"
+	icon: "minecraft:stone"
+	subtitle: ["在这个时代，你将获得大量鹅卵石，并首次采集到铁和金。"]
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "Cobblestone"
+			x: -5.0d
+			y: 0.5d
+			shape: "gear"
+			description: ["要在这里继续，你必须已经收集了大量鹅卵石，这一点很重要。"]
+			dependencies: ["2E883AA78EAF5484"]
+			size: 1.5d
+			id: "6E70822B3BCEC8F1"
+			tasks: [{
+				id: "68D39BEC616C2ECB"
+				type: "item"
+				item: "minecraft:cobblestone"
+				count: 32L
+			}]
+			rewards: [
+				{
+					id: "79259030C111F6C3"
+					type: "item"
+					item: "minecraft:charcoal"
+					count: 16
+				}
+				{
+					id: "28CBAB6FB3BEA2FB"
+					type: "item"
+					item: "minecraft:iron_nugget"
+					count: 16
+				}
+				{
+					id: "328CBA8BA9313E08"
+					type: "item"
+					item: "minecraft:cobblestone"
+					count: 64
+				}
+			]
+		}
+		{
+			title: "你的第一块铁锭 Iron"
+			x: -5.0d
+			y: -1.5d
+			description: ["通过锤击砾石，你将获得一些铁粒。"]
+			dependencies: ["6E70822B3BCEC8F1"]
+			id: "312CB8D2DD2CF92B"
+			tasks: [{
+				id: "4904F527585C6447"
+				type: "item"
+				item: "minecraft:iron_nugget"
+				count: 32L
+			}]
+			rewards: [{
+				id: "37B62A450A90E9F7"
+				type: "item"
+				item: "minecraft:iron_block"
+			}]
+		}
+		{
+			title: "地板是熔岩！"
+			x: -3.0d
+			y: 0.5d
+			description: [
+				"你需要一个熔炉将16个原石熔炼成一个熔渣。需要木炭块作为燃料！"
+				""
+				""
+				"抱歉，不知道为什么，熔炉的界面非常卡顿……"
+			]
+			dependencies: ["6E70822B3BCEC8F1"]
+			id: "4F1BE9BF6A27BBBC"
+			tasks: [
+				{
+					id: "7308126E8FE4FBC1"
+					type: "item"
+					item: "skyutils:lava_crucible"
+				}
+				{
+					id: "7C337A14BB4F76CD"
+					type: "item"
+					item: "skyutils:raw_crucible"
+				}
+				{
+					id: "237A441CC6C8F9BF"
+					type: "item"
+					item: "skyutils:crucible"
+				}
+				{
+					id: "5EC90BE378D96CF8"
+					type: "item"
+					item: "skyutils:kiln"
+				}
+			]
+			rewards: [
+				{
+					id: "7C2CBEBDD53AC4C3"
+					type: "item"
+					item: {
+						id: "minecraft:stone_sword"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "266A077EC8367ECD"
+					type: "item"
+					item: {
+						id: "minecraft:stone_pickaxe"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "4DEAFFB186C4D4E3"
+					type: "item"
+					item: {
+						id: "minecraft:stone_axe"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "59B4970DA8B722D1"
+					type: "item"
+					item: {
+						id: "minecraft:stone_hoe"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "下界！"
+			x: -3.0d
+			y: -1.5d
+			description: ["你需要制作10桶岩浆来建造一个下界传送门。要小心操作，因为几乎无法挖掘黑曜石方块。"]
+			dependencies: [
+				"4F1BE9BF6A27BBBC"
+				"312CB8D2DD2CF92B"
+			]
+			id: "33407C86E97CC0F8"
+			tasks: [{
+				id: "542A7ACCBA329B19"
+				type: "dimension"
+				title: "前往下界 (Nether) 探险"
+				dimension: "minecraft:the_nether"
+			}]
+			rewards: [{
+				id: "32A4852C1CA50B76"
+				type: "item"
+				item: "minecraft:piglin_spawn_egg"
+			}]
+		}
+		{
+			title: "下界旅行"
+			x: -1.0d
+			y: -1.5d
+			description: ["使用滑翔翼和史莱姆靴，安全地穿越下界。"]
+			dependencies: ["33407C86E97CC0F8"]
+			id: "58D03FC8B96EC474"
+			tasks: [
+				{
+					id: "4B27DADE38BE8BDF"
+					type: "item"
+					item: {
+						id: "kibe:white_glider"
+						Count: 1b
+						tag: { }
+					}
+				}
+				{
+					id: "5A1D68C35BA0B5CD"
+					type: "item"
+					item: {
+						id: "kibe:slime_boots"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "10B2C0C48444C90E"
+				type: "item"
+				item: "kibe:slime_sling"
+			}]
+		}
+		{
+			x: -1.0d
+			y: 0.5d
+			shape: "octagon"
+			description: ["制作一个鹅卵石漏斗，把它放在水源和岩浆源之间！它会在下方生成方块。"]
+			dependencies: ["4F1BE9BF6A27BBBC"]
+			id: "7AD127073CD4BB48"
+			tasks: [{
+				id: "4089A5344954D10B"
+				type: "item"
+				item: "scf:cobblestone_funnel"
+			}]
+			rewards: [
+				{
+					id: "218BA12FED48D52C"
+					type: "item"
+					item: "minecraft:coal"
+					count: 8
+				}
+				{
+					id: "692B62DFED2374F3"
+					type: "item"
+					item: "minecraft:iron_nugget"
+					count: 8
+				}
+			]
+		}
+		{
+			title: "下界资源"
+			x: 1.0d
+			y: -1.5d
+			description: ["在末地收集一些资源。探索废弃传送门、堡垒和要塞以获得一些物品。"]
+			dependencies: ["58D03FC8B96EC474"]
+			id: "419901F16C199261"
+			tasks: [
+				{
+					id: "0CC57B38425FBFCF"
+					type: "item"
+					item: "minecraft:blackstone"
+					count: 16L
+				}
+				{
+					id: "375A84952E285334"
+					type: "item"
+					item: "minecraft:blaze_rod"
+				}
+				{
+					id: "39F15CB9702FC0B1"
+					type: "item"
+					item: "minecraft:nether_wart"
+					count: 16L
+				}
+				{
+					id: "7FC06FDEC4CFC4F0"
+					type: "item"
+					item: "minecraft:magma_block"
+					count: 16L
+				}
+			]
+			rewards: [
+				{
+					id: "7C49B024A1117D16"
+					type: "item"
+					item: "minecraft:gold_nugget"
+					count: 32
+				}
+				{
+					id: "65B8C189680D1563"
+					type: "item"
+					item: "minecraft:obsidian"
+					count: 32
+				}
+				{
+					id: "1C1D63EFBC041516"
+					type: "item"
+					item: "minecraft:lava_bucket"
+				}
+			]
+		}
+		{
+			title: "下界岩"
+			x: 3.0d
+			y: -1.5d
+			dependencies: ["419901F16C199261"]
+			id: "6F5C61DDD80DAAF7"
+			tasks: [{
+				id: "7C45CDCED5340D70"
+				type: "item"
+				item: "minecraft:netherrack"
+				count: 8L
+			}]
+			rewards: [
+				{
+					id: "19A7E512A9A3C1AB"
+					type: "item"
+					item: "minecraft:crimson_nylium"
+				}
+				{
+					id: "71E8023EC63D7E6A"
+					type: "item"
+					item: "minecraft:warped_nylium"
+				}
+				{
+					id: "7A385CE2E0D1D3F8"
+					type: "item"
+					item: "minecraft:crimson_fungus"
+				}
+				{
+					id: "6E15512486436C64"
+					type: "item"
+					item: "minecraft:warped_fungus"
+				}
+				{
+					id: "44AB46F6C06559CF"
+					type: "item"
+					item: "minecraft:netherrack"
+					count: 64
+				}
+			]
+		}
+		{
+			title: "其他工具"
+			x: 1.0d
+			y: 0.5d
+			description: ["用这些工具，你可以获得更多资源！"]
+			dependencies: ["7AD127073CD4BB48"]
+			id: "06C05AA1104E2E1B"
+			tasks: [
+				{
+					id: "064455AB65BF42CA"
+					type: "item"
+					item: {
+						id: "resourceful_tools:hand_pick"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "29365FF22B0CAEE3"
+					type: "item"
+					item: "resourceful_tools:hook_knife"
+				}
+				{
+					id: "6443FE4D36507742"
+					type: "item"
+					item: {
+						id: "resourceful_tools:hand_tiller"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [
+				{
+					id: "2EEB7AC83664BACA"
+					type: "item"
+					item: {
+						id: "resourceful_tools:crack_hammer"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "11C6D728E523D288"
+					type: "item"
+					item: {
+						id: "resourceful_tools:glass_placer"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "钻石矿石？"
+			x: -2.0d
+			y: 1.5d
+			description: [
+				"不，第一个漏斗只产圆石和煤炭。不过……史莱姆很奇怪，它们会掉落几乎所有原版矿石。不，这不应该能让你跳过机械和蒸汽时代直接发电。"
+				""
+				""
+				"但如果是这样，请提交一份错误报告。"
+			]
+			dependencies: ["154F6D2FD8F73E06"]
+			id: "44BE9B2C6039AB4C"
+			tasks: [
+				{
+					id: "294DA11C83AE3914"
+					type: "item"
+					item: "minecraft:coal_ore"
+				}
+				{
+					id: "2EA5500167D69BEB"
+					type: "item"
+					item: "minecraft:iron_ore"
+				}
+				{
+					id: "11865A2603DFC990"
+					type: "item"
+					item: "minecraft:gold_ore"
+				}
+				{
+					id: "423F77C4CDF1E247"
+					type: "item"
+					item: "minecraft:redstone_ore"
+				}
+				{
+					id: "7991B0D81423079B"
+					type: "item"
+					item: "minecraft:lapis_ore"
+				}
+				{
+					id: "2D5A8A4950225B28"
+					type: "item"
+					item: "minecraft:emerald_ore"
+				}
+				{
+					id: "20FB26C2E67CEB4D"
+					type: "item"
+					item: "minecraft:diamond_ore"
+				}
+			]
+			rewards: [
+				{
+					id: "12A9BDD18AAF03B5"
+					type: "item"
+					item: "minecraft:cobblestone"
+					count: 64
+				}
+				{
+					id: "44F382AA3E9D466E"
+					type: "item"
+					item: "minecraft:coal"
+					count: 16
+				}
+				{
+					id: "5D08E21DE96E36ED"
+					type: "item"
+					item: "terrarianslimes:green_gel"
+					count: 64
+				}
+			]
+		}
+		{
+			title: "方块破坏者"
+			x: -4.0d
+			y: 1.5d
+			description: ["自动破块器对于自动化矿石生产非常有用。"]
+			dependencies: ["154F6D2FD8F73E06"]
+			id: "0FE4E5DCA41DBCEA"
+			tasks: [{
+				id: "20E911CFE81F7718"
+				type: "item"
+				item: "kibe:breaker"
+			}]
+			rewards: [
+				{
+					id: "276AB102BD0C2C85"
+					type: "item"
+					item: {
+						id: "minecraft:diamond_pickaxe"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "01D8F147166E3450"
+					type: "item"
+					item: {
+						id: "skyutils:diamond_hammer"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "更高效的存储网络"
+			x: -2.0d
+			y: 3.5d
+			description: ["Tom's Simple Storage Network 前期够用。但中期解决方案是 Slotlink。先制作一个 Network Monitor。"]
+			dependencies: ["154F6D2FD8F73E06"]
+			id: "7E1BBDC52D2D7E05"
+			tasks: [{
+				id: "3F41536E411C7CC4"
+				type: "item"
+				item: "slotlink:master"
+			}]
+		}
+		{
+			title: "村民"
+			x: -4.0d
+			y: 3.5d
+			description: ["治愈一个僵尸村民"]
+			dependencies: ["154F6D2FD8F73E06"]
+			id: "7820E55FB7B33F08"
+			tasks: [{
+				id: "15D89E709298B68B"
+				type: "advancement"
+				advancement: "minecraft:story/cure_zombie_villager"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "28A0CA72D142F25C"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 32
+				}
+				{
+					id: "6220A5A731DFEE70"
+					type: "item"
+					item: "minecraft:lectern"
+				}
+				{
+					id: "663212FBD345BDD5"
+					type: "item"
+					item: "minecraft:grindstone"
+				}
+			]
+		}
+		{
+			x: -3.0d
+			y: 4.5d
+			description: ["制作一张附魔台 Enchantment Table"]
+			dependencies: ["7820E55FB7B33F08"]
+			id: "799DAE31460226B4"
+			tasks: [{
+				id: "261A8B9ED7F3D0F4"
+				type: "item"
+				item: "minecraft:enchanting_table"
+			}]
+			rewards: [
+				{
+					id: "1BECA880A05810BA"
+					type: "item"
+					item: "minecraft:book"
+					count: 64
+				}
+				{
+					id: "57BFB53FEF7E8551"
+					type: "item"
+					item: "minecraft:bookshelf"
+					count: 10
+				}
+				{
+					id: "6A76F7E79CA332CF"
+					type: "item"
+					item: "minecraft:experience_bottle"
+					count: 16
+				}
+			]
+		}
+		{
+			x: 3.0d
+			y: 0.5d
+			description: ["准备好后，你应该试着找一些凋零骷髅头来召唤凋零。"]
+			dependencies: ["6F5C61DDD80DAAF7"]
+			id: "051D5AE8DFE43DD8"
+			tasks: [{
+				id: "6351A89AA8799E75"
+				type: "item"
+				item: "minecraft:nether_star"
+			}]
+			rewards: [{
+				id: "1F551ED98BD38650"
+				type: "item"
+				item: "minecraft:wither_skeleton_skull"
+				count: 16
+			}]
+		}
+		{
+			x: -5.0d
+			y: -3.0d
+			description: ["制作剪刀，从树上获取树叶。可用于制作草。"]
+			dependencies: ["312CB8D2DD2CF92B"]
+			id: "4E61D668389430C0"
+			tasks: [{
+				id: "0BC6B349A9EEF606"
+				type: "item"
+				item: {
+					id: "minecraft:shears"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "2A8163D7AA5468DA"
+				type: "item"
+				item: "minecraft:oak_leaves"
+				count: 16
+			}]
+		}
+		{
+			x: -0.5d
+			y: 3.5d
+			description: ["将 Link Cable 放置在箱子、桶等任何存储容器旁边，即可将其连接到存储网络。"]
+			dependencies: ["7E1BBDC52D2D7E05"]
+			id: "7691D38DBF84B554"
+			tasks: [{
+				id: "172B943F7BD3E118"
+				type: "item"
+				item: "slotlink:link_cable"
+			}]
+			rewards: [
+				{
+					id: "1A05444E24954D41"
+					type: "item"
+					item: "slotlink:cable"
+					count: 32
+				}
+				{
+					id: "0A640799E0CBDD78"
+					type: "item"
+					item: "slotlink:link_cable"
+					count: 4
+				}
+			]
+		}
+		{
+			x: -0.5d
+			y: 2.0d
+			description: ["要访问你的物品，你应该放置一个存储请求。"]
+			dependencies: ["7691D38DBF84B554"]
+			id: "67974B8533EE20C6"
+			tasks: [{
+				id: "203E77F9A4E9117C"
+				type: "item"
+				item: "slotlink:request"
+			}]
+			rewards: [
+				{
+					id: "2CE8F1DF4B82872C"
+					type: "item"
+					item: "expandedstorage:iron_barrel"
+					count: 2
+				}
+				{
+					id: "51C54E14706D683C"
+					type: "item"
+					item: "storagecabinet:storagecabinet_iron"
+					count: 2
+				}
+			]
+		}
+		{
+			title: "进出口电缆"
+			x: 1.0d
+			y: 2.0d
+			description: ["还有进口和出口电缆呢。"]
+			dependencies: ["67974B8533EE20C6"]
+			id: "29FCE12220D19536"
+			tasks: [
+				{
+					id: "3E12F1F515D001AB"
+					type: "item"
+					item: "slotlink:export_cable"
+				}
+				{
+					id: "01754E940F62A62F"
+					type: "item"
+					item: "slotlink:import_cable"
+				}
+			]
+			rewards: [{
+				id: "26802679A8313D48"
+				type: "item"
+				item: "slotlink:cable"
+				count: 16
+			}]
+		}
+		{
+			x: 1.0d
+			y: 3.5d
+			description: ["制作一个有限存储远程终端。"]
+			dependencies: ["29FCE12220D19536"]
+			id: "2FEA94DF1A840C2D"
+			tasks: [{
+				id: "1D96DFE98579660F"
+				type: "item"
+				item: {
+					id: "slotlink:limited_remote"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "7883275BC35B1ACD"
+				type: "item"
+				item: "expandedstorage:diamond_barrel"
+				count: 4
+			}]
+		}
+		{
+			title: "冶炼金属"
+			x: -5.0d
+			y: 2.5d
+			description: ["你以为用8个圆石造2个熔炉不可能？那你就错了。合成2个熔炉石板！"]
+			dependencies: ["6E70822B3BCEC8F1"]
+			id: "3B4716BB696A7D5A"
+			tasks: [{
+				id: "3A66A30D8D4D879C"
+				type: "item"
+				item: "improved-stations:furnace_slab"
+				count: 2L
+			}]
+			rewards: [
+				{
+					id: "3FA6EE465EAD8783"
+					type: "item"
+					item: "minecraft:stone"
+					count: 16
+				}
+				{
+					id: "2F1748494EB7FA56"
+					type: "item"
+					item: "minecraft:charcoal"
+					count: 32
+				}
+			]
+		}
+		{
+			title: "钻石原矿"
+			x: -3.0d
+			y: 2.5d
+			description: ["合成一些煤炭或木炭块，放置它们并用锤子来获取钻石原矿。"]
+			dependencies: ["3B4716BB696A7D5A"]
+			id: "154F6D2FD8F73E06"
+			tasks: [{
+				id: "28CC2D7137A6D17C"
+				type: "item"
+				item: "skyutils:diamond_nugget"
+			}]
+			rewards: [
+				{
+					id: "24A1DF3B131B58D8"
+					type: "item"
+					item: "skyutils:diamond_nugget"
+					count: 4
+				}
+				{
+					id: "0BE75191713D6138"
+					type: "item"
+					item: "betterend:charcoal_block"
+					count: 16
+				}
+			]
+		}
+	]
+}

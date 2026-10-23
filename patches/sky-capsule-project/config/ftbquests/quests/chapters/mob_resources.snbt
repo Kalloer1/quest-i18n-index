@@ -1,0 +1,412 @@
+# AI 初翻，未人工校对
+{
+	id: "65B242E42C9541CB"
+	group: "201230E95162B967"
+	order_index: 6
+	filename: "mob_resources"
+	title: "维度资源 (Dimensional Resources)"
+	icon: {
+		id: "custommachinery:custom_machine_item"
+		Count: 1b
+		tag: {
+			machine: "custommachinery:dimensional_resource_generator"
+		}
+	}
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	images: [
+		{
+			x: 5.5d
+			y: 3.0d
+			width: 2.0d
+			height: 4.0d
+			rotation: 0.0d
+			image: "kubejs:textures/item/advanced_nether_structure.png"
+			hover: ["Nether Advanced Capsule Structure"]
+			click: ""
+			dev: false
+			corner: false
+		}
+		{
+			x: 5.5d
+			y: 7.5d
+			width: 2.0d
+			height: 4.0d
+			rotation: 0.0d
+			image: "kubejs:textures/item/advanced_end_structure.png"
+			hover: ["End Advanced Capsule Structure"]
+			click: ""
+			dev: false
+			corner: false
+		}
+	]
+	quests: [
+		{
+			x: -1.5d
+			y: -0.5d
+			shape: "hexagon"
+			subtitle: "前往下界开始收集下界资源"
+			id: "0F82E3E0AC4BEB07"
+			tasks: [{
+				id: "7591B2B338B1B262"
+				type: "dimension"
+				dimension: "minecraft:the_nether"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 10.0d
+			shape: "hexagon"
+			subtitle: "前往末地开始收集末地资源"
+			dependencies: ["5C3CE5FA9A1E1BA1"]
+			id: "73B425C688AA4F4C"
+			tasks: [{
+				id: "2CC7C773D8DD2E07"
+				type: "dimension"
+				dimension: "minecraft:the_end"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 1.5d
+			subtitle: "需要将维度资源生成器放置在正确的维度，并使用正确的催化剂"
+			description: ["在下界放置一个维度资源发生器，并投入一个下界催化剂以开始生成下界胶囊"]
+			hide_dependency_lines: false
+			dependencies: ["0F82E3E0AC4BEB07"]
+			id: "0D2A06BB0D74734F"
+			tasks: [
+				{
+					id: "263EB7EEC02B4B05"
+					type: "item"
+					disable_toast: true
+					item: {
+						id: "custommachinery:custom_machine_item"
+						Count: 1b
+						tag: {
+							machine: "custommachinery:dimensional_resource_generator"
+						}
+					}
+				}
+				{
+					id: "0349CC3CC3027327"
+					type: "advancement"
+					icon: {
+						id: "custommachinery:custom_machine_item"
+						Count: 1b
+						tag: {
+							machine: "custommachinery:dimensional_resource_generator"
+						}
+					}
+					advancement: "custommachinery:machines/dimensional_resource_generator"
+					criterion: ""
+				}
+			]
+		}
+		{
+			x: -3.0d
+			y: 3.0d
+			dependencies: ["0D2A06BB0D74734F"]
+			id: "4661CF7EE957DAF7"
+			tasks: [{
+				id: "42E16002578FAD5B"
+				type: "item"
+				item: "kubejs:nether_capsule"
+			}]
+		}
+		{
+			x: 0.0d
+			y: 3.0d
+			subtitle: "您需要添加一些额外的方块，以便发电机能够生产高级胶囊。"
+			description: [
+				"你需要获得一个 Wither Skeleton Skull 和一个 Basic EMC Link"
+				""
+				"将 EMC Link 放置在 Generator 下方，再将 Wither Skull 放在其上方（注意 Custom Machine 可能比较挑剔，你可能需要先放置 link 和 skull，然后再放置机器）。"
+			]
+			dependencies: ["0D2A06BB0D74734F"]
+			id: "2EF3BDBDA72DDAD5"
+			tasks: [{
+				id: "6902CDCB230856A3"
+				type: "item"
+				item: "kubejs:nether_capsule_advanced"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 8.0d
+			subtitle: "与下界一样，维度资源生成器需要放置在末地才能生产末地胶囊"
+			dependencies: ["73B425C688AA4F4C"]
+			id: "4A2D72BD1C9B06D9"
+			tasks: [
+				{
+					id: "67D53A5B44B4C0A1"
+					type: "item"
+					disable_toast: true
+					item: {
+						id: "custommachinery:custom_machine_item"
+						Count: 1b
+						tag: {
+							machine: "custommachinery:dimensional_resource_generator"
+						}
+					}
+				}
+				{
+					id: "43486579A9CFB324"
+					type: "advancement"
+					icon: {
+						id: "custommachinery:custom_machine_item"
+						Count: 1b
+						tag: {
+							machine: "custommachinery:dimensional_resource_generator"
+						}
+					}
+					advancement: "custommachinery:machines/dimensional_resource_generator"
+					criterion: ""
+				}
+			]
+		}
+		{
+			x: -3.0d
+			y: 7.5d
+			dependencies: ["4A2D72BD1C9B06D9"]
+			id: "088D2D9F157ECD15"
+			tasks: [{
+				id: "0D0881CE96DA6AF6"
+				type: "item"
+				item: "kubejs:end_capsule"
+			}]
+		}
+		{
+			x: 0.0d
+			y: 7.5d
+			subtitle: "就像下界的要求一样，你需要收集一些额外的方块来开始生成高级胶囊"
+			description: [
+				"你需要一个Mekanism钢制外壳和一个龙头来完成这个任务"
+				""
+				"此时你应该已经掌握了某种飞行能力。你需要好好利用它来找到末地船，并获取一个末地龙头来安装在机器顶部"
+			]
+			dependencies: ["4A2D72BD1C9B06D9"]
+			id: "0BDA276E9FA9F1F3"
+			tasks: [{
+				id: "40BC0C001A05056B"
+				type: "item"
+				item: "kubejs:end_capsule_advanced"
+			}]
+		}
+		{
+			x: -5.5d
+			y: 1.5d
+			dependencies: ["4661CF7EE957DAF7"]
+			id: "0A46DC6161570DBE"
+			tasks: [{
+				id: "077078CFD0ADF06A"
+				type: "item"
+				item: "minecraft:glowstone_dust"
+			}]
+		}
+		{
+			x: -5.5d
+			y: 2.5d
+			dependencies: ["4661CF7EE957DAF7"]
+			id: "52CE0F8D260AAF74"
+			tasks: [{
+				id: "66C152883DA1B15B"
+				type: "item"
+				item: "minecraft:ghast_tear"
+			}]
+		}
+		{
+			x: -5.5d
+			y: 3.5d
+			dependencies: ["4661CF7EE957DAF7"]
+			id: "49D89A64AD7B6A12"
+			tasks: [{
+				id: "2177ADF0C02CB10B"
+				type: "item"
+				item: "minecraft:nether_wart"
+			}]
+		}
+		{
+			x: -5.5d
+			y: 4.5d
+			dependencies: ["4661CF7EE957DAF7"]
+			id: "420753C0BF415F50"
+			tasks: [{
+				id: "4D4AE6CAA0E7F374"
+				type: "item"
+				item: "minecraft:quartz"
+			}]
+		}
+		{
+			x: -5.5d
+			y: 6.5d
+			dependencies: ["088D2D9F157ECD15"]
+			id: "7A3DB2F56D907192"
+			tasks: [{
+				id: "473ABA19B86B5CC1"
+				type: "item"
+				item: "minecraft:ender_pearl"
+			}]
+		}
+		{
+			x: -5.5d
+			y: 7.5d
+			dependencies: ["088D2D9F157ECD15"]
+			id: "427F9F3A8F9414E5"
+			tasks: [{
+				id: "3A556C04C9981557"
+				type: "item"
+				item: "minecraft:chorus_fruit"
+			}]
+		}
+		{
+			x: -5.5d
+			y: 8.5d
+			dependencies: ["088D2D9F157ECD15"]
+			id: "679BC75533E18906"
+			tasks: [{
+				id: "40DA4E75E250A395"
+				type: "item"
+				item: "minecraft:shulker_shell"
+			}]
+		}
+		{
+			x: 2.5d
+			y: 3.0d
+			dependencies: ["2EF3BDBDA72DDAD5"]
+			id: "5DA7FB841118B3ED"
+			tasks: [{
+				id: "546651B8D5E358DB"
+				type: "item"
+				item: "minecraft:wither_skeleton_skull"
+			}]
+		}
+		{
+			x: 2.5d
+			y: 2.0d
+			dependencies: ["2EF3BDBDA72DDAD5"]
+			id: "7B4210C31D64932E"
+			tasks: [{
+				id: "09C4244122092E8C"
+				type: "item"
+				item: "minecraft:netherite_scrap"
+			}]
+		}
+		{
+			x: 2.5d
+			y: 4.0d
+			dependencies: ["2EF3BDBDA72DDAD5"]
+			id: "200935A3B181559E"
+			tasks: [{
+				id: "3128017AE16E2D3D"
+				type: "item"
+				item: "minecraft:blaze_rod"
+			}]
+		}
+		{
+			x: 2.5d
+			y: 6.5d
+			dependencies: ["0BDA276E9FA9F1F3"]
+			id: "5A99E62F21634CC1"
+			tasks: [{
+				id: "1883A10EFD1564AC"
+				type: "item"
+				item: "draconicevolution:draconium_dust"
+			}]
+		}
+		{
+			x: 2.5d
+			y: 8.5d
+			dependencies: ["0BDA276E9FA9F1F3"]
+			id: "4CAA6789258BA842"
+			tasks: [{
+				id: "2B6CA99B69101110"
+				type: "item"
+				item: "minecraft:dragon_breath"
+			}]
+		}
+		{
+			icon: "minecraft:soul_sand"
+			x: -1.5d
+			y: 4.5d
+			shape: "gear"
+			subtitle: "你需要找到一个堡垒来获取一些灵魂沙（记得它是 EMCable 的）。你可以用柱子挖掘，但我推荐使用喷气背包或通过 ProjectE 获得飞行能力，这样会容易一些"
+			id: "4E0ACBDD7C5A99DC"
+			tasks: [{
+				id: "1D2F12BDD76115B8"
+				type: "checkmark"
+				title: "建议在下界/末地之前先获得某种飞行能力"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 12.0d
+			subtitle: "使用末地蛋糕前往末地"
+			description: [
+				"合成一个末地蛋糕以进入末地。将其放置在世界中并右键点击，你就会被传送过去。"
+				""
+				"确保你在主世界用/sethome设置了家，最好带上waystone以便在末地安家。如果末影珍珠不够，建造一个刷怪塔会很有帮助。"
+			]
+			id: "5C3CE5FA9A1E1BA1"
+			tasks: [{
+				id: "28633B0FE9621CDE"
+				type: "item"
+				item: "exnihilosequentia:end_cake"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 6.0d
+			subtitle: "击败巨龙并收集好那颗蛋"
+			description: [
+				"将龙之蛋放置在维度资源生成器中会加快机器速度，将其处理时间缩短20%"
+				""
+				"每台机器最多只能拥有 2 个龙之蛋"
+			]
+			dependencies: ["73B425C688AA4F4C"]
+			id: "0C541EA89363B85C"
+			tasks: [{
+				id: "367B7D4DAF315C19"
+				type: "item"
+				item: "minecraft:dragon_egg"
+			}]
+		}
+		{
+			x: -0.5d
+			y: 6.0d
+			subtitle: "你需要混沌碎片来制作一些终局物品"
+			description: [
+				"要获得混沌碎片，你需要杀死来自 Draconic Evolution 的混沌守护者，或者通过蜜蜂模组来推进进度"
+				""
+				"混沌守卫是一场极其困难的战斗，你需要从Draconic Evolution中获得完全升级的盔甲和武器，并从末影龙平台向任意基本方向冒险10,000格"
+				""
+				"不想和守卫者战斗的话，也可以通过蜜蜂繁殖来获得混沌蜜蜂（这个过程同样耗时，但危险性要低得多）"
+			]
+			id: "5B042C6903CAD6C5"
+			tasks: [{
+				id: "6B88DB2A336736DF"
+				type: "checkmark"
+				title: "此内容仅供参考"
+				icon: "draconicevolution:chaos_shard"
+			}]
+		}
+		{
+			title: "主世界资源（可选）"
+			icon: "kubejs:overworld_catalyst"
+			x: -2.5d
+			y: 4.5d
+			subtitle: "鱼？海晶灯？我们应有尽有！"
+			description: [
+				"维度资源生成器在拥有地表催化剂的情况下也能在地表世界工作。"
+				""
+				"没有必须获取的要求，但如果你想获得海晶灯之类的东西，它会很有帮助。"
+			]
+			optional: true
+			id: "5F61F3093BF5A7CB"
+			tasks: [{
+				id: "61491EF21AB9B702"
+				type: "checkmark"
+				title: "主世界的资源"
+			}]
+		}
+	]
+}

@@ -1,0 +1,996 @@
+# AI 初翻，未人工校对
+{
+	id: "0CE9FD9BC0D74AF0"
+	group: "38B05DBD41E58236"
+	order_index: 1
+	filename: "storage"
+	title: "储物空间"
+	icon: "ironchest:diamond_chest"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	images: [{
+		x: 2.0d
+		y: -1.0d
+		width: 10.0d
+		height: 2.0d
+		rotation: 0.0d
+		image: "kubejs:textures/other/storage.png"
+		hover: [ ]
+		click: ""
+		dev: false
+		corner: false
+	}]
+	quests: [
+		{
+			title: "木制箱子"
+			x: 0.5d
+			y: 0.5d
+			subtitle: "包含物品，我相信你以前见过一个"
+			id: "33CDCD2DB40FF99B"
+			tasks: [{
+				id: "12E27FAAE963E715"
+				type: "item"
+				title: "任意 #forge:chests/wooden"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "forge:chests/wooden"
+					}
+				}
+			}]
+			rewards: [{
+				id: "5D0106C2808EA5E7"
+				type: "item"
+				item: "minecraft:charcoal"
+				count: 8
+			}]
+		}
+		{
+			x: 0.5d
+			y: 2.0d
+			subtitle: "Iron Chests 模组的箱子无法在 Create 结构中工作"
+			dependencies: ["33CDCD2DB40FF99B"]
+			id: "13E9791609A69D74"
+			tasks: [{
+				id: "03F0E5784F5EE977"
+				type: "item"
+				item: "ironchest:iron_chest"
+			}]
+			rewards: [{
+				id: "77073C1F4DE313F6"
+				type: "item"
+				item: "twilightforest:ironwood_raw"
+				count: 4
+			}]
+		}
+		{
+			x: 0.5d
+			y: 3.5d
+			subtitle: "比普通铁更奢华的升级材料"
+			dependencies: ["13E9791609A69D74"]
+			id: "4AB6CE49B79AE92C"
+			tasks: [{
+				id: "7D21615F13E76EFC"
+				type: "item"
+				item: "ironchest:gold_chest"
+			}]
+			rewards: [
+				{
+					id: "71F9752958CE36A7"
+					type: "item"
+					item: "supplementaries:candelabra"
+				}
+				{
+					id: "444FB892A1CAB9E2"
+					type: "item"
+					item: "minecraft:golden_carrot"
+				}
+				{
+					id: "69270B25DB4C134B"
+					type: "xp"
+					xp: 30
+				}
+			]
+		}
+		{
+			x: 0.5d
+			y: 5.0d
+			subtitle: "适合物品众多的制作者的昂贵储物空间"
+			dependencies: ["4AB6CE49B79AE92C"]
+			id: "49A71CE30484FE4D"
+			tasks: [{
+				id: "375174AA428BFE44"
+				type: "item"
+				item: "ironchest:diamond_chest"
+			}]
+			rewards: [
+				{
+					id: "4F9AC73CF8BB5592"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "6CAB125BD20CBD8A"
+					type: "item"
+					item: "create:content_observer"
+				}
+			]
+		}
+		{
+			x: -1.0d
+			y: 5.0d
+			subtitle: "快看箱子里面的物品！"
+			dependencies: ["49A71CE30484FE4D"]
+			id: "12CD2D7F8F6D598B"
+			tasks: [{
+				id: "1649AA92702957BA"
+				type: "item"
+				item: "ironchest:crystal_chest"
+			}]
+			rewards: [{
+				id: "154E1B8A1CA7BCB0"
+				type: "command"
+				title: "三个领地主张"
+				icon: {
+					id: "ftbquests:custom_icon"
+					Count: 1b
+					tag: {
+						Icon: "cc:textures/block/claim_block.png"
+					}
+				}
+				command: "/ftbchunks admin extra_claim_chunks @p add 3"
+				player_command: false
+			}]
+		}
+		{
+			x: 0.5d
+			y: 6.5d
+			subtitle: "钻石宝箱，现已具备抗爆属性！"
+			dependencies: ["49A71CE30484FE4D"]
+			id: "5D500F062A96E409"
+			tasks: [{
+				id: "38139EC456FFE9DF"
+				type: "item"
+				item: "ironchest:obsidian_chest"
+			}]
+			rewards: [{
+				id: "7B3B2E0DEC1B31C5"
+				type: "item"
+				item: "eidolon:lead_block"
+			}]
+		}
+		{
+			x: 9.0d
+			y: -1.5d
+			subtitle: "在Undergarden的高处被发现"
+			id: "4EE711F1AF63CAE2"
+			tasks: [{
+				id: "1B23E8AF343FA0A3"
+				type: "item"
+				item: "kubejs:storagium_ingot"
+			}]
+			rewards: [{
+				id: "07033E190CC27208"
+				type: "item"
+				item: "kubejs:storagium_ore"
+				count: 4
+			}]
+		}
+		{
+			x: 7.5d
+			y: 0.5d
+			subtitle: "存储网络的核心方块，所有RS设备都必须连接到控制器"
+			dependencies: [
+				"4EE711F1AF63CAE2"
+				"5507009204F58661"
+			]
+			id: "69FE6DB3E8F34236"
+			tasks: [{
+				id: "3272A54F72D44418"
+				type: "item"
+				item: "refinedstorage:controller"
+			}]
+			rewards: [
+				{
+					id: "376920775E645F23"
+					type: "item"
+					item: "kubejs:advanced_circuit"
+					count: 2
+				}
+				{
+					id: "4F6E4004C5394FAE"
+					type: "item"
+					item: "createaddition:connector"
+				}
+			]
+		}
+		{
+			x: 12.0d
+			y: -1.5d
+			subtitle: "最小的存储单元，存储单元可以制成存储方块或驱动器"
+			dependencies: ["4EE711F1AF63CAE2"]
+			id: "16BA6BCFE346E18B"
+			tasks: [{
+				id: "48A2C6CFD543C7B7"
+				type: "item"
+				item: "refinedstorage:1k_storage_part"
+			}]
+			rewards: [{
+				id: "7055F351903B105D"
+				type: "item"
+				item: "minecraft:iron_block"
+				count: 3
+			}]
+		}
+		{
+			x: 12.0d
+			y: 0.0d
+			subtitle: "可存储 4,000 个物品！"
+			dependencies: ["16BA6BCFE346E18B"]
+			id: "6C98FD87B0C819DC"
+			tasks: [{
+				id: "4556FC2A0C509C54"
+				type: "item"
+				item: "refinedstorage:4k_storage_part"
+			}]
+			rewards: [{
+				id: "59D163B6EBD72D13"
+				type: "item"
+				item: "minecraft:gold_ore"
+				count: 32
+			}]
+		}
+		{
+			x: 12.0d
+			y: 1.5d
+			subtitle: "存储容量是4k驱动器的4倍"
+			dependencies: ["6C98FD87B0C819DC"]
+			id: "3B01B64AB6594EDA"
+			tasks: [{
+				id: "75DD0DD02ED41EE0"
+				type: "item"
+				item: "refinedstorage:16k_storage_part"
+			}]
+			rewards: [{
+				id: "57BD277B03896D34"
+				type: "item"
+				item: "kubejs:integrated_circuit"
+				count: 6
+			}]
+		}
+		{
+			x: 12.0d
+			y: 3.5d
+			subtitle: "可存储 1,000 组物品"
+			dependencies: ["3B01B64AB6594EDA"]
+			id: "3D5BCD92C80C13FA"
+			tasks: [{
+				id: "7D56C066711D7916"
+				type: "item"
+				item: "refinedstorage:64k_storage_part"
+			}]
+			rewards: [
+				{
+					id: "6C3D8E439A4F4175"
+					type: "item"
+					item: "undergarden:regalium_block"
+				}
+				{
+					id: "48C9B4193FD7A036"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			x: 7.5d
+			y: 3.5d
+			subtitle: "允许访问一个存储网络"
+			dependencies: ["7B127BB3F0DEF17E"]
+			id: "02BE40CF22722C7B"
+			tasks: [{
+				id: "30F0A50445BBB556"
+				type: "item"
+				item: "refinedstorage:grid"
+			}]
+			rewards: [{
+				id: "69988E82251720C1"
+				type: "item"
+				item: "create:electron_tube"
+				count: 3
+			}]
+		}
+		{
+			x: 7.5d
+			y: 1.5d
+			subtitle: "最多可容纳 8 个驱动器"
+			dependencies: ["7B127BB3F0DEF17E"]
+			id: "1EC082B2CA8745B6"
+			tasks: [{
+				id: "7226AA8AB52D3F39"
+				type: "item"
+				item: "refinedstorage:disk_drive"
+			}]
+			rewards: [
+				{
+					id: "014FB802FBE69A8E"
+					type: "item"
+					item: "minecraft:redstone_block"
+				}
+				{
+					id: "17871EC2D10BF925"
+					type: "item"
+					item: "kubejs:storagium_ingot"
+					count: 3
+				}
+			]
+		}
+		{
+			x: 7.5d
+			y: -1.5d
+			subtitle: "用于将设备连接到控制器"
+			dependencies: ["4EE711F1AF63CAE2"]
+			id: "6B6452908E5BD4AC"
+			tasks: [{
+				id: "762C8AC2BB3B30EF"
+				type: "item"
+				item: "refinedstorage:cable"
+			}]
+			rewards: [{
+				id: "7C1CA7A7C46AAC3B"
+				type: "item"
+				item: "refinedstorage:cable"
+				count: 16
+			}]
+		}
+		{
+			x: 9.0d
+			y: 3.5d
+			subtitle: "可传输16个方块，但可以升级"
+			dependencies: ["7B127BB3F0DEF17E"]
+			id: "09704F706F8009C3"
+			tasks: [{
+				id: "2DE67C366D461CA9"
+				type: "item"
+				item: "refinedstorage:wireless_transmitter"
+			}]
+			rewards: [{
+				id: "7DC0D3833D5727CC"
+				type: "item"
+				item: "refinedstorage:range_upgrade"
+			}]
+		}
+		{
+			x: 9.0d
+			y: 5.0d
+			subtitle: "传输范围无限远，没有距离限制"
+			dependencies: ["09704F706F8009C3"]
+			id: "2BF89E7EA35EC7C4"
+			tasks: [{
+				id: "2AD69B6C07A0EF05"
+				type: "item"
+				item: "creativewirelesstransmitter:creative_wireless_transmitter"
+			}]
+			rewards: [
+				{
+					id: "12F2F09EF5888A9F"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "7E895C8D213003C7"
+					type: "command"
+					title: "四个领地！Four Claims!"
+					icon: {
+						id: "ftbquests:custom_icon"
+						Count: 1b
+						tag: {
+							Icon: "cc:textures/block/claim_block.png"
+						}
+					}
+					command: "/ftbchunks admin extra_claim_chunks @p add 4"
+					player_command: false
+				}
+			]
+		}
+		{
+			x: 6.0d
+			y: 3.5d
+			subtitle: "和网格一样，但有一个合成界面"
+			dependencies: ["02BE40CF22722C7B"]
+			id: "7F93D7B346D12A10"
+			tasks: [{
+				id: "730C3B7B20F2E9A4"
+				type: "item"
+				item: "refinedstorage:crafting_grid"
+			}]
+			rewards: [{
+				id: "15B7D73B079285CF"
+				type: "item"
+				item: "minecraft:ender_pearl"
+				count: 4
+			}]
+		}
+		{
+			x: 10.5d
+			y: 3.5d
+			subtitle: "显示所有当前的合成任务及其详细信息"
+			dependencies: ["7B127BB3F0DEF17E"]
+			id: "397BD5DE04DD797F"
+			tasks: [{
+				id: "55BBF9A3C0E007BA"
+				type: "item"
+				item: "refinedstorage:crafting_monitor"
+			}]
+			rewards: [
+				{
+					id: "4829BA19D4BDBDF2"
+					type: "item"
+					item: "sophisticatedbackpacks:crafting_upgrade"
+				}
+				{
+					id: "2FA24F817C17D934"
+					type: "item"
+					item: "create:mechanical_crafter"
+					count: 3
+				}
+			]
+		}
+		{
+			x: 10.5d
+			y: 0.0d
+			subtitle: "管理谁可以访问你的存储网络，别忘了带上你的安全卡"
+			dependencies: ["7B127BB3F0DEF17E"]
+			id: "57F5C308BB8AFE4D"
+			tasks: [{
+				id: "3DECE485C0ACA9A1"
+				type: "item"
+				item: "refinedstorage:security_manager"
+			}]
+			rewards: [
+				{
+					id: "2495402C354D76AE"
+					type: "item"
+					item: "refinedstorage:security_card"
+				}
+				{
+					id: "5EE5389AD7C7957D"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			x: 9.0d
+			y: -3.0d
+			subtitle: "用于制作各种精炼存储的升级组件"
+			dependencies: ["4EE711F1AF63CAE2"]
+			id: "22E20F4F9BA8959D"
+			tasks: [{
+				id: "2FA13AD8C6286174"
+				type: "item"
+				item: "refinedstorage:upgrade"
+			}]
+			rewards: [
+				{
+					id: "59351B77C4D0F701"
+					type: "item"
+					item: "refinedstorage:quartz_enriched_iron"
+					count: 16
+				}
+				{
+					id: "19DE861EB2683CCF"
+					type: "item"
+					item: "kubejs:storagium_ingot"
+					count: 4
+				}
+			]
+		}
+		{
+			x: 10.5d
+			y: 1.5d
+			subtitle: "显示存储网络中某项物品或流体的当前数量"
+			dependencies: ["7B127BB3F0DEF17E"]
+			id: "21E8D99E9136A0B7"
+			tasks: [{
+				id: "245BA2BD024017DA"
+				type: "item"
+				item: "refinedstorage:storage_monitor"
+			}]
+			rewards: [{
+				id: "17295B9B5B65A895"
+				type: "item"
+				item: "bountifulbaubles:sunglasses"
+			}]
+		}
+		{
+			x: 6.0d
+			y: -2.0d
+			subtitle: "将物品或流体从存储网络中导出"
+			dependencies: ["6B6452908E5BD4AC"]
+			id: "201080B1B49AFC6A"
+			tasks: [{
+				id: "597C808B6E6D39E3"
+				type: "item"
+				item: "refinedstorage:exporter"
+			}]
+			rewards: [
+				{
+					id: "1BEA965E125DCEBD"
+					type: "xp"
+					xp: 30
+				}
+				{
+					id: "397C012DA383BF4A"
+					type: "item"
+					item: "create:andesite_funnel"
+				}
+			]
+		}
+		{
+			x: 6.0d
+			y: -1.0d
+			subtitle: "用于将物品或流体导入存储网络"
+			dependencies: ["6B6452908E5BD4AC"]
+			id: "65440C856AE5AAA6"
+			tasks: [{
+				id: "52281C2A95597F60"
+				type: "item"
+				item: "refinedstorage:importer"
+			}]
+			rewards: [
+				{
+					id: "6452C2C8CD189546"
+					type: "item"
+					item: "minecraft:hopper"
+				}
+				{
+					id: "0A4812641F55D123"
+					type: "xp"
+					xp: 30
+				}
+			]
+		}
+		{
+			x: 7.5d
+			y: 5.0d
+			subtitle: "随时随地可用的网格系统"
+			dependencies: ["02BE40CF22722C7B"]
+			id: "45EC55629B40B7C4"
+			tasks: [{
+				id: "4224E00323B63603"
+				type: "item"
+				item: "refinedstorage:wireless_grid"
+			}]
+			rewards: [
+				{
+					id: "301C5FB80F87E364"
+					type: "item"
+					item: "createaddition:gold_wire"
+					count: 4
+				}
+				{
+					id: "15F40A827BED8096"
+					type: "xp"
+					xp: 10
+				}
+			]
+		}
+		{
+			x: 6.0d
+			y: 5.0d
+			subtitle: "随时随地访问和制作物品！"
+			dependencies: ["7F93D7B346D12A10"]
+			id: "75703ABD497F0CD0"
+			tasks: [{
+				id: "51725E0450909E6B"
+				type: "item"
+				item: "refinedstorageaddons:wireless_crafting_grid"
+			}]
+			rewards: [{
+				id: "07CFBCFD756FA5D1"
+				type: "item"
+				item: "minecraft:blaze_powder"
+				count: 4
+			}]
+		}
+		{
+			x: 9.0d
+			y: 1.5d
+			subtitle: "用于制作 Refined Storage 机器"
+			dependencies: ["4EE711F1AF63CAE2"]
+			id: "7B127BB3F0DEF17E"
+			tasks: [{
+				id: "4127F10562EB6CB2"
+				type: "item"
+				item: "refinedstorage:machine_casing"
+			}]
+			rewards: [{
+				id: "3F54A9A0586E3AAD"
+				type: "item"
+				item: "kubejs:crushed_storagium_ore"
+				count: 4
+			}]
+		}
+		{
+			x: 6.0d
+			y: 6.5d
+			subtitle: "永久有效（非常非常长的时间）"
+			dependencies: ["75703ABD497F0CD0"]
+			id: "4C3D816335F581DD"
+			tasks: [{
+				id: "4EFF6B355B368DA5"
+				type: "item"
+				item: "refinedstorageaddons:creative_wireless_crafting_grid"
+			}]
+			rewards: [
+				{
+					id: "3EF9A83B57D91FBB"
+					type: "item"
+					item: "betterendforge:end_fish_cooked"
+					count: 16
+				}
+				{
+					id: "2A1A545C77C9FA9A"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "6750AB01728DC40C"
+					type: "item"
+					item: "kubejs:storagium_block"
+					count: 4
+				}
+				{
+					id: "3A670CCE5437C521"
+					type: "item"
+					item: "undergarden:regalium_block"
+					count: 4
+				}
+			]
+		}
+		{
+			title: "背包"
+			icon: "sophisticatedbackpacks:backpack"
+			x: 2.0d
+			y: 0.5d
+			subtitle: "一个背包模组！在 Controls 里设置你喜欢的快捷键"
+			id: "405E919F37F0FC14"
+			tasks: [{
+				id: "083D668A48A2818A"
+				type: "item"
+				title: "任何 #curios:back 物品"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "curios:back"
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "10BC7B335032D127"
+					type: "item"
+					item: "minecraft:iron_ingot"
+				}
+				{
+					id: "35EA0A39DC4D58F2"
+					type: "xp"
+					xp: 10
+				}
+			]
+		}
+		{
+			x: 2.0d
+			y: 2.0d
+			subtitle: "更多背包扩展包等你来拿"
+			dependencies: ["405E919F37F0FC14"]
+			id: "0BAAED5F0E02AB6E"
+			tasks: [{
+				id: "78BBA0BD5AF7ED38"
+				type: "item"
+				item: "sophisticatedbackpacks:iron_backpack"
+			}]
+			rewards: [
+				{
+					id: "08446FB9E6694881"
+					type: "item"
+					item: "minecraft:lantern"
+				}
+				{
+					id: "19EDA829C46BEECA"
+					type: "item"
+					item: "twilightforest:ironwood_raw"
+					count: 4
+				}
+			]
+		}
+		{
+			x: 2.0d
+			y: 3.5d
+			subtitle: "随时随地，存储无忧"
+			dependencies: ["0BAAED5F0E02AB6E"]
+			id: "498AAE3417F54730"
+			tasks: [{
+				id: "6637AB82C0919ADE"
+				type: "item"
+				item: "sophisticatedbackpacks:gold_backpack"
+			}]
+			rewards: [
+				{
+					id: "41CD26AADEE7CCA1"
+					type: "item"
+					item: "supplementaries:gold_door"
+				}
+				{
+					id: "6A351C33ABDBF6AF"
+					type: "xp"
+					xp: 20
+				}
+			]
+		}
+		{
+			x: 2.0d
+			y: 5.0d
+			subtitle: "在当地背包大会上炫耀用的东西"
+			dependencies: ["498AAE3417F54730"]
+			id: "09948F5C8B360908"
+			tasks: [{
+				id: "305492B2126FC758"
+				type: "item"
+				item: "sophisticatedbackpacks:diamond_backpack"
+			}]
+			rewards: [
+				{
+					id: "3210FFE40BC4F7D4"
+					type: "item"
+					item: {
+						id: "minecraft:diamond_shovel"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "21A1187F7F52D288"
+					type: "xp"
+					xp: 50
+				}
+			]
+		}
+		{
+			x: 2.0d
+			y: 6.5d
+			subtitle: "最高等级的背包！"
+			dependencies: ["09948F5C8B360908"]
+			id: "7ADBA41D08820CF2"
+			tasks: [{
+				id: "6F566626BE2CB393"
+				type: "item"
+				item: "sophisticatedbackpacks:netherite_backpack"
+			}]
+			rewards: [
+				{
+					id: "1DD208D32A8F91BE"
+					type: "item"
+					item: "createdeco:netherite_sheet"
+					count: 2
+				}
+				{
+					id: "3BE820113D7E19CA"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			title: "储物抽屉"
+			x: 4.0d
+			y: 0.5d
+			subtitle: "用于存储的抽屉，可通过升级进行扩展"
+			id: "669184AB12A8B58D"
+			tasks: [{
+				id: "5E290C4EDE075FCE"
+				type: "item"
+				title: "任意数量的 #storagedrawers:drawers"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "storagedrawers:drawers"
+					}
+				}
+			}]
+			rewards: [{
+				id: "782BD5C7F41871F4"
+				type: "item"
+				item: "storagedrawers:oak_full_drawers_1"
+			}]
+		}
+		{
+			x: 4.0d
+			y: 2.0d
+			subtitle: "用于制作各种各样的升级道具"
+			dependencies: ["669184AB12A8B58D"]
+			id: "24FC8C10BD9CF0AF"
+			tasks: [{
+				id: "67F6374D8DEC5DC1"
+				type: "item"
+				item: "storagedrawers:upgrade_template"
+			}]
+			rewards: [
+				{
+					id: "2639E2DB0C806C6A"
+					type: "item"
+					item: "minecraft:obsidian"
+				}
+				{
+					id: "4107BA533E43A60A"
+					type: "xp"
+					xp: 10
+				}
+			]
+		}
+		{
+			x: 6.0d
+			y: 0.5d
+			subtitle: "与周围的所有抽屉进行交互"
+			dependencies: ["669184AB12A8B58D"]
+			id: "5507009204F58661"
+			tasks: [{
+				id: "2D5B59C65752B648"
+				type: "item"
+				item: "storagedrawers:controller"
+			}]
+			rewards: [{
+				id: "7FBA33ABD2E8B9D2"
+				type: "item"
+				item: "minecraft:quartz"
+				count: 16
+			}]
+		}
+		{
+			x: 6.0d
+			y: 2.0d
+			subtitle: "压缩物品，可以轻松地将原矿块转换为方块，反之亦然！"
+			dependencies: ["669184AB12A8B58D"]
+			id: "003F9F214657E0A9"
+			tasks: [{
+				id: "6FFBA03E45B90601"
+				type: "item"
+				item: "storagedrawers:compacting_drawers_3"
+			}]
+			rewards: [
+				{
+					id: "55F030B493F62F46"
+					type: "item"
+					item: "minecraft:iron_block"
+					count: 5
+				}
+				{
+					id: "4D2ECF98D8534AC1"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			x: 4.0d
+			y: 3.5d
+			subtitle: "将当前抽屉的大小扩大一倍"
+			dependencies: ["24FC8C10BD9CF0AF"]
+			id: "08CAF01048F026C7"
+			tasks: [{
+				id: "21097CACFD4C03F2"
+				type: "item"
+				item: "storagedrawers:obsidian_storage_upgrade"
+			}]
+			rewards: [
+				{
+					id: "5A06DF6D2B1EF197"
+					type: "item"
+					item: "storagedrawers:oak_full_drawers_1"
+					count: 3
+				}
+				{
+					id: "7414E0EF6DED9933"
+					type: "xp"
+					xp: 10
+				}
+			]
+		}
+		{
+			x: 4.0d
+			y: 5.0d
+			subtitle: "升级需要前一个等级才能制作"
+			dependencies: ["08CAF01048F026C7"]
+			id: "472549AFFB762303"
+			tasks: [{
+				id: "2307815488720F60"
+				type: "item"
+				item: "storagedrawers:iron_storage_upgrade"
+			}]
+			rewards: [
+				{
+					id: "79FEE02F27339419"
+					type: "item"
+					item: "create:crushed_copper_ore"
+					count: 4
+				}
+				{
+					id: "79A76963A17C5359"
+					type: "xp"
+					xp: 30
+				}
+			]
+		}
+		{
+			x: 4.0d
+			y: 6.5d
+			subtitle: "存储空间扩大八倍！"
+			dependencies: ["472549AFFB762303"]
+			id: "008653334854150E"
+			tasks: [{
+				id: "030FCAFCF0DA5736"
+				type: "item"
+				item: "storagedrawers:gold_storage_upgrade"
+			}]
+			rewards: [{
+				id: "19A67C861A3FB857"
+				type: "item"
+				item: {
+					id: "tconstruct:pickaxe_head"
+					Count: 1b
+					tag: {
+						Material: "tconstruct:ironwood"
+					}
+				}
+			}]
+		}
+		{
+			x: 4.0d
+			y: 8.0d
+			subtitle: "需要大量木棍才能完成"
+			dependencies: ["008653334854150E"]
+			id: "55D904ACF4C73173"
+			tasks: [{
+				id: "60AF986C3335F9E7"
+				type: "item"
+				item: "storagedrawers:diamond_storage_upgrade"
+			}]
+			rewards: [{
+				id: "4662CB9AC3B3A4A7"
+				type: "item"
+				item: "kubejs:storagium_ore"
+				count: 8
+			}]
+		}
+		{
+			x: 6.0d
+			y: 8.0d
+			subtitle: "市面上最好的抽屉升级方案！"
+			dependencies: ["55D904ACF4C73173"]
+			id: "5E3754EED00BF7D4"
+			tasks: [{
+				id: "2313CABAEB383614"
+				type: "item"
+				item: "storagedrawers:emerald_storage_upgrade"
+			}]
+			rewards: [
+				{
+					id: "30130DBE0CE788BB"
+					type: "item"
+					item: "storagedrawers:compacting_drawers_3"
+				}
+				{
+					id: "2B1FEDFFFB4596BE"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+			]
+		}
+	]
+}

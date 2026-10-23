@@ -1,0 +1,379 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "chapter_3"
+	group: "4CB417075AAAC1D9"
+	icon: "createaddition:electric_motor"
+	id: "2EBDC1020FE9F8F1"
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["2E3AECA5FE173852"]
+			description: ["在本章中，你将了解 Mekanism 及其多种用途。与 Create 搭配使用时，可以构建复杂而强大的处理流水线。"]
+			hide: true
+			icon: "mekanism:basic_universal_cable"
+			id: "218B631C63578A5F"
+			rewards: [
+				{
+					count: 10
+					id: "081AE76038B827F1"
+					item: "create:brass_ingot"
+					team_reward: true
+					type: "item"
+				}
+				{
+					count: 15
+					id: "721F3563FFE26CD2"
+					item: "minecraft:redstone"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{
+				id: "189B8B40A6CEFAF6"
+				item: "create:precision_mechanism"
+				type: "item"
+			}]
+			title: "能源与机械"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["218B631C63578A5F"]
+			description: ["通电（且含有水）时，电解分离器可将水分解为氢气和氧气。"]
+			icon: "mekanism:electrolytic_core"
+			id: "7A0B7AFCF0F68DE4"
+			subtitle: "制作一个电解分离器"
+			tasks: [{
+				id: "01BEA19FF8DB800E"
+				item: "mekanism:electrolytic_separator"
+				type: "item"
+			}]
+			title: "电解作用"
+			x: 1.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["218B631C63578A5F"]
+			description: ["油可以通过压缩任意一种种子来生产。"]
+			id: "24E119850FD679B1"
+			rewards: [{
+				count: 10
+				id: "4A0F9515CCAC91C8"
+				item: "minecraft:wheat_seeds"
+				team_reward: true
+				type: "item"
+			}]
+			subtitle: "自动化种子油的生产！"
+			tasks: [{
+				id: "10202B43F0F23FA3"
+				item: "createaddition:seed_oil_bucket"
+				type: "item"
+			}]
+			title: "自动化：种子油（Seed Oil）"
+			x: -2.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["24E119850FD679B1"]
+			description: ["生物质可以通过混合任何类型的生物物质和种子油制成。它可以被压缩成生物质颗粒，用作熔炉燃料或斯特林发电机燃料。"]
+			id: "70CA33707627985D"
+			subtitle: "自动化生物质收集！"
+			tasks: [{
+				count: 2L
+				id: "25659832DAB1D272"
+				item: "createaddition:biomass"
+				type: "item"
+			}]
+			title: "自动化：生物质能源系统"
+			x: -3.0d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"7A0B7AFCF0F68DE4"
+				"70CA33707627985D"
+			]
+			description: ["乙烯可用于燃气发电机发电，或通过旋转冷凝器转化为液态乙烯，用于生产HDPE。"]
+			id: "3E4537136F0414C0"
+			shape: "square"
+			subtitle: "制造一些乙烯吧！"
+			tasks: [{
+				count: 5L
+				id: "59230A34FC476305"
+				item: "mekanism:substrate"
+				type: "item"
+			}]
+			title: "自动化：乙烯 (Automate: Ethylene)"
+			x: -1.0d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"3E4537136F0414C0"
+				"7A0B7AFCF0F68DE4"
+			]
+			description: ["HDPE颗粒是通过将液态乙烯、氧气和基料置于加压反应釜中制成的。"]
+			id: "7F8E511C9FA4A327"
+			shape: "square"
+			subtitle: "弄点HDPE颗粒回来！"
+			tasks: [{
+				count: 10L
+				id: "248BED7E70B79D96"
+				item: "mekanism:hdpe_pellet"
+				type: "item"
+			}]
+			title: "获取高密度聚乙烯颗粒 (HDPE Pellets)"
+			x: 0.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["70CA33707627985D"]
+			description: [
+				"生物发电机，一种燃烧清洁燃料（生物质）来产生能量的机器。"
+				""
+				"燃烧清洁燃料真的重要吗？污染什么时候成过问题？"
+			]
+			id: "3999ED3081B3891B"
+			optional: true
+			subtitle: "制作一个生物发电机！"
+			tasks: [{
+				id: "3238B57329B22243"
+				item: "mekanismgenerators:bio_generator"
+				type: "item"
+			}]
+			title: "合成：生物发电机"
+			x: -5.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["218B631C63578A5F"]
+			description: ["电动机需要能量来提供旋转和应力单位。如果你有额外的能量，可以选择更改此发电机产生的 RPM。"]
+			id: "42AF7163C292CFFF"
+			optional: true
+			subtitle: "制作一个电动机！"
+			tasks: [{
+				id: "75B677D62F3804F5"
+				item: "createaddition:electric_motor"
+				type: "item"
+			}]
+			title: "能量 -> 旋转方向"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["218B631C63578A5F"]
+			description: ["交流发电机通过旋转产生能量。发电机转轴转得越快，产生的能量就越多。"]
+			id: "3C852EEE5B3A9AC6"
+			optional: true
+			subtitle: "制作一个交流发电机！"
+			tasks: [{
+				id: "2B6CD054868003D8"
+				item: "createaddition:alternator"
+				type: "item"
+			}]
+			title: "旋转 -> 能量"
+			x: 2.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["7F8E511C9FA4A327"]
+			description: ["HDPE 板可以手动合成，也可以用富集室制作。"]
+			id: "7E606D81A3E2F0DF"
+			subtitle: "制作一个HDPE板！"
+			tasks: [{
+				count: 10L
+				id: "50AD3EB90C488974"
+				item: "mekanism:hdpe_sheet"
+				type: "item"
+			}]
+			title: "合成：HDPE 板"
+			x: -0.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["7E606D81A3E2F0DF"]
+			description: ["基础控制电路可以通过顺序组装配方制作，在 Mekanism 中用途广泛，尤其是升级后的形式。"]
+			id: "7C3CB8CEEC246731"
+			shape: "octagon"
+			size: 1.5d
+			subtitle: "制作一些基本的控制电路吧！"
+			tasks: [{
+				count: 10L
+				id: "45F46841351839CA"
+				item: "mekanism:basic_control_circuit"
+				type: "item"
+			}]
+			title: "电路系统"
+			x: -2.25d
+			y: 7.5d
+		}
+		{
+			dependencies: ["218B631C63578A5F"]
+			description: ["能量立方体可用作电池来储存多余的能量。"]
+			id: "5D1B14CE562109CF"
+			optional: true
+			subtitle: "制作一个基础能量立方体！"
+			tasks: [{
+				id: "51BACEA8EE827A7E"
+				item: "mekanism:basic_energy_cube"
+				type: "item"
+			}]
+			title: "合成：基础能量立方体"
+			x: 0.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["3E4537136F0414C0"]
+			description: ["此发电机可燃烧乙烯以提供电力。当乙烯过剩并希望将其转化为能源时，此功能非常实用。"]
+			id: "2B59F474C0511D61"
+			optional: true
+			subtitle: "制作一个燃气燃烧发电机！"
+			tasks: [{
+				id: "6DFFBD593D9A5EFC"
+				item: "mekanismgenerators:gas_burning_generator"
+				type: "item"
+			}]
+			title: "合成：燃气燃烧发电机"
+			x: -0.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7C3CB8CEEC246731"]
+			description: [
+				"你以为控制电路是第三章的最后一部分吗？那你就错了。第三章的最后部分实际上是逻辑机制的组装。"
+				""
+				"逻辑机制可由精密机制、电子管、基本控制电路和组装套件的一部分组装而成。"
+			]
+			id: "0BCBF6622303FB66"
+			shape: "rsquare"
+			size: 2.0d
+			subtitle: "制作一个逻辑机制！"
+			tasks: [{
+				id: "6CEA197A38609E81"
+				item: "kubejs:logic_mechanism"
+				type: "item"
+			}]
+			title: "组装：逻辑机制"
+			x: -5.5d
+			y: 7.5d
+		}
+		{
+			dependencies: ["218B631C63578A5F"]
+			description: [
+				"矿物翻倍的过程很简单，所以我们直接跳过，一步到位，把它们变成三倍。"
+				""
+				"要开始，使用净化室将矿石或原材料转化为团块。净化矿石比原材料能产出更多团块。要显著减少该机器对氧气的使用，请用气体升级对其进行升级。"
+			]
+			icon: "mekanism:purification_chamber"
+			id: "6EEB5E86ED35B6E6"
+			optional: true
+			subtitle: "制作一个净化室！Craft a purification chamber!"
+			tasks: [
+				{
+					id: "1CE6F6F45F0CC7DD"
+					item: "mekanism:purification_chamber"
+					type: "item"
+				}
+				{
+					id: "39B300739F40F866"
+					type: "checkmark"
+				}
+			]
+			title: "矿石三倍化：步骤 1"
+			x: -1.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["6EEB5E86ED35B6E6"]
+			description: ["将净化室获得的团块移入破碎机，以制造脏灰尘。"]
+			icon: "mekanism:crusher"
+			id: "799913A2B7F9F39B"
+			optional: true
+			subtitle: "制作一个破碎机！"
+			tasks: [
+				{
+					id: "7F689941DF4CA469"
+					item: "mekanism:crusher"
+					type: "item"
+				}
+				{
+					id: "2B178332D7BC2B74"
+					type: "checkmark"
+				}
+			]
+			title: "矿石三倍化：步骤 2"
+			x: -3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["799913A2B7F9F39B"]
+			description: ["将步骤2中已使用的破碎机里的脏灰尘通过富集室净化为普通灰尘。"]
+			icon: "mekanism:enrichment_chamber"
+			id: "4025F51068A9DA99"
+			optional: true
+			subtitle: "制作一个富集室！Craft an enrichment chamber!"
+			tasks: [
+				{
+					id: "7E17D893AC6EDA12"
+					item: "mekanism:enrichment_chamber"
+					type: "item"
+				}
+				{
+					id: "14291C6568861B47"
+					type: "checkmark"
+				}
+			]
+			title: "矿石三倍化：步骤 3"
+			x: -4.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["4025F51068A9DA99"]
+			description: ["使用你选择的熔炉，将富集室中的纯净粉尘熔炼成锭。"]
+			icon: "minecraft:furnace"
+			id: "5D1B7931C29C7EF4"
+			optional: true
+			shape: "square"
+			subtitle: "制作一个可以冶炼的东西吧！"
+			tasks: [
+				{
+					id: "70925B72F06D0238"
+					item: "minecraft:furnace"
+					type: "item"
+				}
+				{
+					id: "0473A7C25B9DDD14"
+					type: "checkmark"
+				}
+			]
+			title: "矿石三倍化：步骤 4"
+			x: -4.5d
+			y: -5.0d
+		}
+		{
+			dependencies: ["7C3CB8CEEC246731"]
+			description: [
+				"任何能处理物品的机器都可以通过等级安装器（推荐方法）或直接制作升级版来升级。"
+				""
+				"单个机器可以升级为工厂，这能增加输入和输出槽的数量，从而一次性处理更多物品。要自动整理物品以填满所有输入槽，可以开启自动整理（在机器的GUI中）。"
+			]
+			id: "396412C491D98B61"
+			optional: true
+			subtitle: "把你的单机设备变成一个工厂！"
+			tasks: [{
+				id: "46DB3ED872C9C8E7"
+				item: "mekanism:basic_tier_installer"
+				type: "item"
+			}]
+			title: "升级机械动力机器 (Upgrading Mekanism Machines)"
+			x: -3.0d
+			y: 5.5d
+		}
+	]
+	title: "第三章"
+}

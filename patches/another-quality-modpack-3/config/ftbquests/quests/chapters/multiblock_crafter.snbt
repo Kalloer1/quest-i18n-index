@@ -1,0 +1,111 @@
+# AI 初翻，未人工校对
+{
+	id: "726523AA38751A4C"
+	group: "7B066BC39BF43290"
+	order_index: 1
+	filename: "multiblock_crafter"
+	title: "多方块合成台"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: -0.5d
+			y: -0.5d
+			subtitle: "Refined Storage 扩展添加了多方块合成器和更大的磁盘。使用书籍查看多方块外观"
+			description: [
+				"添加了多方块模式合成器。其运作方式与AE 1中的完全相同。"
+				"最大尺寸为16x16，且必须至少有一个CPU和一个存储方块。"
+				""
+				"为多区块结构添加更多CPU可以加快合成速度。"
+				"- 添加更多存储方块可以让你存储更多模式。"
+			]
+			id: "72293950476EABCD"
+			tasks: [{
+				id: "0276A360265CDA27"
+				type: "item"
+				item: {
+					id: "patchouli:guide_book"
+					Count: 1b
+					tag: {
+						"patchouli:book": "rebornstorage:rs_book"
+					}
+				}
+			}]
+		}
+		{
+			x: -1.5d
+			y: -1.5d
+			subtitle: "多区块结构核心所需材料"
+			description: [
+				"为多区块结构添加更多CPU可以加快合成速度。"
+				"- 添加更多存储方块可以让你存储更多模式。"
+				""
+				"是的，你可以把它们混合在一起。"
+			]
+			dependencies: ["72293950476EABCD"]
+			id: "54F07069DDF99848"
+			tasks: [{
+				id: "3FAE6B2F94AB096F"
+				type: "item"
+				title: "制作 CPU 或 存储设备"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "rebornstorage:multiblock_storage"
+								Count: 1b
+							}
+							{
+								id: "rebornstorage:multiblock_cpu"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+		}
+		{
+			x: 0.5d
+			y: -1.5d
+			dependencies: ["72293950476EABCD"]
+			id: "27EE0EB79D39A768"
+			tasks: [{
+				id: "7472D2E45457B88A"
+				type: "item"
+				item: "rebornstorage:multiblock_frame"
+			}]
+		}
+		{
+			x: -0.5d
+			y: -3.5d
+			dependencies: ["06F6C130AE4C81FB"]
+			id: "75FDC1DF8415DB15"
+			tasks: [{
+				id: "6259EC7E02E7505E"
+				type: "item"
+				item: {
+					id: "rebornstorage:super_wireless_crafting_grid"
+					Count: 1b
+					tag: { }
+				}
+			}]
+		}
+		{
+			x: -0.5d
+			y: -2.5d
+			dependencies: [
+				"54F07069DDF99848"
+				"27EE0EB79D39A768"
+			]
+			id: "06F6C130AE4C81FB"
+			tasks: [{
+				id: "050F9D118056EEE0"
+				type: "item"
+				item: "rebornstorage:advanced_wireless_transmitter"
+			}]
+		}
+	]
+	quest_links: [ ]
+}

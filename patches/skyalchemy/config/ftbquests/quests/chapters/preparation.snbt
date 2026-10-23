@@ -1,0 +1,313 @@
+# AI 初翻，未人工校对
+{
+	id: "2E007D1AE65D162A"
+	group: ""
+	order_index: 1
+	filename: "preparation"
+	title: "{\"text\":\"Preparation\",\"color\":\"yellow\"}"
+	icon: "projecte:transmutation_table"
+	subtitle: ["准备好迎接即将到来的挑战吧"]
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "升级后的桶 (The Upgraded Barrel)"
+			x: 0.0d
+			y: 0.0d
+			subtitle: "With a stronger material, it could hold &cstronger &bfluids"
+			id: "1554CBB99A347427"
+			tasks: [{
+				id: "7B5871F2ED3F0AFF"
+				type: "item"
+				item: "exnihilosequentia:stone_barrel"
+			}]
+			rewards: [
+				{
+					id: "52E8E9A6F3F7B95D"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+				{
+					id: "7E19424E653FCE77"
+					type: "item"
+					item: {
+						id: "woodenbucket:wooden_bucket"
+						Count: 1b
+						tag: {
+							Damage: 0
+							Fluid: {
+								FluidName: "minecraft:lava"
+								Amount: 1000
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "冷却后的岩浆"
+			x: 0.0d
+			y: 1.5d
+			subtitle: "点击此处查看教程"
+			description: ["[\"\",{\"text\":\"用“熔炉”里的岩浆，\",\"color\":\"gray\",\"clickEvent\":{\"action\":\"change_page\",\"value\":\"0E288116BB13AB5F\"},\"hoverEvent\":{\"action\":\"show_item\",\"contents\":{\"id\":\"exnihilosequentia:fired_crucible\"}}},{\"text\":\"把它放进一个“石桶”里，\",\"color\":\"reset\"},{\"text\":\"然后拿一个“水桶”来装水，\",\"color\":\"aqua\",\"hoverEvent\":{\"action\":\"show_item\",\"contents\":{\"id\":\"minecraft:water_bucket\"}}},{\"text\":\"再把它倒进“石桶”上，\",\"color\":\"reset\"},{\"text\":\"这样你就能得到“黑曜石”了。\",\"color\":\"dark_purple\",\"hoverEvent\":{\"action\":\"show_item\",\"contents\":{\"id\":\"minecraft:obsidian\"}}},{\"text\":\".\",\"color\":\"reset\"}]"]
+			dependencies: ["1554CBB99A347427"]
+			id: "4BB19C84A792C689"
+			tasks: [{
+				id: "0223247DFC26D404"
+				type: "item"
+				item: "minecraft:obsidian"
+			}]
+			rewards: [
+				{
+					id: "4C49471971A849D6"
+					type: "item"
+					item: "minecraft:obsidian"
+				}
+				{
+					id: "1158BB1602425ACF"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			title: "EMC 战役"
+			x: 0.0d
+			y: 3.0d
+			subtitle: "用物品交换物品"
+			dependencies: ["4BB19C84A792C689"]
+			id: "63FBF6072E947A75"
+			tasks: [{
+				id: "5BDBBAFC994911D5"
+				type: "item"
+				item: "projecte:transmutation_table"
+			}]
+			rewards: [{
+				id: "73D6FD8C44A0A231"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			title: "燃烧的长杆 (The Flaming Rods)"
+			x: 1.5d
+			y: 1.5d
+			subtitle: "获取烈焰棒，它有很多用途……"
+			description: ["将 &6Blazing Doll&r 用于装有 &cLava&r 的 &aStone Barrel&r 上，几秒后就会生成一只 &6Blaze&r。"]
+			dependencies: ["1554CBB99A347427"]
+			id: "1899F79C67F5EEE8"
+			tasks: [{
+				id: "40A145AFDD870357"
+				type: "item"
+				item: "minecraft:blaze_rod"
+			}]
+			rewards: [{
+				id: "32B3124A96330357"
+				type: "item"
+				item: "minecraft:cobblestone"
+				count: 64
+			}]
+		}
+		{
+			title: "必备材料清单 The Essential Materials"
+			x: -1.5d
+			y: 0.0d
+			subtitle: "通过筛分获取所需材料"
+			id: "550BCAF902315390"
+			tasks: [
+				{
+					id: "4A1F30ADBEBD4276"
+					type: "item"
+					item: "minecraft:iron_ingot"
+				}
+				{
+					id: "3723AEB918DA5587"
+					type: "item"
+					item: "minecraft:copper_ingot"
+				}
+				{
+					id: "0C677FA8DAA9E0DE"
+					type: "item"
+					title: "铅制锭（Lead Ingot）"
+					item: {
+						id: "itemfilters:or"
+						Count: 1b
+						tag: {
+							items: [
+								{
+									id: "mekanism:ingot_lead"
+									Count: 1b
+								}
+								{
+									id: "exnihilosequentia:lead_ingot"
+									Count: 1b
+								}
+							]
+						}
+					}
+				}
+				{
+					id: "6248F371EC5F28A5"
+					type: "item"
+					item: "mekanism:ingot_osmium"
+				}
+				{
+					id: "5F5363C187AF2BD1"
+					type: "item"
+					item: "exnihilosequentia:nickel_ingot"
+				}
+				{
+					id: "48CFFE723353F6C7"
+					type: "item"
+					title: "银锭"
+					item: {
+						id: "itemfilters:or"
+						Count: 1b
+						tag: {
+							items: [
+								{
+									id: "exnihilosequentia:silver_ingot"
+									Count: 1b
+								}
+								{
+									id: "material_elements:silver_ingot"
+									Count: 1b
+								}
+							]
+						}
+					}
+				}
+				{
+					id: "348426F77554E942"
+					type: "item"
+					title: "锡锭"
+					item: {
+						id: "itemfilters:or"
+						Count: 1b
+						tag: {
+							items: [
+								{
+									id: "mekanism:ingot_tin"
+									Count: 1b
+								}
+								{
+									id: "exnihilosequentia:tin_ingot"
+									Count: 1b
+								}
+							]
+						}
+					}
+				}
+				{
+					id: "17D33DC41982A9E1"
+					type: "item"
+					item: "exnihilosequentia:aluminum_ingot"
+				}
+			]
+			rewards: [
+				{
+					id: "53BA2CEB708F0314"
+					type: "item"
+					item: "minecraft:iron_block"
+				}
+				{
+					id: "6E82BEDBC129F4C4"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			title: "富有的炼金术士"
+			x: -1.5d
+			y: 1.5d
+			subtitle: "获取一些昂贵的材料以备后用"
+			dependencies: ["550BCAF902315390"]
+			id: "780D9CA6F81755A9"
+			tasks: [
+				{
+					id: "269B33F036EA8DC6"
+					type: "item"
+					item: "minecraft:gold_ingot"
+				}
+				{
+					id: "1A66DA9319525696"
+					type: "item"
+					item: "minecraft:diamond"
+				}
+				{
+					id: "5D00B9D693C31062"
+					type: "item"
+					item: "minecraft:ender_pearl"
+				}
+			]
+			rewards: [
+				{
+					id: "354F69E3A4FB9E03"
+					type: "item"
+					item: "minecraft:iron_block"
+					count: 2
+				}
+				{
+					id: "2427D3F9E7AB21CE"
+					type: "xp"
+					xp: 200
+				}
+			]
+		}
+		{
+			title: "标准燃料"
+			x: -3.0d
+			y: 0.0d
+			id: "1FA17B5A07A02422"
+			tasks: [{
+				id: "440426FC40214A63"
+				type: "item"
+				item: "minecraft:coal"
+			}]
+			rewards: [{
+				id: "39E8C75EFCC18CE5"
+				type: "item"
+				item: "minecraft:charcoal"
+			}]
+		}
+		{
+			title: "不仅仅是燃料 (More Than Fuel)"
+			x: -3.0d
+			y: 1.5d
+			subtitle: "解锁能持续超长时间的&bAternalis燃料&r。"
+			dependencies: ["1FA17B5A07A02422"]
+			id: "3DC22DCE57B1C54B"
+			tasks: [{
+				id: "39420F7AE972FFCA"
+				type: "item"
+				item: "projecte:aeternalis_fuel"
+			}]
+			rewards: [
+				{
+					id: "47B00F8947526D2C"
+					type: "xp"
+					xp: 250
+				}
+				{
+					id: "31A2C4725E6B76E0"
+					type: "item"
+					item: "minecraft:coal"
+					count: 4
+				}
+			]
+		}
+		{
+			title: "全能无限水源 (Almighty Infinity Water Source)"
+			x: -4.0d
+			y: 0.0d
+			id: "3EEAE9312CB650B6"
+			tasks: [{
+				id: "2CF49F15AE72E0BB"
+				type: "item"
+				item: "cookingforblockheads:sink"
+			}]
+		}
+	]
+	quest_links: [ ]
+}
