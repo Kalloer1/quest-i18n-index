@@ -1,0 +1,366 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "the_awakening"
+	group: "6EAE94DB5BA6D469"
+	icon: "minecraft:oak_sapling"
+	id: "611274D3FA5BA5A7"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["4433A5AF6BC2C24E"]
+			description: [
+				"你已经掌握了这个世界的基础知识。"
+				""
+				"探索一番，找到食物生存下来后，这个世界还有更多内容。"
+			]
+			id: "232063F64AA787A3"
+			rewards: [
+				{
+					id: "60D0736266B257BE"
+					type: "xp"
+					xp: 20
+				}
+				{
+					id: "3A0A41D233751F5E"
+					item: {
+						Count: 1
+						id: "chalk:white_chalk"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "093DDE69E312390C"
+				item: {
+					Count: 1
+					id: "naturescompass:naturescompass"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "与世界合为一体"
+			x: 3.5d
+			y: -1.0d
+		}
+		{
+			description: ["打碎木头真令人满足，不是吗？"]
+			id: "0B3B11D2BC2D6FB3"
+			rewards: [{
+				auto: "enabled"
+				icon: {
+					Count: 1
+					id: "minecraft:wooden_axe"
+					tag: {
+						Damage: 0
+					}
+				}
+				id: "5CB9C33641F81B68"
+				table_id: 2799756611519944619L
+				type: "random"
+			}]
+			tasks: [{
+				block: "minecraft:logs"
+				block_type: 1
+				checkItem: false
+				id: "482B508E7EC764BB"
+				type: "questsadditions:break"
+				value: 1L
+			}]
+			title: "捶打木材"
+			x: -6.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["0B3B11D2BC2D6FB3"]
+			description: ["你可以通过获取一种种子来推进这个任务。"]
+			id: "2BA3DFE3B78D9921"
+			min_required_tasks: 1
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "4884D0DE8FD1772A"
+				table_id: 1310574206158347775L
+				type: "random"
+			}]
+			subtitle: "请不要让自己挨饿。"
+			tasks: [{
+				id: "54B7E5855269A425"
+				item: {
+					Count: 1
+					id: "ftbfiltersystem:smart_filter"
+					tag: {
+						"ftbfiltersystem:filter": "item_tag(forge:seeds)"
+					}
+				}
+				title: "任意种子"
+				type: "item"
+			}]
+			title: "不要挨饿"
+			x: -4.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["699247DF51A78EE0"]
+			id: "03C77411BB8069D6"
+			rewards: [{
+				icon: {
+					Count: 1
+					id: "minecraft:wooden_sword"
+					tag: {
+						Damage: 0
+					}
+				}
+				id: "1DAD3CE833E2D953"
+				table_id: 8417136257316507960L
+				type: "random"
+			}]
+			tasks: [
+				{
+					block: "minecraft:campfire"
+					block_type: 0
+					id: "23146CED0FD7A107"
+					replace: false
+					replaced: "minecraft:air"
+					type: "questsadditions:place"
+					value: 1L
+				}
+				{
+					id: "5023EA63B36063A5"
+					item: "farmersdelight:cutting_board"
+					type: "item"
+				}
+			]
+			title: "烹饪得不错"
+			x: -0.5d
+			y: -1.0d
+		}
+		{
+			dependencies: [
+				"232063F64AA787A3"
+				"176CA995831166DC"
+				"7C2D71F1EE6134B9"
+			]
+			description: [
+				"击败其中一个首领。"
+				""
+				"Baykok 来自 Totemic，需要通过仪式来召唤。"
+				""
+				"臭气熏天的家伙 Sizin 在丛林神庙里。"
+			]
+			hide_details_until_startable: true
+			id: "5D283B69016CC8C9"
+			min_required_tasks: 1
+			rewards: [
+				{
+					auto: "enabled"
+					command: "/gamestage add @p antique"
+					elevate_perms: true
+					icon: "minecraft:quartz_pillar"
+					id: "1A6638F8A2040C89"
+					silent: true
+					title: "迈向古代文明的时代"
+					type: "command"
+				}
+				{
+					id: "2B90B16CF26648EA"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+			]
+			shape: "hexagon"
+			subtitle: "阶段进度"
+			tasks: [
+				{
+					entity: "totemic:baykok"
+					icon: {
+						Count: 1
+						id: "totemic:baykok_bow"
+						tag: {
+							Damage: 0
+						}
+					}
+					id: "04B440DE3B49E41C"
+					title: "击败贝科克（Baykok）"
+					type: "kill"
+					value: 1L
+				}
+				{
+					checkItem: false
+					entity: "minecraft:husk"
+					icon: {
+						Count: 1
+						id: "totemic:totem_whittling_knife"
+						tag: {
+							Damage: 0
+						}
+					}
+					id: "175F0A30E008574D"
+					nbt: {
+						Tags: ["templeBoss"]
+					}
+					title: "击败臭名昭著的西津（Sizin The Stinking One）"
+					type: "questsadditions:killnbt"
+					value: 1L
+				}
+			]
+			title: "邪恶的灵魂"
+			x: 5.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["2BA3DFE3B78D9921"]
+			description: ["抓点鱼吧。我相信有这么多健康的欧米伽-3脂肪，肯定不会无聊的。"]
+			id: "699247DF51A78EE0"
+			rewards: [
+				{
+					id: "463E2150D657E08C"
+					item: {
+						Count: 1
+						id: "minecraft:fishing_rod"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "1DFF1EEEF7FC839D"
+					item: {
+						Count: 1
+						id: "aquaculture:wooden_fillet_knife"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "0A933C84296E06A7"
+					item: "minecraft:campfire"
+					type: "item"
+				}
+			]
+			subtitle: "他就可以永远地自我教导下去了……"
+			tasks: [{
+				id: "216BA755F7DEA355"
+				type: "checkmark"
+			}]
+			title: "授人以鱼不如授人以渔..."
+			x: -2.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["03C77411BB8069D6"]
+			id: "4433A5AF6BC2C24E"
+			min_required_tasks: 1
+			rewards: [
+				{
+					id: "182596E1108095B6"
+					item: {
+						Count: 1
+						id: "patchouli:guide_book"
+						tag: {
+							"patchouli:book": "totemic:totempedia"
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "52754DCF25C9655E"
+					item: "araxers_bestiary:bestiary_book"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "668B80522C1F2FFC"
+				item: {
+					Count: 1
+					id: "ftbfiltersystem:smart_filter"
+					tag: {
+						"ftbfiltersystem:filter": "item_tag(forge:leather)"
+					}
+				}
+				title: "任意皮革"
+				type: "item"
+			}]
+			x: 1.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["4433A5AF6BC2C24E"]
+			id: "176CA995831166DC"
+			rewards: [{
+				id: "23F05D98D8CECB23"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				id: "1993AA72EBAE1868"
+				item: "totemic:drum"
+				type: "item"
+			}]
+			x: 3.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["4433A5AF6BC2C24E"]
+			id: "7C2D71F1EE6134B9"
+			rewards: [{
+				id: "05402B9CDCAA879C"
+				type: "xp"
+				xp: 20
+			}]
+			subtitle: "这件礼服将帮助你在仪式中表现出色。"
+			tasks: [{
+				id: "6A04AB1B6E8B23EE"
+				item: {
+					Count: 1
+					id: "totemic:jingle_dress"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 3.5d
+			y: 0.5d
+		}
+		{
+			description: [
+				"此整合包包含了许多你不该使用的重型物品。"
+				""
+				"关于如何推进进度，有一些修改说明。"
+				""
+				"就像只用篝火来熔炼铜矿石一样。"
+				"第一阶段之后就能获得铁了，所以别担心。"
+				""
+				"资源可以在地表指示物上找到。"
+				""
+				"例如，FTB区块小地图和全屏地图将在后期阶段提供。"
+			]
+			icon: "minecraft:cookie"
+			id: "0E374A0A38D4CA22"
+			rewards: [{
+				id: "6C42D041A415050E"
+				item: "minecraft:poppy"
+				type: "item"
+			}]
+			size: 2.0d
+			tasks: [{
+				id: "614998E545A3F2F7"
+				title: "简介"
+				type: "checkmark"
+			}]
+			x: -2.0d
+			y: -3.0d
+		}
+	]
+	subtitle: ["这是一个开始"]
+	tags: ["chapter1"]
+	title: "苏醒的时刻"
+}

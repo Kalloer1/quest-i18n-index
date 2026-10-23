@@ -1,0 +1,191 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "under_pressure"
+	group: "7B2BB3FA11A6EC1A"
+	icon: "pneumaticcraft:pressure_tube"
+	id: "23D9429E601CC725"
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["44CC00B787EB11CB"]
+			description: [
+				"要制造更坚固的铁，我暂时可以用高压爆炸这种粗暴的方法。"
+				""
+				"首先，我得用新获得的材料弄点TNT才行。"
+			]
+			id: "197FE2C858764EB2"
+			shape: "gear"
+			size: 2.0d
+			tasks: [{
+				id: "5EF06961B50A3C4F"
+				item: "minecraft:tnt"
+				type: "item"
+			}]
+			title: "会爆炸的铁块 Exploding Iron"
+			x: -1.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["197FE2C858764EB2"]
+			description: [
+				"我可以在封闭空间里引爆TNT，地板上铺着一些铁锭，这样就能增强我的铁了。"
+				""
+				"这既昂贵又低效，但只要有足够的压缩铁，用压缩空气就能更高效地做到。"
+			]
+			id: "1BA25B1CB8916514"
+			tasks: [{
+				id: "31F31117575FABA8"
+				item: "pneumaticcraft:ingot_iron_compressed"
+				type: "item"
+			}]
+			title: "正在压缩铁块，请稍候..."
+			x: 1.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["12E58F61955B8404"]
+			description: ["建造压力舱是阻止消耗所有TNT和铁的唯一方法..."]
+			id: "6CE3E1B224AF63A4"
+			rewards: [
+				{
+					count: 4
+					id: "4ECE2BA72A58562E"
+					item: "pneumaticcraft:pressure_chamber_glass"
+					type: "item"
+				}
+				{
+					count: 8
+					id: "6C10E72390B82181"
+					item: "pneumaticcraft:pressure_chamber_wall"
+					type: "item"
+				}
+			]
+			shape: "hexagon"
+			size: 2.0d
+			tasks: [
+				{
+					count: 16L
+					id: "66F127D63862738E"
+					item: { Count: 16, id: "pneumaticcraft:pressure_chamber_wall" }
+					type: "item"
+				}
+				{
+					id: "2678942C9544924E"
+					item: "pneumaticcraft:pressure_chamber_valve"
+					type: "item"
+				}
+			]
+			title: "压力舱室"
+			x: 3.5d
+			y: 5.5d
+		}
+		{
+			dependencies: ["1BA25B1CB8916514"]
+			description: ["本手册介绍了使用气压所需了解的一切知识。"]
+			id: "3B1CF19F229207FB"
+			tasks: [{
+				id: "2A4194553F2F94FA"
+				item: {
+					Count: 1
+					id: "patchouli:guide_book"
+					tag: {
+						"patchouli:book": "pneumaticcraft:book"
+					}
+				}
+				type: "item"
+			}]
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["6CE3E1B224AF63A4"]
+			description: [
+				"有了稳定的压缩铁来源，我现在可以开始研究一些基础的电路了。"
+				""
+				"去查看“重型机械”选项卡吧"
+			]
+			icon: "immersiveengineering:transformer_hv"
+			id: "6102689B16E5D61A"
+			tasks: [{
+				id: "2456575519B0C3CE"
+				title: "重型机械"
+				type: "checkmark"
+			}]
+			x: 1.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["6CE3E1B224AF63A4"]
+			description: ["我终于可以制造弹药，给那把迷你枪充能了！"]
+			id: "006BD2D3EE5E9CA3"
+			tasks: [{
+				id: "2C32DD56DA6878A6"
+				item: {
+					Count: 1
+					id: "pneumaticcraft:gun_ammo"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "迷你机枪"
+			x: 5.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["1BA25B1CB8916514"]
+			description: [
+				"我需要一种更好的方法来压缩这些铁锭……"
+				""
+				"空气压缩机和一些管子是个不错的开始。"
+			]
+			icon: "pneumaticcraft:air_compressor"
+			id: "12E58F61955B8404"
+			tasks: [
+				{
+					count: 16L
+					id: "15134A0840BD4A0E"
+					item: { Count: 16, id: "pneumaticcraft:pressure_tube" }
+					type: "item"
+				}
+				{
+					id: "770275D58068BE5E"
+					item: "pneumaticcraft:air_compressor"
+					type: "item"
+				}
+			]
+			title: "压缩空气 Compressing Air"
+			x: 3.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["12E58F61955B8404"]
+			description: ["标准压缩机的液态燃料变种。"]
+			id: "731CE7D9814AB548"
+			tasks: [{
+				id: "157C4B778285A243"
+				item: "pneumaticcraft:liquid_compressor"
+				type: "item"
+			}]
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["12E58F61955B8404"]
+			description: ["利用两侧巨大的温差来压缩空气，例如水和岩浆。"]
+			id: "54ABA7F616CF8ABC"
+			tasks: [{
+				id: "2AB3E78554D77E32"
+				item: "pneumaticcraft:thermal_compressor"
+				type: "item"
+			}]
+			x: 5.5d
+			y: 1.0d
+		}
+	]
+	title: "建造压力正在上升"
+}

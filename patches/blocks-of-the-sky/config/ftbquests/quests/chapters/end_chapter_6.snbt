@@ -1,0 +1,176 @@
+# AI 初翻，未人工校对
+{
+	id: "5D4BAFA6F7BD0D29"
+	group: ""
+	order_index: 5
+	filename: "end_chapter_6"
+	title: "终章：第六章"
+	icon: "minecraft:end_portal_frame"
+	default_quest_shape: "rsquare"
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: 0.0d
+			y: 0.0d
+			shape: "square"
+			description: ["Orechid 是 Botania 里一种超厉害的植物。给它提供法力后，这种花会自动把石头变成矿石。石头需要放在花附近。不过，它消耗大量法力，要小心。你可能可以自动化生产，但要小心，它真的很吵。"]
+			dependencies: ["676A5B6B26395B6F"]
+			size: 1.25d
+			id: "0BD58D20D6876D74"
+			tasks: [{
+				id: "3A7326AC1FD942EE"
+				type: "item"
+				item: "botania:orechid"
+			}]
+			rewards: [{
+				id: "55766D7F34751548"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 0.0d
+			description: ["你有很多模组可用，可以用多种方式自动化花朵。你可以使用 Ars Nouveoue 的咒语、Flux 机器、Botania 的花朵……发挥创造力，看看能否自动化这朵花。"]
+			dependencies: ["0BD58D20D6876D74"]
+			id: "4C646B8B43C13D77"
+			tasks: [{
+				id: "6492E9485F5A1E56"
+				type: "checkmark"
+				title: "自动化之花 (Automating The Flower)"
+			}]
+		}
+		{
+			x: 0.0d
+			y: -1.5d
+			description: ["目前唯一能产生能量的发电机是Flux发电机。你需要在内部放入可燃材料才能发电。更多信息请查阅书籍。"]
+			dependencies: ["0BD58D20D6876D74"]
+			id: "0FEA8F91B4CC8ECD"
+			tasks: [{
+				id: "6814E27BA147814F"
+				type: "item"
+				item: "flux:fluxgen"
+			}]
+			rewards: [{
+				id: "58A6BB0C8F58589C"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 0.0d
+			y: -3.0d
+			description: ["传输能量的唯一方式是使用管道。将它们连接到发电机和机器上，为机器供电。"]
+			dependencies: ["0FEA8F91B4CC8ECD"]
+			id: "0AABE377344D6503"
+			tasks: [{
+				id: "02647A51284286A4"
+				type: "item"
+				item: "flux:energy_cable"
+			}]
+			rewards: [{
+				id: "618284932CC79A06"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 1.5d
+			y: -3.0d
+			description: ["顾名思义，它能熔合金属以创造合金，如青铜。这对于制造更先进的机器以推进进度很有用。"]
+			dependencies: ["0AABE377344D6503"]
+			id: "58030FD4CB95B772"
+			tasks: [{
+				id: "42DFA7FE027881ED"
+				type: "item"
+				item: "flux:alloy_caster"
+			}]
+		}
+		{
+			x: 1.5d
+			y: -1.5d
+			description: ["由铁和煤炭制成，这种材料和铁一样坚固，可用于制作配方。"]
+			dependencies: ["58030FD4CB95B772"]
+			id: "41D73C1DD3B4B012"
+			tasks: [{
+				id: "2873E93AFEA360A6"
+				type: "item"
+				item: "flux:steel_ingot"
+			}]
+		}
+		{
+			x: 3.0d
+			y: -3.0d
+			description: ["通过铜和锡在合金铸造器中制成。这种材料坚固如铁，且具有锻造潜力。"]
+			dependencies: ["58030FD4CB95B772"]
+			id: "75BD0F3788FD07D9"
+			tasks: [{
+				id: "12340B1BEC1BCC0E"
+				type: "item"
+				item: "flux:bronze_ingot"
+			}]
+		}
+		{
+			x: 3.0d
+			y: -1.5d
+			description: ["注意不要放错位置！获得12个末地传送门框架意味着你可以去末地了，最后剩下的就是末地之眼。"]
+			dependencies: [
+				"75BD0F3788FD07D9"
+				"41D73C1DD3B4B012"
+			]
+			id: "21D63AD031AA3847"
+			tasks: [{
+				id: "52AC20757A04F5FF"
+				type: "item"
+				item: "minecraft:end_portal_frame"
+			}]
+		}
+		{
+			x: 3.0d
+			y: 0.0d
+			description: ["终于能逃离空岛了。将这些末影之眼制作并放置在传送门框架上，就能开启通往末地的传送门。"]
+			dependencies: ["21D63AD031AA3847"]
+			id: "7A02B796A80378F8"
+			tasks: [{
+				id: "3031E72ACE2E9D5E"
+				type: "item"
+				item: "minecraft:ender_eye"
+			}]
+		}
+		{
+			title: "击杀末影龙"
+			icon: "minecraft:dragon_head"
+			x: 4.5d
+			y: 0.0d
+			subtitle: "值得吗？"
+			description: ["这并非你所料，等待杀你的龙可能比无尽的深渊更糟。或许留在岛上更好。这可能是最安全的方式。"]
+			dependencies: ["7A02B796A80378F8"]
+			id: "18C849FC3660E23E"
+			tasks: [{
+				id: "1E9E888AB8770A35"
+				type: "kill"
+				entity: "minecraft:ender_dragon"
+				value: 1L
+			}]
+		}
+		{
+			title: "未完待续..."
+			icon: {
+				id: "ftbquests:custom_icon"
+				Count: 1b
+				tag: {
+					Icon: "ftbquests:textures/gui/search.png"
+				}
+			}
+			x: 4.5d
+			y: -1.5d
+			description: ["未来更新中，任务书的这一部分会进一步开发。请持续关注。这些将包括创意物品。"]
+			dependencies: ["18C849FC3660E23E"]
+			id: "34AEF642135BA332"
+			tasks: [{
+				id: "40DAD271775B2AA2"
+				type: "checkmark"
+			}]
+		}
+	]
+}

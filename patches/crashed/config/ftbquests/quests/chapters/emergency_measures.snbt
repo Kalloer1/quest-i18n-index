@@ -1,0 +1,684 @@
+# AI 初翻，未人工校对
+{
+	autofocus_id: "2EAE6C1592692746"
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "emergency_measures"
+	group: "7B2BB3FA11A6EC1A"
+	icon: "exdeorum:oak_sieve"
+	id: "4B1574CF216E1FDE"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"船上的应急物资会很有用。"
+				""
+				"我应该找个地方来设置这个筛子和桶。"
+			]
+			icon: "exdeorum:oak_sieve"
+			id: "2EAE6C1592692746"
+			rewards: [{
+				id: "7490381EC566110F"
+				item: {
+					Count: 1
+					id: "cold_sweat:filled_waterskin"
+					tag: {
+						Purity: 3
+						Temperature: -48.09999999999985d
+					}
+				}
+				team_reward: false
+				type: "item"
+			}]
+			size: 2.0d
+			subtitle: "我在一颗陌生的星球上醒来，完全不记得自己是怎么来的。"
+			tasks: [
+				{
+					id: "0576F1E08C4AFDAD"
+					item: "exdeorum:oak_sieve"
+					type: "item"
+				}
+				{
+					id: "5EFA4E2CB3031822"
+					item: "exdeorum:oak_barrel"
+					type: "item"
+				}
+			]
+			title: "应急物资包"
+			x: -3.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["2EAE6C1592692746"]
+			description: [
+				"在这片贫瘠的荒野中生存的第一步，就是弄到一些泥土。"
+				""
+				"我应该能用应急水源和木桶里的骨粉合成出一些泥土。"
+			]
+			icon: "minecraft:bone_meal"
+			id: "3CA7F82502E74341"
+			rewards: [{
+				count: 2
+				id: "7122F13A10FDFDAE"
+				item: "minecraft:dirt"
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "056E0E4B460408FC"
+					item: "minecraft:bone_meal"
+					type: "item"
+				}
+				{
+					id: "0A6750709C237DCC"
+					item: "minecraft:dirt"
+					type: "item"
+				}
+			]
+			title: "获取泥土"
+			x: -0.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["3CA7F82502E74341"]
+			description: ["通过筛选泥土，我能得到一些草籽，这是在这个星球上获取资源的唯一希望。"]
+			id: "103CBC95D59BF1AA"
+			rewards: [{
+				count: 2
+				id: "53AEF7DD769589A9"
+				item: "exdeorum:grass_seeds"
+				type: "item"
+			}]
+			tasks: [{
+				id: "65D1CCDF290DDCA5"
+				item: "exdeorum:grass_seeds"
+				type: "item"
+			}]
+			title: "筛选泥土"
+			x: 2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["3CA7F82502E74341"]
+			description: [
+				"我会用筛土的方法收集一些鹅卵石，然后可以把它变成圆石。"
+				""
+				"这会很慢，但最终能让我获得用于无限生成的岩浆。"
+			]
+			id: "42B21311427C6892"
+			rewards: [{
+				count: 3
+				id: "5647AB684FC88E94"
+				item: "minecraft:cobblestone"
+				type: "item"
+			}]
+			tasks: [{
+				id: "631528A0920EEC5D"
+				item: "minecraft:cobblestone"
+				type: "item"
+			}]
+			title: "石头"
+			x: -0.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["103CBC95D59BF1AA"]
+			description: ["用掉落的草籽制成的过滤苔藓有几率掉落树苗。"]
+			id: "246B6819338C49FD"
+			rewards: [{
+				count: 16
+				id: "7C5516CB19184F67"
+				item: "minecraft:bone_meal"
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "0A2425C3C3A93BB2"
+					item: {
+						Count: 1
+						id: "ftbfiltersystem:smart_filter"
+						tag: {
+							"ftbfiltersystem:filter": "and(item_tag(minecraft:saplings)mod(minecraft)not(or(item(minecraft:azalea)item(minecraft:flowering_azalea)item(minecraft:mangrove_propagule)item(minecraft:cherry_sapling))))"
+						}
+					}
+					title: "任意树苗"
+					type: "item"
+				}
+				{
+					id: "2ADDA0EB41B1C339"
+					item: "minecraft:moss_block"
+					type: "item"
+				}
+			]
+			title: "来自尘埃的木材"
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["246B6819338C49FD"]
+			description: [
+				"我需要一个匠台，这样我就能制作第一批工具了。"
+				""
+				"&o注意：原版工具已被禁用&r"
+			]
+			icon: {
+				Count: 1
+				id: "tconstruct:pickaxe"
+				tag: {
+					Damage: 0
+					tic_broken: 0b
+					tic_materials: [
+						"tconstruct:wood"
+						"tconstruct:wood"
+						"tconstruct:wood"
+					]
+					tic_modifiers: [
+						{
+							level: 3
+							name: "tconstruct:cultivated"
+						}
+						{
+							level: 1
+							name: "tconstruct:pierce"
+						}
+					]
+					tic_persistent: { }
+					tic_stats: {
+						"tconstruct:attack_damage": 1.0f
+						"tconstruct:attack_speed": 1.2f
+						"tconstruct:durability": 60.0f
+						"tconstruct:mining_speed": 2.0f
+					}
+					tic_volatile_data: {
+						abilities: 1
+						upgrades: 3
+					}
+				}
+			}
+			id: "57DA0829253C90CE"
+			tasks: [
+				{
+					id: "3BC88DB014241B57"
+					item: "tconstruct:pattern"
+					type: "item"
+				}
+				{
+					id: "263F3AAC8C2C0B01"
+					item: "tconstruct:tinker_station"
+					type: "item"
+				}
+				{
+					id: "454D992A94348576"
+					item: "tconstruct:part_builder"
+					type: "item"
+				}
+			]
+			title: "制作工具"
+			x: 6.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["42B21311427C6892"]
+			description: ["我可以用应急物资里的木桶混合泥土和水来得到黏土。"]
+			id: "35E36DE735F23FEC"
+			rewards: [{
+				count: 4
+				id: "120CA52AD9D64698"
+				item: "minecraft:clay_ball"
+				type: "item"
+			}]
+			tasks: [{
+				id: "72062834D7E820D0"
+				item: "minecraft:clay"
+				type: "item"
+			}]
+			x: 2.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["35E36DE735F23FEC"]
+			description: [
+				"用黏土和骨粉混合，我就能做出能制造岩浆的坩埚。"
+				""
+				"有了熔岩和桶，我现在可以制作一个省力得多的鹅卵石来源了。"
+			]
+			icon: "exdeorum:porcelain_crucible"
+			id: "7767F7E783B73701"
+			tasks: [
+				{
+					id: "0F01AB183870A204"
+					item: "exdeorum:unfired_porcelain_crucible"
+					type: "item"
+				}
+				{
+					id: "553DB3CBE9A5C63F"
+					item: "exdeorum:porcelain_crucible"
+					type: "item"
+				}
+				{
+					id: "4D558D6B7DC54808"
+					item: "exdeorum:unfired_porcelain_bucket"
+					type: "item"
+				}
+				{
+					id: "1138E921D2390C7B"
+					item: "exdeorum:porcelain_bucket"
+					type: "item"
+				}
+			]
+			title: "熔化的石头"
+			x: 6.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["246B6819338C49FD"]
+			description: [
+				"有两种方法可以创造水。"
+				""
+				"最快最有效的方法是用船上的岩浆熔炉熔炼树苗或树叶。不过，我目前的能源有限。"
+				""
+				"另一种方法是使用木质熔炉来创造水。这种方法更慢、效率更低，但不需要电力。"
+			]
+			id: "3CFB44F10362DA6F"
+			tasks: [{
+				count: 5L
+				id: "521EB5935903BDEA"
+				item: {
+					Count: 1
+					id: "minecraft:potion"
+					tag: {
+						Potion: "minecraft:water"
+					}
+				}
+				type: "item"
+			}]
+			title: "制作水"
+			x: 8.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["246B6819338C49FD"]
+			description: ["用鱼竿我就能抓到一些蠕虫，这样我就能获得更多线了。"]
+			icon: "exdeorum:silk_worm"
+			id: "5014AE9B00F70BF0"
+			tasks: [
+				{
+					id: "6194DB39D4A11B3F"
+					item: "minecraft:string"
+					type: "item"
+				}
+				{
+					id: "2F848E726725079D"
+					item: "exdeorum:silk_worm"
+					type: "item"
+				}
+			]
+			title: "蠕虫"
+			x: 8.5d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"7767F7E783B73701"
+				"5014AE9B00F70BF0"
+			]
+			description: ["既然能制作鹅卵石和木头了，就该去弄些更有价值的资源了。"]
+			id: "08F67266200F5360"
+			rewards: [
+				{
+					count: 16
+					id: "295E8EB7DA41C5D9"
+					item: "minecraft:iron_ingot"
+					type: "item"
+				}
+				{
+					count: 16
+					id: "79EB7635C41F49F8"
+					item: "minecraft:copper_ingot"
+					type: "item"
+				}
+			]
+			shape: "hexagon"
+			size: 2.0d
+			tasks: [
+				{
+					id: "777837074C447124"
+					item: "exdeorum:flint_mesh"
+					type: "item"
+				}
+				{
+					id: "18AF1CAFA313A3A9"
+					item: "exdeorum:iron_mesh"
+					type: "item"
+				}
+				{
+					id: "110EDDBA3A4488D5"
+					item: {
+						Count: 1
+						id: "exdeorum:stone_hammer"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "获取资源中"
+			x: 10.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["08F67266200F5360"]
+			description: ["去查看一下“机械动力”部分的内容"]
+			icon: "create:cogwheel"
+			id: "3BFB2C7DD2591AF8"
+			tasks: [{
+				id: "682294CC4F3AB65D"
+				title: "机械动力（Mechanical Power）"
+				type: "checkmark"
+			}]
+			x: 13.0d
+			y: 2.0d
+		}
+		{
+			dependencies: [
+				"246B6819338C49FD"
+				"27E1A112BB30D056"
+				"35E36DE735F23FEC"
+			]
+			description: [
+				"要想在这片荒原上保持凉爽，我需要做一个冰箱。"
+				""
+				"虽然没有冰可以喂它，但粘土可以作为替代品。"
+			]
+			id: "5FA5E587340AB7DB"
+			size: 1.25d
+			tasks: [{
+				id: "3ED88B371578A934"
+				item: "cold_sweat:icebox"
+				type: "item"
+			}]
+			x: -3.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["2EAE6C1592692746"]
+			description: [
+				"作为应急措施，船上的岩浆熔炉可以利用天石粉尘生产水。"
+				""
+				"不过，它会消耗大量有限的可用电力，所以如果可能的话，应该避免使用。"
+			]
+			icon: "ae2:sky_dust"
+			id: "500D7487E20CD21D"
+			tasks: [{
+				id: "619B7C723888D3C2"
+				item: "ae2:sky_dust"
+				type: "item"
+			}]
+			title: "从石头中榨取水分"
+			x: -0.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["3CFB44F10362DA6F"]
+			description: ["水可以通过在熔炉或篝火上烹饪来净化。"]
+			id: "637E920826C668E5"
+			rewards: [{
+				count: 2
+				id: "698FE262C33AD51E"
+				item: {
+					Count: 1
+					id: "minecraft:potion"
+					tag: {
+						Potion: "minecraft:water"
+						Purity: 3
+					}
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "68D0BBEE3D5B5156"
+				item: {
+					Count: 1
+					id: "minecraft:potion"
+					tag: {
+						Potion: "minecraft:water"
+						Purity: 3
+					}
+				}
+				match_nbt: true
+				type: "item"
+			}]
+			title: "正在净化中"
+			x: 8.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["246B6819338C49FD"]
+			description: ["用桶收集树叶或树苗等可堆肥材料，泥土现在成了更便宜的资源。"]
+			id: "09A8929B59AFAB22"
+			rewards: [{
+				count: 32
+				id: "52D36321636DFD33"
+				item: "minecraft:bone_meal"
+				type: "item"
+			}]
+			tasks: [{
+				count: 32L
+				id: "10E0A8EBE6688AC0"
+				item: "minecraft:dirt"
+				type: "item"
+			}]
+			title: "便宜得跟泥土一样"
+			x: 4.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["2EAE6C1592692746"]
+			description: [
+				"应急物资中包含的水袋是保持凉爽的唯一方法。"
+				""
+				"我可以用右键把自己身上的水倒掉。"
+				""
+				"用水瓶可以为其补充。要冷却水壶，需要将其放入冰箱中。"
+			]
+			id: "27E1A112BB30D056"
+			tasks: [
+				{
+					id: "160A9059869DFB4E"
+					item: {
+						Count: 1
+						id: "cold_sweat:filled_waterskin"
+						tag: {
+							Purity: 3
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "56E5F75AD25C5DCA"
+					item: "cold_sweat:waterskin"
+					type: "item"
+				}
+				{
+					id: "0C104FBEA3E94775"
+					item: {
+						Count: 1
+						id: "cold_sweat:filled_waterskin"
+						tag: {
+							Purity: 3
+							Temperature: -48.09999999999985d
+						}
+					}
+					type: "item"
+				}
+			]
+			x: -3.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["57DA0829253C90CE"]
+			description: ["一种非常重要的工具，既是前期游戏用的剪刀，也是锄头。"]
+			id: "3523EB72FCD850A2"
+			rewards: [{
+				id: "2736948DACF9AC98"
+				item: {
+					Count: 1
+					id: "tconstruct:small_blade"
+					tag: {
+						Material: "tconstruct:bone"
+					}
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "185586AE5B16D284"
+				item: {
+					Count: 1
+					id: "tconstruct:kama"
+					tag: {
+						Damage: 0
+						tic_broken: 0b
+						tic_materials: [
+							"tconstruct:wood"
+							"tconstruct:wood"
+							"tconstruct:wood"
+						]
+						tic_modifiers: [
+							{
+								level: 3
+								name: "tconstruct:cultivated"
+							}
+							{
+								level: 1
+								name: "tconstruct:tilling"
+							}
+							{
+								level: 1
+								name: "tconstruct:shears"
+							}
+							{
+								level: 1
+								name: "tconstruct:harvest"
+							}
+						]
+						tic_multipliers: {
+							"tconstruct:attack_damage": 0.5f
+						}
+						tic_persistent: { }
+						tic_stats: {
+							"tconstruct:attack_damage": 0.5f
+							"tconstruct:attack_speed": 1.6f
+							"tconstruct:durability": 60.0f
+							"tconstruct:mining_speed": 2.0f
+						}
+						tic_volatile_data: {
+							abilities: 1
+							upgrades: 3
+						}
+					}
+				}
+				match_nbt: false
+				type: "item"
+			}]
+			x: 6.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["57DA0829253C90CE"]
+			description: ["斧头、铲子和锄头的组合，满足你所有耕种需求！"]
+			id: "15D6B7823CAB0CE7"
+			rewards: [
+				{
+					id: "378B8A464B9CA17A"
+					item: {
+						Count: 1
+						id: "tconstruct:small_axe_head"
+						tag: {
+							Material: "tconstruct:bone"
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "13EE22EF9FFE7419"
+					item: {
+						Count: 1
+						id: "tconstruct:adze_head"
+						tag: {
+							Material: "tconstruct:bone"
+						}
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "70FF143D45A63C9E"
+				item: {
+					Count: 1
+					id: "tconstruct:mattock"
+					tag: {
+						Damage: 0
+						tic_broken: 0b
+						tic_materials: [
+							"tconstruct:wood"
+							"tconstruct:wood"
+							"tconstruct:wood"
+						]
+						tic_modifiers: [
+							{
+								level: 3
+								name: "tconstruct:cultivated"
+							}
+							{
+								level: 1
+								name: "tconstruct:tilling"
+							}
+						]
+						tic_multipliers: {
+							"tconstruct:attack_damage": 1.1f
+							"tconstruct:durability": 1.25f
+							"tconstruct:mining_speed": 1.1f
+						}
+						tic_persistent: { }
+						tic_stats: {
+							"tconstruct:attack_damage": 1.6500001f
+							"tconstruct:attack_speed": 0.9f
+							"tconstruct:durability": 75.0f
+							"tconstruct:mining_speed": 2.2f
+						}
+						tic_volatile_data: {
+							abilities: 1
+							upgrades: 3
+						}
+					}
+				}
+				match_nbt: false
+				type: "item"
+			}]
+			x: 5.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["500D7487E20CD21D"]
+			description: [
+				"电容中的电力只能维持一段时间。"
+				""
+				"作为应急措施，可将坩埚直接放在跑步机前以生成部分电力。"
+				""
+				"这会很慢，而且会消耗饥饿值。"
+			]
+			icon: "sync:treadmill"
+			id: "3E869211EC4FE26D"
+			tasks: [{
+				id: "750EE4441BE4B92B"
+				title: "跑步机动力"
+				type: "checkmark"
+			}]
+			x: -0.5d
+			y: -4.0d
+		}
+	]
+	title: "应急措施"
+}

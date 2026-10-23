@@ -1,0 +1,1008 @@
+# AI 初翻，未人工校对
+{
+	id: "2E7E7CAD81E5174F"
+	group: "7995376FCB0AB31D"
+	order_index: 0
+	filename: "paleolithic"
+	title: "旧石器时代"
+	icon: "natprog:stone_pebble"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	progression_mode: "linear"
+	quests: [
+		{
+			title: "旧石器时代"
+			icon: "natprog:stone_pebble"
+			x: -1.5d
+			y: 0.0d
+			subtitle: "在一个全新的世界中出生。"
+			description: [
+				""
+				"文档说明："
+				""
+				"旧石器时代是史前时期的第一个时代。其名称也说明了这一点：palaiós（意为“古老的”）和lithos（意为“石头”）。它的时间跨度极大，从大约330万年前——肯尼亚图尔卡纳湖附近最近发现的最新旧石器时代石器的年代——到大约11,700年前，标志着更新世结束和全新世开始。"
+				""
+				"在此期间，我们见证了早期人类社会的科技与文化发展：原始石器、火的运用，以及对木材、骨骼、皮革和燧石等简单材料的加工。文化层面，最初的葬礼仪式、语言的雏形以及最早的艺术表达形式相继出现。"
+				""
+				"来源：不列颠百科全书、维基百科"
+			]
+			dependencies: ["3AE3C71FD7235F3B"]
+			hide: true
+			size: 1.2d
+			id: "65896EABF8148773"
+			tasks: [{
+				id: "12DCF2DC584F14CB"
+				type: "dimension"
+				title: "主世界"
+				icon: "minecraft:grass_block"
+				dimension: "minecraft:overworld"
+			}]
+			rewards: [
+				{
+					id: "2AFCDC98E4D016C2"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "5541D87FC2EB1DED"
+					type: "command"
+					title: "在聊天中发布公告"
+					icon: {
+						id: "rftoolsutility:text_module"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+					command: "/tellraw @a [{\"selector\":\"@p\"},{\"text\":\" has entered the Paleolithic.\"}]"
+				}
+				{
+					id: "53FBF988BFD760B5"
+					type: "gamestage"
+					team_reward: true
+					auto: "invisible"
+					ignore_reward_blocking: true
+					stage: "paleolithic"
+				}
+			]
+		}
+		{
+			title: "工具制作"
+			icon: {
+				id: "natprog:flint_hatchet"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: 0.5d
+			y: 0.0d
+			shape: "pentagon"
+			subtitle: "制作你的第一件工具（更多信息，请查阅物品栏GUI中的指南）。"
+			description: [
+				""
+				"文档说明："
+				""
+				"最初使用的工具是易于打磨的材料，如燧石和骨头。遗憾的是，骨头不像石头那样能经受住时间的考验，所以我们只能追溯到至少260万年前石器的首次使用。当时，石器技术尚处于起步阶段，缺乏复杂的工艺。"
+				""
+				"在旧石器时代早期，人类使用了被称为“奥杜威工具”的器具，包括锤石、石核和石片。大约176万年前，人类发明了更大更锋利的“阿舍利工具”。"
+				""
+				"来源：史密森国家自然历史博物馆"
+			]
+			dependencies: ["65896EABF8148773"]
+			hide: true
+			id: "234D85A327DA02D1"
+			tasks: [
+				{
+					id: "0E5843136CBADE91"
+					type: "item"
+					title: "燧石手斧"
+					item: {
+						id: "natprog:flint_hatchet"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+					only_from_crafting: true
+				}
+				{
+					id: "70A1B1D9C784957E"
+					type: "item"
+					title: "骨头刀"
+					item: {
+						id: "natprog:bone_knife"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+					only_from_crafting: true
+				}
+			]
+			rewards: [
+				{
+					id: "2DAECA6C378C7DCE"
+					type: "item"
+					title: "奖励"
+					icon: "minecraft:chest"
+					item: "natprog:stone_pebble"
+					count: 4
+				}
+				{
+					id: "3A4F88E864FC4B48"
+					type: "item"
+					title: "奖励"
+					icon: "minecraft:chest"
+					item: "minecraft:flint"
+					count: 2
+				}
+				{
+					id: "5145A36128A2937C"
+					type: "xp"
+					title: "+10 XP 经验值"
+					xp: 10
+				}
+				{
+					id: "7413A50F0B922BDB"
+					type: "gamestage"
+					team_reward: true
+					auto: "invisible"
+					ignore_reward_blocking: true
+					stage: "tool_crafting"
+				}
+			]
+		}
+		{
+			title: "狩猎"
+			icon: {
+				id: "minecolonies:spear"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: 0.5d
+			y: -2.0d
+			shape: "gear"
+			subtitle: "杀死这三种动物中的三种。"
+			description: [
+				""
+				"文档说明："
+				""
+				"早期人类的生活方式以狩猎和采集植物为基础。随着第一批石器的出现，狩猎变得更加高效，并成为史前游牧生活的主要驱动力之一，直到畜牧业和农业的出现。"
+				""
+				"食物的可获得性直接影响着气候变化下人类群体的流动性、定居性和人口增长。以冰川事件为特征的冰河期在其中扮演了重要角色。在此背景下，欧洲（尤其是北欧）最初被避开，而地中海地区则更为适宜，使得尼安德特人得以繁衍。"
+				""
+				"一些群体专门捕猎大型巨有动物，如巨鹿、猛犸象和毛犀牛，而另一些群体则专注于小型猎物或捕鱼。"
+				""
+				"资料来源：世界历史百科全书"
+			]
+			dependencies: ["234D85A327DA02D1"]
+			hide: true
+			id: "10F61873A5598F84"
+			tasks: [
+				{
+					id: "7E040F976502A7C2"
+					type: "kill"
+					title: "猪"
+					entity: "minecraft:pig"
+					value: 3L
+				}
+				{
+					id: "6FF1EB1A85F2FD34"
+					type: "kill"
+					title: "绵羊"
+					entity: "minecraft:sheep"
+					value: 3L
+				}
+				{
+					id: "2267B67115713BF8"
+					type: "kill"
+					title: "牛"
+					entity: "minecraft:cow"
+					value: 3L
+				}
+				{
+					id: "1DC74F4F8C021501"
+					type: "kill"
+					title: "鸡"
+					entity: "minecraft:chicken"
+					value: 3L
+				}
+			]
+			rewards: [
+				{
+					id: "5D780E17D6E7AD59"
+					type: "item"
+					title: "奖励"
+					icon: "minecraft:chest"
+					item: "minecraft:egg"
+					count: 3
+				}
+				{
+					id: "2815D182FC75ED7F"
+					type: "item"
+					title: "奖励"
+					icon: "minecraft:chest"
+					item: "minecraft:white_wool"
+					count: 3
+				}
+				{
+					id: "40FFA008EFFADAD6"
+					type: "item"
+					title: "奖励"
+					icon: "minecraft:chest"
+					item: "minecraft:leather"
+					count: 3
+				}
+				{
+					id: "6CD36CE97ADFAE4F"
+					type: "item"
+					title: "奖励"
+					icon: "minecraft:chest"
+					item: "immersive_weathering:tallow"
+					count: 3
+				}
+				{
+					id: "13EBFB424CE6E948"
+					type: "advancement"
+					title: "奖励"
+					icon: "minecraft:chest"
+					advancement: "jobsplus:jobsplus/hunter"
+					criterion: ""
+				}
+				{
+					id: "319D7987E9D02209"
+					type: "gamestage"
+					team_reward: true
+					auto: "invisible"
+					ignore_reward_blocking: true
+					stage: "hunting"
+				}
+			]
+		}
+		{
+			title: "自我防卫"
+			icon: {
+				id: "natprog:bone_knife"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: 7.5d
+			y: -2.0d
+			shape: "gear"
+			subtitle: "杀死这两种怪物中的两种（趣闻：用火把打它们可以点燃它们）。"
+			description: [
+				""
+				"文档说明："
+				""
+				"自卫是指个人为保护自身身体完整、防止攻击者施暴而采取的反击行为。"
+				"火成为生存必需工具后，类人猿也用它来直接驱赶掠食者，如用火把，或利用火改善的工具。这可能是弓箭等远程武器首次被使用。"
+				""
+				"来源：维基百科"
+			]
+			dependencies: [
+				"10F61873A5598F84"
+				"2FD4CE90B0755955"
+			]
+			hide: true
+			id: "0EBB31A41DE52A4A"
+			tasks: [
+				{
+					id: "7F6C4145F347F0FC"
+					type: "kill"
+					title: "僵尸"
+					entity: "minecraft:zombie"
+					value: 2L
+				}
+				{
+					id: "5437616E61474A42"
+					type: "kill"
+					title: "骷髅"
+					entity: "minecraft:skeleton"
+					value: 2L
+				}
+				{
+					id: "10AD6968213554C2"
+					type: "kill"
+					title: "蜘蛛"
+					entity: "minecraft:spider"
+					value: 2L
+				}
+			]
+			rewards: [
+				{
+					id: "2FB7FA201999D6A9"
+					type: "item"
+					title: "奖励"
+					icon: "minecraft:chest"
+					item: {
+						id: "minecraft:leather_chestplate"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "5B89C27C0BBD00F6"
+					type: "item"
+					title: "奖励"
+					icon: "minecraft:chest"
+					item: {
+						id: "minecraft:leather_leggings"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "7B213298371CF437"
+					type: "item"
+					title: "奖励"
+					icon: "minecraft:chest"
+					item: "minecraft:torch"
+					count: 10
+				}
+				{
+					id: "47306AD40561B551"
+					type: "gamestage"
+					team_reward: true
+					auto: "invisible"
+					ignore_reward_blocking: true
+					stage: "self_defence"
+				}
+			]
+		}
+		{
+			title: "木工技艺"
+			icon: "immersive_weathering:jungle_bark"
+			x: 5.5d
+			y: 0.0d
+			shape: "pentagon"
+			subtitle: "制作你的第一个工作台和稿子（更多信息，请查看物品栏GUI中的指南）。"
+			description: [
+				""
+				"文档说明："
+				""
+				"木材是最早被类人猿探索的材料之一，可能与石头并列：燧石工具能进行精细雕刻，其用途似乎主要是家用的。"
+				"最古老的木工制品包括：约47.6万年前的非洲南部卡拉姆博瀑布的带齿木棒、约40万年前的英国克拉克顿矛尖，以及约30万年前的德国舍宁根长矛。"
+				""
+				"来源：维基百科"
+			]
+			dependencies: ["234D85A327DA02D1"]
+			hide: true
+			id: "17014448B7B7A26C"
+			tasks: [
+				{
+					id: "35606CE805864520"
+					type: "item"
+					title: "骨头镐"
+					item: {
+						id: "natprog:bone_pickaxe"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+					only_from_crafting: true
+				}
+				{
+					id: "4A350E233B313737"
+					type: "item"
+					title: "合成台 Crafting Table"
+					item: "minecraft:crafting_table"
+					only_from_crafting: true
+				}
+			]
+			rewards: [
+				{
+					id: "24CE4EB8A53292A7"
+					type: "item"
+					title: "奖励"
+					item: "minecraft:chest"
+					count: 2
+					only_one: true
+				}
+				{
+					id: "4F338BFFDB7F197C"
+					type: "gamestage"
+					team_reward: true
+					auto: "invisible"
+					ignore_reward_blocking: true
+					stage: "woodworking"
+				}
+			]
+		}
+		{
+			title: "游牧主义"
+			x: 2.0d
+			y: 2.0d
+			shape: "rsquare"
+			subtitle: "找到一个温度过高或过低而无法生存的地方。"
+			description: [
+				""
+				"文档说明："
+				""
+				"游牧是一种生活方式，人们不固定居住在某个地理位置。它与迁徙不同，后者是非周期性的，需要完全改变栖息地。游牧甚至不包括简单的游荡：其目的是消耗当地资源以生存，并在资源耗尽后积极寻找新的资源。"
+				""
+				"游牧主义常以小群体形式出现。狩猎采集生活方式也与此相关。这是新石器农业革命前唯一的生活方式。"
+				""
+				"资料来源：不列颠百科全书"
+			]
+			dependencies: [
+				"38A075A8615E40EC"
+				"10F61873A5598F84"
+			]
+			hide: true
+			progression_mode: "linear"
+			id: "5E7295C179131D2C"
+			tasks: [{
+				id: "61ABA5A3646E2F00"
+				type: "advancement"
+				title: "迁徙"
+				advancement: "cold_sweat:extreme_temps"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "213BCB96731404B3"
+					type: "item"
+					title: "奖励"
+					icon: "minecraft:chest"
+					item: "alexsdelight:raw_bison"
+					count: 5
+				}
+				{
+					id: "37840AE8656D5584"
+					type: "item"
+					title: "奖励"
+					icon: "minecraft:chest"
+					item: {
+						id: "minecraft:leather_boots"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "190991B29742CCE3"
+					type: "gamestage"
+					team_reward: true
+					auto: "invisible"
+					ignore_reward_blocking: true
+					stage: "nomadism"
+				}
+			]
+		}
+		{
+			title: "火"
+			icon: "minecraft:campfire"
+			x: 7.5d
+			y: 0.0d
+			shape: "pentagon"
+			subtitle: "放置一个篝火，并制作四个火把。"
+			description: [
+				""
+				"文档说明："
+				""
+				"直立人发现火的历史可追溯至约100万年前，但根据最新研究，火的驯化史可追溯至40多万年。这一发现得益于英格兰“东农场”遗址的近期考古发掘，出土了红化的淤泥、受热变形的燧石手斧，以及最可能用于在引火物上产生火花的铁矿——黄铁矿的碎片。"
+				"这项技术革新使类人猿能够烹饪食物，促进生物发展；重新加热身体，从而殖民世界更寒冷的地区；并更好地抵御捕食者。"
+				""
+				"资料来源：国家地理杂志"
+			]
+			dependencies: ["6D866AE6D466B56F"]
+			hide: true
+			id: "2FD4CE90B0755955"
+			tasks: [
+				{
+					id: "41863DAFD4F10E04"
+					type: "questsadditions:place"
+					title: "篝火"
+					block_type: 0
+					block: "minecraft:campfire"
+					value: 1L
+					replaced: "minecraft:air"
+					replace: false
+				}
+				{
+					id: "3459F601BE239B1C"
+					type: "item"
+					title: "火把"
+					item: "minecraft:torch"
+					count: 4L
+				}
+			]
+			rewards: [
+				{
+					id: "496B6C55E6ED5399"
+					type: "item"
+					title: "奖励"
+					icon: "minecraft:chest"
+					item: "natprog:stone_pebble"
+					count: 3
+				}
+				{
+					id: "2C47C926B3DE75C1"
+					type: "item"
+					title: "奖励"
+					icon: "minecraft:chest"
+					item: "minecraft:stick"
+					count: 16
+				}
+				{
+					id: "74669CBC090C7B7C"
+					type: "xp"
+					title: "+10 XP 经验值"
+					xp: 10
+				}
+				{
+					id: "4FEF06A84D7EB6DD"
+					type: "gamestage"
+					team_reward: true
+					auto: "invisible"
+					ignore_reward_blocking: true
+					stage: "fire"
+				}
+			]
+		}
+		{
+			title: "[奖励任务] 洞穴探险"
+			icon: "minecraft:pointed_dripstone"
+			x: 2.0d
+			y: 3.0d
+			shape: "diamond"
+			subtitle: "找到一个洞穴并躲进去避难。"
+			description: [
+				""
+				"文档说明："
+				""
+				"典型的旧石器社会由狩猎、采集和临时住所：洞穴组成。"
+				"洞穴是最著名的史前庇护所，尽管旧石器时代居住洞穴的人数，相对于当时已知的人口数量而言相对较少。大多数古人类可能从未进入过洞穴。"
+				""
+				"尽管如此，其中一些洞穴仍发现了有趣的痕迹，例如一个尼安德特人洞穴中曾活跃了近千年的壁炉，或是另一个洞穴中表明居民曾搭建简易庇护所以防天花滴水的地面柱洞。"
+				"旧石器时代晚期，洞穴不再作为庇护所，仅作为崇拜或埋葬之地。"
+				""
+				"来源：博伊西州立大学出版社图书"
+			]
+			dependencies: ["5E7295C179131D2C"]
+			optional: true
+			id: "44452AD1919C5CAA"
+			tasks: [{
+				id: "12223F3861801D9A"
+				type: "checkmark"
+				title: "洞穴"
+			}]
+			rewards: [{
+				id: "72F131F3B5DCE051"
+				type: "random"
+				icon: "minecraft:chest"
+				table_id: 5257097662453991423L
+			}]
+		}
+		{
+			title: "植物采集任务"
+			icon: "minecraft:sweet_berries"
+			x: 0.5d
+			y: 2.0d
+			shape: "rsquare"
+			subtitle: "收集 Farmer's Delight 的四种作物（洋葱、卷心菜、番茄、水稻）和 Croptopia 的任何野生种子。"
+			description: [
+				""
+				"文档说明："
+				""
+				"采集植物和狩猎一样，是祖先们主要的生存方式，至少直到大约12000年前。顾名思义，采集植物包括收集附近的浆果、水果和其他植物性食物。"
+				"在成为狩猎采集者之前，人类依赖捕食者留下的动物尸体。由于这种生活方式，人们无法定居一处。农业革命开始后，大多数人口都放弃了这一体系，但它在今天仍存在于某些人类群体中，尽管已近乎灭绝。"
+				""
+				"来源：国家地理教育 (National Geographic Education)"
+			]
+			dependencies: ["65896EABF8148773"]
+			hide: true
+			id: "38A075A8615E40EC"
+			tasks: [
+				{
+					id: "03BBF05F60834921"
+					type: "advancement"
+					title: "农作物"
+					advancement: "farmersdelight:main/get_fd_seed"
+					criterion: ""
+				}
+				{
+					id: "5B1BE387B95C158F"
+					type: "advancement"
+					title: "种子类型：普通种子、扭曲种子、平坦种子、极限种子、种子包、自定义种子、自定义种子（自定义种子）"
+					advancement: "croptopia:getseeds"
+					criterion: ""
+				}
+			]
+			rewards: [
+				{
+					id: "5AC230A887DFD318"
+					type: "item"
+					title: "奖励"
+					icon: "minecraft:chest"
+					item: "minecraft:apple"
+					count: 10
+				}
+				{
+					id: "224C9D2B07A46E6D"
+					type: "item"
+					title: "奖励"
+					icon: "minecraft:chest"
+					item: "minecraft:sweet_berries"
+					count: 10
+				}
+				{
+					id: "2165ACD0DDD00B55"
+					type: "gamestage"
+					team_reward: true
+					auto: "invisible"
+					ignore_reward_blocking: true
+					stage: "plant_gathering"
+				}
+			]
+		}
+		{
+			title: "葬礼仪式"
+			icon: "biomesoplenty:wildflower"
+			x: 8.5d
+			y: 2.0d
+			shape: "rsquare"
+			subtitle: "放置一块墓碑。"
+			description: [
+				""
+				"文档说明："
+				""
+				"自旧石器时代起，人类便意识到自身的死亡，怀着敬畏与恐惧直面死亡。这不再是一种生存本能，而是对此主题的首次哲学诠释；它后来促成了旧石器时代晚期第一批宗教的形成。"
+				"死亡、死后的未知，以及对逝者的爱、对未知的敬畏和对来世的准备，这些因素共同促成了丧葬仪式的形成。早期文化为避免逝者灵魂在世间游荡，采用了不同的埋葬或火化方式。"
+				"最早有可靠来源的墓葬遗迹，可追溯至约30万年前，即中旧石器时代。"
+				""
+				"来源：维基百科、EBSCO"
+			]
+			dependencies: [
+				"5E7295C179131D2C"
+				"2FD4CE90B0755955"
+			]
+			hide: true
+			id: "1DBA01CFC78F4678"
+			tasks: [{
+				id: "65CE0584BB5D4FD7"
+				type: "questsadditions:place"
+				title: "墓碑"
+				block_type: 0
+				block: "gravestone:gravestone"
+				value: 1L
+				replaced: "minecraft:air"
+				replace: false
+			}]
+			rewards: [
+				{
+					id: "732B813908FAAC60"
+					type: "xp"
+					title: "+100 XP 经验值"
+					xp: 100
+				}
+				{
+					id: "224ED13D4DA18761"
+					type: "gamestage"
+					team_reward: true
+					auto: "invisible"
+					ignore_reward_blocking: true
+					stage: "funeral_rites"
+				}
+			]
+		}
+		{
+			title: "石器时代"
+			icon: "minecraft:stone"
+			x: 6.5d
+			y: 0.0d
+			shape: "pentagon"
+			subtitle: "获取一叠鹅卵石。"
+			description: [
+				"文档说明："
+				""
+				"整个史前时期，从最早的石器到早期铜器时代，都可以定义为“石器时代”。"
+				"中旧石器时代，即所谓的“莫斯特时期”出现，工具主要由燧石制成，主要与尼安德特人相关。类似的工具在冰川未覆盖的欧洲、近东和北非均有发现。"
+				""
+				"刮削器、齿状器和尖状器构成了石器工业的主体，时间跨度为30万年至3万年前。正是在莫斯特文化时期的洞穴中，我们才能看到最早的墓葬和用火痕迹。"
+				""
+				"来源：维基百科，不列颠百科全书"
+			]
+			dependencies: ["17014448B7B7A26C"]
+			hide: true
+			id: "6D866AE6D466B56F"
+			tasks: [{
+				id: "5223B4CA2FCEF611"
+				type: "item"
+				title: "Cobblestones"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "forge:cobblestone"
+					}
+				}
+				count: 64L
+			}]
+			rewards: [
+				{
+					id: "1E4E2AD51958810D"
+					type: "item"
+					title: "奖励"
+					icon: "minecraft:chest"
+					item: "farmersdelight:barbecue_stick"
+					count: 5
+				}
+				{
+					id: "0FB732F747B10207"
+					type: "xp"
+					title: "+10 XP 经验值"
+					xp: 10
+				}
+				{
+					id: "498271A379890BD2"
+					type: "gamestage"
+					team_reward: true
+					auto: "invisible"
+					ignore_reward_blocking: true
+					stage: "stone_age"
+				}
+			]
+		}
+		{
+			title: "语言"
+			icon: "minecraft:oak_sign"
+			x: 10.5d
+			y: 2.0d
+			shape: "rsquare"
+			subtitle: "制作任意类型的告示牌。"
+			description: [
+				""
+				"文档说明："
+				""
+				"一些研究人员假设，基于其他灵长类动物的心理特征，某种语言能力可追溯至约二百万年前。然而，这些很可能只是由发送者和接收者发出并被相互识别的简单声音。而首次真正尝试复杂交流——以词汇和能生成无限规则化表达的语法为特征——可能可追溯至约13.5万年前。"
+				""
+				"该假说基于近期的基因组和比较研究，包括麻省理工学院教授兼语言学家宫川茂的研究。他认为，人类表达语言的能力在这一时期就已形成。随后，人类种群间的基因分化促进了语言系统的分化和多样化，其起点是一种此前共有的交流形式。"
+				""
+				"来源：MIT News"
+			]
+			dependencies: ["1DBA01CFC78F4678"]
+			hide: true
+			id: "4E9D19015B7D1A00"
+			tasks: [{
+				id: "78CBD28E8DA66D33"
+				type: "item"
+				title: "告示牌"
+				icon: "minecraft:oak_sign"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "minecraft:signs"
+					}
+				}
+				only_from_crafting: true
+			}]
+			rewards: [
+				{
+					id: "19F5F9D181FA3E2A"
+					type: "xp"
+					title: "+10 XP 经验值"
+					xp: 10
+				}
+				{
+					id: "55CC4E6F343CB2CC"
+					type: "item"
+					title: "奖励"
+					icon: "minecraft:chest"
+					item: "alexsmobs:maraca"
+				}
+				{
+					id: "1DD5DFEBE49B1B2E"
+					type: "gamestage"
+					team_reward: true
+					auto: "invisible"
+					ignore_reward_blocking: true
+					stage: "language"
+				}
+			]
+		}
+		{
+			title: "艺术"
+			icon: "minecraft:red_dye"
+			x: 11.5d
+			y: 2.0d
+			shape: "rsquare"
+			subtitle: "用发光鱿鱼囊点亮一个告示牌。"
+			description: [
+				""
+				"文档说明："
+				""
+				"复杂语言的引入与艺术的诞生同步，艺术是其不可或缺的一部分。智人和尼安德特人都渴望创造艺术。"
+				"最早的装饰物出现在摩洛哥的纳萨里乌斯蜗牛壳上，距今8.2万年，上面有穿孔和红色赭石。在以色列也发现了类似物品，距今约10万年，或在南非的布隆博斯洞穴发现了贝壳和赭石（红色赤铁矿）。"
+				"与此同时，最早的具象艺术来自奥里纳克文化，该文化在公元前43000年至26000年间遍布欧洲。该文化包含200多个洞穴，内有精美的雕塑、素描和绘画。其中之一便是著名的拉斯科洞穴，距今约15000年。"
+				""
+				"来源：SmartHistory"
+			]
+			dependencies: ["4E9D19015B7D1A00"]
+			hide: true
+			id: "42BBCEF5843116BB"
+			tasks: [{
+				id: "7F78C80263532BD5"
+				type: "advancement"
+				title: "远古染料 (Arcaic Dyes)"
+				advancement: "minecraft:husbandry/make_a_sign_glow"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "16D3CDCE7AF427D6"
+					type: "item"
+					title: "奖励"
+					icon: "minecraft:chest"
+					item: "minecraft:lapis_lazuli"
+					count: 5
+				}
+				{
+					id: "44C58DB2AA97FBB9"
+					type: "item"
+					title: "奖励"
+					icon: "minecraft:chest"
+					item: {
+						id: "wilescollection:ariadne_coal"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+					count: 5
+				}
+				{
+					id: "12EF7C57C629393B"
+					type: "item"
+					title: "奖励"
+					icon: "minecraft:chest"
+					item: "minecraft:glow_ink_sac"
+				}
+				{
+					id: "1976DFBC971CD7CC"
+					type: "xp"
+					title: "+10 XP 经验值"
+					xp: 10
+				}
+				{
+					id: "603F5BF705312CD3"
+					type: "gamestage"
+					team_reward: true
+					auto: "invisible"
+					ignore_reward_blocking: true
+					stage: "art"
+				}
+			]
+		}
+		{
+			title: "钓鱼"
+			icon: "minecraft:salmon"
+			x: 12.5d
+			y: 0.0d
+			shape: "pentagon"
+			subtitle: "制作一个渔民的滤网，并杀死这两种鱼中的两种。"
+			description: [
+				""
+				"文档说明："
+				""
+				"尽管早在50万年前，智人早期和直立人时期就有捕鱼的痕迹，但捕鱼很可能是在旧石器时代晚期，即公元前4万至1万年之间，随着智人的出现而发展起来的。"
+				"关于那个时期人们的捕鱼方式，我们所知甚少。这无疑是自给自足的捕鱼，人们用手或用天然材料制成的原始工具——现已灭绝——在湖泊和河流沿岸进行捕鱼。"
+				""
+				"来源：Alimentarium"
+			]
+			dependencies: ["2FD4CE90B0755955"]
+			hide: true
+			id: "5963E757962384EC"
+			tasks: [
+				{
+					id: "024EC939FF73434B"
+					type: "item"
+					title: "渔夫的过滤网"
+					item: {
+						id: "waterstrainer:strainer_fisherman"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+					only_from_crafting: true
+				}
+				{
+					id: "7594937564FC8739"
+					type: "kill"
+					title: "鲑鱼"
+					icon: "minecraft:salmon"
+					entity: "minecraft:salmon"
+					value: 2L
+				}
+				{
+					id: "2A8C7FF31DE365EA"
+					type: "kill"
+					title: "Bluegill"
+					icon: "aquaculture:bluegill"
+					entity: "aquaculture:bluegill"
+					value: 2L
+				}
+			]
+			rewards: [
+				{
+					id: "7BD8E295273FFE2E"
+					type: "item"
+					title: "奖励"
+					icon: "minecraft:chest"
+					item: "waterstrainer:strainer_base"
+				}
+				{
+					id: "459285A0FA09147D"
+					type: "item"
+					title: "奖励"
+					icon: "minecraft:chest"
+					item: "thirstcanteen:leather_canteen"
+				}
+				{
+					id: "0A9F5F29E09265FB"
+					type: "advancement"
+					title: "奖励"
+					icon: "minecraft:chest"
+					advancement: "jobsplus:jobsplus/fisherman"
+					criterion: ""
+				}
+				{
+					id: "74AFA94E56F0EE74"
+					type: "gamestage"
+					team_reward: true
+					auto: "invisible"
+					ignore_reward_blocking: true
+					stage: "fishing"
+				}
+			]
+		}
+		{
+			title: "[奖励任务] 墓葬土丘"
+			icon: "doggytalents:throw_bone"
+			x: 8.5d
+			y: 3.0d
+			shape: "diamond"
+			subtitle: "建造一座土葬冢。"
+			description: [
+				""
+				"文档说明："
+				""
+				"仍在制作中"
+			]
+			dependencies: ["1DBA01CFC78F4678"]
+			optional: true
+			id: "0A23FA1EFFA5FC86"
+			tasks: [{
+				id: "16308AF491F554AF"
+				type: "questsadditions:structure"
+				title: "墓葬土丘"
+				icon: "doggytalents:throw_bone"
+				name: "burial_mound"
+				hasCustomPicture: false
+				layer: true
+				ignoreState: true
+				rightclick: false
+			}]
+			rewards: [{
+				id: "7FDDDC172BD44EA1"
+				type: "random"
+				icon: "minecraft:chest"
+				table_id: 1708588861993110010L
+			}]
+		}
+	]
+	quest_links: [ ]
+}

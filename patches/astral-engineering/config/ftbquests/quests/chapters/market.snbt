@@ -1,0 +1,1408 @@
+# AI 初翻，未人工校对
+{
+	id: "44F68408CAD025B8"
+	group: "1DCB93D6D18CC0BE"
+	order_index: 1
+	filename: "market"
+	title: "&e 杂货店"
+	icon: "minecraft:chest"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "蜷缩在床里，享受舒适的睡眠。"
+			icon: "minecraft:cyan_bed"
+			x: -4.0d
+			y: 1.0d
+			subtitle: "10 银币"
+			description: ["找不到羊？以防万一，这里有个床给你。"]
+			id: "5D17CB247942013A"
+			tasks: [{
+				id: "0783860FB502A201"
+				type: "item"
+				icon: { id: "thermal:silver_coin", Count: 10b }
+				item: "thermal:silver_coin"
+				count: 10L
+				consume_items: true
+			}]
+			rewards: [{
+				id: "55EF0FE847AE3353"
+				type: "item"
+				item: "minecraft:cyan_bed"
+			}]
+		}
+		{
+			title: "欢迎来到杂货店！Welcome to the General Store!"
+			icon: "minecraft:chest"
+			x: -0.5d
+			y: -1.0d
+			shape: "hexagon"
+			description: [
+				"&6杂货店&r为你提供多种有趣实用的物品和工具，供你花钱购买。"
+				""
+				"这里面的大多数东西都是一次性购买，少数例外除外。请查找&6\"可重复\"&r的奖励来确定这一点。"
+			]
+			size: 2.0d
+			id: "0F870BEA235D662D"
+			tasks: [{
+				id: "3929233A89B34A71"
+				type: "checkmark"
+			}]
+		}
+		{
+			title: "手动交换"
+			icon: { id: "thermal:silver_coin", Count: 16b }
+			x: 1.5d
+			y: -1.0d
+			shape: "circle"
+			subtitle: "黄金 -> 白银"
+			description: ["在这里，你可以将一枚金币兑换成一堆银币。"]
+			dependencies: ["0F870BEA235D662D"]
+			id: "5326F6482C45D22A"
+			tasks: [{
+				id: "772821832EE93341"
+				type: "item"
+				item: "thermal:gold_coin"
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "26512E93CE404069"
+					type: "item"
+					icon: { id: "thermal:silver_coin", Count: 64b }
+					team_reward: false
+					auto: "enabled"
+					item: "thermal:silver_coin"
+					count: 64
+				}
+				{
+					id: "6FA6A9A201CA27BE"
+					type: "custom"
+					title: "可重复"
+					icon: "thermal:machine_cycle_augment"
+					tags: ["reset"]
+					auto: "no_toast"
+				}
+			]
+		}
+		{
+			title: "手动交换"
+			icon: { id: "thermal:gold_coin", Count: 2b }
+			x: -2.5d
+			y: -1.0d
+			shape: "circle"
+			subtitle: "银色 -> 金色"
+			description: ["部分交易需要上交金币。每枚金币价值一叠银币。"]
+			dependencies: ["0F870BEA235D662D"]
+			id: "1A566C74B1F7F050"
+			tasks: [{
+				id: "2387D852CA97AD1A"
+				type: "item"
+				icon: { id: "thermal:silver_coin", Count: 64b }
+				item: "thermal:silver_coin"
+				count: 64L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "66BE3DDEC92812C4"
+					type: "item"
+					team_reward: false
+					auto: "enabled"
+					item: "thermal:gold_coin"
+				}
+				{
+					id: "6E78A95786CA5B28"
+					type: "custom"
+					title: "可重复"
+					icon: "thermal:machine_cycle_augment"
+					tags: ["reset"]
+					auto: "no_toast"
+				}
+			]
+		}
+		{
+			title: "丰盛的餐食"
+			icon: "farmersdelight:steak_and_potatoes"
+			x: -3.5d
+			y: 2.5d
+			subtitle: "10 银币"
+			description: ["犒劳一下自己，或许还有朋友们！"]
+			id: "09DC2E2BE2BE32F4"
+			tasks: [{
+				id: "6235F365D702DF2B"
+				type: "item"
+				icon: { id: "thermal:silver_coin", Count: 10b }
+				item: "thermal:silver_coin"
+				count: 10L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "05B553B614119E4A"
+					type: "item"
+					item: "farmersdelight:steak_and_potatoes"
+					count: 4
+				}
+				{
+					id: "607D48921297C475"
+					type: "item"
+					item: "create:builders_tea"
+					count: 4
+				}
+				{
+					id: "37DB33F821AD0AFE"
+					type: "item"
+					item: "minecraft:bread"
+					count: 2
+				}
+				{
+					id: "51A8014ACD2153F6"
+					type: "item"
+					item: "farmersdelight:mixed_salad"
+					count: 4
+				}
+				{
+					id: "5CD27D9058DAFAAB"
+					type: "item"
+					item: "farmersdelight:sweet_berry_cookie"
+					count: 4
+				}
+			]
+		}
+		{
+			title: "垃圾场拾取任务"
+			icon: "minecraft:dirt"
+			x: 5.5d
+			y: 4.0d
+			subtitle: "15 银币"
+			description: ["早期导入一些泥土有助于建造基地。"]
+			id: "4B01606CE7AF3121"
+			tasks: [{
+				id: "188BEC2BA245DB13"
+				type: "item"
+				icon: { id: "thermal:silver_coin", Count: 15b }
+				item: "thermal:silver_coin"
+				count: 15L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "65597F84B69546EF"
+					type: "item"
+					item: "minecraft:dirt"
+					count: 64
+				}
+				{
+					id: "5ED9F3AFC25DD60E"
+					type: "item"
+					item: "minecraft:dirt"
+					count: 64
+				}
+				{
+					id: "1A8CE751232C7235"
+					type: "item"
+					item: "minecraft:dirt"
+					count: 64
+				}
+			]
+		}
+		{
+			title: "Enderpack"
+			icon: "minecraft:shulker_box"
+			x: 2.0d
+			y: 2.5d
+			subtitle: "55 银币"
+			description: ["它像一个背包，但又不是。小心嵌套！"]
+			id: "4FD46F841CCD59F8"
+			tasks: [{
+				id: "709557A517B0143F"
+				type: "item"
+				icon: { id: "thermal:silver_coin", Count: 55b }
+				item: "thermal:silver_coin"
+				count: 55L
+				consume_items: true
+			}]
+			rewards: [{
+				id: "2D3708B2DC0275AE"
+				type: "item"
+				item: "minecraft:shulker_box"
+			}]
+		}
+		{
+			title: "1-Up！"
+			icon: "minecraft:totem_of_undying"
+			x: 6.0d
+			y: 2.5d
+			subtitle: "60 银币"
+			description: ["以防你发现自己陷入了无法应对的境地。"]
+			id: "6D9F2FBEB7CC5195"
+			tasks: [{
+				id: "165B9A886A26BCC8"
+				type: "item"
+				icon: { id: "thermal:silver_coin", Count: 60b }
+				item: "thermal:silver_coin"
+				count: 60L
+				consume_items: true
+			}]
+			rewards: [{
+				id: "6BCBFB22A82A5698"
+				type: "item"
+				item: "minecraft:totem_of_undying"
+			}]
+		}
+		{
+			title: "哪里有怪物？Where mob ?"
+			icon: "create:haunted_bell"
+			x: 2.5d
+			y: 4.0d
+			subtitle: "45 银币"
+			description: ["电视上看到的：这个魔法铃铛能探测周围未照亮的区域。免费送货，附赠诅咒篝火。太划算了！"]
+			id: "4B52A04818075900"
+			tasks: [{
+				id: "4FB1B4787D648565"
+				type: "item"
+				icon: { id: "thermal:silver_coin", Count: 35b }
+				item: "thermal:silver_coin"
+				count: 45L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "0257303302DADA1B"
+					type: "item"
+					item: "create:peculiar_bell"
+				}
+				{
+					id: "30D4605E06FF45B6"
+					type: "item"
+					item: "minecraft:soul_campfire"
+				}
+			]
+		}
+		{
+			title: "我为什么是个优秀的爆破手？"
+			icon: "thermal:explosive_grenade"
+			x: -7.0d
+			y: 1.0d
+			subtitle: "32 银币"
+			description: ["一些用于测试的热武器精选。"]
+			id: "1CC29991D5F248CA"
+			tasks: [{
+				id: "2BF8F9E5070C6122"
+				type: "item"
+				icon: { id: "thermal:silver_coin", Count: 32b }
+				item: "thermal:silver_coin"
+				count: 32L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "1C6218230C6D71A0"
+					type: "item"
+					item: "thermal:explosive_grenade"
+					count: 8
+				}
+				{
+					id: "2D1A3F35DF8894FF"
+					type: "item"
+					item: "thermal:glowstone_grenade"
+					count: 8
+				}
+				{
+					id: "093F58649A1E0DD6"
+					type: "item"
+					item: "thermal:ice_grenade"
+					count: 8
+				}
+				{
+					id: "71BB0C93A4A7BC04"
+					type: "item"
+					item: "thermal:earth_grenade"
+					count: 8
+				}
+			]
+		}
+		{
+			title: "园艺新手入门包"
+			icon: "supplementaries:planter_rich"
+			x: 2.5d
+			y: 1.0d
+			subtitle: "24 银币"
+			id: "42384DE39AA48976"
+			tasks: [{
+				id: "05BB5DFA82280C0C"
+				type: "item"
+				icon: { id: "thermal:silver_coin", Count: 24b }
+				item: "thermal:silver_coin"
+				count: 24L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "26A16DC998FEF595"
+					type: "item"
+					item: "farmersdelight:organic_compost"
+					count: 8
+				}
+				{
+					id: "68B1199F9AE6B8FE"
+					type: "item"
+					item: "supplementaries:planter_rich"
+					count: 16
+				}
+				{
+					id: "5DEDD7BBA8A712AA"
+					type: "item"
+					item: "minecraft:flower_pot"
+					count: 8
+				}
+				{
+					id: "01196A417139EA21"
+					type: "item"
+					item: "supplementaries:flower_box"
+					count: 4
+				}
+				{
+					id: "648B819C1B484A3F"
+					type: "item"
+					item: "minecraft:grass_block"
+					count: 4
+				}
+			]
+		}
+		{
+			title: "画家的入门工具包"
+			icon: "minecraft:painting"
+			x: -4.0d
+			y: 4.0d
+			subtitle: "24 银币"
+			id: "61B040CD0832EFC0"
+			tasks: [{
+				id: "6404722100F1DEF7"
+				type: "item"
+				icon: { id: "thermal:silver_coin", Count: 24b }
+				item: "thermal:silver_coin"
+				count: 24L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "6375AD9CBA9276E0"
+					type: "item"
+					item: "minecraft:white_wool"
+					count: 16
+				}
+				{
+					id: "72F57D408AD5C84A"
+					type: "item"
+					item: "minecraft:white_dye"
+					count: 12
+				}
+				{
+					id: "3477DB4BB2003475"
+					type: "item"
+					item: "minecraft:yellow_dye"
+					count: 12
+				}
+				{
+					id: "14FE738419E8578F"
+					type: "item"
+					item: "minecraft:black_dye"
+					count: 12
+				}
+				{
+					id: "4D37425F17A9D45F"
+					type: "item"
+					item: "minecraft:blue_dye"
+					count: 12
+				}
+				{
+					id: "4A3F1D820F9F1D26"
+					type: "item"
+					item: "minecraft:green_dye"
+					count: 12
+				}
+				{
+					id: "4FFD3D4728DFBB16"
+					type: "item"
+					item: "minecraft:red_dye"
+					count: 12
+				}
+				{
+					id: "0F0A7101131FFC08"
+					type: "item"
+					item: "minecraft:brown_dye"
+					count: 12
+				}
+			]
+		}
+		{
+			title: "铁路新手包"
+			icon: "minecraft:minecart"
+			x: -5.5d
+			y: 4.5d
+			subtitle: "24 银币"
+			id: "117587D824D23D69"
+			tasks: [{
+				id: "06C835DB602D6F9F"
+				type: "item"
+				icon: { id: "thermal:silver_coin", Count: 24b }
+				item: "thermal:silver_coin"
+				count: 24L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "738387AED344C59B"
+					type: "item"
+					item: "moreminecarts:powered_locking_rail"
+					count: 8
+				}
+				{
+					id: "4D33B3525FF09C68"
+					type: "item"
+					item: "minecraft:powered_rail"
+					count: 8
+				}
+				{
+					id: "0A214A7B25C331F6"
+					type: "item"
+					item: "minecraft:lever"
+					count: 8
+				}
+				{
+					id: "3F0919FBED64778C"
+					type: "item"
+					item: "minecraft:rail"
+					count: 64
+				}
+				{
+					id: "6D3CCD1BF0BFD7D6"
+					type: "item"
+					item: "minecraft:rail"
+					count: 64
+				}
+				{
+					id: "340E92303736D3ED"
+					type: "item"
+					item: "thermal:crossover_rail"
+				}
+			]
+		}
+		{
+			title: "宠物主人的入门套装"
+			icon: "minecraft:tropical_fish"
+			x: -7.5d
+			y: 2.5d
+			subtitle: "24 银币"
+			description: ["宠物主人的必备物品。"]
+			id: "2D75D1864FB1EF75"
+			tasks: [{
+				id: "3AA788B63B6A73EF"
+				type: "item"
+				icon: { id: "thermal:silver_coin", Count: 24b }
+				item: "thermal:silver_coin"
+				count: 24L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "4961B49D79004571"
+					type: "item"
+					item: "minecraft:name_tag"
+					count: 4
+				}
+				{
+					id: "054AEE030B3B81F6"
+					type: "item"
+					item: "minecraft:bone"
+					count: 8
+				}
+				{
+					id: "29F276B6CDE4D6B5"
+					type: "item"
+					item: "minecraft:tropical_fish"
+					count: 8
+				}
+				{
+					id: "53AA2AF7CA1EF02C"
+					type: "item"
+					item: "minecraft:saddle"
+				}
+				{
+					id: "762BB57B2AFDB21F"
+					type: "item"
+					item: "minecraft:lead"
+					count: 2
+				}
+			]
+		}
+		{
+			title: "一点绿意盎然"
+			icon: "minecraft:oak_leaves"
+			x: 5.5d
+			y: 1.0d
+			subtitle: "24 银币"
+			description: ["能走很长一段路呢。"]
+			id: "7D93DAB3E8ACF953"
+			tasks: [{
+				id: "06028A67C6DCCD00"
+				type: "item"
+				icon: { id: "thermal:silver_coin", Count: 24b }
+				item: "thermal:silver_coin"
+				count: 24L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "17FCE9D6C12A7822"
+					type: "item"
+					item: "minecraft:oak_leaves"
+					count: 64
+				}
+				{
+					id: "51C2FE4F4F5057CC"
+					type: "item"
+					item: "minecraft:oak_leaves"
+					count: 64
+				}
+				{
+					id: "5B801D097C1C538F"
+					type: "item"
+					item: "minecraft:spruce_leaves"
+					count: 64
+				}
+				{
+					id: "5A23AFB90F20641B"
+					type: "item"
+					item: "minecraft:spruce_leaves"
+					count: 64
+				}
+				{
+					id: "1EC1E1486084AE66"
+					type: "item"
+					item: "minecraft:spruce_fence"
+					count: 16
+				}
+			]
+		}
+		{
+			title: "不要蜜蜂！"
+			icon: "minecraft:bee_nest"
+			x: 4.0d
+			y: 0.5d
+			subtitle: "48 银币"
+			description: [
+				"我打赌你以前没听过这句话。"
+				""
+				"这个整合包应该能帮助任何初学养蜂人。"
+			]
+			id: "003E0D1CE60B166A"
+			tasks: [
+				{
+					id: "6837BEE1075CC785"
+					type: "item"
+					icon: { id: "thermal:silver_coin", Count: 48b }
+					item: "thermal:silver_coin"
+					count: 48L
+					consume_items: true
+				}
+				{
+					id: "3CCE09D1715B54C7"
+					type: "item"
+					title: "任意的花朵"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "minecraft:flowers"
+						}
+					}
+					count: 10L
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "773C4F5E97BD82B8"
+					type: "item"
+					auto: "enabled"
+					item: "minecraft:bee_nest"
+				}
+				{
+					id: "0C8C369DEF6B0FD4"
+					type: "item"
+					auto: "no_toast"
+					item: "minecraft:bee_spawn_egg"
+					count: 2
+				}
+				{
+					id: "6D5E00890DAB64DB"
+					type: "custom"
+					title: "可重复"
+					icon: "thermal:machine_cycle_augment"
+					tags: ["reset"]
+					auto: "no_toast"
+				}
+			]
+		}
+		{
+			title: "弹药掉落"
+			icon: "immersiveengineering:armor_piercing"
+			x: -7.0d
+			y: 4.0d
+			subtitle: "32 银币"
+			description: ["需要点枪油吗？给你准备了个补给包。"]
+			id: "3DDD1BF9D7AAFD75"
+			tasks: [{
+				id: "211D0FCEA2ACA8D4"
+				type: "item"
+				icon: { id: "thermal:silver_coin", Count: 32b }
+				item: "thermal:silver_coin"
+				count: 32L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "5A6AA612276C1E58"
+					type: "item"
+					item: "immersiveengineering:armor_piercing"
+					count: 20
+				}
+				{
+					id: "36295AB38FE8B636"
+					type: "item"
+					item: "immersiveengineering:he"
+					count: 20
+				}
+				{
+					id: "6F58B7904292048B"
+					type: "item"
+					item: "immersiveengineering:silver"
+					count: 20
+				}
+			]
+		}
+		{
+			title: "基础建造者"
+			icon: "minecraft:stone"
+			x: 4.0d
+			y: 4.5d
+			subtitle: "20 银币"
+			description: ["你不会又要建一个9x9的吧？"]
+			id: "4A8259681DD636FD"
+			tasks: [{
+				id: "5C6A1FA05BE4BED7"
+				type: "item"
+				icon: { id: "thermal:silver_coin", Count: 15b }
+				item: "thermal:silver_coin"
+				count: 15L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "133E0F744BB9D0DF"
+					type: "item"
+					item: "minecraft:stone_bricks"
+					count: 64
+				}
+				{
+					id: "2165B8C052B82315"
+					type: "item"
+					item: "minecraft:stone_bricks"
+					count: 64
+				}
+			]
+		}
+		{
+			icon: "minecraft:cat_spawn_egg"
+			x: -0.5d
+			y: -5.5d
+			description: ["这些任务会为你提供可重复获取的刷蛋，适用于你可能需要的任何常见生物。"]
+			id: "608EA67ED108C8E3"
+			tasks: [{
+				id: "0428794825EF6303"
+				type: "checkmark"
+				title: "宠物领养中心"
+			}]
+		}
+		{
+			title: "收养一只猫"
+			icon: "minecraft:ocelot_spawn_egg"
+			x: 1.0d
+			y: -7.0d
+			dependencies: ["608EA67ED108C8E3"]
+			id: "7CC84780B0DBE09C"
+			tasks: [{
+				id: "57C07261D9F55912"
+				type: "item"
+				item: "thermal:silver_coin"
+				count: 10L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "2B329F5409B6D7A6"
+					type: "item"
+					auto: "enabled"
+					item: "minecraft:ocelot_spawn_egg"
+				}
+				{
+					id: "61069CD1562C6941"
+					type: "custom"
+					title: "可重复"
+					icon: "thermal:machine_cycle_augment"
+					tags: ["reset"]
+					auto: "no_toast"
+				}
+			]
+		}
+		{
+			title: "收养一头牛"
+			icon: "minecraft:cow_spawn_egg"
+			x: 1.5d
+			y: -5.5d
+			dependencies: ["608EA67ED108C8E3"]
+			id: "11F70E0976A3A95D"
+			tasks: [{
+				id: "4C093E54D73848BF"
+				type: "item"
+				item: "thermal:silver_coin"
+				count: 15L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "165E93A2B5C966FE"
+					type: "item"
+					auto: "enabled"
+					item: "minecraft:cow_spawn_egg"
+				}
+				{
+					id: "3F56CF7AC930C3C7"
+					type: "custom"
+					title: "可重复"
+					icon: "thermal:machine_cycle_augment"
+					tags: ["reset"]
+					auto: "no_toast"
+				}
+			]
+		}
+		{
+			title: "收养一只猪"
+			icon: "minecraft:pig_spawn_egg"
+			x: 1.0d
+			y: -4.0d
+			dependencies: ["608EA67ED108C8E3"]
+			id: "4CFDF7C521F4A2FE"
+			tasks: [{
+				id: "47B680E5C493A3FA"
+				type: "item"
+				item: "thermal:silver_coin"
+				count: 15L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "109C1E7DFA9EECCC"
+					type: "item"
+					auto: "enabled"
+					item: "minecraft:pig_spawn_egg"
+				}
+				{
+					id: "4BD5901D755E0CCB"
+					type: "custom"
+					title: "可重复"
+					icon: "thermal:machine_cycle_augment"
+					tags: ["reset"]
+					auto: "no_toast"
+				}
+			]
+		}
+		{
+			title: "收养一只绵羊"
+			icon: "minecraft:sheep_spawn_egg"
+			x: -0.5d
+			y: -3.5d
+			dependencies: ["608EA67ED108C8E3"]
+			id: "4EB857273C9EBD32"
+			tasks: [{
+				id: "7BD222AA66F60D22"
+				type: "item"
+				item: "thermal:silver_coin"
+				count: 15L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "787B0F5839F003A2"
+					type: "item"
+					auto: "enabled"
+					item: "minecraft:sheep_spawn_egg"
+				}
+				{
+					id: "35C1531DD8E3A7C8"
+					type: "custom"
+					title: "可重复"
+					icon: "thermal:machine_cycle_augment"
+					tags: ["reset"]
+					auto: "no_toast"
+				}
+			]
+		}
+		{
+			title: "收养一只狼"
+			icon: "minecraft:wolf_spawn_egg"
+			x: -2.0d
+			y: -4.0d
+			dependencies: ["608EA67ED108C8E3"]
+			id: "15885ED2D1EB6306"
+			tasks: [{
+				id: "461C8CA041E2B0AD"
+				type: "item"
+				item: "thermal:silver_coin"
+				count: 10L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "4F86E64C069E8C5C"
+					type: "item"
+					auto: "enabled"
+					item: "minecraft:wolf_spawn_egg"
+				}
+				{
+					id: "4A6901FCF709B6DD"
+					type: "custom"
+					title: "可重复"
+					icon: "thermal:machine_cycle_augment"
+					tags: ["reset"]
+					auto: "no_toast"
+				}
+			]
+		}
+		{
+			title: "收养一只小鸡"
+			icon: "minecraft:chicken_spawn_egg"
+			x: -2.0d
+			y: -7.0d
+			dependencies: ["608EA67ED108C8E3"]
+			id: "4A48C4F47E4C96BE"
+			tasks: [{
+				id: "6BBF1F1EF08C9B08"
+				type: "item"
+				item: "thermal:silver_coin"
+				count: 15L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "3B9123CDCE0E3CFA"
+					type: "item"
+					auto: "enabled"
+					item: "minecraft:chicken_spawn_egg"
+				}
+				{
+					id: "3A2C6EEC25D8A7B0"
+					type: "custom"
+					title: "可重复"
+					icon: "thermal:machine_cycle_augment"
+					tags: ["reset"]
+					auto: "no_toast"
+				}
+			]
+		}
+		{
+			title: "收养一匹马"
+			icon: "minecraft:horse_spawn_egg"
+			x: -2.5d
+			y: -5.5d
+			dependencies: ["608EA67ED108C8E3"]
+			id: "67202FB5F0DD2450"
+			tasks: [{
+				id: "165EC5DCC4AD5A29"
+				type: "item"
+				item: "thermal:silver_coin"
+				count: 20L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "12399EB108DC8289"
+					type: "item"
+					auto: "enabled"
+					item: "minecraft:horse_spawn_egg"
+				}
+				{
+					id: "373B8BEB224721D3"
+					type: "custom"
+					title: "可重复"
+					icon: "thermal:machine_cycle_augment"
+					tags: ["reset"]
+					auto: "no_toast"
+				}
+			]
+		}
+		{
+			title: "收养一只狐狸"
+			icon: "minecraft:fox_spawn_egg"
+			x: -1.5d
+			y: -8.0d
+			dependencies: ["608EA67ED108C8E3"]
+			id: "37A5B1C908C4A3E7"
+			tasks: [{
+				id: "3EEC2E8682C45C06"
+				type: "item"
+				item: "thermal:silver_coin"
+				count: 10L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "1B22D9D4D8EE1E61"
+					type: "item"
+					auto: "enabled"
+					item: "minecraft:fox_spawn_egg"
+				}
+				{
+					id: "7425CCAB9DB7833C"
+					type: "custom"
+					title: "可重复"
+					icon: "thermal:machine_cycle_augment"
+					tags: ["reset"]
+					auto: "no_toast"
+				}
+			]
+		}
+		{
+			title: "收养一只鹦鹉"
+			icon: "minecraft:parrot_spawn_egg"
+			x: 0.5d
+			y: -8.0d
+			dependencies: ["608EA67ED108C8E3"]
+			id: "7A97A91B66D6B39F"
+			tasks: [{
+				id: "6B131BC092148A04"
+				type: "item"
+				item: "thermal:silver_coin"
+				count: 10L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "13FBF47C5F4FA748"
+					type: "item"
+					auto: "enabled"
+					item: "minecraft:parrot_spawn_egg"
+				}
+				{
+					id: "0622019E8BB54A8B"
+					type: "custom"
+					title: "可重复"
+					icon: "thermal:machine_cycle_augment"
+					tags: ["reset"]
+					auto: "no_toast"
+				}
+			]
+		}
+		{
+			title: "收养一只羊驼"
+			icon: "minecraft:llama_spawn_egg"
+			x: -3.0d
+			y: -6.5d
+			dependencies: ["608EA67ED108C8E3"]
+			id: "542BC03FC99995D2"
+			tasks: [{
+				id: "615F59DC8058CA12"
+				type: "item"
+				item: "thermal:silver_coin"
+				count: 20L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "01609B6A0ABB942A"
+					type: "item"
+					auto: "enabled"
+					item: "minecraft:llama_spawn_egg"
+				}
+				{
+					id: "2F02557AAD9748FB"
+					type: "custom"
+					title: "可重复"
+					icon: "thermal:machine_cycle_augment"
+					tags: ["reset"]
+					auto: "no_toast"
+				}
+			]
+		}
+		{
+			title: "领养一只兔子"
+			icon: "minecraft:rabbit_spawn_egg"
+			x: 2.0d
+			y: -6.5d
+			dependencies: ["608EA67ED108C8E3"]
+			id: "696BD1191C17ABFF"
+			tasks: [{
+				id: "2E87C9A6301956F3"
+				type: "item"
+				item: "thermal:silver_coin"
+				count: 15L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "4A27CF7541F6EE47"
+					type: "item"
+					auto: "enabled"
+					item: "minecraft:rabbit_spawn_egg"
+				}
+				{
+					id: "376227B24FB3FBA0"
+					type: "custom"
+					title: "可重复"
+					icon: "thermal:machine_cycle_augment"
+					tags: ["reset"]
+					auto: "no_toast"
+				}
+			]
+		}
+		{
+			title: "收养一只海龟"
+			icon: "minecraft:turtle_spawn_egg"
+			x: 2.0d
+			y: -4.5d
+			dependencies: ["608EA67ED108C8E3"]
+			id: "050694CEA2CF4F1C"
+			tasks: [{
+				id: "552FA8F123202955"
+				type: "item"
+				item: "thermal:silver_coin"
+				count: 15L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "2FEF2FA68D2ED5EB"
+					type: "item"
+					auto: "enabled"
+					item: "minecraft:turtle_spawn_egg"
+				}
+				{
+					id: "201337926BB112CA"
+					type: "custom"
+					title: "可重复"
+					icon: "thermal:machine_cycle_augment"
+					tags: ["reset"]
+					auto: "no_toast"
+				}
+			]
+		}
+		{
+			title: "收养一只鱿鱼"
+			icon: "minecraft:squid_spawn_egg"
+			x: -3.0d
+			y: -4.5d
+			dependencies: ["608EA67ED108C8E3"]
+			id: "48C23B4D25C9CF2F"
+			tasks: [{
+				id: "441F6DCD05AE62E6"
+				type: "item"
+				item: "thermal:silver_coin"
+				count: 15L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "473D41F3CE439575"
+					type: "item"
+					auto: "enabled"
+					item: "minecraft:squid_spawn_egg"
+				}
+				{
+					id: "12A5C91BDA4F7D8F"
+					type: "custom"
+					title: "可重复"
+					icon: "thermal:machine_cycle_augment"
+					tags: ["reset"]
+					auto: "no_toast"
+				}
+			]
+		}
+		{
+			title: "收养一只柴犬 (Adopt a Shiba)"
+			icon: "quark:shiba_spawn_egg"
+			x: -1.5d
+			y: -3.0d
+			dependencies: ["608EA67ED108C8E3"]
+			id: "69EA6A4ADE72E33E"
+			tasks: [{
+				id: "1C78E85023887E73"
+				type: "item"
+				item: "thermal:silver_coin"
+				count: 20L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "38C52BB5018942E9"
+					type: "item"
+					auto: "enabled"
+					item: "quark:shiba_spawn_egg"
+				}
+				{
+					id: "0751A54319001324"
+					type: "custom"
+					title: "可重复"
+					icon: "thermal:machine_cycle_augment"
+					tags: ["reset"]
+					auto: "no_toast"
+				}
+			]
+		}
+		{
+			title: "收养一只浣熊宝宝"
+			icon: "alexsmobs:spawn_egg_raccoon"
+			x: 0.5d
+			y: -3.0d
+			subtitle: "最法式炸物 The Frenchiest Fry"
+			dependencies: ["608EA67ED108C8E3"]
+			id: "6EF862B800204D34"
+			tasks: [{
+				id: "3CE45BB7E284FA41"
+				type: "item"
+				item: "thermal:silver_coin"
+				count: 20L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "41229F13C2E97419"
+					type: "item"
+					auto: "enabled"
+					item: "alexsmobs:spawn_egg_raccoon"
+				}
+				{
+					id: "7DD81A6CD7B9AB3B"
+					type: "custom"
+					title: "可重复"
+					icon: "thermal:machine_cycle_augment"
+					tags: ["reset"]
+					auto: "no_toast"
+				}
+			]
+		}
+		{
+			title: "收养一只鸭子"
+			icon: "exoticbirds:duck_spawn_egg"
+			x: -0.5d
+			y: -7.5d
+			dependencies: ["608EA67ED108C8E3"]
+			id: "665A1B25D28F3451"
+			tasks: [{
+				id: "585A80DEBF3B04A8"
+				type: "item"
+				item: "thermal:silver_coin"
+				count: 10L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "20083F2A7BA95166"
+					type: "item"
+					auto: "enabled"
+					item: "exoticbirds:duck_spawn_egg"
+				}
+				{
+					id: "3DE3F8E313AAEA37"
+					type: "custom"
+					title: "可重复"
+					icon: "thermal:machine_cycle_augment"
+					tags: ["reset"]
+					auto: "no_toast"
+				}
+			]
+		}
+		{
+			title: "涡旋操控术"
+			icon: {
+				id: "tardis:vm"
+				Count: 1b
+				tag: {
+					cap_sync: {
+						battery_inv: {
+							Size: 3
+							Items: [ ]
+						}
+						has_teleported: 0b
+						discharge_amount: 0.0f
+						used: 0b
+						total_charge: 0.0f
+					}
+				}
+				ForgeCaps: {
+					"tardis:vortex": {
+						battery_inv: {
+							Size: 3
+							Items: [ ]
+						}
+						discharge_amount: 0.0f
+						has_teleported: 0b
+						used: 0b
+						total_charge: 0.0f
+					}
+				}
+			}
+			x: -5.5d
+			y: 0.5d
+			subtitle: "2 黄金"
+			description: [
+				"这是一个便携装置，能为佩戴者提供&6不稳定传送&r。你需要&6电池&r来运行它。"
+				""
+				"注意：最大范围 10,000 格。仅在末地、下界和主世界运行。"
+			]
+			id: "7DC32B2C666BE76A"
+			tasks: [
+				{
+					id: "3D55416AD09E7F3A"
+					type: "item"
+					item: "thermal:gold_coin"
+					count: 2L
+					consume_items: true
+				}
+				{
+					id: "73AF90A5CAFC30E9"
+					type: "item"
+					item: {
+						id: "minecraft:dragon_egg"
+						Count: 1b
+						tag: {
+							spell: { }
+						}
+					}
+					consume_items: true
+				}
+			]
+			rewards: [{
+				id: "20E691F2B32CDE47"
+				type: "item"
+				item: {
+					id: "tardis:vm"
+					Count: 1b
+					tag: {
+						cap_sync: {
+							battery_inv: {
+								Size: 3
+								Items: [ ]
+							}
+							has_teleported: 0b
+							discharge_amount: 0.0f
+							used: 0b
+							total_charge: 0.0f
+						}
+					}
+					ForgeCaps: {
+						"tardis:vortex": {
+							battery_inv: {
+								Size: 3
+								Items: [ ]
+							}
+							discharge_amount: 0.0f
+							has_teleported: 0b
+							used: 0b
+							total_charge: 0.0f
+						}
+					}
+				}
+			}]
+		}
+		{
+			title: "补充燃料中"
+			icon: "tardis:artron_battery"
+			x: -5.5d
+			y: 2.5d
+			subtitle: "25 银币"
+			description: ["你需要阿特伦电池来操作机械臂。在你自己买到电池之前，这里有电池来源。"]
+			dependencies: ["7DC32B2C666BE76A"]
+			id: "5B225F1BF4A7D5B6"
+			tasks: [{
+				id: "07EA10BCBE92237B"
+				type: "item"
+				item: "thermal:silver_coin"
+				count: 25L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "19338AE1064C9D8B"
+					type: "item"
+					auto: "enabled"
+					item: {
+						id: "tardis:artron_battery"
+						Count: 1b
+						tag: {
+							artron: 250.0f
+						}
+					}
+				}
+				{
+					id: "03F00BF2A3EF4FB3"
+					type: "custom"
+					title: "可重复"
+					icon: "thermal:machine_cycle_augment"
+					tags: ["reset"]
+					auto: "no_toast"
+				}
+			]
+		}
+		{
+			title: "找到自己的方向"
+			icon: {
+				id: "waystones:waystone"
+				Count: 1b
+				tag: {
+					spell: { }
+				}
+			}
+			x: 4.0d
+			y: 2.5d
+			subtitle: "传送石是实现即时旅行的工具。"
+			id: "6089147D7A0E5BF2"
+			tasks: [
+				{
+					id: "351F4BDA1F825156"
+					type: "item"
+					item: "thermal:gold_coin"
+					count: 3L
+					consume_items: true
+				}
+				{
+					id: "13E5251897902FCE"
+					type: "item"
+					item: "twilightforest:carminite_block"
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "14DABFA71DCCB6B1"
+					type: "item"
+					item: {
+						id: "waystones:waystone"
+						Count: 1b
+						tag: {
+							spell: { }
+						}
+					}
+				}
+				{
+					id: "21BCB0D733A100DB"
+					type: "custom"
+					icon: "thermal:machine_cycle_augment"
+					tags: ["reset"]
+				}
+			]
+		}
+	]
+}

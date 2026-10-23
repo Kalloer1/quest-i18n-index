@@ -1,0 +1,298 @@
+# AI 初翻，未人工校对
+{
+	id: "6F8B28B5D8CED76B"
+	group: ""
+	order_index: 3
+	filename: "fission"
+	title: "获取核能装置中"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "裂变反应堆"
+			x: -18.5d
+			y: -0.5d
+			description: ["基础裂变反应堆"]
+			dependencies: ["23B52BCEB8591CF8"]
+			id: "112132DC8E6574ED"
+			tasks: [
+				{
+					id: "478A25BDF3E5BBA2"
+					type: "item"
+					item: "mekanismgenerators:fission_fuel_assembly"
+				}
+				{
+					id: "0FBAB9D8EC6684B8"
+					type: "item"
+					item: "mekanismgenerators:control_rod_assembly"
+				}
+				{
+					id: "4A9CE621324EFDE4"
+					type: "item"
+					item: "mekanismgenerators:fission_reactor_casing"
+					count: 24L
+				}
+				{
+					id: "3D5F26F2E58074BA"
+					type: "item"
+					item: "mekanismgenerators:fission_reactor_port"
+					count: 4L
+				}
+				{
+					id: "100621437E90B547"
+					type: "item"
+					item: "mekanismgenerators:reactor_glass"
+					count: 6L
+				}
+			]
+		}
+		{
+			x: -18.5d
+			y: -2.0d
+			id: "23B52BCEB8591CF8"
+			tasks: [{
+				id: "32767B62F32F8AE1"
+				type: "checkmark"
+				title: "自动化裂变燃料的生产！"
+			}]
+		}
+		{
+			x: -18.5d
+			y: 1.0d
+			description: ["通过蒸汽驱动涡轮机发电，钠冷反应堆则用锅炉加热水。"]
+			dependencies: ["112132DC8E6574ED"]
+			id: "17E981D8EB81EF91"
+			tasks: [{
+				id: "103623E6A2993416"
+				type: "checkmark"
+				title: "锅炉和涡轮机"
+			}]
+		}
+		{
+			x: -17.0d
+			y: -0.5d
+			dependencies: ["112132DC8E6574ED"]
+			id: "368EE65E31C37A5C"
+			tasks: [{
+				id: "58DD44FC0C8D5D86"
+				type: "item"
+				item: "mekanism:solar_neutron_activator"
+			}]
+		}
+		{
+			x: -15.5d
+			y: -0.5d
+			dependencies: ["368EE65E31C37A5C"]
+			id: "3CD02ED2F086BFDC"
+			tasks: [{
+				id: "2A98ACFF11890498"
+				type: "item"
+				item: "mekanism:pellet_polonium"
+			}]
+		}
+		{
+			x: -15.5d
+			y: 0.5d
+			dependencies: ["368EE65E31C37A5C"]
+			id: "09A2235EDE8AF964"
+			tasks: [{
+				id: "6637B81F84F6ED66"
+				type: "item"
+				item: "mekanism:pellet_plutonium"
+			}]
+		}
+		{
+			title: "聚变反应堆"
+			x: -14.0d
+			y: -0.5d
+			description: ["如果想用它产生蒸汽来驱动工业涡轮机，就再加一个用于输出热量的端口"]
+			dependencies: ["3CD02ED2F086BFDC"]
+			id: "6330C7E8FB78D9DB"
+			tasks: [
+				{
+					id: "679B3DDD180ED3F3"
+					type: "item"
+					item: "mekanismgenerators:fusion_reactor_frame"
+					count: 66L
+				}
+				{
+					id: "2E0F89739E9BCBAC"
+					type: "item"
+					item: "mekanismgenerators:fusion_reactor_port"
+					count: 2L
+				}
+				{
+					id: "36815E2DF0CEAEFB"
+					type: "item"
+					item: "mekanismgenerators:fusion_reactor_controller"
+				}
+				{
+					id: "4CD760D234225476"
+					type: "item"
+					item: "mekanismgenerators:reactor_glass"
+					count: 8L
+				}
+				{
+					id: "3C5BFF85181B2CFC"
+					type: "item"
+					item: "mekanism:laser"
+				}
+				{
+					id: "083F42ACB42752D4"
+					type: "item"
+					item: "mekanism:laser_amplifier"
+				}
+				{
+					id: "5AD2AFCB2BE3FB56"
+					type: "item"
+					item: "mekanismgenerators:laser_focus_matrix"
+				}
+			]
+		}
+		{
+			title: "超临界相移器"
+			x: -14.0d
+			y: 0.5d
+			description: ["反物质"]
+			dependencies: [
+				"3CD02ED2F086BFDC"
+				"09A2235EDE8AF964"
+			]
+			id: "5E75B823DE8CCF8D"
+			tasks: [
+				{
+					id: "210F4F6EC36B9C6E"
+					type: "item"
+					item: "mekanism:sps_casing"
+					count: 60L
+				}
+				{
+					id: "603C7D27F9E74277"
+					type: "item"
+					item: "mekanism:structural_glass"
+					count: 123L
+				}
+				{
+					id: "4346E8E7191B77CD"
+					type: "item"
+					item: "mekanism:sps_port"
+					count: 3L
+				}
+				{
+					id: "4C6B0DC84DFF2FD6"
+					type: "item"
+					item: "mekanism:supercharged_coil"
+				}
+			]
+		}
+		{
+			x: -14.0d
+			y: 1.5d
+			description: ["你需要大量的这些东西。自动化它，让它快起来！"]
+			dependencies: ["5E75B823DE8CCF8D"]
+			id: "5AF98C76F042AAEC"
+			tasks: [{
+				id: "1DA586D5E936C8CC"
+				type: "item"
+				item: "mekanism:pellet_antimatter"
+			}]
+		}
+		{
+			x: -15.5d
+			y: -1.5d
+			description: ["用神秘农业生成资源！"]
+			dependencies: ["3CD02ED2F086BFDC"]
+			id: "18A40DDC78BAA9E6"
+			tasks: [{
+				id: "14FEC7F6BDEFBAD1"
+				type: "item"
+				item: "mysticalagriculture:prudentium_essence"
+			}]
+		}
+		{
+			x: -14.0d
+			y: -1.5d
+			subtitle: "植源性绝缘体里真有不错的肥料！"
+			dependencies: ["3CD02ED2F086BFDC"]
+			id: "607090EBFB16F3FE"
+			tasks: [{
+				id: "212ADC16AF0CBC7E"
+				type: "item"
+				item: "mysticalagriculture:mystical_fertilizer"
+			}]
+		}
+		{
+			x: -15.5d
+			y: -2.5d
+			subtitle: "用神秘农业生成资源！注意：你需要用精华制作并冶炼矿石"
+			dependencies: ["18A40DDC78BAA9E6"]
+			id: "52FA10EC546EA151"
+			tasks: [{
+				id: "7E1B2AC6E77B987E"
+				type: "item"
+				item: "mysticalagriculture:prosperity_shard"
+			}]
+		}
+		{
+			x: -15.5d
+			y: -3.5d
+			dependencies: ["52FA10EC546EA151"]
+			id: "1CD66EAD45AD3369"
+			tasks: [{
+				id: "0CE3B09DC401149F"
+				type: "item"
+				item: {
+					id: "mysticalagriculture:infusion_crystal"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			x: -14.0d
+			y: -2.5d
+			dependencies: ["607090EBFB16F3FE"]
+			id: "15BBD5CECF298081"
+			tasks: [{
+				id: "4BAADD2E57242FEA"
+				type: "item"
+				item: "botanypots:botany_pot"
+			}]
+		}
+		{
+			x: -14.0d
+			y: -3.5d
+			dependencies: ["15BBD5CECF298081"]
+			id: "611E7C6E772975CE"
+			tasks: [{
+				id: "162A9A74CAA830AA"
+				type: "item"
+				item: "botanypotstiers:elite_botany_pot"
+			}]
+		}
+		{
+			x: -14.0d
+			y: -4.5d
+			dependencies: ["611E7C6E772975CE"]
+			id: "24FBAB5379CEAF3A"
+			tasks: [{
+				id: "35ED7485C6578D72"
+				type: "item"
+				item: "botanypotstiers:ultra_botany_pot"
+			}]
+		}
+		{
+			x: -14.0d
+			y: -5.5d
+			dependencies: ["24FBAB5379CEAF3A"]
+			id: "698422BB86A4F340"
+			tasks: [{
+				id: "1799AAA394CC1E11"
+				type: "item"
+				item: "botanypotstiers:creative_botany_pot"
+			}]
+		}
+	]
+}

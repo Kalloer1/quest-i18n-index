@@ -1,0 +1,989 @@
+# AI 初翻，未人工校对
+{
+	id: "23CEC5718927D582"
+	group: "5FB460EFA0A2567E"
+	order_index: 1
+	filename: "twilight_forest"
+	title: "暮色森林"
+	icon: "twilightforest:twilight_portal_miniature_structure"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "抵达暮色森林 (Twilight Forest)"
+			icon: "twilightforest:twilight_portal_miniature_structure"
+			x: -3.0d
+			y: -2.5d
+			subtitle: "进入黄昏区域中"
+			description: [
+				"欢迎来到暮色森林！这个维度可能很危险，不过好在其布局便利，&a主要地标呈网格状分布&r。"
+				"你首先需要一张&b地图&r，为此，你需要找到一只&e渡鸦&r。"
+				"请记住！&6如果你迷路了或误入无法通行的区域，请寻找 Kobolds&r。它们会携带着前代冒险家的日志，为你提供下一个目标的线索。"
+			]
+			dependencies: ["399D55B3452588FF"]
+			id: "730964D8E1FD059F"
+			tasks: [{
+				id: "2522694F96FD15CA"
+				type: "dimension"
+				dimension: "twilightforest:twilight_forest"
+			}]
+			rewards: [
+				{
+					id: "19306FFE5AF17538"
+					type: "random"
+					table_id: 8808494820591225409L
+				}
+				{
+					id: "33E22D562AA8E674"
+					type: "item"
+					item: "twilightforest:twilight_portal_miniature_structure"
+				}
+			]
+		}
+		{
+			title: "获得一把传送门钥匙"
+			x: 0.0d
+			y: -4.0d
+			shape: "rsquare"
+			subtitle: "把它扔进清澈的水池里，然后退后几步"
+			description: [
+				"&dThe Twilight Forest&r 是一个充满神秘与奇特生物（友好与敌对）的夜晚维度。自由穿越该维度十分困难——你必须逐一征服每个挑战才能通行。"
+				"要&a制作传送门&r，你必须&6挖一个3x3x1的洞并注满水&r。然后，&6用花朵或蘑菇环绕水池&r。最后，&6将一颗钻石投入池中&r。注意，开启传送门可能很危险！"
+			]
+			size: 2.0d
+			id: "399D55B3452588FF"
+			tasks: [{
+				id: "546DCCE3B330C33A"
+				type: "item"
+				item: "minecraft:diamond"
+			}]
+			rewards: [
+				{
+					id: "3CE5D25AECE3322A"
+					type: "item"
+					item: "minecraft:poppy"
+					count: 3
+				}
+				{
+					id: "34FDED8B106683EC"
+					type: "item"
+					item: "minecraft:dandelion"
+					count: 3
+				}
+				{
+					id: "730C5B0A95B13AFC"
+					type: "item"
+					item: "minecraft:red_mushroom"
+					count: 3
+				}
+			]
+		}
+		{
+			title: "寻找一只森林渡鸦"
+			icon: "twilightforest:raven_feather"
+			x: -2.0d
+			y: -0.5d
+			subtitle: "不幸的是，你必须把它杀死才能获得"
+			description: ["&e森林渡鸦&r是一种常见于暮色森林中&a黑曜石碑&r附近的生物。你可以&6杀死它以获取羽毛&r，这对制作&b魔法地图焦点&r很重要。"]
+			dependencies: ["730964D8E1FD059F"]
+			optional: true
+			id: "3B33F8C27B3361AC"
+			tasks: [{
+				id: "28457D6369D12841"
+				type: "observation"
+				timer: 0L
+				observe_type: 5
+				to_observe: "twilightforest:raven"
+			}]
+			rewards: [{
+				id: "769527119DB85277"
+				type: "item"
+				item: "minecraft:glowstone_dust"
+				count: 9
+			}]
+		}
+		{
+			x: 0.0d
+			y: -1.5d
+			shape: "hexagon"
+			subtitle: "加油，集中注意力！"
+			description: [
+				"用&b渡鸦羽毛&r、一些&b萤石粉&r和&b火把浆果&r（可在暮色森林洞穴中找到）制作一个&b魔法地图焦点&r。"
+				"然后用&b纸&r包围它来制作一张魔法地图，这将在你穿越&d暮色森林&r的旅途中发挥巨大作用。"
+			]
+			dependencies: ["3B33F8C27B3361AC"]
+			id: "0F55C73877E7FD90"
+			tasks: [{
+				id: "57C05D993313671F"
+				type: "item"
+				item: "twilightforest:magic_map_focus"
+			}]
+			rewards: [{
+				id: "03F8A5DF08431675"
+				type: "item"
+				item: "minecraft:paper"
+				count: 5
+			}]
+		}
+		{
+			title: "找到一个树篱迷宫"
+			x: -2.5d
+			y: -4.5d
+			shape: "hexagon"
+			subtitle: "现在你可以成为一名荆棘女巫了！"
+			description: [
+				"暮色森林中的一个特色是&a荆棘迷宫&r。这是一个充满了刷怪器和装满战利品的箱子的迷宫！"
+				"这不会计入，也不需要任何通过森林的进度。"
+			]
+			dependencies: ["730964D8E1FD059F"]
+			id: "03102B4CD0BE7031"
+			tasks: [{
+				id: "2AED38B113D31F29"
+				type: "structure"
+				structure: "twilightforest:hedge_maze"
+			}]
+			rewards: [{
+				id: "4C02CF218E659553"
+				type: "random"
+				table_id: 6941837675484043489L
+			}]
+		}
+		{
+			title: "获取一个矿石磁铁 Ore Magnet"
+			x: -4.5d
+			y: -4.5d
+			shape: "hexagon"
+			subtitle: "我简直就是个矿石磁铁，走到哪矿石就往哪跑"
+			description: [
+				"&bOre Magnet&r有时可以在&dHollow Hills&r中找到，使用时会&a将整片矿脉从地下吸出&r！只需&6对准地面按住右键&r，矿石就会自动吸到你身边！"
+				"可以附魔“耐久”或“修补”效果。"
+			]
+			dependencies: ["730964D8E1FD059F"]
+			id: "5B5DB6950BD9BC15"
+			tasks: [{
+				id: "37BFCF9F22551ED3"
+				type: "item"
+				item: {
+					id: "twilightforest:ore_magnet"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "0DF298E510FEE5B8"
+				type: "random"
+				table_id: 6941837675484043489L
+			}]
+		}
+		{
+			x: -4.0d
+			y: -3.5d
+			shape: "hexagon"
+			subtitle: "做好心理准备，迎接挑战吧"
+			description: [
+				"&bSteeleaf&r 是一种可用于制作比普通铁质装备略好一些的附魔护甲的材料。"
+				"此外，钢叶方块在落地时能将坠落伤害降低25%。"
+			]
+			dependencies: ["730964D8E1FD059F"]
+			id: "6A5281FA52C785C6"
+			tasks: [{
+				id: "15FF51EB8323D171"
+				type: "item"
+				item: "twilightforest:steeleaf_ingot"
+			}]
+			rewards: [{
+				id: "6497B38870E2FDB2"
+				type: "item"
+				item: "twilightforest:steeleaf_block"
+			}]
+		}
+		{
+			title: "获取肝根（Liveroot）"
+			x: -3.0d
+			y: -5.5d
+			shape: "hexagon"
+			subtitle: "这些根须……它们有生命！"
+			description: ["分解树下方的&aLiveroots&r以获取它们。此物品可与&bIron&r和&bGold&r结合，以创造&bIronwood&r，可用于制作预先附魔的装备。"]
+			dependencies: ["730964D8E1FD059F"]
+			id: "2ACCE2B7760206C9"
+			tasks: [{
+				id: "7EC630320EED692D"
+				type: "item"
+				item: "twilightforest:liveroot"
+			}]
+			rewards: [{
+				id: "2AA5905FFDE223BA"
+				type: "item"
+				item: "twilightforest:ironwood_block"
+			}]
+		}
+		{
+			title: "获得孔雀羽毛扇 (Peacock Feather Fan)"
+			x: -3.5d
+			y: -4.5d
+			shape: "hexagon"
+			subtitle: "浮夸但却非常实用"
+			description: [
+				"孔雀羽毛扇&b&r是一个在&6右键点击&r时会发出强劲风力冲击的物品。"
+				"你可以用这个在战斗中取得优势，甚至在跳跃或使用&bElytra&r时在空中给自己加速！"
+			]
+			dependencies: ["730964D8E1FD059F"]
+			id: "62A0D663EF2B58C1"
+			tasks: [{
+				id: "6640CC33AA28C74F"
+				type: "item"
+				item: {
+					id: "twilightforest:peacock_feather_fan"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "7613E44F834D267C"
+				type: "item"
+				item: {
+					id: "minecraft:enchanted_book"
+					Count: 1b
+					tag: {
+						StoredEnchantments: [{
+							lvl: 2s
+							id: "minecraft:feather_falling"
+						}]
+					}
+				}
+			}]
+		}
+		{
+			x: -4.0d
+			y: -5.5d
+			shape: "hexagon"
+			subtitle: "你可能得坐下来好好看看这个了"
+			description: ["&b月亮蠕虫女王&r是一个...物品...里面装满了月亮蠕虫。当你&6右键点击她&r时，它们会被释放出来——直接落在地面上，或者像箭一样射出去。月亮蠕虫除了&a作为光源&r外别无他用。你可以通过用&b火把浆果&r合成来补充女王，从而获得...更多的蠕虫。太棒了。"]
+			dependencies: ["730964D8E1FD059F"]
+			id: "79B6B78157E7D32C"
+			tasks: [{
+				id: "36DCC9327A7A9CEB"
+				type: "item"
+				item: {
+					id: "twilightforest:moonworm_queen"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "112733AC98209D26"
+				type: "item"
+				item: "twilightforest:torchberries"
+				count: 3
+			}]
+		}
+		{
+			x: -5.0d
+			y: -3.5d
+			shape: "hexagon"
+			subtitle: "无法合成的物品真美味。等等……"
+			description: [" One of the most valuable items in the game, &bThe Uncrafting Table&r allows you to &arecoup materials from crafted items&r in exchange for experience levels. &6Place the unwanted item in the left slot&r and then &6click one of the ingredients&r in the center to remove it."]
+			dependencies: ["730964D8E1FD059F"]
+			id: "7D15924C5AEAC669"
+			tasks: [{
+				id: "4C765C9C13A943A9"
+				type: "item"
+				item: "twilightforest:uncrafting_table"
+			}]
+			rewards: [{
+				id: "7CC75457000A1AD8"
+				type: "item"
+				item: "minecraft:diamond_horse_armor"
+			}]
+		}
+		{
+			title: "找到一个纳迦庭院"
+			icon: "twilightforest:naga_trophy"
+			x: -1.5d
+			y: 1.5d
+			subtitle: "去说服你当地的娜迦女王吧"
+			description: [
+				"你必须面对的第一个首领是破坏方块的&eNaga&r。它是一条长蛇，当你对其造成伤害时，它的长度会逐渐缩短。"
+				"如果玩家逃离庭院，那迦将返回中心位置。"
+				"击败他后，&6务必搜刮他生成的宝箱&r，因为你需要里面的&bNaga奖杯&r。"
+			]
+			dependencies: ["3B33F8C27B3361AC"]
+			id: "00B1A6C679547AF2"
+			tasks: [{
+				id: "5736708CDA636001"
+				type: "structure"
+				structure: "twilightforest:naga_courtyard"
+			}]
+			rewards: [{
+				id: "6F184B1C2B99949E"
+				type: "xp_levels"
+				xp_levels: 3
+			}]
+		}
+		{
+			title: "购买任务：20 个纳加鳞片"
+			x: -3.5d
+			y: 0.5d
+			shape: "pentagon"
+			subtitle: "有机会使用不想要的鳞片的机会"
+			description: ["在&d暮色森林&r中击败&eNaga&r以获得它们的鳞片。然后，用这些鳞片换取战利品！"]
+			dependencies: ["00B1A6C679547AF2"]
+			can_repeat: true
+			id: "14B45702F0F82689"
+			tasks: [{
+				id: "292E38425879D005"
+				type: "item"
+				item: "twilightforest:naga_scale"
+				count: 20L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "58DC59194FD2B38E"
+					type: "loot"
+					table_id: 5161092699925703455L
+				}
+				{
+					id: "71EF3889F128E564"
+					type: "loot"
+					table_id: 5161092699925703455L
+				}
+			]
+		}
+		{
+			x: -0.5d
+			y: 3.0d
+			subtitle: "我的巫妖们在哪里呢？"
+			description: [
+				"在&dLich Tower&r里，住着暮色森林的亡灵贵族。他的&aCastle&r里遍布怪物，但也充满了战利品。"
+				"建议在该结构出现前穿戴好全套装备。"
+				"在塔顶，你会发现被护盾保护的&eLich&r。必须先&6用他自己的魔法击败他&r，然后用武力终结战斗。"
+				"小心他在战斗中召唤出的复制品！"
+				"击败&eLich&r后，你将能进入&dYeti's Lair&r、&dDark Forest&r和&dSwamp&r。"
+			]
+			dependencies: ["00B1A6C679547AF2"]
+			id: "1B8E61A0872EEA1C"
+			tasks: [{
+				id: "7D62DCC45EBECA2C"
+				type: "structure"
+				title: "找到一个巫妖塔"
+				icon: "twilightforest:lich_tower_miniature_structure"
+				structure: "twilightforest:lich_tower"
+			}]
+			rewards: [{
+				id: "2545DFB3D90982C3"
+				type: "random"
+				table_id: 6941837675484043489L
+			}]
+		}
+		{
+			x: -1.0d
+			y: 4.5d
+			subtitle: "不幸的是，这里没有哥布林国王……"
+			description: [
+				"位于&d沼泽&r深处的迷宫里，栖息着许多可怕的生物，其中最凶猛的当属&e牛头怪&r和&e牛头菇&r。"
+				"Minoshroom会掉落&bMeef Stroganoff&r，食用后可免疫&dFire Swamp&r的诅咒，让你得以继续前进。"
+			]
+			dependencies: ["1B8E61A0872EEA1C"]
+			id: "6016A3D8B7FD7A14"
+			tasks: [{
+				id: "70BEC1A7AAC7CDF0"
+				type: "structure"
+				title: "探索迷宫的秘密，揭开未知的奥秘"
+				icon: "twilightforest:minoshroom_trophy"
+				structure: "twilightforest:labyrinth"
+			}]
+			rewards: [{
+				id: "00A454F3DD11BB05"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			x: -3.0d
+			y: 6.0d
+			shape: "hexagon"
+			subtitle: "保持你迷人的方式不变，继续吸引大家吧"
+			description: [
+				"&b守护护身符&r牺牲自己，保护你的物品栏安全！"
+				"第一层青铜，保存你的&a手持物品&r。铁保存你的&a手持物品和盔甲&r。金保存&a你的整个物品栏&r！"
+				"不想找路回坟墓，或者可能死在虚空里时，这个会很有用。"
+			]
+			dependencies: ["6016A3D8B7FD7A14"]
+			id: "7B609119699B446D"
+			tasks: [{
+				id: "103B0AD74DB72227"
+				type: "item"
+				item: "twilightforest:charm_of_keeping_1"
+			}]
+			rewards: [{
+				id: "0976BDF991E155D6"
+				type: "item"
+				item: "twilightforest:charm_of_keeping_2"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 8.5d
+			subtitle: "移除一个头颅，就会出现两个！"
+			description: [
+				"&e九头蛇&r是一个可怕的敌人，只有一个弱点：它那喷火的嘴里！"
+				"最好带上&a火焰抗性&r和&b远程武器&r来打这场战斗。"
+				"击败巨兽后，你已完成一项任务，可以挑战高地了。"
+			]
+			dependencies: ["6016A3D8B7FD7A14"]
+			id: "3657239C35390F17"
+			tasks: [{
+				id: "2FFCBE1976CCD735"
+				type: "structure"
+				title: "找到一个九头蛇巢穴"
+				icon: "twilightforest:hydra_trophy"
+				structure: "twilightforest:hydra_lair"
+			}]
+			rewards: [{
+				id: "0563B2194472DE74"
+				type: "item"
+				item: "twilightforest:fiery_ingot"
+				count: 5
+			}]
+		}
+		{
+			title: "获得迷宫破坏者（Mazebreaker）"
+			x: -2.5d
+			y: 7.0d
+			shape: "hexagon"
+			subtitle: "你为什么要破坏一个完好无损的迷宫呢？"
+			description: [
+				"想挖穿迷宫里那些坚硬无比的方块几乎没意义。除非，你找到了这件物品：&bThe Mazebreaker&r。"
+				"该工具挖掘迷宫方块的速度比其他任何工具都快，且损耗更少。它可以从迷宫宝箱中获取。"
+			]
+			dependencies: ["6016A3D8B7FD7A14"]
+			id: "187BD92930BA8670"
+			tasks: [{
+				id: "43F651AEFE00109D"
+				type: "item"
+				item: {
+					id: "twilightforest:mazebreaker_pickaxe"
+					Count: 1b
+					tag: {
+						Damage: 0
+						Enchantments: [
+							{
+								lvl: 4s
+								id: "minecraft:efficiency"
+							}
+							{
+								lvl: 3s
+								id: "minecraft:unbreaking"
+							}
+							{
+								lvl: 2s
+								id: "minecraft:fortune"
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "7869AF04C5C8C870"
+				type: "item"
+				item: "twilightforest:decorative_mazestone"
+				count: 10
+			}]
+		}
+		{
+			title: "购买任务：20 份炽热血液"
+			x: -3.5d
+			y: 9.0d
+			shape: "pentagon"
+			subtitle: "有机会使用不需要的血液物品"
+			description: ["击杀几只九头蛇，用它们的血来换取有价值的物品吧！"]
+			dependencies: ["3657239C35390F17"]
+			can_repeat: true
+			id: "23E5790A6CC6524C"
+			tasks: [{
+				id: "5172110E1EBECE10"
+				type: "item"
+				item: "twilightforest:fiery_blood"
+				count: 20L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "04DA991BC07CEDE9"
+					type: "loot"
+					table_id: 5161092699925703455L
+				}
+				{
+					id: "7992840F40B17A89"
+					type: "loot"
+					table_id: 5161092699925703455L
+				}
+			]
+		}
+		{
+			x: 1.0d
+			y: 4.5d
+			subtitle: "最好多带些备用火把过来"
+			description: [
+				"位于&d黑暗森林&r的幽暗深处，骑士堡垒里遍布着&e哥布林&r，没有前几任首领的&b战利品&r就无法进入。"
+				"你可以在这里使用&bMaze Maps&r，但这些结构非常庞大，你可能需要多张地图。"
+				"建议用&6火把标记你的路线&r，以免不小心走回头路。"
+				"此地下城的尽头有与&eKnight Phantoms&r的战斗。它们不会跟出房间，但若你直接冲入，它们会蜂拥而至。建议&6在需要治疗时，定期退回到走廊上&r。"
+				"击败它们后，你就可以挑战&d黑暗塔&r了。"
+			]
+			dependencies: ["6016A3D8B7FD7A14"]
+			id: "10C91592DCBC6FBD"
+			tasks: [{
+				id: "3A8E49C2219C6265"
+				type: "structure"
+				title: "找到骑士堡垒 (Knight Stronghold)"
+				icon: "twilightforest:knight_phantom_trophy"
+				structure: "twilightforest:knight_stronghold"
+			}]
+			rewards: [{
+				id: "76B6287EE4098FC2"
+				type: "item"
+				item: "twilightforest:knightmetal_ingot"
+				count: 5
+			}]
+		}
+		{
+			x: 2.0d
+			y: 2.5d
+			shape: "hexagon"
+			subtitle: "更加迷人，魅力四射"
+			description: [
+				"生命护符本质上是一个不死图腾。未升级的版本会给予你4颗心和数秒的再生效果。"
+				"升级版会完全治愈你，并赋予再生、火焰抗性和抗性。"
+			]
+			dependencies: ["10C91592DCBC6FBD"]
+			id: "495574D50B0E4B4E"
+			tasks: [{
+				id: "7DD0FF8C91053DDE"
+				type: "item"
+				item: "twilightforest:charm_of_life_1"
+			}]
+			rewards: [{
+				id: "5C2E647942ABCBC3"
+				type: "item"
+				item: "twilightforest:charm_of_life_1"
+			}]
+		}
+		{
+			x: 4.5d
+			y: 5.5d
+			subtitle: "我才不怕什么恶魂呢，我才不怕恶魂！"
+			description: [
+				"在&d黑暗森林&r的中心，可以找到黑暗塔。这是一个充满怪物、由致命的&e远古幻翼&r统治的巨大建筑。"
+				"这里有四个较小的炮塔，每个都包含一把&bTower Key&r。这些钥匙用于解锁中央塔楼。这里有许多挑战，请为漫长的远征做好准备。"
+				"要击败&eUr-Ghast&r，你必须先击败附近房间、靠近Ghast Traps的&eCarminite Ghastlings&r。等怪物靠近时，再激活陷阱。"
+				"远古恶魂是进入&d高地&r必须击败的3位首领之一。"
+			]
+			dependencies: ["10C91592DCBC6FBD"]
+			id: "5C463B10FDE8CEF2"
+			tasks: [{
+				id: "130652635D0C4E6D"
+				type: "structure"
+				title: "找到黑暗之塔"
+				icon: "twilightforest:ur_ghast_trophy"
+				structure: "twilightforest:dark_tower"
+			}]
+			rewards: [{
+				id: "3E662212CD97B0B4"
+				type: "item"
+				item: "twilightforest:reappearing_block"
+				count: 32
+			}]
+		}
+		{
+			title: "找到雪怪洞穴"
+			x: 0.5d
+			y: 6.0d
+			subtitle: "准备好了吗？还没准备好呢，小家伙"
+			description: [
+				"雪原森林中可以找到雪怪洞穴，里面既有中立生物&e雪怪&r，也有你必须在本区域面对的Boss——&e阿尔法雪怪&r。"
+				"与这个敌人近战很危险，但远程也要注意&a提防掉落的冰锥&r！"
+				"他的死亡将让你能够进入&d冰川&r。"
+			]
+			dependencies: ["6016A3D8B7FD7A14"]
+			id: "41CBB146259DAF34"
+			tasks: [{
+				id: "7805711EAE52723C"
+				type: "structure"
+				icon: "twilightforest:alpha_yeti_trophy"
+				structure: "twilightforest:yeti_cave"
+			}]
+			rewards: [{
+				id: "27D5E4B9499E2336"
+				type: "loot"
+				table_id: 8808494820591225409L
+			}]
+		}
+		{
+			x: 2.0d
+			y: 7.0d
+			subtitle: "这里面应该有个关于艾莎的笑话才对"
+			description: [
+				"&e雪女王&r位于&d极光宫殿&r的顶层，这是一座充满冰怪和湿滑跑酷的险恶宅邸。"
+				"女王本人有三个阶段，并且无法通过她的&a冰座&r受到伤害，因此只能攻击她的上半身。"
+				"击败她后，你就完成了三个任务中的一个，获得了进入&dThe Highlands&r的权限。"
+			]
+			dependencies: ["41CBB146259DAF34"]
+			id: "2C905E4DE5051CC5"
+			tasks: [{
+				id: "75D978C04D89D204"
+				type: "structure"
+				title: "找到极光宫殿 (Aurora Palace)"
+				icon: "twilightforest:snow_queen_trophy"
+				structure: "twilightforest:aurora_palace"
+			}]
+			rewards: [
+				{
+					id: "4BD102C7AA30E305"
+					type: "item"
+					item: "twilightforest:aurora_block"
+					count: 32
+				}
+				{
+					id: "25BC2402BDA201C1"
+					type: "item"
+					item: "twilightforest:aurora_pillar"
+					count: 10
+				}
+				{
+					id: "02205F119C04D7A7"
+					type: "item"
+					item: "twilightforest:auroralized_glass"
+					count: 32
+				}
+			]
+		}
+		{
+			title: "终于：高地到了！"
+			x: 2.5d
+			y: 8.5d
+			subtitle: "你做到了！"
+			description: [
+				"你终于抵达了高地！这听起来可能有点可疑，但请听我说：你需要找到一些&b魔法豆&r。"
+				"你可以通过击杀地下的&eTrolls&r，或者搜刮他们用黑曜石绑定的宝箱来获得一些。"
+				"然后，找到一大片 &bUberous Soil&r，&eGiants&r 就生活在上面。你需要击败他们的矿工以获得他的 &bGiant Pickaxe&r。"
+				"然后，你可以&6回到地下，并使用巨型镐&r来打破大型黑曜石宝库。这需要花上一段时间。"
+			]
+			dependencies: [
+				"3657239C35390F17"
+				"2C905E4DE5051CC5"
+				"5C463B10FDE8CEF2"
+			]
+			id: "2A52CFAE2D88AC1D"
+			tasks: [{
+				id: "22834B81EEEA5750"
+				type: "biome"
+				icon: "twilightforest:magic_beans"
+				biome: "twilightforest:highlands"
+			}]
+			rewards: [
+				{
+					id: "01398B9B50D833E9"
+					type: "random"
+					table_id: 8808494820591225409L
+				}
+				{
+					id: "28FEF8A4B3D9CF03"
+					type: "choice"
+					exclude_from_claim_all: true
+					table_id: 5036677739913042344L
+				}
+			]
+		}
+		{
+			title: "获得进入最终城堡的权限"
+			x: 2.5d
+			y: 10.5d
+			subtitle: "一项毫无回报的任务"
+			description: [
+				"在&a荆棘&r的中心，坐落着一座城堡，里面关押着最终Boss——一位&e强大的巫妖&r，它会召唤仆从一同作战。"
+				"不过，是否要击败这个生物，全由你决定。这样做没有任何奖励。也没有荣誉。这个任务只会给予你唯一的回报。"
+				"既然如此，你还要去挑战他们吗？"
+			]
+			dependencies: ["2A52CFAE2D88AC1D"]
+			id: "2B8E1553C1487EBA"
+			tasks: [{
+				id: "0348C0E87AC1994A"
+				type: "structure"
+				icon: {
+					id: "twilightforest:lamp_of_cinders"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				structure: "twilightforest:final_castle"
+			}]
+			rewards: [
+				{
+					id: "7A839112E01549EF"
+					type: "loot"
+					table_id: 5161092699925703455L
+				}
+				{
+					id: "40E93A2B2452F75B"
+					type: "choice"
+					exclude_from_claim_all: true
+					table_id: 5525848455660196930L
+				}
+			]
+		}
+		{
+			title: "击败娜迦（Naga）"
+			x: 0.5d
+			y: 1.5d
+			dependencies: ["00B1A6C679547AF2"]
+			id: "3A0205CA0568641F"
+			tasks: [{
+				id: "1D993E6DD7CC725A"
+				type: "advancement"
+				advancement: "twilightforest:progress_naga"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "1F8FACBC9C53DC41"
+					type: "item"
+					item: "twilightforest:naga_courtyard_miniature_structure"
+				}
+				{
+					id: "67CB71361CAB1CFF"
+					type: "item"
+					item: "twilightforest:naga_trophy"
+				}
+			]
+		}
+		{
+			title: "击败一个巫妖（Lich）"
+			x: -4.0d
+			y: 2.0d
+			dependencies: ["1B8E61A0872EEA1C"]
+			id: "62F755926795DBB6"
+			tasks: [{
+				id: "7898CAECDDC6D1FA"
+				type: "advancement"
+				advancement: "twilightforest:progress_lich"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "1297B897EC9603F7"
+					type: "item"
+					item: "twilightforest:lich_tower_miniature_structure"
+				}
+				{
+					id: "1333763D4F0147B9"
+					type: "item"
+					item: "twilightforest:lich_trophy"
+				}
+			]
+		}
+		{
+			title: "击败骑士幻影（Knight Phantoms）"
+			x: 3.0d
+			y: 3.5d
+			dependencies: ["10C91592DCBC6FBD"]
+			id: "470A6825C49EEFAF"
+			tasks: [{
+				id: "0BF937F4624FDA56"
+				type: "advancement"
+				advancement: "twilightforest:progress_knights"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "6E61129F3516D660"
+				type: "item"
+				item: "twilightforest:knight_phantom_trophy"
+			}]
+		}
+		{
+			title: "击败远古灾厄兽 (Ur-Ghast)"
+			x: 6.0d
+			y: 8.0d
+			dependencies: ["5C463B10FDE8CEF2"]
+			id: "761DD39F82235893"
+			tasks: [{
+				id: "68E22924E52442E1"
+				type: "advancement"
+				advancement: "twilightforest:progress_ur_ghast"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "7A19C939ED75E268"
+				type: "item"
+				item: "twilightforest:ur_ghast_trophy"
+			}]
+		}
+		{
+			title: "吃掉米夫斯特罗加诺夫肉末烩饭"
+			x: -4.0d
+			y: 4.0d
+			dependencies: ["6016A3D8B7FD7A14"]
+			id: "169272849A588544"
+			tasks: [{
+				id: "1D855A5D41C7624A"
+				type: "advancement"
+				advancement: "twilightforest:progress_labyrinth"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "570E54B773C478EA"
+				type: "item"
+				item: "twilightforest:minoshroom_trophy"
+			}]
+		}
+		{
+			x: -0.5d
+			y: 10.5d
+			dependencies: ["3657239C35390F17"]
+			id: "54A57B37E1C04785"
+			tasks: [{
+				id: "176B52B1E8AD95EA"
+				type: "advancement"
+				advancement: "twilightforest:progress_hydra"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "59B149EEE3F36F50"
+				type: "item"
+				item: "twilightforest:hydra_trophy"
+			}]
+		}
+		{
+			x: 0.0d
+			y: 7.5d
+			dependencies: ["41CBB146259DAF34"]
+			id: "2F267ADA86FA5503"
+			tasks: [{
+				id: "5F68902062C5E874"
+				type: "kill"
+				entity: "twilightforest:alpha_yeti"
+				value: 1L
+			}]
+			rewards: [{
+				id: "33CCF59E9F804766"
+				type: "item"
+				item: "twilightforest:alpha_yeti_trophy"
+			}]
+		}
+		{
+			title: "击败极光雪女王"
+			x: 3.0d
+			y: 6.0d
+			dependencies: ["2C905E4DE5051CC5"]
+			id: "27AFCBF70AA24760"
+			tasks: [{
+				id: "77AEB177007F4630"
+				type: "advancement"
+				advancement: "twilightforest:progress_glacier"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "59D69494D0E58D6B"
+				type: "item"
+				item: "twilightforest:snow_queen_trophy"
+			}]
+		}
+		{
+			title: "完成“寻找羊驼”任务"
+			x: -7.5d
+			y: 8.25d
+			shape: "circle"
+			description: [
+				"找到一个 &eQuest Ram&r，你会发现它似乎缺少了什么东西。"
+				"或许给它一些&a更多的羊毛&r。具体来说，就是&6每种颜色的羊毛各一块&r。"
+			]
+			dependencies: ["730964D8E1FD059F"]
+			size: 1.5d
+			id: "4EAE4C40B444930A"
+			tasks: [{
+				id: "51CE926FD2497567"
+				type: "advancement"
+				advancement: "twilightforest:quest_ram"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "315D065F86EA659A"
+				type: "item"
+				item: "twilightforest:quest_ram_trophy"
+			}]
+		}
+		{
+			title: "完成暮色森林的探索"
+			x: 2.0d
+			y: 12.5d
+			description: ["击败&e最终首领&r、获得&b余烬之灯&r，甚至&6完成&e任务之羊&r，你就能获得一套独特的盔甲。"]
+			dependencies: [
+				"2B8E1553C1487EBA"
+				"54A57B37E1C04785"
+				"761DD39F82235893"
+				"4EAE4C40B444930A"
+			]
+			id: "25CB8D0869249D24"
+			tasks: [{
+				id: "22B4D8AF2A94AC3B"
+				type: "advancement"
+				advancement: "twilightforest:progress_troll"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "4C3BB3CA740BD35D"
+					type: "item"
+					item: {
+						id: "mcsa:petra_helmet"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "7E820483190944E0"
+					type: "item"
+					item: {
+						id: "mcsa:petra_chestplate"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "4A6115BF0510BD35"
+					type: "item"
+					item: {
+						id: "mcsa:petra_leggings"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "28A8A7CB748149C8"
+					type: "item"
+					item: {
+						id: "mcsa:petra_boots"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+	]
+}

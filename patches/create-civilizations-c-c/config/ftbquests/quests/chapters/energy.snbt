@@ -1,0 +1,331 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "energy"
+	group: "5FF51EF1908C8B2B"
+	icon: "mekanismgenerators:advanced_solar_generator"
+	id: "0E0CD76980F45477"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"本章将为你提供关于&eMekanism Energy&r的&9概述&r"
+				""
+				"更多信息请访问官方维基：&o&n&bwiki.aidancbrady.com/wiki/Main_Page&r"
+				""
+				"要了解每个方块和物品的用途，按住 &bShift+N&r 查看更多 &9详情"
+			]
+			id: "5D6575C031224B8D"
+			tasks: [{
+				id: "56B251A186A26ED3"
+				title: "能量！"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5D6575C031224B8D"]
+			id: "707C390CA702E9B5"
+			subtitle: "风力发电机根据方块高度产生电力。"
+			tasks: [{
+				id: "20805C90723DEF4C"
+				item: "mekanismgenerators:wind_generator"
+				type: "item"
+			}]
+			x: -2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5D6575C031224B8D"]
+			id: "7A20B51FC1D19C35"
+			subtitle: "热能发电机利用煤炭等热源来产生电力。"
+			tasks: [{
+				id: "7A05740AD8B87E0B"
+				item: "mekanismgenerators:heat_generator"
+				type: "item"
+			}]
+			x: 2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5D6575C031224B8D"]
+			id: "270349AB14A72304"
+			subtitle: "太阳能发电机在白天发电，所以你最好储存起来以备不时之需。"
+			tasks: [{
+				id: "4CF90741C915DC72"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "mekanismgenerators:solar_generator"
+							}
+							{
+								Count: 1b
+								id: "mekanismgenerators:advanced_solar_generator"
+							}
+						]
+					}
+				}
+				title: "太阳能发电"
+				type: "item"
+			}]
+			x: -2.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["5D6575C031224B8D"]
+			id: "092A21646C88520B"
+			subtitle: "生物发电机燃烧有机物来产生电力。"
+			tasks: [{
+				id: "12555024287F4890"
+				item: "mekanismgenerators:bio_generator"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["5D6575C031224B8D"]
+			id: "13AD0DAE5671C2D3"
+			subtitle: "燃气燃烧发电机燃烧乙烯等气体，高效地产生大量电力。"
+			tasks: [{
+				id: "1D0B375FC629CB16"
+				item: "mekanismgenerators:gas_burning_generator"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["5D6575C031224B8D"]
+			id: "13DCE339E4B277EA"
+			subtitle: "聚变反应堆使用燃料来产生电力和热量，这些热量可用于驱动涡轮机。"
+			tasks: [{
+				id: "1289F1288C42D496"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "mekanismgenerators:fusion_reactor_controller"
+							}
+							{
+								Count: 1b
+								id: "mekanismgenerators:fusion_reactor_frame"
+							}
+							{
+								Count: 1b
+								id: "mekanismgenerators:fusion_reactor_port"
+							}
+							{
+								Count: 1b
+								id: "mekanismgenerators:fusion_reactor_logic_adapter"
+							}
+						]
+					}
+				}
+				title: "聚变反应堆"
+				type: "item"
+			}]
+			x: 1.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["5D6575C031224B8D"]
+			id: "1A32D4F93FE661FC"
+			subtitle: "裂变反应堆使用裂变燃料产生大量热量，可将水转化为蒸汽来驱动涡轮机。"
+			tasks: [{
+				id: "7C57E34FB85D3985"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "mekanismgenerators:fission_reactor_casing"
+							}
+							{
+								Count: 1b
+								id: "mekanismgenerators:fission_reactor_port"
+							}
+							{
+								Count: 1b
+								id: "mekanismgenerators:fission_reactor_logic_adapter"
+							}
+							{
+								Count: 1b
+								id: "mekanismgenerators:fission_fuel_assembly"
+							}
+						]
+					}
+				}
+				title: "裂变反应堆"
+				type: "item"
+			}]
+			x: -1.0d
+			y: -2.0d
+		}
+		{
+			dependencies: [
+				"311B92D833111CAA"
+				"13DCE339E4B277EA"
+			]
+			dependency_requirement: "one_completed"
+			id: "7B0F3B5140B23BFF"
+			subtitle: "涡轮机利用蒸汽来发电。"
+			tasks: [{
+				id: "2344FB1E06038C4B"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "mekanismgenerators:turbine_casing"
+							}
+							{
+								Count: 1b
+								id: "mekanismgenerators:turbine_vent"
+							}
+							{
+								Count: 1b
+								id: "mekanismgenerators:turbine_valve"
+							}
+							{
+								Count: 1b
+								id: "mekanismgenerators:turbine_rotor"
+							}
+						]
+					}
+				}
+				title: "涡轮机"
+				type: "item"
+			}]
+			x: 1.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["1A32D4F93FE661FC"]
+			id: "311B92D833111CAA"
+			subtitle: "使用钠冷却反应堆，热电锅炉能更有效地利用发电机热量将水转化为蒸汽。"
+			tasks: [{
+				id: "55CA4F56D1A52476"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "mekanism:boiler_valve"
+							}
+							{
+								Count: 1b
+								id: "mekanism:boiler_casing"
+							}
+							{
+								Count: 1b
+								id: "mekanism:pressure_disperser"
+							}
+							{
+								Count: 1b
+								id: "mekanism:superheating_element"
+							}
+						]
+					}
+				}
+				title: "热电锅炉"
+				type: "item"
+			}]
+			x: -1.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["13DCE339E4B277EA"]
+			id: "24476CCCD56D94FA"
+			subtitle: "聚变反应堆可以由氚、氘或D-T燃料供能，其中D-T燃料是三者中最有效的。"
+			tasks: [{
+				id: "6A13079BEB903C10"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "mekanismgenerators:tritium_bucket"
+							}
+							{
+								Count: 1b
+								id: "mekanismgenerators:deuterium_bucket"
+							}
+							{
+								Count: 1b
+								id: "mekanismgenerators:fusion_fuel_bucket"
+							}
+						]
+					}
+				}
+				title: "燃料"
+				type: "item"
+			}]
+			x: 2.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["13DCE339E4B277EA"]
+			id: "5CEEEA9F4765D375"
+			subtitle: "激光可用于启动聚变过程。"
+			tasks: [
+				{
+					id: "6BB1EB762802EDCF"
+					item: "mekanismgenerators:laser_focus_matrix"
+					type: "item"
+				}
+				{
+					id: "0AF0CBB3B8FA25AE"
+					item: "mekanism:laser"
+					type: "item"
+				}
+			]
+			title: "激光点火器"
+			x: 2.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["1A32D4F93FE661FC"]
+			id: "74F075BAD94B6498"
+			subtitle: "裂变燃料可以重加工成一种由钋丸制成的物品。"
+			tasks: [{
+				id: "7090E24A92EF36B0"
+				item: "mekanism:reprocessed_fissile_fragment"
+				type: "item"
+			}]
+			x: -3.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["13AD0DAE5671C2D3"]
+			id: "273C80753130EFC9"
+			subtitle: "乙烯是基质的副产品，可以燃烧发电。"
+			tasks: [{
+				id: "321C409802C151FB"
+				item: "mekanism:ethene_bucket"
+				type: "item"
+			}]
+			x: 4.0d
+			y: 2.0d
+		}
+	]
+	title: "&b能量"
+}
