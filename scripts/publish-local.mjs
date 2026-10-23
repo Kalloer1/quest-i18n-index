@@ -247,11 +247,12 @@ step(3, '检出增量文件')
 // 整分支 fetch 只下载本地缺的对象（main 上已有的包不会再下），等于只取这批增量。
 {
   const branches = [...new Set(Object.values(plan.bySlug).map((it) => it.branch))]
-  // 只用普通（blobless）fetch：`--no-filter` 会把这几条分支的全部历史 blob 拉下来，
-  // 实测 1.3GB、十分钟还没完，而且卡死时没有任何输出。
-  // blob 交给 checkout 懒加载，配合 gitTry 的超时 + 重试就够了；
-  // 单包失败只跳过它，不会让整轮作废。
-  for (const h of branches) netGit(['fetch', '-q', '--no-tags', 'origin', `farm/${h}:refs/remotes/origin/farm/${h}`])
+  // 必须 --no-filter 整分支补齐，不能让 checkout 懒加载：
+  // 本仓库被前面的 `--filter=blob:none` 标成了 promisor，懒加载会走
+  // `fetch --filter=blob:none --stdin` 去要那**一个** blob —— 过滤器把要的东西又滤掉，
+  // 于是无限等（实测卡死 10 分钟、无任何输出，只能靠人 kill）。
+  // 单分支补一次约 40s，可续传；缺什么补什么，比逐文件往返快得多。
+  for (const h of branches) netGit(['fetch', '--no-filter', '--progress', '--no-tags', 'origin', `farm/${h}:refs/remotes/origin/farm/${h}`])
   console.log(`补齐 ${branches.length} 条分支的 blob：${branches.join(', ')}`)
 }
 let checkedOut = 0
@@ -260,7 +261,7 @@ for (const [slug, item] of Object.entries(plan.bySlug)) {
   const paths = [...item.patchPaths, item.baselinePath].filter(Boolean)
   if (gitTry(['checkout', `origin/farm/${item.branch}`, '--', ...paths])) { checkedOut++; continue }
   // 单包失败不该拖垮整轮：补一次 blob 再试，仍不行就记下来跳过（下一轮它还在 diff 里）。
-  netGit(['fetch', '-q', '--no-tags', 'origin', `farm/${item.branch}:refs/remotes/origin/farm/${item.branch}`])
+  netGit(['fetch', '--no-filter', '-q', '--no-tags', 'origin', `farm/${item.branch}:refs/remotes/origin/farm/${item.branch}`])
   if (gitTry(['checkout', `origin/farm/${item.branch}`, '--', ...paths])) { checkedOut++; continue }
   lost.push(slug)
   console.log(`  ✘ ${slug} 检出失败，本轮跳过（下一轮会重试）`)
