@@ -1,0 +1,187 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "gear"
+	filename: "automatic_harvesting"
+	group: "4F646440591467B1"
+	icon: "create:mechanical_harvester"
+	id: "1A8ED55438833735"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["要制作一个自动收割作物的机器，你需要建造一个移动装置，而建造它需要完成本系列任务中的物品，组装过程就是你的挑战"]
+			id: "3941F329A670122F"
+			size: 3.0d
+			tasks: [{
+				id: "3D6E097BCD724AA8"
+				title: "已开始"
+				type: "checkmark"
+			}]
+			title: "入门指南"
+			x: -1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["3941F329A670122F"]
+			description: ["你需要某种旋转动力来驱动你的装置。不过，如果使用风车轴承作为装置的基础，那么只需在装置上放置至少8个风帆方块，它就能开始旋转。"]
+			id: "321A6D0359F6E00E"
+			size: 1.5d
+			tasks: [{
+				id: "4827B6F88578B50B"
+				title: "完成"
+				type: "checkmark"
+			}]
+			title: "旋转动力"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["321A6D0359F6E00E"]
+			description: ["将风车轴承放置在你的装置底部，其余装置放在其上方"]
+			id: "6EBDB335B7FB85F4"
+			size: 1.5d
+			tasks: [{
+				id: "2256636EFDCA5F09"
+				item: "create:windmill_bearing"
+				type: "item"
+			}]
+			x: 3.0d
+			y: -2.25d
+		}
+		{
+			dependencies: ["6EBDB335B7FB85F4"]
+			description: ["如果你选择了使用风车轴承，那么还需要风帆来为你的装置提供动力。"]
+			id: "3112008D902572F0"
+			size: 1.5d
+			tasks: [{
+				count: 8L
+				id: "1D4F86C7A864A7D2"
+				item: "create:white_sail"
+				type: "item"
+			}]
+			x: 5.25d
+			y: -2.25d
+		}
+		{
+			dependencies: ["321A6D0359F6E00E"]
+			description: ["将机械轴承放置在你的装置底部，其余装置放在其上方"]
+			id: "6D7BFB66BA7E4524"
+			size: 1.5d
+			tasks: [{
+				id: "3B6ECFA3E9DEDC22"
+				item: "create:mechanical_bearing"
+				type: "item"
+			}]
+			x: 3.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["4240F17450D61FA9"]
+			description: ["至少需要一个机械收割机来收割作物，机械收割机必须与作物处于同一方块高度，并且会收割它经过的任何成熟作物"]
+			id: "0106E3AEF28EFEA1"
+			size: 1.5d
+			tasks: [{
+				id: "3516B60955617117"
+				item: "create:mechanical_harvester"
+				type: "item"
+			}]
+			x: 8.25d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0106E3AEF28EFEA1"]
+			description: ["要存放收获的作物，你需要至少2个便携式存储接口：一个在移动装置上，另一个在装置外部，连接到漏斗或其他能将物品移出背包的方块。"]
+			id: "5D216A3D6740623B"
+			size: 1.5d
+			tasks: [{
+				count: 2L
+				id: "461C7C8CE0ED1DD3"
+				item: "create:portable_storage_interface"
+				type: "item"
+			}]
+			x: 10.5d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"6D7BFB66BA7E4524"
+				"3112008D902572F0"
+			]
+			dependency_requirement: "one_completed"
+			description: ["机器的底座可以用任何你想要的方块，数量不限。"]
+			id: "4240F17450D61FA9"
+			size: 1.5d
+			tasks: [{
+				id: "451A31A1F8534C38"
+				title: "你选择的任意方块"
+				type: "checkmark"
+			}]
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["1D0D28384C759841"]
+			description: ["你需要胶水来连接所选轴承上所有的方块。如果不全部连接，它们将无法随着装置的其余部分一起移动。"]
+			id: "641F794062E3B087"
+			size: 1.5d
+			tasks: [{
+				id: "04EA45373885EAE3"
+				item: {
+					Count: 1b
+					id: "create:super_glue"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 17.25d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5D216A3D6740623B"]
+			description: ["至少需要一个能将物品移出对面存贮箱的方块来存放作物。该方块必须连接到便携式存储接口。"]
+			id: "3BFCBEA6BBB3E80C"
+			size: 1.5d
+			tasks: [{
+				id: "60CB608D4D166A18"
+				title: "正在移动物品栏内容"
+				type: "checkmark"
+			}]
+			x: 12.75d
+			y: 0.0d
+		}
+		{
+			dependencies: ["3BFCBEA6BBB3E80C"]
+			description: [
+				""
+				"作物需要存放的地方，而箱子无疑是最佳选择。"
+			]
+			id: "1D0D28384C759841"
+			size: 1.5d
+			tasks: [{
+				id: "3DA4743FF540DA41"
+				item: "minecraft:chest"
+				type: "item"
+			}]
+			x: 15.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["641F794062E3B087"]
+			description: ["现在，用你喜欢的方式组装你的收割机吧。"]
+			id: "04D88DFA7A969850"
+			size: 1.5d
+			tasks: [{
+				id: "66580988256C0171"
+				title: "组装任务书"
+				type: "checkmark"
+			}]
+			title: "收割机开始组装。"
+			x: 19.5d
+			y: 0.0d
+		}
+	]
+	title: "自动收割 (Create)"
+}
