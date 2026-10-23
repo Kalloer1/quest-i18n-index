@@ -1,0 +1,322 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "rsquare"
+	filename: "exposure"
+	group: ""
+	icon: "exposure:camera"
+	id: "1400000000000001"
+	order_index: 3
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"欢迎来到 Exposure！该模组为 Minecraft 带来了真正的游戏内摄影功能，让你可以拍照、在暗房中冲洗胶卷，并打印带框的照片。"
+				""
+				"要拍照，你需要一个装有胶卷（黑白或彩色）的相机。按住右键查看取景器，左键按下快门！"
+			]
+			icon: "exposure:camera"
+			id: "0000000000014001"
+			rewards: [{
+				count: 8
+				id: "0000000000140012"
+				item: "minecraft:glass_bottle"
+				type: "item"
+			}]
+			shape: "gear"
+			size: 1.5d
+			subtitle: "游戏内摄影机制"
+			tasks: [{
+				id: "0000000000140011"
+				item: "exposure:camera"
+				type: "item"
+			}]
+			title: "征服世界"
+			x: -7.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000014001"]
+			description: [
+				"合成黑白胶片。"
+				""
+				"手持相机右键潜行可打开外壳，然后将胶卷卷放入插槽。黑白胶卷显影所需的化学品较少，非常适合新手摄影师。"
+			]
+			icon: "exposure:black_and_white_film"
+			id: "0000000000014002"
+			rewards: [{
+				id: "0000000000140022"
+				item: "exposure:black_and_white_film"
+				type: "item"
+			}]
+			subtitle: "单色摄影"
+			tasks: [{
+				id: "0000000000140021"
+				item: "exposure:black_and_white_film"
+				type: "item"
+			}]
+			title: "加载胶卷：黑白胶卷"
+			x: -2.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["0000000000014001"]
+			description: [
+				"合成彩色胶片。"
+				""
+				"Color Film 能捕捉逼真的色彩、纹理、光照和实体着色器。需要在 Lightroom 中使用主化学染料才能正常打印！"
+			]
+			icon: "exposure:color_film"
+			id: "0000000000014003"
+			rewards: [{
+				id: "0000000000140032"
+				item: "exposure:color_film"
+				type: "item"
+			}]
+			subtitle: "全光谱摄影术"
+			tasks: [{
+				id: "0000000000140031"
+				item: "exposure:color_film"
+				type: "item"
+			}]
+			title: "绚丽捕捉：彩色胶片"
+			x: -2.5d
+			y: 2.5d
+		}
+		{
+			dependencies: [
+				"0000000000014002"
+				"0000000000014003"
+			]
+			description: [
+				"合成 Lightroom 方块！"
+				""
+				"拍完一卷胶片的所有帧后，将曝光的胶片从相机中取出，连同纸张、水和所需的化学染料一起放入 Lightroom 中冲洗实体照片。"
+			]
+			icon: "exposure:lightroom"
+			id: "0000000000014005"
+			rewards: [{
+				count: 16
+				id: "0000000000140052"
+				item: "minecraft:paper"
+				type: "item"
+			}]
+			subtitle: "化学处理工作站"
+			tasks: [
+				{
+					id: "0000000000140051"
+					item: "exposure:lightroom"
+					type: "item"
+				}
+				{
+					id: "6BDFD8B262571E5C"
+					item: "exposure:camera_stand"
+					type: "item"
+				}
+			]
+			title: "冲洗胶卷：The Lightroom 模块"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000014005"]
+			description: [
+				"在 Lightroom 中冲洗彩色照片需要一些主色颜料（青色、品红、黄色和黑色染料）。"
+				""
+				"在 Lightroom 内部或附近储备好这些染料，以实现全彩照片打印。"
+			]
+			icon: "minecraft:cyan_dye"
+			id: "0000000000014006"
+			rewards: [{
+				count: 8
+				id: "0000000000140064"
+				item: "minecraft:black_dye"
+				type: "item"
+			}]
+			subtitle: "化学颜料 (Chemical Pigments)"
+			tasks: [
+				{
+					count: 4L
+					id: "0000000000140061"
+					item: "minecraft:cyan_dye"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "0000000000140062"
+					item: "minecraft:magenta_dye"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "0000000000140063"
+					item: "minecraft:yellow_dye"
+					type: "item"
+				}
+			]
+			title: "开发者染料：青色、品红色、黄色"
+			x: 0.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["0000000000014005"]
+			description: [
+				"用 Lightroom 打印你的第一张照片！"
+				""
+				"照片可以手持查看特写，放入相册，或使用自定义相框挂在墙上。"
+			]
+			icon: "exposure:photograph"
+			id: "0000000000014007"
+			rewards: [{
+				id: "0000000000140072"
+				item: "exposure:album"
+				type: "item"
+			}]
+			subtitle: "可触摸的捕捉回忆"
+			tasks: [{
+				id: "0000000000140071"
+				item: "exposure:photograph"
+				type: "item"
+			}]
+			title: "实体打印：那张照片的实体打印"
+			x: 2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000014007"]
+			description: [
+				"制作一张专辑。"
+				""
+				"右键点击相册，即可将数十张打印照片存储在翻页书界面中——非常适合记录服务器建筑、冒险和玩家合影！"
+			]
+			icon: "exposure:album"
+			id: "0000000000014008"
+			rewards: [{
+				count: 4
+				id: "0000000000140082"
+				item: "minecraft:leather"
+				type: "item"
+			}]
+			subtitle: "便携式照片集系列"
+			tasks: [{
+				id: "0000000000140081"
+				item: "exposure:album"
+				type: "item"
+			}]
+			title: "相册：存档快照"
+			x: 5.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["0000000000014007"]
+			description: [
+				"1. 签名照片：将照片与羽毛/墨水结合，可永久锁定其标题和摄影师签名。"
+				"2. 壁挂式安装：将照片直接贴在墙上或木制相框里，装饰你的家和服务器出生点！"
+			]
+			icon: "exposure:photograph_frame"
+			id: "0000000000014009"
+			rewards: [{
+				count: 4
+				id: "0000000000140092"
+				item: "minecraft:item_frame"
+				type: "item"
+			}]
+			subtitle: "签名印刷品和墙面展示品"
+			tasks: [
+				{
+					id: "0000000000140091"
+					item: "exposure:photograph_frame"
+					type: "item"
+				}
+				{
+					id: "7702B9746F21FEDC"
+					item: "exposure:glass_photograph_frame"
+					type: "item"
+				}
+			]
+			title: "展示艺术：签名和装裱的照片"
+			x: 5.0d
+			y: 2.5d
+		}
+		{
+			dependencies: [
+				"0000000000014006"
+				"0000000000014008"
+				"0000000000014009"
+			]
+			description: ["你已经掌握了相机操作，用光度计校准了光线，在 Lightroom 中冲洗了黑白和彩色胶卷，并创建了存档相册！"]
+			icon: "exposure:camera"
+			id: "0000000000014010"
+			rewards: [
+				{
+					id: "0000000000140102"
+					item: "minecraft:diamond_block"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "0000000000140103"
+					item: "exposure:color_film"
+					type: "item"
+				}
+			]
+			shape: "gear"
+			size: 1.5d
+			subtitle: "视觉历史学家：王国篇"
+			tasks: [{
+				id: "0000000000140101"
+				title: "曝光掌控大师"
+				type: "checkmark"
+			}]
+			title: "摄影大师"
+			x: 7.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000014001"]
+			description: [
+				"玻璃板 + 彩色玻璃板会改变相机镜头的滤镜。"
+				""
+				"Spyglass 是你的相机变焦功能。"
+				""
+				"红石灯就是你的手电筒！"
+			]
+			id: "344ABE91E089E1FD"
+			rewards: [
+				{
+					count: 4
+					id: "4DAC1A413E93BC4F"
+					item: "exposure:black_and_white_film"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "2ABCA92B1AB35E84"
+					item: "exposure:color_film"
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "7D933C529DE3B716"
+					item: "minecraft:glass_pane"
+					type: "item"
+				}
+				{
+					id: "514E5018392A24C4"
+					item: "minecraft:spyglass"
+					type: "item"
+				}
+				{
+					id: "636E68A194A1A692"
+					item: "minecraft:redstone_lamp"
+					type: "item"
+				}
+			]
+			title: "相机滤镜、闪光灯和变焦"
+			x: -7.5d
+			y: -2.5d
+		}
+	]
+	title: "曝光：游戏内摄影术"
+}

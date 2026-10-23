@@ -1,0 +1,455 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "rsquare"
+	filename: "hexcasting"
+	group: "2025EA94113B1C25"
+	icon: "hexcasting:staff/oak"
+	id: "605F71F06356C3DF"
+	order_index: 11
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"欢迎来到 Hexcasting！与传统魔法模组不同，Hexcasting 不会提供现成的法术。相反，你需要在六边形网格上绘制几何图形，逐行编写自己的法术逻辑。"
+				""
+				"阅读《启示录之书》以学习图案形状。每个法术都由投掷杖绘制的图案笔触构成。"
+			]
+			icon: "hexcasting:lore_fragment"
+			id: "0000000000009001"
+			rewards: [{
+				count: 8
+				id: "0000000000090012"
+				item: "minecraft:amethyst_shard"
+				type: "item"
+			}]
+			subtitle: "模块化魔法系统（A Modular Magic System）"
+			tasks: [
+				{
+					id: "0000000000090011"
+					title: "向六边形魔法敞开心扉"
+					type: "checkmark"
+				}
+				{
+					id: "3F012A8757418CE1"
+					item: "hexcasting:lore_fragment"
+					type: "item"
+				}
+			]
+			title: "心灵之眼"
+			x: -18.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000009001"]
+			description: [
+				"制作你的第一根投掷杖（橡木、云杉木、桦木等）。"
+				""
+				"使用方法："
+				"1. 将法杖握在任一手中。"
+				"2. 在空处右键以打开 Hexcasting 网格。"
+				"3. 点击并按住鼠标，在六边形圆点上拖动以绘制图案笔划。"
+				"4. 按 Esc 或右键以执行所绘制的图案堆栈！"
+			]
+			icon: "hexcasting:staff/oak"
+			id: "0000000000009002"
+			rewards: [{
+				count: 16
+				id: "0000000000090022"
+				item: "hexcasting:amethyst_dust"
+				type: "item"
+			}]
+			subtitle: "你的几何导体（Your Geometric Conductor）"
+			tasks: [{
+				id: "0000000000090021"
+				item: "hexcasting:staff/oak"
+				type: "item"
+			}]
+			title: "铸造法杖 (The Casting Staff)"
+			x: -15.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["0000000000009001"]
+			description: [
+				"每个施放的法术都会消耗媒介。所有形式的紫水晶都用作媒介燃料："
+				""
+				"- 紫水晶粉尘（容量最小）"
+				"- 紫水晶碎片（标准容量）"
+				"- 紫晶块和充能紫晶（高容量）"
+				""
+				"保持紫水晶粉尘或碎片在背包中——施放法术时会自动消耗它们！"
+			]
+			icon: "hexcasting:amethyst_dust"
+			id: "0000000000009003"
+			rewards: [{
+				count: 2
+				id: "0000000000090033"
+				item: "hexcasting:charged_amethyst"
+				type: "item"
+			}]
+			subtitle: "为思维注入燃料"
+			tasks: [
+				{
+					count: 16L
+					id: "0000000000090031"
+					item: "hexcasting:amethyst_dust"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "0000000000090032"
+					item: "minecraft:amethyst_shard"
+					type: "item"
+				}
+			]
+			title: "紫水晶媒体：为法术注入能量"
+			x: -15.0d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"0000000000009002"
+				"0000000000009003"
+			]
+			description: [
+				"Hexcasting 遵循栈（先进后出）的逻辑运行。"
+				""
+				"要施放像创造水或冲力这样的基础法术："
+				"1. 绘制心智倒影（将你的玩家实体推入堆栈）。"
+				"2. 绘制罗盘的净化效果（将实体转换为方向向量/位置）。"
+				"3. 绘制区域蒸馏（定位目标方块）。"
+				"4. 绘制动作模式（例如，脉冲或破坏方块）。"
+			]
+			icon: "minecraft:gunpowder"
+			id: "0000000000009004"
+			rewards: [{
+				count: 32
+				id: "0000000000090042"
+				item: "hexcasting:amethyst_dust"
+				type: "item"
+			}]
+			subtitle: "理解堆栈 (Understanding the Stack)"
+			tasks: [
+				{
+					id: "0000000000090041"
+					title: "施放第一层堆叠法术"
+					type: "checkmark"
+				}
+				{
+					id: "725DD556CF0EF6A1"
+					item: "hexcasting:scroll_small"
+					type: "item"
+				}
+				{
+					id: "1821A9A8452CC816"
+					item: "hexcasting:scroll_medium"
+					type: "item"
+				}
+				{
+					id: "33BDE47787EF7F60"
+					item: "hexcasting:scroll"
+					type: "item"
+				}
+			]
+			title: "你的第一个法术：纯净与爆炸"
+			x: -15.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["0000000000009002"]
+			description: [
+				"制作一个窥视透镜，并将其装备在非主手或饰品栏中。"
+				""
+				"窥视透镜会显示以下HUD读数："
+				"- 精确的方块坐标"
+				"- 实体向量和速度"
+				"- 方块和物品中剩余的媒体文件"
+				"- 十六进制堆栈失败时的错误消息！"
+			]
+			icon: "hexcasting:lens"
+			id: "0000000000009005"
+			rewards: [{
+				count: 8
+				id: "0000000000090052"
+				item: "minecraft:amethyst_shard"
+				type: "item"
+			}]
+			subtitle: "可视化物品堆栈信息"
+			tasks: [{
+				id: "0000000000090051"
+				item: "hexcasting:lens"
+				type: "item"
+			}]
+			title: "占卜透镜：查看数据和向量"
+			x: -12.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["0000000000009004"]
+			description: [
+				"厌倦了每次都手动绘制长长的10笔图案吗？"
+				""
+				"制作一个焦点！通过施放抄写者的倒影，你可以在焦点上写下复杂的图案序列。之后，使用抄写者的赌注即可读取焦点并立即执行保存的咒语！"
+			]
+			icon: "hexcasting:focus"
+			id: "0000000000009006"
+			rewards: [{
+				id: "0000000000090062"
+				item: "hexcasting:focus"
+				type: "item"
+			}]
+			subtitle: "可重复使用的法术卡牌"
+			tasks: [{
+				id: "0000000000090061"
+				item: "hexcasting:focus"
+				type: "item"
+			}]
+			title: "重点：存储模式（Storing Patterns）"
+			x: -12.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000009004"]
+			description: [
+				"制作一个算盘 (Abacus) 吧。"
+				""
+				"高级魔法阵需要数学运算：在发射攻击模式前，计算向量距离、相乘速度或评估条件IF/ELSE逻辑。"
+			]
+			icon: "hexcasting:abacus"
+			id: "0000000000009007"
+			rewards: [{
+				count: 32
+				id: "0000000000090072"
+				item: "hexcasting:amethyst_dust"
+				type: "item"
+			}]
+			subtitle: "向量和数字算术运算"
+			tasks: [{
+				id: "0000000000090071"
+				item: "hexcasting:abacus"
+				type: "item"
+			}]
+			title: "算盘：数学运算"
+			x: -12.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["0000000000009006"]
+			description: [
+				"制作一本魔法书。"
+				""
+				"魔导书将数十页的焦点整合于一物。手持法杖，按住 Shift 滚动即可切换页面，瞬间施放不同的存储法术！"
+			]
+			icon: "hexcasting:spellbook"
+			id: "0000000000009008"
+			rewards: [{
+				count: 4
+				id: "0000000000090082"
+				item: "hexcasting:charged_amethyst"
+				type: "item"
+			}]
+			subtitle: "图案图书馆"
+			tasks: [{
+				id: "0000000000090081"
+				item: "hexcasting:spellbook"
+				type: "item"
+			}]
+			title: "法术存储：法术书 (The Spellbook)"
+			x: -9.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["0000000000009006"]
+			description: [
+				"1. Cypher：一次性法术物品。拥有独立的内部媒体，施放后会分解。"
+				"2. Trinket：多用途法术容器。会从你的物品栏中取出介质前，先消耗自身的内部电池。"
+			]
+			icon: "hexcasting:trinket"
+			id: "0000000000009009"
+			rewards: [{
+				id: "0000000000090092"
+				item: "hexcasting:cypher"
+				type: "item"
+			}]
+			subtitle: "一次性与电池法术"
+			tasks: [{
+				id: "0000000000090091"
+				item: "hexcasting:trinket"
+				type: "item"
+			}]
+			title: "小饰品与密码器"
+			x: -9.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000009009"]
+			description: [
+				"制作一件神器！"
+				""
+				"神器包含完整的复杂 Hex 程序，可利用环境或物品栏中的 Media 自动充电。非常适合永久飞行、传送或自动采矿程序。"
+			]
+			icon: "hexcasting:artifact"
+			id: "0000000000009010"
+			rewards: [{
+				count: 8
+				id: "0000000000090102"
+				item: "hexcasting:charged_amethyst"
+				type: "item"
+			}]
+			subtitle: "终局可穿戴魔法"
+			tasks: [{
+				id: "0000000000090101"
+				item: "hexcasting:artifact"
+				type: "item"
+			}]
+			title: "物品：无限铸造物品 (Artifacts: Infinite Casting Items)"
+			x: -9.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["0000000000009006"]
+			description: [
+				"制作写字板。"
+				""
+				"将石板放置在世界中或嵌入红石电路，当红石脉冲触发时即可执行自动化模式！"
+			]
+			icon: "hexcasting:slate"
+			id: "0000000000009011"
+			rewards: [{
+				count: 16
+				id: "0000000000090112"
+				item: "minecraft:redstone"
+				type: "item"
+			}]
+			subtitle: "世界图案方块"
+			tasks: [{
+				count: 4L
+				id: "0000000000090111"
+				item: "hexcasting:slate"
+				type: "item"
+			}]
+			title: "自动化：石板与思想抄写员"
+			x: -6.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["0000000000009011"]
+			description: [
+				"制作一个冲动块（查看冲动、右键冲动或存储冲动）。"
+				""
+				"Impetus 方块就像自主施放的“大脑”，无需玩家手持法杖，就能 24/7 运行存储的 Hex 循环！"
+			]
+			icon: "hexcasting:impetus/empty"
+			id: "0000000000009012"
+			rewards: [{
+				count: 8
+				id: "0000000000090122"
+				item: "hexcasting:charged_amethyst"
+				type: "item"
+			}]
+			subtitle: "自动化铸造引擎"
+			tasks: [{
+				id: "0000000000090121"
+				item: "hexcasting:impetus/empty"
+				type: "item"
+			}]
+			title: "Hex Automation：动力方块"
+			x: -6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000009012"]
+			description: [
+				"使用 Directrix、Slate 和 Impetus 方块建造一个魔法阵！"
+				""
+				"魔法阵可以处理海量媒体存储，施放大陆级法术，跨维度传送玩家，并自动化整个基地。"
+			]
+			icon: "hexcasting:directrix/empty"
+			id: "0000000000009013"
+			rewards: [{
+				count: 64
+				id: "0000000000090132"
+				item: "hexcasting:amethyst_dust"
+				type: "item"
+			}]
+			subtitle: "圆形施法网络 (Circle Casting Networks)"
+			tasks: [{
+				id: "0000000000090131"
+				item: "hexcasting:directrix/empty"
+				type: "item"
+			}]
+			title: "魔法阵：多方块魔法"
+			x: -6.0d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"0000000000009008"
+				"0000000000009010"
+				"0000000000009013"
+			]
+			description: ["你已经掌握了法杖施放、堆叠操作、焦点刻写、物品制作和自动法术阵！"]
+			icon: "minecraft:nether_star"
+			id: "0000000000009014"
+			rewards: [
+				{
+					count: 2
+					id: "0000000000090142"
+					item: "minecraft:netherite_block"
+					type: "item"
+				}
+				{
+					count: 32
+					id: "0000000000090143"
+					item: "hexcasting:charged_amethyst"
+					type: "item"
+				}
+			]
+			shape: "gear"
+			size: 1.5d
+			subtitle: "几何与心智的掌控者"
+			tasks: [
+				{
+					id: "0000000000090141"
+					title: "Hexcasting 已掌握"
+					type: "checkmark"
+				}
+				{
+					id: "5A7F8CBB312B6848"
+					item: "hexcasting:ancient_colorizer"
+					type: "item"
+				}
+			]
+			title: "大魔导师六边形巫师"
+			x: -2.0d
+			y: 0.0d
+		}
+		{
+			description: ["使用古代卷轴和魔法杖学习已破译的咒语，并确保记住它，因为你需要在施法UI中重现它。"]
+			icon: "hexcasting:ancient_scroll_paper"
+			id: "6557D9C368C89FB2"
+			rewards: [{
+				id: "41B11A9AA88782D2"
+				type: "xp"
+				xp: 10000
+			}]
+			subtitle: "远古的方式"
+			tasks: [{
+				id: "0154B91D0AE6051C"
+				item: {
+					Count: 1
+					id: "hexcasting:scroll"
+					tag: {
+						op_id: "hexcasting:potion/absorption"
+					}
+				}
+				type: "item"
+			}]
+			title: "古代卷轴（Scrolls of Ancient）"
+			x: -13.5d
+			y: -1.5d
+		}
+	]
+	title: "Hexcasting：图案魔法"
+}

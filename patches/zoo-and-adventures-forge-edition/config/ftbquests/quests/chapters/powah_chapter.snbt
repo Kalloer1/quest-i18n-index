@@ -1,0 +1,403 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "hexagon"
+	filename: "powah_chapter"
+	group: "16AE59190A45FE82"
+	icon: {
+		Count: 1
+		id: "powah:battery_starter"
+		tag: { }
+	}
+	id: "3000000000000000"
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"欢迎来到 Powah！"
+				""
+				"介电浆是模组中每台机器、电缆和组件的基石。使用煤炭、黏土和熔岩或水来制作。"
+			]
+			id: "3000000000000101"
+			rewards: [{
+				count: 32
+				id: "3000000000000104"
+				item: "powah:dielectric_paste"
+				type: "item"
+			}]
+			subtitle: "介电浆和材料 (Dielectric Paste and Materials)"
+			tasks: [
+				{
+					count: 32L
+					id: "3000000000000102"
+					item: "powah:dielectric_paste"
+					type: "item"
+				}
+				{
+					count: 16L
+					id: "3000000000000103"
+					item: "powah:dielectric_rod_horizontal"
+					type: "item"
+				}
+			]
+			title: "1. 力量的基石"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["3000000000000101"]
+			description: [
+				"Energizing Orb 利用 Energizing Rods 提供的电流为物品注入原始能量，从而解锁更高级的材料。"
+				""
+				"放置球体，并用1个或多个连接到电源的充能棒将其包围。"
+			]
+			id: "3000000000000105"
+			rewards: [{
+				id: "3000000000000108"
+				type: "xp"
+				xp: 150
+			}]
+			subtitle: "能量球与能量棒"
+			tasks: [
+				{
+					id: "3000000000000106"
+					item: "powah:energizing_orb"
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "3000000000000107"
+					item: "powah:energizing_rod_basic"
+					type: "item"
+				}
+			]
+			title: "能量充盈仪式"
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["3000000000000101"]
+			description: ["熔炉通过燃烧煤炭、木炭和木材等标准固体燃料来产生能量。"]
+			id: "3000000000000109"
+			rewards: [{
+				count: 8
+				id: "300000000000010B"
+				item: "minecraft:coal_block"
+				type: "item"
+			}]
+			subtitle: "熔炉制造机"
+			tasks: [{
+				id: "300000000000010A"
+				item: "powah:furnator_starter"
+				type: "item"
+			}]
+			title: "固体燃料动力"
+			x: 2.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["3000000000000105"]
+			description: [
+				"使用你的 Energizing Orb 来制作附魔材料："
+				""
+				"1. 金加铁等于能量钢"
+				"2. 烈焰棒等于烈焰水晶"
+			]
+			id: "300000000000010C"
+			rewards: [{
+				count: 16
+				id: "300000000000010F"
+				item: "minecraft:gold_ingot"
+				type: "item"
+			}]
+			subtitle: "充能钢与炽热晶体"
+			tasks: [
+				{
+					count: 8L
+					id: "300000000000010D"
+					item: "powah:steel_energized"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "300000000000010E"
+					item: "powah:crystal_blazing"
+					type: "item"
+				}
+			]
+			title: "灌注水晶 (Infused Crystals)"
+			x: 2.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["300000000000010C"]
+			description: [
+				"Powah 提供两种基于热能的电力选项："
+				""
+				"Magmator：直接消耗岩浆或液态高温流体。"
+				"热能发电机：放置在热方块（岩浆、熔岩、烈焰方块）上方，并供应冷却剂（水、冰）时，可产生被动电力。"
+			]
+			id: "3000000000000110"
+			rewards: [{
+				id: "3000000000000112"
+				item: "powah:blazing_crystal_block"
+				type: "item"
+			}]
+			subtitle: "岩浆发电机和热能发电机"
+			tasks: [{
+				id: "3000000000000111"
+				item: "powah:thermo_generator_basic"
+				type: "item"
+			}]
+			title: "热能发电系统"
+			x: 4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["300000000000010C"]
+			description: ["在白天有清晰天空视野时，可产生清洁能源。"]
+			id: "3000000000000113"
+			rewards: [{
+				id: "3000000000000115"
+				type: "xp"
+				xp: 200
+			}]
+			subtitle: "太阳能电池板"
+			tasks: [{
+				id: "3000000000000114"
+				item: "powah:solar_panel_basic"
+				type: "item"
+			}]
+			title: "太阳能发电"
+			x: 4.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["300000000000010C"]
+			description: ["能源电缆用于在发电机、电池和机器之间传输电力。"]
+			id: "3000000000000116"
+			rewards: [{
+				count: 16
+				id: "3000000000000118"
+				item: "powah:energy_cable_basic"
+				type: "item"
+			}]
+			subtitle: "能量电缆"
+			tasks: [{
+				count: 16L
+				id: "3000000000000117"
+				item: "powah:energy_cable_basic"
+				type: "item"
+			}]
+			title: "有线路缆基础设施"
+			x: 4.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["300000000000010C"]
+			description: [
+				"能量单元可本地储存能量。"
+				""
+				"手持电池可在携带时直接为背包内的工具和物品充电。"
+			]
+			id: "3000000000000119"
+			rewards: [{
+				id: "300000000000011C"
+				type: "xp"
+				xp: 250
+			}]
+			subtitle: "能量电池和蓄电池"
+			tasks: [
+				{
+					id: "300000000000011A"
+					item: "powah:energy_cell_basic"
+					type: "item"
+				}
+				{
+					id: "300000000000011B"
+					item: "powah:battery_basic"
+					type: "item"
+				}
+			]
+			title: "本地存储与充电"
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["300000000000010C"]
+			description: [
+				"将更高等级的宝石注入你的能量球中："
+				""
+				"钻石等于尼奥特水晶"
+				"2. 绿宝石等于灵性水晶"
+			]
+			id: "300000000000011D"
+			rewards: [{
+				count: 8
+				id: "3000000000000120"
+				item: "minecraft:emerald"
+				type: "item"
+			}]
+			subtitle: "活力与灵性水晶"
+			tasks: [
+				{
+					count: 4L
+					id: "300000000000011E"
+					item: "powah:crystal_niotic"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "300000000000011F"
+					item: "powah:crystal_spirited"
+					type: "item"
+				}
+			]
+			title: "高阶能量化装置"
+			x: 6.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["3000000000000119"]
+			description: ["当绑定到玩家后，玩家发射器可在任何维度无线为穿戴的盔甲和手持物品充电。"]
+			id: "3000000000000121"
+			rewards: [{
+				id: "3000000000000124"
+				type: "xp"
+				xp: 400
+			}]
+			subtitle: "玩家传输器"
+			tasks: [
+				{
+					id: "3000000000000122"
+					item: "powah:player_transmitter_basic"
+					type: "item"
+				}
+				{
+					id: "3000000000000123"
+					item: "powah:binding_card"
+					type: "item"
+				}
+			]
+			title: "无线充电"
+			x: 8.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["300000000000011D"]
+			description: [
+				"末影细胞充当共享的维度能量池。"
+				""
+				"将末影单元或末影门设置为特定频道频率（1-12），即可在世界任何地方无线传输能量。"
+			]
+			id: "3000000000000125"
+			rewards: [{
+				count: 8
+				id: "3000000000000128"
+				item: "minecraft:ender_pearl"
+				type: "item"
+			}]
+			subtitle: "末影细胞和末影传送门"
+			tasks: [
+				{
+					id: "3000000000000126"
+					item: "powah:ender_cell_basic"
+					type: "item"
+				}
+				{
+					id: "3000000000000127"
+					item: "powah:ender_gate_basic"
+					type: "item"
+				}
+			]
+			title: "跨维度无线网络 (Interdimensional Wireless Networks)"
+			x: 8.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["300000000000011D"]
+			description: [
+				"将36个反应堆方块以3x3的多方块结构放置在一起，建造一个Powah Reactor。"
+				""
+				"提供 Uraninite、水、煤炭和红石，实现自动化的高产核能发电。"
+			]
+			id: "3000000000000129"
+			rewards: [{
+				count: 2
+				id: "300000000000012C"
+				item: "powah:uraninite_block"
+				type: "item"
+			}]
+			subtitle: "Powah Reactor 多区块结构"
+			tasks: [
+				{
+					count: 16L
+					id: "300000000000012A"
+					item: "powah:uraninite"
+					type: "item"
+				}
+				{
+					count: 36L
+					id: "300000000000012B"
+					item: "powah:reactor_basic"
+					type: "item"
+				}
+			]
+			title: "模块化核能发电系统"
+			x: 10.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["3000000000000129"]
+			description: ["在 Energizing Orb 中组合 Nether Stars、Redstone Blocks 和 Blazing Crystals 来制作 Nitro Crystals——Powah! 的最终材料。"]
+			id: "300000000000012D"
+			rewards: [{
+				id: "300000000000012F"
+				type: "xp"
+				xp: 1500
+			}]
+			subtitle: "硝石晶体与下界之星的融合"
+			tasks: [{
+				count: 4L
+				id: "300000000000012E"
+				item: "powah:crystal_nitro"
+				type: "item"
+			}]
+			title: "终末能量催化剂"
+			x: 12.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["300000000000012D"]
+			description: [
+				"恭喜你完成了第三章：Powah！"
+				""
+				"将发电机、发射器和反应堆升级到氮速级，即可在整个基地实现无线电力无限传输。"
+			]
+			id: "3000000000000130"
+			rewards: [{
+				id: "3000000000000133"
+				type: "xp"
+				xp: 5000
+			}]
+			subtitle: "氮气加速一切物品"
+			tasks: [
+				{
+					id: "3000000000000131"
+					item: "powah:thermo_generator_nitro"
+					type: "item"
+				}
+				{
+					id: "3000000000000132"
+					item: "powah:player_transmitter_nitro"
+					type: "item"
+				}
+			]
+			title: "超频生成与无线精通"
+			x: 14.0d
+			y: 0.0d
+		}
+	]
+	title: "POWAH：无线与模块化能源"
+}

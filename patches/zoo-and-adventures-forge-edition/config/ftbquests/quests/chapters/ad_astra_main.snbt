@@ -1,0 +1,498 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "rsquare"
+	filename: "ad_astra_main"
+	group: "676E3A4156533E4D"
+	icon: {
+		Count: 1
+		id: "ad_astra:tier_1_rocket"
+		tag: { }
+	}
+	id: "5000000000000001"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"欢迎来到 Ad Astra！在离开地球之前，你需要提炼材料、处理生命支持和生产火箭燃料。"
+				""
+				"先收集 Ostrum、Desh 或精炼 Steel 来制作你的第一台机器。"
+			]
+			icon: {
+				Count: 1
+				id: "patchouli:guide_book"
+				tag: {
+					"patchouli:book": "ad_astra:astrodux"
+				}
+			}
+			id: "0000000000005001"
+			rewards: [{
+				count: 8
+				id: "0000000000050012"
+				item: "ad_astra:steel_ingot"
+				type: "item"
+			}]
+			subtitle: "为宇宙之旅做好准备"
+			tasks: [{
+				count: 16L
+				id: "0000000000050011"
+				item: "ad_astra:steel_ingot"
+				type: "item"
+			}]
+			title: "太空探索之旅就此开始"
+			x: -16.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000005001"]
+			description: [
+				"制作压缩机，将锭转化为结构板。"
+				"2. 建造NASA工作台，以制造火箭机身和引擎。"
+			]
+			icon: "ad_astra:nasa_workbench"
+			id: "0000000000005002"
+			rewards: [{
+				count: 8
+				id: "0000000000050023"
+				item: "ad_astra:steel_plate"
+				type: "item"
+			}]
+			subtitle: "锻造金属板与制作火箭"
+			tasks: [
+				{
+					id: "0000000000050021"
+					item: "ad_astra:compressor"
+					type: "item"
+				}
+				{
+					id: "0000000000050022"
+					item: "ad_astra:nasa_workbench"
+					type: "item"
+				}
+			]
+			title: "重型机械：压缩机和NASA工作台"
+			x: -12.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000005001"]
+			description: [
+				"制作一个氧气加载器和燃料精炼器。"
+				"2. 组装一套完整的太空服并为氧气罐充好气再发射！"
+			]
+			icon: {
+				Count: 1
+				id: "ad_astra:space_suit"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "0000000000005003"
+			rewards: [{
+				id: "0000000000050036"
+				item: "ad_astra:oxygen_bucket"
+				type: "item"
+			}]
+			subtitle: "在真空中生存下来"
+			tasks: [
+				{
+					id: "0000000000050031"
+					item: "ad_astra:oxygen_loader"
+					type: "item"
+				}
+				{
+					id: "0000000000050033"
+					item: {
+						Count: 1
+						id: "ad_astra:space_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "0000000000050032"
+					item: {
+						Count: 1
+						id: "ad_astra:space_suit"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "0000000000050034"
+					item: {
+						Count: 1
+						id: "ad_astra:space_pants"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "0000000000050035"
+					item: {
+						Count: 1
+						id: "ad_astra:space_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "生命支持：太空服和氧气瓶"
+			x: -12.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["0000000000005001"]
+			description: ["在主世界寻找原油泉，将石油泵入燃料精炼厂，并生产出可用的火箭燃料。"]
+			icon: "ad_astra:fuel_bucket"
+			id: "0000000000005004"
+			rewards: [{
+				count: 2
+				id: "0000000000050043"
+				item: "ad_astra:fuel_bucket"
+				type: "item"
+			}]
+			subtitle: "石油转化为能源"
+			tasks: [
+				{
+					id: "0000000000050041"
+					item: "ad_astra:fuel_refinery"
+					type: "item"
+				}
+				{
+					id: "0000000000050042"
+					item: "ad_astra:fuel_bucket"
+					type: "item"
+				}
+			]
+			title: "精炼火箭燃料"
+			x: -12.0d
+			y: 4.0d
+		}
+		{
+			dependencies: [
+				"0000000000005002"
+				"0000000000005003"
+				"0000000000005004"
+			]
+			description: [
+				"在NASA工作台制作1级火箭，放置发射台，加注燃料，然后冲向月球！"
+				""
+				""
+				"&c注意：所有太空维度，请从/warp communityportalcenter的发射台起飞"
+			]
+			icon: {
+				Count: 1
+				id: "ad_astra:tier_1_rocket"
+				tag: { }
+			}
+			id: "0000000000005005"
+			rewards: [{
+				count: 16
+				id: "0000000000050053"
+				item: "ad_astra:moon_sand"
+				type: "item"
+			}]
+			subtitle: "首次地外发射任务"
+			tasks: [
+				{
+					id: "0000000000050051"
+					item: "ad_astra:launch_pad"
+					type: "item"
+				}
+				{
+					id: "0000000000050052"
+					item: "ad_astra:tier_1_rocket"
+					type: "item"
+				}
+			]
+			title: "第一阶：飞向月球！"
+			x: -7.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000005005"]
+			description: [
+				"探索月球表面以开采德什矿石。德什是制作二级太空服和二级火箭的必需材料。"
+				""
+				"腐化的月球人在月球上的某个地牢里被发现！"
+			]
+			icon: "ad_astra:raw_desh"
+			id: "0000000000005006"
+			rewards: [{
+				count: 8
+				id: "0000000000050062"
+				item: "ad_astra:desh_ingot"
+				type: "item"
+			}]
+			subtitle: "Tier 2 材料"
+			tasks: [
+				{
+					count: 16L
+					id: "0000000000050061"
+					item: "ad_astra:raw_desh"
+					type: "item"
+				}
+				{
+					dimension: "ad_astra:moon"
+					icon: "ad_astra:moon_globe"
+					id: "66DF62C53B2C3745"
+					type: "dimension"
+				}
+				{
+					entity: "ad_astra:corrupted_lunarian"
+					icon: {
+						Count: 1
+						id: "apotheosis:gem"
+						tag: {
+							affix_data: {
+								rarity: "apotheosis:ancient"
+							}
+							gem: "apotheosis:core/lunar"
+						}
+					}
+					id: "634EA655FD115591"
+					type: "kill"
+					value: 10L
+				}
+			]
+			title: "月球基地：开采德什矿石"
+			x: -3.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000005006"]
+			description: [
+				"制作一个耐下界侵蚀的下界就绪二级火箭，飞往火星。"
+				""
+				""
+				"&c注意：所有太空维度，请从/warp communityportalcenter的发射台起飞"
+			]
+			icon: {
+				Count: 1
+				id: "ad_astra:tier_2_rocket"
+				tag: { }
+			}
+			id: "0000000000005007"
+			rewards: [{
+				count: 16
+				id: "0000000000050073"
+				item: "ad_astra:mars_sand"
+				type: "item"
+			}]
+			subtitle: "红色星球探险队"
+			tasks: [
+				{
+					id: "0000000000050071"
+					item: "ad_astra:tier_2_rocket"
+					type: "item"
+				}
+				{
+					id: "3225F1FA08278B46"
+					item: {
+						Count: 1
+						id: "ad_astra:netherite_space_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "0000000000050072"
+					item: {
+						Count: 1
+						id: "ad_astra:netherite_space_suit"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "47DCC06328A72060"
+					item: {
+						Count: 1
+						id: "ad_astra:netherite_space_pants"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "558C8D5E30BF639A"
+					item: {
+						Count: 1
+						id: "ad_astra:netherite_space_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "Tier 2: 火星之旅"
+			x: -3.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["0000000000005007"]
+			description: ["探索火星的地下城和洞穴以开采奥斯特姆矿石。奥斯特姆是 Tier 3 技术所需的材料。"]
+			icon: "ad_astra:raw_ostrum"
+			id: "0000000000005008"
+			rewards: [{
+				count: 8
+				id: "0000000000050082"
+				item: "ad_astra:ostrum_ingot"
+				type: "item"
+			}]
+			subtitle: "Tier 3 材料"
+			tasks: [
+				{
+					count: 16L
+					id: "0000000000050081"
+					item: "ad_astra:raw_ostrum"
+					type: "item"
+				}
+				{
+					dimension: "ad_astra:mars"
+					icon: "ad_astra:mars_globe"
+					id: "25F4290BD75CF4A2"
+					type: "dimension"
+				}
+				{
+					entity: "ad_astra:martian_raptor"
+					icon: "ad_astra:chiseled_mars_stone_bricks"
+					id: "06075E76F4A19093"
+					type: "kill"
+					value: 4L
+				}
+			]
+			title: "火星基地：开采奥斯特姆矿石"
+			x: 1.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["0000000000005008"]
+			description: ["建造三级火箭和喷气背包，登陆金星和水星。"]
+			icon: {
+				Count: 1
+				id: "ad_astra:tier_3_rocket"
+				tag: { }
+			}
+			id: "0000000000005009"
+			rewards: [{
+				count: 8
+				id: "0000000000050093"
+				item: "ad_astra:calorite_ingot"
+				type: "item"
+			}]
+			subtitle: "酸雨与极端高温"
+			tasks: [
+				{
+					id: "0000000000050091"
+					item: "ad_astra:tier_3_rocket"
+					type: "item"
+				}
+				{
+					id: "04761BF26B8979A4"
+					item: {
+						Count: 1
+						id: "ad_astra:jet_suit_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "0000000000050092"
+					item: {
+						Count: 1
+						id: "ad_astra:jet_suit"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "71095AF1DCDDA8FC"
+					item: {
+						Count: 1
+						id: "ad_astra:jet_suit_pants"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "4EB9608D761DC0DD"
+					item: {
+						Count: 1
+						id: "ad_astra:jet_suit_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "Tier 3: 极端行星（金星和水星）"
+			x: -3.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["0000000000005009"]
+			description: ["采集金星和水星的卡洛里特，建造Tier 4火箭。登陆冰冻的系外行星Glacio！"]
+			icon: {
+				Count: 1
+				id: "ad_astra:tier_4_rocket"
+				tag: { }
+			}
+			id: "0000000000005010"
+			rewards: [{
+				id: "0000000000050102"
+				item: "ad_astra:calorite_block"
+				type: "item"
+			}]
+			shape: "gear"
+			size: 1.5d
+			subtitle: "Ad Astra 大师"
+			tasks: [
+				{
+					id: "0000000000050101"
+					item: "ad_astra:tier_4_rocket"
+					type: "item"
+				}
+				{
+					dimension: "ad_astra:venus"
+					icon: "ad_astra:venus_globe"
+					id: "63C51D473945C2E1"
+					type: "dimension"
+				}
+				{
+					dimension: "ad_astra:mercury"
+					icon: "ad_astra:mercury_globe"
+					id: "51CDB9BA6F21067F"
+					type: "dimension"
+				}
+			]
+			title: "第4阶段：深空与冰川 (Deep Space and Glacio)"
+			x: 1.0535714285714377d
+			y: 5.9285714285714235d
+		}
+	]
+	title: "Ad Astra：核心进阶指南"
+}

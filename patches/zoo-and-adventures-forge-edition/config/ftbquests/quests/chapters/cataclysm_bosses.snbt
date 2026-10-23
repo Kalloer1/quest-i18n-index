@@ -1,0 +1,435 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "rsquare"
+	filename: "cataclysm_bosses"
+	group: "594C8B39E9AFB4D3"
+	icon: "cataclysm:monstrous_horn"
+	id: "7E9D1A2000000001"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"欢迎来到 L_Ender's Cataclysm！要找到这些远古恐怖之物的结构，你必须制作或获取专门的 Eye tracker："
+				""
+				"1. 深渊之眼（可寻获沉没之城）"
+				"2. 火焰之眼（寻找燃烧竞技场）"
+				"3. 巨石之眼（会找到废弃堡垒）"
+				"4. 沙漠之眼（可寻得远古工厂）"
+				"5. 诅咒之眼（找到远古金字塔）"
+			]
+			icon: "cataclysm:void_eye"
+			id: "0000000000007001"
+			rewards: [{
+				id: "0000000000070013"
+				item: "cataclysm:monstrous_horn"
+				type: "item"
+			}]
+			subtitle: "正在定位远古地牢"
+			tasks: [
+				{
+					id: "0000000000070011"
+					item: "cataclysm:void_eye"
+					type: "item"
+				}
+				{
+					id: "0000000000070012"
+					item: "cataclysm:flame_eye"
+					type: "item"
+				}
+			]
+			title: "深渊之眼 (The Eyes of the Abyss)"
+			x: -16.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000007001"]
+			description: [
+				"跟随单体石之眼，定位漂浮在末地维度中的废弃堡垒。"
+				""
+				"击败守护虚空核心的末地守卫者！"
+			]
+			icon: "cataclysm:gauntlet_of_guard"
+			id: "0000000000007002"
+			rewards: [
+				{
+					id: "0000000000070022"
+					item: "cataclysm:gauntlet_of_guard"
+					type: "item"
+				}
+				{
+					count: 16
+					id: "0000000000070023"
+					item: "cataclysm:void_stone"
+					type: "item"
+				}
+			]
+			subtitle: "遗迹堡垒首领"
+			tasks: [{
+				entity: "cataclysm:ender_guardian"
+				icon: "cataclysm:gauntlet_of_guard"
+				id: "0000000000070021"
+				title: "击败末地守卫者"
+				type: "kill"
+				value: 1L
+			}]
+			title: "首领：末地守卫（Ender Guardian）"
+			x: -11.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["0000000000007001"]
+			description: [
+				"使用沙漠之眼在末地定位灵魂熔炉。"
+				""
+				"唤醒并击败下界合金巨兽。小心它那能造成范围伤害的巨锤！"
+			]
+			icon: "cataclysm:monstrous_horn"
+			id: "0000000000007003"
+			rewards: [
+				{
+					id: "0000000000070032"
+					item: "cataclysm:monstrous_horn"
+					type: "item"
+				}
+				{
+					id: "0000000000070033"
+					item: {
+						Count: 1
+						id: "cataclysm:infernal_forge"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			subtitle: "灵魂锻造泰坦"
+			tasks: [{
+				entity: "cataclysm:netherite_monstrosity"
+				icon: "cataclysm:monstrous_horn"
+				id: "0000000000070031"
+				title: "击败下界合金巨兽"
+				type: "kill"
+				value: 1L
+			}]
+			title: "首领：下界合金巨兽"
+			x: -11.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["0000000000007001"]
+			description: [
+				"使用火焰之眼前往下界的燃烧竞技场。"
+				""
+				"挑战火焰骑士战士 Ignis。击败 Ignis 可获得 Ignitium 锭，用于锻造防火盔甲。"
+			]
+			icon: "cataclysm:ignitium_ingot"
+			id: "0000000000007004"
+			rewards: [
+				{
+					count: 4
+					id: "0000000000070042"
+					item: "cataclysm:ignitium_ingot"
+					type: "item"
+				}
+				{
+					id: "0000000000070043"
+					item: "cataclysm:the_incinerator"
+					type: "item"
+				}
+			]
+			subtitle: "燃烧竞技场冠军"
+			tasks: [{
+				entity: "cataclysm:ignis"
+				icon: "cataclysm:ignitium_ingot"
+				id: "0000000000070041"
+				title: "击败 Ignis"
+				type: "kill"
+				value: 1L
+			}]
+			title: "首领：Ignis"
+			x: -11.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["0000000000007001"]
+			description: [
+				"使用诅咒之眼，揭开埋在沙漠沙土下的远古金字塔。"
+				""
+				"找到墓室，击败远古遗骸！"
+			]
+			icon: "cataclysm:necklace_of_the_desert"
+			id: "0000000000007005"
+			rewards: [
+				{
+					id: "0000000000070052"
+					item: "cataclysm:remnant_skull"
+					type: "item"
+				}
+				{
+					icon: "cataclysm:necklace_of_the_desert"
+					id: "0000000000070053"
+					item: "cataclysm:necklace_of_desert"
+					type: "item"
+				}
+			]
+			subtitle: "被诅咒的金字塔统治者"
+			tasks: [{
+				entity: "cataclysm:ancient_remnant"
+				icon: "cataclysm:remnant_skull"
+				id: "0000000000070051"
+				title: "击败远古残骸（Ancient Remnant）"
+				type: "kill"
+				value: 1L
+			}]
+			title: "首领：远古残骸 (Ancient Remnant)"
+			x: -11.0d
+			y: 4.0d
+		}
+		{
+			dependencies: [
+				"0000000000007002"
+				"0000000000007003"
+				"0000000000007004"
+				"0000000000007005"
+			]
+			description: [
+				"潜入深海海沟，探索沉没之城。"
+				""
+				"在抵达深渊深处之前，击败守护外围的海洋巨石巨像 Coralssus。"
+			]
+			icon: {
+				Count: 1
+				id: "cataclysm:coral_spear"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "0000000000007006"
+			rewards: [{
+				id: "0000000000070062"
+				item: {
+					Count: 1
+					id: "cataclysm:coral_spear"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			subtitle: "海洋沟壑巨兽"
+			tasks: [
+				{
+					entity: "cataclysm:coralssus"
+					icon: {
+						Count: 1
+						id: "cataclysm:coral_spear"
+						tag: {
+							Damage: 0
+						}
+					}
+					id: "0000000000070061"
+					title: "击败珊瑚巨兽（Coralssus）"
+					type: "kill"
+					value: 1L
+				}
+				{
+					id: "5AC3527DECC390F6"
+					item: {
+						Count: 1
+						id: "cataclysm:coral_bardiche"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "首领：珊瑚巨兽（Coralssus）"
+			x: -6.0d
+			y: -2.0d
+		}
+		{
+			dependencies: [
+				"0000000000007002"
+				"0000000000007003"
+				"0000000000007004"
+				"0000000000007005"
+			]
+			description: ["探索地下远古工厂，与由凋零能量驱动的机械死亡机器——The Harbinger 相遇。"]
+			icon: "cataclysm:witherite_ingot"
+			id: "0000000000007007"
+			rewards: [
+				{
+					count: 4
+					id: "0000000000070072"
+					item: "cataclysm:witherite_ingot"
+					type: "item"
+				}
+				{
+					id: "0000000000070073"
+					item: {
+						Count: 1
+						id: "cataclysm:laser_gatling"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			subtitle: "远古工厂机械体"
+			tasks: [{
+				entity: "cataclysm:the_harbinger"
+				icon: "cataclysm:witherite_ingot"
+				id: "0000000000070071"
+				title: "击败 The Harbinger"
+				type: "kill"
+				value: 1L
+			}]
+			title: "首领：不祥的预兆者"
+			x: -6.0d
+			y: 2.0d
+		}
+		{
+			dependencies: [
+				"0000000000007006"
+				"0000000000007007"
+			]
+			description: [
+				"使用深渊祭坛，下降到沉没城市的最低层。"
+				""
+				"击败 L_Ender's Cataclysm 的最终首领，利维坦！"
+			]
+			icon: "cataclysm:tidal_claws"
+			id: "0000000000007008"
+			rewards: [
+				{
+					id: "0000000000070082"
+					item: "cataclysm:tidal_claws"
+					type: "item"
+				}
+				{
+					id: "0000000000070083"
+					item: "cataclysm:abyssal_egg"
+					type: "item"
+				}
+			]
+			subtitle: "沉没之城世界首领"
+			tasks: [{
+				entity: "cataclysm:the_leviathan"
+				icon: "cataclysm:tidal_claws"
+				id: "0000000000070081"
+				title: "击败利维坦巨兽"
+				type: "kill"
+				value: 1L
+			}]
+			title: "终极深渊之巅：利维坦巨兽"
+			x: -1.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000007008"]
+			description: ["你已成功追踪、召唤并击败了 L_Ender's Cataclysm 中的所有首领！"]
+			icon: "cataclysm:abyssal_sacrifice"
+			id: "0000000000007009"
+			rewards: [
+				{
+					id: "0000000000070093"
+					item: "cataclysm:witherite_block"
+					type: "item"
+				}
+				{
+					id: "0000000000070092"
+					item: {
+						Count: 1
+						id: "cataclysm:bone_reptile_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "08A724B14700A3CB"
+					item: {
+						Count: 1
+						id: "cataclysm:ignitium_elytra_chestplate"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "79560F8EEE7FE681"
+					item: {
+						Count: 1
+						id: "cataclysm:cursium_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "29CC5B3BDDDE4563"
+					item: "cataclysm:void_core"
+					type: "item"
+				}
+			]
+			shape: "gear"
+			size: 1.5d
+			subtitle: "征服所有远古恐怖的存在之人"
+			tasks: [
+				{
+					id: "0000000000070091"
+					title: "所有灾变首领已被击败"
+					type: "checkmark"
+				}
+				{
+					entity: "cataclysm:ancient_remnant"
+					id: "4BB700F24D897226"
+					type: "kill"
+					value: 1L
+				}
+				{
+					entity: "cataclysm:the_harbinger"
+					id: "53964E633A93548F"
+					type: "kill"
+					value: 1L
+				}
+				{
+					entity: "cataclysm:ignis"
+					id: "53B1BC8E18691952"
+					type: "kill"
+					value: 1L
+				}
+				{
+					entity: "cataclysm:netherite_ministrosity"
+					id: "64C83338D8F2F0F9"
+					type: "kill"
+					value: 1L
+				}
+				{
+					entity: "cataclysm:ender_guardian"
+					id: "1CCC59184C96BD40"
+					type: "kill"
+					value: 1L
+				}
+				{
+					entity: "cataclysm:the_leviathan"
+					id: "7D43DD016DE26DC7"
+					type: "kill"
+					value: 1L
+				}
+			]
+			title: "大灾难的终结者"
+			x: 4.0d
+			y: 0.0d
+		}
+	]
+	title: "L_Ender's Cataclysm: Boss Hunt"
+}
