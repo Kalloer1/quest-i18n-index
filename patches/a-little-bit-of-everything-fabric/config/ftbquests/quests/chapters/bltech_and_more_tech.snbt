@@ -1,0 +1,693 @@
+# AI 初翻，未人工校对
+{
+	always_invisible: true
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "bltech_and_more_tech"
+	group: "16FA606EF1159FC2"
+	icon: "ae2:singularity"
+	id: "223C71C3BB05DE76"
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"&b&lTech Reborn&r 提供了许多&6机器&r和&6技术&r，以实现高效的&a能源生成&r、&a材料采集&r等。"
+				""
+				"先制作一些&6精炼铁&r来开始吧！"
+				""
+				"&e(您可能有权获得退款)&r"
+				""
+				"&l注意：大多数多方块物品在GUI中都有一个全息投影按钮。&r"
+			]
+			icon: "techreborn:manual"
+			id: "40E5742A1FF1C51D"
+			rewards: [{
+				id: "2A675A94EEFD7193"
+				item: "techreborn:manual"
+				type: "item"
+			}]
+			shape: "octagon"
+			size: 1.2d
+			subtitle: "创新重生！"
+			tasks: [{
+				id: "6E68305B65684641"
+				title: "&b继续阅读前请先通读所有内容！"
+				type: "checkmark"
+			}]
+			title: "&b&lTech Reborn"
+			x: 2.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["40E5742A1FF1C51D"]
+			description: [
+				"通常是在&n任何类型的熔炉中熔炼&l&6铁锭&r制成。&r"
+				""
+				"这些东西是所有与 &bTech Reborn&r 相关事物的基础，所以一定要多做一些。"
+			]
+			icon: "techreborn:refined_iron_ingot"
+			id: "317154D316C75DFA"
+			rewards: [
+				{
+					count: 8
+					id: "3C7795F6F897FFF0"
+					item: "techreborn:refined_iron_ingot"
+					type: "item"
+				}
+				{
+					id: "660C307597BCF256"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+			shape: "hexagon"
+			subtitle: "铁，但经过提炼了……？哦，管他呢。"
+			tasks: [
+				{
+					advancement: "techreborn:refinediron"
+					criterion: ""
+					icon: "techreborn:refined_iron_storage_block"
+					id: "601F22EAB7CF4A89"
+					title: "&6红莲会产出这些东西，到处都是植物。"
+					type: "advancement"
+				}
+				{
+					count: 16L
+					id: "004401C5F923A1E3"
+					item: { Count: 16, id: "techreborn:refined_iron_ingot" }
+					type: "item"
+				}
+			]
+			title: "&l&6这样算足够精致了吗……？"
+			x: 2.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["40E5742A1FF1C51D"]
+			description: [
+				"找到树后，寻找 Sap 点。这些会随时间再生。"
+				""
+				"{image:minecraft:textures/gui/sap.png width:667 height:477 align:center fit:true}"
+				""
+				"右键点击地面，用 Treetap 提取树脂到你的背包中。树脂可以熔炼成橡胶，用于制作绝缘电缆。"
+			]
+			icon: {
+				Count: 1
+				id: "techreborn:treetap"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "4CF12E77044A1CCE"
+			rewards: [
+				{
+					count: 6
+					id: "10A68B2F34DD6C05"
+					item: "techreborn:sap"
+					type: "item"
+				}
+				{
+					id: "741743ACDF613B25"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+			shape: "hexagon"
+			subtitle: "荣耀的 SAP！能安抚神经。"
+			tasks: [
+				{
+					advancement: "techreborn:sap"
+					criterion: ""
+					icon: "techreborn:rubber_sapling"
+					id: "14451B0B61C46EA3"
+					title: "&6橡胶的大规模生产造成了不可逆转的损害。"
+					type: "advancement"
+				}
+				{
+					id: "7E3B95D06E8B44CC"
+					item: {
+						Count: 1
+						id: "techreborn:treetap"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 12L
+					id: "7CD45AF39C0ED14C"
+					item: { Count: 12, id: "techreborn:sap" }
+					type: "item"
+				}
+				{
+					count: 6L
+					id: "3EFBBF508C09BB99"
+					item: { Count: 6, id: "techreborn:rubber" }
+					type: "item"
+				}
+				{
+					id: "59A896F05AB7E1D9"
+					item: "techreborn:resin_basin"
+					type: "item"
+				}
+			]
+			title: "&l&6老朋友萨普了"
+			x: 4.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["4CF12E77044A1CCE"]
+			hide_until_deps_complete: false
+			id: "5D8AEB192057D216"
+			shape: "octagon"
+			size: 0.8d
+			tasks: [{
+				id: "5500F53D98C9EFA8"
+				item: "techreborn:insulated_copper_cable"
+				type: "item"
+			}]
+			x: 4.05d
+			y: 1.3499999999999999d
+		}
+		{
+			dependencies: ["4CF12E77044A1CCE"]
+			id: "6B8CE748ED62AF92"
+			shape: "octagon"
+			size: 0.8d
+			tasks: [{
+				id: "0EBCCA5F1BBEDE18"
+				item: "techreborn:lead_ingot"
+				type: "item"
+			}]
+			x: 4.95d
+			y: 1.3499999999999999d
+		}
+		{
+			dependencies: [
+				"6B8CE748ED62AF92"
+				"5D8AEB192057D216"
+			]
+			id: "1FD050747B6A5212"
+			rewards: [{
+				id: "0967A7B9B690623A"
+				item: {
+					Count: 1
+					id: "techreborn:electric_treetap"
+					tag: {
+						energy: 10000L
+					}
+				}
+				type: "item"
+			}]
+			shape: "hexagon"
+			tasks: [{
+				id: "386055709D89C327"
+				item: "techreborn:red_cell_battery"
+				type: "item"
+			}]
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["317154D316C75DFA"]
+			id: "11C322BD43C5AFA7"
+			shape: "hexagon"
+			tasks: [{
+				id: "19646C3CBCB1E85B"
+				item: "techreborn:basic_machine_frame"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["1FD050747B6A5212"]
+			id: "6AF39B9DD4DB6BFF"
+			shape: "hexagon"
+			tasks: [{
+				id: "30F75218E7369418"
+				item: "techreborn:solid_fuel_generator"
+				type: "item"
+			}]
+			x: 5.5d
+			y: -1.0d
+		}
+		{
+			dependencies: [
+				"317154D316C75DFA"
+				"5D8AEB192057D216"
+			]
+			id: "5D433CFA3AC10197"
+			shape: "gear"
+			size: 1.0d
+			tasks: [{
+				id: "1711420D342DD119"
+				item: "techreborn:electronic_circuit"
+				type: "item"
+			}]
+			x: 2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"11C322BD43C5AFA7"
+				"5D433CFA3AC10197"
+			]
+			id: "1E706F2D8B7B88D4"
+			shape: "hexagon"
+			tasks: [{
+				id: "236A5440D7394DA2"
+				item: "techreborn:electric_furnace"
+				type: "item"
+			}]
+			x: 0.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["5D433CFA3AC10197"]
+			id: "1D6CB7DB7E0054E4"
+			shape: "hexagon"
+			size: 0.7d
+			tasks: [{
+				id: "5998D5F608A5A2B8"
+				item: "techreborn:compressor"
+				type: "item"
+			}]
+			x: 3.5d
+			y: -0.35d
+		}
+		{
+			dependencies: ["6AF39B9DD4DB6BFF"]
+			id: "3583EE8A1ABAFDAD"
+			shape: "octagon"
+			size: 0.75d
+			tasks: [{
+				id: "491675DB7A363E38"
+				item: "techreborn:grinder"
+				type: "item"
+			}]
+			x: 6.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["317154D316C75DFA"]
+			id: "5D2950742773AC94"
+			shape: "hexagon"
+			size: 0.85d
+			tasks: [{
+				id: "30B57672DEB812F3"
+				item: "techreborn:tin_ingot"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["5D2950742773AC94"]
+			id: "0F4F3BD58A16F655"
+			shape: "octagon"
+			size: 0.8d
+			tasks: [{
+				id: "23C178C62DCF3BC9"
+				item: "techreborn:cell"
+				type: "item"
+			}]
+			x: -1.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["1FD050747B6A5212"]
+			id: "0FEBA7FFCCCAEF17"
+			shape: "octagon"
+			size: 0.7d
+			tasks: [{
+				id: "7817F3546067B3E9"
+				item: "techreborn:low_voltage_su"
+				type: "item"
+			}]
+			x: 5.645578231292603d
+			y: 0.49370748299322287d
+		}
+		{
+			dependencies: ["6AF39B9DD4DB6BFF"]
+			id: "293B0FC76DD8D1AB"
+			shape: "octagon"
+			size: 0.8d
+			tasks: [{
+				id: "6416584BD0669740"
+				item: "techreborn:lv_transformer"
+				type: "item"
+			}]
+			x: 6.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["293B0FC76DD8D1AB"]
+			id: "4F845585E6F5158F"
+			shape: "octagon"
+			size: 0.8d
+			tasks: [{
+				id: "41FD49B9CEF7EE94"
+				item: "techreborn:mv_transformer"
+				type: "item"
+			}]
+			x: 7.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["4F845585E6F5158F"]
+			id: "3C118168E906891C"
+			shape: "hexagon"
+			size: 0.75d
+			tasks: [{
+				id: "7A6D755D5002FFFD"
+				item: "techreborn:hv_transformer"
+				type: "item"
+			}]
+			x: 8.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["4F845585E6F5158F"]
+			id: "01044306AB43D5F6"
+			shape: "hexagon"
+			size: 0.75d
+			tasks: [
+				{
+					id: "4D30FA7D99F8B5E7"
+					item: "techreborn:lapotronic_su"
+					type: "item"
+				}
+				{
+					id: "2FED458D57E598CD"
+					item: "techreborn:lsu_storage"
+					type: "item"
+				}
+			]
+			x: 8.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["1E706F2D8B7B88D4"]
+			id: "3B49F26D86985775"
+			size: 0.75d
+			tasks: [{
+				id: "44146E007BAB21C5"
+				item: "techreborn:alloy_smelter"
+				type: "item"
+			}]
+			x: -0.5d
+			y: -0.5d
+		}
+		{
+			id: "454E605CAE9B988F"
+			tasks: [{
+				id: "70587FC40D9E8B8A"
+				item: "techreborn:bronze_ingot"
+				type: "item"
+			}]
+			x: -1.5d
+			y: 0.0d
+		}
+		{
+			id: "3DD2658B4A79A409"
+			tasks: [
+				{
+					id: "05E1F2EEA84F6FAE"
+					item: "techreborn:wrench"
+					type: "item"
+				}
+				{
+					id: "2834549113F0B222"
+					item: {
+						Count: 1
+						id: "techreborn:painting_tool"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			x: -2.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["0F4F3BD58A16F655"]
+			id: "781084062F66D6E0"
+			shape: "hexagon"
+			size: 0.85d
+			tasks: [{
+				id: "6CB040E6DDCBA5BA"
+				item: "techreborn:solid_canning_machine"
+				type: "item"
+			}]
+			x: -1.0d
+			y: 3.5d
+		}
+		{
+			id: "6BEF514D974DB4F6"
+			shape: "gear"
+			tasks: [{
+				id: "7BA508E6C1EF78E0"
+				item: "techreborn:advanced_circuit"
+				type: "item"
+			}]
+			x: 2.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["1D6CB7DB7E0054E4"]
+			id: "079F174716769B53"
+			shape: "hexagon"
+			size: 0.7d
+			tasks: [{
+				id: "33576737CCAC9D03"
+				item: "techreborn:rolling_machine"
+				type: "item"
+			}]
+			x: 4.2d
+			y: -1.05d
+		}
+		{
+			dependencies: [
+				"5D433CFA3AC10197"
+				"1D6CB7DB7E0054E4"
+			]
+			id: "218B3C6B41E082B9"
+			shape: "octagon"
+			size: 0.75d
+			tasks: [{
+				id: "012C68814BEC156C"
+				item: "techreborn:data_storage_core"
+				type: "item"
+			}]
+			x: 2.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["3583EE8A1ABAFDAD"]
+			id: "3D79F9EA1C217D66"
+			shape: "octagon"
+			size: 0.8d
+			tasks: [{
+				id: "7CFC7CC92A7AC004"
+				item: "techreborn:coal_dust"
+				type: "item"
+			}]
+			x: 7.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["3D79F9EA1C217D66"]
+			id: "1DF80E5E3A653231"
+			shape: "octagon"
+			size: 0.75d
+			tasks: [{
+				id: "5A8C2A519139F0F2"
+				item: "techreborn:carbon_mesh"
+				type: "item"
+			}]
+			x: 6.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["1DF80E5E3A653231"]
+			id: "2ABD7D1740189C10"
+			shape: "hexagon"
+			size: 0.8d
+			tasks: [{
+				id: "09B58BC9D8B894F1"
+				item: {
+					Count: 1
+					id: "techreborn:nanosaber"
+					tag: {
+						isActive: 0b
+					}
+				}
+				type: "item"
+			}]
+			x: 6.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["1DF80E5E3A653231"]
+			id: "63D3FB7A7A014310"
+			shape: "hexagon"
+			size: 0.8d
+			tasks: [
+				{
+					id: "7132E7545678C29B"
+					item: {
+						Count: 1
+						id: "techreborn:nano_helmet"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "181762539E71A350"
+					item: {
+						Count: 1
+						id: "techreborn:nano_chestplate"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "2EDEFB1BEDC1803B"
+					item: {
+						Count: 1
+						id: "techreborn:nano_leggings"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "2B899865638FCCE6"
+					item: {
+						Count: 1
+						id: "techreborn:nano_boots"
+						tag: { }
+					}
+					type: "item"
+				}
+			]
+			x: 7.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["3D79F9EA1C217D66"]
+			id: "0D8B13201DA5262E"
+			shape: "hexagon"
+			size: 0.85d
+			tasks: [{
+				id: "07837A09A09DCA5D"
+				item: "techreborn:basic_solar_panel"
+				type: "item"
+			}]
+			x: 8.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["0D8B13201DA5262E"]
+			id: "0572F5C4F2BEAF3F"
+			shape: "octagon"
+			tasks: [{
+				id: "35B95FEA1594E2D0"
+				item: "techreborn:quantum_solar_panel"
+				type: "item"
+			}]
+			x: 9.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["5D2950742773AC94"]
+			id: "5049A8F2BE958595"
+			shape: "octagon"
+			size: 0.7d
+			tasks: [{
+				id: "3856639355387B95"
+				item: "techreborn:overclocker_upgrade"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["4F845585E6F5158F"]
+			id: "01DA9510991722C0"
+			shape: "octagon"
+			size: 0.7d
+			tasks: [{
+				id: "671760DD288DD7D3"
+				item: "techreborn:transformer_upgrade"
+				type: "item"
+			}]
+			x: 7.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["1FD050747B6A5212"]
+			id: "03E038E4B4A927E5"
+			shape: "octagon"
+			size: 0.7d
+			tasks: [{
+				id: "1A57BC36A8435FED"
+				item: "techreborn:energy_storage_upgrade"
+				type: "item"
+			}]
+			x: 5.665986394557905d
+			y: -0.17976190476187526d
+		}
+		{
+			id: "5639EB9BC765D118"
+			tasks: [{
+				id: "12EB4C9E220387D1"
+				item: "techreborn:data_storage_chip"
+				type: "item"
+			}]
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			id: "112EACBA15789328"
+			size: 0.7d
+			tasks: [{
+				id: "2884F739370DE808"
+				item: "techreborn:industrial_machine_casing"
+				type: "item"
+			}]
+			x: 3.5d
+			y: -1.5d
+		}
+		{
+			id: "6414AF9633668D0C"
+			shape: "octagon"
+			size: 0.7d
+			tasks: [
+				{
+					id: "7DA2C17AEAA2B2B0"
+					item: "techreborn:cupronickel_heating_coil"
+					type: "item"
+				}
+				{
+					id: "3BEFD1201BAAE2F1"
+					item: "techreborn:nichrome_heating_coil"
+					type: "item"
+				}
+				{
+					id: "35069B3E8FD2C9C7"
+					item: "techreborn:magnalium_plate"
+					type: "item"
+				}
+			]
+			x: 4.733238710246063d
+			y: -1.6634355075865095d
+		}
+	]
+	subtitle: ["&b获得技术霸权！&r"]
+	title: "&b&l科技与更多科技"
+}

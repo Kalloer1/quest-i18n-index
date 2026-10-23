@@ -75,7 +75,9 @@ function git(args, opts) {
 /** 与 git() 同参，但失败返回 false 而不是退出进程：单个包的检出失败不该拖垮整轮。 */
 function gitTry(args) {
   try {
-    execFileSync('git', args, { cwd: ROOT, encoding: 'utf8', stdio: 'pipe', maxBuffer: 64 * 1024 * 1024 })
+    // 超时兜底：promisor 仓库的 checkout 会顺带懒加载 blob，网络卡住时这里会无限等，
+    // 卡死比失败更糟（失败还能重试，卡死只能靠人发现）。
+    execFileSync('git', args, { cwd: ROOT, encoding: 'utf8', stdio: 'pipe', maxBuffer: 64 * 1024 * 1024, timeout: 120_000 })
     return true
   } catch {
     return false
@@ -245,11 +247,11 @@ step(3, '检出增量文件')
 // 整分支 fetch 只下载本地缺的对象（main 上已有的包不会再下），等于只取这批增量。
 {
   const branches = [...new Set(Object.values(plan.bySlug).map((it) => it.branch))]
-  // --no-filter 是必须的：本仓库因为前面用 `--filter=blob:none` 取增量的缘故，
-  // remote.origin 已被标成 promisor（blob:none）。这时候普通 fetch **不会下 blob**，
-  // checkout 时才一个文件一次懒加载 —— 网络一抖就 `unable to read sha1 file` 直接中断，
-  // 而且一断就是整轮作废（上一轮 482 个包卡在第一个 slug 上）。
-  for (const h of branches) netGit(['fetch', '-q', '--no-filter', '--no-tags', 'origin', `farm/${h}:refs/remotes/origin/farm/${h}`])
+  // 只用普通（blobless）fetch：`--no-filter` 会把这几条分支的全部历史 blob 拉下来，
+  // 实测 1.3GB、十分钟还没完，而且卡死时没有任何输出。
+  // blob 交给 checkout 懒加载，配合 gitTry 的超时 + 重试就够了；
+  // 单包失败只跳过它，不会让整轮作废。
+  for (const h of branches) netGit(['fetch', '-q', '--no-tags', 'origin', `farm/${h}:refs/remotes/origin/farm/${h}`])
   console.log(`补齐 ${branches.length} 条分支的 blob：${branches.join(', ')}`)
 }
 let checkedOut = 0
@@ -258,7 +260,7 @@ for (const [slug, item] of Object.entries(plan.bySlug)) {
   const paths = [...item.patchPaths, item.baselinePath].filter(Boolean)
   if (gitTry(['checkout', `origin/farm/${item.branch}`, '--', ...paths])) { checkedOut++; continue }
   // 单包失败不该拖垮整轮：补一次 blob 再试，仍不行就记下来跳过（下一轮它还在 diff 里）。
-  netGit(['fetch', '-q', '--no-filter', '--no-tags', 'origin', `farm/${item.branch}:refs/remotes/origin/farm/${item.branch}`])
+  netGit(['fetch', '-q', '--no-tags', 'origin', `farm/${item.branch}:refs/remotes/origin/farm/${item.branch}`])
   if (gitTry(['checkout', `origin/farm/${item.branch}`, '--', ...paths])) { checkedOut++; continue }
   lost.push(slug)
   console.log(`  ✘ ${slug} 检出失败，本轮跳过（下一轮会重试）`)
