@@ -163,6 +163,14 @@ if (DRY) {
 
 // ---------- 3. 只取这些包的产物 ----------
 step(3, '检出增量文件')
+// 补 blob 必须整分支补，不能靠 checkout 时懒加载：localhost 到 GitHub 的往返一次几百毫秒，
+// 一个包几十个文件就是几十次往返 —— 实测 5 个包 600s 都没检出完。
+// 整分支 fetch 只下载本地缺的对象（main 上已有的包不会再下），等于只取这批增量。
+{
+  const branches = [...new Set(Object.values(plan.bySlug).map((it) => it.branch))]
+  for (const h of branches) git(['fetch', '-q', '--no-tags', 'origin', `farm/${h}:refs/remotes/origin/farm/${h}`])
+  console.log(`补齐 ${branches.length} 条分支的 blob：${branches.join(', ')}`)
+}
 for (const [slug, item] of Object.entries(plan.bySlug)) {
   const paths = [...item.patchPaths, item.baselinePath].filter(Boolean)
   git(['checkout', `origin/farm/${item.branch}`, '--', ...paths])
