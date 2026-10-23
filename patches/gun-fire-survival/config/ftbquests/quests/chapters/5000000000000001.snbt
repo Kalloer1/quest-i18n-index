@@ -1,0 +1,449 @@
+# AI 初翻，未人工校对
+{
+	id: "5000000000000001"
+	group: "0A00000000000001"
+	order_index: 4
+	filename: "5000000000000001"
+	title: "第五章：远征与文明重启"
+	icon: {
+		id: "radiation_area:rad_suit_helmet"
+		Count: 1b
+		tag: {
+			Damage: 0
+		}
+	}
+	default_quest_shape: "square"
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "远征授权"
+			icon: "minecraft:netherite_scrap"
+			x: 0.0d
+			y: 0.0d
+			description: [
+				"基地与武装体系已经成形。最后的目标是突破辐射区、回收高级资源，并让自动守卫接替部分防线。"
+				"章节末里程碑会自动授予 game_stage1，解除本整合包脚本对 RPG 法杖的阶段限制。"
+			]
+			dependencies: [
+				"330000000000000C"
+				"440000000000000C"
+			]
+			hide: true
+			size: 1.5d
+			id: "5500000000000001"
+			tasks: [{
+				id: "5510000000000001"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "5520000000000001"
+				type: "xp"
+				xp: 125
+			}]
+		}
+		{
+			title: "穿过红色的边界线"
+			x: 3.0d
+			y: -5.0d
+			description: [
+				"进入下界。这里有烈焰材料、石英和下界合金的路线，但 Cold Sweat 的高温会显著增加远征成本。"
+				"带上冷却水袋、备用食物、方块和返程用的打火石。"
+			]
+			dependencies: ["5500000000000001"]
+			id: "5500000000000002"
+			tasks: [{
+				id: "5510000000000002"
+				type: "dimension"
+				dimension: "minecraft:the_nether"
+			}]
+			rewards: [{
+				id: "5520000000000002"
+				type: "item"
+				item: "minecraft:gold_ingot"
+				count: 8
+			}]
+		}
+		{
+			title: "橙色密封层"
+			x: 7.0d
+			y: -5.0d
+			description: [
+				"制作完整的 Radiation Area 防辐射服。四件必须同时穿戴才适合进入高辐射区域。"
+				"防辐射不等于防弹，遇到感染者时仍需保持距离。"
+			]
+			dependencies: ["5500000000000002"]
+			id: "5500000000000003"
+			tasks: [
+				{
+					id: "5510000000000003"
+					type: "item"
+					item: {
+						id: "radiation_area:rad_suit_helmet"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "5510000000000004"
+					type: "item"
+					item: {
+						id: "radiation_area:rad_suit_chestplate"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "5510000000000005"
+					type: "item"
+					item: {
+						id: "radiation_area:rad_suit_leggings"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "5510000000000006"
+					type: "item"
+					item: {
+						id: "radiation_area:rad_suit_boots"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "5520000000000003"
+				type: "item"
+				item: "minecraft:golden_apple"
+				count: 2
+			}]
+		}
+		{
+			title: "暴露后应急预案"
+			x: 10.0d
+			y: -7.0d
+			description: [
+				"获取碘化钾片，作为意外暴露时的应急物资。它不能替代完整的防护服。"
+				"该物品可能来自探索战利品；因此本任务为可选，不阻塞结局。"
+			]
+			dependencies: ["5500000000000003"]
+			optional: true
+			id: "5500000000000004"
+			tasks: [{
+				id: "5510000000000007"
+				type: "item"
+				item: "radiation_area:potassium_iodide"
+			}]
+			rewards: [{
+				id: "5520000000000004"
+				type: "xp"
+				xp: 150
+			}]
+		}
+		{
+			title: "回收附魔效果"
+			x: 3.0d
+			y: -1.5d
+			description: ["制作附魔台，将不需要的附魔转移到书上。它让随机战利品变成可规划的装备升级资源。"]
+			dependencies: ["5500000000000001"]
+			id: "5500000000000006"
+			tasks: [{
+				id: "5510000000000009"
+				type: "item"
+				item: "disenchanting:disenchanter"
+			}]
+			rewards: [{
+				id: "5520000000000006"
+				type: "item"
+				item: "minecraft:book"
+				count: 8
+			}]
+		}
+		{
+			title: "钻石级后勤系统"
+			x: 7.0d
+			y: -1.5d
+			description: [
+				"沿着铁质背包、金质背包的升级路线，将精妙背包提升到钻石等级。"
+				"高级远征必须为弹药、食物、净水、温控装备和战利品分别留出空间。"
+			]
+			dependencies: [
+				"5500000000000006"
+				"59F2991C4E4AEBB7"
+			]
+			hide: true
+			id: "5500000000000007"
+			tasks: [{
+				id: "551000000000000A"
+				type: "item"
+				item: "sophisticatedbackpacks:diamond_backpack"
+			}]
+			rewards: [{
+				id: "5520000000000007"
+				type: "item"
+				item: "sophisticatedbackpacks:stack_upgrade_tier_1"
+			}]
+		}
+		{
+			title: "垂直撤离"
+			x: 3.0d
+			y: 2.0d
+			description: [
+				"制作抓钩。Grappling Hook Mod 用于快速攀爬高楼、跨越街区和脱离包围。"
+				"首次使用前请在安全高度练习摆动；坠落伤害依然有效。"
+			]
+			dependencies: ["5500000000000001"]
+			id: "5500000000000008"
+			tasks: [{
+				id: "551000000000000B"
+				type: "item"
+				item: {
+					id: "grapplemod:grapplinghook"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "5520000000000008"
+				type: "item"
+				item: "minecraft:string"
+				count: 8
+			}]
+		}
+		{
+			title: "穿越死亡之城"
+			x: 7.0d
+			y: 2.0d
+			description: [
+				"制作滑翔伞。Paraglider 提供滑翔与耐力系统，适合从高楼或山地进行长距离转移。"
+				"抓钩负责上升与急转，滑翔伞负责安全延伸航程，两者组合才是完整机动方案。"
+			]
+			dependencies: ["5500000000000008"]
+			id: "5500000000000009"
+			tasks: [{
+				id: "551000000000000C"
+				type: "item"
+				item: "paraglider:paraglider"
+			}]
+			rewards: [{
+				id: "5520000000000009"
+				type: "item"
+				item: "minecraft:feather"
+				count: 16
+			}]
+		}
+		{
+			title: "自动守卫原型"
+			x: 3.0d
+			y: 5.5d
+			description: [
+				"制作后期傀儡的一级升级组件。该模组让后期傀儡装备 AI 芯片、武器、宝石与死亡处理模块。"
+				"整合包脚本为此物品添加了自定义配方：铁块为核心，周围使用铁锭。"
+			]
+			dependencies: ["5500000000000001"]
+			id: "550000000000000A"
+			tasks: [{
+				id: "551000000000000D"
+				type: "item"
+				item: "lategamegolems:lgg_upgrade_iron"
+			}]
+			rewards: [{
+				id: "552000000000000A"
+				type: "item"
+				item: "minecraft:iron_ingot"
+				count: 8
+			}]
+		}
+		{
+			title: "定向能武器"
+			x: 7.0d
+			y: 5.5d
+			description: [
+				"制作后期傀儡激光器。整合包同样为其添加了配方，需要黑曜石、红石块、钻石块与玻璃。"
+				"这表示基地已具备生产高端守卫武器的能力。"
+			]
+			dependencies: ["550000000000000A"]
+			id: "550000000000000B"
+			tasks: [{
+				id: "551000000000000E"
+				type: "item"
+				icon: "minecraft:redstone_torch"
+				item: "lategamegolems:lgg_laser"
+			}]
+			rewards: [{
+				id: "552000000000000B"
+				type: "item"
+				item: "minecraft:obsidian"
+				count: 4
+			}]
+		}
+		{
+			title: "外骨骼计划"
+			x: 11.0d
+			y: 5.5d
+			description: ["制作完整的 Zombie Extreme 外骨骼套装。这是对材料与制造能力的终极考验，也是深入最高危区域的个人防护方案。"]
+			dependencies: [
+				"5500000000000003"
+				"550000000000000B"
+			]
+			hide: true
+			id: "550000000000000C"
+			tasks: [
+				{
+					id: "551000000000000F"
+					type: "item"
+					item: {
+						id: "zombie_extreme:exo_suit_helmet"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "5510000000000010"
+					type: "item"
+					item: {
+						id: "zombie_extreme:exo_suit_chestplate"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "5510000000000011"
+					type: "item"
+					item: {
+						id: "zombie_extreme:exo_suit_leggings"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "5510000000000012"
+					type: "item"
+					item: {
+						id: "zombie_extreme:exo_suit_boots"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "552000000000000C"
+				type: "item"
+				item: "minecraft:netherite_scrap"
+				count: 2
+			}]
+		}
+		{
+			title: "来自天空的补给品"
+			x: 7.0d
+			y: -8.5d
+			description: [
+				"找到空投呼叫器。Airdrop Supply 可在合适位置呼叫补给，并带有位置固定与取消装置。"
+				"召唤器通常依赖探索或战利品，因此本任务为可选。"
+			]
+			dependencies: ["5500000000000002"]
+			optional: true
+			id: "550000000000000D"
+			tasks: [{
+				id: "5510000000000013"
+				type: "item"
+				item: "airdrop_supply:airdrop_pager"
+			}]
+			rewards: [{
+				id: "552000000000000D"
+				type: "item"
+				item: "minecraft:emerald"
+				count: 2
+			}]
+		}
+		{
+			title: "文明重启协议"
+			icon: "minecraft:nether_star"
+			x: 15.0d
+			y: 1.5d
+			description: ["远征装备、资源回收、立体机动和自动守卫均已就绪。确认地堡有持续食物与净水供应，并为返程路线设置明确标记。"]
+			dependencies: [
+				"5500000000000007"
+				"5500000000000009"
+				"550000000000000C"
+			]
+			hide: true
+			size: 2.0d
+			id: "550000000000000E"
+			tasks: [{
+				id: "5510000000000014"
+				type: "checkmark"
+			}]
+			rewards: [
+				{
+					id: "552000000000000F"
+					type: "item"
+					item: "minecraft:diamond"
+					count: 6
+				}
+				{
+					id: "5520000000000010"
+					type: "xp_levels"
+					xp_levels: 10
+				}
+			]
+		}
+		{
+			title: "末地作战简报"
+			icon: "minecraft:ender_eye"
+			x: 19.0d
+			y: -1.5d
+			description: [
+				"建议使用 M82A3 .50 口径反器材步枪或 RPG 来击杀末影龙。"
+				"出发前备好.50口径弹药或火箭弹，优先摧毁末地水晶，防止末影龙持续恢复生命。"
+			]
+			dependencies: ["550000000000000E"]
+			id: "5C1B42C4EBC6988B"
+			tasks: [{
+				id: "71C3A27681BB6BE9"
+				type: "checkmark"
+				title: "我已经完成了屠龙的准备工作"
+			}]
+		}
+		{
+			title: "末影龙讨伐"
+			icon: "minecraft:dragon_head"
+			x: 23.0d
+			y: -1.5d
+			description: ["进入末地并击杀末影龙，完成文明重启后的首次跨维度战略清剿。"]
+			dependencies: ["5C1B42C4EBC6988B"]
+			size: 1.5d
+			id: "4E74B7E01DE3A0E2"
+			tasks: [{
+				id: "3D20AA92FD2A96BF"
+				type: "kill"
+				entity: "minecraft:ender_dragon"
+				value: 1L
+			}]
+			rewards: [{
+				id: "75F081D8552B64A2"
+				type: "xp_levels"
+				xp_levels: 20
+			}]
+		}
+	]
+	quest_links: [ ]
+}

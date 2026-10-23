@@ -1,0 +1,292 @@
+# AI 初翻，未人工校对
+{
+	id: "4000000000000001"
+	group: "0A00000000000001"
+	order_index: 3
+	filename: "4000000000000001"
+	title: "第四章：地堡工程"
+	icon: {
+		id: "securitycraft:universal_block_reinforcer_lvl1"
+		Count: 1b
+		tag: {
+			Damage: 0
+		}
+	}
+	default_quest_shape: "square"
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "地堡蓝图"
+			icon: "minecraft:iron_door"
+			x: 0.0d
+			y: 0.0d
+			description: [
+				"单人火力再强，也不能同时守住所有入口。现在把临时营地升级成能预警、延缓入侵并快速补给的地堡。"
+				"本章分为仓储网络和安防网络两部分，最后由刷怪抑制设备封顶。"
+			]
+			dependencies: [
+				"220000000000000C"
+				"330000000000000C"
+			]
+			hide: true
+			size: 1.5d
+			id: "4400000000000001"
+			tasks: [{
+				id: "4410000000000001"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "4420000000000001"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "高密度仓储系统"
+			x: 3.0d
+			y: -3.0d
+			description: ["制作铁箱子。Iron Chests 占用相同空间提供更大容量，并可继续升级到金、钻石、水晶或黑曜石等级。"]
+			dependencies: ["4400000000000001"]
+			id: "4400000000000002"
+			tasks: [{
+				id: "4410000000000002"
+				type: "item"
+				item: "ironchest:iron_chest"
+			}]
+			rewards: [{
+				id: "4420000000000002"
+				type: "item"
+				item: "minecraft:iron_ingot"
+				count: 8
+			}]
+		}
+		{
+			title: "统一仓库界面"
+			x: 7.0d
+			y: -3.0d
+			description: [
+				"制作 Tom's Simple Storage 的存储驱动器和存储终端。"
+				"驱动器连接箱子网络，终端负责统一浏览；线缆与桥连方块可把分散容器接入同一系统。"
+			]
+			dependencies: ["4400000000000002"]
+			id: "4400000000000003"
+			tasks: [
+				{
+					id: "4410000000000003"
+					type: "item"
+					item: "toms_storage:ts.inventory_connector"
+				}
+				{
+					id: "4410000000000004"
+					type: "item"
+					item: "toms_storage:ts.storage_terminal"
+				}
+			]
+			rewards: [{
+				id: "4420000000000003"
+				type: "item"
+				item: "minecraft:redstone"
+				count: 16
+			}]
+		}
+		{
+			title: "后勤控制台"
+			x: 11.0d
+			y: -3.0d
+			description: ["将存储终端升级为合成终端，直接从联网仓库取料合成。弹药和建筑材料的批量生产会轻松很多。"]
+			dependencies: ["4400000000000003"]
+			id: "4400000000000004"
+			tasks: [{
+				id: "4410000000000005"
+				type: "item"
+				item: "toms_storage:ts.crafting_terminal"
+			}]
+			rewards: [{
+				id: "4420000000000004"
+				type: "item"
+				item: "minecraft:diamond"
+				count: 2
+			}]
+		}
+		{
+			title: "结构加固"
+			x: 3.0d
+			y: 3.0d
+			description: [
+				"制作一级通用方块强化器。SecurityCraft 的强化方块保留原外观，却只能由所有者或对应工具处理。"
+				"优先强化入口、转角和存储室，不必一次覆盖整座基地。"
+			]
+			dependencies: ["4400000000000001"]
+			id: "4400000000000005"
+			tasks: [{
+				id: "4410000000000006"
+				type: "item"
+				item: {
+					id: "securitycraft:universal_block_reinforcer_lvl1"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "4420000000000005"
+				type: "item"
+				item: "minecraft:glass"
+				count: 16
+			}]
+		}
+		{
+			title: "权限管理"
+			x: 7.0d
+			y: 3.0d
+			description: ["制作密码盘。它可以控制门、活板门或红石门禁，将撤退路线与公共入口区分开来。物品注册 ID 为 keypad_item。"]
+			dependencies: ["4400000000000005"]
+			id: "4400000000000006"
+			tasks: [{
+				id: "4410000000000007"
+				type: "item"
+				item: "securitycraft:keypad_item"
+			}]
+			rewards: [{
+				id: "4420000000000006"
+				type: "item"
+				item: "minecraft:redstone"
+				count: 8
+			}]
+		}
+		{
+			title: "先听见危险"
+			x: 11.0d
+			y: 3.0d
+			description: ["制作警报器。将其连接到绊线、压力板、运动传感器或门禁输出上，以便在入侵发生时，基地内的人员能有反应时间。"]
+			dependencies: ["4400000000000006"]
+			id: "4400000000000007"
+			tasks: [{
+				id: "4410000000000008"
+				type: "item"
+				item: "securitycraft:alarm"
+			}]
+			rewards: [{
+				id: "4420000000000007"
+				type: "item"
+				item: "minecraft:quartz"
+				count: 4
+			}]
+		}
+		{
+			title: "闭路电视监控系统"
+			x: 15.0d
+			y: 3.0d
+			description: ["制作安全摄像头。摄像头需要监视器配合使用；安装在高处并保护连接方向，能远程观察尸潮与入口。"]
+			dependencies: ["4400000000000007"]
+			id: "4400000000000008"
+			tasks: [{
+				id: "4410000000000009"
+				type: "item"
+				item: "securitycraft:security_camera"
+			}]
+			rewards: [{
+				id: "4420000000000008"
+				type: "item"
+				item: "minecraft:ender_pearl"
+				count: 4
+			}]
+		}
+		{
+			title: "监控室已上线"
+			x: 19.0d
+			y: 3.0d
+			description: ["制作摄像头监视器并与摄像头绑定。监控用于情报，不会代替实体墙、撤退通道和备用电源。"]
+			dependencies: ["4400000000000008"]
+			id: "4400000000000009"
+			tasks: [{
+				id: "441000000000000A"
+				type: "item"
+				item: "securitycraft:camera_monitor"
+			}]
+			rewards: [{
+				id: "4420000000000009"
+				type: "xp"
+				xp: 200
+			}]
+		}
+		{
+			title: "最后一道警戒线"
+			x: 15.0d
+			y: 6.0d
+			description: ["制作一个阔剑地雷。陷阱应放在明确标记的外层防线，不要布在队友常走路线或物资掉落点。"]
+			dependencies: ["4400000000000007"]
+			id: "440000000000000A"
+			tasks: [{
+				id: "441000000000000B"
+				type: "item"
+				item: "securitycraft:claymore"
+			}]
+			rewards: [{
+				id: "442000000000000A"
+				type: "item"
+				item: "minecraft:gunpowder"
+				count: 4
+			}]
+		}
+		{
+			title: "安全区"
+			x: 23.0d
+			y: 0.0d
+			description: [
+				"制作超级火把。Torchmaster 能大范围阻止自然生成的敌对生物，适合保护基地内部。"
+				"它不会删除已有敌人，也不应被当作外墙替代品；事件刷怪和特殊生成规则也可能绕过抑制。"
+			]
+			dependencies: [
+				"4400000000000004"
+				"4400000000000009"
+				"440000000000000A"
+			]
+			hide: true
+			id: "440000000000000B"
+			tasks: [{
+				id: "441000000000000C"
+				type: "item"
+				item: "torchmaster:megatorch"
+			}]
+			rewards: [{
+				id: "442000000000000B"
+				type: "item"
+				item: "minecraft:glowstone"
+				count: 8
+			}]
+		}
+		{
+			title: "地堡验收"
+			icon: "minecraft:beacon"
+			x: 26.0d
+			y: 0.0d
+			description: [
+				"完成一次基地审计：主入口有门禁，仓库可统一检索，监控覆盖入口，至少一条备用出口没有被陷阱封死。"
+				"地堡已能支持长途远征，最后一章将进入辐射区并建造自动守卫。"
+			]
+			dependencies: ["440000000000000B"]
+			size: 1.5d
+			id: "440000000000000C"
+			tasks: [{
+				id: "441000000000000D"
+				type: "checkmark"
+			}]
+			rewards: [
+				{
+					id: "442000000000000C"
+					type: "item"
+					item: "minecraft:diamond"
+					count: 4
+				}
+				{
+					id: "442000000000000D"
+					type: "xp"
+					xp: 400
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+}

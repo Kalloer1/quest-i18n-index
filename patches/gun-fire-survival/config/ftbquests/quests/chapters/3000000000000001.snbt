@@ -1,0 +1,342 @@
+# AI 初翻，未人工校对
+{
+	id: "3000000000000001"
+	group: "0A00000000000001"
+	order_index: 2
+	filename: "3000000000000001"
+	title: "第三章：枪械与抗感染"
+	icon: "tacz:gun_smith_table"
+	default_quest_shape: "square"
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "武装许可证"
+			icon: {
+				id: "minecraft:crossbow"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: 0.0d
+			y: 0.0d
+			description: [
+				"冷兵器虽能应急，却不足以清理城市感染区。本章将建立枪械、弹药、配件与抗感染护甲的完整战斗体系。"
+				"TaCZ 的枪械、弹药和配件是数据驱动物品：同类物品共用注册 ID，具体型号保存在 NBT 中。因此任务接受任意型号。"
+			]
+			dependencies: [
+				"1100000000000007"
+				"220000000000000C"
+			]
+			hide: true
+			size: 1.5d
+			id: "3300000000000001"
+			tasks: [{
+				id: "3310000000000001"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "3320000000000001"
+				type: "xp"
+				xp: 75
+			}]
+		}
+		{
+			title: "枪械工作台"
+			x: 3.0d
+			y: 0.0d
+			description: [
+				"制作 TaCZ 枪械工作台。默认枪包包含手枪、霰弹枪、冲锋枪、步枪、狙击枪和重武器。"
+				"打开工作台并选择武器后，界面会显示所需材料；具体枪型无需在普通工作台合成。"
+			]
+			dependencies: ["3300000000000001"]
+			id: "3300000000000002"
+			tasks: [{
+				id: "3310000000000002"
+				type: "item"
+				item: "tacz:gun_smith_table"
+			}]
+			rewards: [{
+				id: "3320000000000002"
+				type: "item"
+				item: "minecraft:iron_ingot"
+				count: 8
+			}]
+		}
+		{
+			title: "第一件现代武器"
+			x: 6.0d
+			y: 0.0d
+			description: [
+				"在枪械工作台制作任意一把枪。建议首把武器选择弹药成本低、近中距离稳定的手枪或冲锋枪。"
+				"任务仅比对基础物品ID，不限制GunId。"
+			]
+			dependencies: ["3300000000000002"]
+			id: "3300000000000003"
+			tasks: [{
+				id: "3310000000000003"
+				type: "item"
+				item: {
+					id: "tacz:modern_kinetic_gun"
+					Count: 1b
+					tag: {
+						GunId: "tacz:ak47"
+					}
+				}
+				match_nbt: false
+			}]
+			rewards: [{
+				id: "3320000000000003"
+				type: "item"
+				item: "minecraft:gunpowder"
+				count: 16
+			}]
+		}
+		{
+			title: "弹药纪律"
+			x: 9.0d
+			y: -2.5d
+			description: [
+				"准备至少 64 发任意口径的弹药。TaCZ 弹药共用 tacz:ammo，AmmoId 决定实际口径。"
+				"错误口径无法装入枪械，生产前请先查看武器信息。"
+			]
+			dependencies: ["3300000000000003"]
+			id: "3300000000000004"
+			tasks: [{
+				id: "3310000000000004"
+				type: "item"
+				item: {
+					id: "tacz:ammo"
+					Count: 1b
+					tag: {
+						AmmoId: "tacz:762x39"
+					}
+				}
+				count: 64L
+				match_nbt: false
+			}]
+			rewards: [{
+				id: "3320000000000004"
+				type: "item"
+				item: "minecraft:copper_ingot"
+				count: 8
+			}]
+		}
+		{
+			title: "靶场训练场"
+			x: 9.0d
+			y: 0.0d
+			description: ["制作人形靶。先在安全区测试后坐力、射速和换弹，不要把第一次故障留给尸潮。"]
+			dependencies: ["3300000000000003"]
+			id: "3300000000000005"
+			tasks: [{
+				id: "3310000000000005"
+				type: "item"
+				item: "tacz:target"
+			}]
+			rewards: [{
+				id: "3320000000000005"
+				type: "item"
+				item: "minecraft:paper"
+				count: 4
+			}]
+		}
+		{
+			title: "按照任务配置武器"
+			x: 9.0d
+			y: 2.5d
+			description: [
+				"制作任意一个 TaCZ 配件。瞄具、握把、枪托、扩容弹匣与枪口装置各自改变不同属性。"
+				"任务不限制 AttachmentId，但配件必须与枪械接口兼容。"
+			]
+			dependencies: ["3300000000000003"]
+			id: "3300000000000006"
+			tasks: [{
+				id: "3310000000000006"
+				type: "item"
+				item: {
+					id: "tacz:attachment"
+					Count: 1b
+					tag: {
+						AttachmentId: "tacz:sight_t1"
+					}
+				}
+				match_nbt: false
+			}]
+			rewards: [{
+				id: "3320000000000006"
+				type: "item"
+				item: "minecraft:gold_ingot"
+				count: 6
+			}]
+		}
+		{
+			title: "首次清剿行动"
+			icon: "tacz:gun_smith_table"
+			x: 12.0d
+			y: 0.0d
+			description: [
+				"击杀 50 只普通僵尸，检验持续作战能力。枪声、换弹窗口和弹药重量都会影响实战。"
+				"任务仅统计 minecraft:zombie，特殊感染者仍然是额外威胁。"
+			]
+			dependencies: [
+				"3300000000000004"
+				"3300000000000005"
+				"3300000000000006"
+			]
+			hide: true
+			id: "3300000000000007"
+			tasks: [{
+				id: "3310000000000007"
+				type: "kill"
+				entity: "minecraft:zombie"
+				value: 50L
+			}]
+			rewards: [
+				{
+					id: "3320000000000007"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 4
+				}
+				{
+					id: "3320000000000008"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+			]
+		}
+		{
+			title: "废土钢材"
+			x: 15.0d
+			y: 0.0d
+			description: [
+				"收集或冶炼 16 个 Zombie Extreme 钢锭。该模组的注册名保留了原作者拼写：ignotsteel。"
+				"钢材是战斗护甲、电气武器和末期工程的基础。"
+			]
+			dependencies: ["3300000000000007"]
+			id: "3300000000000008"
+			tasks: [{
+				id: "3310000000000008"
+				type: "item"
+				item: "zombie_extreme:ignotsteel"
+				count: 16L
+			}]
+			rewards: [{
+				id: "3320000000000009"
+				type: "item"
+				item: "minecraft:coal"
+				count: 8
+			}]
+		}
+		{
+			title: "战斗护甲"
+			x: 18.0d
+			y: -2.5d
+			description: ["制作一件战斗背心。Zombie Extreme 的战斗护甲比民用装备更适合进入感染密集区。"]
+			dependencies: ["3300000000000008"]
+			id: "3300000000000009"
+			tasks: [{
+				id: "3310000000000009"
+				type: "item"
+				item: {
+					id: "zombie_extreme:combat_armor_chestplate"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "332000000000000A"
+				type: "item"
+				item: "minecraft:golden_apple"
+			}]
+		}
+		{
+			title: "抗感染应急预案"
+			x: 18.0d
+			y: 0.0d
+			description: ["寻找或制作一支抗毒血清。部分 Zombie Extreme 特殊感染者会施加危险状态，解毒手段必须在交火前准备。"]
+			dependencies: ["3300000000000008"]
+			id: "330000000000000A"
+			tasks: [{
+				id: "331000000000000A"
+				type: "item"
+				item: "zombie_extreme:syringe_antidote"
+			}]
+			rewards: [{
+				id: "332000000000000B"
+				type: "item"
+				item: "zombie_extreme:bandage"
+				count: 4
+			}]
+		}
+		{
+			title: "最后一道保险措施"
+			x: 18.0d
+			y: 2.5d
+			description: ["制作电气武士刀。这代表你已能处理钢材、电路和能源部件，也是枪械失效时的可靠近战备用方案。"]
+			dependencies: ["3300000000000008"]
+			id: "330000000000000B"
+			tasks: [{
+				id: "331000000000000B"
+				type: "item"
+				item: {
+					id: "zombie_extreme:electric_katana"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "332000000000000C"
+				type: "item"
+				item: "minecraft:diamond"
+			}]
+		}
+		{
+			title: "全副武装的小队"
+			icon: {
+				id: "minecraft:diamond_chestplate"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: 21.0d
+			y: 0.0d
+			description: [
+				"你已经能持续生产弹药、维护枪械、处理感染并在近距离自保。"
+				"确认基地至少储备两种口径的弹药，并把主武器、备用武器与医疗品分开放置。"
+			]
+			dependencies: [
+				"3300000000000009"
+				"330000000000000A"
+				"330000000000000B"
+			]
+			hide: true
+			size: 1.5d
+			id: "330000000000000C"
+			tasks: [{
+				id: "331000000000000C"
+				type: "checkmark"
+			}]
+			rewards: [
+				{
+					id: "332000000000000D"
+					type: "item"
+					item: "minecraft:diamond"
+					count: 3
+				}
+				{
+					id: "332000000000000E"
+					type: "xp"
+					xp: 350
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+}

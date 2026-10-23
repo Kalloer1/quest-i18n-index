@@ -1,0 +1,231 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "unification_theory"
+	group: "4C0075272E2F720D"
+	icon: "dynamicelectricity:motordchv"
+	id: "46AC6CF690728124"
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["124BEFCF532CC2C6"]
+			description: ["焦耳、千瓦、Forge Energy、LV……有太多的电力类型，很容易让人混淆。幸运的是，我们的科学家已经开发出一种方法来统一大多数类型。本章的任务将解释如何转换电力类型，这样你就可以专注于以自己喜欢的方式发电了。"]
+			id: "288AF9EBF87AEBCB"
+			rewards: [
+				{
+					id: "41419139701533E0"
+					item: "dynamicelectricity:motordclv"
+					type: "item"
+				}
+				{
+					id: "44F9CC3CECED6485"
+					item: "pneumaticcraft:lubricant_bucket"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "33D3B5F3E6F4E393"
+				type: "checkmark"
+			}]
+			title: "万物皆需能量驱动"
+			x: 0.5d
+			y: -6.5d
+		}
+		{
+			dependencies: ["288AF9EBF87AEBCB"]
+			description: [
+				"Electrodynamics 线缆和 120V 机器可&l直接向接受 FE 的机器输出电力&r。这意味着它们会连接到电缆连接器、电容器、电池和 FE 机器。需要注意的是，这种自动转换仅适用于 120V 电源，电线本身并不转换能量，必须先连接到电池。（下方有示例）"
+				""
+				"一旦电压升至240V以上，就必须使用电动机转换为FE能量。尝试用非120V的电压直接为FE机器或连接器供电，将导致&l爆炸。&r"
+				""
+				""
+				"{image:ftbgenesis:textures/quests/ed_converting_bug.png width:200 height:100 align:1 fit:true}"
+				"{@pagebreak}"
+				"FE和Electrodynamic电源可通过EU转换器供IC2使用。这将把FE能量转换为可用的EU数据包。IC2的绝缘电缆传输EU能量，适用于所有IC2 Classic机器。每种电缆都有电压等级（LV、MV、HV等）。将电压过高的电源连接到机器上会导致机器爆炸。"
+				""
+				""
+				"每台机器都应标明其使用的电力等级，你可以通过添加变压器升级来使其接受更高电压。基本原则是使用对应等级的电缆连接机器，这样即使接错了电源，也只会烧毁电缆而不会损坏机器。"
+				""
+				"{@pagebreak}"
+				"最后是FE电源线；它们将作为你的沉浸式工程电线，以及后期的Mekanism通用电缆。"
+				""
+				"这些是最简单的。电线只限制单次传输的能量；连接太多设备会烧毁，但机器始终安全。另外，小心走进未绝缘的电线，可能会触电。Mekanism通用电缆是最高等级，没有此类限制。"
+			]
+			id: "5D8773B38EC75F8F"
+			rewards: [{
+				id: "6F183F1C59732C41"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [
+				{
+					id: "2FA822498A4DFF80"
+					item: "ic2:copper_insulated_cable_item"
+					type: "item"
+				}
+				{
+					id: "7DB0CD14414DC55B"
+					item: "immersiveengineering:wirecoil_copper"
+					type: "item"
+				}
+				{
+					id: "7789701F6E3B30FE"
+					item: "electrodynamics:wireinsulatedcopper"
+					type: "item"
+				}
+			]
+			title: "电线上的小鸟"
+			x: 0.5d
+			y: -5.0d
+		}
+		{
+			dependencies: ["5D8773B38EC75F8F"]
+			description: ["基础电池箱可储存电磁能。它是120V设备，只能接收该电压的电力。你可以接入多个设备以加快充电，但请记住，每个额外的电源都会增加电流强度。基础电池箱的额定电流仅为359安培 @ 120伏。你可以使用变压器来构建更大的电力基础设施和配电系统。"]
+			id: "496A776C31C5E8E4"
+			rewards: [
+				{
+					count: 16
+					id: "77735A16FA6A8BDC"
+					item: "electrodynamics:wireinsulatedtin"
+					type: "item"
+				}
+				{
+					count: 16
+					id: "15A3EB4699BB6BB3"
+					item: "electrodynamics:wireinsulatediron"
+					type: "item"
+				}
+				{
+					count: 8
+					id: "0901B351FB56AC01"
+					item: "electrodynamics:wireinsulatedcopper"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "392D01B6CE9A2B51"
+				item: "electrodynamics:batterybox"
+				type: "item"
+			}]
+			x: -0.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["5D8773B38EC75F8F"]
+			description: ["蝙蝠箱是EU能量的基础LV级储能装置。它能接收最高32EU的电压，并输出32EU。你可以用线缆或插入内部的RE电池直接为其供电。它也能给LV级设备和电池充电。"]
+			id: "4468AE10F98218F8"
+			rewards: [
+				{
+					count: 4
+					id: "20CD060099C72972"
+					item: "ic2:copper_insulated_cable_item"
+					type: "item"
+				}
+				{
+					count: 8
+					id: "42A1BA179BA4C3B2"
+					item: "minecraft:redstone"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "080AF34542DA2FC6"
+				item: "ic2:batbox"
+				type: "item"
+			}]
+			x: 0.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["5D8773B38EC75F8F"]
+			description: [
+				"能量立方体可储存FE能量，接口有可配置输入输出侧。它们还能给放入其中的任何FE设备充电。"
+				""
+				"你可以使用对应等级的Flux Converter将FE转换为EU，转换比例为4 FE 换 1 EU。"
+				""
+				"你可以用所需输出电压的直流电机将电能转换为瓦特。你需要为其提供润滑剂和电刷才能使其运行。"
+			]
+			id: "7CC6402C30D09243"
+			rewards: [
+				{
+					id: "4CBE648F806A9832"
+					type: "xp"
+					xp: 10
+				}
+				{
+					id: "0D87F3C8AA366333"
+					item: "mekanism:chargepad"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "6F0FBC6551A09715"
+				item: "mekanism:basic_energy_cube"
+				type: "item"
+			}]
+			x: 1.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["7CC6402C30D09243"]
+			description: ["我们的研究表明，孤独感会负面影响任务的成功率。为此，我们的科学家设计了 K-9000 单元，它能协助你完成日常任务，并通过情感模拟器营造出关心你福祉的假象。"]
+			id: "449FF29D59939EE9"
+			rewards: [{
+				id: "4B59E516FEE4D739"
+				item: {
+					Count: 1b
+					id: "mekanism:robit"
+					tag: {
+						display: {
+							Name: "{\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false,\"color\":\"#FFFFFF\",\"text\":\"K-9000\"}"
+						}
+						mekData: {
+							EnergyContainers: [{
+								Container: 0b
+								stored: "100000"
+							}]
+						}
+					}
+				}
+				type: "item"
+			}]
+			subtitle: "遵命，主人。"
+			tasks: [{
+				id: "202A16408EE122C6"
+				title: "忠诚的伙伴"
+				type: "checkmark"
+			}]
+			x: 3.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["4468AE10F98218F8"]
+			description: ["EU转换器是前期主要的EU电力来源，至少在掌握核能之前。你可以将任何FE来源（包括电动力学导线）转换为EU。请务必使用正确的电压等级。"]
+			id: "4D878EC074626E26"
+			rewards: [
+				{
+					count: 4
+					id: "7F890E55766F2986"
+					item: "ic2:circuit"
+					type: "item"
+				}
+				{
+					count: 2
+					id: "03D31E767D0B6D83"
+					item: "euconverter:lv_converter"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "59114A83439DCF8B"
+				item: "euconverter:lv_converter"
+				type: "item"
+			}]
+			x: 0.5d
+			y: -2.0d
+		}
+	]
+	title: "统一理论"
+}

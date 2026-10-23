@@ -1,0 +1,2056 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "epigenetics"
+	group: "57632A2841EDB38D"
+	icon: "productivebees:adv_breed_all_bees"
+	id: "661D087DD2472F2D"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["406CDD321A31814B"]
+			description: [
+				"我们的科学家认为，他们利用你研究的元素精华，以及从阿尔弗雷姆维度朋友处换来的蜂蜜精华，成功稳定了一种蜜蜂品种，以帮助埃利里亚的再生。"
+				""
+				"将熔炉中熔化的蜂蜜瓶中的蜂蜜和相应的能量提交到任务界面，我们就会在模拟中加载它。初始化新模拟前，请确保模拟是空的，加载完成后将新模拟保存到这个全新的空间IO盘中。"
+			]
+			icon: "minecraft:honeycomb"
+			id: "737A19C13281CFC4"
+			rewards: [
+				{
+					id: "292D5C5012E60E1F"
+					item: "ae2:spatial_storage_cell_128"
+					team_reward: true
+					type: "item"
+				}
+				{
+					exclude_from_claim_all: true
+					icon: "ae2:spatial_cell_component_2"
+					id: "388D5C0ADC34976B"
+					tags: ["prefab_bee"]
+					team_reward: true
+					title: "激活模拟程序"
+					type: "custom"
+				}
+			]
+			shape: "hexagon"
+			size: 1.25d
+			tasks: [
+				{
+					id: "468FEE3A00611B8E"
+					max_input: 10000L
+					title: "为蜂巢模拟提供动力"
+					type: "forge_energy"
+					value: 1000000L
+				}
+				{
+					amount: 4000L
+					fluid: "cyclic:honey"
+					id: "3C41E3060AD8636D"
+					title: "蜂巢里的蜂蜜"
+					type: "fluid"
+				}
+				{
+					dimension: "minecraft:overworld"
+					icon: "ae2:spatial_pylon"
+					id: "6ACA307654B6C7C2"
+					ignore_dimension: true
+					position: [I;
+						-15
+						44
+						56
+					]
+					size: [I;
+						7
+						5
+						7
+					]
+					title: "前往模拟矩阵 Simulation Matrix"
+					type: "location"
+				}
+			]
+			title: "模拟蜂巢生态系统（Simulating The Hive）"
+			x: 0.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["737A19C13281CFC4"]
+			description: [
+				"我们为基因改造蜜蜂准备了新环境，现在责任交给你了。繁殖蜜蜂，让它们适应新环境。繁殖新物种时，要繁殖多余的用于再加工。将蜜蜂放入蜂笼，带到装瓶器处。在蜂笼里放上瓶子，活塞放在装瓶器上方一格。把蜜蜂放进去，然后用活塞压扁。注意别让它们飞走，用活板门会很有用。"
+				" "
+			]
+			id: "1A63FDA8AF7907AD"
+			rewards: [
+				{
+					id: "4D656D848E0C69B1"
+					item: "minecraft:piston"
+					type: "item"
+				}
+				{
+					id: "10E3DF8A426EFD9E"
+					item: "minecraft:lever"
+					type: "item"
+				}
+				{
+					id: "13C2BADCAD420FB1"
+					item: "productivebees:sturdy_bee_cage"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "270C4BA7E0CA81A1"
+				item: "productivebees:bottler"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["5FF3DED97F378FAA"]
+			description: ["获得纯基因样本后，你就可以用 UU-Matter 这种可编程物质来复制基因了。将任意纯基因样本与 UU-Matter 结合即可复制。重要基因的母本一定要保存好。"]
+			id: "56705C602D70B062"
+			rewards: [{
+				id: "13993561085D889B"
+				item: {
+					Count: 1b
+					id: "productivebees:gene"
+					tag: {
+						productivebees_gene_attribute: "behavior"
+						productivebees_gene_purity: 100
+						productivebees_gene_value: 0
+					}
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "0835D673DBD3658A"
+				item: {
+					Count: 1b
+					id: "productivebees:gene"
+					tag: {
+						productivebees_gene_attribute: "productivity"
+						productivebees_gene_purity: 100
+						productivebees_gene_value: 0
+					}
+				}
+				match_nbt: false
+				title: "获取一个基因样本"
+				type: "item"
+			}]
+			x: 4.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["56705C602D70B062"]
+			description: ["提取基因后，你可以手动组合以提高纯度。为确保蜜蜂继承所需基因，需将纯度提升至100%。基因索引器可在接收到红石信号时自动组合基因至100%，从而加快这一过程。你可以直接将其接入管道以实现自动化。"]
+			id: "03EBF933004ECBAD"
+			tasks: [{
+				id: "5A912856EB064FE6"
+				item: "productivebees:gene_indexer"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["1A63FDA8AF7907AD"]
+			description: ["将瓶中的蜜蜂压碎后，必须分离出原始遗传物质。将其带到离心机中，提炼出尽可能多的基因以供进一步实验。"]
+			icon: {
+				Count: 1b
+				id: "productivebees:gene_bottle"
+				tag: {
+					productivebees_genes: {
+						AbsorptionAmount: 0.0f
+						Age: 0
+						Air: 300s
+						AngerTime: 0
+						ArmorDropChances: [
+							0.0f
+							0.0f
+							0.0f
+							0.0f
+						]
+						ArmorItems: [
+							{
+								Count: 1b
+								id: "mekanism:hazmat_boots"
+							}
+							{
+								Count: 1b
+								id: "mekanism:hazmat_pants"
+							}
+							{
+								Count: 1b
+								id: "mekanism:hazmat_gown"
+							}
+							{
+								Count: 1b
+								id: "mekanism:hazmat_mask"
+							}
+						]
+						Attributes: [
+							{
+								Base: 0.0d
+								Name: "minecraft:generic.armor_toughness"
+							}
+							{
+								Base: 0.0d
+								Name: "forge:step_height_addition"
+							}
+							{
+								Base: 0.6000000238418579d
+								Modifiers: [{
+									Amount: 0.0010000000474974513d
+									Name: "Auto Leveling Bonus"
+									Operation: 2
+									UUID: [I;
+										1779444916
+										-684372809
+										-1968030408
+										840541262
+									]
+								}]
+								Name: "minecraft:generic.flying_speed"
+							}
+							{
+								Base: 0.30000001192092896d
+								Modifiers: [{
+									Amount: 0.0010000000474974513d
+									Name: "Auto Leveling Bonus"
+									Operation: 2
+									UUID: [I;
+										1779444916
+										-684372809
+										-1968030408
+										840541262
+									]
+								}]
+								Name: "minecraft:generic.movement_speed"
+							}
+							{
+								Base: 0.0d
+								Modifiers: [{
+									Amount: 3.5d
+									Name: "Animal knockback"
+									Operation: 0
+									UUID: [I;
+										767468566
+										276253316
+										-1340130566
+										54361819
+									]
+								}]
+								Name: "minecraft:generic.attack_knockback"
+							}
+							{
+								Base: 48.0d
+								Name: "minecraft:generic.follow_range"
+							}
+							{
+								Base: 1.0d
+								Modifiers: [{
+									Amount: 0.10000000149011612d
+									Name: "Auto Leveling Bonus"
+									Operation: 2
+									UUID: [I;
+										1779444916
+										-684372809
+										-1968030408
+										840541262
+									]
+								}]
+								Name: "autoleveling:monster.explosion_damage_bonus"
+							}
+							{
+								Base: 10.0d
+								Modifiers: [
+									{
+										Amount: 0.5d
+										Name: "Health mod medium"
+										Operation: 1
+										UUID: [I;
+											-61673721
+											-632015700
+											-1201214135
+											930825448
+										]
+									}
+									{
+										Amount: 0.10000000149011612d
+										Name: "Auto Leveling Bonus"
+										Operation: 2
+										UUID: [I;
+											1779444916
+											-684372809
+											-1968030408
+											840541262
+										]
+									}
+								]
+								Name: "minecraft:generic.max_health"
+							}
+							{
+								Base: 0.0d
+								Name: "minecraft:generic.knockback_resistance"
+							}
+							{
+								Base: 0.08d
+								Name: "forge:entity_gravity"
+							}
+							{
+								Base: 1.0d
+								Name: "forge:swim_speed"
+							}
+							{
+								Base: 1.0d
+								Modifiers: [{
+									Amount: 0.10000000149011612d
+									Name: "Auto Leveling Bonus"
+									Operation: 2
+									UUID: [I;
+										1779444916
+										-684372809
+										-1968030408
+										840541262
+									]
+								}]
+								Name: "autoleveling:monster.projectile_damage_bonus"
+							}
+							{
+								Base: 0.0d
+								Modifiers: [{
+									Amount: 0.10000000149011612d
+									Name: "Auto Leveling Bonus"
+									Operation: 2
+									UUID: [I;
+										1779444916
+										-684372809
+										-1968030408
+										840541262
+									]
+								}]
+								Name: "minecraft:generic.armor"
+							}
+							{
+								Base: 2.0d
+								Modifiers: [{
+									Amount: 0.10000000149011612d
+									Name: "Auto Leveling Bonus"
+									Operation: 2
+									UUID: [I;
+										1779444916
+										-684372809
+										-1968030408
+										840541262
+									]
+								}]
+								Name: "minecraft:generic.attack_damage"
+							}
+						]
+						Brain: {
+							memories: { }
+						}
+						CanPickUpLoot: 0b
+						CanUpdate: 1b
+						CannotEnterHiveTicks: 0
+						CitadelData: { }
+						CropsGrownSincePollination: 0
+						DeathTime: 0s
+						FallDistance: 0.0f
+						FallFlying: 0b
+						Fire: -1s
+						ForcedAge: 0
+						ForgeCaps: {
+							"cataclysm:charge_cap": {
+								ChargeDamage: 0.0f
+								ChargeTime: 0
+								KnockbackSpeed: 0.0f
+								dx: 0.0f
+								dz: 0.0f
+								isCharge: 0b
+								timer: 0
+							}
+							"cataclysm:hook_cap": {
+								hasHook: 0b
+							}
+							"mekanism:radiation": {
+								radiation: 1.0E-7d
+							}
+							"pneumaticcraft:hacking": { }
+							"shrink:shrunk": {
+								defaulteyeheight: 0.0f
+								fixed: 0b
+								height: 0.0f
+								isshrinking: 0b
+								isshrunk: 0b
+								scale: 1.0f
+								width: 0.0f
+							}
+						}
+						ForgeData: {
+							LEVEL: 1
+							"enhancedai:follow_ranges_processed": 1b
+							"enhancedai:speed_multiplier_when_aggroed": 1.35d
+						}
+						HandDropChances: [
+							0.0f
+							0.0f
+						]
+						HandItems: [
+							{ }
+							{ }
+						]
+						HasConverted: 0b
+						HasNectar: 0b
+						HasStung: 0b
+						Health: 16.5f
+						HurtByTimestamp: 0
+						HurtTime: 0s
+						InLove: 0
+						Invulnerable: 0b
+						LeftHanded: 0b
+						MaxHealth: 16.5f
+						Motion: [
+							0.0d
+							0.0d
+							0.0d
+						]
+						NoGravity: 1b
+						OnGround: 0b
+						PersistenceRequired: 0b
+						PortalCooldown: 0
+						Pos: [
+							-14.498473053564078d
+							49.0d
+							82.7199999988079d
+						]
+						Rotation: [
+							0.112342834f
+							0.0f
+						]
+						TicksSincePollination: 49
+						UUID: [I;
+							-669549963
+							1705068945
+							-1350509853
+							1623504790
+						]
+						bee_behavior: 0
+						bee_endurance: 1
+						bee_productivity: 2
+						bee_temper: 1
+						bee_type: "hive"
+						bee_weather_tolerance: 0
+						breathCollectionCooldown: 600
+						"forge:spawn_type": "SPAWN_EGG"
+						name: "Inferium Bee"
+						type: "productivebees:inferium"
+					}
+				}
+			}
+			id: "3714DD91FDC1B622"
+			rewards: [
+				{
+					count: 16
+					id: "45C270DDE75B29AE"
+					item: {
+						Count: 1b
+						id: "productivebees:gene_bottle"
+						tag: {
+							productivebees_genes: {
+								AbsorptionAmount: 0.0f
+								Age: 0
+								Air: 300s
+								AngerTime: 0
+								ArmorDropChances: [
+									0.0f
+									0.0f
+									0.0f
+									0.0f
+								]
+								ArmorItems: [
+									{
+										Count: 1b
+										id: "mekanism:hazmat_boots"
+									}
+									{
+										Count: 1b
+										id: "mekanism:hazmat_pants"
+									}
+									{
+										Count: 1b
+										id: "mekanism:hazmat_gown"
+									}
+									{
+										Count: 1b
+										id: "mekanism:hazmat_mask"
+									}
+								]
+								Attributes: [
+									{
+										Base: 0.0d
+										Name: "minecraft:generic.armor_toughness"
+									}
+									{
+										Base: 0.0d
+										Name: "forge:step_height_addition"
+									}
+									{
+										Base: 0.6000000238418579d
+										Modifiers: [{
+											Amount: 0.0010000000474974513d
+											Name: "Auto Leveling Bonus"
+											Operation: 2
+											UUID: [I;
+												1779444916
+												-684372809
+												-1968030408
+												840541262
+											]
+										}]
+										Name: "minecraft:generic.flying_speed"
+									}
+									{
+										Base: 0.30000001192092896d
+										Modifiers: [{
+											Amount: 0.0010000000474974513d
+											Name: "Auto Leveling Bonus"
+											Operation: 2
+											UUID: [I;
+												1779444916
+												-684372809
+												-1968030408
+												840541262
+											]
+										}]
+										Name: "minecraft:generic.movement_speed"
+									}
+									{
+										Base: 0.0d
+										Modifiers: [{
+											Amount: 3.5d
+											Name: "Animal knockback"
+											Operation: 0
+											UUID: [I;
+												767468566
+												276253316
+												-1340130566
+												54361819
+											]
+										}]
+										Name: "minecraft:generic.attack_knockback"
+									}
+									{
+										Base: 48.0d
+										Name: "minecraft:generic.follow_range"
+									}
+									{
+										Base: 1.0d
+										Modifiers: [{
+											Amount: 0.10000000149011612d
+											Name: "Auto Leveling Bonus"
+											Operation: 2
+											UUID: [I;
+												1779444916
+												-684372809
+												-1968030408
+												840541262
+											]
+										}]
+										Name: "autoleveling:monster.explosion_damage_bonus"
+									}
+									{
+										Base: 10.0d
+										Modifiers: [
+											{
+												Amount: 0.5d
+												Name: "Health mod medium"
+												Operation: 1
+												UUID: [I;
+													-61673721
+													-632015700
+													-1201214135
+													930825448
+												]
+											}
+											{
+												Amount: 0.10000000149011612d
+												Name: "Auto Leveling Bonus"
+												Operation: 2
+												UUID: [I;
+													1779444916
+													-684372809
+													-1968030408
+													840541262
+												]
+											}
+										]
+										Name: "minecraft:generic.max_health"
+									}
+									{
+										Base: 0.0d
+										Name: "minecraft:generic.knockback_resistance"
+									}
+									{
+										Base: 0.08d
+										Name: "forge:entity_gravity"
+									}
+									{
+										Base: 1.0d
+										Name: "forge:swim_speed"
+									}
+									{
+										Base: 1.0d
+										Modifiers: [{
+											Amount: 0.10000000149011612d
+											Name: "Auto Leveling Bonus"
+											Operation: 2
+											UUID: [I;
+												1779444916
+												-684372809
+												-1968030408
+												840541262
+											]
+										}]
+										Name: "autoleveling:monster.projectile_damage_bonus"
+									}
+									{
+										Base: 0.0d
+										Modifiers: [{
+											Amount: 0.10000000149011612d
+											Name: "Auto Leveling Bonus"
+											Operation: 2
+											UUID: [I;
+												1779444916
+												-684372809
+												-1968030408
+												840541262
+											]
+										}]
+										Name: "minecraft:generic.armor"
+									}
+									{
+										Base: 2.0d
+										Modifiers: [{
+											Amount: 0.10000000149011612d
+											Name: "Auto Leveling Bonus"
+											Operation: 2
+											UUID: [I;
+												1779444916
+												-684372809
+												-1968030408
+												840541262
+											]
+										}]
+										Name: "minecraft:generic.attack_damage"
+									}
+								]
+								Brain: {
+									memories: { }
+								}
+								CanPickUpLoot: 0b
+								CanUpdate: 1b
+								CannotEnterHiveTicks: 0
+								CitadelData: { }
+								CropsGrownSincePollination: 0
+								DeathTime: 0s
+								FallDistance: 0.0f
+								FallFlying: 0b
+								Fire: -1s
+								ForcedAge: 0
+								ForgeCaps: {
+									"cataclysm:charge_cap": {
+										ChargeDamage: 0.0f
+										ChargeTime: 0
+										KnockbackSpeed: 0.0f
+										dx: 0.0f
+										dz: 0.0f
+										isCharge: 0b
+										timer: 0
+									}
+									"cataclysm:hook_cap": {
+										hasHook: 0b
+									}
+									"mekanism:radiation": {
+										radiation: 1.0E-7d
+									}
+									"pneumaticcraft:hacking": { }
+									"shrink:shrunk": {
+										defaulteyeheight: 0.0f
+										fixed: 0b
+										height: 0.0f
+										isshrinking: 0b
+										isshrunk: 0b
+										scale: 1.0f
+										width: 0.0f
+									}
+								}
+								ForgeData: {
+									LEVEL: 1
+									"enhancedai:follow_ranges_processed": 1b
+									"enhancedai:speed_multiplier_when_aggroed": 1.35d
+								}
+								HandDropChances: [
+									0.0f
+									0.0f
+								]
+								HandItems: [
+									{ }
+									{ }
+								]
+								HasConverted: 0b
+								HasNectar: 0b
+								HasStung: 0b
+								Health: 16.5f
+								HurtByTimestamp: 0
+								HurtTime: 0s
+								InLove: 0
+								Invulnerable: 0b
+								LeftHanded: 0b
+								MaxHealth: 16.5f
+								Motion: [
+									0.0d
+									0.0d
+									0.0d
+								]
+								NoGravity: 1b
+								OnGround: 0b
+								PersistenceRequired: 0b
+								PortalCooldown: 0
+								Pos: [
+									-14.498473053564078d
+									49.0d
+									82.7199999988079d
+								]
+								Rotation: [
+									0.112342834f
+									0.0f
+								]
+								TicksSincePollination: 49
+								UUID: [I;
+									-669549963
+									1705068945
+									-1350509853
+									1623504790
+								]
+								bee_behavior: 0
+								bee_endurance: 1
+								bee_productivity: 2
+								bee_temper: 1
+								bee_type: "hive"
+								bee_weather_tolerance: 0
+								breathCollectionCooldown: 600
+								"forge:spawn_type": "SPAWN_EGG"
+								name: "Inferium Bee"
+								type: "productivebees:inferium"
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "5894EA39642B41ED"
+					type: "xp"
+					xp: 10
+				}
+			]
+			tasks: [{
+				id: "0DD616C07D26F90F"
+				item: {
+					Count: 1b
+					id: "productivebees:gene_bottle"
+					tag: {
+						productivebees_genes: {
+							AbsorptionAmount: 0.0f
+							Age: 0
+							Air: 300s
+							AngerTime: 0
+							ArmorDropChances: [
+								0.0f
+								0.0f
+								0.0f
+								0.0f
+							]
+							ArmorItems: [
+								{
+									Count: 1b
+									id: "mekanism:hazmat_boots"
+								}
+								{
+									Count: 1b
+									id: "mekanism:hazmat_pants"
+								}
+								{
+									Count: 1b
+									id: "mekanism:hazmat_gown"
+								}
+								{
+									Count: 1b
+									id: "mekanism:hazmat_mask"
+								}
+							]
+							Attributes: [
+								{
+									Base: 0.0d
+									Name: "minecraft:generic.armor_toughness"
+								}
+								{
+									Base: 0.0d
+									Name: "forge:step_height_addition"
+								}
+								{
+									Base: 0.6000000238418579d
+									Modifiers: [{
+										Amount: 0.0010000000474974513d
+										Name: "Auto Leveling Bonus"
+										Operation: 2
+										UUID: [I;
+											1779444916
+											-684372809
+											-1968030408
+											840541262
+										]
+									}]
+									Name: "minecraft:generic.flying_speed"
+								}
+								{
+									Base: 0.30000001192092896d
+									Modifiers: [{
+										Amount: 0.0010000000474974513d
+										Name: "Auto Leveling Bonus"
+										Operation: 2
+										UUID: [I;
+											1779444916
+											-684372809
+											-1968030408
+											840541262
+										]
+									}]
+									Name: "minecraft:generic.movement_speed"
+								}
+								{
+									Base: 0.0d
+									Modifiers: [{
+										Amount: 3.5d
+										Name: "Animal knockback"
+										Operation: 0
+										UUID: [I;
+											767468566
+											276253316
+											-1340130566
+											54361819
+										]
+									}]
+									Name: "minecraft:generic.attack_knockback"
+								}
+								{
+									Base: 48.0d
+									Name: "minecraft:generic.follow_range"
+								}
+								{
+									Base: 1.0d
+									Modifiers: [{
+										Amount: 0.10000000149011612d
+										Name: "Auto Leveling Bonus"
+										Operation: 2
+										UUID: [I;
+											1779444916
+											-684372809
+											-1968030408
+											840541262
+										]
+									}]
+									Name: "autoleveling:monster.explosion_damage_bonus"
+								}
+								{
+									Base: 10.0d
+									Modifiers: [
+										{
+											Amount: 0.5d
+											Name: "Health mod medium"
+											Operation: 1
+											UUID: [I;
+												-61673721
+												-632015700
+												-1201214135
+												930825448
+											]
+										}
+										{
+											Amount: 0.10000000149011612d
+											Name: "Auto Leveling Bonus"
+											Operation: 2
+											UUID: [I;
+												1779444916
+												-684372809
+												-1968030408
+												840541262
+											]
+										}
+									]
+									Name: "minecraft:generic.max_health"
+								}
+								{
+									Base: 0.0d
+									Name: "minecraft:generic.knockback_resistance"
+								}
+								{
+									Base: 0.08d
+									Name: "forge:entity_gravity"
+								}
+								{
+									Base: 1.0d
+									Name: "forge:swim_speed"
+								}
+								{
+									Base: 1.0d
+									Modifiers: [{
+										Amount: 0.10000000149011612d
+										Name: "Auto Leveling Bonus"
+										Operation: 2
+										UUID: [I;
+											1779444916
+											-684372809
+											-1968030408
+											840541262
+										]
+									}]
+									Name: "autoleveling:monster.projectile_damage_bonus"
+								}
+								{
+									Base: 0.0d
+									Modifiers: [{
+										Amount: 0.10000000149011612d
+										Name: "Auto Leveling Bonus"
+										Operation: 2
+										UUID: [I;
+											1779444916
+											-684372809
+											-1968030408
+											840541262
+										]
+									}]
+									Name: "minecraft:generic.armor"
+								}
+								{
+									Base: 2.0d
+									Modifiers: [{
+										Amount: 0.10000000149011612d
+										Name: "Auto Leveling Bonus"
+										Operation: 2
+										UUID: [I;
+											1779444916
+											-684372809
+											-1968030408
+											840541262
+										]
+									}]
+									Name: "minecraft:generic.attack_damage"
+								}
+							]
+							Brain: {
+								memories: { }
+							}
+							CanPickUpLoot: 0b
+							CanUpdate: 1b
+							CannotEnterHiveTicks: 0
+							CitadelData: { }
+							CropsGrownSincePollination: 0
+							DeathTime: 0s
+							FallDistance: 0.0f
+							FallFlying: 0b
+							Fire: -1s
+							ForcedAge: 0
+							ForgeCaps: {
+								"cataclysm:charge_cap": {
+									ChargeDamage: 0.0f
+									ChargeTime: 0
+									KnockbackSpeed: 0.0f
+									dx: 0.0f
+									dz: 0.0f
+									isCharge: 0b
+									timer: 0
+								}
+								"cataclysm:hook_cap": {
+									hasHook: 0b
+								}
+								"mekanism:radiation": {
+									radiation: 1.0E-7d
+								}
+								"pneumaticcraft:hacking": { }
+								"shrink:shrunk": {
+									defaulteyeheight: 0.0f
+									fixed: 0b
+									height: 0.0f
+									isshrinking: 0b
+									isshrunk: 0b
+									scale: 1.0f
+									width: 0.0f
+								}
+							}
+							ForgeData: {
+								LEVEL: 1
+								"enhancedai:follow_ranges_processed": 1b
+								"enhancedai:speed_multiplier_when_aggroed": 1.35d
+							}
+							HandDropChances: [
+								0.0f
+								0.0f
+							]
+							HandItems: [
+								{ }
+								{ }
+							]
+							HasConverted: 0b
+							HasNectar: 0b
+							HasStung: 0b
+							Health: 16.5f
+							HurtByTimestamp: 0
+							HurtTime: 0s
+							InLove: 0
+							Invulnerable: 0b
+							LeftHanded: 0b
+							MaxHealth: 16.5f
+							Motion: [
+								0.0d
+								0.0d
+								0.0d
+							]
+							NoGravity: 1b
+							OnGround: 0b
+							PersistenceRequired: 0b
+							PortalCooldown: 0
+							Pos: [
+								-14.498473053564078d
+								49.0d
+								82.7199999988079d
+							]
+							Rotation: [
+								0.112342834f
+								0.0f
+							]
+							TicksSincePollination: 49
+							UUID: [I;
+								-669549963
+								1705068945
+								-1350509853
+								1623504790
+							]
+							bee_behavior: 0
+							bee_endurance: 1
+							bee_productivity: 2
+							bee_temper: 1
+							bee_type: "hive"
+							bee_weather_tolerance: 0
+							breathCollectionCooldown: 600
+							"forge:spawn_type": "SPAWN_EGG"
+							name: "Inferium Bee"
+							type: "productivebees:inferium"
+						}
+					}
+				}
+				match_nbt: false
+				type: "item"
+			}]
+			x: 0.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["3714DD91FDC1B622"]
+			description: ["这些离心机非常耗电，确保你的电力供应充足。你需要长时间运行它们来分离蜜蜂的遗传物质，并处理大量蜂蜡，以获取各种资源。"]
+			id: "5FF3DED97F378FAA"
+			rewards: [
+				{
+					id: "7F6D376ED42249A7"
+					item: "productivebees:upgrade_time"
+					type: "item"
+				}
+				{
+					id: "105CAAB055F175C2"
+					item: "productivebees:upgrade_breeding"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "1A349C20B51DAA08"
+				item: "productivebees:powered_centrifuge"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["737A19C13281CFC4"]
+			description: ["观察模拟舱内的蜜蜂。它们是纯净的样本，基因组适应性极强。但据推测，它们尚无法在严酷的自然环境中生存。你需要在模拟舱内与它们合作。当你对蜜蜂的改造满意并希望长期部署时，可以使用模拟升级和喂食石板，让它们即使在虚拟蜂巢模拟中也能在外部世界继续运作。"]
+			id: "2A17268C47B23F1B"
+			rewards: [{
+				id: "1505CDAEB571B64D"
+				item: {
+					Count: 1b
+					id: "productivebees:sturdy_bee_cage"
+					tag: {
+						Age: 0
+						AngerTime: 0
+						CanUpdate: 1b
+						ForcedAge: 0
+						ForgeCaps: {
+							"cataclysm:charge_cap": {
+								ChargeDamage: 0.0f
+								ChargeTime: 0
+								KnockbackSpeed: 0.0f
+								dx: 0.0f
+								dz: 0.0f
+								isCharge: 0b
+								timer: 0
+							}
+							"cataclysm:hook_cap": {
+								hasHook: 0b
+							}
+							"mekanism:radiation": {
+								radiation: 1.0E-7d
+							}
+							"pneumaticcraft:hacking": { }
+							"shrink:shrunk": {
+								defaulteyeheight: 0.0f
+								fixed: 0b
+								height: 0.0f
+								isshrinking: 0b
+								isshrunk: 0b
+								scale: 1.0f
+								width: 0.0f
+							}
+						}
+						ForgeData: {
+							LEVEL: 1
+							"enhancedai:follow_ranges_processed": 1b
+							"enhancedai:speed_multiplier_when_aggroed": 1.35d
+						}
+						HasConverted: 0b
+						HasNectar: 0b
+						HasStung: 0b
+						Health: 7.7f
+						Invulnerable: 0b
+						MaxHealth: 7.7f
+						PersistenceRequired: 0b
+						bee_behavior: 0
+						bee_endurance: 0
+						bee_productivity: 2
+						bee_temper: 1
+						bee_type: "hive"
+						bee_weather_tolerance: 0
+						entity: "productivebees:dye_bee"
+						"forge:spawn_type": "COMMAND"
+						isProductiveBee: 1b
+						mod: "ProductiveBees"
+						name: "Dye Bee"
+					}
+				}
+				type: "item"
+			}]
+			tasks: [{
+				icon: {
+					Count: 1b
+					id: "productivebees:bee_nest_diamond_helmet"
+					tag: {
+						Damage: 0
+					}
+				}
+				id: "2F44494DC999E8A3"
+				observe_type: 5
+				timer: 0L
+				title: "观察一只蜜蜂"
+				to_observe: "minecraft:bee"
+				type: "observation"
+			}]
+			x: 4.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["2A17268C47B23F1B"]
+			description: [
+				"高级蜂巢移除了标准蜂巢的所有限制。你可以直接从物品栏中收集蜂蜜和蜂巢，而不会激怒蜜蜂，并且可以用各种手段升级以提高其生产力。在模拟环境外操作，最重要的升级是模拟升级，但其他升级也非常有用。"
+				"{@pagebreak}"
+				"要让蜜蜂产蜜，需要在它们前方一个方块处放置喂食板。喂食板若直接接触蜂巢前方则无法工作。请务必在JEI中查看蜜蜂对应的开花物品，并将其放置在喂食板上。例如，青金石蜜蜂会显示青金石块作为开花方块，这意味着喂食板中应放置青金石块。这些方块不会被消耗。"
+				" "
+				"{@pagebreak}"
+				"如果你的蜜蜂拒绝工作，也可以通过移动蜂巢，然后用木棍敲击蜂巢来强行将它们赶出。"
+			]
+			id: "76A76C4FD398EA9C"
+			rewards: [
+				{
+					id: "455D51B0298C5534"
+					item: "productivebees:upgrade_simulator"
+					type: "item"
+				}
+				{
+					id: "5EA5DAEA5C9E2956"
+					item: "productivebees:upgrade_productivity"
+					type: "item"
+				}
+				{
+					id: "0DF9C6C653359C8F"
+					item: "productivebees:upgrade_time"
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "252236152A7560AC"
+					item: "productivebees:upgrade_simulator"
+					type: "item"
+				}
+				{
+					id: "795897761D295732"
+					item: "productivebees:advanced_oak_beehive"
+					type: "item"
+				}
+			]
+			title: "虚拟蜂巢"
+			x: 2.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["56705C602D70B062"]
+			description: ["获取普通生产力基因或更优基因和UU物质。我们的科学家会对其进行增强，并返回改进后的基因变体给你。"]
+			icon: {
+				Count: 1b
+				id: "productivebees:gene"
+				tag: {
+					productivebees_gene_attribute: "productivity"
+					productivebees_gene_purity: 100
+					productivebees_gene_value: 3
+				}
+			}
+			id: "13EB88F611C59655"
+			rewards: [
+				{
+					id: "6AFA9DB074EAC60A"
+					item: {
+						Count: 1b
+						id: "productivebees:gene"
+						tag: {
+							productivebees_gene_attribute: "productivity"
+							productivebees_gene_purity: 100
+							productivebees_gene_value: 1
+						}
+					}
+					team_reward: true
+					type: "item"
+				}
+				{
+					id: "51192970189B39C0"
+					item: "productivebees:upgrade_productivity"
+					team_reward: true
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					consume_items: true
+					id: "7F71E2998C4E5F6F"
+					item: {
+						Count: 1b
+						id: "itemfilters:or"
+						tag: {
+							items: [
+								{
+									Count: 1b
+									id: "productivebees:gene"
+									tag: {
+										productivebees_gene_attribute: "productivity"
+										productivebees_gene_purity: 100
+										productivebees_gene_value: 0
+									}
+								}
+								{
+									Count: 1b
+									id: "productivebees:gene"
+									tag: {
+										productivebees_gene_attribute: "productivity"
+										productivebees_gene_purity: 100
+										productivebees_gene_value: 1
+									}
+								}
+								{
+									Count: 1b
+									id: "productivebees:gene"
+									tag: {
+										productivebees_gene_attribute: "productivity"
+										productivebees_gene_purity: 100
+										productivebees_gene_value: 2
+									}
+								}
+								{
+									Count: 1b
+									id: "productivebees:gene"
+									tag: {
+										productivebees_gene_attribute: "productivity"
+										productivebees_gene_purity: 100
+										productivebees_gene_value: 3
+									}
+								}
+							]
+						}
+					}
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "033AF115CB6C5C4D"
+					item: "ic2:uumatter"
+					type: "item"
+				}
+			]
+			title: "生产力提升 I"
+			x: 4.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["13EB88F611C59655"]
+			description: ["获取中等或以上基因，与uu物质结合，我们将制造出更优质的基因。"]
+			icon: {
+				Count: 2b
+				id: "productivebees:gene"
+				tag: {
+					productivebees_gene_attribute: "productivity"
+					productivebees_gene_purity: 100
+					productivebees_gene_value: 3
+				}
+			}
+			id: "1308540AA6AC518A"
+			rewards: [{
+				id: "31AD60864742D2B3"
+				item: {
+					Count: 1b
+					id: "productivebees:gene"
+					tag: {
+						productivebees_gene_attribute: "productivity"
+						productivebees_gene_purity: 100
+						productivebees_gene_value: 2
+					}
+				}
+				type: "item"
+			}]
+			tasks: [
+				{
+					consume_items: true
+					id: "2553C12B8A59D7E3"
+					item: {
+						Count: 1b
+						id: "itemfilters:or"
+						tag: {
+							items: [
+								{
+									Count: 1b
+									id: "productivebees:gene"
+									tag: {
+										productivebees_gene_attribute: "productivity"
+										productivebees_gene_purity: 100
+										productivebees_gene_value: 1
+									}
+								}
+								{
+									Count: 1b
+									id: "productivebees:gene"
+									tag: {
+										productivebees_gene_attribute: "productivity"
+										productivebees_gene_purity: 100
+										productivebees_gene_value: 2
+									}
+								}
+								{
+									Count: 1b
+									id: "productivebees:gene"
+									tag: {
+										productivebees_gene_attribute: "productivity"
+										productivebees_gene_purity: 100
+										productivebees_gene_value: 3
+									}
+								}
+							]
+						}
+					}
+					title: "中等或以上生产力基因"
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "7E5A204531192DE5"
+					item: "ic2:uumatter"
+					type: "item"
+				}
+			]
+			title: "生产力 II"
+			x: 4.0d
+			y: 7.5d
+		}
+		{
+			dependencies: ["1308540AA6AC518A"]
+			description: ["终极生产力基因终于可以通过高生产力或更高的生产力以及最终的uu物质提交来制造了。请务必妥善保存，并在必要时使用uu物质进行克隆。"]
+			icon: {
+				Count: 3b
+				id: "productivebees:gene"
+				tag: {
+					productivebees_gene_attribute: "productivity"
+					productivebees_gene_purity: 100
+					productivebees_gene_value: 3
+				}
+			}
+			id: "6A7004EAAB1DCCA5"
+			rewards: [{
+				id: "7B23D23BFA370B37"
+				item: {
+					Count: 1b
+					id: "productivebees:gene"
+					tag: {
+						productivebees_gene_attribute: "productivity"
+						productivebees_gene_purity: 100
+						productivebees_gene_value: 3
+					}
+				}
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "265B6C6DA33D8A6C"
+					item: {
+						Count: 1b
+						id: "itemfilters:or"
+						tag: {
+							items: [
+								{
+									Count: 1b
+									id: "productivebees:gene"
+									tag: {
+										productivebees_gene_attribute: "productivity"
+										productivebees_gene_purity: 100
+										productivebees_gene_value: 2
+									}
+								}
+								{
+									Count: 1b
+									id: "productivebees:gene"
+									tag: {
+										productivebees_gene_attribute: "productivity"
+										productivebees_gene_purity: 100
+										productivebees_gene_value: 3
+									}
+								}
+							]
+						}
+					}
+					title: "高或更高的生产力基因"
+					type: "item"
+				}
+				{
+					id: "32B962C41435E499"
+					item: "ic2:uumatter"
+					type: "item"
+				}
+			]
+			title: "生产力 III"
+			x: 4.0d
+			y: 9.0d
+		}
+		{
+			dependencies: ["56705C602D70B062"]
+			description: ["有些蜜蜂似乎偏好白天或黑夜，获取100%纯种的昼行性或夜行性样本，我们就能推断出变异基因，为你创造一个元昼夜序列供你使用。"]
+			icon: {
+				Count: 1b
+				id: "productivebees:gene"
+				tag: {
+					productivebees_gene_attribute: "behavior"
+					productivebees_gene_purity: 100
+					productivebees_gene_value: 2
+				}
+			}
+			id: "20C4792A5F16AA15"
+			rewards: [{
+				id: "3725EC96E3CA5777"
+				item: {
+					Count: 1b
+					id: "productivebees:gene"
+					tag: {
+						productivebees_gene_attribute: "behavior"
+						productivebees_gene_purity: 100
+						productivebees_gene_value: 2
+					}
+				}
+				team_reward: true
+				type: "item"
+			}]
+			tasks: [
+				{
+					consume_items: true
+					id: "27058C6413A87DBB"
+					item: {
+						Count: 1b
+						id: "itemfilters:or"
+						tag: {
+							items: [
+								{
+									Count: 1b
+									id: "productivebees:gene"
+									tag: {
+										productivebees_gene_attribute: "behavior"
+										productivebees_gene_purity: 100
+										productivebees_gene_value: 0
+									}
+								}
+								{
+									Count: 1b
+									id: "productivebees:gene"
+									tag: {
+										productivebees_gene_attribute: "behavior"
+										productivebees_gene_purity: 100
+										productivebees_gene_value: 1
+									}
+								}
+							]
+						}
+					}
+					title: "夜行性或昼行性基因 Nocturnal or Diturnal Gene"
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "67219BD644EC7822"
+					item: "ic2:uumatter"
+					type: "item"
+				}
+			]
+			title: "工作周期"
+			x: 2.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["56705C602D70B062"]
+			description: ["基础蜜蜂似乎对天气模式和昼夜循环都极为敏感。如果我们能获得标准蜜蜂中天气敏感基因的纯样本，应该就能培育出能无视天气条件的基因。"]
+			icon: {
+				Count: 1b
+				id: "productivebees:gene"
+				tag: {
+					productivebees_gene_attribute: "weather_tolerance"
+					productivebees_gene_purity: 100
+					productivebees_gene_value: 0
+				}
+			}
+			id: "594228B627DD1BE9"
+			rewards: [{
+				id: "7BAE6EE106BC7F02"
+				item: {
+					Count: 1b
+					id: "productivebees:gene"
+					tag: {
+						productivebees_gene_attribute: "weather_tolerance"
+						productivebees_gene_purity: 100
+						productivebees_gene_value: 2
+					}
+				}
+				team_reward: true
+				type: "item"
+			}]
+			tasks: [
+				{
+					consume_items: true
+					id: "418E1B45099DCDBD"
+					item: {
+						Count: 1b
+						id: "productivebees:gene"
+						tag: {
+							productivebees_gene_attribute: "weather_tolerance"
+							productivebees_gene_purity: 100
+							productivebees_gene_value: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "08ED57E46E84CABC"
+					item: "ic2:uumatter"
+					type: "item"
+				}
+			]
+			title: "天气耐受性"
+			x: 5.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["56705C602D70B062"]
+			description: ["耐力决定了蜜蜂的健壮程度。通过提取纯度较低的耐力基因，我们可以逐步为你进行提纯。"]
+			icon: {
+				Count: 1b
+				id: "productivebees:gene"
+				tag: {
+					productivebees_gene_attribute: "endurance"
+					productivebees_gene_purity: 100
+					productivebees_gene_value: 2
+				}
+			}
+			id: "67B59ECD8A51F42D"
+			rewards: [{
+				id: "653DA6862E4153D8"
+				item: {
+					Count: 1b
+					id: "productivebees:gene"
+					tag: {
+						productivebees_gene_attribute: "endurance"
+						productivebees_gene_purity: 100
+						productivebees_gene_value: 2
+					}
+				}
+				type: "item"
+			}]
+			tasks: [
+				{
+					consume_items: true
+					id: "4878BBAA5BB6749E"
+					item: {
+						Count: 1b
+						id: "itemfilters:or"
+						tag: {
+							items: [
+								{
+									Count: 1b
+									id: "productivebees:gene"
+									tag: {
+										productivebees_gene_attribute: "endurance"
+										productivebees_gene_purity: 100
+										productivebees_gene_value: 1
+									}
+								}
+								{
+									Count: 1b
+									id: "productivebees:gene"
+									tag: {
+										productivebees_gene_attribute: "endurance"
+										productivebees_gene_purity: 100
+										productivebees_gene_value: 2
+									}
+								}
+								{
+									Count: 1b
+									id: "productivebees:gene"
+									tag: {
+										productivebees_gene_attribute: "endurance"
+										productivebees_gene_purity: 100
+										productivebees_gene_value: 3
+									}
+								}
+							]
+						}
+					}
+					title: "收集普通或更强的耐力基因"
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "0D4D48483027DAEB"
+					item: "ic2:uumatter"
+					type: "item"
+				}
+			]
+			title: "耐力 I"
+			x: 7.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["67B59ECD8A51F42D"]
+			description: ["强大的耐力基因是我们能测序的最高级别。它应该能很好地为你服务。"]
+			icon: {
+				Count: 2b
+				id: "productivebees:gene"
+				tag: {
+					productivebees_gene_attribute: "endurance"
+					productivebees_gene_purity: 100
+					productivebees_gene_value: 1
+				}
+			}
+			id: "22F11C1C7BB283B4"
+			rewards: [{
+				id: "27FBF642AEAA0A7E"
+				item: {
+					Count: 1b
+					id: "productivebees:gene"
+					tag: {
+						productivebees_gene_attribute: "endurance"
+						productivebees_gene_purity: 100
+						productivebees_gene_value: 3
+					}
+				}
+				team_reward: true
+				type: "item"
+			}]
+			tasks: [
+				{
+					consume_items: true
+					icon: {
+						Count: 1b
+						id: "productivebees:gene"
+						tag: {
+							productivebees_gene_attribute: "endurance"
+							productivebees_gene_purity: 100
+							productivebees_gene_value: 3
+						}
+					}
+					id: "2EBEF890853DCB9C"
+					item: {
+						Count: 1b
+						id: "itemfilters:or"
+						tag: {
+							items: [
+								{
+									Count: 1b
+									id: "productivebees:gene"
+									tag: {
+										productivebees_gene_attribute: "endurance"
+										productivebees_gene_purity: 100
+										productivebees_gene_value: 2
+									}
+								}
+								{
+									Count: 1b
+									id: "productivebees:gene"
+									tag: {
+										productivebees_gene_attribute: "endurance"
+										productivebees_gene_purity: 100
+										productivebees_gene_value: 3
+									}
+								}
+							]
+						}
+					}
+					title: "收集中等或更强的耐力基因"
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "75CC57F60CC80833"
+					item: "ic2:uumatter"
+					type: "item"
+				}
+			]
+			title: "耐力 II"
+			x: 7.0d
+			y: 7.5d
+		}
+		{
+			dependencies: ["56705C602D70B062"]
+			description: ["正常蜜蜂在巢穴受扰时会变得焦躁。某些变种总是具有敌意。为了让工蜂尽可能高产且干扰最少，您需要提供一个普通或攻击性基因样本，以便我们筛选出更温顺的工蜂基因。"]
+			icon: {
+				Count: 1b
+				id: "productivebees:gene"
+				tag: {
+					productivebees_gene_attribute: "temper"
+					productivebees_gene_purity: 100
+					productivebees_gene_value: 0
+				}
+			}
+			id: "292BE5DF962EEA23"
+			rewards: [{
+				id: "618D186146D38B5B"
+				item: {
+					Count: 1b
+					id: "productivebees:gene"
+					tag: {
+						productivebees_gene_attribute: "temper"
+						productivebees_gene_purity: 100
+						productivebees_gene_value: 0
+					}
+				}
+				team_reward: true
+				type: "item"
+			}]
+			tasks: [
+				{
+					consume_items: true
+					id: "1BC441AB96313C27"
+					item: {
+						Count: 1b
+						id: "itemfilters:or"
+						tag: {
+							items: [
+								{
+									Count: 1b
+									id: "productivebees:gene"
+									tag: {
+										productivebees_gene_attribute: "temper"
+										productivebees_gene_purity: 100
+										productivebees_gene_value: 1
+									}
+								}
+								{
+									Count: 1b
+									id: "productivebees:gene"
+									tag: {
+										productivebees_gene_attribute: "temper"
+										productivebees_gene_purity: 100
+										productivebees_gene_value: 2
+									}
+								}
+							]
+						}
+					}
+					title: "任何普通或具有攻击性的基因"
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "77D290D60CC938A9"
+					item: "ic2:uumatter"
+					type: "item"
+				}
+			]
+			title: "Temper I"
+			x: 1.0d
+			y: 6.0d
+		}
+		{
+			dependencies: [
+				"594228B627DD1BE9"
+				"6A7004EAAB1DCCA5"
+				"292BE5DF962EEA23"
+				"22F11C1C7BB283B4"
+				"20C4792A5F16AA15"
+			]
+			description: [
+				"将所有最佳基因序列结合成蜂蜜蜜饯，你现在可以喂给任何蜜蜂，将它们变成理想的工蜂。这些经过改良的蜜蜂能抵抗温度、天气和许多不利条件，高效满足你的资源生产需求。这些改造对普通蜜蜂无效。你需要具有生产特性的蜜蜂才能接受改造基因。它们现在真正做到了尽善尽美。"
+				""
+				"{@pagebreak}"
+				"&eNote: &rThere is a shape craft recipe that requires the genes be in a certain order to complete this quest properly, be sure to use that recipe for this turn in."
+				""
+				""
+				"{image:ftbgenesis:textures/quests/perfecttreat.png width:180 height:100 align:1}"
+			]
+			icon: "productivebees:adv_breed_all_bees"
+			id: "105B05738DBDD6CE"
+			rewards: [
+				{
+					count: 16
+					id: "5D4468A21E350726"
+					item: {
+						Count: 1b
+						id: "productivebees:honey_treat"
+						tag: {
+							productivebees_gene_stack: [
+								{
+									Count: 1b
+									id: "productivebees:gene"
+									tag: {
+										productivebees_gene_attribute: "endurance"
+										productivebees_gene_purity: 100
+										productivebees_gene_value: 3
+									}
+								}
+								{
+									Count: 1b
+									id: "productivebees:gene"
+									tag: {
+										productivebees_gene_attribute: "behavior"
+										productivebees_gene_purity: 100
+										productivebees_gene_value: 2
+									}
+								}
+								{
+									Count: 1b
+									id: "productivebees:gene"
+									tag: {
+										productivebees_gene_attribute: "temper"
+										productivebees_gene_purity: 100
+										productivebees_gene_value: 0
+									}
+								}
+								{
+									Count: 1b
+									id: "productivebees:gene"
+									tag: {
+										productivebees_gene_attribute: "productivity"
+										productivebees_gene_purity: 100
+										productivebees_gene_value: 3
+									}
+								}
+								{
+									Count: 1b
+									id: "productivebees:gene"
+									tag: {
+										productivebees_gene_attribute: "weather_tolerance"
+										productivebees_gene_purity: 100
+										productivebees_gene_value: 2
+									}
+								}
+							]
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "5D5E41C7DF84F592"
+					type: "xp_levels"
+					xp_levels: 30
+				}
+			]
+			size: 1.25d
+			tasks: [{
+				id: "5E1268DFD9D57D0D"
+				item: {
+					Count: 1b
+					id: "productivebees:honey_treat"
+					tag: {
+						productivebees_gene_stack: [
+							{
+								Count: 1b
+								id: "productivebees:gene"
+								tag: {
+									productivebees_gene_attribute: "endurance"
+									productivebees_gene_purity: 100
+									productivebees_gene_value: 3
+								}
+							}
+							{
+								Count: 1b
+								id: "productivebees:gene"
+								tag: {
+									productivebees_gene_attribute: "behavior"
+									productivebees_gene_purity: 100
+									productivebees_gene_value: 2
+								}
+							}
+							{
+								Count: 1b
+								id: "productivebees:gene"
+								tag: {
+									productivebees_gene_attribute: "temper"
+									productivebees_gene_purity: 100
+									productivebees_gene_value: 0
+								}
+							}
+							{
+								Count: 1b
+								id: "productivebees:gene"
+								tag: {
+									productivebees_gene_attribute: "productivity"
+									productivebees_gene_purity: 100
+									productivebees_gene_value: 3
+								}
+							}
+							{
+								Count: 1b
+								id: "productivebees:gene"
+								tag: {
+									productivebees_gene_attribute: "weather_tolerance"
+									productivebees_gene_purity: 100
+									productivebees_gene_value: 2
+								}
+							}
+						]
+					}
+				}
+				type: "item"
+				weak_nbt_match: true
+			}]
+			title: "超级蜜蜂！"
+			x: 4.0d
+			y: 11.0d
+		}
+		{
+			dependencies: ["56705C602D70B062"]
+			description: ["孵化器能让你直接根据输入的基因序列创造新的蜜蜂种类。用这台机器，你可以将蜂巢和单个基因样本结合，制造出不同的蜜蜂。"]
+			id: "10CB269808D4E57B"
+			rewards: [{
+				count: 16
+				id: "3CD4FA378D694895"
+				item: "minecraft:egg"
+				type: "item"
+			}]
+			tasks: [{
+				id: "735ACE9327BF8E2E"
+				item: "productivebees:incubator"
+				type: "item"
+			}]
+			x: 7.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["105B05738DBDD6CE"]
+			description: ["经过您对基因改造的深入研究，Nexa 的科学家们成功重测序了您的基因组，以升级您的生物形态。准备好后，按下按钮，我们将新的基因指令集下载到您的身体中。世界中的自然辐射将不再对您造成影响！"]
+			icon: "mekanism:hazmat_mask"
+			id: "33D864DB589FC5FC"
+			rewards: [
+				{
+					auto: "invisible"
+					exclude_from_claim_all: true
+					icon: "engineersdecor:sign_radioactive"
+					id: "6A82EE39D7552249"
+					ignore_reward_blocking: true
+					stage: "resistant"
+					title: "更新个人基因组信息"
+					type: "gamestage"
+				}
+				{
+					id: "4076FE65AB41EF5E"
+					item: "cyclic:inventory_cake"
+					type: "item"
+				}
+			]
+			shape: "hexagon"
+			size: 1.5d
+			tasks: [{
+				id: "07EF4BB2204EDAF8"
+				title: "升级我！"
+				type: "checkmark"
+			}]
+			title: "光荣的进化。"
+			x: 1.0d
+			y: 11.0d
+		}
+		{
+			dependencies: ["56705C602D70B062"]
+			description: [
+				"曾经，埃利里亚大地上曾遍布各种蜜蜂，但它们现已全部灭绝。它们的生存对于恢复我们世界的生态系统至关重要，因此我们一直在努力重测序所有现存物种以及一些新物种的基因组。使用可编程的UU物质和冶金注入器，你可以为几乎所有类型的蜜蜂重现特定基因。要了解具体流程，只需在JEI中查看基因物品的配方，并在冶金注入器类别中查找制作每种变异所需的催化剂。"
+				""
+				"获得想要的基因后，你可以在孵化器中孵化它，使该物种免于灭绝。"
+			]
+			id: "69DB7AA7B6A16EE2"
+			rewards: [
+				{
+					id: "7FF5682673CAF6CB"
+					item: "ic2:uumatter"
+					type: "item"
+				}
+				{
+					id: "01385AE3DEC2BC1D"
+					type: "xp"
+					xp: 10
+				}
+				{
+					count: 16
+					id: "6DDCB9BDBE71828D"
+					item: "productivebees:honey_treat"
+					type: "item"
+				}
+			]
+			shape: "hexagon"
+			size: 1.25d
+			tasks: [{
+				id: "72E89FF923F53CD0"
+				item: {
+					Count: 1b
+					id: "productivebees:gene"
+					tag: {
+						productivebees_gene_attribute: "productivebees:inferium"
+						productivebees_gene_purity: 100
+						productivebees_gene_value: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "工程学的完美境界"
+			x: 5.0d
+			y: 3.0d
+		}
+	]
+	title: "表观遗传学"
+}

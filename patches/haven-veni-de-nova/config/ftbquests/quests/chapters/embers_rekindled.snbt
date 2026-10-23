@@ -1,0 +1,601 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_min_width: 275
+	default_quest_shape: ""
+	filename: "embers_rekindled"
+	group: "02FE661031A105D8"
+	id: "4190DE045FE03D63"
+	order_index: 4
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"&6Embers Rekindled&r 是一款关于火焰与能量的&cmod&r，专注于驾驭&dEmber&r的隐藏力量。"
+				"要开始，你需要一本&9远古卷轴&r，一本&5包含所有必要知识的魔法书&r。"
+				""
+				"This codex isn’t &ecrafted&r. It must be &4earned&r. Defeat an &4Ancient Construct&r to obtain &9Ancient Motive Cores&r, used to create it.  "
+				"一旦拥有，随着你的进展，各个章节将&b解锁&r，揭示&6Ember Magic&r的深层秘密。"
+				""
+				"&c要做的事情比任务里的要多，可惜我缺乏知识来添加更多内容。&r"
+			]
+			disable_toast: true
+			id: "7A3CBB54307F07A1"
+			shape: "gear"
+			size: 2.0d
+			tasks: [{
+				dimension: "minecraft:overworld"
+				disable_toast: true
+				icon: "havenksh:research_tier_advanced"
+				id: "0FA97FFBCD3ADA44"
+				title: "欢迎来到 Embers Rekindled"
+				type: "dimension"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7A3CBB54307F07A1"]
+			description: [
+				"&eTinker Hammer&r 是 &cEmbers Rekindled&r 中&6最重要的工具&r。"
+				""
+				"它主要有两个功能："
+				"通过&c压缩锭&r来制造&9金属板&r。"
+				"- 将&eEmber Emitters&r和&9Ember Receivers&r连接起来，在机器之间传输&6Ember Energy&r。"
+				""
+				"要连接机器，先&bShift-右击&r&9接收器&r，然后&a右击&r&e发射器&r。"
+				"没有&eTinker Hammer&r，你就无法搭建&6Ember Power Network&r。"
+			]
+			id: "4BBE3CF976B6DB37"
+			tasks: [{
+				id: "4B34E8E8AE3C0524"
+				item: "embers:tinker_hammer"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["4BBE3CF976B6DB37"]
+			description: [
+				"&6Ember Energy&r 在世界上分布不均。某些区块的 &a能量水平很高&r，而另一些则 &7几乎没有能量&r。"
+				""
+				"&e大气计&r能帮你找到提取&d余烬&r的最佳地点。"
+				"手持它时，HUD上会出现一个&eNeedle Gauge&r。"
+				""
+				"- 如果&6针&r向&c右&r移动很远，该地区就&6富含余烬&r。"
+				"- 如果&6针&r几乎不动，该区块的&7余烬能量&r很低，不适合提取。"
+				""
+				"将机器放置在&b更高级的熔岩区&r会使其&9效率更高&r，并增加资源产出。"
+			]
+			id: "322C0B81D38F74D9"
+			tasks: [{
+				id: "50E4ECF904402528"
+				item: "embers:atmospheric_gauge"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["322C0B81D38F74D9"]
+			description: [
+				"&cEmber Bore&r 是获取 &dEmber Shards&r 和 &9Ember Crystals&r 的 &6核心机器&r。"
+				""
+				"放置后，它会扩展成一个 &a3x3 的结构&r，并且必须在 &e基岩上或其附近&r建造才能正常工作。"
+				"它使用&6固体燃料&r运行，并随时间缓慢生成&9余烬资源&r。"
+				""
+				"放置钻孔前，强烈建议使用&e大气计&r。"
+				"&c越高&r的&6余烬浓度&r，你每消耗燃料获得的&9资源&r就越多。"
+			]
+			id: "0D1AF7C48C6BA109"
+			tasks: [{
+				id: "431B3EDB4B2A3B36"
+				item: "embers:ember_bore"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["0D1AF7C48C6BA109"]
+			description: [
+				"&9Ember Shards&r 和 &dEmber Crystals&r 是 &cEmbers Rekindled&r 机器的 &6主要燃料&r。"
+				""
+				"- 每个&9Ember Shards&r可产生&6400 Ember Energy&r。"
+				"- 每个&dEmber Crystals&r可产生&61,400 Ember Energy&r。"
+				"- &cEmber Grit&r 是一种&e固体燃料&r，可以在 &cEmber Bore&r 中燃烧，或用于任何&6燃料驱动的机器&r。"
+				""
+				"所有消耗&6Ember Energy&r的机器都必须由这些&dpower sources&r供电。"
+			]
+			id: "06DB8F8416DA4397"
+			tasks: [{
+				id: "2EBEEA9EAE7996F6"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						RepairCost: 0
+						display: {
+							Name: "{\"text\":\"Ember Shards\"}"
+						}
+						items: [
+							{
+								Count: 1b
+								id: "embers:ember_shard"
+							}
+							{
+								Count: 1b
+								id: "embers:ember_crystal"
+							}
+							{
+								Count: 1b
+								id: "embers:ember_grit"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			x: 0.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["06DB8F8416DA4397"]
+			description: [
+				"原始&9余烬碎片&r和&d余烬晶体&r必须转化为&6可用能量&r。"
+				"使用&cEmber Activator&r是完成此操作的&a最简单&r的方法。"
+				""
+				"将&bFeeding&r &9Ember Shards&r 或 &dCrystals&r 放入其 &e底部槽位&r 即可开始。"
+				"一旦启动，它会发出&6余烬能量&r，必须使用&e余烬发射器&r和&9余烬接收器&r将其传输给机器。"
+				""
+				"&cEmber Activator&r 是一种&e基础能源&r，但&c效率不高&r。"
+				"存在用于&d高级配置&r的更强发电机。"
+			]
+			id: "6105F1617E32C556"
+			tasks: [{
+				id: "1A611FE167ED231C"
+				item: "embers:ember_activator"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 10.0d
+		}
+		{
+			dependencies: ["6105F1617E32C556"]
+			description: [
+				"&6Ember Energy&r 不使用电线——它通过 &eEmber Emitters&r 和 &9Ember Receivers&r 在机器之间传输。"
+				""
+				"要链接它们，请使用&eTinker Hammer&r。"
+				"- 先&bShift-右击&r这个&9接收器&r。"
+				"- 右键&a&r&eEmitter&r以完成连接。"
+				""
+				"&6Ember&r 最多只能移动 &c20 格&r。如果机器相距太远，会发生 &9电力损耗&r，导致 &6Ember&r 无法到达目的地。"
+				"如果看到发射器冒出&c黑烟&r，说明&c能量被浪费了&r。请缩短距离或使用&b光束分裂器&r来重定向能量。"
+			]
+			id: "2D1F9CC92A15C457"
+			tasks: [
+				{
+					id: "31477ED98FB3572B"
+					item: "embers:ember_emitter"
+					type: "item"
+				}
+				{
+					id: "4853238EF8E2A20B"
+					item: "embers:ember_receiver"
+					type: "item"
+				}
+			]
+			title: "Ember Emitter \& Receiver"
+			x: 0.0d
+			y: 12.0d
+		}
+		{
+			dependencies: ["38F1906B99CBEA78"]
+			description: [
+				"&c压力精炼器&r是一种&d升级后的余烬发生器&r，产生的能量远超&e余烬激活器&r。"
+				""
+				"默认情况下，每个碎片会生成&650%更多的火花&r。"
+				"可以在下方放置一个 &9Copper Block&r 并用 &cLava&r 将其包围，从而 &a升级&r 至 &c3x Efficiency&r。"
+				""
+				"与&eEmber Activator&r不同，&cPressure Refinery&r需要&b持续供水&r才能运作。"
+				"没有水，它就会&c关闭&r，并拒绝处理&9Ember Shards&r。"
+			]
+			id: "1851BF1708192BF4"
+			tasks: [{
+				id: "799540A97DB101B6"
+				item: "embers:pressure_refinery"
+				type: "item"
+			}]
+			x: 4.25d
+			y: 9.25d
+		}
+		{
+			dependencies: ["2991E9371DC44451"]
+			description: [
+				"&9远古法典&r是一本&5魔法书籍&r，里面包含了关于&c余烬重燃&r的所有必要知识。"
+				"随着你的进步，它会解锁&d新章节&r，引导你探索&6余烬魔法&r的秘密。"
+				""
+				"与其他指南不同，&9远古卷轴&r必须通过&4赢得&r，而非合成。"
+				"要获得它，你必须击败一个&4远古构造体&r，这是一种保护&c远古动机核心&r的强大自动人。"
+				""
+				"获得后，&b右键&r新区域将解锁更多知识，揭示&9高级火花技巧&r。"
+			]
+			id: "37FABA2B1B0328CC"
+			tasks: [{
+				id: "7F8AF3EB4A02165A"
+				item: "embers:ancient_codex"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["6CF3A477827A38AD"]
+			description: [
+				"&cMelter&r 是用于处理 &dmolten metals&r 的 &6key machine&r。"
+				""
+				"它将矿石、锭和红石熔炼成&9液态金属&r，这是制作高级&c余烬工具&r和&d机器&r所必需的。"
+				"与熔炉不同，它使用&6余烬能量&r代替燃料，并且&9将矿石产量翻倍&r，每块矿石可产出价值&e两个锭&r的液体。"
+				""
+				"液态金属必须用管道&b提取&r——如果&cMelter&r没有输出，它会因处理受阻材料而&c浪费 Ember Energy&r。"
+			]
+			id: "0B8D087E3AC640A3"
+			tasks: [{
+				id: "19D2595B118CA3FF"
+				item: "embers:melter"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["6CF3A477827A38AD"]
+			description: [
+				"&6Embers Rekindled&r的机器不会自己移动物品或流体。"
+				"要运输材料，你需要 &bPipes&r 和 &cExtractors&r。"
+				""
+				"- &bItem Pipes&r 用于在物品栏之间移动 &eitems&r。"
+				"- &b流体管道&r用于在机器之间运输&d液体&r。"
+				"- 必须将&c提取器&r连接到机器上以抽取资源。"
+				"- &6传输器&r就像&n过滤器&r一样，可以控制哪些物品或流体可以通过。"
+				""
+				"如果管道被&n堵塞&r，它们会释放&7黑烟&r或&f蒸汽&r。"
+				"要清除它们，用&e木棍&r右键点击被堵塞的管道。"
+			]
+			id: "314C4AFE9BE1C607"
+			tasks: [
+				{
+					id: "76960240987BE685"
+					item: "embers:item_pipe"
+					type: "item"
+				}
+				{
+					id: "7ADB194C366AFADB"
+					item: "embers:fluid_pipe"
+					type: "item"
+				}
+				{
+					id: "108925E7065453E7"
+					item: "embers:item_extractor"
+					type: "item"
+				}
+				{
+					id: "46D55B1094F2871D"
+					item: "embers:fluid_extractor"
+					type: "item"
+				}
+			]
+			x: 6.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["0D1AF7C48C6BA109"]
+			description: [
+				"&6铜电池&r是一种&9基础熔岩电池&r。它能储存高达&624,000熔岩能量&r供后续使用。"
+				""
+				"- 使用&eEmber Receiver&r来&r&a注入&r&bEmber Energy&r。"
+				"- 使用&9Ember Emitter&r来&r&9提取&r&bEmber&r。"
+				""
+				"机器无需直接连接到电源，将火花存储在&6铜电池&r中可以实现&n更佳的能量控制&r。"
+			]
+			id: "4F23D98B35D46F7B"
+			tasks: [{
+				id: "2747D45B2AEE170F"
+				item: {
+					Count: 1
+					ForgeCaps: {
+						Parent: {
+							"embers:ember": 0.0d
+							"embers:ember_capacity": 24000.0d
+						}
+					}
+					id: "embers:copper_cell"
+					tag: {
+						ForgeCaps: {
+							"embers:ember_capacity": 24000.0d
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: -2.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["06DB8F8416DA4397"]
+			description: [
+				"&d晶格电池&r是一种&6高容量余烬存储单元&r，初始拥有&964,000余烬能量&r。"
+				""
+				"与 &6铜芯&r 不同，它可以通过喂食 &9余烬碎片&r 和 &d余烬晶体&r 来 &n扩展&r。"
+				"在最大容量下，它可以储存高达 &b1,440,000 Ember Energy&r。"
+				""
+				"当&d晶格电池&r储存的电量越多，其上方的&9悬浮晶体&r就会&n物理生长&r，直观显示电量水平。"
+			]
+			id: "692CA495BEEE2DBA"
+			tasks: [{
+				id: "664D91A38DE35788"
+				item: "embers:crystal_cell"
+				type: "item"
+			}]
+			x: -2.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["0D1AF7C48C6BA109"]
+			description: [
+				"&cStamper&r 能将熔融金属制成 &6可用物品&r，例如 &9锭&r、&d板&r和 &b齿轮&r。"
+				""
+				"它与 &bStamp Base&r 配合使用，用于在塑形前盛放熔融金属。"
+				"要使用&cStamper&r，必须将其放置在&bStamp Base&r的&n正上方2格处&r。"
+				""
+				"必须将正确的&d印章&r放入&e印章机&r中才能确定输出："
+				""
+				"- &fBar Stamp&r → 可制作&9锭&r。"
+				"- &6Plate Stamp&r → 可制作 &d金属板&r。"
+				"- &bGear Stamp&r → 生产 &6齿轮&r（若模组包中已启用）。"
+				""
+				"在&9Stamp Base&r下方放置一个&cBin&r可以&n自动收集&r制作好的物品。"
+				"如果没有箱子，物品将&a被丢弃到世界中&r。"
+			]
+			id: "52E1D53AB243EEA9"
+			tasks: [
+				{
+					id: "1003C9013B1B2A7B"
+					item: "embers:stamper"
+					type: "item"
+				}
+				{
+					id: "76800CAF3F97B271"
+					item: "embers:stamp_base"
+					type: "item"
+				}
+			]
+			x: 2.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["2E8FEEACF16D9602"]
+			description: [
+				"&c混合离心机&r将熔融金属结合以形成&n合金&r。"
+				"这是制造&6Dawnstone&r的唯一方法，它是一种用于&9高级Ember机器&r的&d强力合金&r。"
+				""
+				"&9离心机&r的每个侧面都接受&n不同的熔融金属&r。"
+				"你必须先&b导入正确的流体&r，然后它们才会混合。"
+				""
+				"要监测输入水平，请将一个 &eLiquid Dial&r 连接到底部方块上。"
+				"这样就能&9精确控制&r金属比例，避免浪费。"
+			]
+			id: "2AD1ACFCD1896E58"
+			tasks: [{
+				id: "02E1FE4FDBB339C5"
+				item: "embers:mixer_centrifuge"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["2E8FEEACF16D9602"]
+			description: [
+				"&cHearth Coil&r 是一种&6超高速熔炼机&r，专为&n大规模生产&r而设计。"
+				""
+				"当用&6Ember Energy&r供电时，它会&d瞬间过热&r，从而能熔炼放置在上面的任何物品。"
+				"全功率下，每秒可处理&91个物品&r，但冶炼之间有轻微的&c延迟&r。"
+				""
+				"强烈建议使用&e机械核心&r，因为它能让&9物品的输入/输出更简单&r。"
+			]
+			id: "0FF9396CFA9F8F57"
+			tasks: [{
+				id: "0F31CC5AD634EA4D"
+				item: "embers:hearth_coil"
+				type: "item"
+			}]
+			x: 4.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["6CF3A477827A38AD"]
+			description: [
+				"许多&6Ember Machines&r都只有&a一个输入/输出&r。"
+				"&eMechanical Core&r 扩展了此功能，允许从&n任何方向&r进入。"
+				""
+				"- 用于将&9多个输入&r连接到机器。"
+				"- 用于制作&cEmber Bore&r、&eHearth Coil&r和&9Reservoir&r。"
+				"- &bEssential for automation&r, preventing &7clogged pipes&r and &cblocked item flow&r.  "
+			]
+			id: "2E8FEEACF16D9602"
+			tasks: [{
+				id: "3F9A43914020FD79"
+				item: "embers:mechanical_core"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["6CF3A477827A38AD"]
+			description: [
+				"在 &cEmbers Rekindled&r 中，&9Reservoir&r 是存储大量流体的&6最佳方式&r。"
+				""
+				"默认情况下，它能容纳任意液体的&b40个桶&r。"
+				"容量可以通过堆叠&eCaminite Rings&r来&n扩展&r，每个戒指增加&a40个桶&r。"
+				""
+				"要提取或插入流体，请使用结构底部的&n单个访问端口&r上的管道。"
+			]
+			id: "3B215FDF5A68C8EE"
+			tasks: [{
+				id: "2F1A1BE809FEEBD0"
+				item: "embers:reservoir"
+				type: "item"
+			}]
+			x: 4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["314C4AFE9BE1C607"]
+			description: [
+				"&c物品吸尘器&r会自动吸起半径为&96格&r范围内的&a掉落物品&r。"
+				""
+				"- 必须用 &e红石&r 供电才能工作。"
+				"- 需要一个&b相连的背包&r来存放收集的物品。"
+				"- 与 &cBins&r 和 &eItem Transfers&r 配合使用，可实现 &n过滤收集&r。"
+				""
+				"在后面添加一个&c物品传输器&r，可以让你&n筛选拾取的物品&r。"
+			]
+			id: "1F6B5EAE8EE7E3EB"
+			tasks: [{
+				id: "589B766D56D0F4BA"
+				item: "embers:item_vacuum"
+				type: "item"
+			}]
+			x: 8.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["38F1906B99CBEA78"]
+			description: [
+				"&cBlazing Ray&r 是一种&6远程余烬武器&r，可以发射&9瞬发余烬光束&r。"
+				""
+				"- 伤害&6不受&r蓄力时间的影响。"
+				"- 击中&n瞬间&r，&b无前摇&r。"
+				"- 需要 &9Ember Source&r 才能点燃。"
+				""
+				"使用&dMantle Jar&r或&bMantle Cartridge&r可以&n储存额外的余烬&r，延长使用时间。"
+			]
+			id: "7853F3110FF024A3"
+			tasks: [{
+				id: "69A79BF0079B1F74"
+				item: "embers:blazing_ray"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 10.0d
+		}
+		{
+			dependencies: ["6CF3A477827A38AD"]
+			description: [
+				"&c灰烬基座&r会燃烧物品以产生&9灰烬&r，用于&6炼金术&r。"
+				""
+				"- 需要 &6Ember Energy&r 才能运行。"
+				"- &9Certain items&r produce &6more Ash&r than others.  "
+				"- 用于炼金术配方中的&n转生&r，&b&r。"
+			]
+			id: "7FBD274AEAAEA10E"
+			tasks: [{
+				id: "5C1229055E2B1A0B"
+				item: "embers:cinder_plinth"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7C5DF40B5C2263EF"]
+			description: [
+				"&c自动锤&r用于&n自动化&r操作&6黎明石砧&r，无需手动锤击。"
+				""
+				"- 需要 &6Ember Energy&r 和 &c红石信号&r 才能运作。"
+				"- 必须放置在&n斜上方&r的&6Dawnstone Anvil&r上才能使用。"
+				"- 自动锤击&9放置在砧上的物品&r，加快处理速度。"
+				""
+				"非常适合自动化重复性的合成任务，无需手动操作。"
+			]
+			id: "150F0138DF87B923"
+			tasks: [{
+				id: "05946631CB3309FB"
+				item: "embers:automatic_hammer"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["52E1D53AB243EEA9"]
+			description: [
+				"&cDawnstone Anvil&r 用于&9施加增强&r、&6移除增强&r和&e修理工具&r。"
+				""
+				"- 右键&a&r将物品放置在砧座上。"
+				"- 使用 &eTinker Hammer&r 或 &cAutomatic Hammer&r 来添加或移除 &9augmentations&r。"
+				"将正确的材料放在损坏的工具上方进行修复。"
+				""
+				"&cDawnstone Anvil&r 的运作&6不消耗 Ember Energy&r。"
+			]
+			id: "7C5DF40B5C2263EF"
+			tasks: [{
+				id: "3E927221A9798773"
+				item: "embers:dawnstone_anvil"
+				type: "item"
+			}]
+			x: 4.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["7A3CBB54307F07A1"]
+			description: [
+				"&cCaminite&r 是一种用于制作 &9Embers Rekindled 机器&r 的 &6关键材料&r。"
+				""
+				"- 由熔炼 &eCaminite Blend&r 制成，而它由 &9Clay&r 和 &9Sand&r 合成。"
+				"- 用于 &cMelter&r、&cStamper&r、&cMixer Centrifuge&r 和 &cEmber Bore&r。"
+			]
+			id: "6CF3A477827A38AD"
+			tasks: [{
+				id: "26D53C37A62EDEB9"
+				item: "embers:caminite_brick"
+				type: "item"
+			}]
+			x: 4.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["52E1D53AB243EEA9"]
+			id: "38F1906B99CBEA78"
+			tasks: [{
+				id: "3E4C23031AF619B3"
+				item: "embers:dawnstone_ingot"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["38F1906B99CBEA78"]
+			description: [
+				"&dAlchemy Pedestal&r 用于 &6Ember Alchemy&r 中为 &eExchange Tablet&r 提供燃料。"
+				""
+				"- 需要 &9灰烬&r 作为燃料。"
+				"- 持有 &bAspecti&r，用于驱动 &9transmutation&r。"
+				"- 必须放置在&e交换石板&r周围才能使用。"
+			]
+			id: "2991E9371DC44451"
+			tasks: [{
+				id: "2DC5FA67E65A8936"
+				item: "embers:alchemy_pedestal"
+				type: "item"
+			}]
+			x: 4.0d
+			y: 8.0d
+		}
+	]
+	title: "余烬重燃"
+}

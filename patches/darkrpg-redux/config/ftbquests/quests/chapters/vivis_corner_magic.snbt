@@ -1,0 +1,423 @@
+# AI 初翻，未人工校对
+{
+	id: "5C7BCBCAAFEBBB91"
+	group: "6BAD494E7F5F7840"
+	order_index: 2
+	filename: "vivis_corner_magic"
+	title: "Vivi's Corner (魔法)"
+	icon: {
+		id: "minecraft:splash_potion"
+		Count: 1b
+		tag: {
+			Potion: "minecraft:awkward"
+		}
+	}
+	default_quest_shape: "rsquare"
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: -3.0d
+			y: 1.0d
+			size: 1.5d
+			id: "35E304C7C4C15209"
+			tasks: [{
+				id: "046B6B1E0B9ABD5D"
+				type: "item"
+				item: {
+					id: "arcanus:initiate_wand"
+					Count: 1b
+					tag: {
+						arcanus: { }
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "74C7F015A931D060"
+					type: "item"
+					item: {
+						id: "arcanus:mana_flask"
+						Count: 1b
+						tag: {
+							arcanus: {
+								Mana: 0
+							}
+						}
+					}
+				}
+				{
+					id: "50CCA1D6D825783A"
+					type: "item"
+					item: "minecraft:brewing_stand"
+				}
+			]
+		}
+		{
+			x: -1.5d
+			y: 1.0d
+			dependencies: ["35E304C7C4C15209"]
+			id: "2F0570C2C5A7D121"
+			tasks: [{
+				id: "3D106F766477C5F8"
+				type: "item"
+				item: {
+					id: "minecraft:potion"
+					Count: 1b
+					tag: {
+						Potion: "minecraft:strength"
+					}
+				}
+				consume_items: true
+			}]
+			rewards: [{
+				id: "31BB81BC3E084609"
+				type: "command"
+				command: "/spells spellbook arcanus:magic_missile @p"
+			}]
+		}
+		{
+			x: 0.0d
+			y: 1.0d
+			dependencies: ["2F0570C2C5A7D121"]
+			id: "6FBFC8E8B7BEA41B"
+			tasks: [{
+				id: "5E5C6A8568C3D66A"
+				type: "advancement"
+				advancement: "arcanus:spell_books/magic_missile"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "5973E1D74EFF4854"
+					type: "command"
+					command: "/spells spellbook arcanus:lunge @p"
+				}
+				{
+					id: "266E97B4DC988F90"
+					type: "item"
+					item: "minecraft:experience_bottle"
+					count: 20
+				}
+			]
+		}
+		{
+			x: 1.5d
+			y: 1.0d
+			dependencies: ["6FBFC8E8B7BEA41B"]
+			id: "067FCAE9E45FEFDE"
+			tasks: [{
+				id: "5815209C554855B5"
+				type: "item"
+				item: {
+					id: "minecraft:potion"
+					Count: 1b
+					tag: {
+						Potion: "minecraft:healing"
+					}
+				}
+				count: 3L
+				consume_items: true
+			}]
+			rewards: [{
+				id: "6A489EF999937136"
+				type: "command"
+				command: "/spells spellbook arcanus:heal @p"
+			}]
+		}
+		{
+			icon: {
+				id: "arcanus:adept_wand"
+				Count: 1b
+				tag: {
+					arcanus: { }
+				}
+			}
+			x: 3.0d
+			y: 1.0d
+			shape: "pentagon"
+			dependencies: ["067FCAE9E45FEFDE"]
+			id: "0DF6C731ED54BAA2"
+			tasks: [
+				{
+					id: "1B04ED9034DF027E"
+					type: "item"
+					item: {
+						id: "minecraft:potion"
+						Count: 1b
+						tag: {
+							Potion: "minecraft:leaping"
+						}
+					}
+					count: 2L
+					consume_items: true
+				}
+				{
+					id: "7545C03769D8564D"
+					type: "item"
+					item: {
+						id: "arcanus:initiate_wand"
+						Count: 1b
+						tag: {
+							arcanus: { }
+						}
+					}
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "5FF708AC40B38F9F"
+					type: "item"
+					item: {
+						id: "arcanus:adept_wand"
+						Count: 1b
+						tag: {
+							arcanus: { }
+						}
+					}
+				}
+				{
+					id: "7987E9B243B844FD"
+					type: "item"
+					item: "minecraft:experience_bottle"
+					count: 20
+				}
+			]
+		}
+		{
+			x: -3.0d
+			y: 2.5d
+			shape: "circle"
+			dependencies: ["35E304C7C4C15209"]
+			id: "2DBC442DFAE73378"
+			tasks: [{
+				id: "2D1E22BADD566832"
+				type: "item"
+				item: {
+					id: "minecraft:potion"
+					Count: 1b
+					tag: {
+						Potion: "minecraft:long_invisibility"
+					}
+				}
+				consume_items: true
+			}]
+			rewards: [{
+				id: "67ECABFB5988FA03"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: -1.5d
+			y: 2.5d
+			shape: "circle"
+			dependencies: ["2DBC442DFAE73378"]
+			id: "6EA176B90E4D48BE"
+			tasks: [{
+				id: "75B82E4598C9C51B"
+				type: "kill"
+				entity: "minecraft:zombie"
+				value: 10L
+			}]
+			rewards: [
+				{
+					id: "5D94424DCCC2189A"
+					type: "item"
+					item: "minecraft:enchanting_table"
+				}
+				{
+					id: "1B4AB13F2350C37E"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "64AE34B291A767AA"
+					type: "item"
+					item: "minecraft:experience_bottle"
+					count: 20
+				}
+			]
+		}
+		{
+			x: 0.0d
+			y: 2.5d
+			shape: "circle"
+			dependencies: ["6EA176B90E4D48BE"]
+			id: "0928CB8C4A8AA0CC"
+			tasks: [
+				{
+					id: "0FD1D9F15C719122"
+					type: "item"
+					item: {
+						id: "minecraft:potion"
+						Count: 1b
+						tag: {
+							Potion: "minecraft:fire_resistance"
+						}
+					}
+					consume_items: true
+				}
+				{
+					id: "0484B00FE2100588"
+					type: "item"
+					item: {
+						id: "minecraft:potion"
+						Count: 1b
+						tag: {
+							Potion: "minecraft:poison"
+						}
+					}
+					consume_items: true
+				}
+				{
+					id: "1C7BF4A9F354F909"
+					type: "item"
+					item: {
+						id: "minecraft:potion"
+						Count: 1b
+						tag: {
+							Potion: "minecraft:water_breathing"
+						}
+					}
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "539DA9575EE8BF75"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "3441EE3C09B099AD"
+					type: "choice"
+					table_id: 9182859954360588703L
+				}
+			]
+		}
+		{
+			x: 1.5d
+			y: 2.5d
+			shape: "circle"
+			subtitle: "制作你的融合器 (infuser)"
+			dependencies: ["0928CB8C4A8AA0CC"]
+			id: "3AF0E27192B706CA"
+			tasks: [{
+				id: "13EDF337C4FA0C1F"
+				type: "kill"
+				entity: "minecraft:spider"
+				value: 25L
+			}]
+			rewards: [
+				{
+					id: "54EA35613BED819A"
+					type: "item"
+					item: "minecraft:book"
+				}
+				{
+					id: "5D78C5874CAD9E66"
+					type: "item"
+					item: "minecraft:amethyst_shard"
+					count: 2
+				}
+				{
+					id: "7E48D3FE55036B7F"
+					type: "item"
+					item: "minecraft:crying_obsidian"
+					count: 3
+				}
+				{
+					id: "3FC8D7EA14643E51"
+					type: "item"
+					item: "minecraft:experience_bottle"
+					count: 20
+				}
+			]
+		}
+		{
+			icon: {
+				id: "arcanus:master_wand"
+				Count: 1b
+				tag: {
+					arcanus: { }
+				}
+			}
+			x: 3.0d
+			y: 2.5d
+			shape: "gear"
+			dependencies: ["3AF0E27192B706CA"]
+			id: "7471CD5994741E77"
+			tasks: [
+				{
+					id: "102DB34719A1D247"
+					type: "item"
+					item: "enchantinginfuser:enchanting_infuser"
+					only_from_crafting: true
+				}
+				{
+					id: "4B95C6F58A8D0952"
+					type: "item"
+					item: "minecraft:spider_eye"
+					count: 5L
+					consume_items: true
+				}
+				{
+					id: "21AF411E1924A271"
+					type: "item"
+					item: {
+						id: "arcanus:adept_wand"
+						Count: 1b
+						tag: {
+							arcanus: { }
+						}
+					}
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "7635B57AB968CC9F"
+					type: "item"
+					item: {
+						id: "arcanus:master_wand"
+						Count: 1b
+						tag: {
+							arcanus: { }
+						}
+					}
+				}
+				{
+					id: "2F75E6E7C4EEA66E"
+					type: "item"
+					item: {
+						id: "arcanus:mana_flask"
+						Count: 1b
+						tag: {
+							arcanus: {
+								Mana: 4
+							}
+						}
+					}
+				}
+				{
+					id: "2639131B22CA7A61"
+					type: "item"
+					item: "minecraft:cod"
+					count: 20
+				}
+				{
+					id: "13C0B5500760830E"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "512F08DD1E0F469F"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+}

@@ -1,0 +1,356 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "sanguine_legacy"
+	group: "3C87A675DA0E75AE"
+	icon: "vampirism:vampire_fang"
+	id: "5B61DF9383DE4F31"
+	images: [
+		{
+			height: 1.0d
+			image: "vampirism:item/mother_core"
+			rotation: 0.0d
+			width: 1.0d
+			x: -3.0d
+			y: 0.0d
+		}
+		{
+			alpha: 100
+			color: 16714019
+			height: 2.0d
+			image: "bloodmagic:models/alchemyarrays/moonarrayoutside"
+			rotation: 0.0d
+			width: 2.0d
+			x: 0.0d
+			y: 0.0d
+		}
+	]
+	order_index: 3
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["19AC0B8C0B44FA30"]
+			description: [
+				"&4格里沙&r，你对血族很了解，对吧？"
+				""
+				"&4虽然我多年来一直躺在架子上吃灰，但我曾侍奉过你的祖父，还有你母亲小时候。"
+				""
+				"你比我更了解他们……我该怎么提升我的血之力？我可不想让那些人造吸血鬼教我错误的信息。"
+				""
+				"&4嗯，让我看看我能吐出些什么来好了。"
+			]
+			entity_vis_size: 1.0f
+			icon: "vampirism:vampire_fang"
+			id: "47A72E03EBA8A7ED"
+			rewards: [{
+				id: "769EE348191560B3"
+				item: {
+					Count: 1
+					id: "guideapi_vp:vampirism-guidebook"
+					tag: {
+						G-API_Category_Page: 0
+						G-API_Page: 0
+					}
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "5B82EB6EA6181780"
+				title: "血色遗产"
+				type: "checkmark"
+			}]
+			title: "汲取血族的血脉力量"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["47A72E03EBA8A7ED"]
+			description: [
+				"&4提升初始力量的方法很简单。灵感祭坛能借助月光的力量，将血液引入体内。在夜间将血瓶倒入其中，为自己注入血色力量！"
+				""
+				"&4这样只能强化几个等级，未来你需要更强的仪式。我估计大概... 嗯... 需要20瓶血？"
+			]
+			entity_vis_size: 1.0f
+			id: "36B2420BD0867B95"
+			rewards: [{
+				count: 3
+				id: "0F9C05E9D4B10AB6"
+				item: {
+					Count: 1
+					id: "vampirism:blood_bottle"
+					tag: {
+						Damage: 9
+					}
+				}
+				type: "item"
+			}]
+			size: 1.15d
+			tasks: [{
+				id: "18ADBA372793F0FD"
+				item: "vampirism:altar_inspiration"
+				type: "item"
+			}]
+			x: 0.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["36B2420BD0867B95"]
+			description: [
+				"&4要作为吸血鬼更进一步，你需要建造一个更强大的祭坛，并辅以其他元素。为了获得最佳效果，祭坛需要用铁或金建造。"
+				""
+				"&4你需要更强大的神秘材料来增强你的血之力。这可能需要猎杀吸血鬼猎人或人造吸血鬼……让我想想……"
+			]
+			entity_vis_size: 1.0f
+			icon: "vampirism:altar_infusion"
+			id: "160D191AAE9B2104"
+			rewards: [{
+				id: "4AAB158C060E2424"
+				item: "vampirism:human_heart"
+				type: "item"
+			}]
+			size: 1.25d
+			tasks: [
+				{
+					id: "7BF1B0772C760284"
+					item: "vampirism:altar_infusion"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "0200842A8749E74A"
+					item: { Count: 4, id: "vampirism:altar_pillar" }
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "70D14DFF6A7AB03B"
+					item: { Count: 4, id: "vampirism:altar_tip" }
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "06FD7E3BF64858DE"
+					item: {
+						Count: 1
+						id: "itemfilters:or"
+						tag: {
+							items: [
+								{
+									Count: 1b
+									id: "minecraft:iron_block"
+								}
+								{
+									Count: 1b
+									id: "minecraft:gold_block"
+								}
+							]
+						}
+					}
+					optional_task: true
+					title: "任何祭坛柱填充方块 (Any Altar Pillar Filling Block)"
+					type: "item"
+				}
+			]
+			x: 0.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["47A72E03EBA8A7ED"]
+			description: [
+				"&4年轻的血气方刚者，你拥有奇特的不死能力。人类称之为复活。但这并非真正的复活，你的身体倒下后会随时间逐渐自愈。大多数生物会认为你已真正死亡，并独自留下你在此状态中。"
+				""
+				"这样我就可以永远回来了，对吗？永远？"
+				""
+				"&4不，不，不。一旦复活，你将处于极易永久死亡的虚弱状态。届时，人类会用各种方法对你的身体造成神圣伤害，无论是木桩、银器、火焰，甚至是大蒜……之后，你将无法再复活。"
+			]
+			entity_vis_size: 1.0f
+			id: "3FEE19387DC6BD6E"
+			rewards: [
+				{
+					count: 3
+					id: "09425D9AAC69899C"
+					item: {
+						Count: 1
+						id: "vampirism:blood_bottle"
+						tag: {
+							Damage: 9
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "4A7EAB1BAE6E0CA9"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+			]
+			tasks: [{
+				advancement: "vampirism:vampire/resurrect"
+				criterion: ""
+				id: "5B420FE1EE05D1EA"
+				type: "advancement"
+			}]
+			title: "复活术"
+			x: 1.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["36B2420BD0867B95"]
+			description: [
+				"&4成为成熟吸血鬼后，你将获得特殊能力。吸血鬼著名的技能之一是能变成蝙蝠飞行，以躲避追捕。但这种蝙蝠形态会加剧你对阳光的脆弱性，并且消耗更多血液。"
+				""
+				"&a(默认情况下，按 Y 键打开吸血鬼能力菜单。)</c1>"
+			]
+			entity_vis_size: 1.0f
+			id: "107F33580DA70E8F"
+			rewards: [{
+				id: "6F10E4396E3F6D5D"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			tasks: [{
+				advancement: "vampirism:vampire/bat"
+				criterion: ""
+				ftbquestsentityvis_icon: {
+					cycle_seconds: 0.0f
+					enabled: 1b
+					entity: "minecraft:bat"
+					idle_mode: "USE_GLOBAL"
+					offset_x: 0.0f
+					offset_y: 0.0f
+					rotation: 0.0f
+					silhouette_mode: "NONE"
+					size: 1.0f
+					slim_arms: 0b
+					spin_mode: "USE_GLOBAL"
+					tag_cycle_mode: "USE_GLOBAL"
+					use_as_quest_icon: 0b
+					walk_mode: "USE_GLOBAL"
+				}
+				icon: "spectrum:bat_head"
+				id: "1552677F7A59F135"
+				type: "advancement"
+			}]
+			title: "蝙蝠模式"
+			x: -1.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["160D191AAE9B2104"]
+			entity_vis_size: 1.0f
+			icon: "vampirism:vampire_orchid"
+			id: "1FB243F8F7DF54A8"
+			tasks: [{
+				entity_vis_cycle_seconds: 0.0f
+				entity_vis_enabled: false
+				entity_vis_idle_mode: "USE_GLOBAL"
+				entity_vis_offset_x: 0.0f
+				entity_vis_offset_y: 0.0f
+				entity_vis_rotation: 0.0f
+				entity_vis_silhouette_mode: "NONE"
+				entity_vis_size: 1.0f
+				entity_vis_slim_arms: false
+				entity_vis_spin_mode: "USE_GLOBAL"
+				entity_vis_tag_cycle_mode: "USE_GLOBAL"
+				entity_vis_use_as_quest_icon: false
+				entity_vis_walk_mode: "USE_GLOBAL"
+				id: "29B26AE695813230"
+				observe_type: 5
+				timer: 0L
+				title: "见证任务大师的诞生"
+				to_observe: "vampirism:task_master_vampire"
+				type: "observation"
+			}]
+			title: "任务大师"
+			x: 0.0d
+			y: -6.0d
+		}
+		{
+			dependencies: ["47A72E03EBA8A7ED"]
+			description: ["&4普通的雨伞用铁或金柄很容易坏。你需要一把能抵御阳光、永不损坏的神秘雨伞。如果你在吸血鬼森林里，可以找到吸血鬼兰花来制作一把永不损坏的雨伞。"]
+			entity_vis_size: 1.0f
+			hide_dependency_lines: true
+			id: "61824DA13E12E5EA"
+			tasks: [{
+				id: "40D98B6008625A8C"
+				item: "vampirism:umbrella"
+				type: "item"
+			}]
+			x: -2.0d
+			y: -5.5d
+		}
+		{
+			dependencies: ["47A72E03EBA8A7ED"]
+			description: [
+				"&4吸血鬼森林是嗜血贵族最理想的居所。这片森林产生的雾气让你不再惧怕阳光，还能找到各种对吸血鬼有益的神秘材料。"
+				""
+				"&4这些森林可能成为猎人的明显目标，不过有些人可能会被吓退。"
+			]
+			entity_vis_size: 1.0f
+			id: "3D2C5DAB22CFA26A"
+			rewards: [{
+				id: "291DDEFF11E5796F"
+				item: {
+					Count: 1
+					id: "vampiresneedumbrellas:iron_umbrella"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			tasks: [{
+				biome: "vampirism:vampire_forest"
+				icon: "vampirism:dark_spruce_sapling"
+				id: "26AE6298614BA178"
+				title: "前往吸血鬼森林 (Vampire Forest)"
+				type: "biome"
+			}]
+			title: "吸血鬼森林"
+			x: -1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["160D191AAE9B2104"]
+			description: [
+				"&4人类的心脏至关重要，能提供丰富的血液。吸血鬼猎人会是很好的来源，同时你也能除掉一个害虫。"
+				""
+				"&4为了获得纯净血液，由于你无法用现有工具充分净化血液，你需要杀死一个能产生纯净血液的人造吸血鬼。"
+				""
+				"&4你应该能在故土的废墟中找到散落的古老血红色记录。猎人或人造吸血鬼可能已经找到了许多典籍。"
+			]
+			entity_vis_size: 1.0f
+			id: "2855856BE765234B"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "502C29FBC8A737CF"
+				table_id: 6454273999420670365L
+				type: "random"
+			}]
+			tasks: [
+				{
+					id: "0DACFC0192369732"
+					item: "vampirism:human_heart"
+					type: "item"
+				}
+				{
+					id: "1D05487A9A8D21EA"
+					item: "vampirism:pure_blood_4"
+					type: "item"
+					weak_nbt_match: true
+				}
+				{
+					id: "572CB6EF2F9E599F"
+					item: "vampirism:vampire_book"
+					type: "item"
+					weak_nbt_match: true
+				}
+			]
+			title: "吸血鬼的配料"
+			x: 2.0d
+			y: -5.5d
+		}
+	]
+	title: "血色遗产"
+}

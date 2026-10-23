@@ -1,0 +1,296 @@
+# AI 初翻，未人工校对
+{
+	id: "1000000000000001"
+	group: "0A00000000000001"
+	order_index: 0
+	filename: "1000000000000001"
+	title: "第一章：灾变初日"
+	icon: "minecraft:campfire"
+	default_quest_shape: "square"
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "醒来：最后的幸存者"
+			icon: "minecraft:compass"
+			x: 0.0d
+			y: 0.0d
+			description: [
+				"欢迎来到枪火求生。威胁不止饥饿：口渴、极端温度、强化感染者、血月与辐射都会迫使你提前准备。"
+				""
+				"请先阅读本页并勾选。每章都有分支，但主线里程碑需在完成关键分支后才能解锁。"
+			]
+			dependencies: [
+				"16967C69C47E7D70"
+				"4254370F4242565F"
+				"68B92020E80C88C8"
+			]
+			hide: true
+			size: 1.5d
+			id: "1100000000000001"
+			tasks: [{
+				id: "1110000000000001"
+				type: "checkmark"
+			}]
+			rewards: [
+				{
+					id: "1120000000000001"
+					type: "item"
+					item: "minecraft:bread"
+					count: 4
+				}
+				{
+					id: "1120000000000002"
+					type: "xp"
+					xp: 25
+				}
+			]
+		}
+		{
+			title: "一捆干燥的木材"
+			x: 2.5d
+			y: 0.0d
+			description: ["收集至少 8 个橡木原木。木材是临时庇护所、工具和燃料的起点。其他木种也能正常使用，但本任务以最常见的橡木为目标。"]
+			dependencies: ["1100000000000001"]
+			id: "1100000000000002"
+			tasks: [{
+				id: "1110000000000002"
+				type: "item"
+				item: "minecraft:oak_log"
+				count: 8L
+			}]
+			rewards: [
+				{
+					id: "1120000000000003"
+					type: "item"
+					item: {
+						id: "minecraft:stone_axe"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "1120000000000004"
+					type: "xp"
+					xp: 15
+				}
+			]
+		}
+		{
+			title: "将废料变成工具"
+			x: 5.0d
+			y: 0.0d
+			description: ["制作工作台。以后遇到陌生配方时，可在 JEI 中左键查看合成、右键查看用途。"]
+			dependencies: ["1100000000000002"]
+			id: "1100000000000003"
+			tasks: [{
+				id: "1110000000000003"
+				type: "item"
+				item: "minecraft:crafting_table"
+			}]
+			rewards: [{
+				id: "1120000000000005"
+				type: "item"
+				item: "minecraft:torch"
+				count: 16
+			}]
+		}
+		{
+			title: "第一簇火"
+			x: 7.5d
+			y: -1.5d
+			description: [
+				"制作熔炉和营火。熔炉开启金属时代，营火则能在缺少燃料时烹饪食物。"
+				"真实火把模组会让照明资源更值得规划，不要把所有煤都浪费掉。"
+			]
+			dependencies: ["1100000000000003"]
+			id: "1100000000000004"
+			tasks: [
+				{
+					id: "1110000000000004"
+					type: "item"
+					item: "minecraft:furnace"
+				}
+				{
+					id: "1110000000000005"
+					type: "item"
+					item: "minecraft:campfire"
+				}
+			]
+			rewards: [{
+				id: "1120000000000006"
+				type: "item"
+				item: "minecraft:coal"
+				count: 8
+			}]
+		}
+		{
+			title: "水比子弹更重要"
+			x: 7.5d
+			y: 1.5d
+			description: [
+				"Thirst Was Reclaimed 会持续消耗口渴值，低口渴还会限制冲刺。"
+				"制作一个黏土碗作为应急饮水容器。当前实例未安装 Create，因此 Thirst 的兼容型砂滤器不会被注册，不能作为有效任务物品。"
+			]
+			dependencies: ["1100000000000003"]
+			id: "1100000000000005"
+			tasks: [{
+				id: "1110000000000006"
+				type: "item"
+				item: "thirst:clay_bowl"
+			}]
+			rewards: [{
+				id: "1120000000000007"
+				type: "item"
+				item: "minecraft:clay_ball"
+				count: 4
+			}]
+		}
+		{
+			title: "一扇门，一张床"
+			x: 7.5d
+			y: 4.5d
+			description: ["制作一张白色床并尽快封闭住所。床可以跳过普通夜晚，但血月等事件仍可能打乱计划。"]
+			dependencies: ["1100000000000003"]
+			id: "1100000000000006"
+			tasks: [{
+				id: "1110000000000007"
+				type: "item"
+				item: "minecraft:white_bed"
+			}]
+			rewards: [{
+				id: "1120000000000008"
+				type: "item"
+				item: "minecraft:cooked_beef"
+				count: 4
+			}]
+		}
+		{
+			title: "进入铁器时代"
+			x: 10.0d
+			y: -1.5d
+			description: ["储备 16 个铁锭。铁是盾牌、枪械工作台、背包升级和地堡设施共同需要的战略资源。"]
+			dependencies: ["1100000000000004"]
+			id: "1100000000000007"
+			tasks: [{
+				id: "1110000000000008"
+				type: "item"
+				item: "minecraft:iron_ingot"
+				count: 16L
+			}]
+			rewards: [
+				{
+					id: "1120000000000009"
+					type: "item"
+					item: {
+						id: "minecraft:shield"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "112000000000000A"
+					type: "xp"
+					xp: 40
+				}
+			]
+		}
+		{
+			title: "把家背在身上，随身携带你的家园"
+			x: 10.0d
+			y: 4.5d
+			description: [
+				"精妙背包不仅能扩大容量，还能通过升级实现拾取、过滤、补货、进食与便携合成。"
+				"先制作最基础的背包，后续章节会继续升级。"
+			]
+			dependencies: [
+				"1100000000000006"
+				"1100000000000007"
+			]
+			hide: true
+			id: "1100000000000008"
+			tasks: [{
+				id: "1110000000000009"
+				type: "item"
+				item: "sophisticatedbackpacks:backpack"
+			}]
+			rewards: [{
+				id: "112000000000000B"
+				type: "item"
+				item: "minecraft:leather"
+				count: 4
+			}]
+		}
+		{
+			title: "现场急救"
+			x: 10.0d
+			y: 1.5d
+			description: ["Zombie Extreme 的绷带是早期可批量准备的医疗物资。制作 4 个，外出时至少随身带两个。"]
+			dependencies: [
+				"1100000000000005"
+				"1100000000000007"
+			]
+			hide: true
+			id: "1100000000000009"
+			tasks: [{
+				id: "111000000000000A"
+				type: "item"
+				item: "zombie_extreme:bandage"
+				count: 4L
+			}]
+			rewards: [{
+				id: "112000000000000C"
+				type: "item"
+				item: "minecraft:cooked_beef"
+				count: 8
+			}]
+		}
+		{
+			title: "守住第一个夜晚"
+			icon: {
+				id: "minecraft:iron_sword"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: 13.0d
+			y: 1.5d
+			description: [
+				"击杀 10 只普通僵尸，确认营地周边的威胁密度。Enhanced AI 会让敌人更会追踪和破坏障碍，别在开阔地硬拼。"
+				"完成后，生存与武装两条中期路线将正式展开。"
+			]
+			dependencies: [
+				"1100000000000007"
+				"1100000000000008"
+				"1100000000000009"
+			]
+			hide: true
+			size: 1.5d
+			id: "110000000000000A"
+			tasks: [{
+				id: "111000000000000B"
+				type: "kill"
+				entity: "minecraft:zombie"
+				value: 10L
+			}]
+			rewards: [
+				{
+					id: "112000000000000D"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 2
+				}
+				{
+					id: "112000000000000E"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+}

@@ -1,0 +1,756 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "spellcasting"
+	group: "3234F6E6AE6DF6F9"
+	icon: "ars_nouveau:creative_spell_book"
+	id: "55AA3C7867C6D62D"
+	order_index: 1
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["6BCC24F77F7598FB"]
+			description: [
+				"&9Iron's Spells and Spellbooks&r 让你能使用高度专业化的战斗魔法！提升你的法术强度，用针对怪物弱点的法术来对付它们吧！"
+				""
+				"Begin your spellcasting journey with the inscription table by placing your &9spell book&r in the book slot, &nor&r by interacting with the inscription table with your &9spell book&r in the spell book &9curio slot&r to begin filling it with spells."
+				""
+				"将&9卷轴&r放在法术书下方的槽位中，点击要使用的&9法术槽&r，然后点击&9羽毛笔和墨水按钮&r，将该法术分配到该槽位。"
+				""
+				"从桌子上取走卷轴，将其从书中移除。"
+			]
+			hide_until_deps_complete: true
+			id: "33E1BDC4DFEDE8B0"
+			shape: "octagon"
+			size: 1.5d
+			subtitle: "拼写书籍的字母顺序"
+			tasks: [{
+				id: "0F53A762F308ACF2"
+				item: "irons_spellbooks:inscription_table"
+				type: "item"
+			}]
+			x: -7.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["6BCC24F77F7598FB"]
+			hide_until_deps_complete: true
+			id: "2DB5DB573C8D5038"
+			subtitle: "6 法术位"
+			tasks: [{
+				id: "6A460E3EFBD7A7EC"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:iron_spell_book"
+					tag: {
+						ISB_Spells: {
+							data: [ ]
+							maxSpells: 6
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: -4.5d
+			y: -4.5d
+		}
+		{
+			dependencies: ["2DB5DB573C8D5038"]
+			id: "53E622D931A34B85"
+			subtitle: "8 法术位"
+			tasks: [{
+				id: "6F5264D8D6EF32C9"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:gold_spell_book"
+					tag: {
+						ISB_Spells: {
+							data: [ ]
+							maxSpells: 8
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: -4.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["53E622D931A34B85"]
+			id: "3D81714D7E8B8E0D"
+			subtitle: "10 法术位"
+			tasks: [{
+				id: "57F8A5AF23AA8B34"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:diamond_spell_book"
+					tag: {
+						ISB_Spells: {
+							data: [ ]
+							maxSpells: 10
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: -4.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["33E1BDC4DFEDE8B0"]
+			description: [
+				"将魔法墨水、纸张和合适的法术焦点组合起来，创造&9新的法术卷轴！&r"
+				""
+				"每个&9魔法学派&r都需要特定物品才能学习其中的法术。"
+				""
+				"更高等级的墨水将产生更高等级的法术。"
+			]
+			icon: "irons_spellbooks:scroll_forge"
+			id: "476BED3AE5DDB280"
+			size: 1.5d
+			subtitle: "锻造魔法"
+			tasks: [
+				{
+					id: "4A693DA5D8995726"
+					item: "irons_spellbooks:scroll_forge"
+					type: "item"
+				}
+				{
+					id: "50DD1122D83B8EAB"
+					item: {
+						Count: 1
+						id: "ftbfiltersystem:smart_filter"
+						tag: {
+							display: {
+								Name: "{\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false,\"color\":\"#FFFFFF\",\"text\":\"Spell Focus\"}"
+							}
+							"ftbfiltersystem:filter": "or(item(irons_spellbooks:common_ink)item(irons_spellbooks:uncommon_ink)item(irons_spellbooks:rare_ink)item(irons_spellbooks:epic_ink)item(irons_spellbooks:legendary_ink))"
+						}
+					}
+					match_nbt: true
+					type: "item"
+				}
+			]
+			x: -7.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["6BCC24F77F7598FB"]
+			hide_until_deps_complete: true
+			id: "309CF72640129A6E"
+			subtitle: "8 法术位"
+			tasks: [{
+				id: "710AA0A3506CE9FD"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:rotten_spell_book"
+					tag: {
+						ISB_Spells: {
+							data: [ ]
+							maxSpells: 8
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: -10.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["6BCC24F77F7598FB"]
+			hide_until_deps_complete: true
+			id: "3AA48BD33DE49DE6"
+			subtitle: "10 法术位"
+			tasks: [{
+				id: "1D066D2C0C319705"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:druidic_spell_book"
+					tag: {
+						ISB_Spells: {
+							data: [ ]
+							maxSpells: 10
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: -10.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["6BCC24F77F7598FB"]
+			hide_until_deps_complete: true
+			id: "1F1245466C6847C8"
+			subtitle: "10 法术位"
+			tasks: [{
+				id: "5E863723CBEDB297"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:villager_spell_book"
+					tag: {
+						ISB_Spells: {
+							data: [ ]
+							maxSpells: 10
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: -10.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["6BCC24F77F7598FB"]
+			hide_until_deps_complete: true
+			id: "53E83155D759BDAB"
+			subtitle: "10 法术位"
+			tasks: [{
+				id: "57452573DF275D08"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:evoker_spell_book"
+					tag: {
+						ISB_Spells: {
+							data: [
+								{
+									id: "irons_spellbooks:fang_strike"
+									index: 0
+									level: 6
+									locked: 1b
+								}
+								{
+									id: "irons_spellbooks:fang_ward"
+									index: 1
+									level: 4
+									locked: 1b
+								}
+								{
+									id: "irons_spellbooks:summon_vex"
+									index: 2
+									level: 4
+									locked: 1b
+								}
+							]
+							maxSpells: 10
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: -10.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["6BCC24F77F7598FB"]
+			hide_until_deps_complete: true
+			id: "43286A1BDF512133"
+			subtitle: "10 法术位"
+			tasks: [{
+				id: "3C777DBED96ADD99"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:blaze_spell_book"
+					tag: {
+						ISB_Spells: {
+							data: [ ]
+							maxSpells: 10
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: -9.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["6BCC24F77F7598FB"]
+			hide_until_deps_complete: true
+			id: "10503117EC1F6DC2"
+			subtitle: "10 法术位"
+			tasks: [{
+				id: "5A7D19B3A0708DE2"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:necronomicon_spell_book"
+					tag: {
+						ISBEnhance: "irons_spellbooks:raise_dead"
+						ISB_Spells: {
+							data: [
+								{
+									id: "irons_spellbooks:blood_slash"
+									index: 0
+									level: 5
+									locked: 1b
+								}
+								{
+									id: "irons_spellbooks:blood_step"
+									index: 1
+									level: 5
+									locked: 1b
+								}
+								{
+									id: "irons_spellbooks:ray_of_siphoning"
+									index: 2
+									level: 5
+									locked: 1b
+								}
+								{
+									id: "irons_spellbooks:blaze_storm"
+									index: 3
+									level: 5
+									locked: 1b
+								}
+							]
+							maxSpells: 10
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: -9.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["6BCC24F77F7598FB"]
+			hide_until_deps_complete: true
+			id: "626B0560A574D80B"
+			subtitle: "12 个法术位"
+			tasks: [{
+				id: "2892E5194A60CAAC"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:dragonskin_spell_book"
+					tag: {
+						ISB_Spells: {
+							data: [ ]
+							maxSpells: 12
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: -9.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["6BCC24F77F7598FB"]
+			hide_until_deps_complete: true
+			id: "08CF64BD740D26C6"
+			subtitle: "12 个法术位"
+			tasks: [{
+				id: "337DFF35A3B70726"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:netherite_spell_book"
+					tag: {
+						ISB_Spells: {
+							data: [ ]
+							maxSpells: 12
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: -9.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["476BED3AE5DDB280"]
+			description: [
+				"将任意武器与卷轴结合，即可&9为该武器注入&r相应法术！"
+				""
+				"将&9卷轴&r与魔法墨水结合以提升它们的等级！"
+			]
+			id: "3F9EFB4F1DE435E7"
+			size: 1.5d
+			subtitle: "全方位升级！"
+			tasks: [{
+				id: "572AEC8964DDB849"
+				item: "irons_spellbooks:arcane_anvil"
+				type: "item"
+			}]
+			x: -7.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["3F9EFB4F1DE435E7"]
+			description: [
+				"要制作真正神奇的装备，你需要这种最坚固的魔法材料。"
+				""
+				"在主世界 &9y=56&r 附近可以找到，不过你需要 &cnetherite&r 或更好的工具才能采集..."
+			]
+			id: "4D86E53BA19208BB"
+			tasks: [{
+				id: "53720DCEA6CF67EB"
+				item: "irons_spellbooks:arcane_debris"
+				type: "item"
+			}]
+			x: -4.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["4D86E53BA19208BB"]
+			description: ["用于创造能赋予装备强大能力的升级球！在&9arcane anvil&r中与盔甲或武器结合。最多可进行3次以赋予更强的效果！"]
+			icon: "irons_spellbooks:upgrade_orb"
+			id: "5CB5A21232A54013"
+			tasks: [
+				{
+					id: "159854F7598217AE"
+					item: "irons_spellbooks:upgrade_orb"
+					type: "item"
+				}
+				{
+					id: "79B2452B31DB57B0"
+					item: {
+						Count: 1
+						id: "ftbfiltersystem:smart_filter"
+						tag: {
+							display: {
+								Name: "{\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false,\"color\":\"#FFFFFF\",\"text\":\"Inscribed Rune\"}"
+							}
+							"ftbfiltersystem:filter": "or(item_tag(irons_spellbooks:inscribed_rune))"
+						}
+					}
+					type: "item"
+				}
+			]
+			x: -4.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["3F9EFB4F1DE435E7"]
+			description: [
+				"将武器与&9shriving stone&r在秘法砧上结合，即可轻松移除附魔法术。此操作&n不会&r返还卷轴。"
+				""
+				"你也可以用缩小石从装备上移除&9升级球体&r，将球体返还给你。"
+			]
+			id: "78D08FECC6F48017"
+			subtitle: "糟糕……"
+			tasks: [{
+				id: "541F06C966DC604C"
+				item: "irons_spellbooks:shriving_stone"
+				type: "item"
+			}]
+			x: -7.0d
+			y: 2.5d
+		}
+		{
+			dependencies: [
+				"6BCC24F77F7598FB"
+				"78C091D917FDA212"
+			]
+			description: [
+				"&5Ars Nouveau&r 是自动化魔法的一站式商店！独特的咒语构建机制让你能以多种方式组合 &5glyphs&r，唯一限制你的只有创造力！"
+				""
+				"要开始，请手持法术书与抄写台互动。这将赋予你创造符文的能力。"
+				""
+				"选择要制作的符文，并将所需材料&5扔到桌上&r。如果附近有可用物品，书写台也会&5自动&r取用。使用支配魔杖点击桌子会禁用此功能。"
+				""
+				"制作完成后，使用&5glyph&r来学习它。"
+			]
+			hide_until_deps_complete: true
+			id: "149C40A3CB1F7A9C"
+			shape: "octagon"
+			size: 1.5d
+			subtitle: "适用于所有场合的魔法"
+			tasks: [{
+				id: "029A6CAF888B5F77"
+				item: "ars_nouveau:scribes_table"
+				type: "item"
+			}]
+			x: 1.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["6BCC24F77F7598FB"]
+			description: [
+				"要开始构筑法术，&5打开&r法术书，按 &5\"C\"&r（默认）。这样你就能访问所有已学习的符文。符文分为三种类型：&5形态&r、&5效果&r和&5增强&r。"
+				""
+				"咒语必须先赋予形态，再附加所需的效果。形态和效果都可以通过多种方式增强。"
+				""
+				"按 &5\"V\"&r（默认）可快速选择你的法术。"
+			]
+			hide_until_deps_complete: true
+			id: "78C091D917FDA212"
+			subtitle: "Tier 1 符文"
+			tasks: [{
+				id: "5D80526450CCD11B"
+				item: "ars_nouveau:novice_spell_book"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["78C091D917FDA212"]
+			id: "1FDA343AF65EEC95"
+			subtitle: "Teir 2 符文"
+			tasks: [{
+				id: "524CE48CFD6A1EBC"
+				item: "ars_nouveau:apprentice_spell_book"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["1FDA343AF65EEC95"]
+			id: "38A3EFB80DE92482"
+			subtitle: "Tier 3 符文"
+			tasks: [{
+				id: "7ADBE2CF4CF1A2B6"
+				item: "ars_nouveau:archmage_spell_book"
+				type: "item"
+			}]
+			x: -1.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["6BCC24F77F7598FB"]
+			description: [
+				"要举行仪式，你需要一个&5ritual brazier&r和一个&5tablet&r来定义仪式。"
+				""
+				"将平板电脑放在火盆上以点燃火盆。点燃后，可将&5增强物品&r投入火盆。部分仪式需要&5源&r才能运行。"
+				""
+				"空手与火盆互动以激活仪式。"
+			]
+			hide_until_deps_complete: true
+			id: "6D2B1D96DF618211"
+			size: 1.5d
+			subtitle: "与众不同的魔法类型 (A Different Kind of Spell)"
+			tasks: [{
+				id: "20E163CDFF96A10D"
+				item: "ars_nouveau:ritual_brazier"
+				type: "item"
+			}]
+			x: 4.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["6BCC24F77F7598FB"]
+			description: [
+				"改造台能让你将线应用于魔法护甲。 &5线&r提供多种多样的&5增强和效果&r，让你的护甲获得真正的魔法加持！"
+				""
+				"将盔甲部件放在桌子上，即可访问其插槽。更高级的插槽能提供更强的效果。"
+				""
+				"谨慎选择护甲！巫师套装的护甲值最低，但附魔槽最多，而战斗法师套装的护甲值最高，附魔槽最少。详情请查看&5旧笔记本&r！"
+			]
+			hide_until_deps_complete: true
+			id: "03CFF686F97F8F2B"
+			size: 1.5d
+			subtitle: "神秘刺绣"
+			tasks: [{
+				id: "02A46CC58EE3DBB2"
+				item: "ars_nouveau:alteration_table"
+				type: "item"
+			}]
+			x: 4.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["149C40A3CB1F7A9C"]
+			description: [
+				"可在铭文台使用法术进行铭文。"
+				""
+				"附魔师的魔杖初始形态和增强效果总是施放 &5projectile --> accellerate&r。构建法术时，只需从此处开始，添加 &nonly&r 效果和增强。"
+				""
+				"这实际上让你可以施放超过常规10个符文限制的咒语。"
+			]
+			id: "4E3C4205FA435EDB"
+			tasks: [{
+				id: "5219FEC60475533A"
+				item: {
+					Count: 1
+					id: "ars_nouveau:wand"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -1.5d
+			y: -4.5d
+		}
+		{
+			dependencies: ["149C40A3CB1F7A9C"]
+			description: [
+				"可在铭文台使用法术进行铭文。"
+				""
+				"附魔师的镜子总是以&5自身&r为初始形态。构建法术时，只需从此处开始，添加&n仅&r效果和增强。"
+				""
+				"这实际上让你可以施放超过常规10个符文限制的咒语。"
+			]
+			id: "649D56B128247F46"
+			tasks: [{
+				id: "2C84E3E329D05BC8"
+				item: {
+					Count: 1
+					id: "ars_nouveau:enchanters_mirror"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: 0.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["149C40A3CB1F7A9C"]
+			description: [
+				"可在铭文台使用法术进行铭文。"
+				""
+				"占卜之眼可以通过&5窥视水晶&r远程施放法术！将眼睛直接用于窥视水晶以设置单个位置，或使用附魔的&5窥视羊皮纸&r来设置多个位置。"
+				""
+				"附魔之眼会通过窥镜水晶施放铭刻的咒语，类似于咒语炮台，但使用眼睛时，该咒语被视为由玩家直接施放。"
+			]
+			id: "7129CD88CD0A6742"
+			tasks: [{
+				id: "262ACF4BA4252AD3"
+				item: {
+					Count: 1
+					id: "ars_nouveau:enchanters_eye"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: 2.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["7C24805B036F1332"]
+			description: [
+				"用于放置符文，符文上可以刻写&5法术卷轴。&r"
+				""
+				"符文会对任何踏上它的实体施放铭刻的魔法。"
+			]
+			id: "76EF88BB1C6DDF34"
+			tasks: [{
+				id: "1BF22E8FC59796FD"
+				item: {
+					Count: 1
+					id: "ars_nouveau:runic_chalk"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 3.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["149C40A3CB1F7A9C"]
+			description: [
+				"&5空白羊皮纸&r是你通往全自动魔法世界的钥匙！"
+				""
+				"将咒语刻在羊皮纸上，你就可以用得到的&5法术卷轴&r来为法术炮台分配法术。"
+				""
+				"将空白羊皮纸用于窥视水晶上，会生成一个&5卷轴&r，可与占卜之眼一同使用。"
+				""
+				"将空白羊皮纸与合适的材料结合，会生成一个&5物品卷轴，&r用于管理魔法自动化。"
+			]
+			id: "7C24805B036F1332"
+			tasks: [{
+				id: "157E3542DC0D540C"
+				item: "ars_nouveau:blank_parchment"
+				type: "item"
+			}]
+			x: 3.5d
+			y: -4.5d
+		}
+		{
+			dependencies: ["149C40A3CB1F7A9C"]
+			description: ["使用&5Annotated Codex&r会将其内所有已知符文记录下来。若被其他玩家阅读，该玩家将学会其中所有符文。此操作会摧毁该法典。"]
+			id: "39C2D4633A28D6B5"
+			subtitle: "与好友分享"
+			tasks: [{
+				id: "4C68B07DDD62AA78"
+				item: {
+					Count: 1
+					id: "ars_nouveau:annotated_codex"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: 1.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["6BCC24F77F7598FB"]
+			hide_until_deps_complete: true
+			id: "4B3081E698A67BCF"
+			subtitle: "12 个法术位"
+			tasks: [{
+				id: "4627806521FEBEA9"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:ice_spell_book"
+					tag: {
+						"irons_spellbooks:spell_container": {
+							data: [ ]
+							maxSpells: 12
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: -10.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["6BCC24F77F7598FB"]
+			hide_until_deps_complete: true
+			id: "25F7412DA4FDFDC6"
+			subtitle: "12 个法术位"
+			tasks: [{
+				id: "69E81B73C5888212"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:cursed_doll_spell_book"
+					tag: {
+						"irons_spellbooks:affinity_data": {
+							bonuses: {
+								"irons_spellbooks:blood_slash": 1
+								"irons_spellbooks:blood_step": 1
+							}
+						}
+						"irons_spellbooks:spell_container": {
+							data: [ ]
+							maxSpells: 10
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: -9.0d
+			y: 4.0d
+		}
+	]
+	title: "施放法术"
+}

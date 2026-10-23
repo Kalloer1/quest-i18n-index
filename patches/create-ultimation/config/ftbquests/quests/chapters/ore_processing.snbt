@@ -1,0 +1,383 @@
+# AI 初翻，未人工校对
+{
+	id: "7BE1ADF3F0E37D3E"
+	group: ""
+	order_index: 3
+	filename: "ore_processing"
+	title: "矿石加工"
+	icon: "minecraft:raw_iron"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: 0.0d
+			y: 0.0d
+			description: [
+				"本整合包中，矿石加工系统已重做。矿石的原始产量低于正常值，因此你可能需要设置更复杂的流程来获取锭。"
+				""
+				"主线任务的每个分支都会提示你当前阶段可以做什么。每个任务的副标题会说明完成该步骤能获得什么。"
+			]
+			id: "3D0BD660832D6436"
+			tasks: [{
+				id: "008B5E3B0EA0FED9"
+				type: "checkmark"
+				title: "矿石加工"
+			}]
+		}
+		{
+			icon: "minecraft:raw_iron"
+			x: 0.0d
+			y: 3.0d
+			dependencies: ["3D0BD660832D6436"]
+			id: "770301676F4A6FEC"
+			tasks: [{
+				id: "4716BB10598EE8F1"
+				type: "checkmark"
+				title: "原始矿石"
+			}]
+		}
+		{
+			icon: "minecraft:furnace"
+			x: -6.0d
+			y: 4.5d
+			subtitle: "1 到 3 个金块"
+			dependencies: ["770301676F4A6FEC"]
+			dependency_requirement: "one_completed"
+			id: "70906664190681F5"
+			tasks: [{
+				id: "348E7AD881CF129F"
+				type: "checkmark"
+				title: "熔炼/爆破"
+			}]
+		}
+		{
+			icon: "create:millstone"
+			x: -3.0d
+			y: 4.5d
+			subtitle: "1 个 Crushed Ore + 0.75 个 Experience Nuggets"
+			dependencies: ["770301676F4A6FEC"]
+			id: "27C633968E1C7A19"
+			tasks: [{
+				id: "59801DB636FB4E1D"
+				type: "checkmark"
+				title: "磨粉中"
+			}]
+		}
+		{
+			icon: "create:crushing_wheel"
+			x: 3.0d
+			y: 7.5d
+			subtitle: "1 到 ~3.75 粉尘"
+			dependencies: ["1B4FF2A6B0DA93F7"]
+			id: "52FFC4F5A6E684BA"
+			tasks: [{
+				id: "7A1DD9CB5FBB0459"
+				type: "checkmark"
+				title: "正在粉碎中"
+			}]
+		}
+		{
+			icon: "create:millstone"
+			x: -3.0d
+			y: 7.5d
+			subtitle: "1 到 3 个尘埃粒子"
+			dependencies: ["1B4FF2A6B0DA93F7"]
+			id: "47FF22256BD9CA05"
+			tasks: [{
+				id: "3BFAD863CC98A6C6"
+				type: "checkmark"
+				title: "磨粉中"
+			}]
+		}
+		{
+			icon: {
+				id: "tconstruct:smeltery_controller"
+				Count: 1b
+				tag: {
+					texture: "tconstruct:seared_bricks"
+				}
+			}
+			x: 6.0d
+			y: 10.5d
+			subtitle: "1 到 3 个熔化的金块"
+			dependencies: ["61C96197D53E123B"]
+			dependency_requirement: "one_completed"
+			id: "43E8A33C4D3B2ADE"
+			tasks: [{
+				id: "41D85A926A98B97A"
+				type: "checkmark"
+				title: "正在融化"
+			}]
+		}
+		{
+			icon: "minecraft:iron_ingot"
+			x: 0.0d
+			y: 18.0d
+			dependencies: ["59F6A8F73E2D97B3"]
+			dependency_requirement: "one_completed"
+			id: "652D075A3B357D7E"
+			tasks: [{
+				id: "157A6BE5678A94D6"
+				type: "checkmark"
+				title: "Ingot"
+			}]
+		}
+		{
+			icon: "create:mechanical_press"
+			x: -3.0d
+			y: 13.5d
+			subtitle: "9 个换取 1 个锭"
+			dependencies: ["5C212E4DCDDE4436"]
+			dependency_requirement: "one_completed"
+			id: "32DDD117A983D8E1"
+			tasks: [{
+				id: "2E0646316533641F"
+				type: "checkmark"
+				title: "正在压缩"
+			}]
+		}
+		{
+			title: "铸造/冷却"
+			icon: "tconstruct:seared_table"
+			x: 3.0d
+			y: 16.5d
+			subtitle: "1 个熔炼锭兑换 1 个锭"
+			dependencies: ["59F6A8F73E2D97B3"]
+			dependency_requirement: "one_completed"
+			id: "559A0AED19788D0B"
+			tasks: [{
+				id: "2BF56CDEA0F4A435"
+				type: "checkmark"
+				title: "铸造中"
+			}]
+		}
+		{
+			icon: {
+				id: "tconstruct:foundry_controller"
+				Count: 1b
+				tag: {
+					texture: "tconstruct:scorched_bricks"
+				}
+			}
+			x: 6.0d
+			y: 4.5d
+			subtitle: "1 个熔融锭 + 1 个液态炉渣"
+			description: ["注意：无法在熔炉中进行此操作"]
+			dependencies: ["770301676F4A6FEC"]
+			id: "45998F6A13D06C29"
+			tasks: [{
+				id: "26BA2C4B125CA0CF"
+				type: "checkmark"
+				title: "熔炉冶炼 Foundry Melting"
+			}]
+		}
+		{
+			title: "熔炼/爆破"
+			icon: "minecraft:furnace"
+			x: -6.0d
+			y: 10.5d
+			subtitle: "1 个锭对应 1 个碎片"
+			dependencies: ["61C96197D53E123B"]
+			dependency_requirement: "one_completed"
+			id: "2802CE4B693624C2"
+			tasks: [{
+				id: "59FC0DF26D91891F"
+				type: "checkmark"
+				title: "冶炼金属"
+			}]
+		}
+		{
+			icon: "minecraft:experience_bottle"
+			x: -3.0d
+			y: 10.5d
+			subtitle: "3 到 18 个金块"
+			dependencies: ["61C96197D53E123B"]
+			id: "6830A87A3ECAE0C0"
+			tasks: [{
+				id: "51F95716B38EB23F"
+				type: "checkmark"
+				title: "加热经验混合器"
+			}]
+		}
+		{
+			icon: "create_enchantment_industry:hyper_experience_bottle"
+			x: 3.0d
+			y: 10.5d
+			subtitle: "3 个熔炼锭到 3 个熔炼锭"
+			dependencies: ["61C96197D53E123B"]
+			id: "474963A9BC8EFFE9"
+			tasks: [{
+				id: "480FDC8E3429F721"
+				type: "checkmark"
+				title: "超高温超体验混合配方"
+			}]
+		}
+		{
+			icon: "thermal:machine_pulverizer"
+			x: -6.0d
+			y: 7.5d
+			subtitle: "1 到 ~5.25 粉尘"
+			dependencies: ["1B4FF2A6B0DA93F7"]
+			id: "1577797528BCB7A7"
+			tasks: [{
+				id: "45B65426A7ED91FB"
+				type: "checkmark"
+				title: "正在粉碎中"
+			}]
+		}
+		{
+			icon: "mekanism:crusher"
+			x: 6.0d
+			y: 7.5d
+			subtitle: "1 到 6 个尘埃"
+			dependencies: ["1B4FF2A6B0DA93F7"]
+			id: "41C8EB9764E7F214"
+			tasks: [{
+				id: "13B22D28208F2E3D"
+				type: "checkmark"
+				title: "机械粉碎 (Mekanical Crushing)"
+			}]
+		}
+		{
+			icon: "create:crushed_raw_iron"
+			x: 0.0d
+			y: 6.0d
+			dependencies: ["770301676F4A6FEC"]
+			id: "1B4FF2A6B0DA93F7"
+			tasks: [{
+				id: "16A9ABADE74B2165"
+				type: "checkmark"
+				title: "Crushed Raw Ore"
+			}]
+		}
+		{
+			icon: "thermal:iron_dust"
+			x: 0.0d
+			y: 9.0d
+			dependencies: ["1B4FF2A6B0DA93F7"]
+			id: "61C96197D53E123B"
+			tasks: [{
+				id: "0AD8D07BC21AA17F"
+				type: "checkmark"
+				title: "粉尘"
+			}]
+		}
+		{
+			icon: "minecraft:iron_nugget"
+			x: 0.0d
+			y: 12.0d
+			dependencies: ["61C96197D53E123B"]
+			id: "5C212E4DCDDE4436"
+			tasks: [{
+				id: "713D3A179AC701E0"
+				type: "checkmark"
+				title: "金块碎片"
+			}]
+		}
+		{
+			icon: "tconstruct:molten_iron_bucket"
+			x: 0.0d
+			y: 15.0d
+			dependencies: ["5C212E4DCDDE4436"]
+			id: "59F6A8F73E2D97B3"
+			tasks: [{
+				id: "18FAD7D22822BCB0"
+				type: "checkmark"
+				title: "液体"
+			}]
+		}
+		{
+			icon: "create:crushing_wheel"
+			x: 3.0d
+			y: 4.5d
+			subtitle: "1 个 Crushed Ore 和 1 个 Experience Nugget"
+			dependencies: ["770301676F4A6FEC"]
+			id: "740FCD6225064B96"
+			tasks: [{
+				id: "44AA0EFC6A387D68"
+				type: "checkmark"
+				title: "正在粉碎中"
+			}]
+		}
+		{
+			icon: "thermal:machine_centrifuge"
+			x: -9.0d
+			y: 7.5d
+			subtitle: "1 到 3 个金块 + 副产品"
+			dependencies: ["1B4FF2A6B0DA93F7"]
+			id: "306D0922AE30277B"
+			tasks: [{
+				id: "34D923B3AD03B112"
+				type: "checkmark"
+				title: "离心分离机"
+			}]
+		}
+		{
+			icon: "create:encased_fan"
+			x: 9.0d
+			y: 7.5d
+			subtitle: "1 到 3 个金块 + 副产品"
+			dependencies: ["1B4FF2A6B0DA93F7"]
+			id: "5B20BF0E38676E9F"
+			tasks: [{
+				id: "0E1FF1B04792BBB5"
+				type: "checkmark"
+				title: "清洗中"
+			}]
+		}
+		{
+			icon: "thermal:machine_smelter"
+			x: 12.0d
+			y: 7.5d
+			subtitle: "1 到 6 个金块"
+			dependencies: ["1B4FF2A6B0DA93F7"]
+			id: "7CE116092B285BC8"
+			tasks: [{
+				id: "2D9F28792551749A"
+				type: "checkmark"
+				title: "感应式熔炉 (Induction Smelter)"
+			}]
+		}
+		{
+			icon: "thermal:machine_smelter"
+			x: -9.0d
+			y: 4.5d
+			subtitle: "1 个锭 + 1 个炉渣"
+			dependencies: ["770301676F4A6FEC"]
+			id: "62FAD5409E666CD1"
+			tasks: [{
+				id: "06746ACB795740F8"
+				type: "checkmark"
+				title: "感应式熔炉 (Induction Smelter)"
+			}]
+		}
+		{
+			icon: "minecraft:furnace"
+			x: -12.0d
+			y: 7.5d
+			subtitle: "1 到 3 个金块"
+			dependencies: ["1B4FF2A6B0DA93F7"]
+			id: "59DAD1AFE5A957CD"
+			tasks: [{
+				id: "3ECC02D5E36CE512"
+				type: "checkmark"
+				title: "熔炼/爆破"
+			}]
+		}
+		{
+			title: "丝绸之触？"
+			icon: "minecraft:iron_ore"
+			x: -2.0d
+			y: 1.5d
+			description: ["用了丝绸之触，现在得到了普通矿石块？那你的冶炼过程会轻松愉快得多。"]
+			dependencies: ["3D0BD660832D6436"]
+			id: "4E4C314C63EE4A8B"
+			tasks: [{
+				id: "032BAEE3323C2673"
+				type: "checkmark"
+				title: "精准采集"
+			}]
+		}
+	]
+	quest_links: [ ]
+}

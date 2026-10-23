@@ -1,0 +1,479 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "getting_started"
+	group: "5D5DBBFEECA45FAB"
+	icon: "biomesoplenty:dried_salt"
+	id: "1B3084478EF0EA38"
+	order_index: 0
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"冰冷、无菌的种子库欢迎您的到来。控制台上微弱的灯光闪烁着，AI 语音为您指引：“&o欢迎回来，建筑师。Elyria 期待您的指令&r。”"
+				""
+				"你的初始任务很简单：重新激活种子宝库的休眠系统。 &d找到终端并登录&r。"
+			]
+			id: "58FC40BAC5CA05E2"
+			rewards: [
+				{
+					id: "6284A7E079657F60"
+					type: "xp"
+					xp: 5
+				}
+				{
+					id: "4BCB691765E081F0"
+					item: "farmersdelight:sweet_berry_cheesecake_slice"
+					type: "item"
+				}
+				{
+					id: "0D36FD4ECD36EED1"
+					item: {
+						Count: 1b
+						id: "minecraft:potion"
+						tag: {
+							Potion: "minecraft:water"
+							Purity: 3
+						}
+					}
+					type: "item"
+				}
+				{
+					auto: "invisible"
+					id: "1B085703462CDA64"
+					ignore_reward_blocking: true
+					stage: "ae2drives"
+					team_reward: false
+					type: "gamestage"
+				}
+			]
+			tasks: [{
+				icon: "ae2:crafting_terminal"
+				id: "373DF584AC36AD48"
+				stage: "ae2drives"
+				title: "访问系统内部组件"
+				type: "gamestage"
+			}]
+			title: "访问系统内部组件"
+			x: -4.5d
+			y: -11.0d
+		}
+		{
+			dependencies: ["58FC40BAC5CA05E2"]
+			description: [
+				"你靠近主数字存储单元时，警报声大作。一股脉动的能量从中散发出来，变得越来越不稳定。AI的声音变得惊慌失措，\"&o收容即将失效&r！\" 没有时间反应，存储单元爆炸，产生的冲击波破坏了金库的能源网络。"
+				""
+				"烟雾和残骸散去，种子宝库内的资源显然不够。外面的世界虽然不宜居，却是获取必需资源的关键。宝库半径内应是安全的，但超出范围就需要防护了。"
+				""
+				"尽管时光流逝，世界仍受辐射困扰，你仅凭存在就能轻易扰动脆弱的土壤保护层。在越过地堡边界之前，必须设计辐射防护服来保护自己。"
+			]
+			icon: "engineersdecor:sign_danger"
+			id: "28E8D0CD21DF5430"
+			invisible: true
+			invisible_until_tasks: 1
+			rewards: [
+				{
+					id: "1AC021407B87B263"
+					type: "xp"
+					xp: 5
+				}
+				{
+					auto: "enabled"
+					description: ""
+					icon: "minecraft:tnt"
+					id: "1994E1A214BED1AA"
+					team_reward: true
+					title: "轰隆一声！"
+					type: "toast"
+				}
+			]
+			subtitle: "你让烟雾冒出来了！"
+			tasks: [
+				{
+					icon: "ae2:chest"
+					id: "5CB1B59FF518DC94"
+					stage: "ae2drives"
+					title: "天灾降临！"
+					type: "gamestage"
+				}
+				{
+					id: "52B3B6F3E1E22158"
+					type: "checkmark"
+				}
+			]
+			x: -4.5d
+			y: -9.5d
+		}
+		{
+			dependencies: ["28E8D0CD21DF5430"]
+			description: ["虽然离开地堡的安全区相当危险，但你应该能安全地深入到自然保护区的边界。在这片区域，你应该能相对安全地收集基本材料。你也可以用简单的&eshapecraft&r将多余的&bbeehives&r分解成木板。"]
+			id: "54E46E00BC687E3C"
+			rewards: [{
+				id: "430EF6A8F7D788B3"
+				item: {
+					Count: 1b
+					id: "farmersdelight:apple_cider"
+					tag: {
+						Purity: 3
+					}
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "121B264DEEC7A4F0"
+				item: "minecraft:crafting_table"
+				type: "item"
+			}]
+			title: "回归基础"
+			x: -4.5d
+			y: -8.0d
+		}
+		{
+			dependencies: ["54E46E00BC687E3C"]
+			description: ["虽然会很快损坏，但肯定比徒手撸石头更有效。先用基础的&6木制工具&r开始，然后尽快升级到石制工具。"]
+			id: "446E61688AB46843"
+			rewards: [
+				{
+					count: 16
+					id: "476B7AE342B03BED"
+					item: "minecraft:oak_planks"
+					type: "item"
+				}
+				{
+					id: "2659BD1A6AFD74C4"
+					type: "xp"
+					xp: 2
+				}
+			]
+			tasks: [{
+				id: "766EF0C2AB046D21"
+				item: {
+					Count: 1b
+					id: "minecraft:wooden_pickaxe"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "砍树，砸石头"
+			x: -4.5d
+			y: -6.5d
+		}
+		{
+			dependencies: ["446E61688AB46843"]
+			description: ["&b石制工具&r能让你暂时开采所需的大部分物品。我们需要找到更好的材料来制造更好的工具。可以用石质支架升级&6合成台&r，制成能保留合成物品的合成台。"]
+			icon: "cyclic:workbench"
+			id: "20D5C75AD17DB78B"
+			rewards: [
+				{
+					id: "00330A6426708565"
+					item: "cyclic:workbench"
+					type: "item"
+				}
+				{
+					id: "68D28224050DFA23"
+					item: {
+						Count: 1b
+						id: "minecraft:stone_axe"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "01BAAC165B3AB313"
+					item: {
+						Count: 1b
+						id: "minecraft:stone_shovel"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "164B78258FE037AC"
+					item: {
+						Count: 1b
+						id: "minecraft:stone_hoe"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					consume_items: true
+					count: 6L
+					id: "0D978F16AA3BD715"
+					item: "minecraft:cobblestone"
+					type: "item"
+				}
+				{
+					id: "7E7AB434685395DC"
+					item: {
+						Count: 1b
+						id: "minecraft:stone_pickaxe"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "0F5A16006C0BA03E"
+					item: "minecraft:crafting_table"
+					type: "item"
+				}
+			]
+			title: "石头的丰收"
+			x: -4.5d
+			y: -5.0d
+		}
+		{
+			dependencies: ["28E8D0CD21DF5430"]
+			description: [
+				"设施核心处存在强大的电磁场，能阻止大多数敌对生物出现，但这并非万无一失。世界中有智慧型生物，部分甚至能使用工具。较弱的方块会被挖穿，务必用普通材料加固防御，直到能部署防护罩。"
+				""
+				"你的模拟舱室&n未&r受保护，因为该区域会干扰舱内正常运行。"
+			]
+			icon: "nameless_trinkets:creeper_sense"
+			id: "5F64968A15643883"
+			rewards: [{
+				id: "7286E84D52802DD6"
+				item: "minecraft:golden_apple"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0C016E55BB75A0F9"
+				type: "checkmark"
+			}]
+			title: "你并不安全！"
+			x: -3.0d
+			y: -9.5d
+		}
+		{
+			dependencies: ["20D5C75AD17DB78B"]
+			description: [
+				"要获得一些&6橡胶&r，你需要种植&6树脂棒&r。你可以利用宝库中已有的物品来获取。先制作一些&9作物棒&r用于种植，然后去找到种子。如果你去宝库的农业区，应该能找到一些&9小麦种子&r，这能帮助我们开始。"
+				""
+				"继续前往&6新生发芽&r章节，以推进此任务线。"
+			]
+			icon: {
+				Count: 1b
+				id: "minecraft:wheat_seeds"
+				tag: {
+					display: {
+						Name: "{\"translate\":\"item.minecraft.wheat_seeds\",\"color\":\"green\"}"
+					}
+				}
+			}
+			id: "1C9B4FAC40207AF3"
+			rewards: [{
+				id: "49728B2B47D8A65B"
+				item: "ic2:overgrowth_fertilizer"
+				type: "item"
+			}]
+			tasks: [
+				{
+					count: 4L
+					id: "63025C7743679372"
+					item: "ic2:crop_sticks"
+					type: "item"
+				}
+				{
+					id: "11F79CBD93348080"
+					item: {
+						Count: 1b
+						id: "minecraft:wheat_seeds"
+						tag: {
+							display: {
+								Name: "{\"translate\":\"item.minecraft.wheat_seeds\",\"color\":\"green\"}"
+							}
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "是时候发展农业了 (Time to Get Agrarian)"
+			x: -4.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["20D5C75AD17DB78B"]
+			description: ["用于冶炼材料的基础&9熔炉&r。这技术很落后，但现在够用。你需要找些粗糙材料来当&6燃料源&r。"]
+			id: "723A4300F36AD7D7"
+			rewards: [
+				{
+					id: "7C5BD0A012F17BB8"
+					item: "cookingforblockheads:heating_unit"
+					type: "item"
+				}
+				{
+					id: "590614B6F44A71C5"
+					item: "mekanism:block_charcoal"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "2DCC2FC6355E7711"
+				item: "minecraft:furnace"
+				type: "item"
+			}]
+			title: "好温暖！"
+			x: -3.0d
+			y: -5.0d
+		}
+		{
+			dependencies: ["723A4300F36AD7D7"]
+			description: ["干得好！将&6木材&r炼成&9木炭&r可以延长燃料，我们或许能用同样的燃料源建造更高温的熔炉，比如铁炉或煤炭发电机。"]
+			id: "686E2B537232B8EF"
+			rewards: [
+				{
+					count: 4
+					id: "1B64389C8F4B9A30"
+					item: "mekanism:block_charcoal"
+					type: "item"
+				}
+				{
+					id: "284FC21BBC45DD4D"
+					type: "xp"
+					xp: 2
+				}
+			]
+			tasks: [{
+				id: "527FC83D7FB695E1"
+				item: "minecraft:charcoal"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -5.0d
+		}
+		{
+			dependencies: ["54E46E00BC687E3C"]
+			description: [
+				"除了饥饿，你还需要管理口渴。在宝库中，我们提供了无尽淡水，所以不用担心。在农业区后方找到&b水龙头&r和&b罐子&r。你可以在这里用&b玻璃瓶&r装满淡水带走。如果外出，请务必带上足够的量！"
+				""
+				""
+				"{image:ftbgenesis:textures/quests/faucet.png width:200 height:100 align:1}"
+			]
+			icon: {
+				Count: 1b
+				id: "minecraft:potion"
+				tag: {
+					Potion: "minecraft:water"
+					Purity: -1
+				}
+			}
+			id: "27EF0B7B4A45F2EB"
+			rewards: [
+				{
+					count: 4
+					id: "421F9C5408E2F22E"
+					item: {
+						Count: 1b
+						id: "minecraft:potion"
+						tag: {
+							Potion: "minecraft:water"
+							Purity: 3
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "53E0B112995DC989"
+					type: "xp"
+					xp: 2
+				}
+			]
+			subtitle: "植物们梦寐以求的东西都在这里！"
+			tasks: [
+				{
+					id: "75D1F9306AD03EFB"
+					item: "minecraft:glass_bottle"
+					type: "item"
+				}
+				{
+					icon: "supplementaries:jar"
+					id: "7536B553F4581AD6"
+					observe_type: 0
+					timer: 0L
+					to_observe: "supplementaries:jar"
+					type: "observation"
+				}
+			]
+			title: "水！"
+			x: -3.0d
+			y: -8.0d
+		}
+		{
+			dependencies: ["27EF0B7B4A45F2EB"]
+			description: ["认领区块可以防止爆炸和其他许多不良及危险的效果。请务必打开你的地图（默认 M 键）"]
+			id: "4D035F303B0EC8A3"
+			rewards: [
+				{
+					id: "01F1B9240E4A4E50"
+					type: "xp"
+					xp: 2
+				}
+				{
+					auto: "enabled"
+					description: ""
+					icon: "minecraft:tall_grass"
+					id: "0A0D4BD8E0C70981"
+					team_reward: true
+					title: "滚出我的草坪！"
+					type: "toast"
+				}
+			]
+			tasks: [{
+				id: "51AA77ACC9186B7A"
+				title: "占领你的领地！"
+				type: "checkmark"
+			}]
+			title: "确立你的领地"
+			x: -1.5d
+			y: -8.0d
+		}
+		{
+			dependencies: [
+				"723A4300F36AD7D7"
+				"308EF169B51EB98B"
+			]
+			description: ["要制造更强大的机器，我们需要开始寻找一些&9铁&r来精炼。前往&6Dangerous Path&r任务线继续你的使命。"]
+			hide: true
+			id: "2BFEFBD857F0B4A6"
+			min_required_dependencies: 1
+			rewards: [
+				{
+					count: 2
+					id: "099A9687724E1FFA"
+					item: "flowerseeds:tulip_orange_seed"
+					type: "item"
+				}
+				{
+					id: "782605F4DBD013A7"
+					type: "xp"
+					xp: 2
+				}
+			]
+			shape: "hexagon"
+			size: 1.25d
+			tasks: [{
+				id: "29D628D56852B726"
+				item: "ic2:ingot_refined_iron"
+				type: "item"
+			}]
+			x: -3.0d
+			y: -3.5d
+		}
+	]
+	title: "入门指南"
+}

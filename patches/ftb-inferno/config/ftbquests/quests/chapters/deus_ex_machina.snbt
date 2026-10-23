@@ -1,0 +1,633 @@
+# AI 初翻，未人工校对
+{
+	id: "0900E1D5E426A770"
+	group: "46A29AE1E3ACCC77"
+	order_index: 2
+	filename: "deus_ex_machina"
+	title: "机械降神 (Deus Ex Machina)"
+	icon: {
+		id: "ftbic:quantum_chestplate"
+		Count: 1b
+		tag: {
+			Damage: 0
+		}
+	}
+	subtitle: ["FTB 工业机械装置"]
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "专有能源系统！"
+			x: -2.0d
+			y: 0.0d
+			shape: "hexagon"
+			subtitle: "制作一个FE变压器"
+			description: [
+				"基于HSLA的技术&c太精密了，无法直接处理FE&r。我得先把它转换成可用的东西。"
+				""
+				"我把这个新能量系统叫作&5Zaps&r，简称 :zap:。 &bFE Transformer&r 会&6将 4 FE 转换为 1:zap:&r，并输出到&6相邻的 Battery Box&r中。"
+				""
+				"流经某物的 :zap:/t 越多，&6电压&r就越高。电压过高会&c烧毁电缆并使机器短路&r，直到用保险丝修复前都无法工作。"
+				""
+				"&o请记住，&6Dante's Divine Labram&r&o 里包含了所有指南书。&r"
+			]
+			dependencies: ["29F319B7AB014274"]
+			size: 1.5d
+			min_width: 275
+			id: "5FA0853913F7502A"
+			tasks: [{
+				id: "365DCB18B8DC63DD"
+				type: "item"
+				item: "fe_transformer:fe_transformer"
+			}]
+			rewards: [{
+				id: "5792C47B8A4BA2A8"
+				type: "item"
+				item: "ftbic:fuse"
+				count: 16
+			}]
+		}
+		{
+			title: "Gregless"
+			x: -2.0d
+			y: -3.0d
+			shape: "circle"
+			subtitle: "制作一个机器方块 Machine Block"
+			description: [
+				"在电弧炉中，我创造了一种新金属：高强度低合金钢（简称 &6HSLA&r）。"
+				""
+				"它更灵活，抗氧化性也更强，比我一直在用的粗钢要好得多。"
+				""
+				"有了这种新的 HSLA 钢，我就能用复杂的线路和&6惊人的能量传输率&r来创造先进的科技了。"
+			]
+			dependencies: ["1AD7627CC2347FB2"]
+			min_width: 275
+			id: "29F319B7AB014274"
+			tasks: [{
+				id: "0FFF5BB4BB7C9832"
+				type: "item"
+				item: "ftbic:machine_block"
+			}]
+			rewards: [
+				{
+					id: "445726D3D82B48AA"
+					type: "item"
+					item: "ftbic:lv_cable"
+					count: 8
+				}
+				{
+					id: "444C54D0530DD199"
+					type: "item"
+					item: "ftbic:lv_battery_box"
+				}
+			]
+		}
+		{
+			title: "铱电路组件"
+			icon: "ftbic:iridium_ingot"
+			x: -2.0d
+			y: 3.0d
+			subtitle: "获取铱矿石"
+			description: [
+				"为了制造最先进的技术，我需要一种比现有材料更纯净、导电性更强的材料。"
+				""
+				"早已灭绝的&6龙之鳞片&r含有微量的这种物质。通过与烈焰血反应，我能获得微量的&b铱&r。"
+				""
+				"这个过程慢得令人痛苦，我得在虚空里搜寻鳞片。必须尽快找到更好的方法。"
+			]
+			dependencies: [
+				"5FA0853913F7502A"
+				"302AE29C5545EB4A"
+			]
+			min_width: 250
+			id: "6BB9366C63315F62"
+			tasks: [{
+				id: "5FF49B5E4E818501"
+				type: "item"
+				title: "铱金属"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "ftbic:iridium_nugget"
+								Count: 1b
+							}
+							{
+								id: "ftbic:iridium_ingot"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+		}
+		{
+			x: 2.5d
+			y: 0.0d
+			subtitle: "制作一个压缩机 (Compressor)"
+			description: ["&b压缩机&r会对物品施加巨大压力，将其压缩成其他物品。"]
+			dependencies: ["5FA0853913F7502A"]
+			id: "27ABF6DA896F3CF1"
+			tasks: [{
+				id: "2D391B59632D663F"
+				type: "item"
+				item: "ftbic:compressor"
+			}]
+		}
+		{
+			x: 1.5d
+			y: 1.5d
+			subtitle: "制作碳质板条"
+			description: ["&b碳板&r非常稀有，可用于多种配方。"]
+			dependencies: ["27ABF6DA896F3CF1"]
+			id: "200AED5FCE2F8A67"
+			tasks: [{
+				id: "737E8BADA63EC696"
+				type: "item"
+				item: "ftbic:carbon_plate"
+			}]
+			rewards: [{
+				id: "2188DD026DE786DF"
+				type: "item"
+				item: "ftbic:carbon_plate"
+				count: 4
+			}]
+		}
+		{
+			x: 3.5d
+			y: 1.5d
+			subtitle: "制作一些高级合金 (Advanced Alloy)"
+			description: ["&b高级合金&r对高级机器非常有用。"]
+			dependencies: ["27ABF6DA896F3CF1"]
+			id: "6301F10D0516BA60"
+			tasks: [{
+				id: "30E08EE2BE88EBEB"
+				type: "item"
+				item: "ftbic:advanced_alloy"
+			}]
+		}
+		{
+			x: 2.5d
+			y: 3.0d
+			subtitle: "制作一个高级机械方块 (Advanced Machine Block)"
+			description: ["最强大的机器需要&b高级机械方块&r。"]
+			dependencies: [
+				"200AED5FCE2F8A67"
+				"6301F10D0516BA60"
+			]
+			id: "382C4D8920436FC4"
+			tasks: [{
+				id: "41BA1E716E18BEE4"
+				type: "item"
+				item: "ftbic:advanced_machine_block"
+			}]
+		}
+		{
+			x: 0.75d
+			y: 3.0d
+			shape: "hexagon"
+			subtitle: "建造一个核反应堆 Nuclear Reactor"
+			description: [
+				"有了&b核反应堆&r，我就能用铀燃料棒&6制造出巨量的闪电&r！"
+				""
+				"书籍&6勤劳指南&r解释了反应堆的工作原理。"
+				""
+				"&o反应堆的闪电数量已设为默认值的4倍"
+			]
+			dependencies: [
+				"6BB9366C63315F62"
+				"382C4D8920436FC4"
+			]
+			size: 1.5d
+			id: "0F1973B4E543C882"
+			tasks: [{
+				id: "25C0BDB0ED1C4296"
+				type: "item"
+				item: "ftbic:nuclear_reactor"
+			}]
+			rewards: [{
+				id: "2946500D854D1B70"
+				type: "item"
+				item: "ftbic:iridium_circuit"
+				count: 2
+			}]
+		}
+		{
+			x: -5.5d
+			y: 0.0d
+			shape: "square"
+			subtitle: "制作一个罐头机 (Canning Machine)"
+			description: [
+				"&b罐头机&r可以填充罐头。"
+				""
+				"这可以用来制作&6食物罐头&r和（更重要的是）&6铀燃料棒&r。"
+			]
+			dependencies: ["5FA0853913F7502A"]
+			id: "4175C48649BCF1D1"
+			tasks: [{
+				id: "46B0F0C1A0886DB9"
+				type: "item"
+				item: "ftbic:canning_machine"
+			}]
+			rewards: [{
+				id: "24F708F2414450E7"
+				type: "item"
+				item: "ftbic:dark_spray_paint_can"
+			}]
+		}
+		{
+			title: "小心我的翻滚动作，别被砸到"
+			x: -5.5d
+			y: -1.5d
+			shape: "square"
+			subtitle: "制作一个滚筒破碎机"
+			description: ["&bRolling Machine&r可以&6将锭制成板&r，还能制作&6Fluid Cells&r。"]
+			dependencies: ["5FA0853913F7502A"]
+			id: "7DCB752323A2C4A8"
+			tasks: [{
+				id: "6377B27F63048A32"
+				type: "item"
+				item: "ftbic:roller"
+			}]
+		}
+		{
+			x: -7.5d
+			y: -1.5d
+			subtitle: "制作一个流体储罐"
+			description: [
+				"&b流体单元&r可储存流体，并且可以&6堆叠至16个&r。"
+				""
+				"我可以直接收集流体，但不能倒出来。"
+			]
+			dependencies: ["7DCB752323A2C4A8"]
+			id: "54E1C82C5D2AFC25"
+			tasks: [{
+				id: "21683AA6A590E0F9"
+				type: "item"
+				item: "ftbic:fluid_cell"
+			}]
+			rewards: [{
+				id: "0EB8E92270D1536C"
+				type: "item"
+				item: "ftbic:fluid_cell"
+				count: 16
+			}]
+		}
+		{
+			x: -7.5d
+			y: 0.0d
+			subtitle: "制作一个铀燃料棒"
+			description: ["&b铀燃料棒&r是&6核反应堆&r使用的燃料。"]
+			dependencies: [
+				"54E1C82C5D2AFC25"
+				"4175C48649BCF1D1"
+			]
+			id: "7D891C65B345DD1C"
+			tasks: [{
+				id: "66E9953AC782C25D"
+				type: "item"
+				item: {
+					id: "ftbic:uranium_fuel_rod"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "10E97D769F4965BF"
+				type: "item"
+				item: {
+					id: "ftbic:quad_uranium_fuel_rod"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			title: "让它旋转起来，直到地狱都为之颤抖"
+			x: -5.5d
+			y: -3.0d
+			shape: "square"
+			subtitle: "制作一个离心机 (Centrifuge)"
+			description: ["&b离心机&r用于&6分离物品的组成部分&r。"]
+			dependencies: ["5FA0853913F7502A"]
+			id: "45AAAE40487469F4"
+			tasks: [{
+				id: "624AECD2A633C8C1"
+				type: "item"
+				item: "ftbic:centrifuge"
+			}]
+		}
+		{
+			x: -7.5d
+			y: -3.0d
+			subtitle: "制作一个小冷却单元"
+			description: [
+				"通过离心一个水细胞，我创造了一个&b冷却剂细胞&r。"
+				""
+				"这可以用来&6吸收核反应堆的热量&r，或者制作超频升级组件。"
+			]
+			dependencies: [
+				"54E1C82C5D2AFC25"
+				"45AAAE40487469F4"
+			]
+			id: "19A5DD8AE7BF348D"
+			tasks: [{
+				id: "50E248BB6C2FC50E"
+				type: "item"
+				item: {
+					id: "ftbic:small_coolant_cell"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "47860A21C54DD224"
+				type: "item"
+				item: {
+					id: "ftbic:large_coolant_cell"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			x: -7.5d
+			y: -4.5d
+			shape: "square"
+			subtitle: "制作一个超频升级组件"
+			description: ["&b超频升级&r能让机器运行得更快，但会消耗额外的 :zap:。"]
+			dependencies: ["19A5DD8AE7BF348D"]
+			optional: true
+			id: "16F86FD72281E5D6"
+			tasks: [{
+				id: "06A4F2A4D34F93FE"
+				type: "item"
+				item: "ftbic:overclocker_upgrade"
+			}]
+		}
+		{
+			x: -2.0d
+			y: -4.392857142857142d
+			shape: "square"
+			subtitle: "制作一个Transformer升级组件"
+			description: ["Each &bTransformer Upgrade&r &6increases the machine's Voltage&r by a tier, allowing it to accept more :zap:/t"]
+			dependencies: ["29F319B7AB014274"]
+			size: 0.75d
+			optional: true
+			id: "3A9B3A67176D7E91"
+			tasks: [{
+				id: "280DDC15F87117E9"
+				type: "item"
+				item: "ftbic:transformer_upgrade"
+			}]
+		}
+		{
+			x: -0.75d
+			y: -3.0d
+			shape: "square"
+			subtitle: "制作一个能量存储升级组件"
+			description: ["每个&b能量存储升级&r都会为机器的存储容量增加约&610,000:zap:&r。"]
+			dependencies: ["29F319B7AB014274"]
+			size: 0.75d
+			optional: true
+			id: "0A8148CAE7407B0C"
+			tasks: [{
+				id: "3EE30C11A6D18624"
+				type: "item"
+				item: "ftbic:energy_storage_upgrade"
+			}]
+		}
+		{
+			x: -3.375d
+			y: -3.0d
+			shape: "square"
+			subtitle: "制作一个喷射器升级组件"
+			description: ["&b弹出器升级&r将让机器自动将其产物弹出至相邻的容器中。"]
+			dependencies: ["29F319B7AB014274"]
+			size: 0.75d
+			optional: true
+			id: "198A9C8608F1F1B7"
+			tasks: [{
+				id: "0DC670F74236A2B9"
+				type: "item"
+				item: "ftbic:ejector_upgrade"
+			}]
+		}
+		{
+			title: "湮灭（Annihilation）"
+			icon: "ftbic:antimatter"
+			x: -2.0d
+			y: 5.0d
+			shape: "hexagon"
+			subtitle: "获取反物质（Antimatter）"
+			description: [
+				"&b反物质&r是一种极其危险且强大的物质，是现实的公敌。"
+				""
+				"&b反物质构造器&r可以生成它，但需要消耗1,000,000:zap:。使用废料和废料箱可以降低消耗。"
+			]
+			dependencies: ["6BB9366C63315F62"]
+			id: "7FE9FAFBDB354644"
+			tasks: [
+				{
+					id: "7EF3967D2C9F1FE6"
+					type: "item"
+					item: "ftbic:antimatter_constructor"
+				}
+				{
+					id: "2E0A9C1AEC289027"
+					type: "item"
+					item: "ftbic:antimatter"
+				}
+			]
+			rewards: [
+				{
+					id: "072CF00BA029583C"
+					type: "item"
+					item: "ftbic:scrap_box"
+					count: 64
+				}
+				{
+					id: "57E95F675E10E268"
+					type: "item"
+					item: "avaritia:cosmic_meatballs"
+				}
+			]
+		}
+		{
+			icon: {
+				id: "ftbic:carbon_chestplate"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: -0.5d
+			y: 1.5d
+			shape: "square"
+			subtitle: "制作一些碳素动力盔甲"
+			description: [
+				"&b碳动力盔甲&r极其强大，&6穿戴并充能所有部件时可完全抵消所有伤害&r。"
+				""
+				"胸甲是最重要的部分，只有它能储存电荷，所有其他部件都依赖它。"
+				""
+				"充满电的情况下，我可以在电量耗尽前承受&6100点生命值&r的伤害。"
+			]
+			dependencies: ["200AED5FCE2F8A67"]
+			optional: true
+			id: "0D412B5CE45C6E0B"
+			tasks: [{
+				id: "510DB72C3635973D"
+				type: "item"
+				title: "碳素动力装甲"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "ftbic:carbon_helmet"
+								Count: 1b
+								tag: {
+									Damage: 0
+								}
+							}
+							{
+								id: "ftbic:carbon_chestplate"
+								Count: 1b
+								tag: {
+									Damage: 0
+								}
+							}
+							{
+								id: "ftbic:carbon_leggings"
+								Count: 1b
+								tag: {
+									Damage: 0
+								}
+							}
+							{
+								id: "ftbic:carbon_boots"
+								Count: 1b
+								tag: {
+									Damage: 0
+								}
+							}
+						]
+					}
+				}
+			}]
+		}
+		{
+			icon: {
+				id: "ftbic:quantum_chestplate"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: -0.5d
+			y: 5.0d
+			shape: "square"
+			subtitle: "制作一些量子动力盔甲"
+			description: [
+				"The &bQuantum Powersuit&r is nearly identical to the Carbon Powersuit, but can take &61,500 hearts of damage&r before fully discharging."
+				""
+				"它有内置的鞘翅，我可以通过冲刺来加速。潜行则能让我悬停。"
+			]
+			dependencies: [
+				"0D412B5CE45C6E0B"
+				"7FE9FAFBDB354644"
+			]
+			optional: true
+			id: "0572E5EFA107E8B2"
+			tasks: [{
+				id: "15DB89C4AA5C331D"
+				type: "item"
+				title: "量子动力装甲"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "ftbic:quantum_helmet"
+								Count: 1b
+								tag: {
+									Damage: 0
+								}
+							}
+							{
+								id: "ftbic:quantum_chestplate"
+								Count: 1b
+								tag: {
+									Damage: 0
+								}
+							}
+							{
+								id: "ftbic:quantum_leggings"
+								Count: 1b
+								tag: {
+									Damage: 0
+								}
+							}
+							{
+								id: "ftbic:quantum_boots"
+								Count: 1b
+								tag: {
+									Damage: 0
+								}
+							}
+						]
+					}
+				}
+			}]
+		}
+		{
+			title: "充满科技感！"
+			x: -4.571428571428569d
+			y: 5.017857142857139d
+			shape: "hexagon"
+			subtitle: "Magiteck 水晶"
+			description: [
+				"所有这些古怪的技术终于让我得到了我真正需要的东西。一颗蕴含着湮灭之力、被下界之星核心完美收容并稳定住的纯净水晶。"
+				""
+				"现在还不是施展我最拿手的魔法的时候。"
+				""
+				"正如普罗米修斯违抗众神为人类盗取火种，我也要夺走这世界用以将我囚禁于此的力量。"
+				""
+				"我猜我需要大量的这些&3下界之星&r。或许我能将凋零的其中一个灵魂困在闭合箱中，并在灵魂熔炉里永久地使其复活……"
+			]
+			dependencies: ["7FE9FAFBDB354644"]
+			size: 1.5d
+			id: "31B798C63B22E678"
+			tasks: [{
+				id: "53A2CF7F9AA96751"
+				type: "item"
+				item: "ftbic:antimatter_crystal"
+			}]
+			rewards: [
+				{
+					id: "62BFD181EF003619"
+					type: "item"
+					item: "ftbic:scrap_box"
+					count: 64
+				}
+				{
+					id: "30AC337BE5F8404E"
+					type: "item"
+					item: "evilcraft:box_of_eternal_closure"
+				}
+			]
+		}
+	]
+}

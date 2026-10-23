@@ -1,0 +1,132 @@
+# AI 初翻，未人工校对
+{
+	id: "028DA6F37C2062AB"
+	group: "7B6B3ED4DFFAB8B5"
+	order_index: 6
+	filename: "flux_network"
+	title: "Flux Network"
+	icon: "fluxnetworks:flux_core"
+	default_quest_shape: "pentagon"
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: 0.0d
+			y: 0.0d
+			shape: "hexagon"
+			subtitle: "不是用来焊接的！"
+			description: ["Flux 的本质。"]
+			id: "51B9EB8316EBBB3C"
+			tasks: [{
+				id: "031DA6D70C73770D"
+				type: "item"
+				item: "fluxnetworks:flux_dust"
+			}]
+			rewards: [{
+				id: "752ABAC153AA646D"
+				type: "item"
+				item: "fluxnetworks:flux_dust"
+				count: 16
+			}]
+		}
+		{
+			x: 0.0d
+			y: 2.0d
+			description: [
+				"网络的大脑中枢所在之处。"
+				""
+				"&lNetworks do not require a Flux Controller to operate."
+			]
+			dependencies: ["51B9EB8316EBBB3C"]
+			id: "3FC900494A214236"
+			tasks: [{
+				id: "72313E38DA7C8365"
+				type: "item"
+				item: "fluxnetworks:flux_controller"
+			}]
+			rewards: [{
+				id: "2D3943102A7C8FFE"
+				type: "item"
+				item: "fluxnetworks:flux_configurator"
+			}]
+		}
+		{
+			x: -2.0d
+			y: 0.0d
+			description: ["正在向网络中添加能量。"]
+			dependencies: ["51B9EB8316EBBB3C"]
+			id: "600ADD2AD47DFB99"
+			tasks: [{
+				id: "0D1654C9600AEC18"
+				type: "item"
+				item: "fluxnetworks:flux_plug"
+			}]
+			rewards: [{
+				id: "45E85F628C9ABB4C"
+				type: "item"
+				item: "fluxnetworks:flux_core"
+				count: 6
+			}]
+		}
+		{
+			x: 2.0d
+			y: 0.0d
+			description: ["正在从网络中移除能量。"]
+			dependencies: ["51B9EB8316EBBB3C"]
+			id: "4B7B32C78DB06313"
+			tasks: [{
+				id: "1DE27FC27D81CF9F"
+				type: "item"
+				item: "fluxnetworks:flux_point"
+			}]
+			rewards: [{
+				id: "733BD16E296F91F7"
+				type: "item"
+				item: "fluxnetworks:flux_core"
+				count: 6
+			}]
+		}
+		{
+			x: 0.0d
+			y: -2.0d
+			description: [
+				"Flux Storage 用于储存多余的能源。每个 Flux Point 接收到足够的能源后，它才会被填满。"
+				""
+				"&lNetworks do not require a Flux Storage to operate."
+			]
+			dependencies: ["51B9EB8316EBBB3C"]
+			id: "45E489D74AF0335B"
+			tasks: [{
+				id: "0F4F03C2E8369234"
+				type: "item"
+				title: "Flux 存储系统"
+				icon: "fluxnetworks:basic_flux_storage"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "fluxnetworks:basic_flux_storage"
+								Count: 1b
+							}
+							{
+								id: "fluxnetworks:herculean_flux_storage"
+								Count: 1b
+							}
+							{
+								id: "fluxnetworks:gargantuan_flux_storage"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "12548E04D2C4D2AA"
+				type: "item"
+				item: "fluxnetworks:flux_block"
+				count: 4
+			}]
+		}
+	]
+}

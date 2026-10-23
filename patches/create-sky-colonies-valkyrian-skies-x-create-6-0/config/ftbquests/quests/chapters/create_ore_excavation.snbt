@@ -1,0 +1,295 @@
+# AI 初翻，未人工校对
+{
+	autofocus_id: "0000000000000000"
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "create_ore_excavation"
+	group: "2303A7879964ABB8"
+	icon: "create_ore_excavation_plus:ultimate_drill"
+	id: "2E983B06AEA1B339"
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			id: "5BF638A250C7106E"
+			rewards: [
+				{
+					id: "0000000080020001"
+					item: "createoreexcavation:sample_drill"
+					type: "item"
+				}
+				{
+					id: "0000000080020002"
+					type: "xp"
+					xp: 25
+				}
+			]
+			shape: "octagon"
+			tasks: [{
+				id: "0000000080020003"
+				type: "checkmark"
+			}]
+			title: "欢迎来到虚空矿井 (Welcome to the Void Mine)"
+			x: 2.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["5BF638A250C7106E"]
+			description: ["**样本钻头**是你的初始勘探工具。将其放置在方块上，用背罐供能，等待样本返回。这能告诉你地下有什么矿石。"]
+			id: "45B87D51EF224B8C"
+			rewards: [
+				{
+					id: "0000000080020004"
+					item: "createoreexcavation:vein_finder"
+					type: "item"
+				}
+				{
+					id: "0000000080020005"
+					type: "xp"
+					xp: 35
+				}
+			]
+			tasks: [{
+				id: "562EA529A3304318"
+				item: "createoreexcavation:sample_drill"
+				only_from_crafting: false
+				type: "item"
+			}]
+			title: "样本钻头"
+			x: 0.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["45B87D51EF224B8C"]
+			description: ["**Drilling Machine** 是挖掘的核心方块。将其放置在已发现的矿脉中心（或你认为矿脉所在之处）的正上方，并安装一个 **Drill Head** 即可开始挖掘。"]
+			id: "011207A61DF23A64"
+			rewards: [
+				{
+					id: "0000000080020007"
+					item: "createoreexcavation:extractor"
+					type: "item"
+				}
+				{
+					id: "0000000080020008"
+					type: "xp"
+					xp: 40
+				}
+			]
+			tasks: [
+				{
+					id: "0000000080020009"
+					item: "createoreexcavation:drilling_machine"
+					type: "item"
+				}
+				{
+					id: "000000008002000A"
+					item: {
+						Count: 1
+						id: "ftbfiltersystem:smart_filter"
+						tag: {
+							"ftbfiltersystem:filter": "ftbfiltersystem:item_tag(createoreexcavation:drills)"
+						}
+					}
+					title: "任何 #createoreexcavation:drills 类型的挖掘"
+					type: "item"
+				}
+			]
+			title: "挖掘机的设置方法"
+			x: -2.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["011207A61DF23A64"]
+			description: ["**Extractor** 会连接到 **Drilling Machine** 上来提取矿石。使用简单的物品运输方式（如传送带或漏斗）来收集资源。"]
+			id: "00925514C4C0BBCE"
+			rewards: [
+				{
+					count: 4
+					id: "000000008002000B"
+					item: "createoreexcavation:raw_redstone"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "000000008002000C"
+					item: "create_ore_excavation_plus:raw_lapis_lazuli"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "000000008002000D"
+				item: "createoreexcavation:extractor"
+				type: "item"
+			}]
+			title: "收集物资"
+			x: -2.5d
+			y: 6.5d
+		}
+		{
+			dependencies: ["45B87D51EF224B8C"]
+			description: ["**矿脉探测器**会给出附近矿脉的初始方向。试试在矿脉地图上放置它，看看效果"]
+			id: "0F6777CAB70D17AE"
+			rewards: [
+				{
+					id: "000000008002000E"
+					item: "createoreexcavation:diamond_drill"
+					type: "item"
+				}
+				{
+					id: "000000008002000F"
+					type: "xp"
+					xp: 50
+				}
+			]
+			tasks: [
+				{
+					id: "0000000080020010"
+					item: "createoreexcavation:vein_finder"
+					type: "item"
+				}
+				{
+					id: "0000000080020011"
+					item: "createoreexcavation:vein_atlas"
+					type: "item"
+				}
+			]
+			title: "高级勘探 (Atlas)"
+			x: 0.0d
+			y: 5.5d
+		}
+		{
+			dependencies: [
+				"00925514C4C0BBCE"
+				"0F6777CAB70D17AE"
+			]
+			description: ["用钻石钻头升级你的钻头！"]
+			id: "3FBF1E57D4EDF26A"
+			rewards: [
+				{
+					count: 2
+					id: "0000000080020012"
+					item: "createoreexcavation:raw_diamond"
+					type: "item"
+				}
+				{
+					count: 2
+					id: "0000000080020013"
+					item: "createoreexcavation:raw_emerald"
+					type: "item"
+				}
+				{
+					id: "0000000080020014"
+					type: "xp"
+					xp: 60
+				}
+			]
+			tasks: [{
+				id: "0000000080020015"
+				item: "createoreexcavation:diamond_drill"
+				type: "item"
+			}]
+			title: "打破坚硬之物"
+			x: 0.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["3FBF1E57D4EDF26A"]
+			description: ["**Create: Ore Excavation Plus** 引入了多步骤处理。将原始钻石/绿宝石粉碎，然后**切割**或**清洗**原石以开始流程。"]
+			id: "5F883CD530B2AE07"
+			rewards: [
+				{
+					count: 4
+					id: "0000000080020016"
+					item: "create_ore_excavation_plus:cut_raw_diamond"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "0000000080020017"
+					item: "create_ore_excavation_plus:washed_raw_emerald"
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "0000000080020018"
+					item: "create_ore_excavation_plus:raw_diamond_dust"
+					type: "item"
+				}
+				{
+					id: "0000000080020019"
+					item: "create_ore_excavation_plus:raw_emerald_dust"
+					type: "item"
+				}
+			]
+			title: "处理链 (The Processing Chain)"
+			x: 2.5d
+			y: 9.5d
+		}
+		{
+			dependencies: ["3FBF1E57D4EDF26A"]
+			description: ["在主世界钻探中获得**原始下界合金废料**。该材料需要特殊的高温处理。"]
+			id: "56EBCA0BA5637C8D"
+			rewards: [
+				{
+					id: "000000008002001E"
+					item: "createoreexcavation:netherite_drill"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "000000008002001F"
+					item: "create_ore_excavation_plus:fired_netherite_scrap"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "0000000080020020"
+				item: "create_ore_excavation_plus:raw_netherite_scrap"
+				type: "item"
+			}]
+			title: "收集残骸碎片"
+			x: -2.5d
+			y: 9.5d
+		}
+		{
+			description: ["**终极钻头**是本模组的最强装备，能以最高速度钻探任何矿脉，不受其成分限制。"]
+			icon: "create_ore_excavation_plus:ultimate_drill"
+			id: "128D971AEC6AC230"
+			rewards: [
+				{
+					id: "0000000080020025"
+					item: "minecraft:netherite_ingot"
+					type: "item"
+				}
+				{
+					id: "0000000080020026"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+			shape: "gear"
+			size: 2.0d
+			tasks: [{
+				id: "0000000080020027"
+				item: "create_ore_excavation_plus:ultimate_drill"
+				type: "item"
+			}]
+			title: "顶峰发掘工程"
+			x: 0.0d
+			y: 12.0d
+		}
+		{
+			description: ["矿脉是按区块生成的，这意味着你可能得先移动一些方块才能挖矿！试试 F3+G 查看区块"]
+			id: "79A785FC05EF4F60"
+			tasks: [{
+				id: "6E10F781A4861976"
+				title: "提示"
+				type: "checkmark"
+			}]
+			x: 2.5d
+			y: 5.5d
+		}
+	]
+	title: "矿石挖掘（天空采矿）"
+}

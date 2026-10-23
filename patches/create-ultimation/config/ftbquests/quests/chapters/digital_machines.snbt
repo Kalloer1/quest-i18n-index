@@ -1,0 +1,578 @@
+# AI 初翻，未人工校对
+{
+	id: "411A34EC8F67A2CE"
+	group: "28FBC8F9134D8D8D"
+	order_index: 1
+	filename: "digital_machines"
+	title: "数字机器模组"
+	icon: "ae2:controller"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: 0.0d
+			y: 0.0d
+			description: [
+				"该任务链将提供有关ME网络几乎所有内容的信息。"
+				""
+				"如需更详细的说明，请访问&bguide.appliedenergistics.org/#/1.18/ &f查看官方维基。"
+				""
+				"本系列任务仅用于说明，完成不会获得任何奖励。若你已熟悉ME系统，可跳过本系列任务。"
+			]
+			dependencies: ["1B8C087DDFE9D7D3"]
+			id: "1C4281D74C7C6FE9"
+			tasks: [{
+				id: "38BC056D782402B7"
+				type: "checkmark"
+				title: "数字机器模组"
+			}]
+		}
+		{
+			x: 0.0d
+			y: 5.0d
+			description: [
+				"你的ME网络的核心所在。"
+				""
+				"通电后，ME 控制器每侧将提供 32 个通道。这些通道可用于将设备连接到您的网络。"
+				""
+				"右键控制器还可以查看网络的总统计数据，包括功耗和所有已连接的设备。"
+			]
+			dependencies: ["1C4281D74C7C6FE9"]
+			id: "0568BDE24C9FC058"
+			tasks: [{
+				id: "5084962B960DBE58"
+				type: "item"
+				item: "ae2:controller"
+			}]
+		}
+		{
+			x: -2.5d
+			y: 1.0d
+			dependencies: ["1C4281D74C7C6FE9"]
+			id: "4989D6D727CA9CCC"
+			tasks: [{
+				id: "7F2B44595B02F8F5"
+				type: "item"
+				item: "ae2:fluix_glass_cable"
+			}]
+		}
+		{
+			title: "密集电缆"
+			x: -3.5d
+			y: 2.5d
+			description: [
+				"密集电缆最多可承载32个通道，非常适合直接连接到控制器表面。"
+				""
+				"但是，任何微型部件，如终端或总线，都不能连接到密集电缆，它们必须连接到普通电缆。"
+			]
+			dependencies: ["4989D6D727CA9CCC"]
+			id: "73982A77E17D18BE"
+			tasks: [
+				{
+					id: "0B0E36406E03EB35"
+					type: "item"
+					item: "ae2:fluix_covered_dense_cable"
+				}
+				{
+					id: "40EA04BE1ADA64D0"
+					type: "item"
+					item: "ae2:fluix_smart_dense_cable"
+				}
+			]
+		}
+		{
+			title: "智能线缆 (Smart Cables)"
+			x: -4.0d
+			y: 0.0d
+			description: ["智能线缆的通道数与非智能线缆相同，但它们会显示当前该线缆上设备正在使用的通道数。这可以在玉的提示框中看到。"]
+			dependencies: ["4989D6D727CA9CCC"]
+			id: "0113DDF9B6689178"
+			tasks: [{
+				id: "2368EDBCC155BC00"
+				type: "item"
+				item: "ae2:fluix_smart_cable"
+			}]
+		}
+		{
+			x: -2.5d
+			y: 6.5d
+			description: ["ME Drive 是存放所有物品的方块。它有 10 个插槽，可用于任何类型的存储单元。"]
+			dependencies: ["0568BDE24C9FC058"]
+			id: "240F42A65E2E18D7"
+			tasks: [{
+				id: "3F26762DEA8F09C5"
+				type: "item"
+				item: "ae2:drive"
+			}]
+		}
+		{
+			title: "ME 存储系统"
+			x: -5.0d
+			y: 7.5d
+			description: [
+				"存储组件是每个ME存储单元的基础。"
+				""
+				"共有5个等级：1k、4k、16k、64k和256k。"
+			]
+			dependencies: ["240F42A65E2E18D7"]
+			id: "2270D2D2B16F94E9"
+			tasks: [{
+				id: "101EA4D644F863D2"
+				type: "item"
+				item: "ae2:cell_component_1k"
+			}]
+		}
+		{
+			title: "物品存储单元"
+			x: -7.0d
+			y: 7.5d
+			description: [
+				"物品槽位可以存储一定量的物品。"
+				""
+				"存储容量取决于所用存储组件的等级，而每种物品的数量限制在所有5个等级中均为63。这意味着每个存储单元最多只能存放63种不同的物品。"
+				""
+				"物品槽中，1字节存储相当于8个物品，即当所有字节被完全使用时，每个层级可容纳所显示数字的8倍。"
+			]
+			dependencies: ["2270D2D2B16F94E9"]
+			id: "59D85B99390C257B"
+			tasks: [{
+				id: "2459183896D5FF72"
+				type: "item"
+				item: "ae2:item_cell_housing"
+			}]
+		}
+		{
+			title: "流体存储单元"
+			x: -6.5d
+			y: 9.0d
+			description: ["流体单元每个字节可存储8桶流体，最多支持5种类型。"]
+			dependencies: ["2270D2D2B16F94E9"]
+			id: "37AE210681752D69"
+			tasks: [{
+				id: "3A020A2B9BA357BF"
+				type: "item"
+				item: "ae2:fluid_cell_housing"
+			}]
+		}
+		{
+			title: "化学电池"
+			x: -5.0d
+			y: 9.5d
+			description: ["化学电池可以存储与流体电池相同数量的物质，但存储的是气体和浆料等机械动力化学物质，而非流体。"]
+			dependencies: ["2270D2D2B16F94E9"]
+			id: "09C6933CCB5B69A4"
+			tasks: [{
+				id: "458108DDD49EBBC3"
+				type: "item"
+				item: "appmek:chemical_cell_housing"
+			}]
+		}
+		{
+			title: "磁盘存储单元"
+			x: -3.5d
+			y: 9.0d
+			description: ["DISK Cells 和 Item Cells 类似，但没有类型限制。不过，作为补偿，每个可用字节只能存储 1 个物品，而不是 8 个。"]
+			dependencies: ["2270D2D2B16F94E9"]
+			id: "60A89B1EDDE2CBAE"
+			tasks: [{
+				id: "5FA174328F3B23F6"
+				type: "item"
+				item: "ae2things:disk_housing"
+			}]
+		}
+		{
+			title: "制作中央处理器（CPUs）"
+			x: 0.0d
+			y: 7.0d
+			description: [
+				"ME 网络也可以使用制造单元进行自动合成。这需要通过创建制造 CPU 来实现。"
+				""
+				"合成CPU由协处理器单元和合成存储单元组成，呈长方体形状。要形成一个CPU，至少需要每种方块各一个。"
+			]
+			dependencies: ["0568BDE24C9FC058"]
+			id: "68DC103E6FF963C3"
+			tasks: [{
+				id: "6FCD94D3ECA982AE"
+				type: "item"
+				item: "ae2:crafting_unit"
+			}]
+		}
+		{
+			x: 1.5d
+			y: 6.5d
+			description: ["协处理器可用于提升制造CPU一次可执行的操作数量。每个CPU至少需要一个，但你可以添加更多。"]
+			dependencies: ["68DC103E6FF963C3"]
+			id: "26D96F78FF0F1A7E"
+			tasks: [{
+				id: "4E42CCA68FF0D0E0"
+				type: "item"
+				item: "ae2:crafting_accelerator"
+			}]
+		}
+		{
+			title: "合成存储系统 Crafting Storage"
+			x: -1.0d
+			y: 8.5d
+			description: [
+				"Crafting Storage 决定了 CPU 能处理多大的合成任务。任务越大，占用的字节数就越多。如果所需字节数超过可用存储，CPU 将无法执行自动合成。"
+				""
+				"Crafting Storage 可以用所有等级的 Storage Component 制作，这意味着你只需几个高存储容量的方块就能完成非常庞大的任务。"
+			]
+			dependencies: ["68DC103E6FF963C3"]
+			id: "15B1CAA3F4AF5BE1"
+			tasks: [{
+				id: "60D6D31121569BB7"
+				type: "item"
+				item: "ae2:1k_crafting_storage"
+			}]
+		}
+		{
+			title: "总线系统"
+			x: 3.0d
+			y: 2.5d
+			description: [
+				"总线能让你的ME网络自动与机器等外部方块进行交互。"
+				""
+				"导入总线将物品从外部来源拉入网络中。"
+				""
+				"出口总线将物品从网络中拉出，并放入外部方块中。"
+				""
+				"Storage Bus 允许在 ME 系统中查看和使用外部方块，而这些物品或流体不会进入网络的存储单元。非常适合在不填满存储单元的情况下连接抽屉系统。"
+			]
+			dependencies: ["37C78E4D68787D8B"]
+			id: "238D060DBD930442"
+			tasks: [
+				{
+					id: "73BAF8EB3CE75ED7"
+					type: "item"
+					item: "ae2:import_bus"
+				}
+				{
+					id: "75F8F4E439C3CD21"
+					type: "item"
+					item: "ae2:export_bus"
+				}
+				{
+					id: "67FE3044BC16B76E"
+					type: "item"
+					item: "ae2:storage_bus"
+				}
+			]
+		}
+		{
+			x: 4.0d
+			y: 0.5d
+			description: ["ME接口允许你在特定位置储备某些物品，或使用Import Bus将物品主动推入网络。"]
+			dependencies: ["37C78E4D68787D8B"]
+			id: "3D2C81967798DCA1"
+			tasks: [{
+				id: "3CA1AC22999BC402"
+				type: "item"
+				item: "ae2:interface"
+			}]
+		}
+		{
+			x: -2.0d
+			y: 4.0d
+			description: ["能量单元可用作ME网络的备用电池，这意味着如果突然断电，你的网络可以在你修复问题期间保持在线更长时间。"]
+			dependencies: ["0568BDE24C9FC058"]
+			id: "11E9B6FF4C617E24"
+			tasks: [{
+				id: "2BFB15A33C8D7B13"
+				type: "item"
+				item: {
+					id: "ae2:energy_cell"
+					Count: 1b
+					tag: { }
+				}
+			}]
+		}
+		{
+			x: -5.0d
+			y: 1.5d
+			description: ["合成终端可以让你访问网络的存储空间。它还包含一个方便的合成网格，可以直接从网络中取用物品。"]
+			dependencies: ["4989D6D727CA9CCC"]
+			id: "16F852B272C25EE0"
+			tasks: [{
+				id: "712C9EA7D9354E37"
+				type: "item"
+				item: "ae2:crafting_terminal"
+			}]
+		}
+		{
+			title: "合成配方"
+			x: 0.5d
+			y: 8.5d
+			description: [
+				"模式图告诉你的网络如何合成特定物品。这可以通过空白模式图和模式图编码终端来完成。"
+				""
+				"配方可以通过合成、锻造、石匠和加工模式进行编码。"
+			]
+			dependencies: ["68DC103E6FF963C3"]
+			id: "57532CC89183B06E"
+			tasks: [
+				{
+					id: "1C5983FDBCA088A3"
+					type: "item"
+					item: "ae2:pattern_encoding_terminal"
+				}
+				{
+					id: "55779AE22034F1DF"
+					type: "item"
+					item: "ae2:blank_pattern"
+				}
+			]
+		}
+		{
+			title: "核心组件"
+			x: 2.5d
+			y: 1.0d
+			description: ["形成与湮灭核心是ME网络物流侧的主要组件。"]
+			dependencies: ["1C4281D74C7C6FE9"]
+			id: "37C78E4D68787D8B"
+			tasks: [
+				{
+					id: "5962EBEA1613472E"
+					type: "item"
+					item: "ae2:formation_core"
+				}
+				{
+					id: "443B07E5ADA84490"
+					type: "item"
+					item: "ae2:annihilation_core"
+				}
+			]
+		}
+		{
+			title: "ME 飞机"
+			x: 4.5d
+			y: 2.0d
+			description: [
+				"Annihilation and Formation Planes 可用于破坏和放置世界中的方块，以及掉落和拾取物品。"
+				""
+				"湮灭平原也可以用幸运和丝绸之触附魔来应用这些效果。"
+			]
+			dependencies: ["37C78E4D68787D8B"]
+			id: "7A7959A64FE07AF8"
+			tasks: [
+				{
+					id: "0B0A3540BDC2B68A"
+					type: "item"
+					item: "ae2:annihilation_plane"
+				}
+				{
+					id: "09D421D7232846CA"
+					type: "item"
+					item: "ae2:formation_plane"
+				}
+			]
+		}
+		{
+			x: 1.5d
+			y: 3.5d
+			description: ["安全终端允许您将无线终端与您的系统配对，并设置其他玩家可以在您的网络上执行的操作。"]
+			dependencies: ["0568BDE24C9FC058"]
+			id: "69755543966B5CE6"
+			tasks: [{
+				id: "21E9FBA091CC32E3"
+				type: "item"
+				item: "ae2:security_station"
+			}]
+		}
+		{
+			title: "便携式电池包"
+			x: -4.0d
+			y: 5.5d
+			description: ["便携式背包的运作方式与背包类似。它们能让你在物品栏中携带大量物品。"]
+			dependencies: ["2270D2D2B16F94E9"]
+			id: "3706C030509265A2"
+			tasks: [{
+				id: "24472997AA32F329"
+				type: "item"
+				item: {
+					id: "ae2:portable_item_cell_1k"
+					Count: 1b
+					tag: { }
+				}
+			}]
+		}
+		{
+			title: "输入输出端口 (IO Port)"
+			x: -2.5d
+			y: 8.0d
+			description: ["IO Port 可以让你快速轻松地移动物品。只需将存储单元从驱动器中取出并放入 IO Port。它会将该单元中的物品移入系统，直到单元为空或系统已满。"]
+			dependencies: ["240F42A65E2E18D7"]
+			id: "31F9A95DFE409C0A"
+			tasks: [{
+				id: "1E23E3672205868C"
+				type: "item"
+				item: "ae2:io_port"
+			}]
+		}
+		{
+			x: -6.0d
+			y: 6.0d
+			description: ["细胞工作台可以让你划分存储细胞，并指定允许放入该细胞的物品及其数量。"]
+			dependencies: ["2270D2D2B16F94E9"]
+			id: "2F9C7C2D2E02EB92"
+			tasks: [{
+				id: "0D9DC2DC9A089EC5"
+				type: "item"
+				item: "ae2:cell_workbench"
+			}]
+		}
+		{
+			title: "量子链接"
+			x: 4.0d
+			y: 3.5d
+			description: [
+				"使用量子链接，你可以无线地将ME网络传输到很远的地方。然而，这样做成本高昂。"
+				""
+				"要建立量子链接，请在量子链接室周围建造两个3x3的量子链接环。将两个相同的量子奇点放入两个环中，并为两侧供电，同时连接一侧到您的网络。链接建立后，只需为其中一侧供电，您就可以在另一侧环的位置使用您的网络。"
+				""
+				"这可以在无限距离和跨维度上正常工作。"
+			]
+			dependencies: ["6308E0FF594BB3B8"]
+			id: "66775500AAB97335"
+			tasks: [
+				{
+					id: "1BEA57935EB87277"
+					type: "item"
+					item: "ae2:quantum_link"
+				}
+				{
+					id: "34517062F6F0C96B"
+					type: "item"
+					item: "ae2:quantum_ring"
+				}
+				{
+					id: "473BEB48851B6F9E"
+					type: "item"
+					item: "ae2:quantum_entangled_singularity"
+				}
+			]
+		}
+		{
+			x: 2.5d
+			y: 5.0d
+			description: [
+				"Fluix珍珠是所有无线网络的基础。"
+				""
+				"要获得这个，你需要完成第 4A 章。"
+			]
+			dependencies: ["0568BDE24C9FC058"]
+			id: "6308E0FF594BB3B8"
+			tasks: [{
+				id: "6D8ED73F364D6823"
+				type: "item"
+				item: "ae2:fluix_pearl"
+			}]
+		}
+		{
+			x: 6.0d
+			y: 5.0d
+			description: ["无线接入点可以放置在网络中的任意位置，为该区域提供无线覆盖。你可以放置尽可能多的接入点，但请确保它们之间保持一定距离，以发挥最大功效。"]
+			dependencies: ["6C02C010FCE219CD"]
+			id: "69BBD29D78A89BE1"
+			tasks: [{
+				id: "59E657395C7DD019"
+				type: "item"
+				item: "ae2:wireless_access_point"
+			}]
+		}
+		{
+			x: 4.0d
+			y: 5.5d
+			dependencies: ["6308E0FF594BB3B8"]
+			id: "6C02C010FCE219CD"
+			tasks: [{
+				id: "7484BF6F4AE5B08A"
+				type: "item"
+				item: "ae2:wireless_receiver"
+			}]
+		}
+		{
+			x: 5.5d
+			y: 6.5d
+			description: ["通过安全终端将此设备连接到您的网络，即可在任意无线接入点的特定范围内无线访问您的网络。"]
+			dependencies: ["6C02C010FCE219CD"]
+			id: "07D6A5C125CC894B"
+			tasks: [{
+				id: "1B52E7FC52D4C120"
+				type: "item"
+				item: "ae2:wireless_crafting_terminal"
+			}]
+		}
+		{
+			x: 7.0d
+			y: 3.5d
+			dependencies: ["69BBD29D78A89BE1"]
+			id: "21C75D993E4A6A73"
+			tasks: [{
+				id: "514AF1A2CB6689AF"
+				type: "item"
+				item: "ae2:wireless_booster"
+			}]
+		}
+		{
+			title: "模式提供者"
+			x: 2.0d
+			y: 9.5d
+			description: [
+				"模式提供者用于存储编码模式，并连接到可执行这些模式的方块。"
+				""
+				"它们还有一个物品栏，可将结果推回网络，全部通过同一个方块或微部件完成。"
+			]
+			dependencies: ["57532CC89183B06E"]
+			id: "67539FEB3B73782A"
+			tasks: [{
+				id: "6FD39806DB2588AA"
+				type: "item"
+				item: "ae2:pattern_provider"
+			}]
+		}
+		{
+			title: "分子组装器 (Molecular Assemblers)"
+			x: 1.0d
+			y: 10.5d
+			description: ["分子组装器就像自动的合成台、锻造台和切石机。它们能接收模式提供者的请求，并将结果推回系统。"]
+			dependencies: ["67539FEB3B73782A"]
+			id: "63FE7686864BB28E"
+			tasks: [{
+				id: "58F5FADC66ACC8CE"
+				type: "item"
+				item: "ae2:molecular_assembler"
+			}]
+		}
+		{
+			title: "空间存储模组 (Spatial Storage)"
+			x: 3.0d
+			y: 7.0d
+			description: [
+				"ME网络不仅能存储物品、流体和化学品，还能将完整结构存储在其专属的口袋维度中。"
+				""
+				"Spatial Storage 可用于在空间维度中存储物品，而 Spatial IO 可用于向该维度插入和提取物品。这也意味着它可以运输玩家和动物进出该维度。"
+			]
+			dependencies: ["6308E0FF594BB3B8"]
+			id: "6DE8CF62351B68E7"
+			tasks: [
+				{
+					id: "12FA6B8EFBF2C8FC"
+					type: "item"
+					item: "ae2:spatial_pylon"
+				}
+				{
+					id: "0F95428199454269"
+					type: "item"
+					item: "ae2:spatial_io_port"
+				}
+				{
+					id: "5AE8DFBC09686D85"
+					type: "item"
+					item: "ae2:spatial_cell_component_2"
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+}
