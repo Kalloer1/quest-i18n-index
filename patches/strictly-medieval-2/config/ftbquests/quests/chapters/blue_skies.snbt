@@ -1,0 +1,714 @@
+# AI 初翻，未人工校对
+{
+	id: "1E6057889F9CF0D5"
+	group: "63BC73F831F7A250"
+	order_index: 0
+	filename: "blue_skies"
+	title: "Blue skie's 的"
+	icon: "blue_skies:blue_journal"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: 1.5d
+			y: 1.5d
+			subtitle: "并非所有东西都 lol :p"
+			dependencies: [
+				"0D0511DA50817177"
+				"39A75D88B5041B13"
+			]
+			id: "5DD4552F7C370956"
+			tasks: [{
+				id: "7AD33629EA13A65F"
+				type: "dimension"
+				title: "前往 EverBright 拜访一下吧"
+				icon: "blue_skies:turquoise_grass_block"
+				dimension: "blue_skies:everbright"
+			}]
+			rewards: [{
+				id: "3AF867BA338D3F97"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: -1.5d
+			y: -1.5d
+			dependencies: [
+				"0D0511DA50817177"
+				"39A75D88B5041B13"
+			]
+			id: "3C5FBD9DD9E5F4DF"
+			tasks: [{
+				id: "7513A3B7D7E9FFDD"
+				type: "dimension"
+				title: "前往 EverDawn 探险吧"
+				icon: "blue_skies:lunar_grass_block"
+				dimension: "blue_skies:everdawn"
+			}]
+			rewards: [{
+				id: "08850331C2C6EA8B"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: 0.0d
+			y: 0.0d
+			shape: "gear"
+			description: [
+				"从守门人处获取蓝色日志"
+				""
+				"既然你已经找到了他的房子，那就花点宝石吧！"
+			]
+			size: 1.5d
+			id: "0D0511DA50817177"
+			tasks: [{
+				id: "5B10E2C5BC47B048"
+				type: "item"
+				item: "blue_skies:blue_journal"
+			}]
+			rewards: [
+				{
+					id: "16DA60FD4AE620AE"
+					type: "xp"
+					xp: 25
+				}
+				{
+					id: "03B140CA5AEA5A74"
+					type: "command"
+					auto: "invisible"
+					command: "/tell @p Hello, thanks for buying my Journal.. Did you know I keep a portal in the attic? You'll just need to light it with my special lighter... For a fee of course. Also no funny business. I am packing some serious heat under this robe!"
+				}
+			]
+		}
+		{
+			title: "点燃传送门"
+			x: -1.5d
+			y: 1.5d
+			shape: "gear"
+			description: ["从 GateKeeper 处获取此物品"]
+			dependencies: ["0D0511DA50817177"]
+			id: "39A75D88B5041B13"
+			tasks: [{
+				id: "52357FC318AF6DE8"
+				type: "item"
+				item: {
+					id: "blue_skies:zeal_lighter"
+					Count: 1
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "0B489803FA784F9F"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: -3.0d
+			y: 0.0d
+			description: ["这里你需要不同的工具和护甲……"]
+			dependencies: ["3C5FBD9DD9E5F4DF"]
+			id: "64733DD9E12CC28F"
+			tasks: [{
+				id: "4450E9F6848B47C8"
+				type: "advancement"
+				title: "把那棵树打碎！"
+				advancement: "blue_skies:everdawn/get_wood"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "2DA4BCCF8057B84F"
+				type: "xp"
+				xp: 25
+			}]
+		}
+		{
+			title: "找到旅行团！"
+			x: -5.0d
+			y: 0.0d
+			description: ["来点蘑菇，嗨翻全场！"]
+			dependencies: ["64733DD9E12CC28F"]
+			id: "2842DE32D8374CB6"
+			tasks: [{
+				id: "46F246526B068CEA"
+				type: "advancement"
+				advancement: "blue_skies:everdawn/poison_shroom"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "129DC22F141515FD"
+					type: "pmmo:xpreward"
+					skill: "alchemy"
+					amount: 83L
+					ignoreBonuses: false
+				}
+				{
+					id: "57A504B43B24D445"
+					type: "loot"
+					table_id: 4324331771948795312L
+				}
+			]
+		}
+		{
+			title: "杀死所有6种敌对昆虫"
+			x: -5.0d
+			y: -1.5d
+			dependencies: ["2842DE32D8374CB6"]
+			id: "41B16B09DBF98688"
+			tasks: [{
+				id: "4D2CDC9EDE4692BE"
+				type: "advancement"
+				advancement: "blue_skies:everdawn/kill_bug"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "172FE81D7584A754"
+					type: "loot"
+					table_id: 5576410721870332972L
+				}
+				{
+					id: "033D69E37915997F"
+					type: "pmmo:xpreward"
+					skill: "slayer"
+					amount: 200L
+					ignoreBonuses: false
+				}
+			]
+		}
+		{
+			title: "杀死炼金术士"
+			x: -3.0d
+			y: -3.0d
+			shape: "gear"
+			dependencies: ["3C5FBD9DD9E5F4DF"]
+			id: "5F507EC463F3844B"
+			tasks: [{
+				id: "018EF7AAE12A5E85"
+				type: "advancement"
+				advancement: "blue_skies:everdawn/kill_alchemist"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "0D87FA06309D0FE0"
+					type: "item"
+					item: {
+						id: "blue_skies:alchemy_scroll"
+						Count: 1
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "7F47E5855ABFAF5C"
+					type: "loot"
+					table_id: 162941360134059119L
+				}
+				{
+					id: "03ED6DE57CD36651"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "7AF08EC605809F96"
+					type: "pmmo:xpreward"
+					skill: "slayer"
+					amount: 300L
+					ignoreBonuses: false
+				}
+				{
+					id: "629F2640BE9CC061"
+					type: "loot"
+					table_id: 2614350496967698251L
+				}
+			]
+		}
+		{
+			title: "进入蜘蛛的地下城！"
+			x: -4.5d
+			y: -4.5d
+			dependencies: ["5F507EC463F3844B"]
+			id: "3F8D1098D93BE159"
+			tasks: [{
+				id: "6854B9239F6F32F9"
+				type: "advancement"
+				advancement: "blue_skies:everdawn/enter_poison_dungeon"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "4994591DCBC7FFA6"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: -1.5d
+			y: -4.5d
+			dependencies: ["5F507EC463F3844B"]
+			id: "386A999DD15EB7A8"
+			tasks: [
+				{
+					id: "54B035393A4952BA"
+					type: "advancement"
+					title: "使用炼金术台"
+					advancement: "blue_skies:everdawn/use_alchemy_table"
+					criterion: ""
+				}
+				{
+					id: "3A005A2EF4A89E31"
+					type: "item"
+					title: "获取炼金术台"
+					item: "blue_skies:alchemy_table"
+				}
+			]
+			rewards: [{
+				id: "33320929CE0A12AE"
+				type: "pmmo:xpreward"
+				skill: "alchemy"
+				amount: 200L
+				ignoreBonuses: false
+			}]
+		}
+		{
+			title: "终于！"
+			icon: "minecraft:gold_ingot"
+			x: -1.5d
+			y: -6.5d
+			shape: "diamond"
+			description: ["使用炼金术台制作黄金！！！"]
+			dependencies: ["386A999DD15EB7A8"]
+			id: "2BEE52AB9119D6BB"
+			tasks: [{
+				id: "182D23FF105BF4CC"
+				type: "advancement"
+				advancement: "blue_skies:everdawn/alchemy_gold"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "31B7DCDE4CD68E0D"
+					type: "loot"
+					table_id: 5576410721870332972L
+				}
+				{
+					id: "671BB9467F0EBBE6"
+					type: "pmmo:xpreward"
+					skill: "alchemy"
+					amount: 83L
+					ignoreBonuses: false
+				}
+			]
+		}
+		{
+			x: -4.5d
+			y: -6.5d
+			shape: "gear"
+			dependencies: ["3F8D1098D93BE159"]
+			size: 1.5d
+			id: "2CC2BC69A0495503"
+			tasks: [{
+				id: "20A33707C5A23107"
+				type: "advancement"
+				title: "杀死阿奇纳克（Archnarch）"
+				advancement: "blue_skies:everdawn/kill_arachnarch"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "357A633C3D0BF5F6"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "456222A581F1C890"
+					type: "pmmo:levelreward"
+					skill: "slayer"
+					amount: 1
+				}
+				{
+					id: "6C40A4EF72A61610"
+					type: "pmmo:levelreward"
+					skill: "combat"
+					amount: 2
+				}
+				{
+					id: "09E55F334F52AEDC"
+					type: "pmmo:levelreward"
+					skill: "endurance"
+					amount: 2
+				}
+				{
+					id: "7C3495817E27D581"
+					type: "loot"
+					table_id: 4541931633169242376L
+				}
+				{
+					id: "509275C52BA4F91B"
+					type: "item"
+					item: "minecraft:diamond_block"
+				}
+				{
+					id: "6B99E4C05378FA6B"
+					type: "loot"
+					table_id: 2614350496967698251L
+				}
+			]
+		}
+		{
+			x: -3.0d
+			y: -5.5d
+			dependencies: ["2CC2BC69A0495503"]
+			id: "73CA847723EE4DCC"
+			tasks: [{
+				id: "4DB317D5B5FBD297"
+				type: "advancement"
+				title: "与众不同的剑 The Different Sword"
+				advancement: "blue_skies:everdawn/think_different"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "2478AF1AA8A6A5A4"
+					type: "pmmo:levelreward"
+					skill: "combat"
+					amount: 2
+				}
+				{
+					id: "271F208FCC97AF70"
+					type: "pmmo:levelreward"
+					skill: "endurance"
+					amount: 1
+				}
+				{
+					id: "05524E8AC9C3EDF0"
+					type: "loot"
+					table_id: 5576410721870332972L
+				}
+			]
+		}
+		{
+			title: "稍微研究研究吧"
+			x: 3.5d
+			y: -3.5d
+			dependencies: [
+				"3C5FBD9DD9E5F4DF"
+				"5DD4552F7C370956"
+			]
+			id: "345AF0E27D36168B"
+			tasks: [{
+				id: "2A3C65713672A047"
+				type: "advancement"
+				advancement: "blue_skies:everbright/use_tool_box"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "1FFFD505FF300918"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: 5.0d
+			y: -5.0d
+			dependencies: ["345AF0E27D36168B"]
+			id: "07A51D67DF7EDB68"
+			tasks: [{
+				id: "1CA9082A5B44253C"
+				type: "advancement"
+				title: "蛋糕不是谎言，而且樱桃味的……"
+				advancement: "blue_skies:blue_sky_pie"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "545029DE98583376"
+					type: "pmmo:levelreward"
+					skill: "cooking"
+					amount: 1
+				}
+				{
+					id: "4AE224C0715165E9"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			x: 3.5d
+			y: -0.5d
+			dependencies: ["5DD4552F7C370956"]
+			id: "0BE5D719E15068D9"
+			tasks: [{
+				id: "101FEECF870785EF"
+				type: "advancement"
+				title: "狠狠地揍它一顿"
+				advancement: "blue_skies:everbright/get_wood"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "46C52EA9A96590E6"
+				type: "xp"
+				xp: 25
+			}]
+		}
+		{
+			x: 3.0d
+			y: 3.0d
+			shape: "gear"
+			dependencies: ["5DD4552F7C370956"]
+			id: "44470A1D057B9EDD"
+			tasks: [{
+				id: "442726FD7F7D11E7"
+				type: "advancement"
+				title: "击杀召唤者！"
+				advancement: "blue_skies:everbright/kill_summoner"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "56D35E9138FB5EFF"
+					type: "item"
+					item: {
+						id: "blue_skies:summoning_tome"
+						Count: 1
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "49F534B5E8A3245B"
+					type: "pmmo:levelreward"
+					skill: "slayer"
+					amount: 1
+				}
+				{
+					id: "118B27E56F94C13A"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "256F66D71FAE9704"
+					type: "loot"
+					table_id: 2614350496967698251L
+				}
+			]
+		}
+		{
+			title: "召唤一个哥布林（Golem）"
+			x: 1.5d
+			y: 4.5d
+			dependencies: ["44470A1D057B9EDD"]
+			id: "46AA6C0E3702A377"
+			tasks: [{
+				id: "3CDA7F05224DBBA0"
+				type: "advancement"
+				advancement: "blue_skies:everbright/summon_artificial_golem"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "6B166D1CAC6ED618"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "03A11240F01A8027"
+					type: "loot"
+				}
+				{
+					id: "56C47B261EE629FB"
+					type: "pmmo:levelreward"
+					skill: "taming"
+					amount: 1
+				}
+			]
+		}
+		{
+			title: "进入地牢！"
+			x: 4.5d
+			y: 4.5d
+			dependencies: ["44470A1D057B9EDD"]
+			id: "0D1298133AAD9051"
+			tasks: [{
+				id: "4B5396146A659D09"
+				type: "advancement"
+				advancement: "blue_skies:everbright/enter_nature_dungeon"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "785A2A7DF948FB4F"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "击杀星光破碎机！"
+			x: 4.5d
+			y: 6.5d
+			shape: "gear"
+			dependencies: ["0D1298133AAD9051"]
+			size: 1.5d
+			id: "10BF6E089D108D7E"
+			tasks: [{
+				id: "43EDAA6E07C0B130"
+				type: "advancement"
+				advancement: "blue_skies:everbright/kill_starlit_crusher"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "4AB7B5DEF61C48CE"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "7058EE64A6238784"
+					type: "pmmo:levelreward"
+					skill: "slayer"
+					amount: 2
+				}
+				{
+					id: "7B0DDBC9C9D33E37"
+					type: "pmmo:levelreward"
+					skill: "combat"
+					amount: 2
+				}
+				{
+					id: "5B40ABABD2EAEFED"
+					type: "pmmo:levelreward"
+					skill: "endurance"
+					amount: 2
+				}
+				{
+					id: "3DD8FF9F933408D0"
+					type: "loot"
+					table_id: 5576410721870332972L
+				}
+				{
+					id: "1F907AA06E903AB3"
+					type: "item"
+					item: "minecraft:diamond_block"
+				}
+				{
+					id: "1289735C198240B7"
+					type: "loot"
+					table_id: 2614350496967698251L
+				}
+			]
+		}
+		{
+			x: 3.0d
+			y: 5.5d
+			shape: "gear"
+			dependencies: ["10BF6E089D108D7E"]
+			id: "7E7F9E507744F99E"
+			tasks: [{
+				id: "57C0C3E3C44D57E6"
+				type: "item"
+				item: {
+					id: "blue_skies:crushing_hammer"
+					Count: 1
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "63AFE10EBDD579F6"
+					type: "loot"
+					table_id: 4541931633169242376L
+				}
+				{
+					id: "77C7B13E752E31F1"
+					type: "loot"
+					table_id: 5576410721870332972L
+				}
+			]
+		}
+		{
+			title: "小偷才是正解！"
+			x: 1.5d
+			y: -1.5d
+			description: [
+				"获得背包并使用它100次！"
+				""
+				"如何使用？右键村民的背部即可偷窃。记得隐身或使用幽灵斗篷！"
+			]
+			dependencies: [
+				"3C5FBD9DD9E5F4DF"
+				"5DD4552F7C370956"
+				"0D0511DA50817177"
+			]
+			id: "00A6DE102688701C"
+			tasks: [
+				{
+					id: "4FE141B65696E751"
+					type: "item"
+					item: {
+						id: "blue_skies:bag_of_spoils"
+						Count: 1
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+				{
+					id: "32CD40A2E30C0A9C"
+					type: "questsadditions:use"
+					block_type: 0
+					block: "blue_skies:bag_of_spoils"
+					value: 100L
+					checkItem: false
+					isItemInteraction: false
+				}
+			]
+			rewards: [
+				{
+					id: "2809A5B1C7414EA1"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "580197D28952FF2E"
+					type: "item"
+					item: {
+						id: "gobber2:gobber2_ingot_nether"
+						Count: 1
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+					count: 4
+				}
+				{
+					id: "5F8FF53545E3C146"
+					type: "item"
+					item: {
+						id: "ob_core:witchstone_shard"
+						Count: 1
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+					count: 2
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+}

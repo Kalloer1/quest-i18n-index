@@ -1,0 +1,1016 @@
+# AI 初翻，未人工校对
+{
+	autofocus_id: "11503DB45CD2093F"
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "machinery"
+	group: ""
+	hide_quest_details_until_startable: true
+	hide_quest_until_deps_complete: true
+	hide_quest_until_deps_visible: true
+	id: "1BA7C5962118DA0A"
+	order_index: 1
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["5865797006BBAAE2"]
+			description: ["制作&6机器框架&r需要镍，开采它需要一把&b钻石级&r的镐。"]
+			id: "71D54C0037E17A4C"
+			shape: "hexagon"
+			size: 1.5d
+			tasks: [{
+				id: "20091D3A986D4C7E"
+				item: "thermal:nickel_ingot"
+				type: "item"
+			}]
+			title: "镍矿石"
+			x: 1.5d
+			y: 8.5d
+		}
+		{
+			dependencies: ["71D54C0037E17A4C"]
+			description: ["机器框架是几乎所有机器的基础。"]
+			id: "0645022313432252"
+			tasks: [{
+				id: "2C9E5D6ED7DE34D8"
+				item: "thermal:machine_frame"
+				type: "item"
+			}]
+			x: 1.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["5865797006BBAAE2"]
+			description: [
+				"橡胶可以通过在丛林或橡胶树上用桶配合树木采集器获取。"
+				"{image:terraimmundus:textures/quests/tree_tap.png width:512 height:271 align:center fit:true}"
+				"当水桶装满液体时，你可以按 &6Shift+RMB&r 来收集它。"
+			]
+			icon: "thermal:cured_rubber"
+			id: "00BAF70EA51427EC"
+			shape: "hexagon"
+			size: 1.5d
+			tasks: [
+				{
+					id: "6B2AA8A10FBA921F"
+					item: "thermal:cured_rubber"
+					type: "item"
+				}
+				{
+					id: "5030C171C2EC35F6"
+					item: "treetap:tap"
+					type: "item"
+				}
+				{
+					id: "436F15F35737628F"
+					item: "minecraft:bucket"
+					type: "item"
+				}
+			]
+			title: "橡胶"
+			x: -1.5d
+			y: 8.5d
+		}
+		{
+			dependencies: [
+				"00BAF70EA51427EC"
+				"11503DB45CD2093F"
+			]
+			description: [
+				"发电机将能量推向其朝向的方向，但要传输更远的距离并为多台机器供电，你需要使用&6能量电缆&r"
+				""
+				"能量电缆用于传输能量。需要一把&6管道扳手&r来配置管道，可将电缆从默认模式（输入）改为输出模式，并切换连接状态。"
+				""
+				"&6Shift+RMB&r 更改连接类型。"
+			]
+			id: "65A19EDD1DB27234"
+			tasks: [
+				{
+					id: "29040F07C1855AA2"
+					item: "pipez:wrench"
+					type: "item"
+				}
+				{
+					id: "234EDB794ADD86AE"
+					item: "pipez:energy_pipe"
+					type: "item"
+				}
+			]
+			title: "移动能量"
+			x: -1.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["5865797006BBAAE2"]
+			description: ["发电机燃烧不同的燃料来产生运行机器所需的&6电力&r。"]
+			id: "11503DB45CD2093F"
+			shape: "hexagon"
+			size: 1.5d
+			tasks: [{
+				id: "214E706C3D50F98B"
+				item: {
+					Count: 1
+					id: "ftbfiltersystem:smart_filter"
+					tag: {
+						"ftbfiltersystem:filter": "ftbfiltersystem:item_tag(terraimmundus:basic_dynamos)"
+					}
+				}
+				title: "任意的基础发电机 (Any Basic Dynamo)"
+				type: "item"
+			}]
+			title: "基础发电机 (Basic Dynamos)"
+			x: 0.0d
+			y: 8.5d
+		}
+		{
+			dependencies: [
+				"0645022313432252"
+				"11503DB45CD2093F"
+			]
+			dependency_requirement: "all_started"
+			description: [
+				"关于 Terra Immundus 需要注意的重要事项：它&o并非&r自动化整合包。"
+				""
+				"机器是进步的手段，你的目标不是自动化一切，&o而是&r自动化（或半自动化，大多数情况如此）能节省大量&6时间&r，这非常重要。"
+			]
+			icon: "thermal:rf_coil"
+			id: "77DCAEC282F587D8"
+			min_required_dependencies: 2
+			shape: "rsquare"
+			tasks: [{
+				id: "1A18D581E544188D"
+				title: "我明白了"
+				type: "checkmark"
+			}]
+			title: "机器与设备 Machines \& Devices"
+			x: 0.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["77DCAEC282F587D8"]
+			description: [
+				"机器和设备可以用增强模块和Fluxbore等工具进行升级。这些增强模块能让你根据需求改进和调整机器。"
+				""
+				"请务必查看 JEI 物品管理器！"
+			]
+			hide_until_deps_visible: true
+			icon: "thermal:upgrade_augment_1"
+			id: "49DC3081B249E505"
+			shape: "rsquare"
+			subtitle: "升级，伙计们，升级。"
+			tasks: [{
+				id: "37B0D9D3C93588E2"
+				item: {
+					Count: 1
+					id: "ftbfiltersystem:smart_filter"
+					tag: {
+						"ftbfiltersystem:filter": "ftbfiltersystem:item_tag(terraimmundus:any_augment)"
+					}
+				}
+				title: "任意增强组件"
+				type: "item"
+			}]
+			title: "增强组件"
+			x: 1.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["77DCAEC282F587D8"]
+			description: ["破碎机可将物品粉碎成粉尘和粉末。用它来制作合金混合物。"]
+			id: "37A920C24A5F734D"
+			size: 1.5d
+			tasks: [{
+				id: "4D4E4010FA33AC79"
+				item: "thermal:machine_pulverizer"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 0.75d
+		}
+		{
+			dependencies: ["77DCAEC282F587D8"]
+			description: ["红石熔炉是一种电熔炉。"]
+			hide_until_deps_visible: true
+			id: "0E032066601BE2E9"
+			tasks: [{
+				id: "748B5D99C2784E12"
+				item: "thermal:machine_furnace"
+				type: "item"
+			}]
+			x: -1.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["77DCAEC282F587D8"]
+			description: ["锯木厂可以更高效地切割木材。"]
+			hide_until_deps_visible: true
+			id: "27BC2D5870035CBF"
+			tasks: [{
+				id: "11AD6F4E5838082A"
+				item: "thermal:machine_sawmill"
+				type: "item"
+			}]
+			x: -1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["77DCAEC282F587D8"]
+			description: ["流体封装器可以将物品填充上流体。"]
+			hide_dependent_lines: true
+			hide_until_deps_visible: true
+			id: "560398E1B9B2E686"
+			tasks: [{
+				id: "06B9E8ACC878B19A"
+				item: "thermal:machine_bottler"
+				type: "item"
+			}]
+			x: 1.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["77DCAEC282F587D8"]
+			description: [
+				"Sequential Fabricator 是一种自动合成器。"
+				""
+				"配方中的流体桶可替换为其内置的流体储罐。"
+			]
+			hide_until_deps_visible: true
+			id: "0977F7D2416B4A0F"
+			tasks: [{
+				id: "293CD9179BC2CDDF"
+				item: "thermal:machine_crafter"
+				type: "item"
+			}]
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["77DCAEC282F587D8"]
+			description: ["装置是不一定需要制作物品或使用能量来运行的机器。同样，它们也是可以升级的。"]
+			hide_until_deps_visible: true
+			icon: "thermal:redstone_servo"
+			id: "63D7EA0B4D706D20"
+			shape: "rsquare"
+			tasks: [{
+				id: "5DB0238ABD333B7D"
+				title: "我明白了"
+				type: "checkmark"
+			}]
+			title: "设备"
+			x: -4.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["37A920C24A5F734D"]
+			description: ["这些材料需要使用 Pulverizer 来生产。"]
+			icon: "thermal:bronze_gear"
+			id: "6ED2FB0EE2A1D5A7"
+			shape: "rsquare"
+			tasks: [{
+				id: "05A5433D542F7753"
+				title: "我明白了"
+				type: "checkmark"
+			}]
+			title: "Tier 2 材料"
+			x: 0.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["63D7EA0B4D706D20"]
+			description: [
+				"该装置比树液采集器能更高效地从树木中提取液体，并且还能用肥料和增强器来强化。"
+				"树木必须是天然的，有叶子，并且树下有泥土。"
+			]
+			id: "5DBF7FFB8A65A00F"
+			tasks: [{
+				id: "1284ACA8B3FAEFBF"
+				item: "thermal:device_tree_extractor"
+				type: "item"
+			}]
+			x: -5.0d
+			y: 5.0d
+		}
+		{
+			dependencies: ["63D7EA0B4D706D20"]
+			description: ["这个装置可以捕捉鱼类。"]
+			id: "4A64AE65819BAFBA"
+			tasks: [{
+				id: "7D93B1F9436DEDD6"
+				item: "thermal:device_fisher"
+				type: "item"
+			}]
+			x: -4.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["63D7EA0B4D706D20"]
+			description: ["该装置可从周围环境中抽取水，用于管道和机器内部。"]
+			id: "58D64815EA42F57F"
+			tasks: [{
+				id: "1A05AFA7FE431922"
+				item: "thermal:device_water_gen"
+				type: "item"
+			}]
+			x: -4.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["63D7EA0B4D706D20"]
+			description: ["该装置可将附近的物品吸入其物品栏中。"]
+			id: "3CE52C96E5979B6E"
+			tasks: [{
+				id: "3FBD924786C72384"
+				item: "thermal:device_collector"
+				type: "item"
+			}]
+			x: -6.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["63D7EA0B4D706D20"]
+			description: ["该装置会收集周围的经验值，包括带有&2知识集中器&r增幅器的机器"]
+			id: "33DBEB5D52E38044"
+			tasks: [{
+				id: "0A15676857E1E53C"
+				item: "thermal:device_xp_condenser"
+				type: "item"
+			}]
+			x: -6.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["63D7EA0B4D706D20"]
+			description: ["该装置会删除物品。"]
+			id: "22F2EAC35CAA244D"
+			tasks: [{
+				id: "4A0231520ABAA0F8"
+				item: "thermal:device_nullifier"
+				type: "item"
+			}]
+			x: -5.5d
+			y: 4.0d
+		}
+		{
+			dependencies: [
+				"6DCF7A961B5BD3F8"
+				"7F827B2C0F0F5F50"
+			]
+			description: ["该装置可从相邻方块中生成岩石。"]
+			id: "488B64DA4277DC72"
+			tasks: [{
+				id: "32F520A4BBA176E3"
+				item: "thermal:device_rock_gen"
+				type: "item"
+			}]
+			x: 2.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["63D7EA0B4D706D20"]
+			description: ["该装置可一次性堆肥大量物品"]
+			id: "77728449125880D2"
+			tasks: [{
+				id: "7D39AA67EA53BBFE"
+				item: "thermal:device_composter"
+				type: "item"
+			}]
+			x: -5.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["6DCF7A961B5BD3F8"]
+			description: ["该装置可将药水扩散到一片区域。"]
+			id: "145C7BC47416F615"
+			tasks: [{
+				id: "542835B1B0E34F4B"
+				item: "thermal:device_potion_diffuser"
+				type: "item"
+			}]
+			x: 2.0d
+			y: -5.0d
+		}
+		{
+			dependencies: ["42B799EC849CF1F8"]
+			description: ["该装置可储存大量电力以备后用。可拾起且会保留电力。"]
+			id: "6B6B96F2E724F255"
+			tasks: [{
+				id: "4359883313CBE139"
+				item: {
+					Count: 1
+					id: "thermal:energy_cell"
+					tag: {
+						BlockEntityTag: {
+							Energy: 0
+							EnergyMax: 1000000
+							EnergyRecv: 1000
+							EnergySend: 1000
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: 8.5d
+			y: -13.0d
+		}
+		{
+			dependencies: ["7FDF2C8698EFFEE9"]
+			description: ["该装置可储存大量流体。可拾起且会保留流体。"]
+			id: "13DF803820F6D2BB"
+			tasks: [{
+				id: "1807501B6748ADC3"
+				item: {
+					Count: 1
+					id: "thermal:fluid_cell"
+					tag: {
+						BlockEntityTag: {
+							TankInv: [{
+								Amount: 0
+								Capacity: 32000
+								FluidName: "minecraft:empty"
+								Tank: 0b
+							}]
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: -0.5d
+			y: -13.0d
+		}
+		{
+			dependencies: ["65A19EDD1DB27234"]
+			description: ["流体和物品管道，顾名思义，就是用来移动这两者的。"]
+			id: "0224025CB9DF18E1"
+			tasks: [
+				{
+					id: "38A8EB4AA202CEB4"
+					item: "pipez:fluid_pipe"
+					type: "item"
+				}
+				{
+					id: "0FE5D6182CCFC327"
+					item: "pipez:item_pipe"
+					type: "item"
+				}
+			]
+			title: "流体和物品的移动 \& 物品"
+			x: -1.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["7F827B2C0F0F5F50"]
+			description: ["感应熔炉可以熔炼矿石并制造合金。"]
+			id: "1F380A26E21B724F"
+			size: 1.5d
+			tasks: [{
+				id: "69ACDF2F484506E1"
+				item: "thermal:machine_smelter"
+				type: "item"
+			}]
+			x: 4.0d
+			y: -6.5d
+		}
+		{
+			dependencies: ["6DCF7A961B5BD3F8"]
+			description: ["离心分离机可将物品分解成其组成部分。"]
+			id: "1C8028268A2AD41F"
+			tasks: [{
+				id: "4296E55168BF2124"
+				item: "thermal:machine_centrifuge"
+				type: "item"
+			}]
+			x: 2.0d
+			y: -6.0d
+		}
+		{
+			dependencies: [
+				"5E9A093FD988923B"
+				"6DCF7A961B5BD3F8"
+			]
+			description: ["Multiservo Press 能将物品压制成特定形状。使用 Die 来制造特定物品。"]
+			id: "0713D981D65DF155"
+			tasks: [{
+				id: "3ED92AF06A8868EA"
+				item: "thermal:machine_press"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -6.0d
+		}
+		{
+			dependencies: ["7F827B2C0F0F5F50"]
+			description: ["岩浆熔炉能将物品熔化成流体。"]
+			hide_dependent_lines: true
+			id: "39C30132E46ECD39"
+			tasks: [{
+				id: "0F21DC49C211F28A"
+				item: "thermal:machine_crucible"
+				type: "item"
+			}]
+			x: 5.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["7F827B2C0F0F5F50"]
+			description: ["Blast Chiller 可以冷却物品。"]
+			id: "47CFC248A8221E7D"
+			tasks: [{
+				id: "485798374C86F3CD"
+				item: "thermal:machine_chiller"
+				type: "item"
+			}]
+			x: 5.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["7F827B2C0F0F5F50"]
+			description: ["Fractionating Still 可以蒸馏流体。"]
+			id: "5699F8E5F116A933"
+			tasks: [{
+				id: "611ED371F2A28FBD"
+				item: "thermal:machine_refinery"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["6DCF7A961B5BD3F8"]
+			description: ["Pyrolyzer 使用极高的热量来加工物品。"]
+			id: "0CF073A409DF45EA"
+			size: 1.5d
+			tasks: [{
+				id: "34AA791CC0E4B681"
+				item: "thermal:machine_pyrolyzer"
+				type: "item"
+			}]
+			x: 0.0d
+			y: -6.5d
+		}
+		{
+			dependencies: ["6DCF7A961B5BD3F8"]
+			description: ["Alchemical Imbuer 可以批量酿造药水。"]
+			id: "40C03947CB19B0C4"
+			tasks: [{
+				id: "3B407300D6E9BE59"
+				item: "thermal:machine_brewer"
+				type: "item"
+			}]
+			x: 2.0d
+			y: -7.0d
+		}
+		{
+			dependencies: [
+				"0CF073A409DF45EA"
+				"74487E0EF55041DE"
+			]
+			id: "0D99FF482E47D94F"
+			tasks: [{
+				id: "0611ABCE0D278B2F"
+				item: "thermal:steel_ingot"
+				type: "item"
+			}]
+			title: "钢铁"
+			x: 0.0d
+			y: -10.0d
+		}
+		{
+			dependencies: ["1F380A26E21B724F"]
+			description: ["这些材料需要使用感应熔炉来生产。"]
+			icon: "thermal:sapphire_gear"
+			id: "74487E0EF55041DE"
+			shape: "rsquare"
+			tasks: [{
+				id: "342BDABEC21C5691"
+				title: "我明白了"
+				type: "checkmark"
+			}]
+			title: "Tier 3 材料"
+			x: 4.0d
+			y: -10.0d
+		}
+		{
+			dependencies: ["74487E0EF55041DE"]
+			id: "6DAD41761203CB40"
+			tasks: [{
+				id: "6333B335A8C2A520"
+				item: "thermal:lumium_ingot"
+				type: "item"
+			}]
+			title: "Lumium"
+			x: 2.0d
+			y: -14.0d
+		}
+		{
+			dependencies: ["74487E0EF55041DE"]
+			id: "42B799EC849CF1F8"
+			tasks: [{
+				id: "070A72432CD3D9CA"
+				item: "thermal:electrum_ingot"
+				type: "item"
+			}]
+			title: "Electrum"
+			x: 6.5d
+			y: -13.0d
+		}
+		{
+			dependencies: ["3D143DC0D0E3EAEA"]
+			id: "7D4EC034CE4F2D78"
+			tasks: [{
+				id: "7A3D65E92E37AA8F"
+				item: "thermal:enderium_ingot"
+				type: "item"
+			}]
+			title: "末地合金"
+			x: 5.5d
+			y: -17.5d
+		}
+		{
+			dependencies: ["3D143DC0D0E3EAEA"]
+			description: ["用于多种武器、盔甲等物品。"]
+			id: "14F82701CF80FF8A"
+			tasks: [{
+				id: "04AFDC67771208BC"
+				item: {
+					Count: 1
+					id: "ftbfiltersystem:smart_filter"
+					tag: {
+						"ftbfiltersystem:filter": "ftbfiltersystem:item_tag(terraimmundus:any_diamond_steel)"
+					}
+				}
+				title: "钻石钢锭"
+				type: "item"
+			}]
+			title: "钻石钢锭"
+			x: 4.5d
+			y: -18.0d
+		}
+		{
+			dependencies: ["74487E0EF55041DE"]
+			description: [""]
+			id: "104FBB1C6037CD65"
+			tasks: [{
+				id: "11C01184FD1F1FB0"
+				item: "thermal:rose_gold_ingot"
+				type: "item"
+			}]
+			title: "玫瑰金"
+			x: 7.5d
+			y: -11.0d
+		}
+		{
+			dependencies: ["74487E0EF55041DE"]
+			id: "7FDF2C8698EFFEE9"
+			tasks: [{
+				id: "58705F25C5AA3FCB"
+				item: "thermal:obsidian_glass"
+				type: "item"
+			}]
+			x: 1.0d
+			y: -12.0d
+		}
+		{
+			dependencies: ["74487E0EF55041DE"]
+			description: [""]
+			id: "577457934315E6DF"
+			tasks: [{
+				id: "5968B2021AB56E5D"
+				item: "savage_and_ravage:blast_proof_plating"
+				type: "item"
+			}]
+			x: 7.0d
+			y: -12.0d
+		}
+		{
+			dependencies: ["3D143DC0D0E3EAEA"]
+			id: "3F498515E8FB78D3"
+			tasks: [{
+				id: "45C6B77F04F34077"
+				item: "scguns:treated_brass_ingot"
+				type: "item"
+			}]
+			title: "经处理的黄铜"
+			x: 3.5d
+			y: -18.0d
+		}
+		{
+			dependencies: ["74487E0EF55041DE"]
+			description: [""]
+			id: "0861B3BDAB8CF346"
+			tasks: [{
+				id: "4C4FC77FBF284A45"
+				item: "minecraft:netherite_ingot"
+				type: "item"
+			}]
+			title: "陨石"
+			x: 8.0d
+			y: -10.0d
+		}
+		{
+			dependencies: ["3D143DC0D0E3EAEA"]
+			description: ["{ \"text\": \"Used for Necromium tool and armor upgrades.\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"2D233B5A870A0B7E\" }}"]
+			id: "6608D777C19F5758"
+			tasks: [{
+				id: "5DFBC80D3277D933"
+				item: "caverns_and_chasms:necromium_ingot"
+				type: "item"
+			}]
+			title: "Necromium"
+			x: 2.5d
+			y: -17.5d
+		}
+		{
+			dependencies: ["74487E0EF55041DE"]
+			description: ["这些材料需要其他三级材料才能生产出来。"]
+			icon: "thermal:netherite_gear"
+			id: "3D143DC0D0E3EAEA"
+			shape: "rsquare"
+			tasks: [{
+				id: "78BAF23E63ABCA4D"
+				title: "我明白了"
+				type: "checkmark"
+			}]
+			title: "Tier 4 材料"
+			x: 4.0d
+			y: -15.0d
+		}
+		{
+			dependencies: ["7FDF2C8698EFFEE9"]
+			description: ["蒸汽机利用蒸汽产生动力。蒸汽可由任何锅炉产生，并可通过多次加热来提高其能量密度。"]
+			id: "06E1259A77A1AB79"
+			tasks: [
+				{
+					id: "06C238EC9B48C43A"
+					item: "systeams:boiler_pipe"
+					type: "item"
+				}
+				{
+					id: "759007D131FFD794"
+					item: "systeams:steam_dynamo"
+					type: "item"
+				}
+			]
+			title: "蒸汽动力"
+			x: -1.0d
+			y: -12.0d
+		}
+		{
+			dependencies: ["7F827B2C0F0F5F50"]
+			description: ["Tinker's Workbench 允许在装备上安装 Augments。例如，Radial Enhancement 能让工具在更广泛的范围内工作，或一次性挖掘多个方块，而 integral components 则能提高挖掘等级。"]
+			id: "6B55A4F4D7D8A1E5"
+			tasks: [{
+				id: "5C0284767F704FBD"
+				item: "thermal:tinker_bench"
+				type: "item"
+			}]
+			title: "升级装备"
+			x: 6.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["5E9A093FD988923B"]
+			description: ["压缩发电机燃烧特定液体燃料来产生能量。"]
+			id: "2D05372FF6E08E2B"
+			tasks: [{
+				id: "021E7F8F48C32CDF"
+				item: "thermal:dynamo_compression"
+				type: "item"
+			}]
+			x: -3.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["7F827B2C0F0F5F50"]
+			description: ["岩浆发电机燃烧岩浆来产生能量。"]
+			id: "5E2C2FDE9C570AC6"
+			tasks: [{
+				id: "4A942B328433A9A8"
+				item: "thermal:dynamo_magmatic"
+				type: "item"
+			}]
+			x: 5.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["0713D981D65DF155"]
+			description: ["Numistatic Dynamos 消耗硬币来产生能量。"]
+			id: "6CB7D0EB71B6B66B"
+			tasks: [{
+				id: "31B91A94FFCBB3B4"
+				item: "thermal:dynamo_numismatic"
+				type: "item"
+			}]
+			x: -3.0d
+			y: -6.0d
+		}
+		{
+			dependencies: ["6DCF7A961B5BD3F8"]
+			description: ["Disenchantment Dynamos 燃烧附魔物品来产生能量。"]
+			id: "3D2BAF180ED15CB1"
+			tasks: [{
+				id: "65D7AAD2D656E344"
+				item: "thermal:dynamo_disenchantment"
+				type: "item"
+			}]
+			x: 2.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["63D7EA0B4D706D20"]
+			description: ["该装置可为电器物品充电。"]
+			id: "37C39E75C3EBC81D"
+			tasks: [{
+				id: "54F61A63CAC323D6"
+				item: "thermal:charge_bench"
+				type: "item"
+			}]
+			x: -5.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["74487E0EF55041DE"]
+			id: "2AC019C1EC3821B8"
+			tasks: [{
+				id: "71D065C5150870FF"
+				item: "thermal:signalum_ingot"
+				type: "item"
+			}]
+			title: "Signalum"
+			x: 0.5d
+			y: -11.0d
+		}
+		{
+			dependencies: ["74487E0EF55041DE"]
+			description: [""]
+			id: "5D813063849F7366"
+			tasks: [{
+				id: "74060BA514AD165D"
+				item: "refinedstorage:silicon"
+				type: "item"
+			}]
+			x: 1.5d
+			y: -13.0d
+		}
+		{
+			dependencies: [
+				"2AC019C1EC3821B8"
+				"5D813063849F7366"
+				"0D99FF482E47D94F"
+				"7FDF2C8698EFFEE9"
+			]
+			description: ["Refined Storage 系统可以通过消耗能量，将大量物品或流体存储在磁盘上。"]
+			id: "224E64A9A493FA03"
+			subtitle: "大规模存储系统"
+			tasks: [
+				{
+					id: "4E1A68037893F30A"
+					item: "refinedstorage:controller"
+					type: "item"
+				}
+				{
+					id: "60D3E97B9402272B"
+					item: "refinedstorage:crafting_grid"
+					type: "item"
+				}
+				{
+					id: "52E91BF6440462B6"
+					item: "refinedstorage:disk_drive"
+					type: "item"
+				}
+				{
+					id: "2A8FF70F7FDD0955"
+					item: {
+						Count: 1
+						id: "ftbfiltersystem:smart_filter"
+						tag: {
+							"ftbfiltersystem:filter": "ftbfiltersystem:item_tag(terraimmundus:any_item_disc)"
+						}
+					}
+					title: "任意物品磁盘"
+					type: "item"
+				}
+			]
+			title: "Refined Storage"
+			x: 0.0d
+			y: -14.0d
+		}
+		{
+			dependencies: ["42B799EC849CF1F8"]
+			description: ["闪电电池可以收集闪电能量，也用于充能配方。"]
+			id: "159F7789853FBC57"
+			tasks: [{
+				id: "1E1926F4318DCAEC"
+				item: "scguns:lightning_battery"
+				type: "item"
+			}]
+			x: 8.0d
+			y: -14.0d
+		}
+		{
+			dependencies: ["0D99FF482E47D94F"]
+			description: ["高级堆肥机除了骨粉外，还能产出磷肥。"]
+			id: "7958254F270C0F06"
+			tasks: [{
+				id: "34B54E1249314204"
+				item: "scguns:advanced_composter"
+				type: "item"
+			}]
+			x: -2.0d
+			y: -10.0d
+		}
+		{
+			dependencies: ["6DAD41761203CB40"]
+			description: ["Phytogenic Insolator 在人工环境中种植植物。"]
+			id: "1F4CF9B72CD866D3"
+			tasks: [{
+				id: "0CAC3AE8D3673ACB"
+				item: "thermal:machine_insolator"
+				type: "item"
+			}]
+			x: 1.0d
+			y: -16.0d
+		}
+		{
+			dependencies: [
+				"2AC019C1EC3821B8"
+				"7FDF2C8698EFFEE9"
+			]
+			description: ["结晶器能将粉末和流体以及其他独特配方生长成晶体。"]
+			id: "587153939A0E5FC1"
+			tasks: [{
+				id: "0F74FC45569D1797"
+				item: "thermal:machine_crystallizer"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -11.0d
+		}
+		{
+			dependencies: ["6ED2FB0EE2A1D5A7"]
+			id: "6DCF7A961B5BD3F8"
+			tasks: [{
+				id: "7EDBC02EFDA2BA98"
+				item: "thermal:constantan_ingot"
+				type: "item"
+			}]
+			title: "康斯坦坦合金"
+			x: 0.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["6ED2FB0EE2A1D5A7"]
+			description: ["用途广泛的材料，可用于多种用途，是进阶所必需的。"]
+			id: "7F827B2C0F0F5F50"
+			tasks: [{
+				id: "5946FA410A64EAC2"
+				item: "thermal:invar_ingot"
+				type: "item"
+			}]
+			title: "Invar"
+			x: 4.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["6ED2FB0EE2A1D5A7"]
+			id: "5E9A093FD988923B"
+			tasks: [{
+				id: "10732CF0545D82C4"
+				item: "thermal:bronze_ingot"
+				type: "item"
+			}]
+			title: "青铜"
+			x: -1.5d
+			y: -4.5d
+		}
+		{
+			dependencies: [
+				"224E64A9A493FA03"
+				"6DAD41761203CB40"
+			]
+			description: ["流体存储磁盘允许存储网络储存流体。"]
+			id: "6A3347EC7FA66DDD"
+			tasks: [{
+				id: "496790BC138DDB93"
+				item: "refinedstorage:256k_fluid_storage_disk"
+				type: "item"
+			}]
+			x: 0.5d
+			y: -15.0d
+		}
+		{
+			dependencies: ["74487E0EF55041DE"]
+			description: ["用于COG盔甲和子弹壳的制作"]
+			id: "6E0A73EB220748B0"
+			tasks: [{
+				id: "6C2933CD8959A1A6"
+				item: "scbrass:brass_ingot"
+				type: "item"
+			}]
+			title: "黄铜"
+			x: 6.0d
+			y: -14.0d
+		}
+	]
+	title: "机械装置"
+}

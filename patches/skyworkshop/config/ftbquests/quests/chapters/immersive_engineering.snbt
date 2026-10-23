@@ -1,0 +1,832 @@
+# AI 初翻，未人工校对
+{
+	id: "103A8FD57B382BF1"
+	group: ""
+	order_index: 1
+	filename: "immersive_engineering"
+	title: "Immersive Engineering"
+	subtitle: ["从一些早期游戏科技开始吧"]
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: -9.0d
+			y: -4.5d
+			shape: "gear"
+			description: ["制作工程师之锤，开始沉浸式工程之旅"]
+			dependencies: ["30CFCA4C95778380"]
+			id: "5467A07B679199A0"
+			tasks: [{
+				id: "10D52FC83174371F"
+				type: "item"
+				item: {
+					id: "immersiveengineering:hammer"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "7552BBC4ED56D062"
+				type: "item"
+				item: "minecraft:blaze_powder"
+				count: 2
+			}]
+		}
+		{
+			title: "焦炭炉 Coke Oven"
+			x: -7.5d
+			y: -4.5d
+			description: ["建造焦炭炉来制造焦煤焦炭，这是高炉所需的燃料"]
+			dependencies: [
+				"5467A07B679199A0"
+				"4005BFC34C8DFEAC"
+			]
+			id: "5B1B906C694D5F82"
+			tasks: [{
+				id: "6DC0EDD990EE7632"
+				type: "item"
+				item: "immersiveengineering:cokebrick"
+				count: 27L
+			}]
+			rewards: [{
+				id: "22734D090DED3FAE"
+				type: "item"
+				item: "minecraft:coal"
+				count: 4
+			}]
+		}
+		{
+			title: "经过处理的木材"
+			x: -7.5d
+			y: -3.0d
+			description: ["许多工业时代物品的一种合成组件"]
+			dependencies: ["5B1B906C694D5F82"]
+			id: "11262A66F4E0EF03"
+			tasks: [{
+				id: "2CF00CC2904F3C6E"
+				type: "item"
+				item: "immersiveengineering:treated_wood_horizontal"
+				count: 32L
+			}]
+			rewards: [{
+				id: "3CB2C1C1FCD1AA07"
+				type: "item"
+				item: "thermal:coal_coke"
+				count: 4
+			}]
+		}
+		{
+			title: "水车 (Water Wheels)"
+			x: -6.0d
+			y: -3.0d
+			description: [
+				"早期游戏的良好动力源。有助于3个水轮实现最高效率的示意图"
+				"https://i.imgur.com/Jjr4Iq8.png"
+			]
+			dependencies: ["11262A66F4E0EF03"]
+			id: "27E38F80E84CF586"
+			tasks: [{
+				id: "6024947D6A67F1EA"
+				type: "item"
+				item: "immersiveengineering:watermill"
+				count: 3L
+			}]
+			rewards: [{
+				id: "701BBA9A805363CF"
+				type: "item"
+				item: "immersiveengineering:coal_coke"
+				count: 4
+			}]
+		}
+		{
+			title: "高炉 Blast Furnace"
+			x: -6.0d
+			y: -4.5d
+			description: ["合成一些爆裂砖来制作高炉。你需要用27个砖块摆成3x3x3的形状，然后用工程师之锤右键点击它"]
+			dependencies: [
+				"5B1B906C694D5F82"
+				"5BF380DCF6DF49E9"
+			]
+			id: "7294E54F9539D4FB"
+			tasks: [{
+				id: "51E8320A6D72CF0F"
+				type: "item"
+				item: "immersiveengineering:blastbrick"
+				count: 27L
+			}]
+			rewards: [{
+				id: "1371618649BB8652"
+				type: "item"
+				item: "minecraft:glass_bottle"
+				count: 2
+			}]
+		}
+		{
+			title: "钢铁"
+			x: -4.5d
+			y: -4.5d
+			description: ["在高炉中加热一些铁以获得钢"]
+			dependencies: ["7294E54F9539D4FB"]
+			id: "2414400C00E1C15E"
+			tasks: [{
+				id: "2041E8A0AA3D0248"
+				type: "item"
+				item: "immersiveengineering:ingot_steel"
+				count: 8L
+			}]
+			rewards: [{
+				id: "122EC8CB94E72168"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			title: "重型工程方块"
+			x: -3.0d
+			y: -4.0d
+			description: ["大多数工业时代多方块机器的组件"]
+			dependencies: ["2414400C00E1C15E"]
+			id: "2FBBBF027BB9317F"
+			tasks: [{
+				id: "69CFEE3CF0CE5670"
+				type: "item"
+				item: "immersiveengineering:heavy_engineering"
+				count: 4L
+			}]
+			rewards: [{
+				id: "04F5B8124E23D3EE"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			title: "动能发电机"
+			x: -4.5d
+			y: -3.0d
+			description: ["用于水轮装置，将动力传输给电容器"]
+			dependencies: ["27E38F80E84CF586"]
+			id: "1A2CA01D3D976741"
+			tasks: [{
+				id: "29A8C2F671A1FE3B"
+				type: "item"
+				item: "immersiveengineering:dynamo"
+			}]
+			rewards: [{
+				id: "004BB9476C209EF6"
+				type: "item"
+				item: "immersiveengineering:treated_wood_horizontal"
+				count: 4
+			}]
+		}
+		{
+			title: "LV电容器"
+			x: -4.5d
+			y: -1.5d
+			description: ["适合水车的低等级电力储存解决方案"]
+			dependencies: ["1A2CA01D3D976741"]
+			id: "6974B57191A96058"
+			tasks: [{
+				id: "646F53FCAFF51D8E"
+				type: "item"
+				item: "immersiveengineering:capacitor_lv"
+			}]
+			rewards: [{
+				id: "50790CEE64D3E6BE"
+				type: "item"
+				item: "immersiveengineering:treated_wood_horizontal"
+				count: 4
+			}]
+		}
+		{
+			title: "LV 电线连接器"
+			x: -3.0d
+			y: -1.5d
+			description: ["适用于水轮和低压电容器的优质电线"]
+			dependencies: ["1A2CA01D3D976741"]
+			id: "3A32721D0EFFD23D"
+			tasks: [{
+				id: "6CFA483327C1848E"
+				type: "item"
+				item: "immersiveengineering:connector_lv"
+			}]
+			rewards: [{
+				id: "3CFED9F56216A01A"
+				type: "item"
+				item: "thermal:copper_ingot"
+				count: 4
+			}]
+		}
+		{
+			title: "LV 电线线圈"
+			x: -6.0d
+			y: -1.5d
+			description: ["低功率能量传输"]
+			dependencies: ["1A2CA01D3D976741"]
+			id: "0A7FEE98DC5DBFBC"
+			tasks: [{
+				id: "35C9A6C118C78D49"
+				type: "item"
+				item: "immersiveengineering:wirecoil_copper"
+				count: 8L
+			}]
+			rewards: [{
+				id: "36BE470772D80750"
+				type: "item"
+				item: "thermal:copper_ingot"
+				count: 2
+			}]
+		}
+		{
+			title: "MV电容器"
+			x: -4.5d
+			y: 0.0d
+			description: ["中等级电力存储装置"]
+			dependencies: ["6974B57191A96058"]
+			id: "01AF63BC93167DA3"
+			tasks: [{
+				id: "366CF44182BBA4DD"
+				type: "item"
+				item: "immersiveengineering:capacitor_mv"
+			}]
+			rewards: [{
+				id: "373BDBEFA9FB3FFD"
+				type: "item"
+				item: "immersiveengineering:treated_wood_horizontal"
+				count: 8
+			}]
+		}
+		{
+			title: "MV 电线连接器"
+			x: -1.5d
+			y: 0.0d
+			description: ["更高级的电线，能传输更多的RF/T"]
+			dependencies: ["3A32721D0EFFD23D"]
+			id: "6DB69460A3A2BB75"
+			tasks: [{
+				id: "2087B932FF577A56"
+				type: "item"
+				item: "immersiveengineering:connector_mv"
+				count: 4L
+			}]
+			rewards: [{
+				id: "0F6978FD10267DFC"
+				type: "item"
+				item: "thermal:copper_ingot"
+				count: 4
+			}]
+		}
+		{
+			title: "MV 线圈"
+			x: -7.5d
+			y: 0.0d
+			description: ["中阶能量传输"]
+			dependencies: ["0A7FEE98DC5DBFBC"]
+			id: "7F659A6E56483F65"
+			tasks: [{
+				id: "5201CA3D8BDA2AAC"
+				type: "item"
+				item: "immersiveengineering:wirecoil_electrum"
+				count: 8L
+			}]
+			rewards: [{
+				id: "7813684468333A99"
+				type: "item"
+				item: "thermal:copper_ingot"
+				count: 4
+			}]
+		}
+		{
+			title: "高压电容器"
+			x: -4.5d
+			y: 1.5d
+			description: ["更多的RF存储单元"]
+			dependencies: ["01AF63BC93167DA3"]
+			id: "4293361A3B2651A6"
+			tasks: [{
+				id: "2FE54D84940E648F"
+				type: "item"
+				item: "immersiveengineering:capacitor_hv"
+			}]
+			rewards: [{
+				id: "0FBABCC243FB0933"
+				type: "item"
+				item: "immersiveengineering:treated_wood_horizontal"
+				count: 16
+			}]
+		}
+		{
+			title: "HV 连接器"
+			x: 0.0d
+			y: 1.5d
+			description: ["更强的电力传输和更远的传输距离"]
+			dependencies: ["6DB69460A3A2BB75"]
+			id: "1F3A01C56BB669DA"
+			tasks: [{
+				id: "6B78B2C39423C1EA"
+				type: "item"
+				item: "immersiveengineering:connector_hv"
+			}]
+			rewards: [{
+				id: "66707A7A13C02220"
+				type: "item"
+				item: "thermal:copper_ingot"
+				count: 4
+			}]
+		}
+		{
+			title: "HV 线圈"
+			x: -9.0d
+			y: 1.5d
+			description: ["IE中可用的最高功率传输"]
+			dependencies: ["7F659A6E56483F65"]
+			id: "21DDBDF3E784BAFE"
+			tasks: [{
+				id: "01BA7FA910E40C86"
+				type: "item"
+				item: "immersiveengineering:wirecoil_steel"
+				count: 8L
+			}]
+			rewards: [{
+				id: "036F1A2CAFD7F2A7"
+				type: "item"
+				item: "thermal:copper_ingot"
+				count: 6
+			}]
+		}
+		{
+			title: "金属压制机"
+			x: -1.5d
+			y: -3.0d
+			description: [
+				"&6多区块结构"
+				"用于制作金属板和金属棒"
+			]
+			dependencies: [
+				"2F8F48268071B0BB"
+				"2FBBBF027BB9317F"
+			]
+			id: "55ADC33068E6F63B"
+			tasks: [
+				{
+					id: "7DA2D130AF3550D0"
+					type: "item"
+					item: "immersiveengineering:heavy_engineering"
+				}
+				{
+					id: "0F797409E95B0B56"
+					type: "item"
+					item: "minecraft:piston"
+				}
+				{
+					id: "19BA65DD03A24C31"
+					type: "item"
+					item: "immersiveengineering:conveyor_basic"
+					count: 2L
+				}
+				{
+					id: "2D1E62BE210B6842"
+					type: "item"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					count: 2L
+				}
+				{
+					id: "1F40B45A8C3F0733"
+					type: "item"
+					item: "immersiveengineering:rs_engineering"
+				}
+			]
+			rewards: [{
+				id: "5C80B2D9EE0C473D"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			title: "钢制脚手架"
+			x: -3.0d
+			y: -5.0d
+			description: ["多种多方块机器的组成部分"]
+			dependencies: ["2414400C00E1C15E"]
+			id: "2F8F48268071B0BB"
+			tasks: [{
+				id: "3A2A61FDAC2B92AF"
+				type: "item"
+				item: "immersiveengineering:steel_scaffolding_standard"
+				count: 16L
+			}]
+			rewards: [{
+				id: "476A7D01B2AB6525"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: -4.5d
+			y: -6.0d
+			description: [
+				"&6多区块结构"
+				"可升级以加快钢铁的冶炼速度"
+			]
+			dependencies: ["2414400C00E1C15E"]
+			id: "1D701F73C8BC9489"
+			tasks: [
+				{
+					id: "0A7703C2A4AE5C16"
+					type: "item"
+					title: "改良型高炉 (Improved Blast Furnace)"
+					item: "immersiveengineering:blastbrick_reinforced"
+					count: 27L
+				}
+				{
+					id: "7D55FD9170B18D47"
+					type: "item"
+					item: "minecraft:hopper"
+				}
+			]
+			rewards: [{
+				id: "68A7D288C9EAFC83"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			title: "破碎机"
+			x: -1.5d
+			y: -6.0d
+			description: [
+				"&6多区块结构"
+				"将矿石转化为砂砾。可双倍产出矿石"
+			]
+			dependencies: ["2F8F48268071B0BB"]
+			id: "198D6C16F8C5B55F"
+			tasks: [
+				{
+					id: "3AF21425607BCE47"
+					type: "item"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					count: 10L
+				}
+				{
+					id: "2E6A17D2D576C263"
+					type: "item"
+					item: "immersiveengineering:light_engineering"
+					count: 10L
+				}
+				{
+					id: "2052078946117E2B"
+					type: "item"
+					item: "immersiveengineering:steel_fence"
+					count: 8L
+				}
+				{
+					id: "2EC7B7BF56C088C9"
+					type: "item"
+					item: "immersiveengineering:rs_engineering"
+				}
+				{
+					id: "71A244CD3B6A0B4A"
+					type: "item"
+					item: "minecraft:hopper"
+					count: 9L
+				}
+			]
+			rewards: [{
+				id: "4D10622944EEE91E"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			title: "搅拌机"
+			x: 0.0d
+			y: -6.0d
+			description: ["能把固体变成液体，还能混合它们（谁能想到呢？）"]
+			dependencies: ["2F8F48268071B0BB"]
+			id: "2557CBC9EDEB8295"
+			tasks: [
+				{
+					id: "66886F8B2CCCE696"
+					type: "item"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					count: 5L
+				}
+				{
+					id: "2867D40C71997247"
+					type: "item"
+					item: "immersiveengineering:fluid_pipe"
+					count: 3L
+				}
+				{
+					id: "56FBD47EE2B37B08"
+					type: "item"
+					item: "immersiveengineering:rs_engineering"
+				}
+				{
+					id: "58204E1192E00A12"
+					type: "item"
+					item: "immersiveengineering:light_engineering"
+					count: 4L
+				}
+				{
+					id: "6B12D38DC31640E9"
+					type: "item"
+					item: "immersiveengineering:sheetmetal_iron"
+					count: 4L
+				}
+				{
+					id: "77AAC4D7AEB6393B"
+					type: "item"
+					item: "immersiveengineering:steel_fence"
+				}
+			]
+			rewards: [{
+				id: "716A3EB3388C1510"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			title: "工业榨汁机"
+			x: 0.0d
+			y: -4.5d
+			description: ["用于制作植物油"]
+			dependencies: ["2F8F48268071B0BB"]
+			id: "69C719FC35D86470"
+			tasks: [
+				{
+					id: "7F2D2F2ADC5E461A"
+					type: "item"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					count: 6L
+				}
+				{
+					id: "0DAD1C3A2A6CFA77"
+					type: "item"
+					item: "immersiveengineering:wooden_barrel"
+					count: 4L
+				}
+				{
+					id: "32D7445420E6F33D"
+					type: "item"
+					item: "immersiveengineering:steel_fence"
+					count: 3L
+				}
+				{
+					id: "2F25D8978294ED91"
+					type: "item"
+					item: "immersiveengineering:fluid_pipe"
+					count: 2L
+				}
+				{
+					id: "2C4EBE78CE732C45"
+					type: "item"
+					item: "immersiveengineering:light_engineering"
+					count: 2L
+				}
+				{
+					id: "26FD0C79A48EA0A4"
+					type: "item"
+					item: "immersiveengineering:rs_engineering"
+				}
+				{
+					id: "50F6DC846144E856"
+					type: "item"
+					item: "minecraft:piston"
+				}
+			]
+			rewards: [{
+				id: "6AB99EF69C2D7044"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			title: "精炼厂"
+			x: -1.5d
+			y: -4.5d
+			description: ["用于制作生物柴油"]
+			dependencies: [
+				"2F8F48268071B0BB"
+				"2FBBBF027BB9317F"
+			]
+			id: "1513FF856676F60A"
+			tasks: [
+				{
+					id: "41E45032C720926E"
+					type: "item"
+					item: "immersiveengineering:sheetmetal_iron"
+					count: 16L
+				}
+				{
+					id: "6D6690B223410438"
+					type: "item"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					count: 8L
+				}
+				{
+					id: "5584516E215FCFE9"
+					type: "item"
+					item: "immersiveengineering:fluid_pipe"
+					count: 5L
+				}
+				{
+					id: "06326F05B327C01F"
+					type: "item"
+					item: "immersiveengineering:light_engineering"
+					count: 2L
+				}
+				{
+					id: "34B869D4A5E1983F"
+					type: "item"
+					item: "immersiveengineering:heavy_engineering"
+					count: 2L
+				}
+				{
+					id: "1B2B4C87DFB1F687"
+					type: "item"
+					item: "immersiveengineering:rs_engineering"
+				}
+			]
+			rewards: [{
+				id: "5BC66DE40B40A485"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			title: "发酵器"
+			x: 0.0d
+			y: -3.0d
+			description: ["用于制作乙醇"]
+			dependencies: ["2F8F48268071B0BB"]
+			id: "3662716C1E628B01"
+			tasks: [
+				{
+					id: "62F2B4DA33BDFB28"
+					type: "item"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					count: 6L
+				}
+				{
+					id: "7764B74CCF3B6777"
+					type: "item"
+					item: "minecraft:cauldron"
+					count: 4L
+				}
+				{
+					id: "63AE2D25397724E2"
+					type: "item"
+					item: "immersiveengineering:sheetmetal_iron"
+					count: 4L
+				}
+				{
+					id: "61DF3D0AA97A8D42"
+					type: "item"
+					item: "immersiveengineering:fluid_pipe"
+					count: 2L
+				}
+				{
+					id: "533F229D88D3A849"
+					type: "item"
+					item: "immersiveengineering:light_engineering"
+					count: 2L
+				}
+				{
+					id: "6B4931BE2C4AC035"
+					type: "item"
+					item: "immersiveengineering:rs_engineering"
+				}
+			]
+			rewards: [{
+				id: "6CFC49D524177918"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			title: "柴油发电机"
+			x: 1.5d
+			y: -3.5d
+			description: ["可以用生物柴油和燃料创造RF"]
+			dependencies: [
+				"2F8F48268071B0BB"
+				"2FBBBF027BB9317F"
+			]
+			id: "52EE4D657B859DF8"
+			tasks: [
+				{
+					id: "370AF01A99D845B1"
+					type: "item"
+					item: "immersiveengineering:heavy_engineering"
+					count: 13L
+				}
+				{
+					id: "29ABB87255DA5656"
+					type: "item"
+					item: "immersiveengineering:radiator"
+					count: 9L
+				}
+				{
+					id: "682818355BFF4526"
+					type: "item"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					count: 6L
+				}
+				{
+					id: "3C723A46BE137875"
+					type: "item"
+					item: "immersiveengineering:fluid_pipe"
+					count: 5L
+				}
+				{
+					id: "0C5380FA2992371F"
+					type: "item"
+					item: "immersiveengineering:generator"
+					count: 4L
+				}
+				{
+					id: "5433131AD0FBEF4B"
+					type: "item"
+					item: "immersiveengineering:rs_engineering"
+				}
+			]
+			rewards: [{
+				id: "0BF9AC8B40538B9E"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			title: "电弧熔炉"
+			x: 1.5d
+			y: -5.5d
+			description: ["用于快速熔炼矿石、砂砾，并制造钢铁和其他合金"]
+			dependencies: [
+				"2F8F48268071B0BB"
+				"2FBBBF027BB9317F"
+			]
+			id: "2ADB8A9C2D3AD266"
+			tasks: [
+				{
+					id: "656AF1D74D4B3DB3"
+					type: "item"
+					item: "immersiveengineering:blastbrick_reinforced"
+					count: 27L
+				}
+				{
+					id: "12B4591E8FC605B3"
+					type: "item"
+					item: "immersiveengineering:slab_sheetmetal_steel"
+					count: 14L
+				}
+				{
+					id: "1E19352A069FF5E0"
+					type: "item"
+					item: "immersiveengineering:light_engineering"
+					count: 10L
+				}
+				{
+					id: "36F3AB8070B8ABE9"
+					type: "item"
+					item: "immersiveengineering:sheetmetal_steel"
+					count: 8L
+				}
+				{
+					id: "191B1FBD93DAE05A"
+					type: "item"
+					item: "immersiveengineering:storage_steel"
+					count: 6L
+				}
+				{
+					id: "55988C7BF8382E18"
+					type: "item"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					count: 5L
+				}
+				{
+					id: "59E55DACD7A8F129"
+					type: "item"
+					item: "immersiveengineering:heavy_engineering"
+					count: 5L
+				}
+				{
+					id: "3D62A25592FF3976"
+					type: "item"
+					item: "minecraft:cauldron"
+				}
+				{
+					id: "6146BD1D3D7585A7"
+					type: "item"
+					item: "immersiveengineering:rs_engineering"
+				}
+			]
+			rewards: [{
+				id: "6EFD9C14514EB234"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+	]
+}
