@@ -223,26 +223,38 @@ export function renameRemote({ changes, call, cli, cwd, itemsFile, batchId, at =
  *
  * @returns {{ok: number, total: number, failed: string[], unverified: number}}
  */
-export function verifyShares({ changes, call, cli, cwd, log = () => {} }) {
+export function verifyShares({ changes, call, cli, cwd, log = () => {}, retries = 2, gapMs = 1200, sleep = (ms) => execFileSync(process.execPath, ['-e', `setTimeout(()=>{}, ${ms})`]) }) {
   const targets = (changes ?? []).filter((c) => c.shareUrl)
   const failed = []
+  const flaky = [] // 重试后成功：说明是限流而不是真断
   let ok = 0
+  let first = true
   for (const c of targets) {
-    try {
-      const data = call(cli, ['share-detail', '--url', c.shareUrl], cwd)
-      if (isShareAlive(data)) {
-        ok++
-        log(`[${c.slug}] 链接可访问 ✓ ${c.shareUrl}`)
-      } else {
-        failed.push(c.slug)
-        log(`[${c.slug}] 链接不可访问 ✗ ${c.shareUrl}（share-detail 无文件列表）`)
+    // 连续 589 次 share-detail 会触发限流，间隔一下比"改判红规则"更根本。
+    if (!first && gapMs) sleep(gapMs)
+    first = false
+    let alive = false
+    let lastErr = null
+    for (let i = 0; i <= retries; i++) {
+      try {
+        const data = call(cli, ['share-detail', '--url', c.shareUrl], cwd)
+        if (isShareAlive(data)) { alive = true; break }
+        lastErr = 'share-detail 无文件列表'
+      } catch (err) {
+        lastErr = String(err?.message ?? err).slice(0, 160)
       }
-    } catch (err) {
+      if (i < retries) sleep(5000 * (i + 1))
+    }
+    if (alive) {
+      ok++
+      if (lastErr) { flaky.push(c.slug); log(`[${c.slug}] 重试后可访问 ✓（首发失败：${lastErr.slice(0, 60)}）`) }
+      else log(`[${c.slug}] 链接可访问 ✓ ${c.shareUrl}`)
+    } else {
       failed.push(c.slug)
-      log(`[${c.slug}] 链接不可访问 ✗ ${c.shareUrl}（${String(err?.message ?? err).slice(0, 160)}）`)
+      log(`[${c.slug}] 链接不可访问 ✗ ${c.shareUrl}（${String(lastErr).slice(0, 120)}）`)
     }
   }
-  return { ok, total: targets.length, failed, unverified: (changes ?? []).length - targets.length }
+  return { ok, total: targets.length, failed, flaky, unverified: (changes ?? []).length - targets.length }
 }
 
 // ---------- CLI 调用（照 mirror.mjs 的 quarkCall 写法） ----------
@@ -380,6 +392,7 @@ async function main() {
   const args = process.argv.slice(2)
   const dry = args.includes('--dry')
   const verify = args.includes('--verify')
+  const verifyOnly = args.includes('--verify-only')
   const LIMIT = argValue(args, '--limit')
 
   const QUARK_CLI = process.env.QUARK_CLI || ''
@@ -395,6 +408,22 @@ async function main() {
   const slugs = localSlugs(known)
   const mirrors = readMirrors()
   const work = mkdtempSync(join(tmpdir(), 'quark-rename-'))
+
+  // 只校验：拿回滚记录里每一批改过的 slug，重新确认分享链接是否还能打开。
+  // 为什么需要它：整批 589 条改完后有 117 条被判"不可访问"，但那是**连续 589 次**
+  // share-detail 的结果，很可能混着限流。不复查就回滚/重传，是在拿数据赌。
+  if (verifyOnly) {
+    const { batches } = readRenames()
+    const changed = []
+    for (const b of batches) for (const [fid, it] of Object.entries(b.items ?? {})) changed.push({ slug: it.slug, fid, shareUrl: mirrors[it.slug]?.shareUrl || '' })
+    const uniq = [...new Map(changed.map((c) => [c.slug, c])).values()]
+    console.log(`[校验] 改名批次共 ${batches.length} 批、${uniq.length} 个 slug，开始逐个复查（含重试与间隔）`)
+    const v = verifyShares({ changes: uniq, call, cli: QUARK_CLI, cwd: work, log: (m) => console.log(m) })
+    if (!dry) writeFileSync('research/tmp/quark-verify.json', `${JSON.stringify({ at: new Date().toISOString(), ...v }, null, 1)}\n`)
+    console.log(`[校验] 可访问 ${v.ok}/${v.total}，重试后恢复 ${v.flaky.length}，仍失败 ${v.failed.length}`)
+    if (v.failed.length) console.log(`::error::重试后仍不可访问 ${v.failed.length} 条：${v.failed.slice(0, 40).join(', ')}`)
+    process.exit(v.failed.length ? 1 : 0)
+  }
 
   // 目录 fid：create-folder 号称同名幂等，但实测第二次调用会以 `1007 创建操作失败`
   // 被拒（试点成功、3 分钟后的整批就炸了）。所以：先重试几次，仍失败就退回

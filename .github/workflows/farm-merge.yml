@@ -61,6 +61,11 @@ on:
         required: false
         default: '0'
         type: string
+      quarkVerifyOnly:
+        description: '只复查改名后分享链接是否还能打开（不改名），含重试与间隔'
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -621,7 +626,7 @@ jobs:
   # 为什么先试点 1 条：分享链接是绑 FID 生成的，改名理论上不影响，但官方没有明文保证，
   # `rename` 虽有 30 天 `rename-revert` 可回滚，先拿一条验证 `share-detail` 仍可访问更稳。
   quark-rename:
-    if: github.event_name == 'workflow_dispatch' && inputs.quarkRename == true
+    if: github.event_name == 'workflow_dispatch' && (inputs.quarkRename == true || inputs.quarkVerifyOnly == true)
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
@@ -656,6 +661,7 @@ jobs:
         run: bash scripts/install-quark-cli.sh
 
       - name: Rename quark files
+        if: inputs.quarkRename == true
         env:
           QODER_PRODUCT_ID: qoder
           QODER_AGENT: 'true'
@@ -673,3 +679,19 @@ jobs:
           case "$LIMIT" in ''|*[!0-9]*) LIMIT=0 ;; esac
           echo "重命名上限：$LIMIT（0 = 全部）"
           node scripts/quark-rename.mjs --limit "$LIMIT" --verify
+      - name: Verify quark shares
+        if: inputs.quarkVerifyOnly == true
+        env:
+          QODER_PRODUCT_ID: qoder
+          QODER_AGENT: 'true'
+          QUARK_DIR_NAME: 整合包汉化
+          QUARK_PARENT_FID: ${{ secrets.QUARK_PARENT_FID }}
+        run: |
+          set -euo pipefail
+          CLI="$HOME/.pi/agent/skills/quarkclouddrive/scripts/quark-drive.cjs"
+          if [ ! -f "$CLI" ]; then
+            echo "::error::夸克 CLI 不存在（Install quark CLI 未成功）"
+            exit 1
+          fi
+          export QUARK_CLI="$CLI"
+          node scripts/quark-rename.mjs --verify-only

@@ -175,6 +175,7 @@ test('renameRemote：写 items 文件并只调用一次 rename（假 call）', (
 test('verifyShares：全部可访问 → ok=total，无失败', () => {
   const logs = []
   const v = verifyShares({
+    gapMs: 0, sleep: () => {},
     changes: [
       { slug: 'a', shareUrl: 'https://pan.quark.cn/s/a' },
       { slug: 'b', shareUrl: 'https://pan.quark.cn/s/b' },
@@ -187,12 +188,13 @@ test('verifyShares：全部可访问 → ok=total，无失败', () => {
     cwd: '.',
     log: (m) => logs.push(m),
   })
-  assert.deepEqual(v, { ok: 2, total: 2, failed: [], unverified: 0 })
+  assert.deepEqual(v, { ok: 2, total: 2, failed: [], flaky: [], unverified: 0 })
   assert.equal(logs.length, 2)
 })
 
 test('verifyShares：空列表 / 抛错都算失败，并列出 slug', () => {
   const v = verifyShares({
+    gapMs: 0, sleep: () => {},
     changes: [
       { slug: 'good', shareUrl: 'https://pan.quark.cn/s/good' },
       { slug: 'empty', shareUrl: 'https://pan.quark.cn/s/empty' },
