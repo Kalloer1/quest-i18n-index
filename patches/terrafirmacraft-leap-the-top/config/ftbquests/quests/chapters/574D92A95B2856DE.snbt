@@ -1,0 +1,521 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "574D92A95B2856DE"
+	group: "698345F0A10DB042"
+	icon: "farmersdelight:rice_panicle"
+	id: "574D92A95B2856DE"
+	order_index: 1
+	quest_links: [
+		{
+			id: "59A0CFFCEB05A7A8"
+			linked_quest: "10811A0949FAA839"
+			x: -5.5d
+			y: -1.5d
+		}
+		{
+			id: "68163F42EBA8BDAA"
+			linked_quest: "771725AC2B9F9A13"
+			x: -4.0d
+			y: -2.5d
+		}
+		{
+			id: "28C58FEF6992A508"
+			linked_quest: "573A89A55A334863"
+			x: -8.0d
+			y: 1.5d
+		}
+	]
+	quests: [
+		{
+			id: "0B2885D1547F6D65"
+			tasks: [{
+				id: "3EA1FD8C56243D34"
+				title: "农业"
+				type: "checkmark"
+			}]
+			title: "种植业"
+			x: -4.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["771725AC2B9F9A13"]
+			description: [
+				"提示："
+				"右键犁可以切换它的工作状态。"
+				"2.对准犁按下shift+右键可以打开犁的gui，在gui页面可以放置工具。"
+				"3.放置锄头时，处于工作状态下的犁会松土所经过的土壤方块，从而翻出耕地。"
+				"4.放置铲子时，处于工作状态下的犁会将所经过的土壤方块变为土径。"
+			]
+			id: "6DBA103189E0DB3C"
+			tasks: [{
+				id: "7B825DEC74704482"
+				item: {
+					Count: 1
+					id: "itemfilters:tag"
+					tag: {
+						value: "tfcastikorcarts:plow"
+					}
+				}
+				title: "犁"
+				type: "item"
+			}]
+			title: "犁"
+			x: -2.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["10811A0949FAA839"]
+			description: [
+				"提示："
+				"堆肥桶是生产堆肥的必要工具，堆肥可以加快农作物的生长速度。"
+				"手持堆肥材料右键堆肥桶可添加材料，生产一个堆肥需要16单位绿色和16单位棕色堆肥材料。"
+				"3.按下shift+右键可以取出制作好的堆肥。"
+				"4.在堆肥桶中加入肉或骨头会污染堆肥，生产出来的腐烂的堆肥会使被施肥的植物当场死亡。"
+				"各堆肥材料见图鉴"
+			]
+			id: "5B9864DAEDF2DC07"
+			tasks: [{
+				id: "094A83B9C71851D4"
+				item: "tfc:composter"
+				type: "item"
+			}]
+			x: -5.5d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"5B9864DAEDF2DC07"
+				"573A89A55A334863"
+			]
+			id: "3CBE5D10606C061B"
+			tasks: [{
+				id: "207FB2BBB5511B1C"
+				item: "immersiveengineering:fertilizer"
+				type: "item"
+			}]
+			x: -6.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["5B9864DAEDF2DC07"]
+			id: "20BE74D04594AFFA"
+			tasks: [{
+				id: "5BFA9422847D722E"
+				item: "tfc:compost"
+				type: "item"
+			}]
+			x: -4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B01ED647F137B25"]
+			dependency_requirement: "one_completed"
+			description: [
+				"种植盆必须在温室环境下并用洒水壶浇水才能工作。"
+				"不同作物所需的种植盆不同，详见图鉴。"
+			]
+			id: "1A9E47B6064B2FE7"
+			tasks: [
+				{
+					id: "425451F7473177CB"
+					item: {
+						Count: 1
+						id: "firmalife:watering_can"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+					weak_nbt_match: true
+				}
+				{
+					id: "59A3781D6317115E"
+					item: {
+						Count: 1
+						id: "itemfilters:tag"
+						tag: {
+							value: "tfc:ftb/planter"
+						}
+					}
+					title: "温室种植盆"
+					type: "item"
+				}
+			]
+			title: "温室种植"
+			x: -5.5d
+			y: 4.5d
+		}
+		{
+			dependencies: [
+				"20BE74D04594AFFA"
+				"3CBE5D10606C061B"
+			]
+			dependency_requirement: "one_completed"
+			description: [
+				"温室搭建方式："
+				"使用相同材质的温室方块搭建一个封闭空间（无需底面），并在内部放置一个气象站。"
+				"提示："
+				"无法识别温室时，请右键点击气象站以刷新。"
+			]
+			id: "7B01ED647F137B25"
+			tasks: [
+				{
+					id: "083171445D692ED2"
+					item: {
+						Count: 1
+						id: "itemfilters:tag"
+						tag: {
+							value: "firmalife:greenhouse"
+						}
+					}
+					title: "温室方块"
+					type: "item"
+				}
+				{
+					id: "573D15A3202022B6"
+					item: "firmalife:climate_station"
+					type: "item"
+				}
+			]
+			title: "温室"
+			x: -5.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["6206CD2E0697CAE1"]
+			description: ["在食槽中放入相应的食物后，周围的动物会自动进食。这样就能完成畜牧业的半自动化了。"]
+			id: "2FDF98B0A17C4B37"
+			subtitle: "动物们饿了会自己吃东西的"
+			tasks: [{
+				id: "1061C74416C601FB"
+				item: {
+					Count: 1
+					id: "ftbfiltersystem:smart_filter"
+					tag: {
+						display: {
+							Name: "{\"text\":\"grooming_station\"}"
+						}
+						"ftbfiltersystem:filter": "or(item(tfcgroomer:bismuth_bronze_grooming_station)item(tfcgroomer:black_bronze_grooming_station)item(tfcgroomer:bronze_grooming_station)item(tfcgroomer:copper_grooming_station)item(tfcgroomer:wrought_iron_grooming_station)item(tfcgroomer:steel_grooming_station)item(tfcgroomer:black_steel_grooming_station)item(tfcgroomer:blue_steel_grooming_station)item(tfcgroomer:red_steel_grooming_station))"
+					}
+				}
+				type: "item"
+			}]
+			title: "喂食槽"
+			x: 0.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["6206CD2E0697CAE1"]
+			description: [
+				"提示："
+				"1.鸟巢是卵生动物产卵和孵化的必要条件。"
+				"2.卵生动物只能在巢箱中产卵，未受精的雌性卵生动物也可以产卵，但所产下的蛋无法孵出新的卵生动物。"
+			]
+			id: "7D347522E1CA36D2"
+			tasks: [{
+				id: "71C6B24BB7D5282F"
+				item: "tfc:nest_box"
+				type: "item"
+			}]
+			x: 2.0d
+			y: -1.5d
+		}
+		{
+			description: [
+				"在众多野生生物中，有一部分动物可以被驯服或养殖，这一部分动物有着同一特殊属性：亲密度。"
+				"喂食此类动物可以提高被喂食动物的亲密度。"
+				"亲密度达到一定高度后，动物将解锁相应功能（如产毛、产奶和繁殖等）。"
+				"提示："
+				"每种动物每天只能被喂食一次。"
+				"2.哺乳动物繁殖需喂食一对亲密度超过30的成年异性动物。受精的雌性哺乳动物的妊娠需要花费一定的时间。"
+				"3.亲密度超过30后，雄性卵生动物会向雌性卵生动物受精，受精后的雌性卵生动物产下的蛋为受精蛋，一段时间后受精蛋将孵化出新的卵生动物。"
+				"4.长时间不喂食，动物的亲密度会降低，除非亲密度已达到一定高度。（潜行后将准星对准动物时，会出现心形图标，当图标出现白色轮廓时动物的亲密度将不会因未喂食而降低。）"
+			]
+			id: "6206CD2E0697CAE1"
+			tasks: [{
+				id: "3EFFAC36DA5FFE11"
+				title: "畜牧业"
+				type: "checkmark"
+			}]
+			x: 2.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["6206CD2E0697CAE1"]
+			description: [
+				"蜂箱的使用方法："
+				"放置木制蜂箱后，在箱内放置巢脾，并在周围（有效范围：以木制蜂箱为中心的11*11*11的正方体）放置至少10朵花（包括种在土中的花、花盆中的花和温室种植盆中的作物，但不包括植物魔法的神秘花！）即可构建出有效蜂箱。"
+				"2.成功建造有效蜂箱后，空的巢脾内将有概率生成蜂王。（此条及下列的概率随蜂箱周围花的数量的增加而增加。）（各概率事件以一天为结算周期）"
+				"3.当蜂箱内有大于等于两个存有蜂王的巢脾时，将有概率在空的巢脾内生成（繁殖）蜂王，生成（繁殖）的蜂王会继承上一代的能力。（推荐使用该方法增加蜂王的数量。）"
+				"4.有效的蜂箱内存有蜂王时，将有概率产出蜂蜜。"
+				"{@pagebreak}"
+				"提示："
+				"1.蜂蜜只能通过手持空罐子右键存有蜂蜜的木制蜂箱获取。"
+				"2.蜂蜡需要用鼠标拿取小刀右键有蜂王的巢脾获取，但是该巢脾内的蜂王会直接死亡。"
+				"3.只有在夜间或木制蜂箱下方有燃烧的篝火时，取出存有蜂王的巢脾才不会受到蜜蜂攻击。"
+				"4.蜂王需要一定的温度才能工作。（温室无法为蜂箱保温。）"
+				"{@pagebreak}"
+				"能力列表:"
+				"·耐寒性：能让蜂王在更低的温度下工作。"
+				"·生产力：提高蜂蜜的生产速度。"
+				"·突变体：提高繁殖时传递给下一代的属性值的标准差。"
+				"·繁殖能力：提高配种的概率。"
+				"·作物亲和力：能为农作物传递少量营养物质。"
+				"·自然修复：有概率在蜂箱附近生成新的花或荷叶。"
+				"·冷静度：降低蜜蜂的攻击性。"
+			]
+			id: "65659334688D68CD"
+			tasks: [
+				{
+					id: "4391A27091329277"
+					item: "firmalife:beehive"
+					type: "item"
+				}
+				{
+					id: "04DB450DF243837E"
+					item: {
+						Count: 1
+						ForgeCaps: {
+							Parent: { }
+						}
+						id: "firmalife:beehive_frame"
+						tag: { }
+					}
+					type: "item"
+				}
+			]
+			title: "养蜂人"
+			x: 3.5d
+			y: -1.5d
+		}
+		{
+			id: "79FCA115AD271940"
+			tasks: [{
+				id: "7F01BFDAAE5C520E"
+				title: "食物存储系统"
+				type: "checkmark"
+			}]
+			x: 8.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["79FCA115AD271940"]
+			id: "6CF6AFF446CA7634"
+			tasks: [{
+				id: "79D9D7E079BA7906"
+				item: "tfcea:refrigerator"
+				type: "item"
+			}]
+			title: "冰箱"
+			x: 6.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["79FCA115AD271940"]
+			description: ["&m顾名思义，罐头架只能放罐头。"]
+			id: "3F55F4156FC6E3D3"
+			tasks: [
+				{
+					id: "20FFC96F61F9500C"
+					item: {
+						Count: 1
+						id: "itemfilters:tag"
+						tag: {
+							value: "tfc:ftb/jarbnet"
+						}
+					}
+					title: "罐头柜"
+					type: "item"
+				}
+				{
+					id: "24A6E93767464B25"
+					item: {
+						Count: 1
+						id: "itemfilters:tag"
+						tag: {
+							value: "tfc:ftb/jar_shelf"
+						}
+					}
+					title: "罐子橱柜"
+					type: "item"
+				}
+			]
+			title: "罐头架"
+			x: 10.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["79FCA115AD271940"]
+			description: [
+				"地窖搭建方式："
+				"使用地窖方块（密封砖、密封门等）搭建出一个封闭空间后，在内部放置一个气象站。"
+				"提示："
+				"无法识别地窖时，请右键气象站刷新。"
+			]
+			id: "6A599DFBC0FF6964"
+			tasks: [
+				{
+					id: "4B9FFD8AF0BD7D36"
+					item: {
+						Count: 1
+						id: "itemfilters:tag"
+						tag: {
+							value: "firmalife:cellar_insulation"
+						}
+					}
+					title: "地窖方块"
+					type: "item"
+				}
+				{
+					id: "2F6A60249CA62F41"
+					item: "firmalife:climate_station"
+					type: "item"
+				}
+			]
+			title: "地窖"
+			x: 8.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["6A599DFBC0FF6964"]
+			id: "6654BBEBDF74E127"
+			tasks: [{
+				id: "6CCF6FF7E8B7CAB6"
+				item: {
+					Count: 1
+					id: "itemfilters:tag"
+					tag: {
+						value: "tfc:ftb/food_shelf"
+					}
+				}
+				title: "食物架"
+				type: "item"
+			}]
+			title: "食物架"
+			x: 7.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["6A599DFBC0FF6964"]
+			id: "774E6F26B6FBB782"
+			tasks: [{
+				id: "2D3838A2FF5A2DF2"
+				item: {
+					Count: 1
+					id: "itemfilters:tag"
+					tag: {
+						value: "tfc:ftb/hanger"
+					}
+				}
+				title: "悬挂架"
+				type: "item"
+			}]
+			title: "悬挂架"
+			x: 9.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["65659334688D68CD"]
+			id: "001D85B2360072B5"
+			tasks: [{
+				id: "20DF580E157A8D16"
+				item: "firmalife:raw_honey"
+				type: "item"
+			}]
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["65659334688D68CD"]
+			id: "5720264F8ABC6F15"
+			tasks: [{
+				id: "12AA2B99FC42CC55"
+				item: "firmalife:beeswax"
+				type: "item"
+			}]
+			x: 4.0d
+			y: 0.0d
+		}
+		{
+			description: [
+				"河流、湖泊和大海中会生成大量鱼类，在畜牧业发展之前，这是极为便捷的蛋白质来源。"
+				"你可以直接跳入水中与鱼进行激烈的搏斗来捕鱼。当然，你也能使用较为文明的方式用鱼竿来吸引鱼上钩。"
+				"无论如何，你都无法在空无一物的水池里捕鱼！"
+			]
+			id: "3D1CC540783A8F5E"
+			tasks: [{
+				id: "09A52BAAB9D96897"
+				title: "渔业"
+				type: "checkmark"
+			}]
+			x: 2.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["3D1CC540783A8F5E"]
+			description: [
+				"合成出鱼竿后，你可以通过合成来给鱼竿加上鱼饵。"
+				"只有装有鱼饵的钓鱼竿才能钓鱼。"
+				"低级的鱼竿只能挂小型鱼饵，只有高级的鱼竿可以挂大型鱼饵来钓大型鱼类。"
+				"还有，记住了！这不是原版MC，别指望在空无一物的浅水池里钓到任何鱼！"
+			]
+			id: "51777BDDA57D70FC"
+			tasks: [{
+				id: "22BAC37FFEA8701F"
+				item: {
+					Count: 1
+					id: "itemfilters:tag"
+					tag: {
+						value: "tfc:holds_small_fishing_bait"
+					}
+				}
+				title: "任意鱼竿"
+				type: "item"
+			}]
+			title: "钓鱼竿"
+			x: 2.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["51777BDDA57D70FC"]
+			id: "1D0531E8E86A6198"
+			tasks: [{
+				id: "79027B33DEFCA874"
+				item: {
+					Count: 1
+					id: "itemfilters:tag"
+					tag: {
+						value: "tfc:large_fishing_bait"
+					}
+				}
+				title: "大型鱼饵"
+				type: "item"
+			}]
+			title: "大型鱼饵"
+			x: 0.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["51777BDDA57D70FC"]
+			id: "1FCC6571A54E9A41"
+			tasks: [{
+				id: "2F50878A5EEE3004"
+				item: {
+					Count: 1
+					id: "itemfilters:tag"
+					tag: {
+						value: "tfc:small_fishing_bait"
+					}
+				}
+				title: "小型鱼饵"
+				type: "item"
+			}]
+			title: "小型鱼饵"
+			x: 3.5d
+			y: 4.5d
+		}
+	]
+	title: "民以食为天"
+}
