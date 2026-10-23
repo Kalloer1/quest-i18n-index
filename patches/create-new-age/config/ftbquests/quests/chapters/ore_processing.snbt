@@ -1,0 +1,1119 @@
+# AI 初翻，未人工校对
+{
+	autofocus_id: "3C901A59BC2B451B"
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "ore_processing"
+	group: "5182ACABF8E11D10"
+	icon: "minecraft:raw_copper"
+	id: "260864D644DBBA5C"
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"在这个整合包里，有2种方法可以刷矿石："
+				""
+				"-使用挤出机开采不同类型的石头并将其粉碎。"
+				"-使用机械钻头将矿石从地下开采出来。"
+				""
+				"两种方法都可以用，或者选择适合你的那一种。"
+			]
+			icon: "minecraft:raw_copper"
+			id: "3C901A59BC2B451B"
+			size: 2.0d
+			tasks: [{
+				id: "31B382C4B4E2AA6C"
+				title: "如何采集矿石"
+				type: "checkmark"
+			}]
+			x: -1.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["3C901A59BC2B451B"]
+			id: "2A3C9CCA11F8E6C0"
+			subtitle: "用它来寻找你所在世界中的矿脉"
+			tasks: [{
+				id: "2807179FED87486F"
+				item: {
+					Count: 1
+					id: "createoreexcavation:vein_finder"
+					tag: {
+						isFiltered: 1b
+					}
+				}
+				type: "item"
+			}]
+			x: -3.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["3C901A59BC2B451B"]
+			description: ["使用地图册查看你发现的矿脉位置。"]
+			id: "2CC6AFB8CE383266"
+			tasks: [{
+				id: "3179FD8967492093"
+				item: "createoreexcavation:vein_atlas"
+				type: "item"
+			}]
+			x: -3.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["3C901A59BC2B451B"]
+			id: "1316A1D92B6F11D9"
+			tasks: [{
+				id: "0F514489F0CA0CB3"
+				item: "create_mechanical_extruder:mechanical_extruder"
+				type: "item"
+			}]
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["3C901A59BC2B451B"]
+			id: "249B4CFD94BC8C31"
+			tasks: [{
+				id: "1D5ED2CD0995535A"
+				item: "thermal:device_rock_gen"
+				type: "item"
+			}]
+			x: 1.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["2A3C9CCA11F8E6C0"]
+			id: "72DB7AE5CFF1BC43"
+			tasks: [{
+				id: "54E80D9CDC5BA786"
+				item: "createoreexcavation:drilling_machine"
+				type: "item"
+			}]
+			x: -5.0d
+			y: -0.5d
+		}
+		{
+			dependencies: [
+				"72DB7AE5CFF1BC43"
+				"272721604E35C0F3"
+			]
+			id: "63FD17075F24D593"
+			tasks: [{
+				id: "263C31C66D90B4D8"
+				item: "createoreexcavation:drill"
+				type: "item"
+			}]
+			x: -6.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["63FD17075F24D593"]
+			id: "6FE4FF04E5C9DCDC"
+			tasks: [{
+				id: "4D7F2FA04D4CAD36"
+				item: "createoreexcavation:diamond_drill"
+				type: "item"
+			}]
+			x: -7.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["6FE4FF04E5C9DCDC"]
+			id: "0580AE57D61B47EF"
+			tasks: [{
+				id: "1134F8E539941CBC"
+				item: "createoreexcavation:netherite_drill"
+				type: "item"
+			}]
+			x: -8.5d
+			y: -1.0d
+		}
+		{
+			id: "7F39BF9DE62992DE"
+			tasks: [{
+				id: "3E7528C7CE20460E"
+				item: "createoreexcavation:raw_diamond"
+				type: "item"
+			}]
+			x: -5.5d
+			y: 1.5d
+		}
+		{
+			id: "1CD81D88347EBDD0"
+			tasks: [{
+				id: "4FD1AB4FC4BF4091"
+				item: "createoreexcavation:raw_emerald"
+				type: "item"
+			}]
+			x: -4.5d
+			y: 1.5d
+		}
+		{
+			id: "5594CA65B9DFC04F"
+			tasks: [{
+				id: "5216967F114032D7"
+				item: "createoreexcavation:raw_redstone"
+				type: "item"
+			}]
+			x: -3.5d
+			y: 1.5d
+		}
+		{
+			dependencies: [
+				"249B4CFD94BC8C31"
+				"1316A1D92B6F11D9"
+			]
+			dependency_requirement: "one_completed"
+			description: [
+				"使用挤出机来生成石头。"
+				"你需要岩浆和各种方块与流体，例如水、蜂蜜、冰、灵魂沙等。"
+				"之后，你需要用压轮将石头压成矿石碎末。"
+			]
+			icon: "create:crushing_wheel"
+			id: "68B325216475E296"
+			shape: "hexagon"
+			tasks: [{
+				id: "61851F82F8F54C75"
+				title: "使用挤出机生成无限多的石头"
+				type: "checkmark"
+			}]
+			title: "挤压与粉碎"
+			x: 9.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["68B325216475E296"]
+			id: "36DBF820BA0E5D01"
+			tasks: [{
+				id: "3B50D1205570878C"
+				item: "minecraft:cobblestone"
+				type: "item"
+			}]
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["68B325216475E296"]
+			id: "1C0A4DA397BC0BC4"
+			tasks: [{
+				id: "79A279D0EC9AB968"
+				item: "minecraft:stone"
+				type: "item"
+			}]
+			x: 2.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["68B325216475E296"]
+			id: "589BD1C3D0180C8A"
+			tasks: [{
+				id: "3781E7C57702A881"
+				item: "minecraft:deepslate"
+				type: "item"
+			}]
+			x: 3.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["68B325216475E296"]
+			id: "7D7F7F3DC7B47DE2"
+			tasks: [{
+				id: "6B4D459B1D6F1727"
+				item: "minecraft:tuff"
+				type: "item"
+			}]
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["68B325216475E296"]
+			id: "1A691EFE87A05204"
+			tasks: [{
+				id: "1A53743FB6DA8C51"
+				item: "minecraft:blackstone"
+				type: "item"
+			}]
+			x: 5.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["68B325216475E296"]
+			id: "72CA98DB1F9B7574"
+			tasks: [{
+				id: "206CD6A3670EA49B"
+				item: "minecraft:basalt"
+				type: "item"
+			}]
+			x: 6.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["68B325216475E296"]
+			id: "18ED80BD6C94FC37"
+			tasks: [{
+				id: "770C6993E5463DC3"
+				item: "minecraft:dripstone_block"
+				type: "item"
+			}]
+			x: 7.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["68B325216475E296"]
+			id: "7D9BF7FE5D4C6527"
+			tasks: [{
+				id: "78C2C5ECE9EDE616"
+				item: "create:ochrum"
+				type: "item"
+			}]
+			x: 8.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["68B325216475E296"]
+			id: "249C94F383EF129B"
+			tasks: [{
+				id: "7139BCBF6052DBF4"
+				item: "minecraft:calcite"
+				type: "item"
+			}]
+			x: 10.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["68B325216475E296"]
+			id: "63DA719633579F3F"
+			tasks: [{
+				id: "3D17F8D1D2F6B127"
+				item: "create:scoria"
+				type: "item"
+			}]
+			x: 11.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["68B325216475E296"]
+			id: "2792601AB2A23D90"
+			tasks: [{
+				id: "51B4E4890409A150"
+				item: "create:scorchia"
+				type: "item"
+			}]
+			x: 12.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["68B325216475E296"]
+			id: "1E0247101E3D173F"
+			tasks: [{
+				id: "136F27CB8572E514"
+				item: "minecraft:netherrack"
+				type: "item"
+			}]
+			x: 13.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["68B325216475E296"]
+			id: "1897E41BD5D300AA"
+			tasks: [{
+				id: "3E1740676AEE877C"
+				item: "create:crimsite"
+				type: "item"
+			}]
+			x: 14.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["68B325216475E296"]
+			id: "1C3928C34DECB5A3"
+			tasks: [{
+				id: "3E16C76A88A658F7"
+				item: "create:veridium"
+				type: "item"
+			}]
+			x: 15.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["68B325216475E296"]
+			id: "4900E047EF509061"
+			tasks: [{
+				id: "17B3495ECAAFDE75"
+				item: "create:asurine"
+				type: "item"
+			}]
+			x: 16.5d
+			y: 1.5d
+		}
+		{
+			id: "45C3DAAD190D3DEC"
+			tasks: [{
+				id: "08DF31404FBF8591"
+				item: "minecraft:lava_bucket"
+				type: "item"
+			}]
+			x: 9.0d
+			y: 0.0d
+		}
+		{
+			id: "7E43185C229825C0"
+			tasks: [{
+				id: "002535D468C8C036"
+				item: "thermal:raw_nickel"
+				type: "item"
+			}]
+			x: -6.5d
+			y: 1.5d
+		}
+		{
+			id: "1FF50F65791681A4"
+			tasks: [{
+				id: "05B18372F7858EA6"
+				item: "thermal:raw_silver"
+				type: "item"
+			}]
+			x: -7.5d
+			y: 1.5d
+		}
+		{
+			id: "0C65248306997F2C"
+			tasks: [{
+				id: "39C0FBD8669D24C0"
+				item: "thermal:raw_lead"
+				type: "item"
+			}]
+			x: -8.5d
+			y: 1.5d
+		}
+		{
+			id: "7EDDF35E254C9821"
+			tasks: [{
+				id: "78DBE0C480C6E07F"
+				item: "thermal:raw_tin"
+				type: "item"
+			}]
+			x: -9.5d
+			y: 1.5d
+		}
+		{
+			id: "2F6376008CC262E8"
+			tasks: [{
+				id: "6DDEF29D857A0ECC"
+				item: "minecraft:raw_gold"
+				type: "item"
+			}]
+			x: -10.5d
+			y: 1.5d
+		}
+		{
+			id: "4AFE4F05010CEF64"
+			tasks: [{
+				id: "70B077672504576D"
+				item: "minecraft:raw_copper"
+				type: "item"
+			}]
+			x: -12.5d
+			y: 1.5d
+		}
+		{
+			id: "3DCFBD8753F6AB90"
+			tasks: [{
+				id: "061E77D1DD154EA5"
+				item: "minecraft:raw_iron"
+				type: "item"
+			}]
+			x: -11.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["36DBF820BA0E5D01"]
+			id: "495D8FBA5C996950"
+			tasks: [{
+				id: "2E9BD1287D3439C3"
+				item: "minecraft:gravel"
+				type: "item"
+			}]
+			x: 1.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["495D8FBA5C996950"]
+			id: "3666A3B3A912CEE1"
+			tasks: [{
+				id: "52B6381C69B34BD1"
+				item: "minecraft:sand"
+				type: "item"
+			}]
+			x: 1.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["3666A3B3A912CEE1"]
+			description: ["使用灵魂篝火和风车将沙子转化为灵魂沙"]
+			icon: {
+				Count: 1
+				id: "ftbquests:custom_icon"
+				tag: {
+					Icon: "minecraft:item/soul_campfire"
+				}
+			}
+			id: "4F36F250D195742E"
+			tasks: [{
+				id: "40D878FBEF8D873B"
+				type: "checkmark"
+			}]
+			title: "灵魂洗涤"
+			x: 1.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["4F36F250D195742E"]
+			id: "7CAD1F2F1F66A315"
+			tasks: [{
+				id: "0599CF11420777B1"
+				item: "minecraft:soul_sand"
+				type: "item"
+			}]
+			x: 1.5d
+			y: 5.5d
+		}
+		{
+			dependencies: ["7CAD1F2F1F66A315"]
+			id: "7E107D946BDDB32A"
+			tasks: [{
+				id: "2E0CE18B7F1CEAA2"
+				item: "minecraft:quartz"
+				type: "item"
+			}]
+			x: 1.5d
+			y: 6.5d
+		}
+		{
+			dependencies: ["589BD1C3D0180C8A"]
+			id: "27B5E46258517926"
+			tasks: [{
+				id: "5495DCD2F46FCC87"
+				item: "minecraft:redstone"
+				type: "item"
+			}]
+			x: 3.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["7D7F7F3DC7B47DE2"]
+			id: "033933424683C92D"
+			tasks: [{
+				id: "6F8EFF4807700866"
+				item: "create:crushed_raw_lead"
+				type: "item"
+			}]
+			x: 4.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["7D7F7F3DC7B47DE2"]
+			id: "784AE766A4608FA3"
+			tasks: [{
+				id: "1C59F5E78243C1E5"
+				item: "create:crushed_raw_tin"
+				type: "item"
+			}]
+			x: 4.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["18ED80BD6C94FC37"]
+			id: "16A855FECD44BA61"
+			tasks: [{
+				id: "2E4B02510CA33F42"
+				item: "minecraft:clay_ball"
+				type: "item"
+			}]
+			x: 7.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["1897E41BD5D300AA"]
+			id: "3CB284DCE699FCFB"
+			tasks: [{
+				id: "795082283A5A2FC3"
+				item: "create:crushed_raw_iron"
+				type: "item"
+			}]
+			x: 14.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["4900E047EF509061"]
+			id: "2E757901C998B464"
+			tasks: [{
+				id: "51B0666F37A1FC4A"
+				item: "create:crushed_raw_zinc"
+				type: "item"
+			}]
+			x: 16.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["7D9BF7FE5D4C6527"]
+			id: "7F2D7158561BCEE0"
+			tasks: [{
+				id: "0DD4FD63653F2475"
+				item: "create:crushed_raw_gold"
+				type: "item"
+			}]
+			x: 8.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["249C94F383EF129B"]
+			id: "05D556EFFCB02FCD"
+			tasks: [{
+				id: "6E674BF756AABAAA"
+				item: "minecraft:bone_meal"
+				type: "item"
+			}]
+			x: 10.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["7D9BF7FE5D4C6527"]
+			id: "16C549A99712413F"
+			tasks: [{
+				id: "5E159A0D45D27CA4"
+				item: "create:crushed_raw_nickel"
+				type: "item"
+			}]
+			x: 8.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["1C3928C34DECB5A3"]
+			id: "22A010D4291B14A0"
+			tasks: [{
+				id: "68D03FAD4B33D4DC"
+				item: "create:crushed_raw_copper"
+				type: "item"
+			}]
+			x: 15.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["1A691EFE87A05204"]
+			id: "1B44E92CD36024CB"
+			tasks: [{
+				id: "053430196D96A8AA"
+				item: "minecraft:coal"
+				type: "item"
+			}]
+			x: 5.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["1A691EFE87A05204"]
+			id: "4222761EEBB9E3CF"
+			tasks: [{
+				id: "5EC9E76386995601"
+				item: "thermal:sulfur"
+				type: "item"
+			}]
+			x: 5.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["1A691EFE87A05204"]
+			id: "1261087F0E7510B0"
+			tasks: [{
+				id: "5125ED20653A4EF2"
+				item: "thermal:niter"
+				type: "item"
+			}]
+			x: 5.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["68B325216475E296"]
+			id: "10FF4E51FDD035CE"
+			tasks: [{
+				id: "4C2B5813D039D174"
+				item: "create:limestone"
+				type: "item"
+			}]
+			x: 9.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["10FF4E51FDD035CE"]
+			id: "504156070F027E7C"
+			tasks: [{
+				id: "5DFAE46DC3D74B72"
+				item: "create:crushed_raw_silver"
+				type: "item"
+			}]
+			x: 9.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["2792601AB2A23D90"]
+			id: "3BD5B0A3746CCF0B"
+			tasks: [{
+				id: "00AEDE5B736CC101"
+				item: "minecraft:gunpowder"
+				type: "item"
+			}]
+			x: 12.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["63DA719633579F3F"]
+			id: "26DA586C0DF42D4D"
+			tasks: [{
+				id: "0FE98047300252FA"
+				item: "minecraft:glowstone_dust"
+				type: "item"
+			}]
+			x: 11.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["589BD1C3D0180C8A"]
+			id: "2BFFE71ED298A8E4"
+			tasks: [{
+				id: "4D73AABAAC65E65F"
+				item: "thermal:cinnabar"
+				type: "item"
+			}]
+			x: 3.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["1E0247101E3D173F"]
+			id: "4E9A22E9B9379479"
+			tasks: [{
+				id: "322DF4F24F966A43"
+				item: "create:cinder_flour"
+				type: "item"
+			}]
+			x: 13.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["1E0247101E3D173F"]
+			id: "3E69CFAF1515F809"
+			tasks: [{
+				id: "72B0287157D316AA"
+				item: "minecraft:redstone"
+				type: "item"
+			}]
+			x: 13.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["1E0247101E3D173F"]
+			id: "28F1158EB15CDEA7"
+			tasks: [{
+				id: "777171757D609B33"
+				item: "minecraft:quartz"
+				type: "item"
+			}]
+			x: 13.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["1E0247101E3D173F"]
+			id: "47EE77D394DBE986"
+			tasks: [{
+				id: "12A91DF7E82D996D"
+				item: "ae2:certus_quartz_dust"
+				type: "item"
+			}]
+			x: 13.5d
+			y: 5.5d
+		}
+		{
+			dependencies: ["2792601AB2A23D90"]
+			id: "0FB528DF43537993"
+			tasks: [{
+				id: "0D34255BB455C2CD"
+				item: "minecraft:coal"
+				type: "item"
+			}]
+			x: 12.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["2792601AB2A23D90"]
+			dependency_requirement: "all_started"
+			id: "7C20DBE2204F551C"
+			tasks: [{
+				id: "0975CB5BF4377233"
+				item: "thermal:sulfur"
+				type: "item"
+			}]
+			x: 12.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["2792601AB2A23D90"]
+			id: "61F3B6D2FC76BBD5"
+			tasks: [{
+				id: "7D6E415F5C20C5D3"
+				item: "thermal:ender_pearl_dust"
+				type: "item"
+			}]
+			x: 12.5d
+			y: 5.5d
+		}
+		{
+			dependencies: ["63DA719633579F3F"]
+			id: "0C582B374F4B96A6"
+			tasks: [{
+				id: "20C9F7406A92A2F1"
+				item: "minecraft:coal"
+				type: "item"
+			}]
+			x: 11.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["63DA719633579F3F"]
+			id: "0F59806F0D907028"
+			tasks: [{
+				id: "45A670E0D0DD4C42"
+				item: "thermal:sulfur"
+				type: "item"
+			}]
+			x: 11.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["63DA719633579F3F"]
+			id: "6F59624035F38A63"
+			tasks: [{
+				id: "067DB4D85F0BDB15"
+				item: "thermal:ender_pearl_dust"
+				type: "item"
+			}]
+			x: 11.5d
+			y: 5.5d
+		}
+		{
+			dependencies: ["589BD1C3D0180C8A"]
+			id: "65A75DE65E21389F"
+			tasks: [{
+				id: "55CE0375761E6CD3"
+				item: "thermal:apatite"
+				type: "item"
+			}]
+			x: 3.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["589BD1C3D0180C8A"]
+			id: "39C57973A99D7C93"
+			tasks: [{
+				id: "1A4F736EA6F94EDE"
+				item: "minecraft:emerald"
+				type: "item"
+			}]
+			x: 3.5d
+			y: 5.5d
+		}
+		{
+			dependencies: ["589BD1C3D0180C8A"]
+			id: "3DA12C5EEA08CE7D"
+			tasks: [{
+				id: "581739AA6730B786"
+				item: "minecraft:diamond"
+				type: "item"
+			}]
+			x: 3.5d
+			y: 6.5d
+		}
+		{
+			dependencies: ["72CA98DB1F9B7574"]
+			id: "236C47D5330CC0BA"
+			tasks: [{
+				id: "5FBF441D0DD8D6F8"
+				item: "minecraft:coal"
+				type: "item"
+			}]
+			x: 6.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["72CA98DB1F9B7574"]
+			id: "1313BC0975C6F8DE"
+			tasks: [{
+				id: "03B97213F8C46A17"
+				item: "minecraft:gunpowder"
+				type: "item"
+			}]
+			x: 6.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["72CA98DB1F9B7574"]
+			id: "57493B73D85F195D"
+			tasks: [{
+				id: "0CA137A4363C24B4"
+				item: "minecraft:blaze_powder"
+				type: "item"
+			}]
+			x: 6.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["1C0A4DA397BC0BC4"]
+			id: "5B1740F000B7525B"
+			tasks: [{
+				id: "38D46F4BA24E1D0C"
+				item: "minecraft:flint"
+				type: "item"
+			}]
+			x: 2.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["1C0A4DA397BC0BC4"]
+			id: "5E6F3A9473FC389C"
+			tasks: [{
+				id: "18408F47B5666BF9"
+				item: "minecraft:coal"
+				type: "item"
+			}]
+			x: 2.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["1C0A4DA397BC0BC4"]
+			id: "3A1D705B689A0092"
+			tasks: [{
+				id: "0B345649C12CDD75"
+				item: "minecraft:redstone"
+				type: "item"
+			}]
+			x: 2.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["1C0A4DA397BC0BC4"]
+			id: "40DA5AE40D458CD2"
+			tasks: [{
+				id: "035B2FC5ACF24357"
+				item: "minecraft:lapis_lazuli"
+				type: "item"
+			}]
+			x: 2.5d
+			y: 5.5d
+		}
+		{
+			dependencies: ["4AFE4F05010CEF64"]
+			id: "6688C3E902122DB4"
+			tasks: [{
+				id: "5CC44016F94CC34D"
+				item: "minecraft:copper_ingot"
+				type: "item"
+			}]
+			x: -12.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["3DCFBD8753F6AB90"]
+			id: "443F95701A08CBB8"
+			tasks: [{
+				id: "6AE2ECD626C54449"
+				item: "minecraft:iron_ingot"
+				type: "item"
+			}]
+			x: -11.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["2F6376008CC262E8"]
+			id: "753F73341BF09471"
+			tasks: [{
+				id: "2A0EBD795D58C00E"
+				item: "minecraft:gold_ingot"
+				type: "item"
+			}]
+			x: -10.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["7EDDF35E254C9821"]
+			id: "40867DD0A4A6777E"
+			tasks: [{
+				id: "4E4C294EB64DAD16"
+				item: "thermal:tin_ingot"
+				type: "item"
+			}]
+			x: -9.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["0C65248306997F2C"]
+			id: "3FB750D08CF27AF7"
+			tasks: [{
+				id: "65F33835D824C7A9"
+				item: "thermal:lead_ingot"
+				type: "item"
+			}]
+			x: -8.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["1FF50F65791681A4"]
+			id: "6E2AD83A2F308B88"
+			tasks: [{
+				id: "0FC6692F35B428EC"
+				item: "thermal:silver_ingot"
+				type: "item"
+			}]
+			x: -7.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["7E43185C229825C0"]
+			id: "3622CC7DBDFF3FBB"
+			tasks: [{
+				id: "2300703F9041D495"
+				item: "thermal:nickel_ingot"
+				type: "item"
+			}]
+			x: -6.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["7F39BF9DE62992DE"]
+			id: "60DFC019179C60E5"
+			tasks: [{
+				id: "561F7FC855911302"
+				item: "minecraft:diamond"
+				type: "item"
+			}]
+			x: -5.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["1CD81D88347EBDD0"]
+			id: "05F8589644C3F3C2"
+			tasks: [{
+				id: "13A7D0DFA525D944"
+				item: "minecraft:emerald"
+				type: "item"
+			}]
+			x: -4.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["5594CA65B9DFC04F"]
+			id: "7117648338001D6B"
+			tasks: [{
+				id: "254F67C78A0CFCA7"
+				item: "minecraft:redstone"
+				type: "item"
+			}]
+			x: -3.5d
+			y: 2.5d
+		}
+		{
+			dependencies: [
+				"753F73341BF09471"
+				"6688C3E902122DB4"
+				"443F95701A08CBB8"
+				"3FB750D08CF27AF7"
+				"3622CC7DBDFF3FBB"
+				"6E2AD83A2F308B88"
+				"40867DD0A4A6777E"
+				"3DD3D6A19BAE9EDC"
+				"7117648338001D6B"
+				"05F8589644C3F3C2"
+				"60DFC019179C60E5"
+			]
+			icon: {
+				Count: 1
+				id: "ftbquests:custom_icon"
+				tag: {
+					Icon: "minecraft:item/empty_slot_ingot"
+				}
+			}
+			id: "136646760961F4EB"
+			rewards: [
+				{
+					id: "064022F63688BD6D"
+					item: "minecraft:netherite_ingot"
+					type: "item"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "3C430E111FE67EA5"
+					table_id: 8349337294793554670L
+					type: "choice"
+				}
+			]
+			tasks: [{
+				id: "4A9FFDF3C72735DC"
+				title: "矿石大师"
+				type: "checkmark"
+			}]
+			x: -8.5d
+			y: 4.0d
+		}
+		{
+			id: "7BF9D97B7F499561"
+			tasks: [{
+				id: "484EAAFF4E582E48"
+				item: "create:raw_zinc"
+				type: "item"
+			}]
+			x: -13.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7BF9D97B7F499561"]
+			id: "3DD3D6A19BAE9EDC"
+			tasks: [{
+				id: "50AB8A998E8DD6C4"
+				item: "create:zinc_ingot"
+				type: "item"
+			}]
+			x: -13.5d
+			y: 2.5d
+		}
+		{
+			id: "07325C95A10EF396"
+			tasks: [{
+				id: "3E8A7680201A41BA"
+				item: "create:honey_bucket"
+				type: "item"
+			}]
+			x: 8.0d
+			y: 0.0d
+		}
+		{
+			id: "069620517F0DBB45"
+			tasks: [{
+				id: "3F671244DDF7BEED"
+				item: "minecraft:water_bucket"
+				type: "item"
+			}]
+			x: 10.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["2CC6AFB8CE383266"]
+			id: "272721604E35C0F3"
+			tasks: [{
+				id: "22D2F7E04A9A523F"
+				item: "createoreexcavation:sample_drill"
+				type: "item"
+			}]
+			x: -5.0d
+			y: -1.5d
+		}
+	]
+	title: "矿物自动化农场"
+}

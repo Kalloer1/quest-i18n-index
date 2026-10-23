@@ -1,0 +1,303 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "industrial_gem_converion_processing"
+	group: "03B296B288CA9FE9"
+	icon: "kubejs:flawless_gold_gem"
+	id: "5EDD436A6E74F60F"
+	order_index: 3
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"&aI.G.C.P&r 代表的意思是："
+				"&a工业宝石转换处理&r，即矿石会转化为宝石，让你获得更多"
+				"在末地！(in the end!)</c1><c2>"
+				""
+				"我将一步步地解释如何操作……"
+			]
+			icon: "kubejs:exquisite_gold_gem"
+			id: "0C80D6860E4443B2"
+			shape: "rsquare"
+			size: 1.5d
+			tasks: [{
+				id: "2C9FD448256BD6A4"
+				title: "I.G.C.P"
+				type: "checkmark"
+			}]
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0C80D6860E4443B2"]
+			description: [
+				"它将任何原矿分解成矿石块。"
+				""
+				"1 个原矿可以变成 2 个原矿块！"
+				""
+				"另外，你应该用管道或漏斗来添加矿石，因为它一次只能接受一个..."
+			]
+			id: "7E66B00AE8074E68"
+			rewards: [{
+				id: "69B9F55BC8DCF729"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				consume_items: false
+				id: "04AB5E8A31B2065A"
+				item: {
+					Count: 1b
+					id: "custommachinery:custom_machine_item"
+					tag: {
+						machine: "factore:ore_press"
+					}
+				}
+				type: "item"
+			}]
+			x: -1.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["7E66B00AE8074E68"]
+			id: "1159E5B3B6519D11"
+			tasks: [{
+				consume_items: false
+				id: "77B5BB53F2E30AC2"
+				item: {
+					Count: 1b
+					id: "itemfilters:tag"
+					tag: {
+						value: "forge:ore_hammers"
+					}
+				}
+				title: "任意 #forge:ore_hammers"
+				type: "item"
+			}]
+			x: -2.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["7E66B00AE8074E68"]
+			description: ["这台机器能将矿石块分解成4种不同的宝石！"]
+			id: "7108E6CCAC31714C"
+			rewards: [{
+				id: "7B302FC182912666"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				consume_items: false
+				id: "263ADE6E3F214BAC"
+				item: {
+					Count: 1b
+					id: "custommachinery:custom_machine_item"
+					tag: {
+						machine: "factore:basic_ore_centrifuge"
+					}
+				}
+				type: "item"
+			}]
+			x: 0.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["7108E6CCAC31714C"]
+			description: ["这对早期游戏来说应该很不错……"]
+			id: "3839ED7C38182707"
+			tasks: [{
+				consume_items: false
+				id: "529852FAC70D5467"
+				item: {
+					Count: 1b
+					id: "kubejs:woven_wire_plate"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 0.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["7108E6CCAC31714C"]
+			description: [
+				"宝石切割器将宝石切割成碎片。"
+				"Exquisite 是一种&4四阶资源&r"
+				"无瑕是&4三级资源&r"
+				"Flawed 是&4二级资源&r"
+				"简易是&41级资源&r"
+				""
+				"那么，这到底是什么意思呢？"
+				"4阶会给你6个切好的碎片，随着等级降低，数量会减少2个，"
+				"所以4除以2，再除以2，结果就是1！"
+			]
+			id: "785C4E7273CC3723"
+			rewards: [{
+				id: "41004E0E5A8BBF3A"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				consume_items: false
+				id: "1349D038A0221A6F"
+				item: {
+					Count: 1b
+					id: "custommachinery:custom_machine_item"
+					tag: {
+						machine: "factore:basic_gem_cutter"
+					}
+				}
+				type: "item"
+			}]
+			x: 1.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["785C4E7273CC3723"]
+			description: ["有几个选项，用你喜欢的就好！"]
+			id: "03C907E8BAB284D6"
+			tasks: [{
+				consume_items: false
+				id: "085CE5E81F74638A"
+				item: {
+					Count: 1b
+					id: "itemfilters:tag"
+					tag: {
+						value: "forge:gem_saws"
+					}
+				}
+				title: "任意 #forge:gem_saws"
+				type: "item"
+			}]
+			x: 1.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["785C4E7273CC3723"]
+			description: ["在这里加入你的&achipped ore&r和水，它就会变成&aparticles&r！"]
+			id: "7A4EAC6B54292514"
+			rewards: [{
+				id: "2D77E1FE220F38E7"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				consume_items: false
+				id: "37FABC2A72729AB0"
+				item: {
+					Count: 1b
+					id: "custommachinery:custom_machine_item"
+					tag: {
+						machine: "factore:basic_ore_washer"
+					}
+				}
+				type: "item"
+			}]
+			x: 3.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["7A4EAC6B54292514"]
+			id: "709FD1C7BA6C2588"
+			tasks: [{
+				consume_items: false
+				id: "2F0B33A26484D1DA"
+				item: "cookingforblockheads:sink"
+				type: "item"
+			}]
+			x: 3.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["7A4EAC6B54292514"]
+			description: [
+				"最后一站。在这里，所有 &a粒子&r 都会逐渐变成 &a尘埃&r！"
+				"可用于制作&4合金&r或冶炼它们！"
+			]
+			id: "33831A9FB2C8876A"
+			rewards: [{
+				id: "269D32CA0BF18796"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				consume_items: false
+				id: "138344F705CBC4DC"
+				item: {
+					Count: 1b
+					id: "custommachinery:custom_machine_item"
+					tag: {
+						machine: "factore:particle_combiner"
+					}
+				}
+				type: "item"
+			}]
+			x: 4.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["33831A9FB2C8876A"]
+			description: [
+				"如果你想的话，绝对应该查看所有等级，你会发现有大量的"
+				"处理时间缩短！"
+			]
+			hide: true
+			icon: "kubejs:crystallized_ore_chunk"
+			id: "7364486799A41E84"
+			rewards: [
+				{
+					count: 8
+					id: "3619E1598700B383"
+					item: "kubejs:crystallized_ore_chunk"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "7EC97F55986EB8B7"
+					item: "kubejs:stainless_steel_reduction_module"
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			tasks: [{
+				id: "7B0AB5539EF03BDA"
+				title: "秘密"
+				type: "checkmark"
+			}]
+			x: 4.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["33831A9FB2C8876A"]
+			description: [
+				"或许用个&4熔炉&r把它们都&a处理&r掉？"
+				"应该不会造成伤害，我想！"
+			]
+			hide: true
+			id: "41A43F27C0A54B4D"
+			rewards: [{
+				id: "223E5E1155AD0727"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				consume_items: false
+				id: "300CB8F5F9FC7056"
+				item: {
+					Count: 1b
+					id: "custommachinery:custom_machine_item"
+					tag: {
+						machine: "factore:basic_furnace"
+					}
+				}
+				type: "item"
+			}]
+			x: 6.0d
+			y: 2.0d
+		}
+	]
+	title: "I.G.C.P"
+}
