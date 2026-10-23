@@ -1,0 +1,759 @@
+# AI 初翻，未人工校对
+{
+	id: "0000000000000002"
+	group: ""
+	order_index: 0
+	filename: "chapter_1"
+	title: "开始：第一章"
+	icon: "minecraft:grass_block"
+	default_quest_shape: "rsquare"
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "一个新世界，一个新的开始"
+			icon: "minecraft:grass_block"
+			x: 0.0d
+			y: 0.0d
+			shape: "square"
+			description: ["欢迎来到 Blocks Of The Sky。这是一个基于天空方块世界的结构化整合包。主要使用魔法模组来推进进度。同时也会包含大量建筑和实用模组，用于自定义岛屿和自动化操作。"]
+			size: 1.25d
+			id: "0000000000000003"
+			tasks: [{
+				id: "00000000000000E1"
+				type: "dimension"
+				dimension: "minecraft:overworld"
+			}]
+			rewards: [
+				{
+					id: "0000000000000006"
+					type: "command"
+					title: "禁用生物生成命令中"
+					icon: "minecraft:command_block"
+					auto: "enabled"
+					command: "/gamerule doMobSpawning false"
+					player_command: false
+				}
+				{
+					id: "0000000000000038"
+					type: "item"
+					item: "ftbquests:book"
+				}
+			]
+		}
+		{
+			x: 0.0d
+			y: -1.5d
+			description: ["你可以开始释放岛上草方块中的魔法能量，并从它们那里获得鹅卵石。它们可能对你制作鹅卵石很有用。(Shift 右键点击草/泥土)"]
+			dependencies: ["0000000000000003"]
+			id: "0000000000000009"
+			tasks: [{
+				id: "000000000000000A"
+				type: "item"
+				title: "鹅卵石"
+				icon: "botania:pebble"
+				item: "botania:pebble"
+				count: 64L
+			}]
+			rewards: [{
+				id: "202AFC293188D562"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			title: "Cobblestone"
+			x: 0.0d
+			y: -3.0d
+			description: ["你收集的鹅卵石可以制成圆石，圆石对这个整合包会非常有用。"]
+			dependencies: ["0000000000000009"]
+			id: "000000000000000B"
+			tasks: [{
+				id: "000000000000000C"
+				type: "item"
+				item: "minecraft:cobblestone"
+				count: 12L
+			}]
+			rewards: [
+				{
+					id: "6BF3948B1A7096F6"
+					type: "item"
+					item: "minecraft:cobblestone"
+					count: 64
+				}
+				{
+					id: "32AA2F819538F4A3"
+					type: "item"
+					item: "coins:coin_copper"
+				}
+			]
+		}
+		{
+			title: "熔炉"
+			icon: "minecraft:furnace"
+			x: 1.5d
+			y: -3.0d
+			description: ["用你收集的鹅卵石，你应该能在合成台里制作熔炉。不过，你首先需要将这些鹅卵石进行压实，使其成为更坚固的材料。这样你才能冶炼物品。"]
+			dependencies: ["000000000000000B"]
+			id: "000000000000000D"
+			tasks: [
+				{
+					id: "000000000000000E"
+					type: "item"
+					item: "minecraft:furnace"
+				}
+				{
+					id: "0000000000000040"
+					type: "item"
+					item: "compressium:cobblestone_1"
+				}
+			]
+			rewards: [{
+				id: "7F4CD66BC98CF3E9"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 1.5d
+			y: 0.0d
+			description: ["如果你够小心，或许能收获岛屿下方古树的根部。谁知道呢？这东西或许能用来再造一棵树。"]
+			dependencies: ["0000000000000003"]
+			id: "000000000000000F"
+			tasks: [{
+				id: "0000000000000010"
+				type: "item"
+				title: "活根植物"
+				item: "botania:living_root"
+				count: 4L
+			}]
+			rewards: [{
+				id: "64AB65ED13B9D24E"
+				type: "item"
+				item: "botania:living_root"
+				count: 20
+			}]
+		}
+		{
+			x: 3.0d
+			y: 0.0d
+			description: ["活着的根可以合成树苗。有了树苗，你就能种更多的树，获得更多的木材。"]
+			dependencies: ["000000000000000F"]
+			id: "0000000000000011"
+			tasks: [{
+				id: "0000000000000012"
+				type: "item"
+				item: "minecraft:oak_sapling"
+			}]
+			rewards: [{
+				id: "2BEEFCD0BC4AE5B2"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 4.5d
+			y: 0.0d
+			description: ["这棵树就像你一样，是个有生命的物体。你喜欢事物，树也一样。树喜欢你跳舞。不妨在树前跳舞，它或许会为你生长。（在树前不断移动）"]
+			dependencies: ["0000000000000011"]
+			id: "0000000000000017"
+			tasks: [{
+				id: "0000000000000018"
+				type: "checkmark"
+				title: "为树木而起舞的舞蹈表演"
+			}]
+		}
+		{
+			title: "橡木原木"
+			x: 6.0d
+			y: 0.0d
+			description: ["现在你已经种了一棵树，可以获得木头了。这将帮助你制作工作台，从而继续前进。"]
+			dependencies: ["0000000000000017"]
+			id: "0000000000000019"
+			tasks: [{
+				id: "000000000000001A"
+				type: "item"
+				item: "minecraft:oak_log"
+				count: 4L
+			}]
+			rewards: [{
+				id: "0B73C3F15C57EFC4"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 7.5d
+			y: 0.0d
+			description: ["你应该用那些木头做一个工作台，这样能帮你获得更多物品和资源。"]
+			dependencies: ["0000000000000019"]
+			id: "000000000000001B"
+			tasks: [{
+				id: "000000000000001C"
+				type: "item"
+				item: "minecraft:crafting_table"
+			}]
+			rewards: [{
+				id: "20168BD873782D93"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 3.0d
+			y: -3.0d
+			description: ["把橡木原木放进熔炉里并加入燃料，你就能获得木炭了。众所周知，木炭是煤炭的替代品，可以用来制作火把。"]
+			dependencies: ["000000000000000D"]
+			id: "000000000000001F"
+			tasks: [{
+				id: "0000000000000020"
+				type: "item"
+				item: "minecraft:charcoal"
+			}]
+			rewards: [{
+				id: "5DBFF528A1ECC3E6"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 1.5d
+			y: -1.5d
+			description: ["如我所说，你可以用木棍和木炭制作一些火把。虽然怪物不生成，但大家都讨厌黑暗的地方。"]
+			dependencies: ["000000000000001F"]
+			id: "0000000000000021"
+			tasks: [{
+				id: "0000000000000022"
+				type: "item"
+				item: "minecraft:torch"
+			}]
+			rewards: [{
+				id: "1EFE2591BE4E9D77"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 0.0d
+			y: 1.5d
+			description: ["你可以提取活根的魔法，为自己获取一些花卉肥料。这将帮助你获得魔法花朵。"]
+			dependencies: ["0000000000000003"]
+			id: "0000000000000023"
+			tasks: [{
+				id: "0000000000000024"
+				type: "item"
+				item: "botania:fertilizer"
+			}]
+			rewards: [
+				{
+					id: "31A27302597B5595"
+					type: "item"
+					item: "coins:coin_copper"
+				}
+				{
+					id: "0C0F6DDFE7ED24D4"
+					type: "item"
+					item: "botania:flower_bag"
+				}
+			]
+		}
+		{
+			x: 0.0d
+			y: 3.0d
+			description: ["将这种花卉肥料撒在地上，会奖励你各种各样的花。其中大部分目前对你没用，应该把它们收容起来。不过白色花朵可以合成物品。"]
+			dependencies: ["0000000000000023"]
+			id: "0000000000000025"
+			tasks: [{
+				id: "0000000000000026"
+				type: "item"
+				item: "botania:white_mystical_flower"
+			}]
+			rewards: [{
+				id: "4637B8EBB0C71EFE"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			title: "神秘白色花瓣"
+			x: 1.5d
+			y: 3.0d
+			description: ["你可以收集这些白色花朵的花瓣，也许它们能派上用场？"]
+			dependencies: ["0000000000000025"]
+			id: "0000000000000027"
+			tasks: [{
+				id: "0000000000000028"
+				type: "item"
+				item: "botania:white_petal"
+				count: 2L
+			}]
+			rewards: [{
+				id: "6097BAA4CEC172DF"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 3.0d
+			y: 3.0d
+			description: ["用一些活根和白色花瓣，你就能创造出纯净的雏菊。这种花能将放置在其旁边的石头和原木转化为另一种形态。这些物品是制作其他物品和推进进度所必需的。"]
+			dependencies: ["0000000000000027"]
+			id: "0000000000000029"
+			tasks: [{
+				id: "000000000000002A"
+				type: "item"
+				item: "botania:pure_daisy"
+			}]
+			rewards: [{
+				id: "722C4049FB735FC3"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 1.5d
+			y: 4.5d
+			description: ["当石头放置在纯雏菊旁边时，其中的矿物将被提取，你将获得活岩。"]
+			dependencies: ["0000000000000029"]
+			id: "000000000000002B"
+			tasks: [{
+				id: "000000000000002C"
+				type: "item"
+				item: "botania:livingrock"
+			}]
+			rewards: [{
+				id: "0AB75D08955F724C"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 4.5d
+			y: 4.5d
+			description: ["当原木放置在纯雏菊旁边时，原木将变为纯净的，并转化为活木。"]
+			dependencies: ["0000000000000029"]
+			id: "000000000000002D"
+			tasks: [{
+				id: "000000000000002E"
+				type: "item"
+				item: "botania:livingwood"
+			}]
+			rewards: [{
+				id: "03A18F5BBB22465F"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 6.0d
+			y: -1.5d
+			description: ["你可以用木桶轻松移动岛上提供的水。这个配方超级简单，但可惜的是它不能装岩浆桶。"]
+			dependencies: ["0000000000000019"]
+			id: "000000000000002F"
+			tasks: [{
+				id: "0000000000000030"
+				type: "item"
+				item: {
+					id: "woodenbuckets:wooden_bucket"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "45135DD2FB30865F"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			title: "Shears"
+			icon: {
+				id: "minecraft:shears"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: 4.5d
+			y: 3.0d
+			description: ["用这把剪刀，你就能收割树叶了，也许这些树叶能变成什么东西呢？"]
+			dependencies: ["0000000000000029"]
+			id: "0000000000000031"
+			tasks: [
+				{
+					id: "0000000000000033"
+					type: "item"
+					item: "minecraft:oak_leaves"
+					count: 32L
+				}
+				{
+					id: "000000000000010B"
+					type: "item"
+					item: {
+						id: "minecraft:shears"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "7CAA5E21CF9CE60C"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 6.0d
+			y: 3.0d
+			description: ["堆肥桶能将树叶和种子等自然物品转化为骨粉。骨粉可用于种植作物，所以以后会很有用。"]
+			dependencies: ["0000000000000031"]
+			id: "0000000000000034"
+			tasks: [{
+				id: "0000000000000035"
+				type: "item"
+				item: "minecraft:composter"
+			}]
+			rewards: [{
+				id: "4E458DC4A7B5B009"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 7.5d
+			y: 3.0d
+			description: ["投入足够的自然物品后，堆肥器会产出骨粉。这可用于获取草和其他物品。活根也类似骨粉，但骨粉在合成配方中依然有用。"]
+			dependencies: ["0000000000000034"]
+			id: "0000000000000036"
+			tasks: [{
+				id: "0000000000000037"
+				type: "item"
+				item: "minecraft:bone_meal"
+			}]
+			rewards: [{
+				id: "7728AA0AE5296B9D"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 4.5d
+			y: -3.0d
+			description: ["木炭块可以冶炼72种物品！这个数字相当惊人。不过，它可能还有其他用途。"]
+			dependencies: ["000000000000001F"]
+			id: "0000000000000039"
+			tasks: [{
+				id: "000000000000003A"
+				type: "item"
+				item: "charcoalblock:charcoal_block"
+			}]
+			rewards: [{
+				id: "0FD1820E3DC91A8A"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			title: "获取字符串中"
+			x: 6.0d
+			y: -3.0d
+			description: ["木炭块下方有一个结构。或许你可以用纯雏菊净化这个方块。木炭块变性后，其结构就会显现出来。"]
+			dependencies: ["0000000000000039"]
+			id: "000000000000003B"
+			tasks: [{
+				id: "000000000000010C"
+				type: "checkmark"
+			}]
+		}
+		{
+			x: 7.5d
+			y: -3.0d
+			description: ["蜘蛛网只能用剑采集，这使得它成为一种令人烦恼的建筑材料。一旦破坏，蜘蛛网会掉落其残余物，即线。"]
+			dependencies: ["000000000000003B"]
+			id: "000000000000003D"
+			tasks: [{
+				id: "000000000000003E"
+				type: "item"
+				item: "minecraft:string"
+			}]
+			rewards: [{
+				id: "080FCB383F082C29"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 9.0d
+			y: 1.5d
+			description: ["功能方块是一种会用于大量配方中的方块。凭借其功能性，它能帮助其他方块发挥作用。它本身并不能单独做任何事情，仅用于合成。"]
+			dependencies: [
+				"0000000000000036"
+				"000000000000001B"
+				"0000000000000045"
+			]
+			id: "0000000000000041"
+			tasks: [{
+				id: "0000000000000042"
+				type: "item"
+				item: "kubejs:function"
+			}]
+			rewards: [{
+				id: "79CAD0080389C5E1"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			icon: "botania:mossy_livingrock_bricks"
+			x: 7.5d
+			y: 1.5d
+			description: ["你可以用这些活岩制作苔藓版本，这样配方更酷，外观也更棒。"]
+			dependencies: ["0000000000000048"]
+			id: "0000000000000045"
+			tasks: [
+				{
+					id: "0000000000000046"
+					type: "item"
+					item: "botania:mossy_livingrock_bricks"
+				}
+				{
+					id: "0000000000000047"
+					type: "item"
+					item: "botania:mossy_livingrock_bricks_slab"
+				}
+			]
+			rewards: [{
+				id: "6988CE7AE7983001"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 6.0d
+			y: 1.5d
+			description: ["你现在可以访问各种不同的种子，可以开始建农场，但目前只有一个水源，所以暂时不是优先事项。"]
+			dependencies: ["0000000000000036"]
+			id: "0000000000000048"
+			tasks: [{
+				id: "0000000000000049"
+				type: "item"
+				item: "minecraft:wheat_seeds"
+			}]
+			rewards: [{
+				id: "6786D9D9E45F50F6"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 9.0d
+			y: -3.0d
+			description: ["净化堆肥箱似乎产生了有趣的效果。方块的功能略有变化。现在插入可食用物品时，它会产出肥料。"]
+			dependencies: ["000000000000003D"]
+			id: "000000000000004A"
+			tasks: [{
+				id: "000000000000004B"
+				type: "item"
+				item: "waterstrainer:worm_bin"
+			}]
+			rewards: [{
+				id: "4D7641B7C3D8A9B5"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			title: "肥料"
+			x: 9.0d
+			y: -1.5d
+			description: ["这种肥料用途广泛，可用于种植。它还能用来提取物品。或许你可以把它涂在渔网上，从里面提取矿物。"]
+			dependencies: ["000000000000004A"]
+			id: "000000000000004C"
+			tasks: [{
+				id: "000000000000004D"
+				type: "item"
+				item: "waterstrainer:fertilizer"
+				count: 4L
+			}]
+			rewards: [{
+				id: "1B87259C1C276410"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 10.5d
+			y: -1.5d
+			description: ["使用肥料可以制作网格。制作过滤器需要以下材料。"]
+			dependencies: ["000000000000004C"]
+			id: "0000000000000050"
+			tasks: [{
+				id: "0000000000000051"
+				type: "item"
+				item: "waterstrainer:string_mesh"
+			}]
+			rewards: [{
+				id: "3F811E4DD3AAECC4"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 10.5d
+			y: 0.0d
+			description: ["将此物品放入过滤器底座中即可使其生效。该物品会消耗殆尽，因此需要制作更多。它有 800 次使用次数，损坏后将需要另一个替换。"]
+			dependencies: ["0000000000000050"]
+			id: "0000000000000052"
+			tasks: [{
+				id: "0000000000000053"
+				type: "item"
+				item: {
+					id: "waterstrainer:strainer_survivalist"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "2626A65F8663EFE5"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 10.5d
+			y: 1.5d
+			shape: "square"
+			description: ["这是过滤器的底座，将其置于流动水源或静止水源下方即可使用（当然需要搭配过滤器）。与过滤器不同，此物品不会被破坏。你稍后可以自动化这个过程。"]
+			dependencies: [
+				"0000000000000041"
+				"0000000000000052"
+			]
+			size: 1.25d
+			id: "0000000000000054"
+			tasks: [{
+				id: "0000000000000055"
+				type: "item"
+				item: "waterstrainer:strainer_base"
+			}]
+			rewards: [
+				{
+					id: "7350C813DC6CD799"
+					type: "item"
+					item: "coins:coin_copper"
+				}
+				{
+					id: "320367F001705A7B"
+					type: "item"
+					item: "minecraft:iron_nugget"
+					count: 20
+				}
+			]
+		}
+		{
+			x: 7.5d
+			y: -1.5d
+			description: ["有了这根线，你应该能合成羊毛了。我想你肯定能睡得着，不如用它做个床吧。"]
+			dependencies: ["000000000000003D"]
+			id: "0000000000000059"
+			tasks: [{
+				id: "000000000000005A"
+				type: "item"
+				item: "minecraft:white_bed"
+			}]
+			rewards: [
+				{
+					id: "00000000000000F3"
+					type: "command"
+					title: "将时间设置为夜晚的命令"
+					command: "/time set night"
+					player_command: false
+				}
+				{
+					id: "2304970EF397DCF3"
+					type: "item"
+					item: "coins:coin_copper"
+				}
+			]
+		}
+		{
+			x: 1.5d
+			y: 1.5d
+			description: ["把花瓣放下来，用骨粉催熟，就能复制花瓣。等有剪刀了，还能得到花朵的高大变种，能转换成4个花瓣。厉害吧？"]
+			dependencies: ["0000000000000027"]
+			id: "00000000000000DD"
+			tasks: [{
+				id: "00000000000000DE"
+				type: "checkmark"
+				title: "复制花瓣的配方如下："
+			}]
+		}
+		{
+			x: 4.5d
+			y: 1.5d
+			description: ["木制漏斗是原版漏斗的廉价替代品。它将用于前期自动化。"]
+			dependencies: ["0000000000000019"]
+			id: "00000000000000DF"
+			tasks: [{
+				id: "00000000000000E0"
+				type: "item"
+				item: "woodenhopper:wooden_hopper"
+			}]
+			rewards: [{
+				id: "4D6F52E3AC407F69"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 4.5d
+			y: -1.5d
+			description: ["你可以通过储物抽屉存储1种物品的多种数量，配方简单，是批量存储物品的理想方案。"]
+			dependencies: ["0000000000000019"]
+			id: "0000000000000111"
+			tasks: [{
+				id: "0000000000000112"
+				type: "item"
+				item: "storagedrawers:oak_full_drawers_1"
+			}]
+			rewards: [{
+				id: "40DBFC3DE04436A4"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 3.0d
+			y: -1.5d
+			description: ["你知道吗，树叶可以合成苹果。这是一种很不错的平衡获取方式，因为它们很少从树上掉落。"]
+			dependencies: ["0000000000000011"]
+			id: "0000000000000113"
+			tasks: [{
+				id: "0000000000000114"
+				type: "item"
+				item: "minecraft:apple"
+			}]
+			rewards: [{
+				id: "63E3161221265964"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 9.0d
+			y: 0.0d
+			description: ["工作台可以访问相邻的箱子。所以如果箱子放在工作台旁边，它就能从里面取出配方所需的材料。这被认为是一种非常有效的早期游戏存储系统。"]
+			dependencies: ["000000000000001B"]
+			id: "34292D51819099D4"
+			tasks: [{
+				id: "6100F7F64D6389F9"
+				type: "item"
+				item: "craftingstation:crafting_station"
+			}]
+		}
+	]
+}

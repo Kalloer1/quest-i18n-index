@@ -1,0 +1,1073 @@
+# AI 初翻，未人工校对
+{
+	id: "0000000000000058"
+	group: ""
+	order_index: 1
+	filename: "chapter_2"
+	title: "第二章"
+	icon: "elementalcraft:whiterock"
+	default_quest_shape: "rsquare"
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: 0.0d
+			y: 0.0d
+			shape: "square"
+			description: ["用滤水器收集到的矿物，可以制作成铁锭。一种稳定的合成材料。"]
+			dependencies: ["0000000000000054"]
+			size: 1.25d
+			id: "000000000000005B"
+			tasks: [{
+				id: "000000000000005C"
+				type: "item"
+				item: "minecraft:iron_ingot"
+			}]
+			rewards: [{
+				id: "2E2340E579733892"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 0.0d
+			y: -1.5d
+			description: ["铁刀可用于造成伤害，并从特定方块处获取次要掉落物。"]
+			dependencies: ["000000000000005B"]
+			id: "000000000000005D"
+			tasks: [{
+				id: "000000000000005E"
+				type: "item"
+				item: {
+					id: "farmersdelight:iron_knife"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "0965A6E9B2B11972"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 0.0d
+			y: -3.0d
+			description: ["有了刀，你现在就能从草里获得新材料了。稻草有几率掉落，是一种相当稳定的材料。"]
+			dependencies: ["000000000000005D"]
+			id: "000000000000005F"
+			tasks: [{
+				id: "0000000000000060"
+				type: "item"
+				title: "干草块"
+				item: "farmersdelight:straw"
+				count: 4L
+			}]
+			rewards: [{
+				id: "148611534AF93119"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: -1.5d
+			y: -3.0d
+			description: ["这个过滤器能从水中提取种子，让你能开始种植，获得充足的食物。不过，你需要一些蠕虫来让这个过滤器工作。你应该能从堆肥箱里弄到一些蠕虫。"]
+			dependencies: [
+				"000000000000005F"
+				"0000000000000063"
+			]
+			id: "0000000000000061"
+			tasks: [{
+				id: "0000000000000062"
+				type: "item"
+				item: {
+					id: "waterstrainer:strainer_fisherman"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "16433C29231C51EA"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			icon: "botania:lime_mystical_flower"
+			x: -1.5d
+			y: -1.5d
+			description: ["石灰色的花瓣非常鲜艳。这或许能派上用场。如果能用这个造个过滤器，也许能收集到新材料。"]
+			dependencies: ["000000000000005B"]
+			id: "0000000000000063"
+			tasks: [
+				{
+					id: "0000000000000064"
+					type: "item"
+					title: "神秘青柠花瓣"
+					item: "botania:lime_petal"
+					count: 4L
+				}
+				{
+					id: "0000000000000073"
+					type: "item"
+					item: "botania:lime_mystical_flower"
+					count: 2L
+				}
+			]
+			rewards: [{
+				id: "0F04C84A932C9A22"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			title: "获取水源"
+			x: -1.5d
+			y: 0.0d
+			description: ["你只有一个水源，为什么不再生成一个，获得无限水源呢？你可以净化浅蓝色花瓣块，它会释放出内部的水。净化需要一些时间，请耐心等待。"]
+			dependencies: ["000000000000005B"]
+			id: "0000000000000065"
+			tasks: [{
+				id: "0000000000000066"
+				type: "item"
+				item: "botania:light_blue_petal_block"
+			}]
+			rewards: [{
+				id: "364E3F3A8BE52326"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: -3.0d
+			y: 0.0d
+			description: ["用你从过滤器里提取的铁，来做一个更耐用的桶怎么样？"]
+			dependencies: ["0000000000000065"]
+			id: "0000000000000074"
+			tasks: [{
+				id: "0000000000000075"
+				type: "item"
+				item: "minecraft:water_bucket"
+			}]
+			rewards: [{
+				id: "552AF71BD7A9D9ED"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: -3.0d
+			y: -3.0d
+			description: ["我们这里有个叫 Spice of Life 的模组，它会鼓励你吃不同类型的食物。我知道你无法通过杀死生物获得合适的食物，但至少应该尝试种植作物和制作不同类型的食物。里面还有 Farmer's Delight 的食谱，你可能也想看看。"]
+			dependencies: ["0000000000000061"]
+			id: "0000000000000086"
+			tasks: [{
+				id: "2974DB6ACBDF90E2"
+				type: "checkmark"
+				title: "食物之书"
+			}]
+			rewards: [
+				{
+					id: "34A29F702A4AF675"
+					type: "item"
+					item: "solcarrot:food_book"
+				}
+				{
+					id: "4C0E555D6ED69E91"
+					type: "item"
+					item: "fd_cookbook:cook_book"
+				}
+			]
+		}
+		{
+			x: -4.5d
+			y: -3.0d
+			description: ["篝火能发光、像熔炉一样烹饪食物和物品，还能放在烹饪锅下面。用途广泛。"]
+			dependencies: ["0000000000000086"]
+			id: "000000000000008E"
+			tasks: [{
+				id: "000000000000008F"
+				type: "item"
+				item: "minecraft:campfire"
+			}]
+			rewards: [{
+				id: "33DF493A74B6571A"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: -6.0d
+			y: -3.0d
+			description: ["烹饪锅放置在篝火上可以制作不同类型的食物。你主要需要给它提供碗，但也有一些配方需要不同的材料。"]
+			dependencies: ["000000000000008E"]
+			id: "0000000000000090"
+			tasks: [{
+				id: "0000000000000091"
+				type: "item"
+				item: "farmersdelight:cooking_pot"
+			}]
+			rewards: [{
+				id: "01B127046411AEAB"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: -1.5d
+			y: -4.5d
+			description: ["卷心菜是大多数食物配方都会用到的作物，所以建议种植。和土豆/胡萝卜不同，种植卷心菜需要用到种子。"]
+			dependencies: ["0000000000000061"]
+			dependency_requirement: "one_completed"
+			id: "0000000000000092"
+			tasks: [{
+				id: "0000000000000093"
+				type: "item"
+				item: "farmersdelight:wild_cabbages"
+			}]
+			rewards: [{
+				id: "19EC2F837D4FDBB6"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: -1.5d
+			y: -6.0d
+			description: ["洋葱和土豆一样，可以种植在农田里并收获。它们是给食物增添风味和制作不同类型食物的必需品。"]
+			dependencies: ["0000000000000092"]
+			dependency_requirement: "one_completed"
+			id: "0000000000000094"
+			tasks: [{
+				id: "0000000000000095"
+				type: "item"
+				item: "farmersdelight:wild_onions"
+			}]
+			rewards: [{
+				id: "0258E918E607138B"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 0.0d
+			y: -6.0d
+			description: ["胡萝卜作为普通的农作物，也有野生变种。你无需寻找村庄偷胡萝卜，只需用水浇灌即可。"]
+			dependencies: [
+				"0000000000000094"
+				"0000000000000098"
+			]
+			dependency_requirement: "one_completed"
+			id: "0000000000000096"
+			tasks: [{
+				id: "0000000000000097"
+				type: "item"
+				item: "farmersdelight:wild_carrots"
+			}]
+			rewards: [{
+				id: "5E171F2FF480CE08"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 0.0d
+			y: -4.5d
+			description: ["人人都爱土豆。你可以通过滤水器获得不同品种的土豆，和原版一样，你也可以种植这种作物。"]
+			dependencies: ["0000000000000092"]
+			dependency_requirement: "one_completed"
+			id: "0000000000000098"
+			tasks: [{
+				id: "0000000000000099"
+				type: "item"
+				item: "farmersdelight:wild_potatoes"
+			}]
+			rewards: [{
+				id: "56B87A0EBF43401B"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: -3.0d
+			y: -6.0d
+			description: ["稻子意外地不能种植。你可以用骨粉繁殖，但它不会生长。用途也很多，配方在JEI里查。"]
+			dependencies: [
+				"0000000000000094"
+				"000000000000009C"
+			]
+			dependency_requirement: "one_completed"
+			id: "000000000000009A"
+			tasks: [{
+				id: "000000000000009B"
+				type: "item"
+				item: "farmersdelight:wild_rice"
+			}]
+			rewards: [{
+				id: "30B5F2430582BCC8"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: -3.0d
+			y: -4.5d
+			description: ["没人喜欢甜菜根。虽然它对身体很好，但事实是没人会生吃甜菜根。你想种的话可以，但我还是不想种。"]
+			dependencies: ["0000000000000092"]
+			dependency_requirement: "one_completed"
+			id: "000000000000009C"
+			tasks: [{
+				id: "000000000000009D"
+				type: "item"
+				item: "farmersdelight:wild_beetroots"
+			}]
+			rewards: [{
+				id: "319025E4DB5595BE"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 0.0d
+			y: -7.5d
+			description: ["番茄藤可以长在草地或农田上。成熟后它们会产出番茄。它们还会掉落种子，供你繁殖这些作物。"]
+			dependencies: [
+				"00000000000000A0"
+				"0000000000000096"
+			]
+			dependency_requirement: "one_completed"
+			id: "000000000000009E"
+			tasks: [{
+				id: "000000000000009F"
+				type: "item"
+				item: "farmersdelight:wild_tomatoes"
+			}]
+			rewards: [{
+				id: "3AE2D0273602859A"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: -1.5d
+			y: -7.5d
+			description: ["棕色蘑菇群是一个方块内的蘑菇群。你暂时无法放置它，但可以用砧板来获取棕色蘑菇。"]
+			dependencies: ["0000000000000094"]
+			dependency_requirement: "one_completed"
+			id: "00000000000000A0"
+			tasks: [{
+				id: "00000000000000A1"
+				type: "item"
+				item: "farmersdelight:brown_mushroom_colony"
+			}]
+			rewards: [{
+				id: "3496E96751DF45EE"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: -3.0d
+			y: -7.5d
+			description: ["红色蘑菇群落在砧板上切开后会给红色蘑菇，你可以用它来制作许多不同类型的红色蘑菇食物。"]
+			dependencies: [
+				"00000000000000A0"
+				"000000000000009A"
+			]
+			dependency_requirement: "one_completed"
+			id: "00000000000000A2"
+			tasks: [{
+				id: "00000000000000A3"
+				type: "item"
+				item: "farmersdelight:red_mushroom_colony"
+			}]
+			rewards: [{
+				id: "7B3AC482787ED718"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: -3.0d
+			y: -1.5d
+			description: ["食品储藏室其实就是桶，可以用来存放物品。它们有不同的木材种类，但目前你只能使用橡木。那不妨做一个橡木食品储藏室吧？"]
+			dependencies: ["0000000000000086"]
+			id: "00000000000000A6"
+			tasks: [{
+				id: "00000000000000A7"
+				type: "item"
+				item: "farmersdelight:oak_pantry"
+			}]
+			rewards: [{
+				id: "334DCA000E52B9F1"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: -4.5d
+			y: -1.5d
+			description: ["砧板可以用来切割许多材料。你当然也需要一把刀。它放在食品储藏室里也很好看。"]
+			dependencies: ["00000000000000A6"]
+			id: "00000000000000A8"
+			tasks: [{
+				id: "00000000000000A9"
+				type: "item"
+				item: "farmersdelight:cutting_board"
+			}]
+			rewards: [{
+				id: "62B9390437277CDC"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			title: "元素百科全书（Elementopedia）"
+			x: 1.5d
+			y: 0.0d
+			description: ["这是一本能帮助你推进 ElementalCraft 进程的书籍。该模组提供了许多可能性，如法术、附魔等。"]
+			dependencies: ["000000000000005B"]
+			id: "00000000000000AB"
+			tasks: [{
+				id: "00000000000000AE"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "00000000000000AD"
+				type: "item"
+				item: {
+					id: "patchouli:guide_book"
+					Count: 1b
+					tag: {
+						"patchouli:book": "elementalcraft:element_book"
+					}
+				}
+			}]
+		}
+		{
+			x: 4.5d
+			y: -1.5d
+			description: ["将元素放置在该提取器上，便会开始缓慢消耗上方的元素。元素不会耗尽，所以别担心，可以移除提取器。"]
+			dependencies: [
+				"00000000000000B3"
+				"00000000000000E3"
+			]
+			id: "00000000000000AF"
+			tasks: [{
+				id: "00000000000000B0"
+				type: "item"
+				item: "elementalcraft:extractor"
+			}]
+			rewards: [{
+				id: "7EC0AA001F168CE5"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 4.5d
+			y: -3.0d
+			description: ["这个小型元素容器正如其名，用于存放元素。理想情况下，应将元素提取器放置在该容器上方，以便开始使用这些元素。"]
+			dependencies: [
+				"00000000000000B3"
+				"00000000000000E5"
+			]
+			id: "00000000000000B1"
+			tasks: [{
+				id: "00000000000000E2"
+				type: "item"
+				item: "elementalcraft:tank_small"
+			}]
+			rewards: [{
+				id: "0A128A1FCEFCD6E7"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 3.0d
+			y: -3.0d
+			description: ["在熔炉中熔炼火花会将其分解并重组，产出一个元素源。放置它们会给你随机元素。试着集齐全部4种。"]
+			dependencies: ["00000000000000B5"]
+			id: "00000000000000B3"
+			tasks: [{
+				id: "00000000000000B4"
+				type: "item"
+				item: "elementalcraft:source"
+			}]
+			rewards: [{
+				id: "5A1C2BCD15423D5F"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 3.0d
+			y: -1.5d
+			description: ["用滤水器制作的水和从花朵获得的粘土与花瓣，可以反应生成火花。这将帮助你掌握不同的元素。"]
+			dependencies: ["00000000000000AB"]
+			id: "00000000000000B5"
+			tasks: [{
+				id: "00000000000000B6"
+				type: "item"
+				item: "botania:spark"
+			}]
+			rewards: [{
+				id: "23002A3A725A1A45"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 3.0d
+			y: 0.0d
+			description: ["你还可以从滤水器中获得一种不同的矿物，叫做惰性碎片。这种物品与主要元素高度反应，如果你想控制它们，可能会非常有用。"]
+			dependencies: ["00000000000000AB"]
+			id: "00000000000000B9"
+			tasks: [{
+				id: "00000000000000BA"
+				type: "item"
+				item: "elementalcraft:inertcrystal"
+			}]
+			rewards: [{
+				id: "070F5F7D6FB7CAEB"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 0.0d
+			y: 1.5d
+			description: ["使用铁等不同的材料，你可以制作出比之前更坚固的绳索网版本。"]
+			dependencies: ["000000000000005B"]
+			id: "00000000000000BB"
+			tasks: [{
+				id: "00000000000000BC"
+				type: "item"
+				item: "waterstrainer:iron_mesh"
+			}]
+			rewards: [{
+				id: "74FD235F558DA40F"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			title: "稻草人（Straw Bale）"
+			x: -1.5d
+			y: 3.0d
+			description: ["将稻草压缩成方块能得到更坚固的材料，但功能相同。这对升级版过滤器可能很有用"]
+			dependencies: ["00000000000000BB"]
+			id: "00000000000000C1"
+			tasks: [{
+				id: "00000000000000C2"
+				type: "item"
+				item: "farmersdelight:straw_bale"
+				count: 4L
+			}]
+			rewards: [{
+				id: "7664FF7F106581BB"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			title: "石灰色花瓣方块"
+			x: 1.5d
+			y: 3.0d
+			description: ["和压缩稻草一样，压缩花瓣也能达到同样的效果，而且效率更高。用这个你应该能造出更结实的过滤器。"]
+			dependencies: ["00000000000000BB"]
+			id: "00000000000000C3"
+			tasks: [{
+				id: "00000000000000C4"
+				type: "item"
+				item: "botania:lime_petal_block"
+				count: 4L
+			}]
+			rewards: [{
+				id: "2EA6DBEB45ACD52C"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 0.0d
+			y: 3.0d
+			description: ["升级版的渔夫滤网会好得多。它更耐用，意味着能获得更多食物。"]
+			dependencies: [
+				"00000000000000BB"
+				"00000000000000C1"
+				"00000000000000C3"
+			]
+			id: "00000000000000C5"
+			tasks: [{
+				id: "00000000000000C6"
+				type: "item"
+				item: {
+					id: "waterstrainer:strainer_fisherman_solid"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "36953AEAE39AE1C9"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 1.5d
+			y: 1.5d
+			description: ["有了更坚固的网格，你可以造一个更耐用的过滤器。这对自动化很有用。不过，这需要用到你发现的新矿物——惰性矿物。"]
+			dependencies: [
+				"00000000000000BB"
+				"00000000000000B9"
+			]
+			id: "00000000000000C7"
+			tasks: [{
+				id: "00000000000000C8"
+				type: "item"
+				item: {
+					id: "waterstrainer:strainer_survivalist_solid"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "7A564BD35115680F"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 3.0d
+			y: 1.5d
+			description: ["这是一个核心，用于制作你可能想建造的交换器。交换器在建造时会变得非常有用。"]
+			dependencies: ["00000000000000B9"]
+			id: "00000000000000CB"
+			tasks: [{
+				id: "00000000000000CC"
+				type: "item"
+				item: "exchangers:exchanger_core_tier1"
+			}]
+			rewards: [{
+				id: "5FEDF087AF79BEB8"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 4.5d
+			y: 1.5d
+			description: ["木制交换器是第一级交换器，你可以用它升级到更高级的交换器，以便一次性交换更多方块。"]
+			dependencies: ["00000000000000CB"]
+			id: "00000000000000CD"
+			tasks: [{
+				id: "00000000000000CE"
+				type: "item"
+				item: {
+					id: "exchangers:wooden_exchanger"
+					Count: 1b
+					tag: {
+						mode: 0
+						fuzzyPlacementChance: 100
+						directionalPlacement: 0b
+						forceDropItems: 0b
+						fuzzyPlacement: 0b
+						voidItems: 0b
+						range: 0
+						Damage: 0
+						blockstate: {
+							Name: "minecraft:air"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "4722605D46189289"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 6.0d
+			y: 1.5d
+			description: ["使用木制交换器和一些石头，你可以升级交换器以获得更好的一个。这个石制交换器能够一次性交换更多方块。前往设置更改按键绑定，以改变你交换的区域。"]
+			dependencies: ["00000000000000CD"]
+			id: "00000000000000CF"
+			tasks: [{
+				id: "00000000000000D0"
+				type: "item"
+				item: {
+					id: "exchangers:stone_exchanger"
+					Count: 1b
+					tag: {
+						mode: 0
+						fuzzyPlacementChance: 100
+						directionalPlacement: 0b
+						forceDropItems: 0b
+						fuzzyPlacement: 0b
+						voidItems: 0b
+						range: 0
+						Damage: 0
+						blockstate: {
+							Name: "minecraft:air"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "39524153CAD73120"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 3.0d
+			y: 3.0d
+			description: ["一级核心的升级版。这将帮助你获得更高级的兑换器。你可能还会在其他合成配方中看到核心。"]
+			dependencies: ["00000000000000CB"]
+			id: "00000000000000D1"
+			tasks: [{
+				id: "00000000000000D2"
+				type: "item"
+				item: "exchangers:exchanger_core_tier2"
+			}]
+			rewards: [{
+				id: "6D8E1F143195A679"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 4.5d
+			y: 3.0d
+			description: ["石兑换器加一些铁可以制作成铁兑换器。它能兑换半径7格内的方块，数量相当可观。如果还不会使用，先对着要兑换的方块按Shift+右键，然后再右键即可。"]
+			dependencies: ["00000000000000D1"]
+			id: "00000000000000D9"
+			tasks: [{
+				id: "00000000000000DA"
+				type: "item"
+				item: {
+					id: "exchangers:iron_exchanger"
+					Count: 1b
+					tag: {
+						mode: 0
+						fuzzyPlacementChance: 100
+						directionalPlacement: 0b
+						forceDropItems: 0b
+						fuzzyPlacement: 0b
+						voidItems: 0b
+						range: 0
+						Damage: 0
+						blockstate: {
+							Name: "minecraft:air"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "366F39CA1C8E8EC2"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 4.5d
+			y: 0.0d
+			description: ["用一些花瓣就能装住这个惰性晶体。这样能增强稳定性，降低威力，让你能控制更多物品。"]
+			dependencies: ["00000000000000B9"]
+			id: "00000000000000E3"
+			tasks: [{
+				id: "00000000000000E4"
+				type: "item"
+				item: "elementalcraft:containedcrystal"
+			}]
+			rewards: [{
+				id: "63B330871E89008C"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			title: "受损的元素管道"
+			x: 6.0d
+			y: -1.5d
+			description: ["这些线缆能将元素从一个地方传输到另一个地方。右键点击它们，即可轻松设置元素的输出方向。"]
+			dependencies: ["00000000000000E3"]
+			id: "00000000000000E5"
+			tasks: [{
+				id: "00000000000000E6"
+				type: "item"
+				item: "elementalcraft:elementpipe_impaired"
+				count: 4L
+			}]
+			rewards: [{
+				id: "07749CD9F1854926"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 4.5d
+			y: -4.5d
+			description: ["将惰性晶体与元素融合，可获得该惰性晶体的元素变体。请在 Elementalcraft 手册中查找支持信息。"]
+			dependencies: ["00000000000000B1"]
+			id: "00000000000000E7"
+			tasks: [{
+				id: "00000000000000E8"
+				type: "item"
+				item: "elementalcraft:infuser"
+				consume_items: false
+			}]
+			rewards: [{
+				id: "206E29097394C591"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 3.0d
+			y: -4.5d
+			description: ["将火元素提取并与惰性晶体融合，可得到惰性火晶体。这可用于许多合成配方。"]
+			dependencies: ["00000000000000E7"]
+			dependency_requirement: "one_completed"
+			id: "00000000000000E9"
+			tasks: [{
+				id: "00000000000000EA"
+				type: "item"
+				item: "elementalcraft:firecrystal"
+			}]
+			rewards: [{
+				id: "5C131DF2EBECF913"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 1.5d
+			y: -6.0d
+			description: ["将惰性晶体注入空气，获得一个空气注入惰性碎片。此物品能控制空气，因此会用于许多配方中。"]
+			dependencies: [
+				"00000000000000EF"
+				"00000000000000F1"
+			]
+			dependency_requirement: "one_completed"
+			id: "00000000000000ED"
+			tasks: [{
+				id: "00000000000000EE"
+				type: "item"
+				item: "elementalcraft:aircrystal"
+			}]
+			rewards: [{
+				id: "370C78B5E6E35C78"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 1.5d
+			y: -4.5d
+			description: ["你可以将惰性碎片与水元素融合，得到水浸惰性碎片。该物品与水反应剧烈，并具有操控水的能力。"]
+			dependencies: ["00000000000000E9"]
+			dependency_requirement: "one_completed"
+			id: "00000000000000EF"
+			tasks: [{
+				id: "00000000000000F0"
+				type: "item"
+				item: "elementalcraft:watercrystal"
+			}]
+			rewards: [{
+				id: "1BC4920EB8337E6A"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 3.0d
+			y: -6.0d
+			description: ["将土元素注入惰性晶体，会生成土元素注入变种。这可用于许多合成配方，并与其他模组兼容。"]
+			dependencies: ["00000000000000E9"]
+			dependency_requirement: "one_completed"
+			id: "00000000000000F1"
+			tasks: [{
+				id: "00000000000000F2"
+				type: "item"
+				item: "elementalcraft:earthcrystal"
+			}]
+			rewards: [{
+				id: "1A0E3F8A56D434C8"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 6.0d
+			y: -4.5d
+			description: ["石头经土元素浸染后会变成白色岩石。石头的价值随之提升，成为一种更优质、更稳定的材料。"]
+			dependencies: ["00000000000000E7"]
+			dependency_requirement: "one_completed"
+			id: "00000000000000FA"
+			tasks: [{
+				id: "00000000000000FB"
+				type: "item"
+				item: "elementalcraft:whiterock"
+			}]
+			rewards: [{
+				id: "43663C739876B2DE"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 6.0d
+			y: -3.0d
+			description: ["融入了火元素的普通玻璃会产出焦黑玻璃。虽然它是一种外观很酷的建筑材料，但它可能还有一些额外的用途。"]
+			dependencies: ["00000000000000FA"]
+			dependency_requirement: "one_completed"
+			id: "00000000000000FC"
+			tasks: [{
+				id: "00000000000000FD"
+				type: "item"
+				item: "elementalcraft:burnt_glass"
+			}]
+			rewards: [{
+				id: "6E10678EE7D318DC"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 7.5d
+			y: -4.5d
+			description: ["将铁锭注入水元素似乎会产生有趣的结果。这块浸湿的锭子似乎在散发魔法能量。或许可以想办法加以利用。"]
+			dependencies: ["00000000000000FA"]
+			dependency_requirement: "one_completed"
+			id: "00000000000000FE"
+			tasks: [{
+				id: "00000000000000FF"
+				type: "item"
+				item: "elementalcraft:drenched_iron_ingot"
+			}]
+			rewards: [{
+				id: "62D6190FAAFB96A6"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 7.5d
+			y: -3.0d
+			description: ["将线注入空气元素可以使其变轻，你可以利用这一点来进行制作。"]
+			dependencies: [
+				"00000000000000FC"
+				"00000000000000FE"
+			]
+			dependency_requirement: "one_completed"
+			id: "0000000000000100"
+			tasks: [{
+				id: "0000000000000101"
+				type: "item"
+				item: "elementalcraft:air_silk"
+			}]
+			rewards: [{
+				id: "1EA9FB5FBAD005EB"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			title: "反射器"
+			x: 6.0d
+			y: -6.0d
+			description: ["反射镜可将太阳光反射到太阳能炊具上。将2个反射镜左右重叠放置可以加快进程。要试试吗？"]
+			dependencies: ["00000000000000E7"]
+			id: "0000000000000102"
+			tasks: [{
+				id: "0000000000000103"
+				type: "item"
+				item: "solarcooker:reflector"
+				count: 4L
+			}]
+			rewards: [{
+				id: "2B4886B8E94333BE"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: 6.0d
+			y: -7.5d
+			shape: "square"
+			description: ["太阳能炉是个超棒的工具。你可以在里面熔炼大多数物品（主要是食物），完全不需要燃料。反射镜能加快熔炼速度。"]
+			dependencies: ["0000000000000102"]
+			size: 1.25d
+			id: "0000000000000104"
+			tasks: [{
+				id: "0000000000000105"
+				type: "item"
+				item: "solarcooker:solar_cooker"
+			}]
+			rewards: [{
+				id: "3D9A37A55549CE17"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 1.5d
+			description: ["这个实用的物品是一把魔杖，可以帮助你一次性建造多个方块。当你想扩建基地或建造高大、长长的建筑时，不妨试试用它。"]
+			dependencies: ["000000000000005B"]
+			id: "007703FCBD52ED7C"
+			tasks: [{
+				id: "6B358817DE305AFC"
+				type: "item"
+				item: {
+					id: "constructionwand:iron_wand"
+					Count: 1b
+					tag: {
+						wand_options: { }
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "720FD3B7D3C068DE"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+		{
+			x: -4.5d
+			y: -4.5d
+			description: ["你可以制作不同品质的洒水壶，但我推荐铁洒水壶。手持洒水壶右键作物可以加速其生长。洒水壶需要用雨水填充，可以通过右键点击水源来实现。"]
+			dependencies: ["0000000000000086"]
+			id: "6C910A090594C14A"
+			tasks: [{
+				id: "2DDA883E26941DA0"
+				type: "item"
+				item: {
+					id: "watercan:watercan_iron"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "5B6C3260A13837D1"
+				type: "item"
+				item: "coins:coin_copper"
+			}]
+		}
+	]
+}
