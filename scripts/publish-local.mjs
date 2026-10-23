@@ -266,7 +266,7 @@ const lost = []
 {
   const tracked = new Set(
     execFileSync('git', ['ls-tree', '--name-only', 'HEAD', 'patches/'], { cwd: ROOT, encoding: 'utf8' })
-      .split('\n').map((x) => x.trim().replace(/^patches\//, '')).filter(Boolean),
+      .split('\n').map((x) => x.trim().replace(/^patches\//, '').replace(/\/$/, '')).filter(Boolean),
   )
   let cleaned = 0
   for (const slug of Object.keys(plan.bySlug)) {
