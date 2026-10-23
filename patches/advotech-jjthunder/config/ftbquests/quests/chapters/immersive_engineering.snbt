@@ -1,0 +1,748 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "immersive_engineering"
+	group: "15B7D13113591C63"
+	icon: {
+		Count: 1
+		id: "immersiveengineering:wirecutter"
+		tag: {
+			Damage: 0
+		}
+	}
+	id: "26CF5E4AA25C86B5"
+	order_index: 13
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"欢迎来到&6Immersive Engineering&r。一个让你建造巨大生锈的多方块模组，它们会占据你半个基地，并让你耳膜穿孔。"
+				""
+				"拿起你的&e锤子&r，阅读&d手册&r。你需要它来弄清楚第47块钢制脚手架该放在哪里才能让一切正常运转。"
+			]
+			id: "2027B602D63B7DA1"
+			subtitle: "沉浸在锈迹与喧嚣之中"
+			tasks: [
+				{
+					id: "6501D89588DFC276"
+					item: {
+						Count: 1
+						id: "immersiveengineering:hammer"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "14F6D6C9A35C731B"
+					item: "immersiveengineering:manual"
+					type: "item"
+				}
+			]
+			title: "&6&lImmersive Engineering&r"
+			x: -9.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["2027B602D63B7DA1"]
+			description: [
+				"建造一个 3x3x3 的 &cCoke Bricks&r 立方体，然后用锤子砸中心。"
+				""
+				"它会慢慢将&8煤炭&r炼成&7焦炭&r，并产生一种名为&e焦油油&r的有毒副产品。请不要饮用。"
+			]
+			id: "403A261F0E1132F1"
+			subtitle: "最初，有一个立方体存在"
+			tasks: [{
+				count: 27L
+				id: "125628899CD16E59"
+				item: { Count: 27, id: "immersiveengineering:cokebrick" }
+				type: "item"
+			}]
+			title: "&c&l焦炭炉&r"
+			x: -2.5d
+			y: -3.0d
+		}
+		{
+			dependencies: [
+				"2027B602D63B7DA1"
+				"286808049B4920CF"
+			]
+			description: [
+				"使用 &f铁&r 和 &7焦煤&r 来生产 &8钢&r 和 &c炉渣&r。"
+				""
+				"因为是基础版，你根本&c无法用漏斗自动化&r。接下来的五个小时，好好享受照顾这个3x3x3的砖块加热器吧。"
+			]
+			id: "7AF716D795AD7224"
+			subtitle: "这里变得越来越热了"
+			tasks: [{
+				count: 27L
+				id: "5D2F4CE03BBB1D3C"
+				item: { Count: 27, id: "immersiveengineering:blastbrick" }
+				type: "item"
+			}]
+			title: "&c&l原始高炉&r"
+			x: 0.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["2027B602D63B7DA1"]
+			description: [
+				"一个2x2x2的小烤箱，能将两种金属熔炼成&e简易合金&r。"
+				""
+				"它很慢，效率低下，一旦解锁了更好的机器你就会完全放弃它。但现在，它是你唯一的朋友。"
+			]
+			id: "21AAE50764A9C13A"
+			subtitle: "宝宝的第一个合金锭"
+			tasks: [{
+				count: 8L
+				id: "3FA5B1B4824A4681"
+				item: { Count: 8, id: "immersiveengineering:alloybrick" }
+				type: "item"
+			}]
+			title: "&e&l合金熔炉&r"
+			x: -2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["403A261F0E1132F1"]
+			description: [
+				"比普通&8煤炭&r更高效的选择。"
+				""
+				"生产&8钢&r绝对必备。现在开始囤积吧，否则以后只能看着空箱子发呆。"
+			]
+			id: "286808049B4920CF"
+			subtitle: "Burnout"
+			tasks: [
+				{
+					id: "3DDCB9B5F84C9F30"
+					item: "immersiveengineering:coal_coke"
+					type: "item"
+				}
+				{
+					id: "55DF6D3611686ECA"
+					item: "tfmg:coal_coke_block"
+					type: "item"
+				}
+			]
+			title: "&8&l煤炭焦炭&r"
+			x: -1.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["7AF716D795AD7224"]
+			description: [
+				"整个模组的支柱。如果没有&8钢&r，你就一无所有。"
+				""
+				"准备好花大量时间等待金属在高炉中冶炼完成吧。"
+			]
+			id: "74BE918AD4437111"
+			subtitle: "真正的铁器时代已经到来"
+			tasks: [
+				{
+					id: "0C3371953E5962D3"
+					item: "immersiveengineering:ingot_steel"
+					type: "item"
+				}
+				{
+					id: "5BB897C0E94321A7"
+					item: "immersiveengineering:storage_steel"
+					type: "item"
+				}
+			]
+			title: "&8&l钢&r"
+			x: 2.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["403A261F0E1132F1"]
+			description: [
+				"一种难闻的恶臭油，是你在 &cCoke Oven&r 中获得的副产品。"
+				""
+				"你需要它来处理木材，这样你在建造那些摇摇欲坠的工业建筑时，木材就不会腐烂。"
+			]
+			id: "5663A7AB47B430DB"
+			subtitle: "上油完成..."
+			tasks: [{
+				id: "02702B5FCC23FA74"
+				item: "immersiveengineering:creosote_bucket"
+				type: "item"
+			}]
+			title: "&e&lCreosote Oil&r"
+			x: -2.5d
+			y: -4.5d
+		}
+		{
+			dependencies: ["5663A7AB47B430DB"]
+			description: [
+				"将一些 &eCreosote Oil&r 涂抹在普通木板上，使其变为 &6Treated&r。"
+				""
+				"味道可能很臭，但你会用它来干几乎所有事情。"
+			]
+			id: "6BFC8D3DA310652A"
+			subtitle: "...并且准备就绪，可以出发了"
+			tasks: [{
+				count: 8L
+				id: "299589C11D70D923"
+				item: { Count: 8, id: "immersiveengineering:treated_wood_horizontal" }
+				type: "item"
+			}]
+			title: "&6&l处理过的木材&r"
+			x: -2.5d
+			y: -6.0d
+		}
+		{
+			dependencies: ["6BFC8D3DA310652A"]
+			description: [
+				"给它提供 &b水&r、&c能量&r、泥土和种子，它就会以超快的速度神奇地生长作物。"
+				""
+				"告别你那庞大又卡顿的原版农场吧。这个玻璃管更胜一筹。"
+			]
+			id: "012893E69E808CF3"
+			subtitle: "瓶中的农场"
+			tasks: [{
+				id: "6C2241F417CB9CD3"
+				item: "immersiveengineering:cloche"
+				type: "item"
+			}]
+			title: "&a&l花园钟罩&r"
+			x: -4.0d
+			y: -7.0d
+		}
+		{
+			dependencies: ["7F0E6EDFD7B08806"]
+			description: [
+				"一台极其吵闹的机器，能将锭暴力压制成&e板&r、&6齿轮&r和&b电线&r。"
+				""
+				"你的耳膜永远不会原谅你。"
+			]
+			id: "3DE29A4FDF15668D"
+			subtitle: "挤压"
+			tasks: [{
+				advancement: "immersiveengineering:multiblocks/mb_metalpress"
+				criterion: ""
+				id: "7CDC11A4672B5E4D"
+				type: "advancement"
+			}]
+			title: "&7&l金属压制机&r"
+			x: -4.0d
+			y: -8.5d
+		}
+		{
+			dependencies: ["6BFC8D3DA310652A"]
+			description: [
+				"需要 &9Blueprints&r 才能使用的豪华工作台。"
+				""
+				"因为显然，要弄清楚怎么建造电线，需要一张蓝图和一个专用的工作区。"
+			]
+			id: "4ADF292A6FABD6EC"
+			subtitle: "花式桌子"
+			tasks: [{
+				id: "0BD31F05968CC22A"
+				item: "immersiveengineering:workbench"
+				type: "item"
+			}]
+			title: "&9&l工程师工作台&r"
+			x: -1.0d
+			y: -7.0d
+		}
+		{
+			dependencies: ["4ADF292A6FABD6EC"]
+			description: [
+				"制作工作台所需的魔法&9蓝图&r。"
+				""
+				"别弄丢了，否则你得从头开始制作。把它们安全地收在箱子里。"
+			]
+			id: "33009BBC462A56F9"
+			subtitle: "需要阅读理解能力才能完成"
+			tasks: [
+				{
+					id: "63228EBC5012DBA1"
+					item: {
+						Count: 1
+						id: "immersiveengineering:blueprint"
+						tag: {
+							blueprint: "electrode"
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "06E2D75B3C72DD27"
+					item: {
+						Count: 1
+						id: "immersiveengineering:blueprint"
+						tag: {
+							blueprint: "bannerpatterns"
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "6D08DCCE7785F788"
+					item: {
+						Count: 1
+						id: "immersiveengineering:blueprint"
+						tag: {
+							blueprint: "electronics"
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "5C7C2AAFD53825F5"
+					item: {
+						Count: 1
+						id: "immersiveengineering:blueprint"
+						tag: {
+							blueprint: "components"
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "1BDBD900D09784D7"
+					item: {
+						Count: 1
+						id: "immersiveengineering:blueprint"
+						tag: {
+							blueprint: "specialBullet"
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "4AF8273DA3CF4BAC"
+					item: {
+						Count: 1
+						id: "immersiveengineering:blueprint"
+						tag: {
+							blueprint: "bullet"
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "6D8C13A6AE771EEC"
+					item: {
+						Count: 1
+						id: "immersiveengineering:blueprint"
+						tag: {
+							blueprint: "molds"
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "&9&l蓝图&r"
+			x: -1.0d
+			y: -8.5d
+		}
+		{
+			dependencies: ["33009BBC462A56F9"]
+			description: [
+				"这些钢板决定了你的&7金属压机&r会产出什么。"
+				""
+				"替换它们来自动化生产&ePlates&r、&6Gears&r或&bWires&r。别不小心把它们掉进岩浆里。"
+			]
+			id: "511A2BF83E10896E"
+			subtitle: "塑造未来"
+			tasks: [
+				{
+					id: "425010F7EDD70AC2"
+					item: "immersiveengineering:mold_plate"
+					type: "item"
+				}
+				{
+					id: "550BA106726FF6B0"
+					item: "immersiveengineering:mold_gear"
+					type: "item"
+				}
+				{
+					id: "6E6EB29AC36E45E1"
+					item: "immersiveengineering:mold_rod"
+					type: "item"
+				}
+				{
+					id: "5E10BB2AAE661BE6"
+					item: "immersiveengineering:mold_bullet_casing"
+					type: "item"
+				}
+				{
+					id: "6617ABBD46E4D57F"
+					item: "immersiveengineering:mold_wire"
+					type: "item"
+				}
+				{
+					id: "3737A09E6E35CE21"
+					item: "immersiveengineering:mold_packing_4"
+					type: "item"
+				}
+				{
+					id: "5467D6FDF664873C"
+					item: "immersiveengineering:mold_packing_9"
+					type: "item"
+				}
+				{
+					id: "37C517249F79603B"
+					item: "immersiveengineering:mold_unpacking"
+					type: "item"
+				}
+			]
+			title: "&8&l压制模具&r"
+			x: -2.5d
+			y: -9.5d
+		}
+		{
+			dependencies: ["74BE918AD4437111"]
+			description: [
+				"本模组中几乎所有高级多方块结构的金属骨架。"
+				""
+				"你需要几百个。开始建造一个专门用于脚手架的工厂吧。"
+			]
+			id: "47D9241CAA4672A3"
+			subtitle: "骷髅"
+			tasks: [{
+				count: 6L
+				id: "5DAE965D57DCFFA5"
+				item: "immersiveengineering:steel_scaffolding_standard"
+				type: "item"
+			}]
+			title: "&8&l钢制脚手架&r"
+			x: 1.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["74BE918AD4437111"]
+			description: [
+				"被压扁的钢。你可以用锤子敲打它，或者用&7金属压床&r压制它。"
+				""
+				"我推荐用压路机，除非你喜欢得腕管综合征。"
+			]
+			id: "25958FF5911282EB"
+			subtitle: "扁平钢"
+			tasks: [{
+				id: "2A2EE9B5462C433E"
+				item: "immersiveengineering:plate_steel"
+				type: "item"
+			}]
+			title: "&8&l钢制钢板&r"
+			x: 3.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["74BE918AD4437111"]
+			description: [
+				"用于遮盖你丑陋机械的薄钢板块。"
+				""
+				"也是许多大型多方块结构的必备组件。"
+			]
+			id: "25E74C8CB21D4115"
+			subtitle: "闪闪发光的外观"
+			tasks: [{
+				id: "60035F111E6C5E03"
+				item: "immersiveengineering:sheetmetal_steel"
+				type: "item"
+			}]
+			title: "&7&l钢制金属板&r"
+			x: 2.0d
+			y: -4.0d
+		}
+		{
+			dependencies: [
+				"25E74C8CB21D4115"
+				"25958FF5911282EB"
+				"742792CB3237D190"
+			]
+			description: [
+				"由钢制组件构成。是真正巨型机器的核心部件。"
+				""
+				"贵吗？&c是&r。值吗？&a当然也值&r。"
+			]
+			id: "7F0E6EDFD7B08806"
+			subtitle: "工业核心"
+			tasks: [{
+				id: "4A87EDE4136CF3C9"
+				item: "immersiveengineering:heavy_engineering"
+				type: "item"
+			}]
+			title: "&8&l重型工程方块&r"
+			x: 2.0d
+			y: -5.5d
+		}
+		{
+			dependencies: ["21AAE50764A9C13A"]
+			description: [
+				"由 &e金&r和&f银&r制成的合金。"
+				""
+				"用于制作高级玩意儿，包括线圈和高级线缆。因为普通的铜已经不够用了。"
+			]
+			id: "742792CB3237D190"
+			subtitle: "被电击了！Electrified!"
+			tasks: [{
+				id: "3B2FB0736C0BD4CB"
+				item: "immersiveengineering:ingot_electrum"
+				type: "item"
+			}]
+			title: "&e&lElectrum&r"
+			x: -1.0d
+			y: 1.0d
+		}
+		{
+			dependencies: [
+				"7F0E6EDFD7B08806"
+				"6C06098E5FA47F73"
+				"47D9241CAA4672A3"
+				"25E74C8CB21D4115"
+				"74BE918AD4437111"
+			]
+			description: [
+				"找到矿脉后，就在上面建造这个&c巨大、恐怖、带斗轮的怪物&r。"
+				""
+				"消耗的能量巨大，但能产出大量矿石（约4万）"
+				""
+				"&6提示&r：它还会根据矿脉挖掘鹅卵石、砾石和其他副产品，做好准备！"
+			]
+			id: "59470CE13F522E38"
+			subtitle: "适用于岩石和石头"
+			tasks: [{
+				advancement: "immersiveengineering:multiblocks/mb_excavator"
+				criterion: ""
+				id: "4ED4C53D13C8CB3F"
+				type: "advancement"
+			}]
+			title: "&6&l挖掘机&r</c2></c1>"
+			x: 4.0d
+			y: -9.0d
+		}
+		{
+			dependencies: [
+				"47D9241CAA4672A3"
+				"74BE918AD4437111"
+				"6BFC8D3DA310652A"
+			]
+			description: [
+				"将泥土块放入其中，为其提供动力，看看地下深处隐藏着哪些珍贵矿物。"
+				""
+				"剧透：通常都是些没用的东西，直到你搜索30个区块为止。"
+			]
+			id: "6C06098E5FA47F73"
+			subtitle: "你收拾好行囊，再次踏上旅途……"
+			tasks: [{
+				id: "33440133ED30062A"
+				item: "immersiveengineering:sample_drill"
+				type: "item"
+			}]
+			title: "&e&l核心样本钻&r"
+			x: 0.5d
+			y: -8.0d
+		}
+		{
+			dependencies: [
+				"7AF716D795AD7224"
+				"25958FF5911282EB"
+			]
+			description: [
+				"3x3x3 的 &c原始高炉&r，但经过加固。"
+				""
+				"你不仅能用漏斗和传送带&a自动化&r它，还能在两侧装上&6预热器&r，让它以惊人的速度冶炼钢铁。"
+			]
+			id: "589F82FD206AA755"
+			subtitle: "让热度席卷而来吧！"
+			tasks: [
+				{
+					count: 27L
+					id: "686BE1D13F54FCCB"
+					item: { Count: 27, id: "immersiveengineering:blastbrick_reinforced" }
+					type: "item"
+				}
+				{
+					id: "70C2BB71A1FA61E8"
+					item: "minecraft:hopper"
+					type: "item"
+				}
+				{
+					advancement: "immersiveengineering:multiblocks/mb_improvedblastfurnace"
+					criterion: ""
+					id: "2A04B47FC55D6016"
+					type: "advancement"
+				}
+			]
+			title: "&c&l高级高炉&r"
+			x: 3.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["589F82FD206AA755"]
+			description: [
+				"将这些装置安装在你的&c高级高炉&r两侧，并为它们提供动力。"
+				""
+				"它们向内部吹入热风，极大地加快了你的钢铁生产速度。"
+			]
+			id: "36ED7ABEC491B032"
+			subtitle: "金属吹风机"
+			tasks: [{
+				count: 2L
+				id: "5E9B8ACD093D68B2"
+				item: { Count: 2, id: "immersiveengineering:blastfurnace_preheater" }
+				type: "item"
+			}]
+			title: "&6&l高炉预热炉&r"
+			x: 1.0d
+			y: 0.0d
+		}
+		{
+			description: [
+				"一个巨大的旋转死亡碗。"
+				""
+				"它能将矿石磨成粉，粉碎烈焰棒，如果&c生物和玩家&r掉进去，绝对会被撕成碎片。小心脚下。"
+			]
+			id: "34C1430DEB334137"
+			subtitle: "粉碎！！！你的末日到了，就是现在"
+			tasks: [{
+				advancement: "immersiveengineering:multiblocks/mb_crusher"
+				criterion: ""
+				id: "0C0D2C8DEEDD083B"
+				type: "advancement"
+			}]
+			title: "&8&l破碎机&r</c2></c1>"
+			x: -5.0d
+			y: -6.0d
+		}
+		{
+			dependencies: [
+				"34C1430DEB334137"
+				"286808049B4920CF"
+			]
+			description: [
+				"将你的&7煤炭焦炭&r研磨成粉末。"
+				""
+				"为什么？因为你需要把它压缩成更致密的碳。工业的研磨永不停歇。"
+			]
+			id: "44EC6F72293B9366"
+			subtitle: "布满灰尘的烧毁残骸"
+			tasks: [{
+				count: 16L
+				id: "5368602A16A80192"
+				item: { Count: 16, id: "immersiveengineering:dust_coke" }
+				type: "item"
+			}]
+			title: "&7&l可卡因粉尘&r"
+			x: -7.0d
+			y: -6.0d
+		}
+		{
+			dependencies: ["44EC6F72293B9366"]
+			description: [
+				"用高压将液体从种子中暴力挤出，或将 Coke Dust 压入 &8HOP Graphite&r。"
+				""
+				"至少你不用用脚踩它来酿酒了。"
+			]
+			id: "7A60C1B736A43AE9"
+			subtitle: "在压力下"
+			tasks: [{
+				advancement: "immersiveengineering:multiblocks/mb_squeezer"
+				criterion: ""
+				id: "00494412CB66C3E7"
+				type: "advancement"
+			}]
+			title: "&8&l工业榨汁机&r"
+			x: -9.5d
+			y: -6.5d
+		}
+		{
+			dependencies: ["7A60C1B736A43AE9"]
+			description: [
+				"高度定向热解石墨。"
+				""
+				"这是一种花哨的说法，意思是“超压缩煤炭”。将其熔炼成锭来制作电极。"
+			]
+			id: "1561CCE889DE9BBC"
+			subtitle: "你把它烧了！"
+			tasks: [{
+				id: "0FBB4319A747D95A"
+				item: "immersiveengineering:dust_hop_graphite"
+				type: "item"
+			}]
+			title: "&8&lHOP 石墨粉尘&r"
+			x: -12.0d
+			y: -6.5d
+		}
+		{
+			dependencies: [
+				"4ADF292A6FABD6EC"
+				"3DE29A4FDF15668D"
+				"1561CCE889DE9BBC"
+			]
+			dependency_requirement: "one_completed"
+			description: [
+				"巨大的石墨铅笔曾用于运行&c电弧炉&r。"
+				""
+				"你必须随时安装三个，而且，&c它们会随时间磨损&r。你现在正式成为一名铅笔削笔器了。"
+			]
+			id: "436C695E78A444B5"
+			subtitle: "嘿，能借你的铅笔用一下吗？"
+			tasks: [{
+				id: "652DD83A6CC0BA88"
+				item: {
+					Count: 1
+					id: "immersiveengineering:graphite_electrode"
+					tag: {
+						graphDmg: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "&8&l石墨电极&r"
+			x: -11.0d
+			y: -8.5d
+		}
+		{
+			dependencies: ["436C695E78A444B5"]
+			description: [
+				"一个庞大而贪婪的怪物，能瞬间熔炼矿石，秒制钢铁，还能将无用的盔甲和工具&a回收成锭&r。"
+				""
+				"请勿用来加热你的口袋食物。"
+			]
+			id: "562F04084E28994D"
+			subtitle: "超级熔炉！"
+			tasks: [{
+				advancement: "immersiveengineering:multiblocks/mb_arcfurnace"
+				criterion: ""
+				id: "3E388F53383E5627"
+				type: "advancement"
+			}]
+			title: "&c&l电弧炉&r"
+			x: -12.0d
+			y: -10.5d
+		}
+		{
+			dependencies: ["7F0E6EDFD7B08806"]
+			description: [
+				"被闪电击中时会生成巨大的&e1600万FE&r。"
+				""
+				"在塔顶建造一个巨大的&8钢制围栏&r塔。塔越高，越有可能招致天谴。"
+			]
+			id: "57F47EF7C69506FD"
+			subtitle: "F****N 骑上闪电！"
+			tasks: [
+				{
+					id: "680FDAB0C4DB188F"
+					title: "避雷针"
+					type: "checkmark"
+				}
+				{
+					count: 512L
+					id: "138692C79202A86E"
+					item: { Count: 512, id: "immersiveengineering:steel_fence" }
+					type: "item"
+				}
+			]
+			title: "OH YEAH? OH YEAAAAAAAAAH?"
+			x: 6.0d
+			y: -7.0d
+		}
+	]
+	title: "&6沉浸式工程学"
+}
