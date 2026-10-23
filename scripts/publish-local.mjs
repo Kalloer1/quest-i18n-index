@@ -295,9 +295,14 @@ run('node', ['scripts/build-index.mjs'])
 // ---------- 5. 测试 ----------
 if (!SKIP_TESTS) {
   step(5, 'npm test')
-  // Windows 上 `npm` 是个 .cmd 包装，execFileSync 直接 spawn 会 ENOENT，
-  // 而且错误信息是空的 —— 表现为「npm test 失败但一行输出都没有」。
-  run(process.platform === 'win32' ? 'npm.cmd' : 'npm', ['test'])
+  // 不通过 npm 跑：Windows 上 `npm` / `npm.cmd` 都是包装脚本，execFileSync 直接 spawn
+  // 会 ENOENT 且**不带任何输出**，表现为「npm test 失败但日志空白」。
+  // 直接按 package.json 里那条命令的等价形式起 node --test，文件列表自己列。
+  const tests = [
+    ...readdirSync(join(ROOT, 'scripts')).filter((f) => f.endsWith('.test.mjs')).map((f) => `scripts/${f}`),
+    ...readdirSync(join(ROOT, 'scripts/lib')).filter((f) => f.endsWith('.test.mjs')).map((f) => `scripts/lib/${f}`),
+  ]
+  run(process.execPath, ['--test', ...tests])
 } else {
   step(5, 'npm test（已跳过）')
 }
