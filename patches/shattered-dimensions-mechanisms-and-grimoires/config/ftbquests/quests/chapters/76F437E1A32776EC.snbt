@@ -1,0 +1,252 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "76F437E1A32776EC"
+	group: "2C2F6474453DB620"
+	icon: "sfm:manager"
+	id: "76F437E1A32776EC"
+	order_index: 5
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"工厂管理器是工厂的核心，控制整个工厂。放入磁盘后，可以编辑并运行其中的程序。"
+				""
+				"同一个线缆网络中可以有多台管理器"
+			]
+			id: "5349244C3DDF065F"
+			tasks: [
+				{
+					id: "5CF1BFD0D86BF749"
+					item: "sfm:manager"
+					type: "item"
+				}
+				{
+					id: "015AB6869E968BCA"
+					item: {
+						Count: 1
+						id: "sfm:disk"
+						tag: { }
+					}
+					type: "item"
+				}
+			]
+			title: "工厂管理器"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			description: ["用于连接管理器和操作对象。操作方向与连接方向无关，由程序决定。"]
+			id: "6054FD1558987BE4"
+			tasks: [
+				{
+					id: "1773D7E32E389972"
+					item: "sfm:cable"
+					type: "item"
+				}
+				{
+					id: "69F75B14DA7A4690"
+					item: "sfm:fancy_cable"
+					type: "item"
+				}
+			]
+			title: "工厂线缆"
+			x: -1.5d
+			y: 0.0d
+		}
+		{
+			description: [
+				"为方块添加标签，标签用于程序选择对象，一个标签可以有多个方块，一个方块可以有多个标签。"
+				""
+				"输入框可以搜索或创建标签。"
+				""
+				"&b右键空气：打开Gui"
+				"&b右键方块：为方块添加/移除此标签"
+				"&bShift + 右键方块：移除方块的所有标签"
+				"&bCtrl + 右键方块：为所有相连的相同方块添加/移除标签，相互连接的范围为3×3×3，需位于同一线缆网络"
+				"&bAlt + 右键方块：选择此方块的标签"
+				"&bShift + 滚轮：切换标签，按字母顺序循环"
+				"&b右键管理器：推送，标签枪>>磁盘"
+				"&bShift + 右键管理器：拉取，标签枪<<磁盘"
+				"&bAlt：切换标签渲染：全部/此标签/此方块"
+			]
+			id: "2341A94A80596D6B"
+			tasks: [{
+				id: "69D10468DCA83D9D"
+				item: {
+					Count: 1
+					id: "sfm:labelgun"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "标签枪"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			description: [
+				"手持时，可穿透显示管理器、线缆和标签。"
+				""
+				"主手右键方块：查看该位置的方块、线缆网络和输出信息，输出方向为点击的面。"
+			]
+			id: "34A481F56FA1D411"
+			tasks: [{
+				id: "5F5FF509BD7D53E0"
+				item: "sfm:network_tool"
+				type: "item"
+			}]
+			title: "网络工具"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			description: ["至少有两个面接触水源时，可作为无限水源输出，多个水槽相连可提高整体输出上限。"]
+			id: "76F66DB352514B0F"
+			tasks: [{
+				id: "764E0EB0E8EACD03"
+				item: "sfm:water_tank"
+				type: "item"
+			}]
+			title: "水槽"
+			x: -3.0d
+			y: 0.0d
+		}
+		{
+			description: [
+				"&bCtrl + E——在管理器界面打开编程界面"
+				"&bCtrl + Shift + E——在管理器界面查看示例程序"
+				"&bCtrl + /——用 -- 注释或取消注释当前行"
+				"&bTab、Shift + Tab——缩进或取消缩进"
+				"&b\——代码补全"
+				"&bShift + Enter——完成编辑"
+				"&bCtrl + Back、Ctrl + Del——删除至单词边界（空格）"
+				"&bHome、End——光标移至行首或行末"
+				"&bCtrl + Home、Ctrl + End——将光标移至开头或结尾"
+				"&bCtrl + Space——查看 input、output、resourceid、label、if、boolexpr"
+				"&bCtrl + i——在容器界面显示槽位和 Export Inspector 按钮，按钮可导出容器的所有可输出项"
+			]
+			id: "268C0C36C327FB76"
+			tasks: [{
+				id: "564DB1A9324D570A"
+				title: "快捷键"
+				type: "checkmark"
+			}]
+			x: -3.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["268C0C36C327FB76"]
+			description: [
+				"[ ]：可选项目"
+				"< >：必填项"
+				"*：多值项，可用逗号分隔多个值"
+				"|：或，必须为其中一项"
+				"string：字符串，可以用\"双引号\"括起来"
+				"int：整型"
+				"long：长整型"
+				"label：标签，使用标签枪指定"
+			]
+			id: "104F2DE567B8ED72"
+			tasks: [{
+				id: "176525098AF2D75D"
+				title: "编程"
+				type: "checkmark"
+			}]
+			x: -1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["104F2DE567B8ED72"]
+			description: [
+				"名称 <string>"
+				""
+				"为程序/磁盘命名，磁盘的名称将变为该字符串。"
+				""
+				"只能是第一行代码。"
+				""
+				"&dname \"Hello World\""
+			]
+			id: "07AE7A9E43F76126"
+			tasks: [{
+				id: "70DAA5962785A38A"
+				title: "命名程序/磁盘"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["07AE7A9E43F76126"]
+			description: [
+				"每隔 [interval: int] [全局 | g] [(增加 | +) <偏移量: int>] (游戏内时间单位) 执行 [指令] 结束"
+				""
+				"时间触发器，每 interval 游戏刻（ticks）或秒（seconds），即 计时 % 间隔 == 0 时，执行代码块 block。"
+				""
+				"除 name 和 every 外的其它语句仅能且只有这些语句能存在代码块中。"
+				""
+				"interval 和 offset 为非负整数，interval 未定义时为 1。"
+				""
+				"tick 和 second 分别与 ticks、seconds 相同。（4.20.0：second 有 bug，效果与 ticks 一致）"
+				""
+				"默认最小间隔为1秒（20游戏刻），若代码块仅传输能量，最小间隔为1游戏刻。可在配置文件config/sfm-server.toml或config/sfm-common.toml中更改timerTriggerMinimumIntervalInTicks的值。"
+				""
+				"计时分为管理器内部时钟（默认）或世界时间。"
+				""
+				"放置管理器放置时内部时钟为 0，每游戏刻更新方块实体时此值 +1。"
+				""
+				"在世界中重新加载管理器时，内部时钟会随机初始化。"
+				""
+				"使用 global 或其缩写 g 时，使用世界时间。"
+				""
+				"使用 plus 或其缩写 + 时，计时偏移 offset 刻。"
+				""
+				"&d--每秒运行一次"
+				"&d每秒执行一次，然后结束"
+				" "
+				"&d--每 20 游戏刻运行一次"
+				"&d每20个游戏刻执行end命令"
+				"&d每 20+10 游戏刻执行 end --延迟 10 游戏刻"
+				" "
+				"&d--每 20 游戏刻（世界时间）运行一次"
+				"&d每隔20个游戏刻执行end命令"
+				"&d每20全局加1刻执行end --偏移1游戏刻"
+				"&d每20g+1个游戏刻执行end命令"
+				" "
+				"&d--每游戏刻运行一次，仅进行能量传输"
+				"&d每帧执行一次 do"
+				"&d输入 fe:: 从顶部一侧输入"
+				"&d输出 fe:: 到 b 顶部"
+				"&dend&r"
+				""
+				"完整语法"
+				""
+				"(input | output) [[<number: long> [each]] [retain <keep: long> [each]] [resourceid] [(with | without) <withClause>]]* [except <resourceid>*] (from | to) [each] <label>* [round robin by (label | block)] [<side>* side] [slots <range>*]"
+				""
+				"resourceid"
+				""
+				"(input | output) [... [resourceid]]* (from | to) <label>* [<side>* side]"
+				""
+				"通过指定 resourceid，可以传输指定的物品或流体、能量、化学品等，resourceid 的大写字母字符在解析时自动转化为小写。"
+				""
+				"物品以外的输入输出通常需要指定方向（side）。"
+				""
+				"resourceid 的格式为 [sfm]:[resourceType]:[namespace]:[name]，默认的 resourceid 为 sfm:item，将匹配所有物品。"
+				""
+				"sfm：可省略。"
+				""
+				"resourceType：资源类型。"
+			]
+			id: "0F3A56A927506993"
+			tasks: [{
+				id: "4AEDE10861C7973F"
+				title: "触发器"
+				type: "checkmark"
+			}]
+			x: 1.5d
+			y: 1.5d
+		}
+	]
+	title: "超级工厂管理"
+}

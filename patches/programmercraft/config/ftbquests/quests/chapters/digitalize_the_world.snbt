@@ -1,0 +1,123 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "digitalize_the_world"
+	group: "48127057F15032D8"
+	icon: "digitalitems:digitizer"
+	id: "1DBC40DC9BF2E652"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"数字化是将物品转化为数据的过程。它能让你凭空建造存储系统。你可以编程来数字化和具象化物品。听起来很有趣，不是吗？"
+				""
+				"维基页面：https://docs.siredvin.site/digitalitems/"
+			]
+			icon: "digitalitems:advanced_digitizer"
+			id: "06ED4CB20C1112E2"
+			size: 3.0d
+			subtitle: "听起来很有趣，不是吗？"
+			tasks: [{
+				id: "781009C332CE7294"
+				title: "数字化进程"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["06ED4CB20C1112E2"]
+			description: [
+				"首先要做的是把它放在电脑旁边（或用线缆连接）。你将用电脑来和它交互。"
+				""
+				"我会快速解释它的工作原理，然后给你一段简短的示例代码，帮助你更好地理解这台机器。"
+				""
+				"数字化器会将物品数字化——转化为字符串。你只需将物品放入其中，并在代码中调用方法以数字化物品并获取其对应代码。一旦获取，你可以通过调用另一个方法来使物品实体化。就是这么简单！"
+				"..."
+				"其实……也不是那么回事（抱歉）。"
+				"如果物品在数字形态中停留太久，它们会腐烂并消失（我想你肯定不希望这样）。为了避免这个小（大）问题，你必须刷新它们。或者你可以反复地让它们重新实体化和数字化（不过我不知道这是否是个好主意）。"
+				""
+				"不过别担心，我会给你提供一些完成此任务的提示。"
+			]
+			id: "262921BB87D571C9"
+			subtitle: "嗖的一声"
+			tasks: [{
+				id: "3BE55340A53A2908"
+				item: "digitalitems:digitizer"
+				type: "item"
+			}]
+			x: 0.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["262921BB87D571C9"]
+			description: [
+				"好的，现在你已经知道这些东西的工作原理了。我会告诉你制作一个基础存储程序所需的一切。"
+				""
+				"首先要做的是将你的电脑连接到数字化器上。"
+				""
+				"digitizer = peripheral.find(\"digitizer\")"
+				""
+				"要数字化，只需使用 digitalize() 方法"
+				"示例：item = item.digitalize()"
+				""
+				"\"item\" 将包含你数字化的物品所对应的字符串。"
+				""
+				"如果你想让它重新出现，只需使用 rematerialize() 方法即可"
+				"digitalizer.rematerialze(item)"
+				""
+				"想知道物品腐烂前还剩多少时间，就用 getDecayTicks() 方法"
+				"time = digitalizer.getDecayTicks(item)"
+				""
+				"要想知道某个ID背后隐藏的物品，只需使用getIDInfo()方法，它会返回一个包含currentTime（世界年龄，以ticks为单位）、digitizedAt（物品堆叠被数字化的时间）、decaysAt（物品堆叠会衰变的时间）、lastRefresh（物品堆叠最后被刷新的时间）以及包含实际物品堆叠信息的item的表格。"
+				"table = digitalizer.getIDInfo(item)"
+				""
+				"最后一个你一定要知道的事情就是如何刷新物品。只需使用 refresh()"
+				"digitalizer.refresh(item)"
+				""
+				"就是这样了。"
+				""
+				"祝你玩得开心！"
+			]
+			icon: {
+				Count: 1
+				id: "computercraft:disk"
+				tag: {
+					Color: 10066329
+				}
+			}
+			id: "26A53B5BE5B6E9F8"
+			tasks: [{
+				id: "6CBAA276F08E9DF3"
+				title: "编写你的第一个程序"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["26A53B5BE5B6E9F8"]
+			description: [""]
+			id: "691FB8B29F9259EE"
+			subtitle: "能存放物品的程序很酷...除非你用不了。你应该给它接个屏幕，不是吗？"
+			tasks: [
+				{
+					id: "111D96D5FA943029"
+					title: "和它交互一下吧！"
+					type: "checkmark"
+				}
+				{
+					count: 8L
+					id: "0568C39C25C8AC08"
+					item: { Count: 8, id: "computercraft:monitor_advanced" }
+					type: "item"
+				}
+			]
+			x: 0.0d
+			y: 1.0d
+		}
+	]
+	title: "将世界数字化"
+}
