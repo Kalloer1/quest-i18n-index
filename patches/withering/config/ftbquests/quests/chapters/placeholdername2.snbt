@@ -1,0 +1,235 @@
+# AI 初翻，未人工校对
+{
+	id: "066C1D52282E50C7"
+	group: ""
+	order_index: 2
+	filename: "placeholdername2"
+	title: "你最后会看的地方"
+	icon: {
+		id: "witherstormmod:formidibomb"
+		Count: 1b
+		tag: { }
+	}
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "说明"
+			icon: "minecraft:writable_book"
+			x: 0.0d
+			y: 0.0d
+			subtitle: "本章的说明如下："
+			description: ["本指南适用于第5.5阶段，你可能尚未达到。第5.5阶段比前几个阶段大得多。本指南将教你如何制作Formidibomb，一种足以击败Wither Storm的炸弹。"]
+			dependencies: ["6202EE1F2DCE4BEE"]
+			hide: true
+			id: "7552C87E6993EFDB"
+			tasks: [{
+				id: "7501A769E3A2D4AD"
+				type: "checkmark"
+			}]
+		}
+		{
+			icon: "witherstormmod:command_block_book"
+			x: 2.5d
+			y: 0.0d
+			subtitle: "从枯萎的共生体处获得一个命令方块书"
+			description: ["命令方块书是超级TNT的主要材料之一，你需要击败枯萎共生体才能获得。枯萎共生体在阶段5.5的凋零风暴附近生成。"]
+			dependencies: ["7552C87E6993EFDB"]
+			id: "7012424205752205"
+			tasks: [
+				{
+					id: "7022A8020F56AA37"
+					type: "observation"
+					title: "遭遇一个枯萎的共生体"
+					icon: "witherstormmod:infected_flesh_block"
+					timer: 0L
+					observe_type: 5
+					to_observe: "witherstormmod:withered_symbiont"
+				}
+				{
+					id: "29B0217F84106F7D"
+					type: "item"
+					item: "witherstormmod:command_block_book"
+				}
+			]
+		}
+		{
+			title: "合成烈焰粉"
+			x: 6.0d
+			y: -1.5d
+			subtitle: "Formidibomb 的一种配料"
+			description: ["你需要 4 个烈焰粉来制作 Formidibomb"]
+			dependencies: ["740C69955C262566"]
+			id: "7E16C53CD5AB143A"
+			tasks: [{
+				id: "6582554ECC7FC736"
+				type: "item"
+				item: "minecraft:blaze_powder"
+				count: 4L
+			}]
+		}
+		{
+			title: "收集火药（Gather Gunpowder）"
+			x: 6.0d
+			y: 1.5d
+			subtitle: "Formidbomb 的一种配料"
+			description: ["制作Formidibomb需要4个火药"]
+			dependencies: ["740C69955C262566"]
+			id: "3AC2965E1A6493EB"
+			tasks: [{
+				id: "56409CDAE37F19A8"
+				type: "item"
+				item: "minecraft:gunpowder"
+				count: 4L
+			}]
+		}
+		{
+			title: "制作Formidibomb"
+			x: 7.0d
+			y: 0.0d
+			subtitle: "足以摧毁凋零风暴的强力炸弹"
+			description: ["你应该只在末地风暴附近制作Formidibomb，因为一旦制作完成，Formidibomb就会开始倒计时直到引爆。倒计时时长为600秒，归零后就会引爆。你也可以用燧石和钢来点燃它，以加快引爆速度。"]
+			dependencies: [
+				"7E16C53CD5AB143A"
+				"740C69955C262566"
+				"3AC2965E1A6493EB"
+			]
+			hide: false
+			id: "408F95891521C95C"
+			tasks: [{
+				id: "04023AC03C4FE876"
+				type: "item"
+				item: {
+					id: "witherstormmod:formidibomb"
+					Count: 1b
+					tag: { }
+				}
+			}]
+		}
+		{
+			icon: {
+				id: "witherstormmod:formidibomb"
+				Count: 1b
+				tag: { }
+			}
+			x: 12.0d
+			y: 0.0d
+			subtitle: "部署Formidibomb炸弹"
+			description: ["Formidibomb 一旦开始引爆，时间就不多了。点燃后，尽快跑远。Wither Storm 会用它的牵引光束抓起 Formidibomb，炸弹会爆炸并摧毁 Wither Storm。"]
+			dependencies: ["18AF6427E955B1C5"]
+			id: "01FF4255B89CBBD0"
+			tasks: [{
+				id: "0E0A43D91DF8144C"
+				type: "observation"
+				title: "那么，开始了……"
+				timer: 0L
+				observe_type: 5
+				to_observe: "witherstormmod:formidibomb"
+			}]
+		}
+		{
+			title: "强者成长，弱者变弱"
+			x: 14.5d
+			y: 0.0d
+			subtitle: "击败凋零风暴（Wither Storm）"
+			description: ["击败凋零风暴后，前去检查残骸吧。"]
+			dependencies: ["01FF4255B89CBBD0"]
+			id: "1A31E9256B9B34DD"
+			tasks: [{
+				id: "1198138C73158B58"
+				type: "advancement"
+				advancement: "witherstormmod:main/strong_grow_weak"
+				criterion: ""
+			}]
+		}
+		{
+			title: "准备工作"
+			x: 1.5d
+			y: -1.5d
+			subtitle: "一些有用的物品"
+			description: [
+				"烟花可以分散凋零风暴的注意力"
+				"隐身药水可以阻止凋零风暴锁定你"
+				"如果你射中凋零风暴之眼，可以暂时禁用它，它会把你扔下来，但你需要用水桶来缓冲下落。"
+			]
+			dependencies: ["7552C87E6993EFDB"]
+			optional: true
+			id: "6CF5580D176F72AA"
+			tasks: [
+				{
+					id: "54669E580CE3B1BA"
+					type: "item"
+					item: "minecraft:firework_rocket"
+				}
+				{
+					id: "5DDC61C3E8D489EF"
+					type: "item"
+					item: {
+						id: "minecraft:crossbow"
+						Count: 1b
+						tag: {
+							ChargedProjectiles: [{
+								id: "minecraft:firework_rocket"
+								Count: 52b
+								tag: {
+									Fireworks: {
+										Flight: 1b
+										Explosions: [{
+											Type: 0b
+											Colors: [I;11743532]
+										}]
+									}
+								}
+							}]
+							Damage: 0
+							Charged: 1b
+						}
+					}
+				}
+				{
+					id: "596FF732DDDE31C6"
+					type: "item"
+					item: {
+						id: "minecraft:potion"
+						Count: 1b
+						tag: {
+							Potion: "minecraft:long_invisibility"
+						}
+					}
+				}
+				{
+					id: "532A366DEA6BD5E4"
+					type: "item"
+					item: "minecraft:water_bucket"
+				}
+			]
+		}
+		{
+			title: "合成超级TNT"
+			x: 5.0d
+			y: 0.0d
+			subtitle: "Formidibomb的主要成分"
+			description: ["超级TNT是formidibomb的配方材料。"]
+			dependencies: ["7012424205752205"]
+			id: "740C69955C262566"
+			tasks: [{
+				id: "5F535E577888BAA6"
+				type: "item"
+				item: "witherstormmod:super_tnt"
+			}]
+		}
+		{
+			title: "如何使用Formidibomb"
+			icon: "minecraft:writable_book"
+			x: 9.5d
+			y: 0.0d
+			description: ["制作好Formidibomb后，把它放在Wither Storm附近，点燃它，然后跑开。Wither Storm会用它的Tractor beam把它吸过去，然后它就会爆炸。"]
+			dependencies: ["408F95891521C95C"]
+			id: "18AF6427E955B1C5"
+			tasks: [{
+				id: "0C4018F1846DE2D0"
+				type: "checkmark"
+			}]
+		}
+	]
+}

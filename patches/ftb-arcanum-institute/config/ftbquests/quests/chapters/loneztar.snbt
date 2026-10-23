@@ -1,0 +1,254 @@
+# AI 初翻，未人工校对
+{
+	id: "6E27D913C7AAC94C"
+	group: "125708BF22E6ABEE"
+	order_index: 3
+	filename: "loneztar"
+	title: "洛恩扎尔教授"
+	icon: "ftbai:codex_malum"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: 5.0d
+			y: -5.0d
+			description: [
+				"亲爱的学生，"
+				""
+				"你已经准备好接受第一次试炼了，这次我会让它相对简单一些。把 &b 64 个灵魂&r 带给我"
+				""
+				"如果你愿意，可以将臣民们多余的物资用于其他职业。"
+				""
+				"祝你好运。"
+			]
+			dependencies: ["2CBECFD7042E416F"]
+			id: "1FA40843A3CBE07F"
+			tasks: [{
+				id: "45CB787D4F05E273"
+				type: "item"
+				title: "64x 灵魂碎片"
+				item: {
+					id: "itemfilters:id_regex"
+					Count: 1b
+					tag: {
+						value: "^malum:.*_spirit$"
+					}
+				}
+				count: 64L
+				consume_items: true
+			}]
+		}
+		{
+			icon: "ftbai:codex_malum"
+			x: 5.0d
+			y: -1.5d
+			shape: "hexagon"
+			description: [
+				"亲爱的学生"
+				""
+				"你做得很好，完成了我提出的每一个挑战。还有一项最后的考验，之后我就会把我的法典赐予你。"
+				""
+				"我需要你获得一件&bBelt of the Magebane&r。说实话，我不需要更多证据证明你对我的职业的掌握，但我感觉这条腰带很快会派上用场。"
+				""
+				"祝你好运。"
+			]
+			dependencies: [
+				"5EF227EC5FB3EE70"
+				"418871AEEAAB853A"
+			]
+			size: 3.0d
+			id: "36BBC4A0F6055437"
+			tasks: [{
+				id: "35CC9D19ECFAADE3"
+				type: "item"
+				item: "malum:belt_of_the_magebane"
+			}]
+			rewards: [
+				{
+					id: "72024489DC583F2F"
+					type: "item"
+					item: {
+						id: "ftbai:codex_malum"
+						Count: 1b
+						ForgeCaps: {
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+				}
+				{
+					id: "50FCF759F7A6AD26"
+					type: "gamestage"
+					auto: "invisible"
+					ignore_reward_blocking: true
+					stage: "codex_malum"
+				}
+			]
+		}
+		{
+			x: 7.5d
+			y: -3.5d
+			description: [
+				"亲爱的学生，"
+				""
+				"你已经准备好迎接第二次试炼了，我想你在学习精神艺术方面也该准备迈向下一步了。为此你需要一些工具。"
+				"制作一把&6原始镰刀&r。更好的镰刀可以以后再考虑，但现在你只需要一把能用的镰刀，以便更好地收割继续前进所需的灵魂。"
+			]
+			dependencies: [
+				"1FA40843A3CBE07F"
+				"2CBECFD7042E416F"
+			]
+			id: "4DEB64DB8B987B54"
+			tasks: [{
+				id: "7684DD2BD52257A0"
+				type: "item"
+				item: {
+					id: "malum:crude_scythe"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+					ForgeCaps: {
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+				consume_items: true
+			}]
+		}
+		{
+			x: 7.5d
+			y: 0.5d
+			description: [
+				"亲爱的学生，"
+				""
+				"&6神圣精神共鸣器&r能让你操控本职业中遇到的精神。在下次试炼中，制作一个吧。"
+			]
+			dependencies: [
+				"4DEB64DB8B987B54"
+				"2CBECFD7042E416F"
+			]
+			id: "5E85D47E3B22ED49"
+			tasks: [{
+				id: "6B5F16F453911890"
+				type: "item"
+				item: "malum:hallowed_spirit_resonator"
+				consume_items: true
+			}]
+		}
+		{
+			x: 5.0d
+			y: 2.0d
+			description: [
+				"亲爱的学生"
+				""
+				"在第四次试炼中，我将测试你迄今为止对&eNature's Aura&r的掌握程度。"
+				""
+				"我们来谈谈&6不灭友谊&r的令牌。驯服动物后，它们会永远陪伴你。当它们*可能*死亡时，会传送回你的床。"
+				""
+				"你的任务是制作其中一个物品。"
+				"快动手干吧。"
+			]
+			dependencies: [
+				"5E85D47E3B22ED49"
+				"2CBECFD7042E416F"
+			]
+			id: "0AC562887EA2FC81"
+			tasks: [{
+				id: "4678CD5AAD7D8023"
+				type: "item"
+				item: "naturesaura:pet_reviver"
+				consume_items: true
+			}]
+		}
+		{
+			title: "令人畏惧的巫妖地牢"
+			icon: "iceandfire:dread_queen_staff"
+			x: 2.5d
+			y: 0.5d
+			description: [
+				"亲爱的学生，"
+				""
+				"作为你的第五项试炼，我有一件更重要的任务交给你。我们收到报告，说有一个强大的巫妖与&e黑暗女巫&r结盟。你需要进入他的巢穴，击败他以及他可能拥有的任何仆从。"
+				""
+				"在伟大的战争中，他是黑暗女巫莱克西的亲密盟友，绝不能让他接近她。"
+				""
+				"祝你好运"
+			]
+			dependencies: ["0AC562887EA2FC81"]
+			id: "3FA0233D495E1338"
+			tasks: [
+				{
+					id: "339B16F0A39500E7"
+					type: "dimension"
+					title: "进入地下城"
+					dimension: "ftbdungeons:dungeon_dim"
+				}
+				{
+					id: "5F85306B432554E9"
+					type: "custom"
+					title: "击杀恐怖巫妖（Dread Lich）"
+					icon: {
+						id: "iceandfire:lich_staff"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+						ForgeCaps: {
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 2.5d
+			y: -3.5d
+			description: [
+				"亲爱的学生，"
+				""
+				"第六项试炼，我们希望你能制作一个&b 最后的机会戒指&r。戴上这枚戒指，即使受到致命伤害，你也不会死亡，而是会被完全治愈。不过，这会将戒指消耗掉。"
+				""
+				"回想起来，或许我们应该在你面对那个巫妖之前，先给你这个试炼。"
+			]
+			dependencies: [
+				"3FA0233D495E1338"
+				"418871AEEAAB853A"
+			]
+			id: "5EF227EC5FB3EE70"
+			tasks: [{
+				id: "6E9B51CA4708E0C6"
+				type: "item"
+				item: "naturesaura:death_ring"
+				consume_items: true
+			}]
+		}
+		{
+			title: "开始地牢探险"
+			icon: {
+				id: "ftbquests:custom_icon"
+				Count: 1b
+				tag: {
+					Icon: "occultism:textures/block/dimensional_mineshaft_portal.png"
+				}
+			}
+			x: 1.5d
+			y: 0.5d
+			hide_dependency_lines: true
+			dependencies: ["0AC562887EA2FC81"]
+			hide: true
+			can_repeat: true
+			id: "6218C76D68BB90A5"
+			tasks: [{
+				id: "23C464CB9A7DB7DA"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "2AFEFCCBF2C81469"
+				type: "command"
+				auto: "invisible"
+				command: "/execute as @p run ftbdungeons create ftbdungeons:occultism"
+				silent: true
+			}]
+		}
+	]
+	quest_links: [ ]
+}

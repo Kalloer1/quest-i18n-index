@@ -1,0 +1,423 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "magic"
+	group: ""
+	icon: "irons_spellbooks:mana_ring"
+	id: "3FBF22A12EB77153"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["你可以在这里学习如何获得魔法能力，以增强你的身体能力、召唤生物，或对敌人吟唱毁灭性咒语！"]
+			icon: {
+				Count: 1
+				id: "endrem:magical_eye"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "43BE75F09C4043F8"
+			size: 2.0d
+			tasks: [{
+				id: "089777A5C1B95D8D"
+				title: "我明白了！"
+				type: "checkmark"
+			}]
+			title: "法术与法术书 Spells \& Spellbooks"
+			x: -2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5D6F2EF2A0FABB1E"]
+			description: [
+				"魔法日志的初期阶段始于寻找魔法结构、搜刮它们的宝箱，并可能击败居住其中的魔法师。"
+				"\\n卷轴的主要来源就是这里，有了卷轴你才能开始施放法术！"
+			]
+			icon: {
+				Count: 1
+				id: "irons_spellbooks:magehunter"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "0614C37C1534939E"
+			size: 1.5d
+			tasks: [{
+				id: "21D7529F64458A1B"
+				title: "明白了！"
+				type: "checkmark"
+			}]
+			title: "掠夺魔法结构中的物品"
+			x: -5.25d
+			y: 1.5d
+		}
+		{
+			dependencies: ["43BE75F09C4043F8"]
+			description: [
+				"你可以用一张花哨的桌子（下回再说，兄弟）把找到的法术装备到你的法术书上！如果你还没有，这里有一张。"
+				""
+				"按住 alt 并滚动，即可翻阅书中已有的法术。"
+				"或者你可以按下滚轮来打开法术轮盘。"
+			]
+			icon: {
+				Count: 1
+				id: "irons_spellbooks:legendary_spell_book"
+				tag: {
+					ISB_spellbook: {
+						activeSpellIndex: -1
+						spellSlots: 12
+						spells: [ ]
+					}
+				}
+			}
+			id: "1F327242C2CCCF3C"
+			rewards: [{
+				id: "15318C36829B7967"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:copper_spell_book"
+					tag: {
+						ISB_Spells: {
+							data: [ ]
+							maxSpells: 5
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "5AFA2C0E12D601FD"
+				title: "好的！"
+				type: "checkmark"
+			}]
+			title: "魔法书系列任务"
+			x: -2.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["1F327242C2CCCF3C"]
+			description: ["铭文台让你开始将卷轴放入法术书。但请注意，卷轴只能放入相同或更高稀有度的法术书中！"]
+			id: "39BD15E37DD2B01C"
+			rewards: [{
+				id: "364D3C4B4475BC0D"
+				type: "xp"
+				xp: 5
+			}]
+			tasks: [{
+				consume_items: false
+				id: "069021CAEE611130"
+				item: "irons_spellbooks:inscription_table"
+				only_from_crafting: false
+				type: "item"
+			}]
+			x: 2.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["5D6F2EF2A0FABB1E"]
+			description: ["除了掠夺结构，制作卷轴锻造炉也是获取卷轴的好方法。卷轴锻造炉的材料可以在下界中找到。\\n\\n使用物品栏中的搜索栏查找不同的卷轴配方！注意只能制作1级卷轴。卷轴等级的提升将在之后进行。"]
+			id: "5178B560C8B827E3"
+			tasks: [{
+				consume_items: false
+				id: "56950BA8A3BB0936"
+				item: "irons_spellbooks:scroll_forge"
+				only_from_crafting: false
+				type: "item"
+			}]
+			x: -7.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["43BE75F09C4043F8"]
+			description: ["魔法师的最佳初始装备是游荡魔法师套装，需要锻造台来制作。"]
+			icon: {
+				Count: 1
+				id: "irons_spellbooks:wandering_magician_helmet"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "4E54C208CEF187D1"
+			rewards: [{
+				count: 5
+				id: "3A80FCDE35DBF36A"
+				item: "irons_spellbooks:arcane_essence"
+				type: "item"
+			}]
+			tasks: [{
+				id: "63C62CE5AFA476B1"
+				title: "明白了！"
+				type: "checkmark"
+			}]
+			title: "初级魔法师装备套装"
+			x: 0.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["4E54C208CEF187D1"]
+			description: [
+				"除了游荡的魔法师装备外，魔法师还可以制作特定元素的齿轮，以增强某些元素的施法能力。"
+				"要制作这些职业专属装备，魔法师必须获得元素符文石。这些符文石的材料有时需要仪式才能完成。使用你的配方搜索功能来思考吧！"
+			]
+			icon: {
+				Count: 1
+				id: "irons_spellbooks:pyromancer_helmet"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "1EE082F0F108BFBA"
+			tasks: [{
+				id: "21F74BED3827CB09"
+				title: "太棒了！"
+				type: "checkmark"
+			}]
+			title: "高级魔法师装备"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0614C37C1534939E"]
+			description: ["魔法物品制作最重要的材料之一。只能通过击败魔法使用者并掠夺获得。"]
+			id: "4CEED19552F9272D"
+			tasks: [{
+				consume_items: false
+				id: "04C0D0354D3DFBA3"
+				item: "irons_spellbooks:arcane_essence"
+				only_from_crafting: false
+				type: "item"
+			}]
+			x: -5.0d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"1EE082F0F108BFBA"
+				"5C76F132FD8587F9"
+				"607E8D1ADA6ED3A0"
+			]
+			description: [
+				"要升级装备，你需要一个升级球和一个秘法砧。升级球的合成配方可能很昂贵，最难获得的物品是秘法残骸和余烬精华。"
+				"\\n"
+				"你可以将一件魔法师装备最多升级3次。不同的升级球会提供不同的属性加成，例如元素伤害提升或法力值增加。"
+			]
+			icon: {
+				Count: 1
+				id: "irons_spellbooks:pumpkin_helmet"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "37B5F30D3F4B99F6"
+			rewards: [{
+				count: 3
+				id: "56DD80B6574EC6C2"
+				item: "irons_spellbooks:blank_rune"
+				type: "item"
+			}]
+			tasks: [{
+				id: "3BE9AFC332C9476E"
+				title: "好的！"
+				type: "checkmark"
+			}]
+			title: "升级你的装备"
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0614C37C1534939E"]
+			description: ["所有其他符文制作的基础。可在魔法结构中，或居住在这些结构中的魔法师处找到。"]
+			id: "49B1AA2C35454C74"
+			tasks: [{
+				consume_items: false
+				id: "1B902538D23196EB"
+				item: "irons_spellbooks:blank_rune"
+				only_from_crafting: false
+				type: "item"
+			}]
+			x: -4.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["0614C37C1534939E"]
+			description: [
+				"亡者之王是一具强大的不死生物，居住在地下深处的墓穴中。找到他的唯一方法是制作并跟随迷途罗盘。"
+				"\\n这具骷髅会用强大的法术来击退盗墓者。除非你已做好万全准备，否则请勿尝试！另一方面，如果你能让他安息，回报将远超预期……甚至可能将你的魔法之旅推向新的高度！"
+			]
+			id: "73A2334F5E27719A"
+			size: 1.4d
+			tasks: [{
+				id: "45DD5B0FAD17B43A"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:wayward_compass"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "寻找死去的国王的位置"
+			x: -0.7d
+			y: 1.4d
+		}
+		{
+			dependencies: ["0614C37C1534939E"]
+			description: ["远古战场位于下界。用镐挖掘盔甲堆，即可唤醒远古骑士。"]
+			icon: {
+				Count: 1
+				id: "mutantmonsters:mutant_skeleton_skull"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "28F664AE3CBA9E87"
+			size: 1.3d
+			tasks: [{
+				id: "04B7F97553E6079A"
+				title: "好恐怖……"
+				type: "checkmark"
+			}]
+			title: "远古战场"
+			x: -1.3d
+			y: 2.6d
+		}
+		{
+			dependencies: ["28F664AE3CBA9E87"]
+			description: ["升级球所需的组件。只能通过击败远古战场中的远古骑士获得。"]
+			id: "0CFC93A854B6EBE1"
+			rewards: [{
+				count: 4
+				id: "155E77020EC84993"
+				item: "irons_spellbooks:arcane_essence"
+				type: "item"
+			}]
+			tasks: [{
+				id: "3727B06E2FE205B4"
+				item: "irons_spellbooks:cinder_essence"
+				type: "item"
+			}]
+			x: 3.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["43BE75F09C4043F8"]
+			description: ["获得卷轴主要有两种方式。"]
+			icon: {
+				Count: 1
+				id: "irons_spellbooks:scroll"
+				tag: {
+					ISB_Spells: {
+						data: [{
+							id: "irons_spellbooks:chain_creeper"
+							index: 0
+							level: 1
+							locked: 1b
+						}]
+						maxSpells: 1
+						mustEquip: 0b
+						spellWheel: 0b
+					}
+				}
+			}
+			id: "5D6F2EF2A0FABB1E"
+			size: 1.5d
+			tasks: [{
+				id: "4DB549B82B05387F"
+				title: "快给我看看！"
+				type: "checkmark"
+			}]
+			title: "获取卷轴（Obtaining Scrolls）"
+			x: -5.25d
+			y: 0.0d
+		}
+		{
+			dependencies: ["39BD15E37DD2B01C"]
+			description: ["用于升级卷轴、升级装备和附魔武器。"]
+			id: "5C76F132FD8587F9"
+			tasks: [{
+				consume_items: false
+				id: "65079F0A627BA537"
+				item: "irons_spellbooks:arcane_anvil"
+				only_from_crafting: false
+				type: "item"
+			}]
+			x: 6.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["0CFC93A854B6EBE1"]
+			description: ["升级装备的基础球体。需要注入符文才能使用。"]
+			id: "607E8D1ADA6ED3A0"
+			tasks: [{
+				id: "450C6924ABAA82D0"
+				item: "irons_spellbooks:upgrade_orb"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["43BE75F09C4043F8"]
+			description: ["在冒险的每个阶段，请务必留意戒指、独特的魔法书、命名魔法书和魔法资源！"]
+			hide_dependency_lines: true
+			icon: "irons_spellbooks:emerald_stoneplate_ring"
+			id: "142D6C7E522A3208"
+			size: 1.7d
+			tasks: [{
+				id: "128B025C180FB6B2"
+				title: "太棒了！"
+				type: "checkmark"
+			}]
+			title: "独特遗物与魔法书 \& 魔法书"
+			x: -6.8d
+			y: -2.55d
+		}
+		{
+			dependencies: ["0614C37C1534939E"]
+			description: ["制作卷轴所需的组件。可在魔法结构或强大的魔法生物中找到。"]
+			id: "4200E32F0492E2E3"
+			tasks: [{
+				id: "58DEDE820A0E14A3"
+				item: "irons_spellbooks:common_ink"
+				type: "item"
+			}]
+			x: -6.0d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"5178B560C8B827E3"
+				"4200E32F0492E2E3"
+			]
+			description: ["有了墨水和卷轴锻造台，你就可以制作第一份卷轴了！"]
+			icon: {
+				Count: 1
+				id: "irons_spellbooks:scroll"
+				tag: {
+					ISB_spell: {
+						level: 1
+						type: 1
+					}
+				}
+			}
+			id: "55DE5FDCFC67E4A2"
+			rewards: [{
+				id: "62DD7A9F0FD11783"
+				item: "irons_spellbooks:magic_cloth"
+				type: "item"
+			}]
+			tasks: [{
+				id: "454D6DA7C5585A1B"
+				title: "谢谢！"
+				type: "checkmark"
+			}]
+			title: "制作你的第一张卷轴"
+			x: -7.5d
+			y: 4.0d
+		}
+	]
+	title: "魔法！"
+}

@@ -1,0 +1,1202 @@
+# AI 初翻，未人工校对
+{
+	id: "370D1929712FBFD1"
+	group: "3C8730B42C1725BE"
+	order_index: 1
+	filename: "chapter_3"
+	title: "第二章"
+	icon: "mekanism:ingot_steel"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "黄铜时代"
+			disable_toast: true
+			x: 0.5d
+			y: 1.5d
+			description: ["在末地中，锌的出率要高得多。"]
+			dependencies: [
+				"143FA2A8FD6E4E10"
+				"556CB869A6592D68"
+			]
+			id: "1A4ED8C40CDFBBE5"
+			tasks: [
+				{
+					id: "04DB0EB133536682"
+					type: "item"
+					item: "create:brass_ingot"
+				}
+				{
+					id: "4E673E908D990AC6"
+					type: "item"
+					item: "create:polished_rose_quartz"
+				}
+				{
+					id: "0576B4EBF1EC60C9"
+					type: "item"
+					item: "immersiveengineering:treated_wood_horizontal"
+				}
+			]
+			rewards: [{
+				id: "62DFB40741BA7C64"
+				type: "random"
+				table_id: 1606026794008844755L
+			}]
+		}
+		{
+			x: 2.5d
+			y: 3.0d
+			dependencies: ["1A4ED8C40CDFBBE5"]
+			id: "50E9DDE83C23EE6E"
+			tasks: [{
+				id: "0F1BAEF386A6666F"
+				type: "item"
+				item: "create:deployer"
+			}]
+			rewards: [{
+				id: "0F03096F7C0988D9"
+				type: "random"
+				table_id: 1606026794008844755L
+			}]
+		}
+		{
+			x: 7.0d
+			y: 3.0d
+			description: ["将大型齿轮安装在顶部，可以配置所连接系统的速度。"]
+			dependencies: ["1E77F20F773CA050"]
+			id: "7D69D2DC60D8892C"
+			tasks: [{
+				id: "2CF567A8E41A5082"
+				type: "item"
+				item: "create:rotation_speed_controller"
+			}]
+			rewards: [{
+				id: "312832E0957C42C5"
+				type: "random"
+				table_id: 1606026794008844755L
+			}]
+		}
+		{
+			title: "高级物流系统 (Advanced Logistics)"
+			x: 2.5d
+			y: 0.0d
+			description: ["黄铜管道/漏斗有一个过滤槽，可以用物品点击进行简单白名单设置，或使用配置好的过滤器实现更复杂的选项。"]
+			dependencies: ["1A4ED8C40CDFBBE5"]
+			progression_mode: "flexible"
+			id: "40255F14A4599270"
+			tasks: [
+				{
+					id: "52E864994263D1DD"
+					type: "item"
+					item: "create:brass_tunnel"
+				}
+				{
+					id: "28D761D50147675D"
+					type: "item"
+					item: "create:brass_funnel"
+				}
+				{
+					id: "1BB36A8FA30A8C5B"
+					type: "item"
+					item: {
+						id: "create:attribute_filter"
+						Count: 1b
+						tag: { }
+					}
+				}
+				{
+					id: "6131E9E367CD24BB"
+					type: "item"
+					item: "create:filter"
+				}
+			]
+			rewards: [{
+				id: "4A0D81B9053BFD94"
+				type: "random"
+				table_id: 1606026794008844755L
+			}]
+		}
+		{
+			x: 7.0d
+			y: 4.5d
+			description: ["手喂烈焰燃烧器方面非常擅长。"]
+			dependencies: ["1E77F20F773CA050"]
+			id: "2D4B1C82A8FC7E2E"
+			tasks: [{
+				id: "2DDD22093E3A8DB7"
+				type: "item"
+				item: "create:mechanical_arm"
+			}]
+			rewards: [{
+				id: "4F42CE156075162E"
+				type: "random"
+				table_id: 1606026794008844755L
+			}]
+		}
+		{
+			x: 5.5d
+			y: 3.0d
+			description: ["你需要很多这些东西"]
+			dependencies: ["50E9DDE83C23EE6E"]
+			id: "1E77F20F773CA050"
+			tasks: [{
+				id: "07F3CCB25971C48F"
+				type: "item"
+				item: "create:precision_mechanism"
+			}]
+			rewards: [{
+				id: "039FAFE1BE502DF5"
+				type: "random"
+				table_id: 1606026794008844755L
+			}]
+		}
+		{
+			x: 8.5d
+			y: -3.5d
+			description: ["锌、镍、金和石英在下界中更为常见，而钴和烈焰石英则只能在那里找到。你还会发现富矿，它能掉落双倍数量的原矿。"]
+			id: "20FA1AFF0BD65177"
+			tasks: [{
+				id: "318ECF0673D91AB5"
+				type: "dimension"
+				title: "下界"
+				dimension: "minecraft:the_nether"
+			}]
+			rewards: [
+				{
+					id: "47C4A63C92D308C2"
+					type: "item"
+					item: "tconstruct:magma_bottle"
+				}
+				{
+					id: "0953D563ECC614E4"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 2582656620646881183L
+				}
+			]
+		}
+		{
+			x: 8.5d
+			y: -1.0d
+			description: ["你需要将它们放置在需要加热的物品下方，并向它们投入可燃物品（或流体）。"]
+			dependencies: ["20FA1AFF0BD65177"]
+			id: "46DC0D67FE1C4C67"
+			tasks: [{
+				id: "5A96C7CDF5E89230"
+				type: "item"
+				item: "create:blaze_burner"
+			}]
+			rewards: [
+				{
+					id: "07110D4813BE56E9"
+					type: "item"
+					item: "createaddition:straw"
+				}
+				{
+					id: "12F3899FBB38EFD1"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 2582656620646881183L
+				}
+			]
+		}
+		{
+			title: "碾压轮（Crushing Wheel）"
+			icon: "create:crushing_wheel"
+			x: 4.0d
+			y: 1.5d
+			subtitle: "一级矿石加工"
+			dependencies: ["1A4ED8C40CDFBBE5"]
+			id: "51537052A03715D7"
+			tasks: [
+				{
+					id: "6B2E59152BC2CCF8"
+					type: "item"
+					item: "create:mechanical_crafter"
+					count: 21L
+				}
+				{
+					id: "06BAE99178B34730"
+					type: "item"
+					item: "create:crushing_wheel"
+					count: 2L
+				}
+			]
+			rewards: [{
+				id: "3AEA0291896FE3BB"
+				type: "random"
+				table_id: 1606026794008844755L
+			}]
+		}
+		{
+			title: "更（更）简易的合金"
+			x: 7.5d
+			y: 0.0d
+			shape: "rsquare"
+			description: ["建造一个4x4的结构，然后用工程师之锤敲击正面"]
+			dependencies: ["46DC0D67FE1C4C67"]
+			id: "2A97F4CE430A26BC"
+			tasks: [{
+				id: "276341B53E039140"
+				type: "item"
+				item: "immersiveengineering:alloybrick"
+				count: 8L
+			}]
+			rewards: [{
+				id: "2C033181A25D4541"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2582656620646881183L
+			}]
+		}
+		{
+			x: 7.0d
+			y: -2.0d
+			description: ["你可以通过粉碎树叶来找到埃德尔木树苗。"]
+			dependencies: ["20FA1AFF0BD65177"]
+			id: "0C62C2532E374205"
+			tasks: [{
+				id: "61E72830C4A6C46D"
+				type: "item"
+				item: {
+					id: "forbidden_arcanus:soul_extractor"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "0FA6B568ED889EF8"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2582656620646881183L
+			}]
+		}
+		{
+			x: 6.0d
+			y: -1.0d
+			subtitle: "找不到烈焰人？没问题！"
+			dependencies: ["0C62C2532E374205"]
+			id: "50BD245F65D3A032"
+			tasks: [{
+				id: "25FAB5C043329F35"
+				type: "item"
+				item: "summoningrituals:altar"
+			}]
+			rewards: [{
+				id: "3A36D498198324DA"
+				type: "item"
+				item: "forbidden_arcanus:soul"
+				count: 8
+			}]
+		}
+		{
+			title: "铸造厂"
+			icon: "tconstruct:foundry_controller"
+			x: 8.5d
+			y: 1.5d
+			shape: "gear"
+			dependencies: [
+				"46DC0D67FE1C4C67"
+				"4C7F486D0CCC38E0"
+				"1E77F20F773CA050"
+				"63D72477BB0F83A4"
+				"29506E4E5B34C06B"
+				"20FA1AFF0BD65177"
+				"2E25E6142C8DBE01"
+			]
+			size: 1.5d
+			id: "729CD1DC498A9130"
+			tasks: [
+				{
+					id: "0E5386262A39DA76"
+					type: "item"
+					item: "tconstruct:foundry_controller"
+				}
+				{
+					id: "01AC14544E982090"
+					type: "item"
+					title: "任意数量的 #tconstruct:scorched_tanks"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "tconstruct:scorched_tanks"
+						}
+					}
+				}
+				{
+					id: "01D5525BFB4F899F"
+					type: "item"
+					item: "tconstruct:scorched_drain"
+				}
+				{
+					id: "6622B5FC9735A8C4"
+					type: "item"
+					item: "tconstruct:scorched_table"
+				}
+				{
+					id: "7D26819B9E284A67"
+					type: "item"
+					item: "tconstruct:scorched_faucet"
+				}
+			]
+			rewards: [
+				{
+					id: "797847172BD88152"
+					type: "item"
+					item: "kubejs:carbon_covered_iron"
+					count: 16
+				}
+				{
+					id: "1C60C5013445F44D"
+					type: "item"
+					item: "tconstruct:blazing_blood_bucket"
+				}
+				{
+					id: "70A284B4CE66E1D7"
+					type: "item"
+					item: "tconstruct:gold_platform"
+				}
+			]
+		}
+		{
+			icon: "mbm2:sorter_mk1"
+			x: 4.0d
+			y: 0.0d
+			description: ["这是从复合矿石中提取更高级别矿石所必需的。"]
+			dependencies: ["51537052A03715D7"]
+			id: "23C9B04C7E4C834F"
+			tasks: [
+				{
+					id: "07F5942725B1A9D0"
+					type: "item"
+					item: "mbm2:sorter_mk1"
+				}
+				{
+					id: "38A5F623EA63CE13"
+					type: "item"
+					item: "createaddition:connector"
+					count: 4L
+				}
+				{
+					id: "568791640EED0B18"
+					type: "item"
+					item: "create:brass_casing"
+					count: 23L
+				}
+				{
+					id: "155E46A0A6D296A0"
+					type: "item"
+					item: "kubejs:tier_1_mechanical_alloy_cog_block"
+					count: 3L
+				}
+				{
+					id: "29A47A274C22D3B9"
+					type: "item"
+					item: "multiblocked:create_item_output"
+				}
+				{
+					id: "088DFFCD93E9C1CC"
+					type: "item"
+					item: "multiblocked:create_item_input"
+				}
+				{
+					id: "3E781A5006CCCF8B"
+					type: "item"
+					item: "multiblocked:create_input"
+				}
+			]
+			rewards: [{
+				id: "6DA0B6AC640C71C6"
+				type: "item"
+				item: "createaddition:festive_spool"
+				count: 2
+			}]
+		}
+		{
+			icon: "createoreexcavation:drilling_machine"
+			x: 4.0d
+			y: 4.5d
+			subtitle: "多种矿石 (Many Ores)"
+			description: ["你可能需要设置一个蒸汽机来产生足够的旋转力来驱动钻头。"]
+			dependencies: ["1E77F20F773CA050"]
+			id: "7F00F4A7C74AC181"
+			tasks: [
+				{
+					id: "2A3D7C7E0ED5C81E"
+					type: "item"
+					item: "createoreexcavation:drilling_machine"
+				}
+				{
+					id: "465D78A09C6A5BA3"
+					type: "item"
+					item: "createoreexcavation:drill"
+				}
+			]
+			rewards: [
+				{
+					id: "50232E98C221CFE4"
+					type: "item"
+					item: "createoreexcavation:vein_finder"
+				}
+				{
+					id: "094B3B7023D21C1D"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 1606026794008844755L
+				}
+			]
+		}
+		{
+			title: "蒸汽引擎！"
+			icon: "create:steam_engine"
+			x: 5.5d
+			y: 4.5d
+			description: [
+				"蒸汽机放置后就不再储水。取而代之的是流量计，佩戴护目镜时可见。每使用一台蒸汽机，需要一单位水。"
+				""
+				"水比你想的要多的多，超乎你的想象。"
+			]
+			dependencies: ["1E77F20F773CA050"]
+			id: "70F1315477089A27"
+			tasks: [
+				{
+					id: "436CA764388D1EB4"
+					type: "item"
+					item: "create:fluid_tank"
+					count: 4L
+				}
+				{
+					id: "0E3EE6FA3BD9C6DC"
+					type: "item"
+					item: "create:steam_engine"
+				}
+				{
+					id: "252CB50AB80819CF"
+					type: "item"
+					item: "create:shaft"
+				}
+			]
+			rewards: [{
+				id: "43A9DF7DFFC45C4E"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1606026794008844755L
+			}]
+		}
+		{
+			title: "农业工具"
+			icon: {
+				id: "create:super_glue"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: 1.0d
+			y: 4.0d
+			dependencies: ["50E9DDE83C23EE6E"]
+			id: "7E15574E530E5A45"
+			tasks: [
+				{
+					id: "0C17FB72EE645B43"
+					type: "item"
+					title: "移动基地"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "mbm2:movement_anchors"
+						}
+					}
+				}
+				{
+					id: "21888F0EC69BDA7E"
+					type: "item"
+					title: "底盘"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "mbm2:chassis"
+						}
+					}
+					count: 3L
+				}
+				{
+					id: "2E62F64E00AA3502"
+					type: "item"
+					item: {
+						id: "create:super_glue"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "0C63F343C9866A93"
+					type: "item"
+					item: "create:portable_storage_interface"
+					count: 2L
+				}
+				{
+					id: "6737976599C00075"
+					type: "item"
+					item: "create:clutch"
+				}
+				{
+					id: "3FA3F7BBAD97F60B"
+					type: "item"
+					item: "create:sequenced_gearshift"
+				}
+			]
+			rewards: [{
+				id: "6DAD6FB8BFDD7266"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1606026794008844755L
+			}]
+		}
+		{
+			title: "焦灼砖块"
+			icon: "tconstruct:scorched_brick"
+			x: 6.5d
+			y: 1.5d
+			description: ["你总得在某个时候自动化砖块链，不如现在就动手吧？"]
+			dependencies: ["51537052A03715D7"]
+			id: "4C7F486D0CCC38E0"
+			tasks: [{
+				id: "0F1654D64E14ACFE"
+				type: "item"
+				item: "tconstruct:scorched_brick"
+			}]
+		}
+		{
+			x: 10.0d
+			y: 6.0d
+			dependencies: ["488E2999C6BE6591"]
+			id: "20E99BAA6C9A4913"
+			tasks: [{
+				id: "6D58611087E3BD41"
+				type: "item"
+				item: "compactcrafting:field_projector"
+				count: 4L
+			}]
+		}
+		{
+			title: "附魔室 (Imbuement Chamber)"
+			x: 11.5d
+			y: 4.0d
+			description: ["辅助物品在合成时不会被消耗。"]
+			dependencies: ["61CCA7FA3C371180"]
+			id: "488E2999C6BE6591"
+			tasks: [{
+				id: "2124621A623FF8EA"
+				type: "item"
+				item: "ars_nouveau:imbuement_chamber"
+			}]
+			rewards: [{
+				id: "38F12EEED5D870B4"
+				type: "item"
+				item: "ars_nouveau:arcane_pedestal"
+			}]
+		}
+		{
+			x: 4.0d
+			y: 6.0d
+			dependencies: ["50E9DDE83C23EE6E"]
+			id: "39F16774468E59FE"
+			tasks: [{
+				id: "7B91CDE325666152"
+				type: "item"
+				item: "powah:capacitor_basic"
+			}]
+		}
+		{
+			title: "基础电力生成系统"
+			x: 7.0d
+			y: 6.0d
+			dependencies: [
+				"39F16774468E59FE"
+				"20E99BAA6C9A4913"
+			]
+			id: "47910242F4DE9220"
+			tasks: [
+				{
+					id: "1895020E0D74216E"
+					type: "item"
+					title: "任意 #powah:generator/basic"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "powah:generator/basic"
+						}
+					}
+				}
+				{
+					id: "3A0881DA9C104671"
+					type: "item"
+					item: "powah:energy_cable_basic"
+				}
+				{
+					id: "13DC6700EE416D18"
+					type: "item"
+					item: "powah:energy_cell_basic"
+				}
+			]
+		}
+		{
+			title: "充满能量！"
+			x: 7.0d
+			y: 7.5d
+			subtitle: "试试有序分类器吧！"
+			description: ["将法杖放置在球体附近，并用制作材料填充。"]
+			dependencies: ["47910242F4DE9220"]
+			min_required_tasks: 2
+			id: "37610C524354F5F2"
+			tasks: [
+				{
+					id: "3A2BB9386F55B5BC"
+					type: "item"
+					item: "powah:energizing_orb"
+				}
+				{
+					id: "1B08B163ECFB54FC"
+					type: "item"
+					item: "powah:energizing_rod_basic"
+				}
+			]
+			rewards: [{
+				id: "2033F9214A46820C"
+				type: "item"
+				item: {
+					id: "powah:wrench"
+					Count: 1b
+					tag: {
+						PowahWrenchNBT: { }
+					}
+				}
+			}]
+		}
+		{
+			x: 10.0d
+			y: 7.5d
+			dependencies: ["20E99BAA6C9A4913"]
+			id: "4DE314D64C3E7C9E"
+			tasks: [{
+				id: "3452E0E28BB1E897"
+				type: "item"
+				item: "kubejs:bronze_frame"
+			}]
+		}
+		{
+			x: 8.5d
+			y: 9.0d
+			dependencies: ["4DE314D64C3E7C9E"]
+			id: "15B1FC183A90145C"
+			tasks: [{
+				id: "73D6EF0CF5688260"
+				type: "item"
+				item: "thermal:machine_crucible"
+			}]
+		}
+		{
+			x: 11.5d
+			y: 9.0d
+			description: ["用于将粉尘合成宝石。"]
+			dependencies: ["4DE314D64C3E7C9E"]
+			id: "651B53F1AFDEB856"
+			tasks: [{
+				id: "6E080ACB7D721A15"
+				type: "item"
+				item: "thermal:machine_crystallizer"
+			}]
+		}
+		{
+			x: 10.0d
+			y: 9.0d
+			dependencies: ["4DE314D64C3E7C9E"]
+			id: "4483AED226DF988C"
+			tasks: [{
+				id: "03F333526EFB0549"
+				type: "item"
+				item: "thermal:machine_chiller"
+			}]
+		}
+		{
+			title: "Fluix"
+			icon: "ae2:fluix_dust"
+			x: 7.0d
+			y: 9.0d
+			description: ["将石英和红石投入水中以合成流质。"]
+			dependencies: ["37610C524354F5F2"]
+			min_required_tasks: 4
+			id: "338A1AE116F1A652"
+			tasks: [
+				{
+					id: "42328F4E2C3B7B15"
+					type: "item"
+					item: "ae2:charged_certus_quartz_crystal"
+				}
+				{
+					id: "761A9A75CC0F5A54"
+					type: "item"
+					item: "minecraft:redstone"
+				}
+				{
+					id: "020D64082350FC98"
+					type: "item"
+					item: "minecraft:quartz"
+				}
+				{
+					id: "6D3210A76A983076"
+					type: "item"
+					item: "ae2:fluix_dust"
+				}
+				{
+					id: "44E38671735FB021"
+					type: "item"
+					item: "ae2:fluix_crystal"
+				}
+			]
+		}
+		{
+			title: "活力合金"
+			x: 5.5d
+			y: 9.0d
+			description: ["将熔融的Electrum浇铸到Energetic Blend上即可制作。"]
+			dependencies: ["37610C524354F5F2"]
+			id: "059414648F84FC52"
+			tasks: [{
+				id: "12C53DC5FF079A54"
+				type: "item"
+				item: "kubejs:energetic_alloy_ingot"
+			}]
+		}
+		{
+			title: "基础数字存储系统"
+			x: 5.5d
+			y: 10.5d
+			description: ["你需要为合成终端解锁钢制材料。"]
+			dependencies: [
+				"338A1AE116F1A652"
+				"059414648F84FC52"
+			]
+			id: "704F244888706682"
+			tasks: [
+				{
+					id: "18F13FF3849FAA04"
+					type: "item"
+					item: "ae2:energy_acceptor"
+				}
+				{
+					id: "78C53E28988595A3"
+					type: "item"
+					item: "ae2:fluix_glass_cable"
+				}
+				{
+					id: "3AB21F73DAAECB90"
+					type: "item"
+					item: "ae2:terminal"
+				}
+				{
+					id: "5B43E4F7C8D0DF57"
+					type: "item"
+					item: "ae2:storage_bus"
+				}
+			]
+			rewards: [
+				{
+					id: "74F359CE95670B49"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 824098445478849879L
+				}
+				{
+					id: "2F79C2CEAA20A6D5"
+					type: "item"
+					item: "ae2:storage_bus"
+				}
+			]
+		}
+		{
+			title: "树木农场自动化"
+			x: 1.0d
+			y: 5.5d
+			dependencies: ["7E15574E530E5A45"]
+			id: "1BDAAA788FF99E75"
+			tasks: [
+				{
+					id: "43AF76F759EB1531"
+					type: "item"
+					title: "任意 #forge:sapling"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "forge:sapling"
+						}
+					}
+				}
+				{
+					id: "047865B390FB09A1"
+					type: "item"
+					item: "create:mechanical_saw"
+				}
+				{
+					id: "7A2D31131FB6274A"
+					type: "item"
+					item: "create:deployer"
+				}
+			]
+		}
+		{
+			title: "植物收获任务书文本"
+			x: -0.5d
+			y: 5.0d
+			dependencies: ["7E15574E530E5A45"]
+			id: "04CAC58DBD2678D6"
+			tasks: [
+				{
+					id: "7A8AE2115B907755"
+					type: "item"
+					title: "任意 #forge:seeds"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "forge:seeds"
+						}
+					}
+				}
+				{
+					id: "24ABECB8DEEBB08E"
+					type: "item"
+					item: "create:mechanical_harvester"
+				}
+			]
+		}
+		{
+			title: "水晶种子"
+			x: 7.0d
+			y: 10.5d
+			description: ["将石英和流质翻倍！"]
+			dependencies: ["338A1AE116F1A652"]
+			id: "2BF6374708A25B4E"
+			tasks: [
+				{
+					id: "17DB0A1626E9915D"
+					type: "item"
+					item: "ae2:certus_crystal_seed"
+				}
+				{
+					id: "720DDC0785BE636A"
+					type: "item"
+					item: "ae2:fluix_crystal_seed"
+				}
+			]
+		}
+		{
+			x: 11.5d
+			y: 5.5d
+			subtitle: "自动化3D合成！"
+			description: ["在自动化3D合成放置方块时，需要在投掷物品以开始合成前，用红石脉冲脉冲该方块。"]
+			dependencies: ["20E99BAA6C9A4913"]
+			id: "6B656B6FE8A5F221"
+			tasks: [{
+				id: "1617AA403965171A"
+				type: "item"
+				item: "compactcrafting:rescan_proxy"
+			}]
+		}
+		{
+			title: "更多元素附魔物品"
+			x: 12.5d
+			y: 1.5d
+			description: ["如果需要帮助寻找 Amethest，探矿棒可以帮助你找到 Geode！"]
+			dependencies: ["6B06707ECFAFD263"]
+			id: "61CCA7FA3C371180"
+			tasks: [
+				{
+					id: "2CFB04C7A08F97D3"
+					type: "item"
+					item: "elementalcraft:swift_alloy_ingot"
+				}
+				{
+					id: "48F4AD547AF2A043"
+					type: "item"
+					item: "elementalcraft:springaline_shard"
+				}
+			]
+		}
+		{
+			x: 14.5d
+			y: 1.5d
+			description: ["物品必须按照所示顺序放置。"]
+			dependencies: ["391E4F9DA1A3D71B"]
+			id: "6B06707ECFAFD263"
+			tasks: [{
+				id: "6378AF3A0AE6AF58"
+				type: "item"
+				item: "elementalcraft:binder"
+			}]
+			rewards: [{
+				id: "51255585156612F0"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 6594349084625110702L
+			}]
+		}
+		{
+			x: 11.0d
+			y: 1.5d
+			description: [
+				""
+				"源容器可用于移动源物品"
+			]
+			dependencies: ["61CCA7FA3C371180"]
+			id: "63D72477BB0F83A4"
+			tasks: [{
+				id: "0576FF10B6A77AE8"
+				type: "item"
+				item: "elementalcraft:crystallizer"
+			}]
+			rewards: [{
+				id: "1A071C495A346567"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5588879661420231004L
+			}]
+		}
+		{
+			title: "元素工艺自动化工具"
+			x: 14.0d
+			y: 0.0d
+			description: ["在自动化 Elementalcraft 时，这些会很有帮助！"]
+			min_required_dependencies: 1
+			dependencies: [
+				"61CCA7FA3C371180"
+				"4187F705E4356142"
+			]
+			id: "2DACD33891F1AB19"
+			tasks: [
+				{
+					id: "78204D93643F5B96"
+					type: "item"
+					item: "elementalcraft:instrument_retriever"
+				}
+				{
+					id: "42B4FEFF779D5232"
+					type: "item"
+					item: "elementalcraft:sorter"
+				}
+			]
+			rewards: [{
+				id: "3E0B0334A76880BF"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 6594349084625110702L
+			}]
+		}
+		{
+			x: 13.5d
+			y: 3.5d
+			dependencies: ["61CCA7FA3C371180"]
+			id: "193DF7CEBFCB9C41"
+			tasks: [{
+				id: "74DE4F3CEC5A2FCE"
+				type: "item"
+				item: "apotheosis:salvaging_table"
+			}]
+		}
+		{
+			title: "电气都市"
+			x: 8.5d
+			y: 7.5d
+			dependencies: [
+				"37610C524354F5F2"
+				"4DE314D64C3E7C9E"
+			]
+			min_required_tasks: 2
+			id: "413DA778FC89BC94"
+			tasks: [
+				{
+					id: "465646683A293877"
+					type: "item"
+					item: {
+						id: "thermal:flux_drill"
+						Count: 1b
+						tag: { }
+					}
+				}
+				{
+					id: "1482BCC043A384DE"
+					type: "item"
+					item: {
+						id: "thermal:flux_magnet"
+						Count: 1b
+						tag: { }
+					}
+				}
+				{
+					id: "5434002AFF74BA8E"
+					type: "item"
+					item: {
+						id: "thermal:flux_saw"
+						Count: 1b
+						tag: { }
+					}
+				}
+				{
+					id: "64A339164E50852D"
+					type: "item"
+					item: "thermal:tinker_bench"
+				}
+				{
+					id: "4173A00F5ECFEC05"
+					type: "item"
+					item: "thermal:area_radius_augment"
+				}
+			]
+		}
+		{
+			disable_toast: true
+			x: 9.5d
+			y: 3.0d
+			description: ["在桌子上使用你的魔法书以打开合成菜单"]
+			dependencies: [
+				"0A183233FD5F6BF5"
+				"488E2999C6BE6591"
+			]
+			id: "29506E4E5B34C06B"
+			tasks: [{
+				id: "2EB4AA772AD056F4"
+				type: "item"
+				item: "ars_nouveau:scribes_table"
+			}]
+		}
+		{
+			disable_toast: true
+			x: 9.0d
+			y: 4.5d
+			shape: "circle"
+			subtitle: "快去查看 Ars Nouveau 的 quest 页面吧！"
+			id: "0A183233FD5F6BF5"
+			tasks: [{
+				id: "40935CD9C6341B46"
+				type: "item"
+				item: "ars_nouveau:novice_spell_book"
+			}]
+		}
+		{
+			title: "瓶装气场 (Bottled Aura)"
+			x: 10.0d
+			y: -1.0d
+			description: ["使用瓶子所在的维度不同，得到的结果也会不同。"]
+			dependencies: ["20FA1AFF0BD65177"]
+			id: "2E25E6142C8DBE01"
+			tasks: [
+				{
+					id: "42E16D3411C0AB57"
+					type: "item"
+					item: "naturesaura:bottle_two_the_rebottling"
+				}
+				{
+					id: "4BA02776067A5DFC"
+					type: "item"
+					item: {
+						id: "naturesaura:aura_bottle"
+						Count: 1b
+						tag: {
+							stored_type: "naturesaura:nether"
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 11.5d
+			y: 7.5d
+			description: ["可用于早期的自动化合成"]
+			dependencies: ["4DE314D64C3E7C9E"]
+			id: "3261DDADEDB91321"
+			tasks: [{
+				id: "0E3F648E2D65ED8F"
+				type: "item"
+				item: "thermal:machine_crafter"
+			}]
+		}
+		{
+			title: "木炭自动化生产"
+			icon: "minecraft:charcoal"
+			x: 1.0d
+			y: 7.0d
+			description: ["木炭自动化生产"]
+			dependencies: ["1BDAAA788FF99E75"]
+			min_required_tasks: 1
+			id: "029683AB689F2019"
+			tasks: [
+				{
+					id: "1D21B65CFECDEEC5"
+					type: "item"
+					item: "minecraft:charcoal"
+					count: 1000L
+				}
+				{
+					id: "086C29A018EFCF38"
+					type: "checkmark"
+				}
+			]
+		}
+		{
+			title: "将树木涂成金色"
+			x: 14.0d
+			y: -1.5d
+			description: ["你可以在你的阿卡夏卷轴中找到自然光环之书。"]
+			dependencies: ["143FA2A8FD6E4E10"]
+			id: "4187F705E4356142"
+			tasks: [
+				{
+					id: "207E8A7F752042D0"
+					type: "item"
+					item: "naturesaura:gold_fiber"
+				}
+				{
+					id: "29FF7F7D6BDD7E50"
+					type: "item"
+					item: "naturesaura:gold_leaf"
+				}
+			]
+		}
+		{
+			title: "升级后的齿轮箱"
+			x: 8.0d
+			y: 3.0d
+			dependencies: ["7D69D2DC60D8892C"]
+			id: "13423DFD0AACB1F7"
+			tasks: [
+				{
+					id: "1897C0CC3470182A"
+					type: "item"
+					item: "create_connected:six_way_gearbox"
+				}
+				{
+					id: "5E6E85886D189FFB"
+					type: "item"
+					item: "create_connected:brass_gearbox"
+				}
+			]
+			rewards: [{
+				id: "5063BB1615501AEB"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 1606026794008844755L
+			}]
+		}
+	]
+	quest_links: [ ]
+}
