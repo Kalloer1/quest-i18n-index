@@ -1,0 +1,243 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "07_nuclear"
+	group: "03FD6B59F96E75A8"
+	icon: "create_new_age:reactor_rod"
+	id: "5FF64D5B892070E8"
+	order_index: 3
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["5193379FF4AC198A"]
+			hide_until_deps_complete: true
+			id: "58501F7A28A639F1"
+			optional: true
+			subtitle: "放置一个炮台，然后在中间用钢制炮膛建造一门大炮，左侧放置2个桶，右侧放置1个炮膛和1个炮闩。"
+			tasks: [
+				{
+					id: "70B3835BE37E2027"
+					item: "createbigcannons:cannon_mount"
+					type: "item"
+				}
+				{
+					id: "3B62DF659CB7E0E6"
+					item: "createbigcannons:steel_screw_breech"
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "31B0B3C0EEA163BE"
+					item: "createbigcannons:steel_cannon_chamber"
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "6C0EF1E718E227FD"
+					item: "createbigcannons:steel_cannon_barrel"
+					type: "item"
+				}
+			]
+			title: "建造一门大炮"
+			x: 2.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["58501F7A28A639F1"]
+			id: "6E24E3B8D40F55A5"
+			optional: true
+			subtitle: "左侧桶中依次放入 Powder Charge>Nuclear Shell>Impact Fuze>Piston Ram >Piston>2 Piston Ex. Pole。"
+			tasks: [
+				{
+					id: "32E93FD1EDC93071"
+					item: {
+						Count: 1
+						id: "canonnukes:nuke_shell"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "22F2851B38F988DF"
+					item: "createbigcannons:impact_fuze"
+					type: "item"
+				}
+				{
+					id: "519A17CAC10FBF74"
+					item: {
+						Count: 1
+						id: "createbigcannons:powder_charge"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "2921B1FAAE0438E8"
+					item: "createbigcannons:ram_head"
+					type: "item"
+				}
+				{
+					count: 3L
+					id: "4799822C7334848E"
+					item: "create:piston_extension_pole"
+					type: "item"
+				}
+				{
+					id: "621D0AA1911F2A4E"
+					item: "createbigcannons:cannon_loader"
+					type: "item"
+				}
+			]
+			title: "装载大炮"
+			x: 0.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["6E24E3B8D40F55A5"]
+			id: "2BAB2FCBCA0DA6B8"
+			optional: true
+			subtitle: "将杠杆放在炮台的背面以组装大炮。之后你就可以按照自己的喜好来旋转大炮了。"
+			tasks: [{
+				id: "5DEF009B6D3C4FC3"
+				item: "minecraft:lever"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["2BAB2FCBCA0DA6B8"]
+			id: "6F933557D8C5BA17"
+			optional: true
+			subtitle: "将按钮放在炮台前方。按下即可开火。"
+			tasks: [{
+				id: "4BE9045F5C2AD987"
+				item: "minecraft:oak_button"
+				type: "item"
+			}]
+			title: "火"
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7E7BB0F7C638EF86"]
+			id: "34B9BA92AA35CE30"
+			subtitle: "建造一个反应堆，你可以用反应堆玻璃代替反应堆外壳。将漏斗放置在燃料接收器上。"
+			tasks: [
+				{
+					id: "66664B329194CF56"
+					item: "create_new_age:reactor_rod"
+					type: "item"
+				}
+				{
+					id: "73412FB2BA142668"
+					item: "create_new_age:reactor_fuel_acceptor"
+					type: "item"
+				}
+				{
+					id: "7512F4536D0642EB"
+					item: "create_new_age:reactor_heat_vent"
+					type: "item"
+				}
+				{
+					id: "787B79D73E2ED829"
+					item: "create:andesite_funnel"
+					type: "item"
+				}
+				{
+					count: 27L
+					id: "3D70648FB061E47E"
+					item: { Count: 27, id: "create_new_age:reactor_casing" }
+					type: "item"
+				}
+			]
+			title: "建造反应堆"
+			x: 0.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["5193379FF4AC198A"]
+			hide_until_deps_complete: true
+			id: "7E7BB0F7C638EF86"
+			tasks: [{
+				id: "128F617723B0E911"
+				item: "create_new_age:thorium"
+				type: "item"
+			}]
+			title: "获取钍元素（Thorium）"
+			x: 2.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["34B9BA92AA35CE30"]
+			id: "7F4F4FC358DCE230"
+			subtitle: "使用加热元件来冷却反应堆"
+			tasks: [
+				{
+					id: "2951C54CC1257DF6"
+					item: "create_new_age:stirling_engine"
+					type: "item"
+				}
+				{
+					id: "2542AF2C710702AC"
+					item: "create_new_age:heat_pipe"
+					type: "item"
+				}
+				{
+					id: "6145A5AEDDA2BA01"
+					item: "create_new_age:heater"
+					type: "item"
+				}
+			]
+			title: "加热机制"
+			x: 0.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7F4F4FC358DCE230"]
+			id: "688B85CDB552C2BB"
+			subtitle: "通过漏斗添加燃料。"
+			tasks: [{
+				id: "07952F7F47F9CADB"
+				item: "create_new_age:nuclear_fuel"
+				type: "item"
+			}]
+			x: 2.0d
+			y: -1.5d
+		}
+		{
+			dependencies: [
+				"688B85CDB552C2BB"
+				"6F933557D8C5BA17"
+			]
+			dependency_requirement: "one_completed"
+			icon: "create_new_age:reactor_rod"
+			id: "28921A7BB1044111"
+			rewards: [
+				{
+					id: "401FDF199EA359C4"
+					item: "alexscaves:nuclear_siren"
+					type: "item"
+				}
+				{
+					count: 16
+					id: "11EC313D5DC58067"
+					item: "create_central_kitchen:aloe_cake_slice"
+					type: "item"
+				}
+			]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{
+				id: "5B6A690047A24117"
+				title: "完成"
+				type: "checkmark"
+			}]
+			title: "完成章节任务以获得奖励。"
+			x: 3.5d
+			y: -0.75d
+		}
+	]
+	title: "07 核能"
+}

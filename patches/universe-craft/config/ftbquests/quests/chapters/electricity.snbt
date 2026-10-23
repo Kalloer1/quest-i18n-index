@@ -1,0 +1,199 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "electricity"
+	group: "7DCF7B75F742AD22"
+	icon: "create_new_age:generator_coil"
+	id: "7F1C961839BF6143"
+	order_index: 3
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: [
+				"4F7404D3C27B57BD"
+				"0F09D0A6FB19B896"
+			]
+			dependency_requirement: "one_completed"
+			icon: "create_new_age:electrical_connector"
+			id: "0BA9BB681AD54667"
+			rewards: [
+				{
+					count: 6
+					id: "547BE73C94D5C6C2"
+					item: "create_new_age:electrical_connector"
+					type: "item"
+				}
+				{
+					count: 6
+					id: "5E57145E3F7BB38F"
+					item: "create_new_age:copper_wire"
+					type: "item"
+				}
+			]
+			shape: "diamond"
+			size: 1.2d
+			subtitle: "用Alternator可将旋转动力转化为电力。堆叠Generator Coils可产生更多电力。确保dark coil与Alternator和蓝色孔洞在同一侧。"
+			tasks: [
+				{
+					id: "5FBD713D7EF93F17"
+					item: "create_new_age:generator_coil"
+					type: "item"
+				}
+				{
+					id: "26B6536FFA3EC383"
+					item: "create_new_age:carbon_brushes"
+					type: "item"
+				}
+			]
+			title: "Alternator"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0BA9BB681AD54667"]
+			id: "50A51A1F5E4153DA"
+			subtitle: "现在你可以简化自动化了。只需将电线从Alternator连接到电机即可。"
+			tasks: [{
+				id: "5495150DDF93A51B"
+				item: "create_new_age:basic_motor"
+				type: "item"
+			}]
+			x: -1.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["732CD5C947D6B57E"]
+			id: "780ED4F1AFF2C1F5"
+			rewards: [
+				{
+					count: 32
+					id: "1B271A398E061FC4"
+					item: "tfmg:light_bulb"
+					type: "item"
+				}
+				{
+					count: 16
+					id: "6BAF92F34EBBC2A8"
+					item: "tfmg:cable_connector"
+					type: "item"
+				}
+			]
+			subtitle: "电压需要绝缘体和线轴来传输电力。"
+			tasks: [
+				{
+					id: "6EC273106C9A8914"
+					item: "tfmg:cable_connector"
+					type: "item"
+				}
+				{
+					id: "251FD9217FC804F8"
+					item: {
+						Count: 1
+						id: "tfmg:copper_spool"
+						tag: {
+							Amount: 1000
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "电气元件"
+			x: 1.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["0BA9BB681AD54667"]
+			id: "732CD5C947D6B57E"
+			rewards: [{
+				id: "5377DF3B16F48680"
+				item: "tfmg:light_bulb"
+				type: "item"
+			}]
+			subtitle: "Alternator 产生 FE。但对于电气元件，你需要用 Converter 将其转换为 Voltage"
+			tasks: [{
+				id: "0CE8DC27B8702379"
+				item: "tfmg:converter"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["41B3BD78EC0827D3"]
+			hide_until_deps_complete: true
+			id: "4F7404D3C27B57BD"
+			tasks: [{
+				count: 12L
+				id: "2091DB218D38BC92"
+				item: { Count: 12, id: "create_new_age:magnetite_block" }
+				type: "item"
+			}]
+			x: -1.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["41B3BD78EC0827D3"]
+			hide_until_deps_complete: true
+			id: "0F09D0A6FB19B896"
+			tasks: [{
+				count: 12L
+				id: "5A9740BD49D06601"
+				item: "create_new_age:redstone_magnet"
+				type: "item"
+			}]
+			x: 1.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["50A51A1F5E4153DA"]
+			id: "61349221C6A461C3"
+			subtitle: "你可以使用 Energizer 来制作 energized parts，从而升级你的 Alternator 或 Motor。"
+			tasks: [{
+				id: "57E4F229536E0D66"
+				item: "create_new_age:basic_energiser"
+				type: "item"
+			}]
+			x: -1.0d
+			y: 2.5d
+		}
+		{
+			dependencies: [
+				"780ED4F1AFF2C1F5"
+				"61349221C6A461C3"
+			]
+			icon: "create_new_age:generator_coil"
+			id: "46D984BE09C9F5DB"
+			rewards: [
+				{
+					count: 10
+					id: "232ED10BC79145BC"
+					item: "farmersdelight:steak_and_potatoes"
+					type: "item"
+				}
+				{
+					count: 10
+					id: "60ACD56FF804D706"
+					item: "movingelevators:elevator_block"
+					type: "item"
+				}
+				{
+					id: "11D7687E9243263D"
+					item: "movingelevators:display_block"
+					type: "item"
+				}
+			]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{
+				id: "4F81CAA893A4351E"
+				title: "完成"
+				type: "checkmark"
+			}]
+			title: "Complete Chapter"
+			x: 0.0d
+			y: 3.75d
+		}
+	]
+	title: "03 电力"
+}

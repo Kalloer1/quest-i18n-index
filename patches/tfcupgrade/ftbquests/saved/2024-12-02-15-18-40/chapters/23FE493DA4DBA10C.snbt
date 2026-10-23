@@ -1,0 +1,494 @@
+# AI 初翻，未人工校对
+{
+	autofocus_id: "4EDC3848252C66EF"
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "23FE493DA4DBA10C"
+	group: "20215D22F6A90DB4"
+	icon: {
+		Count: 1
+		id: "tfc:stone/hoe/sedimentary"
+		tag: {
+			Damage: 0
+		}
+	}
+	id: "23FE493DA4DBA10C"
+	images: [{
+		height: 12.0d
+		image: "tfc:block/crop/carrot_4"
+		rotation: 0.0d
+		width: 12.0d
+		x: 1.0d
+		y: 2.0d
+	}]
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["强烈建议在找到定居点后，尽快开始此章节的内容"]
+			id: "234D542D9A4618F6"
+			tasks: [{
+				id: "79731F2EB806DE8F"
+				item: {
+					Count: 1
+					id: "tfc:stone/hoe/sedimentary"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: -2.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["234D542D9A4618F6"]
+			description: [
+				"饮水桥可以将水水平输送到远处，但不能垂直引水"
+				""
+				"饮水桥能有效解决湿度问题，或者您也可以种植在水边"
+			]
+			id: "5A7F925F4A1D021B"
+			tasks: [
+				{
+					count: 32L
+					id: "289BE25C70CE1FFC"
+					item: {
+						Count: 1
+						id: "itemfilters:tag"
+						tag: {
+							value: "tfc:rock/aqueducts"
+						}
+					}
+					optional_task: true
+					title: "引水桥"
+					type: "item"
+				}
+				{
+					id: "409AECF1BFD5B55C"
+					title: "湿度！"
+					type: "checkmark"
+				}
+			]
+			title: "南水北调工程"
+			x: -2.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["5A7F925F4A1D021B"]
+			description: [
+				"在进入电力时代之前，种子的生长相对较为困难。"
+				""
+				"作物成熟后如果不收割，它们会自行“枯萎”，此时会掉落更多种子。（这种枯萎并非由湿度或温度引起）"
+				""
+				"使用腐坏的堆肥，可以立即让作物处于“枯萎”状态，来获取种子"
+			]
+			icon: "tfc:seeds/soybean"
+			id: "4FF420B2DE2A0962"
+			tasks: [{
+				id: "4D6A94238B12C374"
+				item: {
+					Count: 1
+					id: "itemfilters:tag"
+					tag: {
+						value: "tfc:seeds"
+					}
+				}
+				title: "任意 #tfc:seeds"
+				type: "item"
+			}]
+			title: "种子"
+			x: -2.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["4FF420B2DE2A0962"]
+			description: ["如果不施肥，作物产量相对较低，但堆肥的获取过程会相对耗时较长"]
+			icon: "tfc:compost"
+			id: "5BBF5EBC3B4A1D25"
+			tasks: [
+				{
+					id: "5E0AFED95B9B822B"
+					item: "tfc:compost"
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "3F60EEF3BF5514E5"
+					title: "土壤肥力"
+					type: "checkmark"
+				}
+			]
+			x: -4.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["4FF420B2DE2A0962"]
+			description: ["蜜蜂可是好东西，通过养蜂，您可以培育出具有“作物亲和”的蜜蜂，为您的耕地凭空增加肥力"]
+			icon: "firmalife:beehive"
+			id: "6D77F5F6F2211633"
+			tasks: [
+				{
+					id: "655302D2D58B8E96"
+					item: "firmalife:beehive"
+					type: "item"
+				}
+				{
+					id: "0E81267794DEA2FA"
+					item: {
+						Count: 1
+						ForgeCaps: {
+							Parent: { }
+						}
+						id: "firmalife:beehive_frame"
+						tag: { }
+					}
+					type: "item"
+				}
+			]
+			title: "养蜂人"
+			x: -1.0d
+			y: 3.5d
+		}
+		{
+			dependencies: [
+				"1D404CB13F96723A"
+				"101976B4A523823E"
+				"37B780FFC861B31B"
+			]
+			dependency_requirement: "one_completed"
+			description: ["作物的保存也极为重要，制作一个地窖吧！"]
+			icon: "firmalife:climate_station"
+			id: "15BEC7FB35D5F38F"
+			tasks: [
+				{
+					id: "2EBDBB1EFC63D7C3"
+					item: "firmalife:sealed_bricks"
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "699D162A67297B37"
+					item: "firmalife:climate_station"
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "6FEEAEFA576FA5DE"
+					title: "地窖"
+					type: "checkmark"
+				}
+			]
+			title: "地窖"
+			x: -2.5d
+			y: 7.0d
+		}
+		{
+			dependencies: ["6D77F5F6F2211633"]
+			description: ["存点食物或许还行？"]
+			id: "1D404CB13F96723A"
+			tasks: [{
+				id: "1379E6B45EAA487D"
+				item: "tfc:ceramic/large_vessel"
+				type: "item"
+			}]
+			x: -2.5d
+			y: 5.0d
+		}
+		{
+			description: [
+				"温室让您一年四季都能种植作物，并且空间利用率更高。"
+				"但是需要群峦原版的“机械动力”来进行灌溉"
+			]
+			id: "418C5D388BAECBB8"
+			tasks: [
+				{
+					id: "17B5A5D793EDCFB1"
+					item: {
+						Count: 1
+						id: "itemfilters:tag"
+						tag: {
+							value: "firmalife:greenhouse"
+						}
+					}
+					title: "温室方块"
+					type: "item"
+				}
+				{
+					id: "3F34E882A2E037A3"
+					item: "firmalife:climate_station"
+					type: "item"
+				}
+			]
+			title: "温室"
+			x: 1.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["418C5D388BAECBB8"]
+			description: ["您需要在温室中放置一些种植盆，其中水培种植盆需要接入水管"]
+			icon: "firmalife:large_planter"
+			id: "3ACA375188ED7DAE"
+			tasks: [
+				{
+					id: "7219310C317DEC40"
+					item: "firmalife:large_planter"
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "1BDFAD6D176C56C6"
+					item: "firmalife:quad_planter"
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "78D86A95CD5FE478"
+					item: "firmalife:bonsai_planter"
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "5D8E5079A3E7DA86"
+					item: "firmalife:hanging_planter"
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "41579142D27B0661"
+					item: "firmalife:hydroponic_planter"
+					optional_task: true
+					type: "item"
+				}
+			]
+			title: "种植盆"
+			x: 1.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["3ACA375188ED7DAE"]
+			description: [
+				"是的，温室需要洒水灌溉"
+				""
+				"管道与温室的交互需要通过“温室接口”，必须是您制作的同等级的温室接口"
+			]
+			icon: "firmalife:pumping_station"
+			id: "4EDC3848252C66EF"
+			tasks: [
+				{
+					id: "28715ED2A3A65AF2"
+					item: {
+						Count: 1
+						ForgeCaps: {
+							"tfc:item_heat": {
+								heat: 0.0f
+								ticks: 0L
+							}
+						}
+						id: "firmalife:copper_pipe"
+					}
+					type: "item"
+				}
+				{
+					id: "1046F6B93C0E5865"
+					item: "firmalife:pumping_station"
+					type: "item"
+				}
+				{
+					id: "6387D840C4D51017"
+					item: "firmalife:sprinkler"
+					type: "item"
+				}
+				{
+					id: "10CF67A2A02DD024"
+					item: "firmalife:stainless_steel_greenhouse_port"
+					optional_task: true
+					type: "item"
+				}
+			]
+			title: "洒洒水啦，小意思小意思，不要太放在心上。"
+			x: 1.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["4EDC3848252C66EF"]
+			description: [
+				"新增了堆肥方式，使用滚筒堆肥，堆肥时间缩短至1天，产量更高！"
+				""
+				"强烈推荐使用离合器，滚筒只有在没有动力接入时才能进行交互！"
+			]
+			icon: "firmalife:compost_tumbler"
+			id: "101976B4A523823E"
+			tasks: [
+				{
+					id: "14344D28D092D425"
+					item: "firmalife:compost_tumbler"
+					type: "item"
+				}
+				{
+					id: "41B14FCD8F9E5815"
+					item: {
+						Count: 1
+						id: "itemfilters:tag"
+						tag: {
+							value: "tfc:clutches"
+						}
+					}
+					title: "任意离合器"
+					type: "item"
+				}
+			]
+			x: 1.5d
+			y: 3.5d
+		}
+		{
+			description: [
+				"电力时代的终极种田利器了"
+				""
+				"产量高，速度快，缺点是耗电，前期无法获取"
+				""
+				"使用沃土加速作物生长，使用堆肥提高产量"
+			]
+			id: "198A89534BA4096B"
+			tasks: [{
+				id: "58BAD7939553C522"
+				item: "immersiveengineering:cloche"
+				type: "item"
+			}]
+			title: "更快、更好、更省事儿"
+			x: 5.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["198A89534BA4096B"]
+			id: "37B780FFC861B31B"
+			tasks: [{
+				id: "412D53826E9C66C7"
+				item: "farmersdelight:rich_soil"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["15BEC7FB35D5F38F"]
+			description: [
+				"有了余粮，就可以开展畜牧业了"
+				""
+				"给动物们建造一个家吧，禽类需要三格高，并且需要巢箱"
+			]
+			id: "7AE55E4C1B5ECC81"
+			tasks: [{
+				id: "4E7CEDCA589171FE"
+				item: {
+					Count: 1
+					id: "itemfilters:tag"
+					tag: {
+						value: "minecraft:fences"
+					}
+				}
+				title: "栅栏"
+				type: "item"
+			}]
+			title: "畜牧业"
+			x: -0.5d
+			y: 7.0d
+		}
+		{
+			dependencies: ["7AE55E4C1B5ECC81"]
+			description: [
+				"运输动物，你可以使用牲畜运载马车;使用食物引诱;使用拴绳"
+				""
+				"注意要雌雄成对，MC里没有gay！"
+			]
+			id: "2F3C4C5234DACA54"
+			tasks: [
+				{
+					id: "2D691B7BF0C0F0EA"
+					item: {
+						Count: 1
+						id: "itemfilters:tag"
+						tag: {
+							value: "tfcastikorcarts:animal_cart"
+						}
+					}
+					optional_task: true
+					title: "牲畜运输车厢"
+					type: "item"
+				}
+				{
+					id: "73D181B3297739DE"
+					title: "运送动物"
+					type: "checkmark"
+				}
+			]
+			title: "快跟我一起回家去，喂！"
+			x: 1.5d
+			y: 7.0d
+		}
+		{
+			dependencies: ["2F3C4C5234DACA54"]
+			description: [
+				"动物们都很聪明，会自己去饲料槽找食物。"
+				""
+				"越高级的饲料槽，所能覆盖的范围越大"
+			]
+			icon: "tfcgroomer:bismuth_bronze_grooming_station"
+			id: "4DE2041CBAF7AD59"
+			tasks: [{
+				id: "7846291358C2F667"
+				item: "tfcgroomer:bismuth_bronze_grooming_station"
+				type: "item"
+			}]
+			title: "饲料槽"
+			x: 3.5d
+			y: 7.0d
+		}
+		{
+			dependencies: ["4DE2041CBAF7AD59"]
+			description: ["制作美食，品味生活，享受高品质人生"]
+			id: "71191850B0E9EF71"
+			tasks: [
+				{
+					id: "30D1272BD2EC92CD"
+					item: "tfc:ceramic/pot"
+					type: "item"
+				}
+				{
+					id: "1CDD31BEEBF5F3D4"
+					item: "cuisinedelight:spatula"
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "539F1B44C9D15885"
+					item: {
+						Count: 1
+						id: "cuisinedelight:cuisine_skillet"
+						tag: {
+							Damage: 0
+						}
+					}
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "5183230F151A4D15"
+					item: "farmersdelight:stove"
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "568B3075CC1652D6"
+					item: "farmersdelight:cooking_pot"
+					optional_task: true
+					type: "item"
+				}
+			]
+			title: "做饭饭"
+			x: 5.5d
+			y: 7.0d
+		}
+	]
+	title: "群峦农夫"
+}
