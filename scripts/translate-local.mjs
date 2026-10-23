@@ -367,8 +367,17 @@ export function isAlreadyTranslated(root, slug) {
  * @param {string[]} [explicit] 显式 slug 清单（给了就不看已完成状态）
  * @returns {Array<object>}
  */
-export function pendingWorklist(root, all, state, explicit = []) {
-  if (explicit.length) return all.filter((p) => explicit.includes(p.slug))
+export function pendingWorklist(root, all, state, explicit = [], { redoDone = false } = {}) {
+  if (explicit.length) {
+    const picked = all.filter((p) => explicit.includes(p.slug))
+    // 分片清单也必须跳过已完成的包。
+    // 2026-10-24 实测：`--slug-file` 模式下不看已完成状态，5 台主机把同一批 198 个包
+    // 反复重翻，空转 5 小时，其中 734 个早就合进 main 了 —— 队列明明已经见底，
+    // 日志却显示一直在跑。要强制重翻（改口径、重试坏包）请显式加 `--redo-done`。
+    if (redoDone) return picked
+    const done = state?.done ?? {}
+    return picked.filter((p) => !done[p.slug] && !isAlreadyTranslated(root, p.slug))
+  }
   const done = state?.done ?? {}
   return all.filter((p) => !done[p.slug] && !isAlreadyTranslated(root, p.slug))
 }
@@ -387,10 +396,10 @@ export function pendingWorklist(root, all, state, explicit = []) {
  * @param {string[]} [explicit]
  * @returns {{total: number, done: number, selected: number}}
  */
-export function describeWorklist(root, all, state, explicit = []) {
+export function describeWorklist(root, all, state, explicit = [], opts = {}) {
   const doneMap = state?.done ?? {}
   const done = all.filter((p) => doneMap[p.slug] || isAlreadyTranslated(root, p.slug)).length
-  const selected = pendingWorklist(root, all, state, explicit).length
+  const selected = pendingWorklist(root, all, state, explicit, opts).length
   return { total: all.length, done, selected }
 }
 
@@ -512,8 +521,9 @@ async function main() {
   // 为什么需要：要重翻的那个包常常排在下载量后面、或者已经标了 done，
   // 用 `--limit N` 只能从队头取，会顺带把前面 N-1 个包一起重跑。
   const explicit = [...new Set(explicitList)]
-  const pending = pendingWorklist(ROOT, all, state, explicit)
-  const d = describeWorklist(ROOT, all, state, explicit)
+  const redoDone = arg('redo-done', false) === true || arg('redo-done', '') === 'true'
+  const pending = pendingWorklist(ROOT, all, state, explicit, { redoDone })
+  const d = describeWorklist(ROOT, all, state, explicit, { redoDone })
   const worklist = explicit.length
     ? explicit.map((slug) => all.find((p) => p.slug === slug) ?? { slug, platform, layout, bytes: 0 })
     : (limit > 0 ? pending.slice(0, limit) : pending)
