@@ -146,25 +146,17 @@ function bulkTimes(host) {
 
 
 // 半成品被 -A 带进提交是这个仓库反复踩过的坑，所以宁可在这里停。
-// ---------- 0. 工作区必须干净 ----------
+// ---------- 0. 工作区基线 ----------
+// 这里只记录基线，不判脏：发布过程本身会把 plan 里的包写进工作区（restore 覆盖、
+// build-* 重建数据），等到计划算出来之后再按「是否在本次范围内」判定，
+// 否则上一轮跑剩的改动会把下一轮直接挡在门外。
 step(0, '检查工作区')
-{
-  const dirty = git(['status', '--porcelain'], { quiet: true })
-    .split('\n')
-    .map((l) => l.trim())
-    .filter(Boolean)
-    // 只拦「已跟踪文件的改动」：未跟踪文件（?? .scratch/、新旧草稿）不会被带进提交，
-    // 因为下面全是显式路径 git add，没有 -A。
-    .filter((l) => !l.startsWith('??'))
-    // .wrangler 是 miniflare 的本地 sqlite，随每次 dev 都变，不参与发布。
-    .filter((l) => !l.includes('.wrangler/') && !l.includes('.workbuddy/'))
-  if (dirty.length) {
-    console.error('工作区有未提交改动，先处理掉再发布：')
-    for (const d of dirty.slice(0, 20)) console.error(`  ${d}`)
-    process.exit(1)
-  }
-  console.log('工作区干净')
-}
+const baseDirty = git(['status', '--porcelain'], { quiet: true })
+  .split('\n').map((l) => l.trim()).filter(Boolean)
+  .filter((l) => !l.startsWith('??'))
+  .filter((l) => !l.includes('.wrangler/') && !l.includes('.workbuddy/'))
+  .map((l) => l.replace(/^\S+\s+/, ''))
+console.log(baseDirty.length ? `已有 ${baseDirty.length} 个改动，稍后按计划范围核对` : '工作区干净')
 
 // ---------- 1. 取各分支增量 ----------
 step(1, '拉取远端分支并计算增量')
@@ -231,6 +223,26 @@ for (const it of Object.values(plan.bySlug)) byHost[it.branch] = (byHost[it.bran
 console.log(`可合并 ${slugs.length} 个包：${Object.entries(byHost).sort().map(([h, n]) => `${h}×${n}`).join(', ') || '—'}`)
 if (plan.conflicts?.length) console.log(`冲突 ${plan.conflicts.length} 个（已在同 slug 里取最新那台）`)
 if (plan.skipped?.length) console.log(`跳过 ${plan.skipped.length} 个（候选不合格，见 plan.json）`)
+
+// 范围校验：只放行「本次要合并的包」和发布自己重建的那几个数据文件。
+// 别的已跟踪改动（别人正在改的脚本、半成品）必须在这里停 —— 后面是显式路径 add，
+// 但工作区脏着跑下去，出问题时分不清是本次引入的还是别人留下的。
+{
+  const allowed = (p) => {
+    for (const slug of Object.keys(plan.bySlug)) {
+      if (p.startsWith(`patches/${slug}/`) || p === `research/packs/${slug}.tar.gz`) return true
+      if (p.startsWith('downloads/') && (p.includes(`/${slug}_v`) || p.includes(`/${slug}.zip`))) return true
+    }
+    return ['research/index-dataset.json', 'site/data.json', 'research/source-versions.json',
+      'research/quark-mirrors.json', 'glossary.json', 'dist/index.html', 'dist/request.html'].includes(p)
+  }
+  const stray = baseDirty.filter((p) => !allowed(p))
+  if (stray.length) {
+    console.error(`工作区有 ${stray.length} 处与本次合并无关的改动，先处理掉：`)
+    for (const p of stray.slice(0, 15)) console.error(`  ${p}`)
+    process.exit(1)
+  }
+}
 
 if (!slugs.length) {
   console.log('\n没有可合并的增量，收工。')
