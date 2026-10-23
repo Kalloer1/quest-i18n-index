@@ -1,0 +1,97 @@
+# AI 初翻，未人工校对
+{
+	id: "3A82D59E99F6E9AB"
+	group: "7ACC315745F8888A"
+	order_index: 2
+	filename: "resource_geodes"
+	title: "资源晶洞 (Resource Geodes)"
+	icon: "resourcegeodes:tier_viewer"
+	disable_toast: true
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	hide_quest_details_until_startable: true
+	quests: [
+		{
+			disable_toast: true
+			x: 0.0d
+			y: 0.0d
+			description: [
+				"你收到了一颗正在生长的晶洞！"
+				"放置后，这些晶洞会生长出晶体，可以采集获取资源。"
+				"这些晶洞可以徒手拾起移动或挖掘。试图用镐破坏它们只会让你失望而归……"
+			]
+			dependencies: ["5424C80DD66B456D"]
+			hide: true
+			optional: true
+			hide_details_until_startable: true
+			id: "55890A858C982C7D"
+			tasks: [{
+				id: "3C349D8ECE8F0AF6"
+				type: "item"
+				icon: "resourcegeodes:budding_copper"
+				item: "resourcegeodes:budding_copper"
+				consume_items: false
+			}]
+		}
+		{
+			icon: {
+				id: "resourcegeodes:catalyst_1"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			disable_toast: true
+			x: 0.0d
+			y: 1.0d
+			description: ["资源晶洞可以用催化剂升级，让它们长得更快！升级时也不需要应用所有等级。"]
+			dependencies: ["55890A858C982C7D"]
+			optional: true
+			id: "2D9C9D3ED2203633"
+			tasks: [{
+				id: "74F7C17243215F35"
+				type: "item"
+				item: {
+					id: "resourcegeodes:catalyst_1"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				consume_items: false
+			}]
+			rewards: [{
+				id: "3D0C8D91C0175DFB"
+				type: "item"
+				item: "resourcegeodes:tier_viewer"
+			}]
+		}
+		{
+			disable_toast: true
+			x: 0.0d
+			y: -1.0d
+			description: [
+				"地壳传感器会观察资源晶体，并在看到完全生长的晶体时输出红石信号。"
+				""
+				"注意：由于模组编码方式，传感器会像红石块一样输出红石信号，而不是像观察者那样从背面输出！"
+			]
+			dependencies: ["55890A858C982C7D"]
+			hide: true
+			optional: true
+			hide_details_until_startable: false
+			id: "4CF83A812601916C"
+			tasks: [{
+				id: "62BB6A2B39DEC47C"
+				type: "item"
+				item: "resourcegeodes:crystal_sensor"
+				consume_items: false
+			}]
+			rewards: [{
+				id: "6EED15BB65572D00"
+				type: "item"
+				item: "resourcegeodes:crystal_sensor"
+			}]
+		}
+	]
+	quest_links: [ ]
+}

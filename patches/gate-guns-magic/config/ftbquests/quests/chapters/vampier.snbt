@@ -1,0 +1,416 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "vampier"
+	group: "0FFECF43B1AA7173"
+	icon: "undergarden:blood_globule"
+	id: "78F3BC8A12C08206"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["你出生就是一名吸血鬼"]
+			entity_vis_size: 1.0f
+			id: "5D1963C8299480E9"
+			size: 1.5d
+			tasks: [{
+				icon: "undergarden:blood_globule"
+				id: "051700C9843FD136"
+				title: "血中诞生"
+				type: "custom"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5D1963C8299480E9"]
+			description: ["&4吸血鬼可以根据所受伤害和血液法术强度来自愈。近战、远程甚至魔法，任何伤害类型都有效。&r"]
+			entity_vis_size: 1.0f
+			id: "204917A9050461E2"
+			size: 1.5d
+			tasks: [{
+				id: "42DAA98A43609E38"
+				title: "生命窃取"
+				type: "checkmark"
+			}]
+			x: 2.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["204917A9050461E2"]
+			description: ["&4作为吸血鬼，绝对不能触碰阳光，否则...你会被烧焦。尽管如此，你仍然可以享受白天。只需使用一把雨伞即可。&r"]
+			entity_vis_size: 1.0f
+			id: "08124073C05A5A54"
+			size: 1.5d
+			tasks: [
+				{
+					id: "6416EE7C2CE2C735"
+					title: "维生素D过敏症"
+					type: "checkmark"
+				}
+				{
+					id: "4F49A5717FE7B735"
+					item: {
+						Count: 1
+						id: "ftbfiltersystem:smart_filter"
+						tag: {
+							"ftbfiltersystem:filter": "ftbfiltersystem:item_tag(curios:umbrella)"
+						}
+					}
+					match_nbt: false
+					title: "任意 #curios:umbrella"
+					type: "item"
+					weak_nbt_match: true
+				}
+			]
+			x: -1.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["525CCD65EAC44ED0"]
+			description: ["&4血之力非常重要。以下是一些获取更多血之力的指南。&r"]
+			entity_vis_size: 1.0f
+			id: "5974036B50C95E88"
+			size: 1.5d
+			tasks: [{
+				id: "07D8BEFC1A73EBDA"
+				title: "BloodMaxx"
+				type: "checkmark"
+			}]
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["08124073C05A5A54"]
+			description: ["&4如果你还没注意到，你获得了一个血之回响。这是一种特殊项链，能让你使用随机的附魔法术。不过，你需要先达到10级才能开始附魔。&r"]
+			entity_vis_size: 1.0f
+			id: "525CCD65EAC44ED0"
+			size: 1.5d
+			tasks: [{
+				id: "4A0E35306293C3B2"
+				item: {
+					Count: 1
+					id: "traveloptics:blood_echo"
+					tag: { }
+				}
+				match_nbt: false
+				type: "item"
+				weak_nbt_match: true
+			}]
+			x: 2.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["3D1170E50AF6E692"]
+			description: ["&4这是最适合吸血鬼的魔法书&r"]
+			entity_vis_size: 1.0f
+			id: "2908DBC4E7E4ADD3"
+			size: 1.5d
+			tasks: [{
+				id: "08138DD5B00AF124"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:cursed_doll_spell_book"
+					tag: {
+						"irons_spellbooks:affinity_data": {
+							bonuses: {
+								"irons_spellbooks:blood_slash": 1
+								"irons_spellbooks:blood_step": 1
+							}
+						}
+						"irons_spellbooks:spell_container": {
+							data: [ ]
+							maxSpells: 10
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: 14.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["7A5569312EA3F829"]
+			description: ["&4你真的得去远古城市才能拿到这本书。&r"]
+			entity_vis_size: 1.0f
+			id: "3D1170E50AF6E692"
+			rewards: [{
+				id: "6E1DBEF2FF519B22"
+				type: "xp"
+				xp: 500
+			}]
+			size: 1.5d
+			tasks: [{
+				id: "476F3D9F348E8410"
+				item: "irons_spellbooks:ruined_book"
+				type: "item"
+			}]
+			x: 12.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["5974036B50C95E88"]
+			description: [
+				"&4这基本上就是你的存在之源，所以一定要多收集一些。"
+				"&r"
+				"&4提示：你不需要用动物。你可以用你自己来代替……&r"
+			]
+			entity_vis_size: 1.0f
+			id: "7A5569312EA3F829"
+			rewards: [{
+				id: "753611449A475FF9"
+				type: "xp"
+				xp: 500
+			}]
+			size: 1.5d
+			tasks: [{
+				id: "4CCC0123CE3FF4C2"
+				item: "irons_spellbooks:blood_vial"
+				type: "item"
+			}]
+			x: 9.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7A5569312EA3F829"]
+			description: ["&4你可以用这些瓶来制作符文。它们通常用于所有与血液相关的事物。&r"]
+			entity_vis_size: 1.0f
+			id: "41FA82F331B9BB9F"
+			rewards: [{
+				id: "7899214C472012E1"
+				type: "xp"
+				xp: 500
+			}]
+			size: 1.5d
+			tasks: [{
+				id: "5323F4308C03F51E"
+				item: "irons_spellbooks:blood_rune"
+				type: "item"
+			}]
+			x: 12.5d
+			y: 1.2000000000000002d
+		}
+		{
+			dependencies: ["41FA82F331B9BB9F"]
+			description: ["&4该戴上你的第一顶血盔了！&r"]
+			entity_vis_size: 1.0f
+			id: "6DDA5F9220C826E3"
+			size: 1.5d
+			tasks: [{
+				id: "1992B9733DF86088"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:cultist_helmet"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 16.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["41FA82F331B9BB9F"]
+			description: ["&4该拿你的第一件血胸甲了！&r"]
+			entity_vis_size: 1.0f
+			id: "6DBAF17639728E64"
+			size: 1.5d
+			tasks: [{
+				id: "377AE08D5FCF8A72"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:cultist_chestplate"
+					tag: {
+						Damage: 0
+						"irons_spellbooks:spell_container": {
+							data: [ ]
+							maxSpells: 1
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: 16.0d
+			y: 0.4d
+		}
+		{
+			dependencies: ["41FA82F331B9BB9F"]
+			description: ["&4该制作你的第一条血之护腿了！&r"]
+			entity_vis_size: 1.0f
+			id: "5719FD0F0F3AA272"
+			size: 1.5d
+			tasks: [{
+				id: "6C8D250AA34B8AEE"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:cultist_leggings"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 16.0d
+			y: 1.9d
+		}
+		{
+			dependencies: ["41FA82F331B9BB9F"]
+			description: ["&4该穿上你的第一双血靴了！&r"]
+			entity_vis_size: 1.0f
+			id: "39DCC725A03B18DF"
+			size: 1.5d
+			tasks: [{
+				id: "11CCEF3DDBFD8D8C"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:cultist_boots"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 16.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["6DDA5F9220C826E3"]
+			description: ["&4非常肝的头盔&r"]
+			entity_vis_size: 1.0f
+			id: "1868912FB34D79A8"
+			size: 1.5d
+			tasks: [{
+				id: "15A28BFDEE36D8BB"
+				item: "traveloptics:forlorn_harbinger_hood"
+				type: "item"
+			}]
+			x: 19.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["6DBAF17639728E64"]
+			description: ["&4很枯燥，但值得！&r"]
+			entity_vis_size: 1.0f
+			id: "0E55CE7A909818AA"
+			size: 1.5d
+			tasks: [{
+				id: "0D26AE5EA6B51DB2"
+				item: {
+					Count: 1
+					id: "traveloptics:forlorn_harbinger_robe"
+					tag: {
+						"irons_spellbooks:spell_container": {
+							data: [ ]
+							maxSpells: 1
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: 19.5d
+			y: 0.4d
+		}
+		{
+			dependencies: ["5719FD0F0F3AA272"]
+			description: ["&4这需要大量的重复劳动。&r"]
+			entity_vis_size: 1.0f
+			id: "73304277622433E7"
+			size: 1.5d
+			tasks: [{
+				id: "22FD411AE8EFA8F4"
+				item: "traveloptics:forlorn_harbinger_leggings"
+				type: "item"
+			}]
+			x: 19.5d
+			y: 1.9d
+		}
+		{
+			dependencies: ["39DCC725A03B18DF"]
+			description: ["&4你成功了！&r"]
+			entity_vis_size: 1.0f
+			id: "36B9CE16B1831567"
+			size: 1.5d
+			tasks: [{
+				id: "5DA7F21815CCCBC4"
+				item: "traveloptics:forlorn_harbinger_boots"
+				type: "item"
+			}]
+			x: 19.46666666666667d
+			y: 3.569047619047616d
+		}
+		{
+			dependencies: ["7A5569312EA3F829"]
+			description: ["&4使用这些球体来升级你的套装！&r"]
+			entity_vis_size: 1.0f
+			id: "6211AF8D50907902"
+			size: 1.5d
+			tasks: [{
+				id: "05E3778BF9813904"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:blood_upgrade_orb"
+					tag: {
+						"irons_spellbooks:upgrade_orb_type": "irons_spellbooks:blood_power"
+					}
+				}
+				type: "item"
+			}]
+			x: 9.0d
+			y: 1.5d
+		}
+		{
+			can_repeat: true
+			dependencies: ["6211AF8D50907902"]
+			description: [
+				"卷轴交换商店"
+				""
+				"&4&l警告：提交前，请确保背包中只有你想交换的卷轴。丢弃所有不想交换的卷轴&r&r"
+			]
+			entity_vis_size: 1.0f
+			id: "642451CF3CBA033F"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "5F3ACC5B9EFB46E3"
+				table_id: 2045434586276917832L
+				type: "random"
+			}]
+			size: 1.5d
+			tasks: [{
+				consume_items: true
+				count: 20L
+				id: "5B670684ADCF3B87"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:scroll"
+					tag: {
+						"irons_spellbooks:spell_container": {
+							data: [{
+								id: "traveloptics:vortex_of_the_deep"
+								index: 0
+								level: 2
+								locked: 1b
+							}]
+							maxSpells: 1
+							mustEquip: 0b
+							spellWheel: 0b
+						}
+					}
+				}
+				title: "输入任意卷轴"
+				type: "item"
+			}]
+			title: "卷轴商店"
+			x: 9.0d
+			y: 4.0d
+		}
+	]
+	title: "吸血鬼"
+}

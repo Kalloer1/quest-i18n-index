@@ -1,0 +1,276 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "orcs"
+	group: "0FFECF43B1AA7173"
+	icon: "alexsmobs:bone_serpent_tooth"
+	id: "37CB885529D1239D"
+	order_index: 3
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["你出生时是一名兽人（orc）"]
+			entity_vis_size: 1.0f
+			id: "52B3058B1A49CE8B"
+			rewards: [{
+				id: "3A13643A76906368"
+				type: "xp"
+				xp: 100
+			}]
+			size: 1.5d
+			tasks: [{
+				icon: "alexsmobs:bone_serpent_tooth"
+				id: "5F4D1FECEB56E979"
+				title: "坚韧的皮肤 (Tough Skinned)"
+				type: "custom"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			can_repeat: true
+			dependencies: [
+				"6211AF8D50907902"
+				"1FBE05191DC138F3"
+			]
+			description: [
+				"卷轴交换商店"
+				""
+				"&4&l警告：提交前，请确保背包中只有你想交换的卷轴。丢弃所有不想交换的卷轴&r&r"
+			]
+			entity_vis_size: 1.0f
+			id: "077E287BB39E3E18"
+			rewards: [{
+				id: "607B3C0A26F1DE28"
+				table_id: 1239938732284874214L
+				type: "random"
+			}]
+			size: 1.5d
+			tasks: [{
+				consume_items: true
+				count: 20L
+				id: "1DD8A0DC41D07DC3"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:scroll"
+					tag: {
+						"irons_spellbooks:spell_container": {
+							data: [{
+								id: "traveloptics:vortex_of_the_deep"
+								index: 0
+								level: 2
+								locked: 1b
+							}]
+							maxSpells: 1
+							mustEquip: 0b
+							spellWheel: 0b
+						}
+					}
+				}
+				title: "输入任意卷轴"
+				type: "item"
+			}]
+			title: "卷轴商店"
+			x: -1.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["52B3058B1A49CE8B"]
+			description: ["&a如果你还没注意到，你获得了一个Evocation Echo。这是一种特殊项链，能让你使用随机的附魔法术。不过，你需要先达到10级才能开始附魔。&r"]
+			entity_vis_size: 1.0f
+			id: "3120BCD9006F2895"
+			rewards: [{
+				id: "326DA9B7CBFE9927"
+				type: "xp"
+				xp: 100
+			}]
+			size: 1.5d
+			tasks: [{
+				id: "1B9A63B5F9BDC900"
+				item: {
+					Count: 1
+					id: "traveloptics:evocation_echo"
+					tag: { }
+				}
+				match_nbt: false
+				type: "item"
+				weak_nbt_match: true
+			}]
+			x: -2.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["3120BCD9006F2895"]
+			description: ["&a当兽人意味着当个贪婪的富家子！这些方法能让你财源滚滚！&r"]
+			entity_vis_size: 1.0f
+			id: "666C8DB25BD8262B"
+			rewards: [{
+				id: "6C9A6D0A0B9E121B"
+				type: "xp"
+				xp: 100
+			}]
+			size: 1.5d
+			tasks: [{
+				id: "188A07825522F434"
+				item: "minecraft:emerald"
+				type: "item"
+			}]
+			x: -5.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["666C8DB25BD8262B"]
+			description: ["&a这些是你制作的基础！&r"]
+			entity_vis_size: 1.0f
+			id: "60E9F30602246999"
+			rewards: [{
+				id: "56EA491E5746311F"
+				type: "xp"
+				xp: 100
+			}]
+			size: 1.5d
+			tasks: [{
+				id: "1EA4FEE04582DE5D"
+				item: "irons_spellbooks:evocation_rune"
+				type: "item"
+			}]
+			x: -6.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["60E9F30602246999"]
+			description: ["&a黑暗魔法师必备的宝珠！&r"]
+			entity_vis_size: 1.0f
+			id: "1FBE05191DC138F3"
+			size: 1.5d
+			tasks: [{
+				id: "66DF8500E29201B1"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:evocation_upgrade_orb"
+					tag: {
+						"irons_spellbooks:upgrade_orb_type": "irons_spellbooks:evocation_power"
+					}
+				}
+				type: "item"
+			}]
+			x: -2.5d
+			y: 5.5d
+		}
+		{
+			dependencies: ["60E9F30602246999"]
+			description: ["&a唯一一套用于召唤的盔甲！可惜的是。&r"]
+			entity_vis_size: 1.0f
+			id: "7FC7749EAB4CDCC8"
+			rewards: [{
+				id: "0F02E2977A7C1284"
+				type: "xp"
+				xp: 500
+			}]
+			size: 1.5d
+			tasks: [
+				{
+					id: "21CEE94F72C16784"
+					item: {
+						Count: 1
+						id: "irons_spellbooks:archevoker_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "7E370CC2B7EB63E7"
+					item: {
+						Count: 1
+						ForgeCaps: {
+							"fracturepoint:plate_holder": { }
+						}
+						id: "irons_spellbooks:archevoker_chestplate"
+						tag: {
+							Damage: 0
+							"irons_spellbooks:spell_container": {
+								data: [ ]
+								maxSpells: 1
+								mustEquip: 1b
+								spellWheel: 1b
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "3CD8FDCE98C6DE0D"
+					item: {
+						Count: 1
+						id: "irons_spellbooks:archevoker_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "7122B4C7E9D8B41D"
+					item: {
+						Count: 1
+						id: "irons_spellbooks:archevoker_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			x: -4.5d
+			y: 8.0d
+		}
+		{
+			dependencies: ["60E9F30602246999"]
+			description: ["&aThe only Evocation Power up Book!&r"]
+			entity_vis_size: 1.0f
+			id: "1DCCD983F2CD345F"
+			size: 1.5d
+			tasks: [{
+				id: "3483FF5D6594FE9B"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:evoker_spell_book"
+					tag: {
+						"irons_spellbooks:spell_container": {
+							data: [
+								{
+									id: "irons_spellbooks:fang_strike"
+									index: 0
+									level: 6
+									locked: 1b
+								}
+								{
+									id: "irons_spellbooks:fang_ward"
+									index: 1
+									level: 4
+									locked: 1b
+								}
+								{
+									id: "irons_spellbooks:summon_vex"
+									index: 2
+									level: 4
+									locked: 1b
+								}
+							]
+							maxSpells: 10
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: -8.5d
+			y: 7.0d
+		}
+	]
+	title: "兽人"
+}
