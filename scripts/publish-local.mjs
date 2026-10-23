@@ -295,7 +295,9 @@ run('node', ['scripts/build-index.mjs'])
 // ---------- 5. 测试 ----------
 if (!SKIP_TESTS) {
   step(5, 'npm test')
-  run('npm', ['test'])
+  // Windows 上 `npm` 是个 .cmd 包装，execFileSync 直接 spawn 会 ENOENT，
+  // 而且错误信息是空的 —— 表现为「npm test 失败但一行输出都没有」。
+  run(process.platform === 'win32' ? 'npm.cmd' : 'npm', ['test'])
 } else {
   step(5, 'npm test（已跳过）')
 }
