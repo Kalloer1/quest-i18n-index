@@ -1,0 +1,763 @@
+# AI 初翻，未人工校对
+{
+	id: "7AFE45E90F411F87"
+	group: "3F32C4F544AA27EA"
+	order_index: 3
+	filename: "blood_magic"
+	title: "血魔法"
+	icon: {
+		id: "patchouli:guide_book"
+		Count: 1b
+		tag: {
+			"patchouli:book": "bloodmagic:guide"
+		}
+	}
+	subtitle: ["一个关于血液、牺牲和神秘仪式的魔法模组。"]
+	default_quest_shape: "hexagon"
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "一场血战在所难免"
+			x: -3.0d
+			y: -0.5d
+			description: ["模组提供的书籍是了解其详情的关键所在。"]
+			id: "13CFA95C3E9A49A6"
+			tasks: [{
+				id: "5FBF5C8C6C5759F6"
+				type: "item"
+				title: "合成 Sanguine Scientiem"
+				item: {
+					id: "patchouli:guide_book"
+					Count: 1b
+					tag: {
+						"patchouli:book": "bloodmagic:guide"
+					}
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [{
+				id: "11A61B89D18A136A"
+				type: "xp"
+				xp: 10
+			}]
+		}
+		{
+			title: "血祭献给血神！"
+			x: -1.0d
+			y: -0.5d
+			description: ["要开始，先制作一个血祭坛和一把祭品刀。"]
+			dependencies: ["13CFA95C3E9A49A6"]
+			id: "794A4BF210E4A67F"
+			tasks: [
+				{
+					id: "73F02F1BEC9BCA51"
+					type: "item"
+					title: "制作一个血祭坛 (Craft a Blood Altar)"
+					item: {
+						id: "bloodmagic:altar"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+				}
+				{
+					id: "091CC28E67FF5C4A"
+					type: "item"
+					item: {
+						id: "bloodmagic:sacrificialdagger"
+						Count: 1b
+						tag: { }
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "6A8AED6B969C0EA4"
+				type: "xp"
+				xp: 15
+			}]
+		}
+		{
+			title: "化学课永远不会让人失望"
+			x: 0.0d
+			y: -2.0d
+			dependencies: ["794A4BF210E4A67F"]
+			id: "7F165B8F6F3F7B2F"
+			tasks: [{
+				id: "703A319CB03AB57A"
+				type: "item"
+				title: "制作一张炼金术台"
+				item: {
+					id: "bloodmagic:alchemytable"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [{
+				id: "6DB052C6FC116054"
+				type: "xp"
+				xp: 15
+			}]
+		}
+		{
+			title: "严格来说不算深层板岩就是了"
+			x: -1.0d
+			y: 1.0d
+			dependencies: ["794A4BF210E4A67F"]
+			id: "6FCE04F390EED676"
+			tasks: [{
+				id: "362B5620D78F5C53"
+				type: "item"
+				title: "用血祭坛合成一张空白画布"
+				item: {
+					id: "bloodmagic:blankslate"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [{
+				id: "09D38DB9C4DBAA84"
+				type: "xp"
+				xp: 15
+			}]
+		}
+		{
+			title: "血液信息"
+			x: -1.0d
+			y: 2.5d
+			description: ["占卜符文是一个能让你查看血祭坛信息和一些其他实用内容的物品。"]
+			dependencies: ["6FCE04F390EED676"]
+			id: "66F56537F4EE64BE"
+			tasks: [{
+				id: "5D46171E1AA3D854"
+				type: "item"
+				item: {
+					id: "bloodmagic:divinationsigil"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [{
+				id: "41F6CA7DCA5E294F"
+				type: "xp"
+				xp: 25
+			}]
+		}
+		{
+			title: "更多关于血液的信息"
+			x: -1.0d
+			y: 4.0d
+			description: ["先知印记是占卜印记的升级版，能显示更多信息。"]
+			dependencies: ["66F56537F4EE64BE"]
+			optional: true
+			id: "3B8805B7BA0BA817"
+			tasks: [{
+				id: "7CADC158008B0A15"
+				type: "item"
+				item: {
+					id: "bloodmagic:seersigil"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "154F24873EB00F3A"
+					type: "xp"
+					xp: 40
+				}
+				{
+					id: "7B990E868C368C23"
+					type: "item"
+					item: {
+						id: "bloodmagic:life_essence_bucket"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "灰烬正在升起"
+			x: 1.5d
+			y: -2.0d
+			dependencies: ["7F165B8F6F3F7B2F"]
+			id: "2BA0B713E97F90E5"
+			tasks: [{
+				id: "0EF642611B050BAF"
+				type: "item"
+				title: "制作一块神秘灰烬（Piece of Arcane Ash）"
+				item: {
+					id: "bloodmagic:arcaneashes"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [{
+				id: "759CDDCC40315130"
+				type: "xp"
+				xp: 15
+			}]
+		}
+		{
+			title: "地狱之火，黑暗火焰"
+			x: 1.5d
+			y: -0.5d
+			description: ["如果你想用恶魔意志制作各种工具和方块，地狱熔炉是必不可少的。"]
+			dependencies: ["794A4BF210E4A67F"]
+			id: "5150DB07552AFAB9"
+			tasks: [{
+				id: "1F17F081FF0F02FE"
+				type: "item"
+				item: {
+					id: "bloodmagic:soulforge"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [{
+				id: "6C956E50A818D425"
+				type: "xp"
+				xp: 30
+			}]
+		}
+		{
+			title: "符文升级"
+			x: 3.5d
+			y: -0.5d
+			description: ["在血祭坛下方用8个空白符文呈环形排列，将其升级到Tier II。"]
+			dependencies: ["5150DB07552AFAB9"]
+			id: "23A8269DBE497013"
+			tasks: [{
+				id: "0B74A059159A205C"
+				type: "item"
+				item: {
+					id: "bloodmagic:blankrune"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+				count: 8L
+			}]
+			rewards: [{
+				id: "4F6F2EC73FE9931C"
+				type: "xp"
+				xp: 30
+			}]
+		}
+		{
+			title: "让他们流血吧！"
+			x: 5.5d
+			y: -0.5d
+			description: ["献祭匕首能让你在血祭坛附近时瞬间杀死生物，这样你就不用受伤也能获得血液。"]
+			dependencies: ["23A8269DBE497013"]
+			id: "439931DFAD02E655"
+			tasks: [{
+				id: "341ED4D91220A37D"
+				type: "item"
+				item: {
+					id: "bloodmagic:daggerofsacrifice"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [{
+				id: "2E94222FFF7027E6"
+				type: "xp"
+				xp: 20
+			}]
+		}
+		{
+			title: "第一个能量球"
+			x: 1.5d
+			y: 1.0d
+			description: ["血球是一种有不同等级的物品，可以通过血祭坛和炼金台完成多种操作。由于接下来的球体功能基本相同，因此无需过多解释，只需知道你应该尽量进行升级即可。"]
+			dependencies: ["794A4BF210E4A67F"]
+			id: "10F3D24D533CE2F0"
+			tasks: [{
+				id: "74B5D766D8DE5997"
+				type: "item"
+				item: {
+					id: "bloodmagic:weakbloodorb"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "5A56A044A24A25FF"
+					type: "xp"
+					xp: 15
+				}
+				{
+					id: "3FEF674ED17D14D6"
+					type: "item"
+					item: {
+						id: "minecraft:redstone"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+					count: 4
+				}
+			]
+		}
+		{
+			title: "逐渐安定下来了"
+			x: 1.5d
+			y: 2.5d
+			description: ["这里就不重复说明了，大多数球体功能相同，但更高级的球体能同时使用新旧配方，所以重点是多制作它们。"]
+			dependencies: ["10F3D24D533CE2F0"]
+			id: "41A6D8D7FEB25822"
+			tasks: [{
+				id: "46036CF4DB01CA54"
+				type: "item"
+				item: {
+					id: "bloodmagic:apprenticebloodorb"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "63DF7A35FA6DE840"
+					type: "xp"
+					xp: 20
+				}
+				{
+					id: "050EDB98229DB5D8"
+					type: "item"
+					item: {
+						id: "minecraft:gold_ingot"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+					count: 3
+				}
+			]
+		}
+		{
+			title: "下一阶段"
+			x: 1.5d
+			y: 4.0d
+			dependencies: ["41A6D8D7FEB25822"]
+			id: "01E4AB28632776CF"
+			tasks: [{
+				id: "1985D30ADBE57F3F"
+				type: "item"
+				item: {
+					id: "bloodmagic:magicianbloodorb"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "2D6ED9B552694775"
+					type: "xp"
+					xp: 30
+				}
+				{
+					id: "1F30480D05BF0C44"
+					type: "item"
+					item: {
+						id: "minecraft:iron_block"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "血球大师"
+			x: 1.5d
+			y: 5.5d
+			dependencies: ["01E4AB28632776CF"]
+			id: "68AA9660726408C6"
+			tasks: [{
+				id: "28302809F5A196C9"
+				type: "item"
+				item: {
+					id: "bloodmagic:masterbloodorb"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "18DA537A6C81E148"
+					type: "xp"
+					xp: 40
+				}
+				{
+					id: "4F74078CBB70A763"
+					type: "item"
+					item: {
+						id: "minecraft:diamond"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+					count: 4
+				}
+			]
+		}
+		{
+			title: "获取 Tau 果实"
+			x: -3.0d
+			y: 1.0d
+			description: ["Tau Fruits 不仅是食物来源，它们还能用于某些配方，但具体方法有待你自行探索。"]
+			dependencies: ["13CFA95C3E9A49A6"]
+			id: "63ABA1EA2F50A3B6"
+			tasks: [{
+				id: "1CEABAA1F3EE27D6"
+				type: "item"
+				item: {
+					id: "bloodmagic:weak_tau"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [{
+				id: "606E4A8A029E3140"
+				type: "xp"
+				xp: 15
+			}]
+		}
+		{
+			title: "必须抓住它们……这些恶魔？"
+			x: -2.0d
+			y: -2.0d
+			description: ["灵魂捕笼是通过捕捉生物来获取恶魔意志的最基本方法。"]
+			dependencies: ["794A4BF210E4A67F"]
+			id: "0549135E9320B579"
+			tasks: [{
+				id: "448FDC282584D24C"
+				type: "item"
+				item: {
+					id: "bloodmagic:soulsnare"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+		}
+		{
+			title: "邪恶的药剂瓶"
+			x: 0.0d
+			y: -3.5d
+			description: ["瓶可以让你制作涂抹物，用它们给你的工具施加效果。"]
+			dependencies: ["7F165B8F6F3F7B2F"]
+			id: "7BBA8FB08033C130"
+			tasks: [{
+				id: "323287B6B1BC0065"
+				type: "item"
+				item: {
+					id: "bloodmagic:slate_vial"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [{
+				id: "7D00780A1451CB39"
+				type: "xp"
+				xp: 15
+			}]
+		}
+		{
+			title: "Uno 反转卡"
+			x: 3.5d
+			y: 1.0d
+			description: ["Sanguine Reverter 能让你撤销某些配方，比如从弱血球中回收材料。"]
+			dependencies: ["5150DB07552AFAB9"]
+			id: "017760E8706C1282"
+			tasks: [{
+				id: "42E25D2B8ABB9F9B"
+				type: "item"
+				item: {
+					id: "bloodmagic:sanguinereverter"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [{
+				id: "31CC92F98DD5CF2F"
+				type: "xp"
+				xp: 20
+			}]
+		}
+		{
+			title: "神奇的槲寄生植物"
+			x: 7.5d
+			y: -0.5d
+			description: ["要制作仪式占卜者，你需要先制作一个三级血祭坛；它能辅助魔法仪式。"]
+			dependencies: ["439931DFAD02E655"]
+			id: "2963D0006205D708"
+			tasks: [{
+				id: "01F740E37B10D337"
+				type: "item"
+				item: {
+					id: "bloodmagic:ritualdiviner"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [{
+				id: "77A2F8B1D00264F8"
+				type: "xp"
+				xp: 40
+			}]
+		}
+		{
+			title: "黄昏即将来临，笼罩着我们"
+			x: 9.5d
+			y: -0.5d
+			description: ["升级你的仪式占卜器，使其变得更强大。"]
+			dependencies: ["2963D0006205D708"]
+			id: "1579345CD17311A6"
+			tasks: [{
+				id: "10340FA7389E524C"
+				type: "item"
+				item: {
+					id: "bloodmagic:ritualdivinerdusk"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [{
+				id: "7E096BD2B6029169"
+				type: "xp"
+				xp: 50
+			}]
+		}
+		{
+			title: "特殊水晶"
+			x: 5.5d
+			y: 1.0d
+			description: ["恶魔结晶器能将恶魔意志转化为更具体、更适合仪式使用的物品。"]
+			dependencies: ["017760E8706C1282"]
+			id: "1BD0882E9603E941"
+			tasks: [{
+				id: "2B7E4DD07D51F868"
+				type: "item"
+				item: {
+					id: "bloodmagic:demoncrystallizer"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [{
+				id: "18CDD928D69F4BF0"
+				type: "xp"
+				xp: 25
+			}]
+		}
+		{
+			title: "着火了！"
+			x: 9.5d
+			y: 1.0d
+			description: ["恶魔熔炉是燃烧并利用结晶化恶魔意志的关键。"]
+			dependencies: ["36478B654DA82F7E"]
+			id: "4F5C2FC48645D7FD"
+			tasks: [{
+				id: "33B1914AD91CA601"
+				type: "item"
+				item: {
+					id: "bloodmagic:demoncrucible"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [{
+				id: "57D93EE199A973D4"
+				type: "xp"
+				xp: 30
+			}]
+		}
+		{
+			title: "结晶化的恶魔们"
+			x: 7.5d
+			y: 1.0d
+			description: ["制作第一个恶魔水晶，以继续学习更多配方。"]
+			dependencies: ["1BD0882E9603E941"]
+			id: "36478B654DA82F7E"
+			tasks: [{
+				id: "4F6DD4222BDF3F66"
+				type: "item"
+				item: {
+					id: "bloodmagic:defaultcrystal"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "1E005587F28A5F57"
+					type: "xp"
+					xp: 15
+				}
+				{
+					id: "7B771FB018A08AD9"
+					type: "item"
+					item: {
+						id: "bloodmagic:vengefulcrystal"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+					count: 2
+				}
+			]
+		}
+	]
+}

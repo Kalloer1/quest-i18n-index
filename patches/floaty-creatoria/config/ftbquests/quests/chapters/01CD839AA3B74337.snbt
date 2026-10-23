@@ -1,0 +1,566 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "01CD839AA3B74337"
+	group: ""
+	icon: "minecraft:bone"
+	id: "01CD839AA3B74337"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"玩家死亡时会掉落头颅和若干根骨头。用4个头颅即可合成骨块，拓展你的生存空间。"
+				""
+				"仁慈的虚空模组让你除了饿死或被幻翼杀死外，还能方便快捷地摔死自己（听起来不那么仁慈）"
+			]
+			id: "587D7B1235C4D3D8"
+			size: 1.5d
+			subtitle: "站在你自己的尸骨上前进吧"
+			tasks: [{
+				id: "03CB8185035AE8C5"
+				item: "minecraft:bone_block"
+				type: "item"
+			}]
+			title: "粉身碎骨"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["587D7B1235C4D3D8"]
+			description: [
+				"现在苔藓块在催熟后可以蔓延到骨块上，进而繁殖更多苔藓块。"
+				""
+				"苔藓块催熟后会蔓延，还会生成杜鹃花丛，这是你目前唯一获取木头的方式——用骨粉催熟杜鹃花丛，让它长成杜鹃树。"
+				""
+				"你需要大量的骨粉，还有骨头。"
+			]
+			id: "02EAFB3523EC667B"
+			subtitle: "用骨粉催熟苔藓块"
+			tasks: [{
+				id: "2AC6363747B51310"
+				item: "minecraft:bone_meal"
+				type: "item"
+			}]
+			title: "原生演替"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["02EAFB3523EC667B"]
+			description: ["木头的重要性无需多言"]
+			id: "45A30F1347DE9402"
+			subtitle: "杜鹃树而来"
+			tasks: [{
+				id: "57534307492B6624"
+				item: "minecraft:oak_log"
+				type: "item"
+			}]
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["45A30F1347DE9402"]
+			id: "65A94F6F3291896B"
+			tasks: [{
+				id: "67D414451491AA9B"
+				item: {
+					Count: 1
+					id: "minecraft:wooden_hoe"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["45A30F1347DE9402"]
+			id: "1DA6A8103C34BC29"
+			tasks: [{
+				id: "02AA1D15A93266CE"
+				item: {
+					Count: 1
+					id: "minecraft:wooden_shovel"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 4.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["1D3E589659D6B88D"]
+			description: [
+				"你可以通过钻木取火点燃原木的方式来获得灰烬。"
+				""
+				"另一种方法是在24格外搭建刷怪平台，等待一晚，待白天到来，亡灵生物在阳光下燃尽后即可获得灰烬。"
+			]
+			id: "5B02A90A7D228FD0"
+			subtitle: "浴火……成灰"
+			tasks: [{
+				id: "1583FA99D9560898"
+				item: "supplementaries:ash"
+				type: "item"
+			}]
+			x: 6.5d
+			y: -4.0d
+		}
+		{
+			dependencies: [
+				"5B02A90A7D228FD0"
+				"1DA6A8103C34BC29"
+				"1AA9BA7BE46529A0"
+			]
+			description: ["将灰烬放在泥土上，用铲子右键灰烬，有概率消耗一层灰烬将下方的泥土转化为灰化土。"]
+			icon: "minecraft:podzol"
+			id: "655BBBB50B2DE0C5"
+			subtitle: "将泥土与灰烬混合在一起"
+			tasks: [{
+				id: "4129B801E733927C"
+				observe_type: 0
+				timer: 0L
+				to_observe: "minecraft:podzol"
+				type: "observation"
+			}]
+			title: "卷土重来"
+			x: 6.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["65A94F6F3291896B"]
+			description: ["具体来说，用锄头右键点击缠根泥土"]
+			icon: "minecraft:dirt"
+			id: "1AA9BA7BE46529A0"
+			subtitle: "用锄头清理缠根泥土"
+			tasks: [{
+				id: "5156D89450107236"
+				observe_type: 0
+				timer: 0L
+				to_observe: "minecraft:dirt"
+				type: "observation"
+			}]
+			title: "根系缠绕"
+			x: 6.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["3861FDAA9F9EDE9A"]
+			description: ["用锄头右键沙砾时，有概率产生小石子。小石子可用来合成圆石。"]
+			id: "46617C475443BFD2"
+			subtitle: "枯山水景观"
+			tasks: [{
+				count: 9L
+				id: "635B486ED8171AAC"
+				item: "kubejs:pebble"
+				type: "item"
+			}]
+			x: 14.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["54A25E21D196EE93"]
+			id: "3861FDAA9F9EDE9A"
+			tasks: [{
+				id: "5B56375E86463FDE"
+				item: "minecraft:gravel"
+				type: "item"
+			}]
+			x: 13.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["46617C475443BFD2"]
+			description: ["欢迎来到石器时代！"]
+			id: "73129B751CF45A0C"
+			subtitle: "终于……"
+			tasks: [{
+				id: "16BBA1676A0DFEE3"
+				item: "minecraft:cobblestone"
+				type: "item"
+			}]
+			title: "石器时代"
+			x: 14.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["45A30F1347DE9402"]
+			id: "538F32279F64937B"
+			tasks: [{
+				id: "616F696A94A073C4"
+				item: {
+					Count: 1
+					id: "minecraft:wooden_axe"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["45A30F1347DE9402"]
+			id: "43A39115C41FE35C"
+			tasks: [{
+				id: "3E728BA83F22CC86"
+				item: "farmersdelight:cutting_board"
+				type: "item"
+			}]
+			x: 4.5d
+			y: 2.5d
+		}
+		{
+			description: [
+				"如果你坚持用沼泽或草原群系的草方块来制作染料……或者更恐怖地，用和村民交易的青金石来制作染料……我也不会阻止你完成任务。"
+				""
+				"只要有这股毅力，你做什么都会成功的:O"
+			]
+			id: "3EAB890A1A33FD0A"
+			optional: true
+			size: 0.5d
+			subtitle: "毅力惊人"
+			tasks: [{
+				id: "05054A1763CD8671"
+				item: "minecraft:light_blue_dye"
+				type: "item"
+			}]
+			title: "真正的“蓝”图"
+			x: 13.0d
+			y: 3.5d
+		}
+		{
+			description: ["现在幻翼膜可以代替浅蓝色染料来合成蓝图。"]
+			icon: "minecraft:phantom_membrane"
+			id: "1FF2FD6D49BC21A2"
+			subtitle: "众所周知，幻翼富含光敏化学物质"
+			tasks: [{
+				id: "61CB3607E05DB11C"
+				item: "minecraft:phantom_membrane"
+				type: "item"
+			}]
+			x: 11.5d
+			y: 3.5d
+		}
+		{
+			dependencies: [
+				"1FF2FD6D49BC21A2"
+				"09C3BC32A38E6E15"
+				"3EAB890A1A33FD0A"
+			]
+			dependency_requirement: "one_completed"
+			description: [
+				"现在你可以站在巨人的肩膀上了。"
+				""
+				"&e注意：如果你有自己快捷的建造方法，或者单纯有很多空闲时间，那么这个任务不是必须的。&r"
+			]
+			id: "276463672B2F282B"
+			subtitle: "是时候抄作业了，时间到"
+			tasks: [{
+				id: "33B5FB43E00E0A27"
+				item: "create:empty_schematic"
+				type: "item"
+			}]
+			title: "宏伟蓝图"
+			x: 11.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["099522D51FAEDD90"]
+			description: ["农夫乐事添加了一个配方，可以用树皮合成纸（很合理不是么）。"]
+			id: "09C3BC32A38E6E15"
+			subtitle: "让我们向农夫说声谢谢吧"
+			tasks: [{
+				id: "5DB24FBDE47A0768"
+				item: "minecraft:paper"
+				type: "item"
+			}]
+			x: 8.5d
+			y: 2.0d
+		}
+		{
+			dependencies: [
+				"538F32279F64937B"
+				"43A39115C41FE35C"
+			]
+			description: ["小技巧：斧头放副手，主手拿原木，对准砧板长按右键即可自动去皮。"]
+			id: "099522D51FAEDD90"
+			subtitle: "为什么非得用砧板才能获得树皮？"
+			tasks: [{
+				id: "59B2AD0BFAE11C58"
+				item: "farmersdelight:tree_bark"
+				type: "item"
+			}]
+			x: 6.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["172A2A9AB810CE88"]
+			id: "019DCB598A718BDD"
+			subtitle: "没想到吧？"
+			tasks: [{
+				id: "76A449D6EE1F930A"
+				item: "brickfurnace:brick_furnace"
+				type: "item"
+			}]
+			x: 8.5d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"019DCB598A718BDD"
+				"73129B751CF45A0C"
+			]
+			description: [
+				"用于合成蓝图工作台和蓝图大炮。"
+				""
+				"&e注意：如果你有自己快捷的建造方法，或者单纯有很多空闲时间，那么这个任务并非必需。&r"
+			]
+			id: "27219FC654A063B7"
+			subtitle: "蓝图？"
+			tasks: [{
+				id: "2B47DD018D13EE6D"
+				item: "minecraft:smooth_stone"
+				type: "item"
+			}]
+			x: 14.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["09C3BC32A38E6E15"]
+			description: [
+				"为了安全地拾取刷怪平台的掉落物，你可以制作一套纸板盔甲。"
+				""
+				"吃掉纸再吐出来会得到纸浆。在没有动力冲压机的情况下，用2个木台阶+3个纸浆合成即可得到1个纸板（木台阶会返还）。"
+			]
+			icon: "create:cardboard"
+			id: "63A6C455E1E7C3FD"
+			subtitle: "口嚼纸浆"
+			tasks: [
+				{
+					id: "1E3CA4B0A68426E9"
+					item: {
+						Count: 1
+						id: "create:cardboard_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					match_nbt: false
+					type: "item"
+				}
+				{
+					id: "333BDD4E63E05257"
+					item: {
+						Count: 1
+						id: "create:cardboard_chestplate"
+						tag: {
+							Damage: 0
+						}
+					}
+					match_nbt: false
+					type: "item"
+				}
+				{
+					id: "1DDE78384F909E28"
+					item: {
+						Count: 1
+						id: "create:cardboard_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
+					match_nbt: false
+					type: "item"
+				}
+				{
+					id: "19800486B67C4F7A"
+					item: {
+						Count: 1
+						id: "create:cardboard_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					match_nbt: false
+					type: "item"
+				}
+				{
+					id: "7225F50A28AFC88F"
+					item: "create:cardboard"
+					type: "item"
+				}
+			]
+			title: "潜行纸箱"
+			x: 8.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["5B02A90A7D228FD0"]
+			id: "0F8215463145D531"
+			tasks: [{
+				id: "0B06CAA59329FB4A"
+				item: "kubejs:huigu_material"
+				type: "item"
+			}]
+			x: 8.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["5B02A90A7D228FD0"]
+			description: [
+				"用8块灰烬砖做出砖炉后，你就不再需要骨粉来做灰烬砖了。"
+				""
+				"灰烬砖也是你目前唯一能获得的远程武器。"
+			]
+			id: "172A2A9AB810CE88"
+			subtitle: "骨胶粘合"
+			tasks: [{
+				count: 8L
+				id: "39B4C76D4538D571"
+				item: "supplementaries:ash_brick"
+				type: "item"
+			}]
+			x: 8.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["172A2A9AB810CE88"]
+			id: "34A668BF7743692A"
+			tasks: [{
+				id: "16EAF07FEB528100"
+				item: "supplementaries:ash_bricks"
+				type: "item"
+			}]
+			x: 10.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["34A668BF7743692A"]
+			description: [
+				"当灰烬砖被苦力怕的爆炸破坏时，会被转化成沙砾砖。这是你目前获得沙砾为数不多的方式。"
+				""
+				"（其实代码里写的是不用镐子破坏时得到的都是沙砾砖）"
+			]
+			id: "54A25E21D196EE93"
+			subtitle: "爆炸加工"
+			tasks: [{
+				id: "5631FB949E6710D6"
+				item: "supplementaries:gravel_bricks"
+				type: "item"
+			}]
+			x: 11.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["3861FDAA9F9EDE9A"]
+			description: [
+				"现在也可以用燧石来合成石制工具了。"
+				""
+				"顺便一提，通过砧板可以从沙砾中获得近乎无限的燧石。"
+			]
+			id: "53014222C2AA1826"
+			subtitle: "制作石器工具"
+			tasks: [{
+				id: "3C1F4A4B7BB3400B"
+				item: "minecraft:flint"
+				type: "item"
+			}]
+			x: 14.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["655BBBB50B2DE0C5"]
+			description: [
+				"用骨粉右键灰化土时有概率出现两种蘑菇。"
+				""
+				"棕色蘑菇能大大减少你对女巫的依赖（你猜为什么），而蘑菇柄方块能让你提前解锁安山机壳。"
+			]
+			id: "0251AED1D89ECD72"
+			tasks: [{
+				icon: "minecraft:brown_mushroom"
+				id: "0CDF81422B12FEE9"
+				observe_type: 0
+				timer: 0L
+				to_observe: "minecraft:brown_mushroom"
+				type: "observation"
+			}]
+			title: "棕色蘑菇"
+			x: 7.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["45A30F1347DE9402"]
+			id: "3A97331621A50D98"
+			tasks: [{
+				id: "6EDB58D2054DA294"
+				item: {
+					Count: 1
+					id: "minecraft:wooden_sword"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 4.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["3A97331621A50D98"]
+			description: ["现在剑也可以像农夫乐事中的小刀一样，通过破坏草或作物来掉落草杆了。"]
+			id: "12088C67CA9A6791"
+			subtitle: "从草丛或作物中获取草杆"
+			tasks: [{
+				id: "10862C23DCC7F856"
+				item: "farmersdelight:straw"
+				type: "item"
+			}]
+			title: "杂草丛生"
+			x: 6.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["12088C67CA9A6791"]
+			description: [
+				"手持绳索点击已放置的绳索，即可快速在其下方放置绳索。"
+				""
+				"这有助于下降到较低高度的地方，建造效率更高的刷怪平台。"
+			]
+			id: "7843AA18BB07E533"
+			tasks: [{
+				id: "37AE222F1DA65F09"
+				item: "farmersdelight:rope"
+				type: "item"
+			}]
+			title: "垂直速降绳索"
+			x: 7.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["45A30F1347DE9402"]
+			description: [
+				"右键将木棍放置在地上，然后手持木棍左键点击它，便有1/8的概率点燃这根木棍。"
+				""
+				"这有助于你获得灰烬。"
+			]
+			id: "4EFEE3ECABEB4D54"
+			tasks: [{
+				count: 2L
+				id: "1D3E589659D6B88D"
+				item: "minecraft:stick"
+				type: "item"
+			}]
+			title: "钻木取火"
+			x: 4.5d
+			y: -4.0d
+		}
+	]
+	title: "骨头、苔藓与空岛"
+}

@@ -1,0 +1,689 @@
+# AI 初翻，未人工校对
+{
+	id: "0120A1B0B4E9629D"
+	group: "48973260D2B7A41C"
+	order_index: 2
+	filename: "create"
+	title: "创建"
+	icon: "create:brass_hand"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "开始"
+			x: 1.5d
+			y: 0.0d
+			subtitle: "欢迎来到创造模式"
+			description: [
+				"以下是创造篇的内容章节"
+				"此模组可让你创建大量自动合成和资源收集功能"
+				"你可以按 \"w\" 键查看创造机器的使用方法。快自己试试吧！"
+			]
+			id: "2A633D931C14FEEF"
+			tasks: [{
+				id: "01FE0BE9ED8A48C5"
+				type: "item"
+				item: "create:andesite_alloy"
+			}]
+			rewards: [
+				{
+					id: "6216CE3C606BB17E"
+					type: "choice"
+					exclude_from_claim_all: true
+					table_id: 6503825950425270225L
+				}
+				{
+					id: "37962E78B7C1689F"
+					type: "item"
+					item: "minecraft:andesite"
+					count: 32
+				}
+			]
+		}
+		{
+			title: "基础强制运输系统"
+			x: 1.5d
+			y: 2.0d
+			description: ["以下是运输物品的最基本方法。"]
+			dependencies: ["2A633D931C14FEEF"]
+			id: "2693E067435171AC"
+			tasks: [
+				{
+					id: "07234100811A6673"
+					type: "item"
+					item: "create:shaft"
+					count: 8L
+				}
+				{
+					id: "5674145E321CCB4A"
+					type: "item"
+					item: "create:cogwheel"
+				}
+				{
+					id: "24D3B3C3F59B2B2B"
+					type: "item"
+					item: "create:large_cogwheel"
+				}
+			]
+			rewards: [
+				{
+					id: "491A4E60A340061E"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 2179164532636674591L
+				}
+				{
+					id: "2FE36CA88CFB229E"
+					type: "item"
+					item: "create:andesite_alloy"
+					count: 16
+				}
+			]
+		}
+		{
+			title: "第一股力量"
+			x: -3.5d
+			y: 2.0d
+			description: ["手摇曲柄是第一个动力源，可以通过手工制造来生成动力源。"]
+			dependencies: ["2A633D931C14FEEF"]
+			id: "12DC24E130627038"
+			tasks: [{
+				id: "285B6846BC68DC3C"
+				type: "item"
+				item: "create:hand_crank"
+			}]
+			rewards: [
+				{
+					id: "2FFC13FE03DF7EC1"
+					type: "choice"
+					exclude_from_claim_all: true
+					table_id: 6503825950425270225L
+				}
+				{
+					id: "7F2683E9A9D51AF8"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 2179164532636674591L
+				}
+			]
+		}
+		{
+			title: "将所有物品连接起来"
+			x: 6.5d
+			y: 2.0d
+			description: [
+				"安山岩外壳可以让你连接机器，它还能封装齿轮、传动轴和皮带。"
+				"这是本模组里最重要的物品，多准备点吧！"
+			]
+			dependencies: ["2A633D931C14FEEF"]
+			id: "6AA00A69D5AC05DD"
+			tasks: [{
+				id: "3A2DE3583E4F3FA4"
+				type: "item"
+				item: "create:andesite_casing"
+				count: 8L
+			}]
+			rewards: [
+				{
+					id: "62A0783C1AF9525B"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 2179164532636674591L
+				}
+				{
+					id: "542E741200CBEDF5"
+					type: "item"
+					item: "create:andesite_alloy"
+					count: 16
+				}
+			]
+		}
+		{
+			title: "掌控水的力量"
+			x: -3.5d
+			y: 3.5d
+			description: ["水车是首个无需人力即可提供动力的装置，能为机器输送水流动力。"]
+			dependencies: ["12DC24E130627038"]
+			id: "2BA88234C756FB9F"
+			tasks: [{
+				id: "19329468E46474A6"
+				type: "item"
+				item: "create:water_wheel"
+			}]
+			rewards: [{
+				id: "66A7485C711A7AA0"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "变成砾石吧！"
+			x: -6.0d
+			y: 3.5d
+			description: ["Milestone能制作大量物品，效率比原版高，最棒的是它能全自动！"]
+			dependencies: ["2BA88234C756FB9F"]
+			id: "303F9ECBFF0EFD05"
+			tasks: [{
+				id: "1B5424F626A7C2F4"
+				type: "item"
+				item: "create:millstone"
+			}]
+			rewards: [{
+				id: "158B2E985153247A"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "扭转力量的方向"
+			x: 4.0d
+			y: 3.5d
+			description: ["齿轮箱也是一种基础机器物品。它可以改变力的方向。"]
+			dependencies: [
+				"6AA00A69D5AC05DD"
+				"2693E067435171AC"
+			]
+			id: "740161C28357659F"
+			tasks: [{
+				id: "30C0EA9CC755EB8A"
+				type: "item"
+				item: "create:gearbox"
+			}]
+			rewards: [{
+				id: "02D0551F9ABEE630"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "新的金属材质材料"
+			x: -6.0d
+			y: 5.5d
+			description: ["机械压机和储料仓是制作金属板的基本工具，对于建造大量Create机器非常重要。"]
+			dependencies: ["2BA88234C756FB9F"]
+			id: "7A2F1279814E0976"
+			tasks: [
+				{
+					id: "054E2797E4EB6131"
+					type: "item"
+					item: "create:mechanical_press"
+				}
+				{
+					id: "5DF001C5718E5C3E"
+					type: "item"
+					item: "create:depot"
+				}
+			]
+			rewards: [{
+				id: "4E853F0C26B1A382"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "转，转，转！"
+			x: -3.5d
+			y: 5.5d
+			description: [
+				"机械搅拌机是创造模组中制作黄铜的唯一方法（当然你也可以用工业工程来制作），"
+				"但是，你需要热源来进行混合操作。"
+			]
+			dependencies: ["2BA88234C756FB9F"]
+			id: "75654F235819ECC9"
+			tasks: [
+				{
+					id: "49ACE0097F90EE58"
+					type: "item"
+					item: "create:mechanical_mixer"
+				}
+				{
+					id: "4B39C0B9628DFC02"
+					type: "item"
+					item: "create:basin"
+				}
+			]
+			rewards: [{
+				id: "2597218A50FE7772"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "难以置信的热浪"
+			x: -1.0d
+			y: 5.5d
+			description: [
+				"这是制作热源的最佳方法，但你需要捕捉一只烈焰人，"
+				"小心，你必须被烈焰人或燃烧者灼伤。"
+			]
+			dependencies: ["2BA88234C756FB9F"]
+			id: "236D80B8EDFC77DE"
+			tasks: [{
+				id: "56381E82CD664EF8"
+				type: "item"
+				item: "create:empty_blaze_burner"
+			}]
+			rewards: [{
+				id: "13D3B8D53FDC5897"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "新时代机械纪元"
+			x: -3.5d
+			y: 7.5d
+			description: [
+				"黄铜是大量机械装置最重要的材料，"
+				"使用搅拌机混合锌和铜。"
+			]
+			dependencies: [
+				"236D80B8EDFC77DE"
+				"75654F235819ECC9"
+				"7A2F1279814E0976"
+			]
+			id: "1CECBDDBCBB9DD27"
+			tasks: [{
+				id: "4FA82E55307EF7DD"
+				type: "item"
+				item: "create:brass_ingot"
+			}]
+			rewards: [{
+				id: "7271F89401A4A9B8"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "控制风的力量"
+			x: -6.0d
+			y: 2.0d
+			description: [
+				"风车是成本最低但有效的压力单位，"
+				"你需要用羊毛之类的柔软物品来让它旋转。"
+			]
+			dependencies: ["12DC24E130627038"]
+			id: "1EF2EA5EF0FF7A65"
+			tasks: [
+				{
+					id: "3507733307DC7F57"
+					type: "item"
+					item: "create:windmill_bearing"
+				}
+				{
+					id: "53B3D348DE3D37DC"
+					type: "item"
+					item: "create:radial_chassis"
+				}
+			]
+			rewards: [{
+				id: "2A031B408D1F993B"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "另一个手"
+			x: -6.0d
+			y: 13.5d
+			description: ["部署器是自动化中至关重要的一部分，能让你在特定位置自动使用物品。"]
+			dependencies: ["6954C6C2F2CA1CFB"]
+			id: "694A26508366FD32"
+			tasks: [{
+				id: "7B50B6D4F14D1CFE"
+				type: "item"
+				item: "create:deployer"
+			}]
+			rewards: [{
+				id: "13036BF86E7F0398"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "红色钻石"
+			x: -5.0d
+			y: 10.5d
+			description: [
+				"用砂纸打磨玫瑰石英，"
+				"用于制作电子管。"
+			]
+			dependencies: ["1CECBDDBCBB9DD27"]
+			id: "6954C6C2F2CA1CFB"
+			tasks: [{
+				id: "5896D097F28A374A"
+				type: "item"
+				item: "create:polished_rose_quartz"
+			}]
+			rewards: [{
+				id: "763991B2B36D07E4"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			x: 1.5d
+			y: 7.5d
+			description: [
+				"使用旋转速度控制器，你可以轻松修改旋转速度。"
+				"如果使用水车，你应该制作这个来提高旋转速度。"
+			]
+			dependencies: [
+				"1CECBDDBCBB9DD27"
+				"764D3FFB9CBDE9A0"
+			]
+			id: "37488F9EC0AD14F3"
+			tasks: [{
+				id: "1D6D6B6E03129D7D"
+				type: "item"
+				item: "create:rotation_speed_controller"
+			}]
+			rewards: [{
+				id: "0211AA7B40C3B44A"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "更强大的自动合成功能"
+			x: -3.5d
+			y: 11.5d
+			description: [
+				"机械合成台可以用来合成你在合成台里能合成的所有东西，"
+				"但是这个可以完全自动化地制作。"
+				"这也是破碎机的前缀名称。"
+			]
+			dependencies: [
+				"6954C6C2F2CA1CFB"
+				"0C0018CE9908667B"
+			]
+			id: "0BE91E41A24A2FBB"
+			tasks: [{
+				id: "0E37637E0573B921"
+				type: "item"
+				item: "create:mechanical_crafter"
+				count: 21L
+			}]
+			rewards: [{
+				id: "1632B94C8B97FFFD"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "把一切都砸个稀巴烂"
+			x: -3.5d
+			y: 13.5d
+			description: ["压碎轮可以把很多材料压成粉末（也许玩家也能被压成粉末 XD）"]
+			dependencies: ["0BE91E41A24A2FBB"]
+			id: "6ED60FE6D3876E08"
+			tasks: [{
+				id: "4222FC60D2AA9E9D"
+				type: "item"
+				item: "create:crushing_wheel"
+				count: 2L
+			}]
+			rewards: [{
+				id: "507BF80BA1E2A5ED"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "改变你的移动速度"
+			x: -1.0d
+			y: 3.5d
+			description: [
+				"连接小齿轮和大齿轮可以改变旋转速度，"
+				"有时你需要足够的旋转速度来使用某些方块。"
+			]
+			dependencies: ["2693E067435171AC"]
+			id: "1E22F5DCFDCA25E7"
+			tasks: [{
+				id: "58DBD72FD44493E0"
+				type: "advancement"
+				advancement: "create:shifting_gears"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "3CCF22DA49937118"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "新外壳时代来临"
+			x: -2.0d
+			y: 10.5d
+			description: ["黄铜外壳是用于制作更坚固机械方块的新材料。"]
+			dependencies: ["1CECBDDBCBB9DD27"]
+			id: "0C0018CE9908667B"
+			tasks: [{
+				id: "454F50D398B2556C"
+				type: "item"
+				item: "create:brass_casing"
+				count: 4L
+			}]
+			rewards: [{
+				id: "7D5668A396BFC21C"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "小心！"
+			x: 1.5d
+			y: 5.5d
+			description: [
+				"有时你必须检查具体的旋转速度，"
+				"佩戴工程护目镜将让你看到机器的总和。"
+			]
+			dependencies: [
+				"1E22F5DCFDCA25E7"
+				"740161C28357659F"
+			]
+			id: "764D3FFB9CBDE9A0"
+			tasks: [{
+				id: "49C49F5880ABCCE6"
+				type: "item"
+				item: "create:goggles"
+			}]
+			rewards: [{
+				id: "16B8D7DCFA8A02D6"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "粘性但很有用"
+			x: 9.0d
+			y: 3.5d
+			description: ["强力胶水能让你在机械装置上连接任何其他方块。"]
+			dependencies: ["6AA00A69D5AC05DD"]
+			id: "2FF0835B7E0E8010"
+			tasks: [{
+				id: "15AFE2EC5DAB2E0F"
+				type: "item"
+				item: {
+					id: "create:super_glue"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "3ED492679111BC25"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "超级高温！"
+			x: -6.0d
+			y: 15.0d
+			description: ["部分配方需要超高温热源，这时烈焰蛋糕就派上用场了。它能将烈焰燃烧器转变为超高温热源。"]
+			dependencies: [
+				"0B4EF34DD8CE16FD"
+				"6ED60FE6D3876E08"
+			]
+			id: "602929BA6C539E12"
+			tasks: [{
+				id: "2A10BD9C3DFE27A4"
+				type: "item"
+				item: "create:blaze_cake"
+			}]
+			rewards: [{
+				id: "3E2B3C47F7B2221C"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "铜可不是没用的东西"
+			x: -8.5d
+			y: 7.5d
+			description: ["在创造模式中，铜是一种非常实用的材料，因为许多配方都需要它作为原材料。"]
+			dependencies: ["7A2F1279814E0976"]
+			id: "081AACF5E373833A"
+			tasks: [{
+				id: "134D77B647C4D328"
+				type: "item"
+				item: "create:copper_sheet"
+			}]
+			rewards: [{
+				id: "11465149AF1AA98D"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "流体传输"
+			x: -7.0d
+			y: 10.5d
+			description: ["这些可以让你方便地在自动创造系统或其他流体运输系统之间运输流体。"]
+			dependencies: ["081AACF5E373833A"]
+			id: "753235F0417E1BF7"
+			tasks: [
+				{
+					id: "505E7E0ECB4DF5CD"
+					type: "item"
+					item: "create:fluid_pipe"
+				}
+				{
+					id: "1BF553AE5849388D"
+					type: "item"
+					item: "create:mechanical_pump"
+				}
+			]
+			rewards: [{
+				id: "27E7E7D73485F7E3"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "流体存储装置"
+			x: -10.0d
+			y: 10.5d
+			description: ["流体储罐是存储流体的简单方法，它具有强大的管道和自动化创建能力。"]
+			dependencies: ["081AACF5E373833A"]
+			id: "61B3545817E291BB"
+			tasks: [{
+				id: "7757ED05F07EC6D8"
+				type: "item"
+				item: "create:fluid_tank"
+			}]
+			rewards: [{
+				id: "7BC9A318FBD3A974"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "涂层注入 (Coating Infusion)"
+			x: -8.5d
+			y: 13.5d
+			description: ["Spout 是 Create 中的一种合成类型，它应该将流体注入物品中，使其外观和能力发生变化。"]
+			dependencies: [
+				"61B3545817E291BB"
+				"753235F0417E1BF7"
+			]
+			id: "0B4EF34DD8CE16FD"
+			tasks: [{
+				id: "15F064E7782E5E9B"
+				type: "item"
+				item: "create:spout"
+			}]
+			rewards: [{
+				id: "00809B9B57494418"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "火焰灌注 (Fiery Infused)"
+			x: -6.0d
+			y: 17.0d
+			description: [
+				"暮色森林中的炽热锭需要用喷口注入炽热流体。"
+				"它是恐怖钢的基础材料。"
+			]
+			dependencies: ["602929BA6C539E12"]
+			id: "6DC6662BDCC58951"
+			tasks: [{
+				id: "56FD2C63C789315F"
+				type: "item"
+				item: "twilightforest:fiery_ingot"
+			}]
+			rewards: [{
+				id: "541AE3FF244F6DDD"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "最可爱的生成器"
+			x: 6.5d
+			y: 5.0d
+			description: ["除了协助 Ars Nouveau 之外，Starbuncle 现在还能帮助生成 su。"]
+			dependencies: ["740161C28357659F"]
+			id: "20145449C19773E1"
+			tasks: [{
+				id: "194AC9F3E700CD53"
+				type: "item"
+				item: "ars_creo:starbuncle_wheel"
+			}]
+			rewards: [{
+				id: "3697812E181DB1F3"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+	]
+	quest_links: [ ]
+}

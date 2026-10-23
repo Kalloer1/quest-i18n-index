@@ -1,0 +1,1297 @@
+# AI 初翻，未人工校对
+{
+	id: "242A3183019F33ED"
+	group: ""
+	order_index: 0
+	filename: "exaqua"
+	title: "ExAqua"
+	icon: "exaqua:frogium"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "获取木材"
+			x: -6.0d
+			y: 1.0d
+			dependencies: ["02D8DEDE2FEA8D54"]
+			dependency_requirement: "one_completed"
+			id: "70BB3731C299EF19"
+			tasks: [{
+				id: "3CAEDFE134148765"
+				type: "item"
+				item: "minecraft:oak_log"
+			}]
+			rewards: [
+				{
+					id: "30B214D51EA56426"
+					type: "item"
+					item: "minecraft:oak_sapling"
+				}
+				{
+					id: "639D7CDA464B9D76"
+					type: "item"
+					item: "minecraft:spruce_sapling"
+					count: 5
+				}
+				{
+					id: "66203C922A92F524"
+					type: "item"
+					item: "minecraft:birch_sapling"
+					count: 5
+				}
+				{
+					id: "39BC9BB39AFDABBF"
+					type: "item"
+					item: "minecraft:acacia_sapling"
+					count: 5
+				}
+			]
+		}
+		{
+			x: -3.5d
+			y: 1.0d
+			shape: "hexagon"
+			description: ["在这个整合包里，水是有限的。制作一个榨汁机来制造水。跳上去就能从树苗里榨出水分。"]
+			hide_dependency_lines: false
+			dependencies: ["70BB3731C299EF19"]
+			dependency_requirement: "one_completed"
+			id: "047440D86335E6AB"
+			tasks: [{
+				id: "1742DE565687831E"
+				type: "item"
+				item: "exaqua:squeezer"
+			}]
+			rewards: [{
+				id: "31A7284FAD0E58CB"
+				type: "item"
+				item: "minecraft:string"
+				count: 3
+			}]
+		}
+		{
+			x: -1.0d
+			y: 1.0d
+			shape: "pentagon"
+			description: ["需要 1000mb 的空间"]
+			dependencies: ["047440D86335E6AB"]
+			id: "7A79F8AC2E2F759F"
+			tasks: [{
+				id: "49D75F970CBAE802"
+				type: "item"
+				item: {
+					id: "exaqua:handsieve"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "6BE2E6368623C3B8"
+				type: "item"
+				item: "minecraft:wheat_seeds"
+				count: 3
+			}]
+		}
+		{
+			x: -1.0d
+			y: -1.5d
+			dependencies: ["7A79F8AC2E2F759F"]
+			id: "3E52F0C57EEF3922"
+			tasks: [{
+				id: "1E702E58777456E9"
+				type: "item"
+				item: "minecraft:flint"
+				count: 16L
+			}]
+			rewards: [{
+				id: "1DF7039372F267A1"
+				type: "item"
+				item: "mekanism:dust_iron"
+				count: 10
+			}]
+		}
+		{
+			title: "生物繁殖器"
+			x: -4.5d
+			y: 3.0d
+			dependencies: ["70BB3731C299EF19"]
+			id: "79779D134E39F977"
+			tasks: [
+				{
+					id: "390B4908BB04B9B1"
+					type: "item"
+					item: "minecraft:rotten_flesh"
+					count: 6L
+				}
+				{
+					id: "089A4F039392D95B"
+					type: "item"
+					item: "minecraft:string"
+					count: 3L
+				}
+			]
+			rewards: [{
+				id: "13603EF4627760A4"
+				type: "item"
+				item: "minecraft:ender_pearl"
+				count: 2
+			}]
+		}
+		{
+			x: -1.0d
+			y: 3.0d
+			dependencies: ["7A79F8AC2E2F759F"]
+			id: "4E916C6753FD095F"
+			tasks: [{
+				id: "48297B0ECBE63559"
+				type: "item"
+				item: "minecraft:wheat"
+			}]
+			rewards: [{
+				id: "6E6DE9002DDD95D6"
+				type: "item"
+				item: "minecraft:pig_spawn_egg"
+				count: 2
+			}]
+		}
+		{
+			x: 0.5d
+			y: 1.0d
+			dependencies: ["7A79F8AC2E2F759F"]
+			id: "6AC4215091511F4F"
+			tasks: [{
+				id: "6477A9EA0753F13F"
+				type: "item"
+				item: "mekanism:dust_iron"
+			}]
+			rewards: [{
+				id: "0A308184BBCE7A40"
+				type: "item"
+				item: "mekanism:dust_iron"
+				count: 2
+			}]
+		}
+		{
+			title: "篝火已点燃"
+			x: 2.0d
+			y: 1.0d
+			dependencies: ["6AC4215091511F4F"]
+			dependency_requirement: "one_completed"
+			id: "004C6055D02FE686"
+			tasks: [{
+				id: "430DB7354005F91B"
+				type: "item"
+				item: "minecraft:iron_ingot"
+			}]
+		}
+		{
+			title: "自动筛选功能已开启"
+			x: 3.5d
+			y: 0.0d
+			shape: "hexagon"
+			description: ["新的筛子将允许你获得新的物品。"]
+			dependencies: ["004C6055D02FE686"]
+			id: "19F7ED949657253D"
+			tasks: [{
+				id: "2A5001E98E1F9619"
+				type: "item"
+				item: "exaqua:ironsieve"
+			}]
+			rewards: [
+				{
+					id: "2EDB18680D79545B"
+					type: "item"
+					item: "minecraft:oak_sapling"
+					count: 6
+				}
+				{
+					id: "257CD25F83D74A15"
+					type: "item"
+					item: "minecraft:oak_wood"
+					count: 5
+				}
+			]
+		}
+		{
+			x: 0.5d
+			y: 3.0d
+			dependencies: ["4E916C6753FD095F"]
+			id: "7C57234F2D843CC4"
+			tasks: [{
+				id: "168E92C9CEB1C1BE"
+				type: "item"
+				item: "minecraft:porkchop"
+			}]
+		}
+		{
+			x: 2.0d
+			y: 4.5d
+			dependencies: [
+				"79779D134E39F977"
+				"004C6055D02FE686"
+				"7C57234F2D843CC4"
+			]
+			dependency_requirement: "one_completed"
+			id: "01EA304F2BBD3A95"
+			tasks: [{
+				id: "515E190719BA1142"
+				type: "item"
+				item: "tconstruct:blood_bucket"
+			}]
+			rewards: [{
+				id: "1841F4D3898ED0DA"
+				type: "item"
+				item: "minecraft:ender_pearl"
+			}]
+		}
+		{
+			x: 3.5d
+			y: 1.5d
+			shape: "pentagon"
+			description: ["新筛子 新配方"]
+			dependencies: ["004C6055D02FE686"]
+			id: "3701D02C28299D03"
+			tasks: [{
+				id: "4D18929E35BFCFE8"
+				type: "item"
+				item: "exaqua:goldsieve"
+			}]
+			rewards: [{
+				id: "6FDF4F2CAD3707D2"
+				type: "item"
+				item: "mekanism:dust_iron"
+				count: 3
+			}]
+		}
+		{
+			x: 3.5d
+			y: 4.0d
+			dependencies: [
+				"01EA304F2BBD3A95"
+				"3701D02C28299D03"
+			]
+			id: "653BE325C6D3A6D3"
+			tasks: [{
+				id: "77AABAFC3BBC84E5"
+				type: "item"
+				item: "minecraft:redstone"
+			}]
+		}
+		{
+			x: 2.0d
+			y: -0.5d
+			dependencies: ["004C6055D02FE686"]
+			id: "7D61C86495611314"
+			tasks: [{
+				id: "5A6E52F055350F19"
+				type: "item"
+				item: "industrialforegoing:pitiful_generator"
+			}]
+			rewards: [{
+				id: "49A480C217205587"
+				type: "item"
+				item: "mekanism:basic_universal_cable"
+				count: 4
+			}]
+		}
+		{
+			x: 1.0d
+			y: 7.0d
+			shape: "hexagon"
+			description: ["从下方加热以获得不同的食谱。"]
+			dependencies: ["004C6055D02FE686"]
+			id: "1D54A2781D181552"
+			tasks: [{
+				id: "4803DF7F5E1B9FE7"
+				type: "item"
+				item: "exaqua:cauldron"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 5.5d
+			dependencies: ["1D54A2781D181552"]
+			id: "47A503AA5664C4F9"
+			tasks: [{
+				id: "1C65B619A90BCD6C"
+				type: "item"
+				item: "exaqua:mud"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 7.0d
+			dependencies: ["1D54A2781D181552"]
+			id: "1005B98A858BB8BF"
+			tasks: [{
+				id: "2737B174E2D1E216"
+				type: "item"
+				item: "minecraft:beetroot"
+			}]
+			rewards: [{
+				id: "030D239B2E60B4D5"
+				type: "item"
+				item: "minecraft:golden_carrot"
+				count: 8
+			}]
+		}
+		{
+			x: 0.0d
+			y: 5.0d
+			shape: "diamond"
+			description: ["或许除了等僵尸，还有更好的方法。"]
+			dependencies: [
+				"7C57234F2D843CC4"
+				"47A503AA5664C4F9"
+			]
+			dependency_requirement: "one_completed"
+			id: "04DEB2E9B9F8A076"
+			tasks: [{
+				id: "72E8A6ECCE522CDC"
+				type: "item"
+				item: "minecraft:carrot"
+			}]
+			rewards: [{
+				id: "7E4D0C856C474468"
+				type: "item"
+				item: "minecraft:grass_block"
+				count: 3
+			}]
+		}
+		{
+			x: -3.5d
+			y: 5.5d
+			shape: "pentagon"
+			dependencies: ["47A503AA5664C4F9"]
+			id: "3E85316686C6AEB6"
+			tasks: [{
+				id: "30B1336F8F34F3CC"
+				type: "item"
+				item: "tconstruct:grout"
+			}]
+			rewards: [{
+				id: "5DE60AF8D60BC2B9"
+				type: "item"
+				item: "minecraft:iron_block"
+			}]
+		}
+		{
+			x: -2.0d
+			y: -0.5d
+			dependencies: ["7A79F8AC2E2F759F"]
+			id: "7BEC066E34957E44"
+			tasks: [{
+				id: "582B7C36B51DD745"
+				type: "item"
+				item: "minecraft:pink_tulip"
+			}]
+			rewards: [{
+				id: "7B76509AE4DBF95A"
+				type: "item"
+				item: "mekanism:dust_gold"
+				count: 4
+			}]
+		}
+		{
+			x: 0.0d
+			y: -0.5d
+			dependencies: ["7A79F8AC2E2F759F"]
+			id: "4F0E5C296729B118"
+			tasks: [{
+				id: "291B5418345B59ED"
+				type: "item"
+				item: "minecraft:end_stone"
+			}]
+			rewards: [
+				{
+					id: "25E392F1921A96E1"
+					type: "item"
+					item: "exaqua:frogium_dust"
+				}
+				{
+					id: "11512111C2042501"
+					type: "item"
+					item: "minecraft:chorus_flower"
+				}
+			]
+		}
+		{
+			x: 1.0d
+			y: 8.5d
+			shape: "diamond"
+			subtitle: "让你久等了，对吧，小家伙？"
+			dependencies: ["1D54A2781D181552"]
+			id: "58FC6AE4955B1709"
+			tasks: [{
+				id: "3D3F75D2393E631C"
+				type: "item"
+				item: "minecraft:cobblestone"
+			}]
+		}
+		{
+			x: 3.5d
+			y: 8.5d
+			dependencies: ["58FC6AE4955B1709"]
+			id: "19B6810F6C3BE1B6"
+			tasks: [{
+				id: "72ECBD4EB26BF260"
+				type: "item"
+				item: "minecraft:lava_bucket"
+			}]
+			rewards: [{
+				id: "18C4D5451E50F27D"
+				type: "item"
+				item: "minecraft:ender_pearl"
+				count: 3
+			}]
+		}
+		{
+			x: 4.0d
+			y: 7.0d
+			dependencies: ["19B6810F6C3BE1B6"]
+			id: "501E01EBD56CE93B"
+			tasks: [{
+				id: "2DBA8A5E56FF23E0"
+				type: "item"
+				item: "minecraft:nether_wart"
+			}]
+		}
+		{
+			x: 8.0d
+			y: 0.0d
+			dependencies: ["19F7ED949657253D"]
+			id: "1D287CAFAFCE6FAE"
+			tasks: [{
+				id: "5605D2C9D7D213CA"
+				type: "item"
+				item: "exaqua:frogium_dust"
+			}]
+		}
+		{
+			x: 5.0d
+			y: -1.5d
+			dependencies: ["19F7ED949657253D"]
+			id: "4F834E3A62260268"
+			tasks: [{
+				id: "0AB75927A8B1421C"
+				type: "item"
+				item: "mekanism:ingot_osmium"
+			}]
+			rewards: [{
+				id: "4B49A8D29D8701E3"
+				type: "item"
+				item: "minecraft:spider_eye"
+				count: 5
+			}]
+		}
+		{
+			title: "Frogium 进化"
+			x: 8.0d
+			y: 2.5d
+			dependencies: ["1D287CAFAFCE6FAE"]
+			id: "1627B54AA2D12D65"
+			tasks: [
+				{
+					id: "460DCF1AAD205070"
+					type: "item"
+					item: {
+						id: "exaqua:frogium_boots"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "6FA2823C488AF5C0"
+					type: "item"
+					item: {
+						id: "exaqua:frogium_chestplate"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "2AEE5F53109B02C3"
+					type: "item"
+					item: {
+						id: "exaqua:frogium_leggins"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "2F1746A97C6338BD"
+					type: "item"
+					item: {
+						id: "exaqua:frogium_helmet"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "02DFEB42BB4B376E"
+				type: "item"
+				item: "minecraft:diamond"
+				count: 4
+			}]
+		}
+		{
+			x: 9.5d
+			y: -1.0d
+			shape: "pentagon"
+			dependencies: ["1D287CAFAFCE6FAE"]
+			id: "7F68EE9AF010F694"
+			tasks: [{
+				id: "54C79CDC7D8223C2"
+				type: "item"
+				item: "exaqua:frogiumsieve"
+			}]
+		}
+		{
+			x: 12.0d
+			y: -1.0d
+			dependencies: ["7F68EE9AF010F694"]
+			id: "6F61B04A5B39C918"
+			tasks: [{
+				id: "4313494D40BA90D8"
+				type: "item"
+				item: "minecraft:diamond"
+			}]
+		}
+		{
+			title: "Mekanism"
+			x: 5.0d
+			y: -3.5d
+			shape: "pentagon"
+			dependencies: ["4F834E3A62260268"]
+			id: "66D6ECE8E466B68D"
+			tasks: [{
+				id: "7B41EC17E53A61F2"
+				type: "item"
+				item: "mekanism:metallurgic_infuser"
+			}]
+			rewards: [{
+				id: "1D664761E4DEBEFF"
+				type: "item"
+				item: "mekanism:basic_control_circuit"
+			}]
+		}
+		{
+			x: 5.5d
+			y: 6.0d
+			dependencies: ["501E01EBD56CE93B"]
+			id: "6924B7860031735F"
+			tasks: [{
+				id: "50BAD6F42D43CD22"
+				type: "item"
+				item: "minecraft:wither_skeleton_skull"
+			}]
+			rewards: [{
+				id: "1B4074079FD09538"
+				type: "item"
+				item: {
+					id: "tconstruct:broad_blade"
+					Count: 1b
+					tag: {
+						Material: "tconstruct:blazing_bone"
+					}
+				}
+			}]
+		}
+		{
+			x: -5.0d
+			y: -0.5d
+			dependencies: ["70BB3731C299EF19"]
+			id: "1E7319A22522255A"
+			tasks: [
+				{
+					id: "53D1D7CF749A7B1A"
+					type: "item"
+					item: {
+						id: "tconstruct:tinker_station"
+						Count: 1b
+						tag: {
+							texture: "minecraft:oak_planks"
+						}
+					}
+				}
+				{
+					id: "0A46778E7E97EAEA"
+					type: "item"
+					item: {
+						id: "tconstruct:part_builder"
+						Count: 1b
+						tag: {
+							texture: "minecraft:oak_planks"
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "78D15549D3C05D3F"
+				type: "item"
+				item: "tconstruct:encyclopedia"
+			}]
+		}
+		{
+			title: "第五级喷气背包"
+			x: 6.5d
+			y: -3.5d
+			dependencies: ["66D6ECE8E466B68D"]
+			dependency_requirement: "one_completed"
+			id: "23478982DAB60149"
+			tasks: [{
+				id: "3D02D95833137FF6"
+				type: "item"
+				item: {
+					id: "mekanism:jetpack"
+					Count: 1b
+					tag: {
+						HideFlags: 2
+					}
+				}
+			}]
+		}
+		{
+			x: 3.0d
+			y: -3.5d
+			dependencies: ["66D6ECE8E466B68D"]
+			id: "0E4480DC27AF0190"
+			tasks: [{
+				id: "6FE60D9CD6A6F6F2"
+				type: "item"
+				item: "mekanism:basic_smelting_factory"
+			}]
+			rewards: [{
+				id: "0532E51F2BAF9551"
+				type: "item"
+				item: "minecraft:ender_pearl"
+			}]
+		}
+		{
+			x: 12.0d
+			y: -3.0d
+			dependencies: ["6F61B04A5B39C918"]
+			id: "565654E3F952A88E"
+			tasks: [{
+				id: "398E48F38608BFE1"
+				type: "item"
+				item: "exaqua:diamondsieve"
+			}]
+			rewards: [{
+				id: "53368351B0CD15FA"
+				type: "xp_levels"
+				xp_levels: 20
+			}]
+		}
+		{
+			x: 4.0d
+			y: -5.0d
+			dependencies: ["66D6ECE8E466B68D"]
+			id: "73664237EB957E52"
+			tasks: [{
+				id: "5CE21FEFBE3542D5"
+				type: "item"
+				item: "industrialforegoing:plastic"
+			}]
+		}
+		{
+			x: 2.0d
+			y: -5.0d
+			dependencies: ["73664237EB957E52"]
+			id: "14A5787237F43512"
+			tasks: [{
+				id: "0455C2756431A0DB"
+				type: "item"
+				item: "industrialforegoing:water_condensator"
+			}]
+		}
+		{
+			x: 2.5d
+			y: -1.5d
+			dependencies: ["7D61C86495611314"]
+			id: "03EDFCCE8B585628"
+			tasks: [{
+				id: "0730E141C8B21C54"
+				type: "item"
+				item: "mekanism:basic_mechanical_pipe"
+			}]
+			rewards: [{
+				id: "0D2F599048F00CC3"
+				type: "item"
+				item: {
+					id: "mekanism:configurator"
+					Count: 1b
+					tag: {
+						mekData: {
+							EnergyContainers: [{
+								Container: 0b
+								stored: "60000"
+							}]
+						}
+					}
+				}
+			}]
+		}
+		{
+			x: 11.0d
+			y: -4.0d
+			dependencies: ["565654E3F952A88E"]
+			id: "3B47AFF1153DE1A7"
+			tasks: [{
+				id: "09EAD60ED7DF5460"
+				type: "item"
+				item: "minecraft:lapis_lazuli"
+			}]
+		}
+		{
+			x: 13.0d
+			y: -4.0d
+			dependencies: ["565654E3F952A88E"]
+			id: "140090DF1DD5058F"
+			tasks: [{
+				id: "5BFFF976FF197233"
+				type: "item"
+				item: "mekanism:ingot_uranium"
+			}]
+		}
+		{
+			x: 7.5d
+			y: 6.0d
+			subtitle: "无限水源回来了"
+			dependencies: ["6924B7860031735F"]
+			id: "43E4E183A814F39A"
+			tasks: [{
+				id: "2953DEFC6C863C99"
+				type: "item"
+				item: "fluidphysics:spring"
+			}]
+			rewards: [{
+				id: "3A18B76C66C7A19B"
+				type: "item"
+				item: {
+					id: "tconstruct:creative_slot"
+					Count: 1b
+					tag: {
+						slot: "abilities"
+					}
+				}
+			}]
+		}
+		{
+			x: -8.5d
+			y: 0.0d
+			id: "798DBD37FFD77A9E"
+			tasks: [{
+				id: "6ABE0362064C01D0"
+				type: "item"
+				item: {
+					id: "constructionwand:iron_wand"
+					Count: 1b
+					tag: {
+						wand_options: { }
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "0BF2AEFD1E96766D"
+				type: "item"
+				item: "minecraft:chicken_spawn_egg"
+			}]
+		}
+		{
+			x: 5.0d
+			y: 8.5d
+			dependencies: ["19B6810F6C3BE1B6"]
+			id: "6A819146E44F2B87"
+			tasks: [{
+				id: "393F8E8C4B7249A7"
+				type: "item"
+				item: "cobblefordays:tier_1"
+			}]
+		}
+		{
+			x: 5.0d
+			y: 1.5d
+			dependencies: ["3701D02C28299D03"]
+			id: "1A30C378C8377F95"
+			tasks: [{
+				id: "67818565A328DB17"
+				type: "item"
+				item: "endercrop:ender_seeds"
+			}]
+		}
+		{
+			x: 5.0d
+			y: 2.5d
+			dependencies: ["3701D02C28299D03"]
+			id: "5801101F7FFA94FF"
+			tasks: [{
+				id: "3F58C7720CA44E25"
+				type: "item"
+				item: "minecraft:emerald"
+			}]
+		}
+		{
+			x: 3.5d
+			y: 10.5d
+			shape: "diamond"
+			dependencies: ["19B6810F6C3BE1B6"]
+			id: "550430DA1DE559B6"
+			tasks: [{
+				id: "1284AC0401EC1D0A"
+				type: "item"
+				item: "minecraft:obsidian"
+			}]
+			rewards: [{
+				id: "336A5DE175448C33"
+				type: "item"
+				item: "minecraft:dirt"
+			}]
+		}
+		{
+			x: -7.5d
+			y: 0.0d
+			id: "50DCC61735C28BEB"
+			tasks: [{
+				id: "64ABD54CE24A1E0A"
+				type: "item"
+				item: "metalbarrels:iron_barrel"
+			}]
+			rewards: [{
+				id: "73084BBE3D7867C3"
+				type: "item"
+				item: "minecraft:apple"
+				count: 4
+			}]
+		}
+		{
+			x: -8.5d
+			y: -1.0d
+			id: "01CBFF005FF27E1E"
+			tasks: [{
+				id: "115459F878E972C1"
+				type: "item"
+				item: "tesseract:tesseract"
+			}]
+		}
+		{
+			x: -7.5d
+			y: -1.0d
+			id: "0C691B4DAC7F5485"
+			tasks: [{
+				id: "77F916F50731DB4E"
+				type: "item"
+				item: {
+					id: "industrialforegoing:infinity_saw"
+					Count: 1b
+					tag: {
+						CanCharge: 1b
+						Special: 0b
+						Selected: "POOR"
+						Energy: 0L
+						Fluid: {
+							FluidName: "biofuel"
+							Amount: 0
+						}
+					}
+				}
+			}]
+		}
+		{
+			title: "狂按潜行键，让树木快速长出作物/树木。"
+			x: -6.5d
+			y: 3.0d
+			subtitle: "狂按潜行键，让树木快速长出作物/树木。"
+			dependencies: ["70BB3731C299EF19"]
+			id: "4B5485F8198F0B22"
+			tasks: [{
+				id: "7E68CC181F4DA33B"
+				type: "item"
+				item: "minecraft:oak_sapling"
+			}]
+			rewards: [{
+				id: "247B5A4F134033EB"
+				type: "item"
+				item: "minecraft:oak_sapling"
+			}]
+		}
+		{
+			x: -5.5d
+			y: -1.5d
+			dependencies: ["1E7319A22522255A"]
+			id: "6EB29C9A5EF8A1D2"
+			tasks: [{
+				id: "0A3289E25A8DBF19"
+				type: "item"
+				item: {
+					id: "tconstruct:kama"
+					Count: 1b
+					tag: {
+						tic_multipliers: {
+							"tconstruct:attack_damage": 0.75f
+						}
+						tic_stats: {
+							"tconstruct:attack_speed": 1.8f
+							"tconstruct:mining_speed": 2.0f
+							"tconstruct:attack_damage": 0.75f
+							"tconstruct:harvest_level": 0.0f
+							"tconstruct:durability": 60.0f
+						}
+						tic_broken: 0b
+						HideFlags: 3
+						tic_modifiers: [
+							{
+								name: "tconstruct:cultivated"
+								level: 3s
+							}
+							{
+								name: "tconstruct:shears"
+								level: 1s
+							}
+							{
+								name: "tconstruct:harvest"
+								level: 1s
+							}
+							{
+								name: "tconstruct:hoe_transform_hidden"
+								level: 1s
+							}
+						]
+						tic_materials: [
+							"tconstruct:wood"
+							"tconstruct:wood"
+							"tconstruct:wood"
+						]
+						Damage: 0
+						tic_persistent_data: {
+							abilities: 1
+							upgrades: 3
+						}
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "08EA69D483BF362D"
+					type: "item"
+					item: "minecraft:bone"
+					count: 3
+				}
+				{
+					id: "0B5B0AFC350156D5"
+					type: "item"
+					item: {
+						id: "tconstruct:tool_handle"
+						Count: 1b
+						tag: {
+							Material: "tconstruct:hepatizon"
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 6.0d
+			y: -5.0d
+			dependencies: ["66D6ECE8E466B68D"]
+			id: "05221455A54644CC"
+			tasks: [{
+				id: "683BA19B56314ECE"
+				type: "item"
+				item: "mekanism:basic_energy_cube"
+			}]
+			rewards: [{
+				id: "11057EFF3D7C1190"
+				type: "item"
+				item: "minecraft:ender_pearl"
+			}]
+		}
+		{
+			x: 1.0d
+			y: -1.5d
+			dependencies: ["7D61C86495611314"]
+			id: "23458518CEFAA7C3"
+			tasks: [{
+				id: "13AE6B1AD973385C"
+				type: "item"
+				item: "exaqua:auto_squeezer"
+			}]
+		}
+		{
+			x: -5.5d
+			y: 6.5d
+			dependencies: [
+				"30B1336F8F34F3CC"
+				"3E85316686C6AEB6"
+				"1E7319A22522255A"
+			]
+			dependency_requirement: "one_started"
+			id: "302AC251900BBF5C"
+			tasks: [{
+				id: "4B29A641FEFFE01B"
+				type: "item"
+				item: "tconstruct:smeltery_controller"
+			}]
+			rewards: [
+				{
+					id: "1B94FBA6F940A0A8"
+					type: "item"
+					item: "tconstruct:mighty_smelting"
+				}
+				{
+					id: "4D4A3A5B195501D4"
+					type: "item"
+					item: "tconstruct:puny_smelting"
+				}
+			]
+		}
+		{
+			x: 12.0d
+			y: -5.5d
+			dependencies: ["565654E3F952A88E"]
+			id: "64286764A0BDAE64"
+			tasks: [{
+				id: "3A4B0D8C4E6CF40B"
+				type: "item"
+				item: "minecraft:netherite_ingot"
+			}]
+			rewards: [{
+				id: "41F645158E4D5BA1"
+				type: "item"
+				item: "minecraft:wither_skeleton_skull"
+			}]
+		}
+		{
+			x: 10.0d
+			y: -9.5d
+			dependencies: [
+				"64286764A0BDAE64"
+				"73664237EB957E52"
+			]
+			hide: true
+			id: "70E094AB198C0E47"
+			tasks: [{
+				id: "46D82B586699DCE6"
+				type: "item"
+				item: "industrialforegoing:ore_laser_base"
+			}]
+			rewards: [{
+				id: "069963531232ABBA"
+				type: "xp"
+				xp: 9000
+			}]
+		}
+		{
+			x: 7.5d
+			y: -5.5d
+			dependencies: ["05221455A54644CC"]
+			id: "78B4132ABEC3C98F"
+			tasks: [{
+				id: "78F02E0FDA69E08F"
+				type: "item"
+				item: "mekanism:ultimate_energy_cube"
+			}]
+			rewards: [{
+				id: "73E4028859C1A8B3"
+				type: "item"
+				item: {
+					id: "tconstruct:creative_slot"
+					Count: 1b
+					tag: {
+						slot: "defense"
+					}
+				}
+			}]
+		}
+		{
+			x: -8.0d
+			y: 7.0d
+			dependencies: ["302AC251900BBF5C"]
+			id: "3400F3BDD34512B2"
+			tasks: [{
+				id: "7E0419ED4751EFDB"
+				type: "item"
+				item: "tconstruct:manyullyn_ingot"
+			}]
+			rewards: [{
+				id: "7E4FE8450EBEC3E2"
+				type: "item"
+				item: {
+					id: "tconstruct:creative_slot"
+					Count: 1b
+					tag: {
+						slot: "upgrades"
+					}
+				}
+			}]
+		}
+		{
+			x: -6.5d
+			y: 8.0d
+			dependencies: ["302AC251900BBF5C"]
+			id: "50BEA697C964C780"
+			tasks: [{
+				id: "7658DA03A68E262B"
+				type: "item"
+				item: "tconstruct:foundry_controller"
+			}]
+		}
+		{
+			x: -9.0d
+			y: -4.5d
+			id: "3DF25B7DD91D7879"
+			tasks: [{
+				id: "41071143423DA16B"
+				type: "item"
+				item: "metalbarrels:diamond_barrel"
+			}]
+			rewards: [{
+				id: "6D2B0AD83F965D2C"
+				type: "item"
+				item: "metalbarrels:netherite_barrel"
+			}]
+		}
+		{
+			x: -7.5d
+			y: -4.5d
+			dependencies: ["3DF25B7DD91D7879"]
+			id: "238C351C432B341C"
+			tasks: [{
+				id: "6672A43E36023CB6"
+				type: "item"
+				item: "industrialforegoing:common_black_hole_unit"
+			}]
+		}
+		{
+			x: -7.5d
+			y: -6.0d
+			dependencies: ["3DF25B7DD91D7879"]
+			id: "059C10AD97B8AB49"
+			tasks: [{
+				id: "069957909ECB0740"
+				type: "item"
+				item: "industrialforegoing:common_black_hole_tank"
+			}]
+		}
+		{
+			x: -6.0d
+			y: -4.5d
+			dependencies: ["238C351C432B341C"]
+			id: "4E12CC28A2269A21"
+			tasks: [{
+				id: "1C438A4ACA899D98"
+				type: "item"
+				item: "industrialforegoing:simple_black_hole_unit"
+			}]
+		}
+		{
+			x: -4.5d
+			y: -4.5d
+			dependencies: ["4E12CC28A2269A21"]
+			id: "30E0C35AAF831887"
+			tasks: [{
+				id: "6864C9A6F4FF3160"
+				type: "item"
+				item: "industrialforegoing:supreme_black_hole_unit"
+			}]
+		}
+		{
+			x: -6.0d
+			y: -6.0d
+			dependencies: ["059C10AD97B8AB49"]
+			id: "53DB6CCC53AD16E5"
+			tasks: [{
+				id: "01F38F7987A90848"
+				type: "item"
+				item: "industrialforegoing:simple_black_hole_tank"
+			}]
+		}
+		{
+			x: -4.5d
+			y: -6.0d
+			dependencies: ["059C10AD97B8AB49"]
+			id: "6996235B43A112DF"
+			tasks: [{
+				id: "757130FAAA09EA50"
+				type: "item"
+				item: "industrialforegoing:supreme_black_hole_tank"
+			}]
+		}
+		{
+			x: -7.5d
+			y: -7.5d
+			dependencies: ["3DF25B7DD91D7879"]
+			id: "4C773E71273D736B"
+			tasks: [{
+				id: "59C3BCDACB558F5E"
+				type: "item"
+				item: "industrialforegoing:black_hole_controller"
+			}]
+		}
+		{
+			x: 3.0d
+			y: -7.0d
+			dependencies: ["73664237EB957E52"]
+			id: "6F0831018B47CCEA"
+			tasks: [{
+				id: "76AB03F4ADEEDFFC"
+				type: "item"
+				item: "mekanism:hdpe_pellet"
+			}]
+		}
+		{
+			title: "故事的结局"
+			icon: "minecraft:dragon_head"
+			x: 14.5d
+			y: 2.5d
+			shape: "hexagon"
+			dependencies: [
+				"70E094AB198C0E47"
+				"6F0831018B47CCEA"
+				"4F0E5C296729B118"
+				"6996235B43A112DF"
+				"50BEA697C964C780"
+				"43E4E183A814F39A"
+				"0C691B4DAC7F5485"
+			]
+			id: "1E6701177C2BC853"
+			tasks: [{
+				id: "6D8FC0FAD0443471"
+				type: "checkmark"
+				title: "恭喜你完成了一个成就！"
+			}]
+			rewards: [{
+				id: "7B03AE041FE32AC2"
+				type: "item"
+				item: "minecraft:end_portal_frame"
+				count: 12
+			}]
+		}
+		{
+			x: -8.0d
+			y: 1.5d
+			subtitle: "使用命令创建你的岛屿：/skyblock create <name>"
+			id: "02D8DEDE2FEA8D54"
+			tasks: [{
+				id: "6FC3168C0E46A41E"
+				type: "checkmark"
+				title: "创建你的岛屿。"
+			}]
+			rewards: [{
+				id: "3DEDCDED2E490F9C"
+				type: "item"
+				item: "minecraft:apple"
+				count: 3
+			}]
+		}
+	]
+}

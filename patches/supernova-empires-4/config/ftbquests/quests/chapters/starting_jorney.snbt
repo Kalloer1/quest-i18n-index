@@ -1,0 +1,714 @@
+# AI 初翻，未人工校对
+{
+	id: "657DE88C437A835C"
+	group: "0DFA3A3EED52481B"
+	order_index: 0
+	filename: "starting_jorney"
+	title: "开启旅程"
+	icon: "minecraft:grass_block"
+	default_quest_shape: "rsquare"
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "获取木材"
+			x: -3.5d
+			y: -3.5d
+			shape: "hexagon"
+			subtitle: "先收集木材开始吧"
+			size: 1.7d
+			id: "00CC6F4BD232D6CD"
+			tasks: [{
+				id: "08A75834259A9CBA"
+				type: "item"
+				title: "日志"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "minecraft:logs"
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "223F2032ACE6FC81"
+					type: "item"
+					item: "minecraft:dirt"
+					count: 9
+				}
+				{
+					id: "62E5BF6718E71466"
+					type: "item"
+					item: {
+						id: "kubejs:one_dollar"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "木材加工入门教程"
+			x: -1.5d
+			y: -3.5d
+			subtitle: "是时候开始用木头干活了"
+			dependencies: ["00CC6F4BD232D6CD"]
+			hide: true
+			id: "5F140D42B7F33960"
+			tasks: [{
+				id: "76ADC7826F8FBDC7"
+				type: "item"
+				title: "木板"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "minecraft:planks"
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "436C3DB5C5D63A50"
+					type: "random"
+					icon: "minecraft:spruce_log"
+					table_id: 2552683962294809145L
+				}
+				{
+					id: "46B8F01A11215298"
+					type: "item"
+					item: {
+						id: "kubejs:one_dollar"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+					count: 2
+				}
+			]
+		}
+		{
+			title: "合成物品"
+			x: 0.5d
+			y: -3.5d
+			shape: "hexagon"
+			subtitle: "我们永远不会忘记的第一张工作台"
+			dependencies: ["5F140D42B7F33960"]
+			hide: true
+			size: 1.7d
+			id: "734609D2A43FE867"
+			tasks: [{
+				id: "5CBF81D74CD17D0E"
+				type: "item"
+				title: "合成台 Crafting Table"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "forge:workbench"
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "503DB3D4FAAE0B69"
+					type: "item"
+					item: {
+						id: "kubejs:universal_upgrade"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+				{
+					id: "4CBC5D86A24C8A38"
+					type: "item"
+					item: {
+						id: "kubejs:five_dollar"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "首次工作台升级任务书文本"
+			x: 0.5d
+			y: -1.5d
+			subtitle: "升级后，你可以制作新的专属配方了"
+			description: [
+				"这个箱子关闭后能将物品留在里面"
+				"{image:fbmods:textures/quests/images/craftingtables/basic_crafting.png width:150 height:100 align:1}"
+			]
+			dependencies: ["734609D2A43FE867"]
+			hide: true
+			id: "26C6F044987EF0CB"
+			tasks: [{
+				id: "75C63EF15D1BDDDA"
+				type: "item"
+				item: "extendedcrafting:basic_table"
+			}]
+			rewards: [
+				{
+					id: "43766ECB9F6C7C6F"
+					type: "item"
+					item: {
+						id: "kubejs:universal_upgrade"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+				{
+					id: "0B4D3EE08B54FA93"
+					type: "item"
+					item: {
+						id: "kubejs:one_dollar"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "更大的合成台"
+			x: 0.5d
+			y: 0.5d
+			subtitle: "这张工作台能让你制作出更多的配方。"
+			description: [
+				"这张桌子有一个更大的合成网格"
+				"{image:fbmods:textures/quests/images/craftingtables/advanced_crafting.png width:150 height:100 align:1}"
+			]
+			dependencies: ["26C6F044987EF0CB"]
+			hide: true
+			id: "7698311167BEBB27"
+			tasks: [{
+				id: "49357B8EDEF0845C"
+				type: "item"
+				item: "extendedcrafting:advanced_table"
+			}]
+			rewards: [
+				{
+					id: "3CD15B022B92F960"
+					type: "item"
+					item: {
+						id: "kubejs:universal_upgrade"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+				{
+					id: "0ABD57B384A3D10E"
+					type: "item"
+					item: {
+						id: "kubejs:one_dollar"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "大型合成台"
+			x: 0.5d
+			y: 2.5d
+			subtitle: "这张工作台比其他那张还要大上不少呢"
+			description: [
+				"更高级的东西即将到来"
+				"{image:fbmods:textures/quests/images/craftingtables/elite_crafting.png width:150 height:100 align:1}"
+			]
+			dependencies: ["7698311167BEBB27"]
+			hide: true
+			id: "0E5B471C7C7BFA22"
+			tasks: [{
+				id: "5D8C06143C5262E7"
+				type: "item"
+				item: "extendedcrafting:elite_table"
+			}]
+			rewards: [
+				{
+					id: "7F729757118656D6"
+					type: "item"
+					item: {
+						id: "kubejs:universal_upgrade"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+				{
+					id: "146346F41A67F54C"
+					type: "item"
+					item: {
+						id: "kubejs:ten_dollar"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "大型合成台"
+			x: 0.5d
+			y: 4.5d
+			subtitle: "这是FB Mods 5上最大的合成台"
+			description: [
+				"这张表格是用于游戏后期的合成配方"
+				"你需要这张桌子来制作FB Mods 5的最佳装备，所以你得升级一下现有的工作台了"
+				"{image:fbmods:textures/quests/images/craftingtables/ultimate_crafting.png width:150 height:100 align:1}"
+			]
+			dependencies: ["0E5B471C7C7BFA22"]
+			hide: true
+			id: "4BD0886E20CDDA2F"
+			tasks: [{
+				id: "2D1174622C2B2A0D"
+				type: "item"
+				item: "extendedcrafting:ultimate_table"
+			}]
+			rewards: [
+				{
+					id: "01C3375301780522"
+					type: "choice"
+					icon: "wlrs:waterlogged_redstone_wire"
+					table_id: 5604907142827730491L
+				}
+				{
+					id: "7BBCA9D14B32E239"
+					type: "item"
+					item: {
+						id: "kubejs:twenty_dollar"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+				{
+					id: "03371B8D4AEBDB37"
+					type: "item"
+					item: {
+						id: "kubejs:five_dollar"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 2.5d
+			y: -5.0d
+			dependencies: ["734609D2A43FE867"]
+			hide: true
+			optional: true
+			id: "47D3843CDA5839A1"
+			tasks: [{
+				id: "00D8B542FE9DC2C7"
+				type: "item"
+				item: {
+					id: "minecraft:wooden_pickaxe"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "3C1B4ADFCCF2BB5E"
+					type: "random"
+					icon: "minecraft:spruce_log"
+					table_id: 2552683962294809145L
+				}
+				{
+					id: "590B0BCDCC0218B1"
+					type: "item"
+					item: {
+						id: "kubejs:five_dollar"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 2.5d
+			y: -4.0d
+			dependencies: ["734609D2A43FE867"]
+			hide: true
+			optional: true
+			id: "66E0AE4AC9AD4CFD"
+			tasks: [{
+				id: "30C51B0EE6B04DD1"
+				type: "item"
+				item: {
+					id: "minecraft:wooden_axe"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "52B64C9A7308A2FB"
+					type: "random"
+					icon: "minecraft:spruce_log"
+					table_id: 2552683962294809145L
+				}
+				{
+					id: "5737EFF0A5B2582F"
+					type: "item"
+					item: {
+						id: "kubejs:five_dollar"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 2.5d
+			y: -3.0d
+			dependencies: ["734609D2A43FE867"]
+			hide: true
+			optional: true
+			id: "5E9EA22805F7E4AC"
+			tasks: [{
+				id: "551E38407AB20F0E"
+				type: "item"
+				item: {
+					id: "minecraft:wooden_shovel"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "0125D50A49169BCB"
+					type: "random"
+					icon: "minecraft:spruce_log"
+					table_id: 2552683962294809145L
+				}
+				{
+					id: "745FDC6C388A1CB6"
+					type: "item"
+					item: {
+						id: "kubejs:five_dollar"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 2.5d
+			y: -2.0d
+			dependencies: ["734609D2A43FE867"]
+			hide: true
+			optional: true
+			id: "34B41DC17C76BF59"
+			tasks: [{
+				id: "4D9674672C979C12"
+				type: "item"
+				item: {
+					id: "minecraft:wooden_sword"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "16E3F6EB624E7E68"
+					type: "random"
+					icon: "minecraft:spruce_log"
+					table_id: 2552683962294809145L
+				}
+				{
+					id: "511D9D8B1FC9EDFC"
+					type: "item"
+					item: {
+						id: "kubejs:five_dollar"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			x: -8.5d
+			y: -3.5d
+			hide_dependency_lines: true
+			dependencies: ["5F140D42B7F33960"]
+			hide: true
+			id: "6E444BE3954EAC93"
+			tasks: [{
+				id: "4F19C8965DCB9B4C"
+				type: "item"
+				item: "minecraft:loom"
+			}]
+			rewards: [
+				{
+					id: "379D3AF522DCCF84"
+					type: "random"
+					icon: "minecraft:spruce_log"
+					table_id: 2552683962294809145L
+				}
+				{
+					id: "3EFDBBE893AFCB2C"
+					type: "item"
+					item: {
+						id: "kubejs:one_dollar"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			x: -8.5d
+			y: -5.5d
+			hide_dependency_lines: true
+			dependencies: ["5F140D42B7F33960"]
+			hide: true
+			id: "73B9C8FF50C8199E"
+			tasks: [{
+				id: "27437B4F2AF34019"
+				type: "item"
+				item: "minecraft:composter"
+			}]
+			rewards: [
+				{
+					id: "11FB00692E2A2B39"
+					type: "random"
+					icon: "minecraft:spruce_log"
+					table_id: 2552683962294809145L
+				}
+				{
+					id: "6AC2587297A26FFE"
+					type: "item"
+					item: {
+						id: "kubejs:one_dollar"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			x: -8.5d
+			y: -1.5d
+			subtitle: "和箱子类似，但外观更好看"
+			hide_dependency_lines: true
+			dependencies: ["5F140D42B7F33960"]
+			hide: true
+			id: "55F20E2FC186207C"
+			tasks: [{
+				id: "61CF23AEBC947602"
+				type: "item"
+				item: "minecraft:barrel"
+			}]
+			rewards: [
+				{
+					id: "4AAF02A02E2212FA"
+					type: "random"
+					icon: "minecraft:spruce_log"
+					table_id: 2552683962294809145L
+				}
+				{
+					id: "14F51A00C7C0E337"
+					type: "item"
+					item: {
+						id: "kubejs:one_dollar"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			x: -10.5d
+			y: -3.5d
+			hide_dependency_lines: true
+			dependencies: ["5F140D42B7F33960"]
+			hide: true
+			id: "5A7FF399571C3FE5"
+			tasks: [{
+				id: "525550F913ABBD27"
+				type: "item"
+				item: "minecraft:cartography_table"
+			}]
+			rewards: [
+				{
+					id: "63237B9B34638A1D"
+					type: "random"
+					icon: "minecraft:spruce_log"
+					table_id: 2552683962294809145L
+				}
+				{
+					id: "5E9B381B1D0E6F74"
+					type: "item"
+					item: {
+						id: "kubejs:one_dollar"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			x: -6.5d
+			y: -3.5d
+			hide_dependency_lines: true
+			dependencies: ["5F140D42B7F33960"]
+			hide: true
+			id: "0DCCE2306979C6F1"
+			tasks: [{
+				id: "0A152B45D8175E7C"
+				type: "item"
+				item: "minecraft:fletching_table"
+			}]
+			rewards: [
+				{
+					id: "6BFF628C15C8C8A2"
+					type: "random"
+					icon: "minecraft:spruce_log"
+					table_id: 2552683962294809145L
+				}
+				{
+					id: "09E28CF7CA7D3C91"
+					type: "item"
+					item: {
+						id: "kubejs:one_dollar"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "史上最简单的方块 Ever"
+			x: -5.0d
+			y: -1.5d
+			shape: "circle"
+			subtitle: "此方块可用于在 Supernova Empires 4 中制作一些基础工具"
+			size: 1.7d
+			id: "0F2CD371CB115BC1"
+			tasks: [{
+				id: "1CA8C54973FCF7F6"
+				type: "item"
+				title: "泥土"
+				icon: "minecraft:dirt"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "industrialforegoing:sludge"
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "5478D094ABF1E377"
+					type: "choice"
+					icon: "wlrs:waterlogged_redstone_wire"
+					table_id: 5604907142827730491L
+				}
+				{
+					id: "18B0AE39EE9C8566"
+					type: "item"
+					item: {
+						id: "kubejs:one_dollar"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+			]
+		}
+	]
+}
