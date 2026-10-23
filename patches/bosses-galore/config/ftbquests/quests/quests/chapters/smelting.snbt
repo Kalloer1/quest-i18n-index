@@ -1,0 +1,440 @@
+# AI 初翻，未人工校对
+{
+	id: "0028E95158B6D9BF"
+	group: "6BCF975CF174BC5E"
+	order_index: 2
+	filename: "smelting"
+	title: "冶炼金属"
+	icon: "tconstruct:mighty_smelting"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "阅读本书的完整介绍，然后再回到这里。"
+			x: -10.5d
+			y: 0.5d
+			shape: "gear"
+			dependencies: ["74A204F858437F85"]
+			id: "6FBC5418995C5125"
+			tasks: [{
+				id: "6CF55DF3971DF170"
+				type: "advancement"
+				advancement: "tconstruct:smeltery/puny_smelting"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "4D76C4AA04587453"
+				type: "item"
+				item: "tconstruct:grout"
+				count: 40
+			}]
+		}
+		{
+			title: "基础熔炼炉"
+			x: -9.0d
+			y: -0.5d
+			subtitle: "把这些都制作出来，并按照书中的样子摆放！"
+			dependencies: ["6FBC5418995C5125"]
+			id: "52D9F2C4F87BCC90"
+			tasks: [
+				{
+					id: "499CA98BF21C61A2"
+					type: "item"
+					item: "tconstruct:seared_melter"
+				}
+				{
+					id: "1013BBD837927CAC"
+					type: "item"
+					item: "tconstruct:seared_fuel_gauge"
+				}
+				{
+					id: "6CA3530F24CEB7BD"
+					type: "item"
+					item: "tconstruct:seared_table"
+				}
+				{
+					id: "49FB0518CAF71134"
+					type: "item"
+					item: "tconstruct:seared_basin"
+				}
+			]
+			rewards: [{
+				id: "6137834D65BC4E2A"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			title: "传输流体并将其储存起来"
+			x: -7.5d
+			y: 0.5d
+			subtitle: "你也可以用桶和铜罐来收集流体。"
+			dependencies: ["52D9F2C4F87BCC90"]
+			id: "5C0E339ABF260507"
+			tasks: [
+				{
+					id: "3A385C06C8E094BB"
+					type: "item"
+					item: "tconstruct:seared_faucet"
+				}
+				{
+					id: "42A5355E89054EDC"
+					type: "item"
+					item: "tconstruct:seared_ingot_tank"
+				}
+				{
+					id: "5AE14DB1F60C9DBD"
+					type: "item"
+					item: "tconstruct:seared_channel"
+					count: 5L
+				}
+				{
+					id: "210B40C79DEC1BD2"
+					type: "item"
+					item: "tconstruct:seared_fuel_tank"
+				}
+			]
+			rewards: [{
+				id: "08DD417E7E30AD3C"
+				type: "xp_levels"
+				xp_levels: 3
+			}]
+		}
+		{
+			x: -6.5d
+			y: -0.5d
+			shape: "square"
+			subtitle: "你可以将这些铸模放入部件合成器中，将其制成工具或盔甲部件。"
+			description: ["你也可以放入一个工具部件来塑造形状。"]
+			dependencies: ["5C0E339ABF260507"]
+			id: "3B8C9C883C91A3C7"
+			tasks: [{
+				id: "2613E38887C47E31"
+				type: "item"
+				item: "tconstruct:blank_sand_cast"
+			}]
+			rewards: [{
+				id: "04155608A24C83D0"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+		}
+		{
+			title: "用沙子铸造任何工具都可以！"
+			x: -5.5d
+			y: 0.5d
+			shape: "square"
+			dependencies: ["3B8C9C883C91A3C7"]
+			id: "02DD9BF02006EFC3"
+			tasks: [{
+				id: "5FA5A70113DA510C"
+				type: "item"
+				title: "任何沙堡建筑都可以"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "tconstruct:casts/single_use"
+					}
+				}
+			}]
+			rewards: [{
+				id: "4D83EE2CB2039F5A"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+		}
+		{
+			title: "制作任意一个黄金铸模"
+			x: -4.5d
+			y: -0.5d
+			shape: "square"
+			subtitle: "金铸模可以无限次重复使用。"
+			dependencies: ["02DD9BF02006EFC3"]
+			id: "5B15C0C1A4487A1A"
+			tasks: [{
+				id: "5B570EF56D2486CC"
+				type: "item"
+				title: "任何黄金铸造物"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "tconstruct:casts/gold"
+					}
+				}
+				count: 2L
+			}]
+			rewards: [
+				{
+					id: "19DDCE576A8902BF"
+					type: "xp_levels"
+					xp_levels: 4
+				}
+				{
+					id: "7570C19E9DC44038"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 6622958720518190097L
+				}
+			]
+		}
+		{
+			title: "液体倾倒"
+			x: -2.5d
+			y: -0.5d
+			subtitle: "你可以将史莱姆和熔岩玻璃等流体倒在木制工具部件上以升级它们。"
+			dependencies: ["654F3CA99E51235B"]
+			id: "3A37F65045075D96"
+			tasks: [
+				{
+					id: "697124D2C62D6056"
+					type: "item"
+					item: {
+						id: "tconstruct:small_blade"
+						Count: 1b
+						tag: {
+							Material: "tconstruct:nahuatl"
+						}
+					}
+				}
+				{
+					id: "1D9CF4F6BDBDD4F5"
+					type: "item"
+					item: {
+						id: "tconstruct:pick_head"
+						Count: 1b
+						tag: {
+							Material: "tconstruct:slimewood"
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "632893BE3F8997D7"
+				type: "item"
+				item: "tconstruct:molten_manyullyn_bucket"
+			}]
+		}
+		{
+			title: "熔化的金属工具部件"
+			x: -3.5d
+			y: 0.5d
+			subtitle: "你现在已经解锁了熔炼和铸造这一部分制作的新一部分！"
+			dependencies: ["5B15C0C1A4487A1A"]
+			id: "654F3CA99E51235B"
+			tasks: [
+				{
+					id: "60F1515D1E3D75D2"
+					type: "item"
+					item: {
+						id: "tconstruct:hammer_head"
+						Count: 1b
+						tag: {
+							Material: "tconstruct:platinum"
+						}
+					}
+				}
+				{
+					id: "1641261C6E2CF229"
+					type: "item"
+					item: {
+						id: "tconstruct:broad_axe_head"
+						Count: 1b
+						tag: {
+							Material: "tconstruct:silver"
+						}
+					}
+				}
+				{
+					id: "7E063C903A3A8986"
+					type: "item"
+					item: {
+						id: "tconstruct:pick_head"
+						Count: 1b
+						tag: {
+							Material: "tconstruct:lead"
+						}
+					}
+				}
+			]
+			rewards: [
+				{
+					id: "722CDD22A19900ED"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 2157858940377901856L
+				}
+				{
+					id: "3D066BD5697749FD"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 6622958720518190097L
+				}
+				{
+					id: "00DDA5DF3B9B31C2"
+					type: "loot"
+					exclude_from_claim_all: true
+					table_id: 8933756504237031456L
+				}
+			]
+		}
+		{
+			x: -7.5d
+			y: -1.5d
+			shape: "square"
+			dependencies: ["5C0E339ABF260507"]
+			id: "5D58397F5960790E"
+			tasks: [{
+				id: "0044B90D5054F8B2"
+				type: "fluid"
+				fluid: "tconstruct:molten_iron"
+				amount: 1000L
+			}]
+		}
+		{
+			x: -6.0d
+			y: -3.5d
+			shape: "square"
+			dependencies: ["5D58397F5960790E"]
+			id: "1C2A93AD1EF3F2FB"
+			tasks: [{
+				id: "031AC83A69C4735F"
+				type: "fluid"
+				fluid: "tconstruct:molten_copper"
+				amount: 1000L
+			}]
+		}
+		{
+			x: -9.0d
+			y: -3.5d
+			shape: "square"
+			dependencies: [
+				"1C2A93AD1EF3F2FB"
+				"5D58397F5960790E"
+			]
+			id: "6E7E99C27C4EE89A"
+			tasks: [{
+				id: "05FEB11E7992772B"
+				type: "fluid"
+				fluid: "tconstruct:molten_gold"
+				amount: 1000L
+			}]
+		}
+		{
+			x: -7.5d
+			y: -5.5d
+			shape: "square"
+			dependencies: [
+				"6E7E99C27C4EE89A"
+				"1C2A93AD1EF3F2FB"
+			]
+			id: "2B1F3B4B577729B2"
+			tasks: [{
+				id: "66FCB826A26E211F"
+				type: "fluid"
+				fluid: "tconstruct:molten_rose_gold"
+				amount: 1000L
+			}]
+		}
+		{
+			x: -7.5d
+			y: 2.5d
+			shape: "square"
+			dependencies: ["5C0E339ABF260507"]
+			id: "1EA12784BD8415F4"
+			tasks: [{
+				id: "5550DA8421F26F31"
+				type: "fluid"
+				fluid: "tconstruct:molten_lead"
+				amount: 1000L
+			}]
+		}
+		{
+			x: -9.0d
+			y: 4.0d
+			shape: "square"
+			dependencies: ["1EA12784BD8415F4"]
+			id: "5336DF62DE1135CA"
+			tasks: [{
+				id: "734C0E44EF06DB65"
+				type: "fluid"
+				fluid: "tconstruct:molten_platinum"
+				amount: 1000L
+			}]
+		}
+		{
+			x: -6.0d
+			y: 4.0d
+			shape: "square"
+			dependencies: ["1EA12784BD8415F4"]
+			id: "4CB5E088776751E1"
+			tasks: [{
+				id: "2B390AB321F873D5"
+				type: "fluid"
+				fluid: "tconstruct:molten_silver"
+				amount: 1000L
+			}]
+		}
+		{
+			x: -7.5d
+			y: 5.5d
+			shape: "square"
+			dependencies: [
+				"39EED17D83A1DB53"
+				"5336DF62DE1135CA"
+				"4CB5E088776751E1"
+			]
+			id: "2A5391AF807AF40D"
+			tasks: [{
+				id: "775C43B49DFDF254"
+				type: "fluid"
+				fluid: "tconstruct:molten_obsidian"
+				amount: 1000L
+			}]
+		}
+		{
+			x: -7.5d
+			y: 4.0d
+			shape: "square"
+			dependencies: ["1EA12784BD8415F4"]
+			id: "39EED17D83A1DB53"
+			tasks: [{
+				id: "2B0DCBC7C1FDFEC5"
+				type: "fluid"
+				fluid: "tconstruct:earth_slime"
+				amount: 1000L
+			}]
+		}
+		{
+			x: -12.0d
+			y: -0.5d
+			id: "74A204F858437F85"
+			tasks: [{
+				id: "2C562B3414AB9316"
+				type: "checkmark"
+			}]
+		}
+		{
+			x: -5.5d
+			y: -1.5d
+			dependencies: [
+				"5D58397F5960790E"
+				"1C2A93AD1EF3F2FB"
+			]
+			id: "124BC4D9466B3056"
+			tasks: [{
+				id: "04A93F713A973E45"
+				type: "item"
+				item: {
+					id: "tconstruct:smeltery_controller"
+					Count: 1b
+					tag: {
+						texture: "tconstruct:seared_bricks"
+					}
+				}
+			}]
+		}
+	]
+	quest_links: [ ]
+}

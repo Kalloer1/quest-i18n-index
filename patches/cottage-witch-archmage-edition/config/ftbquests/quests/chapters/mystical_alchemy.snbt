@@ -1,0 +1,500 @@
+# AI 初翻，未人工校对
+{
+	id: "269C90C831AA97FA"
+	group: "2757402A47D6A081"
+	order_index: 3
+	filename: "mystical_alchemy"
+	title: "神秘炼金术"
+	icon: "mysticalchemy:crucible_empty"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "炼金术入门指南"
+			x: 0.0d
+			y: 0.0d
+			shape: "rsquare"
+			subtitle: "这就像汤一样，但却很危险"
+			description: [
+				"There are many ways of &abrewing potions&r. There is the traditional &bBrewing Stand&r method. There is the &bPotion Melder&r. And there is &bThe Crucible&r."
+				"首先，将坩埚置于熔岩、火焰或篝火等热源上。当坩埚开始冒烟时，&6用勺子搅拌&r，防止其蒸发！"
+				"然后，&6投入你的材料&r。每种材料都有不同的效果，必须由你自己去发现！"
+				"&6Use a &bSampling Kit&r to determine what effects each ingredient has. Strengthen an effect by &6throwing in more of those ingredients&r."
+				"部分材料会被&a拒绝&r——你很快就会知道是哪些，因为它们会飞走。"
+				"&d注意不要在坩埚里放置岩浆！&r它会烧掉黄金，只留下一个普通的&b炼药锅&r。"
+			]
+			size: 2.0d
+			id: "52A8C79419A56639"
+			tasks: [
+				{
+					id: "3C0E829085C753CA"
+					type: "item"
+					item: "mysticalchemy:crucible_empty"
+				}
+				{
+					id: "4713285F1450690F"
+					type: "item"
+					item: {
+						id: "mysticalchemy:crucible_spoon"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [
+				{
+					id: "4B027DBA72B73A4D"
+					type: "item"
+					item: "mysticalchemy:simple_sampling_kit"
+					count: 5
+				}
+				{
+					id: "5103B282E01CB954"
+					type: "item"
+					item: "minecraft:campfire"
+				}
+				{
+					id: "7C2AC8C81221250B"
+					type: "item"
+					item: {
+						id: "minecraft:writable_book"
+						Count: 1b
+						tag: {
+							pages: [
+								"Herein I have made a list of ingredients which I perceive to have magical properties. I have yet to test these ingredients, but if you are reading this, perhaps you're willing to do your own research! Use my book for notes.\n\nNow, we begin..."
+								"Allium - \n\nAnt Pupa - \n\nAzure Bluet - \n\nBear Hair - \n\nBeetroot - \n\nBlaze Powder - \n\nBlaze Rod - "
+								"Blue Orchid - \n\nBone - \n\nBone Serpent Tooth - Lava Vision, Poison \n\nBrown Mushroom - \n\nCobweb - \n\nCornflower - \n\nCrabshell - "
+								"Crimson Fungus - \n\nDandelion - \n\nDried Belladonna Flowers - \n\nDried Kelp - \n\nDried Mandrake Flowers - \n\nDried Mugwort Flowers - "
+								"Dried Mugwort Flowers - \n\nDried Mugwort Leaves - \n\nDried Yellow Dock Flowers - \n\nDried Yellow Dock Leaves - \n"
+								"Drop Bear Claw - \n\nEye of Ender - \n\nFeather - \n\nFermented Spider Eye - \n\nGazelle Horn - \n\nGhast Tear - "
+								"Glistering Melon - \n\nGlowstone Dust - \n\nGolden Carrot - \n\nHoney - \n\nInk Sac - \n\nKelp - \n"
+								"Lily of the Valley - \n\nLily Pad - \n\nLustrous Pearl - Water Breathing, Glowing \n\nMagma Cream - \n\nMindful Trance Blend - \n\nNether Wart - "
+								"Oxedye Daisy - \n\nPhantom Membrane - \n\nPoisonous Potato - \n\nPoppy - \n\nRabbit's Foot - \n\nRed Mushroom - \n\nSapphire - Serendipity"
+								"Sea Pickle - \n\nSlimeball - \n\nSoul Heart - Soul Steal, Slowness \n\nSourceberry - \n\nSpider Eye - \n\nSugar - "
+								"Sweet Berries - \n\nWarped Fungus - \n\nWither Rose - \n\n\nI have found, additionally, that Dried Yellow Dock Leaves and Dried Mugwort Leaves seem to nullify Poison's effects."
+							]
+							display: {
+								Name: "{\"text\":\"Alchemy Journal\"}"
+							}
+							RepairCost: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			x: -1.5d
+			y: 2.0d
+			subtitle: "嘿伙计，我们听说你喜欢药水效果"
+			description: [
+				"你知道吗？你的自定义药水可以在&bPotion Melder&r中混合。将它们放入其中一个&bPotion Jars&r中，它就会像与其他药水混合一样正常工作。"
+				"如果听起来不熟悉，请查看 &dArs Nouveau&r 的任务部分。"
+			]
+			dependencies: ["52A8C79419A56639"]
+			id: "3FA641EEDD107173"
+			tasks: [{
+				id: "17CEB06A9AFBCD15"
+				type: "checkmark"
+				title: "融合自定义药水"
+				icon: "ars_nouveau:potion_melder"
+			}]
+			rewards: [{
+				id: "2C5A1305B254CB28"
+				type: "random"
+				table_id: 8808494820591225409L
+			}]
+		}
+		{
+			title: "笔记入门教程 101"
+			x: 1.5d
+			y: 2.0d
+			shape: "hexagon"
+			subtitle: "优秀的女巫会做很多笔记"
+			description: [
+				"最好&6记下每种试剂的作用&r，因为&b坩埚&r的配方和&b酿造台&r的截然不同！"
+				"不过，如果你觉得自己做笔记很麻烦，可以&6查阅这份&b高级炼金术指南&r，里面列出了所有材料和效果。"
+			]
+			dependencies: ["52A8C79419A56639"]
+			id: "24D5D2484388DD64"
+			tasks: [{
+				id: "23B8A06B02049D1A"
+				type: "item"
+				item: "minecraft:writable_book"
+			}]
+			rewards: [
+				{
+					id: "4F149B1537D86565"
+					type: "item"
+					item: "minecraft:lectern"
+				}
+				{
+					id: "07613BC7BE9B5D40"
+					type: "item"
+					item: {
+						id: "minecraft:written_book"
+						Count: 1b
+						tag: {
+							pages: [
+								"[\"\",{\"text\":\"Hello, dear reader. Within these pages you will find alchemical knowledge from my years as an apothecary. Each ingredient listed grants either an additive effect or a subtractory one. \"},{\"text\":\"Dried herbs\",\"color\":\"dark_aqua\"},{\"text\":\", for example, are great at nullifying negative effects such as \",\"color\":\"reset\"},{\"text\":\"Hunger\",\"color\":\"red\"},{\"text\":\" or \",\"color\":\"reset\"},{\"text\":\"Poison\",\"color\":\"red\"},{\"text\":\".\",\"color\":\"reset\"}]"
+								"[\"\",{\"text\":\"Numeric Values\",\"bold\":true},{\"text\":\"\\n\\nYou will need a value of 1 in order to obtain an effect, so try mixing and matching ingredients to get the bonuses you want, without those you don't. You can see how many parts you have with an \",\"color\":\"reset\"},{\"text\":\"Advanced Sampling Kit\",\"color\":\"dark_aqua\"},{\"text\":\".\",\"color\":\"reset\"}]"
+								"[\"\",{\"text\":\"For example, mixing \"},{\"text\":\"Ghast Tear\",\"color\":\"dark_aqua\"},{\"text\":\" and \",\"color\":\"reset\"},{\"text\":\"Crimson Fungus\",\"color\":\"dark_aqua\"},{\"text\":\" will add up to a total of 1 \",\"color\":\"reset\"},{\"text\":\"Fire Resist\",\"color\":\"dark_green\"},{\"text\":\", but only .5 each of \",\"color\":\"reset\"},{\"text\":\"Levitation\",\"color\":\"red\"},{\"text\":\" and \",\"color\":\"reset\"},{\"text\":\"Poison\",\"color\":\"red\"},{\"text\":\", resulting in a potion of Fire Resist with \",\"color\":\"reset\"},{\"text\":\"no negative effects\",\"italic\":true},{\"text\":\".\",\"color\":\"reset\"}]"
+								"[\"\",{\"text\":\"Alternatively, you can mix two \"},{\"text\":\"Crimson Fungus\",\"color\":\"dark_aqua\"},{\"text\":\" and two \",\"color\":\"reset\"},{\"text\":\"Dried Mugwort Leaves\",\"color\":\"dark_aqua\"},{\"text\":\" to attain the same effect, as the Mugwort \",\"color\":\"reset\"},{\"text\":\"neutralizes\",\"italic\":true},{\"text\":\" the Fungus' poison. Negative values will reduce the specified effects.\",\"color\":\"reset\"}]"
+								"[\"\",{\"text\":\"Potion Types and Catalysts\",\"bold\":true},{\"text\":\"\\n\\nOne can also make \",\"color\":\"reset\"},{\"text\":\"Extended, Splash, and Lingering Potions\",\"color\":\"light_purple\"},{\"text\":\" in this matter. However, it is key to \",\"color\":\"reset\"},{\"text\":\"use the catalysts first\",\"color\":\"red\"},{\"text\":\", to provide a basis for the ingredients!\",\"color\":\"reset\"}]"
+								"[\"\",{\"text\":\"Duration Catalysts\",\"bold\":true},{\"text\":\"\\n\\nTo extend duration, \",\"color\":\"reset\"},{\"text\":\"Tulips\",\"color\":\"dark_aqua\"},{\"text\":\" will give \",\"color\":\"reset\"},{\"text\":\"10 extra seconds\",\"color\":\"light_purple\"},{\"text\":\" each, \",\"color\":\"reset\"},{\"text\":\"Redstone Dust\",\"color\":\"dark_aqua\"},{\"text\":\" will grant \",\"color\":\"reset\"},{\"text\":\"30 seconds each\",\"color\":\"light_purple\"},{\"text\":\", and \",\"color\":\"reset\"},{\"text\":\"Redstone Blocks\",\"color\":\"dark_aqua\"},{\"text\":\" will \",\"color\":\"reset\"},{\"text\":\"extend the duration to 5 minutes\",\"color\":\"light_purple\"},{\"text\":\".\",\"color\":\"reset\"}]"
+								"[\"\",{\"text\":\"Type Catalysts\",\"bold\":true},{\"text\":\"\\n\\nTo make a \",\"color\":\"reset\"},{\"text\":\"Lingering Potion\",\"color\":\"dark_aqua\"},{\"text\":\", simply toss in a \",\"color\":\"reset\"},{\"text\":\"Dragon's Breath\",\"color\":\"light_purple\"},{\"text\":\". For \",\"color\":\"reset\"},{\"text\":\"Splash\",\"color\":\"dark_aqua\"},{\"text\":\" potions, throw in \",\"color\":\"reset\"},{\"text\":\"Gunpowder\",\"color\":\"light_purple\"},{\"text\":\". It is possible to \",\"color\":\"reset\"},{\"text\":\"combine both the potion extenders with the Lingering or Splash catalysts\",\"italic\":true},{\"text\":\", in any order.\",\"color\":\"reset\"}]"
+								"[\"\",{\"text\":\"Alliums\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Absorption\",\"color\":\"dark_green\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Mining Fatigue\",\"color\":\"red\"},{\"text\":\" .3\\n\\n\",\"color\":\"reset\"},{\"text\":\"Ant Pupa\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Bug Pheremones\",\"color\":\"dark_aqua\"},{\"text\":\" .25, \",\"color\":\"reset\"},{\"text\":\"Clinging\",\"color\":\"dark_green\"},{\"text\":\" .25\\n\\n\",\"color\":\"reset\"},{\"text\":\"Azure Bluet\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Blindness\",\"color\":\"red\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Slow Falling\",\"color\":\"dark_green\"},{\"text\":\" .3\\n\\n\",\"color\":\"reset\"},{\"text\":\"Bear Hair\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Knockback Resist\",\"color\":\"dark_green\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Strength\",\"color\":\"dark_green\"},{\"text\":\" .25\",\"color\":\"reset\"}]"
+								"[\"\",{\"text\":\"Beetroot\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Instant Health\",\"color\":\"dark_green\"},{\"text\":\" .3, \",\"color\":\"reset\"},{\"text\":\"Poison\",\"color\":\"red\"},{\"text\":\" .5\\n\\n\",\"color\":\"reset\"},{\"text\":\"Belladonna Berries\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Poison\",\"color\":\"red\"},{\"text\":\" 1\\n\\n\",\"color\":\"reset\"},{\"text\":\"Belladonna Flowers\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Poison\",\"color\":\"red\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Poison Resist\",\"color\":\"dark_green\"},{\"text\":\" .5\\n\\n\",\"color\":\"reset\"},{\"text\":\"Black Rose\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Health Boost\",\"color\":\"dark_green\"},{\"text\":\" 0.5, \",\"color\":\"reset\"},{\"text\":\"Nausea\",\"color\":\"red\"},{\"text\":\" 0.5\",\"color\":\"reset\"}]"
+								"[\"\",{\"text\":\"Blaze Powder\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Haste\",\"color\":\"dark_green\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Instant Damage\",\"color\":\"red\"},{\"text\":\" .5\\n\\n\",\"color\":\"reset\"},{\"text\":\"Blaze Rod\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Fire Resist\",\"color\":\"dark_green\"},{\"text\":\" .25, \",\"color\":\"reset\"},{\"text\":\"Instant Damage\",\"color\":\"red\"},{\"text\":\" .5\\n\\n\",\"color\":\"reset\"},{\"text\":\"Bone\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Weakness\",\"color\":\"red\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Hunger\",\"color\":\"red\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Resist\",\"color\":\"dark_green\"},{\"text\":\" .4\\n\\n\",\"color\":\"reset\"},{\"text\":\"Bone Serpent Tooth\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Lava Vision\",\"color\":\"dark_green\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Poison\",\"color\":\"red\"},{\"text\":\" .25\",\"color\":\"reset\"}]"
+								"[\"\",{\"text\":\"Brown Musheroom\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Mining Fatigue\",\"color\":\"red\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Speed\",\"color\":\"dark_green\"},{\"text\":\" .5\\n\\n\",\"color\":\"reset\"},{\"text\":\"Cobweb\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Slowness\",\"color\":\"red\"},{\"text\":\" .35, \",\"color\":\"reset\"},{\"text\":\"Mining Fatigue\",\"color\":\"red\"},{\"text\":\" .25\\n\\n\",\"color\":\"reset\"},{\"text\":\"Cornflower\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Health Boost\",\"color\":\"dark_green\"},{\"text\":\" .1, \",\"color\":\"reset\"},{\"text\":\"Weakness\",\"color\":\"red\"},{\"text\":\" .2\\n\\n\",\"color\":\"reset\"},{\"text\":\"Crabshell\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Resilience\",\"color\":\"dark_green\"},{\"text\":\" .5\",\"color\":\"reset\"}]"
+								"[\"\",{\"text\":\"Crimson Fungus\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Fire Resist\",\"color\":\"dark_green\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Poison\",\"color\":\"red\"},{\"text\":\" .5\\n\\n\",\"color\":\"reset\"},{\"text\":\"Dandelion\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Unluck\",\"color\":\"red\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Haste\",\"color\":\"dark_green\"},{\"text\":\" .3, \",\"color\":\"reset\"},{\"text\":\"Resist\",\"color\":\"dark_green\"},{\"text\":\" .25\\n\\n\",\"color\":\"reset\"},{\"text\":\"Dried Belladonna Flowers\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Weakness -.5\",\"color\":\"dark_green\"},{\"text\":\"\\n\\n\",\"color\":\"reset\"},{\"text\":\"Dried Kelp\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Water Breathing\",\"color\":\"dark_green\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Mining Fatigue\",\"color\":\"red\"},{\"text\":\" .5\",\"color\":\"reset\"}]"
+								"[\"\",{\"text\":\"Dried Mandrake Flowers\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Hunger -.5\",\"color\":\"dark_green\"},{\"text\":\"\\n\\n\",\"color\":\"reset\"},{\"text\":\"Dried Mugwort Flowers\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Poison -.5\",\"color\":\"dark_green\"},{\"text\":\"\\n\\n\",\"color\":\"reset\"},{\"text\":\"Dried Mugwort Leaves\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Mining Fatigue -.5\",\"color\":\"dark_green\"},{\"text\":\"\\n\\n\",\"color\":\"reset\"},{\"text\":\"Dried Yellow Dock Flowers\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Instant Damage -.5\",\"color\":\"dark_green\"}]"
+								"[\"\",{\"text\":\"Dried Yellow Dock Leaves\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Nausea -.5\",\"color\":\"dark_green\"},{\"text\":\"\\n\\n\",\"color\":\"reset\"},{\"text\":\"Drop Bear Claw\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Clinging\",\"color\":\"dark_green\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Slow Falling\",\"color\":\"dark_green\"},{\"text\":\" .25, \",\"color\":\"reset\"},{\"text\":\"Levitation -1\",\"color\":\"dark_green\"},{\"text\":\"\\n\\n\",\"color\":\"reset\"},{\"text\":\"Eye of Ender\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Night Vision\",\"color\":\"dark_green\"},{\"text\":\" 1, \",\"color\":\"reset\"},{\"text\":\"Nausea\",\"color\":\"red\"},{\"text\":\" .35\\n\\n\",\"color\":\"reset\"},{\"text\":\"Feather\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Slow Falling\",\"color\":\"dark_green\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Slowness\",\"color\":\"red\"},{\"text\":\" .3\",\"color\":\"reset\"}]"
+								"[\"\",{\"text\":\"Fermented Spider Eye\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Poison\",\"color\":\"red\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Strength\",\"color\":\"dark_green\"},{\"text\":\" .5\\n\\n\",\"color\":\"reset\"},{\"text\":\"Foxglove\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Health Boost\",\"color\":\"dark_green\"},{\"text\":\" .25, \",\"color\":\"reset\"},{\"text\":\"Nausea\",\"color\":\"red\"},{\"text\":\" .5\\n\\n\",\"color\":\"reset\"},{\"text\":\"Gazelle Horn\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Speed III\",\"color\":\"dark_green\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Leaping\",\"color\":\"dark_green\"},{\"text\":\" .5\\n\\n\",\"color\":\"reset\"},{\"text\":\"Ghast Tear\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Fire Resist\",\"color\":\"dark_green\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Levitation\",\"color\":\"red\"},{\"text\":\" .5\",\"color\":\"reset\"}]"
+								"[\"\",{\"text\":\"Glistering Melon\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Glowing\",\"color\":\"dark_aqua\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Regeneration\",\"color\":\"dark_green\"},{\"text\":\" .15, \",\"color\":\"reset\"},{\"text\":\"Luck\",\"color\":\"dark_green\"},{\"text\":\" .1, \",\"color\":\"reset\"},{\"text\":\"Mining Fatigue\",\"color\":\"red\"},{\"text\":\" .5\\n\\n\",\"color\":\"reset\"},{\"text\":\"Glowstone Dust\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Glowing\",\"color\":\"dark_aqua\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Night Vision\",\"color\":\"dark_green\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Blindness\",\"color\":\"red\"},{\"text\":\" .5\\n\\n\",\"color\":\"reset\"},{\"text\":\"Golden Carrot\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Glowing\",\"color\":\"dark_aqua\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Haste\",\"color\":\"dark_green\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Speed\",\"color\":\"dark_green\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Mining Fatigue\",\"color\":\"red\"},{\"text\":\" .5\",\"color\":\"reset\"}]"
+								"[\"\",{\"text\":\"Honey\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Slowness\",\"color\":\"red\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Instant Health\",\"color\":\"dark_green\"},{\"text\":\" .5\\n\\n\",\"color\":\"reset\"},{\"text\":\"Ink Sac\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Dolphin's Grace\",\"color\":\"dark_green\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Blindness\",\"color\":\"red\"},{\"text\":\" .5\\n\\n\",\"color\":\"reset\"},{\"text\":\"Kelp\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Water Breathing\",\"color\":\"dark_green\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Unluck\",\"color\":\"red\"},{\"text\":\" .5\\n\\n\",\"color\":\"reset\"},{\"text\":\"Lily of the Valley\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Slow Falling\",\"color\":\"dark_green\"},{\"text\":\" .25, \",\"color\":\"reset\"},{\"text\":\"Haste\",\"color\":\"dark_green\"},{\"text\":\" .25\",\"color\":\"reset\"}]"
+								"[\"\",{\"text\":\"Lily Pad\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Jump Boost\",\"color\":\"dark_green\"},{\"text\":\" 1\\n\\n\",\"color\":\"reset\"},{\"text\":\"Lustrous Pearl\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Glowing\",\"color\":\"dark_aqua\"},{\"text\":\" .25, \",\"color\":\"reset\"},{\"text\":\"Water Breathing\",\"color\":\"dark_green\"},{\"text\":\" .5\\n\\n\",\"color\":\"reset\"},{\"text\":\"Magma Cream\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Slowness\",\"color\":\"red\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Instant Damage\",\"color\":\"red\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Strength\",\"color\":\"dark_green\"},{\"text\":\" .4\\n\\n\",\"color\":\"reset\"},{\"text\":\"Mandrake Flowers\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Darkness\",\"color\":\"red\"},{\"text\":\" .25, \",\"color\":\"reset\"},{\"text\":\"Levitation\",\"color\":\"red\"},{\"text\":\" .5\",\"color\":\"reset\"}]"
+								"[\"\",{\"text\":\"Mandrake Root\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Regeneration\",\"color\":\"dark_green\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Poison\",\"color\":\"red\"},{\"text\":\" .25\\n\\n\",\"color\":\"reset\"},{\"text\":\"Mindful Trance Blend\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Levitation\",\"color\":\"red\"},{\"text\":\" .25, \",\"color\":\"reset\"},{\"text\":\"Slow Falling\",\"color\":\"dark_green\"},{\"text\":\" .25, \",\"color\":\"reset\"},{\"text\":\"Poison\",\"color\":\"red\"},{\"text\":\" .25\\n\\n\",\"color\":\"reset\"},{\"text\":\"Mugwort Flowers\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Night Vision\",\"color\":\"dark_green\"},{\"text\":\" .25\",\"color\":\"reset\"}]"
+								"[\"\",{\"text\":\"Mugwort Leaves\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Caffeinated\",\"color\":\"dark_green\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Night Vision\",\"color\":\"dark_green\"},{\"text\":\" .25\\n\\n\",\"color\":\"reset\"},{\"text\":\"Nether Wart\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Health Boost\",\"color\":\"dark_green\"},{\"text\":\" .25, \",\"color\":\"reset\"},{\"text\":\"Nausea\",\"color\":\"red\"},{\"text\":\" .5\\n\\n\",\"color\":\"reset\"},{\"text\":\"Orchids\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Luck\",\"color\":\"dark_green\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Instant Heal\",\"color\":\"dark_green\"},{\"text\":\" .3\\n\\n\",\"color\":\"reset\"},{\"text\":\"Oxedye Daisy\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Instant Heal\",\"color\":\"dark_green\"},{\"text\":\" .25, \",\"color\":\"reset\"},{\"text\":\"Blind\",\"color\":\"red\"},{\"text\":\" .35, \",\"color\":\"reset\"},{\"text\":\"Hunger\",\"color\":\"red\"},{\"text\":\" .4\",\"color\":\"reset\"}]"
+								"[\"\",{\"text\":\"Phantom Membrane\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Invisibility\",\"color\":\"dark_green\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Weakness\",\"color\":\"red\"},{\"text\":\" .35, \",\"color\":\"reset\"},{\"text\":\"Hunger\",\"color\":\"red\"},{\"text\":\" .25, \",\"color\":\"reset\"},{\"text\":\"Night Vision\",\"color\":\"dark_green\"},{\"text\":\" .5\\n\\n\",\"color\":\"reset\"},{\"text\":\"Poisonous Potato\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Poison\",\"color\":\"red\"},{\"text\":\" .5\\n\\n\",\"color\":\"reset\"},{\"text\":\"Poppies\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Luck\",\"color\":\"dark_green\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Nausea\",\"color\":\"red\"},{\"text\":\" .3\",\"color\":\"reset\"}]"
+								"[\"\",{\"text\":\"Rabbit's Foot\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Haste\",\"color\":\"dark_green\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Poison\",\"color\":\"red\"},{\"text\":\" .35, \",\"color\":\"reset\"},{\"text\":\"Hunger\",\"color\":\"red\"},{\"text\":\" .25, \",\"color\":\"reset\"},{\"text\":\"Luck\",\"color\":\"dark_green\"},{\"text\":\" .2\\n\\n\",\"color\":\"reset\"},{\"text\":\"Red Mushroom\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Strength\",\"color\":\"dark_green\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Weakness\",\"color\":\"red\"},{\"text\":\" .5\\n\\n\",\"color\":\"reset\"},{\"text\":\"Sapphire\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Serendipity\",\"color\":\"dark_green\"},{\"text\":\" 1\\n\\n\",\"color\":\"reset\"},{\"text\":\"Sea Pickle\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Dolphin's Grace\",\"color\":\"dark_green\"},{\"text\":\" 1\",\"color\":\"reset\"}]"
+								"[\"\",{\"text\":\"Slimeball\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Slow\",\"color\":\"red\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Jump Boost\",\"color\":\"dark_green\"},{\"text\":\" .5\\n\\n\",\"color\":\"reset\"},{\"text\":\"Soul Heart\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Soulsteal\",\"color\":\"dark_green\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Slow\",\"color\":\"red\"},{\"text\":\" .5\\n\\n\",\"color\":\"reset\"},{\"text\":\"Sourceberry\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Mana Regen\",\"color\":\"dark_green\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Weak\",\"color\":\"red\"},{\"text\":\" .25\\n\\n\",\"color\":\"reset\"},{\"text\":\"Spider Eye\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Instant Health\",\"color\":\"dark_green\"},{\"text\":\" .3, \",\"color\":\"reset\"},{\"text\":\"Poison\",\"color\":\"red\"},{\"text\":\" .3, \",\"color\":\"reset\"},{\"text\":\"Slow\",\"color\":\"red\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Night Vision\",\"color\":\"dark_green\"},{\"text\":\" .5\",\"color\":\"reset\"}]"
+								"[\"\",{\"text\":\"Sugar\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Haste\",\"color\":\"dark_green\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Speed\",\"color\":\"dark_green\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Hunger\",\"color\":\"red\"},{\"text\":\" .3\\n\\n\",\"color\":\"reset\"},{\"text\":\"Sweet Berries\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Instant Health\",\"color\":\"dark_green\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Instant Damage\",\"color\":\"red\"},{\"text\":\" .5\\n\\n\",\"color\":\"reset\"},{\"text\":\"Warped Fungus\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Unluck\",\"color\":\"red\"},{\"text\":\" .3, \",\"color\":\"reset\"},{\"text\":\"Weakness\",\"color\":\"red\"},{\"text\":\" .7, \",\"color\":\"reset\"},{\"text\":\"Regeneration\",\"color\":\"dark_green\"},{\"text\":\" .35\\n\\n\",\"color\":\"reset\"},{\"text\":\"Wither Rose\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Wither\",\"color\":\"red\"},{\"text\":\" 1\",\"color\":\"reset\"}]"
+								"[\"\",{\"text\":\"Yellow Dock Flowers\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Luck\",\"color\":\"dark_green\"},{\"text\":\" .25, \",\"color\":\"reset\"},{\"text\":\"Serendipity\",\"color\":\"dark_green\"},{\"text\":\" .25\\n\\n\",\"color\":\"reset\"},{\"text\":\"Yellow Dock Leaves\",\"bold\":true},{\"text\":\" - \",\"color\":\"reset\"},{\"text\":\"Luck\",\"color\":\"dark_green\"},{\"text\":\" .5, \",\"color\":\"reset\"},{\"text\":\"Absorption\",\"color\":\"dark_green\"},{\"text\":\" .5\",\"color\":\"reset\"}]"
+							]
+							display: { }
+							author: "Utak Aluna"
+							title: "高级炼金术指南"
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 2.5d
+			y: 0.0d
+			subtitle: "一次真正的升级"
+			description: ["一旦可以，就升级你的&b采样套件&r以获得更准确的读数！"]
+			dependencies: ["52A8C79419A56639"]
+			id: "2962192EE8843D6F"
+			tasks: [{
+				id: "6B83D756A34E9938"
+				type: "item"
+				item: "mysticalchemy:advanced_sampling_kit"
+			}]
+			rewards: [{
+				id: "7A265FBCAB37EE7E"
+				type: "item"
+				item: "mysticalchemy:advanced_sampling_kit"
+			}]
+		}
+		{
+			title: "关于催化剂（Catalysts）"
+			x: 2.0d
+			y: -2.0d
+			subtitle: "先催化剂，再配料"
+			description: ["要制作&b瞬发&r、&b延长&r、&b滞留&r药水，你需要&a催化剂&r。你肯定猜得到这些物品是什么，因为它们和&b酿造台&r的配方一样。不过，&6请务必先放入这些物品&r，因为一旦原料被投入，就太迟了！"]
+			dependencies: ["52A8C79419A56639"]
+			id: "12B8DB863B29824E"
+			tasks: [{
+				id: "06B54BC0383A44EB"
+				type: "item"
+				item: "minecraft:gunpowder"
+			}]
+			rewards: [
+				{
+					id: "5BD5F26B399B6427"
+					type: "item"
+					item: "minecraft:dragon_breath"
+				}
+				{
+					id: "20DB20480364FF5E"
+					type: "item"
+					item: "minecraft:redstone"
+				}
+				{
+					id: "2107D0C6CA414DE8"
+					type: "item"
+					item: "minecraft:gunpowder"
+				}
+			]
+		}
+		{
+			x: -3.0d
+			y: 0.0d
+			shape: "hexagon"
+			description: ["小空间需要简易取水方法？试试这个&b水槽&r吧！它是一个*无限水源&r，仅占一个方块。而且你还可以&a染成任何喜欢的颜色&r。"]
+			dependencies: ["52A8C79419A56639"]
+			id: "3B27BCEB5972DBAC"
+			tasks: [{
+				id: "54ABEC3F9440FE9C"
+				type: "item"
+				item: "cookingforblockheads:sink"
+			}]
+			rewards: [{
+				id: "28BE6E14C3FB77D0"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 6941837675484043489L
+			}]
+		}
+		{
+			title: "通用酿造配方大全"
+			x: -2.0d
+			y: -2.5d
+			shape: "hexagon"
+			description: ["酿造任意种类的&b神秘药剂&r！试试使用像&b干艾草叶&r或&b干大黄花&r这样的材料。别忘了&6使用你的采样工具&r并&6记录&r每种材料的效果！"]
+			dependencies: ["52A8C79419A56639"]
+			id: "388D816B0ABB4B78"
+			tasks: [{
+				id: "218AF89CE8EC3B71"
+				type: "item"
+				item: {
+					id: "minecraft:potion"
+					Count: 1b
+					tag: {
+						display: {
+							Name: "{\"translate\":\"item.mysticalchemy.concoction\"}"
+						}
+						Potion: "minecraft:water"
+						CustomPotionEffects: [
+							{
+								CurativeItems: [{
+									id: "minecraft:milk_bucket"
+									Count: 1b
+								}]
+								Duration: 600
+								ShowIcon: 1b
+								Ambient: 0b
+								ShowParticles: 1b
+								Id: 88b
+								"forge:id": "farmersrespite:caffeinated"
+								Amplifier: 0b
+							}
+							{
+								CurativeItems: [{
+									id: "minecraft:milk_bucket"
+									Count: 1b
+								}]
+								Duration: 600
+								ShowIcon: 1b
+								Ambient: 0b
+								ShowParticles: 1b
+								Id: 26b
+								"forge:id": "minecraft:luck"
+								Amplifier: 0b
+							}
+							{
+								CurativeItems: [{
+									id: "minecraft:milk_bucket"
+									Count: 1b
+								}]
+								Duration: 600
+								ShowIcon: 1b
+								Ambient: 0b
+								ShowParticles: 1b
+								Id: 22b
+								"forge:id": "minecraft:absorption"
+								Amplifier: 0b
+							}
+						]
+					}
+				}
+				match_nbt: false
+			}]
+			rewards: [{
+				id: "587124A98424D8FA"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5036677739913042344L
+			}]
+		}
+		{
+			title: "特定饮品：有益效果饮品"
+			x: -4.0d
+			y: -3.0d
+			shape: "hexagon"
+			description: [
+				"挑战自己，&6酿造以下药水&r，持续时间为5分钟："
+				"&a咖啡因&r、&a跳跃增强&r、&a幸运&r、&a夜视&r、&a生命增强&r。"
+				"如果卡住了，就用你的&b高级炼金术指南&r吧！"
+			]
+			dependencies: ["388D816B0ABB4B78"]
+			id: "4C4123BA8EA078D5"
+			tasks: [{
+				id: "125F5E840D7E2961"
+				type: "item"
+				item: {
+					id: "minecraft:potion"
+					Count: 1b
+					tag: {
+						display: {
+							Name: "{\"translate\":\"item.mysticalchemy.concoction\"}"
+						}
+						CustomPotionEffects: [
+							{
+								CurativeItems: [{
+									id: "minecraft:milk_bucket"
+									Count: 1b
+								}]
+								Duration: 6000
+								ShowIcon: 1b
+								Ambient: 0b
+								ShowParticles: 1b
+								"forge:id": "farmersrespite:caffeinated"
+								Id: 88b
+								Amplifier: 0b
+							}
+							{
+								CurativeItems: [{
+									id: "minecraft:milk_bucket"
+									Count: 1b
+								}]
+								Duration: 6000
+								ShowIcon: 1b
+								Ambient: 0b
+								ShowParticles: 1b
+								"forge:id": "minecraft:jump_boost"
+								Id: 8b
+								Amplifier: 0b
+							}
+							{
+								CurativeItems: [{
+									id: "minecraft:milk_bucket"
+									Count: 1b
+								}]
+								Duration: 6000
+								ShowIcon: 1b
+								Ambient: 0b
+								ShowParticles: 1b
+								"forge:id": "minecraft:luck"
+								Id: 26b
+								Amplifier: 0b
+							}
+							{
+								CurativeItems: [{
+									id: "minecraft:milk_bucket"
+									Count: 1b
+								}]
+								Duration: 6000
+								ShowIcon: 1b
+								Ambient: 0b
+								ShowParticles: 1b
+								"forge:id": "minecraft:night_vision"
+								Id: 16b
+								Amplifier: 0b
+							}
+							{
+								CurativeItems: [{
+									id: "minecraft:milk_bucket"
+									Count: 1b
+								}]
+								Duration: 6000
+								ShowIcon: 1b
+								Ambient: 0b
+								ShowParticles: 1b
+								"forge:id": "minecraft:health_boost"
+								Id: 21b
+								Amplifier: 0b
+							}
+						]
+						Potion: "minecraft:water"
+					}
+				}
+				count: 3L
+			}]
+			rewards: [{
+				id: "6D70786EEA414D48"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5036677739913042344L
+			}]
+		}
+		{
+			x: -3.0d
+			y: -4.0d
+			shape: "hexagon"
+			description: [
+				"挑战自己，酿造更恶毒的东西。一个用于对抗敌人的&b投掷药水&r："
+				"&c迟缓&r、&c失明&r、&c瞬间伤害&r和&c中毒&r。"
+			]
+			dependencies: ["388D816B0ABB4B78"]
+			id: "1614B8FB5DF63BDE"
+			tasks: [{
+				id: "65079C3B87E88DDE"
+				type: "item"
+				item: {
+					id: "minecraft:splash_potion"
+					Count: 1b
+					tag: {
+						display: {
+							Name: "{\"translate\":\"item.mysticalchemy.concoction\"}"
+						}
+						CustomPotionEffects: [
+							{
+								CurativeItems: [{
+									id: "minecraft:milk_bucket"
+									Count: 1b
+								}]
+								Duration: 600
+								ShowIcon: 1b
+								Ambient: 0b
+								ShowParticles: 1b
+								"forge:id": "minecraft:slowness"
+								Id: 2b
+								Amplifier: 0b
+							}
+							{
+								CurativeItems: [{
+									id: "minecraft:milk_bucket"
+									Count: 1b
+								}]
+								Duration: 600
+								ShowIcon: 1b
+								Ambient: 0b
+								ShowParticles: 1b
+								"forge:id": "minecraft:blindness"
+								Id: 15b
+								Amplifier: 0b
+							}
+							{
+								CurativeItems: [{
+									id: "minecraft:milk_bucket"
+									Count: 1b
+								}]
+								Duration: 600
+								ShowIcon: 1b
+								Ambient: 0b
+								ShowParticles: 1b
+								"forge:id": "minecraft:poison"
+								Id: 19b
+								Amplifier: 0b
+							}
+							{
+								CurativeItems: [{
+									id: "minecraft:milk_bucket"
+									Count: 1b
+								}]
+								Duration: 1
+								ShowIcon: 1b
+								Ambient: 0b
+								ShowParticles: 1b
+								"forge:id": "minecraft:instant_damage"
+								Id: 7b
+								Amplifier: 0b
+							}
+						]
+						Potion: "minecraft:water"
+					}
+				}
+			}]
+			rewards: [{
+				id: "2E100D68BEBDE218"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 8891211325592123080L
+			}]
+		}
+	]
+}

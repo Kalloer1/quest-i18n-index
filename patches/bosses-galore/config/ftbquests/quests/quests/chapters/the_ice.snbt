@@ -1,0 +1,690 @@
+# AI 初翻，未人工校对
+{
+	id: "0898E6EBA5898516"
+	group: "11F43111BC288983"
+	order_index: 0
+	filename: "the_ice"
+	title: "冰原探险家指南：第一章 - 冰雪世界探索篇"
+	icon: "aquamirae:rune_of_the_storm"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "找到冰迷宫 (Ice Maze)"
+			icon: "minecraft:ice"
+			x: 0.0d
+			y: 0.0d
+			subtitle: "冰迷宫，一个充满魔法寒气的冰冷迷宫。"
+			id: "2C58412601B6FD48"
+			tasks: [{
+				id: "53BFEF2DB093CFB8"
+				type: "advancement"
+				title: "找到冰迷宫！"
+				icon: "quark:soul_bead"
+				advancement: "aquamirae:adventure/find_ice_maze"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "3B570CAB63CA2162"
+					type: "item"
+					item: {
+						id: "irons_spellbooks:scroll"
+						Count: 1b
+						tag: {
+							ISB_spell: {
+								type: 12
+								level: 3
+							}
+						}
+					}
+				}
+				{
+					id: "7F089DAB4F54DF51"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+		{
+			title: "击杀 Maw"
+			icon: "aquamirae:maw_spawn_egg"
+			x: 2.0d
+			y: -1.5d
+			subtitle: "巨口怪有大嘴巴！杀了他们，获取战利品！"
+			dependencies: ["2C58412601B6FD48"]
+			id: "24189C1F9F845524"
+			tasks: [{
+				id: "3FB82FE72B230F0E"
+				type: "kill"
+				title: "Maw"
+				icon: "aquamirae:maw_spawn_egg"
+				entity: "aquamirae:maw"
+				value: 10L
+			}]
+			rewards: [
+				{
+					id: "4E13CF33489C3021"
+					type: "item"
+					item: {
+						id: "reliquary:mob_charm_fragment"
+						Count: 1b
+						tag: {
+							entity: "aquamirae:maw"
+						}
+					}
+				}
+				{
+					id: "2E4FFBB8DF26E8B5"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 6574421189335215825L
+				}
+				{
+					id: "03740362E5BD8A52"
+					type: "loot"
+					exclude_from_claim_all: true
+					table_id: 6574421189335215825L
+				}
+				{
+					id: "37F8953FF8B42C50"
+					type: "item"
+					title: "剑齿虎剑 Sabertooth Saber"
+					item: {
+						id: "aquamirae:remnants_saber"
+						Count: 1b
+						tag: {
+							affix_data: {
+								name: "{\"color\":\"#33FF33\",\"translate\":\"%s %s %s\",\"with\":[{\"translate\":\"affix.apotheosis:graceful\"},\"\",{\"translate\":\"affix.apotheosis:lacerating.suffix\"}]}"
+								affixes: {
+									"apotheosis:lacerating": 0.6957564f
+									"apotheosis:intricate": 0.591903f
+									"apotheosis:graceful": 0.2917623f
+								}
+								rarity: "uncommon"
+							}
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			icon: "aquamirae:anglerfish_spawn_egg"
+			x: 4.0d
+			y: -2.5d
+			subtitle: "安康鱼好可怕！杀点来拿战利品。"
+			description: ["安康鱼会生成在冰下。一旦它们盯上你，追逐速度会比你游泳还快。把它们赶出水面后，它们就毫无防备了，但仍然会咬人！"]
+			dependencies: ["24189C1F9F845524"]
+			dependency_requirement: "one_started"
+			id: "50AA9AD2556F3DA3"
+			tasks: [{
+				id: "7C94557BF8245595"
+				type: "kill"
+				title: "击杀深海鳕鱼"
+				icon: "aquamirae:anglerfish_spawn_egg"
+				entity: "aquamirae:anglerfish"
+				value: 3L
+			}]
+			rewards: [
+				{
+					id: "09241F7DBC74B51A"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 6574421189335215825L
+				}
+				{
+					id: "281C4EA70931D72F"
+					type: "loot"
+					exclude_from_claim_all: true
+					table_id: 5008062264691626310L
+				}
+			]
+		}
+		{
+			title: "找到那艘船！"
+			icon: {
+				id: "ftbquests:custom_icon"
+				Count: 1b
+				tag: {
+					Icon: "aquamirae:item/pirate_pouch"
+				}
+			}
+			x: 2.0d
+			y: 1.0d
+			subtitle: "找到一艘困在冰里的船！但要小心，有掠夺者，它们可不会欢迎你到来！"
+			dependencies: ["2C58412601B6FD48"]
+			id: "3B5038C62408C904"
+			tasks: [
+				{
+					id: "38088376619FFC3D"
+					type: "kill"
+					entity: "minecraft:pillager"
+					value: 8L
+				}
+				{
+					id: "0C37F19085E344B9"
+					type: "structure"
+					title: "找到那艘船！"
+					icon: {
+						id: "ftbquests:custom_icon"
+						Count: 1b
+						tag: {
+							Icon: "supplementaries:textures/map/shipwreck.png"
+						}
+					}
+					structure: "aquamirae:ship"
+				}
+			]
+			rewards: [
+				{
+					id: "70227F45EF87F2B0"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 12
+				}
+				{
+					id: "07A0E83152D48F65"
+					type: "item"
+					item: "irons_spellbooks:emerald_stoneplate_ring"
+				}
+			]
+		}
+		{
+			title: "获取号角。"
+			x: 4.0d
+			y: 1.5d
+			subtitle: "找到掠夺者首领的号角！"
+			dependencies: ["3B5038C62408C904"]
+			id: "5D5AAC166386355C"
+			tasks: [{
+				id: "3B80E0093B500E86"
+				type: "advancement"
+				advancement: "aquamirae:adventure/obtain_shell_horn"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "7A5102C73BB70DCB"
+					type: "item"
+					item: {
+						id: "aquamirae:dagger_of_greed"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "2D22D01552436AEC"
+					type: "choice"
+					exclude_from_claim_all: true
+					table_id: 6574421189335215825L
+				}
+				{
+					id: "53AAED89D5398CDA"
+					type: "item"
+					item: "aquamirae:treasure_pouch"
+				}
+				{
+					id: "74710F7BF1EA87FE"
+					type: "loot"
+					exclude_from_claim_all: true
+					table_id: 5008062264691626310L
+				}
+			]
+		}
+		{
+			title: "死海"
+			x: 6.0d
+			y: 2.0d
+			dependencies: ["5D5AAC166386355C"]
+			can_repeat: true
+			id: "462B6ED1A73245A8"
+			tasks: [{
+				id: "4AE0E3ABAFAA1A40"
+				type: "advancement"
+				title: "击败科妮莉亚船长"
+				icon: {
+					id: "aquamirae:three_bolt_helmet"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				advancement: "aquamirae:adventure/obtain_frozen_key"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "7B44F1E1A0A2F9D4"
+					type: "item"
+					item: {
+						id: "aquamirae:coral_lance"
+						Count: 1b
+						tag: {
+							Damage: 0
+							Enchantments: [{
+								id: "minecraft:unbreaking"
+								lvl: 4s
+							}]
+						}
+					}
+					only_one: true
+				}
+				{
+					id: "4043ACEEF6F2D933"
+					type: "item"
+					item: "aquamirae:treasure_pouch"
+					count: 3
+				}
+				{
+					id: "7E5F206177085CF5"
+					type: "choice"
+					exclude_from_claim_all: true
+					table_id: 6574421189335215825L
+				}
+				{
+					id: "7E1175905EB23780"
+					type: "item"
+					team_reward: true
+					item: {
+						id: "aquamirae:three_bolt_helmet"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+					only_one: true
+				}
+				{
+					id: "2539513CCF0EF4FC"
+					type: "item"
+					item: "aquamirae:frozen_key"
+					only_one: true
+				}
+				{
+					id: "55A37D2732E488F3"
+					type: "loot"
+					exclude_from_claim_all: true
+					table_id: 4557263727962377243L
+				}
+				{
+					id: "1DAD40638F495EB7"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 4557263727962377243L
+				}
+				{
+					id: "6AB898EEA0849A9B"
+					type: "item"
+					item: "aquamirae:shell_horn"
+					count: 3
+				}
+				{
+					id: "68F44FD6D1D1AEAC"
+					type: "loot"
+					exclude_from_claim_all: true
+					table_id: 5008062264691626310L
+				}
+				{
+					id: "426B8860EBC6D86A"
+					type: "item"
+					item: {
+						id: "ob_core:obsidian_helmet"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "74008C62CB77224F"
+					type: "xp_levels"
+					xp_levels: 25
+				}
+			]
+		}
+		{
+			title: "妈妈（生物）"
+			x: 4.0d
+			y: -0.5d
+			subtitle: "迷宫之母体型庞大！击杀她以获得奖励！"
+			description: ["迷宫之母是一条巨大的鳐鱼，有小概率与深海鳕一同生成。生成时你会收到通知。如果她在附近，她会打破你脚下的冰块！"]
+			dependencies: [
+				"50AA9AD2556F3DA3"
+				"24189C1F9F845524"
+			]
+			dependency_requirement: "one_started"
+			id: "6031E72E7DA94121"
+			tasks: [{
+				id: "15BD91D5D41B9039"
+				type: "kill"
+				title: "迷宫之母，最棒的迷宫之母。"
+				icon: {
+					id: "aquamirae:maze_rose"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				entity: "aquamirae:maze_mother"
+				value: 1L
+			}]
+			rewards: [
+				{
+					id: "213519F8DCE76F3D"
+					type: "item"
+					item: "aquamirae:poseidons_breakfast"
+					count: 2
+				}
+				{
+					id: "57F4548B9E51E487"
+					type: "loot"
+					exclude_from_claim_all: true
+					table_id: 6574421189335215825L
+				}
+				{
+					id: "45512264322751E8"
+					type: "loot"
+					exclude_from_claim_all: true
+					table_id: 6574421189335215825L
+				}
+				{
+					id: "508BB90ABA532041"
+					type: "loot"
+					exclude_from_claim_all: true
+					table_id: 5008062264691626310L
+				}
+				{
+					id: "13BE7DCE1779E9E9"
+					type: "item"
+					item: "apotheosis:inert_trident"
+				}
+				{
+					id: "4D0D372530D54E15"
+					type: "loot"
+					exclude_from_claim_all: true
+					table_id: 8394178975076378642L
+				}
+				{
+					id: "697E9F2B6CCDCF2D"
+					type: "loot"
+					exclude_from_claim_all: true
+					table_id: 8394178975076378642L
+				}
+				{
+					id: "11E898F1764405BE"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+		{
+			title: "找到冰雪庇护所！"
+			icon: "aquamirae:frozen_key"
+			x: 6.0d
+			y: -0.5d
+			subtitle: "潜入冰屋的深处。用水安全地下降！"
+			dependencies: ["462B6ED1A73245A8"]
+			id: "4F5089C2E12DF33B"
+			tasks: [{
+				id: "44CDD441615F83FD"
+				type: "structure"
+				title: "找到冰霜庇护所"
+				structure: "#aquamirae:shelter"
+			}]
+			rewards: [
+				{
+					id: "4642A4691D066D18"
+					type: "item"
+					item: "aquamirae:golden_moth_in_a_jar"
+				}
+				{
+					id: "5F42A1E802AA5313"
+					type: "item"
+					item: {
+						id: "ob_core:afterlife_key"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "0EDBFDAE3F98DE47"
+					type: "loot"
+					exclude_from_claim_all: true
+					table_id: 5973842593518260854L
+				}
+				{
+					id: "34BD864A75290A37"
+					type: "item"
+					item: {
+						id: "tconstruct:cleaver"
+						Count: 1b
+						tag: {
+							tic_persistent: { }
+							tic_multipliers: {
+								"tconstruct:mining_speed": 0.25f
+								"tconstruct:attack_damage": 1.5f
+								"tconstruct:durability": 3.5f
+							}
+							tic_stats: {
+								"tconstruct:attack_speed": 1.3439999f
+								"tconstruct:mining_speed": 2.1839998f
+								"tconstruct:attack_damage": 7.875f
+								"tconstruct:harvest_tier": "minecraft:diamond"
+								"tconstruct:durability": 2936.5f
+							}
+							tic_broken: 0b
+							tic_modifiers: [
+								{
+									name: "tconstruct:blocking"
+									level: 1s
+								}
+								{
+									name: "tconstruct:severing"
+									level: 2s
+								}
+								{
+									name: "tconstruct:lightweight"
+									level: 4s
+								}
+								{
+									name: "tconstruct:silky_aoe_shears"
+									level: 1s
+								}
+							]
+							tic_upgrades: [{
+								name: "tconstruct:blocking"
+								level: 1s
+							}]
+							Damage: 0
+							tic_materials: [
+								"tconstruct:cobalt"
+								"tconstruct:cobalt"
+								"tconstruct:cobalt"
+								"tconstruct:cobalt"
+							]
+							tic_volatile_data: {
+								abilities: 1
+								upgrades: 2
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 8.0d
+			y: -2.0d
+			subtitle: "长着骇人牙齿的野兽，出现在这个冰雪庇护所里。"
+			dependencies: [
+				"50AA9AD2556F3DA3"
+				"4F5089C2E12DF33B"
+			]
+			id: "7AFA242B5313B91B"
+			tasks: [{
+				id: "29DAA957DDF01394"
+				type: "kill"
+				title: "击杀鳗鱼"
+				icon: "aquamirae:eel_spawn_egg"
+				entity: "aquamirae:eel"
+				value: 1L
+			}]
+			rewards: [
+				{
+					id: "61DC0183BEB1874E"
+					type: "item"
+					item: "aquamirae:dead_sea_scroll"
+				}
+				{
+					id: "375C5EBAD6BD8188"
+					type: "loot"
+					exclude_from_claim_all: true
+					table_id: 6574421189335215825L
+				}
+				{
+					id: "7E66F8C43628EDB7"
+					type: "loot"
+					exclude_from_claim_all: true
+					table_id: 5008062264691626310L
+				}
+				{
+					id: "793E0005C1765E66"
+					type: "item"
+					item: "aquamirae:sea_stew"
+				}
+				{
+					id: "6D9CC43F8D419EBC"
+					type: "choice"
+					exclude_from_claim_all: true
+					table_id: 4826465986824786349L
+				}
+				{
+					id: "5072D1D3A8EED9BA"
+					type: "item"
+					item: "aquamirae:luminescent_bubble"
+				}
+				{
+					id: "7543FE8D332709F4"
+					type: "item"
+					item: "aquamirae:luminescent_lamp"
+				}
+			]
+		}
+		{
+			title: "解锁被冰冻的宝箱！"
+			x: 8.0d
+			y: 0.0d
+			subtitle: "解锁隐藏在冰冷深处中的传说宝箱。"
+			dependencies: [
+				"7AFA242B5313B91B"
+				"4F5089C2E12DF33B"
+				"462B6ED1A73245A8"
+			]
+			id: "5C3DE450A364AF8F"
+			tasks: [{
+				id: "3283AE7D6A0FA216"
+				type: "observation"
+				title: "解锁冰箱！"
+				icon: "aquamirae:frozen_chest"
+				timer: 0L
+				observe_type: 0
+				to_observe: "aquamirae:frozen_chest"
+			}]
+			rewards: [
+				{
+					id: "4BC31D2C7D3EEA5B"
+					type: "loot"
+					exclude_from_claim_all: true
+					table_id: 6574421189335215825L
+				}
+				{
+					id: "13023CF47710B04D"
+					type: "loot"
+					exclude_from_claim_all: true
+					table_id: 5008062264691626310L
+				}
+				{
+					id: "08C1C8391D6508CB"
+					type: "loot"
+					exclude_from_claim_all: true
+					table_id: 4557263727962377243L
+				}
+				{
+					id: "44AE95E4D345D819"
+					type: "loot"
+					exclude_from_claim_all: true
+					table_id: 8394178975076378642L
+				}
+				{
+					id: "7FD6243093E0A518"
+					type: "choice"
+					exclude_from_claim_all: true
+					table_id: 4826465986824786349L
+				}
+				{
+					id: "65603F4A0F24E2E8"
+					type: "item"
+					team_reward: true
+					item: "aquamirae:rune_of_the_storm"
+					only_one: true
+				}
+				{
+					id: "0DB727221C42071A"
+					type: "loot"
+					exclude_from_claim_all: true
+					table_id: 5973842593518260854L
+				}
+				{
+					id: "19560C76CDBE3126"
+					type: "item"
+					title: "拐杖糖"
+					item: {
+						id: "aquamirae:sweet_lance"
+						Count: 1b
+						tag: {
+							Unbreakable: 1b
+							Damage: 20
+							Enchantments: [
+								{
+									lvl: 10s
+									id: "minecraft:silk_touch"
+								}
+								{
+									lvl: 3s
+									id: "minecraft:looting"
+								}
+							]
+						}
+					}
+				}
+				{
+					id: "20A6672C7D0C92D5"
+					type: "item"
+					item: {
+						id: "ob_core:obsidian_chestplate"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "7E0CACA4914C91F0"
+					type: "item"
+					item: "ob_core:magic_dust"
+					count: 6
+				}
+				{
+					id: "013692A5FB9A5D7E"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+}

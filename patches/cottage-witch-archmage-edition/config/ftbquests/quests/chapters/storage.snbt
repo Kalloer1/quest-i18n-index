@@ -1,0 +1,660 @@
+# AI 初翻，未人工校对
+{
+	id: "20C131FAFAF3F980"
+	group: "346046A71D537172"
+	order_index: 1
+	filename: "storage"
+	title: "储物空间"
+	icon: "minecraft:chest"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "制作一个储物抽屉 (Craft a Storage Drawer)"
+			icon: "storagedrawers:oak_full_drawers_1"
+			x: -1.5d
+			y: -2.0d
+			shape: "rsquare"
+			subtitle: "我是一名艺术家，而不是绘图者"
+			description: [
+				"&bStorage Drawers&r are inventory items which can hold massive amounts of a single item in one block."
+				"你可以制作多种变体，容纳1-4个物品，并使用多种不同的木材类型。"
+			]
+			size: 2.0d
+			id: "1838DE5E92C9C03F"
+			tasks: [{
+				id: "270253189B3724AA"
+				type: "item"
+				title: "任意数量的 #storagedrawers:drawers"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "storagedrawers:drawers"
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "10B66423B15FF35C"
+					type: "random"
+					table_id: 6941837675484043489L
+				}
+				{
+					id: "5457E92108195BB8"
+					type: "item"
+					item: "storagedrawers:oak_full_drawers_4"
+				}
+			]
+		}
+		{
+			title: "获取你的第一个存储升级组件"
+			x: -2.0d
+			y: -4.0d
+			subtitle: "我们必须要有更多的存储空间！"
+			description: [
+				"这个&b存储升级&r将&a增加抽屉所能容纳的物品数量&r。"
+				"有多种升级等级，可以组合使用或混合搭配。"
+				"每个抽屉都可以接受 7 种不同的升级。"
+			]
+			dependencies: ["1838DE5E92C9C03F"]
+			id: "643038A9E2CA7D59"
+			tasks: [{
+				id: "712EDA4FA8680CA6"
+				type: "item"
+				item: "storagedrawers:obsidian_storage_upgrade"
+			}]
+			rewards: [{
+				id: "725F0756860736BF"
+				type: "item"
+				item: "storagedrawers:upgrade_template"
+				count: 3
+			}]
+		}
+		{
+			x: -3.0d
+			y: -5.0d
+			shape: "hexagon"
+			description: ["如果你有大量物品导入抽屉，&b虚空升级&r会很有用——它能&a自动删除&r无法放入抽屉的物品，防止游戏变得过于卡顿。"]
+			dependencies: ["643038A9E2CA7D59"]
+			id: "313DFFDB063483B7"
+			tasks: [{
+				id: "47A797BB92FD1D4F"
+				type: "item"
+				item: "storagedrawers:void_upgrade"
+			}]
+			rewards: [{
+				id: "292FCC80A297F6BB"
+				type: "random"
+				table_id: 8808494820591225409L
+			}]
+		}
+		{
+			x: -0.5d
+			y: -4.0d
+			shape: "hexagon"
+			description: [
+				"与别的抽屉不同，&b压缩抽屉&r能让你访问&a同一物品的多种压缩形态&r。"
+				"通常例子是像&b铁&r，这样你就能获得&b铁块&r、&b铁锭&r和&b铁粒&r。放入9个铁锭，你可以直接取出1个铁块、9个铁锭或81个铁粒，无需合成。"
+				"不过，这种方法也适用于像&b作物&r这样的物品，它们可以被提取为箱子。任何有&a3x3压缩配方&r的物品都适用。"
+			]
+			dependencies: ["1838DE5E92C9C03F"]
+			id: "1F6CE1B236003A84"
+			tasks: [{
+				id: "1E8C6913D961F1D5"
+				type: "item"
+				item: "storagedrawers:compacting_drawers_3"
+			}]
+			rewards: [
+				{
+					id: "2EF9A992AA775DC7"
+					type: "item"
+					item: "minecraft:iron_block"
+				}
+				{
+					id: "6B34333AE81917CE"
+					type: "item"
+					item: "minecraft:iron_ingot"
+				}
+				{
+					id: "02DB6DD885080ABE"
+					type: "item"
+					item: "minecraft:iron_nugget"
+				}
+			]
+		}
+		{
+			x: -3.0d
+			y: -3.0d
+			description: [
+				"&b抽屉控制器&r对于将你的&b抽屉&r连接到&a存储网络&r非常重要。"
+				"你也可以用它通过漏斗将物品&a导入&r抽屉！"
+			]
+			dependencies: ["1838DE5E92C9C03F"]
+			id: "40EDCF93A4E5B1AA"
+			tasks: [{
+				id: "0ACD91A27AA0AD64"
+				type: "item"
+				item: "storagedrawers:controller"
+			}]
+		}
+		{
+			x: 0.0d
+			y: -3.0d
+			shape: "hexagon"
+			description: [
+				"&a抽屉钥匙&r会改变抽屉的功能。 &6手持钥匙右击抽屉&r即可激活其能力。"
+				"基本的&b抽屉钥匙&r会将抽屉锁定，使其只能接受当前内部已有的物品。"
+				"&bQuantify Key&r 可切换抽屉表面是否显示其内部物品的数量。"
+				"&bConcealment Key&r 将完全隐藏抽屉正面上的物品图像和所有其他标签。"
+			]
+			dependencies: ["1838DE5E92C9C03F"]
+			id: "0204D145FC5C3008"
+			tasks: [{
+				id: "049A51A44F6460C4"
+				type: "item"
+				item: "storagedrawers:drawer_key"
+			}]
+			rewards: [{
+				id: "465128D4C75677B0"
+				type: "loot"
+				table_id: 6941837675484043489L
+			}]
+		}
+		{
+			title: "获得一个金苹果木桶"
+			x: -5.5d
+			y: -0.5d
+			shape: "hexagon"
+			subtitle: "有些人被迫接受了箱子的特性"
+			description: ["哦，我知道，真麻烦……你的储物箱里全是&o糟糕的&r&b金苹果&r——别担心，你可以把它们&a压缩&r成箱子。这些&b金苹果箱&r甚至能为&b信标&r提供动力！"]
+			id: "58C6D8E0422110BC"
+			tasks: [{
+				id: "36726B34E435877E"
+				type: "item"
+				item: "quark:golden_apple_crate"
+				count: 5L
+			}]
+			rewards: [
+				{
+					id: "377889882D9DFF5F"
+					type: "item"
+					item: "overweight_farming:overweight_golden_apple_block"
+				}
+				{
+					id: "34FDE83E40FA45F1"
+					type: "item"
+					item: "minecraft:diamond"
+					count: 5
+				}
+			]
+		}
+		{
+			x: -5.5d
+			y: 1.5d
+			shape: "hexagon"
+			description: [
+				"这个整合包里有好几种&ajar类型&r。这种可以装液体！最多能装三桶。"
+				"它能装下从&b水&r到&b汤&r，甚至&b经验值&r的一切东西。"
+				"它们还可以用作&a鱼缸&r或&a饼干罐&r。"
+				"空手右键点击罐子即可食用或饮用其内容。别担心，你不会吃掉岩浆的。"
+				"你可以&a蹲下并右键单击来放置罐子&r。如果你&a只是右键单击&r，你反而会捕捉到像&e小型史莱姆&r或&e蜜蜂&r这样的小型生物。"
+			]
+			id: "62D95F91881F228C"
+			tasks: [{
+				id: "463FB873FA5E8629"
+				type: "item"
+				item: "supplementaries:jar"
+			}]
+			rewards: [{
+				id: "48464721C342CFBF"
+				type: "item"
+				item: "supplementaries:jar"
+			}]
+		}
+		{
+			title: "获取一个篮子 (Obtain a Basket)"
+			x: -5.0d
+			y: 0.5d
+			shape: "hexagon"
+			subtitle: "不知道你能不能和它一起玩球呢。"
+			description: [
+				"篮子既可作为箱子使用，也可作为漏斗使用！它的存储容量与箱子相同，当物品被放置或投掷到其上方时，会自动进入篮子的物品栏中。"
+				"这意味着你可以在炉灶上方放置一个倒置的来收集成品！"
+				"{image:cottagewitch:textures/basket.png width:100 height:100 align:1}"
+			]
+			id: "5E3D0655F0A08890"
+			tasks: [{
+				id: "31A89834BA4A5521"
+				type: "item"
+				item: "farmersdelight:basket"
+			}]
+			rewards: [{
+				id: "2421BCEC9EF7B9BE"
+				type: "item"
+				item: "farmersdelight:basket"
+			}]
+		}
+		{
+			title: "Tom's Simple Storage"
+			x: 1.0d
+			y: 0.0d
+			shape: "rsquare"
+			subtitle: "一个可搜索的存储解决方案"
+			description: [
+				"&lTom's Simple Storage&r 是一款让你能通过单个界面&a访问所有箱子和抽屉&r的模组。Tom 是谁早已成为传说，但他的存储系统流传至今。"
+				"首先，你需要一个 &bInventory Connector&r 和一个 &bStorage Terminal&r。"
+				"&bInventory Connector&r 是一个充当枢纽的方块，将所有与其接触的存储设备连接到自身。 &d所有接触的存储设备都会自动添加到网络中&r。"
+				"&bStorage Terminal&r 是一个可以让你查看、存入和取出物品的方块。它之后可以升级为 &bCrafting Grid&r，同样允许你使用物品网络进行合成。"
+				"&dIt is recommended to use Barrels and Drawers&r instead of Chests with this mod, as they don't always register properly."
+			]
+			size: 2.0d
+			id: "1B3C37BD61939C76"
+			tasks: [
+				{
+					id: "65E8A2B80E50F100"
+					type: "item"
+					item: "toms_storage:ts.inventory_connector"
+				}
+				{
+					id: "2268FB94B2D4789E"
+					type: "item"
+					item: "toms_storage:ts.storage_terminal"
+				}
+			]
+			rewards: [
+				{
+					id: "3B909177C8E76B79"
+					type: "item"
+					item: "minecraft:chest"
+				}
+				{
+					id: "4F0820A607503EB4"
+					type: "loot"
+					table_id: 8808494820591225409L
+				}
+			]
+		}
+		{
+			x: 4.0d
+			y: 0.5d
+			subtitle: "这不仅仅是严重的问题，而是致命的"
+			description: ["虽然更贵，但&b合成网格&r是值得升级的，因为它能让你通过JEI或配方书，使用存储网络中的任何东西进行&a合成&r。"]
+			dependencies: ["1B3C37BD61939C76"]
+			id: "681253D70C026027"
+			tasks: [{
+				id: "2B45691AED9BE323"
+				type: "item"
+				item: "toms_storage:ts.crafting_terminal"
+			}]
+			rewards: [{
+				id: "240243DEB27A110F"
+				type: "choice"
+				table_id: 2068679807827730220L
+			}]
+		}
+		{
+			x: 3.0d
+			y: 2.0d
+			subtitle: "修剪和整理一下，保持整洁"
+			description: ["&bInventory Trim&r 是一种用于连接相邻物品栏的方块。只要 Trim 同时接触一个有效的物品栏方块和系统中的方块，它就能将所有接触到的方块连接到你的网络中。"]
+			dependencies: ["1B3C37BD61939C76"]
+			id: "7A9A86BAA9E4A06E"
+			tasks: [{
+				id: "38E41AF45EF1C29A"
+				type: "item"
+				item: "toms_storage:ts.trim"
+				count: 4L
+			}]
+			rewards: [{
+				id: "1E928BE5FBB5FD95"
+				type: "choice"
+				table_id: 2068679807827730220L
+			}]
+		}
+		{
+			title: "远程连接模组 (Connected at a Distance)"
+			x: -1.0d
+			y: 2.0d
+			shape: "hexagon"
+			description: [
+				"虽然大多数人会用 &bInventory Trim&r 来连接网络，但你也可以用 &bInventory Connectors&r 和 &bInventory Cables&r 来实现。"
+				"&6Place the Connectors on the blocks you wish&r, and then &6place the cabling between them&r."
+			]
+			dependencies: ["1B3C37BD61939C76"]
+			id: "21A2E4CA683BD232"
+			tasks: [
+				{
+					id: "01427841634CD881"
+					type: "item"
+					title: "任意 #crafttweaker:connector"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "crafttweaker:connector"
+						}
+					}
+				}
+				{
+					id: "417BA48B393B8423"
+					type: "item"
+					title: "任何 #crafttweaker:invcable 物品"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "crafttweaker:invcable"
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "738482AB5370FCF4"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 6941837675484043489L
+			}]
+		}
+		{
+			title: "带框方块"
+			x: -2.5d
+			y: 3.5d
+			shape: "hexagon"
+			subtitle: "不要怀疑，不要怀疑，一切都很正常"
+			description: [
+				"&b框架方块&r是指可以&a呈现为另一种方块外观&r的方块。"
+				"将你的&bFramed Blocks&r放置在世界中，然后&6手持Paint Kit并右键Shift&r你想要模仿的方块。接着用Paint Kit&6右键点击带框方块&r，大功告成！"
+			]
+			dependencies: ["21A2E4CA683BD232"]
+			id: "383A9396EDCA0ED1"
+			tasks: [
+				{
+					id: "39246456F6D4B955"
+					type: "item"
+					item: "toms_storage:ts.inventory_cable_connector_framed"
+				}
+				{
+					id: "4138B74E75AC4B9D"
+					type: "item"
+					item: "toms_storage:ts.inventory_cable_framed"
+				}
+				{
+					id: "74B9AFE8924F9CCF"
+					type: "item"
+					item: {
+						id: "toms_storage:ts.paint_kit"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "257EB530D055D451"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 6941837675484043489L
+			}]
+		}
+		{
+			x: 3.5d
+			y: -1.5d
+			subtitle: "我们要实现无线通信了"
+			description: ["&b无线终端&r是一个非常实用的物品，能让你远程访问物品网络，&a范围是16格&r。"]
+			dependencies: ["1B3C37BD61939C76"]
+			id: "50D94EFE04154F83"
+			tasks: [{
+				id: "12EE65D5450F2B69"
+				type: "item"
+				item: "toms_storage:ts.wireless_terminal"
+			}]
+			rewards: [{
+				id: "586FDFDB6BDAD89C"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 8808494820591225409L
+			}]
+		}
+		{
+			x: 5.5d
+			y: -2.5d
+			subtitle: "希望的灯塔"
+			description: [
+				"&b高级无线终端&r不仅将范围从16格扩大到64格，而且如果&6在附近放置一个1级信标&r，还能获得&a无限范围&r。"
+				"如果你在附近&6放置一个4级信标&r，那么信号就能&a跨维度&r传播了！"
+				"可以&6佩戴为腰带&r，并通过&a快捷键&r访问。"
+			]
+			dependencies: ["50D94EFE04154F83"]
+			id: "5E4411D5B4EFA45B"
+			tasks: [{
+				id: "55AE94FBC169D6F8"
+				type: "item"
+				item: "toms_storage:ts.adv_wireless_terminal"
+			}]
+			rewards: [{
+				id: "349BEC406970C530"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 5161092699925703455L
+			}]
+		}
+		{
+			x: -0.5d
+			y: 3.5d
+			shape: "hexagon"
+			description: [
+				"&bInventory Proxy&r 是一种特殊物品，可扩展其相邻的方块上的物品栏访问权限。具体来说，它能扩展&a它所接触的面&r，"
+				"如果你的物品栏因处于自动化系统内等原因而难以访问，此功能会很有用。"
+			]
+			dependencies: ["1B3C37BD61939C76"]
+			id: "30027D97CE91BAF0"
+			tasks: [{
+				id: "3B155EBB095D85A1"
+				type: "item"
+				item: "toms_storage:ts.inventory_proxy"
+			}]
+			rewards: [{
+				id: "33C3159EAC07BBAA"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 6941837675484043489L
+			}]
+		}
+		{
+			x: 1.0d
+			y: 2.5d
+			shape: "hexagon"
+			description: [
+				"&bInventory Hopper&r 用于在网络中导入和导出物品。"
+				"&6右键点击物品&r以设置过滤器。导入时可选，但导出时必须操作。"
+				"&6手持空手状态下右键单击&r以清除过滤器。"
+			]
+			dependencies: ["1B3C37BD61939C76"]
+			id: "15F2A54EBE6EEC56"
+			tasks: [{
+				id: "65D436A4BFB4E9C0"
+				type: "item"
+				item: "toms_storage:ts.inventory_hopper_basic"
+			}]
+			rewards: [{
+				id: "1D9719DC75DBE9F9"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 6941837675484043489L
+			}]
+		}
+		{
+			x: 2.5d
+			y: 3.5d
+			shape: "hexagon"
+			description: [
+				"&bLevel Emitter&r会根据物品栏中的内容发出红石信号。"
+				"信号取决于物品栏中的物品是否&a多于或少于设定的数量&r。"
+			]
+			dependencies: ["1B3C37BD61939C76"]
+			id: "41933F01B397F9F0"
+			tasks: [{
+				id: "65AB7B90E505E5FB"
+				type: "item"
+				item: "toms_storage:ts.level_emitter"
+			}]
+			rewards: [{
+				id: "4BA0046E741F21B4"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 6941837675484043489L
+			}]
+		}
+		{
+			x: -6.0d
+			y: -2.0d
+			shape: "hexagon"
+			description: [
+				"&b末地箱&r就像云端存储一样。这个物品栏可以通过世界任何地方的任意&b末地箱&r访问。"
+				"用应急物品填满它并不是坏主意。你可以通过&6填满潜影盒&r来&a获得更多存储空间&r。"
+			]
+			id: "0B1646339D14D055"
+			tasks: [{
+				id: "56E9DAF2277FF804"
+				type: "item"
+				item: "minecraft:ender_chest"
+			}]
+			rewards: [{
+				id: "3767778C22F62A3A"
+				type: "item"
+				item: "minecraft:white_shulker_box"
+			}]
+		}
+		{
+			x: -7.0d
+			y: -3.0d
+			shape: "hexagon"
+			description: [
+				"正如你所料，&b末地箱戒指&r能让你无需&b末地箱&r就能访问末地物品栏。"
+				"它&a无法穿戴&r，而是必须&6手持并右键单击&r才能使用。"
+			]
+			dependencies: ["0B1646339D14D055"]
+			id: "1EEB4AA9131B98DC"
+			tasks: [{
+				id: "2741D617D6F0700F"
+				type: "item"
+				item: "ring_of_enderchest:ring_of_enderchest"
+			}]
+			rewards: [{
+				id: "6F7ABEE64C5D9E9F"
+				type: "loot"
+				exclude_from_claim_all: true
+				table_id: 5161092699925703455L
+			}]
+		}
+		{
+			x: 2.0d
+			y: -2.5d
+			subtitle: "整理你的存储网络"
+			description: [
+				"&b物品管道&r是一种能让你轻松将物品从一个物品栏转移到另一个物品栏的方法。"
+				"它可以通过&b物品栏连接器&r，&a连接到单个箱子、桶或整个网络&r。"
+				"你可以使用&b扳手&r（来自&lPipez&r或&lCreate&r - 来自&lSupplementaries&r的那个不行）来&a切换模式&r。"
+				"&6右键扳手&r，连接到&b管道&r的一侧以连接/断开，也可&a设置为抽取模式&r。"
+				"{image:cottagewitch:textures/depositextract.png width:300 height:150 align:1}"
+				"进入&a提取模式&r后，可以&6右键管道&r来访问其菜单。"
+			]
+			min_width: 300
+			id: "0A76B3D9CF688878"
+			tasks: [{
+				id: "7153E46F9B5C723A"
+				type: "item"
+				item: "pipez:item_pipe"
+			}]
+			rewards: [
+				{
+					id: "3BB0037DD908BB33"
+					type: "item"
+					item: "pipez:basic_upgrade"
+				}
+				{
+					id: "10E7DC7C7F53B457"
+					type: "item"
+					item: "pipez:item_pipe"
+					count: 10
+				}
+			]
+		}
+		{
+			x: 3.0d
+			y: -3.5d
+			description: ["&b基础管道升级&r允许你为管道设置&a红石模式&r。你可以将其设为&a仅在接收信号时激活&r，或&a接收到信号时停止&r。默认情况下，它会&a忽略红石输入&r。"]
+			dependencies: ["0A76B3D9CF688878"]
+			id: "327660E1DFE7C9A0"
+			tasks: [{
+				id: "1196EDFF583F21D3"
+				type: "item"
+				item: "pipez:basic_upgrade"
+			}]
+			rewards: [{
+				id: "2D980A1EB5CBDC3E"
+				type: "item"
+				item: "pipez:basic_upgrade"
+			}]
+		}
+		{
+			x: 4.0d
+			y: -4.5d
+			description: ["&b改进升级&r让你能控制&a红石模式&r，还能更改&a分配模式&r，比如是送到&a首个物品栏&r、&a循环分配&r，还是&a完全随机&r。"]
+			dependencies: ["327660E1DFE7C9A0"]
+			id: "125AC0EEF7096532"
+			tasks: [{
+				id: "35E4C52DC0192E00"
+				type: "item"
+				item: "pipez:improved_upgrade"
+			}]
+			rewards: [{
+				id: "69DBCB99857B5AA6"
+				type: "item"
+				item: "pipez:improved_upgrade"
+			}]
+		}
+		{
+			x: 3.0d
+			y: -5.5d
+			description: [
+				"{image:cottagewitch:textures/pipezscreen.png width:200 height:200 align:1}"
+				"&b高级升级&r让你可以使用前两种模式，以及&a过滤&r。你可以&a白名单或黑名单&r某些物品，防止它们被管道提取。"
+			]
+			dependencies: ["125AC0EEF7096532"]
+			id: "5E0E4D3BFE9A205F"
+			tasks: [{
+				id: "085ADE6062A763B8"
+				type: "item"
+				item: "pipez:advanced_upgrade"
+			}]
+			rewards: [{
+				id: "7A488241F19C3AB4"
+				type: "item"
+				item: "pipez:advanced_upgrade"
+			}]
+		}
+		{
+			x: 2.0d
+			y: -4.5d
+			description: [
+				"&b终极升级&r为你提供所有先前的好处，同时还能&a每次运输一叠物品&r，是速度最快的选择。"
+				"而且价格也要贵上不少呢。"
+			]
+			dependencies: ["5E0E4D3BFE9A205F"]
+			id: "2B73F9B609ABE980"
+			tasks: [{
+				id: "7038BA77EA75696E"
+				type: "item"
+				item: "pipez:ultimate_upgrade"
+			}]
+			rewards: [{
+				id: "235AA9488102A61C"
+				type: "item"
+				item: "pipez:ultimate_upgrade"
+			}]
+		}
+	]
+}

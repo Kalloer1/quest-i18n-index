@@ -1,0 +1,322 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "establishment_permenance"
+	group: "6F5D5657A1DFA973"
+	hide_quest_details_until_startable: true
+	hide_quest_until_deps_visible: true
+	icon: "neepmeat:projector"
+	id: "0BCD34572896018B"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"只要生物体的生命值足够低且没有穿戴胸甲，就可以用开胸器打开你的生物框架或其他生物体的腹部。（穿戴胸甲不会影响对自己使用）"
+				""
+				"提示：在任意箱子凹槽中放置一个原版活板门，即可在未来开启时禁用手术伤害。"
+			]
+			id: "2FCC611E8A68B95D"
+			tasks: [{
+				id: "2E72DA7BC7A998A4"
+				item: "chestcavity:chest_opener"
+				type: "item"
+			}]
+			title: "自我增强（self augmentation）"
+			x: 0.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["2FCC611E8A68B95D"]
+			description: ["只需要一个肾就能活，为后续升级留有余地。"]
+			id: "292137274F929A29"
+			tasks: [{
+				id: "6005BEF8A29FAFE4"
+				item: {
+					Count: 1
+					id: "chestcavity:kidney"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "节省空间"
+			x: 2.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["2FCC611E8A68B95D"]
+			id: "682D7EE95F08A057"
+			tasks: [{
+				id: "346A068BF1E6C9EA"
+				item: {
+					Count: 1
+					id: "ccastroadds:actuator"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "更快"
+			x: -1.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["2FCC611E8A68B95D"]
+			description: ["肋骨可以被更强的部件替换，从而提供额外保护或为增强创造更多空间。"]
+			id: "250DB58D6E49611A"
+			tasks: [{
+				count: 4L
+				id: "46A0B93995967649"
+				item: {
+					Count: 4
+					id: "ccastroadds:steel_frame"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "更强壮了"
+			x: 0.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["292137274F929A29"]
+			description: ["为了让过滤更接近正常，另一个肾脏和肝脏都可以被移除并用过滤泵替换。"]
+			hide_until_deps_complete: true
+			icon: {
+				Count: 1
+				id: "chestcavity:liver"
+				tag: { }
+			}
+			id: "3CCCD12FD3F28BB8"
+			optional: true
+			tasks: [
+				{
+					id: "433B8C86C2A3F7D7"
+					item: {
+						Count: 1
+						id: "chestcavity:liver"
+						tag: { }
+					}
+					optional_task: true
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "724797ED1F4CC1AF"
+					item: {
+						Count: 2
+						id: "ccastroadds:filter_pump"
+						tag: { }
+					}
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "52FC7F3B582A88F7"
+					item: {
+						Count: 1
+						id: "chestcavity:kidney"
+						tag: { }
+					}
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "3F7F5FAAE7D96D7B"
+					type: "checkmark"
+				}
+			]
+			title: "节省空间：补充说明"
+			x: 5.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["682D7EE95F08A057"]
+			description: ["该执行器还有其他不同变体可供选择。"]
+			icon: {
+				Count: 1
+				id: "ccastroadds:steel_actuator"
+				tag: { }
+			}
+			id: "08621D672F370AAF"
+			optional: true
+			tasks: [
+				{
+					id: "3B8CCA11A379B14E"
+					item: {
+						Count: 1
+						id: "ccastroadds:steel_actuator"
+						tag: { }
+					}
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "3A262B06D0B4338C"
+					type: "checkmark"
+				}
+				{
+					id: "5A65CB730792A82D"
+					item: {
+						Count: 1
+						id: "ccastroadds:jump_shaft"
+						tag: { }
+					}
+					optional_task: true
+					type: "item"
+				}
+			]
+			title: "更快的：补充性的（faster: supplimentary）"
+			x: -1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["292137274F929A29"]
+			description: ["电解器能让你在水下呼吸。"]
+			id: "6085772BB74A53D8"
+			tasks: [{
+				id: "4D8B4DC561533B73"
+				item: {
+					Count: 1
+					id: "ccastroadds:electrolyzer"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "水下生存模组 aquatic living"
+			x: 2.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["6085772BB74A53D8"]
+			description: ["使用血泵可以小幅提升生命值和代谢率。"]
+			hide_until_deps_complete: true
+			id: "2C26E306AD331E16"
+			tasks: [{
+				id: "09A42324A92E384C"
+				item: {
+					Count: 1
+					id: "ccastroadds:blood_pump"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "额外福利"
+			x: 2.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["2C26E306AD331E16"]
+			description: ["钢铁分配器是一种改良的血泵，缺少代谢增强功能，但能提升生命值。"]
+			id: "1479D6BC5980D2B3"
+			size: 2.0d
+			tasks: [{
+				id: "7CEF81E17ED17A0F"
+				item: {
+					Count: 1
+					id: "ccastroadds:steel_distributor"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: 5.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["3CCCD12FD3F28BB8"]
+			description: ["可以移除和/或替换肠道以创造更多空间用于增强，但若不加以补偿，会损失食物中的营养。"]
+			hide_until_deps_complete: true
+			icon: {
+				Count: 1
+				id: "chestcavity:intestine"
+				tag: { }
+			}
+			id: "165AEBE0533C2CF2"
+			tasks: [
+				{
+					id: "0B2E335891482B17"
+					item: {
+						Count: 1
+						id: "chestcavity:intestine"
+						tag: { }
+					}
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "5F25152A7911CCB8"
+					type: "checkmark"
+				}
+			]
+			title: "肠道器官"
+			x: 5.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["165AEBE0533C2CF2"]
+			id: "7855EC5DF72952FE"
+			tasks: [
+				{
+					id: "74BFC2365F578A8C"
+					item: {
+						Count: 1
+						id: "chestcavity:herbivore_stomach"
+						tag: { }
+					}
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "0D564C4C6B10DBB7"
+					item: {
+						Count: 1
+						id: "chestcavity:carnivore_stomach"
+						tag: { }
+					}
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "24C1677BDED8B7E6"
+					type: "checkmark"
+				}
+			]
+			x: 7.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["165AEBE0533C2CF2"]
+			id: "24FCB2419295491D"
+			tasks: [
+				{
+					id: "1ECF1A7B8B933CD9"
+					item: {
+						Count: 1
+						id: "chestcavity:carnivore_intestine"
+						tag: { }
+					}
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "5670DF576158BBCD"
+					item: {
+						Count: 1
+						id: "chestcavity:herbivore_intestine"
+						tag: { }
+					}
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "695921F90F3B4EFC"
+					type: "checkmark"
+				}
+			]
+			x: 5.0d
+			y: -2.0d
+		}
+	]
+	subtitle: ["复古数据卡带"]
+	title: "员工生存能力快速指南"
+}

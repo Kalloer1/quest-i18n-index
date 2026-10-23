@@ -1,0 +1,1650 @@
+# AI 初翻，未人工校对
+{
+	id: "0DF680835FB9EAAB"
+	group: "395A3AF12D2C41FD"
+	order_index: 1
+	filename: "the_road_to_the_zenith"
+	title: "通往天顶的道路"
+	icon: {
+		id: "botania:terra_sword"
+		Count: 1b
+		tag: {
+			Damage: 0
+		}
+	}
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "采集一朵神秘花朵"
+			x: 0.0d
+			y: 0.0d
+			id: "61537BD219C8B196"
+			tasks: [{
+				id: "127EB08BAB2FD12F"
+				type: "advancement"
+				icon: "botania:magenta_shiny_flower"
+				advancement: "botania:main/flower_pickup"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "0F33A385A8443965"
+				type: "item"
+				item: "botania:flower_bag"
+			}]
+		}
+		{
+			title: "实际上读一下这本书吧"
+			x: 0.0d
+			y: -2.0d
+			subtitle: "你可能需要读一些条目，好知道自己要面对的是什么。"
+			dependencies: ["61537BD219C8B196"]
+			id: "1AE77671D3088DCC"
+			tasks: [{
+				id: "67C52DADE66CD1B4"
+				type: "advancement"
+				advancement: "botania:main/lexicon_use"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "3E16E78696B62524"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "纯雏菊"
+			x: -3.0d
+			y: -5.0d
+			subtitle: "将这种纯雏菊种在地上来净化物品！"
+			description: ["     &bYou can make this item at the apothecary by throwing down petals and a daisy, until it aligns like the one shown in the recipe. You'll also need a seed at the end to complete it."]
+			dependencies: ["69C3364933240B49"]
+			id: "160D2C6C1A55D539"
+			tasks: [{
+				id: "25E6BEF455096610"
+				type: "item"
+				item: "botania:pure_daisy"
+			}]
+			rewards: [
+				{
+					id: "34125E3ECC137899"
+					type: "item"
+					item: "minecraft:oak_log"
+					count: 12
+				}
+				{
+					id: "5FE03D765032EFE3"
+					type: "item"
+					item: "minecraft:stone"
+					count: 12
+				}
+				{
+					id: "61C22B8F1AB23C4F"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+		}
+		{
+			x: -1.5d
+			y: -3.5d
+			subtitle: "你会经常需要用到这个东西的。"
+			dependencies: ["1AE77671D3088DCC"]
+			id: "69C3364933240B49"
+			tasks: [{
+				id: "59C84964B2E7EF74"
+				type: "item"
+				item: "botania:apothecary_default"
+			}]
+			rewards: [
+				{
+					id: "6E24385ECFF8C26A"
+					type: "item"
+					item: "minecraft:water_bucket"
+				}
+				{
+					id: "72974046B1BBCD53"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+			]
+		}
+		{
+			title: "收集任意花朵10朵！"
+			x: 1.5d
+			y: -3.5d
+			dependencies: ["1AE77671D3088DCC"]
+			id: "455BEBC30F74F274"
+			tasks: [{
+				id: "38D1E7AAB4F7B789"
+				type: "item"
+				title: "采集任意10朵神秘花朵"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "botania:mystical_flowers"
+					}
+				}
+				count: 10L
+			}]
+			rewards: [{
+				id: "64E1F409471E8F04"
+				type: "item"
+				item: "botania:fertilizer"
+				count: 5
+			}]
+		}
+		{
+			title: "制作一些活岩和活木吧！"
+			x: -2.0d
+			y: -6.5d
+			subtitle: "你还需要大量的这个东西"
+			description: ["&b你必须用石头或原木包围雏菊来净化它们。"]
+			dependencies: ["160D2C6C1A55D539"]
+			id: "33139F1ABC26BD02"
+			tasks: [
+				{
+					id: "68CFE7E5F410ED4A"
+					type: "item"
+					item: "botania:livingwood_log"
+					count: 12L
+				}
+				{
+					id: "1EFB58623371F1DA"
+					type: "item"
+					item: "botania:livingrock"
+					count: 12L
+				}
+			]
+			rewards: [{
+				id: "5A36A943FCC403EA"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "制作一根森林魔杖！"
+			x: -2.0d
+			y: -10.0d
+			subtitle: "当此魔杖悬停在产曼纳花上时，会检查其是否支持当前的传播器。你也可以让它使任何与曼纳相关的方块指向特定的池子。"
+			description: ["     &bEndoflame and Hydroangea always support the closest mana spreader."]
+			min_required_dependencies: 2
+			dependencies: [
+				"33139F1ABC26BD02"
+				"496391BF766BB40F"
+				"05EBA45E4869EF12"
+			]
+			id: "76D7B046A93857F4"
+			tasks: [{
+				id: "3C840AB4C8E29E36"
+				type: "item"
+				item: {
+					id: "botania:twig_wand"
+					Count: 1b
+					tag: {
+						color1: 0
+						color2: 0
+					}
+				}
+			}]
+		}
+		{
+			x: -3.0d
+			y: -8.0d
+			subtitle: "你需要法力才能使用这个！"
+			dependencies: ["33139F1ABC26BD02"]
+			id: "53EF57C00A5C5AA8"
+			tasks: [{
+				id: "4524703449F53E19"
+				type: "item"
+				item: "botania:mana_pool"
+			}]
+			rewards: [
+				{
+					id: "6DB959E270285C15"
+					type: "item"
+					item: "botania:diluted_pool"
+				}
+				{
+					id: "558183DD69EC526D"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+		}
+		{
+			x: -1.0d
+			y: -8.0d
+			dependencies: ["33139F1ABC26BD02"]
+			id: "28EA41202BF94DCA"
+			tasks: [{
+				id: "45DBF808654B794D"
+				type: "item"
+				item: "botania:mana_spreader"
+			}]
+			rewards: [{
+				id: "0671C4ECF2277595"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+		}
+		{
+			x: -2.5d
+			y: -9.0d
+			subtitle: "这就是生成法力值的秘诀所在。"
+			description: ["&b投掷燃料来为其提供动力。"]
+			dependencies: [
+				"53EF57C00A5C5AA8"
+				"28EA41202BF94DCA"
+			]
+			id: "496391BF766BB40F"
+			tasks: [{
+				id: "1865044E19C41773"
+				type: "item"
+				item: "botania:endoflame"
+			}]
+		}
+		{
+			x: -1.5d
+			y: -9.0d
+			subtitle: "这就是生成法力值的秘诀所在。"
+			description: ["     &bThis gives mana when water is surrounding it on the same level in a 3 by 3 area 1 block away from it."]
+			dependencies: [
+				"53EF57C00A5C5AA8"
+				"28EA41202BF94DCA"
+			]
+			id: "05EBA45E4869EF12"
+			tasks: [{
+				id: "14E737C01D601FD0"
+				type: "item"
+				item: "botania:hydroangeas"
+			}]
+		}
+		{
+			x: -1.0d
+			y: -11.0d
+			dependencies: ["76D7B046A93857F4"]
+			id: "2B9AE33086582DDC"
+			tasks: [{
+				id: "5F7D8D5BBD9423F4"
+				type: "item"
+				item: "botania:mana_pearl"
+			}]
+			rewards: [
+				{
+					id: "46121C96B6DA6AE4"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+				{
+					id: "309B5A77CD6330F8"
+					type: "item"
+					item: "minecraft:ender_pearl"
+					count: 2
+				}
+			]
+		}
+		{
+			x: -2.0d
+			y: -11.0d
+			dependencies: ["76D7B046A93857F4"]
+			id: "472E8FA4C3BC8911"
+			tasks: [{
+				id: "6B45649CAA2C7AC5"
+				type: "item"
+				item: "botania:mana_diamond"
+			}]
+			rewards: [
+				{
+					id: "5BC8F396C6BC8962"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "7B4BDD94E965E440"
+					type: "item"
+					item: "minecraft:diamond"
+					count: 2
+				}
+			]
+		}
+		{
+			x: -3.0d
+			y: -11.0d
+			dependencies: ["76D7B046A93857F4"]
+			id: "0DBF457DABB6B977"
+			tasks: [{
+				id: "76417AD33B713F29"
+				type: "item"
+				item: "botania:manasteel_ingot"
+			}]
+		}
+		{
+			x: -1.0d
+			y: -12.0d
+			subtitle: "此物品是使用物品消耗法力所必需的。"
+			description: ["     &bTo store mana in the tablet, throw this item into a pool with mana. Then, use your wand of the forests and shift+right click the pool to make the tablet store the mana inside. Do the same to release the mana stored back in the pool."]
+			dependencies: [
+				"472E8FA4C3BC8911"
+				"2B9AE33086582DDC"
+			]
+			dependency_requirement: "one_completed"
+			id: "6D29FFC05F5C4A8A"
+			tasks: [
+				{
+					id: "47E1552B7F5D4895"
+					type: "item"
+					item: "botania:mana_tablet"
+				}
+				{
+					id: "46C39477E58E8D2B"
+					type: "item"
+					title: "将法力水晶填满"
+					item: {
+						id: "botania:mana_tablet"
+						Count: 1b
+						tag: {
+							mana: 500000
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "3247A1A17E69666B"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			x: -2.0d
+			y: -12.0d
+			subtitle: "右键将所需物品放置在符文祭坛上。"
+			description: ["     &bA nearby mana spreader has to be providing it mana to create the runes."]
+			dependencies: ["472E8FA4C3BC8911"]
+			id: "58B5E390E3B64AD0"
+			tasks: [{
+				id: "23765DAD882AE966"
+				type: "item"
+				item: "botania:runic_altar"
+			}]
+		}
+		{
+			title: "Manasteel 工具"
+			x: -4.5d
+			y: -12.0d
+			subtitle: "由活体材料和魔钢制成的工具不会损耗耐久度，而是会消耗魔力（如果存在魔力存储装置的话）。"
+			dependencies: ["0DBF457DABB6B977"]
+			id: "1ED174C8F9BA993C"
+			tasks: [
+				{
+					id: "6C625959F01ECF3F"
+					type: "item"
+					item: {
+						id: "botania:manasteel_sword"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "30F03D466C9083C0"
+					type: "item"
+					item: {
+						id: "botania:manasteel_pick"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "06CACF9D98486974"
+					type: "item"
+					item: {
+						id: "botania:manasteel_axe"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "671696B00793B1EA"
+					type: "item"
+					item: {
+						id: "botania:manasteel_shovel"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "6B9482FDD8A6BAD3"
+					type: "item"
+					item: {
+						id: "botania:manasteel_hoe"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "583DBFEA325D5646"
+					type: "item"
+					item: {
+						id: "botania:manasteel_shears"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "4BD09E447F72F2B3"
+				type: "item"
+				item: {
+					id: "spartanshields:manasteel_tower_shield"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			title: "Manasteel 盔甲"
+			x: -4.5d
+			y: -10.0d
+			subtitle: "由活体材料和魔钢制成的盔甲不会损耗耐久度，而是会消耗法力（如果存在法力存储装置的话）。"
+			dependencies: ["0DBF457DABB6B977"]
+			id: "71FD8BF9AB44CF0E"
+			tasks: [
+				{
+					id: "6AF60521ED96EC94"
+					type: "item"
+					item: {
+						id: "botania:manasteel_helmet"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "44617E4EC2AB4BF8"
+					type: "item"
+					item: {
+						id: "botania:manasteel_chestplate"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "4D1BBC9E5DCDD2C8"
+					type: "item"
+					item: {
+						id: "botania:manasteel_leggings"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "272353256E1CAE72"
+					type: "item"
+					item: {
+						id: "botania:manasteel_boots"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "6B45CE3EB5E54A19"
+				type: "item"
+				item: {
+					id: "spartanshields:manasteel_basic_shield"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			x: -6.0d
+			y: -11.0d
+			dependencies: [
+				"71FD8BF9AB44CF0E"
+				"1ED174C8F9BA993C"
+			]
+			id: "43EFBF41874E47BB"
+			tasks: [{
+				id: "68485546D49DEC30"
+				type: "item"
+				item: {
+					id: "spartanshields:manasteel_basic_shield"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "7158126C9AA3445C"
+					type: "item"
+					item: {
+						id: "tconstruct:longbow"
+						Count: 1b
+						tag: {
+							tic_persistent: { }
+							tic_multipliers: {
+								"tconstruct:durability": 1.5f
+							}
+							tic_stats: {
+								"tconstruct:attack_speed": 1.0f
+								"tconstruct:attack_damage": 0.0f
+								"tconstruct:durability": 183.0f
+								"tconstruct:accuracy": 0.75f
+								"tconstruct:velocity": 1.0f
+								"tconstruct:draw_speed": 1.0f
+							}
+							tic_broken: 0b
+							tic_modifiers: [{
+								name: "tconstruct:stringy"
+								level: 1s
+							}]
+							Damage: 0
+							tic_materials: [
+								"tcintegrations:manasteel"
+								"tcintegrations:manasteel"
+								"tcintegrations:manasteel"
+								"tconstruct:string"
+							]
+							tic_volatile_data: {
+								abilities: 1
+								upgrades: 2
+							}
+						}
+					}
+				}
+				{
+					id: "51A5D05B1C148905"
+					type: "item"
+					item: {
+						id: "tconstruct:repair_kit"
+						Count: 1b
+						tag: {
+							Material: "tcintegrations:manasteel"
+						}
+					}
+				}
+				{
+					id: "4C3054B35D1BC2DA"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+		{
+			x: -2.5d
+			y: -13.5d
+			subtitle: "祭坛停止提供法力后，用活岩右键点击，然后用魔杖对其使用以完成过程。"
+			dependencies: ["58B5E390E3B64AD0"]
+			id: "601CBBC2221C6A31"
+			tasks: [{
+				id: "477A795453ED18C2"
+				type: "item"
+				item: "botania:rune_water"
+			}]
+		}
+		{
+			x: -2.0d
+			y: -14.5d
+			subtitle: "当祭坛停止提供法力后，用活岩右键点击它，然后用魔杖对其使用以完成过程。"
+			dependencies: ["58B5E390E3B64AD0"]
+			id: "70DA74064A08669E"
+			tasks: [{
+				id: "5621E919E97D4A45"
+				type: "item"
+				item: "botania:rune_fire"
+			}]
+		}
+		{
+			x: -3.0d
+			y: -14.5d
+			subtitle: "祭坛停止提供法力后，用活岩右键点击，然后用魔杖对其使用以完成过程。"
+			dependencies: ["58B5E390E3B64AD0"]
+			id: "647409B531C5EDF8"
+			tasks: [{
+				id: "75042E21DCE5DBCC"
+				type: "item"
+				item: "botania:rune_air"
+			}]
+		}
+		{
+			x: -1.0d
+			y: -14.5d
+			subtitle: "当祭坛停止提供法力后，用活岩右键点击它，然后用魔杖对其使用以完成过程。"
+			dependencies: ["58B5E390E3B64AD0"]
+			id: "491C4DF9E3575F55"
+			tasks: [{
+				id: "360C1C60C917E9DF"
+				type: "item"
+				item: "botania:rune_mana"
+			}]
+		}
+		{
+			x: -4.5d
+			y: -11.0d
+			hide_dependency_lines: true
+			dependencies: ["0DBF457DABB6B977"]
+			id: "3BB367CD16380116"
+			tasks: [{
+				id: "2A9D3C2444882AEE"
+				type: "item"
+				item: {
+					id: "botania:glass_pickaxe"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "7BC399286CC0B0B8"
+					type: "item"
+					item: "minecraft:glass"
+					count: 24
+				}
+				{
+					id: "3729AEB6D4B3F3CC"
+					type: "item"
+					item: {
+						id: "twilightforest:glass_sword"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			x: -3.0d
+			y: -12.0d
+			hide_dependency_lines: true
+			dependencies: ["76D7B046A93857F4"]
+			id: "7FB0B289B9CA0FDF"
+			tasks: [{
+				id: "072761651777272D"
+				type: "item"
+				item: "botania:mana_powder"
+			}]
+			rewards: [{
+				id: "4AF12D12CB9B3A73"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+		}
+		{
+			x: -1.5d
+			y: -13.5d
+			subtitle: "当祭坛停止提供法力时，用活岩右键点击它，然后用魔杖对其使用以完成过程。"
+			dependencies: ["58B5E390E3B64AD0"]
+			id: "7EB7452FF20807EE"
+			tasks: [{
+				id: "7ABCDB9005F9902D"
+				type: "item"
+				item: "botania:rune_earth"
+			}]
+			rewards: [{
+				id: "1771F75182F4B835"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: 0.0d
+			y: -15.0d
+			hide_dependency_lines: true
+			dependencies: ["58B5E390E3B64AD0"]
+			id: "6977AF428875F527"
+			tasks: [{
+				id: "60D933CFF2B97F54"
+				type: "item"
+				item: "botania:rune_spring"
+			}]
+		}
+		{
+			x: 0.0d
+			y: -14.0d
+			hide_dependency_lines: true
+			dependencies: ["58B5E390E3B64AD0"]
+			id: "0717C4F1FBF468D4"
+			tasks: [{
+				id: "7A4D72A1ACBBA8D7"
+				type: "item"
+				item: "botania:rune_summer"
+			}]
+		}
+		{
+			x: 1.0d
+			y: -14.0d
+			hide_dependency_lines: true
+			dependencies: ["58B5E390E3B64AD0"]
+			id: "64E099FDDA54A995"
+			tasks: [{
+				id: "0EA929B3AF69F75B"
+				type: "item"
+				item: "botania:rune_autumn"
+			}]
+		}
+		{
+			x: 1.0d
+			y: -15.0d
+			hide_dependency_lines: true
+			dependencies: ["58B5E390E3B64AD0"]
+			id: "4E6F6B713E59808F"
+			tasks: [{
+				id: "604D1CA0B050ADFE"
+				type: "item"
+				item: "botania:rune_winter"
+			}]
+		}
+		{
+			x: -4.0d
+			y: -15.0d
+			hide_dependency_lines: true
+			dependencies: ["58B5E390E3B64AD0"]
+			id: "640289F04F254B94"
+			tasks: [{
+				id: "4AC2D83819EE0EAC"
+				type: "item"
+				item: "botania:rune_lust"
+			}]
+		}
+		{
+			x: -4.0d
+			y: -17.0d
+			hide_dependency_lines: true
+			dependencies: ["58B5E390E3B64AD0"]
+			id: "2D7079C104034425"
+			tasks: [{
+				id: "580137B8AC8696EA"
+				type: "item"
+				item: "botania:rune_gluttony"
+			}]
+		}
+		{
+			x: -3.5d
+			y: -15.5d
+			hide_dependency_lines: true
+			dependencies: ["58B5E390E3B64AD0"]
+			id: "725194169848DD1F"
+			tasks: [{
+				id: "38B2E6C29F4FEC20"
+				type: "item"
+				item: "botania:rune_greed"
+			}]
+		}
+		{
+			x: -5.5d
+			y: -15.5d
+			hide_dependency_lines: true
+			dependencies: ["58B5E390E3B64AD0"]
+			id: "5201449F369E6DB9"
+			tasks: [{
+				id: "30EFAE031476B608"
+				type: "item"
+				item: "botania:rune_sloth"
+			}]
+		}
+		{
+			x: -4.5d
+			y: -16.0d
+			hide_dependency_lines: true
+			dependencies: ["58B5E390E3B64AD0"]
+			id: "430A58389D3B5584"
+			tasks: [{
+				id: "03AC6B5D41AE938E"
+				type: "item"
+				item: "botania:rune_wrath"
+			}]
+		}
+		{
+			x: -3.5d
+			y: -16.5d
+			hide_dependency_lines: true
+			dependencies: ["58B5E390E3B64AD0"]
+			id: "52F504D15D0A76E5"
+			tasks: [{
+				id: "2B5BE3A9E9A1C1C0"
+				type: "item"
+				item: "botania:rune_envy"
+			}]
+		}
+		{
+			x: -5.0d
+			y: -15.0d
+			hide_dependency_lines: true
+			dependencies: ["58B5E390E3B64AD0"]
+			id: "243A1712B9C95491"
+			tasks: [{
+				id: "4095B510F5968459"
+				type: "item"
+				item: "botania:rune_pride"
+			}]
+		}
+		{
+			x: -1.5d
+			y: -16.5d
+			subtitle: "这就是生成法力值的秘诀所在。"
+			description: ["&b吸收爆炸来创造法力。"]
+			hide_dependency_lines: true
+			dependencies: [
+				"70DA74064A08669E"
+				"430A58389D3B5584"
+			]
+			id: "4488EEC2901E3097"
+			tasks: [{
+				id: "5581BE370942632A"
+				type: "item"
+				item: "botania:entropinnyum"
+			}]
+		}
+		{
+			x: -1.0d
+			y: -15.5d
+			subtitle: "这就是生成法力值的秘诀所在。"
+			description: ["&b这种花通过食物生成法力。食物提供的饱食度越高，生成的法力就越多。不过不要给它喂太多同一种食物，否则它会感到无聊，生成的法力会减少。"]
+			hide_dependency_lines: true
+			dependencies: [
+				"0717C4F1FBF468D4"
+				"70DA74064A08669E"
+			]
+			id: "42F43A622586074A"
+			tasks: [{
+				id: "29E657E0BA381F4A"
+				type: "item"
+				item: "botania:gourmaryllis"
+			}]
+		}
+		{
+			x: -2.5d
+			y: -15.5d
+			subtitle: "这就是生成法力值的秘诀所在。"
+			description: ["&b在这朵花附近放置树叶以生成法力。"]
+			hide_dependency_lines: true
+			dependencies: ["2D7079C104034425"]
+			id: "03BF37D961DBB656"
+			tasks: [{
+				id: "2D58A320156F1D2F"
+				type: "item"
+				item: "botania:munchdew"
+			}]
+		}
+		{
+			x: -2.0d
+			y: -16.5d
+			subtitle: "这就是生成法力值的秘诀所在。"
+			description: ["这种花只能在史莱姆区块中从史莱姆生成法力。"]
+			hide_dependency_lines: true
+			dependencies: [
+				"601CBBC2221C6A31"
+				"0717C4F1FBF468D4"
+			]
+			optional: true
+			id: "693AE4A828AFA5AC"
+			tasks: [{
+				id: "3F804DA7FF7633FF"
+				type: "item"
+				item: "botania:narslimmus"
+			}]
+		}
+		{
+			x: -1.5d
+			y: -15.5d
+			subtitle: "这就是生成法力值的秘诀所在。"
+			description: ["&b这朵花通过吸收光球和经验栏中的经验来生成法力。"]
+			hide_dependency_lines: true
+			dependencies: ["491C4DF9E3575F55"]
+			id: "3867AA6E6A4F72D6"
+			tasks: [{
+				id: "4494A8DD794884BC"
+				type: "item"
+				item: "botania:rosa_arcana"
+			}]
+		}
+		{
+			x: -2.0d
+			y: -15.5d
+			subtitle: "这就是生成法力值的秘诀所在。"
+			description: ["&b这种花和蓝雪花一样，只能在同一Y高度的附近熔岩中产生法力。它有冷却时间，用蒸汽表示。"]
+			hide_dependency_lines: true
+			dependencies: [
+				"70DA74064A08669E"
+				"7EB7452FF20807EE"
+			]
+			id: "5FF072A20372ECC3"
+			tasks: [{
+				id: "768599E675919E0B"
+				type: "item"
+				item: "botania:thermalily"
+			}]
+		}
+		{
+			x: 3.0d
+			y: -5.0d
+			subtitle: "要制作祭坛，你必须用4个青金石块摆成十字形，并在外围的4个空格上放置4个活岩。"
+			description: ["&b你必须将一个火花放在聚合板顶部，再将另一个火花放在附近的法力池顶部，以连接两者。"]
+			hide_dependency_lines: true
+			dependencies: [
+				"6C390D6C0500E11B"
+				"455BEBC30F74F274"
+			]
+			id: "71DBB3A62153A095"
+			tasks: [{
+				id: "19BD4F39D8B866A3"
+				type: "item"
+				item: "botania:terra_plate"
+			}]
+			rewards: [
+				{
+					id: "2C2A8A1CB723072E"
+					type: "item"
+					item: "botania:spark"
+					count: 2
+				}
+				{
+					id: "7869F8EC07E18C4A"
+					type: "item"
+					item: "minecraft:lapis_block"
+					count: 2
+				}
+			]
+		}
+		{
+			title: "解锁 Zenith Road 第 2 部分"
+			icon: {
+				id: "ftbquests:custom_icon"
+				Count: 1b
+				tag: {
+					Icon: "botania:block/terra_plate_overlay"
+				}
+			}
+			x: 0.5d
+			y: -17.5d
+			hide_dependency_lines: true
+			dependencies: [
+				"647409B531C5EDF8"
+				"64E099FDDA54A995"
+				"7EB7452FF20807EE"
+				"52F504D15D0A76E5"
+				"70DA74064A08669E"
+				"725194169848DD1F"
+				"2D7079C104034425"
+				"640289F04F254B94"
+				"491C4DF9E3575F55"
+				"243A1712B9C95491"
+				"5201449F369E6DB9"
+				"6977AF428875F527"
+				"0717C4F1FBF468D4"
+				"601CBBC2221C6A31"
+				"4E6F6B713E59808F"
+				"430A58389D3B5584"
+				"3867AA6E6A4F72D6"
+				"42F43A622586074A"
+				"5FF072A20372ECC3"
+				"03BF37D961DBB656"
+				"4488EEC2901E3097"
+			]
+			id: "6C390D6C0500E11B"
+			tasks: [{
+				id: "2B38E544A3355F96"
+				type: "checkmark"
+			}]
+			rewards: [
+				{
+					id: "27831596DA504F32"
+					type: "xp_levels"
+					xp_levels: 10
+				}
+				{
+					id: "32BCBE01BD83D4B3"
+					type: "item"
+					item: {
+						id: "botania:mana_ring"
+						Count: 1b
+						tag: {
+							mana: 500000
+						}
+					}
+				}
+				{
+					id: "7665945145D220B7"
+					type: "item"
+					item: "botania:black_lotus"
+					count: 5
+				}
+			]
+		}
+		{
+			x: 4.0d
+			y: -6.5d
+			subtitle: "现在你离 Zenith 更近了一步！"
+			dependencies: ["71DBB3A62153A095"]
+			id: "439D44DCFFECE7F0"
+			tasks: [{
+				id: "7A02D1ED52D6A420"
+				type: "item"
+				item: "botania:terrasteel_ingot"
+			}]
+			rewards: [{
+				id: "19C69C80429F0BC5"
+				type: "item"
+				item: "botania:mana_ring_greater"
+			}]
+		}
+		{
+			x: 5.0d
+			y: -8.0d
+			dependencies: ["439D44DCFFECE7F0"]
+			id: "564E55F51D981B97"
+			tasks: [{
+				id: "5557BC382E26DBD5"
+				type: "item"
+				item: "botania:mana_mirror"
+			}]
+		}
+		{
+			title: "泰拉钢盔甲"
+			x: 5.5d
+			y: -6.5d
+			subtitle: "这片土地的传奇盔甲。"
+			hide_dependency_lines: true
+			dependencies: ["439D44DCFFECE7F0"]
+			id: "1747B1633FBBA4CE"
+			tasks: [
+				{
+					id: "707D812745A2786D"
+					type: "item"
+					item: {
+						id: "botania:terrasteel_helmet"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "420A01FF9263CE57"
+					type: "item"
+					item: {
+						id: "botania:terrasteel_chestplate"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "5876A3ABA5CFC223"
+					type: "item"
+					item: {
+						id: "botania:terrasteel_leggings"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "03F0CC75972A233B"
+					type: "item"
+					item: {
+						id: "botania:terrasteel_boots"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [
+				{
+					id: "7AE0B7DC2E3670E4"
+					type: "item"
+					item: {
+						id: "spartanshields:terrasteel_basic_shield"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "58B51F030B513F3A"
+					type: "item"
+					item: "botania:aura_ring_greater"
+				}
+			]
+		}
+		{
+			x: 5.5d
+			y: -5.5d
+			subtitle: "在你家试试呗，笑死我了"
+			dependencies: ["439D44DCFFECE7F0"]
+			id: "036427C3A6CB0948"
+			tasks: [{
+				id: "507CBA059F9EA3B3"
+				type: "item"
+				item: "botania:terraform_rod"
+			}]
+		}
+		{
+			x: 6.5d
+			y: -5.5d
+			subtitle: "这把优雅的镐子能轻松滑过并击碎石头。"
+			hide_dependency_lines: true
+			dependencies: ["439D44DCFFECE7F0"]
+			id: "1B7D12EE7484FB72"
+			tasks: [{
+				id: "11A8BED3583D4422"
+				type: "item"
+				item: {
+					id: "botania:terra_pick"
+					Count: 1b
+					tag: {
+						Damage: 0
+						mana: 9999
+					}
+				}
+			}]
+		}
+		{
+			x: 7.5d
+			y: -5.5d
+			description: ["&b按住 Shift 并右键以激活 AOE 模式。"]
+			hide_dependency_lines: true
+			dependencies: ["439D44DCFFECE7F0"]
+			id: "6D1A8B66511610CA"
+			tasks: [{
+				id: "5A14DE236E14EDC9"
+				type: "item"
+				item: {
+					id: "botania:terra_pick"
+					Count: 1b
+					tag: {
+						Damage: 0
+						mana: 999999
+					}
+				}
+			}]
+		}
+		{
+			x: 8.5d
+			y: -5.5d
+			hide_dependency_lines: true
+			dependencies: ["439D44DCFFECE7F0"]
+			id: "7B5758C817C64AE4"
+			tasks: [{
+				id: "5B97D390D381488F"
+				type: "item"
+				item: {
+					id: "botania:terra_pick"
+					Count: 1b
+					tag: {
+						Damage: 0
+						mana: 9999999
+					}
+				}
+			}]
+		}
+		{
+			x: 9.5d
+			y: -5.5d
+			hide_dependency_lines: true
+			dependencies: ["439D44DCFFECE7F0"]
+			id: "01A8392343630D1B"
+			tasks: [{
+				id: "61E08B7CBE0230D1"
+				type: "item"
+				item: {
+					id: "botania:terra_pick"
+					Count: 1b
+					tag: {
+						Damage: 0
+						mana: 99999999
+					}
+				}
+			}]
+		}
+		{
+			x: 10.5d
+			y: -5.5d
+			hide_dependency_lines: true
+			dependencies: ["439D44DCFFECE7F0"]
+			id: "15924D1234C86A8A"
+			tasks: [{
+				id: "47CD5CB721400F7A"
+				type: "item"
+				item: {
+					id: "botania:terra_pick"
+					Count: 1b
+					tag: {
+						Damage: 0
+						mana: 999999999
+					}
+				}
+			}]
+		}
+		{
+			x: 11.5d
+			y: -5.5d
+			hide_dependency_lines: true
+			dependencies: ["439D44DCFFECE7F0"]
+			id: "024C9F9C62767CDA"
+			tasks: [{
+				id: "73A22E3DC3F1737D"
+				type: "item"
+				item: {
+					id: "botania:terra_pick"
+					Count: 1b
+					tag: {
+						Damage: 0
+						mana: 2147483646
+					}
+				}
+			}]
+		}
+		{
+			x: 12.5d
+			y: -5.5d
+			hide_dependency_lines: true
+			dependencies: ["439D44DCFFECE7F0"]
+			id: "21F15A1A9DBEC401"
+			tasks: [{
+				id: "7673129D33C7E5A6"
+				type: "item"
+				item: {
+					id: "botania:terra_pick"
+					Count: 1b
+					tag: {
+						tipped: 1b
+						Damage: 0
+						mana: 999999
+					}
+				}
+			}]
+		}
+		{
+			x: 7.0d
+			y: -6.5d
+			subtitle: "这把被遗弃的斧头能像切黄油一样砍断树木。"
+			hide_dependency_lines: true
+			dependencies: ["439D44DCFFECE7F0"]
+			id: "6E1DBD49F42F8613"
+			tasks: [{
+				id: "4F895DBB9DC5C568"
+				type: "item"
+				item: {
+					id: "botania:terra_axe"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "594878727D4F1286"
+				type: "item"
+				item: "botania:temperance_stone"
+			}]
+		}
+		{
+			title: "荆棘回旋镖"
+			x: 6.0d
+			y: -9.5d
+			subtitle: "6个丛林孢子和9个毒刺……"
+			dependencies: ["564E55F51D981B97"]
+			id: "06101B0613479D19"
+			tasks: [{
+				id: "4B0B50F881D6EA36"
+				type: "item"
+				title: "最多可堆叠六个。"
+				item: "botania:thorn_chakram"
+				count: 6L
+			}]
+			rewards: [{
+				id: "3628DEC2404413FB"
+				type: "item"
+				title: "这不是一样的东西吗？"
+				item: {
+					id: "aquamirae:poisoned_chakra"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			x: 7.0d
+			y: -8.5d
+			subtitle: "我记得游戏里本来没有这个东西的……"
+			dependencies: ["06101B0613479D19"]
+			id: "3A634D80F94DF0A1"
+			tasks: [{
+				id: "4AC014B72714651B"
+				type: "item"
+				item: "botania:flare_chakram"
+			}]
+			rewards: [
+				{
+					id: "5DF9BDD2EE4644D6"
+					type: "item"
+					title: "你现在只是在跟我开玩笑吧。"
+					item: {
+						id: "quark:flamerang"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "63F3704A653B7FB2"
+					type: "item"
+					item: "botania:cosmetic_orange_shades"
+				}
+				{
+					id: "5F6F49B725BC0113"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+		{
+			title: "泰拉之刃。"
+			x: 3.0d
+			y: -10.5d
+			subtitle: "一把由破碎英雄之剑——哦不，是Terrasteel锻造的武器，它能驾驭自然（和法力）的力量"
+			dependencies: [
+				"06101B0613479D19"
+				"1B7D12EE7484FB72"
+				"6E1DBD49F42F8613"
+			]
+			id: "6303D592AB0B0578"
+			tasks: [{
+				id: "44465C3DDB94474A"
+				type: "item"
+				item: {
+					id: "botania:terra_sword"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "15A309EC7F5508EE"
+				type: "item"
+				item: {
+					id: "special_drops:villager_hero_buff"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			x: 9.0d
+			y: -4.5d
+			hide_dependency_lines: true
+			dependencies: [
+				"1B7D12EE7484FB72"
+				"6E1DBD49F42F8613"
+				"6303D592AB0B0578"
+			]
+			id: "1AC84A26E2ECBCA3"
+			tasks: [{
+				id: "41C56DEB35AC037F"
+				type: "item"
+				item: {
+					id: "botania:terra_pick"
+					Count: 1b
+					tag: {
+						Damage: 0
+						mana: 999999
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "53BAEA59C741ABFB"
+					type: "item"
+					team_reward: true
+					item: {
+						id: "botania:terra_sword"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "735D6F1153499F97"
+					type: "item"
+					item: {
+						id: "spartanshields:terrasteel_tower_shield"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 2.0d
+			y: -11.5d
+			subtitle: "我发誓这看起来好眼熟……"
+			dependencies: [
+				"376B25F6A737C449"
+				"6303D592AB0B0578"
+			]
+			id: "174EEE227CF2E049"
+			tasks: [{
+				id: "61CE18B45A5A6376"
+				type: "item"
+				item: {
+					id: "botania:star_sword"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "3168C170088ACE9A"
+				type: "item"
+				item: "ars_nouveau:familiar_starbuncle"
+			}]
+		}
+		{
+			x: 4.0d
+			y: -11.5d
+			subtitle: "Influx Waver？"
+			dependencies: [
+				"376B25F6A737C449"
+				"6303D592AB0B0578"
+			]
+			id: "45780BF7118EF1C5"
+			tasks: [{
+				id: "0CAA77C79EF7C376"
+				type: "item"
+				item: {
+					id: "botania:thunder_sword"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "35DAA6AA8D203FB4"
+					type: "item"
+					item: {
+						id: "iter_rpg:thunderclap"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "07AF8D094F3BC7AA"
+					type: "item"
+					item: {
+						id: "irons_spellbooks:scroll"
+						Count: 1b
+						tag: {
+							ISB_spell: {
+								type: 24
+								level: 6
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 2.0d
+			y: -9.5d
+			subtitle: "消耗法力来召唤箭矢。"
+			dependencies: [
+				"6303D592AB0B0578"
+				"07FB7AC46E0E62E5"
+			]
+			id: "66450ED868A95471"
+			tasks: [{
+				id: "45589CF96DFC7934"
+				type: "item"
+				item: {
+					id: "botania:crystal_bow"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "49364706ED62E8DD"
+					type: "item"
+					item: "castle_in_the_sky:laputa_core"
+				}
+				{
+					id: "16DF946D4AD409C9"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+		{
+			x: -1.0d
+			y: -5.5d
+			dependencies: ["33139F1ABC26BD02"]
+			id: "2863582A68643D38"
+			tasks: [{
+				id: "7FF4EFAFC351C610"
+				type: "item"
+				item: {
+					id: "botania:livingwood_bow"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "40DACF6EC0D3819C"
+					type: "item"
+					item: "minecraft:arrow"
+					count: 32
+				}
+				{
+					id: "12A8C3E983F37F27"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			x: 3.0d
+			y: -9.0d
+			subtitle: "真正的末影人克星"
+			dependencies: ["6303D592AB0B0578"]
+			id: "177905B9D1EDE55F"
+			tasks: [{
+				id: "2C8C721C2950E19C"
+				type: "item"
+				item: {
+					id: "botania:ender_dagger"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "1CD64C09808D5011"
+				type: "item"
+				item: {
+					id: "majruszsdifficulty:soul_jar"
+					Count: 1b
+					tag: { }
+				}
+			}]
+		}
+		{
+			x: 1.5d
+			y: -10.5d
+			dependencies: ["6303D592AB0B0578"]
+			id: "7BDF0FBC178FAF63"
+			tasks: [{
+				id: "45EBBC37B5B10F33"
+				type: "item"
+				item: {
+					id: "botania:elementium_sword"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "39D3A5EF2A30EC9D"
+				type: "item"
+				item: "iter_rpg:elemental_fragment"
+			}]
+		}
+	]
+	quest_links: [ ]
+}

@@ -1,0 +1,258 @@
+# AI 初翻，未人工校对
+{
+	id: "634294A2160DBFAA"
+	group: "0CBBDFA3CE11DE52"
+	order_index: 0
+	filename: "the_basics"
+	title: "基础知识"
+	icon: {
+		id: "irons_spellbooks:copper_spell_book"
+		Count: 1b
+		tag: {
+			ISB_Spells: {
+				mustEquip: 1b
+				maxSpells: 5
+				data: [ ]
+				spellWheel: 1b
+			}
+		}
+	}
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "魔法入门指南"
+			x: 0.0d
+			y: 0.0d
+			subtitle: "学习如何成为一名终极巫师！"
+			id: "53571E08C3033705"
+			tasks: [{
+				id: "3E11EEAB49F598BC"
+				type: "checkmark"
+				title: "初级魔法师"
+			}]
+			rewards: [
+				{
+					id: "25D83A158D331629"
+					type: "item"
+					item: {
+						id: "irons_spellbooks:copper_spell_book"
+						Count: 1b
+						tag: {
+							ISB_Spells: {
+								mustEquip: 1b
+								maxSpells: 5
+								data: [ ]
+								spellWheel: 1b
+							}
+						}
+					}
+				}
+				{
+					id: "07DEC7945E12DB28"
+					type: "item"
+					item: {
+						id: "irons_spellbooks:scroll"
+						Count: 1b
+						tag: {
+							ISB_spell: {
+								type: 4
+								level: 1
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "学习如何使用魔法书和魔法！"
+			icon: {
+				id: "irons_spellbooks:scroll"
+				Count: 1b
+				tag: {
+					"quark:RuneColor": {
+						Count: 1b
+						id: "quark:blank_rune"
+					}
+				}
+			}
+			x: 1.0d
+			y: -1.0d
+			subtitle: "卷轴在世界各地的战利品箱中很容易找到！在没有附魔书的情况下使用时会消耗掉，所以请在附魔台使用前保存它们。"
+			dependencies: ["53571E08C3033705"]
+			id: "5EAD3791A290869C"
+			tasks: [
+				{
+					id: "6F7E4943B51ED2D8"
+					type: "item"
+					title: "任意卷轴"
+					item: {
+						id: "irons_spellbooks:scroll"
+						Count: 1b
+						tag: {
+							"quark:RuneColor": {
+								Count: 1b
+								id: "quark:blank_rune"
+							}
+						}
+					}
+					consume_items: true
+				}
+				{
+					id: "7CFB2B0E22026B32"
+					type: "item"
+					item: "irons_spellbooks:inscription_table"
+					consume_items: false
+				}
+				{
+					id: "570A4833E1909A96"
+					type: "advancement"
+					title: "将咒语刻入一本魔咒书中！"
+					icon: "minecraft:writable_book"
+					advancement: "irons_spellbooks:irons_spellbooks/make_inscription_table"
+					criterion: ""
+				}
+			]
+			rewards: [
+				{
+					id: "454B31658A3B0C21"
+					type: "item"
+					item: {
+						id: "irons_spellbooks:wandering_magician_helmet"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "60F11BC8CFF02418"
+					type: "item"
+					item: {
+						id: "irons_spellbooks:wandering_magician_chestplate"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "学习如何在卷轴锻造炉中制作法术！"
+			icon: "irons_spellbooks:scroll_forge"
+			x: 3.5d
+			y: 0.5d
+			dependencies: ["5EAD3791A290869C"]
+			id: "7C04F9F8C09FCD15"
+			tasks: [
+				{
+					id: "4D4163844D210171"
+					type: "item"
+					item: "irons_spellbooks:scroll_forge"
+				}
+				{
+					id: "05AFD8FE1E6471E6"
+					type: "advancement"
+					title: "制作一个法术！"
+					icon: "enigmaticlegacy:lore_inscriber"
+					advancement: "irons_spellbooks:irons_spellbooks/make_scroll_forge"
+					criterion: ""
+				}
+			]
+			rewards: [
+				{
+					id: "23455B25F155F183"
+					type: "loot"
+					exclude_from_claim_all: true
+					table_id: 443804392859236075L
+				}
+				{
+					id: "11C3774B977B91FE"
+					type: "item"
+					item: "minecraft:paper"
+					count: 10
+				}
+				{
+					id: "5189D1534F71BEF7"
+					type: "item"
+					item: "ob_core:magic_dust"
+				}
+			]
+		}
+		{
+			title: "学习如何将法术刻印到武器上，并升级法术书！"
+			icon: "irons_spellbooks:arcane_anvil"
+			x: 3.5d
+			y: -2.0d
+			dependencies: [
+				"5EAD3791A290869C"
+				"7C04F9F8C09FCD15"
+			]
+			id: "6673989FE039A5BF"
+			tasks: [
+				{
+					id: "1BBE071CD09E1B08"
+					type: "item"
+					item: "irons_spellbooks:arcane_anvil"
+				}
+				{
+					id: "13517EBB9A8E376B"
+					type: "advancement"
+					title: "使用神秘铁砧！"
+					icon: {
+						id: "ftbquests:custom_icon"
+						Count: 1b
+						tag: {
+							Icon: "irons_spellbooks:textures/block/inscription_table_ink.png"
+						}
+					}
+					advancement: "irons_spellbooks:irons_spellbooks/make_arcane_anvil"
+					criterion: ""
+				}
+			]
+			rewards: [
+				{
+					id: "78E3585C02DFE2CD"
+					type: "item"
+					item: {
+						id: "soulsweapons:comet_spear"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "7C2CEBF61FD6B5BD"
+					type: "item"
+					item: {
+						id: "reliquary:magicbane"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "7129C33FBEF5012A"
+					type: "item"
+					item: {
+						id: "born_in_chaos_v1:staffof_magic_arrows"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "7E01909D4F39B445"
+					type: "item"
+					item: "ob_core:magic_cloth"
+					count: 4
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+}
