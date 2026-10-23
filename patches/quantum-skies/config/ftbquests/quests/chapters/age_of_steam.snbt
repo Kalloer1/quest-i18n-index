@@ -1,0 +1,1160 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "rsquare"
+	filename: "age_of_steam"
+	group: "693226878D58638A"
+	icon: "gtceu:bronze_firebox_casing"
+	id: "59A4BB1E592E2980"
+	order_index: 0
+	quest_links: [{
+		id: "36D76B08B10B0992"
+		linked_quest: "519211F737787727"
+		size: 1.25d
+		x: -3.0d
+		y: -3.0d
+	}]
+	quests: [
+		{
+			dependencies: ["5D0B8F0841154E4C"]
+			dependency_requirement: "one_started"
+			description: [
+				"虽然&6铁&r和&6锻铁&r能做很好的工具，但&6青铜&r似乎有特殊的热性能，适合高温环境。"
+				""
+				"用一些&9木炭&r和可疑地充足的水，你就可以建造一些简单的蒸汽锅炉。"
+				""
+				"这样，你就可以开始机械化了。蒸汽动力机器肯定能比你用旧工具更高效地生产这些板料和粉碎石头。"
+			]
+			icon: "gtceu:bronze_firebox_casing"
+			id: "21913378FC451B5B"
+			shape: "hexagon"
+			size: 2.0d
+			subtitle: "蒸汽动力"
+			tasks: [{
+				id: "25188BDF3238891B"
+				title: "青铜时代"
+				type: "checkmark"
+			}]
+			title: "青铜时代"
+			x: -1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["21913378FC451B5B"]
+			description: [
+				"锅炉产生的蒸汽将自动输出到已连接的管道中。"
+				""
+				"&6Bronze&r fluid pipes are good enough for early game needs.  A tiny or small pipe will complete the quest."
+				""
+				"当你能使用&6Lead&r时，&6Potin&r会成为一段时间内最好的管道材料。"
+			]
+			id: "614BCEF3ADD530AC"
+			subtitle: "Gregic流体传输系统"
+			tasks: [{
+				id: "3BA9B4D27EFC9391"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "gtceu:bronze_tiny_fluid_pipe"
+							}
+							{
+								Count: 1b
+								id: "gtceu:bronze_small_fluid_pipe"
+							}
+						]
+					}
+				}
+				title: "青铜流体管道"
+				type: "item"
+			}]
+			title: "基础流体管道"
+			x: -3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["21913378FC451B5B"]
+			description: [
+				"&dBoilers&r 可以是低压/高压的，使用固体或液体燃料。它们输出的蒸汽种类相同，但速率不同。"
+				""
+				"要用水填满它，请用容器点击UI中间的栏位。 &9水桶&r 或 &9木桶&r 都可以。"
+				""
+				"You can run your &dLow Pressure Steam Solid Boiler&r on &9charcoal&r and it will produce steam for a &mlong time&r little while. Like a lot of things, you'll probably want to make more than one."
+				""
+				"液体锅炉产生的蒸汽是普通锅炉的两倍，但它们需要&9玻璃&r。一旦能制作玻璃，就应该考虑使用它们。"
+			]
+			id: "2A49DB74D9276F0A"
+			subtitle: "现在我们开始烹饪了"
+			tasks: [{
+				id: "24EFB2B9A5D066A6"
+				item: "gtceu:lp_steam_solid_boiler"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7015689EEBC11F93"]
+			description: [
+				"&2Forge Hammer&r 机器能完成你锤子能做的事，但却不会损耗耐久度。"
+				""
+				"&dForge hammers&r 每3个锭可制作2个板，比手动操作产量高50%！"
+				""
+				"将&2Forge Hammers&r与&dRock Crusher&r结合，将&6Cobblestone&r锤成&6Gravel&r，将&6Gravel&r筛成&6Sand&r，将&6Sand&r筛成&6Dust&r，以及其他可筛物，实现材料收集的自动化。"
+			]
+			id: "7EF6C86B728F04E0"
+			subtitle: "并非真正的雷神之锤"
+			tasks: [{
+				id: "1C08026B89CAC872"
+				item: "gtceu:lp_steam_forge_hammer"
+				type: "item"
+			}]
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["2A49DB74D9276F0A"]
+			description: [
+				"&2Rock Crusher&r 能产生源源不断的多种石头，包括在 [&6HV&r] 高压下产生的 &6Obsidian&r。"
+				""
+				"使用时，在其两个面上各放置一个&9Lava&r源方块和一个&9Water&r源方块，然后给它输入蒸汽！"
+				""
+				"你需要各种类型的石头才能继续，因为&b某些矿石被限制在&r特定的碎石中。"
+			]
+			id: "6CF2DB9AD2AC1A0A"
+			subtitle: "Cobblegen 2.0"
+			tasks: [{
+				id: "194343741E6FD138"
+				item: "gtceu:lp_steam_rock_crusher"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["2A49DB74D9276F0A"]
+			description: [
+				"&dCompressor&r 是一种能将金块压制成锭，或将锭压制成方块的机器。"
+				""
+				"我们需要用它来制作&9Fireclay Bricks&r，建造我们的&dPrimitive Blast Furnace&r。用于焦炉的砖模无法生产出足够坚固、能承受我们生产&6Steel&r所需高温的砖块。"
+			]
+			id: "7015689EEBC11F93"
+			rewards: [{
+				count: 8
+				id: "210AC0A8A40B9D3B"
+				item: "gtceu:ender_pearl_dust"
+				type: "item"
+			}]
+			subtitle: "金块不能合成？"
+			tasks: [{
+				id: "61AB628A5BC0E58D"
+				item: "gtceu:lp_steam_compressor"
+				type: "item"
+			}]
+			x: 0.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["2A49DB74D9276F0A"]
+			description: [
+				"&d合金熔炉&r能让我们生产像&6青铜&r这样的合金，而无需手动混合粉尘。"
+				""
+				"它还解锁了一些新合金，比如 &6Invar&r，这些是我们无法通过混合粉尘制作的。"
+			]
+			id: "03187CD57AEE511A"
+			subtitle: "青铜中的青铜 (Bronze in Bronze)"
+			tasks: [{
+				id: "4C4BFB8044E29448"
+				item: "gtceu:lp_steam_alloy_smelter"
+				type: "item"
+			}]
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7015689EEBC11F93"]
+			description: [
+				"&d原始高炉&r能达到足以熔炼&6钢&r的高温。"
+				""
+				"每种技术层级都有自己的机器外壳。你一直在用的&b低压蒸汽&r外壳由&6青铜&r制成，但&6钢铁&r则开启了高压蒸汽和&7低压电&r机器。"
+				""
+				"用&6锻铁&r炼钢比用&6铁&r更高效，但配方也因燃料而异。在&2PBF&r标签页中查找钢锭配方。在能建造&2EBF&r并解锁更快的炼钢方法前，你至少需要10组材料。"
+				""
+				"由于&6粘土&r很容易获得，你可能想制作&d不止一个&r。 &2PBFs&r可以&b共享外壁&r，请在&3Multiblock Madness&r任务标签页中阅读相关内容。"
+			]
+			id: "133D5E0B6C137D0E"
+			size: 1.25d
+			subtitle: "把温度调高一点"
+			tasks: [
+				{
+					id: "7DA2ECBCFC93C1C0"
+					item: "gtceu:primitive_blast_furnace"
+					type: "item"
+				}
+				{
+					count: 32L
+					id: "2CCBA7303D8A2BAA"
+					item: "gtceu:firebricks"
+					type: "item"
+				}
+			]
+			x: 0.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["7015689EEBC11F93"]
+			description: [
+				"现在有了&9Compressor&r，我们可以把燧石压缩成燧石块，并制作出&9Flint Mesh&r。"
+				""
+				"这个网格为我们开启了一些新材料，包括 &6金&r、&6银&r、&6铅&r和 &6镍&r。你需要一组新的 &9筛子&r来处理这些网格，因为你仍然需要大量来自 &9燧石网格&r的材料。"
+			]
+			id: "3AEF5A87CDA225B6"
+			subtitle: "这真是一个神奇的网格结构"
+			tasks: [{
+				id: "63A1BD0936AF8D61"
+				item: "exnihilosequentia:flint_mesh"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: [
+				"03187CD57AEE511A"
+				"63A1BD0936AF8D61"
+			]
+			description: ["&6Invar&r is a &6Nickel&r-&6Iron&r alloy that we will need in high temperature applications where that our trusty &6Bronze&r won't handle."]
+			id: "0FA3435DBFF62540"
+			tasks: [{
+				id: "20EDF19180E1721C"
+				item: "gtceu:invar_ingot"
+				type: "item"
+			}]
+			x: 3.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["6FC2E9C3153249C9"]
+			description: [
+				"有两种类型的模具：&e铸造模具&r和&e挤出模具&r。"
+				""
+				"像 &9球模&r 和 &9块模&r 这样的铸造模具，现在可以在你的 &9合金熔炉&r 中使用，未来也可以在 &9流体固化器&r 中使用。"
+				""
+				"Extruder Molds 用于 &9Extruder&r，但大多数有用的配方都需要 [&bMV&r] 中压或以上。"
+			]
+			id: "2EE8EB681C6C29C9"
+			rewards: [
+				{
+					id: "78D23BA24EE8DABF"
+					item: "gtceu:small_gear_casting_mold"
+					type: "item"
+				}
+				{
+					id: "160B706D6274C1DB"
+					item: "gtceu:gear_casting_mold"
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "4FFAD123A89161E8"
+					item: "gtceu:ball_casting_mold"
+					type: "item"
+				}
+				{
+					id: "38CE383029EC9F51"
+					item: "gtceu:block_casting_mold"
+					type: "item"
+				}
+			]
+			title: "铸造模具"
+			x: 3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: [
+				"2EE8EB681C6C29C9"
+				"03187CD57AEE511A"
+			]
+			description: [
+				"&6玻璃&r不能直接冶炼，必须在它还热的时候塑形。"
+				""
+				"原版&9玻璃&r是&b初级&b&6玻璃方块&r。随着技术提升，你需要制造更先进的玻璃来适应新的工业流程。"
+				""
+				"&9玻璃管&r是你第一个&b电路&r的重要合成组件。"
+			]
+			id: "3BA5CCEB0BEEB708"
+			rewards: [{
+				count: 8
+				id: "52D439BA41D5293C"
+				item: "gtceu:glass_tube"
+				type: "item"
+			}]
+			subtitle: "玻璃瓶"
+			tasks: [
+				{
+					id: "0F7592295272B1DB"
+					item: "gtceu:glass_tube"
+					type: "item"
+				}
+				{
+					id: "605D912EC0B91226"
+					item: "minecraft:glass"
+					type: "item"
+				}
+			]
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["133D5E0B6C137D0E"]
+			description: [
+				"&6钢&r是 [&7LV&r] 低压机器的&b船体材料&r。"
+				""
+				"你需要大量的&o它&r。这里有一些供你起步用。"
+				""
+				"你应该考虑再造至少一个&9原始高炉&r。和其他&2Gregtech&r的多方块一样，它可以&b共享墙壁&r，所以下一个不需要那么多砖块了。"
+			]
+			icon: "gtceu:steel_ingot"
+			id: "6FC2E9C3153249C9"
+			rewards: [{
+				count: 16
+				id: "5419C045C80B145E"
+				item: "gtceu:steel_ingot"
+				type: "item"
+			}]
+			shape: "gear"
+			size: 1.25d
+			subtitle: "众多开端中的第一个"
+			tasks: [{
+				count: 8L
+				id: "1B376EDE77AE80CB"
+				item: "gtceu:steel_ingot"
+				type: "item"
+			}]
+			title: "钢铁"
+			x: 1.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["21913378FC451B5B"]
+			dependency_requirement: "one_started"
+			description: [
+				"蒸汽机有两种类型：&b低压&r和&b高压&r。它们能处理最高32eu/t的LV配方，转换比例为2mb蒸汽换1eu。"
+				""
+				"低压机器采用青铜船体，速度减慢50%，但蒸汽消耗减半。"
+				""
+				"高压机器都使用它们的青铜对应物作为合成材料，所以不要犹豫！"
+				""
+				"{@pagebreak}"
+				""
+				"蒸汽机的一侧有一个&b方形&r接口。这看起来可能像机器输出，但它是一个&b蒸汽口&r。"
+				""
+				"每次操作后，蒸汽动力机器&o必须&r排放蒸汽，否则会停止工作。请勿在排气口一侧放置方块将其堵住！"
+				""
+				"你可以用&9扳手&r移动通风口，而不会损坏机器。"
+				""
+				"要瞄准任何 &2Gregtech&r 工具，请对准一个方块。 你会看到一个扭曲的 3x3 网格； 大的中心区域是你瞄准的面，长的区域是相邻的面，而小的角是相对的面。"
+			]
+			icon: "gtceu:steam_machine_casing"
+			id: "0AC40EB5B94CBC1C"
+			shape: "circle"
+			subtitle: "蒸汽朋克"
+			tasks: [{
+				id: "5AF289AD250E528C"
+				title: "蒸汽动力机器"
+				type: "checkmark"
+			}]
+			x: -3.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["518C743F49E7BA04"]
+			description: [
+				"第一个无限水源是&dPrimitive Pump&r多方块结构。"
+				""
+				"产水速率理论上与&e生物群系有关&r，但在有更好的方法之前，单个水泵应能满足你的蒸汽需求。"
+				""
+				"确保&d原始水泵&r方块的面朝向多区块结构的长边外侧。"
+				""
+				"如果想让泵式活板门自动输出物品，它必须&e朝下&e。"
+				""
+				"那么，要怎么分配它呢……？"
+			]
+			id: "3881AD90E85DE772"
+			rewards: [{
+				id: "0591B6623CA248A1"
+				item: "gtceu:bronze_drum"
+				type: "item"
+			}]
+			size: 1.25d
+			subtitle: "无限水源 (Infinite Water Source)"
+			tasks: [
+				{
+					id: "11EB7A7413527BF2"
+					item: "gtceu:primitive_pump"
+					type: "item"
+				}
+				{
+					id: "21CFD37E339DC2BA"
+					item: "gtceu:pump_hatch"
+					type: "item"
+				}
+				{
+					count: 10L
+					id: "3F10749EA9274032"
+					item: "gtceu:treated_wood_frame"
+					type: "item"
+				}
+				{
+					count: 10L
+					id: "38DF01E293805351"
+					item: "gtceu:pump_deck"
+					type: "item"
+				}
+			]
+			x: -3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: [
+				"5D0B8F0841154E4C"
+				"25E414BFFACA8771"
+			]
+			description: [
+				"&2Ender Tanks&r 的储罐已经可用，但目前还稍显遥不可及。"
+				""
+				"得益于这个世界异常强大的&e量子相干性&r，你应该能制作出&9纠缠绑定器&r和&9纠缠方块&r来达到类似的效果！"
+				""
+				"&3潜行-右键&r绑定器绑定方块，然后&3右键&r纠缠方块，纠缠方块将像绑定方块一样工作。你可以用这个在你的&5泵口&r上，或者制作一个&9青铜鼓&r作为缓冲器并绑定到它上。"
+			]
+			icon: {
+				Count: 1
+				id: "entangled:item"
+				tag: { }
+			}
+			id: "620AAE9DF52E2391"
+			subtitle: "鬼魅般的超距作用"
+			tasks: [
+				{
+					id: "2BDC55C2CB67B45B"
+					item: {
+						Count: 1
+						id: "entangled:item"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "2D05235A8BBE6A77"
+					item: {
+						Count: 1
+						id: "entangled:block"
+						tag: { }
+					}
+					type: "item"
+				}
+			]
+			title: "量子纠缠 (Quantum Entanglement)"
+			x: 0.0d
+			y: -4.5d
+		}
+		{
+			dependencies: [
+				"63A1BD0936AF8D61"
+				"3AEF5A87CDA225B6"
+			]
+			description: [
+				"&6Potin&r is an alloy of &6Copper&r, &6Tin&r, and &6Lead&r."
+				""
+				"尽管材料简陋，用&6Potin&r制作的&9流体管道&r速度非常快。"
+				""
+				"&6Potin&r gears are also used in the &dSteam Grinder&r multiblock."
+			]
+			id: "38F040C814F383BB"
+			tasks: [{
+				id: "2DD39CBB0376870A"
+				item: "gtceu:potin_ingot"
+				type: "item"
+			}]
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["38F040C814F383BB"]
+			description: [
+				"如果你想知道前期矿物加工的方法，答案就是 &d蒸汽研磨机&r！不过，这里似乎没有多少矿物。"
+				""
+				"&d蒸汽研磨机&r一次可运行8个&d研磨机&r配方，消耗少量蒸汽。"
+				""
+				"不会产生任何副产品。如果需要，可用于刷取&6clay&r。"
+			]
+			icon: "gtceu:steam_grinder"
+			id: "381E8B4BF9C33A9C"
+			size: 1.25d
+			subtitle: "并行化浸渍工艺"
+			tasks: [
+				{
+					id: "61679402426DFCDC"
+					item: "gtceu:steam_grinder"
+					type: "item"
+				}
+				{
+					id: "571ABB7E0C193B01"
+					item: "gtceu:steam_input_hatch"
+					type: "item"
+				}
+				{
+					count: 22L
+					id: "79831F4D4149ECE8"
+					item: "gtceu:steam_machine_casing"
+					type: "item"
+				}
+				{
+					id: "02BBCA03A4348E62"
+					item: {
+						Count: 1
+						id: "itemfilters:or"
+						tag: {
+							items: [
+								{
+									Count: 1b
+									id: "gtceu:steam_input_bus"
+								}
+								{
+									Count: 1b
+									id: "gtceu:ulv_input_bus"
+								}
+								{
+									Count: 1b
+									id: "gtceu:lv_input_bus"
+								}
+							]
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "3D1839CA1566B892"
+					item: {
+						Count: 1
+						id: "itemfilters:or"
+						tag: {
+							items: [
+								{
+									Count: 1b
+									id: "gtceu:steam_output_bus"
+								}
+								{
+									Count: 1b
+									id: "gtceu:ulv_output_bus"
+								}
+								{
+									Count: 1b
+									id: "gtceu:lv_output_bus"
+								}
+							]
+						}
+					}
+					type: "item"
+				}
+			]
+			x: 1.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["0FA3435DBFF62540"]
+			description: [
+				"与&d蒸汽研磨机&r不同，&d蒸汽烤箱&r在高空应该非常实用。"
+				""
+				"&d蒸汽炉&r是一种可一次熔炼8个物品的多方块结构，消耗少量蒸汽。它是&d多熔炉&r勇敢可靠的早期游戏伙伴。"
+			]
+			icon: "gtceu:steam_oven"
+			id: "36913E1373798B1F"
+			size: 1.25d
+			subtitle: "并行冶炼（Parallelized Smelting）"
+			tasks: [
+				{
+					id: "2341AB61310AA731"
+					item: "gtceu:steam_oven"
+					type: "item"
+				}
+				{
+					id: "33DE9E354180EFF9"
+					item: "gtceu:steam_input_hatch"
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "726645A34077206D"
+					item: "gtceu:steam_machine_casing"
+					type: "item"
+				}
+				{
+					id: "74D6A94BB938C2C3"
+					item: {
+						Count: 1
+						id: "itemfilters:or"
+						tag: {
+							items: [
+								{
+									Count: 1b
+									id: "gtceu:steam_input_bus"
+								}
+								{
+									Count: 1b
+									id: "gtceu:ulv_input_bus"
+								}
+								{
+									Count: 1b
+									id: "gtceu:lv_input_bus"
+								}
+							]
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "445CA76A357A4D21"
+					item: {
+						Count: 1
+						id: "itemfilters:or"
+						tag: {
+							items: [
+								{
+									Count: 1b
+									id: "gtceu:steam_output_bus"
+								}
+								{
+									Count: 1b
+									id: "gtceu:ulv_output_bus"
+								}
+								{
+									Count: 1b
+									id: "gtceu:lv_output_bus"
+								}
+							]
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "583A4D5C85AA1F3D"
+					item: "gtceu:bronze_firebox_casing"
+					type: "item"
+				}
+			]
+			x: 3.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["21913378FC451B5B"]
+			description: [
+				"&b蒸汽锅炉&r会自动向相邻机器或&9管道&r的除正面外的所有方向输出蒸汽。 &5低压&r和&5高压&r是等级，它们&c不&r会产生不同类型的蒸汽。"
+				""
+				"所有蒸汽&2机&r和&b涡轮机&r都将&e2mb蒸汽转化为1eu&r电力。 &5低压&r机器的速度减半，但所需的蒸汽量也减半。"
+				""
+				"如果一个配方显示为 &o7 EU/t&r 且耗时 10s，那么 &5低压&r机器将消耗 7mb 蒸汽/次 耗时 20s，而 &5高压&r机器将消耗 14mb 蒸汽/次 耗时 10s。"
+				""
+				"幸运的是，CEu 显示了流体传输速率 &e&o每刻&r，所以选择合适的 &9Pipes&r 应该很容易。"
+				""
+				"你可能会想&e储存蒸汽&r，但它能量密度很低，而且能造的&9储气罐&r比锅炉大不了多少。虽然有&2多区块储罐&r，但最好还是专注于建造&7低压电力&r。"
+			]
+			icon: "gtceu:steam_bucket"
+			id: "76629BD62DA7E658"
+			min_width: 250
+			shape: "circle"
+			subtitle: "不是 App Store 的应用程序"
+			tasks: [{
+				id: "17AAF0D61790B95B"
+				title: "蒸汽动力"
+				type: "checkmark"
+			}]
+			title: "蒸汽动力机械模组"
+			x: -1.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["3BA5CCEB0BEEB708"]
+			description: [
+				"如果你想用电建造和运行机器，就需要&b电缆&r。电缆需要&6橡胶&r来绝缘。"
+				""
+				"&dExtractor&r 可以从 &9sticky resin&r 或 &9rubber wood&r 中提取 &9rubber pulp&r。不过，在用作电线绝缘层之前，还需要进一步处理。"
+			]
+			id: "691D69D77D8399D8"
+			tasks: [{
+				id: "14D5A2986C591C18"
+				item: "gtceu:lp_steam_extractor"
+				type: "item"
+			}]
+			x: 4.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["4A6FD7DCE495D0FB"]
+			description: [
+				"&9Sticky Resin&r 源自 IC2。在 CEu 中，砍伐 &9Rubber Trees&r 时有几率掉落。"
+				""
+				"它在多种配方中可作为原始粘合剂，也是制作橡胶的优良&9橡胶浆&r来源。"
+				""
+				"幸运的是，它不会弄脏你的斧头。"
+			]
+			id: "38367B22FAB52D7B"
+			tasks: [{
+				id: "16BBEDC474B7CF50"
+				item: "gtceu:sticky_resin"
+				type: "item"
+			}]
+			x: 7.5d
+			y: -1.5d
+		}
+		{
+			dependencies: [
+				"2A49DB74D9276F0A"
+				"3AEF5A87CDA225B6"
+			]
+			description: [
+				"你的第一个 &dMacerator&r 会取代你的 &aMortar&r，用于许多简单的粉碎配方。"
+				""
+				"目前最相关的，它制造&9Clay Dust&r和&9Brick Dust&r的效率是使用砂浆的4倍，让你更容易制作&9Firebricks&r来建造你的&dPrimitive Blast Furnace&r。"
+				""
+				"这也为矿石加工开辟了副产品，但等你需要时，你已经有更好的&dMacerators&r了。"
+			]
+			id: "6AFC58625C408E9C"
+			rewards: [
+				{
+					count: 32
+					id: "26BD78D425951A43"
+					item: "minecraft:brick"
+					type: "item"
+				}
+				{
+					id: "633858C187BC8E86"
+					item: "minecraft:diamond"
+					type: "item"
+				}
+			]
+			subtitle: "Pulverizer"
+			tasks: [{
+				id: "6B7181247ACFF929"
+				item: "gtceu:lp_steam_macerator"
+				type: "item"
+			}]
+			x: -1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["1F05C24215BA9C03"]
+			description: [
+				"&9纸&r的制作并不像你记忆中那么简单。"
+				""
+				"你需要将&9甘蔗&r研磨成&9chad&r，然后用一些水将其加工成纸。如果你建造了&dCoke Oven&r，就可以用收到的&9cells&r一次性制作多个。"
+			]
+			id: "7F92B79A5BDB1CF3"
+			tasks: [{
+				id: "7F0063AA0C3198B3"
+				item: "minecraft:paper"
+				type: "item"
+			}]
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["3BA5CCEB0BEEB708"]
+			description: [
+				"&9真空管&r是&b第一阶&r的&9二极管&r。"
+				""
+				"从技术上讲，这也是ULV级别的电路。"
+			]
+			id: "4EB039318FE075FB"
+			rewards: [{
+				count: 8
+				id: "5DC5FC58C3CECFA5"
+				item: "gtceu:vacuum_tube"
+				type: "item"
+			}]
+			subtitle: "第一二极管"
+			tasks: [{
+				count: 2L
+				id: "42C47D8DF583AE38"
+				item: "gtceu:vacuum_tube"
+				type: "item"
+			}]
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["38367B22FAB52D7B"]
+			description: ["&9树脂印刷电路板&r是&b第一级&r的&9电路板&r。"]
+			id: "153FB81A91251B19"
+			rewards: [{
+				count: 4
+				id: "184EEE4E8411482D"
+				item: "gtceu:resin_printed_circuit_board"
+				type: "item"
+			}]
+			subtitle: "第一电路板"
+			tasks: [{
+				id: "168444D5C9F33F52"
+				item: "gtceu:resin_printed_circuit_board"
+				type: "item"
+			}]
+			x: 7.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7F92B79A5BDB1CF3"]
+			description: ["&9电阻器&r是&b第一阶&r的&9电阻器&r。"]
+			id: "69547D83C3F20F38"
+			rewards: [{
+				count: 8
+				id: "3FA2503713B18F4A"
+				item: "gtceu:resistor"
+				type: "item"
+			}]
+			subtitle: "第一电阻器"
+			tasks: [{
+				count: 2L
+				id: "5B8350647BA4E2E1"
+				item: "gtceu:resistor"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["1ECD7E6A67B32B50"]
+			description: [
+				"&6红合金&r历史悠久，可以追溯到 Tekkit/RedPower 时代。"
+				""
+				"虽然粗糙，但对于在原始的&b第一电路&r上传输信号来说，已经足够了。"
+			]
+			id: "247B6BC1C8F5A491"
+			tasks: [{
+				id: "4B828C866329D0EF"
+				item: "gtceu:red_alloy_ingot"
+				type: "item"
+			}]
+			x: 7.5d
+			y: -3.0d
+		}
+		{
+			dependencies: [
+				"38367B22FAB52D7B"
+				"691D69D77D8399D8"
+				"0D51859AFB996150"
+			]
+			description: [
+				"&6橡胶&r是一种重要的工业产品：可再生、耐用、柔韧，且是良好的绝缘体。"
+				""
+				"你需要制作&9橡胶片&r来转换电线并创造&b电缆&r。"
+				""
+				"你第一次使用线缆是建造&9基础电子电路&r，但很快你就会用它们来传输电力。"
+			]
+			id: "206489FD5D70CC39"
+			subtitle: "LaTeX"
+			tasks: [
+				{
+					id: "08FB3F6A6AD0820A"
+					item: "gtceu:rubber_ingot"
+					type: "item"
+				}
+				{
+					id: "47F4C0D989D7D860"
+					item: "gtceu:rubber_plate"
+					type: "item"
+				}
+			]
+			x: 6.0d
+			y: -3.0d
+		}
+		{
+			dependencies: [
+				"206489FD5D70CC39"
+				"247B6BC1C8F5A491"
+			]
+			description: [
+				"早期游戏中制作的原始电路需要电线，将信号传输到安装在板上的各个组件之间。"
+				""
+				"&6Red Alloy&r cables will do for your first &7LV&r circuit."
+			]
+			id: "2BBFB81A740AC821"
+			rewards: [{
+				count: 12
+				id: "6C6B6AAC355F2CF4"
+				item: "gtceu:red_alloy_single_cable"
+				type: "item"
+			}]
+			subtitle: "电路导线组件"
+			tasks: [{
+				count: 3L
+				id: "583767CD26CF275C"
+				item: "gtceu:red_alloy_single_cable"
+				type: "item"
+			}]
+			x: 6.0d
+			y: -1.5d
+		}
+		{
+			dependencies: [
+				"153FB81A91251B19"
+				"4EB039318FE075FB"
+				"69547D83C3F20F38"
+				"2BBFB81A740AC821"
+			]
+			description: [
+				"&b信息时代&r即将来临。真快，我们连&b电力&r都还没有呢！"
+				""
+				"此电路可解锁 [&7LV&r] 低压等级及其机器。"
+				""
+				"While &7LV&r machines have the same processing speed to &dHigh-Pressure Steam&r machines, they run on electricity, do not need to vent steam, and can auto-output. Electricity can be buffered with high power density &bbatteries&r."
+				""
+				"像&dBender&r、&dWiremill&r和&dLathe&r等重要机器都从&7LV&r开始，比你现在用的方法省料多了。"
+				""
+				"{@pagebreak}"
+				""
+				"在接下来的几个等级中，你建造的每个新&b电路&r都会包含&9二极管&r、&9电阻器&r、导线组件和一块&9电路板&r。它们都分等级，按电压对齐，并且随着时间的推移，生产起来会变得更加复杂。"
+				""
+				"随着科技水平的提高，你将能生产出更简单的电路，并获得&b更高的产量&r，尽管可能需要更复杂的材料。"
+				""
+				"更多信息请参见&4进度标签页&r。"
+			]
+			id: "4204A78817D2164E"
+			rewards: [{
+				count: 4
+				id: "6DBFF42528FF04BE"
+				item: "gtceu:basic_electronic_circuit"
+				type: "item"
+			}]
+			shape: "gear"
+			size: 1.5d
+			subtitle: "第一电路 (First Circuits)"
+			tasks: [{
+				id: "01C41338061FB1D6"
+				item: "gtceu:basic_electronic_circuit"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["57E5ED548029C284"]
+			description: [
+				"&6Sulfur&r is an important ingredient in the &evulcanization&r of &6Rubber&r."
+				""
+				"未经处理的橡胶在低温下会变黏，无法用于工业用途。"
+				""
+				"你最终会发现许多矿石中都有&6硫磺&r，但目前最简单的获取方式是筛选&9下界岩&r。"
+			]
+			id: "0D51859AFB996150"
+			subtitle: "硫磺石（Brimstone）"
+			tasks: [{
+				id: "0472C142C7D7AC11"
+				item: "gtceu:sulfur_dust"
+				type: "item"
+			}]
+			x: 4.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["6FC2E9C3153249C9"]
+			description: [
+				"现在你有了 &6钢&r，就可以制作 &b高压蒸汽&r 机器了。"
+				""
+				"你应该考虑建造几个&d锅炉&r，因为它们非常省燃料，而且随着你开始为 [&7LV&r] 低压机器发电，你需要产生更多的蒸汽。"
+				""
+				"&d太阳能锅炉&r很贵，但能产生可观的蒸汽，现阶段自动化简单，而且不会结垢。"
+				""
+				"想必你已经发现了，你还能以异常低廉的价格获取大量&b岩浆&r，它可以在&d液体锅炉&r中使用。"
+			]
+			id: "756214B25FF18446"
+			subtitle: "重新加压"
+			tasks: [{
+				id: "43CB27118D68E622"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "gtceu:hp_steam_solid_boiler"
+							}
+							{
+								Count: 1b
+								id: "gtceu:hp_steam_liquid_boiler"
+							}
+							{
+								Count: 1b
+								id: "gtceu:hp_steam_solar_boiler"
+							}
+						]
+					}
+				}
+				title: "高压蒸汽"
+				type: "item"
+			}]
+			title: "高压蒸汽"
+			x: 3.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["6CF2DB9AD2AC1A0A"]
+			description: [
+				"有了蒸汽，&2蒸汽筛&r就能筛出你粉碎的岩石。它的配方和&e产出概率&r与木制筛子基本相同。"
+				""
+				"你可能想知道这是否&e真的&r算是一次升级。现阶段可能还谈不上。"
+				""
+				"&5点击机&r速度较慢，但可以并行处理，且不需要使用电力或蒸汽。它空间利用率低，也没有任何&e背压&r。"
+				""
+				"这些&2GregTech筛子&r可超频，更高等级下产量更高，更紧凑，自动化更干净，需要的网格也更少。"
+				""
+				"任意一个&2GregTech筛子&r都能完成此任务。"
+			]
+			id: "532A2B15292C40A2"
+			size: 1.0d
+			tasks: [{
+				id: "4C4A665D8E0D21BB"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "gtceu:lp_steam_sieve"
+							}
+							{
+								Count: 1b
+								id: "gtceu:hp_steam_sieve"
+							}
+							{
+								Count: 1b
+								id: "gtceu:lv_sieve"
+							}
+							{
+								Count: 1b
+								id: "gtceu:mv_sieve"
+							}
+							{
+								Count: 1b
+								id: "gtceu:hv_sieve"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "用蒸汽进行筛选"
+			x: 0.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["03187CD57AEE511A"]
+			description: [
+				"&2蒸汽熔炉&r是一种多方块&2合金熔炼器&r，可提供早期高效的并行处理。"
+				""
+				"你似乎用了很多&6青铜&r，所以这或许并不是什么坏事。"
+			]
+			id: "11F834A713050938"
+			size: 1.25d
+			subtitle: "并行合金冶炼系统 Parallelized Alloy Smelting"
+			tasks: [{
+				id: "3A97AA584D5E1A7B"
+				item: "steamadditions:steam_foundry"
+				type: "item"
+			}]
+			x: 4.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["6FC2E9C3153249C9"]
+			description: [
+				"&2蒸汽分离器&r是一种多方块&2离心机&r。"
+				""
+				"它无法使用流体输出口，因此仅限于高效分离从 &2蒸汽研磨机&r 中可能获得的粉尘。"
+			]
+			id: "3F1BC72761BB29D0"
+			size: 1.25d
+			subtitle: "并行离心分离法 (Parallelized Centrifuging)"
+			tasks: [{
+				id: "31F445C1B9B21A5C"
+				item: "steamadditions:steam_separator"
+				type: "item"
+			}]
+			x: 1.5d
+			y: -4.5d
+		}
+		{
+			dependencies: ["25E414BFFACA8771"]
+			description: [
+				"想去一些难以到达的地方，试试&2缩小&r吧！"
+				""
+				"该缩小装置被配置为使用时不需要或消耗电力。"
+			]
+			id: "3270B4C0943EC51A"
+			subtitle: "小可爱"
+			tasks: [{
+				id: "31EE25E286F15DFC"
+				item: {
+					Count: 1
+					id: "shrink:shrinking_device"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -3.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["7015689EEBC11F93"]
+			description: [
+				"压缩 &9末影珍珠粉&r，就能制作出 &9末影粉尘&r！"
+				""
+				"&9末影尘&r在许多前期配方中替代了&9末影珍珠&r，因为你需要一个&2爆冲压缩机&r才能生产珍珠，而这...要很久以后了。"
+			]
+			id: "25E414BFFACA8771"
+			rewards: [{
+				count: 4
+				id: "0344D1046DD6178D"
+				item: "ae2:ender_dust"
+				type: "item"
+			}]
+			tasks: [{
+				id: "6A4490C372128F10"
+				item: "ae2:ender_dust"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["25E414BFFACA8771"]
+			description: [
+				"现在你有了 &9末影尘&r，就可以探索 &2Tom 的简易储物柜&r 并制作 &2旅行锚点&r 了。"
+				""
+				"&2Tom's simple storage&r 能让你创建物品栏网络，并为网络附加一个合成终端。结合 &2collossal chest&r 使用，在锁定 &2Applied Energistics 2&r 之前，是前期存储物品的绝佳选择。"
+				""
+				"&2旅行锚点&r是用作路标的方块，能让你瞬间传送到基地各处。随着自动化程度提高，能立刻回到中央仓库能节省不少零碎时间。"
+			]
+			icon: "toms_storage:ts.adv_wireless_terminal"
+			id: "1358CF41FBC69F5F"
+			min_width: 250
+			shape: "circle"
+			subtitle: "身体在移动中"
+			tasks: [{
+				id: "25AD733F5CCEA1CC"
+				title: "模拟物流系统 (Analog Logistics)"
+				type: "checkmark"
+			}]
+			x: -1.5d
+			y: -4.5d
+		}
+	]
+	subtitle: ["&6Bronze&r and the Age of Steam Power"]
+	title: "蒸汽动力"
+}

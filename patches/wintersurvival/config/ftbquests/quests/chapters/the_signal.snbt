@@ -1,0 +1,183 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "the_signal"
+	group: "2D8BFEC18ED120A5"
+	id: "1C26D2C373D54169"
+	order_index: 8
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: [
+				"12D2F4A5B77EC595"
+				"678612F66886B812"
+				"7BFF53B64AEBA784"
+				"4FAC7D7CFC81BE92"
+			]
+			description: ["出不了陨石坑，谁也出不去。我造了最亮的光，以防有什么东西能从远处看到它。"]
+			hide_until_deps_complete: true
+			icon: "minecraft:lightning_rod"
+			id: "30B6836AD9B9D86D"
+			rewards: [
+				{
+					id: "6BCF17B27D2E57AC"
+					type: "xp"
+					xp: 40
+				}
+				{
+					auto: "invisible"
+					command: "/give {p} minecraft:paper{display:{Name:'{\"text\":\"The Last Signal\",\"italic\":false,\"color\":\"gray\"}'},LastSignal:1b} 1"
+					id: "76E4A64D7318E473"
+					type: "command"
+				}
+			]
+			subtitle: "再试一次，看看行不行。"
+			tasks: [
+				{
+					consume_items: true
+					count: 4L
+					id: "34C3C88C6B46A37C"
+					item: { Count: 4, id: "minecraft:redstone_lamp" }
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "1FCA06CE970E064D"
+					item: "minecraft:lightning_rod"
+					type: "item"
+				}
+			]
+			title: "信号火堆"
+			x: -7.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["30B6836AD9B9D86D"]
+			description: ["不知道是不是真的。站在火边等就知道了。"]
+			id: "0158649FD3FEAD7C"
+			rewards: [
+				{
+					id: "2DFCF93E7539B4E2"
+					type: "xp"
+					xp: 100
+				}
+				{
+					auto: "invisible"
+					command: "/tellraw @p {\"text\":\"[Radio] ...\",\"color\":\"gray\",\"italic\":true}"
+					id: "4987DD6C798AAAC0"
+					team_reward: true
+					type: "command"
+				}
+			]
+			subtitle: "有一束不属于我的光在闪烁着。"
+			tasks: [{
+				consume_items: true
+				id: "7186AD08B0FEB271"
+				item: {
+					Count: 1
+					id: "minecraft:paper"
+					tag: {
+						LastSignal: 1b
+						display: {
+							Name: "{\"text\":\"The Last Signal\",\"italic\":false,\"color\":\"gray\"}"
+						}
+					}
+				}
+				match_nbt: true
+				optional_task: true
+				type: "item"
+			}]
+			title: "结局A：救援？"
+			x: -5.5d
+			y: -6.0d
+		}
+		{
+			dependencies: ["30B6836AD9B9D86D"]
+			description: ["收起相机，合上书本，坐在火堆旁。"]
+			id: "2B6957FA74DED9C5"
+			optional: true
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/title @p title {\"text\":\"You Stayed\",\"color\":\"gray\"}"
+					id: "3D60CD08D3EDE12F"
+					team_reward: true
+					type: "command"
+				}
+				{
+					id: "0943EB2FA35FBC00"
+					type: "xp"
+					xp: 100
+				}
+			]
+			subtitle: "我停止发送报告了。"
+			tasks: [{
+				consume_items: true
+				id: "512356F363D1725F"
+				item: {
+					Count: 1
+					id: "minecraft:paper"
+					tag: {
+						LastSignal: 1b
+						display: {
+							Name: "{\"text\":\"The Last Signal\",\"italic\":false,\"color\":\"gray\"}"
+						}
+					}
+				}
+				match_nbt: true
+				type: "item"
+			}]
+			title: "结局 B：留下来"
+			x: -8.0d
+			y: -6.0d
+		}
+		{
+			dependencies: [
+				"30B6836AD9B9D86D"
+				"4ED6316313071D12"
+				"2D78E2D8752DD4D4"
+				"26D89A4A5B33A68C"
+			]
+			description: ["每一根原木，每一张图的说明，都是我的。没人回应过无线电。我干脆烧毁所有回忆，从头开始。"]
+			id: "7CEA392B38368BBD"
+			invisible: true
+			subtitle: "检查了字迹的工整程度。"
+			tasks: [
+				{
+					consume_items: true
+					id: "64F67BD017A521FA"
+					item: {
+						Count: 1
+						id: "minecraft:paper"
+						tag: {
+							LastSignal: 1b
+							display: {
+								Name: "{\"text\":\"The Last Signal\",\"italic\":false,\"color\":\"gray\"}"
+							}
+						}
+					}
+					match_nbt: true
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 5L
+					id: "744B589058CC6A92"
+					item: { Count: 5, id: "exposure:photograph" }
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "7BCD0D9587B1D2A3"
+					item: "minecraft:writable_book"
+					type: "item"
+				}
+			]
+			title: "结局 C：真相"
+			x: -7.0d
+			y: -2.5d
+		}
+	]
+	title: "信号源"
+}

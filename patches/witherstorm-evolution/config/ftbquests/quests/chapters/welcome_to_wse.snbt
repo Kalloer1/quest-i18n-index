@@ -1,0 +1,277 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "welcome_to_wse"
+	group: ""
+	icon: {
+		Count: 1b
+		id: "witherstormmod:amulet"
+		tag: { }
+	}
+	id: "226373600B3232D4"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			icon: {
+				Count: 1b
+				id: "witherstormmod:amulet"
+				tag: { }
+			}
+			id: "5985D20886E8A997"
+			rewards: [
+				{
+					id: "062B1169BCC2F02C"
+					item: {
+						Count: 1b
+						id: "witherstormmod:amulet"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "268FFDEF00716875"
+					item: {
+						Count: 1b
+						id: "witherstormmod:phasometer"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "4BB68D10A5F94944"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "5847C25FFC0D5F45"
+					item: "ftbquests:book"
+					type: "item"
+				}
+				{
+					command: "/give @p written_book{pages:['[\"\",{\"text\":\"Guide to WSEVO\\\\nby \"},{\"text\":\"ivor\",\"obfuscated\":true},{\"text\":\"\\\\n\\\\n\\\\n\\\\nYour adventure is begining. \\\\n\\\\nGather the nessecary materials before the storm.\\\\n\\\\n \",\"color\":\"reset\"}]','{\"text\":\"\\\\nFrom there you must summon the wither storm. \\\\n\\\\nAnd now you must decide how you continue your adventure.\\\\n\\\\nKeep obtaining powerful items. Relics, and weapons.\"}','[\"\",{\"text\":\"And once you are prepared. Face the storm\\'s Followers. And craft the \\\\u0020\"},{\"text\":\"Formidibomb\",\"color\":\"red\"},{\"text\":\"\\\\n\\\\nThe most powerful bomb ever to be created.\\\\n\\\\nYour adventure is only begining. Now. Take on the world.\",\"color\":\"reset\"}]'],title:\"Guide to  WSEVO\",author:\"kIvor\"}"
+					icon: "minecraft:book"
+					id: "71140C0A6D82D94B"
+					silent: true
+					title: "WSEVO 指南"
+					type: "command"
+				}
+			]
+			tasks: [
+				{
+					id: "41386C2B9D097E45"
+					title: "欢迎来到 WSE"
+					type: "checkmark"
+				}
+				{
+					id: "517BED9820A044DF"
+					observe_type: 0
+					timer: 0L
+					to_observe: "minecraft:command_block"
+					type: "observation"
+				}
+			]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5985D20886E8A997"]
+			id: "1C78855DCECBF7AE"
+			tasks: [{
+				advancement: "witherstormmod:main/summon_wither_storm"
+				criterion: ""
+				icon: "minecraft:wither_skeleton_skull"
+				id: "5B0259DF861846EA"
+				type: "advancement"
+			}]
+			x: 1.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["5985D20886E8A997"]
+			id: "68B1C5B6BBC7AFD1"
+			rewards: [{
+				count: 10
+				id: "22FFF11B617936AF"
+				item: "minecraft:emerald"
+				type: "item"
+			}]
+			tasks: [{
+				icon: "minecraft:red_bed"
+				id: "68C07DF3E367A302"
+				structure: "ctov:large/village_plains"
+				type: "structure"
+			}]
+			x: 3.0d
+			y: 1.0d
+		}
+		{
+			dependencies: [
+				"68B1C5B6BBC7AFD1"
+				"5B0259DF861846EA"
+			]
+			id: "09564C18C2251709"
+			rewards: [
+				{
+					id: "4BC2FBE0BD450E12"
+					item: {
+						Count: 1b
+						id: "minecraft:crossbow"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 3
+					id: "38D3702812077D74"
+					item: "minecraft:ender_pearl"
+					type: "item"
+				}
+			]
+			tasks: [{
+				entity: "minecraft:zombie"
+				id: "1B0F2699A1F8645C"
+				type: "kill"
+				value: 10L
+			}]
+			title: "怪物猎人"
+			x: 5.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["09564C18C2251709"]
+			id: "2346BBBF0E553ACC"
+			rewards: [{
+				id: "7F057BE9A86AC148"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				id: "7A1C15F6609EEB12"
+				item: {
+					Count: 1b
+					id: "witherstormmod:formidibomb"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "F-BOMB"
+			x: 7.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["5985D20886E8A997"]
+			description: ["进入下界"]
+			icon: "minecraft:nether_star"
+			id: "52494F7B4A311144"
+			tasks: [{
+				dimension: "minecraft:the_nether"
+				id: "3123EFEDE426BC32"
+				title: "这里是地狱吗？"
+				type: "dimension"
+			}]
+			x: 0.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["52494F7B4A311144"]
+			description: ["进入以太维度"]
+			id: "65A8CF5D49285A89"
+			tasks: [{
+				dimension: "aether:the_aether"
+				icon: "aether:aether_portal_frame"
+				id: "7ED2A6FE4A43581A"
+				title: "天 堂 之 地"
+				type: "dimension"
+			}]
+			x: 0.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["65A8CF5D49285A89"]
+			icon: "minecraft:end_portal_frame"
+			id: "4247103E3C68D488"
+			rewards: [{
+				id: "4293AC4A53678E7E"
+				item: {
+					Count: 1b
+					id: "aether:holy_sword"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			tasks: [{
+				dimension: "minecraft:the_end"
+				id: "71B750396E83D6C6"
+				type: "dimension"
+			}]
+			title: "这就是世界的尽头。"
+			x: 1.5d
+			y: 5.5d
+		}
+		{
+			dependencies: ["52494F7B4A311144"]
+			id: "11C4B9C4B83FE46F"
+			rewards: [
+				{
+					auto: "enabled"
+					description: "这里是刷末地人的好地方"
+					icon: "endermanoverhaul:warped_pearl"
+					id: "32D9A5DD08C8DF6C"
+					title: "扭曲的森林"
+					type: "toast"
+				}
+				{
+					count: 5
+					id: "10E09976C5F5C320"
+					item: "minecraft:gunpowder"
+					type: "item"
+				}
+			]
+			tasks: [{
+				biome: "minecraft:warped_forest"
+				icon: "nethers_exoticism:pitaya_sapling"
+				id: "332A60AA4263F41E"
+				type: "biome"
+			}]
+			title: "扭曲之地"
+			x: 3.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["11C4B9C4B83FE46F"]
+			id: "41E2A13548CA6A18"
+			rewards: [{
+				id: "67C898A7F9EDFEF7"
+				item: "aether:aether_portal_frame"
+				type: "item"
+			}]
+			tasks: [{
+				entity: "cataclysm:netherite_monstrosity"
+				icon: "cataclysm:music_disc_the_harbinger"
+				id: "0D37FA8A86BF132F"
+				type: "kill"
+				value: 1L
+			}]
+			x: 5.5d
+			y: 2.5d
+		}
+		{
+			id: "49A9CA29EB1E0C8B"
+			tasks: [{
+				entity: "minecraft:zombie"
+				id: "31ABE2D0459DFD50"
+				type: "kill"
+				value: 100L
+			}]
+			x: 5.0d
+			y: 4.5d
+		}
+	]
+	title: "欢迎来到 WSE"
+}
