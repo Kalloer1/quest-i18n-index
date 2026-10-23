@@ -1,0 +1,296 @@
+# AI 初翻，未人工校对
+{
+	id: "5390C5F17834FCD9",
+	group: "",
+	order_index: 0,
+	filename: "100_days",
+	title: "100天生存挑战",
+	default_quest_shape: "",
+	quests: [
+		{
+			title: "一个首领已被击败...",
+			x: -17.0d,
+			y: -8.0d,
+			shape: "rsquare",
+			subtitle: "击杀一个独眼巨人",
+			dependencies: ["1C9CE2E2217C2FA1"],
+			dependency_requirement: "all_started",
+			size: 2.0d,
+			id: "57309506A82C0955",
+			tasks: [{
+				id: "45B6D76D6E2C2617",
+				type: "kill",
+				icon: "iceandfire:cyclops_skull",
+				entity: "iceandfire:cyclops",
+				value: 1L
+			}],
+			rewards: [
+				{
+					id: "50096F94D6FEE721",
+					type: "xp_levels",
+					xp_levels: 30
+				},
+				{
+					id: "0CD381C28DD894AE",
+					type: "item",
+					title: "一块可以分享的石头",
+					item: "waystones:sharestone"
+				}
+			]
+		},
+		{
+			title: "100天？放马过来！",
+			icon: "waystones:waystone",
+			x: -27.0d,
+			y: -8.0d,
+			subtitle: "开启你的冒险之旅",
+			dependency_requirement: "one_completed",
+			size: 2.0d,
+			id: "1C9CE2E2217C2FA1",
+			tasks: [{
+				id: "19A27D2F6F503800",
+				type: "dimension",
+				dimension: "minecraft:overworld"
+			}]
+		},
+		{
+			title: "被火焰灼烧的",
+			x: -11.0d,
+			y: -11.0d,
+			shape: "diamond",
+			subtitle: "杀死一只火焰巨龙",
+			description: [""],
+			dependencies: ["57309506A82C0955"],
+			size: 2.0d,
+			id: "58D27CFB557A8D79",
+			tasks: [{
+				id: "4ED473EC70E3388E",
+				type: "kill",
+				icon: "iceandfire:fire_dragon_heart",
+				entity: "iceandfire:fire_dragon",
+				value: 1L
+			}],
+			rewards: [{
+				id: "335D208F468655E0",
+				type: "xp_levels",
+				xp_levels: 60
+			}]
+		},
+		{
+			title: "冰冻的",
+			x: -11.0d,
+			y: -5.0d,
+			shape: "diamond",
+			subtitle: "杀死一只冰之巨龙",
+			dependencies: ["57309506A82C0955"],
+			size: 2.0d,
+			id: "7B05BB9A00F566D6",
+			tasks: [{
+				id: "09AC37CBB005C397",
+				type: "kill",
+				icon: "iceandfire:ice_dragon_heart",
+				entity: "iceandfire:ice_dragon",
+				value: 1L
+			}],
+			rewards: [{
+				id: "67639BFE1BBDFE4C",
+				type: "xp_levels",
+				xp_levels: 60
+			}]
+		},
+		{
+			title: "震惊了，没想到你居然能完成这个任务！",
+			x: -10.0d,
+			y: -8.0d,
+			shape: "diamond",
+			subtitle: "击杀一只闪电巨龙",
+			description: ["击杀一只闪电巨龙"],
+			dependencies: ["57309506A82C0955"],
+			hide: false,
+			size: 2.0d,
+			id: "694454535C52CBA8",
+			tasks: [{
+				id: "6A3868A8DB88576A",
+				type: "kill",
+				icon: "iceandfire:lightning_dragon_heart",
+				entity: "iceandfire:lightning_dragon",
+				value: 1L
+			}],
+			rewards: [{
+				id: "06D8794A0E0DAD7F",
+				type: "xp_levels",
+				xp_levels: 60
+			}]
+		},
+		{
+			title: "被烧焦的...",
+			x: -17.5d,
+			y: 3.5d,
+			shape: "hexagon",
+			subtitle: "找到焦黑森林 (Charred Forest)",
+			hide_dependency_lines: false,
+			dependencies: ["1C9CE2E2217C2FA1"],
+			hide_text_until_complete: true,
+			optional: true,
+			id: "4A5E9E35C45E0E7D",
+			tasks: [{
+				id: "5A40A0AED511DF08",
+				type: "biome",
+				title: "找到通往焦黑森林的道路",
+				icon: "desolation:cinder_fruit_plant",
+				biome: "desolation:charred_forest"
+			}]
+		},
+		{
+			x: -14.0d,
+			y: 0.5d,
+			subtitle: "砍下一个人的头……",
+			dependencies: ["119B622049164C00"],
+			hide: true,
+			optional: true,
+			id: "5141521C0D1F0260",
+			tasks: [{
+				id: "1D14EE109C0CADF2",
+				type: "kill",
+				title: "砍下一个人的头……",
+				icon: "iceandfire:hydra_skull",
+				entity: "iceandfire:hydra",
+				value: 1L
+			}]
+		},
+		{
+			x: -17.5d,
+			y: -2.5d,
+			subtitle: "你的海洋之旅就此开始！",
+			dependencies: ["1C9CE2E2217C2FA1"],
+			hide_text_until_complete: true,
+			optional: true,
+			id: "5126C4D0DC485DA7",
+			tasks: [{
+				id: "24630AB0C082EB12",
+				type: "biome",
+				title: "旅途愉快！",
+				icon: "minecraft:tropical_fish",
+				biome: "minecraft:ocean"
+			}]
+		},
+		{
+			title: "风流倜傥的冒险家",
+			x: -14.0d,
+			y: -2.5d,
+			subtitle: "杀死海上的三位船长（Capitans of the Sea）",
+			dependencies: ["5126C4D0DC485DA7"],
+			hide: true,
+			optional: true,
+			id: "3AB2E93087E34FC5",
+			tasks: [
+				{
+					id: "6EC7DE0B5C260DD6",
+					type: "kill",
+					icon: {
+						id: "piratesandlootersreborn:pirate_spader",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					},
+					entity: "piratesandlootersreborn:capitan_agmair",
+					value: 1L
+				},
+				{
+					id: "63F7B50C00328EDC",
+					type: "kill",
+					icon: {
+						id: "piratesandlootersreborn:pirate_speed_pistol",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					},
+					entity: "piratesandlootersreborn:capitan_roger",
+					value: 1L
+				},
+				{
+					id: "43226B2BD104FC64",
+					type: "kill",
+					icon: {
+						id: "piratesandlootersreborn:armata",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					},
+					entity: "piratesandlootersreborn:capitan_stachu",
+					value: 1L
+				}
+			]
+		},
+		{
+			title: "潜伏的邪恶势力",
+			x: -17.5d,
+			y: 0.5d,
+			subtitle: "找到一个沼泽地 (Locate a Swamp)",
+			dependencies: ["1C9CE2E2217C2FA1"],
+			hide_text_until_complete: true,
+			optional: true,
+			id: "119B622049164C00",
+			tasks: [{
+				id: "422D155D76F566AF",
+				type: "biome",
+				icon: "minecraft:lily_pad",
+				biome: "minecraft:swamp"
+			}]
+		},
+		{
+			x: -14.0d,
+			y: 3.5d,
+			dependencies: ["4A5E9E35C45E0E7D"],
+			hide: true,
+			optional: true,
+			id: "181AA8A3A7BD79F5",
+			tasks: [{
+				id: "2D88302B0F556D59",
+				type: "kill",
+				title: "荒凉之地",
+				entity: "desolation:blackened",
+				value: 1L
+			}]
+		},
+		{
+			x: -17.5d,
+			y: 6.5d,
+			dependencies: ["1C9CE2E2217C2FA1"],
+			optional: true,
+			id: "66EFE40ADD774CBE",
+			tasks: [{
+				id: "5954FBFCB389A8D8",
+				type: "biome",
+				title: "一股黑暗魔法的气息……",
+				icon: "minecraft:dark_oak_sapling",
+				biome: "minecraft:dark_forest"
+			}]
+		},
+		{
+			x: -14.0d,
+			y: 6.5d,
+			dependencies: ["66EFE40ADD774CBE"],
+			hide: true,
+			optional: true,
+			id: "381D0337C50B445A",
+			tasks: [{
+				id: "1E508EECE0F55EDD",
+				type: "kill",
+				title: "杀死黑暗森林的召唤师",
+				icon: {
+					id: "conjurer_illager:conjurer_hat",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				},
+				entity: "conjurer_illager:conjurer",
+				value: 1L
+			}]
+		}
+	]
+}

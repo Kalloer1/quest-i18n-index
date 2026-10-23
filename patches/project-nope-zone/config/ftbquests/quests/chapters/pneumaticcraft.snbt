@@ -1,0 +1,493 @@
+# AI 初翻，未人工校对
+{
+	id: "7D956B49A0FCAE37"
+	group: "119AA2480224C5B4"
+	order_index: 0
+	filename: "pneumaticcraft"
+	title: "Pneumaticcraft"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "压缩铁块 (Compressed Iron)"
+			x: 1.5d
+			y: 1.0d
+			description: ["PneumaticCraft 的主要材料"]
+			dependencies: [
+				"77005776258BA5E7"
+				"28A9589AA4110E29"
+			]
+			id: "19F931C123B8FA43"
+			tasks: [{
+				id: "3879B25C0D4561AA"
+				type: "item"
+				title: "任意数量的 #forge:ingots/compressed_iron"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "forge:ingots/compressed_iron"
+					}
+				}
+			}]
+			rewards: [{
+				id: "5D15F6EC8AF8AC19"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 2
+			}]
+		}
+		{
+			x: 3.5d
+			y: 1.0d
+			description: ["使用可燃物品产生压缩空气。"]
+			dependencies: ["19F931C123B8FA43"]
+			id: "3D3AC89009B346B4"
+			tasks: [{
+				id: "4E5E8A4062E6EDEA"
+				type: "item"
+				item: "pneumaticcraft:air_compressor"
+			}]
+			rewards: [{
+				id: "41CA8B75B3800008"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 2
+			}]
+		}
+		{
+			x: 3.0d
+			y: -1.0d
+			description: ["使用可燃液体产生气压。"]
+			dependencies: ["3D3AC89009B346B4"]
+			id: "1A12C5DB1C64AAF6"
+			tasks: [{
+				id: "005C4518F0668634"
+				type: "item"
+				item: "pneumaticcraft:liquid_compressor"
+			}]
+			rewards: [{
+				id: "315EFBE188421A8C"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 2
+			}]
+		}
+		{
+			x: 4.0d
+			y: -1.0d
+			description: ["将两侧的温度差转化为压缩空气。"]
+			dependencies: ["3D3AC89009B346B4"]
+			id: "74DC8CF8374E33E6"
+			tasks: [{
+				id: "1936CA75924ACCC0"
+				type: "item"
+				item: "pneumaticcraft:thermal_compressor"
+			}]
+			rewards: [{
+				id: "46C7118DDA465B80"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 3
+			}]
+		}
+		{
+			x: 5.0d
+			y: -0.5d
+			description: ["利用阳光产生压缩空气。温度越高越好，但如果过热，它就会停机，你需要进行维修。"]
+			dependencies: ["3D3AC89009B346B4"]
+			id: "1373ED853D5C2F5F"
+			tasks: [{
+				id: "2ADB8BB1766EA6A2"
+				type: "item"
+				item: "pneumaticcraft:solar_compressor"
+			}]
+			rewards: [{
+				id: "1F79F60E4772D293"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 3
+			}]
+		}
+		{
+			title: "Flux 转换"
+			x: 2.0d
+			y: -0.5d
+			description: [
+				"将FE转换为压缩空气。"
+				"Dynamo 将压缩空气转化为 FE。"
+			]
+			dependencies: ["3D3AC89009B346B4"]
+			id: "2A5869609C3AFEE8"
+			tasks: [
+				{
+					id: "67C9981564C24276"
+					type: "item"
+					item: "pneumaticcraft:flux_compressor"
+				}
+				{
+					id: "7D1768E55220DDAA"
+					type: "item"
+					item: "pneumaticcraft:pneumatic_dynamo"
+				}
+			]
+			rewards: [{
+				id: "3D45D736DE08B9D2"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 6
+			}]
+		}
+		{
+			title: "压力舱室"
+			x: 6.5d
+			y: 1.0d
+			description: ["3x3至5x5的多方块结构，通过压力来制作物品。"]
+			dependencies: ["3D3AC89009B346B4"]
+			id: "1AF0713E5345DF46"
+			tasks: [
+				{
+					id: "6A36A7A5CBB3863B"
+					type: "item"
+					item: "pneumaticcraft:pressure_chamber_valve"
+				}
+				{
+					id: "637E0BF540C7D3FF"
+					type: "item"
+					item: "pneumaticcraft:pressure_chamber_interface"
+					count: 2L
+				}
+				{
+					id: "0E2D7B73795E3F11"
+					type: "item"
+					item: "pneumaticcraft:pressure_chamber_wall"
+				}
+				{
+					id: "6757A28DE6C56783"
+					type: "item"
+					item: "pneumaticcraft:pressure_chamber_glass"
+				}
+			]
+			rewards: [{
+				id: "1FA8C7F47292A6CB"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 5
+			}]
+		}
+		{
+			title: "电路组件"
+			x: 6.5d
+			y: -0.5d
+			description: ["合成材料。"]
+			dependencies: ["1AF0713E5345DF46"]
+			id: "55694DF5B6A0E456"
+			tasks: [
+				{
+					id: "529A8CEAD97A728F"
+					type: "item"
+					item: "pneumaticcraft:capacitor"
+				}
+				{
+					id: "6A1626F5F65BF411"
+					type: "item"
+					item: "pneumaticcraft:transistor"
+				}
+			]
+			rewards: [{
+				id: "4640BC8C0C1D4DD9"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 8
+			}]
+		}
+		{
+			x: 1.5d
+			y: 2.5d
+			description: ["允许你移动压缩的空气。"]
+			dependencies: ["19F931C123B8FA43"]
+			id: "4F9FD02F8EF5C7A5"
+			tasks: [
+				{
+					id: "42426DB24C8A50D0"
+					type: "item"
+					item: "pneumaticcraft:pressure_tube"
+				}
+				{
+					id: "3374DC290D500790"
+					type: "item"
+					item: "pneumaticcraft:tube_junction"
+				}
+			]
+			rewards: [{
+				id: "18D603554468B0AE"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 3
+			}]
+		}
+		{
+			title: "热量操控"
+			x: 0.5d
+			y: 2.5d
+			description: ["在热源周围移动，为机器升温（或降温）。"]
+			dependencies: ["19F931C123B8FA43"]
+			id: "0AE77ECEC6CB11FF"
+			tasks: [
+				{
+					id: "7577B06FBE5D0B50"
+					type: "item"
+					item: "pneumaticcraft:heat_pipe"
+				}
+				{
+					id: "373DD6812E6F27E1"
+					type: "item"
+					item: "pneumaticcraft:vortex_tube"
+				}
+				{
+					id: "2266C17ADC110F34"
+					type: "item"
+					item: "pneumaticcraft:heat_sink"
+				}
+			]
+			rewards: [{
+				id: "37D70A6E33A1EB5E"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 4
+			}]
+		}
+		{
+			x: 2.5d
+			y: 2.5d
+			description: ["将石油加工成4种不同的流体。必须将4个炼油厂堆叠在一起才能获得完整产出。"]
+			dependencies: ["19F931C123B8FA43"]
+			id: "0D3CA3CD6DE02526"
+			tasks: [
+				{
+					id: "2BB9233EDAADD983"
+					type: "item"
+					item: "pneumaticcraft:refinery"
+				}
+				{
+					id: "3B90C7CCFB420FCE"
+					type: "item"
+					item: "pneumaticcraft:refinery_output"
+					count: 4L
+				}
+			]
+			rewards: [{
+				id: "253C7BE4CDA40762"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 5
+			}]
+		}
+		{
+			x: 2.5d
+			y: 4.0d
+			description: ["将液体转化为其他液体。LPG + 煤炭 = 塑料。"]
+			dependencies: ["0D3CA3CD6DE02526"]
+			id: "5DDF6B640948FB60"
+			tasks: [{
+				id: "163903641A36FA9B"
+				type: "item"
+				item: "pneumaticcraft:thermopneumatic_processing_plant"
+			}]
+			rewards: [
+				{
+					id: "0A7FBBC32C54DF52"
+					type: "item"
+					item: "contenttweaker:rak_coin"
+					count: 5
+				}
+				{
+					id: "03F7C678624C1078"
+					type: "item"
+					item: "pneumaticcraft:plastic"
+					count: 10
+				}
+			]
+		}
+		{
+			x: 4.0d
+			y: 4.0d
+			description: ["村民和无人机进行交易！"]
+			dependencies: ["5DDF6B640948FB60"]
+			id: "2FB666593252D8AD"
+			tasks: [{
+				id: "0E5CB2DA7C97D317"
+				type: "item"
+				item: "pneumaticcraft:amadron_tablet"
+			}]
+			rewards: [{
+				id: "4F1CDDDDC657777C"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 3
+			}]
+		}
+		{
+			title: "蚀刻酸"
+			x: 8.0d
+			y: 1.0d
+			description: [
+				"用于最初几块印刷电路板。"
+				""
+				"按下绑定键，在 JEI 中查看 PneumaticCraft 小型储罐的用法，以批量制作蚀刻酸，而不是一次只做 1 桶。"
+			]
+			dependencies: ["1AF0713E5345DF46"]
+			id: "69C1AAEA94A287E7"
+			tasks: [
+				{
+					id: "2DF9E2083F19FFC4"
+					type: "item"
+					item: "pneumaticcraft:empty_pcb"
+				}
+				{
+					id: "3E7E182788B81E10"
+					type: "item"
+					item: "pneumaticcraft:etching_acid_bucket"
+				}
+			]
+			rewards: [{
+				id: "710F62E067D2F4A6"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 3
+			}]
+		}
+		{
+			x: 8.0d
+			y: -0.5d
+			description: ["将蚀刻的PCB板放入UV光箱中。"]
+			dependencies: ["69C1AAEA94A287E7"]
+			id: "6DC278BFAA090C93"
+			tasks: [{
+				id: "57DA510D03E3C473"
+				type: "item"
+				item: "pneumaticcraft:uv_light_box"
+			}]
+			rewards: [{
+				id: "119FFA1889000EAD"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 3
+			}]
+		}
+		{
+			x: 8.0d
+			y: -2.0d
+			description: ["一个加热后蚀刻速度加快，但会消耗蚀刻酸的储罐。"]
+			dependencies: ["6DC278BFAA090C93"]
+			id: "61A775DCA4D1C42A"
+			tasks: [{
+				id: "202E8037FE92EC87"
+				type: "item"
+				item: "pneumaticcraft:etching_tank"
+			}]
+			rewards: [{
+				id: "167A7084ACFB9DFF"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 4
+			}]
+		}
+		{
+			x: 6.5d
+			y: -2.0d
+			description: ["让你能更高效地制作PCB。"]
+			dependencies: ["61A775DCA4D1C42A"]
+			id: "29D06650FDDB9EAF"
+			tasks: [
+				{
+					id: "038BA19722E58A22"
+					type: "item"
+					item: "pneumaticcraft:assembly_platform"
+				}
+				{
+					id: "392C559F35BA91F8"
+					type: "item"
+					item: "pneumaticcraft:assembly_io_unit_import"
+				}
+				{
+					id: "4E8219E3A44F8037"
+					type: "item"
+					item: "pneumaticcraft:assembly_io_unit_export"
+				}
+				{
+					id: "43FD3226C64EB1B8"
+					type: "item"
+					item: "pneumaticcraft:assembly_laser"
+				}
+				{
+					id: "03B9A6BE733963A7"
+					type: "item"
+					item: "pneumaticcraft:assembly_controller"
+				}
+			]
+			rewards: [{
+				id: "6EF6128C804838B1"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 10
+			}]
+		}
+		{
+			title: "印刷电路板"
+			x: 9.5d
+			y: -2.0d
+			description: ["制作材料。可能很多人不喜欢制作这些电路。"]
+			dependencies: ["61A775DCA4D1C42A"]
+			id: "3FE8DACC72AECCB0"
+			tasks: [{
+				id: "3446E2B87F65AC48"
+				type: "item"
+				item: "pneumaticcraft:printed_circuit_board"
+			}]
+			rewards: [{
+				id: "618372721CBCDB94"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 5
+			}]
+		}
+		{
+			x: 9.5d
+			y: -0.5d
+			description: ["能够维持你想要的任何温度。"]
+			dependencies: ["3FE8DACC72AECCB0"]
+			id: "59D9BAECAC993505"
+			tasks: [{
+				id: "09ABE8A09CDB0B6C"
+				type: "item"
+				item: "pneumaticcraft:creative_compressed_iron_block"
+			}]
+			rewards: [{
+				id: "77E54B8126C5971E"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 35
+			}]
+		}
+		{
+			x: 9.5d
+			y: -3.5d
+			description: ["将维持你所需的压力舱内的压力不变。"]
+			dependencies: ["3FE8DACC72AECCB0"]
+			id: "4F1112B5FEF4B271"
+			tasks: [{
+				id: "0645CDF61776F962"
+				type: "item"
+				item: "pneumaticcraft:creative_compressor"
+			}]
+			rewards: [{
+				id: "36335AB59D8B84E0"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 40
+			}]
+		}
+	]
+	quest_links: [ ]
+}

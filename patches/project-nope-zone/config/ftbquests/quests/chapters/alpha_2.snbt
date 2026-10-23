@@ -1,0 +1,1184 @@
+# AI 初翻，未人工校对
+{
+	id: "52521DD5B9828FEB"
+	group: "590FB2140B26167A"
+	order_index: 0
+	filename: "alpha_2"
+	title: "入门指南"
+	icon: "minecraft:composter"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "收集木材"
+			x: -2.0d
+			y: -1.5d
+			description: ["部分原木和木板是1:1比例，所以你需要建一个伐木场。能制作出Tinker's Axe后，1个原木就能得到2块木板。"]
+			id: "209DE7251D53BCF8"
+			tasks: [{
+				id: "3A9B917DC27B353A"
+				type: "item"
+				title: "任意 #minecraft:logs 类型的原木方块"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "minecraft:logs"
+					}
+				}
+				count: 16L
+				consume_items: false
+			}]
+			rewards: [{
+				id: "1A9635EB80B6DD94"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			title: "堆肥系统（Composting）"
+			icon: "minecraft:composter"
+			x: -1.0d
+			y: -1.5d
+			description: [
+				"将有机物堆肥以制作骨粉。"
+				"你可以制作卡玛和/或木制剪刀来获取树叶用作堆肥。"
+			]
+			dependencies: ["209DE7251D53BCF8"]
+			id: "2F9702F318F80BCF"
+			tasks: [{
+				id: "14CEEE89F974EFF2"
+				type: "item"
+				item: "minecraft:composter"
+				consume_items: false
+			}]
+			rewards: [
+				{
+					id: "02997129352A2294"
+					type: "item"
+					item: "contenttweaker:rak_coin"
+				}
+				{
+					id: "52537F5B1478440B"
+					type: "item"
+					item: {
+						id: "woodenshears:wooden_shears"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "石头生成"
+			x: -2.0d
+			y: -0.5d
+			description: ["Shift+右键地面可获得鹅卵石。之后可通过岩浆流到水上生成非鹅卵石版本的这些石头。"]
+			dependencies: ["209DE7251D53BCF8"]
+			id: "0CC853ABBFC4B2F2"
+			tasks: [
+				{
+					id: "530A977083603580"
+					type: "item"
+					item: "minecraft:cobblestone"
+					consume_items: false
+				}
+				{
+					id: "65C1292229E1F003"
+					type: "item"
+					item: "pebbles:andesite_cobblestone"
+					consume_items: false
+				}
+				{
+					id: "3D296A458E6EF2DB"
+					type: "item"
+					item: "pebbles:diorite_cobblestone"
+					consume_items: false
+				}
+				{
+					id: "223AD153D0FD993D"
+					type: "item"
+					item: "pebbles:granite_cobblestone"
+					consume_items: false
+				}
+			]
+			rewards: [{
+				id: "22D730F12950DF23"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			x: 0.0d
+			y: -1.5d
+			description: [
+				"将骨粉用于草地上，以获得不同类型的种子。"
+				""
+				"如果你需要草，只需从 Botania 制作一个牧场种子，然后用它对泥土右键点击即可。"
+			]
+			dependencies: ["2F9702F318F80BCF"]
+			id: "2AB57045DD7F9858"
+			tasks: [{
+				id: "0A3855384CB0A9CD"
+				type: "item"
+				item: "minecraft:bone_meal"
+				count: 4L
+				consume_items: false
+			}]
+			rewards: [{
+				id: "445AA80E19A5BE79"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			title: "获取棉花"
+			x: -1.0d
+			y: 0.5d
+			description: ["撸高草可以获得棉花，这样你就能获得线了。你可以把棉花换成棉花种子。"]
+			dependencies: ["2AB57045DD7F9858"]
+			id: "05D183391CCEF1E3"
+			tasks: [{
+				id: "3B5218EB0A1BD08A"
+				type: "item"
+				item: "pamhc2crops:cottonseeditem"
+				consume_items: false
+			}]
+			rewards: [{
+				id: "22A62F99683CA097"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			title: "获取大麻纤维（Hemp）的方法"
+			x: 1.0d
+			y: 0.5d
+			description: ["撸高草丛可以获得大麻籽，这样你就能获得线了。"]
+			dependencies: ["2AB57045DD7F9858"]
+			id: "78EBD85551D116E3"
+			tasks: [{
+				id: "34B2E948EA4F8688"
+				type: "item"
+				item: "immersiveengineering:seed"
+				consume_items: false
+			}]
+			rewards: [{
+				id: "27AD674F34F6ED33"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			title: "过滤水中的杂质"
+			icon: "waterstrainer:strainer_base"
+			x: 0.0d
+			y: 1.5d
+			description: [
+				"将滤水器放置在水下，使渔网浸没在水中。"
+				""
+				"警告：请勿将过滤器放置在水中，它必须在水下。"
+			]
+			dependencies: [
+				"78EBD85551D116E3"
+				"05D183391CCEF1E3"
+			]
+			dependency_requirement: "one_completed"
+			id: "16628A9799FC8F91"
+			tasks: [
+				{
+					id: "78EF42FA7BA9CBE3"
+					type: "item"
+					item: "waterstrainer:strainer_base"
+					consume_items: false
+				}
+				{
+					id: "59FBB5D44922F0D4"
+					type: "item"
+					item: {
+						id: "waterstrainer:strainer_survivalist"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+					consume_items: false
+				}
+			]
+			rewards: [{
+				id: "5B1893E880B15351"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 2
+			}]
+		}
+		{
+			x: 2.0d
+			y: 1.0d
+			description: ["合成材料 Crafting Material"]
+			dependencies: ["16628A9799FC8F91"]
+			id: "20D43796B9AFD0EF"
+			tasks: [{
+				id: "18C60C0E95533966"
+				type: "item"
+				item: "minecraft:iron_ingot"
+				consume_items: false
+			}]
+			rewards: [{
+				id: "0938E39E661F7B3B"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			title: "固体过滤器"
+			x: 3.0d
+			y: 1.0d
+			description: ["使资源获取速度略微加快。"]
+			dependencies: ["20D43796B9AFD0EF"]
+			id: "43F4E514E0BCE397"
+			tasks: [{
+				id: "2AF72FB04F2A3747"
+				type: "item"
+				item: {
+					id: "waterstrainer:strainer_survivalist_solid"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				consume_items: false
+			}]
+			rewards: [{
+				id: "34A409EF59DB2695"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			title: "加固过滤器 Reinforced Strainer"
+			x: 3.0d
+			y: 2.0d
+			description: ["资源获取速度比实心过滤器要快一点。"]
+			dependencies: ["43F4E514E0BCE397"]
+			id: "04B6FB7E22E533C1"
+			tasks: [{
+				id: "21720DF4B6FC8FCF"
+				type: "item"
+				item: {
+					id: "waterstrainer:strainer_survivalist_reinforced"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				consume_items: false
+			}]
+			rewards: [{
+				id: "1B5E85B8F652219B"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			title: "市场"
+			x: 1.0d
+			y: -1.5d
+			description: ["市场是一个可以让你用RAK交换种子或树苗等物品的方块。"]
+			dependencies: ["2AB57045DD7F9858"]
+			id: "570CDBFAFCCC9C03"
+			tasks: [{
+				id: "1CF7C083EFC5823F"
+				type: "item"
+				item: "farmingforblockheads:market"
+				consume_items: false
+			}]
+			rewards: [{
+				id: "0F6D8E81EDE22CA9"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			title: "自动堆肥系统"
+			x: -1.0d
+			y: -2.5d
+			description: ["这台机器会自动将其自身物品栏内的有机物进行堆肥。"]
+			dependencies: ["2F9702F318F80BCF"]
+			id: "6920F7ADFA9C4820"
+			tasks: [{
+				id: "3EDA6C7C4CA14144"
+				type: "item"
+				item: "autocomposter:autocomposter"
+				consume_items: false
+			}]
+			rewards: [{
+				id: "276ED5D9496CAEE5"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			title: "水生成"
+			x: 3.0d
+			y: -0.5d
+			description: ["根据你选择的 Skyblock，你可能会有不止 1 个水源。如果只有一个水源，可以通过右键点击水瓶，再右键点击水瓶到炼药锅中来“生成”更多水。"]
+			dependencies: ["6DC8F1117218F87C"]
+			id: "6BD753F4C913AD63"
+			tasks: [
+				{
+					id: "2B1DBA1485ECCF18"
+					type: "item"
+					item: "minecraft:cauldron"
+					consume_items: false
+				}
+				{
+					id: "5A7660D05511A43C"
+					type: "item"
+					item: "minecraft:glass_bottle"
+					count: 3L
+					consume_items: false
+				}
+			]
+			rewards: [{
+				id: "72E240D62DC35396"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 2
+			}]
+		}
+		{
+			title: "一个桶"
+			x: 3.0d
+			y: -1.5d
+			description: ["一个桶，用来舀取建造鹅卵石发电机所需的水和岩浆。"]
+			dependencies: ["6DC8F1117218F87C"]
+			id: "312E18A7E13E3EA3"
+			tasks: [{
+				id: "18CB9FDA521B307B"
+				type: "item"
+				item: "minecraft:bucket"
+				consume_items: false
+			}]
+			rewards: [{
+				id: "4F1FF41EE391CB3B"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			title: "工程师之锤"
+			x: 2.0d
+			y: -0.5d
+			description: [
+				"用锤子将金属“锻造”成金属板。"
+				"警告：锤子会受到伤害。"
+			]
+			dependencies: ["20D43796B9AFD0EF"]
+			id: "6DC8F1117218F87C"
+			tasks: [{
+				id: "4CCCE7AF15E1C192"
+				type: "item"
+				item: {
+					id: "immersiveengineering:hammer"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				consume_items: false
+			}]
+			rewards: [{
+				id: "525F7155D4E6DF66"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			title: "水泥砂浆的配方"
+			x: -1.5d
+			y: 1.5d
+			description: ["你可以通过滤水器获得沙子、砾石和黏土。"]
+			dependencies: ["16628A9799FC8F91"]
+			id: "2407B20222D71DF2"
+			tasks: [
+				{
+					id: "381FB41DE51B7383"
+					type: "item"
+					item: "minecraft:gravel"
+					consume_items: false
+				}
+				{
+					id: "0B0B1669B4A5FD64"
+					type: "item"
+					item: "minecraft:sand"
+					consume_items: false
+				}
+				{
+					id: "48B330BD52D95D8C"
+					type: "item"
+					item: "minecraft:clay_ball"
+					consume_items: false
+				}
+			]
+			rewards: [{
+				id: "0E68A189244FC72D"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			title: "盆景盆 Bonsai Pot"
+			x: 0.0d
+			y: 2.5d
+			description: [
+				"右键泥土或草方块放入锅中，再右键树苗放入锅中。"
+				"如果想自动化：添加一把斧头和漏斗，然后在底部放置一个箱子或储物抽屉。"
+				"出于某种搞笑的原因，你可以通过蹲下或围着花盆跑来跑去，让树苗长得更快。"
+			]
+			dependencies: ["16628A9799FC8F91"]
+			id: "10A00B4BD611F9F5"
+			tasks: [{
+				id: "2145B518EAEF5144"
+				type: "item"
+				item: "bonsaitrees3:bonsaipot"
+				consume_items: false
+			}]
+			rewards: [
+				{
+					id: "7E99AE79E03E751F"
+					type: "item"
+					item: "contenttweaker:rak_coin"
+				}
+				{
+					id: "1E61973D4B08E0E5"
+					type: "item"
+					item: "storagedrawers:oak_full_drawers_4"
+				}
+			]
+		}
+		{
+			x: -1.5d
+			y: 2.5d
+			dependencies: ["2407B20222D71DF2"]
+			id: "1DE0230FEBE78309"
+			tasks: [{
+				id: "7A0CFD0AC7D68D67"
+				type: "item"
+				item: "tconstruct:grout"
+				consume_items: false
+			}]
+			rewards: [{
+				id: "6350C1204A41C722"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			title: "熔炉"
+			x: -3.0d
+			y: -0.5d
+			description: ["这是一个熔炉... 你知道的，用来冶炼东西的。"]
+			dependencies: ["0CC853ABBFC4B2F2"]
+			id: "02A3CAE5051D827B"
+			tasks: [{
+				id: "5D1757CC75A50388"
+				type: "item"
+				item: "minecraft:furnace"
+				consume_items: false
+			}]
+			rewards: [{
+				id: "1DB8B6FF2EA1B0F1"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			title: "铁质熔炉"
+			x: -3.0d
+			y: 0.5d
+			description: ["烹饪时间缩短40%。可升级为更快的熔炉。"]
+			dependencies: ["02A3CAE5051D827B"]
+			id: "1EE3D76DD7FC4176"
+			tasks: [{
+				id: "65FDA828A8BCF0EC"
+				type: "item"
+				item: "ironfurnaces:iron_furnace"
+				consume_items: false
+			}]
+			rewards: [{
+				id: "7B32DF8B843B33FF"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			title: "熔岩摩托机器人"
+			x: 4.5d
+			y: -1.5d
+			description: [
+				"将鹅卵石熔化为热能碎片，右键即可在世界上生成熔岩，或开启液体模式填充内部储罐。"
+				"需要可燃燃料才能运行（例如：煤炭）。"
+				"警告：熔岩碎片会替换世界中的非完整方块，如铁栏杆或管道。"
+			]
+			dependencies: ["312E18A7E13E3EA3"]
+			id: "4AEDDD16611EAA0B"
+			tasks: [{
+				id: "7134CA30777C916E"
+				type: "item"
+				item: "lavamotron:lavamotron"
+				consume_items: false
+			}]
+			rewards: [{
+				id: "1DF08094AA92F6BC"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			x: 4.5d
+			y: 0.5d
+			description: [
+				"将 #stone 和 #cobblestone 熔化成岩浆。"
+				"该机器可通过AE2的处理器（计算、工程和逻辑）进行升级。"
+			]
+			dependencies: ["4AEDDD16611EAA0B"]
+			id: "5DAA36A9F8F2BDE0"
+			tasks: [{
+				id: "3E6F3A4BDAF8FC7D"
+				type: "item"
+				item: {
+					id: "custommachinery:custom_machine_item"
+					Count: 1b
+					tag: {
+						machine: "custommachinery:melter"
+					}
+				}
+				consume_items: false
+				match_nbt: true
+			}]
+			rewards: [{
+				id: "36EA934323ABAA37"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 3
+			}]
+		}
+		{
+			title: "随机化鹅卵石生成器"
+			x: 5.5d
+			y: -0.5d
+			description: ["游戏中的鹅卵石生成器似乎在水和熔岩之间随机生成物品。"]
+			dependencies: [
+				"4AEDDD16611EAA0B"
+				"6BD753F4C913AD63"
+			]
+			id: "2835528316F7B573"
+			tasks: [
+				{
+					id: "543C4C2A428829FF"
+					type: "item"
+					title: "任意数量的 #forge:dusts/redstone"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "forge:dusts/redstone"
+						}
+					}
+					consume_items: false
+				}
+				{
+					id: "016C314E60A15B61"
+					type: "item"
+					title: "任意数量的 #forge:dusts/electrotine"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "forge:dusts/electrotine"
+						}
+					}
+					consume_items: false
+				}
+				{
+					id: "6CDE8A832A56C30E"
+					type: "item"
+					title: "任意 #forge:gems/diamond"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "forge:gems/diamond"
+						}
+					}
+					consume_items: false
+				}
+				{
+					id: "3D60CAD06D9BB2EC"
+					type: "item"
+					title: "任意 #forge:gems/emerald"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "forge:gems/emerald"
+						}
+					}
+				}
+				{
+					id: "464535635BFC331F"
+					type: "item"
+					title: "任意 #forge:ingots/osmium 锭"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "forge:ingots/osmium"
+						}
+					}
+				}
+				{
+					id: "0963A2269306CB49"
+					type: "item"
+					title: "任意 #forge:ingots/nickel"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "forge:ingots/nickel"
+						}
+					}
+				}
+				{
+					id: "1718CEE1C0AB9613"
+					type: "item"
+					title: "任意 #forge:ingots/tin"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "forge:ingots/tin"
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "640FD11DEF5B9C0C"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			title: "鹅卵石生成器"
+			x: 4.5d
+			y: -2.5d
+			description: ["这些 cobblegen 有许多升级或更快的版本。"]
+			dependencies: ["4AEDDD16611EAA0B"]
+			id: "163410A1BEB713A0"
+			tasks: [{
+				id: "48C6AD5139D6677C"
+				type: "item"
+				item: "cobblestonesemantics:cobblestone_generator_1"
+				consume_items: false
+			}]
+			rewards: [{
+				id: "44FE903F9C274C55"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			title: "下界"
+			icon: "minecraft:netherrack"
+			x: 7.0d
+			y: -0.5d
+			description: [
+				"进入下界的方式和原版一样，用黑曜石框架和打火石。"
+				""
+				"关于下界，你应该知道：基岩天花板和地板消失了。如果你不拿任何东西，就会挨饿。"
+				""
+				"最后，在下界“自然”生成的Blazes、Blizzes、Basalzs和Blitzs造成的伤害将翻倍。"
+			]
+			dependencies: ["163410A1BEB713A0"]
+			id: "22A38A098B0029E4"
+			tasks: [{
+				id: "707025B03DD31458"
+				type: "dimension"
+				dimension: "minecraft:the_nether"
+			}]
+			rewards: [
+				{
+					id: "2B71F78B0869F89F"
+					type: "item"
+					item: "contenttweaker:rak_coin"
+				}
+				{
+					id: "634FA4BDF1A79D0D"
+					type: "item"
+					item: "rockcandy:healthy_candy"
+					count: 8
+				}
+			]
+		}
+		{
+			title: "下界材料"
+			x: 7.0d
+			y: -1.5d
+			description: ["下界有很多资源可以获取，比如锌和钴。"]
+			dependencies: ["22A38A098B0029E4"]
+			id: "74E8B70AB3C90166"
+			tasks: [
+				{
+					id: "01D4E537C50E5E59"
+					type: "item"
+					title: "任意 #forge:ingots/zinc"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "forge:ingots/zinc"
+						}
+					}
+				}
+				{
+					id: "51C57502F463ACED"
+					type: "item"
+					title: "任意 #forge:ingots/cobalt"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "forge:ingots/cobalt"
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "49872F605C136318"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			title: "瞄准头部"
+			x: 8.0d
+			y: -1.0d
+			description: ["收集凋零骷髅头和灵魂沙来召唤凋零。"]
+			dependencies: ["22A38A098B0029E4"]
+			id: "79C0D7C83E55BE01"
+			tasks: [
+				{
+					id: "5F4DEB0CDDD9705F"
+					type: "item"
+					item: "minecraft:wither_skeleton_skull"
+					count: 3L
+					consume_items: false
+				}
+				{
+					id: "1439709A2DC2FFC3"
+					type: "item"
+					item: "minecraft:soul_sand"
+					count: 4L
+					consume_items: false
+				}
+			]
+			rewards: [{
+				id: "071E4C20975EEEF7"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			title: "凋零者"
+			x: 8.0d
+			y: -2.0d
+			description: ["为了群星"]
+			dependencies: ["79C0D7C83E55BE01"]
+			id: "496B0BEB8AE80FF5"
+			tasks: [{
+				id: "19CFB51CB3E8F70C"
+				type: "kill"
+				icon: "armorplus:soul_wither_boss"
+				entity: "minecraft:wither"
+				value: 1L
+			}]
+			rewards: [{
+				id: "79D946086EF5CD3C"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 10
+			}]
+		}
+		{
+			title: "寻找末地维度 (Finding The End)"
+			x: 7.0d
+			y: 0.5d
+			description: ["你可以使用探险家指南针来找到要塞。"]
+			dependencies: ["22A38A098B0029E4"]
+			id: "04B7C20E3D911245"
+			tasks: [
+				{
+					id: "5E31D1A069B1DE69"
+					type: "item"
+					item: "minecraft:ender_eye"
+					count: 6L
+					consume_items: false
+				}
+				{
+					id: "2BE2DC2F61295971"
+					type: "item"
+					item: {
+						id: "explorerscompass:explorerscompass"
+						Count: 1b
+						tag: { }
+					}
+					consume_items: false
+				}
+			]
+			rewards: [{
+				id: "15357E0231BBB026"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 3
+			}]
+		}
+		{
+			title: "The End"
+			icon: "minecraft:end_stone"
+			x: 7.0d
+			y: 1.5d
+			description: ["末地本身很正常，除了末影龙之外。"]
+			dependencies: ["04B7C20E3D911245"]
+			id: "0A945842B3B6335B"
+			tasks: [{
+				id: "5492E9734FB01640"
+				type: "dimension"
+				dimension: "minecraft:the_end"
+			}]
+			rewards: [{
+				id: "74B9F96B01D9D5BC"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 2
+			}]
+		}
+		{
+			title: "末影龙"
+			x: 8.0d
+			y: 1.5d
+			description: ["什么，什么禁用飞行... 什么，什么末地水晶再生。"]
+			dependencies: ["0A945842B3B6335B"]
+			id: "5B6CFFC4EF9B3050"
+			tasks: [{
+				id: "62C3B05B3498B381"
+				type: "kill"
+				icon: "armorplus:soul_ender_dragon"
+				entity: "minecraft:ender_dragon"
+				value: 1L
+			}]
+			rewards: [{
+				id: "6676441961AE74D0"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 10
+			}]
+		}
+		{
+			x: -1.5d
+			y: 3.5d
+			description: ["将各种物品熔化成液体，以铸造成不同的物品。"]
+			dependencies: ["1DE0230FEBE78309"]
+			id: "22D331CDD79F8F76"
+			tasks: [
+				{
+					id: "39FCC7FBD6F511D4"
+					type: "item"
+					item: "tconstruct:seared_melter"
+					consume_items: false
+				}
+				{
+					id: "526A2F07A6B24A15"
+					type: "item"
+					item: "tconstruct:seared_heater"
+					consume_items: false
+				}
+				{
+					id: "6B9DDBCB97A7B30A"
+					type: "item"
+					item: "tconstruct:seared_basin"
+					consume_items: false
+				}
+				{
+					id: "3057A72F64FFDE10"
+					type: "item"
+					item: "tconstruct:seared_table"
+					consume_items: false
+				}
+				{
+					id: "0FB39877E6CEFECE"
+					type: "item"
+					item: "tconstruct:seared_faucet"
+					consume_items: false
+				}
+			]
+			rewards: [{
+				id: "64F4CA674AA01F12"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 3
+			}]
+		}
+		{
+			title: "熔炼炉"
+			x: 0.0d
+			y: 4.0d
+			description: ["将各种物品熔化成液体以铸造不同物品，但该多方块结构可以扩建。"]
+			dependencies: ["22D331CDD79F8F76"]
+			id: "0DD31114B6E00760"
+			tasks: [
+				{
+					id: "2B3E4655EF0B6C6C"
+					type: "item"
+					item: {
+						id: "tconstruct:smeltery_controller"
+						Count: 1b
+						tag: {
+							texture: "tconstruct:seared_bricks"
+						}
+					}
+					consume_items: false
+					match_nbt: false
+				}
+				{
+					id: "0EC03418576B8C93"
+					type: "item"
+					title: "任意数量的 #tconstruct:seared_tanks"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "tconstruct:seared_tanks"
+						}
+					}
+					consume_items: false
+				}
+				{
+					id: "399C4E48BA6272BE"
+					type: "item"
+					item: {
+						id: "tconstruct:seared_drain"
+						Count: 1b
+						tag: {
+							texture: "tconstruct:seared_bricks"
+						}
+					}
+					consume_items: false
+					match_nbt: false
+				}
+				{
+					id: "4BB2046B7FD9EF6F"
+					type: "item"
+					item: {
+						id: "tconstruct:seared_chute"
+						Count: 1b
+						tag: {
+							texture: "tconstruct:seared_bricks"
+						}
+					}
+					consume_items: false
+					match_nbt: false
+				}
+				{
+					id: "2ACE8BA4B816CA7B"
+					type: "item"
+					title: "任意数量的 #tconstruct:smeltery_bricks"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "tconstruct:smeltery_bricks"
+						}
+					}
+				}
+			]
+			rewards: [
+				{
+					id: "4C2F3EFA118F719B"
+					type: "item"
+					item: "contenttweaker:rak_coin"
+					count: 3
+				}
+				{
+					id: "22BBC6D9A61E73DF"
+					type: "item"
+					item: "tconstruct:cast_chest"
+				}
+			]
+		}
+		{
+			x: -1.0d
+			y: 4.5d
+			description: ["一台能将熔融流体转化为对应方块形态的定制机器。"]
+			dependencies: ["0DD31114B6E00760"]
+			id: "571898FEA9A8C7F2"
+			tasks: [{
+				id: "6983090D9D5A1D07"
+				type: "item"
+				item: {
+					id: "custommachinery:custom_machine_item"
+					Count: 1b
+					tag: {
+						machine: "custommachinery:caster"
+					}
+				}
+				consume_items: false
+				match_nbt: true
+			}]
+			rewards: [{
+				id: "69DB7E955E0B46C8"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			x: 1.0d
+			y: -2.5d
+			description: ["将此喂给鸡以获得一枚金蛋。"]
+			dependencies: ["570CDBFAFCCC9C03"]
+			id: "122395CDB4715571"
+			tasks: [{
+				id: "1265C943149CA09D"
+				type: "item"
+				item: "mob_grinding_utils:nutritious_chicken_feed"
+			}]
+			rewards: [{
+				id: "67381F2B8F6BD612"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			title: "被诅咒的鸡饲料"
+			x: 2.0d
+			y: -2.5d
+			description: ["将此喂给鸡以获得腐蛋。"]
+			dependencies: ["570CDBFAFCCC9C03"]
+			id: "5547D7C20D7ACD8E"
+			tasks: [{
+				id: "1CE4D32BB77BCD0A"
+				type: "item"
+				item: "mob_grinding_utils:gm_chicken_feed_cursed"
+			}]
+			rewards: [{
+				id: "5AEC128EBA258935"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			x: 2.0d
+			y: -3.5d
+			description: [
+				"右键点击草地、泥土、菌丝体、农田，即可制作出恐怖泥土。"
+				"Dreadful Dirt 有助于生成敌对生物。"
+			]
+			dependencies: ["5547D7C20D7ACD8E"]
+			id: "3806C2EF6732FDC4"
+			tasks: [{
+				id: "4B7B954A5C5C7C6D"
+				type: "item"
+				item: "mob_grinding_utils:rotten_egg"
+			}]
+			rewards: [{
+				id: "0DCBD8326D43F11F"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			x: 1.0d
+			y: -3.5d
+			description: [
+				"右键点击草地、泥土、菌丝体或农田，即可制作出 Delightful 泥土。"
+				"Delightful Dirt 有助于生成更多小鸡等被动生物。"
+			]
+			dependencies: ["122395CDB4715571"]
+			id: "2737C590BB378606"
+			tasks: [{
+				id: "70B64FD667FD6677"
+				type: "item"
+				item: "mob_grinding_utils:golden_egg"
+			}]
+			rewards: [{
+				id: "7EAB0E1DAC6AAB7A"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			x: 2.0d
+			y: -4.5d
+			description: [
+				"Cursed Earth 和 Dreadful Dirt 差不多，但怪物生成速度要快得多。"
+				"如果用这些搭建刷怪塔，请务必设置关闭方法。"
+			]
+			dependencies: ["3806C2EF6732FDC4"]
+			id: "46062EBE418FF9E9"
+			tasks: [{
+				id: "15D3D88F0DF9D183"
+				type: "item"
+				item: "cursed_earth:cursed_earth"
+			}]
+			rewards: [{
+				id: "6F5DAF1FF35DC010"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 2
+			}]
+		}
+		{
+			title: "整合包信息"
+			x: -2.0d
+			y: -2.5d
+			description: [
+				"自然再生已关闭，因此你需要通过绷带或站在机会方块上等方式来恢复生命值。"
+				""
+				"如果你需要饱食度，只需手持 Harvestcraft 的玉米卷和/或火腿 \& 菠萝披萨即可获得饱食度。"
+			]
+			id: "01E0918D3DB0562B"
+			tasks: [{
+				id: "52310EC97A1321CC"
+				type: "checkmark"
+			}]
+		}
+		{
+			x: -3.0d
+			y: 1.5d
+			description: ["根据所用催化剂将银鱼精华转化为矿石。"]
+			dependencies: ["1EE3D76DD7FC4176"]
+			progression_mode: "flexible"
+			id: "3316E945B3EE2B81"
+			tasks: [{
+				id: "16848D27D54D314E"
+				type: "item"
+				item: {
+					id: "custommachinery:custom_machine_item"
+					Count: 1b
+					tag: {
+						machine: "custommachinery:burrowforge"
+					}
+				}
+			}]
+			rewards: [{
+				id: "161DAF4E9845A94D"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 3
+			}]
+		}
+	]
+	quest_links: [ ]
+}

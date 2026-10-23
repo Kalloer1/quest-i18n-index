@@ -1,0 +1,718 @@
+# AI 初翻，未人工校对
+{
+	id: "3B89B7DB77C7D14A"
+	group: ""
+	order_index: 5
+	filename: "phase_5_spaceship_and_navigation"
+	title: "第五阶段：宇宙飞船与导航"
+	icon: "futurepack:display"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "{quest.outer_ship.title}"
+			x: 2.5d
+			y: 0.0d
+			description: ["{quest.outer_ship.description}"]
+			dependencies: ["64F7EC9ED49C9603"]
+			hide: true
+			id: "093D07D3E03BC627"
+			tasks: [{
+				id: "1281C9562ECFD12E"
+				type: "item"
+				item: "futurepack:escanner"
+			}]
+			rewards: [
+				{
+					id: "0646699F6DCA1113"
+					type: "item"
+					item: "aoa3:silver_coin"
+				}
+				{
+					id: "2D1A4930A6B2E0FD"
+					type: "item"
+					item: "aoa3:lotto_totem"
+					count: 3
+				}
+			]
+		}
+		{
+			title: "{quest.builder.title}"
+			icon: "rftoolsbuilder:builder"
+			x: 4.0d
+			y: 1.5d
+			description: ["{quest.builder.description}"]
+			dependencies: ["093D07D3E03BC627"]
+			hide: true
+			id: "3E2899852D113C38"
+			tasks: [
+				{
+					id: "4C91A02F715243D2"
+					type: "item"
+					item: "rftoolsbuilder:builder"
+				}
+				{
+					id: "3E280773627DC862"
+					type: "item"
+					item: "rftoolsbuilder:shape_card_def"
+				}
+			]
+			rewards: [
+				{
+					id: "42FC07AC42886DEB"
+					type: "item"
+					item: "aoa3:silver_coin"
+				}
+				{
+					id: "099C440EF3E0745F"
+					type: "item"
+					item: "aoa3:lotto_totem"
+					count: 3
+				}
+			]
+		}
+		{
+			title: "{quest.chiselnbits.title}"
+			x: 4.0d
+			y: -1.5d
+			description: ["{quest.chiselnbits.description}"]
+			dependencies: ["093D07D3E03BC627"]
+			hide: true
+			id: "762F2A9D6ED2D0B8"
+			tasks: [{
+				id: "596333D5DDFB0F22"
+				type: "item"
+				item: {
+					id: "chiselsandbits:chisel_diamond"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "3A8BCD1C7FBDFB2C"
+					type: "item"
+					item: "aoa3:silver_coin"
+				}
+				{
+					id: "1B885BB109739D7F"
+					type: "item"
+					item: "aoa3:lotto_totem"
+					count: 3
+				}
+			]
+		}
+		{
+			title: "{quest.bridge.title}"
+			icon: "futurepack:board_computer_black"
+			x: 5.5d
+			y: 0.0d
+			shape: "hexagon"
+			description: [
+				"{quest.bridge.description}"
+				""
+				"{image:odyssey:textures/book/board_computer.png width:200 height:150 align:1}"
+				""
+				"{quest.bridge.description2}"
+				""
+				"{image:odyssey:textures/book/board_computer2.png width:200 height:150 align:1}"
+			]
+			dependencies: [
+				"762F2A9D6ED2D0B8"
+				"3E2899852D113C38"
+			]
+			hide: true
+			min_width: 300
+			id: "314CED9C1C87F201"
+			tasks: [{
+				id: "35F7A4C35A65E52F"
+				type: "item"
+				title: "板载计算机"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "futurepack:board_computer_white"
+								Count: 1b
+							}
+							{
+								id: "futurepack:board_computer_gray"
+								Count: 1b
+							}
+							{
+								id: "futurepack:board_computer_black"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "5179284C6EB9C66B"
+					type: "item"
+					item: "futurepack:display"
+					count: 2
+				}
+				{
+					id: "25D7FD9A4350A715"
+					type: "item"
+					item: "aoa3:gold_coin"
+				}
+				{
+					id: "560E2FAF07DC6B7A"
+					type: "item"
+					item: "aoa3:treasure_box"
+					count: 5
+				}
+			]
+		}
+		{
+			title: "{quest.menelaus.title}"
+			x: 7.0d
+			y: -1.5d
+			description: ["{quest.menelaus.description}"]
+			dependencies: ["314CED9C1C87F201"]
+			hide: true
+			id: "587E1DBB880C1418"
+			tasks: [{
+				id: "52344B89A1F8A2AF"
+				type: "item"
+				item: "futurepack:telescope"
+			}]
+			rewards: [
+				{
+					id: "1EC6EE68793AC862"
+					type: "item"
+					item: "aoa3:silver_coin"
+				}
+				{
+					id: "72634701CC6F0D16"
+					type: "item"
+					item: "aoa3:lotto_totem"
+					count: 3
+				}
+			]
+		}
+		{
+			title: "{quest.coordinates.title}"
+			icon: {
+				id: "futurepack:spacecoordinats"
+				Count: 1b
+				tag: {
+					display: {
+						Name: "{\"text\":\"The End\"}"
+					}
+					Planet: "minecraft:the_end"
+				}
+			}
+			x: 7.0d
+			y: 1.5d
+			description: ["{quest.coordinates.description}"]
+			dependencies: ["314CED9C1C87F201"]
+			hide: true
+			id: "65385899D4914F05"
+			tasks: [{
+				id: "52DED46135671100"
+				type: "item"
+				title: "末地坐标 The End Coordinate"
+				icon: "futurepack:spacecoordinats"
+				item: {
+					id: "itemfilters:and"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "itemfilters:strong_nbt"
+								Count: 1b
+								tag: {
+									value: {
+										display: {
+											Name: "{\"text\":\"The End\"}"
+										}
+										Planet: "minecraft:the_end"
+									}
+								}
+							}
+							{
+								id: "futurepack:spacecoordinats"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "09C1BA48E3E35C2F"
+					type: "item"
+					item: "aoa3:silver_coin"
+				}
+				{
+					id: "2E8EB0D706ED2E17"
+					type: "item"
+					item: "aoa3:lotto_totem"
+					count: 3
+				}
+			]
+		}
+		{
+			title: "{quest.fuel_dusts.title}"
+			icon: "mekanism:yellow_cake_uranium"
+			x: 8.5d
+			y: 0.0d
+			description: ["{quest.fuel_dust.description}"]
+			dependencies: [
+				"587E1DBB880C1418"
+				"65385899D4914F05"
+			]
+			hide: true
+			id: "47CBEE1508CFA08E"
+			tasks: [
+				{
+					id: "30ECDD3D29B25417"
+					type: "item"
+					item: "mekanism:yellow_cake_uranium"
+					count: 4L
+				}
+				{
+					id: "71EE047B1339A35A"
+					type: "item"
+					item: "futurepack:dust_neon"
+					count: 16L
+				}
+			]
+			rewards: [
+				{
+					id: "7DA1098C2C82AD81"
+					type: "item"
+					item: "aoa3:silver_coin"
+				}
+				{
+					id: "0E68ECA6CFF17804"
+					type: "item"
+					item: "aoa3:lotto_totem"
+					count: 3
+				}
+			]
+		}
+		{
+			title: "{quest.oxidizer.title}"
+			x: 10.0d
+			y: 0.0d
+			description: ["{quest.oxidizer.description}"]
+			dependencies: ["47CBEE1508CFA08E"]
+			hide: true
+			id: "768D5F0351BEA7EA"
+			tasks: [{
+				id: "34904C0E1C62083D"
+				type: "item"
+				item: "mekanism:chemical_oxidizer"
+				count: 2L
+			}]
+			rewards: [
+				{
+					id: "1A4CB7771503693A"
+					type: "item"
+					item: "aoa3:silver_coin"
+				}
+				{
+					id: "23194C84F686D001"
+					type: "item"
+					item: "aoa3:lotto_totem"
+					count: 3
+				}
+			]
+		}
+		{
+			title: "{quest.infuser.title}"
+			x: 11.5d
+			y: 0.0d
+			description: ["{quest.infuser.description}"]
+			dependencies: ["768D5F0351BEA7EA"]
+			hide: true
+			id: "606C3A627D948890"
+			tasks: [{
+				id: "14BBADBEA7496C72"
+				type: "item"
+				item: "mekanism:chemical_infuser"
+			}]
+			rewards: [
+				{
+					id: "0911EEE4E9225FC1"
+					type: "item"
+					item: "aoa3:silver_coin"
+				}
+				{
+					id: "4A28DB3F11144F37"
+					type: "item"
+					item: "aoa3:lotto_totem"
+					count: 3
+				}
+			]
+		}
+		{
+			title: "{quest.crystallizer.title}"
+			icon: "mekanism:chemical_crystallizer"
+			x: 13.0d
+			y: 0.0d
+			description: [
+				"{quest.crystallizer.description}"
+				"{image:odyssey:textures/book/fuel_set-up.png width:200 height:150 align:1}"
+			]
+			dependencies: ["606C3A627D948890"]
+			hide: true
+			id: "27138A8537DA8389"
+			tasks: [
+				{
+					id: "3001330C3CBFCB7C"
+					type: "item"
+					item: "mekanism:chemical_crystallizer"
+				}
+				{
+					id: "3006663DBF507BDE"
+					type: "item"
+					item: "futurepack:ingot_bitripentium"
+					count: 6L
+				}
+			]
+			rewards: [
+				{
+					id: "48217D5842CCD236"
+					type: "item"
+					item: "aoa3:silver_coin"
+				}
+				{
+					id: "32555C217EF580D0"
+					type: "item"
+					item: "aoa3:lotto_totem"
+					count: 3
+				}
+			]
+		}
+		{
+			title: "{quest.fuel_rod.title}"
+			x: 14.5d
+			y: 0.0d
+			shape: "hexagon"
+			description: ["{quest.fuel_rod.description}"]
+			dependencies: ["27138A8537DA8389"]
+			hide: true
+			id: "172A6A2B8A312CD7"
+			tasks: [{
+				id: "0F3143E18F95BB47"
+				type: "item"
+				item: "futurepack:fuel_rods"
+				count: 8L
+			}]
+			rewards: [
+				{
+					id: "0ABFA2216ACD54EF"
+					type: "item"
+					item: "aoa3:gold_coin"
+				}
+				{
+					id: "627C8B2B42AA6121"
+					type: "item"
+					item: "aoa3:treasure_box"
+					count: 5
+				}
+			]
+		}
+		{
+			title: "{quest.teleporter.title}"
+			x: 16.0d
+			y: -1.5d
+			description: ["{quest.teleporter.description}"]
+			dependencies: ["172A6A2B8A312CD7"]
+			hide: true
+			id: "26EB6706113B8EA7"
+			tasks: [{
+				id: "4F36DFC4B1EAC888"
+				type: "item"
+				item: "futurepack:teleporter_both"
+			}]
+			rewards: [
+				{
+					id: "6A7E9CB46991A9A0"
+					type: "item"
+					item: "aoa3:silver_coin"
+				}
+				{
+					id: "242F1640B4330022"
+					type: "item"
+					item: "aoa3:lotto_totem"
+					count: 3
+				}
+			]
+		}
+		{
+			title: "{quest.neon_gen.title}"
+			icon: "futurepack:solar_panel_black"
+			x: 16.0d
+			y: 1.5d
+			description: ["{quest.neon_gen.description}"]
+			dependencies: ["172A6A2B8A312CD7"]
+			hide: true
+			id: "4A6EDE182EC8CB63"
+			tasks: [{
+				id: "21408303C1988FC9"
+				type: "item"
+				title: "霓虹太阳能电池板"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "futurepack:solar_panel_white"
+								Count: 1b
+							}
+							{
+								id: "futurepack:solar_panel_gray"
+								Count: 1b
+							}
+							{
+								id: "futurepack:solar_panel_black"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "6A99AF1CD1DF7524"
+					type: "item"
+					item: "aoa3:silver_coin"
+				}
+				{
+					id: "6AED4730237D245E"
+					type: "item"
+					item: "aoa3:lotto_totem"
+					count: 3
+				}
+			]
+		}
+		{
+			title: "{quest.advanced_board.title}"
+			icon: "futurepack:advanced_board_computer_black"
+			x: 19.0d
+			y: 0.0d
+			description: ["{quest.advanced_board.description}"]
+			dependencies: ["28C4CADF1533FDA4"]
+			hide: true
+			id: "41521BFA2B6C9850"
+			tasks: [{
+				id: "444D9F28E602E37E"
+				type: "item"
+				title: "高级板载计算机"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "futurepack:advanced_board_computer_white"
+								Count: 1b
+							}
+							{
+								id: "futurepack:advanced_board_computer_gray"
+								Count: 1b
+							}
+							{
+								id: "futurepack:advanced_board_computer_black"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "1B09F98B924B5E4F"
+					type: "item"
+					item: "aoa3:silver_coin"
+				}
+				{
+					id: "5053D740AEE7A8C4"
+					type: "item"
+					item: "aoa3:lotto_totem"
+					count: 3
+				}
+			]
+		}
+		{
+			title: "{quest.ftl.title}"
+			x: 20.5d
+			y: 0.0d
+			shape: "hexagon"
+			description: ["{quest.ftl.description}"]
+			dependencies: ["41521BFA2B6C9850"]
+			hide: true
+			id: "0BBDE22C73B3D517"
+			tasks: [{
+				id: "737B03B9CB5EB1DF"
+				type: "item"
+				item: "futurepack:ftl_drive"
+				count: 12L
+			}]
+			rewards: [
+				{
+					id: "48FBB1EF25B02EC3"
+					type: "item"
+					item: "aoa3:gold_coin"
+				}
+				{
+					id: "2C75CC4FE525FF9E"
+					type: "item"
+					item: "aoa3:treasure_box"
+					count: 5
+				}
+			]
+		}
+		{
+			title: "{quest.gates.title}"
+			icon: "futurepack:modular_door"
+			x: 5.5d
+			y: -1.5d
+			description: ["{quest.gates.description}"]
+			dependencies: ["314CED9C1C87F201"]
+			hide: true
+			id: "1A3973783BB01409"
+			tasks: [
+				{
+					id: "3481504873BFCF30"
+					type: "item"
+					item: "futurepack:airlock_door"
+					count: 4L
+				}
+				{
+					id: "7E5F738262407AE9"
+					type: "item"
+					item: "futurepack:modular_door"
+					count: 4L
+				}
+			]
+			rewards: [
+				{
+					id: "3E64F593855400F4"
+					type: "item"
+					item: "aoa3:silver_coin"
+				}
+				{
+					id: "369BC60E50031065"
+					type: "item"
+					item: "aoa3:lotto_totem"
+					count: 3
+				}
+			]
+		}
+		{
+			title: "{quest.laser.title}"
+			x: 5.5d
+			y: 1.5d
+			description: ["{quest.laser.description}"]
+			dependencies: ["314CED9C1C87F201"]
+			hide: true
+			id: "181544B80703BD14"
+			tasks: [{
+				id: "7279C59DEA70BDC2"
+				type: "item"
+				item: "futurepack:entity_killer"
+			}]
+			rewards: [
+				{
+					id: "3FFDD6B62905DD48"
+					type: "item"
+					item: "aoa3:silver_coin"
+				}
+				{
+					id: "11BE24DB4078C780"
+					type: "item"
+					item: "aoa3:lotto_totem"
+					count: 3
+				}
+			]
+		}
+		{
+			title: "{quest.experimental_flight.title}"
+			icon: "futurepack:thruster_maneuver_black_purple"
+			x: 17.5d
+			y: 0.0d
+			description: ["{quest.experimental_flight.description}"]
+			dependencies: [
+				"26EB6706113B8EA7"
+				"4A6EDE182EC8CB63"
+			]
+			hide: true
+			id: "28C4CADF1533FDA4"
+			tasks: [{
+				id: "41BAE3C695F1C490"
+				type: "item"
+				title: "机动推进器"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "futurepack:thruster_maneuver_white_blue"
+								Count: 1b
+							}
+							{
+								id: "futurepack:thruster_maneuver_white_yellow"
+								Count: 1b
+							}
+							{
+								id: "futurepack:thruster_maneuver_white_purple"
+								Count: 1b
+							}
+							{
+								id: "futurepack:thruster_maneuver_light_gray_blue"
+								Count: 1b
+							}
+							{
+								id: "futurepack:thruster_maneuver_light_gray_yellow"
+								Count: 1b
+							}
+							{
+								id: "futurepack:thruster_maneuver_light_gray_purple"
+								Count: 1b
+							}
+							{
+								id: "futurepack:thruster_maneuver_black_blue"
+								Count: 1b
+							}
+							{
+								id: "futurepack:thruster_maneuver_black_yellow"
+								Count: 1b
+							}
+							{
+								id: "futurepack:thruster_maneuver_black_purple"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "535B52B61EA07737"
+					type: "item"
+					item: "aoa3:silver_coin"
+				}
+				{
+					id: "70C031BAA54058CD"
+					type: "item"
+					item: "aoa3:lotto_totem"
+					count: 3
+				}
+			]
+		}
+	]
+}

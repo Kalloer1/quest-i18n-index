@@ -1,0 +1,608 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "toxic_caves"
+	group: "29B8EB781D56DFC3"
+	icon: "alexscaves:fissile_core"
+	id: "05A3365646096E9C"
+	images: [
+		{
+			height: 4.0d
+			image: "alexscaves:textures/misc/advancement/toxic_midground.png"
+			rotation: 0.0d
+			width: 4.0d
+			x: -4.0d
+			y: 5.0d
+		}
+		{
+			height: 1.0d
+			image: "alexscaves:block/block_of_uranium"
+			rotation: 0.0d
+			width: 1.0d
+			x: 5.0d
+			y: 4.5d
+		}
+		{
+			height: 1.0d
+			image: "alexscaves:block/hazmat_skull_block"
+			rotation: 0.0d
+			width: 1.0d
+			x: 0.5d
+			y: -3.5d
+		}
+		{
+			height: 1.0d
+			image: "alexscaves:block/nuclear_bomb_side_0"
+			rotation: 0.0d
+			width: 1.0d
+			x: 7.5d
+			y: 1.0d
+		}
+		{
+			height: 1.0d
+			image: "alexscaves:block/waste_drum"
+			rotation: 0.0d
+			width: 1.0d
+			x: 0.0d
+			y: 4.0d
+		}
+		{
+			height: 4.0d
+			image: "enlightened_end:textures/particle/nuclear_explosion_8.png"
+			rotation: 0.0d
+			width: 4.0d
+			x: 7.5d
+			y: -1.2d
+		}
+		{
+			height: 3.0d
+			image: "alexscaves:textures/gui/book/toxic_chapter.png"
+			rotation: 0.0d
+			width: 3.0d
+			x: -5.5d
+			y: 1.0d
+		}
+	]
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["连续完成&aSpelunking table&r谜题&e三次后&r，你将获得&aToxic cave codex&r，用于制作前往&aToxic cave codex&r的&a地图&r，或对&a洞穴&r进行&l右键点击&r以获取&b信息&r。"]
+			id: "6E537B08FCD57418"
+			rewards: [{
+				id: "2182F7778BAC4966"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "hexagon"
+			size: 2.0d
+			tasks: [{
+				id: "4058C02C72E43BF8"
+				item: {
+					Count: 1
+					id: "alexscaves:cave_codex"
+					tag: {
+						CaveBiome: "alexscaves:toxic_caves"
+					}
+				}
+				type: "item"
+			}]
+			x: -4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["6E537B08FCD57418"]
+			description: [
+				"一份能揭示&a有毒洞穴法典&r和&a附近生物群系边界&r的&b详细地图&r，由&e法典碎片&r合成。"
+				""
+				"这里&6要小心&r，因为&e辐射&r效果会&d阻止自然恢复&r。"
+			]
+			id: "696B1817DDBA4509"
+			rewards: [{
+				id: "1BD9F9A0F8DCCA7C"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				id: "235DB373D7A0286D"
+				item: {
+					Count: 1
+					id: "alexscaves:cave_map"
+					tag: {
+						BiomeTargetResourceKey: "alexscaves:toxic_caves"
+					}
+				}
+				type: "item"
+			}]
+			x: -1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["696B1817DDBA4509"]
+			description: ["在这些&6洞穴&r中到处都分布着&c矿石&r，你将用这种&a放射性岩石&r来&e制作物品&r。"]
+			id: "27F1BFDA949F8005"
+			rewards: [
+				{
+					id: "485D079DAA7F3021"
+					item: "alexscaves:uranium"
+					random_bonus: 6
+					type: "item"
+				}
+				{
+					id: "10ABD011FF18FCA4"
+					type: "xp"
+					xp: 50
+				}
+			]
+			tasks: [{
+				id: "77B0F42C78036F8C"
+				item: "alexscaves:uranium"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["696B1817DDBA4509"]
+			description: [
+				"在这些&6洞穴&r中打破&e硫磺晶体&r，以获得用于&6合成&r的&a粉尘&r。"
+				""
+				"硫磺&e可以生长在&r&e硫磺块&r上，如果它接触到新的&a酸液体&r。"
+			]
+			id: "58DBD29376F49B22"
+			rewards: [
+				{
+					id: "78883AEE8E00A061"
+					type: "xp"
+					xp: 25
+				}
+				{
+					count: 2
+					id: "5E17CCC5E1DC55A6"
+					item: "alexscaves:sulfur_dust"
+					random_bonus: 5
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "02DC500F0461938B"
+				item: "alexscaves:sulfur_dust"
+				type: "item"
+			}]
+			x: 0.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["696B1817DDBA4509"]
+			description: [
+				"杀死一个 &0Brainiac&f 后剩下的东西。"
+				""
+				"不要与DC漫画的&0Brainiac&r混淆。"
+			]
+			id: "2A2D5DC9B5474841"
+			rewards: [{
+				id: "482EA413DA10F5D4"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				id: "4F460C489EDC07C0"
+				item: "alexscaves:charred_remnant"
+				type: "item"
+			}]
+			x: -1.5d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"696B1817DDBA4509"
+				"4B492F4CA6EBC3E8"
+			]
+			description: ["由 &aNucleeper&r 掉落，你将用它来制作一个 &cnuke&r！"]
+			id: "783CE8C9E866F86C"
+			rewards: [
+				{
+					exclude_from_claim_all: true
+					id: "097F2BD34D96F35D"
+					table_id: 8506390936464324187L
+					type: "random"
+				}
+				{
+					id: "1E01753179EDAED2"
+					type: "xp"
+					xp: 150
+				}
+			]
+			tasks: [{
+				id: "7E7033F89F4999FE"
+				item: "alexscaves:fissile_core"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"27F1BFDA949F8005"
+				"2A2D5DC9B5474841"
+			]
+			description: [
+				"&cThe Nuclear Furnace&r is a &bfast&r, &emultiblock structure&r created by placing &aeight Nuclear Furnace Components&r in a &lcube&r. It uses &aUranium Rods&r as fuel, with each rod capable of smelting &l60&r items. However, using the furnace produces &atoxic waste&r, which accumulates &ninside the structure&r. To manage this, players must regularly &einsert a Metal Barrel&r to purge the waste."
+				""
+				"{@pagebreak}"
+				"&lIf the waste is not purged&r, the &cNuclear Furnace &rbegins to &eoverheat&r. As it &eoverheats&r, it goes through three &nvisual and physical stages&r: it starts to turn &eyellow&r, then &6shakes violently&r, and eventually &cignites fires nearby&r. While &coverheating&r does make &9smelting faster&r, it doesn't increase the number of items &aprocessed per Uranium Rod&r."
+				""
+				"如果&a废料&r持续堆积且未被清除，熔炉最终会像&aNucleeper&r一样&4爆炸&r。爆炸会散播&b未精炼废料&r，并可能孵化附近的任何&cTremorzilla蛋&r。"
+			]
+			id: "737570259C5A4052"
+			rewards: [
+				{
+					exclude_from_claim_all: true
+					id: "1BC63ACCD5475030"
+					table_id: 8506390936464324187L
+					type: "random"
+				}
+				{
+					id: "3DB171C8FE1BA0C3"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "4F38D85314ACD8E6"
+				item: "alexscaves:nuclear_furnace_component"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["696B1817DDBA4509"]
+			description: ["用&b空瓶&r&l右键&r点击&e地热喷口&r即可获得，然后用这种新气体来制作&d彩色灯&r！"]
+			id: "1E7401AD76624DEB"
+			rewards: [
+				{
+					id: "42CB1F7FA0B2F57E"
+					type: "xp"
+					xp: 50
+				}
+				{
+					count: 2
+					id: "1F9ACD9D2396F715"
+					item: "alexscaves:radon_bottle"
+					random_bonus: 2
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "231A257F08D7E663"
+				item: "alexscaves:radon_bottle"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["696B1817DDBA4509"]
+			description: ["由&agammaroach&r掉落，若你被&eirradiated&r，它会攻击你，在&6crafting&r时使用。"]
+			id: "6DAA1F51CA09BA72"
+			rewards: [
+				{
+					id: "6F952B2397F4D45A"
+					type: "xp"
+					xp: 50
+				}
+				{
+					count: 2
+					id: "3B4F0CE0B47557A9"
+					item: "alexscaves:toxic_paste"
+					random_bonus: 3
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "4228ACA2C331A7B1"
+				item: "alexscaves:toxic_paste"
+				type: "item"
+			}]
+			x: 2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"1E7401AD76624DEB"
+				"6DAA1F51CA09BA72"
+				"58DBD29376F49B22"
+			]
+			description: [
+				"用这些&e洞穴&r里找到的不同&b材料&r&6制作&r，你就能打造出洞穴里最&b棒&r的东西。"
+				"&o（在&c核弹&r旁边）&r"
+			]
+			id: "17D6CF535F3B71F5"
+			rewards: [
+				{
+					id: "0D3FCE06154ED074"
+					item: "alexscaves:polymer_plate"
+					random_bonus: 5
+					type: "item"
+				}
+				{
+					id: "78B2973502FA6A65"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "0EB585F0E6071188"
+				item: "alexscaves:polymer_plate"
+				type: "item"
+			}]
+			x: 2.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["07FBE11761DFA85D"]
+			description: ["使用&a铀棒&r作为燃料，发射出&e辐射&r光束，"]
+			id: "096767E4292E6892"
+			rewards: [
+				{
+					exclude_from_claim_all: true
+					id: "5E0A21F42BDBCACF"
+					table_id: 8506390936464324187L
+					type: "random"
+				}
+				{
+					id: "22B57378E513C302"
+					type: "xp"
+					xp: 150
+				}
+			]
+			shape: "hexagon"
+			size: 2.0d
+			tasks: [{
+				id: "240C53D7CBFD20B1"
+				item: "alexscaves:raygun"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 5.0d
+		}
+		{
+			dependencies: ["27F1BFDA949F8005"]
+			description: ["用&a铀&r制作，可用于&6合成&r和为&c核熔炉&r提供燃料。"]
+			id: "07FBE11761DFA85D"
+			rewards: [
+				{
+					exclude_from_claim_all: true
+					id: "497F9CD649822BD4"
+					table_id: 8506390936464324187L
+					type: "random"
+				}
+				{
+					id: "163F4F2C76B7E0FE"
+					type: "xp"
+					xp: 50
+				}
+			]
+			tasks: [{
+				id: "225F9EE69F29B156"
+				item: "alexscaves:uranium_rod"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"17D6CF535F3B71F5"
+				"783CE8C9E866F86C"
+			]
+			description: ["用于&e远程&r引爆&b爆炸物&r，只需&l右键&r&cTNT&r或&d核弹&r，然后&l右键&r空气即可&c引爆&r。"]
+			id: "2C603F39F80D3267"
+			rewards: [
+				{
+					exclude_from_claim_all: true
+					id: "5953EB188C487CB9"
+					table_id: 8506390936464324187L
+					type: "random"
+				}
+				{
+					id: "15DCB14072EBAE55"
+					type: "xp"
+					xp: 150
+				}
+			]
+			tasks: [{
+				id: "41A62986FF9AC6B1"
+				item: "alexscaves:remote_detonator"
+				type: "item"
+			}]
+			x: 5.0d
+			y: -2.0d
+		}
+		{
+			dependencies: [
+				"783CE8C9E866F86C"
+				"07FBE11761DFA85D"
+			]
+			description: [
+				"你&e手中&r所掌握的&c力量&r是&d巨大的&r。"
+				""
+				"{@pagebreak}"
+				"这是一个会&c爆炸&r的&d核弹&r，你还能指望什么呢。"
+			]
+			id: "05157ADC0E37127D"
+			rewards: [
+				{
+					exclude_from_claim_all: true
+					id: "1F294458F419FBF6"
+					table_id: 8506390936464324187L
+					type: "random"
+				}
+				{
+					id: "7DA85F2604C618C5"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+				{
+					id: "42DBD8676D88EEA8"
+					type: "xp"
+					xp: 200
+				}
+			]
+			size: 2.0d
+			subtitle: "你已成为死亡，万物的毁灭者。"
+			tasks: [{
+				id: "2FC1CB16D523D430"
+				item: "alexscaves:nuclear_bomb"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"7B4EB796D5230871"
+				"22E5DE9A70BFDFE4"
+				"1694601100476AF7"
+			]
+			description: ["Hatched from &cdetonating&r the&6 nuclear furnace&r next to this &bcreatures egg&r, this mob is &dvery powerful&r, and &acan grow&r."]
+			id: "73708157A391E412"
+			rewards: [
+				{
+					id: "6A9942DD2EFF4A33"
+					item: "alexscaves:nuclear_bomb"
+					type: "item"
+				}
+				{
+					id: "7A20F8560D84D4AA"
+					item: {
+						Count: 1
+						id: "minecraft:flint_and_steel"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "36000B470E5FDAE8"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+				{
+					id: "74E7E3C0178D06DD"
+					type: "xp"
+					xp: 150
+				}
+			]
+			shape: "hexagon"
+			size: 2.0d
+			subtitle: "孵化一只震颤巨兽（tremorzilla）"
+			tasks: [{
+				advancement: "alexscaves:alexscaves/hatch_tremorzilla_egg"
+				criterion: ""
+				id: "562C8D8BF52D61DA"
+				type: "advancement"
+			}]
+			x: 7.0d
+			y: 3.0d
+		}
+		{
+			description: ["在&a有毒洞穴&r中，一旦&e爆炸&r开始，只有&c死亡&r（以及洞穴内的新&6猫变种&r）才能阻止&c爆炸&r。"]
+			id: "4B492F4CA6EBC3E8"
+			rewards: [
+				{
+					exclude_from_claim_all: true
+					id: "06800FBADDA4865E"
+					table_id: 8506390936464324187L
+					type: "random"
+				}
+				{
+					id: "30D7C3E52C52CBD3"
+					type: "xp"
+					xp: 100
+				}
+			]
+			shape: "hexagon"
+			size: 2.0d
+			tasks: [{
+				entity: "alexscaves:nucleeper"
+				id: "61AAA7C923FBE273"
+				type: "kill"
+				value: 1L
+			}]
+			x: 3.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["17D6CF535F3B71F5"]
+			description: ["此护甲将提供&b抗性&r，抵御部分&e辐射&r效果，并能&c减弱&r&a酸液的破坏性效果&r，作用于此&6护甲&r。"]
+			id: "2408BDBEDC0C2AD6"
+			rewards: [
+				{
+					exclude_from_claim_all: true
+					id: "732755C4C1343096"
+					table_id: 8506390936464324187L
+					type: "random"
+				}
+				{
+					id: "397909286FAB6FD7"
+					type: "xp"
+					xp: 200
+				}
+			]
+			tasks: [
+				{
+					id: "0505606B2472F2E2"
+					item: {
+						Count: 1
+						id: "alexscaves:hazmat_mask"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "59E129FAF36A76C5"
+					item: {
+						Count: 1
+						id: "alexscaves:hazmat_chestplate"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "4127990376CE448D"
+					item: {
+						Count: 1
+						id: "alexscaves:hazmat_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "3CAFFB7A5D9485D5"
+					item: {
+						Count: 1
+						id: "alexscaves:hazmat_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "Hazmat 套装"
+			x: 2.5d
+			y: -3.5d
+		}
+	]
+	title: "&a有毒洞穴"
+}

@@ -1,0 +1,386 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "ore_processing"
+	group: ""
+	icon: "minecraft:raw_iron"
+	id: "21D5603969002EDC"
+	images: [
+		{
+			height: 1.0d
+			image: "minecraft:item/raw_iron"
+			rotation: 0.0d
+			width: 1.0d
+			x: -11.5d
+			y: 0.0d
+		}
+		{
+			height: 1.0d
+			image: "create:item/crushed_raw_iron"
+			rotation: 0.0d
+			width: 1.0d
+			x: -9.5d
+			y: 0.0d
+		}
+		{
+			height: 1.0d
+			image: "minecraft:item/iron_nugget"
+			rotation: 0.0d
+			width: 1.0d
+			x: -9.5d
+			y: 1.0d
+		}
+		{
+			height: 1.0d
+			image: "minecraft:item/iron_nugget"
+			rotation: 0.0d
+			width: 1.0d
+			x: -9.5d
+			y: -1.0d
+		}
+		{
+			height: 1.0d
+			image: "bloodmagic:item/ironfragment"
+			rotation: 0.0d
+			width: 1.0d
+			x: -7.5d
+			y: 0.0d
+		}
+		{
+			height: 1.0d
+			image: "thermal_extra:item/iron_ore_chunk"
+			rotation: 0.0d
+			width: 1.0d
+			x: -5.5d
+			y: 0.0d
+		}
+		{
+			height: 1.0d
+			image: "bloodmagic:item/irongravel"
+			rotation: 0.0d
+			width: 1.0d
+			x: -4.5d
+			y: 0.0d
+		}
+		{
+			height: 1.0d
+			image: "mekanism:item/crystal_iron"
+			rotation: 0.0d
+			width: 1.0d
+			x: -0.5d
+			y: 0.0d
+		}
+		{
+			height: 1.0d
+			image: "mekanism:item/shard_iron"
+			rotation: 0.0d
+			width: 1.0d
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			height: 1.0d
+			image: "mekanism:item/clump_iron"
+			rotation: 0.0d
+			width: 1.0d
+			x: 3.5d
+			y: 0.0d
+		}
+		{
+			height: 1.0d
+			image: "mekanism:item/dirty_dust_iron"
+			rotation: 0.0d
+			width: 1.0d
+			x: 5.5d
+			y: 0.0d
+		}
+		{
+			height: 1.0d
+			image: "thermal_extra:block/fluids/raw_iron_still"
+			rotation: 0.0d
+			width: 1.0d
+			x: 7.5d
+			y: 0.0d
+		}
+		{
+			height: 1.0d
+			image: "thermal:item/iron_dust"
+			rotation: 0.0d
+			width: 1.0d
+			x: 9.5d
+			y: 0.0d
+		}
+		{
+			height: 1.0d
+			image: "minecraft:item/iron_ingot"
+			rotation: 0.0d
+			width: 1.0d
+			x: 11.5d
+			y: 0.0d
+		}
+		{
+			height: 5.0d
+			image: "ftbquests:textures/quests/arcauto.png"
+			rotation: 0.0d
+			width: 9.0d
+			x: -5.0d
+			y: -4.0d
+		}
+	]
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["689003D97051B085"]
+			description: ["第一步，将你的原矿碾成碎石"]
+			id: "4E0276F1B6411230"
+			shape: "ore"
+			tasks: [{
+				id: "1CDA7FEBAF072708"
+				item: "create:crushing_wheel"
+				type: "item"
+			}]
+			x: -10.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["45344CE5AE92DF33"]
+			description: ["第四步，将其破碎成碎片"]
+			id: "02874A242A869B27"
+			shape: "ore"
+			tasks: [
+				{
+					id: "0716838CD6BFF3B6"
+					item: "bloodmagic:alchemicalreactionchamber"
+					type: "item"
+				}
+				{
+					id: "7A30BD4B44002934"
+					item: {
+						Count: 1
+						id: "bloodmagic:basiccuttingfluid"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			x: -5.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["4E0276F1B6411230"]
+			description: ["第二步，把它彻底碾成粉末状"]
+			id: "5F69ADD329E0FBB8"
+			shape: "ore"
+			tasks: [{
+				id: "53FD510B02AD6632"
+				item: "energizedpower:pulverizer"
+				type: "item"
+			}]
+			x: -8.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5F69ADD329E0FBB8"]
+			description: ["第三步，用开水把它洗干净"]
+			id: "45344CE5AE92DF33"
+			shape: "ore"
+			tasks: [{
+				id: "5013D299FB55595C"
+				item: "pneumaticcraft:thermopneumatic_processing_plant"
+				type: "item"
+			}]
+			x: -6.5d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"02874A242A869B27"
+				"5440DC75F076E8B2"
+			]
+			dependency_requirement: "one_completed"
+			description: ["第五步，用酸将其溶解掉"]
+			id: "4DE7C7C8798D343A"
+			shape: "ore"
+			tasks: [{
+				id: "255ECC246A943383"
+				item: "mekanism:chemical_dissolution_chamber"
+				type: "item"
+			}]
+			x: -3.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["4DE7C7C8798D343A"]
+			description: ["第六步，将酸液冲洗干净"]
+			id: "05C1ADD53C7581C6"
+			shape: "ore"
+			tasks: [{
+				id: "092D6377F71FAE9E"
+				item: "mekanism:chemical_washer"
+				type: "item"
+			}]
+			x: -2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["05C1ADD53C7581C6"]
+			description: ["第七步，把它变回一个固体方块"]
+			id: "223BD71C484E978D"
+			shape: "ore"
+			tasks: [{
+				id: "20EF4F922A1EA4F6"
+				item: "mekanism:chemical_crystallizer"
+				type: "item"
+			}]
+			x: -1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["223BD71C484E978D"]
+			description: ["第八步，又是酸液了"]
+			id: "3A35A44BA4E80C24"
+			shape: "ore"
+			tasks: [{
+				id: "1848F2D7EBBD8E42"
+				item: "mekanism:chemical_injection_chamber"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["3A35A44BA4E80C24"]
+			description: ["第九步，注入高压氧气"]
+			id: "4BA3802E643FB47D"
+			shape: "ore"
+			tasks: [{
+				id: "422765BCAB4E2A95"
+				item: "mekanism:purification_chamber"
+				type: "item"
+			}]
+			x: 2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["4BA3802E643FB47D"]
+			description: ["第十步，热解作用"]
+			id: "45F26A52DADC5568"
+			shape: "ore"
+			tasks: [{
+				id: "389ED9C4801B8149"
+				item: "thermal_extra:nitratic_igniter"
+				type: "item"
+			}]
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["45F26A52DADC5568"]
+			description: ["第十一部，将其熔炼成锭"]
+			id: "2075EB68FA19FD5B"
+			shape: "ore"
+			tasks: [{
+				id: "508F3A8B451A7FFA"
+				item: "thermal:machine_crucible"
+				type: "item"
+			}]
+			x: 6.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["2075EB68FA19FD5B"]
+			description: ["第十二步，带走热量，留住尘埃"]
+			id: "5E5268FC2771EEF7"
+			shape: "ore"
+			tasks: [{
+				id: "2052520D5DF3BDA4"
+				item: "thermal_extra:endothermic_dehydrator"
+				type: "item"
+			}]
+			x: 8.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5E5268FC2771EEF7"]
+			description: ["第十三步，也是最后一步，一切准备就绪，你可以开启熔炉了"]
+			id: "27317A7CF142926A"
+			shape: "ore"
+			tasks: [{
+				id: "4873BA95B172758B"
+				item: "minecraft:furnace"
+				type: "item"
+			}]
+			x: 10.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["45344CE5AE92DF33"]
+			description: ["替代的第四步，用高端技术将其分解"]
+			id: "5440DC75F076E8B2"
+			optional: true
+			shape: "ore"
+			tasks: [{
+				id: "24E6DD3F990957AD"
+				item: "thermal:machine_centrifuge"
+				type: "item"
+			}]
+			x: -5.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["4F8D1DA370FD549B"]
+			description: [
+				"此整合包提供了一个独特的矿石处理系统。"
+				""
+				"- 每种能生产锭的矿石都有几个连锁步骤"
+				"- 每个步骤都需要一台新机器来生产一种新基质"
+				"- 任何基质都可以在下一步使用，并且其中大部分可以转化为金块"
+				""
+				"值得走完整流程吗？未经处理的单个原矿能产3个金块。流程末端，单个原矿能产大约2组锭。自行选择。"
+				""
+				"此页面可让你查看每个步骤。"
+			]
+			id: "689003D97051B085"
+			shape: "ore"
+			size: 3.0d
+			tasks: [{
+				id: "4BDED087D17F4288"
+				title: "矿石加工"
+				type: "checkmark"
+			}]
+			x: -13.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["689003D97051B085"]
+			description: ["清洗原矿或基岩会获得4个金块，并有几率获得急需的副产品"]
+			id: "64A4CF840EA5F82C"
+			shape: "ore"
+			tasks: [{
+				id: "563643C7508FA2B5"
+				item: "create:encased_fan"
+				type: "item"
+			}]
+			x: -10.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["689003D97051B085"]
+			description: ["使用熔炉熔炼原矿或基座可得到3个金块"]
+			id: "5B6A7DF1EDF804CA"
+			shape: "ore"
+			tasks: [{
+				id: "48CBD85316BF5211"
+				item: "minecraft:furnace"
+				type: "item"
+			}]
+			x: -10.5d
+			y: -1.0d
+		}
+	]
+	title: "矿石加工"
+}

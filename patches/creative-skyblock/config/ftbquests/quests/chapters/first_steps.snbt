@@ -1,0 +1,481 @@
+# AI 初翻，未人工校对
+{
+	id: "4B95E7753C7540F9",
+	group: "",
+	order_index: 0,
+	filename: "first_steps",
+	title: "第一步：基础操作指南",
+	icon: "minecraft:oak_sapling",
+	default_quest_shape: "hexagon",
+	quests: [
+		{
+			title: "我的第一棵树！",
+			x: -0.5d,
+			y: -0.5d,
+			shape: "hexagon",
+			subtitle: "用你的双手去捶打这棵树。",
+			description: [
+				"",
+				"",
+				""
+			],
+			hide: false,
+			id: "35D70B77371FAF13",
+			tasks: [{
+				id: "0F908B714DFD0D21",
+				type: "item",
+				disable_toast: true,
+				item: "minecraft:oak_log",
+				count: 3L
+			}]
+		},
+		{
+			title: "更多的木材",
+			x: -0.5d,
+			y: 0.5d,
+			subtitle: "永远不嫌多！",
+			dependencies: ["35D70B77371FAF13"],
+			hide: true,
+			id: "23FD57013162B294",
+			tasks: [{
+				id: "7439DD786206FC26",
+				type: "item",
+				disable_toast: true,
+				item: "minecraft:oak_log",
+				count: 16L
+			}]
+		},
+		{
+			x: -0.5d,
+			y: 1.5d,
+			subtitle: "Crook 用于从树叶中收集更多树苗。",
+			dependencies: ["23FD57013162B294"],
+			hide: true,
+			id: "74D7F5675EE0000F",
+			tasks: [{
+				id: "5BC1EEAB86D6CE16",
+				type: "item",
+				disable_toast: true,
+				item: {
+					id: "exnihilosequentia:crook_wood",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			title: "堆肥系统（Composting）",
+			icon: "exnihilosequentia:barrel_wood",
+			x: -1.0d,
+			y: 2.5d,
+			subtitle: "木桶用于堆肥植物。方法是将有机物放入木桶中，等待泥土生成。8棵树苗 = 1块泥土。",
+			dependencies: ["74D7F5675EE0000F"],
+			hide: true,
+			id: "49F377688004E01F",
+			tasks: [
+				{
+					id: "1576E6812EC263BC",
+					type: "item",
+					disable_toast: true,
+					item: "exnihilosequentia:barrel_wood"
+				},
+				{
+					id: "0B6EC2C69FC1BEC4",
+					type: "item",
+					disable_toast: true,
+					item: "minecraft:dirt",
+					count: 4L
+				}
+			]
+		},
+		{
+			title: "筛选物品",
+			icon: "exnihilosequentia:sieve",
+			x: -1.0d,
+			y: 3.5d,
+			subtitle: "用这个获取更高级的材料。筛子是用来，嗯，筛选的。先把网格放入筛子。接着，右键点击你想筛选的材料。再点几次，你就会得到一些资源！掉落物品取决于方块！",
+			dependencies: ["49F377688004E01F"],
+			hide: true,
+			hide_text_until_complete: false,
+			id: "3EAF465E80A50A4C",
+			tasks: [
+				{
+					id: "181565E92782F436",
+					type: "item",
+					disable_toast: true,
+					item: "exnihilosequentia:sieve"
+				},
+				{
+					id: "1BEB86F74DE99A1F",
+					type: "item",
+					disable_toast: true,
+					item: {
+						id: "exnihilosequentia:mesh_string",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		},
+		{
+			x: 0.0d,
+			y: 2.5d,
+			subtitle: "木制坩埚用于从植物中生产水。目前，把树苗放进去。提示：下雨时它也会收集水！",
+			dependencies: ["74D7F5675EE0000F"],
+			hide: true,
+			id: "62DC19AC0166684B",
+			tasks: [{
+				id: "33012C131B592152",
+				type: "item",
+				disable_toast: true,
+				item: "exnihilosequentia:crucible_wood"
+			}]
+		},
+		{
+			title: "石器时代",
+			x: -1.0d,
+			y: 4.5d,
+			subtitle: "用筛子筛泥土可以获得鹅卵石。将它们合成在一起，就能得到鹅卵石砖！",
+			dependencies: ["3EAF465E80A50A4C"],
+			hide: true,
+			id: "6EF6ADDF38ADA2EC",
+			tasks: [{
+				id: "3B88EAAC42F9B092",
+				type: "item",
+				disable_toast: true,
+				item: "minecraft:cobblestone",
+				count: 8L
+			}]
+		},
+		{
+			title: "正在粉碎中",
+			icon: {
+				id: "exnihilosequentia:hammer_wood",
+				Count: 1b,
+				tag: {
+					Damage: 0
+				}
+			},
+			x: -1.5d,
+			y: 5.5d,
+			subtitle: "锤子可用于粉碎各种方块。产物可能在筛选时有用！",
+			dependencies: ["6EF6ADDF38ADA2EC"],
+			hide: true,
+			id: "092A2285FBBD2FE3",
+			tasks: [
+				{
+					id: "2709DB439FDE44CC",
+					type: "item",
+					disable_toast: true,
+					item: {
+						id: "exnihilosequentia:hammer_wood",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: "2FC07AB788EFAC3E",
+					type: "item",
+					disable_toast: true,
+					item: "minecraft:gravel",
+					count: 6L
+				},
+				{
+					id: "7FAF7FBAF1D257AF",
+					type: "item",
+					disable_toast: true,
+					item: "minecraft:sand",
+					count: 6L
+				},
+				{
+					id: "2F74E7E0A8B7DD7C",
+					type: "item",
+					disable_toast: true,
+					item: "exnihilosequentia:dust",
+					count: 6L
+				}
+			]
+		},
+		{
+			title: "滚烫的东西",
+			x: -0.5d,
+			y: 5.5d,
+			subtitle: "放置一个坩埚，并在其下方放置任何热源（此处为火把）。然后，将一些原矿放入其中并等待其熔化。4个原矿 = 1桶岩浆。",
+			dependencies: [
+				"6EF6ADDF38ADA2EC",
+				"2B51205449365901"
+			],
+			hide: true,
+			id: "6954FA08A6950D04",
+			tasks: [{
+				id: "7A7D3529B29B60CC",
+				type: "item",
+				disable_toast: true,
+				item: "exnihilosequentia:crucible_fired"
+			}]
+		},
+		{
+			title: "粘土",
+			icon: "minecraft:clay_ball",
+			x: -1.0d,
+			y: 6.5d,
+			subtitle: "将一些粉尘放入装满水的桶中，可以获得一块粘土。",
+			dependencies: ["092A2285FBBD2FE3"],
+			hide: true,
+			id: "2B51205449365901",
+			tasks: [{
+				id: "5BD091CD29AE6CC6",
+				type: "item",
+				disable_toast: true,
+				item: "minecraft:clay"
+			}]
+		},
+		{
+			title: "热！",
+			icon: "minecraft:lava_bucket",
+			x: 0.0d,
+			y: 6.5d,
+			dependencies: [
+				"6954FA08A6950D04",
+				"2B51205449365901"
+			],
+			hide: true,
+			id: "26F54C8712D1C874",
+			tasks: [{
+				id: "2D2150054EA3537B",
+				type: "item",
+				disable_toast: true,
+				item: {
+					id: "ceramics:cracked_clay_bucket",
+					Count: 1b,
+					tag: {
+						fluid: "minecraft:lava"
+					}
+				}
+			}]
+		},
+		{
+			title: "再也没有小石子了",
+			icon: "minecraft:cobblestone",
+			x: 0.5d,
+			y: 7.5d,
+			subtitle: "如果你不喜欢用筛子获取鹅卵石，可以建造一个简单的鹅卵石生成器。这可能在后续游戏中实现自动化。",
+			dependencies: ["26F54C8712D1C874"],
+			hide: true,
+			id: "12CA032B4552CCBC",
+			tasks: [{
+				id: "4CB0241B05ABAFF3",
+				type: "item",
+				disable_toast: true,
+				item: "minecraft:cobblestone",
+				count: 64L
+			}]
+		},
+		{
+			x: -2.5d,
+			y: 5.5d,
+			subtitle: "筛选获得的资源取决于所用的筛网。升级它吧！",
+			dependencies: ["092A2285FBBD2FE3"],
+			hide: true,
+			id: "7C8958DBB4E58819",
+			tasks: [{
+				id: "5F670410BA2BB860",
+				type: "item",
+				disable_toast: true,
+				item: {
+					id: "exnihilosequentia:mesh_flint",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			title: "第一批矿石",
+			icon: "exnihilosequentia:chunk_iron",
+			x: -3.5d,
+			y: 5.0d,
+			subtitle: "矿石块可通过筛选砾石、沙子等获得。4个矿石块可合成一个原矿块，之后可熔炼成锭。",
+			dependencies: ["7C8958DBB4E58819"],
+			hide: true,
+			id: "16D1A576B8A4D0CC",
+			tasks: [{
+				id: "7CA1DD4A8F29347D",
+				type: "item",
+				disable_toast: true,
+				item: "exnihilosequentia:chunk_iron"
+			}]
+		},
+		{
+			x: -2.5d,
+			y: 4.5d,
+			subtitle: "升级！",
+			dependencies: ["16D1A576B8A4D0CC"],
+			hide: true,
+			id: "726A54BBA5EF8BDB",
+			tasks: [{
+				id: "14FF77C2BB1DAF25",
+				type: "item",
+				disable_toast: true,
+				item: {
+					id: "exnihilosequentia:mesh_iron",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			x: -2.5d,
+			y: 3.5d,
+			subtitle: "升级，伙计们，升级！",
+			dependencies: ["2F43D6860CDB0487"],
+			hide: true,
+			id: "201636D011EFD5F4",
+			tasks: [{
+				id: "2E9AB68A1184B4C6",
+				type: "item",
+				disable_toast: true,
+				item: {
+					id: "exnihilosequentia:mesh_diamond",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			x: -2.5d,
+			y: 2.5d,
+			dependencies: ["1DEE6D36AFA1F744"],
+			id: "3D03FACA29B0149D",
+			tasks: [{
+				id: "6D34020C48476819",
+				type: "item",
+				disable_toast: true,
+				item: {
+					id: "exnihilosequentia:mesh_emerald",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			x: -2.5d,
+			y: 1.5d,
+			subtitle: "真正的完美无瑕……",
+			description: [""],
+			dependencies: ["6CF4DC3B9D312B31"],
+			hide: true,
+			id: "4CA31907588FA569",
+			tasks: [{
+				id: "2A21ABC987C2ACD4",
+				type: "item",
+				disable_toast: true,
+				item: {
+					id: "exnihilosequentia:mesh_netherite",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			title: "钻石！",
+			x: -3.5d,
+			y: 4.0d,
+			subtitle: "运气好点，找到一些钻石吧！",
+			dependencies: ["726A54BBA5EF8BDB"],
+			hide: true,
+			id: "2F43D6860CDB0487",
+			tasks: [{
+				id: "75055ECB8C08BADE",
+				type: "item",
+				disable_toast: true,
+				item: "minecraft:diamond"
+			}]
+		},
+		{
+			x: -3.5d,
+			y: 3.0d,
+			subtitle: "获得更多好运，找到一些绿宝石。",
+			dependencies: ["201636D011EFD5F4"],
+			hide: true,
+			id: "1DEE6D36AFA1F744",
+			tasks: [{
+				id: "57E7B150160F8B7E",
+				type: "item",
+				disable_toast: true,
+				item: "minecraft:emerald"
+			}]
+		},
+		{
+			x: -3.5d,
+			y: 2.0d,
+			dependencies: [
+				"3D03FACA29B0149D",
+				"237611C0E9DAB800"
+			],
+			id: "6CF4DC3B9D312B31",
+			tasks: [{
+				id: "487663690AE11104",
+				type: "item",
+				disable_toast: true,
+				item: "minecraft:netherite_scrap"
+			}]
+		},
+		{
+			title: "&8下界合金之王",
+			x: -2.475d,
+			y: 0.0d,
+			shape: "rsquare",
+			description: ["这是一个&e挑战&f！"],
+			dependencies: ["4CA31907588FA569"],
+			size: 1.2d,
+			id: "2C748B2A9A1AA03D",
+			tasks: [{
+				id: "6B6C3D3BD8D59D54",
+				type: "item",
+				item: "minecraft:netherite_block"
+			}],
+			rewards: [{
+				id: "00874B4F7E2348AF",
+				type: "xp",
+				xp: 1500
+			}]
+		},
+		{
+			x: 0.0d,
+			y: 4.5d,
+			subtitle: "这是木桶的升级版——可以盛放岩浆等高温液体。",
+			description: ["&f解锁了新的&b&l章节&f！"],
+			dependencies: ["6EF6ADDF38ADA2EC"],
+			id: "016128E2C11A4464",
+			tasks: [{
+				id: "63D54ACFBF379B17",
+				type: "item",
+				item: "exnihilosequentia:barrel_stone"
+			}],
+			rewards: [{
+				id: "2B6D00050AAD8368",
+				type: "toast",
+				title: "&f新的&b&l章节&r&f已解锁！",
+				icon: "exnihilosequentia:barrel_stone",
+				auto: "disabled",
+				description: "高级虚空锻造（Advanced Ex Nihilo）"
+			}]
+		}
+	]
+}
