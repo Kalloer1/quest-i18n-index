@@ -1,0 +1,1012 @@
+# AI 初翻，未人工校对
+{
+	id: "430ADA390E9B7095"
+	group: "63BC73F831F7A250"
+	order_index: 2
+	filename: "the_nether"
+	title: "下界"
+	icon: "minecraft:magma_block"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "去下界看看吧！"
+			x: 0.0d
+			y: 0.0d
+			shape: "gear"
+			subtitle: "可别晒伤了！或者…被任何东西烧伤了，我的意思是…"
+			size: 1.75d
+			id: "490E8618A78072F2"
+			tasks: [{
+				id: "55CF66FF86F4FD9B"
+				type: "dimension"
+				dimension: "minecraft:the_nether"
+			}]
+			rewards: [
+				{
+					id: "3F370DC15B7F0C58"
+					type: "xp"
+					xp: 25
+				}
+				{
+					id: "39190B8262307C45"
+					type: "command"
+					auto: "invisible"
+					command: "/tell @p Well.. this place seems fun. Are you ready ?"
+				}
+			]
+		}
+		{
+			title: "下界岩……到处都是下界岩……"
+			x: 0.0d
+			y: -2.5d
+			dependencies: ["490E8618A78072F2"]
+			id: "7BCCD1145A7F7A84"
+			tasks: [{
+				id: "35BD5715FFDF6E96"
+				type: "item"
+				item: "minecraft:netherrack"
+				count: 64L
+			}]
+			rewards: [{
+				id: "113A38E980CFB48B"
+				type: "pmmo:xpreward"
+				skill: "mining"
+				amount: 83L
+				ignoreBonuses: false
+			}]
+		}
+		{
+			title: "是时候熔炼了。"
+			x: 0.0d
+			y: -4.0d
+			dependencies: ["7BCCD1145A7F7A84"]
+			id: "59DFBCD4865DB477"
+			tasks: [{
+				id: "2A0D74A5B1AA32FB"
+				type: "item"
+				item: "minecraft:nether_brick"
+				count: 64L
+			}]
+			rewards: [
+				{
+					id: "4F13624417A4BF01"
+					type: "pmmo:xpreward"
+					skill: "smithing"
+					amount: 83L
+					ignoreBonuses: false
+				}
+				{
+					id: "1A47BBE0990120DE"
+					type: "loot"
+					table_id: 162941360134059119L
+				}
+			]
+		}
+		{
+			x: 0.0d
+			y: -5.5d
+			dependencies: ["59DFBCD4865DB477"]
+			id: "610DD694BB0C1B83"
+			tasks: [{
+				id: "225903F76E7841C4"
+				type: "item"
+				title: "合成下界砖块"
+				item: "minecraft:nether_bricks"
+				count: 8L
+				only_from_crafting: true
+			}]
+			rewards: [
+				{
+					id: "0315E229FAF576AB"
+					type: "pmmo:xpreward"
+					skill: "crafting"
+					amount: 83L
+					ignoreBonuses: false
+				}
+				{
+					id: "43B66308F769FEF5"
+					type: "loot"
+					table_id: 4541931633169242376L
+				}
+			]
+		}
+		{
+			x: 2.0d
+			y: -5.5d
+			description: ["我的意思是，这只是一个普通的箱子……不过我觉得它看起来挺酷的！"]
+			dependencies: ["610DD694BB0C1B83"]
+			id: "17A5764437812318"
+			tasks: [{
+				id: "0BDD01115C268D59"
+				type: "item"
+				item: "quark:nether_brick_chest"
+				only_from_crafting: true
+			}]
+			rewards: [
+				{
+					id: "79EA08CE3E8C22E6"
+					type: "pmmo:xpreward"
+					skill: "crafting"
+					amount: 83L
+					ignoreBonuses: false
+				}
+				{
+					id: "3E3ED292F795BB1C"
+					type: "xp"
+					xp: 50
+				}
+			]
+		}
+		{
+			x: 4.5d
+			y: -3.5d
+			shape: "gear"
+			description: ["进入一个堡垒遗迹 (Bastion Remnant)"]
+			id: "6EF5222320EDCEF8"
+			tasks: [{
+				id: "0A8C48174B25B576"
+				type: "advancement"
+				title: "那些日子真美好……"
+				advancement: "minecraft:nether/find_bastion"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "764BD0C3BC627437"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "432DDE495576C178"
+					type: "item"
+					item: "minecraft:diamond"
+					count: 2
+				}
+			]
+		}
+		{
+			x: 3.5d
+			y: -4.5d
+			shape: "gear"
+			description: ["这可是一项了不起的成就。"]
+			id: "5A977808FFB8D221"
+			tasks: [{
+				id: "7B8788011AF6783C"
+				type: "advancement"
+				title: "使用下界传送 7000 格距离"
+				advancement: "minecraft:nether/fast_travel"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "061CE17B57D988A3"
+				type: "pmmo:xpreward"
+				skill: "endurance"
+				amount: 150L
+				ignoreBonuses: false
+			}]
+		}
+		{
+			x: 5.5d
+			y: -2.5d
+			shape: "gear"
+			description: ["从下界救出一只恶魂，把它安全带回主世界……然后在建立信任并经过数年建立起深厚友谊之后，把它杀掉。"]
+			id: "122C81E852EC08A1"
+			tasks: [{
+				id: "40A83DB00DD27AF5"
+				type: "advancement"
+				title: "你怎么能做出这种事……"
+				advancement: "minecraft:nether/uneasy_alliance"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "5BED0401FE9FD4F7"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "61DC2E9FCA79E4A1"
+					type: "loot"
+					table_id: 2878545973601917989L
+				}
+				{
+					id: "5A3B3E5C519AA573"
+					type: "pmmo:xpreward"
+					skill: "slayer"
+					amount: 150L
+					ignoreBonuses: false
+				}
+			]
+		}
+		{
+			title: "找到它。名正言顺的。"
+			x: -1.875d
+			y: -2.5d
+			shape: "gear"
+			dependencies: ["490E8618A78072F2"]
+			size: 1.25d
+			id: "7D9CAE589014CB2B"
+			tasks: [{
+				id: "13882B46643A35E3"
+				type: "item"
+				item: "minecraft:ancient_debris"
+			}]
+			rewards: [
+				{
+					id: "305A43F5273304AB"
+					type: "loot"
+					table_id: 5576410721870332972L
+				}
+				{
+					id: "20A54F917E1AD5FA"
+					type: "item"
+					item: "minecraft:crying_obsidian"
+				}
+			]
+		}
+		{
+			x: -4.0d
+			y: -2.5d
+			shape: "gear"
+			dependencies: ["7D9CAE589014CB2B"]
+			id: "1D0602BFDB506880"
+			tasks: [{
+				id: "6E2C60DC30A79FCF"
+				type: "item"
+				item: {
+					id: "minecraft:netherite_helmet"
+					Count: 1
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "302762BF2D26DB8A"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "7A2DDC533517A170"
+					type: "loot"
+					table_id: 5576410721870332972L
+				}
+				{
+					id: "1D296F308072020E"
+					type: "pmmo:xpreward"
+					skill: "alchemy"
+					amount: 83L
+					ignoreBonuses: false
+				}
+				{
+					id: "061B420F40ABA6E6"
+					type: "pmmo:xpreward"
+					skill: "smithing"
+					amount: 100L
+					ignoreBonuses: false
+				}
+			]
+		}
+		{
+			x: -4.0d
+			y: -4.0d
+			shape: "gear"
+			dependencies: ["1D0602BFDB506880"]
+			id: "2A144861487774BB"
+			tasks: [{
+				id: "1449DFFE9E74FB29"
+				type: "item"
+				item: {
+					id: "minecraft:netherite_chestplate"
+					Count: 1
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "32C92F0E9EC1F93F"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "26F04F0FED1A5D55"
+					type: "loot"
+					table_id: 4541931633169242376L
+				}
+				{
+					id: "00B72165D726382A"
+					type: "pmmo:xpreward"
+					skill: "endurance"
+					amount: 83L
+					ignoreBonuses: false
+				}
+				{
+					id: "2A110BE852AD2597"
+					type: "pmmo:xpreward"
+					skill: "smithing"
+					amount: 100L
+					ignoreBonuses: false
+				}
+			]
+		}
+		{
+			x: -4.0d
+			y: -5.5d
+			shape: "gear"
+			dependencies: ["2A144861487774BB"]
+			id: "7E835D78F49BD90A"
+			tasks: [{
+				id: "6924D3D7A8BFD2E4"
+				type: "item"
+				item: {
+					id: "minecraft:netherite_leggings"
+					Count: 1
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "12DC46200CB17ED5"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "250FF7E3987122C5"
+					type: "loot"
+					table_id: 6368590923468895226L
+				}
+				{
+					id: "0DCFE711343C52C8"
+					type: "pmmo:xpreward"
+					skill: "mining"
+					amount: 83L
+					ignoreBonuses: false
+				}
+				{
+					id: "415AAAA3AEB5A4BD"
+					type: "pmmo:xpreward"
+					skill: "smithing"
+					amount: 100L
+					ignoreBonuses: false
+				}
+			]
+		}
+		{
+			x: -2.0d
+			y: -5.5d
+			shape: "gear"
+			dependencies: ["7E835D78F49BD90A"]
+			id: "4138404D12E93A6F"
+			tasks: [{
+				id: "212E599B07A97967"
+				type: "item"
+				item: {
+					id: "minecraft:netherite_boots"
+					Count: 1
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "5B4E74258AE47B46"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "1423841C1625FE5B"
+					type: "pmmo:xpreward"
+					skill: "slayer"
+					amount: 83L
+					ignoreBonuses: false
+				}
+				{
+					id: "0D3438FDFB6C19DE"
+					type: "pmmo:xpreward"
+					skill: "smithing"
+					amount: 100L
+					ignoreBonuses: false
+				}
+			]
+		}
+		{
+			x: -3.0d
+			y: 0.0d
+			description: ["猪叫一声"]
+			dependencies: ["490E8618A78072F2"]
+			id: "6D57BCAB775B56E7"
+			tasks: [{
+				id: "26FEA6A77DE28F09"
+				type: "kill"
+				title: "带上黄金快跑！"
+				entity: "minecraft:piglin_brute"
+				value: 25L
+			}]
+			rewards: [
+				{
+					id: "2FFCF57EFD865E04"
+					type: "item"
+					item: "minecraft:gold_ingot"
+					count: 12
+				}
+				{
+					id: "6814989DD75A0737"
+					type: "pmmo:xpreward"
+					skill: "slayer"
+					amount: 83L
+					ignoreBonuses: false
+				}
+			]
+		}
+		{
+			title: "是啊，他是个很有趣的人……"
+			x: 1.5d
+			y: 1.0d
+			shape: "pentagon"
+			description: ["把蘑菇交给我，我会给你奖励……你正在读的这段随机文本说道。"]
+			dependencies: ["490E8618A78072F2"]
+			id: "34B0227BC884881C"
+			tasks: [{
+				id: "1A0B8065E9DFD282"
+				type: "item"
+				item: "minecraft:crimson_fungus"
+				count: 24L
+				consume_items: true
+			}]
+			rewards: [{
+				id: "2214191B16A041BC"
+				type: "item"
+				item: "minecraft:gold_ingot"
+				count: 5
+			}]
+		}
+		{
+			title: "不像另一个家伙那么好玩……"
+			x: -1.5d
+			y: 1.0d
+			shape: "pentagon"
+			description: ["你也应该去看看另一个有趣的人。"]
+			dependencies: ["490E8618A78072F2"]
+			id: "4BB59E7789C840BB"
+			tasks: [{
+				id: "53C86F70C64FEB52"
+				type: "item"
+				item: "minecraft:warped_fungus"
+				count: 24L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "555BD4BE9C993F90"
+					type: "item"
+					item: "minecraft:gold_ingot"
+					count: 5
+				}
+				{
+					id: "02B236C857F6DC9E"
+					type: "item"
+					item: "tconstruct:pig_iron_ingot"
+				}
+			]
+		}
+		{
+			title: "鬼灭之刃"
+			x: 2.0d
+			y: -2.5d
+			description: ["在末地击杀10条骨蛇。"]
+			dependencies: ["490E8618A78072F2"]
+			id: "71A4A5581AF4C9AA"
+			tasks: [{
+				id: "329199097CD72C42"
+				type: "kill"
+				entity: "alexsmobs:bone_serpent"
+				value: 10L
+			}]
+			rewards: [{
+				id: "1D11BBC8EEAB2C5F"
+				type: "pmmo:xpreward"
+				skill: "slayer"
+				amount: 800L
+				ignoreBonuses: false
+			}]
+		}
+		{
+			x: -2.5d
+			y: -1.5d
+			shape: "heart"
+			dependencies: ["490E8618A78072F2"]
+			id: "3B50B78A165B0D3B"
+			tasks: [{
+				id: "2191F5CD366EB8B7"
+				type: "advancement"
+				title: "嗜血狂徒们"
+				advancement: "alexsmobs:alexsmobs/crimson_mosquito"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "5179CFCAC118BF0F"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "66CD36D6FDFA0948"
+					type: "pmmo:xpreward"
+					skill: "combat"
+					amount: 83L
+					ignoreBonuses: false
+				}
+				{
+					id: "7C271FBD27B26ADD"
+					type: "item"
+					item: "tconstruct:blood_bucket"
+				}
+			]
+		}
+		{
+			x: 3.0d
+			y: -1.5d
+			dependencies: ["490E8618A78072F2"]
+			id: "3FCFD5ACF3BE25BA"
+			tasks: [{
+				id: "178025095FF6C01B"
+				type: "kill"
+				title: "干掉这个，休闲模式！"
+				entity: "minecraft:wither_skeleton"
+				value: 10L
+			}]
+			rewards: [
+				{
+					id: "6BC95ADBCD01C231"
+					type: "item"
+					item: {
+						id: "minecraft:wither_rose"
+						Count: 1
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+					count: 2
+				}
+				{
+					id: "3F52E04631DBC931"
+					type: "item"
+					item: {
+						id: "immersive_armors:wither_chestplate"
+						Count: 1
+						tag: {
+							Damage: 0
+						}
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 2.0d
+			y: -4.0d
+			shape: "gear"
+			description: ["好好发挥你的手艺，制作一下吧"]
+			dependencies: ["71A4A5581AF4C9AA"]
+			id: "2258374B95588104"
+			tasks: [{
+				id: "5BD26D91B916F6B2"
+				type: "item"
+				item: {
+					id: "enigmaticlegacy:forbidden_axe"
+					Count: 1
+					tag: {
+						Damage: 0
+					}
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+					}
+				}
+				only_from_crafting: true
+			}]
+			rewards: [
+				{
+					id: "3301F7B20BE474CB"
+					type: "item"
+					item: {
+						id: "minecraft:dragon_head"
+						Count: 1
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+				{
+					id: "253725740AB24275"
+					type: "loot"
+					table_id: 2614350496967698251L
+				}
+				{
+					id: "005C8B9907E0CAAD"
+					type: "pmmo:levelreward"
+					skill: "crafting"
+					amount: 1
+				}
+			]
+		}
+		{
+			x: 3.0d
+			y: 0.0d
+			description: ["囤积症犯了？.. 你不需要那么多东西，对吧？"]
+			dependencies: ["490E8618A78072F2"]
+			id: "7605DF2F1BE71CEE"
+			tasks: [
+				{
+					id: "115F580F486013A8"
+					type: "item"
+					item: {
+						id: "wstweaks:fragment"
+						Count: 1
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+					count: 64L
+					consume_items: true
+				}
+				{
+					id: "166F3536B0790636"
+					type: "item"
+					item: {
+						id: "minecraft:wither_skeleton_skull"
+						Count: 1
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+					count: 24L
+					consume_items: true
+				}
+			]
+			rewards: [{
+				id: "6892C2EE258198ED"
+				type: "item"
+				item: {
+					id: "ob_core:patreon_yy_katana"
+					Count: 1
+					tag: {
+						Damage: 0
+					}
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+					}
+				}
+			}]
+		}
+		{
+			x: 0.0d
+			y: 2.5d
+			dependencies: ["490E8618A78072F2"]
+			id: "78C3FEDCEE76BB18"
+			tasks: [{
+				id: "5DDC9F488A6E0250"
+				type: "advancement"
+				advancement: "incendium:root"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "36B357B265AD24E5"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: 0.0d
+			y: 4.5d
+			dependencies: ["78C3FEDCEE76BB18"]
+			id: "7C13F613529C4710"
+			tasks: [{
+				id: "361B868B7CD45665"
+				type: "advancement"
+				title: "找到地狱堡垒！"
+				advancement: "incendium:infernal_dunes/root"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "6337DC3A02CCB403"
+					type: "loot"
+					exclude_from_claim_all: true
+					table_id: 1442863995114791897L
+				}
+				{
+					id: "7C37CEBA198160C1"
+					type: "loot"
+					exclude_from_claim_all: true
+					table_id: 2614350496967698251L
+				}
+				{
+					id: "7C888D5150A36E85"
+					type: "pmmo:xpreward"
+					skill: "combat"
+					amount: 450L
+					ignoreBonuses: false
+				}
+			]
+		}
+		{
+			x: -2.0d
+			y: 6.0d
+			dependencies: ["7C13F613529C4710"]
+			id: "7C2DC9DEF2E5B4CF"
+			tasks: [{
+				id: "7C91278BA33B6CD8"
+				type: "advancement"
+				title: "杀死神殿里较小的烈焰人。"
+				advancement: "incendium:infernal_dunes/dune_blaze"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "403F11069598F078"
+				type: "pmmo:xpreward"
+				skill: "combat"
+				amount: 1000L
+				ignoreBonuses: false
+			}]
+		}
+		{
+			x: 2.0d
+			y: 2.5d
+			dependencies: ["78C3FEDCEE76BB18"]
+			id: "4D6D987A13B37381"
+			tasks: [{
+				id: "7ABDA115FE280F7F"
+				type: "advancement"
+				advancement: "incendium:quartz_flats/root"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "43E817EAF41B1FEC"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "153E4D6CED26CFF6"
+					type: "loot"
+					exclude_from_claim_all: true
+					table_id: 2614350496967698251L
+				}
+			]
+		}
+		{
+			x: 4.0d
+			y: 2.5d
+			dependencies: ["4D6D987A13B37381"]
+			id: "5919449D45249C04"
+			tasks: [{
+				id: "39FA1BC11C8F5519"
+				type: "advancement"
+				advancement: "incendium:quartz_flats/torte/kitchen_treasure"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "3A03ED437091D113"
+					type: "loot"
+					exclude_from_claim_all: true
+					table_id: 2614350496967698251L
+				}
+				{
+					id: "5036352241FD8D7E"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+		{
+			x: -4.0d
+			y: 6.0d
+			description: [
+				"在光明与黑暗的边界处击杀沙漠烈焰。"
+				"并获得它的两种掉落物。"
+			]
+			dependencies: ["7C2DC9DEF2E5B4CF"]
+			id: "688AA9FE398C64C8"
+			tasks: [{
+				id: "13D4DEC72F51E82E"
+				type: "advancement"
+				title: "生命之板的守卫者"
+				advancement: "incendium:infernal_dunes/border_of_life"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "1BA24876F84EFB65"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "3F674A7A69FB97AB"
+					type: "pmmo:levelreward"
+					skill: "combat"
+					amount: 1
+				}
+			]
+		}
+		{
+			title: "我们出发吧！"
+			x: -2.0d
+			y: 3.5d
+			description: ["进入一个管道运输系统。"]
+			dependencies: ["7C13F613529C4710"]
+			id: "18E5DA7A40F5A40B"
+			tasks: [{
+				id: "71A80FE267F01D65"
+				type: "advancement"
+				title: "管道之梦"
+				advancement: "incendium:infernal_dunes/pipeline/root"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "6050CCB5D86E810E"
+				type: "pmmo:levelreward"
+				skill: "agility"
+				amount: 1
+			}]
+		}
+		{
+			x: -4.0d
+			y: 3.5d
+			description: ["被哨兵的电击攻击命中一次。"]
+			dependencies: ["18E5DA7A40F5A40B"]
+			id: "151A1BAE6EEAAE14"
+			tasks: [{
+				id: "225620A279EC0DBC"
+				type: "advancement"
+				title: "无限的力量"
+				advancement: "incendium:infernal_dunes/pipeline/unlimited_power"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "2FA94C16D8B8A1A8"
+				type: "pmmo:levelreward"
+				skill: "endurance"
+				amount: 1
+			}]
+		}
+		{
+			x: 1.0d
+			y: 6.0d
+			shape: "pentagon"
+			description: ["找到祭坛，并向其献上祭品以召唤炼狱首领。"]
+			dependencies: ["7C13F613529C4710"]
+			id: "1582A590B7B16622"
+			tasks: [{
+				id: "50A6114D171D1F56"
+				type: "advancement"
+				title: "在余烬的彼端！"
+				advancement: "incendium:infernal_dunes/inferno/root"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "30621B6725E9E9CB"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "1F356421B852F85C"
+					type: "pmmo:levelreward"
+					skill: "endurance"
+					amount: 1
+				}
+			]
+		}
+		{
+			x: 3.0d
+			y: 6.0d
+			shape: "pentagon"
+			description: ["你不能杀死熔岩。只需生存下来即可获胜。"]
+			dependencies: ["1582A590B7B16622"]
+			id: "1A7501AAE8F0DFA1"
+			tasks: [{
+				id: "78AF3B54A6B96B81"
+				type: "advancement"
+				title: "快跑。"
+				advancement: "incendium:infernal_dunes/inferno/run"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "197169EECBFC441E"
+				type: "pmmo:levelreward"
+				skill: "combat"
+				amount: 1
+			}]
+		}
+		{
+			x: 5.0d
+			y: 6.0d
+			shape: "octagon"
+			description: [
+				"击败了漂浮的炼狱。"
+				""
+				"领取你的奖励吧。"
+			]
+			dependencies: ["1A7501AAE8F0DFA1"]
+			id: "114202193D634A01"
+			tasks: [{
+				id: "74083D7BA71B9C0D"
+				type: "advancement"
+				title: "生存下来，赢得胜利。"
+				advancement: "incendium:infernal_dunes/inferno/kill"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "0054BEF5BFFADD5A"
+				type: "pmmo:levelreward"
+				skill: "combat"
+				amount: 1
+			}]
+		}
+		{
+			x: 7.0d
+			y: 6.0d
+			shape: "gear"
+			description: ["制作后装备以推进进度。"]
+			dependencies: ["114202193D634A01"]
+			id: "43AA6B2678BCE0A3"
+			tasks: [{
+				id: "4906E3FD517807BD"
+				type: "advancement"
+				title: "在火焰中锻造~"
+				advancement: "incendium:infernal_dunes/inferno/armored_wings"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "22E4553C1AC6B856"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "7907AE31AD64B975"
+					type: "loot"
+					exclude_from_claim_all: true
+					table_id: 377933700796306313L
+				}
+				{
+					id: "5FE1A04F4D6B46A3"
+					type: "loot"
+					exclude_from_claim_all: true
+					table_id: 2190574254409122039L
+				}
+				{
+					id: "1C78F5F639CDAB2F"
+					type: "pmmo:levelreward"
+					skill: "magic"
+					amount: 1
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+}
