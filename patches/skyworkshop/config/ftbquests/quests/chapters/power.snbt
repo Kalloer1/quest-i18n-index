@@ -1,0 +1,294 @@
+# AI 初翻，未人工校对
+{
+	id: "4725DD8BFD1FD63F"
+	group: "561D9430EFB5D0A7"
+	order_index: 0
+	filename: "power"
+	title: "大型反应堆模组 (Big Reactors)"
+	subtitle: ["反应堆会爆炸吗？"]
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: -6.0d
+			y: -2.5d
+			description: ["筛分粉尘以获得 Yellorium 粉尘"]
+			dependencies: ["30CFCA4C95778380"]
+			dependency_requirement: "all_started"
+			id: "3FD0747E78C3A995"
+			tasks: [{
+				id: "4A833BBE4E13C952"
+				type: "item"
+				item: "bigreactors:yellorium_ingot"
+			}]
+			rewards: [{
+				id: "320151B8A3816221"
+				type: "item"
+				item: {
+					id: "patchouli:guide_book"
+					Count: 1b
+					tag: {
+						"patchouli:book": "bigreactors:erguide"
+					}
+				}
+			}]
+		}
+		{
+			x: -6.0d
+			y: -1.0d
+			description: ["将木炭熔炼以获得石墨"]
+			dependencies: ["3FD0747E78C3A995"]
+			id: "3A77D38927AF12B7"
+			tasks: [{
+				id: "77BB990766D01D09"
+				type: "item"
+				item: "bigreactors:graphite_ingot"
+			}]
+			rewards: [{
+				id: "0EBFDD5EC82DCCDB"
+				type: "item"
+				item: "bigreactors:graphite_ingot"
+				count: 32
+			}]
+		}
+		{
+			x: -6.0d
+			y: 0.5d
+			description: ["制作反应堆外壳，这是反应堆的主要结构"]
+			dependencies: ["3A77D38927AF12B7"]
+			id: "2F9B91176D18FFE6"
+			tasks: [{
+				id: "2AFE67AD1F48F83E"
+				type: "item"
+				item: "bigreactors:basic_reactorcasing"
+			}]
+			rewards: [{
+				id: "09AE906F245B43BA"
+				type: "item"
+				item: "bigreactors:basic_reactorcasing"
+				count: 8
+			}]
+		}
+		{
+			x: -7.5d
+			y: 0.5d
+			description: ["制作反应堆控制棒"]
+			dependencies: ["3A77D38927AF12B7"]
+			id: "366869037346D5FB"
+			tasks: [{
+				id: "38EDD62EEA1FF47D"
+				type: "item"
+				item: "bigreactors:basic_reactorcontrolrod"
+			}]
+			rewards: [{
+				id: "7845B1CD3DF3B54C"
+				type: "item"
+				item: "bigreactors:basic_reactorcasing"
+				count: 8
+			}]
+		}
+		{
+			x: -4.5d
+			y: 0.5d
+			description: ["制作燃料棒，它们将用于储存反应堆内的燃料"]
+			dependencies: ["3A77D38927AF12B7"]
+			id: "4659F911E1BEFBAA"
+			tasks: [{
+				id: "096BDA6C4EA51F8B"
+				type: "item"
+				item: "bigreactors:basic_reactorfuelrod"
+			}]
+			rewards: [{
+				id: "1CDD31B335F5C97E"
+				type: "item"
+				item: "bigreactors:basic_reactorfuelrod"
+				count: 3
+			}]
+		}
+		{
+			title: "强力充能"
+			x: -9.0d
+			y: 0.5d
+			description: ["制作一个 Power tap 来导出电力"]
+			dependencies: ["3A77D38927AF12B7"]
+			id: "0CE0ABB308C71F2A"
+			tasks: [{
+				id: "47136ADEDC794AAF"
+				type: "item"
+				item: "bigreactors:basic_reactorpowertapfe_passive"
+			}]
+			rewards: [{
+				id: "133AB4D6591D836C"
+				type: "item"
+				item: "bigreactors:basic_reactorcasing"
+				count: 8
+			}]
+		}
+		{
+			x: -6.0d
+			y: 1.5d
+			description: ["合成控制器，然后用控制器合成反应堆。这个网站可以帮助你第一次建造反应堆 br.sidoh.org"]
+			dependencies: [
+				"2F9B91176D18FFE6"
+				"366869037346D5FB"
+				"4659F911E1BEFBAA"
+				"3E9B317E603E04FA"
+				"0CE0ABB308C71F2A"
+			]
+			id: "74E55FD289246976"
+			tasks: [{
+				id: "33174C72D3D1E35F"
+				type: "item"
+				item: "bigreactors:basic_reactorcontroller"
+			}]
+			rewards: [{
+				id: "44F91763630544C5"
+				type: "item"
+				item: "bigreactors:basic_reactorcasing"
+				count: 4
+			}]
+		}
+		{
+			x: -3.0d
+			y: 0.5d
+			description: ["制作一个访问端口，这样你就可以向反应堆中添加燃料了"]
+			dependencies: ["3A77D38927AF12B7"]
+			id: "3E9B317E603E04FA"
+			tasks: [{
+				id: "69BA8E72C7BF088C"
+				type: "item"
+				item: "bigreactors:basic_reactorsolidaccessport"
+			}]
+			rewards: [{
+				id: "6E90ABE7DD2958E5"
+				type: "item"
+				item: "bigreactors:basic_reactorcasing"
+				count: 8
+			}]
+		}
+		{
+			x: -6.0d
+			y: 3.0d
+			description: ["制作重处理器，以便重加工血石"]
+			dependencies: ["74E55FD289246976"]
+			id: "61662F522BD89653"
+			tasks: [
+				{
+					id: "3424950FCEFCA2D9"
+					type: "item"
+					item: "bigreactors:reprocessorcontroller"
+				}
+				{
+					id: "073988D05BC36AA7"
+					type: "item"
+					item: "bigreactors:reprocessorwasteinjector"
+				}
+				{
+					id: "230C57472F993E7B"
+					type: "item"
+					item: "bigreactors:reprocessorfluidinjector"
+				}
+				{
+					id: "25FF3B8FB92CC044"
+					type: "item"
+					item: "bigreactors:reprocessoroutputport"
+				}
+				{
+					id: "759DB32889E27452"
+					type: "item"
+					item: "bigreactors:reprocessorpowerport"
+				}
+				{
+					id: "5AED92EC48852278"
+					type: "item"
+					item: "bigreactors:reprocessorcollector"
+				}
+				{
+					id: "40592E5D2843345D"
+					type: "item"
+					item: "bigreactors:reprocessorcasing"
+				}
+				{
+					id: "7C0FCAE035AD5265"
+					type: "item"
+					item: "bigreactors:reprocessorglass"
+				}
+			]
+			rewards: [{
+				id: "143CF3145B1AAC1F"
+				type: "item"
+				item: "bigreactors:reprocessorcasing"
+				count: 16
+			}]
+		}
+		{
+			x: -6.0d
+			y: 4.0d
+			description: ["可用作涡轮机中的线圈。"]
+			dependencies: ["61662F522BD89653"]
+			id: "4D53DA7DDCAAAD6C"
+			tasks: [{
+				id: "0F4DB9C695D766D6"
+				type: "item"
+				item: "bigreactors:ludicrite_block"
+			}]
+			rewards: [{
+				id: "532541C220E21B71"
+				type: "item"
+				item: "bigreactors:ludicrite_block"
+				count: 8
+			}]
+		}
+		{
+			x: -6.0d
+			y: 5.0d
+			description: ["制作涡轮机。涡轮机利用水和蒸汽发电。更多信息请参阅《大型反应堆》一书。"]
+			dependencies: ["4D53DA7DDCAAAD6C"]
+			id: "11FAAFEF58FDC739"
+			tasks: [
+				{
+					id: "559A43F34F83858A"
+					type: "item"
+					item: "bigreactors:basic_turbinerotorbearing"
+				}
+				{
+					id: "568BF47D25158EBD"
+					type: "item"
+					item: "bigreactors:basic_turbinecasing"
+				}
+				{
+					id: "1499766AE8242524"
+					type: "item"
+					item: "bigreactors:basic_turbineglass"
+				}
+				{
+					id: "6A5A682D962E954E"
+					type: "item"
+					item: "bigreactors:basic_turbinerotorblade"
+				}
+				{
+					id: "6C73206A0A108679"
+					type: "item"
+					item: "bigreactors:basic_turbinefluidport_forge_active"
+				}
+				{
+					id: "615CA81B7407415A"
+					type: "item"
+					item: "bigreactors:ludicrite_block"
+					count: 24L
+				}
+				{
+					id: "061580FE6782BD6D"
+					type: "item"
+					item: "bigreactors:basic_turbinerotorshaft"
+				}
+			]
+			rewards: [{
+				id: "1B65090BA9DC1643"
+				type: "item"
+				item: "bigreactors:basic_reactorcasing"
+				count: 16
+			}]
+		}
+	]
+}
