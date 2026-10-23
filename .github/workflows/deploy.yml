@@ -9,9 +9,14 @@ permissions:
   contents: read
   deployments: write
 
-# 与 translate.yml 共用 concurrency 组，避免两个工作流同时写仓库。
+# 刻意**不**与 translate.yml / farm-merge.yml 共用 repo-write 组。
+# deploy 的 permissions 只有 contents: read，它不写仓库，串行化没有任何收益；
+# 而共用一组的代价是真实的：同一时刻只允许一个 pending run，第三个进入就会把
+# 第二个 pending 取消 —— 2026-10-23 合并任务每 15 分钟一次、回填又频繁 dispatch，
+# 连续三次 deploy 都在 pending 里被挤掉，站点因此停在旧数据上（数据里有版本、
+# 线上没有）。deploy 单独成组反而更安全：它读的是哪个 commit 就部署哪个。
 concurrency:
-  group: repo-write
+  group: deploy
   cancel-in-progress: false
 
 jobs:
