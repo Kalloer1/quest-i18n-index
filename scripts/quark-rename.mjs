@@ -440,7 +440,16 @@ async function main() {
       }
     }
     console.log(`[校验] 可访问 ${v.ok}/${v.total}，重试后恢复 ${v.flaky.length}，仍失败 ${v.failed.length}`)
-    if (v.failed.length) console.log(`::error::重试后仍不可访问 ${v.failed.length} 条：${v.failed.slice(0, 40).join(', ')}`)
+    // 失败清单必须**全量**落到日志：报告文件在 research/tmp（gitignore），CI 里随沙箱消失，
+    // 而这是「哪些链接要重传」的唯一依据。原来只打前 40 条，116 条目标里其余部分就永久丢了。
+    for (let i = 0; i < v.failed.length; i += 40) {
+      const chunk = v.failed.slice(i, i + 40)
+      const head = i === 0 ? `::error::重试后仍不可访问 ${v.failed.length} 条` : '::error::（续）'
+      console.log(`${head}：${chunk.join(', ')}`)
+    }
+    if (v.failed.length) {
+      console.log(`[校验] 失败清单共 ${v.failed.length} 条，已逐条写入 research/tmp/quark-verify.json`)
+    }
     process.exit(v.failed.length ? 1 : 0)
   }
 

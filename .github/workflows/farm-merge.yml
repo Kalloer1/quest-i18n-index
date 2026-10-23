@@ -695,3 +695,14 @@ jobs:
           fi
           export QUARK_CLI="$CLI"
           node scripts/quark-rename.mjs --verify-only
+
+      # 复查结论是「哪些链接要重传」的唯一依据，而报告写在 research/tmp（gitignore），
+      # 任务一结束就随沙箱消失。日志里的清单会被 ::error:: 行数限制截断，所以必须存构件。
+      - name: Upload quark verify report
+        if: always() && inputs.quarkVerifyOnly == true
+        uses: actions/upload-artifact@v4
+        with:
+          name: quark-verify
+          path: research/tmp/quark-verify.json
+          if-no-files-found: warn
+          retention-days: 30
