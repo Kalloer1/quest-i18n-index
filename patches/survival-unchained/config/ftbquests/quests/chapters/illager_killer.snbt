@@ -1,0 +1,464 @@
+# AI 初翻，未人工校对
+{
+	id: "0B57E3122F9234F2"
+	group: "07CF449A6E445A59"
+	order_index: 0
+	filename: "illager_killer"
+	title: "掠夺者杀手"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "被掠夺了"
+			x: 1.0d
+			y: -4.0d
+			description: ["杀死掠夺者，让他们后悔朝你开枪。"]
+			dependencies: ["4060A2F8F3419315"]
+			progression_mode: "flexible"
+			id: "7F419D2B4C34B4F3"
+			tasks: [{
+				id: "1A015A117F547B77"
+				type: "kill"
+				title: "被掠夺了"
+				icon: {
+					id: "minecraft:crossbow"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				entity: "minecraft:pillager"
+				value: 10L
+			}]
+			rewards: [
+				{
+					id: "67A2ADF2AA9B079F"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "2EDCA38A9DEC2EAD"
+					type: "item"
+					item: {
+						id: "magistuarmory:heavy_crossbow"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 3.0d
+			y: -4.0d
+			shape: "hexagon"
+			description: ["杀死卫道士，他们才真正该死。"]
+			dependencies: ["7F419D2B4C34B4F3"]
+			dependency_requirement: "one_started"
+			progression_mode: "flexible"
+			id: "60B147FC701492A8"
+			tasks: [{
+				id: "3978B1157E8E5844"
+				type: "kill"
+				title: "被复仇的村民已被击败，村庄安全了。"
+				icon: {
+					id: "minecraft:iron_axe"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				entity: "minecraft:vindicator"
+				value: 5L
+			}]
+			rewards: [
+				{
+					id: "04A838B9BA8EE004"
+					type: "item"
+					item: "minecraft:iron_ingot"
+					count: 3
+				}
+				{
+					id: "5EA551F3270226CB"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "2BD6F4DCE3BCDE4A"
+					type: "item"
+					item: "majruszsdifficulty:golden_bandage"
+					count: 2
+				}
+			]
+		}
+		{
+			x: 5.5d
+			y: -4.0d
+			shape: "hexagon"
+			description: ["杀死一个唤魔者，在他们复活死者之前夺取他们的生命。"]
+			dependencies: ["60B147FC701492A8"]
+			size: 1.25d
+			id: "3AE925395299A6D6"
+			tasks: [{
+				id: "0AB002A8E3E7DC37"
+				type: "kill"
+				title: "唤醒了他们的生命之力"
+				icon: "minecraft:totem_of_undying"
+				entity: "minecraft:evoker"
+				value: 1L
+			}]
+			rewards: [
+				{
+					id: "45DDB4264572CA12"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "486D552294D6D279"
+					type: "item"
+					item: "majruszsdifficulty:golden_bandage"
+					count: 2
+				}
+			]
+		}
+		{
+			x: 5.0d
+			y: -2.0d
+			description: ["杀死一个引火者，可不想让它引发森林大火，对吧？"]
+			dependencies: ["60B147FC701492A8"]
+			id: "75A727BE71869817"
+			tasks: [{
+				id: "0A4BB384C96A2B32"
+				type: "kill"
+				title: "已点燃"
+				icon: {
+					id: "minecraft:flint_and_steel"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				entity: "illageandspillage:igniter"
+				value: 1L
+			}]
+			rewards: [
+				{
+					id: "7C51286DAA2F4D93"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "46F22E55A3A3E67D"
+					type: "item"
+					item: "majruszsdifficulty:golden_bandage"
+				}
+			]
+		}
+		{
+			x: 3.5d
+			y: -6.5d
+			description: ["杀死一只Twittollager。不要让愤怒冲昏了你的头脑。"]
+			dependencies: ["60B147FC701492A8"]
+			id: "404965FE3911A070"
+			tasks: [{
+				id: "71C54DBB0155A891"
+				type: "kill"
+				title: "被激怒了"
+				icon: "minecraft:gunpowder"
+				entity: "illageandspillage:twittollager"
+				value: 1L
+			}]
+			rewards: [
+				{
+					id: "159B36865B3F5281"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "6EB11D917A216A1D"
+					type: "item"
+					item: "minecraft:tnt"
+					count: 3
+				}
+				{
+					id: "5F457E2F9AEDA697"
+					type: "item"
+					item: "majruszsdifficulty:golden_bandage"
+					count: 2
+				}
+			]
+		}
+		{
+			x: 2.0d
+			y: -4.0d
+			description: ["杀死一个守护者。他们是掠夺者的易燃肉盾。"]
+			dependencies: ["7F419D2B4C34B4F3"]
+			id: "78D1E1701912B103"
+			tasks: [{
+				id: "05E569213259639C"
+				type: "kill"
+				title: "已保留"
+				icon: "minecraft:hay_block"
+				entity: "illageandspillage:preserver"
+				value: 1L
+			}]
+			rewards: [
+				{
+					id: "427E90E758CF1240"
+					type: "item"
+					item: "minecraft:wheat"
+					count: 9
+				}
+				{
+					id: "4CB8043D31C8986E"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			x: 3.5d
+			y: -1.5d
+			description: ["杀死一只鳄鱼齿。它们是掠夺者的爪牙。"]
+			dependencies: ["60B147FC701492A8"]
+			id: "39702E12255C4D03"
+			tasks: [{
+				id: "417C829D095DA397"
+				type: "kill"
+				title: "带獠牙的"
+				icon: "minecraft:saddle"
+				entity: "illageandspillage:crocofang"
+				value: 1L
+			}]
+			rewards: [
+				{
+					id: "6BECD491E431F8BF"
+					type: "item"
+					item: "minecraft:saddle"
+				}
+				{
+					id: "347C815E9D570C57"
+					type: "item"
+					item: "majruszsdifficulty:golden_bandage"
+					count: 3
+				}
+				{
+					id: "2EE3D816C152D588"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			x: 5.0d
+			y: -6.0d
+			description: ["杀死一只劫掠者。它们总是在破坏我们的庄稼。"]
+			dependencies: ["60B147FC701492A8"]
+			id: "334C9C1E51244EF1"
+			tasks: [{
+				id: "34B16F5C97456D9F"
+				type: "kill"
+				title: "被摧毁的村庄遗迹，到处都是残垣断壁。"
+				icon: "quark:ravager_hide"
+				entity: "minecraft:ravager"
+				value: 1L
+			}]
+			rewards: [
+				{
+					id: "13CE96ACC292487C"
+					type: "item"
+					item: {
+						id: "minecraft:crossbow"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "59B21C08B48DD158"
+					type: "item"
+					item: "minecraft:arrow"
+					count: 32
+				}
+				{
+					id: "1DA5FCC211EE27B6"
+					type: "item"
+					item: "majruszsdifficulty:bandage"
+					count: 5
+				}
+			]
+		}
+		{
+			x: 6.5d
+			y: -5.5d
+			description: ["杀死吸收者。这家伙死得太慢了。"]
+			dependencies: ["3AE925395299A6D6"]
+			id: "4A53F358E30B6459"
+			tasks: [{
+				id: "2CAF0EEFCC617A09"
+				type: "kill"
+				title: "吸收了"
+				icon: {
+					id: "minecraft:shield"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				entity: "illageandspillage:absorber"
+				value: 1L
+			}]
+			rewards: [
+				{
+					id: "1C342D714A8A8C09"
+					type: "xp"
+					xp: 250
+				}
+				{
+					id: "15F329CEB8415D70"
+					type: "item"
+					item: {
+						id: "minecraft:splash_potion"
+						Count: 1b
+						tag: {
+							Potion: "minecraft:strong_poison"
+						}
+					}
+					count: 3
+				}
+			]
+		}
+		{
+			title: "拼写出来"
+			x: 6.5d
+			y: -2.5d
+			description: ["击杀魔咒师并获取他们的图腾。这是冰学家、唤魔者和幻术师三者的结合体。"]
+			dependencies: ["3AE925395299A6D6"]
+			id: "1788FC26CAA80F35"
+			tasks: [{
+				id: "1FB83A2B6CDF7851"
+				type: "item"
+				item: "illageandspillage:totem_of_banishment"
+			}]
+			rewards: [
+				{
+					id: "0C2CECDF6C33915A"
+					type: "item"
+					item: "minecraft:enchanted_golden_apple"
+				}
+				{
+					id: "69E6A4187FE9A12F"
+					type: "xp"
+					xp: 250
+				}
+				{
+					id: "5A852E5CED3E0BAA"
+					type: "item"
+					item: "majruszsdifficulty:bandage"
+					count: 10
+				}
+			]
+		}
+		{
+			title: "千与千寻 Spirited Away"
+			x: 8.0d
+			y: -5.0d
+			description: ["杀死灵魂召唤者并获取他们的咒语书。他们是掠夺者的亡灵法师。"]
+			dependencies: ["3AE925395299A6D6"]
+			id: "67387BE00026F19D"
+			tasks: [{
+				id: "27404A8C4B05F935"
+				type: "item"
+				item: {
+					id: "illageandspillage:spellbound_book"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "6CC174F449A2BA40"
+					type: "item"
+					item: "minecraft:enchanted_golden_apple"
+				}
+				{
+					id: "567339B0F3C08156"
+					type: "xp"
+					xp: 500
+				}
+			]
+		}
+		{
+			title: "实验的终点"
+			icon: "twilightforest:fiery_blood"
+			x: 9.5d
+			y: -4.0d
+			description: ["杀死拉格诺，并取回他们的恐怖之袋。怜悯那个心智被封印的村民。"]
+			dependencies: ["3AE925395299A6D6"]
+			size: 1.5d
+			id: "4DB8855F3C9AA5E2"
+			tasks: [{
+				id: "1A7DB12217EA3366"
+				type: "item"
+				icon: "illageandspillage:bag_of_horrors"
+				item: "illageandspillage:bag_of_horrors"
+			}]
+			rewards: [
+				{
+					id: "1B3F3389DACC17CE"
+					type: "item"
+					item: "minecraft:netherite_ingot"
+				}
+				{
+					id: "3815C03C9DF37B4B"
+					type: "xp"
+					xp: 500
+				}
+			]
+		}
+		{
+			x: 8.0d
+			y: -3.0d
+			description: ["杀死疯子。这个狂人已经犯下了足够的暴行。"]
+			dependencies: ["3AE925395299A6D6"]
+			id: "5EF2D5CD6B3AD2E4"
+			tasks: [{
+				id: "26C31A631FB76F37"
+				type: "kill"
+				title: "惊慌失措的村民（Freaked Out Villager）"
+				icon: "illageandspillage:bag_of_horrors"
+				entity: "illageandspillage:freakager"
+				value: 1L
+			}]
+			rewards: [
+				{
+					id: "648A8DB502148FA2"
+					type: "xp"
+					xp: 500
+				}
+				{
+					id: "31CCE70733ADCA8A"
+					type: "item"
+					item: "minecraft:diamond_ore"
+					count: 5
+				}
+				{
+					id: "449329433FFA4867"
+					type: "item"
+					item: {
+						id: "minecraft:potion"
+						Count: 1b
+						tag: {
+							Potion: "minecraft:strong_healing"
+						}
+					}
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+}

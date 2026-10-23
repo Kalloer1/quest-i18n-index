@@ -1,0 +1,180 @@
+# AI 初翻，未人工校对
+{
+	id: "365DCFAE0F04632C"
+	group: "72E35E94B31A2F67"
+	order_index: 0
+	filename: "storage_drawers"
+	title: "储物抽屉"
+	icon: "extended_drawers:quad_drawer"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "入门指南"
+			x: 0.0d
+			y: 0.0d
+			shape: "pentagon"
+			subtitle: "一个抽屉，给你的抽屉们"
+			description: ["抽屉本质上是一个能装一种物品的大箱子，但可以装很多。比装满原石的箱子更节省空间，可能也更便宜。 \\n\\n有容量升级、自动清空多余物品和集中存取点，使这个模组成为你储物系统的绝佳补充。"]
+			invisible: true
+			id: "3CD0E59EC9FFDB3F"
+			tasks: [{
+				id: "7E40A0255622D4E1"
+				type: "gamestage"
+				icon: "create:cogwheel"
+				stage: "Intern"
+			}]
+			rewards: [{
+				id: "5423A0AF2482304C"
+				type: "item"
+				item: {
+					id: "patchouli:guide_book"
+					Count: 1b
+					tag: {
+						"patchouli:book": "extended_drawers:guide"
+					}
+				}
+			}]
+		}
+		{
+			x: 0.0d
+			y: 1.5d
+			subtitle: "你期望得到什么呢？"
+			description: ["标题所说的抽屉。它能装下大量同一种物品。太棒了。\\n\\n右键点击可存入物品，左键可取出物品（蹲下可取出更多）。"]
+			dependencies: ["3CD0E59EC9FFDB3F"]
+			id: "4289B04B5643EDB4"
+			tasks: [{
+				id: "2CFF713302865AD6"
+				type: "item"
+				item: "extended_drawers:single_drawer"
+			}]
+			rewards: [{
+				id: "2F368D5C36D273A2"
+				type: "item"
+				item: "expandedstorage:iron_chest"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 1.5d
+			subtitle: "现在能装下不止一个了吗？"
+			description: ["格子翻倍，容量减半。"]
+			dependencies: ["4289B04B5643EDB4"]
+			id: "751E9FB77080DECE"
+			tasks: [{
+				id: "79D217D4A1A86DB5"
+				type: "item"
+				item: "extended_drawers:double_drawer"
+			}]
+		}
+		{
+			x: -3.0d
+			y: 1.5d
+			subtitle: "嗯，现在它们能装不止一个了"
+			description: ["将槽位数量增至四倍，容量缩减至四分之一。"]
+			dependencies: ["751E9FB77080DECE"]
+			id: "09E88E942DEB01EB"
+			tasks: [{
+				id: "14084D9A43746640"
+				type: "item"
+				item: "extended_drawers:quad_drawer"
+			}]
+		}
+		{
+			x: 0.0d
+			y: 3.0d
+			subtitle: "这玩意儿有点丑不拉几的"
+			description: ["存取点让抽屉管理变得超轻松！双击右键，所有与抽屉匹配的物品都会自动存入抽屉，嗖~ 轻松搞定恼人的石头和铜。 \\n\\n更重要的是，它还能连接更高级的存储模组，比如 Simple Storage 的库存连接器或 Applied Energistics 的存储总线，实现抽屉“网络”的完全访问。"]
+			dependencies: ["4289B04B5643EDB4"]
+			id: "3BB302C0795468A4"
+			tasks: [{
+				id: "50280376107A372B"
+				type: "item"
+				item: "extended_drawers:access_point"
+			}]
+			rewards: [{
+				id: "6162CEC531F8DAC4"
+				type: "item"
+				item: "extended_drawers:t2_upgrade"
+				count: 2
+			}]
+		}
+		{
+			x: 0.0d
+			y: 4.5d
+			subtitle: "可连接物品"
+			description: ["如果你已经有访问点，但有些抽屉未直接连接，这可以帮你填补空缺。绕过拐角等场景很有用。"]
+			dependencies: ["3BB302C0795468A4"]
+			id: "726B23074EEAB5D8"
+			tasks: [{
+				id: "0BBB48387666F450"
+				type: "item"
+				item: "extended_drawers:connector"
+			}]
+		}
+		{
+			x: 1.5d
+			y: 1.5d
+			subtitle: "升级你的抽屉系统"
+			description: ["需要更大的抽屉吗？不用再找了。"]
+			dependencies: ["4289B04B5643EDB4"]
+			id: "105AE4702DB3D784"
+			tasks: [{
+				id: "714074CCF2AA2EC5"
+				type: "item"
+				item: "extended_drawers:upgrade_frame"
+			}]
+			rewards: [{
+				id: "3CA474B4F57CE355"
+				type: "item"
+				item: "extended_drawers:upgrade_frame"
+				count: 8
+			}]
+		}
+		{
+			x: 3.0d
+			y: 1.5d
+			subtitle: "只是稍微大了一点点而已"
+			description: ["几次升级中的第一次。右键单击并拖动到抽屉中即可应用。"]
+			dependencies: ["105AE4702DB3D784"]
+			id: "5A96473D6D412FD8"
+			tasks: [{
+				id: "54D18885F3899BCE"
+				type: "item"
+				item: "extended_drawers:t1_upgrade"
+			}]
+		}
+		{
+			x: 1.0d
+			y: 2.5d
+			subtitle: "锁好你的抽屉，防止物品丢失"
+			description: ["这样抽屉即使为空，也能保持“锁定”特定物品类型，从而避免被意外填充为其他物品。"]
+			dependencies: ["4289B04B5643EDB4"]
+			id: "62E6B2A8977D1D5C"
+			tasks: [{
+				id: "193FAF4785A99F55"
+				type: "item"
+				item: "extended_drawers:lock"
+			}]
+		}
+		{
+			x: -1.0d
+			y: 2.5d
+			subtitle: "把一切都燃烧殆尽吧"
+			description: ["如果你的抽屉已满，所有放入的多余物品都将被删除。这有助于保持抽屉整洁，但贵重物品慎用。将熔岩桶Shift+右键点击抽屉即可应用此效果。"]
+			dependencies: ["4289B04B5643EDB4"]
+			id: "213AB06BD63708AA"
+			tasks: [{
+				id: "62D5E7F2D3EF8DE6"
+				type: "item"
+				item: "minecraft:lava_bucket"
+			}]
+			rewards: [{
+				id: "0BFE1BAADE55D1C8"
+				type: "item"
+				item: "minecraft:lava_bucket"
+			}]
+		}
+	]
+	quest_links: [ ]
+}

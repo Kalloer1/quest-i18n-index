@@ -1,0 +1,143 @@
+# AI 初翻，未人工校对
+{
+	id: "12FDD1AA40BC00F3"
+	group: "72E35E94B31A2F67"
+	order_index: 2
+	filename: "toms_simple_storage"
+	title: "Tom's Simple Storage"
+	icon: "toms_storage:ts.storage_terminal"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "开始整理物品了"
+			x: -1.0d
+			y: 1.5d
+			shape: "pentagon"
+			description: ["简易存储是一个可能看起来很熟悉的模组，因为它的工作方式很像应用能源学。不过，它完全是低技术的，不消耗任何能量，并且提供了一种一次性与一整间箱子交互的方法，包括从中进行合成。 \\n\\n当然，它的自动化能力相形见绌，所以你最终会想要升级！但在此之前，先弄清楚如何让这个系统运作起来吧。"]
+			invisible: true
+			id: "00A7B3E6805233FD"
+			tasks: [{
+				id: "023844A50DA11BA2"
+				type: "gamestage"
+				icon: "create:cogwheel"
+				stage: "Intern"
+			}]
+		}
+		{
+			x: -1.0d
+			y: 3.0d
+			subtitle: "正在检查箱子里的东西"
+			description: ["首先是物品栏连接器。它不仅能让你与它接触的任何箱子互动，还能与那些箱子所接触的其他箱子互动！也就是说，一个放置得当的连接器就能连通一整个房间的箱子。"]
+			dependencies: ["00A7B3E6805233FD"]
+			id: "2F34B5A950D28212"
+			tasks: [{
+				id: "5E086CEDC21FC7C0"
+				type: "item"
+				item: "toms_storage:ts.inventory_connector"
+			}]
+			rewards: [{
+				id: "744FA56DDD085A38"
+				type: "item"
+				item: "expandedstorage:iron_chest"
+				count: 2
+			}]
+		}
+		{
+			x: -1.0d
+			y: 4.5d
+			subtitle: "正在查看箱子里的物品"
+			description: ["魔法就在这里发生。将存储终端连接到你的物品连接器上，所有与之相连的箱子里的物品都会显示在这里！ \\n\\n取出物品会直接从所属的箱子中取出。放入物品会尝试将其智能地放置到已有该物品的箱子里。如果没有箱子有该物品，它基本上会放在任何能容纳它的位置。"]
+			dependencies: ["2F34B5A950D28212"]
+			id: "7A895D5FC31855A0"
+			tasks: [{
+				id: "0E68B6326E9D5A37"
+				type: "item"
+				item: "toms_storage:ts.storage_terminal"
+			}]
+			rewards: [{
+				id: "65B3594834596BFA"
+				type: "item"
+				item: "expandedstorage:iron_chest"
+				count: 2
+			}]
+		}
+		{
+			x: -2.0d
+			y: 6.0d
+			subtitle: "远程传送箱交互功能"
+			description: ["库存线缆能让你远距离连接存储网络。用途广泛，比如连接多个带独立库存接口的存储室，或在偏远位置放置存储终端，让你随时随地访问存储内容。 \\n\\n还有带框架的版本，能轻松隐藏线缆，让整体更美观。"]
+			dependencies: ["7A895D5FC31855A0"]
+			id: "70F510B905AD207E"
+			tasks: [{
+				id: "2CD796BD7B3BAB87"
+				type: "item"
+				item: "toms_storage:ts.inventory_cable"
+			}]
+			rewards: [{
+				id: "49EF8CADD75A7308"
+				type: "item"
+				item: "minecraft:oak_log"
+				count: 32
+			}]
+		}
+		{
+			x: 0.0d
+			y: 6.0d
+			subtitle: "用箱子来合成物品！"
+			description: ["存储终端，但现在你可以通过它来合成！它会从存储网络和必要时的个人物品栏中取用材料。再也不用翻遍20个箱子来制作所需物品了。"]
+			dependencies: ["7A895D5FC31855A0"]
+			id: "7CBE5A853DA1784C"
+			tasks: [{
+				id: "5B72619AD40F69D2"
+				type: "item"
+				item: "toms_storage:ts.crafting_terminal"
+			}]
+			rewards: [{
+				id: "5C052FF5AB89515A"
+				type: "item"
+				item: "minecraft:diamond"
+			}]
+		}
+		{
+			x: -3.0d
+			y: 7.5d
+			subtitle: "多轨道箱子系统"
+			description: ["电缆连接器是连接网络不同部分所需的组件。电缆可以覆盖距离，但连接器才能让你“看到”网络的不同部分。要通过电缆连接任何箱子、物品栏连接器或终端，都需要它。"]
+			dependencies: ["70F510B905AD207E"]
+			id: "2370026773C73596"
+			tasks: [{
+				id: "0B49040C974EF660"
+				type: "item"
+				item: "toms_storage:ts.inventory_cable_connector"
+			}]
+		}
+		{
+			x: 0.5d
+			y: 3.0d
+			subtitle: "连接器制造机"
+			description: ["物品栏修饰器就像物品栏连接器的一种延伸。只要它们与连接器接触的修饰器相连，它就能让连接器看到未直接相邻的箱子。这些修饰器范围有限，所以你还需要了解物品栏线缆。"]
+			dependencies: ["2F34B5A950D28212"]
+			id: "74E4BE6AB6B416DA"
+			tasks: [{
+				id: "34B73D5D0E99830C"
+				type: "item"
+				item: "toms_storage:ts.trim"
+			}]
+		}
+		{
+			x: 1.0d
+			y: 7.5d
+			subtitle: "当前物品栏"
+			description: ["物品栏漏斗可以让你与网络进行导入和导出。这是一个宝贵的自动化工具，但也有局限性。"]
+			dependencies: ["7CBE5A853DA1784C"]
+			id: "7FD2232F6ECD8C10"
+			tasks: [{
+				id: "45A93C9152344321"
+				type: "item"
+				item: "toms_storage:ts.inventory_hopper_basic"
+			}]
+		}
+	]
+	quest_links: [ ]
+}
