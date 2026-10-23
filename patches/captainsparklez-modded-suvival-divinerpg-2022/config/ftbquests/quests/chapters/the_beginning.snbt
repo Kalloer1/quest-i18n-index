@@ -1,0 +1,157 @@
+# AI 初翻，未人工校对
+{
+	id: "50F788A16B50F0EA"
+	group: "306FC7E479A72C90"
+	order_index: 0
+	filename: "the_beginning"
+	title: "故事的开端……"
+	default_quest_shape: "circle"
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "冬天就要来了"
+			x: -0.5d
+			y: -0.5d
+			shape: "hexagon"
+			subtitle: "学习基础知识，掌握操作技巧"
+			description: ["装备后，我应该从迪维尼亚（主世界）出发，前往艾斯凯亚，以获得更多知识"]
+			size: 2.0d
+			id: "1F2315B559E28EDA"
+			tasks: [{
+				id: "55FA5617A16D1ADF"
+				type: "dimension"
+				title: "建造一个通往 Iceika 的传送门，从那里开始"
+				icon: "divinerpg:iceika_portal"
+				dimension: "divinerpg:iceika"
+			}]
+			rewards: [{
+				id: "316C8BE2B550BB12"
+				type: "xp"
+				xp: 160
+			}]
+		}
+		{
+			title: "用暴力了解艾西卡动物群"
+			icon: "divinerpg:iceika_fire"
+			x: 1.5d
+			y: -0.5d
+			shape: "octagon"
+			description: ["这些奇怪的生物...消灭几只会帮助我更好地了解它们的行为"]
+			dependencies: ["1F2315B559E28EDA"]
+			id: "7CCE6F4D0A6F2622"
+			tasks: [
+				{
+					id: "0A40E17841CB553F"
+					type: "kill"
+					title: "击杀 10 个冰川生物"
+					entity: "divinerpg:glacide"
+					value: 10L
+				}
+				{
+					id: "54B7CC8CDEDBC2C7"
+					type: "kill"
+					title: "击杀 10 个 Fractite"
+					entity: "divinerpg:fractite"
+					value: 10L
+				}
+				{
+					id: "428DB4B5D6578389"
+					type: "kill"
+					title: "杀死 10 只 Alicanto"
+					entity: "divinerpg:alicanto"
+					value: 10L
+				}
+				{
+					id: "5A0366DAB0A20A60"
+					type: "kill"
+					title: "击杀 10 个 Frost Archer"
+					entity: "divinerpg:frost_archer"
+					value: 10L
+				}
+				{
+					id: "750B38E50ECF7790"
+					type: "kill"
+					title: "杀死 10 个 Hastreus"
+					entity: "divinerpg:hastreus"
+					value: 10L
+				}
+				{
+					id: "1D81C989C4F9567E"
+					type: "kill"
+					title: "杀死 10 只 Rollum"
+					entity: "divinerpg:rollum"
+					value: 10L
+				}
+			]
+			rewards: [{
+				id: "602960BDB4E2B148"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "找到这把剑 (Find the Sword)"
+			x: -0.5d
+			y: -2.5d
+			shape: "diamond"
+			description: ["有了这个升级，我就能占得先机了"]
+			dependencies: ["1F2315B559E28EDA"]
+			id: "78A9541BAD6B0572"
+			tasks: [{
+				id: "045E15109FE6505D"
+				type: "item"
+				title: "寻找近战武器：冰锥之刃 (Icicle Bane)"
+				item: "divinerpg:icicle_bane"
+			}]
+			rewards: [{
+				id: "128B3ADEB28572C3"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "找到弓（Find the bow）"
+			x: -2.5d
+			y: -0.5d
+			shape: "diamond"
+			description: ["有了这把弓，我就能在远程战斗中占优势了"]
+			dependencies: ["1F2315B559E28EDA"]
+			id: "038530C273C499E3"
+			tasks: [{
+				id: "54B363E28E86F41E"
+				type: "item"
+				item: {
+					id: "divinerpg:icicle_bow"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "35DEA3E82CE9F35B"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "返回迪维尼亚（Divinia）"
+			x: -0.5d
+			y: 3.0d
+			shape: "octagon"
+			description: ["我发现每个领域都被一个“领域领主”所统治。我必须找到他们，终结他们的暴政。"]
+			dependencies: [
+				"1F2315B559E28EDA"
+				"7CCE6F4D0A6F2622"
+			]
+			id: "571FB9B0A1BBF844"
+			tasks: [{
+				id: "2E69C459B541FD6B"
+				type: "dimension"
+				title: "返回主世界"
+				dimension: "minecraft:overworld"
+			}]
+		}
+	]
+	quest_links: [ ]
+}
