@@ -10,13 +10,17 @@ name: farm-merge
 #
 # 为什么不在主机上直接 push main：主机上只有只读 deploy key（1 把），
 # 也没法跑 npm 全套校验；而且三台同时 push main 必然互相顶掉。
+#
+# 为什么**不用** `push: branches: ['farm/**']` 触发（2026-10-23 实测踩到）：
+# push 事件用的是「被推那条分支里」的 workflow 文件。farm 分支是从某一刻的 main 切出来的，
+# 之后 main 上的 workflow 修复永远不会自动流进去 —— 结果就是「改好了 main、push 上去
+# 却仍然按旧版报错」。schedule 与 workflow_dispatch 永远读默认分支的 workflow，不受这个影响。
+# 代价是合并最多滞后一个调度周期（30 分钟），而主机本身也是每 20 包 / 20 分钟才推一次，
+# 这个滞后相对整批耗时可忽略。
 on:
-  push:
-    branches: ['farm/**']
   schedule:
-    # 兜底漏推：主机侧 push 偶发断网/超时，分支上的提交会一直躺着没人合。
-    # 每 3 小时扫一遍，代价只是一次 blobless fetch（见下文）。
-    - cron: '0 */3 * * *'
+    # 每 30 分钟扫一遍三条分支。主机侧 push 断网/超时也不会丢，分支上的提交会一直躺着。
+    - cron: '*/30 * * * *'
   workflow_dispatch:
     inputs:
       hosts:
@@ -29,6 +33,16 @@ on:
         required: false
         default: false
         type: boolean
+      mirrorOnly:
+        description: '只补夸克镜像：给「已有 zip 但分享链接为空」的历史包回填链接，不合并、不打包'
+        required: false
+        default: false
+        type: boolean
+      mirrorLimit:
+        description: 'mirrorOnly 时最多处理多少个包（默认 50，防止一次几千次上传触发风控）'
+        required: false
+        default: '50'
+        type: string
 
 permissions:
   contents: write
@@ -113,7 +127,9 @@ jobs:
             echo "::error::hosts 含非法值:$BAD（只允许小写字母/数字开头，后接小写字母、数字或连字符）"
             exit 1
           fi
-          echo "hosts=$LIST" >> "$GITHUB_ENV"
+          # 变量名必须与后面 `for h in $HOSTS` 一致（大写）。GitHub Actions 的环境变量
+          # 名区分大小写，写成小写会让下一步在 `set -u` 下直接 "HOSTS: unbound variable"。
+          echo "HOSTS=$LIST" >> "$GITHUB_ENV"
           echo "list=$LIST" >> "$GITHUB_OUTPUT"
           [ -n "$LIST" ] || echo "::warning::远端没有 farm/* 分支，本轮无事可做"
 
@@ -139,7 +155,7 @@ jobs:
             --out "$FARM_DIR/plan.json" --github-output "$GITHUB_OUTPUT"
 
       - name: Check out only the delta
-        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true) && inputs.mirrorOnly != true
         run: |
           set -euo pipefail
           # 逐文件 checkout，不整目录覆盖：main 的 patches/<slug>/ 里可能已经有别台合进来的
@@ -164,29 +180,72 @@ jobs:
       # 结果不是假绿就是误红。所以必须在闸门和打包之前先补一趟布局。
       # 此刻 downloads/<slug>.zip 还没生成（delivered=false），下一轮再补交付状态。
       - name: Build index (layout pass)
-        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
         run: node scripts/build-index.mjs
 
       # 闸门：增量落盘之后、打包之前。npm test 里已经含 build/site 的数据契约测试。
       - name: Run tests
-        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
         run: npm test
 
       - name: Validate quest files
-        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
-        run: npm run validate:quests
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
+        run: |
+          set -uo pipefail
+          # 闸门判红时先「踢掉坏包再校验一次」，而不是整批停摆。
+          # 为什么：坏包绝大多数是主机在上一次运行被中断时写出的残包（缺几百到上万个键），
+          # 属于个例；为了它把 1,600 个包的合并全部堵住，代价远大于收益 —— 2026-10-23 实测
+          # 连续三次合并都因为 2~4 个残包整批变红。踢掉后它们在工作区消失，本轮不打包、
+          # 不镜像、不入库；主机侧因为分支上那份也已被删，下一轮会重新翻译。
+          # 注意：这里必须真的把文件从工作区删掉，只加变量不动文件的话，后面的
+          # release --package-only 依然会把坏包打成 zip。
+          set +e
+          OUT=$(node scripts/validate-quests.mjs 2>&1)
+          RC=$?
+          set -e
+          echo "$OUT" | tail -60
+          if [ "$RC" -ne 0 ]; then
+            BAD=$(printf '%s\n' "$OUT" | grep -oE '✘ patches/[A-Za-z0-9._-]+' | sed 's#.*patches/##' | sort -u | tr '\n' ' ')
+            if [ -z "$BAD" ]; then
+              echo "::error::闸门变红但解析不出失败包名，按硬失败处理（不要静默放行）"
+              exit 1
+            fi
+            echo "::warning::闸门拦下：$BAD —— 这些包本轮排除，其余继续合并"
+            for s in $BAD; do
+              git rm -q -r --cached "patches/$s" 2>/dev/null || true
+              rm -rf "patches/$s" "research/packs/$s.tar.gz"
+            done
+            echo "BLOCKED_SLUGS=$BAD" >> "$GITHUB_ENV"
+            # 二次校验：剩下的必须全绿；仍红说明不是「个别残包」，这时才该真红。
+            node scripts/validate-quests.mjs
+          fi
 
       # 先打包：镜像上传的是 downloads/<slug>.zip，它由 release.mjs 产出（幂等，重跑字节相同）。
       # 必须在 layout pass 之后：release.mjs 用 index-dataset 里的 layout 决定 zip 的目录形态。
       - name: Package patches
-        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
-        run: node scripts/release.mjs --ids "${{ steps.plan.outputs.slugs }}" --package-only
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true) && inputs.mirrorOnly != true
+        run: |
+          set -euo pipefail
+          # 闸门那步会把坏包从工作区删掉，这里必须按「目录还在」过滤一遍：
+          # release.mjs 对空目录会打出只有一个 README 的空 zip，等于把坏包伪装成已发布。
+          KEEP=""
+          for s in $(printf '%s' "${{ steps.plan.outputs.slugs }}" | tr ',' ' '); do
+            if [ -d "patches/$s" ]; then KEEP="$KEEP,$s"; fi
+          done
+          KEEP=${KEEP#,}
+          if [ -z "$KEEP" ]; then
+            echo "::warning::本轮没有任何可打包的包（全部被闸门排除）"
+            echo "PACKAGE_SLUGS=" >> "$GITHUB_ENV"
+            exit 0
+          fi
+          echo "PACKAGE_SLUGS=$KEEP" >> "$GITHUB_ENV"
+          node scripts/release.mjs --ids "$KEEP" --package-only
 
       # 夸克登录态：CI 里没有浏览器，只能把本机已验证的存根写到 CLI 真正读取的位置。
       # 路径必须是 <技能根>/qoder/config.json；旧写法的 openclaw/config.json 不生效（实测），
       # 会让 CLI 表现为未登录：绿色通过但零链接。写入后只报字节数，绝不打印内容。
       - name: Restore quark config
-        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
         env:
           QUARK_CONFIG_JSON: ${{ secrets.QUARK_CONFIG_JSON }}
         run: |
@@ -203,14 +262,51 @@ jobs:
       # CLI 是 620KB 自包含单文件，超 secret 48KB 上限，也不入库，只能每次下载。
       # 安装脚本本身容错（失败只警告、exit 0）；本轮「必须」镜像由 QUARK_REQUIRED=1 保证。
       - name: Install quark CLI
-        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
         run: bash scripts/install-quark-cli.sh
+
+      - name: Resolve mirror targets
+        id: mirrorTargets
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
+        run: |
+          set -euo pipefail
+          # 两个来源：
+          #  1) 本轮合进来的包（PACKAGE_SLUGS）；
+          #  2) mirrorOnly 回填模式：有 zip 但 research/quark-mirrors.json 里 shareUrl 为空的历史包。
+          # 为什么要有 (2)：镜像失败只留空不阻断（设计如此），于是「uploaded 但没拿到分享链接」
+          # 会安静地停在空字符串上 —— 2026-10-23 就有 11 个包是这个状态，站点上按钮不渲染，
+          # 没人会发现。回填入口让这件事变成可以一键重跑的动作。
+          LIST=""
+          if [ -n "${PACKAGE_SLUGS:-}" ]; then
+            LIST="$PACKAGE_SLUGS"
+          fi
+          if [ "${{ inputs.mirrorOnly }}" = "true" ]; then
+            LIMIT="${{ inputs.mirrorLimit }}"
+            case "$LIMIT" in ''|*[!0-9]*) LIMIT=50 ;; esac
+            BACKFILL=$(node --input-type=module -e '
+              import { readFileSync, readdirSync } from "node:fs"
+              const mirrors = JSON.parse(readFileSync("research/quark-mirrors.json", "utf8")).mirrors || {}
+              const zips = readdirSync("downloads").filter((f) => f.endsWith(".zip")).map((f) => f.slice(0, -4))
+              const missing = zips.filter((s) => !(mirrors[s] && mirrors[s].shareUrl)).sort()
+              console.log(missing.join(","))
+            ')
+            LIST="${LIST:+$LIST,}$BACKFILL"
+          fi
+          # 去重且保序
+          LIST=$(printf '%s' "$LIST" | tr ',' '\n' | awk 'NF' | awk '!seen[$0]++' | paste -sd, -)
+          if [ "${{ inputs.mirrorOnly }}" = "true" ] && [ -n "$LIST" ]; then
+            LIMIT="${{ inputs.mirrorLimit }}"
+            case "$LIMIT" in ''|*[!0-9]*) LIMIT=50 ;; esac
+            LIST=$(printf '%s' "$LIST" | tr ',' '\n' | head -n "$LIMIT" | paste -sd, -)
+          fi
+          echo "MIRROR_SLUGS=$LIST" >> "$GITHUB_ENV"
+          echo "镜像目标：$(printf '%s' "$LIST" | tr ',' '\n' | grep -c . ) 个"
 
       - name: Mirror to Quark
         id: mirror
         # 镜像失败不阻断入库：译文是主要价值，先把 main 推进去；
         # 但「零链接却绿灯」不可接受，由末尾独立一步统一判红。
-        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
         continue-on-error: true
         run: |
           CLI="$HOME/.pi/agent/skills/quarkclouddrive/scripts/quark-drive.cjs"
@@ -220,7 +316,13 @@ jobs:
           else
             echo "::warning::夸克 CLI 不存在（Install quark CLI 未成功），本轮跳过镜像。"
           fi
-          node scripts/mirror.mjs --ids "${{ steps.plan.outputs.slugs }}"
+          # 空值必须显式跳过：mirror.mjs 的 --ids 传空串等于「不限定」，会把全部历史 zip
+          # 重新走一遍上传流程（幂等能挡住重复分享，但没必要每周烧几百次调用）。
+          if [ -z "${MIRROR_SLUGS:-}" ]; then
+            echo "::warning::本轮没有需要镜像的包，跳过"
+            exit 0
+          fi
+          node scripts/mirror.mjs --ids "$MIRROR_SLUGS"
         env:
           QODER_PRODUCT_ID: qoder
           QODER_AGENT: 'true'
@@ -234,14 +336,14 @@ jobs:
       # 换来打包与闸门拿到正确 layout——比在 release/validate 里各自猜布局便宜得多。
       # 索引与站点数据仍须在本轮 zip / 镜像链接落盘之后重算，否则新条目在站点上是「未交付」。
       - name: Rebuild index (delivered pass) and site data
-        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
         run: |
           node scripts/build-index.mjs
           node scripts/build-site-data.mjs
           node scripts/build-site-html.mjs
 
       - name: Stage artifacts
-        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
         run: |
           set -euo pipefail
           node --input-type=module -e '
@@ -262,7 +364,7 @@ jobs:
 
       - name: Commit and push
         id: commit
-        if: steps.plan.outputs.count != '0' && inputs.dryRun != true
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
