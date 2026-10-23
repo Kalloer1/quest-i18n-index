@@ -169,10 +169,11 @@ step(0, '检查工作区')
 // ---------- 1. 取各分支增量 ----------
 step(1, '拉取远端分支并计算增量')
 netGit(['fetch', '-q', 'origin', 'main'])
-// blobless：这些分支里塞满了 tar.gz 和 zip，全量 fetch 一次要几分钟（实测 400s 还没完）；
-// 只拉提交与树，blob 在 checkout 时按需取，增量那一步只碰十几个文件，代价极小。
-// 不按 --hosts 分次拉：GitHub 上一条 refspec 通配一次往返拿完，比逐台拉快得多。
-netGit(['fetch', '-q', '--filter=blob:none', '--no-tags', 'origin',
+// 不能用 `--filter=blob:none`：那会把 remote 标成 promisor，之后 checkout 的懒加载
+// 会带着 blob:none 去要单个 blob，永远要不到、无限等（实测卡死十分钟无输出）。
+// 全量拉一次反而稳：分支只增量推送，后续每轮只下新增的那几个包。
+// 代价是首次会下几百 MB，但那是**必须**的数据（补丁 + 基准源），早下晚下都得下。
+netGit(['fetch', '--no-tags', '--progress', 'origin',
   '+refs/heads/farm/*:refs/remotes/origin/farm/*'])
 
 rmSync(DIR, { recursive: true, force: true })
