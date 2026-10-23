@@ -1,0 +1,227 @@
+# AI 初翻，未人工校对
+{
+	id: "AC00000000000001"
+	group: ""
+	order_index: 11
+	filename: "12_nether"
+	title: "通过传送门前往另一个世界"
+	icon: "minecraft:netherrack"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			id: "AC00000000000010"
+			type: "task"
+			title: "建造一个传送门"
+			icon: "minecraft:obsidian"
+			x: 0d
+			y: 0d
+			description: ["收集黑曜石并建造一个下界传送门。下界很危险，但对后期进度至关重要。如果可以，带上抗火药水。你一定会需要它们的。"]
+			tasks: [{
+				id: "AC00000000000011"
+				type: "item"
+				item: "minecraft:obsidian"
+				count: 10L
+			}]
+			rewards: [{
+				id: "AC00000000000012"
+				type: "item"
+				item: "minecraft:fire_resistance"
+				count: 2L
+			}]
+		}
+		{
+			id: "AC00000000000020"
+			type: "task"
+			title: "进入下界"
+			icon: "minecraft:netherrack"
+			x: 2d
+			y: 0d
+			description: ["穿过传送门。Solrise 的 Nether 因 Incendium 而大幅扩展。八种新群系、新建筑和新的挑战在门后等着你。小心脚下。"]
+			dependencies: ["AC00000000000010"]
+			tasks: [{
+				id: "AC00000000000021"
+				type: "checkmark"
+				title: "进入下界"
+			}]
+			rewards: [{
+				id: "AC00000000000022"
+				type: "item"
+				item: "minecraft:fire_charge"
+				count: 4L
+			}]
+		}
+		{
+			id: "AC00000000000030"
+			type: "task"
+			title: "Incendium 生物群系"
+			icon: "minecraft:magma_block"
+			x: 4d
+			y: 0d
+			description: ["Incendium 添加了 Toxic Heap、Quartz Flats 和 Volcanic Highlands 等生物群系。探索每一个，惊叹于下界的不同风貌。保持警惕，持续移动。"]
+			dependencies: ["AC00000000000020"]
+			tasks: [{
+				id: "AC00000000000031"
+				type: "checkmark"
+				title: "找到一个Incendium生物群系"
+			}]
+			rewards: [{
+				id: "AC00000000000032"
+				type: "item"
+				item: "minecraft:blaze_rod"
+				count: 8L
+			}]
+		}
+		{
+			id: "AC00000000000040"
+			type: "task"
+			title: "下界堡垒"
+			icon: "minecraft:nether_brick"
+			x: 0d
+			y: 2d
+			description: ["寻找下界堡垒，击败烈焰人获取酿造药水所需的烈焰棒。YUNG's Better Nether Fortresses 模组让堡垒比原版大得多，也更危险。"]
+			dependencies: ["AC00000000000030"]
+			tasks: [{
+				id: "AC00000000000041"
+				type: "item"
+				item: "minecraft:blaze_rod"
+				count: 4L
+			}]
+			rewards: [{
+				id: "AC00000000000042"
+				type: "item"
+				item: "minecraft:brewing_stand"
+				count: 1L
+			}]
+		}
+		{
+			id: "AC00000000000050"
+			type: "task"
+			title: "酿造一瓶药水"
+			icon: "minecraft:potion"
+			x: 2d
+			y: 2d
+			description: ["搭建酿造台，酿造你的第一瓶药水。药水在首领战和困难地牢中至关重要。先制作治疗和抗火药水。"]
+			dependencies: ["AC00000000000040"]
+			tasks: [{
+				id: "AC00000000000051"
+				type: "item"
+				item: "minecraft:potion"
+				count: 4L
+			}]
+			rewards: [{
+				id: "AC00000000000052"
+				type: "item"
+				item: "minecraft:nether_wart"
+				count: 16L
+			}]
+		}
+		{
+			id: "AC00000000000060"
+			type: "task"
+			title: "下界金"
+			icon: "minecraft:gold_ingot"
+			x: 4d
+			y: 2d
+			description: ["挖掘下界金矿石以快速获取黄金。穿戴至少一件金质盔甲可防止猪灵攻击你。用黄金与它们交易以换取稀有物品。"]
+			dependencies: ["AC00000000000050"]
+			tasks: [{
+				id: "AC00000000000061"
+				type: "item"
+				item: "minecraft:gold_ingot"
+				count: 32L
+			}]
+			rewards: [{
+				id: "AC00000000000062"
+				type: "item"
+				item: "minecraft:golden_boots"
+				count: 1L
+			}]
+		}
+		{
+			id: "AC00000000000070"
+			type: "task"
+			title: "猪灵贸易"
+			icon: "minecraft:gold_ingot"
+			x: 0d
+			y: 4d
+			description: ["用金锭和猪灵交换随机物品。它们可能会给你哭泣的黑曜石、药水、抗火药水，甚至还有稀有的下界专属物品。穿上金装备，开始交易吧。"]
+			dependencies: ["AC00000000000060"]
+			tasks: [{
+				id: "AC00000000000071"
+				type: "checkmark"
+				title: "与猪灵进行交易"
+			}]
+			rewards: [{
+				id: "AC00000000000072"
+				type: "item"
+				item: "minecraft:crying_obsidian"
+				count: 4L
+			}]
+		}
+		{
+			id: "AC00000000000080"
+			type: "task"
+			title: "远古残骸"
+			icon: "minecraft:ancient_debris"
+			x: 2d
+			y: 4d
+			description: ["在 y8 和 y22 之间挖掘远古残骸。它是游戏中最稀有的矿石。用床挖掘最快，但也极其危险。请使用抗爆药水以确保安全。"]
+			dependencies: ["AC00000000000070"]
+			tasks: [{
+				id: "AC00000000000081"
+				type: "item"
+				item: "minecraft:ancient_debris"
+				count: 8L
+			}]
+			rewards: [{
+				id: "AC00000000000082"
+				type: "item"
+				item: "minecraft:netherite_scrap"
+				count: 8L
+			}]
+		}
+		{
+			id: "AC00000000000090"
+			type: "task"
+			title: "下界传送门修复"
+			icon: "minecraft:obsidian"
+			x: 4d
+			y: 4d
+			description: ["Nether Portal Fix 确保传送门在不同维度间正确连接。建造多个传送门时，它们将始终连接到正确的维度。再也不用在不同维度间迷路了。"]
+			dependencies: ["AC00000000000080"]
+			tasks: [{
+				id: "AC00000000000091"
+				type: "checkmark"
+				title: "穿过一个正确连接的传送门"
+			}]
+			rewards: [{
+				id: "AC00000000000092"
+				type: "item"
+				item: "minecraft:obsidian"
+				count: 8L
+			}]
+		}
+		{
+			id: "AC0000000000000A"
+			type: "task"
+			title: "下界老兵"
+			icon: "minecraft:netherite_ingot"
+			x: 2d
+			y: 6d
+			description: ["你已在下界生存，发现了新群系，洗劫了堡垒，酿造了药水，并开采了下界合金。你已经准备好迎接新的挑战。末地正在呼唤你。"]
+			dependencies: ["AC00000000000090"]
+			tasks: [{
+				id: "AC0000000000000B"
+				type: "item"
+				item: "minecraft:netherite_ingot"
+				count: 2L
+			}]
+			rewards: [{
+				id: "AC0000000000000C"
+				type: "xp"
+				xp: 150
+			}]
+		}
+	]
+}

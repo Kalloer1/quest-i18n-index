@@ -1,0 +1,229 @@
+# AI 初翻，未人工校对
+{
+	id: "AA00000000000001"
+	group: ""
+	order_index: 9
+	filename: "10_create"
+	title: "齿轮与蒸汽"
+	icon: "create:cogwheel"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			id: "AA00000000000010"
+			type: "task"
+			title: "创造模式，你好！"
+			icon: "create:cogwheel"
+			x: 0d
+			y: 0d
+			description: ["Create 是一个由旋转力驱动的机械工程模组。所有内容都是视觉和物理的。悬停在任意 Create 方块上并按住 W 键，即可打开 Ponder 系统，了解其运作方式。"]
+			tasks: [{
+				id: "AA00000000000011"
+				type: "item"
+				item: "create:cogwheel"
+				count: 4L
+			}]
+			rewards: [{
+				id: "AA00000000000012"
+				type: "item"
+				item: "create:wrench"
+				count: 1L
+			}]
+		}
+		{
+			id: "AA00000000000020"
+			type: "task"
+			title: "水车"
+			icon: "create:water_wheel"
+			x: 2d
+			y: 0d
+			description: ["在流动的水旁建造水轮以产生旋转力。这是你在创造模式中的第一个动力源。使用传动轴和齿轮箱将其连接到机器上。"]
+			dependencies: ["AA00000000000010"]
+			tasks: [{
+				id: "AA00000000000021"
+				type: "item"
+				item: "create:water_wheel"
+				count: 1L
+			}]
+			rewards: [{
+				id: "AA00000000000022"
+				type: "item"
+				item: "create:shaft"
+				count: 8L
+			}]
+		}
+		{
+			id: "AA00000000000030"
+			type: "task"
+			title: "磨坊石"
+			icon: "create:millstone"
+			x: 4d
+			y: 0d
+			description: ["连接到电源的磨石能将材料磨成有用的产品。处理矿石以获得更多锭，或将作物磨成面粉用于烹饪。一台简单却实用的机器。"]
+			dependencies: ["AA00000000000020"]
+			tasks: [{
+				id: "AA00000000000031"
+				type: "item"
+				item: "create:millstone"
+				count: 1L
+			}]
+			rewards: [{
+				id: "AA00000000000032"
+				type: "item"
+				item: "create:crushed_raw_iron"
+				count: 16L
+			}]
+		}
+		{
+			id: "AA00000000000040"
+			type: "task"
+			title: "机械压榨机"
+			icon: "create:mechanical_press"
+			x: 0d
+			y: 2d
+			description: ["机械压机可将材料压实，将锭压制为金属片。更高级的Create配方需要金属片。将其放置在传送带或水槽上方。"]
+			dependencies: ["AA00000000000030"]
+			tasks: [{
+				id: "AA00000000000041"
+				type: "item"
+				item: "create:mechanical_press"
+				count: 1L
+			}]
+			rewards: [{
+				id: "AA00000000000042"
+				type: "item"
+				item: "create:iron_sheet"
+				count: 8L
+			}]
+		}
+		{
+			id: "AA00000000000050"
+			type: "task"
+			title: "黄铜和安山岩"
+			icon: "create:brass_ingot"
+			x: 2d
+			y: 2d
+			description: ["黄铜是Create的中阶材料。在搅拌机中混合铜和锌即可制作。你需要黄铜来制造更先进的Create机器和装置。"]
+			dependencies: ["AA00000000000040"]
+			tasks: [{
+				id: "AA00000000000051"
+				type: "item"
+				item: "create:brass_ingot"
+				count: 16L
+			}]
+			rewards: [{
+				id: "AA00000000000052"
+				type: "item"
+				item: "create:andesite_alloy"
+				count: 16L
+			}]
+		}
+		{
+			id: "AA00000000000060"
+			type: "task"
+			title: "制作护目镜"
+			icon: "creategoggles:goggles"
+			x: 4d
+			y: 2d
+			description: ["制作护目镜，让你能看到机器的应力值和旋转力。诊断机器故障必备。制作并佩戴它来建造吧。"]
+			dependencies: ["AA00000000000050"]
+			tasks: [{
+				id: "AA00000000000061"
+				type: "item"
+				item: "creategoggles:goggles"
+				count: 1L
+			}]
+			rewards: [{
+				id: "AA00000000000062"
+				type: "item"
+				item: "create:brass_ingot"
+				count: 8L
+			}]
+		}
+		{
+			id: "AA00000000000070"
+			type: "task"
+			title: "传送带 Conveyor Belt"
+			icon: "create:belt_connector"
+			x: 0d
+			y: 4d
+			description: ["建造传送带系统，让机器间自动传输物品。传送带是所有Create工厂的基础。连接你的机器，见证系统运转起来。"]
+			dependencies: ["AA00000000000060"]
+			tasks: [{
+				id: "AA00000000000071"
+				type: "item"
+				item: "create:belt_connector"
+				count: 4L
+			}]
+			rewards: [{
+				id: "AA00000000000072"
+				type: "item"
+				item: "create:depot"
+				count: 2L
+			}]
+		}
+		{
+			id: "AA00000000000080"
+			type: "task"
+			title: "蒸汽与铁路"
+			icon: "railways:track"
+			x: 2d
+			y: 4d
+			description: ["Steam and Rails 为 Create 添加了火车和铁路。在两地之间修建轨道，制造机车，尽享时尚之旅。穿越 Solrise 的终极出行方式。"]
+			dependencies: ["AA00000000000070"]
+			tasks: [{
+				id: "AA00000000000081"
+				type: "item"
+				item: "railways:track"
+				count: 16L
+			}]
+			rewards: [{
+				id: "AA00000000000082"
+				type: "item"
+				item: "railways:track"
+				count: 32L
+			}]
+		}
+		{
+			id: "AA00000000000090"
+			type: "task"
+			title: "第一次乘坐火车旅行"
+			icon: "railways:steam_locomotive"
+			x: 4d
+			y: 4d
+			description: ["建造并驾驶你的第一辆蒸汽机车。用轨道连接两个车站，组装一列火车，踏上旅程。在Solrise，没有什么比乘坐自己的铁路更令人满足的了。"]
+			dependencies: ["AA00000000000080"]
+			tasks: [{
+				id: "AA00000000000091"
+				type: "checkmark"
+				title: "乘坐你的第一列火车"
+			}]
+			rewards: [{
+				id: "AA00000000000092"
+				type: "item"
+				item: "create:brass_ingot"
+				count: 32L
+			}]
+		}
+		{
+			id: "AA0000000000000A"
+			type: "task"
+			title: "工厂"
+			icon: "create:mechanical_arm"
+			x: 2d
+			y: 6d
+			description: ["使用Create建造全自动资源加工厂。矿石输入，锭子输出，全程无需动手。这才是最顶级的工程学。"]
+			dependencies: ["AA00000000000090"]
+			tasks: [{
+				id: "AA0000000000000B"
+				type: "checkmark"
+				title: "建造一个自动化工厂"
+			}]
+			rewards: [{
+				id: "AA0000000000000C"
+				type: "xp"
+				xp: 200
+			}]
+		}
+	]
+}

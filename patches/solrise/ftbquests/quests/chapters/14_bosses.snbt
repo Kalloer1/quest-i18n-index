@@ -1,0 +1,227 @@
+# AI 初翻，未人工校对
+{
+	id: "AE00000000000001"
+	group: ""
+	order_index: 13
+	filename: "14_bosses"
+	title: "Boss Rush"
+	icon: "minecraft:nether_star"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			id: "AE00000000000010"
+			type: "task"
+			title: "准备战斗"
+			icon: "minecraft:golden_apple"
+			x: 0d
+			y: 0d
+			description: ["在挑战 Solrise 的主要首领之前，你需要做好万全的准备。下界合金盔甲、附魔武器、治疗和火焰抗性药水，以及充足的食物。不要操之过急。"]
+			tasks: [{
+				id: "AE00000000000011"
+				type: "item"
+				item: "minecraft:golden_apple"
+				count: 4L
+			}]
+			rewards: [{
+				id: "AE00000000000012"
+				type: "item"
+				item: "minecraft:totem_of_undying"
+				count: 1L
+			}]
+		}
+		{
+			id: "AE00000000000020"
+			type: "task"
+			title: "远古守卫者"
+			icon: "minecraft:sponge"
+			x: 2d
+			y: 0d
+			description: ["在海洋纪念碑中击败远古守卫者。它会让你患上挖掘疲劳，所以带上牛奶来治愈。纪念碑内部的海绵房间就是你的奖励。"]
+			dependencies: ["AE00000000000010"]
+			tasks: [{
+				id: "AE00000000000021"
+				type: "stat"
+				stat: "minecraft:killed"
+				substat: "minecraft:elder_guardian"
+				value: 1
+			}]
+			rewards: [{
+				id: "AE00000000000022"
+				type: "item"
+				item: "minecraft:sponge"
+				count: 4L
+			}]
+		}
+		{
+			id: "AE00000000000030"
+			type: "task"
+			title: "凋零者"
+			icon: "minecraft:nether_star"
+			x: 4d
+			y: 0d
+			description: ["击败凋零。在远离基地的地下建造它，以防止结构性破坏。带上强大的剑和药水。它掉落的下界之星是制作信标的必需品。"]
+			dependencies: ["AE00000000000020"]
+			tasks: [{
+				id: "AE00000000000031"
+				type: "stat"
+				stat: "minecraft:killed"
+				substat: "minecraft:wither"
+				value: 1
+			}]
+			rewards: [{
+				id: "AE00000000000032"
+				type: "item"
+				item: "minecraft:nether_star"
+				count: 1L
+			}]
+		}
+		{
+			id: "AE00000000000040"
+			type: "task"
+			title: "建造一座信标"
+			icon: "minecraft:beacon"
+			x: 0d
+			y: 2d
+			description: ["用下界之星制作信标。将其放置在铁、金、钻石或绿宝石金字塔上以获得强大的被动增益。完整的下界合金金字塔可提供最大效果。"]
+			dependencies: ["AE00000000000030"]
+			tasks: [{
+				id: "AE00000000000041"
+				type: "item"
+				item: "minecraft:beacon"
+				count: 1L
+			}]
+			rewards: [{
+				id: "AE00000000000042"
+				type: "item"
+				item: "minecraft:iron_block"
+				count: 9L
+			}]
+		}
+		{
+			id: "AE00000000000050"
+			type: "task"
+			title: "BOMD 首领"
+			icon: "bosses_of_mass_destruction:void_blossom_spawn_egg"
+			x: 2d
+			y: 2d
+			description: ["Bosses of Mass Destruction 为游戏世界添加了强大的自定义 boss。每个都比原版 boss 难很多，需要特定的策略。找到一个并将其击败。"]
+			dependencies: ["AE00000000000040"]
+			tasks: [{
+				id: "AE00000000000051"
+				type: "checkmark"
+				title: "击败一个毁灭性打击的Boss"
+			}]
+			rewards: [{
+				id: "AE00000000000052"
+				type: "xp"
+				xp: 200
+			}]
+		}
+		{
+			id: "AE00000000000060"
+			type: "task"
+			title: "突袭首领"
+			icon: "minecraft:ominous_banner"
+			x: 4d
+			y: 2d
+			description: ["击败出现在村庄和掠夺者前哨基地附近的劫掠首领。触发劫掠并保卫村庄，即可获得“村庄英雄”效果和超值交易。"]
+			dependencies: ["AE00000000000050"]
+			tasks: [{
+				id: "AE00000000000061"
+				type: "stat"
+				stat: "minecraft:raid_win"
+				value: 1
+			}]
+			rewards: [{
+				id: "AE00000000000062"
+				type: "item"
+				item: "minecraft:totem_of_undying"
+				count: 2L
+			}]
+		}
+		{
+			id: "AE00000000000070"
+			type: "task"
+			title: "所有首领均已击败"
+			icon: "minecraft:dragon_head"
+			x: 0d
+			y: 4d
+			description: ["你击败了远古守卫者、凋零、末影龙和BOMD首领。你是Solrise最强的战士之一。很少有人能像你一样取得如此成就。"]
+			dependencies: ["AE00000000000060"]
+			tasks: [{
+				id: "AE00000000000071"
+				type: "checkmark"
+				title: "击败所有主要首领"
+			}]
+			rewards: [{
+				id: "AE00000000000072"
+				type: "item"
+				item: "minecraft:dragon_head"
+				count: 1L
+			}]
+		}
+		{
+			id: "AE00000000000080"
+			type: "task"
+			title: "为所有物品附魔"
+			icon: "minecraft:enchanted_book"
+			x: 2d
+			y: 4d
+			description: ["将你的所有装备都附魔。锋利度、保护、效率、耐久和修补是最重要的附魔。图书管理员村民几乎可以给你任何书。"]
+			dependencies: ["AE00000000000070"]
+			tasks: [{
+				id: "AE00000000000081"
+				type: "item"
+				item: "minecraft:enchanted_book"
+				count: 8L
+			}]
+			rewards: [{
+				id: "AE00000000000082"
+				type: "item"
+				item: "minecraft:experience_bottle"
+				count: 16L
+			}]
+		}
+		{
+			id: "AE00000000000090"
+			type: "task"
+			title: "Maxed Out"
+			icon: "minecraft:diamond_sword"
+			x: 4d
+			y: 4d
+			description: ["用最强的附魔强化你最关键的武器。锋利度V、抢夺III、耐久度III、修补。这把剑历经百战，随时准备迎接新的挑战。"]
+			dependencies: ["AE00000000000080"]
+			tasks: [{
+				id: "AE00000000000091"
+				type: "checkmark"
+				title: "将你的主武器完全附魔"
+			}]
+			rewards: [{
+				id: "AE00000000000092"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			id: "AE0000000000000A"
+			type: "task"
+			title: "势不可挡"
+			icon: "minecraft:netherite_sword"
+			x: 2d
+			y: 6d
+			description: ["完全附魔的下界合金装备。信标增益。神器装备。饰品。你已经强大到Solrise所能允许的程度。这世上再没有任何东西能阻止你。"]
+			dependencies: ["AE00000000000090"]
+			tasks: [{
+				id: "AE0000000000000B"
+				type: "checkmark"
+				title: "成为真正无人能挡的存在"
+			}]
+			rewards: [{
+				id: "AE0000000000000C"
+				type: "xp"
+				xp: 500
+			}]
+		}
+	]
+}

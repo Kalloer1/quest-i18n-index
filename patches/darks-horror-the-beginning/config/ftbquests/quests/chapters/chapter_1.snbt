@@ -1,0 +1,246 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "chapter_1"
+	group: "34E1872BD21631DB"
+	hide_quest_details_until_startable: true
+	hide_quest_until_deps_complete: true
+	hide_quest_until_deps_visible: true
+	id: "00929A0C4890B36E"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["你在一块被诅咒的土地上醒来。生存是你唯一的念头。"]
+			id: "66ECDE62984C4BD7"
+			rewards: [
+				{
+					count: 8
+					id: "68B9E78B486A9574"
+					item: "minecraft:bread"
+					type: "item"
+				}
+				{
+					id: "7EC1BE6A821AF33D"
+					item: {
+						Count: 1
+						id: "minecraft:stone_axe"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			subtitle: "收集 16 个橡木原木。"
+			tasks: [{
+				count: 16L
+				id: "68C63169ED08BEAF"
+				item: { Count: 16, id: "minecraft:oak_log" }
+				type: "item"
+			}]
+			title: "苏醒的时刻"
+			x: 1.5d
+			y: 5.5d
+		}
+		{
+			dependencies: ["66ECDE62984C4BD7"]
+			description: ["夜晚的阴影愈发浓重。你需要一个地方熬到清晨。"]
+			id: "16192BB5006B75EA"
+			rewards: [
+				{
+					count: 4
+					id: "520E36B2B18B5D98"
+					item: "minecraft:torch"
+					type: "item"
+				}
+				{
+					count: 2
+					id: "7C4A366FA558319E"
+					item: "minecraft:iron_ingot"
+					type: "item"
+				}
+			]
+			subtitle: "获得 1x 床和 20x 圆石以建造庇护所"
+			tasks: [
+				{
+					id: "5020EF271BF1D95E"
+					item: "minecraft:white_bed"
+					type: "item"
+				}
+				{
+					count: 20L
+					id: "5D3E496717C81A81"
+					item: { Count: 20, id: "minecraft:cobblestone" }
+					type: "item"
+				}
+			]
+			title: "在黑暗中寻找庇护所"
+			x: 1.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["16192BB5006B75EA"]
+			description: ["被诅咒的家伙们会一直追杀你。是时候反击了。"]
+			id: "6021081D142881CD"
+			rewards: [{
+				id: "139A48BB8CDBB2E4"
+				item: {
+					Count: 1
+					id: "minecraft:iron_sword"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			subtitle: "杀死 10 只僵尸"
+			tasks: [{
+				entity: "minecraft:zombie"
+				id: "4A07477D4B754B2F"
+				title: "第一滴血"
+				type: "kill"
+				value: 10L
+			}]
+			x: 1.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["6021081D142881CD"]
+			description: ["森林低语着你的名字。古老的祭坛隐藏在阴影之下……恐怖由此开始。"]
+			id: "74CEA3EF17BC9236"
+			rewards: [
+				{
+					id: "467491A8F04529B7"
+					item: {
+						Count: 1
+						id: "minecraft:iron_chestplate"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "00C5A289051D19D5"
+					item: "minecraft:golden_apple"
+					type: "item"
+				}
+			]
+			subtitle: "探索黑暗森林生物群系"
+			tasks: [{
+				biome: "minecraft:dark_forest"
+				id: "33DC497BBD17543D"
+				title: "黑暗森林"
+				type: "biome"
+			}]
+			x: 1.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["74CEA3EF17BC9236"]
+			description: ["你听说有个村庄，幸存者在那里挣扎求生。也许他们知道些什么……"]
+			id: "205F0B5AEBE496C9"
+			rewards: [
+				{
+					count: 5
+					id: "4CD7B069B92D0A8A"
+					item: "minecraft:emerald"
+					type: "item"
+				}
+				{
+					id: "1840ED031B513C4F"
+					item: "minecraft:golden_apple"
+					type: "item"
+				}
+			]
+			subtitle: "发现任意一个村庄"
+			tasks: [{
+				id: "3D4030E42890D7A6"
+				optional_task: true
+				structure: "#minecraft:village"
+				title: "村庄"
+				type: "structure"
+			}]
+			x: 0.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["74CEA3EF17BC9236"]
+			description: ["村民们很害怕……但他们中可能有一个会和你交谈。或许他们的交易中藏着线索。"]
+			id: "78BC2C0169F5EDB7"
+			rewards: [
+				{
+					id: "7711979C8B68BDB4"
+					item: {
+						Count: 1
+						id: "minecraft:potion"
+						tag: {
+							Potion: "minecraft:strong_healing"
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 5
+					id: "0E4067B64687CE39"
+					item: "minecraft:emerald"
+					type: "item"
+				}
+			]
+			subtitle: "与村民进行交易"
+			tasks: [{
+				advancement: "minecraft:adventure/trade"
+				criterion: ""
+				id: "33B76BB8C6C59144"
+				optional_task: true
+				title: "幸存者之间的交易"
+				type: "advancement"
+			}]
+			x: 2.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["74CEA3EF17BC9236"]
+			description: ["食物快没了。要想活过接下来的恐怖，你必须学会自己种植。这片土壤很奇怪……几乎像活的一样。"]
+			id: "30CB3471738FB734"
+			rewards: [
+				{
+					count: 16
+					id: "59DB4902D8C0AD44"
+					item: "minecraft:cooked_mutton"
+					type: "item"
+				}
+				{
+					id: "196CD1BBE76559D9"
+					item: {
+						Count: 1
+						id: "minecraft:iron_hoe"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 10
+					id: "78B89B2A35064016"
+					item: "minecraft:bone_meal"
+					type: "item"
+				}
+			]
+			subtitle: "种植任何农作物"
+			tasks: [{
+				advancement: "minecraft:husbandry/plant_seed"
+				criterion: ""
+				id: "07BAA792066ECF11"
+				title: "最后的丰收"
+				type: "advancement"
+			}]
+			x: 1.5d
+			y: -2.0d
+		}
+	]
+	title: "在黑暗中苏醒"
+}
