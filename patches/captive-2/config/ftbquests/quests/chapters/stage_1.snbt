@@ -1,0 +1,252 @@
+# AI 初翻，未人工校对
+{
+	id: "67F707489B63F1FD"
+	group: "116BB780D5BF4458"
+	order_index: 0
+	filename: "stage_1"
+	title: "阶段"
+	icon: "ftbquests:barrier"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "开始"
+			icon: "ftbquests:barrier"
+			x: 0.0d
+			y: 0.0d
+			description: ["这就是开始。睁开眼的瞬间，世界边界就会向你闭合。"]
+			id: "0229D388DA362653"
+			tasks: [{
+				id: "6536ABB8B8827DF4"
+				type: "item"
+				title: "开始"
+				icon: "ftbquests:barrier"
+				item: "theoneprobe:probenote"
+			}]
+			rewards: [
+				{
+					id: "53409DE18F764620"
+					type: "command"
+					auto: "invisible"
+					command: "/execute as @p at @s run worldborder center ~ ~"
+					silent: true
+				}
+				{
+					id: "04A78989CF98E726"
+					type: "command"
+					auto: "invisible"
+					command: "/worldborder set 1"
+					silent: true
+				}
+				{
+					id: "38E23A9012AEC2C3"
+					type: "item"
+					auto: "invisible"
+					item: "ftbquests:book"
+				}
+				{
+					id: "1C01FE394C51BE42"
+					type: "item"
+					auto: "invisible"
+					item: {
+						id: "minecraft:writable_book"
+						Count: 1b
+						tag: {
+							pages: ["I'am god I have a chalange for you this woorld is a beautiful place.\nYour mission is to expand the border step by step to get the Border opening Coin.\nWhen your done donate it to expand the border to it's normal size."]
+						}
+					}
+				}
+			]
+		}
+		{
+			icon: "minecraft:grass_block"
+			x: 2.0d
+			y: 0.0d
+			dependencies: ["0229D388DA362653"]
+			id: "624041890D858836"
+			tasks: [{
+				id: "7ED2580074D1CD49"
+				type: "checkmark"
+				title: "开端"
+			}]
+			rewards: [
+				{
+					id: "5125246D7930E824"
+					type: "item"
+					item: "botanypots:terracotta_botany_pot"
+				}
+				{
+					id: "55A742A06C0ED04C"
+					type: "item"
+					item: "minecraft:oak_sapling"
+				}
+				{
+					id: "62A1B63495414968"
+					type: "item"
+					item: "minecraft:dirt"
+				}
+			]
+		}
+		{
+			icon: "excompressum:auto_compressor"
+			x: 4.0d
+			y: 0.0d
+			dependencies: [
+				"624041890D858836"
+				"6FA5F4831445E77E"
+			]
+			id: "44872CA90B39F8F1"
+			tasks: [{
+				id: "483877251D0085F4"
+				type: "checkmark"
+				title: "自动化"
+			}]
+			rewards: [
+				{
+					id: "76688DC266DF36F3"
+					type: "item"
+					item: "pipez:wrench"
+				}
+				{
+					id: "18850095FDC8D77F"
+					type: "item"
+					item: "solargeneration:solar_panel_redstone"
+				}
+			]
+		}
+		{
+			icon: "storagedrawers:oak_full_drawers_1"
+			x: 2.0d
+			y: -1.5d
+			dependencies: ["624041890D858836"]
+			optional: true
+			id: "5122E113E376845B"
+			tasks: [{
+				id: "2BABCFFF1916930F"
+				type: "checkmark"
+				title: "抽屉"
+			}]
+		}
+		{
+			icon: "botania:lexicon"
+			x: 6.0d
+			y: 0.0d
+			dependencies: [
+				"44872CA90B39F8F1"
+				"458F6E2E20F6D75F"
+			]
+			id: "37019D7DF839DC7D"
+			tasks: [{
+				id: "79F235F3ED6EE40C"
+				type: "checkmark"
+				title: "第一魔法"
+			}]
+			rewards: [{
+				id: "0A2204FCFFAB1ACD"
+				type: "item"
+				item: "botania:lexicon"
+			}]
+		}
+		{
+			icon: "powah:dielectric_paste"
+			x: 8.0d
+			y: 0.0d
+			dependencies: [
+				"37019D7DF839DC7D"
+				"4342D4F37A5D4363"
+			]
+			id: "16188F7B643E385F"
+			tasks: [{
+				id: "57E38DE051AB7992"
+				type: "checkmark"
+				title: "技术性内容"
+			}]
+			rewards: [
+				{
+					id: "2DD130B06104CF3D"
+					type: "item"
+					item: {
+						id: "powah:wrench"
+						Count: 1b
+						tag: {
+							PowahWrenchNBT: { }
+						}
+					}
+				}
+				{
+					id: "6C8FF7195C4F62B7"
+					type: "item"
+					item: "solargeneration:solar_panel_resonant"
+				}
+			]
+		}
+		{
+			icon: "refinedstorage:creative_controller"
+			x: 8.0d
+			y: -1.5d
+			dependencies: ["16188F7B643E385F"]
+			optional: true
+			id: "6B666198865A1D88"
+			tasks: [{
+				id: "226098D65B93A090"
+				type: "checkmark"
+				title: "Refined Storage"
+			}]
+		}
+		{
+			icon: "bloodmagic:altar"
+			x: 10.0d
+			y: 0.0d
+			dependencies: [
+				"16188F7B643E385F"
+				"79BA11B87FDB7AA1"
+			]
+			id: "34EF90FE75CA9B9A"
+			tasks: [{
+				id: "44F88CB605480B2F"
+				type: "checkmark"
+				title: "更多魔法 (More Magic)"
+			}]
+			rewards: [{
+				id: "3D5B0F3DF9DCB72C"
+				type: "item"
+				item: {
+					id: "patchouli:guide_book"
+					Count: 1b
+					tag: {
+						"patchouli:book": "bloodmagic:guide"
+					}
+				}
+			}]
+		}
+		{
+			icon: "fluxnetworks:admin_configurator"
+			x: 4.0d
+			y: -1.5d
+			dependencies: ["44872CA90B39F8F1"]
+			optional: true
+			id: "5932DC0E69A2CF43"
+			tasks: [{
+				id: "1995C4A1485E81B9"
+				type: "checkmark"
+				title: "Flux Network 网络"
+			}]
+		}
+		{
+			icon: "kubejs:border_open_tool_1"
+			x: 12.0d
+			y: 0.0d
+			dependencies: [
+				"34EF90FE75CA9B9A"
+				"09A692EA1209A2BD"
+			]
+			id: "41D41A555613D5C6"
+			tasks: [{
+				id: "751322DB59FB5C5D"
+				type: "checkmark"
+				title: "The End"
+			}]
+		}
+	]
+	quest_links: [ ]
+}

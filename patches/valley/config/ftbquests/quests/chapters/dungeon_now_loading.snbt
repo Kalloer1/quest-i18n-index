@@ -1,0 +1,218 @@
+# AI 初翻，未人工校对
+{
+	autofocus_id: "0D70B11E99056FEA"
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "dungeon_now_loading"
+	group: ""
+	icon: "dungeonnowloading:dnl_logo"
+	id: "447B36FDF08740A4"
+	order_index: 13
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"Bu mod, oyuna Labyrinth adında yeni bir yeraltı zindanı ve kendi boss'unu ekler,"
+				""
+				"Moda başlamak için bir yeraltı zindanı bul ve spawner'ı kır, bu sana Spawner Fragment verecek, Spawner Fragment modun eşyalarını yapmak için gereken ana malzemedir."
+				""
+				"Yeraltı zindanlarında bulduğun sandıklardan Dungeon Map çıkacak, bununla modun yapısı olan Labyrinth'e gidebilirsin."
+			]
+			icon: "dungeonnowloading:dnl_logo"
+			id: "59E518135046FB64"
+			subtitle: "Bir yeraltı zindanı bul ve spawner'ı KIR"
+			tasks: [{
+				id: "50CF2EAFED6EF10B"
+				item: "dungeonnowloading:spawner_fragment"
+				type: "item"
+			}]
+			title: "Dungeon Now Loading'e hoş geldiniz"
+			x: -2.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["59E518135046FB64"]
+			id: "79F5AFE611924E4E"
+			tasks: [{
+				advancement: "dungeonnowloading:story/labyrinth/loot_simple_dungeon"
+				criterion: ""
+				icon: "minecraft:map"
+				id: "40B69F1A3413E2D1"
+				type: "advancement"
+			}]
+			title: "地牢地图碎片"
+			x: 0.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["79F5AFE611924E4E"]
+			id: "0D70B11E99056FEA"
+			tasks: [{
+				advancement: "dungeonnowloading:story/labyrinth/find_labyrinth"
+				criterion: ""
+				id: "1B4928CC570DFCED"
+				type: "advancement"
+			}]
+			title: "进入迷宫 Labyrinth'e gir"
+			x: 2.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["0D70B11E99056FEA"]
+			description: ["Hollowlar fiziksel saldırılardan hasar almaz, onları öldürmek için Labyrinthde bulacağın instant health potionları veya healing okları onlara fırlat"]
+			id: "003726A50172565E"
+			tasks: [{
+				entity: "minecraft:zombie"
+				icon: "dungeonnowloading:spawn_egg_hollow"
+				id: "3FB66DC1A568D85C"
+				type: "kill"
+				value: 5L
+			}]
+			title: "5 Hollow öldür"
+			x: 1.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["0D70B11E99056FEA"]
+			id: "1D088C7209AED5C4"
+			tasks: [{
+				entity: "dungeonnowloading:spawner_carrier"
+				id: "67DBE82BDE814E74"
+				type: "kill"
+				value: 5L
+			}]
+			title: "5 Spawner Carrier öldür"
+			x: 2.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["0D70B11E99056FEA"]
+			description: [
+				"Boss'un odasını Labyrinth'in sonunda bulabilirsin, ortada boss'un bulunduğu bir alan var, bossu uyandırabilmek için 2 şey yapman lazım;"
+				""
+				"Bossun bulunduğu kutunun kenarlarında bulunan elmas soketlerini kır,"
+				""
+				"混沌的头骨 (Skull of Chaos) 制作成功。"
+				""
+				"Skull of Chaos ile boss'a sağ tıkladığında boss uyanacaktır."
+				""
+				"注意：与Boss战斗时，必须打破这些钻石插槽才能对其造成伤害，Boss会在战斗中补充它们。"
+			]
+			id: "6E05C4CCAF878E27"
+			tasks: [{
+				advancement: "dungeonnowloading:story/labyrinth/awaken_chaos_spawner"
+				criterion: ""
+				id: "2832637BA3B25BF5"
+				type: "advancement"
+			}]
+			title: "唤醒首领"
+			x: 4.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["6E05C4CCAF878E27"]
+			id: "166A1844EEB82835"
+			tasks: [{
+				advancement: "dungeonnowloading:story/labyrinth/obtain_chaotic_hexahedron"
+				criterion: ""
+				id: "7C1D685F72F55823"
+				type: "advancement"
+			}]
+			title: "Chaos Spawner Boss'unu yen"
+			x: 6.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["166A1844EEB82835"]
+			id: "6CD4CBE67B034C33"
+			tasks: [{
+				id: "6628DDAA41438142"
+				item: {
+					Count: 1
+					id: "dungeonnowloading:scepter_of_sealed_chaos"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 7.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["166A1844EEB82835"]
+			id: "028E595DEA5CA883"
+			tasks: [
+				{
+					id: "4C77304F0143AF86"
+					item: {
+						Count: 1
+						id: "dungeonnowloading:spawner_sword"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "03395C9A08B70CCC"
+					item: {
+						Count: 1
+						id: "dungeonnowloading:life_stealer"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "505B772089498EF4"
+					item: {
+						Count: 1
+						id: "dungeonnowloading:spawner_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "56326E57563A83E2"
+					item: {
+						Count: 1
+						id: "dungeonnowloading:spawner_chestplate"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "613576A7454BE082"
+					item: {
+						Count: 1
+						id: "dungeonnowloading:spawner_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "4096EF774E3EB98C"
+					item: {
+						Count: 1
+						id: "dungeonnowloading:spawner_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			x: 7.0d
+			y: -1.5d
+		}
+	]
+	title: "地牢正在加载中"
+}
