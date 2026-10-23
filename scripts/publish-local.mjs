@@ -257,14 +257,26 @@ step(3, '检出增量文件')
 }
 let checkedOut = 0
 const lost = []
+// 按分支一次性 restore，而不是逐包 `git checkout`：
+// Windows 上每调一次 git 都要重写整个索引（几千个文件），实测一个包 4 秒，
+// 488 个包要半小时。`--pathspec-from-file` 让一条命令处理整批路径，几条分支几秒就完。
+const perBranch = {}
 for (const [slug, item] of Object.entries(plan.bySlug)) {
   const paths = [...item.patchPaths, item.baselinePath].filter(Boolean)
-  if (gitTry(['checkout', `origin/farm/${item.branch}`, '--', ...paths])) { checkedOut++; continue }
-  // 单包失败不该拖垮整轮：补一次 blob 再试，仍不行就记下来跳过（下一轮它还在 diff 里）。
-  netGit(['fetch', '--no-filter', '-q', '--no-tags', 'origin', `farm/${item.branch}:refs/remotes/origin/farm/${item.branch}`])
-  if (gitTry(['checkout', `origin/farm/${item.branch}`, '--', ...paths])) { checkedOut++; continue }
-  lost.push(slug)
-  console.log(`  ✘ ${slug} 检出失败，本轮跳过（下一轮会重试）`)
+  ;(perBranch[item.branch] ??= []).push({ slug, paths })
+}
+for (const [h, items] of Object.entries(perBranch)) {
+  const specFile = join(DIR, `restore-${h}.txt`)
+  writeFileSync(specFile, items.flatMap((x) => x.paths).join('\0'))
+  const ok = gitTry(['restore', `--source=origin/farm/${h}`, '--worktree',
+    '--pathspec-from-file', specFile, '--pathspec-file-nul'])
+  if (ok) { checkedOut += items.length; continue }
+  // 整批失败（通常是某个 blob 缺失）→ 退回逐包，只丢坏的那几个。
+  for (const { slug, paths } of items) {
+    if (gitTry(['checkout', `origin/farm/${h}`, '--', ...paths])) { checkedOut++; continue }
+    lost.push(slug)
+    console.log(`  ✘ ${slug} 检出失败，本轮跳过（下一轮会重试）`)
+  }
 }
 console.log(`已检出 ${checkedOut} 个包（补丁 + 基准源）${lost.length ? `，失败 ${lost.length} 个` : ''}`)
 
