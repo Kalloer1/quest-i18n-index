@@ -541,8 +541,14 @@ async function main() {
   const skipDone = Boolean(typeof slugFileArg === 'string' && slugFileArg)
   const pending = pendingWorklist(ROOT, all, state, explicit, { redoDone, delivered, skipDone })
   const d = describeWorklist(ROOT, all, state, explicit, { redoDone, delivered, skipDone })
+  // 注意：显式清单**不能**直接拿 `explicit` 当 worklist。
+  // 之前就是这么写的，于是分片模式下前面所有「跳过已完成」的过滤全被绕过 ——
+  // 2026-10-24 实测：`--slug-file` 传 198 个 slug，pending 已经过滤到 3 个，
+  // 日志照样打出「本次处理 198 个」，5 台机因此把 734 个已入库的包反复重翻。
   const worklist = explicit.length
-    ? explicit.map((slug) => all.find((p) => p.slug === slug) ?? { slug, platform, layout, bytes: 0 })
+    ? (skipDone && !redoDone
+      ? pending
+      : explicit.map((slug) => all.find((p) => p.slug === slug) ?? { slug, platform, layout, bytes: 0 }))
     : (limit > 0 ? pending.slice(0, limit) : pending)
 
   console.log(`平台 ${platform || '全部'}：可翻译 ${d.total} 个，已完成 ${d.done} 个，本次处理 ${worklist.length} 个，${lanes} 路并发`)
