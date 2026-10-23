@@ -1,0 +1,510 @@
+# AI 初翻，未人工校对
+{
+	id: "0300D37245185229"
+	group: ""
+	order_index: 0
+	filename: "progression_part_1"
+	title: "第一部分：简单的部分"
+	icon: "contenttweaker:mana_white"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "欢迎！"
+			icon: "ftbquests:book"
+			x: 4.0d
+			y: 2.0d
+			subtitle: "方向"
+			description: [
+				"勇敢的招募者！你正在与 MAnA (Material Arcana n’ Automation) 实验室的首席执行官对话，该实验室是 Minecraftia 研究联合会的子公司。你已被选中参加我们的最新实验！如果你在读这段话，说明你目前处于一个模拟现实中。另一种可能是我们把你放错了模拟，但那样的话你可能已经死了。"
+				""
+				"不过先抛开这些怪念头，该做点科学实验了！首先要了解这本任务书的工作原理。现实世界里的科学家们正在计算数据，为你提供可测试的假设。但在开始实验前，还有一些循环的、看似毫无意义的任务，它们能为那些刚被下载到电脑里还一头雾水的人提供有用的建议。"
+				""
+				"还有一件事！由于我们最先进的奖励计划最近被取消了，所以我们无权强迫你遵循这本任务书。如果你想寻求真正的挑战，可以尝试完全不按照我们的指引来创造 Technicolor Mana！"
+			]
+			id: "1DFBD4C5019CA124"
+			tasks: [{
+				id: "3C9FBF19061EEF27"
+				type: "checkmark"
+				title: "点击此对勾，即表示你已下载至正确的模拟环境中。"
+			}]
+		}
+		{
+			title: "合成中... 使用机器！"
+			icon: "craftingautomat:autocrafter"
+			x: 4.0d
+			y: -2.0d
+			shape: "circle"
+			subtitle: "机械合成台，有人需要吗？"
+			description: [
+				"正如你受命于此，我们的科学家们也受命研究白魔法的实际应用。在开启你的科技之旅时，我们有两个应用或许会令你感兴趣。"
+				""
+				"合成自动化器可以在输入和红石信号下自动合成物品。那信号怎么给？看红石时钟就对了，至于它有时会坏掉，别管！"
+			]
+			dependencies: ["571FCF05222657B9"]
+			id: "1A3C86CD9A2E0F08"
+			tasks: [
+				{
+					id: "3AD0919817130D02"
+					type: "item"
+					item: "craftingautomat:autocrafter"
+				}
+				{
+					id: "6C79B4BAAE4202E9"
+					type: "item"
+					item: "redstone_clock:redstone_clock"
+				}
+			]
+		}
+		{
+			title: "白色法力"
+			icon: "contenttweaker:mana_white"
+			x: 2.0d
+			y: 0.0d
+			subtitle: "简约主义"
+			description: [
+				"我们最优秀的公司间谍之一，从某个法师协会偷了这种“法力”材料，等他们发现被偷了肯定会很生气。总之，该你出场了！你的任务是测试这东西，看看它能干什么。"
+				""
+				"目前看来，你可以把这些东西变成木头和鹅卵石，基本的生存物资。它似乎还能分裂，你可以试试徒手把它掰开！"
+				""
+				"我们当然不高兴，但如果你不幸用完了白魔法，可以通过本书的“应急物品”功能申请一个。"
+			]
+			dependencies: ["1DFBD4C5019CA124"]
+			id: "571FCF05222657B9"
+			tasks: [
+				{
+					id: "2E05175458FCB538"
+					type: "item"
+					item: "contenttweaker:mana_white"
+				}
+				{
+					id: "03846C526AF36D93"
+					type: "item"
+					item: "minecraft:oak_log"
+				}
+				{
+					id: "29FABA31F0DE2C9A"
+					type: "item"
+					item: "minecraft:cobblestone"
+				}
+			]
+		}
+		{
+			title: "改良有丝分裂 (Improved Mitosis)"
+			x: 4.0d
+			y: 0.0d
+			shape: "circle"
+			subtitle: "无限法力 (Infinite Mana)"
+			description: ["手动分解这些东西太累了。幸运的是，白魔法似乎能在特殊容器里自我复制！"]
+			dependencies: ["571FCF05222657B9"]
+			id: "4BD62C80FBD42016"
+			tasks: [{
+				id: "4A775541044165C5"
+				type: "item"
+				item: {
+					id: "framedcompactdrawers:framed_full_one"
+					Count: 1b
+					tag: {
+						MatT: {
+							id: "minecraft:air"
+							Count: 1b
+							tag: {
+								data_model: { }
+							}
+						}
+						MatF: {
+							id: "create:chiseled_dolomite"
+							Count: 1b
+						}
+						BlockEntityTag: {
+							MatT: {
+								id: "minecraft:air"
+								Count: 1b
+								tag: {
+									data_model: { }
+								}
+							}
+							MatF: {
+								id: "create:chiseled_dolomite"
+								Count: 1b
+							}
+							Upgrades: [{
+								Slot: 0b
+								id: "storagedrawers:creative_vending_upgrade"
+								Count: 1b
+							}]
+							MatS: {
+								id: "create:layered_dolomite"
+								Count: 1b
+							}
+							id: "framedcompactdrawers:framed_full_one"
+							Drawers: [{
+								Item: {
+									id: "contenttweaker:mana_white"
+									Count: 1b
+								}
+								Count: 0
+							}]
+						}
+						MatS: {
+							id: "create:layered_dolomite"
+							Count: 1b
+						}
+						display: {
+							Lore: ["[{\"text\":\"Contains Infinite\",\"color\":\"gray\"},{\"text\":\" White Mana\",\"color\":\"white\"},{\"text\":\".\",\"color\":\"gray\"}]"]
+						}
+					}
+				}
+			}]
+		}
+		{
+			title: "浅灰色法力 (Light Gray Mana)"
+			x: 2.0d
+			y: 2.0d
+			subtitle: "易碎的"
+			description: ["你已经发现了另一种类型的法力？这魔法玩意儿一定很简单！你肯定想大量生产这东西，我们的科学家们会着手研究如何利用它。"]
+			dependencies: ["571FCF05222657B9"]
+			id: "723BAAF1AD432B68"
+			tasks: [{
+				id: "172E19DAAEF542A0"
+				type: "item"
+				item: "contenttweaker:mana_light_gray"
+			}]
+		}
+		{
+			title: "混合材料中"
+			x: 0.0d
+			y: 0.0d
+			subtitle: "没有黏土……？"
+			description: ["在你的世界里，似乎可以不用粘土就能制作砂浆。这真是一项了不起的科学发现！砂浆以其隔热性能而闻名，而众所周知，极端高温正是科学所需的工具！"]
+			dependencies: ["723BAAF1AD432B68"]
+			id: "16051B6490361E01"
+			tasks: [{
+				id: "3FA3899544C49C27"
+				type: "item"
+				item: "tconstruct:grout"
+			}]
+		}
+		{
+			title: "关于你的世界"
+			icon: "minecraft:writable_book"
+			x: 4.0d
+			y: 4.0d
+			shape: "circle"
+			subtitle: "以及所有那些怪诞之处"
+			description: [
+				"所以你可能会感到有点困惑。毕竟，这个世界很奇怪。基本上，我们正在运行一个（非常昂贵的）模拟程序，并把勇敢的科学家你塞了进去。"
+				""
+				"据说这里应该能反映地球的现实，但我们给了你一些优势，让生活更轻松。请记住，飞行能力、近乎无限的寿命以及无需进食都是这个世界赋予你的。"
+			]
+			dependencies: ["1DFBD4C5019CA124"]
+			id: "1F817278F82C1C7A"
+			tasks: [{
+				id: "1DD7E6D0FDCFE355"
+				type: "checkmark"
+				title: "点击这个勾号绝对不代表要签订契约，交出你的灵魂。"
+			}]
+		}
+		{
+			title: "晶体生长"
+			x: -2.0d
+			y: 0.0d
+			subtitle: "可能比Applied Energistics更容易上手"
+			description: ["我们推测，既然你能制作水泥，就一定能制作下界石英。虽然方法未知，但理论表明你可以用燧石来制作。祝你好运，勇敢的科学家！"]
+			dependencies: ["16051B6490361E01"]
+			id: "3827EB601A664253"
+			tasks: [{
+				id: "5FE0AD74FBC246F9"
+				type: "item"
+				item: "minecraft:quartz"
+			}]
+		}
+		{
+			title: "正在创建一台机器"
+			x: -2.0d
+			y: -2.0d
+			subtitle: "科学基础入门"
+			description: [
+				"每个科学家都知道，比热量更好的东西，就是用巨大的力量进行碾压！我的意思是，我不是科学家，但想必大家都知道这是事实。"
+				""
+				"我知道我们没授权你用Applied Energistics Technology，不过你大概能用Nether Quartz造个自己的粉碎机！"
+				""
+				"别忘了，如果获取旋转动力有困难，你总可以用水以外的流体来驱动水车。"
+			]
+			dependencies: ["3827EB601A664253"]
+			id: "03567C8CDED8D1DE"
+			tasks: [{
+				id: "7E46F5E2451053BB"
+				type: "item"
+				item: "create:millstone"
+			}]
+		}
+		{
+			title: "把石头和木棍敲在一起"
+			x: 0.0d
+			y: -2.0d
+			subtitle: "泥土的创造 (Creation of Dirt)"
+			description: [
+				"众所周知，泥土是由死去的植物构成的。可惜你周围并没有多少植物，希望你能尽快解决这个问题。在此之前，你总能用其他东西来大致模拟泥土！"
+				""
+				"我一直很好奇，我们到底为什么要往土里放那些小鹅卵石呢。"
+			]
+			dependencies: ["03567C8CDED8D1DE"]
+			id: "797FF4E8B298AA6A"
+			tasks: [{
+				id: "696F9E0723B2A59C"
+				type: "item"
+				item: "minecraft:coarse_dirt"
+			}]
+		}
+		{
+			title: "恼人的耕地任务"
+			x: 2.0d
+			y: -2.0d
+			shape: "circle"
+			subtitle: "让你的泥土更光滑 (Smoothen Your Dirt)"
+			description: [
+				""
+				"泥土的粗糙度让你烦恼？厌倦了制作第57把石锄？考虑用机器帮你锄地吧！"
+			]
+			dependencies: ["797FF4E8B298AA6A"]
+			id: "0512AE66D939E4EE"
+			tasks: [{
+				id: "5099613DC5611B49"
+				type: "item"
+				item: "create:mechanical_plough"
+			}]
+		}
+		{
+			title: "棕色法力 (Brown Mana)"
+			x: 2.0d
+			y: -4.0d
+			subtitle: "谦逊的"
+			description: ["白魔法能和泥土反应？这东西越来越多功能了！快去找点新棕色魔法的用途，肯定有好玩的东西。"]
+			dependencies: ["797FF4E8B298AA6A"]
+			id: "2DCDA691A66D3166"
+			tasks: [{
+				id: "3970FBEC4F92A770"
+				type: "item"
+				item: "contenttweaker:mana_brown"
+			}]
+		}
+		{
+			title: "你的新朋友，你的最佳伙伴"
+			x: -4.0d
+			y: -4.0d
+			subtitle: "这是什么，某种石砖块吗？"
+			description: ["孤独吗？不妨试着为自己制作一个朋友！制作朋友的过程中，肯定不会出什么问题的。"]
+			dependencies: ["03567C8CDED8D1DE"]
+			id: "43ADF9C21194BF1E"
+			tasks: [{
+				id: "710C74753883D384"
+				type: "item"
+				item: "contenttweaker:pet_rock"
+			}]
+		}
+		{
+			title: "红色法力"
+			x: -2.0d
+			y: -4.0d
+			subtitle: "工业发展"
+			description: ["这才叫法力，看看它的设计！三角形。动感。绯红。强大。你真是天才，希望没花你太多功夫！"]
+			dependencies: ["43ADF9C21194BF1E"]
+			id: "5EF3A372D53E9DF8"
+			tasks: [{
+				id: "085D703B2200A5B5"
+				type: "item"
+				item: "contenttweaker:mana_red"
+			}]
+		}
+		{
+			title: "公司强制免责声明"
+			x: -4.0d
+			y: 0.0d
+			subtitle: "完全不合逻辑的玩意儿"
+			description: [
+				"- 这是一条来自 Minecraftia 研究联合会的自动化消息。 -"
+				""
+				"在RUM，我们致力于保障您的安全。已知以下材料会对人类造成健康问题。尽管您永生不死，但仍需谨慎操作。"
+				""
+				"- 结束消息 -"
+			]
+			dependencies: ["03567C8CDED8D1DE"]
+			id: "7A88F5FA10C5A33E"
+			tasks: [{
+				id: "1C615E5B30DD57ED"
+				type: "item"
+				item: "contenttweaker:asbestos"
+			}]
+		}
+		{
+			title: "蓝色法力"
+			x: -4.0d
+			y: -2.0d
+			subtitle: "流动"
+			description: ["虽然我更兴奋于你发现了水，但发现新的法力类型总是令人欣喜的！继续努力吧，谁知道你还会发现什么！"]
+			dependencies: ["7A88F5FA10C5A33E"]
+			id: "7E95784516E9AE71"
+			tasks: [{
+				id: "488F1A004E64B839"
+				type: "item"
+				item: "contenttweaker:mana_blue"
+			}]
+		}
+		{
+			title: "淘金热（Panning for Gold）"
+			x: -4.0d
+			y: 2.0d
+			subtitle: "没有平底锅的情况下"
+			description: ["黄金！谁不爱呢？我可是超爱的！我记得年轻时还淘过金。要不你也试试？"]
+			dependencies: ["7A88F5FA10C5A33E"]
+			id: "265BA0622B94CDF1"
+			tasks: [{
+				id: "032B4CCCBE879442"
+				type: "item"
+				item: "minecraft:gold_nugget"
+			}]
+		}
+		{
+			title: "黄色法力"
+			x: -4.0d
+			y: 4.0d
+			subtitle: "Luster"
+			description: ["比黄金更好的只有黄金法力，而你竟然真的送来了！这可是闪闪发光的好东西，肯定不差。"]
+			dependencies: ["265BA0622B94CDF1"]
+			id: "05000C23273B3351"
+			tasks: [{
+				id: "6476A1F1E7753D6A"
+				type: "item"
+				item: "contenttweaker:mana_yellow"
+			}]
+		}
+		{
+			title: "灰色法力"
+			x: 0.0d
+			y: 2.0d
+			subtitle: "坚固的"
+			description: ["制造更优质岩石的唯一方法，就是先拥有岩石。我学赚钱时就明白了这个道理，想必岩石也是如此。你很好地贯彻了这一方针，创造了灰质法力，干得好！"]
+			dependencies: ["16051B6490361E01"]
+			id: "5A92C21F7EB260B1"
+			tasks: [{
+				id: "203F620F1B6D4D56"
+				type: "item"
+				item: "contenttweaker:mana_gray"
+			}]
+		}
+		{
+			title: "真实的机器"
+			x: 0.0d
+			y: 4.0d
+			shape: "hexagon"
+			subtitle: "投资科技 (Investing in Technology)"
+			description: ["要真正开始运作，你需要比安山岩更好的材料来包裹机器。制作一些机器框架，真正开始升级科技吧！"]
+			dependencies: ["5A92C21F7EB260B1"]
+			size: 1.25d
+			id: "6915D4C67FCF216B"
+			tasks: [{
+				id: "76CCA72E773D0C2E"
+				type: "item"
+				item: "thermal:machine_frame"
+			}]
+		}
+		{
+			title: "岩浆"
+			x: 0.0d
+			y: -4.0d
+			shape: "hexagon"
+			subtitle: "投资... 热能？Investing in... Heat?"
+			description: ["用你的热量制造更多热量！制造岩浆的能力将让你在冶炼领域取得重要进展，并有许多其他重要用途。"]
+			dependencies: [
+				"2DCDA691A66D3166"
+				"5EF3A372D53E9DF8"
+			]
+			size: 1.25d
+			id: "1860367A9BB004B6"
+			tasks: [{
+				id: "29E46FA881FBAF1D"
+				type: "item"
+				item: "minecraft:lava_bucket"
+			}]
+		}
+		{
+			title: "关于你的其他物品的一些说明"
+			x: 2.0d
+			y: 4.0d
+			shape: "circle"
+			subtitle: "让您的生活更轻松"
+			description: [
+				"你可能注意到，除了公司规定的那本书，我们还给了你些好东西。传送器很简单，直接放在方块侧面就能自动化一切！"
+				""
+				"更重要的是加速魔杖。我们只有一根可以给你，因为这项技术相当昂贵。它能让你局部加速时间，这样你就不用干等着机器完成指令了。"
+			]
+			dependencies: ["1DFBD4C5019CA124"]
+			id: "56CDC6DF0C8C92AC"
+			tasks: [{
+				id: "162583C45861EB2A"
+				type: "item"
+				item: "notenoughwands:acceleration_wand"
+			}]
+		}
+		{
+			title: "堆肥桶"
+			x: 4.0d
+			y: -4.0d
+			shape: "hexagon"
+			subtitle: "投资于成长"
+			description: ["堆肥很流行，对吧？你最好也跟上潮流。谁知道那些桶里藏着什么科学奥秘呢！"]
+			dependencies: ["2DCDA691A66D3166"]
+			size: 1.25d
+			id: "358B60F3CCE61309"
+			tasks: [{
+				id: "4EE2497035579B65"
+				type: "item"
+				item: "minecraft:bone_meal"
+			}]
+		}
+		{
+			title: "末地存储系统"
+			x: -2.0d
+			y: 4.0d
+			shape: "circle"
+			subtitle: "简易模式下的物品搬运指南"
+			description: ["谁不爱传送呢？它简单、免费，而且不会引发任何哲学难题！如果你想轻松移动物品，就需要投资一些末影科技了。"]
+			dependencies: ["05000C23273B3351"]
+			id: "4D8D6C06E6E13903"
+			tasks: [{
+				id: "7A3005276C75EF68"
+				type: "item"
+				item: "enderstorage:ender_chest"
+			}]
+		}
+		{
+			title: "空间传送"
+			icon: "pipez:basic_upgrade"
+			x: -2.0d
+			y: 2.0d
+			shape: "circle"
+			subtitle: "以及其他运输解决方案"
+			description: ["还记得你冒险开始时用的那些传送器吗？你可以制作更多！当然，如果不够用，你也可以制作标准管道。"]
+			dependencies: ["3827EB601A664253"]
+			id: "46BBEFA233782641"
+			tasks: [
+				{
+					id: "1BCC905DD7C2EC95"
+					type: "item"
+					item: "translocators:item_translocator"
+				}
+				{
+					id: "5D4C601A7C565EDF"
+					type: "item"
+					item: "translocators:fluid_translocator"
+				}
+				{
+					id: "79FDFB261D22B2C3"
+					type: "item"
+					item: "pipez:basic_upgrade"
+				}
+			]
+		}
+	]
+}
