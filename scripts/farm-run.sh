@@ -25,7 +25,10 @@ LOCK_DIR=${LOCK_DIR:-$HOME/.quest-farm.lock}
 SLUG_FILE=${SLUG_FILE:-$REPO_DIR/research/shards/$HOST.txt}
 LOG=${LOG:-$HOME/farm-run.log}
 STOP_FILE=${STOP_FILE:-$REPO_DIR/.farm-stop}
-LANES=${LANES:-8}
+# 2026-10-23 实测：免费层不按 IP 限流，吞吐只跟并发数走 ——
+# 同机 20s 测：8 路≈6.5 行/s、24 路 29.2 req/s、96 路 60.8 req/s（100% 成功）。
+# 所以默认值从 8 抬到 96，单包 3259 行从 501s 降到约 60s。
+LANES=${LANES:-96}
 PUSH_EVERY=${PUSH_EVERY:-20}
 PUSH_MINUTES=${PUSH_MINUTES:-20}
 MAX_RESTARTS=${MAX_RESTARTS:-5}
