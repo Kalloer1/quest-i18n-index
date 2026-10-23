@@ -590,6 +590,13 @@ const WORKER_URL = 'https://quest-i18n-api.wqclo.workers.dev';
       + (extra ? '<div class="extra">' + esc(extra) + "</div>" : "");
   }
 
+  // 从详情页跳过来时带了 ?url=&note=，预填一次性；用户仍可改。
+  const preset = new URLSearchParams(location.search)
+  const presetUrl = preset.get('url')
+  const presetNote = preset.get('note')
+  if (presetUrl) document.getElementById('url').value = presetUrl
+  if (presetNote) document.getElementById('note').value = presetNote
+
   $("#submit-form").addEventListener("submit", function (e) {
     e.preventDefault();
     var url = $("#url").value.trim();

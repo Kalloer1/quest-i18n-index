@@ -137,3 +137,12 @@ test('slug 本身含 _v 时不误剥：已知 slug 全等优先', () => {
   // 贪婪 `(.*)` 保证匹配到最后一个 `_v<数字>`（多层也不切错）
   assert.equal(slugFromZipName('x_v1_a_v2.0.16', new Set()), 'x_v1_a')
 })
+
+test('slugFromZipName：版本以字母开头或大写 V 也要能反解', () => {
+  // 真实案例：divinerpg-plus_V8 / insanecraft-insanity-reborn_vB1.5 / the-sv-vault_V12
+  assert.equal(slugFromZipName('divinerpg-plus_V8'), 'divinerpg-plus')
+  assert.equal(slugFromZipName('insanecraft-insanity-reborn_vB1.5'), 'insanecraft-insanity-reborn')
+  assert.equal(slugFromZipName('the-sv-vault_V12'), 'the-sv-vault')
+  // 已知 slug 全等优先仍然生效（slug 本身含 _v 不被误剥）
+  assert.equal(slugFromZipName('a_v_something', new Set(['a_v_something'])), 'a_v_something')
+})

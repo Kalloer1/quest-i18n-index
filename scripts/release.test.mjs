@@ -152,6 +152,17 @@ test('release：有 <slug>.tar.gz 时推归档，不推解包目录', () => {
 //
 // 版本只写进**文件名**，zip 内容一字不改（夸克分享按内容，不受改名影响）。
 
+test('versionFromSource：受信字段 version 优先，不被 fileName/fileDate 带偏', () => {
+  // NeoTech Reborn：作者把 fileName 写死成同名，猜只能猜到 fileDate；
+  // .source.json 的 version 来自包内 manifest，才是真版本。
+  assert.equal(versionFromSource({ version: '1.5.6.0', fileName: 'NeoTech Reborn.zip', fileDate: '20261018' }), '1.5.6.0')
+  assert.equal(buildZipName('neotech-reborn', { version: '1.5.6.0', fileName: 'NeoTech Reborn.zip' }), 'neotech-reborn_v1.5.6.0.zip')
+  // 空串等清洗后为空的受信字段要落回猜测链，不能返回空版本。
+  assert.equal(versionFromSource({ version: '', fileName: 'DawnCraft - 2.0.16_hf.zip' }), '2.0.16_hf')
+  // 受信字段可能自带 v 前缀，避免 `_vv62`。
+  assert.equal(buildZipName('better-mc-forge-bmc1', { version: 'v62' }), 'better-mc-forge-bmc1_v62.zip')
+})
+
 test('versionFromSource：取文件名里最后一个含点号的版本串', () => {
   const cases = [
     // [fileName, 期望] —— 上游命名形态很杂，这 6 条覆盖实际遇到的写法
@@ -162,6 +173,11 @@ test('versionFromSource：取文件名里最后一个含点号的版本串', () 
     ['a_shattered_prophecy_v2.6.zip', '2.6'],
     // 无点号版本（V65 只是构建号）⇒ 没有可用版本
     ['Advent of Ascension Plus V65.zip', null],
+    // `<MC>-<包版本>`：剥掉 MC 前缀，取真正的包版本（LITV 系列的实际写法）
+    ['LITV2-1.16.5-1.38.zip', '1.38'],
+    ['Our Story- Earth 1.21-12.9.zip', '12.9'],
+    // 作者把版本写了两遍 ⇒ 收敛成一个
+    ['Better DawnCraft 1.0.5-1.0.5.zip', '1.0.5'],
     // 没有 fileName、也没有 fileDate ⇒ null（调用方回退旧名，不猜）
     [{ slug: 'x', fileName: null, fileDate: null }, null],
   ]

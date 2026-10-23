@@ -41,8 +41,9 @@ const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url))
 // **文件名是唯一可变的部分**：zip 内容（条目、顺序、时间戳）完全不变，所以已上传
 // 夸克的分享链接不会因为改名失效——分享是按文件内容/上传产物算的，与本地名字无关。
 //
-// 版本串必须含至少一个点号：`1.20.1`、`2.0.16_hf` 合法；`v62hf`、`65` 只是构建号，
-// 拿它当版本会产生 `slug_v65.zip` 这种和上游版本对不上的名字。
+// **猜名字**时必须含至少一个点号：`1.20.1`、`2.0.16_hf` 合法；`v62hf`、`65` 只是
+// 构建号，拿它当版本会产生 `slug_v65.zip` 这种和上游版本对不上的名字。
+// 受信字段（`.source.json` 的 `version`）不受这条限制——`v62` 是作者自己填的版本。
 
 /** 去掉末尾扩展名（`.zip` / `.mrpack`），只剥「字母开头」的，避免吃掉 `x.1` 里的 `.1`。 */
 const TRAILING_EXT = /\.[A-Za-z][A-Za-z0-9]{0,4}$/
@@ -50,11 +51,20 @@ const TRAILING_EXT = /\.[A-Za-z][A-Za-z0-9]{0,4}$/
 /** 版本样式 token：必须以 `数字.数字` 开头，尾部允许字母/数字/点/下划线/连字符。 */
 const VERSION_TOKEN = /[vV]?(\d+(?:\.\d+)+[A-Za-z0-9._-]*)/g
 
+/**
+ * 复合版本 token 里的 Minecraft 版本前缀：`1.16.5-1.38`、`1.21-12.9`。
+ * 上游大量包名写成 `<MC>-<包版本>`，整段会被 `VERSION_TOKEN` 吞成一个 token，
+ * 直接拿来当版本会得到 `1.16.5-1.38` 这种既不是 MC 版本也不是包版本的东西。
+ * 只有「前缀落在真实 MC 版本区间（1.7–1.29）、且后面紧跟另一个带点号的版本」才剥；
+ * `1.2.4-3.12` 这种 1.2.4 不是 MC 版本，不能动。
+ */
+const MC_PREFIX = /^1\.(?:[7-9]|1\d|2[0-9])(?:\.\d+)?-(?=[vV]?\d+\.\d)/
+
 /** 文件名里不允许的字符（Windows 与 URL 双重口径）统一换成 `-`。 */
 const UNSAFE = /[ \/\\:*?"<>|]/g
 
 /** 版本串清洗：非法字符换 `-`，连续 `-` 收敛，去首尾 `-`。 */
-function sanitizeVersion(raw) {
+export function sanitizeVersion(raw) {
   return String(raw ?? '')
     .replace(UNSAFE, '-')
     .replace(/-{2,}/g, '-')
@@ -62,29 +72,78 @@ function sanitizeVersion(raw) {
 }
 
 /**
+ * 从**上游名字**（`fileName` / `displayName`）里猜版本：最后一个含点号的版本串。
+ *
+ * 这是「猜」的那条路，只接受点号版本：`1.20.1 v62hf` → `1.20.1`。
+ * 用「最后一个」而不是「结尾那个」：上游尾部常见 `v62hf` 这类没有点号的构建号，
+ * 它不配当版本。**受信字段**（manifest / version_number）不走这里，它们原样接受
+ * `v62` 这种无点号值（见 enrich-source-versions.mjs）。
+ *
+ * @param {unknown} text
+ * @returns {string|null}
+ */
+export function extractVersionToken(text) {
+  const raw = typeof text === 'string' ? text.trim() : ''
+  if (!raw) return null
+  const stem = raw.replace(TRAILING_EXT, '')
+  let last = null
+  for (const m of stem.matchAll(VERSION_TOKEN)) last = m[1]
+  // `<MC>-<包版本>`：剥掉 MC 前缀，否则拿到的复合串两头不靠（见 MC_PREFIX）。
+  // `1.20-V1.3` 剥完还剩 `V1.3`，再去掉这个 v —— 模板里本来就有 `_v`。
+  let stripped = last ? last.replace(MC_PREFIX, '').replace(/^[vV](?=\d)/, '') : ''
+  // `1.0.5-1.0.5`：前后半段完全相同的复合串收敛成一个（作者把版本写了两遍）。
+  const dup = /^([0-9][\w.]*)-\1$/.exec(stripped)
+  if (dup) stripped = dup[1]
+  const v = stripped ? sanitizeVersion(stripped) : ''
+  return v || null
+}
+
+/**
+ * 名字里「版本 token 之后」残留的 `vNN` 构建号。
+ *
+ * 用来识别「猜到了 Minecraft 版本」这种错法：`Better MC [FORGE] 1.16.5 v62`
+ * 的含点号 token 是 `1.16.5`，尾部还剩 ` v62` —— 后者才是作者填的包版本。
+ * 提取规则只有这一份（与 `extractVersionToken` 同一个 token 正则）。
+ *
+ * @param {unknown} text
+ * @returns {string|null}
+ */
+export function trailingBuildTag(text) {
+  const raw = typeof text === 'string' ? text.trim() : ''
+  if (!raw) return null
+  const stem = raw.replace(TRAILING_EXT, '')
+  let end = 0
+  for (const m of stem.matchAll(VERSION_TOKEN)) end = m.index + m[0].length
+  const hit = /[vV]\s*\d+/.exec(stem.slice(end))
+  return hit ? hit[0].replace(/\s+/g, '') : null
+}
+
+/**
  * 从 `.source.json` 推导版本号。
  *
  * 顺序：
+ * 0. `version`（受信字段，由 enrich-source-versions.mjs 从 MR `version_number` 或
+ *    包内 manifest 落盘）——直接采用。有了它就不再从名字猜，NeoTech Reborn 那种
+ *    `fileName` 写死成 `NeoTech Reborn.zip` 的包也能拿到真版本。
  * 1. `fileName` 里**最后一个含点号的版本串**（`1.20.1 v62hf` → `1.20.1`）。
- *    用「最后一个」而不是「结尾那个」：上游文件名尾部常见 `v62hf`（构建号）这类
- *    没有点号的尾巴，它不配当版本。
  * 2. 退而取 `fileDate` 的 `YYYYMMDD`。
  * 3. 都没有 → null（调用方回退到旧名，不猜）。
  *
- * @param {{fileName?: string|null, fileDate?: string|null}|null|undefined} source
+ * @param {{version?: string|null, fileName?: string|null, fileDate?: string|null}|null|undefined} source
  * @returns {string|null}
  */
 export function versionFromSource(source) {
   if (!source || typeof source !== 'object') return null
 
-  const fileName = typeof source.fileName === 'string' ? source.fileName.trim() : ''
-  if (fileName) {
-    const stem = fileName.replace(TRAILING_EXT, '')
-    let last = null
-    for (const m of stem.matchAll(VERSION_TOKEN)) last = m[1]
-    const v = last ? sanitizeVersion(last) : ''
-    if (v) return v
+  // 受信字段优先：非空即用，清洗后为空串（全是非法字符）才继续往下猜。
+  if (source.version) {
+    const trusted = sanitizeVersion(source.version)
+    if (trusted) return trusted
   }
+
+  const fileName = typeof source.fileName === 'string' ? source.fileName.trim() : ''
+  const guessed = extractVersionToken(fileName)
+  if (guessed) return guessed
 
   const digits = String(source.fileDate ?? '').replace(/\D/g, '')
   if (digits) return digits.length > 8 ? digits.slice(0, 8) : digits
@@ -102,7 +161,10 @@ export function versionFromSource(source) {
  */
 export function buildZipName(slug, source) {
   const version = versionFromSource(source)
-  return version ? `${slug}_v${version}.zip` : `${slug}.zip`
+  if (!version) return `${slug}.zip`
+  // 受信字段常自带 v 前缀（MR version_number / manifest 的 `v62`），而模板里已有一个
+  // `_v`，直接拼会得到 `<slug>_vv62.zip`。已带 v 时省掉模板的那个 v。
+  return /^[vV]\d/.test(version) ? `${slug}_${version}.zip` : `${slug}_v${version}.zip`
 }
 
 /** 读 patches/<slug>/.source.json（缺失或损坏都返回 null）。 */

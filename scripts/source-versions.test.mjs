@@ -34,6 +34,10 @@ const SAMPLE = {
   fileDate: '2026-09-01T00:00:00Z',
   fetchedAt: '2026-10-23T01:20:00Z',
   recovered: false,
+  displayName: 'DawnCraft - 2.0.16_hf',
+  version: '2.0.16_hf',
+  versionSource: 'manifest',
+  confirmed: true,
 }
 
 test('collectSourceVersions：汇总各补丁目录下的 .source.json', (t) => {
@@ -91,10 +95,39 @@ test('normalizeSourceInfo：字段类型不对时置 null，slug 兜底用目录
     fileDate: null,
     fetchedAt: null,
     recovered: false,
+    displayName: null,
+    version: null,
+    versionSource: null,
+    confirmed: false,
   })
   assert.equal(normalizeSourceInfo(null, 'x'), null)
   assert.equal(normalizeSourceInfo('str', 'x'), null)
   assert.equal(normalizeSourceInfo([], 'x'), null)
+})
+
+// 可信版本字段必须在白名单里：`inferred` 当年就是因为不在白名单，写了但汇总是空的。
+test('normalizeSourceInfo：保留 version / versionSource / confirmed / displayName', () => {
+  assert.deepEqual(
+    normalizeSourceInfo({
+      slug: 'neotech-reborn', platform: 'cf', fileId: 1,
+      fileName: 'NeoTech Reborn.zip', fileDate: '2026-10-18T15:19:10.037Z',
+      displayName: 'NeoTech Reborn 1.5.6.0.zip',
+      version: '1.5.6.0', versionSource: 'manifest', confirmed: true,
+    }, 'neotech-reborn'),
+    {
+      slug: 'neotech-reborn',
+      platform: 'cf',
+      fileId: 1,
+      fileName: 'NeoTech Reborn.zip',
+      fileDate: '2026-10-18T15:19:10.037Z',
+      fetchedAt: null,
+      recovered: false,
+      displayName: 'NeoTech Reborn 1.5.6.0.zip',
+      version: '1.5.6.0',
+      versionSource: 'manifest',
+      confirmed: true,
+    },
+  )
 })
 
 test('buildSourceVersions：形状为 { generatedAt, versions }，且可复现（同输入同输出）', (t) => {

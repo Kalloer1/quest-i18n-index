@@ -1097,16 +1097,18 @@ code { background: var(--slot); padding: 1px 5px; font-size: .94em; box-shadow: 
       ours += '</div>';
     } else {
       ours += '<p class="empty p">本站尚未产出这个整合包的任务书汉化。</p>';
-    }
-    // 补丁基于哪个上游文件翻译的。旧补丁没有版本记录 → 整行不渲染
-    // （显示「未知」会让几百个旧包全变成噪声）。
-    if (p.sourceVersion && p.sourceVersion.fileName) {
-      var sv = p.sourceVersion;
-      var svText = "基于 " + sv.fileName;
-      if (sv.fetchedAt) svText += " · 汉化于 " + fmtDate(sv.fetchedAt);
-      ours += '<p class="muted source-version" style="margin:10px 0 0"'
-        + (sv.recovered ? ' title="版本从构建日志回捞，可能与当前补丁不完全对应"' : "")
-        + ">" + esc(svText) + "</p>";
+      // 未汉化（cat=unzh）且没有下载块 → 引导玩家把整合包提交进来，省得自己去翻链接。
+      // 其它状态不显示：已汉化的不用提交，内嵌/无任务书的提交了也排不上。
+      if (c.cat === "unzh") {
+        var packUrl = p.platform === "cf"
+          ? "https://www.curseforge.com/minecraft/modpacks/" + p.slug
+          : (p.platform === "mr" ? "https://modrinth.com/modpack/" + p.slug : "");
+        if (packUrl) {
+          ours += '<p style="margin:16px 0 0"><a class="cta" href="request?url='
+            + encodeURIComponent(packUrl) + "&note=" + encodeURIComponent(p.title || p.slug)
+            + '">提交这个整合包 ' + ICON.out + "</a></p>";
+        }
+      }
     }
     ours += '</section>';
 

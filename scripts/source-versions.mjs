@@ -48,6 +48,12 @@ export function normalizeSourceInfo(raw, slug) {
     fileDate: str(raw.fileDate),
     fetchedAt: str(raw.fetchedAt),
     recovered: raw.recovered === true,
+    // 可信版本（enrich-source-versions.mjs 写入）。白名单在这里——漏一个字段就是
+    // 「点文件里有、汇总里没有」的静默丢弃（`inferred` 当年就是这么丢的）。
+    displayName: str(raw.displayName),
+    version: str(raw.version),
+    versionSource: str(raw.versionSource),
+    confirmed: raw.confirmed === true,
   }
 }
 

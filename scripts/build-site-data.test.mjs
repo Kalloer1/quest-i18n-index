@@ -285,6 +285,25 @@ test('模板：不能混装警告是普通可见块，不在 <details> 等可折
   assert.match(template, /class="warn" role="note"/)
 })
 
+// 详情页「基于 xxx · 汉化于 xxx」那行已按用户要求整行下线：
+// sourceVersion 字段仍在（build-site-data 生产、上面的用例断言），只是页面不再渲染。
+test('模板：详情页不再渲染「基于 … · 汉化于 …」版本行', () => {
+  assert.doesNotMatch(template, /基于 /, '「基于 」那行应已删除')
+  assert.doesNotMatch(template, /汉化于 /, '「汉化于 」那行应已删除')
+})
+
+test('模板：未汉化（cat=unzh）且无下载块时，才渲染「提交这个整合包」按钮', () => {
+  // 按钮必须在 else（无下载块）分支内，且受 c.cat === "unzh" 守卫
+  assert.match(template, /else \{[\s\S]{0,400}?c\.cat === "unzh"[\s\S]{0,600}?request\?url=/,
+    '提交按钮应落在 else 分支、由 c.cat === "unzh" 守卫')
+  // 相对路径：与导航栏 href="request" 一致，不能写 /request 或 request.html
+  assert.match(template, /href="request\?url=/)
+  assert.doesNotMatch(template, /href="\/request\?url=|href="request\.html\?url=/)
+  // 两个参数都要 encode，标题缺失回退 slug
+  assert.match(template, /encodeURIComponent\(packUrl\)/)
+  assert.match(template, /encodeURIComponent\(p\.title \|\| p\.slug\)/)
+})
+
 // ---- 站点只显示「有 FTB 任务书」的包（2026-10-22 用户裁决） ----
 //
 // 背景：28816 行一次性渲染到一页会让浏览器卡死。用户裁决：

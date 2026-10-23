@@ -364,7 +364,10 @@ export function parseScanTsv(text) {
 export function slugFromZipName(base, knownSlugs = null) {
   const known = knownSlugs instanceof Set ? knownSlugs : new Set(knownSlugs ?? [])
   if (known.has(base)) return base
-  const m = /^(.*)_v\d[\w.-]*$/.exec(base)
+  // 版本串不一定以数字开头：`_V8`、`_vB1.5`、`_V65` 都是作者写法。只认 `_v\d`
+  // 会让这几个包反解失败、delivered 判定拿不到 slug，站点上下载区直接消失
+  // （2026-10-23 实测 660 → 657）。所以放宽成「_v + 任意字母数字开头」并忽略大小写。
+  const m = /^(.*)_v[0-9a-z][\w.-]*$/i.exec(base)
   return m ? m[1] : base
 }
 

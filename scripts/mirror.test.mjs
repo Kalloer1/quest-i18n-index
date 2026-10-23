@@ -234,9 +234,12 @@ function fakeCall(overrides = {}) {
 test('makeUploader：给了 parentFid 时 create-folder 必须带 --parent-fid', async () => {
   const { call, calls } = fakeCall()
   const upload = makeUploader('/cli.cjs', '整合包汉化', '/cwd', { parentFid: 'PARENT_FID', call })
-  const url = await upload('demo', '/downloads/demo.zip')
+  const out = await upload('demo', '/downloads/demo.zip')
 
-  assert.equal(url, 'https://pan.quark.cn/s/abc')
+  assert.equal(out.shareUrl, 'https://pan.quark.cn/s/abc')
+  // 元数据要能落盘：纠偏网盘文件名靠它定位是哪个 fid
+  assert.equal(out.fileFid, 'FILE_FID')
+  assert.equal(out.fileName, 'demo.zip')
   assert.deepEqual(calls[0], ['create-folder', '--dir-path', '整合包汉化', '--parent-fid', 'PARENT_FID'])
   assert.deepEqual(calls[1], ['upload', '/downloads/demo.zip', '--parent-fid', 'DIR_FID'])
 })
@@ -324,5 +327,70 @@ test('镜像：版本化文件名照样能上传（zipPath 由 resolveZipPath �
     assert.equal(succeeded, 1)
     assert.equal(uploaded, join(dir, 'demo_v2.0.16.zip'))
     assert.equal(results.demo, 'https://pan.quark.cn/s/demo')
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+// ---------- 元数据回写（fileFid / fileName）与网盘名 drift ----------
+
+test('writeMirrors：对象形态落 fileFid/fileName，后续字符串形态不抹掉已有元数据', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'mirror-'))
+  const file = join(dir, 'quark-mirrors.json')
+  try {
+    writeMirrors(
+      { demo: { shareUrl: 'https://pan.quark.cn/s/demo', fileFid: 'F1', fileName: 'demo_v1.zip' } },
+      file,
+      { now: 'T1' },
+    )
+    let raw = JSON.parse(readFileSync(file, 'utf8'))
+    assert.equal(raw.mirrors.demo.fileFid, 'F1')
+    assert.equal(raw.mirrors.demo.fileName, 'demo_v1.zip')
+    assert.equal(raw.mirrors.demo.shareUrl, 'https://pan.quark.cn/s/demo')
+
+    // 老调用方只传 url：不能把已有 fileFid / fileName 冲掉
+    writeMirrors({ demo: 'https://pan.quark.cn/s/demo' }, file, { now: 'T2' })
+    raw = JSON.parse(readFileSync(file, 'utf8'))
+    assert.equal(raw.mirrors.demo.fileFid, 'F1')
+    assert.equal(raw.mirrors.demo.fileName, 'demo_v1.zip')
+    assert.equal(raw.mirrors.demo.updatedAt, 'T2')
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('runMirror：已有链接且网盘名与本地名不一致时打 warning，不改名也不重复上传', async () => {
+  const logs = []
+  let uploaded = 0
+  const { results, skipped } = await runMirror({
+    targets: [{ slug: 'demo', zipPath: '/downloads/demo_v2.0.16.zip' }],
+    existing: { demo: 'https://pan.quark.cn/s/demo' },
+    existingNames: { demo: 'demo.zip' },
+    upload: async () => { uploaded++; return 'x' },
+    log: (m) => logs.push(m),
+  })
+  assert.equal(skipped, 1)
+  assert.equal(uploaded, 0)
+  assert.equal(results.demo, 'https://pan.quark.cn/s/demo')
+  assert.ok(logs.some((m) => m.startsWith('::warning::[demo] 网盘名与本地名不一致')))
+})
+
+test('runMirror：名字一致时不打 drift warning（幂等轮次保持安静）', async () => {
+  const logs = []
+  await runMirror({
+    targets: [{ slug: 'demo', zipPath: '/downloads/demo_v2.0.16.zip' }],
+    existing: { demo: 'https://pan.quark.cn/s/demo' },
+    existingNames: { demo: 'demo_v2.0.16.zip' },
+    upload: async () => 'x',
+    log: (m) => logs.push(m),
+  })
+  assert.equal(logs.filter((m) => m.includes('网盘名与本地名不一致')).length, 0)
+})
+
+test('runMirror：upload 返回对象时 results 带元数据（供 writeMirrors 落盘）', async () => {
+  const dir = mkdtempSync(join(tmpdir(), 'mirror-'))
+  try {
+    writeFileSync(join(dir, 'demo.zip'), 'zip-bytes')
+    const { results } = await runMirror({
+      targets: [{ slug: 'demo', zipPath: join(dir, 'demo.zip') }],
+      upload: async () => ({ shareUrl: 'https://pan.quark.cn/s/demo', fileFid: 'F1', fileName: 'demo.zip' }),
+    })
+    assert.deepEqual(results.demo, { shareUrl: 'https://pan.quark.cn/s/demo', fileFid: 'F1', fileName: 'demo.zip' })
   } finally { rmSync(dir, { recursive: true, force: true }) }
 })

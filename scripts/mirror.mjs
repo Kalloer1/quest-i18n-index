@@ -31,7 +31,7 @@
  */
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
-import { dirname, join } from 'node:path'
+import { basename, dirname, join } from 'node:path'
 import { execFileSync } from 'node:child_process'
 import { STATUS } from '../shared/quest-status.mjs'
 import { defaultReportStatus } from './lib/report-status.mjs'
@@ -90,16 +90,28 @@ async function safeReport(reportStatus, id, payload) {
  * @param {object} options
  * @param {Array<{slug: string, zipPath: string}>} options.targets 待镜像条目
  * @param {Record<string, string>} [options.existing] 已有分享链接（slug → url），有链接的直接跳过
- * @param {(slug: string, zipPath: string) => Promise<string>} options.upload
- *        上传并创建分享，返回真实 share_url；失败应抛错
+ * @param {Record<string, string>} [options.existingNames] 已记录在案的**网盘文件名**（slug → fileName）。
+ *        只为跳过分支的 drift 检测服务：本地改名后网盘侧不会自动跟着变，这里只警告不改名
+ *        （改名走 scripts/quark-rename.mjs，因为它要 fid，而这里只有 url）。
+ * @param {(slug: string, zipPath: string) => Promise<string|{shareUrl: string, fileFid?: string, fileName?: string}>} options.upload
+ *        上传并创建分享；返回 share_url 字符串，或带 fileFid/fileName 的对象（用于回写元数据）。
+ *        失败应抛错
  * @param {number} [options.rateLimitMs] 每条之间的间隔
  * @param {(msg: string) => void} [options.log]
  * @param {(id: string, payload: object) => Promise<void>} [options.reportStatus]
  *        镜像结果回写队列状态：成功 → 已完成；失败/留空 → 镜像缺失（带原因）。
  *        默认不发请求（CLI 显式传 defaultReportStatus），回写失败不阻断镜像。
- * @returns {Promise<{results: Record<string,string>, attempted: number, succeeded: number, skipped: number, failed: number}>}
+ * @returns {Promise<{results: Record<string,string|{shareUrl: string, fileFid?: string, fileName?: string}>, attempted: number, succeeded: number, skipped: number, failed: number}>}
  */
-export async function runMirror({ targets, existing = {}, upload, rateLimitMs = DEFAULT_RATE_LIMIT_MS, log = () => {}, reportStatus = async () => {} }) {
+export async function runMirror({
+  targets,
+  existing = {},
+  existingNames = {},
+  upload,
+  rateLimitMs = DEFAULT_RATE_LIMIT_MS,
+  log = () => {},
+  reportStatus = async () => {},
+}) {
   const results = {}
   let attempted = 0, succeeded = 0, skipped = 0, failed = 0
 
@@ -110,6 +122,13 @@ export async function runMirror({ targets, existing = {}, upload, rateLimitMs = 
       results[slug] = prev
       skipped++
       log(`[${slug}] 已有分享链接，跳过（幂等）：${prev}`)
+      // drift：网盘里那个文件的名字还停在「上传当时」的本地名上。
+      // 只报警不改名 —— 改名要 fid，这里只有 url；纠正入口是 scripts/quark-rename.mjs。
+      const recorded = existingNames[slug]
+      const localName = zipPath ? basename(zipPath) : ''
+      if (recorded && localName && recorded !== localName) {
+        log(`::warning::[${slug}] 网盘名与本地名不一致：${recorded} ≠ ${localName}（用 quark-rename.mjs 纠偏）`)
+      }
       await safeReport(reportStatus, slug, { status: STATUS.DONE, error: '' })
       continue
     }
@@ -120,22 +139,27 @@ export async function runMirror({ targets, existing = {}, upload, rateLimitMs = 
       continue
     }
     attempted++
-    let url = ''
+    let record = ''
     let errorMsg = ''
     try {
-      url = await upload(slug, zipPath)
+      const out = await upload(slug, zipPath)
+      const url = typeof out === 'string' ? out : out?.shareUrl
       if (typeof url !== 'string' || !url) throw new Error('upload 未返回真实 share_url')
+      // 字符串形态（老桩 / 老调用方）保持原样；对象形态带上元数据，供 writeMirrors 落盘。
+      record = typeof out === 'string'
+        ? url
+        : { shareUrl: url, fileFid: out.fileFid ?? '', fileName: out.fileName ?? '' }
       succeeded++
       log(`[${slug}] 夸克 ✓ ${url}`)
     } catch (err) {
       // 失败不阻断：字段留空（绝不伪造链接）
-      url = ''
+      record = ''
       failed++
       errorMsg = String(err.message || err).slice(0, 200)
       log(`[${slug}] 夸克 ✗ ${errorMsg}`)
     }
-    results[slug] = url
-    await safeReport(reportStatus, slug, url
+    results[slug] = record
+    await safeReport(reportStatus, slug, record
       ? { status: STATUS.DONE, error: '' }
       : { status: STATUS.DONE_UNMIRRORED, error: errorMsg })
     if (i < targets.length - 1) await sleep(rateLimitMs)
@@ -159,17 +183,51 @@ export function readMirrors(file = MIRRORS_FILE) {
   }
 }
 
-/** 写回镜像链接（保留 updatedAt 等 meta 结构）。 */
+/**
+ * 读取完整记录（含 fileFid / fileName）。readMirrors 只给 url，drift 检测要文件名，
+ * 所以另开一个读取口，不动 readMirrors 的返回形状（老调用方与测试都依赖它）。
+ *
+ * @returns {Record<string, {shareUrl: string, fileFid?: string, fileName?: string, updatedAt?: string}>}
+ */
+export function readMirrorRecords(file = MIRRORS_FILE) {
+  try {
+    const raw = JSON.parse(readFileSync(file, 'utf8'))
+    const out = {}
+    for (const [slug, v] of Object.entries(raw.mirrors ?? raw)) {
+      if (typeof v === 'string') out[slug] = { shareUrl: v }
+      else if (v && typeof v === 'object') out[slug] = v
+    }
+    return out
+  } catch {
+    return {}
+  }
+}
+
+/**
+ * 写回镜像链接（保留 updatedAt 等 meta 结构）。
+ *
+ * 值可以是 url 字符串，也可以是 `{shareUrl, fileFid, fileName}`：
+ * 后者把 fid / 文件名一起落盘，为 quark-rename.mjs（改名要有 fid，mirrors 里原本没有）
+ * 和 drift 检测提供依据。本轮没拿到元数据时沿用历史值，不把已有字段抹掉。
+ */
 export function writeMirrors(results, file = MIRRORS_FILE, { now = new Date().toISOString() } = {}) {
   let base = { updatedAt: now, mirrors: {} }
   try {
     const raw = JSON.parse(readFileSync(file, 'utf8'))
     base = { updatedAt: raw.updatedAt ?? now, mirrors: raw.mirrors ?? raw }
   } catch { /* 新文件 */ }
-  for (const [slug, url] of Object.entries(results)) {
+  for (const [slug, value] of Object.entries(results)) {
+    const url = typeof value === 'string' ? value : value?.shareUrl ?? ''
     const prev = base.mirrors[slug]
+    const prevMeta = prev && typeof prev === 'object' ? prev : {}
     if (url) {
-      base.mirrors[slug] = { shareUrl: url, updatedAt: now }
+      const rec = { shareUrl: url }
+      const fileFid = (typeof value === 'object' && value?.fileFid) || prevMeta.fileFid || ''
+      const fileName = (typeof value === 'object' && value?.fileName) || prevMeta.fileName || ''
+      if (fileFid) rec.fileFid = fileFid
+      if (fileName) rec.fileName = fileName
+      rec.updatedAt = now
+      base.mirrors[slug] = rec
     } else if (!prev) {
       // 失败条目：只在没有历史链接时登记空占位，绝不伪造
       base.mirrors[slug] = { shareUrl: '', updatedAt: now }
@@ -257,7 +315,9 @@ export function makeUploader(cli, dirName, cwd, { parentFid = '', call = quarkCa
     // url-type 1 = 公开链接，expired-type 1 = 永久有效
     const sh = call(cli, ['share', fileFid, '--title', `${slug} 任务书汉化补丁`, '--url-type', '1', '--expired-type', '1'], cwd)
     if (!sh.share_url) throw new Error('share 未返回 share_url')
-    return sh.share_url
+    // 返回元数据而不只是 url：fileFid / fileName 要落进 quark-mirrors.json，
+    // 后面纠偏网盘文件名（scripts/quark-rename.mjs）时才不用猜是哪个文件。
+    return { shareUrl: sh.share_url, fileFid, fileName: basename(zipPath) }
   }
 }
 
@@ -279,6 +339,10 @@ if (isMain) {
   // 待镜像目标：downloads/ 下的 zip；全量模式只取「尚无分享链接」的（幂等）。
   // 文件名可能是旧名 `<slug>.zip` 或新名 `<slug>_v<version>.zip`，统一反解成 slug。
   const existing = readMirrors()
+  // drift 检测要的是「记录在案的网盘文件名」，readMirrors 只给 url，另读一次完整记录。
+  const existingNames = Object.fromEntries(
+    Object.entries(readMirrorRecords()).map(([slug, rec]) => [slug, rec.fileName ?? '']),
+  )
   const known = knownSlugs()
   const all = existsSync(DOWNLOADS_DIR)
     ? [...new Set(readdirSync(DOWNLOADS_DIR)
@@ -308,6 +372,7 @@ if (isMain) {
   const { results, attempted, succeeded } = await runMirror({
     targets,
     existing,
+    existingNames,
     upload: upload ?? (async () => { throw new Error('QUARK_CLI 未配置') }),
     log: (m) => console.log(m),
     reportStatus: defaultReportStatus,
