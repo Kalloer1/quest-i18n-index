@@ -343,7 +343,10 @@ let blocked = []
     // 移走而不是删除：这台机器的安全垫片会拦单次 >50 个 rm
     // （SAFE_DELETE_BULK_CONFIRM_REQUIRED），而且残包留着比删掉更好排查 ——
     // 想清空就把 research/tmp/quarantine 整个删掉。
-    const vault = join(ROOT, 'research/tmp/quarantine')
+    // 每次一个独立子目录：同名包可能连续几轮都被拦（主机重翻后还是坏的），
+    // 固定路径会在 renameSync 上撞「dest already exists」把整轮发布打挂。
+    const vault = join(ROOT, 'research/tmp/quarantine',
+      `run-${new Date().toISOString().replace(/[:.]/g, '-')}`)
     mkdirSync(vault, { recursive: true })
     for (const s of bad) {
       git(['rm', '-q', '-r', '--cached', `patches/${s}`], { allowFail: true })
