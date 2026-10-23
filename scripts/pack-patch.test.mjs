@@ -43,6 +43,19 @@ test('buildPatch：重复条目拒绝', () => {
   ]), /重复/)
 })
 
+test('buildPatch：点文件不进 zip（.source.json / .DS_Store）', () => {
+  const zip = buildPatch([
+    { name: EMBED, text: ZH_TEXT },
+    { name: '.source.json', text: '{"slug":"demo"}' },
+    { name: 'chapters/.DS_Store', text: 'junk' },
+  ])
+  const r = readZip(zip)
+  assert.ok(r.names.includes(EMBED))
+  assert.ok(!r.names.includes('.source.json'), '.source.json 不应进 zip')
+  assert.ok(!r.names.includes('chapters/.DS_Store'), '嵌套点文件不应进 zip')
+  assert.deepEqual(r.names.sort(), [EMBED, 'LICENSE.txt', 'README.txt'].sort())
+})
+
 // ---------- 端到端：筛候选 → 翻译桩 → 校验 → 打包 ----------
 
 test('端到端：夹具整合包跑通全流程，产出 zip 内容正确', async () => {

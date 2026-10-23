@@ -301,6 +301,11 @@ test('preparePack questFilesOnly：只写目标 .snbt 到 packsDir/<slug>/，不
     // 关键：没有整包 GET，也没有留 zip
     assert.equal(wholeGets(calls).length, 0, `不该请求整包：${JSON.stringify(calls)}`)
     assert.equal(existsSync(join(dirs.tmpDir, 'demo.zip')), false, 'questFilesOnly 不应写 zip')
+    // Range 模式也要落上游版本记录（版本溯源两条取源路必须一致）
+    const info = JSON.parse(readFileSync(join(dirs.packsDir, 'demo', '.source.json'), 'utf8'))
+    assert.equal(info.fileName, 'Demo-1.0.zip')
+    assert.equal(info.fileId, 7)
+    assert.equal(info.fileDate, null, '桩没给 fileDate 时应写 null，不瞎猜')
     // 落盘结果能被 classifyLayout 认成可翻译的英文源
     assert.equal(classifyLayout(['config/ftbquests/quests/lang/en_us.snbt']).enFiles, 1)
   } finally { dirs.cleanup() }

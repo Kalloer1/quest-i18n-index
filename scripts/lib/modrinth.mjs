@@ -44,7 +44,7 @@ export function modrinthProjectUrl(slugOrId) {
  *
  * @param {string} slug
  * @param {{fetchImpl?: typeof fetch, userAgent?: string}} [options]
- * @returns {Promise<{url: string, fileName: string, fileLength: number|null, versionNumber: string|null}>}
+ * @returns {Promise<{url: string, fileName: string, fileLength: number|null, versionNumber: string|null, fileId: null, fileDate: string|null}>}
  */
 export async function resolveLatestMrpack(slug, { fetchImpl = fetch, userAgent = MR_USER_AGENT } = {}) {
   const res = await fetchImpl(modrinthProjectUrl(slug), {
@@ -74,5 +74,11 @@ export async function resolveLatestMrpack(slug, { fetchImpl = fetch, userAgent =
     fileName: String(mrpack.filename ?? `${slug}.mrpack`),
     fileLength: Number.isFinite(mrpack.size) ? mrpack.size : null,
     versionNumber: latest?.version_number == null ? null : String(latest.version_number),
+    // 版本溯源：Modrinth 的文件没有 CF 那样的数字 fileId，故恒为 null；
+    // 发布时间取版本条目的 `date_published`（ISO 8601），拿不到就 null。
+    fileId: null,
+    fileDate: typeof latest?.date_published === 'string' && latest.date_published.trim()
+      ? latest.date_published.trim()
+      : null,
   }
 }

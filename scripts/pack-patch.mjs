@@ -95,6 +95,19 @@ const DOS_TIME = 0
 const DOS_DATE = (1 << 5) | 1 // 年偏移 0（=1980），月 1，日 1
 
 /**
+ * 是否是「不该进游戏目录」的点文件/点目录。
+ *
+ * `.source.json` 是补丁的上游版本记录（`patches/<slug>/.source.json`），
+ * `.DS_Store` 之类是系统垃圾 —— 两者都不能随 zip 解压到整合包目录，
+ * 故按**任意路径段**以 `.` 开头判定。
+ * @param {string} name zip 内路径（/ 分隔）
+ * @returns {boolean}
+ */
+export function isDotPath(name) {
+  return String(name).split('/').some((seg) => seg.startsWith('.'))
+}
+
+/**
  * 打补丁包：文件条目按路径排序、deflate 压缩，附带 README.txt 与 LICENSE.txt。
  * @param {Array<{name: string, text: string}>} files zip 内路径（/ 分隔）与文本内容
  * @param {{layout?: string}} [options] layout 为 `embedded` 时使用内嵌布局专用 README（更强备份警告）
@@ -103,7 +116,7 @@ const DOS_DATE = (1 << 5) | 1 // 年偏移 0（=1980），月 1，日 1
 export function buildPatch(files, { layout } = {}) {
   const readme = layout === 'embedded' ? EMBEDDED_README_TEXT : README_TEXT
   const entries = [
-    ...files,
+    ...files.filter((f) => !isDotPath(f.name)),
     { name: 'README.txt', text: readme },
     { name: 'LICENSE.txt', text: LICENSE_TEXT },
   ].slice().sort((a, b) => a.name.localeCompare(b.name))
@@ -195,6 +208,8 @@ function listFiles(dir, base = dir) {
   const out = []
   if (!existsSync(dir)) return out
   for (const name of readdirSync(dir)) {
+    // 点文件/点目录（`.source.json`、`.DS_Store`）不是游戏内容，不入 zip。
+    if (name.startsWith('.')) continue
     const full = join(dir, name)
     if (statSync(full).isDirectory()) out.push(...listFiles(full, base).map((n) => `${name}/${n}`))
     else out.push(relative(base, full).replace(/\\/g, '/'))

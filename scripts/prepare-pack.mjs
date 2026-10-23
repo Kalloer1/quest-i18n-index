@@ -225,7 +225,7 @@ export function downloadUrlOf(file) {
  * 用 CurseForge API 取项目最新文件的下载地址。
  * @param {string} cfId
  * @param {{apiKey: string, fetchImpl?: typeof fetch}} options
- * @returns {Promise<{url: string, fileName: string, fileLength: number|null}>}
+ * @returns {Promise<{url: string, fileName: string, fileLength: number|null, fileId: number|null, fileDate: string|null}>}
  */
 export async function resolveLatestFile(cfId, { apiKey, fetchImpl = fetch } = {}) {
   if (!apiKey) throw new Error('未配置 CF_KEY，无法从 CurseForge 取整合包下载地址')
@@ -240,7 +240,48 @@ export async function resolveLatestFile(cfId, { apiKey, fetchImpl = fetch } = {}
     url: downloadUrlOf(file),
     fileName: String(file.fileName ?? `${cfId}.zip`),
     fileLength: Number.isFinite(file.fileLength) ? file.fileLength : null,
+    // 版本溯源字段（写进 `research/packs/<slug>/.source.json`）：
+    // CF 的 files 条目用 `id` 与 `fileDate`（ISO 8601 字符串）。拿不到就 null，
+    // 不猜替代字段 —— 猜错等于给站点标上假的「基于某版本」。
+    fileId: Number.isFinite(file.id) ? file.id : null,
+    fileDate: typeof file.fileDate === 'string' && file.fileDate.trim() ? file.fileDate.trim() : null,
   }
+}
+
+/**
+ * 组装补丁的上游版本记录（`.source.json` 的内容）。
+ *
+ * 纯函数，便于单测；`fetchedAt` 缺省取当前时刻。
+ *
+ * @param {{slug: string, platform: 'cf'|'mr', file?: object, fetchedAt?: string}} options
+ * @returns {{slug: string, platform: 'cf'|'mr', fileId: number|null, fileName: string|null, fileDate: string|null, fetchedAt: string, recovered: boolean}}
+ */
+export function buildSourceInfo({ slug, platform, file, fetchedAt = new Date().toISOString() }) {
+  return {
+    slug,
+    platform: platform === 'mr' ? 'mr' : 'cf',
+    fileId: Number.isFinite(file?.fileId) ? file.fileId : null,
+    fileName: file?.fileName == null ? null : String(file.fileName),
+    fileDate: typeof file?.fileDate === 'string' && file.fileDate.trim() ? file.fileDate.trim() : null,
+    fetchedAt,
+    // 只有从历史构建日志回捞的才置 true（本脚本是实时取源，恒为 false）。
+    recovered: false,
+  }
+}
+
+/**
+ * 把上游版本记录写到 `research/packs/<slug>/.source.json`。
+ *
+ * 为什么放在补丁目录同级而不是全局 JSON：worker 只推 `patches/<slug>/` 与
+ * `research/packs/<slug>.tar.gz`，全局 JSON 多写入者必然冲突；点文件跟着补丁走，
+ * 按路径合并天然无冲突。
+ *
+ * @param {string} outDir `research/packs/<slug>/`
+ * @param {ReturnType<typeof buildSourceInfo>} info
+ */
+export function writeSourceInfo(outDir, info) {
+  mkdirSync(outDir, { recursive: true })
+  writeFileSync(join(outDir, '.source.json'), JSON.stringify(info, null, 2) + '\n')
 }
 
 /**
@@ -411,6 +452,8 @@ export async function preparePack({
       const pruned = pruneStaleFiles(outDir, written)
       const info = classifyLayout(written)
       repairSources(slug, outDir, written, log)
+      // 版本溯源：只有真的取到源才写，跳过下载的分支不写（本地副本可能是旧版）。
+      writeSourceInfo(outDir, buildSourceInfo({ slug, platform, file }))
       if (pruned.length) log(`[${slug}] 清掉 ${pruned.length} 个不属于权威源的残留文件：${pruned.slice(0, 3).join(', ')}${pruned.length > 3 ? ' …' : ''}`)
       log(`[${slug}] Range 取到 ${written.length} 个任务书文件，布局 ${info.layout}（enFiles=${info.enFiles} zhFiles=${info.zhFiles}）`)
       return { slug, status: 'prepared', written: written.length, layout: info.layout }
@@ -448,6 +491,7 @@ export async function preparePack({
   }
   const pruned = pruneStaleFiles(outDir, written)
   repairSources(slug, outDir, written, log)
+  writeSourceInfo(outDir, buildSourceInfo({ slug, platform, file }))
   if (pruned.length) log(`[${slug}] 清掉 ${pruned.length} 个不属于权威源的残留文件：${pruned.slice(0, 3).join(', ')}${pruned.length > 3 ? ' …' : ''}`)
   log(`[${slug}] 解出 ${written.length} 个任务书文件，布局 ${info.layout}（enFiles=${info.enFiles} zhFiles=${info.zhFiles}）`)
   return { slug, status: 'prepared', written: written.length, layout: info.layout }

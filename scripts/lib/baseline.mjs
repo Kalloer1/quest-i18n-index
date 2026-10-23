@@ -25,6 +25,9 @@ const PREFIX_MAX = 155
 function collectFiles(dir, base = dir) {
   const out = []
   for (const name of readdirSync(dir)) {
+    // 点开头的条目不入包：`research/packs/<slug>/.source.json` 是补丁的上游版本
+    // 记录，不是英文源。混进基准源会让 `readBaseline` 的消费方（闸门）把它当任务书文件。
+    if (name.startsWith('.')) continue
     const full = join(dir, name)
     if (statSync(full).isDirectory()) out.push(...collectFiles(full, base))
     else out.push({ full, name: relative(base, full).replace(/\\/g, '/') })

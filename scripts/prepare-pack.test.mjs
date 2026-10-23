@@ -87,7 +87,7 @@ const PACK_ZIP = buildZip([
  * `bodies` 只在 `arrayBuffer()` 真被调用时记一笔：判断「有没有下载整包」要看它，
  * 而不是看请求列表（失败在被拒阶段的 Range 请求并不产生字节）。
  */
-function stubFetch({ zip = PACK_ZIP, downloadUrl = 'https://cdn.example/files/demo.zip', fileLength = 1024, calls = [], bodies = [] } = {}) {
+function stubFetch({ zip = PACK_ZIP, downloadUrl = 'https://cdn.example/files/demo.zip', fileLength = 1024, fileDate = null, calls = [], bodies = [] } = {}) {
   return async (url, init = {}) => {
     const u = String(url)
     const method = String(init?.method ?? 'GET').toUpperCase()
@@ -97,7 +97,7 @@ function stubFetch({ zip = PACK_ZIP, downloadUrl = 'https://cdn.example/files/de
         ok: true,
         status: 200,
         json: async () => ({
-          data: [{ id: 7, fileName: 'Demo-1.0.zip', fileLength, downloadUrl }],
+          data: [{ id: 7, fileName: 'Demo-1.0.zip', fileLength, downloadUrl, fileDate }],
         }),
       }
     }
@@ -201,6 +201,18 @@ test('resolveLatestFile：取最新文件的地址、文件名与体积', async 
   assert.equal(file.url, 'https://cdn.example/files/demo.zip')
   assert.equal(file.fileName, 'Demo-1.0.zip')
   assert.equal(file.fileLength, 2455660)
+  // 版本溯源：CF files 条目的 id / fileDate，拿不到就是 null（不猜字段）
+  assert.equal(file.fileId, 7)
+  assert.equal(file.fileDate, null)
+})
+
+test('resolveLatestFile：从 files 条目取 fileId 与 fileDate', async () => {
+  const file = await resolveLatestFile('1514778', {
+    apiKey: 'k',
+    fetchImpl: stubFetch({ fileDate: '2026-09-01T00:00:00Z' }),
+  })
+  assert.equal(file.fileId, 7)
+  assert.equal(file.fileDate, '2026-09-01T00:00:00Z')
 })
 
 test('resolveLatestFile：缺 CF_KEY 明确失败（不静默跳过）', async () => {
@@ -231,6 +243,24 @@ test('preparePack：只解任务书文件到 research/packs/<slug>/，布局可�
     assert.ok(!existsSync(join(dirs.packsDir, 'demo', 'mods')))
     // zip 留在 research/tmp/ 便于复现
     assert.ok(existsSync(join(dirs.tmpDir, 'demo.zip')))
+  } finally { dirs.cleanup() }
+})
+
+test('preparePack：写 research/packs/<slug>/.source.json（整包模式）', async () => {
+  const dirs = tempDirs()
+  try {
+    await preparePack({
+      slug: 'demo', cfId: '1514778', apiKey: 'k', packsDir: dirs.packsDir, tmpDir: dirs.tmpDir,
+      fetchImpl: stubFetch({ fileDate: '2026-09-01T00:00:00Z' }),
+    })
+    const info = JSON.parse(readFileSync(join(dirs.packsDir, 'demo', '.source.json'), 'utf8'))
+    assert.equal(info.slug, 'demo')
+    assert.equal(info.platform, 'cf')
+    assert.equal(info.fileId, 7)
+    assert.equal(info.fileName, 'Demo-1.0.zip')
+    assert.equal(info.fileDate, '2026-09-01T00:00:00Z')
+    assert.match(info.fetchedAt, /^\d{4}-\d{2}-\d{2}T/)
+    assert.equal(info.recovered, false)
   } finally { dirs.cleanup() }
 })
 

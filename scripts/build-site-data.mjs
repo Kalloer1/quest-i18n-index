@@ -58,7 +58,7 @@ const NON_FTB_EXPLAIN = '该整合包的任务书不是 FTB Quests（如 Checkli
 const FALLBACK_REPO = 'Kalloer1/quest-i18n-index'
 const GITHUB_REPO = process.env.GITHUB_REPOSITORY || FALLBACK_REPO
 
-export function buildSiteData({ index, vmStatus, packMeta, quarkMirrors }, { now = new Date().toISOString(), githubRepo = GITHUB_REPO, quarkMirrors: quarkMirrorsOpt } = {}) {
+export function buildSiteData({ index, vmStatus, packMeta, quarkMirrors }, { now = new Date().toISOString(), githubRepo = GITHUB_REPO, quarkMirrors: quarkMirrorsOpt, sourceVersions } = {}) {
   // VM 官网部分条目的 slug 带 `/index` 后缀（如 sb4/index），工单 03 已归一化为 sb4。
   // 这里两种写法都认，否则这些包会丢掉汉化来源。
   const vmBySlug = new Map()
@@ -72,6 +72,10 @@ export function buildSiteData({ index, vmStatus, packMeta, quarkMirrors }, { now
   const quarkSource = quarkMirrors ?? quarkMirrorsOpt
   const quarkBySlug = new Map(Object.entries(quarkSource?.mirrors ?? {})
     .map(([slug, v]) => [slug, typeof v === 'string' ? v : (v?.shareUrl || '')]))
+
+  // 上游版本记录（`scripts/source-versions.mjs` 汇总的 `research/source-versions.json`）。
+  // 可选输入：文件缺失时整块跳过，所有卡片 sourceVersion 为 null，站点不渲染那一行。
+  const versionsBySlug = sourceVersions?.versions ?? {}
 
   const allPacks = index.dataset.map(row => {
     const meta = metaBySlug.get(row.slug) || null
@@ -114,6 +118,20 @@ export function buildSiteData({ index, vmStatus, packMeta, quarkMirrors }, { now
             quark: quarkBySlug.get(row.slug) || '',
           }
         : null,
+
+      // 补丁是基于哪个上游整合包文件翻的（详情页「本站产出」下面那行小字）。
+      // 旧补丁没有版本记录 → null，页面不渲染（不显示「未知」，避免 494 个旧包变噪声）。
+      sourceVersion: (() => {
+        if (row.state !== 'downloadable') return null
+        const v = versionsBySlug[row.slug]
+        if (!v || !v.fileName) return null
+        return {
+          fileName: v.fileName,
+          fileDate: v.fileDate ?? null,
+          fetchedAt: v.fetchedAt ?? null,
+          recovered: v.recovered === true,
+        }
+      })(),
 
       // 社区已有汉化：只放链接与状态，不重分发任何内容
       providers: vmEntry
@@ -220,12 +238,15 @@ if (isMain) {
   // 夸克镜像链接可选：文件不存在（还没跑过镜像）时全部留空
   let quarkMirrors
   try { quarkMirrors = read('research/quark-mirrors.json') } catch { quarkMirrors = { mirrors: {} } }
+  // 上游版本汇总可选：文件还没生成（首次上线 / worker 未回捞）时整块跳过。
+  let sourceVersions
+  try { sourceVersions = read('research/source-versions.json') } catch { sourceVersions = undefined }
   const out = buildSiteData({
     index: read('research/index-dataset.json'),
     vmStatus: read('research/vm-status.json'),
     packMeta: read('research/pack-metadata.json'),
     quarkMirrors,
-  })
+  }, { sourceVersions })
   mkdirSync('site', { recursive: true })
   writeFileSync('site/data.json', JSON.stringify(out, null, 2) + '\n')
   console.log('→ site/data.json')

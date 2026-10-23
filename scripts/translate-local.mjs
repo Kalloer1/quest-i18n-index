@@ -43,7 +43,7 @@
  *   CF_KEY          CurseForge API key（下载解包必需）
  *   BATCH_PUSH_EVERY 每处理多少个包 commit+push 一次（默认 20；0 = 从不）
  */
-import { readFileSync, writeFileSync, existsSync, rmSync, mkdirSync, readdirSync, statSync, statfsSync } from 'node:fs'
+import { readFileSync, writeFileSync, existsSync, rmSync, mkdirSync, readdirSync, statSync, statfsSync, copyFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join, resolve, isAbsolute } from 'node:path'
 import { execFileSync } from 'node:child_process'
@@ -465,6 +465,14 @@ async function writePatch(slug, layout, runId) {
     const target = join(patchDir, o.name)
     mkdirSync(dirname(target), { recursive: true })
     writeFileSync(target, o.text)
+  }
+  // 上游版本记录跟着补丁走：`prepare-pack` 写在 `research/packs/<slug>/.source.json`，
+  // 这里复制到 `patches/<slug>/.source.json`，由 farm 的 `git add -- patches/<slug>/`
+  // 一并带上（按路径合并不冲突）。旧包没有这份文件时静默跳过。
+  const sourceInfo = join(packDir, '.source.json')
+  if (existsSync(sourceInfo)) {
+    mkdirSync(patchDir, { recursive: true })
+    copyFileSync(sourceInfo, join(patchDir, '.source.json'))
   }
   return { files: outputs.length, translated: translations.size, total: pack.units.length }
 }

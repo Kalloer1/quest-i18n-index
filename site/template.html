@@ -1098,6 +1098,16 @@ code { background: var(--slot); padding: 1px 5px; font-size: .94em; box-shadow: 
     } else {
       ours += '<p class="empty p">本站尚未产出这个整合包的任务书汉化。</p>';
     }
+    // 补丁基于哪个上游文件翻译的。旧补丁没有版本记录 → 整行不渲染
+    // （显示「未知」会让几百个旧包全变成噪声）。
+    if (p.sourceVersion && p.sourceVersion.fileName) {
+      var sv = p.sourceVersion;
+      var svText = "基于 " + sv.fileName;
+      if (sv.fetchedAt) svText += " · 汉化于 " + fmtDate(sv.fetchedAt);
+      ours += '<p class="muted source-version" style="margin:10px 0 0"'
+        + (sv.recovered ? ' title="版本从构建日志回捞，可能与当前补丁不完全对应"' : "")
+        + ">" + esc(svText) + "</p>";
+    }
     ours += '</section>';
 
     var theirs = '<section class="theirs"><h2>社区已有</h2>';

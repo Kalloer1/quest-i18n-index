@@ -97,6 +97,20 @@ test('packBaseline：空目录产出可读归档（0 条目）', (t) => {
   assert.deepEqual(listBaseline(out), [])
 })
 
+test('packBaseline：点文件不入包（.source.json 是补丁元数据，不是英文源）', (t) => {
+  const dir = tempDir(t)
+  const src = join(dir, 'pack')
+  writeTree(src, {
+    '.source.json': '{"slug":"demo"}',
+    'config/ftbquests/quests/lang/en_us.snbt': 'quest.a.title: "Hi"\n',
+  })
+  const out = join(dir, 'pack.tar.gz')
+  const stat = packBaseline(src, out)
+  assert.equal(stat.files, 1, '.source.json 不应计入条目数')
+  assert.deepEqual(listBaseline(out), ['config/ftbquests/quests/lang/en_us.snbt'])
+})
+
+
 test('packBaseline：单文件 + 空文件（0 字节）往返', (t) => {
   const dir = tempDir(t)
   const src = join(dir, 'pack')

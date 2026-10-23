@@ -194,6 +194,45 @@ test('githubRepo 缺失时 zip 与 github 链接为 null（不伪造链接），
   assert.equal(p.download.github, null)
 })
 
+// ---------- 上游版本记录（sourceVersion） ----------
+
+test('sourceVersions 缺失：sourceVersion 为 null（旧补丁不报错、不显示版本）', () => {
+  const p = synthetic({ githubRepo: GITHUB }).packs[0]
+  assert.equal(p.sourceVersion, null)
+  // 不给 sourceVersions 也应正常出数据
+  assert.equal(buildSiteData(SYNTH(), { githubRepo: GITHUB }).packs[0].sourceVersion, null)
+})
+
+test('有版本记录：sourceVersion 字段正确（fileName/fileDate/fetchedAt/recovered）', () => {
+  const p = synthetic({
+    githubRepo: GITHUB,
+    sourceVersions: {
+      generatedAt: 'T',
+      versions: {
+        'demo-pack': {
+          slug: 'demo-pack',
+          platform: 'cf',
+          fileId: 7,
+          fileName: 'Demo-1.0.zip',
+          fileDate: '2026-09-01T00:00:00Z',
+          fetchedAt: '2026-10-23T01:20:00Z',
+          recovered: true,
+        },
+      },
+    },
+  }).packs[0]
+  assert.deepEqual(p.sourceVersion, {
+    fileName: 'Demo-1.0.zip',
+    fileDate: '2026-09-01T00:00:00Z',
+    fetchedAt: '2026-10-23T01:20:00Z',
+    recovered: true,
+  })
+  // 只带约定的四个字段，不把 platform/fileId 泄进站点数据
+  assert.deepEqual(Object.keys(p.sourceVersion).sort(), ['fetchedAt', 'fileDate', 'fileName', 'recovered'])
+  // download 结构不变（工单 04 契约）
+  assert.deepEqual(Object.keys(p.download).sort(), ['github', 'quark', 'zip'])
+})
+
 // ---------- 详情页下载区块的渲染契约（site/template.html） ----------
 // 渲染逻辑在模板内联 JS 里，无法直接单测；这里对模板做静态契约断言，
 // 防止有人删掉 quark 空值守卫或把警告塞进可折叠容器。

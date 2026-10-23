@@ -429,6 +429,13 @@ jobs:
           # 本轮「必须」完成夸克镜像：有目标待镜像而 CLI 缺失时 mirror.mjs 置退出码 1。
           QUARK_REQUIRED: '1'
 
+      # 汇总各补丁目录下的 `.source.json`（补丁基于哪个上游文件翻译的）。
+      # 单写入者：只在 CI 跑，worker 只推自己那个补丁目录，故不会出现并发合并冲突。
+      # 必须在 build-site-data 之前完成 —— 站点数据要读这份汇总。
+      - name: Collect source versions
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true || (github.event_name == 'schedule' && steps.mirrorTargets.outputs.count != '0'))
+        run: node scripts/source-versions.mjs
+
       # 第二轮 build-index（只补交付状态）：此时 downloads/<slug>.zip 已存在 → delivered=true。
       # 两次 build-index 是「先补布局、后补交付状态」，代价只多生成一次 13MB 的 JSON，
       # 换来打包与闸门拿到正确 layout——比在 release/validate 里各自猜布局便宜得多。
@@ -458,7 +465,7 @@ jobs:
               if [ -e "$p" ]; then git add -- "$p"; fi
             done
           done < "$FARM_DIR/slugs.txt"
-          for p in research/index-dataset.json site/data.json research/quark-mirrors.json glossary.json; do
+          for p in research/index-dataset.json site/data.json research/quark-mirrors.json research/source-versions.json glossary.json; do
             if [ -e "$p" ]; then git add -- "$p"; fi
           done
 
