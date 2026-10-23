@@ -1,0 +1,400 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "the_storm"
+	group: ""
+	icon: "minecraft:command_block"
+	id: "18D444BEE69B46BA"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["你知道该怎么做。这只是个开始而已。"]
+			hide_text_until_complete: false
+			id: "42AB9EFB59945D36"
+			rewards: [{
+				id: "1E84608919A3F232"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+			shape: "diamond"
+			subtitle: "前往坐标 (0,0) 并找到生成平台。"
+			tasks: [{
+				icon: "minecraft:command_block"
+				id: "1B43462DD7A437A8"
+				structure: "witherstormmod:storm_spawn_platform"
+				title: "开始任务"
+				type: "structure"
+			}]
+			x: 2.5d
+			y: -10.5d
+		}
+		{
+			dependencies: ["42AB9EFB59945D36"]
+			hide: true
+			id: "16DEB0E94E96BAB6"
+			progression_mode: "flexible"
+			rewards: [{
+				auto: "enabled"
+				count: 32
+				id: "2402750218E93685"
+				item: "minecraft:bread"
+				type: "item"
+			}]
+			shape: "square"
+			tasks: [{
+				advancement: "witherstormmod:main/summon_wither_storm"
+				criterion: ""
+				icon: "minecraft:wither_skeleton_skull"
+				id: "68BA7E5022BCBDDE"
+				title: "召唤风暴。"
+				type: "advancement"
+			}]
+			x: 2.5d
+			y: -12.5d
+		}
+		{
+			dependencies: ["16DEB0E94E96BAB6"]
+			description: ["共生体生成后，风暴会分心，不会攻击你。"]
+			hide: true
+			id: "1B03A08DCD1F73B4"
+			rewards: [{
+				id: "44108D0913A0150F"
+				type: "xp_levels"
+				xp_levels: 15
+			}]
+			shape: "square"
+			subtitle: "杀死在 Witherstorm 下生成的 withered symbiont。"
+			tasks: [{
+				entity: "witherstormmod:withered_symbiont"
+				icon: "minecraft:wither_rose"
+				id: "1347BEC507BFFF69"
+				title: "随从（The Minion）。"
+				type: "kill"
+				value: 1L
+			}]
+			x: 2.5d
+			y: -14.5d
+		}
+		{
+			dependencies: ["1B03A08DCD1F73B4"]
+			hide: true
+			icon: "witherstormmod:command_block_book"
+			id: "2770031A66E4B610"
+			rewards: [{
+				id: "0645D4B7A5096A61"
+				type: "xp_levels"
+				xp_levels: 15
+			}]
+			shape: "diamond"
+			subtitle: "获取命令方块之书 (Obtain the Command Block Book)"
+			tasks: [{
+				id: "082C295B6965627C"
+				item: "witherstormmod:command_block_book"
+				type: "item"
+			}]
+			title: "这本书。"
+			x: 4.5d
+			y: -14.5d
+		}
+		{
+			dependencies: ["2770031A66E4B610"]
+			description: ["哦，对了，我们还需要这个才行。"]
+			hide: true
+			id: "3360EACFCB17F954"
+			rewards: [{
+				id: "33972008DDCC01D4"
+				item: "lootr:lootr_chest"
+				type: "item"
+			}]
+			shape: "diamond"
+			subtitle: "合成一个超级TNT。"
+			tasks: [{
+				id: "63161EBC2AB370DD"
+				item: "witherstormmod:super_tnt"
+				type: "item"
+			}]
+			title: "破坏性能力（Destructive Capabilities）。"
+			x: 6.5d
+			y: -12.5d
+		}
+		{
+			dependencies: ["3360EACFCB17F954"]
+			description: ["将炸弹放在凋零风暴下以完成工作。"]
+			hide: true
+			id: "11C17D57FD637DA8"
+			rewards: [{
+				id: "3D2EE32DDAF4EBD5"
+				item: {
+					Count: 1b
+					id: "xpbook:xp_tome"
+					tag: { }
+				}
+				type: "item"
+			}]
+			shape: "diamond"
+			subtitle: "合成 Formidibomb。"
+			tasks: [{
+				id: "1EFC1B6EC6F948CE"
+				item: {
+					Count: 1b
+					id: "witherstormmod:formidibomb"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "强大的火力支援。"
+			x: 4.5d
+			y: -10.5d
+		}
+		{
+			dependencies: ["11C17D57FD637DA8"]
+			hide: true
+			id: "7F9BAA4D42F7E774"
+			shape: "square"
+			subtitle: "干掉凋零风暴……至少是暂时地。"
+			tasks: [{
+				advancement: "witherstormmod:main/strong_grow_weak"
+				criterion: ""
+				icon: "witherstormmod:tainted_dust"
+				id: "3B72F1260EBB2F98"
+				title: "任务已完成。"
+				type: "advancement"
+			}]
+			x: 2.5d
+			y: -8.0d
+		}
+		{
+			dependencies: ["7F9BAA4D42F7E774"]
+			description: ["要是我，我就拔腿跑了。"]
+			hide: true
+			id: "7E732E3CFC1740F2"
+			invisible_until_tasks: 1
+			secret: true
+			shape: "square"
+			subtitle: "凋零风暴并没有死去——不仅如此，它还变得更加愤怒了。"
+			tasks: [{
+				advancement: "witherstormmod:main/weakened_arise_stronger"
+				criterion: ""
+				icon: "minecraft:nether_star"
+				id: "3BF4BE09E0B94266"
+				title: "事情的发展并不如计划的那样。"
+				type: "advancement"
+			}]
+			x: 0.5d
+			y: -10.5d
+		}
+		{
+			dependencies: ["7E732E3CFC1740F2"]
+			description: ["再杀死一个枯萎共生体，获得另一本命令方块书，这次用钻石武器或工具合成。"]
+			hide: true
+			id: "477FF6F9F12A88CC"
+			rewards: [{
+				id: "2ADDA1BC27F12556"
+				type: "xp_levels"
+				xp_levels: 15
+			}]
+			shape: "diamond"
+			subtitle: "制作一个命令方块武器。"
+			tasks: [{
+				id: "61DABA2D28CABB4E"
+				item: {
+					Count: 1b
+					id: "itemfilters:tag"
+					tag: {
+						value: "witherstormmod:command_block_tools"
+					}
+				}
+				title: "任意 #witherstormmod:command_block_tools"
+				type: "item"
+			}]
+			title: "这把刀刃。"
+			x: -1.5d
+			y: -10.5d
+		}
+		{
+			dependencies: ["477FF6F9F12A88CC"]
+			description: ["制作一把弩，装上末影珍珠，等待凋零风暴头部出现一个洞，然后用弩射向那个洞。"]
+			hide: true
+			id: "2C3E93F746559268"
+			rewards: [{
+				count: 8
+				id: "637563CF65A0849C"
+				item: "aether:golden_gummy_swet"
+				type: "item"
+			}]
+			shape: "square"
+			subtitle: "潜入凋零风暴的肠道深处。"
+			tasks: [{
+				advancement: "witherstormmod:main/belly_of_the_beast"
+				criterion: ""
+				icon: "minecraft:crying_obsidian"
+				id: "57ED442C021D55FA"
+				title: "我们加入了整合包。"
+				type: "advancement"
+			}]
+			x: 0.5d
+			y: -12.5d
+		}
+		{
+			dependencies: ["477FF6F9F12A88CC"]
+			description: ["……我不知道你为什么要这么做。你肯定很喜欢和凋零共生体战斗。"]
+			hide: true
+			icon: "minecraft:command_block_minecart"
+			id: "0C7E449127AF50FB"
+			optional: true
+			rewards: [
+				{
+					id: "39CF02C365AEACFD"
+					type: "xp_levels"
+					xp_levels: 60
+				}
+				{
+					id: "389368AB4F90666E"
+					item: "minecraft:totem_of_undying"
+					type: "item"
+				}
+			]
+			shape: "hexagon"
+			subtitle: "制作所有命令方块武器。"
+			tasks: [
+				{
+					id: "5A1687B95C04204A"
+					item: "witherstormmod:command_block_sword"
+					type: "item"
+				}
+				{
+					id: "0AA4AB6E1A02C10A"
+					item: "witherstormmod:command_block_pickaxe"
+					type: "item"
+				}
+				{
+					id: "54C7FA497D7B1FA8"
+					item: "witherstormmod:command_block_axe"
+					type: "item"
+				}
+				{
+					id: "7A1DE7F07D17B953"
+					item: "witherstormmod:command_block_shovel"
+					type: "item"
+				}
+				{
+					id: "27E0D419717F2DD0"
+					item: "witherstormmod:command_block_hoe"
+					type: "item"
+				}
+			]
+			title: "再多也不嫌多！"
+			x: 0.5d
+			y: -8.0d
+		}
+		{
+			dependencies: ["2C3E93F746559268"]
+			description: ["一段冒险的结束，意味着另一段冒险的开始。"]
+			hide: true
+			id: "0B235DCF65CFC0BA"
+			rewards: [
+				{
+					id: "678A994D1F173BBF"
+					type: "xp_levels"
+					xp_levels: 60
+				}
+				{
+					id: "38FBA55A3E1F25B6"
+					item: {
+						Count: 1b
+						id: "endrem:wither_eye"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			shape: "hexagon"
+			subtitle: "击杀凋零风暴。"
+			tasks: [{
+				entity: "witherstormmod:wither_storm"
+				icon: "witherstormmod:withered_bone"
+				id: "3FD6607689C6B630"
+				title: "复仇。"
+				type: "kill"
+				value: 1L
+			}]
+			x: -1.5d
+			y: -14.5d
+		}
+		{
+			dependencies: ["0B235DCF65CFC0BA"]
+			description: [
+				"终于结束了。"
+				""
+				"冲击波向世界各地扩散。你的任务开启了新篇章。"
+			]
+			hide: true
+			id: "25C76B28D97AB53C"
+			rewards: [{
+				count: 3
+				id: "259D9982519B069C"
+				item: "minecraft:totem_of_undying"
+				type: "item"
+			}]
+			shape: "diamond"
+			subtitle: "收集枯萎的下界之星。"
+			tasks: [{
+				id: "25DCF13235BD8F42"
+				item: "witherstormmod:withered_nether_star"
+				type: "item"
+			}]
+			title: "那颗星星。"
+			x: 0.5d
+			y: -16.5d
+		}
+		{
+			dependencies: ["7F9BAA4D42F7E774"]
+			description: ["收获奖励了吗……？"]
+			hide: true
+			icon: "witherstormmod:tainted_flesh_block"
+			id: "16422A0863F243EE"
+			rewards: [{
+				id: "22F945640E5C7707"
+				type: "xp"
+				xp: 5
+			}]
+			shape: "diamond"
+			subtitle: "从凋零风暴的尸体中收集一块被污染的肉块。"
+			tasks: [{
+				id: "1310B87A9BA6A1E7"
+				item: "witherstormmod:tainted_flesh_block"
+				type: "item"
+			}]
+			title: "恶...恶心的要死。"
+			x: 4.5d
+			y: -8.0d
+		}
+		{
+			dependencies: ["16DEB0E94E96BAB6"]
+			description: ["靠得太近了……"]
+			hide: true
+			id: "26C5F6571E2F0590"
+			rewards: [{
+				id: "41B253FF8BB121F4"
+				type: "xp_levels"
+				xp_levels: 15
+			}]
+			shape: "hexagon"
+			subtitle: "制作一个金苹果浓汤，可以用来治愈凋零病。"
+			tasks: [{
+				id: "4F1B5EF0FD0F3BC5"
+				item: "witherstormmod:golden_apple_stew"
+				type: "item"
+			}]
+			title: "治愈病人。"
+			x: 4.5d
+			y: -12.5d
+		}
+	]
+	subtitle: ["击败强大的 Witherstorm 并赢取丰厚奖励。"]
+	title: "风暴来袭"
+}
