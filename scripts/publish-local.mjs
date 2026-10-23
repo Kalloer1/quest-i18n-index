@@ -72,6 +72,29 @@ function git(args, opts) {
   return run('git', args, opts)
 }
 
+/**
+ * 网络类 git 操作必须重试：本机到 github.com 会间歇 `Could not resolve hostname`
+ * 或 TLS 超时（同一个仓库今天已经撞过好几次），一次抖动就中断整轮发布会让人以为是代码坏了。
+ * 只对 fetch/pull/push 用；本地操作失败就是真失败，重试只会掩盖问题。
+ */
+function netGit(args, tries = 3) {
+  let last
+  for (let i = 0; i < tries; i++) {
+    try {
+      return execFileSync('git', args, { cwd: ROOT, encoding: 'utf8', stdio: 'pipe', maxBuffer: 64 * 1024 * 1024 })
+    } catch (err) {
+      last = `${err.stdout ?? ''}${err.stderr ?? ''}`.trim()
+      if (i < tries - 1) {
+        const wait = 5 * (i + 1)
+        console.log(`  git ${args[0]} 失败（${String(last).split('\n')[0].slice(0, 60)}），${wait}s 后重试`)
+        execFileSync(process.execPath, ['-e', `setTimeout(()=>{},${wait * 1000})`])
+      }
+    }
+  }
+  console.error(`✘ git ${args.join(' ')} 连续失败：\n${String(last).slice(-400)}`)
+  process.exit(1)
+}
+
 // ---------- 0. 工作区必须干净 ----------
 // 半成品被 -A 带进提交是这个仓库反复踩过的坑，所以宁可在这里停。
 step(0, '检查工作区')
@@ -95,11 +118,11 @@ step(0, '检查工作区')
 
 // ---------- 1. 取各分支增量 ----------
 step(1, '拉取远端分支并计算增量')
-git(['fetch', '-q', 'origin', 'main'])
+netGit(['fetch', '-q', 'origin', 'main'])
 // blobless：这些分支里塞满了 tar.gz 和 zip，全量 fetch 一次要几分钟（实测 400s 还没完）；
 // 只拉提交与树，blob 在 checkout 时按需取，增量那一步只碰十几个文件，代价极小。
 // 不按 --hosts 分次拉：GitHub 上一条 refspec 通配一次往返拿完，比逐台拉快得多。
-git(['fetch', '-q', '--filter=blob:none', '--no-tags', 'origin',
+netGit(['fetch', '-q', '--filter=blob:none', '--no-tags', 'origin',
   '+refs/heads/farm/*:refs/remotes/origin/farm/*'])
 
 rmSync(DIR, { recursive: true, force: true })
@@ -168,7 +191,7 @@ step(3, '检出增量文件')
 // 整分支 fetch 只下载本地缺的对象（main 上已有的包不会再下），等于只取这批增量。
 {
   const branches = [...new Set(Object.values(plan.bySlug).map((it) => it.branch))]
-  for (const h of branches) git(['fetch', '-q', '--no-tags', 'origin', `farm/${h}:refs/remotes/origin/farm/${h}`])
+  for (const h of branches) netGit(['fetch', '-q', '--no-tags', 'origin', `farm/${h}:refs/remotes/origin/farm/${h}`])
   console.log(`补齐 ${branches.length} 条分支的 blob：${branches.join(', ')}`)
 }
 for (const [slug, item] of Object.entries(plan.bySlug)) {
@@ -275,7 +298,7 @@ step(10, '提交并推送')
   git(['commit', '-q', '-m', msg])
   console.log(msg)
   // 合并期间别处可能也推了 main：先 rebase 再推，绝不 force。
-  git(['pull', '--rebase', '--autostash', '-q', 'origin', 'main'])
-  git(['push', '-q', 'origin', 'main'])
+  netGit(['pull', '--rebase', '--autostash', '-q', 'origin', 'main'])
+  netGit(['push', '-q', 'origin', 'main'])
   console.log('已推送。deploy.yml 会按 push 自动发布到 Cloudflare。')
 }
