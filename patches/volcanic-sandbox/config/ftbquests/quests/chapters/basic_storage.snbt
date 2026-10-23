@@ -1,0 +1,160 @@
+# AI 初翻，未人工校对
+{
+	id: "7DC63DD80E75BCE8"
+	group: "7BF7C7C061F7E7F6"
+	order_index: 1
+	filename: "basic_storage"
+	title: "火山中的储物空间"
+	icon: "stonechest:chest_cobblestone"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			icon: "kubejs:mark"
+			x: 0.0d
+			y: 0.0d
+			description: ["在这个整合包里你需要存放物品（废话），所以这些任务会向你展示一些不需要电力的存储选项。"]
+			id: "2132863C4B54BC7B"
+			tasks: [{
+				id: "5C21A41CD598711F"
+				type: "checkmark"
+				title: "基础存储系统"
+			}]
+		}
+		{
+			title: "原版宝箱"
+			x: 0.0d
+			y: 2.0d
+			description: ["最基本的存储方式是原版箱子，你肯定知道怎么做，而且已经有几个了，但这仍然是一个选项"]
+			dependencies: ["2132863C4B54BC7B"]
+			optional: true
+			id: "7E7EBA03B6E01C96"
+			tasks: [{
+				id: "0F5A424D0BAEA789"
+				type: "item"
+				title: "任意木制箱子"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "forge:chests/wooden"
+					}
+				}
+			}]
+		}
+		{
+			title: "铁质箱子"
+			x: -1.0357142857142847d
+			y: 4.035714285714285d
+			description: ["如果你想保留现有的箱子，但需要更大的容量，可以使用 Iron Chests 模组来增加它们的存储空间。"]
+			dependencies: ["7E7EBA03B6E01C96"]
+			optional: true
+			id: "771940FCD17D1C88"
+			tasks: [{
+				id: "26275E5033E92620"
+				type: "item"
+				item: "ironchest:wood_to_iron_chest_upgrade"
+			}]
+		}
+		{
+			title: "储物抽屉"
+			icon: "storagedrawers:oak_full_drawers_4"
+			x: 0.9642857142857153d
+			y: 4.035714285714285d
+			description: ["如果你想为特定物品存放大量储物空间，那么 Storage Drawers 就是你的答案。"]
+			dependencies: ["7E7EBA03B6E01C96"]
+			optional: true
+			id: "25AC6644B3E86FF5"
+			tasks: [{
+				id: "5CA5D5262FC90D47"
+				type: "item"
+				title: "任意数量的 #storagedrawers:drawers"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "storagedrawers:drawers"
+					}
+				}
+			}]
+		}
+		{
+			icon: "kubejs:mark"
+			x: 5.0d
+			y: 0.0d
+			description: ["此整合包中，物品的数字化存储方式仅有 Refined Storage 一种。"]
+			id: "271B4D674FB4B81A"
+			tasks: [{
+				id: "080323ACCC89C1C7"
+				type: "checkmark"
+				title: "数字存储系统"
+			}]
+		}
+		{
+			title: "基础精炼存储网络"
+			icon: "refinedstorage:creative_controller"
+			x: 5.0d
+			y: 2.0d
+			description: ["制作基础 Refined Storage System 需要这些部件。16K Disk 听起来可能过剩，但最终你还是会需要，所以现在最好就做好。"]
+			dependencies: ["271B4D674FB4B81A"]
+			optional: true
+			id: "27010ADF79EF51DC"
+			tasks: [
+				{
+					id: "1FC5B6672462F291"
+					type: "item"
+					item: "refinedstorage:controller"
+				}
+				{
+					id: "55C382F2BA714A18"
+					type: "item"
+					item: "refinedstorage:disk_drive"
+				}
+				{
+					id: "124B3D679D632469"
+					type: "item"
+					item: "refinedstorage:crafting_grid"
+				}
+				{
+					id: "730017A6BF41B4D6"
+					type: "item"
+					item: "refinedstorage:16k_storage_disk"
+				}
+			]
+		}
+		{
+			title: "使用 Refined Storage 进行自动合成"
+			icon: "refinedstorage:crafter"
+			x: 5.0d
+			y: 4.0d
+			description: ["使用 Refined Storage 自动合成需要几样东西，最重要的是配方，你需要大量配方，所以建议先设置它们的自动合成"]
+			dependencies: ["27010ADF79EF51DC"]
+			optional: true
+			id: "0DF1B8A0DFF49EF6"
+			tasks: [
+				{
+					id: "0FFBD17D9536D6A3"
+					type: "item"
+					item: "refinedstorage:crafter"
+				}
+				{
+					id: "4DE9001E09ED84E0"
+					type: "item"
+					item: "refinedstorage:pattern"
+					count: 16L
+				}
+				{
+					id: "4BD32AC4D6453E38"
+					type: "item"
+					item: "refinedstorage:crafting_monitor"
+				}
+				{
+					id: "28ECD9BD967ECE4A"
+					type: "item"
+					item: "refinedstorage:pattern_grid"
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+}

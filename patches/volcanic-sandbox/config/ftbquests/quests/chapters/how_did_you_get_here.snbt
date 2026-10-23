@@ -1,0 +1,281 @@
+# AI 初翻，未人工校对
+{
+	id: "19D9536E14566745"
+	group: "61A140EAD46EB24F"
+	order_index: 0
+	filename: "how_did_you_get_here"
+	title: "你为什么会出现在这里？！"
+	icon: {
+		id: "woodenbucket:wooden_bucket"
+		Count: 1b
+		tag: {
+			Damage: 0
+			Fluid: {
+				FluidName: "minecraft:lava"
+				Amount: 1000
+			}
+		}
+	}
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			icon: "kubejs:mark"
+			x: 8.0d
+			y: -8.0d
+			description: [
+				"你发现自己身处一片熔岩之海的小岛上，你记得的最后一件事是正在组装你的第一个 Remagium 的最后一个部件，然后就什么都看不见了。"
+				""
+				"既然你找不到离开这里的办法，那就得开始干活了。"
+			]
+			id: "17AB3AFE18940F96"
+			tasks: [{
+				id: "6EED3F52E6D9FC09"
+				type: "checkmark"
+				title: "滚烫的热水"
+			}]
+		}
+		{
+			title: "崎岖的地形"
+			x: 8.0d
+			y: -6.0d
+			description: ["这个岛不太舒服，不知道我们能不能把草皮给挖掉。"]
+			dependencies: ["17AB3AFE18940F96"]
+			id: "174373454A9F5411"
+			tasks: [{
+				id: "4B7123FB83FFD4E4"
+				type: "item"
+				item: "minecraft:stick"
+				count: 12L
+			}]
+		}
+		{
+			title: "被骨头砸中 ;)"
+			icon: "minecraft:bone_meal"
+			x: 8.0d
+			y: -4.0d
+			description: ["现在有了一些木棍，或许能从这座岛上获得更多东西，不过你需要一把工具。"]
+			dependencies: ["174373454A9F5411"]
+			id: "01952CF5582C626C"
+			tasks: [
+				{
+					id: "4DD312BE38BF7B7A"
+					type: "item"
+					item: "minecraft:bone_meal"
+					count: 9L
+				}
+				{
+					id: "4E8D76B1B2585C5A"
+					type: "item"
+					item: {
+						id: "minecraft:wooden_hoe"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 8.0d
+			y: -2.0d
+			description: [
+				"用你新获得的骨粉，可以用一些草让这座岛屿看起来更美观。"
+				""
+				"嗯，这看起来确实不错，但对逃跑没什么帮助。"
+			]
+			dependencies: ["01952CF5582C626C"]
+			id: "3EEBDB2B2458476F"
+			tasks: [{
+				id: "382D8D1DE4A8809B"
+				type: "item"
+				item: "ucse:seednormal"
+			}]
+		}
+		{
+			title: "发挥创造力"
+			x: 8.0d
+			y: 0.0d
+			description: [
+				"终于有吃的了，至少我希望能从那些普通种子中获得食物。"
+				""
+				"这些新种子需要大量普通种子，但值得，因为这是用独特作物（如 cobblonia 种子）来制作其他种子的方法。"
+				""
+				"如果需要更多关于独特作物的帮助，你可以用该模组的书来制作。"
+				""
+				"P.S. 你可以采集这些来制作工作台，因为目前还无法用常规方法获取。"
+			]
+			dependencies: ["3EEBDB2B2458476F"]
+			id: "1F207AF1783610D3"
+			tasks: [{
+				id: "551B502CF3B344A2"
+				type: "item"
+				item: "ucse:seedartisia"
+				count: 9L
+			}]
+		}
+		{
+			title: "正在获取... 被石头砸中？"
+			x: 8.0d
+			y: 4.0d
+			description: [
+				"终于，有鹅卵石了！"
+				""
+				"有了新获得的鹅卵石，你终于可以扩建岛屿了……除非你用那些水把一切都变成了黑曜石。"
+				""
+				"P.S. 你可以在种植了 Cobblonia 的农田旁边放置水和岩浆，这样它就能生成鹅卵石，而不是一次次地破坏作物。"
+			]
+			dependencies: ["419C84B763920352"]
+			id: "02A57F6896B3434A"
+			tasks: [{
+				id: "689ECFC376405585"
+				type: "item"
+				item: "ucse:seedcobblonia"
+			}]
+		}
+		{
+			title: "是时候合法化了（Time to get Legal）"
+			x: 8.0d
+			y: 8.0d
+			description: ["准备好要反复阅读《独特作物 EULA》吧，因为你需要很多法律文件。"]
+			dependencies: ["59883CB0AB4C4384"]
+			id: "679A3F67A3E83D6E"
+			tasks: [{
+				id: "1B8DB861CDEA86A3"
+				type: "item"
+				item: "ucse:seedeula"
+			}]
+			rewards: [{
+				id: "3E3F266FD7388F5E"
+				type: "item"
+				item: "ucse:seedeula"
+			}]
+		}
+		{
+			title: "别担心，你不用读这些内容也没关系"
+			x: 8.0d
+			y: 10.0d
+			description: ["就像我说的，你需要准备一大堆合法的文件。"]
+			dependencies: ["679A3F67A3E83D6E"]
+			id: "686BD4AF998FF0D7"
+			tasks: [{
+				id: "16F84B112412B3DE"
+				type: "item"
+				item: "ucse:book_eula"
+				count: 4L
+			}]
+		}
+		{
+			title: "我相信你对此非常清楚，不是吗"
+			x: 8.0d
+			y: 6.0d
+			description: ["使用无中生有（ex nihilo）的方式。"]
+			dependencies: ["02A57F6896B3434A"]
+			id: "59883CB0AB4C4384"
+			tasks: [
+				{
+					id: "67943F5B95FBA57F"
+					type: "item"
+					item: "minecraft:gravel"
+				}
+				{
+					id: "538AD05F19ABA7DA"
+					type: "item"
+					item: "minecraft:sand"
+				}
+				{
+					id: "04AA149845EF78EA"
+					type: "item"
+					item: "exnihilosequentia:dust"
+				}
+			]
+		}
+		{
+			title: "回忆往昔"
+			x: 8.0d
+			y: 14.0d
+			shape: "gear"
+			description: [
+				"忙活了一大圈，你才发现自己连目标是什么都忘了。"
+				""
+				"或许这本书能帮助你记住创意物品所拥有的力量。"
+			]
+			dependencies: ["207976204E7893CE"]
+			size: 2.0d
+			id: "3F0B0C42B4279D6B"
+			tasks: [{
+				id: "02A1BB1B415F865A"
+				type: "item"
+				item: "kubejs:knowledge_of_the_creatives"
+			}]
+		}
+		{
+			title: "哦，有了这个你也会很高兴的，不是吗"
+			x: 8.035714285714278d
+			y: 15.301785714285714d
+			description: ["我想我不用解释这个了吧。"]
+			dependencies: ["3F0B0C42B4279D6B"]
+			size: 0.85d
+			id: "33A65E47365A173D"
+			tasks: [
+				{
+					id: "5AEC6F56C0807494"
+					type: "item"
+					item: "minecraft:oak_sapling"
+				}
+				{
+					id: "5DE76554B57992A8"
+					type: "item"
+					item: "minecraft:dead_bush"
+				}
+			]
+		}
+		{
+			title: "被淋湿的感觉真不好受"
+			x: 8.0d
+			y: 2.0d
+			description: ["在这么热的地方，水会非常有用，所以做一个干燥盆，并在里面放些干草。"]
+			dependencies: ["1F207AF1783610D3"]
+			id: "419C84B763920352"
+			tasks: [
+				{
+					id: "00E59139B629926F"
+					type: "item"
+					item: "integrateddynamics:drying_basin"
+				}
+				{
+					id: "05DC15187C7922B4"
+					type: "item"
+					item: {
+						id: "woodenbucket:wooden_bucket"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "原始书籍装订法"
+			x: 8.0d
+			y: 12.0d
+			description: [
+				"你可能已经找到了一些竹子，如果没有，就再挖些草方块吧。"
+				""
+				"你需要一种制作书的方法，因为书代表知识，而你需要一些知识。"
+				""
+				"如果你还没有获得任何竹子，那么竹子掉落概率为 12.5%。"
+			]
+			dependencies: ["686BD4AF998FF0D7"]
+			id: "207976204E7893CE"
+			tasks: [{
+				id: "213A65A469CC23B3"
+				type: "item"
+				item: "minecraft:bamboo"
+			}]
+		}
+	]
+	quest_links: [ ]
+}
