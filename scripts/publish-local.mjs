@@ -72,6 +72,16 @@ function git(args, opts) {
   return run('git', args, opts)
 }
 
+/** 与 git() 同参，但失败返回 false 而不是退出进程：单个包的检出失败不该拖垮整轮。 */
+function gitTry(args) {
+  try {
+    execFileSync('git', args, { cwd: ROOT, encoding: 'utf8', stdio: 'pipe', maxBuffer: 64 * 1024 * 1024 })
+    return true
+  } catch {
+    return false
+  }
+}
+
 /**
  * 网络类 git 操作必须重试：本机到 github.com 会间歇 `Could not resolve hostname`
  * 或 TLS 超时（同一个仓库今天已经撞过好几次），一次抖动就中断整轮发布会让人以为是代码坏了。
@@ -235,14 +245,25 @@ step(3, '检出增量文件')
 // 整分支 fetch 只下载本地缺的对象（main 上已有的包不会再下），等于只取这批增量。
 {
   const branches = [...new Set(Object.values(plan.bySlug).map((it) => it.branch))]
-  for (const h of branches) netGit(['fetch', '-q', '--no-tags', 'origin', `farm/${h}:refs/remotes/origin/farm/${h}`])
+  // --no-filter 是必须的：本仓库因为前面用 `--filter=blob:none` 取增量的缘故，
+  // remote.origin 已被标成 promisor（blob:none）。这时候普通 fetch **不会下 blob**，
+  // checkout 时才一个文件一次懒加载 —— 网络一抖就 `unable to read sha1 file` 直接中断，
+  // 而且一断就是整轮作废（上一轮 482 个包卡在第一个 slug 上）。
+  for (const h of branches) netGit(['fetch', '-q', '--no-filter', '--no-tags', 'origin', `farm/${h}:refs/remotes/origin/farm/${h}`])
   console.log(`补齐 ${branches.length} 条分支的 blob：${branches.join(', ')}`)
 }
+let checkedOut = 0
+const lost = []
 for (const [slug, item] of Object.entries(plan.bySlug)) {
   const paths = [...item.patchPaths, item.baselinePath].filter(Boolean)
-  git(['checkout', `origin/farm/${item.branch}`, '--', ...paths])
+  if (gitTry(['checkout', `origin/farm/${item.branch}`, '--', ...paths])) { checkedOut++; continue }
+  // 单包失败不该拖垮整轮：补一次 blob 再试，仍不行就记下来跳过（下一轮它还在 diff 里）。
+  netGit(['fetch', '-q', '--no-filter', '--no-tags', 'origin', `farm/${item.branch}:refs/remotes/origin/farm/${item.branch}`])
+  if (gitTry(['checkout', `origin/farm/${item.branch}`, '--', ...paths])) { checkedOut++; continue }
+  lost.push(slug)
+  console.log(`  ✘ ${slug} 检出失败，本轮跳过（下一轮会重试）`)
 }
-console.log(`已检出 ${slugs.length} 个包（补丁 + 基准源）`)
+console.log(`已检出 ${checkedOut} 个包（补丁 + 基准源）${lost.length ? `，失败 ${lost.length} 个` : ''}`)
 
 // ---------- 4. 布局趟 ----------
 step(4, 'build-index（布局趟）')
