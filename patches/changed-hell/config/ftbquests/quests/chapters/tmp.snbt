@@ -1,0 +1,270 @@
+# AI 初翻，未人工校对
+{
+	consume_items: true
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "tmp"
+	group: ""
+	hide_quest_details_until_startable: true
+	hide_quest_until_deps_complete: true
+	hide_quest_until_deps_visible: true
+	icon: {
+		Count: 1
+		id: "changed:latex_syringe"
+		tag: {
+			form: "changed:form_latex_benign_wolf"
+			owner: [I;
+				1713505367
+				703217811
+				-1819714485
+				1461537754
+			]
+			safe: 1b
+		}
+	}
+	id: "62AD3024E7A61C0C"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"欢迎来到 Changed Hell 5，又名 Drunken Modpack 5。"
+				"本整合包是DM4的续作，采用了Changed Mod 0.14.1和0.15的新机制，以及原版Minecraft的更新内容。希望你能玩过DM4，这样能更容易地在一个更“友好”的环境中练习本整合包的机制。"
+				"{@pagebreak}"
+				"注意：此整合包为半硬核模式。若死亡且无任何备份物品，游戏即结束，你有3个选择：/gm1、朋友救援（仅限服务器）或删除世界从头开始。明白了吗？“但我不知道该做什么”——你将做出正确的决定，但无人告知是否正确，或者通过惨痛教训来学习。那么，开始吧。"
+			]
+			id: "16DDB2843B6C193A"
+			rewards: [{
+				command: "/function drunkenmodpack:begin"
+				elevate_perms: true
+				id: "3ABE2D3631B25E1B"
+				type: "command"
+			}]
+			subtitle: "幸好我把所有东西都禁用了……"
+			tasks: [{
+				id: "62AE8B31A8529164"
+				title: "让我们开始吧"
+				type: "checkmark"
+			}]
+			title: "让我们开始吧"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["16DDB2843B6C193A"]
+			description: ["黑暗森林的低语引领你深入密林……"]
+			icon: "minecraft:totem_of_undying"
+			id: "5053E6915761B541"
+			subtitle: "那些低语声……"
+			tasks: [{
+				id: "4F28579EED29415C"
+				structure: "minecraft:mansion"
+				type: "structure"
+			}]
+			x: 3.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["16DDB2843B6C193A"]
+			description: ["直觉告诉你该跳进水里洗个澡。但手臂上金属的闪光提醒你，你不能这么做。"]
+			icon: "minecraft:prismarine"
+			id: "36CD7D99159DD6C4"
+			subtitle: "深海之中..."
+			tasks: [{
+				id: "04C749362256FA21"
+				structure: "minecraft:monument"
+				type: "structure"
+			}]
+			x: 0.0d
+			y: -3.5d
+		}
+		{
+			dependencies: [
+				"5053E6915761B541"
+				"2C841CE780B53E82"
+			]
+			description: ["那些声音让你去杀死那头野兽。你感觉这可能不是个好主意，但你还是会去做，不是吗？"]
+			id: "50D1E0F8678725BB"
+			rewards: [{
+				auto: "invisible"
+				id: "3CD4C4FBC9E03F93"
+				ignore_reward_blocking: true
+				stage: "warden"
+				type: "gamestage"
+			}]
+			subtitle: "那些声音告诉你，要朝它扔石头。"
+			tasks: [{
+				entity: "minecraft:warden"
+				id: "4A3E85ED6C08DD27"
+				type: "kill"
+				value: 3L
+			}]
+			x: 0.0d
+			y: 4.0d
+		}
+		{
+			dependencies: [
+				"5053E6915761B541"
+				"36CD7D99159DD6C4"
+			]
+			description: ["杀死唤魔者... 会让你想起某件事... 很久以前犯下的一个错误..."]
+			id: "2CADB24A61542F6A"
+			subtitle: "醉酒整合包 2 [*]"
+			tasks: [{
+				entity: "minecraft:evoker"
+				id: "4E3A8561D66CA4D1"
+				type: "kill"
+				value: 9L
+			}]
+			x: 6.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["36CD7D99159DD6C4"]
+			description: ["行动前最好先动动脑筋。"]
+			id: "12EC02D403484CB7"
+			rewards: [{
+				auto: "invisible"
+				id: "48C6A0754109745D"
+				ignore_reward_blocking: true
+				stage: "monument"
+				type: "decursiostage"
+			}]
+			subtitle: "这简直是疯了！"
+			tasks: [{
+				entity: "minecraft:elder_guardian"
+				id: "3F8C80D455228721"
+				type: "kill"
+				value: 3L
+			}]
+			x: -6.0d
+			y: -3.5d
+		}
+		{
+			dependencies: [
+				"2CADB24A61542F6A"
+				"50D1E0F8678725BB"
+				"12EC02D403484CB7"
+			]
+			description: ["你成功抵抗了变形效果，并制作了一支能解除诅咒的注射器..."]
+			id: "6C33D3286419F648"
+			rewards: [
+				{
+					command: "/function drunkenmodpack:untransfur"
+					elevate_perms: true
+					id: "3218592BBE158557"
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					id: "2259B2948A2731A5"
+					ignore_reward_blocking: true
+					stage: "untransfur"
+					type: "decursiostage"
+				}
+			]
+			subtitle: "终于，人类文明！哦，等等……"
+			tasks: [{
+				id: "43D66B47869E606A"
+				title: "谢谢你把DM4给了我"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: 7.5d
+		}
+		{
+			dependencies: ["16DDB2843B6C193A"]
+			description: ["黏液严重扰乱了你的心智，引导你走向更深处……"]
+			id: "2C841CE780B53E82"
+			subtitle: "那些声音……"
+			tasks: [{
+				icon: "minecraft:chiseled_deepslate"
+				id: "4774B968D6985FF0"
+				structure: "minecraft:ancient_city"
+				type: "structure"
+			}]
+			x: -3.0d
+			y: 2.0d
+		}
+		{
+			can_repeat: true
+			dependencies: ["36CD7D99159DD6C4"]
+			hide_dependency_lines: true
+			icon: "minecraft:prismarine_shard"
+			id: "4198798DF2FCE70F"
+			optional: true
+			rewards: [{
+				id: "51BEF91813C6AE09"
+				item: "minecraft:elder_guardian_spawn_egg"
+				type: "item"
+			}]
+			subtitle: "你可以把这座遗迹变得有用起来，对吧？"
+			tasks: [
+				{
+					count: 500L
+					id: "6F64D6D77B1DFFFE"
+					item: { Count: 1500, id: "minecraft:prismarine_shard" }
+					type: "item"
+				}
+				{
+					count: 500L
+					id: "31C1DF32E411B05A"
+					item: { Count: 1500, id: "minecraft:prismarine_crystals" }
+					type: "item"
+				}
+				{
+					count: 250L
+					id: "5552D51881E48400"
+					item: { Count: 250, id: "minecraft:tropical_fish" }
+					type: "item"
+				}
+			]
+			x: -3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["5053E6915761B541"]
+			hide_dependency_lines: true
+			icon: "minecraft:totem_of_undying"
+			id: "0A4A85D1CD77DFED"
+			optional: true
+			subtitle: "你还是得想办法弄到它才行"
+			tasks: [{
+				id: "22884AFAC410AAC7"
+				type: "checkmark"
+			}]
+			title: "搞个袭击农场怎么样？"
+			x: 2.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["12EC02D403484CB7"]
+			description: ["有件事提醒你，沙子是由石英制成的。我还听说嗅探者挖沙子比你更厉害。"]
+			icon: "minecraft:quartz"
+			id: "4BD0D1E3E4475EA2"
+			subtitle: "这就是 Drunken Modpack！"
+			tasks: [
+				{
+					consume_items: false
+					id: "09C518C3FFAD3C71"
+					item: {
+						Count: 1
+						id: "minecraft:brush"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "763C0DBF572D1B09"
+					type: "checkmark"
+				}
+			]
+			title: "一场启蒙运动"
+			x: -7.0d
+			y: -5.5d
+		}
+	]
+	title: "好消息，我们拿到DM5了，哦等等……"
+}

@@ -271,8 +271,12 @@ for (const [h, items] of Object.entries(perBranch)) {
   writeFileSync(specFile, items.flatMap((x) => x.paths).join('\0'))
   const ok = gitTry(['restore', `--source=origin/farm/${h}`, '--worktree',
     '--pathspec-from-file', specFile, '--pathspec-file-nul'])
-  if (ok) { checkedOut += items.length; continue }
-  // 整批失败（通常是某个 blob 缺失）→ 退回逐包，只丢坏的那几个。
+  if (ok || gitTry(['restore', `--source=origin/farm/${h}`, '--worktree',
+    '--pathspec-from-file', specFile, '--pathspec-file-nul'])) { checkedOut += items.length; continue }
+  // 整批失败通常是本地缺 blob（ref 没变时普通 fetch 会跳过，filter 漏下的对象永远补不回来）。
+  // --refetch 会让 git 假装本地什么都没有、重新协商，是唯一可靠的补救。
+  if (!ok) netGit(['fetch', '--refetch', '--no-tags', 'origin', `+refs/heads/farm/${h}:refs/remotes/origin/farm/${h}`])
+  // 补完再来一次整批；还不行才退回逐包，只丢真正坏的那几个。
   for (const { slug, paths } of items) {
     if (gitTry(['checkout', `origin/farm/${h}`, '--', ...paths])) { checkedOut++; continue }
     lost.push(slug)

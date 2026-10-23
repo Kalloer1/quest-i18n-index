@@ -1,0 +1,128 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "insulation"
+	group: "6B3252643FCAD8BE"
+	icon: "cold_sweat:sewing_table"
+	id: "7EDF67BA79A9DB5F"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			id: "1EFB31A04A716E67"
+			shape: "square"
+			size: 1.0d
+			tasks: [{
+				block: "cold_sweat:sewing_table"
+				block_type: 0
+				disable_toast: true
+				id: "314DDA4AAACFAC39"
+				replace: false
+				replaced: "minecraft:air"
+				type: "questsadditions:place"
+				value: 1L
+			}]
+			x: 0.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["1EFB31A04A716E67"]
+			id: "7FFBB2966C3FC145"
+			tasks: [{
+				id: "7FF3D74759DFFEA6"
+				item: "naturalist:fur"
+				type: "item"
+			}]
+			x: 0.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["1EFB31A04A716E67"]
+			id: "0DB723467405A32A"
+			tasks: [{
+				id: "4ACB548D07915AB5"
+				item: "cold_sweat:goat_fur"
+				type: "item"
+			}]
+			x: 1.0d
+			y: -3.5d
+		}
+		{
+			dependencies: [
+				"0DB723467405A32A"
+				"7FFBB2966C3FC145"
+				"4077CE2430EAF914"
+			]
+			dependency_requirement: "one_completed"
+			icon: {
+				Count: 1
+				ForgeCaps: {
+					"cold_sweat:item_insulation": {
+						insulation: [ ]
+					}
+				}
+				id: "minecraft:iron_helmet"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "48E5F04D0D130D75"
+			tasks: [{
+				advancement: "cold_sweat:insulate_armor"
+				criterion: ""
+				id: "4000A22AB07F47C2"
+				type: "advancement"
+			}]
+			title: "为护甲部件添加隔热层"
+			x: 0.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["48E5F04D0D130D75"]
+			icon: {
+				Count: 1
+				id: "minecraft:iron_chestplate"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "625950B977D3904B"
+			tasks: [{
+				advancement: "cold_sweat:full_insulation"
+				criterion: ""
+				id: "217CE7FA1445F0CD"
+				type: "advancement"
+			}]
+			title: "穿戴一套完全绝缘的盔甲套装"
+			x: 0.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["1EFB31A04A716E67"]
+			id: "4077CE2430EAF914"
+			tasks: [{
+				id: "58F89B04FA5E996B"
+				item: "minecraft:white_wool"
+				type: "item"
+			}]
+			x: -1.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["625950B977D3904B"]
+			icon: "cold_sweat:sewing_table"
+			id: "6F85CCDA2FE74AE9"
+			shape: "hexagon"
+			size: 2.0d
+			tasks: [{
+				id: "0D382BC70C5AA9AD"
+				type: "checkmark"
+			}]
+			title: "盔甲隔热层"
+			x: 0.0d
+			y: 0.0d
+		}
+	]
+	title: "盔甲隔热层"
+}

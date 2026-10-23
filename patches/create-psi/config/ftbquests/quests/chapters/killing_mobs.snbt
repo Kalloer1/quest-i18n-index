@@ -1,0 +1,150 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "rsquare"
+	filename: "killing_mobs"
+	group: "29D6E94A51276552"
+	id: "0DF74A23A3446E74"
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			id: "53A024FB963B112E"
+			subtitle: "- 不需要经验值 + 不需要红石"
+			tasks: [{
+				id: "7B62B49E50B090A4"
+				item: "mob_grinding_utils:spikes"
+				type: "item"
+			}]
+			x: 5.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["53A024FB963B112E"]
+			id: "6F8724E3B52E4C89"
+			tasks: [{
+				entity: "minecraft:zombie"
+				icon: "minecraft:zombie_head"
+				id: "3B6391602130480C"
+				type: "kill"
+				value: 100L
+			}]
+			x: 2.0d
+			y: 2.0d
+		}
+		{
+			id: "4CB3B283F767A776"
+			tasks: [{
+				id: "2F0B66F2F75D981D"
+				item: "mob_grinding_utils:ender_inhibitor_on"
+				type: "item"
+			}]
+			x: -5.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["6F8724E3B52E4C89"]
+			id: "15B9913FFCFD60C6"
+			tasks: [{
+				count: 4L
+				id: "63B59363AE1C013D"
+				item: "create:experience_block"
+				type: "item"
+			}]
+			x: -2.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["15B9913FFCFD60C6"]
+			id: "589910E0437BCA72"
+			subtitle: "+ 提供经验值 - 需要红石"
+			tasks: [{
+				id: "3F85C9CE6CC88CC0"
+				item: "mob_grinding_utils:saw"
+				type: "item"
+			}]
+			x: 2.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["589910E0437BCA72"]
+			id: "24F9854EABC62D06"
+			rewards: [{
+				id: "32A03E51BCF92FAC"
+				item: {
+					Count: 1
+					id: "relics:spatial_sign"
+					tag: {
+						abilities: {
+							seal: {
+								points: 0
+								stats: {
+									time: 3.97942d
+								}
+							}
+						}
+					}
+				}
+				type: "item"
+			}]
+			tasks: [{
+				entity: "minecraft:blaze"
+				icon: "tconstruct:blaze_head"
+				id: "71DA19B492CD6F72"
+				type: "kill"
+				value: 15L
+			}]
+			x: 2.0d
+			y: -6.0d
+		}
+		{
+			dependencies: ["24F9854EABC62D06"]
+			description: [""]
+			id: "1A29C9F7DCBA6379"
+			rewards: [{
+				icon: "mob_grinding_utils:saw_upgrade_smite"
+				id: "1DE0A3B8F510A8CB"
+				table_id: 2615280018611105004L
+				type: "random"
+			}]
+			shape: "square"
+			size: 2.0d
+			tasks: [
+				{
+					id: "43316A691FAD0FC4"
+					item: "mob_grinding_utils:saw_upgrade_fire"
+					type: "item"
+				}
+				{
+					id: "2AA58B87542DF0B7"
+					item: "mob_grinding_utils:saw_upgrade_smite"
+					type: "item"
+				}
+				{
+					id: "61FBE922C51054F5"
+					item: "mob_grinding_utils:saw_upgrade_arthropod"
+					type: "item"
+				}
+				{
+					id: "1D0853DE39B33FB9"
+					item: "mob_grinding_utils:saw_upgrade_beheading"
+					type: "item"
+				}
+				{
+					id: "43CE6F07B36887DA"
+					item: "mob_grinding_utils:saw_upgrade_looting"
+					type: "item"
+				}
+				{
+					id: "361882D3C32EB2D8"
+					item: "mob_grinding_utils:saw_upgrade_sharpness"
+					type: "item"
+				}
+			]
+			title: "升级中 &c[更困难]"
+			x: -2.0d
+			y: -2.0d
+		}
+	]
+	title: "击杀生物 (Killing Mobs)"
+}

@@ -1,0 +1,620 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "mana_and_artifice"
+	group: "453E7236E8A1CE1D"
+	icon: {
+		Count: 1
+		id: "mahoutsukai:mystic_staff"
+		tag: {
+			Damage: 0
+		}
+	}
+	id: "66C049AA3FC80907"
+	order_index: 8
+	quest_links: [ ]
+	quests: [
+		{
+			id: "427949ADC0688536"
+			tasks: [{
+				id: "2B58D01262DEB6B7"
+				title: "神秘之路"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["427949ADC0688536"]
+			id: "04F60E3B0D1C75DB"
+			tasks: [{
+				id: "2E64C103EAC4778C"
+				item: "mahoutsukai:mortar_and_pestle"
+				type: "item"
+			}]
+			x: -1.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["427949ADC0688536"]
+			description: ["右键点击即可用你的法力填充它"]
+			id: "658E7094AFD5CFD8"
+			tasks: [{
+				id: "4DFFD1AE7396BBF7"
+				item: {
+					Count: 1
+					ForgeCaps: {
+						Parent: {
+							MAHOUTSUKAI_GEM_STORED_MANA: 0
+						}
+					}
+					id: "mahoutsukai:attuned_diamond"
+				}
+				type: "item"
+			}]
+			title: "主要法力存储装置"
+			x: 1.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["427949ADC0688536"]
+			description: ["这是该模组的基地。用这把匕首右键，然后按 M 键创建一个血圈"]
+			id: "745F8200E3B24C55"
+			tasks: [{
+				id: "55BAC396A14E1F3D"
+				item: "mahoutsukai:dagger"
+				type: "item"
+			}]
+			x: 0.0d
+			y: -2.0d
+		}
+		{
+			dependencies: [
+				"04F60E3B0D1C75DB"
+				"745F8200E3B24C55"
+			]
+			description: ["现阶段获取法力最快的方法是用这个仪式。放置一个箱子，用 M 键在箱子上画一个血圈。之后加入 2 个绿宝石粉和 1 个钻石粉。然后你就可以把工具放进这个箱子里，它会慢慢为你补充法力"]
+			id: "2B263F9771F6CABC"
+			tasks: [
+				{
+					count: 2L
+					id: "3CF7F2C50CE45376"
+					item: { Count: 2, id: "mahoutsukai:powdered_emerald" }
+					type: "item"
+				}
+				{
+					id: "78E765513F6A2781"
+					item: "mahoutsukai:powdered_diamond"
+					type: "item"
+				}
+				{
+					id: "2D94575D5C198E26"
+					item: "minecraft:chest"
+					type: "item"
+				}
+			]
+			title: "第一次仪式"
+			x: 0.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["745F8200E3B24C55"]
+			description: ["用魔法粉尘放置一个血圈，用它来创造卷轴"]
+			id: "04E204770643781B"
+			rewards: [{
+				id: "25B84878602611D6"
+				item: "rats:token_fragment"
+				type: "item"
+			}]
+			tasks: [{
+				id: "6C162F72B62FDA0B"
+				item: "mahoutsukai:spell_cloth"
+				type: "item"
+			}]
+			x: 1.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["04E204770643781B"]
+			icon: {
+				Count: 1
+				id: "mahoutsukai:spatial_disorientation_staff"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "67326861C81F1C15"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "4A6BBEA6C3F42278"
+				table_id: 1161136048364702684L
+				type: "random"
+			}]
+			tasks: [
+				{
+					count: 2L
+					id: "3E7BFC4140A113B6"
+					item: { Count: 2, id: "mahoutsukai:powdered_gold" }
+					type: "item"
+				}
+				{
+					id: "2A70BF4F4C3807A5"
+					item: "mahoutsukai:powdered_ender"
+					type: "item"
+				}
+				{
+					id: "0F0DE73CF80388BF"
+					item: {
+						Count: 1
+						ForgeCaps: {
+							Parent: {
+								MAHOUTSUKAI_CASTER_NAME: "Doctor_Pug"
+								MAHOUTSUKAI_CASTER_UUID: [I;
+									-1168376712
+									105857257
+									-1870683321
+									-930265206
+								]
+							}
+						}
+						id: "mahoutsukai:scroll_spatial_disorientation"
+					}
+					type: "item"
+				}
+			]
+			title: "空间定向障碍"
+			x: -3.0d
+			y: -6.5d
+		}
+		{
+			dependencies: ["04E204770643781B"]
+			icon: {
+				Count: 1
+				id: "mahoutsukai:weapon_projectile_bow"
+				tag: {
+					Damage: 0
+					affix_data: {
+						sockets: 1
+					}
+				}
+			}
+			id: "0546D34F8D18CCA0"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "2870024867AA76CA"
+				table_id: 1161136048364702684L
+				type: "random"
+			}]
+			tasks: [
+				{
+					id: "0E75394EEA8161B1"
+					item: "mahoutsukai:powdered_gold"
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "68FF011AC82BA99B"
+					item: { Count: 2, id: "mahoutsukai:powdered_diamond" }
+					type: "item"
+				}
+			]
+			title: "武器投射物之弓 (Bow of Weapon Projectiles)"
+			x: -1.5d
+			y: -5.5d
+		}
+		{
+			dependencies: ["04E204770643781B"]
+			icon: {
+				Count: 1
+				ForgeCaps: {
+					Parent: {
+						MAHOUTSUKAI_CASTER_NAME: ""
+					}
+				}
+				id: "mahoutsukai:scroll_familiars_garden"
+			}
+			id: "541C9B376C764307"
+			tasks: [{
+				count: 3L
+				id: "5FC0DD3AECFC02AF"
+				item: { Count: 3, id: "mahoutsukai:powdered_diamond" }
+				type: "item"
+			}]
+			title: "现实魔方"
+			x: -4.5d
+			y: -6.5d
+		}
+		{
+			dependencies: ["04E204770643781B"]
+			icon: {
+				Count: 1
+				id: "mahoutsukai:treasury_projection_gauntlet"
+				tag: {
+					MAHOUTSUKAI_TREASURY_MODE: 1
+				}
+			}
+			id: "549F06EB3E709FEA"
+			tasks: [
+				{
+					id: "4A89B5CE2813AC5D"
+					item: "mahoutsukai:powdered_eye"
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "3F18EDE8D66E5E1B"
+					item: { Count: 2, id: "mahoutsukai:powdered_diamond" }
+					type: "item"
+				}
+			]
+			x: -1.5d
+			y: -6.5d
+		}
+		{
+			dependencies: ["04E204770643781B"]
+			icon: {
+				Count: 1
+				id: "mahoutsukai:proximity_projection_keys"
+				tag: {
+					Damage: 0
+					Enchantments: [{
+						id: "minecraft:knockback"
+						lvl: 2s
+					}]
+				}
+			}
+			id: "01473124D31DDF65"
+			tasks: [
+				{
+					count: 2L
+					id: "0F6533B30A3C81B0"
+					item: { Count: 2, id: "mahoutsukai:powdered_diamond" }
+					type: "item"
+				}
+				{
+					id: "4A140755A9E7F5BA"
+					item: "mahoutsukai:powdered_ender"
+					type: "item"
+				}
+			]
+			title: "黑色钥匙"
+			x: -3.0d
+			y: -5.5d
+		}
+		{
+			dependencies: ["04E204770643781B"]
+			description: ["快跑，索尼克，快跑！"]
+			icon: {
+				Count: 1
+				ForgeCaps: {
+					Parent: {
+						MAHOUTSUKAI_CASTER_NAME: ""
+					}
+				}
+				id: "mahoutsukai:scroll_insight"
+			}
+			id: "5E0EE6759F946B87"
+			tasks: [{
+				count: 3L
+				id: "74256DA879A19B34"
+				item: { Count: 3, id: "mahoutsukai:powdered_gold" }
+				type: "item"
+			}]
+			title: "借来的权威"
+			x: -1.5d
+			y: -7.5d
+		}
+		{
+			dependencies: ["04E204770643781B"]
+			icon: {
+				Count: 1
+				id: "mahoutsukai:theripper"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "2F419F4BA55D5042"
+			tasks: [
+				{
+					id: "54836370C4FF4145"
+					item: "mahoutsukai:powdered_ender"
+					type: "item"
+				}
+				{
+					id: "4374C0FD9657E2B1"
+					item: "mahoutsukai:powdered_iron"
+					type: "item"
+				}
+				{
+					id: "7BAE8242296E6E8F"
+					item: "mahoutsukai:powdered_diamond"
+					type: "item"
+				}
+			]
+			title: "裂口人（The Ripper）"
+			x: -3.0d
+			y: -7.5d
+		}
+		{
+			dependencies: ["04E204770643781B"]
+			icon: {
+				Count: 1
+				ForgeCaps: {
+					Parent: {
+						MAHOUTSUKAI_CASTER_NAME: ""
+					}
+				}
+				id: "mahoutsukai:scroll_fay_sight"
+			}
+			id: "05964E04B6070BE8"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "065E85948DD1E194"
+				table_id: 1161136048364702684L
+				type: "random"
+			}]
+			tasks: [
+				{
+					id: "7B980A27CDE372F1"
+					item: "mahoutsukai:powdered_gold"
+					type: "item"
+				}
+				{
+					id: "79210A5A48D5A3D9"
+					item: "mahoutsukai:powdered_iron"
+					type: "item"
+				}
+				{
+					id: "4FB64116BE3D966D"
+					item: "mahoutsukai:powdered_ender"
+					type: "item"
+				}
+			]
+			title: "坠落了"
+			x: -4.5d
+			y: -7.5d
+		}
+		{
+			dependencies: ["04E204770643781B"]
+			icon: {
+				Count: 1
+				id: "mahoutsukai:mystic_staff"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "1019E1E09389A98D"
+			tasks: [
+				{
+					count: 2L
+					id: "0C8AF3753B499278"
+					item: { Count: 2, id: "mahoutsukai:powdered_gold" }
+					type: "item"
+				}
+				{
+					id: "16ED98445C125855"
+					item: "mahoutsukai:powdered_diamond"
+					type: "item"
+				}
+			]
+			title: "BAKURETSU"
+			x: -4.5d
+			y: -5.5d
+		}
+		{
+			dependencies: ["04E204770643781B"]
+			icon: {
+				Count: 1
+				ForgeCaps: {
+					Parent: {
+						MAHOUTSUKAI_CASTER_NAME: ""
+					}
+				}
+				id: "mahoutsukai:scroll_strengthening"
+			}
+			id: "7AC8D003E2AD347B"
+			tasks: [
+				{
+					count: 2L
+					id: "4CC169252D5033F9"
+					item: { Count: 2, id: "mahoutsukai:powdered_diamond" }
+					type: "item"
+				}
+				{
+					id: "7CC691F1376064B6"
+					item: "mahoutsukai:powdered_iron"
+					type: "item"
+				}
+			]
+			title: "卷轴：力量增强卷轴"
+			x: 1.0d
+			y: -5.5d
+		}
+		{
+			dependencies: ["04E204770643781B"]
+			icon: {
+				Count: 1
+				ForgeCaps: {
+					Parent: {
+						MAHOUTSUKAI_CASTER_NAME: ""
+					}
+				}
+				id: "mahoutsukai:scroll_damage_exchange"
+			}
+			id: "0F170361BF5158A8"
+			tasks: [
+				{
+					id: "5627A49705E18F7F"
+					item: "mahoutsukai:powdered_iron"
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "1E00A0CDF226B310"
+					item: { Count: 2, id: "mahoutsukai:powdered_emerald" }
+					type: "item"
+				}
+			]
+			title: "伤害交换卷轴"
+			x: 2.5d
+			y: -5.5d
+		}
+		{
+			dependencies: ["04E204770643781B"]
+			icon: {
+				Count: 1
+				ForgeCaps: {
+					Parent: {
+						MAHOUTSUKAI_CASTER_NAME: ""
+					}
+				}
+				id: "mahoutsukai:scroll_immunity_exchange"
+			}
+			id: "7AD3831432E51A0A"
+			tasks: [
+				{
+					id: "0279A91B89EA8F73"
+					item: "mahoutsukai:powdered_eye"
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "0566897D54FD0BF5"
+					item: { Count: 2, id: "mahoutsukai:powdered_emerald" }
+					type: "item"
+				}
+			]
+			title: "免疫卷轴交换卷轴"
+			x: 4.0d
+			y: -5.5d
+		}
+		{
+			dependencies: ["04E204770643781B"]
+			icon: {
+				Count: 1
+				ForgeCaps: {
+					Parent: {
+						MAHOUTSUKAI_CASTER_NAME: ""
+					}
+				}
+				id: "mahoutsukai:scroll_death_collection"
+			}
+			id: "5D0699CD2566B468"
+			tasks: [
+				{
+					count: 2L
+					id: "698511D02A9CAAB7"
+					item: { Count: 2, id: "mahoutsukai:powdered_eye" }
+					type: "item"
+				}
+				{
+					id: "232B835825E3F4AF"
+					item: "mahoutsukai:powdered_iron"
+					type: "item"
+				}
+			]
+			title: "神秘死亡之眼收集品"
+			x: 5.5d
+			y: -5.5d
+		}
+		{
+			dependencies: [
+				"5D0699CD2566B468"
+				"7AD3831432E51A0A"
+				"7AC8D003E2AD347B"
+				"0F170361BF5158A8"
+			]
+			description: ["要成功，你需要至少15点护甲（下界合金套即可）。使用卷轴：神秘之眼收集，通过击杀生物获得至少100个灵魂。使用卷轴：免疫交换。使用卷轴：强化，同时用副手拿着盾牌。之后使用卷轴：伤害交换，并用盾牌格挡任何生物。"]
+			icon: {
+				Count: 1
+				id: "mahoutsukai:replica"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "639D35FC212AF77A"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "51A6CA88C6F551B4"
+				table_id: 8732692944718251685L
+				type: "choice"
+			}]
+			tasks: [
+				{
+					id: "484B12B676D324C2"
+					item: {
+						Count: 1
+						ForgeCaps: {
+							Parent: {
+								MAHOUTSUKAI_CASTER_NAME: ""
+							}
+						}
+						id: "mahoutsukai:scroll_strengthening"
+					}
+					type: "item"
+				}
+				{
+					id: "4371B0993CACDA08"
+					item: {
+						Count: 1
+						ForgeCaps: {
+							Parent: {
+								MAHOUTSUKAI_CASTER_NAME: ""
+							}
+						}
+						id: "mahoutsukai:scroll_damage_exchange"
+					}
+					type: "item"
+				}
+				{
+					id: "4E41181EA6C1F9D0"
+					item: {
+						Count: 1
+						ForgeCaps: {
+							Parent: {
+								MAHOUTSUKAI_CASTER_NAME: ""
+							}
+						}
+						id: "mahoutsukai:scroll_death_collection"
+					}
+					type: "item"
+				}
+				{
+					id: "3F0FB2B72279C26C"
+					item: {
+						Count: 1
+						ForgeCaps: {
+							Parent: {
+								MAHOUTSUKAI_CASTER_NAME: ""
+							}
+						}
+						id: "mahoutsukai:scroll_immunity_exchange"
+					}
+					type: "item"
+				}
+				{
+					id: "16DFB923D79865A4"
+					item: {
+						Count: 1
+						id: "minecraft:shield"
+						tag: {
+							Damage: 0
+							Unbreakable: 1b
+							affix_data: {
+								sockets: 1
+							}
+							mahoutsukai_old_unbreakable: 0b
+							mahoutsukai_strengthened: 2
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "复制品"
+			x: 3.5d
+			y: -8.0d
+		}
+	]
+	title: "魔法师"
+}
