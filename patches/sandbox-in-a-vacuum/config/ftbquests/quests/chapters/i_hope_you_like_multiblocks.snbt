@@ -1,0 +1,228 @@
+# AI 初翻，未人工校对
+{
+	autofocus_id: "6530B027AD27D709"
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "i_hope_you_like_multiblocks"
+	group: "4410F1BCBFE2F3A2"
+	icon: {
+		Count: 1
+		id: "ftbquests:custom_icon"
+		tag: {
+			Icon: "ftblibrary:icons/time"
+		}
+	}
+	id: "603697D458F9536C"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["2800B790B6552D7A"]
+			description: [
+				"欢迎来到本整合包的新机制，多方块合成。"
+				""
+				"本整合包中，部分物品需要建造多方块结构才能制作，铁和铜矿石将引导你了解该系统。"
+				""
+				"要制作铁和铜矿石，你需要建造一个3x3x3的石块立方体，中心放一块原矿石，然后用多块合成锤敲击任意一面的中心方块即可合成矿石。"
+			]
+			icon: "minecraft:iron_ore"
+			id: "6530B027AD27D709"
+			tasks: [
+				{
+					count: 8L
+					id: "6247A122A6BBD166"
+					item: { Count: 8, id: "minecraft:iron_ore" }
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "14FB4CDDD7074321"
+					item: { Count: 8, id: "minecraft:copper_ore" }
+					type: "item"
+				}
+				{
+					id: "2CE4D6E3DE4D36DD"
+					item: "sbmb:crafting_hammer"
+					type: "item"
+				}
+			]
+			title: "肉和土豆，这才是硬菜"
+			x: 15.5d
+			y: 7.5d
+		}
+		{
+			dependencies: ["6530B027AD27D709"]
+			description: [
+				"既然我们现在有了真正的矿石，我就可以重新引入一位老朋友，区块生成器了。"
+				""
+				"不过在这个宇宙里情况有所不同，只有一个带GUI的方块可以放置来生成，此外还有升级、速度、垂直偏移、自动输出以及类型升级。"
+				""
+				"类型升级可用于生成特定方块，如矿石、鹅卵石和石材变种，因此该任务需要矿石生成器升级。"
+				""
+				"记住，EMI 是你的好帮手，它会显示配方、哪些方块可以用方块生成器生成，以及是否需要类型升级。"
+			]
+			icon: "block_generators:block_generator"
+			id: "1215ED6C92C4986E"
+			tasks: [
+				{
+					id: "6E5D61013AFE92E1"
+					item: "block_generators:block_generator"
+					type: "item"
+				}
+				{
+					id: "283E86B986EB1547"
+					item: "block_generators:ore_type_upgrade"
+					type: "item"
+				}
+			]
+			title: "区块生成器，再度回归"
+			x: 15.5d
+			y: 9.5d
+		}
+		{
+			dependencies: ["1215ED6C92C4986E"]
+			description: [
+				"我们首先要自动化的是筛选砾石，为此你需要大约 80rf/t 用于自动锤和自动筛。"
+				""
+				"要获得 80rf/t，你需要大约 6 个水轮，可能需要更多，但这应该足够了。"
+			]
+			icon: {
+				Count: 1
+				id: "ftbquests:custom_icon"
+				tag: {
+					Icon: "pneumaticcraft:textures/gui/gui_buildcraft_energy.png"
+				}
+			}
+			id: "45F48E28C995C96A"
+			tasks: [
+				{
+					id: "3B109E03D1386335"
+					item: "immersiveengineering:dynamo"
+					type: "item"
+				}
+				{
+					count: 5L
+					id: "7BD1217E91BA6581"
+					item: { Count: 6, id: "immersiveengineering:watermill" }
+					type: "item"
+				}
+			]
+			title: "力量提升"
+			x: 15.5d
+			y: 11.5d
+		}
+		{
+			dependencies: ["45F48E28C995C96A"]
+			description: [
+				"要自动化煤炭，你至少需要这些物品。当然可以扩展这个设置，但在自动化矿石和锭之前，成本可能很高。"
+				""
+				"这里有一张布局示意图，希望能帮到你："
+				""
+				"{image:kubejs:textures/screenshots/2025-08-22_14.28.40.png width:250 height:150 align:center}"
+			]
+			icon: "minecraft:coal"
+			id: "2D3D5A43F73B1C9B"
+			tasks: [
+				{
+					id: "1CE844FF4E61D7FC"
+					item: "excompressum:auto_hammer"
+					type: "item"
+				}
+				{
+					id: "7D265D694573E60B"
+					item: "excompressum:auto_sieve"
+					type: "item"
+				}
+				{
+					id: "3CE444DDD860F589"
+					item: "block_generators:cobblestone_type_upgrade"
+					type: "item"
+				}
+				{
+					id: "47DCA9D3CE7EAB28"
+					item: "block_generators:inventory_output_upgrade"
+					type: "item"
+				}
+				{
+					id: "50BBC23103440BCC"
+					item: "block_generators:block_generator"
+					type: "item"
+				}
+			]
+			title: "自动收集煤炭/钻石"
+			x: 15.5d
+			y: 13.5d
+		}
+		{
+			dependencies: ["2D3D5A43F73B1C9B"]
+			description: [
+				"要自动化矿物，你只需要带有矿物生成器升级的区块生成器，你可以使用自动输出升级来自动将矿物放入熔炉，就像示例中那样。"
+				""
+				"本来不应该需要这个，但还是给你了："
+				""
+				"{image:kubejs:textures/screenshots/2025-08-22_14.36.58.png width:250 height:150 align:center}"
+			]
+			id: "1F932F17B512E8EC"
+			tasks: [
+				{
+					id: "334B2A3745A3B384"
+					item: "minecraft:iron_ore"
+					type: "item"
+				}
+				{
+					id: "7BFDBEE177EFAD3D"
+					item: "minecraft:copper_ore"
+					type: "item"
+				}
+				{
+					id: "6E75636050187E27"
+					item: "minecraft:gold_ore"
+					type: "item"
+				}
+			]
+			title: "自动化矿石收集器"
+			x: 14.5d
+			y: 15.5d
+		}
+		{
+			dependencies: ["2D3D5A43F73B1C9B"]
+			description: [
+				"现在你已经自动化了煤炭，也可以自动化煤炭焦炭了，除非你升级了高炉，否则仍需手动投料。"
+				""
+				"再次说明，这是一个例子，但非常简单："
+				""
+				"{image:kubejs:textures/screenshots/2025-08-22_14.33.57.png width:250 height:150 align:center}"
+			]
+			id: "5FBE6C3FE4ABC6A4"
+			subtitle: "不是那种意思"
+			tasks: [{
+				count: 16L
+				id: "46DBC737961F8618"
+				item: { Count: 16, id: "immersiveengineering:coal_coke" }
+				type: "item"
+			}]
+			title: "自动化炼焦炉"
+			x: 16.5d
+			y: 15.5d
+		}
+		{
+			dependencies: [
+				"1F932F17B512E8EC"
+				"5FBE6C3FE4ABC6A4"
+			]
+			description: ["当你觉得准备好进入下一章时，完成这个任务。我会留你整理基地，并在第6章等你……"]
+			icon: "kubejs:mark"
+			id: "27E05287F89D66B3"
+			shape: "gear"
+			size: 2.0d
+			tasks: [{
+				id: "6819596F6D575677"
+				title: "准备好出发了吗？"
+				type: "checkmark"
+			}]
+			x: 15.5d
+			y: 17.5d
+		}
+	]
+	title: "中场休息"
+}

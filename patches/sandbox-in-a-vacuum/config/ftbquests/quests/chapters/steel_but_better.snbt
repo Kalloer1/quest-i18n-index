@@ -1,0 +1,152 @@
+# AI 初翻，未人工校对
+{
+	autofocus_id: "0E6FC1A276531DC3"
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	disable_toast: true
+	filename: "steel_but_better"
+	group: "7D1CA843A7CD9E37"
+	icon: "immersiveengineering:ingot_steel"
+	id: "79D9A164522CFC99"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["05A317056C34FE80"]
+			description: ["现在有焦炭了，我们就可以用1比1的比例制作钢了，而不是1比0.3，我们只需要一个沉浸式工程的炼钢炉。"]
+			icon: "kubejs:mark"
+			id: "0E6FC1A276531DC3"
+			tasks: [{
+				id: "5534CED99985F3F1"
+				title: "钢铁效率模组"
+				type: "checkmark"
+			}]
+			x: -0.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["0E6FC1A276531DC3"]
+			description: ["制作爆裂砖需要一些下界物品，但我们还没能进入下界，所以你得用虚空配方制作下界岩，岩浆块则用原版配方。"]
+			id: "0A4457AF7C888B51"
+			tasks: [
+				{
+					id: "46DBFEBB2ED42B3C"
+					item: "minecraft:netherrack"
+					type: "item"
+				}
+				{
+					id: "3A31FEF3530431AB"
+					item: "minecraft:magma_block"
+					type: "item"
+				}
+			]
+			title: "地狱岩"
+			x: -0.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["0A4457AF7C888B51"]
+			description: ["建造高炉和焦炉一样，需要一个实心的3x3x3高炉砖立方体。"]
+			id: "209CADC97D9742C7"
+			tasks: [{
+				count: 27L
+				id: "0BEF91AFDA595DB5"
+				item: { Count: 27, id: "immersiveengineering:blastbrick" }
+				type: "item"
+			}]
+			title: "简易高炉"
+			x: -0.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["209CADC97D9742C7"]
+			description: ["有了新的高炉，你终于能用少3倍的铁来炼钢了，不过要完全实现1:1的产率，我们还需要再进步一点。"]
+			id: "7D4F57FBECFCA9BB"
+			tasks: [{
+				id: "4950430759CB3A1A"
+				item: "immersiveengineering:ingot_steel"
+				type: "item"
+			}]
+			title: "终于，简易钢锭到手了"
+			x: -0.5d
+			y: 6.5d
+		}
+		{
+			dependencies: ["7D4F57FBECFCA9BB"]
+			description: [
+				"用你的钢块可以升级高炉以加快生产，建造加固高炉只需再放一个3x3x3的实心方块，并在顶部中央放置一个漏斗。"
+				""
+				"如果需要帮助搭建这些多方块结构，建议从沉浸式模组获取书籍，它会提供搭建指南，而不仅仅是这些文字。"
+			]
+			icon: "immersiveengineering:blastbrick_reinforced"
+			id: "2DBA25D631C4C41A"
+			optional: true
+			tasks: [
+				{
+					count: 27L
+					id: "1846CAC9FF58512C"
+					item: { Count: 27, id: "immersiveengineering:blastbrick_reinforced" }
+					type: "item"
+				}
+				{
+					id: "22C137C9BF731D0A"
+					item: "minecraft:hopper"
+					type: "item"
+				}
+			]
+			title: "升级你的高炉（Upgrading your blast furnace）"
+			x: 1.0d
+			y: 6.5d
+		}
+		{
+			dependencies: ["7D4F57FBECFCA9BB"]
+			description: ["下一章暂时不需要钢，但我希望你能理解流程，因为之后需要自动化。"]
+			icon: { Count: 600, id: "immersiveengineering:storage_steel" }
+			id: "2800B790B6552D7A"
+			rewards: [{
+				auto: "no_toast"
+				command: "/decstages add @p chapter4-part2-end"
+				elevate_perms: true
+				icon: "sbmb:crafting_hammer"
+				id: "7059121C24363CF3"
+				title: "解锁一种全新的合成方式？"
+				type: "command"
+			}]
+			shape: "gear"
+			size: 2.0d
+			tasks: [{
+				count: 16L
+				id: "3CB8706BBF9F35A5"
+				item: { Count: 16, id: "immersiveengineering:ingot_steel" }
+				type: "item"
+			}]
+			title: "钢铁囤积系统"
+			x: -0.5d
+			y: 8.5d
+		}
+		{
+			can_repeat: true
+			dependencies: ["2800B790B6552D7A"]
+			description: ["有些东西需要旧式的粗钢，所以你可以在这里进行转换。"]
+			disable_toast: true
+			id: "17F17ED52D0C6164"
+			optional: true
+			rewards: [{
+				auto: "no_toast"
+				id: "3B0BCA9CD98161BB"
+				item: "simplysteel:steel_ingot"
+				type: "item"
+			}]
+			tasks: [{
+				consume_items: true
+				id: "58FC7B0A6BCB3F56"
+				item: "immersiveengineering:ingot_steel"
+				type: "item"
+			}]
+			title: "钢铁转换"
+			x: 1.0d
+			y: 8.5d
+		}
+	]
+	title: "钢铁，但更出色"
+}

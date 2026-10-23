@@ -1,0 +1,108 @@
+# AI 初翻，未人工校对
+{
+	autofocus_id: "0E5AE18FA41610E4"
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "starting_tech"
+	group: "5F3AA8D056C35566"
+	icon: "pneumaticcraft:printed_circuit_board"
+	id: "339F7C6DE97E7ACE"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["04CA4BA52CA24BA5"]
+			description: ["....我们现在有那些塑料...东西，可以制作普通PCB，这些对于Thermal和Mekanism等模组来说是必需的...至少在一定程度上，因为某些东西需要特殊PCB，比如抗辐射或耐高温的。"]
+			icon: "kubejs:mark"
+			id: "0E5AE18FA41610E4"
+			tasks: [{
+				id: "6094A1AC83144B25"
+				title: "更好的PCB电路"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0E5AE18FA41610E4"]
+			description: ["既然你已经做出了原始电路板，应该知道怎么做，所以我觉得不需要再解释制作方法了。"]
+			id: "4C6464E672076AE5"
+			tasks: [
+				{
+					id: "4266E0C3912CC506"
+					item: "pneumaticcraft:empty_pcb"
+					type: "item"
+				}
+				{
+					id: "757C7C21A69BF438"
+					item: "pneumaticcraft:unassembled_pcb"
+					type: "item"
+				}
+				{
+					id: "073ED96F6B216C9F"
+					item: "pneumaticcraft:printed_circuit_board"
+					type: "item"
+				}
+			]
+			title: "制作那些印刷电路板（PCB）"
+			x: 0.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["4C6464E672076AE5"]
+			description: [
+				"不，这里不会像那座火山那么热，别担心。"
+				""
+				"这是一个热发电机，它可以用热量或燃料发电，其中一种产生的电力与一个装有3个水轮的动能发电机相当。"
+			]
+			id: "1698F541816A75BE"
+			tasks: [{
+				id: "70AA99C1D1A0D841"
+				item: "mekanismgenerators:heat_generator"
+				type: "item"
+			}]
+			title: "不愉快的回忆"
+			x: 0.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["1698F541816A75BE"]
+			description: ["生成可能需要一点时间，但你有自动化煤炭，对吧？"]
+			id: "08A0078E785DB94C"
+			rewards: [{
+				auto: "no_toast"
+				command: "/decstages add @p thermal"
+				elevate_perms: true
+				icon: "thermal:machine_frame"
+				id: "511F8942A2D6AFE4"
+				title: "解锁热力系列（Thermal Series）"
+				type: "command"
+			}]
+			tasks: [{
+				id: "475A91EB675E8BB9"
+				max_input: 1000L
+				type: "forge_energy"
+				value: 100000L
+			}]
+			title: "超超超强大的力量"
+			x: 0.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["08A0078E785DB94C"]
+			description: ["现在有了足够的电力，我们可以双倍甚至更多地采矿，可能还需要升级。"]
+			id: "04BEB2DA7D97D997"
+			shape: "gear"
+			size: 2.0d
+			tasks: [{
+				id: "3A743127D4719153"
+				item: "thermal:machine_pulverizer"
+				type: "item"
+			}]
+			title: "新鲜研磨的矿石"
+			x: 0.0d
+			y: 8.0d
+		}
+	]
+	title: "开始技术升级..."
+}

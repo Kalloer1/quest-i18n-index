@@ -1,0 +1,118 @@
+# AI 初翻，未人工校对
+{
+	autofocus_id: "14404C2AA298817E"
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "black_gold"
+	group: "5F3AA8D056C35566"
+	icon: "pneumaticcraft:oil_bucket"
+	id: "08849479C91283F0"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["27E05287F89D66B3"]
+			description: [
+				"你可能已经注意到，漂浮在太空里没有石油，你&o可以&r用有机原料制作塑料，但那是一条相当复杂的链条。"
+				""
+				"在这个宇宙里，我动用了一些关系，让你能用煤炭获取石油。 &m绝对不是抄自Factorio的&r"
+			]
+			icon: "kubejs:mark"
+			id: "14404C2AA298817E"
+			tasks: [{
+				id: "302DAA4796EB201B"
+				title: "无中生油？"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["14404C2AA298817E"]
+			description: [
+				"要制作石油，我们需要将煤炭、水和一些压力输入热气动加工厂，并加热到500°以上。"
+				""
+				"EMI 一如既往地是你的好朋友。"
+			]
+			icon: "pneumaticcraft:oil_bucket"
+			id: "711C7B73E830FE64"
+			tasks: [{
+				amount: 1000L
+				fluid: "pneumaticcraft:oil"
+				id: "62C4BB6AA97B5E6B"
+				type: "fluid"
+			}]
+			title: "石油！"
+			x: 0.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["711C7B73E830FE64"]
+			description: [
+				"既然有了原油，就需要将其提炼成液化石油气来制造塑料。"
+				""
+				"建造炼油厂需将控制器置于底部，顶部最多可放置4个输出，液化石油气需要全部4个。"
+			]
+			icon: "pneumaticcraft:lpg_bucket"
+			id: "0F21F20A43C35FD0"
+			tasks: [
+				{
+					id: "4A34FB845485F5EE"
+					item: "pneumaticcraft:refinery"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "35C01F4E01F3D610"
+					item: { Count: 4, id: "pneumaticcraft:refinery_output" }
+					type: "item"
+				}
+			]
+			title: "石油提炼"
+			x: 0.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["0F21F20A43C35FD0"]
+			description: ["用LPG我们能造出熔融塑料和...塑料，这是我们迈向普通电路和基本科技的道路。"]
+			icon: "pneumaticcraft:plastic_bucket"
+			id: "7419B5CF1C5963D4"
+			tasks: [
+				{
+					id: "44E8367B1103130F"
+					item: "pneumaticcraft:plastic_bucket"
+					type: "item"
+				}
+				{
+					id: "7D3F256719B7C7C7"
+					item: "pneumaticcraft:plastic"
+					type: "item"
+				}
+			]
+			title: "可再生塑料"
+			x: 0.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["7419B5CF1C5963D4"]
+			description: [
+				"现在有塑料了，我们就可以玩 &m乐高&r 塑料积木了！"
+				""
+				"等等不，我们不关心玩玩具，我们要PCB，我干嘛要把这个任务加进来？"
+			]
+			id: "04CA4BA52CA24BA5"
+			shape: "gear"
+			size: 2.0d
+			tasks: [{
+				count: 16L
+				id: "43ED3A00F7BED1BC"
+				item: { Count: 16, id: "pneumaticcraft:plastic_brick_white" }
+				type: "item"
+			}]
+			title: "玩耍时间到！"
+			x: 0.0d
+			y: 8.0d
+		}
+	]
+	title: "黑金"
+}
