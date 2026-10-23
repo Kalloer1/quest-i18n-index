@@ -1,0 +1,353 @@
+# AI 初翻，未人工校对
+{
+	id: "7D2BBE833EA6ED13"
+	group: "1390A8D800379122"
+	order_index: 1
+	filename: "the_nether"
+	title: "下界"
+	icon: "minecraft:warped_nylium"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: -8.0d
+			y: -2.0d
+			shape: "gear"
+			subtitle: "血液就是弹药"
+			dependencies: ["68F089D45356347C"]
+			id: "1BF15773438741A0"
+			tasks: [{
+				id: "6F4E008D19AD82A5"
+				type: "item"
+				item: {
+					id: "alexsmobs:blood_sprayer"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			x: -8.0d
+			y: -5.0d
+			shape: "gear"
+			subtitle: "蓝色的东西是弹药"
+			dependencies: [
+				"48E8DE059685D957"
+				"1BF15773438741A0"
+			]
+			id: "5CAB7AA525FB15C1"
+			tasks: [{
+				id: "47CBFE875AA1DAAD"
+				type: "item"
+				item: {
+					id: "alexsmobs:hemolymph_blaster"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			title: "扭曲的莫斯科 (Warped Mosco)"
+			x: -5.5d
+			y: -5.0d
+			shape: "heart"
+			subtitle: "击败扭曲的莫斯科（The Warped Mosco）"
+			hide_dependency_lines: true
+			dependencies: [
+				"6AA23A5FB3C37C90"
+				"68F089D45356347C"
+			]
+			id: "48E8DE059685D957"
+			tasks: [{
+				id: "052F2B4D01649A27"
+				type: "advancement"
+				title: "击败它"
+				advancement: "alexsmobs:alexsmobs/warped_mosco_kill"
+				criterion: ""
+			}]
+		}
+		{
+			x: -5.5d
+			y: 1.0d
+			subtitle: "这个幼虫以后可能会派上用场"
+			dependencies: ["68F089D45356347C"]
+			id: "39BF9C9C54C4E41A"
+			tasks: [{
+				id: "4FE59CA41540CAE5"
+				type: "item"
+				item: "alexsmobs:mosquito_larva"
+			}]
+		}
+		{
+			title: "绯红蚊子"
+			x: -8.0d
+			y: 1.0d
+			subtitle: "在下界深处遭遇这个恶心的生物"
+			hide_dependency_lines: true
+			dependencies: ["6AA23A5FB3C37C90"]
+			id: "68F089D45356347C"
+			tasks: [{
+				id: "6D949B7A718F56BC"
+				type: "advancement"
+				title: "与它相遇"
+				advancement: "alexsmobs:alexsmobs/crimson_mosquito"
+				criterion: ""
+			}]
+		}
+		{
+			title: "灵魂骑手"
+			icon: "quark:soul_bead"
+			x: -5.5d
+			y: -2.0d
+			shape: "square"
+			subtitle: "嗯，你猜怎么着？你打不开传送门。就算能开，在完成这个任务之前，你也别想进入下界。所以，开工吧。左键点击查看更多信息"
+			description: [
+				"如果你在读这个，说明你可能正打算进入下界，或者正纳闷“咦，下界要怎么进呢？”。不幸的是，事情在这里有点复杂。"
+				""
+				"长话短说，下界传送门只能用Eidolon的死神镰刀点燃。现在我们可以开始四处走动，为这一切增添一些背景故事，但你知道吗？我们很懒。"
+				""
+				"好，下面是你的任务。如果还没开始，先研究Eidolon模组。拿到Reaper's Scythe后，回来完成这个任务。之后你就能进入下界了，因为就算你现在找到点燃的下界传送门，也进不去，因为我们很刻薄。所以快去祈祷The Dark Lord，也许能得到他们的帮助☻。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["35A42F33FE263878"]
+			size: 2.0d
+			id: "13389BB26EC98AFD"
+			tasks: [{
+				id: "586364C3790DE41F"
+				type: "checkmark"
+				title: "使用收割者的镰刀点燃下界传送门"
+				icon: {
+					id: "eidolon:reaper_scythe"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "643BA67EBA9994F8"
+				type: "command"
+				title: "精神上的满足感"
+				icon: "quark:soul_bead"
+				auto: "disabled"
+				command: "/thitemstages add @p nether"
+				player_command: false
+			}]
+		}
+		{
+			icon: "minecraft:crimson_nylium"
+			x: -3.0d
+			y: -2.0d
+			shape: "square"
+			subtitle: "所有灵魂在此枯萎的地方"
+			dependencies: ["13389BB26EC98AFD"]
+			id: "6AA23A5FB3C37C90"
+			tasks: [{
+				id: "5A9EEDB4AFB44A47"
+				type: "dimension"
+				title: "前往下界 (The Nether)"
+				icon: "minecraft:crimson_fungus"
+				dimension: "minecraft:the_nether"
+			}]
+			rewards: [{
+				id: "1EE2D6745A7E910C"
+				type: "loot"
+				table_id: 5206766833681472091L
+			}]
+		}
+		{
+			x: -4.0d
+			y: -4.0d
+			shape: "square"
+			subtitle: "获取远古残骸，开始制作下界合金，这是一种比钻石还要坚固的超强材料"
+			dependencies: ["6AA23A5FB3C37C90"]
+			id: "2FD041FC05D4737B"
+			tasks: [{
+				id: "64192226767A2893"
+				type: "advancement"
+				title: "获取远古残骸 Ancient Debris"
+				advancement: "minecraft:nether/obtain_ancient_debris"
+				criterion: ""
+			}]
+		}
+		{
+			title: "投入火焰中"
+			x: -3.0d
+			y: -1.0d
+			shape: "square"
+			subtitle: "获取烈焰棒"
+			dependencies: ["6AA23A5FB3C37C90"]
+			id: "258774FD4B560646"
+			tasks: [{
+				id: "4BFF74AB6E88C6E0"
+				type: "advancement"
+				advancement: "minecraft:nether/obtain_blaze_rod"
+				criterion: ""
+			}]
+		}
+		{
+			title: "凋零骷髅头（Wither Skeleton Skull）"
+			x: -1.0d
+			y: -2.0d
+			shape: "square"
+			subtitle: "获得三个凋零骷髅头以召唤凋零，基本上就宣告自己完蛋了。左键点击查看更多信息"
+			description: [
+				"有很多方法可以让你更快地获得这些骷髅头。"
+				""
+				"- 首先，你可以使用凋灵蜜蜂，但你需要先获得一只"
+				"- 你可以用附魔了 Vorpal 的武器杀死凋零骷髅（此附魔只能在地牢中找到）"
+				"- 用斧头可以击杀凋零骷髅。这会增加掉落率，但增幅不大"
+				"- 你可以制作它们，不过成本会相当昂贵"
+				""
+				"注意，你可以使用 Eidolon 的仪式来召唤凋零骷髅。"
+			]
+			dependencies: ["6AA23A5FB3C37C90"]
+			id: "207082BC2A41473F"
+			tasks: [{
+				id: "59BE0828F229788F"
+				type: "item"
+				item: "minecraft:wither_skeleton_skull"
+				count: 3L
+			}]
+		}
+		{
+			x: -3.0d
+			y: 0.0d
+			shape: "square"
+			subtitle: "是力量，还是火焰在燃烧？"
+			dependencies: ["258774FD4B560646"]
+			id: "1C0C610A966A08EC"
+			tasks: [{
+				id: "121F174F3D8244C4"
+				type: "item"
+				item: "minecraft:blaze_powder"
+			}]
+		}
+		{
+			title: "灵魂信标"
+			icon: "minecraft:nether_star"
+			x: 1.0d
+			y: -2.0d
+			shape: "diamond"
+			subtitle: "掌握下界。左键点击查看更多信息"
+			description: [
+				"拿到头骨了？太好了。在召唤凋零之前（当然，你得击败凋零，这包里还能指望什么？），我们想花点时间给你点提示，让你更容易击败这家伙。"
+				""
+				"建议获取 Sanguine Arsenal 的 Sanguine Praetor Armor，专为对抗 Wither 而设计。更多信息请查看 'Protection - 1' 标签页。除了这套盔甲，你还可以从 Eidolon 获得 Sanguine Amulet，它能储存部分生命值供你后续使用。此外，请务必准备一把非常强大的武器，可以通过 Tinker's Construct 或 Hexblades 模组获取。"
+				""
+				""
+				""
+				"话不多说，祝你好运！下个时代再见。"
+			]
+			dependencies: ["207082BC2A41473F"]
+			size: 2.0d
+			id: "1BD61910AB0290E3"
+			tasks: [{
+				id: "5ACED7FF3F0F18AE"
+				type: "kill"
+				title: "击败凋零（The Wither）"
+				icon: "minecraft:wither_rose"
+				entity: "minecraft:wither"
+				value: 1L
+			}]
+			rewards: [
+				{
+					id: "0A67B335A7129090"
+					type: "item"
+					item: {
+						id: "endrem:wither_eye"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "110804DB24B04D0E"
+					type: "item"
+					item: {
+						id: "endrem:black_eye"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "0E742F8D6EACA626"
+					type: "item"
+					item: {
+						id: "endrem:nether_eye"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "542025480736108F"
+					type: "item"
+					item: {
+						id: "endrem:end_crystal_eye"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			x: -3.0d
+			y: 1.0d
+			shape: "square"
+			subtitle: "你可以用它们来寻找甚至点燃末地传送门。但它们无法帮助你抵达末地。无论如何，这只能在符文祭坛上获得"
+			dependencies: [
+				"663E35409B5EA827"
+				"1C0C610A966A08EC"
+			]
+			id: "49E378CCBB43F16B"
+			tasks: [{
+				id: "628136EAAC31C3B5"
+				type: "item"
+				item: "minecraft:ender_eye"
+			}]
+		}
+		{
+			x: -3.0d
+			y: -5.0d
+			shape: "diamond"
+			subtitle: "岩浆膏是下界砂浆配方所需的材料之一。它可以通过下界地牢获得，也可以用烈焰粉和一些史莱姆球合成。"
+			dependencies: ["6AA23A5FB3C37C90"]
+			id: "754A702F2CA77E02"
+			tasks: [{
+				id: "21443F4C7FEB0D2E"
+				type: "item"
+				item: "minecraft:magma_cream"
+			}]
+			rewards: [{
+				id: "2748F9F33B845432"
+				type: "loot"
+				table_id: 5206766833681472091L
+			}]
+		}
+		{
+			title: "灵魂锻造冶金术！"
+			x: -2.0d
+			y: -4.0d
+			shape: "square"
+			subtitle: "获取灵魂沙以制作下界砂浆"
+			dependencies: ["6AA23A5FB3C37C90"]
+			id: "079148BF286C8D56"
+			tasks: [{
+				id: "1FAFE4608A113257"
+				type: "item"
+				item: "minecraft:soul_sand"
+			}]
+		}
+	]
+}

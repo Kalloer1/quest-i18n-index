@@ -1,0 +1,1051 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "main_story"
+	group: "26370C45A74F4775"
+	icon: "minecraft:writable_book"
+	id: "2CCA514D4B60530E"
+	images: [
+		{
+			height: 5.5d
+			image: "void:textures/tutorial.png"
+			rotation: 0.0d
+			width: 5.0d
+			x: -7.0d
+			y: -2.5d
+		}
+		{
+			height: 3.738d
+			image: "void:textures/stages.png"
+			rotation: 0.0d
+			width: 21.2d
+			x: -0.73d
+			y: -7.9d
+		}
+	]
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["121136FAA5F10BC6"]
+			description: ["你从湿滑的地板上捡起了一把剑。用它来逃离这个黑暗的地方"]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			id: "2CDF5EAA52304D4C"
+			rewards: [{
+				auto: "invisible"
+				command: "/quests giveFirstSword"
+				elevate_perms: true
+				id: "5DACF88250F7DFE3"
+				ignore_reward_blocking: true
+				silent: true
+				team_reward: false
+				type: "command"
+			}]
+			subtitle: "环顾四周"
+			tasks: [{
+				id: "66EB8608BBCC83E1"
+				title: "迷失与遗弃，被遗忘在角落"
+				type: "checkmark"
+			}]
+			x: -8.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["2CDF5EAA52304D4C"]
+			description: [
+				"在该结构中搜寻 &e8 个箱子&r，可获得 8 个 &b图腾金块&r。用 8 个 &b图腾金块&r 合成 2 个 &e图腾金锭&r。在合成台上将 4 个 &e图腾金锭&r 合并以获得 &6boss 召唤方块&r。放置它并右键以召唤 boss。"
+				""
+				""
+				"{image:void:textures/craft.png width:200 height:60 align:center}"
+			]
+			hide_until_deps_complete: true
+			id: "5F7D5E67B2AE6B64"
+			subtitle: "收集金块 nuggets"
+			tasks: [{
+				count: 8L
+				id: "1AA06FAE4F683016"
+				item: { Count: 8, id: "l2complements:totemic_gold_nugget" }
+				type: "item"
+			}]
+			title: "恢复你的灵魂"
+			x: -8.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["5F7D5E67B2AE6B64"]
+			description: ["击败召唤的 boss 以获得子类升级物品：&d图腾金块&r。在解锁的新任务标签页中使用它以应用子类。"]
+			hide_until_deps_complete: true
+			id: "7611438097D07539"
+			rewards: [{
+				command: "/capsule fromExistingReward home_1 @s"
+				elevate_perms: true
+				id: "2B79DC4222F17F19"
+				type: "command"
+			}]
+			subtitle: "击败迷你首领"
+			tasks: [{
+				id: "61D475DE77BA1270"
+				item: "l2complements:totemic_gold_block"
+				type: "item"
+			}]
+			title: "拿回属于你自己的东西吧"
+			x: -6.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["7611438097D07539"]
+			description: [
+				"在生存世界地表某处获得的胶囊中放置结构 &e\"main_house\"&r。在建造的房屋中 &e观察&r 你的床以完成任务。"
+				""
+				""
+				"{image:void:textures/main_house.png width:100 height:100 align:center}"
+			]
+			hide_until_deps_complete: true
+			id: "008762E7633572DC"
+			subtitle: "建造你的房子"
+			tasks: [{
+				id: "261BC6BB6B077082"
+				observe_type: 0
+				timer: 0L
+				to_observe: "minecraft:white_bed"
+				type: "observation"
+			}]
+			title: "家"
+			x: -3.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["4216DBEFC4AE4253"]
+			description: ["探索世界收集一些&e金钱&r：在地下城和建筑中搜寻宝箱，并击杀生物。在&6\"商店\"&r任务标签页中购买&9任务小屋&r。将任务小屋放置在世界某处。"]
+			hide_until_deps_complete: true
+			id: "43B548EAD9560634"
+			subtitle: "收集金钱购买任务小屋"
+			tasks: [{
+				consume_items: false
+				count: 50L
+				id: "1E8FD3BD5AD6C744"
+				item: { Count: 50, id: "create_coins:copper_coin" }
+				type: "item"
+			}]
+			title: "建造任务小屋"
+			x: 0.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["43B548EAD9560634"]
+			description: [
+				"赚取足够的钱，从任务屋商人处购买&e指南针&r。指南针会指引你前往要击败的&c首领&r处。"
+				"也可以用这个来更轻松地找到&e地下地牢&r。"
+			]
+			hide_until_deps_complete: true
+			id: "3F4DE2DE70B02B6B"
+			subtitle: "在任务小屋购买指南针"
+			tasks: [{
+				id: "31D2C3F615A49FAB"
+				item: {
+					Count: 1
+					id: "explorerscompass:explorerscompass"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "获得指南针"
+			x: -3.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["3F4DE2DE70B02B6B"]
+			description: ["在指南针菜单中搜索&e\"虚空之花\"&r，找到通往地下藏身的道路。击败虚空之花，并从它那里获得&e奖杯&r。"]
+			hide_until_deps_complete: true
+			id: "1A6091863550691D"
+			min_required_tasks: 1
+			rewards: [{
+				id: "501D92C6D98DE5E2"
+				item: "moa_decor_toys:loroverde"
+				type: "item"
+			}]
+			size: 1.5d
+			subtitle: "获得一个虚空之花奖杯"
+			tasks: [{
+				id: "76AA1A7F2FC36C51"
+				item: "moa_decor_toys:loroverde"
+				type: "item"
+			}]
+			title: "击败虚空之花 (Void Blossom)"
+			x: -1.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["1A6091863550691D"]
+			description: [
+				"现在所有&e战利品箱&r都装有更高等级的优质装备！"
+				""
+				"准备好迎接下一场冒险。从&e任务小屋&r的商人处购买一个&d混沌头骨&r，并用指南针定位混沌生成器地牢：输入&e\"Labyrinth\"&r以追踪路线。"
+			]
+			hide_until_deps_complete: true
+			id: "17C39F317434ED88"
+			subtitle: "从任务屋购买混沌头骨"
+			tasks: [{
+				id: "6C49FCD8590A91E9"
+				item: {
+					Count: 1
+					id: "dungeonnowloading:skull_of_chaos"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "准备好迎接下一次冒险了"
+			x: 0.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["17C39F317434ED88"]
+			description: ["在地下城中找到&e混沌生成器&r笼子，用&d混沌头骨&r右键激活首领。用&e镐&r打破笼子一侧的角落，打开保护首领的墙壁。"]
+			hide_until_deps_complete: true
+			id: "7ACA3DC0E0346DDF"
+			rewards: [{
+				id: "063E855323A057DB"
+				item: "moa_decor_toys:creeper"
+				type: "item"
+			}]
+			size: 1.5d
+			subtitle: "获取混沌生成器奖杯"
+			tasks: [{
+				id: "4455EBCCD0616707"
+				item: "moa_decor_toys:creeper"
+				type: "item"
+			}]
+			title: "击败混沌生成器 (Defeat Chaos Spawner)"
+			x: 2.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["17C39F317434ED88"]
+			description: ["向任务屋商人购买超过12个&d末影之眼&r，找到通往&d末地&r的传送门。击败&d末影龙&r并获取它的奖杯！"]
+			hide_until_deps_complete: true
+			id: "3383EAB3D2F967C7"
+			rewards: [{
+				id: "62AD0BBAD4861B66"
+				item: "moa_decor_toys:dragondelender"
+				type: "item"
+			}]
+			size: 1.5d
+			subtitle: "获得末影龙的奖杯"
+			tasks: [{
+				id: "451BB420633E9308"
+				item: "moa_decor_toys:dragondelender"
+				type: "item"
+			}]
+			title: "击败末影龙"
+			x: 2.5d
+			y: -1.0d
+		}
+		{
+			can_repeat: true
+			dependencies: ["121136FAA5F10BC6"]
+			description: [
+				"你挖掘泥土方块，发现了一把武器"
+				""
+				"&c如果你丢失了所有装备，这个任务会一直可用。防止卡关&r"
+			]
+			hide_until_deps_complete: true
+			id: "6B2EA117349FE25A"
+			rewards: [{
+				auto: "invisible"
+				command: "/quests giveFirstSword"
+				elevate_perms: true
+				id: "7FDB64C85B7BF8C5"
+				type: "command"
+			}]
+			tasks: [{
+				consume_items: true
+				id: "46C8AE9C5ECAFFEC"
+				item: "minecraft:dirt"
+				type: "item"
+			}]
+			title: "寻找一把武器"
+			x: -10.5d
+			y: -3.0d
+		}
+		{
+			dependencies: [
+				"2CDF5EAA52304D4C"
+				"5F7D5E67B2AE6B64"
+				"7611438097D07539"
+			]
+			dependency_requirement: "one_started"
+			description: [
+				"&c如果你在教程关卡卡住了，完成这个任务&r"
+				""
+				"&c你自动完成每个教程任务，进入下一阶段并解锁教程关卡出口&r"
+			]
+			hide_dependency_lines: true
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			id: "3A88DC68C660394D"
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p complete 2CDF5EAA52304D4C"
+					elevate_perms: true
+					id: "0C4ED8824E165A93"
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p complete 5F7D5E67B2AE6B64"
+					elevate_perms: true
+					id: "4814456800EE05A1"
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @p complete 7611438097D07539"
+					elevate_perms: true
+					id: "1C2109E57BB118AB"
+					type: "command"
+				}
+			]
+			tasks: [{
+				id: "0BEACED4874076B7"
+				type: "checkmark"
+			}]
+			title: "跳过教程"
+			x: -6.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["53360FCEF97C788A"]
+			description: [
+				"击败末地守卫者"
+				""
+				"&6感谢试玩！后续内容尚未最终确定。&r"
+			]
+			hide_until_deps_complete: true
+			icon: "minecraft:structure_void"
+			id: "734C2F56CCC5DCA0"
+			rewards: [{
+				id: "75F51E4D9109BB5C"
+				item: "moa_decor_toys:shulker"
+				type: "item"
+			}]
+			size: 1.5d
+			tasks: [
+				{
+					consume_items: false
+					id: "1C0D75F6EA38F991"
+					item: "moa_decor_toys:shulker"
+					type: "item"
+				}
+				{
+					id: "57C4073E3504235D"
+					item: "minecraft:structure_void"
+					title: "演示方块"
+					type: "item"
+				}
+			]
+			title: "击败末地守卫者"
+			x: 7.5d
+			y: 5.25d
+		}
+		{
+			dependencies: ["7EF05C05E4149805"]
+			description: [
+				"击败下界合金巨兽"
+				""
+				"&6感谢试玩！后续内容尚未最终确定。&r"
+			]
+			hide_until_deps_complete: true
+			id: "75B55CD54893B875"
+			rewards: [{
+				id: "255EFC4033EF7F64"
+				item: "moa_decor_toys:piglinzombie"
+				type: "item"
+			}]
+			size: 1.5d
+			tasks: [{
+				id: "11B9774EF0552B77"
+				item: "moa_decor_toys:piglinzombie"
+				type: "item"
+			}]
+			title: "击败下界合金巨兽"
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: [
+				"3383EAB3D2F967C7"
+				"7ACA3DC0E0346DDF"
+			]
+			id: "53360FCEF97C788A"
+			tasks: [{
+				id: "7E979D0355DCD0A1"
+				item: "cataclysm:void_eye"
+				type: "item"
+			}]
+			title: "获取虚空之眼 (Obtain Eye of Void)"
+			x: 7.5d
+			y: -3.5d
+		}
+		{
+			dependencies: [
+				"3383EAB3D2F967C7"
+				"7ACA3DC0E0346DDF"
+			]
+			id: "7EF05C05E4149805"
+			tasks: [{
+				id: "4BD9AE7A53F888F9"
+				item: "cataclysm:monstrous_eye"
+				type: "item"
+			}]
+			title: "获得怪物之眼 (Eye of Monstrous)"
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			description: [
+				"&l解锁与变更：&r"
+				""
+				"&c生物：&r"
+				"只会出现普通敌人，不会出现精英怪"
+				""
+				"&e装备：&r"
+				"木制和石制齿轮"
+				""
+				"&l要解锁下一阶段：&r"
+				"&d完成教程阶段&r"
+			]
+			icon: {
+				Count: 1
+				id: "minecraft:wooden_sword"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "5A31CDCB1AEDCB43"
+			subtitle: "教程阶段"
+			tasks: [{
+				elapsedTime: 1L
+				id: "29222CB8CC722D9C"
+				type: "questsadditions:time"
+			}]
+			x: -8.5d
+			y: -7.5d
+		}
+		{
+			dependencies: [
+				"5A31CDCB1AEDCB43"
+				"7611438097D07539"
+			]
+			description: [
+				"&l解锁与变更：&r"
+				""
+				"&9子类：&r"
+				"一级和二级升级已解锁"
+				""
+				"&e装备：&r"
+				"战利品箱中的铁制装备"
+				""
+				"&a村庄&r"
+				"商店建筑已解锁！"
+				"基础建筑"
+				""
+				"&b文物：&r"
+				"以下物品可能出现在宝箱中："
+				"赌徒、狂战士、冰冻、物理、远古、深渊、镀金、有毒、法师"
+				""
+				"&l要解锁下一阶段：&r"
+				"变得更强大 - 将任意属性提升至6级。搜寻宝箱、装备新装备，并通过与敌人战斗来刷取属性。"
+			]
+			hide_dependency_lines: true
+			hide_until_deps_complete: false
+			hide_until_deps_visible: true
+			icon: {
+				Count: 1
+				id: "minecraft:stone_sword"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "490344143F4CC4FA"
+			subtitle: "第一阶段"
+			tasks: [{
+				elapsedTime: 1L
+				id: "331D324CB04629B1"
+				type: "questsadditions:time"
+			}]
+			title: "开端"
+			x: -6.5d
+			y: -7.5d
+		}
+		{
+			dependencies: [
+				"490344143F4CC4FA"
+				"4216DBEFC4AE4253"
+			]
+			description: [
+				"&l解锁与变更：&r"
+				""
+				"&c生物：&r"
+				"更强了！可能会出现新类型的生物"
+				""
+				"主世界："
+				"+僵尸、骷髅、蜘蛛、苦力怕和银鱼可能会以火焰生物的形式出现"
+				"+草莓史莱姆"
+				""
+				"下界："
+				"+炼狱烈焰（Inferno blaze）"
+				"+加特林凋零骷髅"
+				"+不稳定岩浆块"
+				"+不洁的加斯特"
+				""
+				""
+				"&e装备：&r"
+				"宝箱里的铁制装备 - 获得&9稀有&r或&d史诗&r战利品的几率更高！"
+				"宝箱中开出金色装备的几率很低"
+				""
+				"&l要解锁下一阶段：&r"
+				"击杀 &d虚空之花&r 首领"
+			]
+			hide_dependency_lines: true
+			hide_until_deps_visible: true
+			icon: {
+				Count: 1
+				id: "minecraft:iron_sword"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "7B48E1FC14C4ED3D"
+			subtitle: "第二阶段"
+			tasks: [{
+				elapsedTime: 1L
+				id: "0A188C93DD808B02"
+				type: "questsadditions:time"
+			}]
+			title: "为自己赢得一个名字，扬名立万"
+			x: -4.5d
+			y: -7.5d
+		}
+		{
+			dependencies: [
+				"7B48E1FC14C4ED3D"
+				"1A6091863550691D"
+			]
+			description: [
+				"&l解锁与变更：&r"
+				""
+				"&c生物：&r"
+				"更强了！可能会出现新类型的生物"
+				""
+				"主世界："
+				"+僵尸、蜘蛛和溺尸可能会以饥饿的实体形式出现"
+				"+加特林骷髅兵"
+				"+会飞的洞穴蜘蛛"
+				"+黑暗苦力怕"
+				"+致盲的银鱼（Blinding silverfish）"
+				"+药水史莱姆"
+				""
+				"下界："
+				"+装甲烈焰人"
+				"+喷火凋零骷髅（Spitfire wither skeleton）"
+				"+粘性岩浆块"
+				"+女王级恶魂"
+				""
+				"&9子类：&r"
+				"等级3和4的升级已解锁"
+				""
+				"&e装备：&r"
+				"宝箱中的金色齿轮"
+				""
+				"&a村庄&r"
+				"商店现已开放二级建筑"
+				""
+				"&b文物：&r"
+				"以下物品可能出现在宝箱中："
+				"弓箭手, 圣人, 完美, 达摩克利斯, 保护, 执行者, 光合作用, 吸血鬼, 阳光块, 堕落者之怒, 真菌"
+				""
+				"&l要解锁下一阶段：&r"
+				"击杀 &d末影龙&r 和 &d混沌生成器&r 首领"
+			]
+			hide_dependency_lines: true
+			hide_until_deps_visible: true
+			icon: {
+				Count: 1
+				id: "minecraft:golden_sword"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "796BE1F6613F1823"
+			subtitle: "第三阶段"
+			tasks: [{
+				elapsedTime: 1L
+				id: "745F4E6509F45150"
+				type: "questsadditions:time"
+			}]
+			title: "某个东西的国王"
+			x: -2.5d
+			y: -7.5d
+		}
+		{
+			dependencies: [
+				"796BE1F6613F1823"
+				"3383EAB3D2F967C7"
+				"7ACA3DC0E0346DDF"
+			]
+			description: [
+				"&l解锁与变更：&r"
+				""
+				"&c生物：&r"
+				"更强了！可能会出现新类型的生物"
+				""
+				"主世界："
+				"+骷髅和蜘蛛可能会以中毒生物的形式出现"
+				"+疯狂科学家僵尸"
+				"+被瘟疫感染的溺亡者"
+				"+母巢穴蜘蛛"
+				"+死亡苦力怕"
+				"+Puffer silverfish"
+				"+黑莓史莱姆"
+				""
+				"下界："
+				"+野火与余烬烈焰人"
+				"+狙击手凋零骷髅"
+				"+硬化岩浆块"
+				"+国王加斯特"
+				""
+				""
+				"&e装备：&r"
+				"宝箱中的金色齿轮 - 获得&9稀有&r或&d史诗&r战利品的几率更高！"
+				"宝箱中钻石装备的概率较低"
+				""
+				"&l要解锁下一阶段：&r"
+				"击杀 &d末地守卫&r 和 &d下界合金怪物&r 首领"
+			]
+			hide_dependency_lines: true
+			hide_until_deps_visible: true
+			icon: {
+				Count: 1
+				id: "minecraft:golden_sword"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "1CAD65F7EE60C955"
+			subtitle: "第四阶段"
+			tasks: [{
+				elapsedTime: 1L
+				id: "114D4495E4CC4DCD"
+				type: "questsadditions:time"
+			}]
+			title: "征服世界"
+			x: -0.5d
+			y: -7.5d
+		}
+		{
+			dependencies: [
+				"1CAD65F7EE60C955"
+				"75B55CD54893B875"
+				"734C2F56CCC5DCA0"
+			]
+			description: [
+				"&l解锁与变更：&r"
+				""
+				"&c生物：&r"
+				"更强了！可能会出现新类型的生物"
+				""
+				"主世界："
+				"+巨型僵尸"
+				"+狙击手骷髅"
+				"+母蜘蛛"
+				"+巨型溺尸"
+				"+洞穴蜘蛛（带网页）"
+				"+泥土苦力怕"
+				"+强化的银鱼（Tough silverfish）"
+				"+蓝莓史莱姆"
+				""
+				"下界："
+				"+Ember blaze"
+				"+粗暴的凋零骷髅"
+				"+会弹跳的岩浆立方体"
+				"+与恶魂战斗"
+				""
+				"&9子类：&r"
+				"第5级和第6级升级已解锁"
+				""
+				"&e装备：&r"
+				"宝箱里的钻石装备"
+				""
+				"&a村庄&r"
+				"商店现已开放三级建筑"
+				""
+				"&b文物：&r"
+				"以下物品可能出现在宝箱中："
+				"愤怒、贪婪、血肉、黏滑、海盗、远程射手、细胞"
+				""
+				"&l要解锁下一阶段：&r"
+				"击杀 &dNether gauntlet&r 和 &dObsidilith&r 首领"
+			]
+			hide_dependency_lines: true
+			hide_until_deps_visible: true
+			icon: {
+				Count: 1
+				id: "minecraft:diamond_sword"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "6C9E037416C55822"
+			subtitle: "第五阶段"
+			tasks: [{
+				elapsedTime: 1L
+				id: "5EC0990229924BCD"
+				type: "questsadditions:time"
+			}]
+			title: "用钻石把他们消灭掉"
+			x: 1.5d
+			y: -7.5d
+		}
+		{
+			dependencies: [
+				"6C9E037416C55822"
+				"4A8F1BA3E6E4A8F1"
+				"31F6E6B9DD7EE7E0"
+			]
+			description: [
+				"&l解锁与变更：&r"
+				""
+				"&c生物：&r"
+				"更强了！可能会出现新类型的生物"
+				""
+				"主世界："
+				"+野蛮僵尸"
+				"+喷火骷髅（Spitfire skeleton）"
+				"+野蛮溺尸"
+				"+网页蜘蛛"
+				"+苍白洞穴蜘蛛"
+				"+溺水的苦力怕"
+				"+脱水后的银鱼（Desiccated silverfish）"
+				"+焦糖史莱姆"
+				""
+				"下界："
+				"+烈焰与余烬的烈焰人军团"
+				"+Ninja wither skeleton"
+				"+Corporealshift 加斯特"
+				""
+				""
+				"&e装备：&r"
+				"宝箱中的钻石装备 - 获得&9稀有&r或&d史诗&r战利品的几率更高！"
+				"宝箱中掉落下界合金装备的几率较低"
+				""
+				"&l要解锁下一阶段：&r"
+				"击杀 &dNight lich&r 和 &dThe dead king&r 首领"
+			]
+			hide_dependency_lines: true
+			hide_until_deps_visible: true
+			icon: {
+				Count: 1
+				id: "minecraft:diamond_sword"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "25C41BCDA5F23DC2"
+			subtitle: "第六阶段"
+			tasks: [{
+				elapsedTime: 1L
+				id: "34768D47952C74A4"
+				type: "questsadditions:time"
+			}]
+			title: "篡位者"
+			x: 3.5d
+			y: -7.5d
+		}
+		{
+			dependencies: [
+				"25C41BCDA5F23DC2"
+				"312DC256381806D8"
+				"3F3FD547AD68901F"
+			]
+			description: [
+				"&l解锁与变更：&r"
+				""
+				"&c生物：&r"
+				"更强了！可能会出现新类型的生物"
+				""
+				"主世界："
+				"+冰冻的僵尸"
+				"+忍者骷髅"
+				"+会飞的蜘蛛"
+				"+冰冻的溺亡者"
+				"+女巫洞穴蜘蛛"
+				"+Doom creeper"
+				"+会飞的银色鱼人"
+				"+冰冻史莱姆"
+				""
+				"下界："
+				"+地狱烈焰烈焰人"
+				"+半砖恶魂"
+				""
+				"&9子类：&r"
+				"第7级和第8级升级已解锁"
+				""
+				"&e装备：&r"
+				"箱子里的下界合金装备"
+				""
+				"&a村庄&r"
+				"商店现已开放4级建筑"
+				""
+				"&l要解锁下一阶段：&r"
+				"击杀 &dLeviathan&r、&dAncient remnant&r、&dHarbinger&r 和 &dIgnis&r 首领"
+			]
+			hide_dependency_lines: true
+			hide_until_deps_visible: true
+			icon: {
+				Count: 1
+				id: "minecraft:netherite_sword"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "734D7A4A0EB8651F"
+			subtitle: "第七阶段"
+			tasks: [{
+				elapsedTime: 1L
+				id: "2F99CE9AEF2E54FB"
+				type: "questsadditions:time"
+			}]
+			title: "国王们已经死去"
+			x: 5.5d
+			y: -7.5d
+		}
+		{
+			dependencies: [
+				"734D7A4A0EB8651F"
+				"68FA9B743C984F04"
+				"0358A8EF76A24847"
+				"4074739BA483CAEB"
+				"6A9C0A56ACD34F50"
+			]
+			description: [
+				"&l解锁与变更：&r"
+				""
+				"&6暂无更多内容！关注以获取更多更新&r"
+			]
+			hide_dependency_lines: true
+			hide_until_deps_visible: true
+			icon: {
+				Count: 1
+				id: "minecraft:netherite_sword"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "2AB68EE638285996"
+			subtitle: "第八阶段"
+			tasks: [{
+				elapsedTime: 1L
+				id: "1763DA1B1931D099"
+				type: "questsadditions:time"
+			}]
+			title: "一个时代的终结"
+			x: 7.5d
+			y: -7.5d
+		}
+		{
+			dependencies: ["008762E7633572DC"]
+			description: [
+				"探索世界，搜寻宝箱，击败敌人。收集24个图腾金块，制作迷你首领生成块。击败首领以获得毛绒玩具，并进入下一阶段。"
+				""
+				"一旦进入下一阶段，世界将变得更加危险！搜寻宝箱获取装备，并准备好你的火焰抗性药水！"
+				""
+				"&6多人游戏时，请确保所有队友都杀死了他们的迷你首领。否则，下一阶段的迷你首领会更强。&r"
+			]
+			id: "4216DBEFC4AE4253"
+			min_required_tasks: 1
+			rewards: [{
+				id: "72B8039E93942C2E"
+				item: "moa_decor_toys:murcielago"
+				type: "item"
+			}]
+			tasks: [{
+				consume_items: true
+				id: "2AFCAECD81DE1D40"
+				item: "moa_decor_toys:murcielago"
+				type: "item"
+			}]
+			title: "变得更强大吧"
+			x: -1.5d
+			y: -4.0d
+		}
+		{
+			dependencies: [
+				"75B55CD54893B875"
+				"734C2F56CCC5DCA0"
+			]
+			id: "4A8F1BA3E6E4A8F1"
+			size: 1.5d
+			tasks: [{
+				id: "6AF4453C3540AA4D"
+				item: "moa_decor_toys:cubodemagma"
+				type: "item"
+			}]
+			title: "击败下界手套 Nether Gauntlet"
+			x: 4.5d
+			y: 6.0d
+		}
+		{
+			dependencies: [
+				"734C2F56CCC5DCA0"
+				"75B55CD54893B875"
+			]
+			icon: "minecraft:structure_void"
+			id: "31F6E6B9DD7EE7E0"
+			size: 1.5d
+			tasks: [
+				{
+					id: "0F810EDC449D9004"
+					item: "moa_decor_toys:gatonegro"
+					type: "item"
+				}
+				{
+					id: "460D6155FF255479"
+					item: "minecraft:structure_void"
+					type: "item"
+				}
+			]
+			title: "击败奥布西迪利斯（Obsidilith）"
+			x: 4.5d
+			y: 3.75d
+		}
+		{
+			dependencies: [
+				"4A8F1BA3E6E4A8F1"
+				"31F6E6B9DD7EE7E0"
+			]
+			id: "312DC256381806D8"
+			size: 1.5d
+			tasks: [{
+				id: "026E6EECECD0E9AF"
+				item: "moa_decor_toys:esqueleto"
+				type: "item"
+			}]
+			title: "击败夜之巫妖 (Night Lich)"
+			x: 1.5d
+			y: 6.0d
+		}
+		{
+			dependencies: [
+				"31F6E6B9DD7EE7E0"
+				"4A8F1BA3E6E4A8F1"
+			]
+			id: "3F3FD547AD68901F"
+			size: 1.5d
+			tasks: [{
+				id: "3AEED19BECF4D558"
+				item: "moa_decor_toys:allay"
+				type: "item"
+			}]
+			title: "击败死去的国王 The Dead King"
+			x: 1.5d
+			y: 3.75d
+		}
+		{
+			dependencies: [
+				"312DC256381806D8"
+				"3F3FD547AD68901F"
+			]
+			id: "68FA9B743C984F04"
+			size: 1.5d
+			tasks: [{
+				id: "334B188B74E04246"
+				item: "moa_decor_toys:delfin"
+				type: "item"
+			}]
+			title: "击败利维坦（Leviathan）"
+			x: -1.5d
+			y: 2.25d
+		}
+		{
+			dependencies: [
+				"312DC256381806D8"
+				"3F3FD547AD68901F"
+			]
+			id: "0358A8EF76A24847"
+			size: 1.5d
+			tasks: [{
+				id: "77CA386B0634FFDE"
+				item: "moa_decor_toys:zombiemomificado"
+				type: "item"
+			}]
+			title: "击败远古遗迹生物 Ancient Remnant"
+			x: -3.75d
+			y: 3.75d
+		}
+		{
+			dependencies: [
+				"312DC256381806D8"
+				"3F3FD547AD68901F"
+			]
+			id: "4074739BA483CAEB"
+			size: 1.5d
+			tasks: [{
+				id: "2865308B8276C38A"
+				item: "moa_decor_toys:golemdehierro"
+				type: "item"
+			}]
+			title: "击败 The Harbinger"
+			x: -3.75d
+			y: 6.0d
+		}
+		{
+			dependencies: [
+				"312DC256381806D8"
+				"3F3FD547AD68901F"
+			]
+			id: "6A9C0A56ACD34F50"
+			size: 1.5d
+			tasks: [{
+				id: "7A72B05BA58539F0"
+				item: "moa_decor_toys:ghast"
+				type: "item"
+			}]
+			title: "击败 Ignis"
+			x: -1.5d
+			y: 7.5d
+		}
+		{
+			dependencies: [
+				"68FA9B743C984F04"
+				"0358A8EF76A24847"
+				"6A9C0A56ACD34F50"
+				"4074739BA483CAEB"
+			]
+			description: [
+				"感谢你的游玩！"
+				""
+				"目前游戏仍处于测试版阶段，内容到此结束。"
+				""
+				"未来计划："
+				">+ 硬核和超硬核模式 - 难度提升，奖励更丰厚"
+				">Infinite dungeons - 完成自动生成的地牢，挑战新敌人，升级你的属性和物品"
+				"更多内容 - 其他维度、更多战利品等。"
+			]
+			id: "3C86CD658A0F5C57"
+			tasks: [{
+				id: "29D6EED46AF6889A"
+				item: "minecraft:structure_void"
+				type: "item"
+			}]
+			title: "即将推出"
+			x: -8.5d
+			y: 5.0d
+		}
+	]
+	title: "主线故事"
+}
