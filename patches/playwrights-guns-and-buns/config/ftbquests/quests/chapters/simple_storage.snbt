@@ -1,0 +1,441 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "simple_storage"
+	group: "0D5EDDD394B05895"
+	id: "4A94E63E2C7A8E5A"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			id: "28C1F1C2FEA6B70C"
+			size: 2.0d
+			subtitle: "是时候开始行动了！"
+			tasks: [{
+				id: "7DEDBCCB9A75A13C"
+				item: "storagenetwork:master"
+				type: "item"
+			}]
+			x: -2.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["28C1F1C2FEA6B70C"]
+			description: ["确保这根线缆连接到根节点和一个箱子上！"]
+			id: "0FF583468A87A2C5"
+			subtitle: "连接到箱子！"
+			tasks: [{
+				id: "353718AAD1AFF27F"
+				item: "storagenetwork:storage_kabel"
+				type: "item"
+			}]
+			x: -2.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["0FF583468A87A2C5"]
+			id: "0C6A8331D2A850E0"
+			subtitle: "我可以通过这个访问所有东西吗？"
+			tasks: [{
+				id: "3EC7D5CADDB246BE"
+				item: "storagenetwork:inventory"
+				type: "item"
+			}]
+			x: -2.5d
+			y: -4.5d
+		}
+		{
+			dependencies: ["0C6A8331D2A850E0"]
+			id: "5F33DFA53204D577"
+			tasks: [{
+				id: "2A61A3FBB49C5F33"
+				item: {
+					Count: 1
+					id: "storagenetwork:inventory_remote"
+					tag: {
+						X: -138
+						Y: -60
+						Z: -41
+						bound: 1b
+						dimension: "minecraft:overworld"
+					}
+				}
+				type: "item"
+			}]
+			title: "无线连接？"
+			x: -2.5d
+			y: -6.0d
+		}
+		{
+			id: "1F5E38B25C15976B"
+			rewards: [
+				{
+					count: 16
+					id: "1B336D34A5056381"
+					item: "minecraft:leather"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "293DC78F13F7666E"
+					item: "minecraft:iron_ingot"
+					type: "item"
+				}
+				{
+					id: "695AEFD920E6A39E"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			size: 2.0d
+			subtitle: "这可不是普通的箱子，先生！"
+			tasks: [{
+				id: "09EAD9C105E5BACF"
+				item: {
+					Count: 1
+					id: "itemfilters:and"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "itemfilters:tag"
+								tag: {
+									value: "sophisticatedstorage:base_tier_wooden_storage"
+								}
+							}
+							{
+								Count: 1b
+								id: "itemfilters:tag"
+								tag: {
+									value: "forge:chests"
+								}
+							}
+						]
+					}
+				}
+				title: "复杂的箱子！Sophisticated Chests!"
+				type: "item"
+			}]
+			x: -0.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["1F5E38B25C15976B"]
+			id: "743563EEE4DF7FE3"
+			rewards: [
+				{
+					count: 4
+					id: "239B4DAAE3860B46"
+					item: "minecraft:gold_ingot"
+					type: "item"
+				}
+				{
+					id: "229D3EF261E3D33E"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			tasks: [{
+				id: "31D2E6C3533C5231"
+				item: {
+					Count: 1
+					id: "itemfilters:id_regex"
+					tag: {
+						value: "sophisticatedstorage:iron_chest"
+					}
+				}
+				title: "任意一个铁质箱子"
+				type: "item"
+			}]
+			title: "这不是铁质箱子吗？"
+			x: -0.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["743563EEE4DF7FE3"]
+			id: "38F89A8988A5626D"
+			rewards: [{
+				id: "209DD3DC27FBCD81"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+			subtitle: "出于法律原因，这是一个玩笑。"
+			tasks: [{
+				id: "5D7B359B474C54AB"
+				item: {
+					Count: 1
+					id: "itemfilters:id_regex"
+					tag: {
+						value: "sophisticatedstorage:gold_chest"
+					}
+				}
+				title: "任意的金质宝箱"
+				type: "item"
+			}]
+			title: "黄金并不显眼"
+			x: -0.5d
+			y: -4.5d
+		}
+		{
+			dependencies: ["041E887E3592BB96"]
+			id: "2BEA7E26885CE578"
+			rewards: [{
+				command: "/chunks admin extra_claim_chunks @p add 3"
+				elevate_perms: true
+				icon: "minecraft:nether_star"
+				id: "6DCB8B4C02481002"
+				title: "获得3个区块的保护效果！"
+				type: "command"
+			}]
+			tasks: [{
+				id: "4CAD641173E38B5B"
+				item: {
+					Count: 1
+					id: "itemfilters:id_regex"
+					tag: {
+						value: "sophisticatedstorage:netherite_chest"
+					}
+				}
+				type: "item"
+			}]
+			title: "兄弟，就用 Applied Energistics 吧"
+			x: -0.5d
+			y: -7.5d
+		}
+		{
+			dependencies: ["38F89A8988A5626D"]
+			id: "041E887E3592BB96"
+			rewards: [
+				{
+					id: "2F3F258E677BFFDF"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+				{
+					count: 2
+					id: "320720EF7E05D13A"
+					item: "minecraft:diamond"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "3D6AC1792F1950CB"
+				item: {
+					Count: 1
+					id: "itemfilters:id_regex"
+					tag: {
+						value: "sophisticatedstorage:diamond_chest"
+					}
+				}
+				title: "任意钻石宝箱"
+				type: "item"
+			}]
+			title: "我觉得你不应该把钻石浪费在这上面。"
+			x: -0.5d
+			y: -6.0d
+		}
+		{
+			dependencies: ["1F5E38B25C15976B"]
+			id: "36D54E514C136D64"
+			tasks: [{
+				id: "6D7DD86FA3705401"
+				item: "sophisticatedbackpacks:stack_upgrade_starter_tier"
+				type: "item"
+			}]
+			title: "增加你箱子里的物品堆叠数量！"
+			x: -0.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["36D54E514C136D64"]
+			id: "40EAE7B25CACC26B"
+			tasks: [{
+				id: "44F273918C72A95E"
+				item: "sophisticatedbackpacks:stack_upgrade_tier_1"
+				type: "item"
+			}]
+			title: "这可真是一大堆铁啊！"
+			x: -0.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["40EAE7B25CACC26B"]
+			id: "25BD94A1E89DC2D4"
+			tasks: [{
+				id: "3C1AE7557D053C3A"
+				item: "sophisticatedbackpacks:stack_upgrade_tier_2"
+				type: "item"
+			}]
+			title: "这是旧世界的货币吗？"
+			x: -0.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["25BD94A1E89DC2D4"]
+			id: "777EC4B94BD5315B"
+			subtitle: "认真的吗？"
+			tasks: [{
+				id: "064EC3466F700D65"
+				item: "sophisticatedbackpacks:stack_upgrade_tier_3"
+				type: "item"
+			}]
+			title: "8 组钻石？"
+			x: -0.5d
+			y: 5.5d
+		}
+		{
+			dependencies: ["777EC4B94BD5315B"]
+			id: "24F6C8F14A3132E6"
+			tasks: [{
+				id: "69D6763B7ADDE4D1"
+				item: "sophisticatedbackpacks:stack_upgrade_tier_4"
+				type: "item"
+			}]
+			title: "...？"
+			x: -0.5d
+			y: 7.0d
+		}
+		{
+			dependencies: ["24F6C8F14A3132E6"]
+			id: "1516B0868400CE60"
+			tasks: [{
+				id: "52F9BA317B9937BD"
+				item: "sophisticatedbackpacks:stack_upgrade_omega_tier"
+				type: "item"
+			}]
+			title: "我已吞噬凡人的精华，我已化为人魔，畏惧我吧！"
+			x: -0.5d
+			y: 8.5d
+		}
+		{
+			id: "7AA877C262473FEC"
+			rewards: [
+				{
+					count: 16
+					id: "58D4E0AC1D3ABE3E"
+					item: "minecraft:leather"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "74D15F0B39D41757"
+					item: "minecraft:iron_ingot"
+					type: "item"
+				}
+				{
+					id: "577A5B76F24F4E63"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			size: 2.0d
+			tasks: [{
+				id: "4B5507B267FC5249"
+				item: {
+					Count: 1
+					id: "itemfilters:id_regex"
+					tag: {
+						value: "sophisticatedbackpacks:backpack"
+					}
+				}
+				type: "item"
+			}]
+			title: "我在 Rari 里拿到了一把格洛克手枪"
+			x: 1.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["7AA877C262473FEC"]
+			id: "7770DAD4400BD2CC"
+			rewards: [
+				{
+					count: 4
+					id: "24BCCF0970A8D8CB"
+					item: "minecraft:gold_ingot"
+					type: "item"
+				}
+				{
+					id: "33C9D9F3004D567F"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			tasks: [{
+				id: "598A1F8373E1B70A"
+				item: {
+					Count: 1
+					id: "itemfilters:id_regex"
+					tag: {
+						value: "sophisticatedbackpacks:iron_backpack"
+					}
+				}
+				title: "铁质背包"
+				type: "item"
+			}]
+			title: "铁质背包"
+			x: 1.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["7770DAD4400BD2CC"]
+			id: "2544585083E49637"
+			rewards: [{
+				id: "1AB75D303D13F89F"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+			tasks: [{
+				id: "058A5A70539E6CB5"
+				item: "sophisticatedbackpacks:gold_backpack"
+				type: "item"
+			}]
+			x: 1.5d
+			y: -4.5d
+		}
+		{
+			dependencies: ["2544585083E49637"]
+			id: "1A6A4EDD7924CA73"
+			rewards: [
+				{
+					id: "24DF7B4147E27084"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+				{
+					count: 2
+					id: "28B7312FC19B8DA1"
+					item: "minecraft:diamond"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "4418AB48D09AA37F"
+				item: "sophisticatedbackpacks:diamond_backpack"
+				type: "item"
+			}]
+			x: 1.5d
+			y: -6.0d
+		}
+		{
+			dependencies: ["1A6A4EDD7924CA73"]
+			id: "1432ED2A2CB5CA2E"
+			rewards: [{
+				command: "/chunks admin extra_claim_chunks @p add 3"
+				elevate_perms: true
+				icon: "minecraft:nether_star"
+				id: "155925417A1EC4D3"
+				title: "获得 3 个区块以获取保护！"
+				type: "command"
+			}]
+			tasks: [{
+				id: "4BCF242EAACAD33D"
+				item: "sophisticatedbackpacks:netherite_backpack"
+				type: "item"
+			}]
+			x: 1.5d
+			y: -7.5d
+		}
+	]
+	title: "简易存储系统"
+}

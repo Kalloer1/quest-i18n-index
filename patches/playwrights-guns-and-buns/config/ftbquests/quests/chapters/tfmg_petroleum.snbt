@@ -1,0 +1,688 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "tfmg_petroleum"
+	group: "3F44C044ABB15054"
+	icon: {
+		Count: 1
+		id: "tfmg:deposit_item"
+		tag: {
+			Damage: 0
+		}
+	}
+	id: "0576D286A78C3C17"
+	images: [
+		{
+			height: 2.4d
+			image: "tfmg:block/steel_fluid_tank"
+			rotation: 0.0d
+			width: 2.4d
+			x: 2.5d
+			y: 1.5d
+		}
+		{
+			click: " "
+			height: 1.0d
+			hover: [
+				"A kilometer is 0.6214 miles"
+				"For an approximate result, divide by 1.6"
+			]
+			image: "tfmg:item/deposit_item"
+			rotation: 0.0d
+			width: 1.0d
+			x: -0.6285714285714334d
+			y: -1.5d
+		}
+		{
+			height: 1.0d
+			image: "minecraft:block/campfire_fire"
+			rotation: 0.0d
+			width: 1.0d
+			x: -0.3035714285714235d
+			y: -0.5892857142857153d
+		}
+		{
+			click: " "
+			height: 1.0d
+			image: "tfmg:block/bars/steel_bars_edge"
+			rotation: 0.0d
+			width: 1.0d
+			x: -1.0d
+			y: -1.3857142857142861d
+		}
+		{
+			height: 1.0d
+			image: "tfmg:block/bars/steel_bars_edge"
+			rotation: 0.0d
+			width: 1.0d
+			x: -1.0d
+			y: -0.5857142857142854d
+		}
+		{
+			height: 0.2d
+			image: "minecraft:block/suspicious_sand_0"
+			rotation: 0.0d
+			width: 2.0d
+			x: -0.6142857142857139d
+			y: -0.08571428571428896d
+		}
+		{
+			height: 2.4d
+			image: "tfmg:block/steel_fluid_tank"
+			rotation: 0.0d
+			width: 2.4d
+			x: 2.5d
+			y: -0.5d
+		}
+		{
+			height: 2.4d
+			image: "tfmg:block/steel_fluid_tank"
+			rotation: 0.0d
+			width: 2.4d
+			x: 2.5d
+			y: -2.5d
+		}
+		{
+			click: " "
+			height: 1.0d
+			hover: ["\"...I can explain\""]
+			image: "tfmg:block/glass_cast_iron_pipe"
+			rotation: 0.0d
+			width: 1.0d
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			height: 1.0d
+			image: "tfmg:fluid/lubrication_oil_flow"
+			order: -1
+			rotation: 0.0d
+			width: 1.0d
+			x: 4.5d
+			y: 0.0d
+		}
+	]
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: [
+				"0104893F8F3458DA"
+				"2D94489E09F8DD9C"
+				"33836F7B213ECADC"
+			]
+			description: [
+				"将 &6表面扫描仪&r 放置在 &6机器输入口&r 上方并为其供电。"
+				""
+				"顶部的25盏灯代表扫描仪最近的25个区块，中间的灯是其自身所在区块。如果对应区块中至少找到一个&6oil deposit&r，灯就会亮起。"
+				""
+				"很遗憾，它无法给你提供更多指引。开始挖掘吧！"
+			]
+			id: "2390580FE814BD81"
+			rewards: [{
+				id: "008AF5902E8E7AB4"
+				item: {
+					Count: 1
+					id: "minecraft:iron_shovel"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			shape: "hexagon"
+			subtitle: "叮咚！叮咚！叮咚！"
+			tasks: [
+				{
+					id: "5A4234988635FEDB"
+					item: "tfmg:surface_scanner"
+					type: "item"
+				}
+				{
+					id: "4125172A556B0D1F"
+					item: "tfmg:machine_input"
+					type: "item"
+				}
+			]
+			x: -2.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["2390580FE814BD81"]
+			description: ["设为可选，因为不确定石油矿床是否藏在液态石油下面。"]
+			id: "2FE6B518A4A2B5EE"
+			optional: true
+			shape: "square"
+			tasks: [{
+				icon: "tfmg:oil_deposit"
+				id: "444DC0A8827FE11A"
+				observe_type: 0
+				timer: 0L
+				title: "寻找石油"
+				to_observe: "tfmg:oil_deposit"
+				type: "observation"
+			}]
+			x: -4.0d
+			y: 0.5d
+		}
+		{
+			dependencies: [
+				"0104893F8F3458DA"
+				"2D94489E09F8DD9C"
+				"2390580FE814BD81"
+			]
+			icon: "tfmg:pumpjack_crank"
+			id: "0EB0A302142AB2F6"
+			rewards: [{
+				count: 8
+				id: "6B83916BB00ABD0E"
+				item: "tfmg:industrial_pipe"
+				type: "item"
+			}]
+			shape: "hexagon"
+			subtitle: "把它抽出来。"
+			tasks: [
+				{
+					id: "3D267AA1F30D929E"
+					item: "tfmg:pumpjack_crank"
+					type: "item"
+				}
+				{
+					id: "2DF0E51421C1F48C"
+					item: "tfmg:pumpjack_base"
+					type: "item"
+				}
+				{
+					id: "6644AB277060A507"
+					item: "tfmg:machine_input"
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "32B60F3CE32F0BB0"
+					item: { Count: 8, id: "tfmg:industrial_pipe" }
+					type: "item"
+				}
+				{
+					id: "122238D0A676879F"
+					item: "tfmg:pumpjack_hammer"
+					type: "item"
+				}
+			]
+			title: "Pumpjack Essentials"
+			x: -2.5d
+			y: 2.0d
+		}
+		{
+			dependencies: [
+				"1D8F19B5A2A1D53F"
+				"1E05885058530B7D"
+			]
+			dependency_requirement: "one_completed"
+			description: [
+				"将原油输入到 &6蒸馏控制器&r 中，并从各个输出端口获取产物。"
+				""
+				"需要烈焰人燃烧器加热。钢制储罐可以是1x1、2x2或3x3，尺寸越大可容纳更多热量，从而提高蒸馏速率。"
+				""
+				"{@pagebreak}"
+				"最低高度的塔楼有三个输出，可生产&0重油&r、&6柴油&r和&e汽油&r"
+				""
+				"再添加两个输出，你就可以制作&7LPG&r和&9煤油&r了"
+				""
+				"多一个输出可以让你提取&4石脑油&r"
+				""
+				"可将输出设为溢出流体无效化，或在满时停止精炼，以防止浪费油。"
+			]
+			icon: "tfmg:steel_distillation_controller"
+			id: "677179FC764889AB"
+			rewards: [{
+				count: 4
+				id: "4B56D7D8F8290848"
+				item: "tfmg:steel_fluid_tank"
+				type: "item"
+			}]
+			shape: "hexagon"
+			subtitle: "建造一座蒸馏塔。"
+			tasks: [
+				{
+					id: "6C1F8E82BD1C2E8A"
+					item: "tfmg:steel_distillation_controller"
+					type: "item"
+				}
+				{
+					count: 3L
+					id: "794DEE5E58D4DC60"
+					item: { Count: 4, id: "tfmg:steel_distillation_output" }
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "78A137045A66436C"
+					item: { Count: 2, id: "tfmg:industrial_pipe" }
+					type: "item"
+				}
+				{
+					count: 6L
+					id: "6DE67C73360B75E9"
+					item: "tfmg:steel_fluid_tank"
+					type: "item"
+				}
+				{
+					count: 5L
+					id: "5CC5CF58A6D6B7AC"
+					item: "tfmg:steel_distillation_output"
+					optional_task: true
+					title: "升级 1"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "63763F6957F2DD8E"
+					item: "tfmg:industrial_pipe"
+					optional_task: true
+					title: "升级 1"
+					type: "item"
+				}
+				{
+					count: 10L
+					id: "75D7F3FA18276DEB"
+					item: "tfmg:steel_fluid_tank"
+					optional_task: true
+					title: "升级 1"
+					type: "item"
+				}
+				{
+					count: 6L
+					id: "22095F51B5F54CD2"
+					item: "tfmg:steel_distillation_output"
+					optional_task: true
+					title: "升级 2"
+					type: "item"
+				}
+				{
+					count: 5L
+					id: "00A0F07DA5F729DA"
+					item: "tfmg:industrial_pipe"
+					optional_task: true
+					title: "升级 2"
+					type: "item"
+				}
+				{
+					count: 12L
+					id: "25C99E2DE90BBEF9"
+					item: "tfmg:steel_fluid_tank"
+					optional_task: true
+					title: "升级 2"
+					type: "item"
+				}
+			]
+			title: "酿酒区 (Distillery District)"
+			x: 0.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["677179FC764889AB"]
+			id: "2F654FE55B656C8F"
+			optional: true
+			tasks: [{
+				id: "09D394D210EF215A"
+				item: "tfmg:gasoline_bucket"
+				type: "item"
+			}]
+			x: 2.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["677179FC764889AB"]
+			id: "7084CBB269F318CA"
+			optional: true
+			tasks: [{
+				id: "2D8A1DE158AE7DA5"
+				item: "tfmg:diesel_bucket"
+				type: "item"
+			}]
+			x: 2.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["677179FC764889AB"]
+			id: "5281F41454A7B6E2"
+			optional: true
+			tasks: [{
+				id: "7824D651165C574A"
+				item: "tfmg:heavy_oil_bucket"
+				type: "item"
+			}]
+			x: 2.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["0EB0A302142AB2F6"]
+			id: "2EE8B64783E0B1D4"
+			optional: true
+			tasks: [{
+				id: "2D5DF8BB28EB0E31"
+				item: "tfmg:crude_oil_bucket"
+				type: "item"
+			}]
+			x: -2.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["677179FC764889AB"]
+			id: "662C080039B7E4EF"
+			optional: true
+			tasks: [{
+				id: "34FC6B1B639AA0E5"
+				item: "tfmg:lpg_bucket"
+				type: "item"
+			}]
+			x: 2.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["677179FC764889AB"]
+			id: "02ED12A438EF1D98"
+			optional: true
+			tasks: [{
+				id: "486A107ABD6A4107"
+				item: "tfmg:kerosene_bucket"
+				type: "item"
+			}]
+			x: 2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["677179FC764889AB"]
+			id: "2D21CACAECBC528B"
+			optional: true
+			tasks: [{
+				id: "14CCF8A0D1330BBE"
+				item: "tfmg:naphtha_bucket"
+				type: "item"
+			}]
+			x: 2.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["3CAA0B93CE0D600A"]
+			id: "46A96172077F9772"
+			optional: true
+			tasks: [{
+				id: "4BF2D9D0529F1BE6"
+				item: "tfmg:lubrication_oil_bucket"
+				type: "item"
+			}]
+			x: 4.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["5281F41454A7B6E2"]
+			description: [
+				"提炼重油有助于从炼油厂中榨出更多燃料，并提供一种新产品：&e润滑油&r。"
+				""
+				"重油蒸馏装置可能有不同的输出数量。"
+				""
+				"最低产出量为三种：&e润滑油&r、&6柴油&r，以及一半的&0重油&r（所以得倒回去...）"
+				""
+				"添加输出物可获得&9煤油&r"
+				""
+				"添加另一个输出会给你 &4石脑油&r"
+			]
+			icon: "tfmg:steel_distillation_controller"
+			id: "3CAA0B93CE0D600A"
+			optional: true
+			shape: "octagon"
+			subtitle: "来吧，宝贝，该进行你下午3点的蒸馏了。"
+			tasks: [
+				{
+					icon: "tfmg:steel_distillation_controller"
+					id: "224EB2442936009D"
+					title: "再加工中"
+					type: "custom"
+				}
+				{
+					id: "357E72187D53755B"
+					title: "太棒了"
+					type: "checkmark"
+				}
+			]
+			x: 4.5d
+			y: 2.0d
+		}
+		{
+			dependencies: [
+				"74DA690631920E06"
+				"677179FC764889AB"
+			]
+			description: ["如果你有 Crafts and Additions，就用烈焰人烤炉和稻草，它们超厉害的。"]
+			id: "594DF31D7CC8DFAB"
+			optional: true
+			rewards: [{
+				id: "1A3D29BA5C8505FB"
+				item: "tfmg:exhaust"
+				type: "item"
+			}]
+			subtitle: "像烈焰炉一样，但使用燃料和二氧化碳。"
+			tasks: [{
+				id: "1D75091E389CF09F"
+				item: "tfmg:firebox"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["5281F41454A7B6E2"]
+			id: "26E59FBA255EA2D7"
+			optional: true
+			rewards: [{
+				id: "45FF62FC27F0AADA"
+				item: "tfmg:heavy_oil_bucket"
+				type: "item"
+			}]
+			tasks: [{
+				id: "27D042B28E969D9F"
+				item: "tfmg:bitumen"
+				type: "item"
+			}]
+			x: 2.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["26E59FBA255EA2D7"]
+			icon: "tfmg:liquid_asphalt_bucket"
+			id: "3B1CA60E21C0B278"
+			optional: true
+			rewards: [{
+				count: 16
+				id: "6129159D2D2BB0A9"
+				item: "tfmg:asphalt_mixture"
+				type: "item"
+			}]
+			subtitle: "倒入并等待其干燥。"
+			tasks: [
+				{
+					id: "5584CDA18B75A607"
+					item: "tfmg:liquid_asphalt_bucket"
+					optional_task: true
+					type: "item"
+				}
+				{
+					count: 16L
+					id: "3084E8FE8BC96569"
+					item: { Count: 16, id: "tfmg:asphalt_mixture" }
+					type: "item"
+				}
+			]
+			x: 4.0d
+			y: 3.5d
+		}
+		{
+			id: "33836F7B213ECADC"
+			shape: "octagon"
+			size: 1.5d
+			subtitle: "我把它喝了个精光！"
+			tasks: [{
+				id: "06F88D5FA95A903F"
+				type: "checkmark"
+			}]
+			title: "我喝掉你的奶昔！"
+			x: -2.5d
+			y: -1.0d
+		}
+		{
+			dependencies: [
+				"2FE6B518A4A2B5EE"
+				"6D7CC9EA47063963"
+			]
+			description: [
+				"&o\"等等，它们是有限的？\"&r"
+				""
+				"是的，但有一个配置选项可以让它们变成无限的。"
+			]
+			id: "184976FBAD10DA79"
+			optional: true
+			subtitle: "用于检查一个矿床含有多少石油。"
+			tasks: [{
+				id: "37CF7CE2472DC373"
+				item: "tfmg:oil_hammer"
+				type: "item"
+			}]
+			x: -4.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["0EB0A302142AB2F6"]
+			icon: "tfmg:large_pumpjack_hammer_connector"
+			id: "1D8F19B5A2A1D53F"
+			optional: true
+			rewards: [{
+				id: "217BCE76C7EA6C92"
+				item: "tfmg:steel_block"
+				type: "item"
+			}]
+			shape: "rsquare"
+			subtitle: "功能相同但更大的抽水泵块。记得用强力胶把它粘牢！"
+			tasks: [
+				{
+					id: "06898F7BB8F3FECB"
+					item: "tfmg:large_pumpjack_hammer_part"
+					type: "item"
+				}
+				{
+					id: "06B91DA77EC89782"
+					item: "tfmg:large_pumpjack_hammer_head"
+					type: "item"
+				}
+				{
+					id: "326D58761E184F43"
+					item: "tfmg:large_pumpjack_hammer_connector"
+					type: "item"
+				}
+				{
+					id: "47A4061428A31BAD"
+					item: {
+						Count: 1
+						id: "create:super_glue"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "替代式抽水泵"
+			x: -1.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["0EB0A302142AB2F6"]
+			description: [
+				"这些只是制作一个能用的抽油机所需的最低限度的方块。"
+				""
+				"就像任何其他创造机制一样，只要主臂完整，你就可以用&a强力胶水&r把几乎所有东西都粘在抽油机上。"
+			]
+			icon: "tfmg:pumpjack_hammer_connector"
+			id: "1E05885058530B7D"
+			optional: true
+			rewards: [{
+				id: "486DAC4648509930"
+				item: "tfmg:steel_block"
+				type: "item"
+			}]
+			shape: "rsquare"
+			subtitle: "一个看起来很普通的抽油机。记得用强力胶把它粘牢！"
+			tasks: [
+				{
+					id: "5F51803446272C6D"
+					item: "tfmg:pumpjack_hammer_part"
+					type: "item"
+				}
+				{
+					id: "391127A10B627903"
+					item: "tfmg:pumpjack_hammer_head"
+					type: "item"
+				}
+				{
+					id: "42C150A188A2F9B2"
+					item: "tfmg:pumpjack_hammer_connector"
+					type: "item"
+				}
+				{
+					id: "5A4B5048FE1CFC0A"
+					item: {
+						Count: 1
+						id: "create:super_glue"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "Pumpjack"
+			x: -1.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["46A96172077F9772"]
+			id: "32D4AD5940C185C3"
+			optional: true
+			subtitle: "右键点击润滑液罐以填充油罐。将其用于引擎可节省约30%的燃料。"
+			tasks: [{
+				id: "6C5A14450C92DF97"
+				item: {
+					Count: 1
+					id: "tfmg:oil_can"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: 5.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["677179FC764889AB"]
+			description: [
+				"投入各种燃料来照亮这片区域。"
+				""
+				"兼容：&e炉气、原油、重油、柴油、煤油、石脑油、汽油和液化石油气&r。"
+				""
+				"尽管它们还没有配方：&9氢气、丁烷和丙烷&r也同样有效。"
+			]
+			id: "5216C61BC0901BA4"
+			optional: true
+			subtitle: "维多利亚时代巅峰美学。"
+			tasks: [{
+				id: "31D15583140CF466"
+				item: "tfmg:gas_lamp"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 3.5d
+		}
+	]
+	title: "它们有石油"
+}
