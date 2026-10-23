@@ -1,0 +1,151 @@
+# AI 初翻，未人工校对
+{
+	always_invisible: true
+	consume_items: false
+	default_hide_dependency_lines: true
+	default_quest_shape: ""
+	disable_toast: true
+	filename: "internal"
+	group: "67F7C62F97193C63"
+	hide_quest_details_until_startable: true
+	hide_quest_until_deps_visible: true
+	id: "09CDCFA46FD07855"
+	order_index: 2
+	progression_mode: "linear"
+	quest_links: [ ]
+	quests: [
+		{
+			id: "482B4B7D968F8751"
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @s reset 6DC2433D8C45476A"
+					elevate_perms: true
+					id: "0CA66C8A87DDB262"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: false
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/execute as @s unless entity @s[predicate=cfb:in_nether] run tag @s add enter_nether"
+					elevate_perms: true
+					id: "4723792DF38A242F"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: false
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/execute in minecraft:the_nether as @s if entity @s[predicate=cfb:in_nether] at @s run tp @a[tag=enter_nether] ~ ~ ~"
+					elevate_perms: true
+					id: "07BC9853194A80B8"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: false
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/execute in minecraft:the_nether as @s[advancements={cfb-advancements:start=true},predicate=cfb:in_nether,tag=!enter_nether] run spawnpoint @a[tag=enter_nether] ~ ~ ~"
+					elevate_perms: true
+					id: "23CB5697708C52CA"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: false
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/execute in minecraft:the_nether as @s[advancements={cfb-advancements:start=true},predicate=cfb:in_nether,tag=!enter_nether] run spawnpoint @s ~ ~ ~"
+					elevate_perms: true
+					id: "38A4CE7B1BEF7C3C"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: false
+					type: "command"
+				}
+			]
+			tasks: [{
+				disable_toast: true
+				id: "16DB259CEDA03163"
+				stage: "_"
+				title: " "
+				type: "gamestage"
+			}]
+			x: -0.75d
+			y: 0.0d
+		}
+		{
+			can_repeat: true
+			dependencies: ["482B4B7D968F8751"]
+			id: "37B6CB86155F3582"
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/ftbquests change_progress @s reset 482B4B7D968F8751"
+					elevate_perms: true
+					id: "440EEED83DD413F2"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: false
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/execute as @s if entity @s[predicate=cfb:in_nether] run tag @s add exit_nether"
+					elevate_perms: true
+					id: "42D39E87044B9F9D"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: false
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/execute in minecraft:overworld as @s unless entity @s[predicate=cfb:in_nether] at @s run tp @a[tag=exit_nether] ~ ~ ~"
+					elevate_perms: true
+					id: "5A51750544E7AF95"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: false
+					type: "command"
+				}
+			]
+			tasks: [{
+				dimension: "minecraft:overworld"
+				id: "151AB0869F823FAC"
+				title: " "
+				type: "dimension"
+			}]
+			x: 0.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7C3A298A14A73595"]
+			id: "6DC2433D8C45476A"
+			rewards: [{
+				auto: "invisible"
+				command: "/function cfb:nether/set_loaded_tickets"
+				elevate_perms: true
+				id: "5AC720F77AC9A5B4"
+				ignore_reward_blocking: true
+				silent: true
+				team_reward: false
+				type: "command"
+			}]
+			tasks: [{
+				dimension: "minecraft:overworld"
+				id: "21A8950C7FFF90C2"
+				title: " "
+				type: "dimension"
+			}]
+			title: " "
+			x: -2.0d
+			y: 0.0d
+		}
+	]
+	title: "内部使用"
+}

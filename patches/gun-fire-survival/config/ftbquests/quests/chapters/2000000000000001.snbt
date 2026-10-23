@@ -1,0 +1,311 @@
+# AI 初翻，未人工校对
+{
+	id: "2000000000000001"
+	group: "0A00000000000001"
+	order_index: 1
+	filename: "2000000000000001"
+	title: "第二章：生命维持系统"
+	icon: "cold_sweat:thermometer"
+	default_quest_shape: "square"
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "建立生存清单"
+			icon: "minecraft:golden_carrot"
+			x: 0.0d
+			y: 0.0d
+			description: [
+				"第一夜只是筛选。接下来要建立不会因一次远征或一次寒潮而崩溃的维生系统。"
+				"本章包含净水温控、背包后勤、厨房供给三条分支；全部完成后汇合。"
+			]
+			dependencies: ["110000000000000A"]
+			hide: true
+			size: 1.5d
+			id: "2200000000000001"
+			tasks: [{
+				id: "2210000000000001"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "2220000000000001"
+				type: "xp"
+				xp: 50
+			}]
+		}
+		{
+			title: "可重复使用的水碗"
+			x: 3.0d
+			y: -4.0d
+			description: [
+				"制作陶碗并装满水。这是一种廉价的应急饮水方案；更适合远征的容器将在下一步出现。"
+				"不熟悉配方，请在 JEI 中搜索 @thirst。"
+			]
+			dependencies: ["2200000000000001"]
+			id: "2200000000000002"
+			tasks: [
+				{
+					id: "2210000000000002"
+					type: "item"
+					item: "thirst:terracotta_bowl"
+				}
+				{
+					id: "2210000000000003"
+					type: "item"
+					item: "thirst:terracotta_water_bowl"
+				}
+			]
+			rewards: [{
+				id: "2220000000000002"
+				type: "item"
+				item: "minecraft:clay_ball"
+				count: 8
+			}]
+		}
+		{
+			title: "贴身水袋"
+			x: 6.0d
+			y: -4.0d
+			description: [
+				"制作冷汗水壶。水壶便于携带，加热或冷却后可帮助调节体温。"
+				"任务检测空水袋；装水后会变成 filled_waterskin。"
+			]
+			dependencies: ["2200000000000002"]
+			id: "2200000000000003"
+			tasks: [{
+				id: "2210000000000004"
+				type: "item"
+				item: "cold_sweat:waterskin"
+			}]
+			rewards: [{
+				id: "2220000000000003"
+				type: "item"
+				item: "minecraft:leather"
+				count: 2
+			}]
+		}
+		{
+			title: "不要凭感觉判断温度"
+			x: 9.0d
+			y: -4.0d
+			description: ["制作温度计。Cold Sweat 会根据生物群系、天气、方块热源和装备计算体温，读数能帮助你判断真正的风险。"]
+			dependencies: ["2200000000000003"]
+			id: "2200000000000004"
+			tasks: [{
+				id: "2210000000000005"
+				type: "item"
+				item: "cold_sweat:thermometer"
+			}]
+			rewards: [{
+				id: "2220000000000004"
+				type: "item"
+				item: "minecraft:copper_ingot"
+				count: 4
+			}]
+		}
+		{
+			title: "抵御寒潮来袭，保持温暖"
+			x: 12.0d
+			y: -4.0d
+			description: [
+				"猎取山羊皮并制作毛皮大衣。Cold Sweat 的毛皮装备偏向抗寒；炎热环境需要换用另一套方案。"
+				"这里只需要胸甲，避免早期消耗过多毛皮。"
+			]
+			dependencies: ["2200000000000004"]
+			id: "2200000000000005"
+			tasks: [{
+				id: "2210000000000006"
+				type: "item"
+				item: {
+					id: "cold_sweat:goat_fur_chestplate"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "2220000000000005"
+				type: "item"
+				item: "minecraft:rabbit_hide"
+			}]
+		}
+		{
+			title: "隔热工坊"
+			x: 15.0d
+			y: -4.0d
+			description: ["制作缝纫台。这是处理隔热材料、继续强化温控装备的专业工作站。"]
+			dependencies: ["2200000000000005"]
+			id: "2200000000000006"
+			tasks: [{
+				id: "2210000000000007"
+				type: "item"
+				item: "cold_sweat:sewing_table"
+			}]
+			rewards: [{
+				id: "2220000000000006"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			title: "恒温核心"
+			x: 18.0d
+			y: -4.0d
+			description: [
+				"制作壁炉。壁炉能在一定范围内调节温度，是固定基地的核心设备。"
+				"烟囱和燃料配置会影响使用体验，具体配方和用途可在 JEI 中查看。"
+			]
+			dependencies: ["2200000000000006"]
+			id: "2200000000000007"
+			tasks: [{
+				id: "2210000000000008"
+				type: "item"
+				item: "cold_sweat:hearth"
+			}]
+			rewards: [{
+				id: "2220000000000007"
+				type: "item"
+				item: "minecraft:redstone"
+				count: 8
+			}]
+		}
+		{
+			title: "铁质远征包"
+			x: 6.0d
+			y: 0.0d
+			description: ["将基础背包升级为铁制背包。升级后槽位与升级插槽都会增加，原背包内物品会保留。"]
+			dependencies: [
+				"2200000000000001"
+				"1100000000000008"
+			]
+			hide: true
+			id: "2200000000000008"
+			tasks: [{
+				id: "2210000000000009"
+				type: "item"
+				item: "sophisticatedbackpacks:iron_backpack"
+			}]
+			rewards: [{
+				id: "2220000000000008"
+				type: "item"
+				item: "minecraft:iron_ingot"
+				count: 4
+			}]
+		}
+		{
+			title: "自动回收战利品"
+			x: 10.0d
+			y: 0.0d
+			description: ["制作拾取升级并装进背包。它会收集附近的掉落物；用过滤界面排除腐肉和垃圾，可以避免战斗后瞬间塞满。"]
+			dependencies: ["2200000000000008"]
+			id: "2200000000000009"
+			tasks: [{
+				id: "221000000000000A"
+				type: "item"
+				item: "sophisticatedbackpacks:pickup_upgrade"
+			}]
+			rewards: [{
+				id: "2220000000000009"
+				type: "item"
+				item: "minecraft:redstone"
+				count: 8
+			}]
+		}
+		{
+			title: "将垃圾变回资源"
+			x: 14.0d
+			y: 0.0d
+			description: [
+				"制作 Corail Recycler 回收机，将背包自动收集的多余战利品重新处理成可用原料。"
+				"回收并非无损复制，处理稀有物品前请先在 JEI 中查看可回收物与产率。"
+			]
+			dependencies: ["2200000000000009"]
+			id: "5500000000000005"
+			tasks: [{
+				id: "5510000000000008"
+				type: "item"
+				item: "corail_recycler:recycler"
+			}]
+			rewards: [{
+				id: "5520000000000005"
+				type: "item"
+				item: "minecraft:iron_ingot"
+				count: 4
+			}]
+		}
+		{
+			title: "别再只吃罐头食品了"
+			x: 6.0d
+			y: 4.0d
+			description: ["制作《傻瓜烹饪手册 I》。Cooking for Blockheads 可以用它查询现有食材能做什么，适合处理废墟里零散搜来的食物。"]
+			dependencies: ["2200000000000001"]
+			id: "220000000000000A"
+			tasks: [{
+				id: "221000000000000B"
+				type: "item"
+				item: "cookingforblockheads:recipe_book"
+			}]
+			rewards: [{
+				id: "222000000000000A"
+				type: "item"
+				item: "minecraft:golden_carrot"
+				count: 6
+			}]
+		}
+		{
+			title: "模块化厨房"
+			x: 10.0d
+			y: 4.0d
+			description: ["制作烹饪台。它能读取相邻厨房容器中的食材，让基地厨房成为真正可用的补给站。"]
+			dependencies: ["220000000000000A"]
+			id: "220000000000000B"
+			tasks: [{
+				id: "221000000000000C"
+				type: "item"
+				item: "cookingforblockheads:cooking_table"
+			}]
+			rewards: [{
+				id: "222000000000000B"
+				type: "item"
+				item: "minecraft:brick"
+				count: 8
+			}]
+		}
+		{
+			title: "生命维持闭环系统"
+			icon: "minecraft:golden_apple"
+			x: 21.0d
+			y: 0.0d
+			description: [
+				"你已经拥有稳定的饮水、温控、携带和烹饪能力。请确保基地至少储备一套备用食物、饮水和医疗物资。"
+				"下一章将把防御从石墙提升到现代火力。"
+			]
+			dependencies: [
+				"2200000000000007"
+				"5500000000000005"
+				"220000000000000B"
+			]
+			hide: true
+			size: 1.5d
+			id: "220000000000000C"
+			tasks: [{
+				id: "221000000000000D"
+				type: "checkmark"
+			}]
+			rewards: [
+				{
+					id: "222000000000000C"
+					type: "item"
+					item: "minecraft:diamond"
+					count: 2
+				}
+				{
+					id: "222000000000000D"
+					type: "xp"
+					xp: 250
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+}

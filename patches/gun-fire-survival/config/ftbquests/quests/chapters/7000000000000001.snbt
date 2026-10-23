@@ -1,0 +1,341 @@
+# AI 初翻，未人工校对
+{
+	id: "7000000000000001"
+	group: "0B00000000000001"
+	order_index: 2
+	filename: "7000000000000001"
+	title: "极限挑战"
+	icon: "minecraft:dragon_egg"
+	default_quest_shape: "hexagon"
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "极限挑战协议"
+			icon: "minecraft:nether_star"
+			x: 0.0d
+			y: 0.0d
+			description: [
+				"末影龙已倒下，但真正的极限生存才刚刚开始。以下试炼面向完成主线、拥有完整军备与稳定后勤的幸存者。"
+				"各项试炼可并行推进。阶段奖励均为可选奖励，请根据当前缺口领取。"
+			]
+			dependencies: ["4E74B7E01DE3A0E2"]
+			hide: true
+			size: 1.5d
+			id: "7700000000000001"
+			tasks: [{
+				id: "7710000000000001"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "7720000000000001"
+				type: "xp_levels"
+				xp_levels: 10
+			}]
+		}
+		{
+			title: "尸潮清算"
+			icon: {
+				id: "minecraft:iron_sword"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: 4.0d
+			y: -6.0d
+			description: [
+				"累计击杀 500 只普通僵尸。弹药生产、枪械维护和持续补给缺一不可。"
+				"任务只统计 minecraft:zombie，特殊感染者不会计入数量。"
+			]
+			dependencies: ["7700000000000001"]
+			id: "7700000000000002"
+			tasks: [{
+				id: "7710000000000002"
+				type: "kill"
+				entity: "minecraft:zombie"
+				value: 500L
+			}]
+			rewards: [
+				{
+					id: "7720000000000002"
+					type: "choice"
+					exclude_from_claim_all: true
+					table_id: 6917529027641081861L
+				}
+				{
+					id: "7720000000000003"
+					type: "xp_levels"
+					xp_levels: 20
+				}
+			]
+		}
+		{
+			title: "灾厄歼灭"
+			icon: "minecraft:totem_of_undying"
+			x: 4.0d
+			y: -2.0d
+			description: ["击杀 50 只苦力怕和 10 只劫掠兽。在基地外完成爆炸目标，避免珍贵设施被战斗波及。"]
+			dependencies: ["7700000000000001"]
+			id: "7700000000000003"
+			tasks: [
+				{
+					id: "7710000000000003"
+					type: "kill"
+					entity: "minecraft:creeper"
+					value: 50L
+				}
+				{
+					id: "7710000000000004"
+					type: "kill"
+					entity: "minecraft:ravager"
+					value: 10L
+				}
+			]
+			rewards: [{
+				id: "7720000000000004"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 6917529027641081861L
+			}]
+		}
+		{
+			title: "全境远征"
+			icon: "minecraft:compass"
+			x: 4.0d
+			y: 2.0d
+			description: [
+				"重返下界、末地、失落城市和 RPG 竞技场维度，证明后勤体系能支持跨维度行动。"
+				"此任务解锁后需再次进入对应维度才能记录。"
+			]
+			dependencies: ["7700000000000001"]
+			id: "7700000000000004"
+			tasks: [
+				{
+					id: "7710000000000005"
+					type: "dimension"
+					dimension: "minecraft:the_nether"
+				}
+				{
+					id: "7710000000000006"
+					type: "dimension"
+					dimension: "minecraft:the_end"
+				}
+				{
+					id: "7710000000000007"
+					type: "dimension"
+					dimension: "lostcities:lostcity"
+				}
+				{
+					id: "7710000000000008"
+					type: "dimension"
+					dimension: "rpg_tag:jinjichangweidu"
+				}
+			]
+			rewards: [{
+				id: "7720000000000005"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 6917529027641081862L
+			}]
+		}
+		{
+			title: "王者连战"
+			icon: "minecraft:wither_skeleton_skull"
+			x: 4.0d
+			y: 6.0d
+			description: [
+				"击杀 3 只凋灵，并再次击杀 2 只末影龙。提前建立安全召唤场、撤退路线和弹药补给点。"
+				"末影龙需要末影水晶复活后才能再次挑战。"
+			]
+			dependencies: ["7700000000000001"]
+			id: "7700000000000005"
+			tasks: [
+				{
+					id: "7710000000000009"
+					type: "kill"
+					entity: "minecraft:wither"
+					value: 3L
+				}
+				{
+					id: "771000000000000A"
+					type: "kill"
+					entity: "minecraft:ender_dragon"
+					value: 2L
+				}
+			]
+			rewards: [
+				{
+					id: "7720000000000006"
+					type: "choice"
+					exclude_from_claim_all: true
+					table_id: 6917529027641081862L
+				}
+				{
+					id: "7720000000000007"
+					type: "xp_levels"
+					xp_levels: 40
+				}
+			]
+		}
+		{
+			title: "最终军备检阅"
+			icon: {
+				id: "zombie_extreme:exo_suit_chestplate"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: 8.0d
+			y: -4.0d
+			description: ["集齐完整外骨骼、钻石背包、超级火把和摄像头监视器，证明个人装备与基地设施都已达到终局标准。"]
+			dependencies: [
+				"7700000000000002"
+				"7700000000000003"
+			]
+			hide: true
+			id: "7700000000000006"
+			tasks: [
+				{
+					id: "771000000000000B"
+					type: "item"
+					item: {
+						id: "zombie_extreme:exo_suit_helmet"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "771000000000000C"
+					type: "item"
+					item: {
+						id: "zombie_extreme:exo_suit_chestplate"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "771000000000000D"
+					type: "item"
+					item: {
+						id: "zombie_extreme:exo_suit_leggings"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "771000000000000E"
+					type: "item"
+					item: {
+						id: "zombie_extreme:exo_suit_boots"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "771000000000000F"
+					type: "item"
+					item: "sophisticatedbackpacks:diamond_backpack"
+				}
+				{
+					id: "7710000000000010"
+					type: "item"
+					item: "torchmaster:megatorch"
+				}
+				{
+					id: "7710000000000011"
+					type: "item"
+					item: "securitycraft:camera_monitor"
+				}
+			]
+			rewards: [{
+				id: "7720000000000008"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 6917529027641081862L
+			}]
+		}
+		{
+			title: "末日物资储备"
+			icon: "minecraft:enchanted_golden_apple"
+			x: 8.0d
+			y: 4.0d
+			description: ["同时持有 3 个不死图腾、2 个附魔金苹果和 8 个下界合金锭。物品不会被任务消耗。"]
+			dependencies: [
+				"7700000000000004"
+				"7700000000000005"
+			]
+			hide: true
+			id: "7700000000000007"
+			tasks: [
+				{
+					id: "7710000000000012"
+					type: "item"
+					item: "minecraft:totem_of_undying"
+					count: 3L
+				}
+				{
+					id: "7710000000000013"
+					type: "item"
+					item: "minecraft:enchanted_golden_apple"
+					count: 2L
+				}
+				{
+					id: "7710000000000014"
+					type: "item"
+					item: "minecraft:netherite_ingot"
+					count: 8L
+				}
+			]
+			rewards: [{
+				id: "7720000000000009"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 6917529027641081862L
+			}]
+		}
+		{
+			title: "废土传奇"
+			icon: "minecraft:dragon_egg"
+			x: 12.0d
+			y: 0.0d
+			description: [
+				"所有极限试炼均已完成。你不再只是幸存者，而是能够主动清除跨维度威胁、维持文明火种的废土传奇。"
+				"最终奖励只能从奖励表中选择一项，请确认需求后再领取。"
+			]
+			dependencies: [
+				"7700000000000006"
+				"7700000000000007"
+			]
+			hide: true
+			size: 2.0d
+			id: "7700000000000008"
+			tasks: [{
+				id: "7710000000000015"
+				type: "checkmark"
+			}]
+			rewards: [
+				{
+					id: "772000000000000A"
+					type: "choice"
+					exclude_from_claim_all: true
+					table_id: 6917529027641081863L
+				}
+				{
+					id: "772000000000000B"
+					type: "xp_levels"
+					xp_levels: 100
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+}

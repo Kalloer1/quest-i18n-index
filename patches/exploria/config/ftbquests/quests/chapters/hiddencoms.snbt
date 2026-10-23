@@ -1,0 +1,110 @@
+# AI 初翻，未人工校对
+{
+	always_invisible: true
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "hiddencoms"
+	group: "4ABF759983A546D5"
+	id: "5CDA81C19D0AC132"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			can_repeat: true
+			dependencies: [
+				"3825E26D333295E5"
+				"5B2F74FD0A375A21"
+			]
+			id: "7477793FA0C0B1A6"
+			invisible: true
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/execute as @p at @p if entity @s[nbt={Inventory:[{id:\"minecraft:wither_skeleton_skull\"}]}] run tellraw @p [{\"text\":\"\",\"color\":\"gray\"},{\"text\":\"The skull dissipates into thin air...\",\"color\":\"yellow\"}]"
+					elevate_perms: true
+					id: "498242B543ABD487"
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/execute as @p at @p if entity @s[nbt={Inventory:[{id:\"minecraft:wither_skeleton_skull\"}]}] run clear @s minecraft:wither_skeleton_skull 128"
+					elevate_perms: true
+					id: "2CE075AEE7E6634D"
+					silent: true
+					type: "command"
+				}
+			]
+			tasks: [{
+				advancement: "mythicmobs:mythicmobs"
+				criterion: ""
+				id: "78E4B774CB5DD033"
+				type: "advancement"
+			}]
+			x: 0.0d
+			y: 1.5d
+		}
+		{
+			can_repeat: true
+			id: "688AB84615E9CF92"
+			invisible: true
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/execute as @e[type=item,nbt={Item:{id:\"minecraft:written_book\",tag:{author:\"The Mayor\"}}}] at @p run tp @p ~ ~ ~"
+					elevate_perms: true
+					id: "1846DE265157545D"
+					silent: true
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/execute as @e[type=item,nbt={Item:{id:\"minecraft:written_book\",tag:{author:\"The Mayor\"}}}] at @p run data modify entity @s PickupDelay set value 0"
+					elevate_perms: true
+					id: "226E518F0752D18D"
+					silent: true
+					type: "command"
+				}
+			]
+			tasks: [{
+				advancement: "mythicmobs:mythicmobs"
+				criterion: ""
+				id: "713FAA004321B4D0"
+				type: "advancement"
+			}]
+			x: -2.0d
+			y: 1.5d
+		}
+		{
+			can_repeat: true
+			dependencies: ["7253268497A3CD75"]
+			id: "7EBFBE05B32E56C2"
+			invisible: true
+			rewards: [
+				{
+					auto: "invisible"
+					id: "18B709DAF0133BEC"
+					item: "minecraft:dragon_egg"
+					team_reward: true
+					type: "item"
+				}
+				{
+					auto: "invisible"
+					command: "/execute as @p at @p run tellraw @p [{\"text\":\"\",\"color\":\"gray\"},{\"text\":\"You have received a dragon egg!\",\"color\":\"yellow\"}]"
+					elevate_perms: true
+					id: "2D935430D1689BD4"
+					type: "command"
+				}
+			]
+			tasks: [{
+				entity: "minecraft:ender_dragon"
+				id: "1E3914D76361D2BB"
+				type: "kill"
+				value: 1L
+			}]
+			x: -1.0357142857142847d
+			y: 2.2857142857142847d
+		}
+	]
+	subtitle: ["别管这些了！"]
+	title: "隐藏通讯器"
+}
