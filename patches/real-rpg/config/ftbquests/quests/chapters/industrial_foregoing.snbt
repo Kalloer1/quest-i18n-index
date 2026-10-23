@@ -1,0 +1,640 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "industrial_foregoing"
+	group: "6E307BF9A6A16C08"
+	icon: "industrialforegoing:dissolution_chamber"
+	id: "193F91842D2ED7D9"
+	images: [{
+		height: 2.0d
+		image: "kubejs:textures/equipolumencraft_img/foregin.png"
+		rotation: 0.0d
+		width: 10.0d
+		x: 0.5d
+		y: 3.5d
+	}]
+	order_index: 0
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["Pity Machine Frame 是用于组装 Industrial Foregin 中高级工业机器的基础组件。"]
+			id: "3E2415D8DAD274B8"
+			rewards: [
+				{
+					id: "29C14146F739AA0C"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "297D2BA316A7A045"
+					item: {
+						Count: 1
+						id: "patchouli:guide_book"
+						tag: {
+							"patchouli:book": "industrialforegoing:industrial_foregoing"
+						}
+					}
+					type: "item"
+				}
+			]
+			subtitle: "建造怜悯机器所需的基础框架。"
+			tasks: [{
+				id: "552E6AE70F59E180"
+				item: "industrialforegoing:machine_frame_pity"
+				type: "item"
+			}]
+			title: "&lCraft the Pity Machine Frame"
+			x: -3.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["3E2415D8DAD274B8"]
+			description: ["在萃取器前放置原木以开始收集乳胶。"]
+			hide_until_deps_complete: true
+			id: "20C3604E8C96C397"
+			rewards: [
+				{
+					id: "0B9A2C0F697C24C5"
+					type: "xp"
+					xp: 30
+				}
+				{
+					count: 3
+					id: "434A0A0D700752D0"
+					item: "minecraft:acacia_log"
+					type: "item"
+				}
+			]
+			subtitle: "使用流体提取器从原木中收集乳胶。"
+			tasks: [{
+				id: "0AC24DC08E625774"
+				item: "industrialforegoing:fluid_extractor"
+				type: "item"
+			}]
+			title: "提取乳胶"
+			x: -2.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["20C3604E8C96C397"]
+			description: ["将乳胶与水、电力结合以生产干橡胶，然后将其熔炼以创造塑料。"]
+			icon: "industrialforegoing:latex_processing_unit"
+			id: "5C09617B6785044C"
+			rewards: [
+				{
+					count: 3
+					id: "5E3B0FB370F59271"
+					item: "industrialforegoing:dryrubber"
+					type: "item"
+				}
+				{
+					id: "63CF8F1CD78DA544"
+					type: "xp"
+					xp: 30
+				}
+			]
+			subtitle: "使用乳胶处理单元将乳胶转化为塑料。"
+			tasks: [
+				{
+					id: "3FDE8E644EEBA97D"
+					item: "industrialforegoing:latex_processing_unit"
+					type: "item"
+				}
+				{
+					id: "0820F2C79CBA90EE"
+					item: "industrialforegoing:plastic"
+					type: "item"
+				}
+			]
+			title: "合成塑料 (Craft Plastic)"
+			x: -1.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["6F67F314F6325860"]
+			description: ["将矿石送入工厂，自动将其加工成可用的材料。"]
+			id: "43440A59A36B4D4B"
+			rewards: [
+				{
+					count: 3
+					id: "4FECA5A3B775FED1"
+					item: "minecraft:iron_ore"
+					type: "item"
+				}
+				{
+					id: "727A1641D2CB7A5F"
+					type: "xp"
+					xp: 50
+				}
+			]
+			subtitle: "使用 Material Stonework Factory 自动处理矿石。"
+			tasks: [{
+				id: "7DBF3CD337EA3D41"
+				item: "industrialforegoing:material_stonework_factory"
+				type: "item"
+			}]
+			title: "自动化资源处理系统"
+			x: 1.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["5C09617B6785044C"]
+			description: ["溶解室可将方块和物品分解为基本组件，用于回收和合成。"]
+			id: "6F67F314F6325860"
+			rewards: [
+				{
+					id: "48B8219A8145943E"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "2E143677E3A599FA"
+					item: "industrialforegoing:latex_bucket"
+					type: "item"
+				}
+			]
+			subtitle: "使用溶解室来分解材料。"
+			tasks: [{
+				id: "3F2806BBB09A22D2"
+				item: "industrialforegoing:dissolution_chamber"
+				type: "item"
+			}]
+			title: "建造溶解室 (Dissolution Chamber)"
+			x: 0.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["43440A59A36B4D4B"]
+			description: ["设置机器，实现自动播种和收割成熟作物。"]
+			id: "7336AB71A81AB567"
+			require_sequential_tasks: true
+			rewards: [
+				{
+					id: "5A87AFEF5F9D7831"
+					type: "xp"
+					xp: 100
+				}
+				{
+					count: 3
+					id: "4EAC437AF8C149FF"
+					item: "minecraft:oak_sapling"
+					type: "item"
+				}
+			]
+			subtitle: "使用 Plant Sower and Harvester 来播种和收割作物。"
+			tasks: [{
+				id: "5D8C0A46FB121173"
+				item: "industrialforegoing:plant_sower"
+				type: "item"
+			}]
+			title: "自动化作物种植"
+			x: 2.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["7336AB71A81AB567"]
+			description: ["Sludge Refined 是污泥的提炼形态，用于高级合成配方和机械装置。"]
+			icon: "industrialforegoing:sludge_refiner"
+			id: "31DF5718201C58A1"
+			rewards: [
+				{
+					id: "723373BD08E24545"
+					item: "industrialforegoing:sludge_bucket"
+					type: "item"
+				}
+				{
+					id: "3A11C25DC0B59152"
+					type: "xp"
+					xp: 30
+				}
+			]
+			subtitle: "提炼污泥以更好地提取资源。"
+			tasks: [
+				{
+					id: "40115F203CE6A7D0"
+					item: "industrialforegoing:sludge_refiner"
+					type: "item"
+				}
+				{
+					id: "1CCB18CA66C4F095"
+					item: "industrialforegoing:sludge_bucket"
+					type: "item"
+				}
+			]
+			title: "将污泥处理成精炼污泥"
+			x: 2.0d
+			y: 7.0d
+		}
+		{
+			can_repeat: false
+			dependencies: ["7336AB71A81AB567"]
+			description: ["自动化喂养和繁殖动物，以维持健康的牲畜。"]
+			icon: "industrialforegoing:animal_rancher"
+			id: "08142C92CF3586C1"
+			rewards: [{
+				id: "5A3339C611F07A7F"
+				type: "xp"
+				xp: 100
+			}]
+			subtitle: "使用动物牧场和动物喂食器来管理动物。"
+			tasks: [
+				{
+					id: "4C5039ACBF4A6FAE"
+					item: "industrialforegoing:animal_rancher"
+					type: "item"
+				}
+				{
+					id: "7E2239E7AA776F1D"
+					item: "industrialforegoing:animal_feeder"
+					type: "item"
+				}
+			]
+			title: "自动化畜牧养殖系统"
+			x: 3.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["08142C92CF3586C1"]
+			description: ["使用生物反应器收集生物燃料，并将其输入发电机以产生电力。"]
+			icon: "industrialforegoing:biofuel_generator"
+			id: "44816AD7193D97F7"
+			rewards: [
+				{
+					id: "701028B475674961"
+					item: "industrialforegoing:biofuel_bucket"
+					type: "item"
+				}
+				{
+					id: "2D48F126A6ED289F"
+					type: "xp"
+					xp: 40
+				}
+			]
+			subtitle: "使用生物燃料发电机将生物燃料转化为电力。"
+			tasks: [
+				{
+					id: "4FC52EBDE8956075"
+					item: "industrialforegoing:biofuel_generator"
+					type: "item"
+				}
+				{
+					id: "41FF3D138B60BEBF"
+					item: "industrialforegoing:biofuel_bucket"
+					type: "item"
+				}
+			]
+			title: "生成电力"
+			x: 3.0d
+			y: 7.0d
+		}
+		{
+			dependencies: [
+				"5C09617B6785044C"
+				"6F67F314F6325860"
+			]
+			description: ["Mob Slaughter Factory 能高效消灭怪物并收集掉落物，加快资源采集速度。"]
+			icon: "industrialforegoing:mob_slaughter_factory"
+			id: "7D8D7007164EDB59"
+			rewards: [
+				{
+					id: "7BAB898D07DBE369"
+					item: "industrialforegoing:pink_slime_bucket"
+					type: "item"
+				}
+				{
+					id: "4911D68C255FF255"
+					type: "xp"
+					xp: 30
+				}
+			]
+			subtitle: "自动化怪物击杀和资源收集。"
+			tasks: [
+				{
+					id: "590197D476D1CDBA"
+					item: "industrialforegoing:mob_slaughter_factory"
+					type: "item"
+				}
+				{
+					id: "446EACC3440B4B1F"
+					item: "industrialforegoing:meat_bucket"
+					type: "item"
+				}
+				{
+					id: "22015C80FF39C7D8"
+					item: "industrialforegoing:pink_slime_bucket"
+					type: "item"
+				}
+			]
+			title: "建造生物屠宰场 (Mob Slaughter Factory)"
+			x: -0.5d
+			y: 7.0d
+		}
+		{
+			dependencies: ["6F67F314F6325860"]
+			description: ["简易机械框架是建造初级工业机器时使用的基本组件。"]
+			id: "2E6FBC5CE7C8B4FD"
+			rewards: [
+				{
+					id: "6DE83BCC5509E6B5"
+					item: "industrialforegoing:machine_frame_simple"
+					type: "item"
+				}
+				{
+					id: "602F70C9DC1029D6"
+					type: "xp"
+					xp: 30
+				}
+			]
+			subtitle: "为简易机器创建基本框架。"
+			tasks: [{
+				id: "6ABAD65A7BE098FB"
+				item: "industrialforegoing:machine_frame_simple"
+				type: "item"
+			}]
+			title: "制作简易机械框架"
+			x: 0.5d
+			y: 7.0d
+		}
+		{
+			dependencies: ["2E6FBC5CE7C8B4FD"]
+			description: ["高级机械框架用于建造功能更强、效率更高的复杂机器。"]
+			id: "03EABBAE513B48CC"
+			rewards: [
+				{
+					id: "5C3CBC41BDCBA81B"
+					item: "industrialforegoing:machine_frame_advanced"
+					type: "item"
+				}
+				{
+					id: "52C9F6BE2CB95AF2"
+					type: "xp"
+					xp: 50
+				}
+			]
+			subtitle: "为高级工业机器制作框架。"
+			tasks: [{
+				id: "232AFB9C7072A6EA"
+				item: "industrialforegoing:machine_frame_advanced"
+				type: "item"
+			}]
+			title: "制作高级机械框架 (Craft the Advanced Machine Frame)"
+			x: 0.5d
+			y: 8.0d
+		}
+		{
+			dependencies: [
+				"7336AB71A81AB567"
+				"40AB09792CC88E06"
+			]
+			description: ["水培床通过提供最佳的水分和养分条件来加速植物生长。"]
+			id: "3B13EC5AA4CC1EDA"
+			rewards: [
+				{
+					count: 2
+					id: "2EC1D23206E3CB57"
+					item: "industrialforegoing:hydroponic_bed"
+					type: "item"
+				}
+				{
+					id: "6A39FF434BF73B25"
+					type: "xp"
+					xp: 100
+				}
+			]
+			subtitle: "使用水培法更快地种植植物。"
+			tasks: [{
+				count: 8L
+				id: "571C9CB0AB035695"
+				item: { Count: 8, id: "industrialforegoing:hydroponic_bed" }
+				type: "item"
+			}]
+			title: "建造一个水培种植床"
+			x: 2.0d
+			y: 5.0d
+		}
+		{
+			dependencies: ["08142C92CF3586C1"]
+			description: ["海洋渔夫栖息在水边，擅长捕鱼和保卫自己的领地。"]
+			id: "750E9B1D24547E54"
+			rewards: [
+				{
+					id: "6BD9841BECBFE61D"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "354B032D6695E846"
+					item: {
+						Count: 1
+						id: "industrialforegoing:speed_addon_2"
+						tag: {
+							TitaniumAugment: {
+								Speed: 3.0f
+							}
+						}
+					}
+					type: "item"
+				}
+			]
+			subtitle: "发现神秘的海洋渔夫生物。"
+			tasks: [{
+				id: "71625CA9DCE169EE"
+				item: "industrialforegoing:marine_fisher"
+				type: "item"
+			}]
+			title: "与海洋渔夫相遇"
+			x: 3.0d
+			y: 5.0d
+		}
+		{
+			description: ["The Whiter Builder 可自动化放置方块，加快大型建筑项目的速度。"]
+			id: "1AA9AA5A7F40E5EB"
+			rewards: [
+				{
+					id: "4D081B0AE2107E07"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "6D546B149D2EBA75"
+					item: "industrialforegoing:machine_frame_advanced"
+					type: "item"
+				}
+			]
+			subtitle: "使用 Whiter Builder 来自动化方块建造。"
+			tasks: [{
+				id: "44A69C2F04859A9A"
+				item: "industrialforegoing:wither_builder"
+				type: "item"
+			}]
+			title: "激活白化建造者（Whiter Builder）"
+			x: 2.5d
+			y: 8.5d
+		}
+		{
+			dependencies: ["1AA9AA5A7F40E5EB"]
+			description: ["激光钻头利用聚焦的能量束，以最小的力气快速挖掘方块。"]
+			id: "150110A3F6733BBD"
+			rewards: [{
+				id: "1785C9680F5E4619"
+				type: "xp"
+				xp: 100
+			}]
+			subtitle: "使用激光钻头进行精准高效的采矿。"
+			tasks: [{
+				count: 8L
+				id: "4FC73F5C2447402D"
+				item: "industrialforegoing:laser_drill"
+				type: "item"
+			}]
+			title: "建造激光钻头"
+			x: 2.5d
+			y: 9.5d
+		}
+		{
+			dependencies: ["1AA9AA5A7F40E5EB"]
+			description: ["矿石激光基地能精准快速地发射强力激光束，高效开采矿石。"]
+			icon: "industrialforegoing:ore_laser_base"
+			id: "6B8C04931B3A55A1"
+			rewards: [
+				{
+					count: 2
+					id: "72BEC2409C9699C1"
+					item: "industrialforegoing:laser_drill"
+					type: "item"
+				}
+				{
+					id: "1A5695A639EB9B58"
+					type: "xp"
+					xp: 50
+				}
+			]
+			subtitle: "使用矿石激光底座将激光聚焦在矿石方块上。"
+			tasks: [
+				{
+					id: "6267E5FB97B21460"
+					item: "industrialforegoing:ore_laser_base"
+					type: "item"
+				}
+				{
+					id: "65F644160F3DEC62"
+					item: "industrialforegoing:laser_lens10"
+					type: "item"
+				}
+			]
+			title: "建造矿石激光基地"
+			x: 3.5d
+			y: 9.5d
+		}
+		{
+			dependencies: ["1AA9AA5A7F40E5EB"]
+			description: ["流体激光底座可投射聚焦激光，与流体互动以执行高级处理任务。"]
+			icon: "industrialforegoing:fluid_laser_base"
+			id: "5871415875D14B20"
+			rewards: [
+				{
+					count: 2
+					id: "0EE2EA80DB4D95C6"
+					item: "industrialforegoing:laser_drill"
+					type: "item"
+				}
+				{
+					id: "0700710487AA181F"
+					type: "xp"
+					xp: 50
+				}
+			]
+			subtitle: "使用流体激光底座，精准操控液体。"
+			tasks: [
+				{
+					id: "54F7376F4F93C973"
+					item: "industrialforegoing:fluid_laser_base"
+					type: "item"
+				}
+				{
+					id: "64E97636C5E3D7A8"
+					item: "industrialforegoing:laser_lens10"
+					type: "item"
+				}
+			]
+			title: "建造流体激光基地"
+			x: 1.5d
+			y: 9.5d
+		}
+		{
+			dependencies: [
+				"6B8C04931B3A55A1"
+				"5871415875D14B20"
+				"150110A3F6733BBD"
+			]
+			description: ["以太气体桶可盛放易挥发的以太气体，是高级工业流程的重要资源。"]
+			hide_dependent_lines: true
+			id: "40AB09792CC88E06"
+			rewards: [{
+				id: "7D01E8E8EB570BEB"
+				item: "industrialforegoing:ether_gas_bucket"
+				type: "item"
+			}]
+			subtitle: "安全地收集并储存以太气体。"
+			tasks: [{
+				id: "5A5673EA22FFAE8E"
+				item: "industrialforegoing:ether_gas_bucket"
+				type: "item"
+			}]
+			title: "获取以太气体桶（Ether Gas Bucket）"
+			x: 2.5d
+			y: 11.0d
+		}
+		{
+			dependencies: [
+				"03EABBAE513B48CC"
+				"40AB09792CC88E06"
+			]
+			description: ["至高机械框架用于建造工业外域中最强大、最高效的机器。"]
+			id: "13597B3359B333EA"
+			rewards: [{
+				id: "14C7B706DF79864F"
+				item: "industrialforegoing:machine_frame_supreme"
+				type: "item"
+			}]
+			subtitle: "为终极机器制作最高等级的框架。"
+			tasks: [{
+				id: "2CC1408B2E432EE8"
+				item: "industrialforegoing:machine_frame_supreme"
+				type: "item"
+			}]
+			title: "合成至高机器框架"
+			x: 0.5d
+			y: 9.0d
+		}
+		{
+			dependencies: ["20C3604E8C96C397"]
+			description: ["注意他的脸，他会把木头放进去，并用木头填满背包，这样他每次用完乳胶提取器后都会放入木头。"]
+			id: "20443D8C95EB9BDB"
+			rewards: [
+				{
+					count: 3
+					id: "77A8A6BEC6567867"
+					item: "minecraft:acacia_log"
+					type: "item"
+				}
+				{
+					id: "4AE5D7F1C81B7D7F"
+					type: "xp"
+					xp: 25
+				}
+			]
+			subtitle: "使用此物品来自动化你的乳胶提取器。"
+			tasks: [{
+				id: "63F99A0122A10CB3"
+				item: "industrialforegoing:block_placer"
+				type: "item"
+			}]
+			x: -2.0d
+			y: 5.0d
+		}
+	]
+	title: "Industrial Foregoing"
+}

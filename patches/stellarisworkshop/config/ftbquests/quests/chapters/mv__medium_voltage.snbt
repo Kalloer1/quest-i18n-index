@@ -1,0 +1,2423 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "rsquare"
+	filename: "mv__medium_voltage"
+	group: "693226878D58638A"
+	icon: "gtceu:mv_electric_motor"
+	id: "43E779CEEB25D55B"
+	order_index: 5
+	quest_links: [
+		{
+			id: "6FCAD016C795DE93"
+			linked_quest: "7567E885B7166603"
+			shape: "gear"
+			size: 1.2d
+			x: 0.0d
+			y: 0.375d
+		}
+		{
+			id: "44A6B918F5A49109"
+			linked_quest: "318DAA7A8BAEB21C"
+			size: 0.75d
+			x: -3.375d
+			y: -0.75d
+		}
+	]
+	quests: [
+		{
+			dependencies: [
+				"0DBC148D92A9F69F"
+				"7567E885B7166603"
+			]
+			description: [
+				"&3热解炉&r是&3焦炉&r的电力形式。它也可以生产&9焦炭&r和&9木炭&r，并附带&9杂酚油&r，但它还能产生更多&6有机副产品&r，其中最有用的是&a木焦油&r。"
+				""
+				"另一个产物是&a生物质&r，而这个和&o现在&r的关系更大一些。"
+				"{@pagebreak}"
+				"这些副产品可以被蒸馏成一系列有机原料，而&o不同&r的副产品给出&o不同&r化学物质的产率各&o不相同&r。"
+				""
+				"你需要阅读&9蒸馏&r任务来全面了解······"
+				"{@pagebreak}"
+				""
+				"&9注意：&r它&d40EU/t&r的配方需要1个&bMV&r能源仓或者2个&7LV&r能源仓。多方块结构&c不会&r接收某个电压等级的2A来达到下一等级以满足配方的电压需要。"
+				""
+				"换句话说，控制器需要GUI显示“&bMV&r”后才能运行EMI中的“&bMV&r”配方，即使它们在较低电压下能获得足够的EU/t。积极来看，如果使用2个&7LV&r仓，你可以只为一个供电，而不连接另一个——只要供电足够多。"
+				""
+				"{@pagebreak}"
+				"如果使用酿造室，热解炉是&d可选&r的，但其产能和副产物都很好，我们强烈建议你试试。"
+				""
+				"部分配方可以用&b氮气&r来加速，但目前还不太划算，不过氮气最终会变为无限供应。"
+				""
+				"&l&3小知识：&r&o在GT5u中，热解炉的结构是里面只有9个线圈的大箱子。由于没有EMI预览，玩家经常要花很长时间来找到结构上的问题。"
+			]
+			icon: "gtceu:pyrolyse_oven"
+			id: "53DC6E32C41C94C3"
+			optional: true
+			rewards: [
+				{
+					count: 64
+					id: "01DA9E28ADAD19B3"
+					item: "minecraft:coal"
+					type: "item"
+				}
+				{
+					count: 64
+					id: "3F4EFE922903E799"
+					item: "minecraft:oak_log"
+					type: "item"
+				}
+			]
+			shape: "square"
+			size: 0.75d
+			subtitle: "热分解"
+			tasks: [{
+				id: "0FD2962C232149F8"
+				item: "gtceu:pyrolyse_oven"
+				type: "item"
+			}]
+			title: "热解炉"
+			x: -1.125d
+			y: 0.375d
+		}
+		{
+			dependencies: [
+				"53DC6E32C41C94C3"
+				"1A29EFBCEA017F99"
+			]
+			description: [
+				"欢迎来到乙烯的&2生物&r路径！这种方法用&9植物&r生产酒精。"
+				""
+				"开始前，&a甘蔗&r是&3酿造室&r生产生物质的理想原料。"
+				""
+				"除此之外，走“&o&d植物球到生物糠&r”的路径，再变成生物质，然后用&3酿造室&r或者&3热解炉&r把它变成生物质——后者可能好一点。"
+				""
+				"&9注意：&r在获得&3HV研磨机&r之前，研磨步骤只能获得一个生物糠。"
+				"{@pagebreak}"
+				"&l&3小知识：&r&o植物球和生物糠源于IC2。在IC2实验性中，这个把生物质变成沼气的麻烦过程要很多投入之后才能回本。"
+			]
+			icon: "gtceu:biomass_bucket"
+			id: "6EB68C28BEE24DEF"
+			rewards: [{
+				id: "55B6D1599E7C55B1"
+				item: "gtceu:bio_chaff"
+				random_bonus: 7
+				type: "item"
+			}]
+			size: 0.75d
+			subtitle: "植物听起来不是很工业化！"
+			tasks: [{
+				id: "4FBD476EB6B6DD04"
+				item: "gtceu:biomass_bucket"
+				type: "item"
+			}]
+			title: "生物质"
+			x: -1.125d
+			y: -1.875d
+		}
+		{
+			dependencies: ["74180AC57AE9F0FE"]
+			dependency_requirement: "one_started"
+			description: [
+				"标题注：酒厂和酿造室的英文都是Brewery，而GT6的发酵器可以酿酒。"
+				""
+				"副标题注：打嗝的拟声词。"
+				""
+				"酿造室可以用&a红石&r和&a杂酚油&r/&a石油&r制作&a润滑油&r。润滑油用途广泛，主要用于&3切割机&r上显著缩短配方时间。"
+				""
+				"酿造室非常非常慢，但耗能极低。建造&2许多酿造室&r可以帮助你获得足够的生物质来制作塑料。哦，你也可以用它来酿造&d药水&r！"
+				""
+				"&9注意：&r它能“解锁”&9乙烯&r的生物路径，&3热解炉&r也一样。另一条路径需要石油。"
+				"{@pagebreak}"
+				"&l&3小知识：&r&o如果你想开个公司卖酒的话也可以做酿造室······哦别在意，那是GT6。&r"
+			]
+			icon: "gtceu:mv_brewery"
+			id: "1A29EFBCEA017F99"
+			rewards: [{
+				id: "2F6FA635755FBFA8"
+				item: "minecraft:redstone"
+				random_bonus: 31
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "*hic*... *hic*"
+			tasks: [
+				{
+					id: "095C98D86D021B2E"
+					item: "gtceu:lv_brewery"
+					type: "item"
+				}
+				{
+					id: "1CB0F32E8293B5D7"
+					item: "gtceu:lubricant_bucket"
+					optional_task: true
+					type: "item"
+				}
+			]
+			title: "卖酒的当地酒厂"
+			x: 0.0d
+			y: -1.875d
+		}
+		{
+			dependencies: [
+				"3E2E161F8CE35138"
+				"5D9D01EF219A31C5"
+				"316FF60D6FFE97CE"
+			]
+			description: [
+				"向您致以最诚挚的祝贺！"
+				""
+				"获得&a乙烯&r的方式在之前的任务中，不管你做了哪个。"
+				""
+				"&a乙烯&r可以被聚合，也有其他的一些反应。"
+			]
+			icon: "gtceu:ethylene_bucket"
+			id: "6BB98D128822730E"
+			min_required_dependencies: 1
+			shape: "square"
+			size: 0.75d
+			subtitle: "一种烃（碳氢化合物）"
+			tasks: [{
+				id: "29191DABA0ACE155"
+				item: "gtceu:ethylene_bucket"
+				type: "item"
+			}]
+			title: "乙烯"
+			x: 1.125d
+			y: -3.0d
+		}
+		{
+			dependencies: [
+				"6A304E453D74C57C"
+				"6EB68C28BEE24DEF"
+			]
+			description: [
+				"将做好的&a生物质&r放入&3MV蒸馏室&r中制作&a乙醇&r。"
+				""
+				"你需要用这个和&a硫酸&r在&3MV化学反应釜&r中制作&d乙烯&r······除非你选择了石化路线。"
+				""
+				"有一定数量的乙醇后，可以考虑在&3蒸馏塔&r中蒸馏&9发酵的生物质&r（等你做到那一步时）以获得更多化学物质。"
+				""
+				"&c不要试图&r用乙醇供能······你会后悔的。如果你想用生物产品&9供能&r，我推荐&d苯&r！"
+			]
+			id: "5D9D01EF219A31C5"
+			size: 0.75d
+			subtitle: "嘿！这是酒精！"
+			tasks: [{
+				id: "6D7350EA7AB6CF25"
+				item: "gtceu:ethanol_bucket"
+				type: "item"
+			}]
+			title: "乙醇"
+			x: -1.125d
+			y: -3.0d
+		}
+		{
+			dependencies: ["5898743D8D6C2690"]
+			description: [
+				"蒸馏&a石油&r会产出待脱硫的燃料。"
+				""
+				"&a硫化氢&r会在&3电解机&r中完美&d循环&r。"
+				""
+				"自动化方面，你可以将&3化学反应釜&r和&3电解机&r放在一起，并用&5螺丝刀&r来&4允许从输出端输入&r。"
+				""
+				"&a石脑油&r是很好的&9生产&r原料。看右边的任务了解更多。"
+			]
+			icon: "gtceu:naphtha_bucket"
+			id: "6238B2A7ED1BE5A1"
+			size: 0.75d
+			subtitle: "石脑是什么意思？"
+			tasks: [{
+				id: "75B40C6A92BB88B5"
+				item: "gtceu:naphtha_bucket"
+				type: "item"
+			}]
+			title: "石脑油"
+			x: -1.875d
+			y: -4.5d
+		}
+		{
+			dependencies: [
+				"61972B16805FC9EE"
+				"6238B2A7ED1BE5A1"
+				"035CF39E6CC98B77"
+			]
+			dependency_requirement: "one_completed"
+			description: [
+				"别怕！我们做完这个就能马上获得烃了。"
+				""
+				"从石油中获得&d乙烯&r的方法有很多，很容易迷失在那些配方中！"
+				""
+				"最好的方法是在&3化学反应釜&r中蒸汽裂解&a石脑油&r。一定要做&a重度蒸汽裂解&r的版本才能获得更多乙烯。"
+				"{@pagebreak}"
+				"在&6HV&r时代，你可以制作&3石油裂化机&r来获得100%的产率，而化学反应釜的配方则有&450%的损失！"
+				""
+				"&9注意：&r现在这些都看起来很没效率，希望这能成为你升级的动力！诱人的&3蒸馏塔&r现在还不能用！你需要用&3蒸馏室&r来获得&d乙烯&r。"
+			]
+			icon: "gtceu:severely_steam_cracked_naphtha_bucket"
+			id: "3E2E161F8CE35138"
+			progression_mode: "linear"
+			size: 0.75d
+			subtitle: "燃油和石油裂解可能很复杂······"
+			tasks: [{
+				id: "2C11F43F478293B0"
+				type: "checkmark"
+			}]
+			title: "燃油裂解"
+			x: -1.875d
+			y: -6.0d
+		}
+		{
+			dependencies: [
+				"0DBC148D92A9F69F"
+				"7567E885B7166603"
+				"6E186F9C57155BFA"
+			]
+			description: [
+				"更高等级的发电机会按比例增加燃料消耗和产能。&3进阶蒸汽涡轮&r每秒消耗&d5120mB蒸汽&r，即&d256mB/t&r。"
+				""
+				"获得&e任意&r一种发电机即可完成此任务，不过你可能想先从&3进阶蒸汽涡轮&r开始。"
+				"{@pagebreak}"
+				"在&bMV&r时代还有几种能源选项。选中发电机并按&4U&r，会显示哪些燃料可用作&a液体&r或&a气体&r燃料。"
+				""
+				"本章左上角的任务是关于一些不错的能源选项的。"
+				""
+				"如果你坚持用&9蒸汽&r作为能源，可能需要一个&3大型锅炉&r。"
+			]
+			icon: "gtceu:mv_steam_turbine"
+			id: "583D0CC4FAA4FC98"
+			shape: "square"
+			size: 0.75d
+			subtitle: "事情变得越来越复杂起来了"
+			tasks: [{
+				id: "1F170291094582D6"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "gtceu:mv_steam_turbine"
+							}
+							{
+								Count: 1b
+								id: "gtceu:mv_gas_turbine"
+							}
+							{
+								Count: 1b
+								id: "gtceu:mv_combustion"
+							}
+						]
+					}
+				}
+				title: "MV发电机"
+				type: "item"
+			}]
+			title: "MV产能"
+			x: 1.125d
+			y: -1.875d
+		}
+		{
+			dependencies: ["2AD44111B9B39C90"]
+			description: [
+				"&7不锈钢&r是你生活中最常见的钢，非常不容易生锈。"
+				""
+				"不锈钢是&6HV&r的材料，就像&bMV&r的铝和&7LV&r的钢。它也会大量用于制造&3蒸馏塔&r。"
+				""
+				"它主要需要来自&c红宝石&r的&c铬&r和来自&2软锰矿&r的&2锰&r。"
+				"{@pagebreak}"
+				"冶炼不锈钢需要&dHV功率&r，但我怀疑你没有。所以必须增加产能。"
+				""
+				"我&9建议&r你再做一个电力高炉，它们可以共享方块，所以你只需要&a10个白铜线圈&r就够了，而不是16个。"
+				""
+				"一个运行需要&bMV&r能量的&bMV&r配方来制作铝和其他物品，另一个用&32个MV能源仓&r来运行&6HV&r配方。"
+			]
+			icon: "gtceu:stainless_steel_ingot"
+			id: "16A6AE5C770DB83A"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "3973B757526393F6"
+				table_id: 6500114529187527477L
+				type: "choice"
+			}]
+			shape: "gear"
+			size: 1.3d
+			subtitle: "HV唾手可得"
+			tasks: [{
+				id: "3192FF80FBDC7A28"
+				item: "gtceu:stainless_steel_ingot"
+				type: "item"
+			}]
+			title: "[章节毕业线]不锈钢"
+			x: 3.375d
+			y: 0.375d
+		}
+		{
+			dependencies: [
+				"7567E885B7166603"
+				"0DBC148D92A9F69F"
+			]
+			description: [
+				"&3变压器&r可以安全变压。它可以把接收到的功率以相邻等级的电压等量地输出。"
+				""
+				"除了为不同等级的机器供电，它在远距离输电中也很重要。高压输电的线路损耗更小。和现实生活中一样！"
+				"{@pagebreak}"
+				"变压器有5个低压面，和1个高压面。"
+				""
+				"&9普通&r的变压器只能1A<->4A，但&9可调&r变压器可以在1A<->4A、2A<->8A、4A<->16A和16A<->64A间切换。"
+				""
+				"用&a软锤&r可以在升压和降压间切换，用&a螺丝刀&r可以调节可调变压器的电流。"
+				""
+				"更高级的变压器需要&9线圈&r。"
+			]
+			icon: "gtceu:mv_transformer_1a"
+			id: "6C20A9A64C1BE0BF"
+			size: 0.75d
+			subtitle: "隐藏的LV"
+			tasks: [{
+				id: "6C36867EB98E772D"
+				item: "gtceu:lv_transformer_1a"
+				type: "item"
+			}]
+			title: "变压器"
+			x: -0.375d
+			y: 1.875d
+		}
+		{
+			dependencies: [
+				"7567E885B7166603"
+				"0DBC148D92A9F69F"
+			]
+			description: [
+				"深入&bMV时代&r的第一步始于此处。"
+				""
+				"在&3MV搅拌机&r中制作的粉末有很多用途。"
+			]
+			icon: "gtceu:mv_mixer"
+			id: "4A92AFD2532EED26"
+			shape: "square"
+			size: 0.75d
+			subtitle: "混合更多复杂的合金材料"
+			tasks: [{
+				id: "31B514C75B302F25"
+				item: "gtceu:mv_mixer"
+				type: "item"
+			}]
+			title: "进阶搅拌机"
+			x: 1.125d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7567E885B7166603"]
+			description: [
+				"这些是你在&bMV&r时代会用到的组件。为了减轻痛苦，你可以自动合成或&d批量合成&r它们，特别是&a马达&r。"
+				""
+				"熟悉那个&a发射器&r吗？这一等级的发射器需要&d无瑕的绿宝石&r，而现在它只能从&3筛选器&r中获得。"
+				""
+				"传送带、泵和机械臂是&7LV&r版本的升级，如果你用做覆盖版的话。"
+				""
+				"&6这个任务解锁了&l技巧与窍门&r&6栏中关于超频的教程——查看它以学习更多知识吧！&r"
+			]
+			icon: "gtceu:mv_electric_motor"
+			id: "1BE0349B8F3890D3"
+			size: 0.75d
+			subtitle: "你讨厌前一个等级的组件吗？"
+			tasks: [
+				{
+					id: "76A30E86C0FDF039"
+					item: "gtceu:mv_electric_motor"
+					type: "item"
+				}
+				{
+					id: "569F6A8DF342E3F2"
+					item: "gtceu:mv_electric_piston"
+					type: "item"
+				}
+				{
+					id: "22AA9FC8B94E4DC2"
+					item: "gtceu:mv_electric_pump"
+					type: "item"
+				}
+				{
+					id: "63123E0DCB8D851C"
+					item: "gtceu:mv_conveyor_module"
+					type: "item"
+				}
+				{
+					id: "3DEEAA7FE50CC0E2"
+					item: "gtceu:mv_robot_arm"
+					type: "item"
+				}
+				{
+					id: "57955AE7B270A891"
+					item: "gtceu:mv_emitter"
+					type: "item"
+				}
+			]
+			title: "MV组件"
+			x: 0.0d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"7567E885B7166603"
+				"0DBC148D92A9F69F"
+			]
+			description: ["进阶电解机可以分解&6多得多&r的粉了。这对于获得一些材料比如&a铝&o容易多了！"]
+			icon: "gtceu:mv_electrolyzer"
+			id: "0EFEE489906256AA"
+			shape: "square"
+			size: 0.75d
+			subtitle: "我们成功进入了MV，呃······"
+			tasks: [{
+				id: "151788F66BAD5F97"
+				item: "gtceu:mv_electrolyzer"
+				type: "item"
+			}]
+			title: "进阶电解机"
+			x: -1.125d
+			y: 1.5d
+		}
+		{
+			dependencies: ["0EFEE489906256AA"]
+			description: [
+				"它产出的四种粉末都非常好。"
+				""
+				"完成任务总共需要&a416个黏土粉&r。你可能也想找找类似的材料，比如&a方钠石&r。看看EMI来获取灵感吧。"
+				""
+				"你可以用钠和/或锂制作一些&6MV电池&r。"
+				""
+				"呃，那些没用的&d水&r会堵住你的机器！或许可以用&3销毁覆盖板&r来处理。"
+			]
+			icon: "minecraft:clay_ball"
+			id: "2273DD7E5CD49017"
+			rewards: [{
+				count: 4
+				id: "52A043C0F3795CC8"
+				item: "gtceu:mv_battery_hull"
+				type: "item"
+			}]
+			size: 0.66d
+			subtitle: "粘土是一种非常&m平衡&r的电解材料"
+			tasks: [
+				{
+					count: 64L
+					id: "0BE33D992F7761EA"
+					item: "gtceu:sodium_dust"
+					type: "item"
+				}
+				{
+					count: 32L
+					id: "3C7B4B2F850620FB"
+					item: "gtceu:lithium_dust"
+					type: "item"
+				}
+				{
+					count: 64L
+					id: "531FE43ADBEE689B"
+					item: "gtceu:aluminium_dust"
+					type: "item"
+				}
+				{
+					count: 64L
+					id: "0048C85BB03C4811"
+					item: "gtceu:silicon_dust"
+					type: "item"
+				}
+			]
+			title: "一个平衡的任务包，适合各种玩家"
+			x: -2.25d
+			y: 1.5d
+		}
+		{
+			dependencies: ["0DBC148D92A9F69F"]
+			description: [
+				"将这个善良的心灵放在矿脉上方，它就会为你挖矿。"
+				""
+				"没有深度限制，只有提示框内的范围限制。"
+				""
+				"&bMV&r版本可能不能完整挖掘整个矿脉，但&6HV&r的版本就可以了！所以你可以先等一等。获得&e任意一个&r来完成这个任务。"
+				"{@pagebreak}"
+				"你需要为其&9供能&r。&a电池&r可以工作，但终会耗尽，可能有点不方便。"
+				""
+				"我建议用一个装满某种燃料的&3桶&r&7（用蒸汽的话就太不幸了！）&r和一个&3发电机&r。"
+				""
+				"将桶放在发电机上，然后用&5螺丝刀&r右键以自动输入到发电机中。"
+				"{@pagebreak}"
+				"&c注意：&r别忘了用FTB实用工具&d加载&r矿脉的9个区块&7（打开左上角的地图，左键声明区块后下蹲左键强制加载）&r。"
+				""
+				"&9小技巧：&r你可以用&3ME箱子&r或&32x2抽屉&r来方便地把输出运回去。&3ME箱子&r可以直接用EU供能。"
+			]
+			icon: "gtceu:mv_miner"
+			id: "5C94CF50090D7DA0"
+			rewards: [{
+				id: "2C877DA425BBFC5D"
+				item: {
+					Count: 1
+					id: "minecraft:wooden_pickaxe"
+					tag: {
+						Damage: 58
+					}
+				}
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			tasks: [{
+				id: "431D533510584687"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "gtceu:lv_miner"
+							}
+							{
+								Count: 1b
+								id: "gtceu:mv_miner"
+							}
+							{
+								Count: 1b
+								id: "gtceu:hv_miner"
+							}
+						]
+					}
+				}
+				title: "采矿机"
+				type: "item"
+			}]
+			title: "数字采矿机"
+			x: -3.375d
+			y: 1.5d
+		}
+		{
+			dependencies: ["4A92AFD2532EED26"]
+			description: [
+				"副标题注：这是PSP游戏《玻璃心公主》的OP，意为“使你的心和钢铁一样坚硬”。"
+				""
+				"钒钢稍后会用到一点。用它制作的工具耐久度大约是钢的&6四倍&r。钒可以从&a钒磁铁矿&r中获得，而你可能已经遇到过磁铁矿了。"
+				""
+				"其他钢合金包括蓝钢、红钢、黑钢等！"
+				""
+				"领取这个免费的蓝钢吧，它的耐久度是钢的两倍。"
+			]
+			icon: "gtceu:vanadium_steel_ingot"
+			id: "682C26579EDDCA76"
+			rewards: [{
+				count: 16
+				id: "2000E0E550142D12"
+				item: "gtceu:blue_steel_ingot"
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "钢铁之心，坚不可摧"
+			tasks: [{
+				count: 4L
+				id: "2E6C71CB2E5EEAC7"
+				item: "gtceu:vanadium_steel_ingot"
+				type: "item"
+			}]
+			title: "钢合金"
+			x: 2.25d
+			y: 2.625d
+		}
+		{
+			dependencies: [
+				"5401AB5E399E7BEA"
+				"16A6AE5C770DB83A"
+			]
+			description: [
+				"&3分子装配机&r可以自动合成工作台配方，也就是说你可以自动化一切了。"
+				""
+				"为了最大化一台分子装配机能处理的配方，你需要做一个分子装配机与ME接口的3D矩阵——每个元件的6个面都与其他的相连接。"
+				""
+				"使用高级金属制作可获得更高的产量。"
+				"{@pagebreak}"
+				"&c警告：&r请勿在AE2自动合成中使用GT工具！这会导致一些bug······你可能会让TPS骤降，或者在坏了一个后强行塞给你几千个工具。"
+				""
+				"如果你&o特别&r想在AE2自动合成中用GT工具，就得做一些耐久很高的扔进去，但不要给工具设置自动合成。\n你也可以用&3组装机&r的配方来代替。"
+			]
+			icon: "ae2:molecular_assembler"
+			id: "0A1165C6D1F62C2B"
+			size: 0.66d
+			subtitle: "终于，自动合成系统上线了！"
+			tasks: [{
+				id: "37ED5227CCC0FE20"
+				item: "ae2:molecular_assembler"
+				type: "item"
+			}]
+			title: "自动合成配方"
+			x: 3.375d
+			y: 1.5d
+		}
+		{
+			dependencies: ["315169840E06110F"]
+			description: [
+				"制作&aAE2压印模板&r可以解锁所有AE2的&9处理器&r。这样你就可以做&9ME驱动器&r、&9ME接口&r、&9ME合成处理单元&r······几乎是AE2所有剩下的部分了！&7（或者至少······是你解锁硅锭之前的。）&r"
+				""
+				"AE2&9印刷电路板&r是在&3冲压机床&r里制作的。"
+			]
+			icon: "ae2:silicon_press"
+			id: "5401AB5E399E7BEA"
+			size: 0.66d
+			subtitle: "谁会想要去追赶陨石呢？"
+			tasks: [
+				{
+					id: "1141B6EFBC930999"
+					item: "ae2:calculation_processor_press"
+					type: "item"
+				}
+				{
+					id: "232235435C17AF43"
+					item: "ae2:engineering_processor_press"
+					type: "item"
+				}
+				{
+					id: "7BEAD830AE385683"
+					item: "ae2:logic_processor_press"
+					type: "item"
+				}
+				{
+					id: "54ACD8E01EABC134"
+					item: "ae2:silicon_press"
+					type: "item"
+				}
+			]
+			title: "压印"
+			x: 3.375d
+			y: 2.64d
+		}
+		{
+			dependencies: ["682C26579EDDCA76"]
+			description: [
+				"副标题注：这是美国梗图里的一段话。"
+				""
+				"&3MV切割机&r是切割&7单晶硅&r所必需的，为&a激光蚀刻&r奠定基础。"
+				""
+				"建议你用&d润滑油&r来减少时间。"
+				""
+				"润滑油的&3酿造&r需要石油和&a滑石&r、&2皂石&r或&c红石&r。"
+			]
+			icon: "gtceu:mv_cutter"
+			id: "5CBBBFD1FBBE95CE"
+			rewards: [{
+				id: "6FD8201A5A3EF40C"
+				item: {
+					Count: 1
+					id: "gtceu:universal_fluid_cell"
+					tag: {
+						Fluid: {
+							Amount: 1000
+							FluidName: "gtceu:lubricant"
+						}
+					}
+				}
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "升级，伙计们，升级！"
+			tasks: [{
+				id: "2AFB7F9BD4D82974"
+				item: "gtceu:mv_cutter"
+				type: "item"
+			}]
+			title: "进阶切割机"
+			x: 3.375d
+			y: 3.75d
+		}
+		{
+			dependencies: [
+				"5CBBBFD1FBBE95CE"
+				"71412502C81F21C1"
+			]
+			description: [
+				"&3精密激光蚀刻机&r可以根据&9透镜&r的类型将图案蚀刻到&9硅晶圆&r上。蚀刻后，必须用&3切割机&r将其制成可放入电路的原件。"
+				""
+				"更高级的蚀刻机可以蚀刻更复杂的晶圆来制作更高级的电路。"
+			]
+			icon: "gtceu:mv_laser_engraver"
+			id: "315169840E06110F"
+			rewards: [{
+				id: "4919AA21A2DE8E7E"
+				item: "gtmutils:copper_credit"
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			tasks: [{
+				id: "75E27D981733ED44"
+				item: "gtceu:mv_laser_engraver"
+				type: "item"
+			}]
+			title: "激光蚀刻"
+			x: 4.5d
+			y: 2.625d
+		}
+		{
+			dependencies: [
+				"75F38905DEA60F15"
+				"16A1EF8B80A96633"
+			]
+			description: [
+				"一个&7LV&r电池仓和两个&7LV&r能源仓不太方便，让我们来改进一下吧！"
+				""
+				"用&3MV能源仓&r升级你的电力高炉，这样你就不用&3变压器&r直接用&bMV&r发电机驱动了。"
+			]
+			icon: "gtceu:mv_energy_input_hatch"
+			id: "2AD44111B9B39C90"
+			rewards: [{
+				count: 24
+				id: "42B5E0E29F987E16"
+				item: "gtceu:annealed_copper_single_wire"
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "LV已经过时了！"
+			tasks: [{
+				id: "1C69557EB4F9E50F"
+				item: "gtceu:mv_energy_input_hatch"
+				type: "item"
+			}]
+			title: "升级你的电力高炉！"
+			x: 3.375d
+			y: -0.75d
+		}
+		{
+			dependencies: [
+				"7567E885B7166603"
+				"0DBC148D92A9F69F"
+			]
+			description: [
+				"副标题注：原文为“Assengers,_Avemble”，而“Avengers_Assemble”是“复仇者联盟”的英文，同时“Assemble”也有“组装”的意思。"
+				""
+				"&3组装器&r在每个等级都很重要，因为它是解锁新配方和推进度的重要目标。社区里的大多数人都把组装器作为&o成功&r达到对应电压的标志。"
+				""
+				"既然如此，欢迎来到&bMV&r！"
+				""
+				"&bMV&3组装机&r解锁了&e晶体管&r、&e电容&r和&e电感&r，而它们会用于下一级的电路。"
+			]
+			icon: "gtceu:mv_assembler"
+			id: "75F38905DEA60F15"
+			shape: "square"
+			size: 0.75d
+			subtitle: "复仇者，联盟联合"
+			tasks: [{
+				id: "2396FECF2A11AA8E"
+				item: "gtceu:mv_assembler"
+				type: "item"
+			}]
+			title: "高级组装器"
+			x: 1.125d
+			y: -0.75d
+		}
+		{
+			dependencies: [
+				"0DBC148D92A9F69F"
+				"1BE0349B8F3890D3"
+			]
+			description: [
+				"格雷科技还没有自动种树和收集作物的方法，所以这个整合包有一个原生的多方块结构来解决这个问题！"
+				""
+				"&3温室&r可以作为你&a原木&r以及其它作物的来源。"
+				""
+				"它生产的&a原木&r足以让&32个热解炉&r以最低功率运行。"
+				""
+				"你也可以用它自动化&a树脂&r的生产。它的产率设置得较低来鼓励后期时其他的橡胶来源。"
+				"{@pagebreak}"
+				"&9注意：&r它需要1个&bMV&r能源仓或两个LV能源仓来给&d40EU/t&r的配方供能。多方块结构&c不&r会接收2A来达到下个电压等级的最低要求。"
+				""
+				"也就是说，在EMI中，所谓最低“&bMV&r”的配方需要GUI显示最低“&bMV&r”后才能运行，即使低等级仓能获得足够的功率。"
+				""
+				"&9注意：&r这个结构需要很多&9锻铁&r。确保你有&3电弧炉&r来制作它。"
+				"{@pagebreak}"
+				"&l&3小知识：&r&o我们一开始在这个整合包里做了一个可以合成原木的化学反应釜配方以供玩家选择。但他们最后被完全舍弃了，所以我们觉得需要给他重新平衡一下。而温室就是一个很好的折衷。"
+			]
+			icon: "minecraft:oak_sapling"
+			id: "2655B72C9FF3B372"
+			rewards: [{
+				count: 10
+				id: "7DCCFC3ADD071D57"
+				item: "gtceu:ulv_machine_casing"
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "KubeJS的力量"
+			tasks: [{
+				id: "35CFA225ADAD5D06"
+				item: "gtceu:greenhouse"
+				type: "item"
+			}]
+			title: "温室"
+			x: 1.125d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"1646BF9194100E57"
+				"2AD44111B9B39C90"
+				"66805BB78A828C00"
+			]
+			description: [
+				"&3坎塔尔合金线圈&r是下一个里程碑。它能让&3高炉&r的温度升至&d2,700K&r来制作新材料，也可以&e加速&r温度较低的配方——查看左上角的任务来获取更多信息。"
+				""
+				"你总共需要&a128个锭&r，可能需要一个小时，所以你可以在&3电力高炉&r努力工作时干点别的——或者再建一个！"
+				"{@pagebreak}"
+				"&3MV化学浸洗机&r可以冷却&c热锭&r。顾名思义，手持时它们会非常&c热&r。&o你可能想保护你的手并实现自动化······&r"
+				""
+				"有了&3坎塔尔合金电力高炉&r，你就可以制作&d硅锭&r了，开启了AE2的广阔篇章。"
+			]
+			icon: "gtceu:kanthal_coil_block"
+			id: "1C55AE6AD5BDE304"
+			shape: "square"
+			size: 0.75d
+			subtitle: "是不是越来越热了？"
+			tasks: [{
+				count: 16L
+				id: "0737586F9DFFC0FE"
+				item: "gtceu:kanthal_coil_block"
+				type: "item"
+			}]
+			title: "坎塔尔合金线圈"
+			x: 4.5d
+			y: -0.75d
+		}
+		{
+			dependencies: ["1C55AE6AD5BDE304"]
+			description: [
+				"本指南将指导你如何将&l所有&r的热锭完美传输到化学浸洗机中。"
+				""
+				"便宜点的办法是用过滤卡，然后一个个手动加入热锭……太枯燥了！我们来看看更有趣的方法吧"
+				""
+				"在您的&3化学反应釜&r侧面安装一个&a物品标签过滤卡&r覆盖板，然后将白名单设置为“&e&lhot_ingots&r”。"
+				""
+				"从现在开始你就可以用&9任何逻辑表述&r来过滤物品了。"
+				"{@pagebreak}"
+				"将你的&3电力高炉&r的输出连接到&3化学反应釜&r的输入和输出容器（箱子或木桶）。"
+				"你也可以在输出容器前使用&d限制管道&r来保证化学反应釜会被优先输出。"
+				""
+				"&l&9注意：&r如果想了解更多关于物品标签的内容，可以悬停在物品上后按Shift。例如，物品的标签是&e&o#forge:plates/copper&r，就可以用&e&lplates/copper&r进行过滤。"
+				""
+				"&9其他注意：&r矿物词典过滤卡支持&d正则表达式&r，将鼠标悬停在信息图标上可获得更多信息。"
+			]
+			icon: "gtceu:item_tag_filter"
+			id: "13A976D0D612BC84"
+			size: 0.66d
+			subtitle: "不再烫手了！"
+			tasks: [{
+				id: "76A20EE57CB39857"
+				item: "gtceu:item_tag_filter"
+				type: "item"
+			}]
+			title: "250IQ"
+			x: 3.375d
+			y: -1.875d
+		}
+		{
+			dependencies: [
+				"10FB27DD3C7BEC2F"
+				"1C55AE6AD5BDE304"
+			]
+			description: ["一种电子元件，借助&3MV组装器&r和全新的&3坎塔尔电力高炉&r，你就可以制作它了。"]
+			icon: "gtceu:transistor"
+			id: "375684F9CBEF9132"
+			rewards: [
+				{
+					id: "3107038561B0F74E"
+					item: "gtceu:silicon_dust"
+					random_bonus: 3
+					type: "item"
+				}
+				{
+					id: "4FFFC88F7BB0C759"
+					item: "gtmutils:copper_credit"
+					type: "item"
+				}
+			]
+			shape: "square"
+			size: 0.75d
+			tasks: [{
+				id: "240735279EBC0193"
+				item: "gtceu:transistor"
+				type: "item"
+			}]
+			title: "摩尔定律"
+			x: 6.75d
+			y: -0.75d
+		}
+		{
+			dependencies: [
+				"60D7F6C1EE918B66"
+				"375684F9CBEF9132"
+				"1E7BF65DB32B8B3E"
+			]
+			description: [
+				"好吧，严格来说，有了&6HV&r电路和不锈钢就意味着可以进入&6HV&r了······但先别忙着做东西呢。"
+				""
+				"首先需要做的就是&3MV电路组装机&r，来马上解锁新一种电路，更便宜的配方才&d真的值得一做&r。"
+			]
+			icon: "gtceu:advanced_integrated_circuit"
+			id: "26394C1290D70AB6"
+			shape: "square"
+			size: 0.75d
+			subtitle: "······在欣喜若狂之前先等一下"
+			tasks: [{
+				id: "75EB5730046212D0"
+				item: "gtceu:advanced_integrated_circuit"
+				type: "item"
+			}]
+			title: "首个HV电路！"
+			x: 6.75d
+			y: 0.375d
+		}
+		{
+			dependencies: ["315169840E06110F"]
+			description: [
+				"标题注：这是一个搞笑网页，它可以给你免费远程“下载”不同规格的RAM，即使是在手机上XD"
+				""
+				"更高级的电子元件需要&a随机存取存储器&r（注：缩写为RAM）。"
+			]
+			icon: "gtceu:ram_chip"
+			id: "1E7BF65DB32B8B3E"
+			shape: "square"
+			size: 0.75d
+			subtitle: "随机存取存储器"
+			tasks: [
+				{
+					id: "40E0E6FD45AEC7B1"
+					item: "gtceu:emerald_lens"
+					type: "item"
+				}
+				{
+					id: "2EACE2CF99B4B3D3"
+					item: "gtceu:ram_wafer"
+					optional_task: true
+					type: "item"
+				}
+				{
+					count: 32L
+					id: "28AC6209CFD8345C"
+					item: "gtceu:ram_chip"
+					type: "item"
+				}
+			]
+			title: "下载更多RAM"
+			x: 5.625d
+			y: 1.5d
+		}
+		{
+			dependencies: ["6F6D2829FC42F21C"]
+			description: [
+				"集成逻辑电路是另一种&7LV&a电路&r，可以批量生产，并升级到&bMV&r（然后是&6HV&r）。"
+				""
+				"&9注意：&r这对真正使用电路来说并非必需——但&bMV&r再往后一点，你就需要它了。它仍然是一个重要的升级，因为你需要通过它来获得&6HV电路&r。"
+				"{@pagebreak}"
+				"&l&3小知识：&r&oGTCEu的电路进程主要是基于GT5u的，但被重新平衡了一下让它变得不那么痛苦，&l特别&r&o是一些纯粹是诱饵的电路！"
+			]
+			icon: "gtceu:basic_integrated_circuit"
+			id: "5C17BF90DA2AAEEE"
+			shape: "square"
+			size: 0.75d
+			subtitle: "你解锁了新一级的电路！"
+			tasks: [{
+				id: "2301CD2A841F17D9"
+				item: "gtceu:basic_integrated_circuit"
+				type: "item"
+			}]
+			title: "更多LV电路"
+			x: 6.75d
+			y: 2.625d
+		}
+		{
+			dependencies: ["5C17BF90DA2AAEEE"]
+			description: ["集成级别的&bMV&r电路。"]
+			icon: "gtceu:good_integrated_circuit"
+			id: "60D7F6C1EE918B66"
+			shape: "square"
+			size: 0.75d
+			subtitle: "更多······我需要更多！"
+			tasks: [{
+				id: "0622E51767B0AB58"
+				item: "gtceu:good_integrated_circuit"
+				type: "item"
+			}]
+			title: "更多MV电路"
+			x: 6.75d
+			y: 1.5d
+		}
+		{
+			dependencies: [
+				"4073577B7EF9B593"
+				"1E9BE8D3F8A602DC"
+			]
+			description: [
+				"标题注：硅彩票，也叫芯片彩票，是指厂商的芯片超频时会有性能上的差异，谁也不知道自己买到的怎么样，就像买彩票一样。"
+				""
+				"&9单晶硅&r是在&3电力高炉&r中用许多&a硅粉&r和一点点&a砷化镓&r制作而成的。它们的初期用途是蚀刻&6晶圆&r。"
+				""
+				"单晶硅制作完成后，需要在&3切割机&r中切成16个硅晶圆以进行蚀刻。"
+				""
+				"目前最好的&a硅&r来源是……嗯，&d玻璃粉&r，或者&d方钠石&r。"
+				""
+				"&c警告：&r每个单晶硅需要在120EU/t以下运行7.5分钟，即1,080,000EU！如果你的电力高炉中途断电，配方&c进度会倒退&r。"
+				""
+				"硅晶圆制作需要很长时间，所以可以考虑在多个&3电力高炉里&r同时制作和储存。"
+			]
+			icon: "gtceu:silicon_boule"
+			id: "71412502C81F21C1"
+			shape: "square"
+			size: 0.75d
+			subtitle: "那些硅晶圆之间可以完美互换"
+			tasks: [
+				{
+					id: "1A18D503A429CC17"
+					item: "gtceu:silicon_boule"
+					type: "item"
+				}
+				{
+					count: 16L
+					id: "6443C18E4B63EBDC"
+					item: "gtceu:silicon_wafer"
+					type: "item"
+				}
+			]
+			title: "硅彩票"
+			x: 4.5d
+			y: 3.75d
+		}
+		{
+			dependencies: ["26394C1290D70AB6"]
+			description: [
+				"&3电路组装器&r在每个等级都必不可少，因为它可以解锁更多电路。"
+				""
+				"现在你需要在旁边放一个&3提取机&r，然后把一组组&a焊锡&r锭放进去，这样就不用担心重新装填的问题了。"
+			]
+			icon: "gtceu:mv_circuit_assembler"
+			id: "0DE5C3FBC9A6A690"
+			rewards: [
+				{
+					count: 40
+					id: "484745BF48673036"
+					item: "gtceu:soldering_alloy_dust"
+					type: "item"
+				}
+				{
+					id: "29B290DDACFF37F1"
+					item: "gtmutils:copper_credit"
+					type: "item"
+				}
+			]
+			shape: "square"
+			size: 0.75d
+			subtitle: "耶，呀呼！"
+			tasks: [{
+				id: "7ED7103DAF7E4413"
+				item: "gtceu:mv_circuit_assembler"
+				type: "item"
+			}]
+			title: "高级电路组装器"
+			x: 7.875d
+			y: 0.375d
+		}
+		{
+			dependencies: ["26394C1290D70AB6"]
+			description: [
+				"&3工业熔炉&r以最低功率运行（白铜线圈和&7LV&r电压）就可以在12秒内烧炼32个物品——相当于&926.7个熔炉&r或者3.3个蒸汽熔炼炉！"
+				""
+				"如果这还不能打动你，标准的&a超频&r也可以在充足的电压下应用。"
+				""
+				"更重要的是——高级的&3线圈&r可以增加&d并行&r烧炼的数量！"
+			]
+			icon: "gtceu:multi_smelter"
+			id: "6DDDE2268B691F74"
+			rewards: [{
+				id: "006F83AC08E87057"
+				item: "gtceu:advanced_integrated_circuit"
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "这可能是你见过的最强大的熔炉了"
+			tasks: [{
+				id: "0A42FE4B72071451"
+				item: "gtceu:multi_smelter"
+				type: "item"
+			}]
+			title: "终极熔炉"
+			x: 5.625d
+			y: 0.375d
+		}
+		{
+			dependencies: [
+				"4600221BF0A30C3A"
+				"6E9E15DA847DD0A1"
+				"0DE5C3FBC9A6A690"
+				"375684F9CBEF9132"
+			]
+			description: [
+				"&6最棒的LV电路&r！你现在就可以开始批量生产了，因为在接下来的游戏中你会一直用到它。"
+				""
+				"尽量保持一定量的库存，按需制造可能需要花费一些时间。"
+				""
+				"&5EV&r之后它们会变得更便宜。"
+			]
+			icon: "gtceu:microchip_processor"
+			id: "5E76D4C24026157D"
+			rewards: [{
+				id: "7BEA901F242B49B0"
+				item: "gtmutils:silver_credit"
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "最好的感觉真好，真棒"
+			tasks: [{
+				id: "4E076080D7B23372"
+				item: "gtceu:microchip_processor"
+				type: "item"
+			}]
+			title: "最好的LV电路"
+			x: 7.875d
+			y: -0.75d
+		}
+		{
+			dependencies: [
+				"4600221BF0A30C3A"
+				"0DE5C3FBC9A6A690"
+				"6E9E15DA847DD0A1"
+				"375684F9CBEF9132"
+			]
+			description: [
+				"&6最棒的MV电路&r！你会为了游戏的完整性而制作它。"
+				""
+				"最后（在&9IV&r时代）它们会变得更便宜。"
+			]
+			icon: "gtceu:micro_processor"
+			id: "38DE506FF5B32031"
+			shape: "square"
+			size: 0.75d
+			subtitle: "MV的巅峰"
+			tasks: [{
+				id: "120B63C2E40D359A"
+				item: "gtceu:micro_processor"
+				type: "item"
+			}]
+			title: "最棒的MV电路"
+			x: 9.0d
+			y: -0.75d
+		}
+		{
+			dependencies: [
+				"1FCF2C103E25972B"
+				"5063FDFFBE3E4855"
+				"3568BC9742092FC5"
+			]
+			description: [
+				"你的首个&5EV&r电路有着独特的材质。如果你任然认为自己在&bMV&r，&a等一等&r再开始大量制作，因为它们现在还没有什么用。但如果你&d只是想&r向我们炫耀一下，我们的确没什么办法。"
+				""
+				"它会在&6HV&r中被用到。"
+			]
+			icon: "gtceu:micro_processor_computer"
+			id: "4AFD3073C731A1E4"
+			rewards: [{
+				id: "13E5E4954466CBBB"
+				item: "gtmutils:gold_credit"
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "出类拔萃"
+			tasks: [{
+				id: "34EA9B71F8BF607F"
+				item: "gtceu:micro_processor_computer"
+				type: "item"
+			}]
+			title: "首个EV电路！"
+			x: 11.25d
+			y: -0.75d
+		}
+		{
+			dependencies: [
+				"38DE506FF5B32031"
+				"3DFFA8F91452C62A"
+			]
+			description: [
+				"更好的&6HV&r电路——比上一级更&6便宜&r好做。"
+				""
+				"在进入&6HV&r之前，请确保你已经进行了规模化生产，并用AE2自动化了最重要的生产流程。"
+			]
+			icon: "gtceu:micro_processor_assembly"
+			id: "5063FDFFBE3E4855"
+			rewards: [{
+				id: "617B3B1FDFCC2A99"
+				item: "gtmutils:silver_credit"
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "在那个HV的苦差事上"
+			tasks: [{
+				id: "2FE33281A44C34F6"
+				item: "gtceu:micro_processor_assembly"
+				type: "item"
+			}]
+			title: "更多高压电路模组内容"
+			x: 10.125d
+			y: -0.75d
+		}
+		{
+			dependencies: ["10FB27DD3C7BEC2F"]
+			description: [
+				"一种电子元件，借助&3MV组装器&r，你现在可以制作了！"
+				""
+				"电容器常用于在计算机断电时存储信息，但这只是它众多用途之一。"
+			]
+			hide_dependency_lines: true
+			icon: "gtceu:capacitor"
+			id: "6E9E15DA847DD0A1"
+			shape: "square"
+			size: 0.75d
+			subtitle: "家人们，这简直绝了绝了，太牛了"
+			tasks: [{
+				id: "60D8154F5C9C0EAC"
+				item: "gtceu:capacitor"
+				type: "item"
+			}]
+			title: "电容器"
+			x: 9.0d
+			y: -1.875d
+		}
+		{
+			dependencies: ["648BCF486E16CCB2"]
+			description: [
+				"副标题注：改编自游戏《Undertale》蓝色模式下Papyrus的一句台词。"
+				""
+				"&a蓝色合金&r是&6HV&r极佳的电缆材料。"
+				""
+				"当然你也可以把它用在&bMV&r上！但注意不要接错电压。"
+				""
+				"&bMV&r和&6HV&r的超导体要到······好长时间之后了。"
+				""
+				"&a蓝石矿&r可以在&c下界&r获得，所以你不需要在搅拌机里制作！"
+				""
+				"&a青金石&r可以分解成&d琥珀金&r和&d红石&r。"
+			]
+			icon: "gtceu:blue_alloy_ingot"
+			id: "1FCF2C103E25972B"
+			rewards: [{
+				id: "61F22179773C70D6"
+				item: "gtceu:electrotine_dust"
+				random_bonus: 7
+				type: "item"
+			}]
+			size: 0.75d
+			subtitle: "你现在是蓝色的了……那是我的合金"
+			tasks: [{
+				id: "15C7369398FAB8DB"
+				item: "gtceu:blue_alloy_ingot"
+				type: "item"
+			}]
+			title: "蓝色合金"
+			x: 11.25d
+			y: -1.875d
+		}
+		{
+			dependencies: ["10FB27DD3C7BEC2F"]
+			description: [
+				"一种电子元件，借助&3MV组装器&r，你现在可以制作了。"
+				""
+				"如果想让它便宜一点，可以做&a镍锌铁氧体&r。"
+			]
+			hide_dependency_lines: true
+			icon: "gtceu:inductor"
+			id: "3DFFA8F91452C62A"
+			shape: "square"
+			size: 0.75d
+			subtitle: "Z = jwL"
+			tasks: [{
+				id: "6690451CCAB62CA1"
+				item: "gtceu:inductor"
+				type: "item"
+			}]
+			title: "电感"
+			x: 10.125d
+			y: -1.875d
+		}
+		{
+			dependencies: ["6BB98D128822730E"]
+			description: [
+				"副标题注：polymer既有奶嘴的意思，也有聚合物的意思。"
+				""
+				"你也可以直接叫它塑料就行了。"
+				""
+				"聚合物的生产需要加入&a氧&r，这比单纯的空气要好。之后就像橡胶一样固化它。"
+				""
+				"&a聚乙烯（PE）&r是解锁&6许多新东西&r的钥匙。它大多都是以&d片&r或者&d流体&r的形式使用。"
+				""
+				"此外，一些配方也更有效率了！查看二极管和机器外壳吧（&8LV&r和&bMV&r）。"
+				""
+				"{@pagebreak}"
+				"&l&3小知识：&r&o在1.12.2的GTCEu中为了和其他模组兼容，聚乙烯的矿物词典名和流体名称都是&o塑料&r。"
+			]
+			icon: "gtceu:polyethylene_plate"
+			id: "10FB27DD3C7BEC2F"
+			rewards: [
+				{
+					exclude_from_claim_all: true
+					id: "48DD442B4934D192"
+					table_id: 8104073045527404694L
+					type: "choice"
+				}
+				{
+					id: "5907E8F1A4C2B0EF"
+					item: "gtmutils:silver_credit"
+					type: "item"
+				}
+			]
+			shape: "gear"
+			size: 1.2d
+			subtitle: "宝宝的第一个聚合物！"
+			tasks: [{
+				id: "15E5F008339B8964"
+				item: "gtceu:polyethylene_plate"
+				type: "item"
+			}]
+			title: "聚乙烯"
+			x: 6.75d
+			y: -3.0d
+		}
+		{
+			dependencies: ["10FB27DD3C7BEC2F"]
+			description: [
+				"&a样板&r可用于AE2的自动合成。&a聚氯乙烯&r的产率可&64倍&r，更高级的塑料产率更高。"
+				""
+				"不过先别太激动——AE2自动合成首先需要一些&d硅锭&r。"
+				""
+				"关于自动合成的一个小提示······虽然AE2可以按需自动连锁生产，但在更高等级时这一定会反噬你。我们强烈建议你在所有地方都尽量实现自动化生产。"
+			]
+			icon: "ae2:blank_pattern"
+			id: "1C036BCB2C488CFF"
+			shape: "square"
+			size: 0.75d
+			subtitle: "自动合成，终于实现了！"
+			tasks: [{
+				id: "032C24CBA8687E72"
+				item: "ae2:blank_pattern"
+				type: "item"
+			}]
+			title: "模板"
+			x: 5.625d
+			y: -1.875d
+		}
+		{
+			dependencies: ["65F89BEC7EA4B2CB"]
+			description: [
+				"我认真的。（注：副标题原文的前一句有两层含义，一个是超级桶很OP，一个是超级桶是OP，所以才有后面那句打岔。）"
+				""
+				"这是&c至&6尊&e超&a级&b无&9敌&5终&4极&r便携流体存储方案。在一个方块中&6存4,000桶&r！"
+				""
+				"像桶一样，它会&6保留物品栏&r而且可以通过合成来清除流体。"
+				""
+				"想要&9更多&r储量，可以使用更高级的超级桶或AE2的流体存储单元。"
+			]
+			icon: "gtceu:lv_super_tank"
+			id: "6C53B01A05FFF1DC"
+			size: 0.75d
+			subtitle: "超级桶太强了！"
+			tasks: [{
+				id: "47EA273D728C158F"
+				item: "gtceu:lv_super_tank"
+				type: "item"
+			}]
+			title: "超级桶"
+			x: 9.0d
+			y: -4.125d
+		}
+		{
+			dependencies: ["10FB27DD3C7BEC2F"]
+			description: [
+				"&a聚氯乙烯（PVC）&r是现实中产量第三高的塑料。在这里你可以用它替代聚乙烯来做&a塑料电路基板&r或其他物品增加产率。&5EV&r及以上的线缆也需要它。"
+				""
+				"PVC物品管道是目前&6流量最大&r的，但你现在大概用不着这么大流量。不过它也是个很好的冷知识。"
+				""
+				"&9进阶提示：&rPVC在基础的GTCEu中从不用作流体，所以放心地固化它吧。"
+			]
+			icon: "gtceu:polyvinyl_chloride_plate"
+			id: "40408FFD02134148"
+			shape: "square"
+			size: 0.75d
+			subtitle: "你已经做了一个聚合物了，再做一个怎么样？"
+			tasks: [{
+				id: "72696AD2B77F805B"
+				item: "gtceu:polyvinyl_chloride_plate"
+				type: "item"
+			}]
+			title: "聚氯乙烯"
+			x: 6.75d
+			y: -4.125d
+		}
+		{
+			dependencies: [
+				"4353AB0E20601AEC"
+				"10FB27DD3C7BEC2F"
+			]
+			description: [
+				"现在你已拥有制作塑料电路基板的所有工具。未来更高级的塑料能显著提高塑料电路基板的产量。"
+				""
+				"这个配方很长，所以我建议你用两个专用的&3化学反应釜&r一次性批量制作。"
+			]
+			icon: "gtceu:plastic_printed_circuit_board"
+			id: "4600221BF0A30C3A"
+			shape: "square"
+			size: 0.75d
+			subtitle: "这是塑料板上的卡西欧。"
+			tasks: [
+				{
+					id: "68B5E2667EDAE895"
+					item: "gtceu:plastic_circuit_board"
+					type: "item"
+				}
+				{
+					id: "46496E3B65CFFFF3"
+					item: "gtceu:plastic_printed_circuit_board"
+					type: "item"
+				}
+			]
+			title: "塑料电路基板"
+			x: 7.875d
+			y: -1.875d
+		}
+		{
+			dependencies: [
+				"5263F866638D875C"
+				"257DB4B39B2A928E"
+				"3D98819A799D2E64"
+			]
+			description: [
+				"&a过硫酸钠&r可用于&9矿物处理&r的&3浸洗&r以获取特殊副产品。这完全可选，但效果不错。"
+				""
+				"&l等等！这只是题外话&r——这个任务的真正主题是······"
+				""
+				"&a过硫酸钠&r和&a三氯化铁&r能更便宜地制作&9优质电路基板&r，因为它将银的用量锐减至四分之一。"
+				""
+				"制作&9塑料电路基板&r也&d需要&r它们。"
+				"{@pagebreak}"
+				"制作&a过硫酸钠&r时也会产出&a盐酸&r作为副产，而这正好可用于制作&a三氯化铁&r。这是目前最佳方案，但选不选由你决定。"
+				""
+				"但在游戏后期自动化之后，三氯化铁就成了最便宜最直接的了。"
+				""
+				"这个任务可以用&e任意一个&r流体完成。但你终究两个都需要······"
+			]
+			icon: "gtceu:iron_iii_chloride_bucket"
+			id: "4353AB0E20601AEC"
+			rewards: [{
+				count: 20
+				id: "5A23AC1DA33FDC71"
+				item: "gtceu:salt_ore"
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "让我们来腐蚀掉电路板上的一些铜吧！"
+			tasks: [
+				{
+					id: "118468CD578081CF"
+					item: "gtceu:sodium_persulfate_bucket"
+					type: "item"
+				}
+				{
+					id: "1B7EDF573783D986"
+					item: "gtceu:iron_iii_chloride_bucket"
+					type: "item"
+				}
+			]
+			title: "过硫酸钠/三氯化铁"
+			x: 7.875d
+			y: -3.0d
+		}
+		{
+			dependencies: [
+				"3D98819A799D2E64"
+				"1A77CA35F054F988"
+			]
+			description: [
+				"EMI可能会让你应接不暇，所以我现在给你展示了制作硫酸的最佳路径。"
+				""
+				"制作&e硫酸&r分为三步。因为有很多重要的反应都需要它，所以你应该尽早自动化它的生产。"
+				"{@pagebreak}"
+				"你需要&3三个LV化学反应釜&r来自动化它的生产。建议在旁边建个独立节点，并用&3一个LV发电机&r为其供电。再连上各种管道&m……或者直接上AE2&r。"
+				""
+				"&9-&r第一步：&a硫&r和&b氧&r反应生成&a二氧化硫&r。"
+				"&9-&r第二步：&a二氧化硫&r和更多的&b氧&r反应生成&a三氧化硫&r。"
+				"&9-&r第三步：&a三氧化硫&r与&b水&r反应生成&e硫酸&r。"
+				"{@pagebreak}"
+				"&l&3小知识：&r&oGT5的化学反应釜只有一个流体槽。为了规避这一点，他们用了&d单元化学&r。这样你就需要让一个单元从一个机器到另一个然后再转一圈回来。一个有点好玩的挑战，但也很麻烦！"
+			]
+			id: "316FF60D6FFE97CE"
+			shape: "square"
+			size: 0.75d
+			subtitle: "“······他把H2O当成了H2SO4”"
+			tasks: [{
+				id: "06B5F04DEFC12458"
+				item: "gtceu:sulfuric_acid_bucket"
+				type: "item"
+			}]
+			title: "硫酸"
+			x: 4.5d
+			y: -3.0d
+		}
+		{
+			dependencies: [
+				"32B08E6F414A00C0"
+				"3D98819A799D2E64"
+			]
+			description: [
+				"你可以将&a氢&r和&a氯&r混合以获得&9盐酸&r。"
+				""
+				"也可以通过含有&a氯&r的反应废料中获得。根据你的建造，可能永远不需要直接合成。"
+				"{@pagebreak}"
+				"&c注意：&r我们的Discord上有一个自动指令叫$medicine:"
+				""
+				"\"&b&o请勿在现实中尝试 - 这不仅违法，而且愚蠢至极的危险&r\"。"
+				""
+				"它能让你玩化学药品，不要这样做。"
+				""
+				"小脚注——我保证你现在就有它的样本！它就在你的胃里，是胃酸的一部分。"
+			]
+			icon: "gtceu:hydrochloric_acid_bucket"
+			id: "64CACABB48635904"
+			shape: "square"
+			size: 0.75d
+			subtitle: "你需要一大堆这样的东西。"
+			tasks: [{
+				id: "34147C1DD7B8DE55"
+				item: "gtceu:hydrochloric_acid_bucket"
+				type: "item"
+			}]
+			title: "盐酸"
+			x: 2.25d
+			y: -3.0d
+		}
+		{
+			dependencies: [
+				"316FF60D6FFE97CE"
+				"64CACABB48635904"
+			]
+			description: [
+				"你可能注意到有些流体是“&a酸性物质&r”，而&9硫酸&r就在其中。"
+				""
+				"这意味着许多流体管道无法安全运输它们！"
+				""
+				"&bMV&r最便宜的耐酸管道可能是&a金&r，可能更贵一些的&a钒钢&r和&a铬&r排在第二或第三。"
+				""
+				"&a不锈钢&r或&a聚四氟乙烯&r（它的英文“Polytetrafluoroethylene”好长好长）到了&6HV&r也是个很好的选项。"
+				"{@pagebreak}"
+				"存放酸性物质有以下三种选择：&d玻璃单元&r、&d金桶&r或&d超级桶&r。玻璃单元和&9流体单元&r一样，但可以存放酸。金桶无需多言。超级桶会在&9聚乙烯&r之后解锁，并且可以无限存放任何流体。"
+				""
+				"&c警告：&r将酸性物质存放在错误的容器中会导致&c销毁&r、&c管道焚毁&r和更高的&c死亡&r率！务必小心！"
+				""
+				"&l&3小知识：&r&o酸性物质的传输和存储机制源于GT6。"
+			]
+			icon: "gtceu:acid_hazard_sign_block"
+			id: "079442C113D54856"
+			rewards: [{
+				count: 8
+				id: "5CF50AE30DCD7E68"
+				item: "gtceu:glass_vial"
+				type: "item"
+			}]
+			shape: "circle"
+			size: 0.66d
+			subtitle: "······如果你不看这个任务的话。"
+			tasks: [{
+				id: "2D0DE3FB6E5E4146"
+				title: "我是个酸液专家，别担心了"
+				type: "checkmark"
+			}]
+			title: "它会融化你的血肉，让你痛苦不堪"
+			x: 2.25d
+			y: -4.125d
+		}
+		{
+			dependencies: [
+				"63CD0236B337EAAD"
+				"6D9D54FAB21EC086"
+			]
+			description: [
+				"副标题注：可能源自RAP《Baby_Got_Back》，意为“宝贝有电池”。"
+				""
+				"&bMV&r电池可以更便捷的储存能量，就像&7LV&r电池一样实用。"
+				""
+				"&a钠&r、&a锂&r或&a镉&r的用量会增加到8个粉，所以你可以做你所拥有最多的那一个。毕竟他们容量的差别没有&7那么&r大！"
+				""
+				"获得&e任意一种&r电池来完成此任务。"
+			]
+			icon: "gtceu:hv_battery_hull"
+			id: "2202AA5DC6DB0A26"
+			rewards: [{
+				id: "53155A3932DEF26D"
+				item: "gtmutils:copper_credit"
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "宝宝有电池了"
+			tasks: [{
+				id: "5FEE671A75766B78"
+				item: {
+					Count: 1
+					id: "itemfilters:tag"
+					tag: {
+						value: "gtceu:batteries/mv"
+					}
+				}
+				title: "任意MV电池"
+				type: "item"
+			}]
+			title: "更好的电池"
+			x: 4.5d
+			y: -1.875d
+		}
+		{
+			dependencies: [
+				"7567E885B7166603"
+				"0DBC148D92A9F69F"
+			]
+			description: [
+				"我&l诚挚地&r希望你&c没&r做&7LV&r压模器，因为只有&bMV&r的压模器才真正有用。如果你真的做了，我建议你把它在电弧炉中&a回收&r。"
+				""
+				"压模机可以用&a锭&r把固体材料变成（几乎！）所有形状。这既可以减少套娃，又可以保持转换率。"
+				""
+				"压模机可以一步最高效率地制作出&6螺栓&r、&6小型齿轮&r、&6齿轮&r和&6环&r！"
+				""
+				"你也可以用它制作&d管道&r、&d长杆&r和&d转子&r。"
+			]
+			icon: "gtceu:mv_extruder"
+			id: "22B5AD670496C02D"
+			rewards: [
+				{
+					id: "0E6CAED1ED976D9E"
+					item: "gtceu:small_gear_extruder_mold"
+					type: "item"
+				}
+				{
+					id: "0A0BD551FFBC2E1C"
+					item: "gtceu:gear_extruder_mold"
+					type: "item"
+				}
+			]
+			shape: "square"
+			size: 0.75d
+			subtitle: "你做出的最大程度的升级"
+			tasks: [{
+				id: "73E8504BA235C4BF"
+				item: "gtceu:mv_extruder"
+				type: "item"
+			}]
+			title: "进阶压模机"
+			x: 1.125d
+			y: 0.375d
+		}
+		{
+			dependencies: ["22B5AD670496C02D"]
+			description: [
+				"铝单元，比钢单元和通用单元好多了。"
+				""
+				"它们可以储存任意数量的流体，但最多&d32桶&r！"
+			]
+			icon: "gtceu:aluminium_fluid_cell"
+			id: "53B0D08DB90EC369"
+			size: 0.66d
+			subtitle: "和单元一样······就是大了一点。"
+			tasks: [{
+				id: "105EA8621A99C1EC"
+				item: "gtceu:aluminium_fluid_cell"
+				type: "item"
+			}]
+			title: "大单元"
+			x: 2.25d
+			y: 0.375d
+		}
+		{
+			dependencies: ["318DAA7A8BAEB21C"]
+			description: [
+				"你可能在筛矿中遇到过油砂。你可以&3离心&r粉来获得&a石油&r。"
+				""
+				"&9&l注意：&r&l石化路经是通往&9&l乙烯&r&l的一条路径，而另一条与乙醇关系不错。"
+				""
+				"目前石油还是&d可选的&r，但在遥远的&5EV&r时代就将成为强制性的了。"
+				""
+				"石油可以被提炼成&a轻质燃油&r、&a柴油&r甚至&a汽油&r，这些都是很好的能源。"
+				""
+				"如果你选择了这条路，就应该用它同时进行产能和乙烯生产。"
+				""
+				"油砂是个&6很好的起点&r——它们会帮你过渡到流体钻机。"
+			]
+			icon: "gtceu:oilsands_ore"
+			id: "575B07D390D9D079"
+			shape: "square"
+			size: 0.75d
+			subtitle: "本任务由美军赞助提供"
+			tasks: [{
+				count: 64L
+				id: "15862831A49F6231"
+				item: { Count: 64, id: "gtceu:raw_oilsands" }
+				type: "item"
+			}]
+			title: "美洲模拟器"
+			x: -4.5d
+			y: -0.75d
+		}
+		{
+			dependencies: [
+				"37AAB88A9EDCC862"
+				"6EB68C28BEE24DEF"
+				"318DAA7A8BAEB21C"
+			]
+			description: [
+				"在开始之前，你需要考虑一下怎么获得乙烯："
+				""
+				"&a石化&r路径只需要&o至少&r&3LV蒸馏室&r。"
+				""
+				"&a生物质&r路径则&l需要&r&3MV蒸馏室&r。"
+				""
+				"获得&e任意一个&r来完成此任务。"
+				"{@pagebreak}"
+				"都了解了吗？&6来吧&r！我们来讨论个复杂一点的话题：&9蒸馏&r。这个指导会让你理解为什么&aEMI&r的配方是这样的，所以跟紧我吧！"
+				""
+				"几乎所有&3蒸馏室&r的配方都是从&3蒸馏塔&r复制过来的，但它们只有一种产物，其余的都会被销毁。"
+				""
+				"换句话说，&3蒸馏室&r就是个&d低级的&r&3蒸馏塔&r。"
+				"{@pagebreak}"
+				"但这并不意味着&3蒸馏室&r总是低级的。它解锁更早，&d更小&r、&d更便宜&r，而且&d更省电&r。"
+				""
+				"在很多情况下，你并不会在意其他损失的产物。"
+				""
+				"&3蒸馏室&r对于产能是必不可少的，不管你用&a柴油&r或者&a苯&r。"
+				""
+				"你可能需要制作多个来避免超频造成的能量损失。"
+			]
+			icon: "gtceu:mv_distillery"
+			id: "6A304E453D74C57C"
+			min_required_dependencies: 2
+			rewards: [
+				{
+					id: "3F6532E5CE210907"
+					item: "gtceu:basic_electronic_circuit"
+					type: "item"
+				}
+				{
+					id: "344576B50A51F807"
+					item: "gtmutils:silver_credit"
+					type: "item"
+				}
+			]
+			shape: "gear"
+			size: 1.25d
+			subtitle: "自由选择的幻象 (Illusion of Free Choice)"
+			tasks: [{
+				id: "685043442271A0D0"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "gtceu:lv_distillery"
+							}
+							{
+								Count: 1b
+								id: "gtceu:mv_distillery"
+							}
+						]
+					}
+				}
+				title: "LV或MV蒸馏室"
+				type: "item"
+			}]
+			title: "蒸馏室"
+			x: -3.375d
+			y: -1.875d
+		}
+		{
+			dependencies: ["6A304E453D74C57C"]
+			description: [
+				"&a苯&r也是一种&9气体燃料&r。我会展示两种获得它的最佳方式。"
+				""
+				"此能源选项可&d基于木材&r。将原木放入&3热解炉&r以获得&9木焦油&r，然后用获得的木炭&3提取&r更多&9木焦油&r，最后将其&3蒸馏&r成&a苯&r。"
+				""
+				"此能源选项亦可&d基于重油&r。将重油放入&3蒸馏室&r以获得&9重燃油&r，然后&a重度蒸汽裂化&r并重&3蒸馏&r以获得&a苯&r。"
+				"{@pagebreak}"
+				"关于如何处理石油，查看轻质燃油和石脑油的任务吧。"
+				""
+				"总的来说，比起超频，多做一点机器（&d并行&r）会更好，因为这样能量损耗会更少。"
+				""
+				"&a苯&r可以在&3燃气涡轮&r中使用。这个能源比起它的好兄弟&e柴油&r差一点，不过在&6HV&r时代可以成长为&6硝基苯&r。但能源的最终决定权在你手上。"
+			]
+			icon: "gtceu:benzene_bucket"
+			id: "00E1A728E6F6D6A0"
+			size: 0.75d
+			subtitle: "最后总是苯"
+			tasks: [{
+				id: "4E9EBCCCC7BBAFDD"
+				item: "gtceu:benzene_bucket"
+				type: "item"
+			}]
+			title: "苯教"
+			x: -4.5d
+			y: -1.875d
+		}
+		{
+			dependencies: ["5898743D8D6C2690"]
+			description: [
+				"副标题注：“灯”和轻燃油的“轻”的英文一样。"
+				""
+				"蒸馏&a石油&r可以获得需要脱硫的燃油。"
+				""
+				"&a硫化氢&r可以在&3电解机&r中被完美&d回收&r。"
+				""
+				"你可以把&3化学反应釜&r和&3电解&r并排放置。确保用&5螺丝刀&r&4允许从侧边输出&r。"
+				""
+				"&a轻质燃油&r是个不错的&9能源&r选择，但还有更好的……看看左边的任务吧。"
+			]
+			icon: "gtceu:light_fuel_bucket"
+			id: "61972B16805FC9EE"
+			size: 0.75d
+			subtitle: "宝贝，把灯打开好吗"
+			tasks: [{
+				id: "36D70C00EF5171D6"
+				item: "gtceu:light_fuel_bucket"
+				type: "item"
+			}]
+			title: "轻质燃油"
+			x: -4.875d
+			y: -4.5d
+		}
+		{
+			dependencies: [
+				"61972B16805FC9EE"
+				"035CF39E6CC98B77"
+			]
+			description: [
+				"&a柴油&r是一种&d基于石油&r的&9液体燃料&r。"
+				""
+				"混合&a轻质燃料油&r和&a重质燃料油&r，从&d石油&r或&d原油&r&3蒸馏&r的正确比例为&63:2&r。"
+				""
+				"这需要为3个蒸馏室提供轻质燃油，或为2个蒸馏室提供重质燃油。"
+				"{@pagebreak}"
+				"你也可以通过&d重油&r获得&a重燃油&r来&6大幅&r减少&d石油&r用量。&d油砂&r就很好！"
+				""
+				"&o（数学爱好者请注意：8.33石油->6柴油5石油+0.4重油->6柴油）&r"
+				""
+				"&e注意：&r&c不要试图&r在&3蒸馏塔&r中处理，因为即使这会同时给出轻燃油和重燃油，但由于超频你会损失根本不值得的能量。"
+				"{@pagebreak}"
+				"总的来说，比起超频，多做一点机器（&d并行&r）会更好，因为这样能量损耗会更少。"
+				""
+				"&a柴油&r可以在&3内燃发电机&r中使用，之后&6HV&r时代可以升级成&6高十六烷值柴油&r。比起其他能源，它更高效，但也更费劲。如果你有了&a聚乙烯&r&e石化&r路径的基础，它就会更容易了。但能源的最终决定权在你手上。"
+			]
+			icon: "gtceu:diesel_bucket"
+			id: "45769156F4253C86"
+			rewards: [{
+				id: "0D81E63BB7BAD94B"
+				item: {
+					Count: 1
+					id: "gtceu:steel_fluid_cell"
+					tag: {
+						Fluid: {
+							Amount: 8000
+							FluidName: "gtceu:oil_heavy"
+						}
+					}
+				}
+				type: "item"
+			}]
+			size: 0.75d
+			subtitle: "妈妈，柴油要怎么制作呢？"
+			tasks: [{
+				id: "10BAA54947D975AF"
+				item: "gtceu:diesel_bucket"
+				type: "item"
+			}]
+			title: "柴油教"
+			x: -4.875d
+			y: -6.0d
+		}
+		{
+			dependencies: ["315169840E06110F"]
+			description: [
+				"副标题注：谐音“我看到你了”（I see you）"
+				""
+				"用红宝石透镜将硅晶圆蚀刻成ILC晶圆。"
+				""
+				"它可以被进一步加工成IC芯片，而它是可以提升你的芯片制作能力的重要原件。"
+			]
+			icon: "gtceu:ilc_chip"
+			id: "6F6D2829FC42F21C"
+			shape: "square"
+			size: 0.75d
+			subtitle: "我 在 病 房 里"
+			tasks: [
+				{
+					id: "295D2CE93D4CE067"
+					item: "gtceu:ruby_lens"
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "675EBF60F3465538"
+					item: "gtceu:ilc_wafer"
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "560E69502E1A2458"
+					item: "gtceu:ilc_chip"
+					type: "item"
+				}
+			]
+			title: "IC芯片"
+			x: 5.625d
+			y: 2.625d
+		}
+		{
+			dependencies: ["315169840E06110F"]
+			description: [
+				"副标题注：这是Justin_Hinds的一首歌，Chip也有芯片的意思。"
+				""
+				"用蓝宝石透镜将硅晶圆蚀刻成ULPIC晶圆。"
+				""
+				"它可以被进一步加工成ULPIC芯片，而它是一些多方块结构的重要原件！"
+			]
+			icon: "gtceu:ulpic_chip"
+			id: "16A1EF8B80A96633"
+			size: 0.66d
+			subtitle: "捡起芯片碎片"
+			tasks: [
+				{
+					id: "6D4D63F75646DB1C"
+					item: "gtceu:sapphire_lens"
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "6705F883970BDD89"
+					item: "gtceu:ulpic_wafer"
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "0295B47C0CC169BD"
+					item: "gtceu:ulpic_chip"
+					type: "item"
+				}
+			]
+			title: "ULPIC芯片"
+			x: 4.5d
+			y: 0.375d
+		}
+		{
+			dependencies: ["5C94CF50090D7DA0"]
+			description: [
+				"&3长距离物品管道&r可用于跨越山和大海运输物品。将接口放在两端，然后用长距离管道连接。"
+				""
+				"这些管道可以实时地从一端传输到另一端。"
+				""
+				"它有最小距离限制，所以不能用于短距离传输。"
+			]
+			icon: "gtceu:long_distance_item_pipeline_endpoint"
+			id: "653345427522D728"
+			size: 0.66d
+			subtitle: "正为如何传输这些矿石而烦恼吗？"
+			tasks: [
+				{
+					count: 2L
+					id: "0A8CADD371444760"
+					item: "gtceu:long_distance_item_pipeline_endpoint"
+					type: "item"
+				}
+				{
+					id: "66D528959958D445"
+					item: "gtceu:long_distance_item_pipeline"
+					type: "item"
+				}
+			]
+			title: "远距离物品传送器"
+			x: -3.375d
+			y: 0.375d
+		}
+		{
+			dependencies: ["5C94CF50090D7DA0"]
+			description: [
+				"&3长距离流体管道&r可用于跨越山和大海运输流体。将接口放在两端，然后用长距离管道连接。"
+				""
+				"这些管道可以实时地从一端传输到另一端。"
+				""
+				"它有最小距离限制，所以不能用于短距离传输。"
+				"{@pagebreak}"
+				"这些管道因其&4故障频发&r而闻名。如果它们一开始无法工作，可以尝试用&e扳手&r旋转末端。"
+			]
+			icon: "gtceu:long_distance_fluid_pipeline_endpoint"
+			id: "5480AF2EDEDB6A36"
+			size: 0.66d
+			subtitle: "正为如何运输这些石油而烦恼吗？"
+			tasks: [
+				{
+					count: 2L
+					id: "6D77664884690FB4"
+					item: "gtceu:long_distance_fluid_pipeline_endpoint"
+					type: "item"
+				}
+				{
+					id: "01F1E774C67ED4AF"
+					item: "gtceu:long_distance_fluid_pipeline"
+					type: "item"
+				}
+			]
+			title: "长距离流体传输管道"
+			x: -4.5d
+			y: 0.375d
+		}
+		{
+			dependencies: ["682C26579EDDCA76"]
+			description: [
+				"副标题注：这是索尼克同人OC“Coldsteel_the_Hedgeheg”传送到身后背刺说的话，也是一个外网挺火的梗。"
+				""
+				"厌倦了在基地里跑来跑去？&3旅行锚&r在最近一次更新中闪亮登场！"
+				""
+				"将&a旅行权杖&r对准一个锚，然后&6下蹲右键&r即可传送到顶部。你可以在副手拿着方块并右键来给旅行锚&b定制皮肤&r，然后你就可以在GUI里给它&9重命名&r。破坏它的有效工具是&b扳手&r。"
+				""
+				"制作更多锚所需的&d末影珍珠&r现在还无法获取——先用这为数不多的锚让你的生活轻松&o一点&r吧。"
+			]
+			icon: "travelanchors:travel_anchor"
+			id: "350E8A014DD8C838"
+			rewards: [{
+				count: 3
+				id: "45B4F45CE10CD806"
+				item: "travelanchors:travel_anchor"
+				type: "item"
+			}]
+			shape: "rsquare"
+			size: 0.66d
+			subtitle: "噗嗤... 没什么个人恩怨... 小家伙"
+			tasks: [{
+				id: "132FA856BB60C546"
+				item: "travelanchors:travel_staff"
+				type: "item"
+			}]
+			title: "旅行锚点"
+			x: 2.25d
+			y: 1.5d
+		}
+		{
+			dependencies: ["3E2E161F8CE35138"]
+			dependency_requirement: "one_completed"
+			description: [
+				"这个火箭背包可以用大多数&a液体燃料&r（石油除外）进行原始飞行。"
+				""
+				"你可以像装填水桶一样装填它，或者用&3装罐机&r。"
+				""
+				"按&4H&r（默认）来开启悬停模式。"
+			]
+			id: "6FA956DAA72D6139"
+			shape: "gear"
+			size: 0.75d
+			subtitle: "······嗯，差不多算是飞行吧"
+			tasks: [{
+				id: "022324F9630960C6"
+				item: {
+					Count: 1
+					id: "gtceu:liquid_fuel_jetpack"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "我相信自己能够飞翔，就像鸟儿一样自由翱翔在天空之中。"
+			x: -3.375d
+			y: -6.0d
+		}
+		{
+			dependencies: ["75F38905DEA60F15"]
+			dependency_requirement: "one_completed"
+			description: [
+				"这个火箭背包能让你用电飞行。"
+				""
+				"像电池一样给它充上电吧。"
+				""
+				"按&4H&r（默认）来启用悬停模式。"
+				""
+				"&o&8（是是是，火箭背包就该用“推进剂”驱动。你们就爱抬杠。）&r"
+			]
+			id: "21F70EACF6D81E6A"
+			size: 0.5d
+			subtitle: "······还没到呢"
+			tasks: [{
+				id: "1940421A45E45E25"
+				item: {
+					Count: 1
+					id: "gtceu:electric_jetpack"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "我相信我能飞 II"
+			x: 1.7784863945578095d
+			y: -0.20216836734694255d
+		}
+		{
+			dependencies: ["26394C1290D70AB6"]
+			dependency_requirement: "one_completed"
+			description: [
+				"&a便携式扫描仪&r或&a三录仪&r是GTCEu的调试工具。"
+				""
+				"它会显示方块详细信息、能量网络详细信息、当前状态和内容，以及对性能的影响。"
+				""
+				"在任何位置使用也会显示流体矿脉的剩余百分比，供&3流体钻机&r参考。"
+				"{@pagebreak}"
+				"&l&3小知识：&r&o这个小工具源自GT5。它在游戏早期很有用，因为GUI和WAILA提供的信息很少。"
+			]
+			id: "26C43416F9427BB3"
+			size: 0.5d
+			subtitle: "献给爱八卦的GT玩家们的礼物"
+			tasks: [{
+				id: "3E70CB46874DE7C1"
+				item: "gtceu:portable_scanner"
+				type: "item"
+			}]
+			title: "三录仪"
+			x: 5.996173469387756d
+			y: -0.3042091836734713d
+		}
+		{
+			dependencies: ["0EFEE489906256AA"]
+			description: [
+				"副标题注：门萨是一个高智商俱乐部。"
+				""
+				"在此任务中，我们将会赐予你&5受诅咒的智慧&r······轻松自动化电解机的能力。"
+				""
+				"&9智能物品过滤卡&r是基于配方表的过滤卡。放置在机器上时，你可以选择“&3电解机&r”来仅允许可电解材料输入。你没听错——无需手动过滤！"
+				""
+				"哦，它还能变得&a更棒&r。如果和&a机械臂&r结合，就能自动为机器提供符合配方的&6精确数量&r。"
+				"{@pagebreak}"
+				"将&a机械臂&r放入电解机，打开后，将&9智能物品过滤卡&r放入其GUI中。确保智能物品过滤卡已设置为电解机。"
+				""
+				"下一步，将其配置成&d&l输入&r和&d&l精准补给&r。最后，把一个容器&7（箱子就行）&r放到&a机械臂&r旁边。搞定！现在你就有了能应对&6所有&r电解机配方的自动智能输入！"
+				""
+				"那&3电解机&r的输出呢？你可以把流体输进许多储罐——甚至&3超级桶&r，如果你有。我强烈建议不要销毁流体&7···&8···显而易见，除了水。"
+				"{@pagebreak}"
+				"&9注意：&r机械臂必须主动抽取物品才能发挥作用！直接弹入物品&7（如用漏斗）&r会忽略其&d精准补给&r。"
+			]
+			icon: "gtceu:item_smart_filter"
+			id: "63AE94F1F504DE76"
+			size: 0.66d
+			subtitle: "[敲门声]谁呀？我是门萨！"
+			tasks: [{
+				id: "1C19F21F1416DD52"
+				item: "gtceu:item_smart_filter"
+				type: "item"
+			}]
+			title: "200IQ"
+			x: -1.123469387755101d
+			y: 2.445153061224488d
+		}
+		{
+			dependencies: ["7567E885B7166603"]
+			description: [
+				"欢迎来到首个向&b烃&r进发的冒险！你可能已经听说过其中一些的名字，比如汽油、塑料、酒精······而在格雷科技，你将要大批量制作它们，以及更多！这个主题可能是是会让你疑惑，所以你应该仔细阅读来避免迷失于琐碎之中。现在······"
+				"{@pagebreak}"
+				"目前在&bMV&r，制造烃类主要有两个目标——产能和塑料。这里有两条途径供你选择：&6石油化工&r和&a生物化学&r。它们各有利弊——石油化工的&9产率&r和&b能源效率&r更高，而生物化学则是完全&d可再生&r的。你的产能和塑料来源完全&b取决于你&r。"
+				"{@pagebreak}"
+				"准备好深入一点了吗？&6石化&r路径在本任务的左侧——你有三个选项。如果你是园艺爱好者，&2生化&r路径在斜向右的方向。祝你好运！"
+			]
+			icon: "gtceu:polyethylene_nugget"
+			id: "74180AC57AE9F0FE"
+			shape: "square"
+			size: 0.75d
+			subtitle: "变得工业化"
+			tasks: [{
+				id: "093E71F51E1ECA6F"
+				title: "烃"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: -0.75d
+		}
+		{
+			dependencies: ["6A304E453D74C57C"]
+			description: [
+				"如果你想把原油蒸馏成&e轻质燃油、重质燃油&r等，你可能已经意识到这是不可能的。相反，你会得到它的&6含硫&r版本。真可恶！"
+				""
+				"要解决这个问题，需要把它&6脱硫&r。将任何你想脱硫的东西和&9氢气&r在&3化学反应釜&r中组合，就能得到纯净产物，还有&a硫化氢&r作为副产品。这样行不行？"
+				"{@pagebreak}"
+				""
+				"幸运的是，&a硫化氢&r可以在&3电解机&r里被完美&d循环&r。"
+				""
+				"只需将&3化学反应釜&r和&3电解机&r相邻放置即可轻松自动化。确保&c从输出面输入&r已开启。我们贴心地提供了一个&3流体过滤卡&r，这样你已去硫的战利品就不会进入电解机了——记得将其设置为过滤输入/输出，让正确的流体在两者之间流动！"
+				""
+				"{@pagebreak}"
+				"但现在我们怎么把这些精炼的东西弄出&3化学反应釜&r呢？这就是电动泵出场之时——把它放在化学反应釜的另一个面就可以抽取你的战利品了！"
+				""
+				"&l&b小提示：&r&r你只需要两桶&9氢气&r。最简单的获取方法就是电解水。你不需要大规模生产氢气（目前），不必担心！"
+			]
+			icon: "gtceu:sulfur_dust"
+			id: "5898743D8D6C2690"
+			rewards: [
+				{
+					id: "7252A11E3828603C"
+					item: "gtceu:fluid_filter"
+					type: "item"
+				}
+				{
+					id: "4837BF90DF9D7D53"
+					item: "gtmutils:copper_credit"
+					type: "item"
+				}
+			]
+			shape: "square"
+			size: 0.75d
+			subtitle: "服务员！为什么我的汤里有硫磺？"
+			tasks: [
+				{
+					id: "3F4C5D4741ABEE3C"
+					item: "gtceu:hydrogen_bucket"
+					type: "item"
+				}
+				{
+					id: "462C77E94CFCDE22"
+					item: "gtceu:sulfuric_heavy_fuel_bucket"
+					type: "item"
+				}
+				{
+					id: "262626AEC45D9A66"
+					item: "gtceu:sulfuric_light_fuel_bucket"
+					type: "item"
+				}
+				{
+					id: "5E77EB798235DCC5"
+					item: "gtceu:sulfuric_naphtha_bucket"
+					type: "item"
+				}
+			]
+			title: "去硫磺化"
+			x: -3.375d
+			y: -3.375d
+		}
+		{
+			dependencies: ["5898743D8D6C2690"]
+			description: [
+				"重燃油可以通过多种途径获得，但最好的方式是蒸馏&e重油&r。"
+				""
+				"你可以直接用它放在燃烧发电机里来&9产能&r，但它还有更厉害的用途······看看左边的任务吧。"
+			]
+			id: "035CF39E6CC98B77"
+			progression_mode: "linear"
+			size: 0.75d
+			subtitle: "这附近的情况变得越来越沉重了······"
+			tasks: [{
+				id: "4BA6939D643E63A6"
+				item: "gtceu:heavy_fuel_bucket"
+				type: "item"
+			}]
+			title: "重质燃料油"
+			x: -3.375d
+			y: -4.5d
+		}
+		{
+			dependencies: ["53DC6E32C41C94C3"]
+			description: [
+				"这是通过&a生化&r路径&9产能&r的主要方式。把原木放进&3热解炉&r来获得&9木焦油&r。你获得的木炭可以随后在&3提取机&r里处理成更多的&9木焦油&r！"
+				""
+				"查看蒸馏任务，看看你能用这种奇妙的物质做些什么吧。"
+			]
+			id: "37AAB88A9EDCC862"
+			size: 0.75d
+			tasks: [{
+				id: "7EC058F5FE8478D1"
+				item: "gtceu:wood_tar_bucket"
+				type: "item"
+			}]
+			title: "木焦油"
+			x: -2.25d
+			y: 0.375d
+		}
+		{
+			dependencies: ["10FB27DD3C7BEC2F"]
+			id: "65F89BEC7EA4B2CB"
+			rewards: [{
+				id: "2BECACC6BE79FFD1"
+				item: "gtmutils:copper_credit"
+				type: "item"
+			}]
+			size: 0.75d
+			tasks: [{
+				id: "71D0F76300197114"
+				item: "gtceu:lv_hermetic_casing"
+				type: "item"
+			}]
+			x: 7.875d
+			y: -4.125d
+		}
+		{
+			dependencies: ["65F89BEC7EA4B2CB"]
+			id: "49D4AF5FA2BF1D81"
+			size: 0.75d
+			tasks: [{
+				id: "6A14F6320DCDD86E"
+				item: "functionalstorage:fluid_1"
+				type: "item"
+			}]
+			x: 9.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["1BE0349B8F3890D3"]
+			id: "07D8870C55B2F12D"
+			shape: "gear"
+			size: 1.25d
+			tasks: [{
+				id: "0E2F2F5909590CDC"
+				item: {
+					Count: 1
+					id: "gtna:echoite_vajra"
+					tag: {
+						Damage: 0
+						GT.Behaviours: { }
+						GT.Tool: {
+							AttackDamage: 110.0f
+							AttackSpeed: 2.0f
+							DefaultEnchantments: [ ]
+							HarvestLevel: 6
+							MaxDamage: 64
+							ToolSpeed: 12.0f
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: -3.37d
+			y: 3.0d
+		}
+		{
+			dependencies: ["1BE0349B8F3890D3"]
+			id: "77E139CE150C3B69"
+			shape: "gear"
+			size: 1.25d
+			tasks: [{
+				id: "2EFAD42292F0D731"
+				item: "gtna:universal_factory"
+				type: "item"
+			}]
+			x: -3.37d
+			y: 4.375d
+		}
+	]
+	subtitle: ["开展石化并改良电路"]
+	title: "&bMV&r——中压"
+}

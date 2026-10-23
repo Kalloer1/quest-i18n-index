@@ -1,0 +1,577 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "ars_nouveau"
+	group: "1FF4B53448549F28"
+	icon: "ars_nouveau:creative_spell_book"
+	id: "6AEDA2F9BEB57759"
+	images: [{
+		height: 2.0d
+		image: "kubejs:textures/equipolumencraft_img/ars.png"
+		rotation: 0.0d
+		width: 10.0d
+		x: 5.0d
+		y: -2.0d
+	}]
+	order_index: 0
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["这本磨损的笔记本将指导你了解新艺术风格的方方面面。"]
+			id: "2EDF4F1D7C44B272"
+			rewards: [
+				{
+					id: "0137E3D33C838CBB"
+					type: "xp"
+					xp: 10
+				}
+				{
+					id: "4B4AFF9ED4C6BA1B"
+					item: "ars_nouveau:worn_notebook"
+					type: "item"
+				}
+			]
+			subtitle: "使用一本书和青金石来制作磨损的笔记本。"
+			tasks: [{
+				id: "6B604AA90D6E395C"
+				type: "checkmark"
+			}]
+			title: "&lCraft the Worn Notebook"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["2EDF4F1D7C44B272"]
+			description: ["使用新手魔法书学习施放魔法的基础知识。"]
+			hide_until_deps_complete: true
+			id: "18C556E8139D18D8"
+			rewards: [
+				{
+					id: "40567CA367FA00A1"
+					type: "xp"
+					xp: 20
+				}
+				{
+					id: "57F1CB44155DF4D6"
+					item: {
+						Count: 1
+						id: "ars_nouveau:dominion_wand"
+						tag: { }
+					}
+					type: "item"
+				}
+			]
+			subtitle: "使用初级魔法书施放一个基础法术。"
+			tasks: [{
+				id: "1C4208FC2967E83B"
+				item: "ars_nouveau:novice_spell_book"
+				type: "item"
+			}]
+			title: "释放你的第一个法术"
+			x: 1.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["18C556E8139D18D8"]
+			description: ["砍下树木，获取木材用于新的制作。"]
+			id: "178450F2B8618AB7"
+			rewards: [
+				{
+					count: 8
+					id: "399E2E304E8805F3"
+					item: "ars_nouveau:blue_archwood_log"
+					type: "item"
+				}
+				{
+					id: "0988BAB3635FD364"
+					type: "xp"
+					xp: 25
+				}
+			]
+			subtitle: "你可以在主世界中找到它。"
+			tasks: [
+				{
+					id: "13363276BBC30200"
+					item: "ars_nouveau:blue_archwood_sapling"
+					type: "item"
+				}
+				{
+					count: 3L
+					id: "2560C3EB7B63C619"
+					item: "ars_nouveau:blue_archwood_log"
+					type: "item"
+				}
+			]
+			title: "魔法的树木"
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["178450F2B8618AB7"]
+			description: ["每个符文都需要一组物品和经验值来解锁。点击菜单并按选择键来选择一个符文。将物品像上面那样扔到桌子上，桌子就会写下该法术。"]
+			id: "11D7B306709F8DF4"
+			require_sequential_tasks: false
+			rewards: [
+				{
+					id: "767D2AC6132C24B3"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "7980F904AC6C3957"
+					item: "ars_nouveau:green_archwood_sapling"
+					type: "item"
+				}
+			]
+			subtitle: "在这张表里你可以看到所有的符文。"
+			tasks: [{
+				id: "354256D486B8BC00"
+				item: "ars_nouveau:scribes_table"
+				type: "item"
+			}]
+			title: "用于创建和放置符文的表格"
+			x: 2.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["178450F2B8618AB7"]
+			description: [
+				"Imbuement Chamber 是 Ars Nouveau 中用于为物品附加附魔和魔法属性的魔法装置。"
+				"源宝石是 Ars Nouveau 中用于制作法术和魔法物品的关键材料，是一种魔法水晶。"
+			]
+			id: "66FCAED7729A06E0"
+			subtitle: "你需要学会如何制作和自动化宝石，你会需要用到很多。"
+			tasks: [
+				{
+					id: "294BC357B6114A7E"
+					item: "ars_nouveau:imbuement_chamber"
+					type: "item"
+				}
+				{
+					count: 3L
+					id: "281F0D9713499897"
+					item: { Count: 3, id: "ars_nouveau:source_gem" }
+					type: "item"
+				}
+			]
+			title: "创造你的第一颗源宝石"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["66FCAED7729A06E0"]
+			description: ["Wixies可以自动化合成任务，为你节省时间和精力。"]
+			icon: "ars_nouveau:wixie_cauldron"
+			id: "7E7F612F76FED684"
+			rewards: [{
+				id: "084DC837A79FBC85"
+				item: {
+					Count: 1
+					id: "ars_nouveau:wixie_charm"
+					tag: {
+						color: "blue"
+					}
+				}
+				type: "item"
+			}]
+			subtitle: "使用 Wixie 来自动化合成。"
+			tasks: [{
+				id: "57C61BEE2C895441"
+				title: "Wixie"
+				type: "checkmark"
+			}]
+			title: "自动化一个任务"
+			x: 4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"66FCAED7729A06E0"
+				"7E7F612F76FED684"
+			]
+			description: ["喷泉可用于为仪式、灌注室和附魔装置提供动力，为此你需要用以下发电机生成大量喷泉。"]
+			id: "66F71F7D4CCE9DC9"
+			require_sequential_tasks: false
+			rewards: [{
+				id: "7922D3D2D5F640CB"
+				item: "ars_nouveau:source_jar"
+				type: "item"
+			}]
+			subtitle: "用于存储来源信息的物品。"
+			tasks: [
+				{
+					id: "0A9685FDF277B569"
+					item: "ars_nouveau:source_jar"
+					type: "item"
+				}
+				{
+					id: "2F6EBC2E23043565"
+					item: "ars_nouveau:potion_jar"
+					type: "item"
+				}
+			]
+			x: 5.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["66F71F7D4CCE9DC9"]
+			description: ["Agronomic Sourcelink 是一种机器，能在 15 格范围内通过作物和树木的生长来生成“源”。魔法植物，如 Mageblooms、Source Berry Bushes 和 Archwood Saplings，会提供额外的源。生成的源会从 Sourcelink 输出到 5 格范围内的邻近罐子中。"]
+			id: "10C2F8C29D2D5EC1"
+			rewards: [{
+				id: "7F0F9E8546210A4B"
+				item: "ars_nouveau:source_jar"
+				type: "item"
+			}]
+			subtitle: "农业源链接生成器。"
+			tasks: [{
+				id: "21C5D2F6BE86C09F"
+				item: "ars_nouveau:agronomic_sourcelink"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["10C2F8C29D2D5EC1"]
+			description: ["火山源链接通过消耗可燃烧物品（如远古木原木）来生成源。它能产生热量、生成熔岩百合，并将石头转化为熔岩。附近的烈焰远古木也会燃烧以换取源。源链接将输出到附近的罐子中。"]
+			id: "25E579FB18D667BC"
+			rewards: [{
+				id: "39E6C7781E761FF6"
+				item: "ars_nouveau:source_jar"
+				type: "item"
+			}]
+			subtitle: "源与热量生成系统。"
+			tasks: [{
+				id: "384E252ACC03419F"
+				item: "ars_nouveau:volcanic_sourcelink"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["25E579FB18D667BC"]
+			description: ["通过消耗附近药水罐中的药水来生成源。源的数量取决于药水的复杂程度。更复杂、更长的药水会提供额外的源。建议使用 Wixies 和 Potion Melder 来酿造复杂的药水。"]
+			id: "69B02D7DDE6F2B34"
+			rewards: [{
+				id: "6181C57CE3DDD980"
+				item: "ars_nouveau:source_jar"
+				type: "item"
+			}]
+			subtitle: "基于药水的世界生成系统。"
+			tasks: [{
+				id: "50996A26796D0E48"
+				item: "ars_nouveau:alchemical_sourcelink"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["69B02D7DDE6F2B34"]
+			description: ["通过附近的生物死亡和动物繁殖生成源。此外，它还通过幼崽生成被动源并加速其成长。"]
+			id: "2473E03FC857E774"
+			rewards: [{
+				id: "48C0B0B4873F1C9C"
+				item: "ars_nouveau:source_jar"
+				type: "item"
+			}]
+			subtitle: "来源：动物生活（Animal Life）。"
+			tasks: [{
+				id: "2F795BAA06B003AC"
+				item: "ars_nouveau:vitalic_sourcelink"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["2473E03FC857E774"]
+			description: ["从附近的食物中生成源，源浆果食物提供的源更多。菌丝源连接器能将草或泥土转化为菌丝，并在空间为空时生长蘑菇。它还能从附近的基座上吸取物品。"]
+			id: "49355A7EC257C5CB"
+			rewards: [{
+				id: "51EFA62DEEFD3B54"
+				item: "ars_nouveau:source_jar"
+				type: "item"
+			}]
+			subtitle: "来源：食物与生长（Food and Growth）。"
+			tasks: [{
+				id: "6778C73D78BD60BB"
+				item: "ars_nouveau:mycelial_sourcelink"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 5.0d
+		}
+		{
+			dependencies: ["66F71F7D4CCE9DC9"]
+			description: ["源石是一种储存魔力的魔法方块，也是许多法术和法术合成的核心组件。"]
+			id: "2C31EA5F04956544"
+			subtitle: "你可以在 Ars 的一些结构中找到它。"
+			tasks: [{
+				count: 4L
+				id: "119729CF48708E54"
+				item: { Count: 3, id: "ars_nouveau:sourcestone" }
+				type: "item"
+			}]
+			title: "找到源石（Sourcestone）"
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["2C31EA5F04956544"]
+			description: ["这是一个壁炉，可用于装饰或在上面举行仪式，请仔细观察法术的颜色。"]
+			id: "548BA76AC8601444"
+			subtitle: "是用来装饰的还是用于仪式的？."
+			tasks: [{
+				id: "0F1CEFB690A08F6D"
+				item: "ars_nouveau:ritual_brazier"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["548BA76AC8601444"]
+			description: ["该装置通过字体和物品添加新附魔，并增强现有附魔。要使其生效，只需添加所选法术的物品即可。"]
+			id: "635CA51A84946ABE"
+			subtitle: "别担心，我会教你如何完成这件事的。"
+			tasks: [
+				{
+					id: "2BC3A69E775110DD"
+					item: "ars_nouveau:enchanting_apparatus"
+					type: "item"
+				}
+				{
+					id: "74AE3D60F731AAA8"
+					item: "ars_nouveau:arcane_core"
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "7E61BE30275F0363"
+					item: { Count: 8, id: "ars_nouveau:arcane_pedestal" }
+					type: "item"
+				}
+			]
+			title: "如何进行附魔？"
+			x: 6.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["7873AAFE06BB2DE0"]
+			description: ["制作盔甲来保护自己免受魔法威胁。"]
+			id: "7761635EF7DDD4CD"
+			rewards: [
+				{
+					id: "32602C124D4CD5FF"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "5250F94757468CA1"
+					item: {
+						Count: 1
+						id: "ars_nouveau:dominion_wand"
+						tag: { }
+					}
+					type: "item"
+				}
+			]
+			subtitle: "使用魔法材料来制作盔甲。"
+			tasks: [
+				{
+					id: "5B5790CD755CA5F8"
+					item: {
+						Count: 1
+						id: "ars_nouveau:sorcerer_hood"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "4B705C3B2C49D8A8"
+					item: {
+						Count: 1
+						id: "ars_nouveau:sorcerer_robes"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "213A8A7368640346"
+					item: {
+						Count: 1
+						id: "ars_nouveau:sorcerer_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "7EDCF82F49F277EB"
+					item: {
+						Count: 1
+						id: "ars_nouveau:sorcerer_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "制作魔法盔甲"
+			x: 9.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["2C31EA5F04956544"]
+			description: ["这个魔法种子用于种植魔法花，它能产出魔法纤维，是制作魔法装备和物品的重要资源。"]
+			id: "7DEE0DB11E4B2555"
+			rewards: [
+				{
+					count: 3
+					id: "39F4381259B8BB7F"
+					item: "ars_nouveau:magebloom_crop"
+					type: "item"
+				}
+				{
+					id: "27C767D498C97A83"
+					item: "ars_nouveau:magebloom"
+					type: "item"
+				}
+			]
+			subtitle: "你应该像种植其他植物一样种植这颗种子。"
+			tasks: [{
+				id: "64E18DC02350586F"
+				item: "ars_nouveau:magebloom_crop"
+				type: "item"
+			}]
+			title: "获取 Magebloom 种子"
+			x: 7.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7DEE0DB11E4B2555"]
+			description: ["这是一种从魔花植物中采集的魔法材料，用于制作施法长袍和新的合成物品。"]
+			id: "7873AAFE06BB2DE0"
+			rewards: [
+				{
+					count: 3
+					id: "1E3BA4E60BE50D4B"
+					item: "ars_nouveau:magebloom_fiber"
+					type: "item"
+				}
+				{
+					id: "5FB45586CF2FC378"
+					type: "xp"
+					xp: 100
+				}
+			]
+			subtitle: "这种纤维可以制作强大的装备。"
+			tasks: [{
+				count: 64L
+				id: "4CF1362B1B967D89"
+				item: { Count: 64, id: "ars_nouveau:magebloom_fiber" }
+				type: "item"
+			}]
+			title: "魔法纤维"
+			x: 8.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7761635EF7DDD4CD"]
+			description: ["升级你的魔法书，解锁更强大的法术。"]
+			id: "6EEC1F68BA3BDE55"
+			require_sequential_tasks: false
+			rewards: [{
+				id: "0EFD840B8BA5938C"
+				type: "xp"
+				xp: 100
+			}]
+			subtitle: "将你的新手法术书升级到2阶和3阶。"
+			tasks: [
+				{
+					id: "3A2E711E41D43C3C"
+					item: "ars_nouveau:apprentice_spell_book"
+					type: "item"
+				}
+				{
+					id: "13FEB82CC5B1C232"
+					item: "ars_nouveau:archmage_spell_book"
+					type: "item"
+				}
+			]
+			title: "升级你的魔法书"
+			x: 10.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7761635EF7DDD4CD"]
+			id: "078932EF881F241F"
+			rewards: [{
+				id: "084CF5175D1D35B6"
+				type: "xp"
+				xp: 100
+			}]
+			subtitle: "改进的盔甲会帮上大忙，对吧？."
+			tasks: [
+				{
+					id: "5551E2DBA8582CE5"
+					item: {
+						Count: 1
+						id: "ars_elemental:fire_hat"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "5A4BB489FEE15118"
+					item: {
+						Count: 1
+						id: "ars_elemental:fire_robes"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "4B15B3271EBA3007"
+					item: {
+						Count: 1
+						id: "ars_elemental:fire_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "432B075A5F27952E"
+					item: {
+						Count: 1
+						id: "ars_elemental:fire_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "升级你的魔法盔甲"
+			x: 9.0d
+			y: 1.0d
+		}
+	]
+	title: "新艺术运动风格"
+}

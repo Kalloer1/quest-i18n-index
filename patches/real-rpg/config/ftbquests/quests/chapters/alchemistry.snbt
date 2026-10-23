@@ -1,0 +1,244 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "alchemistry"
+	group: "302DAE879F40A67B"
+	icon: "alchemistry:compactor"
+	id: "35ECAD3A4B1029A8"
+	images: [{
+		height: 2.0d
+		image: "kubejs:textures/equipolumencraft_img/alchimestry.png"
+		rotation: 0.0d
+		width: 10.0d
+		x: 3.5d
+		y: 3.5d
+	}]
+	order_index: 1
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			id: "4F6D227ABCC6E8C6"
+			rewards: [{
+				id: "4A022972E1B63547"
+				item: {
+					Count: 1
+					id: "patchouli:guide_book"
+					tag: {
+						"patchouli:book": "alchemistry:alchemistry_book"
+					}
+				}
+				type: "item"
+			}]
+			subtitle: "拿出你的试管，我们开始做实验吧。"
+			tasks: [{
+				id: "35CDD7D9A357BEFF"
+				title: "&l炼金术 ALCHIMESTRY"
+				type: "checkmark"
+			}]
+			x: 3.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["4F6D227ABCC6E8C6"]
+			description: ["这能将那些水桶里的水变成漂亮的实验室烧瓶 H2O。"]
+			id: "6D80D830606342DC"
+			rewards: [
+				{
+					id: "594A67CE70011798"
+					type: "xp"
+					xp: 100
+				}
+				{
+					count: 3
+					id: "72DE7CCC5BF1823A"
+					item: "chemlib:water"
+					type: "item"
+				}
+			]
+			subtitle: "把液体倒进罐子里？"
+			tasks: [{
+				id: "2AD104FD1011A518"
+				item: "alchemistry:atomizer"
+				type: "item"
+			}]
+			title: "制作一个雾化器 (Craft an Atomizer)"
+			x: 3.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["4F6D227ABCC6E8C6"]
+			description: ["这样你就可以将剩余的材料转化为其他用途，从而避免浪费其他实验留下的试管。"]
+			id: "3F5E27A95ABFEBFF"
+			rewards: [{
+				id: "70CAD93832C8CFE4"
+				type: "xp"
+				xp: 100
+			}]
+			subtitle: "分解材料吗？"
+			tasks: [{
+				id: "7380E0F3BC88AF23"
+				item: "alchemistry:compactor"
+				type: "item"
+			}]
+			title: "制作一个 Compactor"
+			x: 2.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["4F6D227ABCC6E8C6"]
+			description: ["使用化学合成器将元素重新组合成新物品。这对高级合成至关重要。"]
+			id: "4117A8E7492F2065"
+			rewards: [{
+				id: "599CFD71BA130346"
+				type: "xp"
+				xp: 100
+			}]
+			subtitle: "组合元素以创造新物品。"
+			tasks: [{
+				id: "6A82C58E2601721B"
+				item: "alchemistry:combiner"
+				type: "item"
+			}]
+			title: "制作一个化学合成器 (Craft a Chemical Combiner)"
+			x: 1.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["4F6D227ABCC6E8C6"]
+			description: ["使用基础材料制作化学分解器。该装置可将物品分解为其组成元素。"]
+			id: "4B21FF7564C06172"
+			progression_mode: "linear"
+			rewards: [
+				{
+					id: "64F10CE8DC6ABF07"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "4F5854393164DC41"
+					item: "alchemistry:dissolver"
+					type: "item"
+				}
+			]
+			subtitle: "通过制作化学溶剂来开启你的旅程。"
+			tasks: [{
+				id: "3908BDEB57E60592"
+				item: "alchemistry:dissolver"
+				type: "item"
+			}]
+			title: "制作一个化学溶剂 (Craft a Chemical Dissolver)"
+			x: 4.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["4F6D227ABCC6E8C6"]
+			description: ["你可以将 H2O 转化为其他类型的液体用于其他用途，但请确保你创造的是 H2O 而不是 H2SO4。"]
+			id: "30311CA63AE4D23A"
+			rewards: [{
+				id: "2290869816EDFB25"
+				type: "xp"
+				xp: 100
+			}]
+			subtitle: "把水转换成别的液体吗？"
+			tasks: [{
+				id: "1EFF8438BE708F94"
+				item: "alchemistry:liquifier"
+				type: "item"
+			}]
+			title: "制作一个液化器 (Craft a Liquifier)"
+			x: 5.0d
+			y: 5.5d
+		}
+		{
+			dependencies: [
+				"4B21FF7564C06172"
+				"3F5E27A95ABFEBFF"
+				"30311CA63AE4D23A"
+				"4117A8E7492F2065"
+				"6D80D830606342DC"
+			]
+			description: ["建造一个裂变反应堆，将重元素分裂成轻元素，这是高级炼金术的关键一步。"]
+			hide_dependency_lines: true
+			hide_until_deps_complete: false
+			id: "34371439DF0C8CD7"
+			rewards: [
+				{
+					id: "7388BB9ED294B097"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "26CA5BE047A1BD06"
+					item: "alchemistry:fission_chamber_controller"
+					type: "item"
+				}
+			]
+			subtitle: "将元素分解为更轻的组成部分。"
+			tasks: [{
+				id: "21853DCB519C0FE9"
+				item: "alchemistry:fission_chamber_controller"
+				type: "item"
+			}]
+			title: "建造一个裂变反应堆"
+			x: 2.5d
+			y: 6.5d
+		}
+		{
+			dependencies: [
+				"4B21FF7564C06172"
+				"3F5E27A95ABFEBFF"
+				"30311CA63AE4D23A"
+				"4117A8E7492F2065"
+				"6D80D830606342DC"
+			]
+			description: ["建造一个聚变反应堆，将轻元素结合成更重的元素，解锁新材料和新化合物。"]
+			hide_dependency_lines: true
+			id: "6CC71268E4FE2261"
+			rewards: [
+				{
+					id: "2F7FC9FB2FB9DB33"
+					item: "alchemistry:fusion_chamber_controller"
+					type: "item"
+				}
+				{
+					id: "05DF27E9A6008D17"
+					type: "xp"
+					xp: 100
+				}
+			]
+			subtitle: "将轻元素结合以形成更重的元素。"
+			tasks: [{
+				id: "5F167558DE1BB07D"
+				item: "alchemistry:fusion_chamber_controller"
+				type: "item"
+			}]
+			title: "建造一个聚变反应堆"
+			x: 3.5d
+			y: 6.5d
+		}
+		{
+			dependencies: [
+				"6CC71268E4FE2261"
+				"34371439DF0C8CD7"
+			]
+			description: ["使用 Refined Storage 自动化 Compactor 和 Combiner，简化你的炼金术操作。"]
+			id: "057BE01B2E5AA195"
+			rewards: [{
+				id: "769579EC8054D32C"
+				type: "xp"
+				xp: 10
+			}]
+			subtitle: "与 Refined Storage 集成以实现高效自动化。"
+			tasks: [{
+				id: "5BFEBCC22B6EC454"
+				title: "自动化炼金术流程"
+				type: "checkmark"
+			}]
+			x: 3.0d
+			y: 7.5d
+		}
+	]
+	title: "炼金术（Alchemistry）"
+}
