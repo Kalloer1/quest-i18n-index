@@ -95,8 +95,46 @@ function netGit(args, tries = 3) {
   process.exit(1)
 }
 
-// ---------- 0. 工作区必须干净 ----------
+/**
+ * 一次 git log 算出「该分支上每个 slug 最后一次提交时间」。
+ *
+ * 语义与 `scripts/lib/farm-merge.mjs` 里逐 slug 的 `gitLastCommit` 一致（取该 slug
+ * 所有路径里的最新提交），但只起一个进程 —— 那边是每个 slug 一个 `git log`，
+ * Windows 上单次 0.6s，700 个 slug 要 8 分钟，还没开始合并人就已经等不下去了。
+ * log 是「新 → 旧」，所以每个 slug 第一次出现的时间戳就是最新，直接记下即可。
+ *
+ * 失败就返回空对象：farm-merge 会退回自己逐 slug 的慢路径，结果一样，只是慢。
+ */
+function bulkTimes(host) {
+  try {
+    const out = execFileSync('git', [
+      '-c', 'core.quotePath=false', 'log', '--format=@@%ct', '--name-only',
+      `origin/farm/${host}`, '--', 'patches', 'research/packs',
+    ], { cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], maxBuffer: 512 * 1024 * 1024 })
+    const times = {}
+    let ts = 0
+    for (const raw of out.split('\n')) {
+      const l = raw.trim()
+      if (!l) continue
+      if (l.startsWith('@@')) { ts = Number(l.slice(2)) || 0; continue }
+      let slug = ''
+      const p = /^patches\/([^/]+)\//.exec(l)
+      if (p) slug = p[1]
+      else {
+        const b = /^research\/packs\/(.+)\.tar\.gz$/.exec(l)
+        if (b) slug = b[1]
+      }
+      if (slug && ts && times[slug] === undefined) times[slug] = ts
+    }
+    return times
+  } catch {
+    return {}
+  }
+}
+
+
 // 半成品被 -A 带进提交是这个仓库反复踩过的坑，所以宁可在这里停。
+// ---------- 0. 工作区必须干净 ----------
 step(0, '检查工作区')
 {
   const dirty = git(['status', '--porcelain'], { quiet: true })
@@ -149,6 +187,12 @@ for (const h of allHosts) {
   writeFileSync(join(DIR, `diff-${h}.txt`), out)
   const n = out.split('\n').filter(Boolean).length
   console.log(`  farm/${h}: ${n} 个路径`)
+
+  // 预生成 times-<host>.json：不生成的话 farm-merge 会对每个 slug 跑一次
+  // `git log -1 -- path`，Windows 上一次进程 0.6s，700 个 slug 就是 8 分钟纯等待
+  // （上一轮发布就是卡在这一步被中断的）。这里用**一次** git log 扫完整个分支历史，
+  // 只读树不读 blob，blobless 克隆下也很快。
+  writeFileSync(join(DIR, `times-${h}.json`), JSON.stringify(bulkTimes(h), null, 0))
 }
 
 // ---------- 2. 合并计划 ----------
