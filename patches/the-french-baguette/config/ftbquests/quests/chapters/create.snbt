@@ -1,0 +1,1413 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "square"
+	filename: "create"
+	group: "7CA07C5265C35DFC"
+	icon: "create:cogwheel"
+	id: "0000000000000C3F"
+	images: [{
+		height: 5.0d
+		image: "create:textures/gui/logo.png"
+		rotation: 0.0d
+		width: 5.0d
+		x: -1.0d
+		y: 1.5d
+	}]
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"欢迎来到 Create！作为模组的核心，Create 遵循与 Minecraft 红石相同的原则：提供元素，让你尽情发挥创意。"
+				""
+				"Quel genre de créations, demandez-vous ? Eh bien, à peu près tout. Faites des trains sur lesquels voyager, des tunneliers, de gigantesques moulins fonctionnels, voire un Rubik’s Cube opérationnel !"
+				""
+				"你的想象力是唯一限制你的因素。"
+				""
+				"当然，由于可能性太多，这些任务并不详尽。它们旨在介绍 Create 的基础知识，帮助你上手并开始自己的探索。"
+				""
+				"~MuteTiefling"
+			]
+			icon: "create:wrench"
+			id: "0000000000000C40"
+			optional: true
+			rewards: [{
+				id: "0000000000000CB9"
+				item: "create:wrench"
+				title: "扳手"
+				type: "item"
+			}]
+			shape: "gear"
+			size: 1.5d
+			tasks: [{
+				id: "0000000000000C41"
+				title: "创建"
+				type: "checkmark"
+			}]
+			title: "创建"
+			x: 8.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["0000000000000C40"]
+			description: [
+				"和许多系统一样，它需要能量。对于 Create 来说，这通常意味着让某个东西运转起来。当然，有多种方法可以做到这一点，但以下是基础知识。"
+				""
+				"Tout d'abord, il y a les Générateurs et les Consommateurs. Évidemment, les Générateurs fournissent la rotation, tandis que les Consommateurs l'utilisent. Mais tous ne sont pas égaux."
+				""
+				"Chaque Générateur peut produire un certain nombre d’Unités de Contrainte (Stress Units), réparties entre tous les Consommateurs connectés. Si les Consommateurs exigent plus de SU que ce qui est produit, tout le système s’arrête."
+				""
+				"消耗器运行得越快，消耗的SU就越多。"
+				""
+				"Pour connaître le nombre de SU généré ou utilisé, portez des Lunettes d’Ingénieur et regardez un bloc."
+				""
+				"Enfin, bien que Create n’ait pas de livre-guide en jeu, chaque composant dispose de renseignements détaillés dans son infobulle. Lisez-les attentivement."
+			]
+			icon: "create:goggles"
+			id: "0000000000000CBA"
+			min_width: 300
+			rewards: [{
+				id: "0000000000000D66"
+				item: "create:goggles"
+				title: "工程师护目镜"
+				type: "item"
+			}]
+			subtitle: "需要一些组装才能完成"
+			tasks: [{
+				id: "0000000000000D67"
+				title: "旋转力场"
+				type: "checkmark"
+			}]
+			title: "旋转力场"
+			x: 4.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["0000000000000CBA"]
+			description: [
+				"Le premier assemblage multi-blocs à construire est peut-être le Moulin à vent. C’est un générateur de SU élevée capable de fonctionner à haute vitesse (RPM). Pour obtenir plus de SU et de vitesse, il suffit d’ajouter plus de voiles ou de blocs de laine à la structure."
+				""
+				"Pour commencer, placez le Windmill Bearing (coussin d'axe). Le côté vert et collant est l'endroit où la structure sera construite. L'énergie sort de l'autre côté. Notez qu'on peut le placer dans n'importe quelle orientation."
+				""
+				"Ensuite, fixez le Radial Chassis sur le côté collant du palier. Le Radial Chassis sert d'axe au moulin, et les pales s'étendront autour."
+				"Le châssis peut être rendu collant avec une balle de slime (non consommée) et on peut y attacher presque n'importe quel bloc décoratif, jusqu'à la limite de connexion du moulin."
+				""
+				"Pour voir le rayon de connexion actuel du châssis, tenez la clé (wrench) et regardez le châssis. Les blocs surlignés seront inclus dans la structure. Le rayon se règle avec la molette de la souris."
+				""
+				"Notez que la colle (Super Glue) n'est nécessaire que pour coller des blocs non pris en charge par le châssis, par exemple si des blocs dépassent devant le moulin. Aucune colle n'est nécessaire si vous attachez directement des voiles au châssis, mais où est le plaisir ? Rendez ça joli !"
+			]
+			icon: "create:white_sail"
+			id: "0000000000000CBD"
+			min_width: 250
+			rewards: [{
+				id: "0000000000000CC0"
+				item: {
+					Count: 1
+					id: "create:super_glue"
+					tag: {
+						Damage: 0
+					}
+				}
+				title: "强力胶水"
+				type: "item"
+			}]
+			subtitle: "电池未包含在内"
+			tasks: [
+				{
+					id: "0000000000000CBE"
+					item: "create:windmill_bearing"
+					type: "item"
+				}
+				{
+					id: "0000000000000CBF"
+					item: "create:radial_chassis"
+					type: "item"
+				}
+				{
+					count: 32L
+					id: "0000000000000CC1"
+					item: {
+						Count: 1
+						id: "itemfilters:or"
+						tag: {
+							items: [
+								{
+									Count: 1b
+									id: "itemfilters:tag"
+									tag: {
+										value: "forge:wool"
+									}
+								}
+								{
+									Count: 1b
+									id: "create:sail_frame"
+								}
+								{
+									Count: 1b
+									id: "create:white_sail"
+								}
+							]
+						}
+					}
+					title: "船帆"
+					type: "item"
+				}
+			]
+			title: "风车"
+			x: 3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["0000000000000CBA"]
+			description: [
+				"水车比风车更容易建造，但它产生的SU也少得多，转速也更慢。"
+				""
+				"当空间比速度更重要时，它很有用。例如，用于在基地入口处建造复杂的门。"
+				""
+				"Pour le faire fonctionner, il suffit de laisser de l’eau couler dessus. La vitesse maximale est atteinte lorsqu’il y a de l’eau courante sur cinq de ses faces."
+			]
+			id: "0000000000000CC2"
+			subtitle: "就像唱片一样，宝贝"
+			tasks: [{
+				id: "0000000000000CC3"
+				item: "create:water_wheel"
+				type: "item"
+			}]
+			x: 4.0d
+			y: -0.5d
+		}
+		{
+			dependencies: [
+				"0000000000000CBD"
+				"0000000000000CFC"
+			]
+			description: [
+				"比水更紧凑的嵌入式风扇（Encased Fan）除了其他我们稍后会提到的功能外，还能产生少量的旋转力。"
+				""
+				"Pour l'utiliser comme générateur de rotation, il doit être orienté vers le bas au-dessus d'un bloc chaud, comme de la lave ou des blocs de magma. Prenez garde à ne pas mettre le feu à ce qui vous entoure."
+				""
+				"Appliquez un signal de redstone au ventilateur pour qu’il commence à produire de l’énergie."
+				""
+				"--------------------------------"
+				""
+				"要使用风扇进行配方，它必须吹过熔岩、水或火焰。放置在气流另一侧的物品将分别被熔炼 (Smelted)、清洗 (Washed) 或熏制 (Smoked)。"
+				""
+				"Le flux d'air peut traverser certains blocs comme les Barreaux de Fer ou les Trappes, ce qui permet de contenir en toute sécurité votre Lave ou votre Eau."
+				""
+				"Le ventilateur peut également traiter des objets directement sur un Dépôt (Depot) ou un Convoyeur (Belt). Notez cependant que les objets sur un convoyeur ne s’arrêtent pas de bouger pendant qu’ils sont traités."
+				""
+				"Pour optimiser l'utilisation d'un ventilateur et d'un convoyeur, orientez le flux d'air le long du convoyeur. Une vitesse de rotation plus élevée signifie un flux d'air plus long. Cela permet également de traiter plusieurs piles d'objets en même temps."
+			]
+			icon: "create:propeller"
+			id: "0000000000000CC4"
+			rewards: [
+				{
+					id: "0000000000000CCA"
+					item: "create:analog_lever"
+					title: "模拟杠杆"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "0000000000000D73"
+					item: "minecraft:magma_block"
+					title: "岩浆块"
+					type: "item"
+				}
+			]
+			subtitle: "可再生能源？我可是个大粉丝"
+			tasks: [{
+				id: "0000000000000CC5"
+				item: "create:encased_fan"
+				type: "item"
+			}]
+			x: 3.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["0000000000000CBD"]
+			description: [
+				"紧凑型能源生产的巅峰。熔炉引擎是一个三部分的多方块结构，可提供最大的SU产量。"
+				""
+				"Pour fonctionner, le Fourneau ou le Fourneau de fusion doivent être allumés, c’est-à-dire en train de faire fondre quelque chose (il existe toutefois d’autres méthodes pour y parvenir)."
+				""
+				"要建造整个装置，将 Furnace Engine 放置在 Furnace 或 Blast Furnace 上方。这会覆盖熔炉，并让大部分结构延伸到一侧。在这一侧，留出一个空方块，然后将 Flywheel 放置在该方块上（距离熔炉三格）。"
+			]
+			icon: "create:flywheel"
+			id: "0000000000000CC6"
+			rewards: [{
+				id: "0000000000000D8A"
+				item: "minecraft:blast_furnace"
+				title: "高炉 Blast Furnace"
+				type: "item"
+			}]
+			subtitle: "备受推崇的持有者"
+			tasks: [
+				{
+					id: "0000000000000CC7"
+					item: "create:furnace_engine"
+					type: "item"
+				}
+				{
+					id: "0000000000000CC8"
+					item: "create:flywheel"
+					type: "item"
+				}
+			]
+			x: 2.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["0000000000000CBA"]
+			description: [
+				"有个漂亮的磨坊固然不错，但你肯定希望它能派上用场。它在那高高的地方，而我们却在这里……"
+				""
+				"幸运的是，传递旋转力矩相当简单。轴（Shafts）可以沿直线传递动力，而齿轮（Cogs）则用于改变方向和速度。"
+			]
+			id: "0000000000000CCC"
+			rewards: [{
+				count: 16
+				id: "0000000000000D80"
+				item: "minecraft:kelp"
+				title: "海带（Kelp）"
+				type: "item"
+			}]
+			subtitle: "把嘴闭上，别多管闲事！"
+			tasks: [{
+				count: 16L
+				id: "0000000000000CCD"
+				item: "create:shaft"
+				type: "item"
+			}]
+			title: "竖井"
+			x: 4.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["0000000000000CCC"]
+			description: [
+				"厌倦了墙上那些难看的洞吗？因为转轴周围的窟窿而感到寒冷吗？别再找了。"
+				""
+				"Faites un clic droit sur un axe avec un Casing (revêtement) pour le transformer en bloc plein. Parfait pour les moments où l'axe traverse un mur ou un plancher."
+				""
+				"它们在机械传送带（Mechanical Belts）下也很好看。"
+			]
+			id: "0000000000000CCE"
+			subtitle: "这招可太卑鄙了，完全不公平"
+			tasks: [{
+				count: 4L
+				id: "0000000000000CCF"
+				item: "create:andesite_casing"
+				type: "item"
+			}]
+			title: "安山岩外壳"
+			x: 5.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["0000000000000CCC"]
+			description: [
+				"你有一长排斧子。看起来有点缺少支持，不是吗？"
+				""
+				"Les Brackets (supports) sont purement décoratifs, mais ils peuvent rendre votre réseau d’axes bien plus joli."
+			]
+			id: "0000000000000CD0"
+			subtitle: "做好准备迎接挑战吧"
+			tasks: [
+				{
+					count: 4L
+					id: "0000000000000CD1"
+					item: "create:wooden_bracket"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "0000000000000D8B"
+					item: "create:metal_bracket"
+					type: "item"
+				}
+			]
+			title: "方括号"
+			x: 5.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["0000000000000CD6"]
+			description: [
+				"Un peu plus coûteux qu’une paire d’engrenages, le Gear Box sert au même usage que des engrenages perpendiculaires : changer la direction d’une ligne d’axes."
+				""
+				"不过，它有一个小优势，就是能将能量向两个方向传递。此外，还有垂直变种，可使轴线上下移动。"
+			]
+			id: "0000000000000CD4"
+			subtitle: "换个思路来试试吧，怎么样？"
+			tasks: [{
+				id: "0000000000000CD5"
+				item: "create:gearbox"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["0000000000000CCC"]
+			description: [
+				"磨坊转得慢，并不意味着一切都要慢下来。通过简单的齿轮比，就可以加快（或减慢）系统的转速。"
+				""
+				"Par exemple, imaginez que votre axe principal fasse tourner un petit engrenage (small cogwheel). En l’engrenant avec un grand engrenage (large cogwheel), l’axe de ce dernier tournera à la moitié de la vitesse de l’axe moteur."
+				""
+				"Inversement, un grand engrenage en prise avec un petit engrenage fera tourner l’axe de ce dernier à deux fois la vitesse."
+				""
+				"这些效果可以连锁使用，但请记住，系统消耗者转得越快，SU消耗就越高。"
+				""
+				"De plus, deux grands engrenages peuvent être reliés de façon perpendiculaire afin de changer la direction d’un axe. Pratique pour contourner un angle ou descendre l’énergie d’un point élevé."
+			]
+			id: "0000000000000CD6"
+			subtitle: "Spacely's Sprockets"
+			tasks: [
+				{
+					count: 4L
+					id: "0000000000000CD7"
+					item: "create:large_cogwheel"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "48C68E5C0B154689"
+					item: "create:cogwheel"
+					type: "item"
+				}
+			]
+			title: "齿轮组件"
+			x: 3.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["0000000000000CCC"]
+			description: [
+				"和创造模式中的许多东西一样，机械传送带（Mechanical Belt）是一种用途广泛的材料。"
+				""
+				"其主要作用是在水平方向或45度斜坡上运输物品。"
+				""
+				"不过，它也可以将动力从一个轴传递到另一个轴。这是在保持相同旋转方向的同时，为多个平行轴供电的理想方法。"
+				""
+				"Un seul convoyeur peut s'étendre sur 20 blocs et chaque bloc de l'espace peut, si nécessaire, être connecté à une autre ligne d'axes. Pour l'installer, placez simplement deux axes et faites un clic droit sur chacun d'eux en tenant le convoyeur."
+			]
+			id: "0000000000000CD8"
+			subtitle: "你现在正势不可挡，好运连连"
+			tasks: [{
+				count: 4L
+				id: "0000000000000CD9"
+				item: "create:belt_connector"
+				type: "item"
+			}]
+			title: "机械传送带"
+			x: 5.5d
+			y: -4.5d
+		}
+		{
+			dependencies: ["0000000000000CD8"]
+			description: [
+				"封闭式链传动（Encased Chain Drives）有点像传送带，能将垂直的轴连接起来。"
+				""
+				"Elles peuvent aussi servir à changer la direction de la puissance en plaçant plusieurs unités en ligne et en les orientant à 90 degrés les unes des autres."
+			]
+			id: "0000000000000CE0"
+			subtitle: "正在研究连锁采矿系统"
+			tasks: [{
+				id: "0000000000000CE1"
+				item: "create:encased_chain_drive"
+				type: "item"
+			}]
+			x: 5.5d
+			y: -7.5d
+		}
+		{
+			dependencies: ["0000000000000CD6"]
+			description: [
+				"Enchaîner des centaines d'engrenages pour obtenir la vitesse exacte souhaitée n'est pas toujours pratique. C'est là qu'intervient le Rotation Speed Controller. Placez un Large Cogwheel dans le slot du haut et alimentez-le."
+				""
+				"Le contrôleur ajustera automatiquement la vitesse de rotation sur ses deux axes de sortie. Réglez la vitesse avec la molette de la souris."
+			]
+			icon: "create:rotation_speed_controller"
+			id: "0000000000000CE2"
+			rewards: [{
+				id: "0000000000000D5B"
+				item: "create:large_cogwheel"
+				title: "大型齿轮"
+				type: "item"
+			}]
+			subtitle: "让它火力全开"
+			tasks: [{
+				id: "0000000000000CE3"
+				item: "create:rotation_speed_controller"
+				type: "item"
+			}]
+			x: -0.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["0000000000000CD8"]
+			description: [
+				"漏斗（Funnels）既可以用于将物品放入物品栏，也可以用于从中取出物品。"
+				""
+				"Par exemple, un entonnoir fixé à un coffre peut extraire et décharger les objets sur un convoyeur adjacent. Inversement, un convoyeur alimentant un entonnoir poussera les objets dans l’inventaire auquel il est fixé."
+			]
+			id: "0000000000000CE5"
+			subtitle: "有点滑头的下坡路"
+			tasks: [{
+				id: "0000000000000CE6"
+				item: "create:andesite_funnel"
+				type: "item"
+			}]
+			x: 6.5d
+			y: -7.5d
+		}
+		{
+			dependencies: ["0000000000000CD8"]
+			description: [
+				"瀑布是一种简单快捷的下传物品方式。只需将物品放在顶部，它们就会从底部出来。"
+				""
+				"优势在于它们能以45度角移动物品，多个下落轨迹可汇聚于一点，从而更好地控制物品的最终目的地。"
+				""
+				"瀑布也能让物品上升。如果在其上直接安装嵌入式风扇（Encased Fan），就可以吸走传送带的物品。当然，要回收这些物品，还需要一种提取瀑布的方法（比如漏斗）。"
+			]
+			id: "0000000000000CE7"
+			rewards: [{
+				id: "0000000000000CF1"
+				item: "create:encased_fan"
+				title: "Encased Fan"
+				type: "item"
+			}]
+			subtitle: "学习在滑道上拾取物品"
+			tasks: [{
+				count: 4L
+				id: "0000000000000CE8"
+				item: "create:chute"
+				type: "item"
+			}]
+			title: "滑道"
+			x: 7.5d
+			y: -7.5d
+		}
+		{
+			dependencies: ["0000000000000CD8"]
+			description: [
+				"Tunnels (Andesite Tunnels) ne sont pas de simples plaques pour convoyeurs, ils servent à séparer des piles d'objets."
+				""
+				"Lorsqu’un stack d’objets les traverse, le tunnel en prélève automatiquement un exemplaire pour le placer sur les convoyeurs ou dépôts adjacents."
+			]
+			id: "0000000000000CE9"
+			subtitle: "双缝干涉实验"
+			tasks: [{
+				id: "0000000000000CEA"
+				item: "create:andesite_tunnel"
+				type: "item"
+			}]
+			x: 7.5d
+			y: -5.5d
+		}
+		{
+			dependencies: ["0000000000000CE5"]
+			description: ["黄铜漏斗（Brass Funnels）与安山岩漏斗（Andesite Funnels）功能相同，但可以接受过滤器：单独放置在指定位置的物品，或已配置的物品过滤器。"]
+			id: "0000000000000CED"
+			subtitle: "升级我的滑道"
+			tasks: [{
+				id: "0000000000000CEE"
+				item: "create:brass_funnel"
+				type: "item"
+			}]
+			x: 6.5d
+			y: -8.5d
+		}
+		{
+			dependencies: ["0000000000000CE9"]
+			description: [
+				"Les Tunnels en Laiton (Brass Tunnels) fonctionnent différemment des Tunnels en Andesite. Au lieu de répartir les objets sur des convoyeurs adjacents, ils forment une ligne de tunnels connectés à plusieurs convoyeurs parallèles."
+				""
+				"当一个物品进入隧道时，它会均匀地分配到另一侧的所有相连隧道中。"
+				""
+				"过滤系统会在此次分配中被考虑，从而创建一个可处理混合物品流并将其分离至不同传送带的分拣系统。"
+			]
+			id: "0000000000000CEF"
+			subtitle: "Wave Function Collapse"
+			tasks: [{
+				id: "0000000000000CF0"
+				item: "create:brass_tunnel"
+				type: "item"
+			}]
+			x: 8.5d
+			y: -5.5d
+		}
+		{
+			dependencies: ["0000000000000CD8"]
+			description: [
+				"Le Dépôt (Depot) sert de tampon simple pour les objets."
+				""
+				"它只能容纳一叠物品，但也可以通过内置风扇与清洗、熔炼和烟熏配方互动，以及与压板机（Plate Press）互动。"
+			]
+			id: "0000000000000CF2"
+			subtitle: "缓冲区分配失败"
+			tasks: [{
+				id: "0000000000000CF3"
+				item: "create:depot"
+				type: "item"
+			}]
+			x: 7.5d
+			y: -6.5d
+		}
+		{
+			dependencies: ["0000000000000CD8"]
+			description: [
+				"机械臂（Mechanical Arms）支持短距离物品的先进运输。它们可以配置为同时从多个位置提取和放置物品。"
+				""
+				"Par exemple, un bras peut être configuré pour prendre du sable depuis un entonnoir, le déposer sur un dépôt où un ventilateur encastré au-dessus le fera fondre en verre. Ce même bras peut ensuite prendre le verre et l’insérer dans un autre entonnoir filtré pour l’envoyer ailleurs."
+				""
+				"La liaison se fait avant de poser le bras : cliquez droit sur les inventaires autorisés pour définir la position. Cliquez à nouveau pour basculer entre entrée et sortie. La portée du bras est de quatre blocs."
+			]
+			id: "0000000000000CF4"
+			subtitle: "数字5是活着的生物"
+			tasks: [{
+				id: "0000000000000CF5"
+				item: "create:mechanical_arm"
+				type: "item"
+			}]
+			x: 7.5d
+			y: -4.5d
+		}
+		{
+			dependencies: ["0000000000000D04"]
+			description: [
+				"磨石（Millstones）已被使用数个世纪，代表着仍在服役的最古老技术之一。它们比手工研磨要高效得多。"
+				""
+				"Dans Create, la Millstone est un excellent moyen précoce d’augmenter le rendement de vos minerais. Pensez à laver la poussière de minerai obtenue pour améliorer encore plus la production !"
+			]
+			id: "0000000000000CFC"
+			subtitle: "你知道什么最让我感到恼火吗？"
+			tasks: [{
+				id: "0000000000000CFD"
+				item: "create:millstone"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["0000000000000D1A"]
+			description: [
+				"Les Roues Broyeuses (Crushing Wheels) sont la version grand format de la Millstone que vous avez utilisée jusque-là. Elles offrent en général de meilleurs rendements, vous permettant d’obtenir davantage de vos ressources qu’avec la Millstone."
+				"Leur surface de meulage plus dure leur permet également de traiter des matériaux que la Millstone ne peut pas gérer."
+				""
+				"安装一对破碎机轮需要一点巧思，因为它们必须反向旋转，顶部相对。"
+				""
+				"Placez les roues en laissant un bloc d’espace entre elles. Les objets peuvent être jetés par le haut ou insérés plus précisément via un Entonnoir dans l’espace bloqué entre les deux roues."
+			]
+			id: "0000000000000CFE"
+			subtitle: "是时候开动了，咔嚓咔嚓"
+			tasks: [{
+				count: 2L
+				id: "0000000000000CFF"
+				item: "create:crushing_wheel"
+				type: "item"
+			}]
+			title: "压碎车轮"
+			x: 10.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["0000000000000D02"]
+			description: [
+				"Le Déployeur (deployer) est utile pour de nombreuses choses, mais c’est surtout le principal moyen d’automatiser la production de Quartz Rose Polished (Polished Rose Quartz)."
+				""
+				"L'objet tenu peut être inséré dans le Deployer via un convoyeur et un entonnoir, un entonnoir normal (hopper) ou tout autre moyen de transport d'objets. Lorsqu'il est alimenté, il essaie continuellement d'« utiliser » l'objet en face de lui, qu'il s'agisse d'un objet ou d'une créature."
+				""
+				"要抛光石英，只需将石英放置在移动部署器机械臂的轨道上即可。"
+			]
+			icon: "create:brass_hand"
+			id: "0000000000000D00"
+			subtitle: "步入正轨，干正事要紧"
+			tasks: [
+				{
+					id: "0000000000000D01"
+					item: "create:deployer"
+					type: "item"
+				}
+				{
+					id: "0000000000000D21"
+					item: {
+						Count: 1
+						id: "create:sand_paper"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			x: 8.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["0000000000000D04"]
+			description: [
+				"电子管（Electron Tubes）用于制造Create中最先进的机器，但由于需要抛光玫瑰石英，它们构成了一个自动化挑战。"
+				""
+				"玫瑰石英需要用砂纸（Sandpaper）抛光。开始时，你需要手持砂纸和玫瑰石英，用右键持续点击，直到它变得闪闪发光。"
+				""
+				"Mais… peut-on automatiser cela avec tous ces engrenages et gadgets ? Bien sûr ! Mais les machines nécessaires exigent justement des Tubes Électroniques !"
+			]
+			id: "0000000000000D02"
+			subtitle: "欧姆，为了全人类"
+			tasks: [{
+				id: "0000000000000D03"
+				item: "create:electron_tube"
+				type: "item"
+			}]
+			x: 10.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["0000000000000C40"]
+			description: ["Maintenant que nous avons de la puissance et un peu de logistique, il est temps de mettre les mains à la pâte. Create propose plusieurs nouvelles mécaniques de craft qu’il est important de comprendre pour profiter du mod."]
+			icon: "create:whisk"
+			id: "0000000000000D04"
+			subtitle: "随手做的小玩意儿，不成敬意"
+			tasks: [{
+				id: "0000000000000D05"
+				title: "合成配方"
+				type: "checkmark"
+			}]
+			x: 8.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["0000000000000CFC"]
+			description: [
+				"La Presse Mécanique (Mechanical Press) est un bon moyen de transformer vos lingots en plaques pour des crafts plus avancés. Elle permet aussi, avec un bassin (Basin), de compacter des matériaux pour, par exemple, créer des lingots à partir de pépites."
+				""
+				"Pour fabriquer des plaques, la Presse peut être installée au-dessus d’un convoyeur, d’un dépôt ou de n’importe quel autre bloc."
+				""
+				"如果它位于传送带上方，传送带将在操作期间自动停止。"
+				""
+				"在储物箱上方，一旦检测到下方有可压缩的物品，它就会以同样的方式工作。"
+				""
+				"Si elle est placée au-dessus de n’importe quel autre bloc, il faudra un signal de redstone pour la faire démarrer."
+			]
+			id: "0000000000000D06"
+			subtitle: "煮一煮，捣一捣，把它们都扔进炖锅里"
+			tasks: [{
+				id: "0000000000000D07"
+				item: "create:mechanical_press"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["0000000000000D06"]
+			description: [
+				"Le Mélangeur Mécanique (Mechanical Mixer) permet de mélanger des solides et des liquides pour créer des formes plus utiles : potions, thé ou alliages avancés, il fait tout. Un bassin (Basin) sous le mélangeur est nécessaire."
+				""
+				"Notez que certaines recettes exigent de la chaleur, fournie par un Blaze Burner. Nous en parlerons plus tard."
+			]
+			icon: "create:mechanical_mixer"
+			id: "0000000000000D08"
+			subtitle: "出了一些状况，警官先生"
+			tasks: [
+				{
+					id: "0000000000000D09"
+					item: "create:mechanical_mixer"
+					type: "item"
+				}
+				{
+					id: "0000000000000D0A"
+					item: "create:basin"
+					type: "item"
+				}
+			]
+			x: 6.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["0000000000000D08"]
+			description: [
+				"面对高温，没有什么比下界的热度更棒了。何不把它带回家呢？"
+				""
+				"Blaze Burners 可通过右键空白 burner 并指向 Blaze（该生物将被消耗）或 Blaze Spawner（不会被消耗）来制作。它们燃烧温度极高，但并非无限期。"
+				""
+				"Nourrissez-les de charbon ou d’autres combustibles pour qu’ils s’enflamment de nouveau s’ils refroidissent."
+			]
+			id: "0000000000000D0B"
+			subtitle: "这灰烬真棒"
+			tasks: [{
+				id: "0000000000000D0C"
+				item: "create:blaze_burner"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 5.0d
+		}
+		{
+			dependencies: ["0000000000000D0B"]
+			description: [
+				"你觉得还不够热吗？给他们点蛋糕尝尝！"
+				""
+				"Fabriquer du Blaze Cake mettra vos compétences à rude épreuve, car cela combine de nombreuses mécaniques différentes. Jusqu’où irez-vous dans votre automatisation ?"
+			]
+			id: "0000000000000D0D"
+			subtitle: "禁忌的零食"
+			tasks: [{
+				id: "0000000000000D0E"
+				item: "create:blaze_cake"
+				type: "item"
+			}]
+			x: 6.5d
+			y: 6.5d
+		}
+		{
+			dependencies: ["0000000000000D11"]
+			description: [
+				"运输物品并非免费，移动流体也需要消耗旋转能量。"
+				""
+				"机械泵（Mechanical Pump）通过齿轮接收动力，并对一段管道施加压力，使流体根据旋转方向朝某一方向流动。"
+				""
+				"Le bloc dispose d'un indicateur de sens d'écoulement pour vous aider à visualiser le flux. Une seule pompe peut pressuriser une grande section de tuyaux, pensez donc à les espacer."
+			]
+			id: "0000000000000D0F"
+			subtitle: "阿基米德螺旋输送机"
+			tasks: [{
+				id: "0000000000000D10"
+				item: "create:mechanical_pump"
+				type: "item"
+			}]
+			x: -1.0d
+			y: -6.5d
+		}
+		{
+			dependencies: ["0000000000000CD6"]
+			description: ["管道（Fluid Pipes）是运输流体的主要方式。流体流入，流体流出。很简单！"]
+			id: "0000000000000D11"
+			subtitle: "清理河道"
+			tasks: [{
+				count: 16L
+				id: "0000000000000D12"
+				item: "create:fluid_pipe"
+				type: "item"
+			}]
+			title: "流体管道"
+			x: 0.5d
+			y: -5.0d
+		}
+		{
+			dependencies: ["0000000000000D0F"]
+			description: ["流体阀门可以通过旋转力来开启或关闭，例如使用铜质阀门手柄。"]
+			icon: "create:fluid_valve"
+			id: "0000000000000D13"
+			subtitle: "关上正门"
+			tasks: [
+				{
+					id: "0000000000000D14"
+					item: "create:fluid_valve"
+					type: "item"
+				}
+				{
+					id: "0000000000000D19"
+					item: "create:copper_valve_handle"
+					type: "item"
+				}
+			]
+			x: -1.0d
+			y: -7.5d
+		}
+		{
+			dependencies: ["0000000000000D0F"]
+			description: ["在模组世界，化不可能为可能不过是寻常周二。智能流体管道充当过滤器，控制着能从相邻储罐中提取或继续输送的内容物。"]
+			id: "0000000000000D15"
+			subtitle: "反渗透过滤器"
+			tasks: [{
+				id: "0000000000000D16"
+				item: "create:smart_fluid_pipe"
+				type: "item"
+			}]
+			x: -2.0d
+			y: -6.5d
+		}
+		{
+			dependencies: ["0000000000000D11"]
+			description: [
+				"流体储罐是用于储存流体的模块化储罐。"
+				""
+				"它们无法被玩家直接操作，需要管道进行存取。它们会连接到相邻的储罐，形成大型的多方块存储单元。"
+				"Elles peuvent avoir une base de 1x1, 2x2 ou 3x3 et s’étendre aussi haut que vous le souhaitez."
+			]
+			id: "0000000000000D17"
+			subtitle: "深不可测的深渊"
+			tasks: [{
+				count: 4L
+				id: "0000000000000D18"
+				item: "create:fluid_tank"
+				type: "item"
+			}]
+			title: "流体储罐"
+			x: 2.0d
+			y: -6.5d
+		}
+		{
+			dependencies: ["0000000000000D02"]
+			description: [
+				"Quand un simple 3x3 ne suffit plus, il y a le Mechanical Crafter. Ou plutôt, les Crafters. Ces blocs s’imbriquent pour former une grande grille de craft, chaque bloc recevant un seul objet."
+				""
+				"某些高级物品只能通过这种方式来制作。"
+				""
+				"注意放置时出现的箭头，它指示了物品在合成时的流动方向。所有箭头都必须指向同一个合成器。"
+				""
+				"Par exemple, placer le premier crafter au sol fera pointer la flèche vers le bas (sortie). Un crafter de côté devra être placé sur le côté pour que sa flèche pointe vers le premier, formant un canal."
+				""
+				"Les Crafter Slot Covers peuvent désactiver un emplacement, utile pour les recettes ayant des espaces vides (ex. pour un coffre, le slot central doit être couvert en 3x3)."
+				""
+				"物品可以通过漏斗、传送带、滑槽、机械臂等放入。尽情尝试吧！"
+			]
+			icon: "create:mechanical_crafter"
+			id: "0000000000000D1A"
+			min_width: 250
+			tasks: [
+				{
+					id: "0000000000000D1B"
+					item: "create:mechanical_crafter"
+					type: "item"
+				}
+				{
+					id: "0000000000000D1C"
+					item: "create:crafter_slot_cover"
+					type: "item"
+				}
+			]
+			x: 10.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["0000000000000D00"]
+			description: [
+				"Tous les éléments sont là. Saurez-vous tout assembler ? Créez une usine entièrement automatique de Quartz Rose Poli. La seule entrée externe autorisée est le quartz et la redstone elle-même."
+				""
+				"Fabriquez du sable en broyant de la cobble depuis un générateur de cobble. Cultivez de la canne à sucre pour automatiser la production de papier. Combinez-les pour nourrir le papier de verre (Sandpaper) à votre Deployer et polir le Quartz Rose."
+				""
+				"Bien sûr, la fabrication du Quartz Rose lui-même doit être automatisée dans cette usine. N’utilisez que Create et des mécaniques vanilla pour ce défi !"
+				""
+				"祝你好运！"
+			]
+			icon: "create:polished_rose_quartz"
+			id: "0000000000000D1F"
+			shape: "octagon"
+			tasks: [{
+				id: "0000000000000D20"
+				title: "挑战：玫瑰石英自动化"
+				type: "checkmark"
+			}]
+			x: 8.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["0000000000000D11"]
+			description: ["Le Spout, placé au-dessus d’un Dépôt, essaiera de remplir l’objet déposé en dessous. Par exemple, pour créer des seaux d’eau, remplir des bouteilles de potions ou préparer un délicieux thé !"]
+			id: "0000000000000D23"
+			subtitle: "胡说八道，信口雌黄"
+			tasks: [{
+				id: "0000000000000D24"
+				item: "create:spout"
+				type: "item"
+			}]
+			x: 0.5d
+			y: -6.5d
+		}
+		{
+			dependencies: ["0000000000000C40"]
+			description: [
+				"Les Modular Contraptions sont des structures multiblocs à construire soi-même, offrant des possibilités presque infinies."
+				""
+				"它们可以是固定的并由旋转力驱动，也可以是固定在矿车上免费运行，只需有动力的轨道即可移动。"
+				""
+				"接下来的任务中会用到一些用于机器的特殊方块。"
+			]
+			icon: {
+				Count: 1
+				id: "create:minecart_contraption"
+				tag: {
+					Contraption: {
+						Actors: [ ]
+						Anchor: {
+							X: 108
+							Y: 84
+							Z: -93
+						}
+						Blocks: [
+							{
+								Block: {
+									Name: "create:minecart_anchor"
+									Properties: {
+										axis: "z"
+									}
+								}
+								Pos: {
+									X: 0
+									Y: 0
+									Z: 0
+								}
+							}
+							{
+								Block: {
+									Name: "minecraft:spruce_planks"
+								}
+								Pos: {
+									X: 0
+									Y: 1
+									Z: 0
+								}
+							}
+						]
+						BoundsFront: [
+							0.0f
+							0.0f
+							0.0f
+							1.0f
+							2.0f
+							1.0f
+						]
+						FluidStorage: [ ]
+						Passengers: [ ]
+						RotationMode: "ROTATE"
+						Seats: [ ]
+						Stalled: 0b
+						Storage: [ ]
+						SubContraptions: [ ]
+						Superglue: [ ]
+						Type: "mounted"
+					}
+					display: { }
+				}
+			}
+			id: "0000000000000D2B"
+			rewards: [{
+				id: "0000000000000D65"
+				item: "minecraft:minecart"
+				title: "矿车"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0000000000000D2C"
+				type: "checkmark"
+			}]
+			title: "模块化机械装置"
+			x: 11.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["0000000000000D2B"]
+			description: [
+				"对于移动机器，机械活塞（Mechanical Pistons）是一个不错的起点。"
+				""
+				"Un exemple simple : imaginez un long champ. Un piston mécanique pourrait pousser une machine de récolte d’avant en arrière sur le champ à intervalles réguliers, pour récolter les cultures."
+			]
+			icon: "create:mechanical_piston"
+			id: "0000000000000D2D"
+			rewards: [{
+				count: 8
+				id: "0000000000000D8C"
+				item: "create:piston_extension_pole"
+				title: "活塞延伸杆"
+				type: "item"
+			}]
+			subtitle: "工程推广计划 (Engineering Outreach Program)"
+			tasks: [{
+				id: "0000000000000D2E"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "create:mechanical_piston"
+							}
+							{
+								Count: 1b
+								id: "create:sticky_mechanical_piston"
+							}
+						]
+					}
+				}
+				title: "机械活塞"
+				type: "item"
+			}]
+			x: 14.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["0000000000000D2B"]
+			description: [
+				"Les Cart Assemblers servent à assembler une contraption destinée à rouler sur un chariot de mine."
+				""
+				"机器必须建造在Assembler的上方。准备就绪后，向Assembler发送红石信号，所有相连的方块将转换为单个实体。"
+				""
+				"此时可以用扳手（wrench）拾起手推车，从而轻松移动机器。"
+				""
+				"Un exemple courant est un tunnelier (bore) sur chariot, qui peut poser ses rails devant lui et les récupérer derrière lui, voire construire ses propres ponts pour franchir les ravins !"
+			]
+			id: "0000000000000D2F"
+			subtitle: "Putting the Cart Before the Horse"
+			tasks: [{
+				id: "0000000000000D30"
+				item: "create:cart_assembler"
+				type: "item"
+			}]
+			x: 14.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["0000000000000D2B"]
+			description: [
+				"与风车轴承一样，机械轴承可用于建造旋转机械。"
+				""
+				"Par exemple, vous pourriez construire un long bras qui balaie une plantation d’arbres et coupe tous les troncs sur son passage."
+			]
+			id: "0000000000000D31"
+			subtitle: "摆脱令人无法忍受的困境"
+			tasks: [{
+				id: "0000000000000D32"
+				item: "create:mechanical_bearing"
+				type: "item"
+			}]
+			x: 14.0d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"0000000000000D2D"
+				"0000000000000D2F"
+				"0000000000000D31"
+				"0000000000000D45"
+			]
+			dependency_requirement: "one_completed"
+			description: [
+				"Châssis 方块是大型创作的基础。"
+				""
+				"Les Linear Chassis se connectent entre eux le long de leur bord plus foncé et sont considérés comme un « ensemble » unique sur lequel on peut coller d’autres éléments. Ils peuvent également capturer une ligne de blocs fixés à leur face plus claire (si la face est gluée)."
+				""
+				"De même, les Radial Chassis peuvent capturer des blocs sur un plan circulaire, à condition qu'ils se touchent tous et que celui en contact avec la face claire du châssis soit collé."
+				""
+				"结果：用很少的胶水就能造出巨大的机器。不过，胶水并非必需：只需将方块粘合在一起，就能得到不规则的形状。"
+				""
+				"别担心，机器组装完成后，胶痕就会消失，让你能做出美观的建筑。"
+				""
+				"Utilisez la molette de la souris en tenant la clé (wrench) et en regardant le châssis pour régler sa portée."
+				""
+				"注意：可以使用史莱姆球无限次地粘合框架的各个面。右键单击可应用于一个面。双击右键可应用于所有面。"
+			]
+			id: "0000000000000D33"
+			min_width: 300
+			tasks: [
+				{
+					id: "0000000000000D34"
+					item: "create:radial_chassis"
+					type: "item"
+				}
+				{
+					id: "0000000000000D35"
+					item: "create:linear_chassis"
+					type: "item"
+				}
+			]
+			title: "底盘"
+			x: 15.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["0000000000000D33"]
+			description: ["一种智能的收割工具，只会收割成熟的作物。"]
+			id: "0000000000000D3A"
+			subtitle: "在各自领域表现出色的人或事物"
+			tasks: [{
+				id: "0000000000000D3B"
+				item: "create:mechanical_harvester"
+				type: "item"
+			}]
+			x: 17.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["0000000000000D33"]
+			description: ["无论是移动还是固定，机械钻头（Mechanical Drill）都是一种高效的挖掘工具。"]
+			id: "0000000000000D3C"
+			subtitle: "此处无事可看，只是一台无聊的机器"
+			tasks: [{
+				id: "0000000000000D3D"
+				item: "create:mechanical_drill"
+				type: "item"
+			}]
+			x: 17.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["0000000000000D33"]
+			description: [
+				"Retourner la terre, c’est fatigant. Autant construire une machine pour le faire !"
+				""
+				"Le Mechanical Plow est aussi utile pour plus que la ferme. Sur un chariot en mouvement, il peut récupérer les rails derrière vous."
+			]
+			id: "0000000000000D3E"
+			subtitle: "一项划时代的创新发明"
+			tasks: [{
+				id: "0000000000000D3F"
+				item: "create:mechanical_plough"
+				type: "item"
+			}]
+			x: 15.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000000D33"]
+			description: [
+				"要砍树或开采石头，机械锯（Mechanical Saw）无所不能。"
+				""
+				"Quand elle est fixe et alimentée, elle peut découper les bûches en planches ou accéder aux recettes du tailleur de pierre (stonecutter). Les recettes du tailleur donneront un résultat aléatoire, sauf si vous placez un filtre sur la scie."
+				""
+				"Sur une machine en mouvement, elle coupe un arbre entier d’un coup. Pratique pour une ferme à bois."
+			]
+			id: "0000000000000D40"
+			subtitle: "尖端科技 Cutting Edge Technology"
+			tasks: [{
+				id: "0000000000000D41"
+				item: "create:mechanical_saw"
+				type: "item"
+			}]
+			x: 17.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000000D33"]
+			description: [
+				"Souvent, les outils attachés à une machine en mouvement ramasseront automatiquement les objets récoltés, tant qu’il y a suffisamment de stockage à bord."
+				""
+				"放置一个箱子就足以提供存储空间，但之后该如何取回物品呢？"
+				""
+				"接口是通往移动机器存贮界面的门户。当机器上的便携式接口在世界上遇到固定接口时，装置会暂停并建立连接。"
+				""
+				"Si un système est configuré pour extraire ou insérer via cette interface, la machine reste en pause tant que quelque chose transite. Une fois terminé, elle repart."
+				""
+				"Pour éviter la pause, ou l’interrompre, envoyez un signal de redstone à l’interface fixe."
+			]
+			id: "0000000000000D42"
+			subtitle: "即插即用"
+			tasks: [
+				{
+					id: "0000000000000D43"
+					item: "create:portable_fluid_interface"
+					type: "item"
+				}
+				{
+					id: "0000000000000D44"
+					item: "create:portable_storage_interface"
+					type: "item"
+				}
+			]
+			title: "便携式接口 (Portable Interfaces)"
+			x: 15.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["0000000000000D2B"]
+			description: [
+				"需要一个电梯吗？"
+				""
+				"用绳索滑轮和一个附着的平台制作一个。"
+				""
+				"Utilisez un Gearshift pour inverser le sens facilement."
+			]
+			id: "0000000000000D45"
+			subtitle: "有好有坏，各有利弊"
+			tasks: [{
+				id: "0000000000000D46"
+				item: "create:rope_pulley"
+				type: "item"
+			}]
+			x: 14.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["0000000000000CD6"]
+			description: [
+				"比单纯的齿轮比控制更精细，Adjustable Chain Gearshift 使用红石信号来调整速度，最高可达输入速度的两倍。"
+				""
+				"Pensez à utiliser un Analog Lever pour définir facilement une vitesse fixe."
+			]
+			id: "0000000000000D47"
+			subtitle: "换挡提速，迈向更高阶段"
+			tasks: [{
+				id: "0000000000000D48"
+				item: "create:adjustable_chain_gearshift"
+				type: "item"
+			}]
+			x: 0.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["0000000000000D11"]
+			description: [
+				"Avec un Hose Pulley, vous pouvez pomper les fluides directement dans (ou hors) du monde. Créez de vastes lacs ou videz-les pour agrandir votre usine !"
+				""
+				"像海洋或下界巨大的熔岩湖这样的大片区域将被视为无限。如果你想清空水下遗迹，就必须建造墙壁来分割它们。"
+				""
+				"Notez que le Hose Pulley ne pompe pas tout seul. Abaissez le tuyau dans la zone de liquide et installez une Mechanical Pump pour faire le travail."
+			]
+			id: "0000000000000D49"
+			subtitle: "嗯，有利有弊，有好有坏的一面"
+			tasks: [{
+				id: "0000000000000D4A"
+				item: "create:hose_pulley"
+				type: "item"
+			}]
+			x: 2.0d
+			y: -5.0d
+		}
+		{
+			dependencies: ["0000000000000CD6"]
+			description: [
+				"Besoin d’inverser la direction ? Le Gearshift est là pour vous."
+				""
+				"Envoyez un signal de redstone au bloc pour que le côté de sortie tourne dans la direction opposée à l’entrée."
+			]
+			id: "0000000000000D4B"
+			subtitle: "是时候换换花样了"
+			tasks: [{
+				id: "0000000000000D4C"
+				item: "create:gearshift"
+				type: "item"
+			}]
+			x: -0.5d
+			y: -4.5d
+		}
+		{
+			dependencies: ["0000000000000CD6"]
+			description: [
+				"一个非常简单的装置：离合器（Clutch）可以切断轴的传动，就像一个开/关开关一样。"
+				""
+				"对于需要精确计时的复杂机器来说，这可能很有用。"
+			]
+			id: "0000000000000D4D"
+			subtitle: "我不得不把你拦下来，就在那里"
+			tasks: [{
+				id: "0000000000000D4E"
+				item: "create:clutch"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["0000000000000D0B"]
+			description: [
+				"派对开得太晚了吗？需要更多宁静吗？"
+				""
+				"Essayez le Builder’s Tea ! Il ne faut pas trop de temps pour le préparer."
+			]
+			id: "0000000000000D52"
+			subtitle: "你好，Brew-TEA-Full！"
+			tasks: [{
+				id: "0000000000000D53"
+				item: "create:builders_tea"
+				type: "item"
+			}]
+			x: 5.5d
+			y: 6.5d
+		}
+		{
+			dependencies: ["0000000000000C40"]
+			description: [
+				"Créer un ensemble d'outils dédiés à l'enregistrement et la reproduction de schémas."
+				""
+				"Le Schematic and Quill 允许您将现有结构保存为蓝图。这样您便可以在别处重建它。"
+				""
+				"1) 右键点击以选择要保存的结构相对的两个对角。"
+				"2) 指向所选区域的某个面，然后按住 Ctrl 拖动鼠标以调整该面。"
+				"3) 右键单击以命名并保存蓝图。"
+				""
+				"Create 官方维基有一篇展示示例的文章：https://github.com/Creators-of-Create/Create/wiki/Saving-a-Schematic"
+			]
+			id: "5A581A8DF6CCC352"
+			min_width: 250
+			subtitle: "建筑学入门 101"
+			tasks: [{
+				id: "188710CC3F5AE8D2"
+				item: "create:schematic_and_quill"
+				type: "item"
+			}]
+			title: "保存蓝图文件"
+			x: 8.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["5A581A8DF6CCC352"]
+			description: [
+				"要放置已保存的结构，您需要通过 Schematic Table 创建一个 Schematic。"
+				""
+				"Sélectionnez le schéma souhaité en survolant le cadre central et en utilisant la molette. Placez une Empty Schematic dans l'emplacement de gauche. Cliquez sur la coche pour imprimer le schéma — cela l'« upload » sur le serveur et peut prendre du temps pour les grands schémas. Vous pouvez fermer l'interface pendant le processus et revenir plus tard. Le bouton “Open Folder” ouvre le dossier des schémas, et “Refresh” met à jour la liste des schémas disponibles."
+				""
+				"Une fois le schéma en main, vous pouvez le placer dans le monde avec un clic droit. Un HUD s’affiche pour ajuster le schéma : déplacer, pivoter, retourner. Shift+Clic droit permet aussi d’éditer le placement et la rotation. Vous pouvez vous en servir comme guide de construction, mais il y a mieux…"
+				""
+				"注意，部分多重方块有默认提供的预设图案。您可以将未使用的图案移出文件夹，然后刷新列表。"
+				""
+				"更多信息请访问 Create 维基：https://github.com/Creators-of-Create/Create/wiki/Loading-a-Schematic"
+			]
+			id: "3542632905883686"
+			min_width: 300
+			rewards: [{
+				id: "1CC172C5323EADC6"
+				item: "create:empty_schematic"
+				title: "空白的蓝图文件"
+				type: "item"
+			}]
+			subtitle: "申请建筑许可证中"
+			tasks: [{
+				id: "2816C6E8336001CD"
+				item: "create:schematic_table"
+				type: "item"
+			}]
+			title: "放置蓝图文件"
+			x: 9.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["3542632905883686"]
+			description: [
+				"Le Schematicannon est l’appareil qui vous permettra de construire automatiquement vos structures. Il utilise de la poudre à canon comme propulseur et puisera les blocs dans des inventaires adjacents."
+				""
+				"Prenez votre schéma fraîchement placé et insérez-le dans le Schematicannon. Mettez de la poudre à canon en haut à gauche — le canon en utilisera une par 400 blocs. Appuyez sur le bouton Play au centre de l’interface pour lancer la construction !"
+				""
+				"Par défaut, le canon s'arrêtera s'il n'a pas le bloc requis, et remplacera tout bloc sur son passage, tout en préservant les blocs avec des données, comme un coffre. Les blocs remplacés sont perdus (pas de drop). Vous pouvez ajuster ces réglages en bas à gauche."
+				""
+				"注意：大炮速度不快，但可以将负载分配到多个大炮上，而 Time in a Bottle 在这里非常有效！"
+				""
+				"配置示例：https://github.com/Creators-of-Create/Create/wiki/Printing-a-Schematic"
+			]
+			id: "6305EF196599FC7C"
+			min_width: 300
+			rewards: [{
+				count: 16
+				id: "123B498A6DDBFD23"
+				item: "minecraft:gunpowder"
+				title: "火药"
+				type: "item"
+			}]
+			subtitle: "Constructive Detonation"
+			tasks: [{
+				id: "5C7274B5040C6D7D"
+				item: "create:schematicannon"
+				type: "item"
+			}]
+			title: "正在打印蓝图"
+			x: 10.0d
+			y: -3.0d
+		}
+	]
+	title: "创建"
+}

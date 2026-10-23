@@ -1,0 +1,949 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "immersive_engineering"
+	group: "7CA07C5265C35DFC"
+	icon: "immersiveengineering:heavy_engineering"
+	id: "0000000000000002"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["Immersive Engineering est un mod technologique polyvalent axé sur de grandes structures multiblocs. Vous pouvez trouver plus d'informations sur tout dans le Manuel de l'Ingénieur."]
+			icon: "immersiveengineering:manual"
+			id: "0000000000000004"
+			optional: true
+			shape: "gear"
+			tasks: [{
+				id: "4C4EC117244A21C7"
+				item: {
+					Count: 1
+					id: "immersiveengineering:hammer"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: -1.5d
+			y: -6.0d
+		}
+		{
+			dependencies: ["0000000000000004"]
+			description: [
+				"Votre fidèle marteau d'ingénieur sert principalement à former des structures multiblocs et à faire pivoter certains blocs. Vous pouvez également l'utiliser pour fabriquer des plaques si nécessaire."
+				"Les coupe-fils sont un outil utile pour le câblage précoce, ainsi que pour déconnecter rapidement en toute sécurité des fils suspendus sous tension."
+				"螺丝刀很适合用来对红石连接器等进行精确的修改。"
+			]
+			id: "0000000000000007"
+			tasks: [
+				{
+					id: "20930556EBD4C23B"
+					item: {
+						Count: 1
+						id: "immersiveengineering:wirecutter"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "49501ECA376AF301"
+					item: "immersiveengineering:screwdriver"
+					type: "item"
+				}
+			]
+			title: "职业工具包"
+			x: -1.5d
+			y: -4.5d
+		}
+		{
+			dependencies: ["0000000000000007"]
+			description: ["高炉是IE中首个重要的多方块结构，由一个3x3x3的焦炭砖立方体组成。该结构能将煤炭转化为焦炭，木材转化为木炭；这两种操作都会产生焦油，一种用于处理木材的重要副产品。"]
+			icon: "immersiveengineering:coke_oven"
+			id: "0000000000000009"
+			tasks: [
+				{
+					count: 27L
+					id: "000000000000000B"
+					item: "immersiveengineering:cokebrick"
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "000000000000000C"
+					item: {
+						Count: 1
+						id: "itemfilters:tag"
+						tag: {
+							value: "minecraft:coals"
+						}
+					}
+					title: "任意一种煤炭 Coke 都可以"
+					type: "item"
+				}
+			]
+			title: "四瓶可口可乐"
+			x: -3.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["000000000000000F"]
+			description: ["风车可以作为早期能源。它们必须连接到动能发电机，并放置在开阔的高处。"]
+			icon: "immersiveengineering:windmill"
+			id: "000000000000000D"
+			rewards: [{
+				count: 2
+				id: "56A8AE20B7350DFA"
+				item: "immersiveengineering:wirecoil_copper_ins"
+				title: "LV 绝缘线圈"
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "000000000000000E"
+					item: "immersiveengineering:windmill"
+					type: "item"
+				}
+				{
+					id: "0000000000000016"
+					item: "immersiveengineering:dynamo"
+					type: "item"
+				}
+			]
+			x: -6.5d
+			y: -4.5d
+		}
+		{
+			dependencies: ["0000000000000004"]
+			description: ["IE 的导线可用于传输三种不同电压（不同 RF/t 速率）的 RF。您需要为要连接的两个设备各装一个连接器，并在它们之间连接导线。"]
+			icon: "immersiveengineering:wirecoil_copper"
+			id: "000000000000000F"
+			rewards: [{
+				count: 4
+				id: "70EF7276A0395E72"
+				item: "immersiveengineering:connector_lv"
+				title: "LV 电线连接器"
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "0000000000000010"
+					item: "immersiveengineering:wirecoil_copper"
+					type: "item"
+				}
+				{
+					id: "0000000000000011"
+					item: "immersiveengineering:connector_lv"
+					type: "item"
+				}
+			]
+			title: "基础布线系统"
+			x: -5.0d
+			y: -6.0d
+		}
+		{
+			dependencies: ["0000000000000009"]
+			description: ["Le haut fourneau sert à transformer le fer en acier, en utilisant du coke ou du charbon de bois. C'est une structure d'une importance capitale... à moins que vous n'obteniez de l'acier par une autre méthode, bien sûr."]
+			icon: "immersiveengineering:blast_furnace"
+			id: "0000000000000012"
+			rewards: [{
+				count: 8
+				id: "45A3C07793285270"
+				item: "emendatusenigmatica:steel_ingot"
+				title: "钢制锭（Lingot d'Acier）"
+				type: "item"
+			}]
+			tasks: [{
+				count: 27L
+				id: "0000000000000013"
+				item: "immersiveengineering:blastbrick"
+				type: "item"
+			}]
+			title: "高炉"
+			x: -3.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["000000000000000F"]
+			description: ["Isoler les fils avec du tissu de chanvre est un excellent moyen d'éviter les électrocutions."]
+			id: "0000000000000014"
+			rewards: [{
+				count: 16
+				id: "0A66FFF087E789D9"
+				item: "immersiveengineering:hemp_fiber"
+				title: "工业用大麻纤维"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0000000000000015"
+				item: "immersiveengineering:wirecoil_copper_ins"
+				type: "item"
+			}]
+			title: "绝缘电缆布线"
+			x: -8.5d
+			y: -6.0d
+		}
+		{
+			dependencies: [
+				"0000000000000009"
+				"000000000000000F"
+			]
+			description: ["电容器可用于存储RF。用锤子右键单击一侧，可在输入（蓝色）、输出（橙色）和禁用之间切换。也存在MV/HV电容器。"]
+			id: "0000000000000017"
+			tasks: [{
+				id: "0000000000000018"
+				item: "immersiveengineering:capacitor_lv"
+				type: "item"
+			}]
+			x: -3.5d
+			y: -4.5d
+		}
+		{
+			dependencies: ["0000000000000009"]
+			description: ["L'établi de l'ingénieur est nécessaire pour fabriquer certaines pièces à l'aide de plans. Vous pouvez également l'utiliser pour modifier certains outils par la suite."]
+			id: "0000000000000019"
+			rewards: [{
+				count: 8
+				id: "0911E6C5BB0AF5E5"
+				item: "immersiveengineering:component_iron"
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "000000000000001A"
+					item: "immersiveengineering:workbench"
+					type: "item"
+				}
+				{
+					id: "16E5DF7E27BAB713"
+					item: {
+						Count: 1
+						id: "immersiveengineering:blueprint"
+						tag: {
+							blueprint: "components"
+						}
+					}
+					type: "item"
+				}
+			]
+			x: -5.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["0000000000000012"]
+			description: ["水车需要水流穿过。最多可放置三个在动能发电机旁以产生能量。"]
+			icon: "immersiveengineering:watermill"
+			id: "000000000000001B"
+			rewards: [{
+				count: 2
+				id: "7B6CDA6362EE5BC7"
+				item: "immersiveengineering:wirecoil_copper_ins"
+				title: "LV 绝缘线圈"
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "000000000000001C"
+					item: "immersiveengineering:watermill"
+					type: "item"
+				}
+				{
+					id: "000000000000001D"
+					item: "immersiveengineering:dynamo"
+					type: "item"
+				}
+			]
+			x: -1.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["0000000000000004"]
+			description: ["传送带可用于自动化物品运输。传送带上的物品将自动被放入接收端的物品栏中。您也可以制作提取式或垂直式传送带。"]
+			id: "000000000000001E"
+			tasks: [{
+				id: "000000000000001F"
+				item: "immersiveengineering:conveyor_basic"
+				type: "item"
+			}]
+			x: 0.0d
+			y: -6.0d
+		}
+		{
+			dependencies: ["0000000000000012"]
+			description: [
+				"破碎机可用于将矿石研磨成粉末，然后熔炼以从每个矿石中获得两个锭。某些其他物品也可以通过这种方式研磨 - 参见JEI。"
+				"注意：Building Gadgets 和 Create 的蓝图可在 Enigmatica 6 实例文件夹中找到，以帮助您搭建此多方块结构。"
+			]
+			icon: "immersiveengineering:crusher"
+			id: "0000000000000020"
+			tasks: [
+				{
+					count: 10L
+					id: "0000000000000021"
+					item: "immersiveengineering:light_engineering"
+					type: "item"
+				}
+				{
+					count: 10L
+					id: "000000000000002D"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					type: "item"
+				}
+				{
+					id: "000000000000002E"
+					item: "immersiveengineering:rs_engineering"
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "000000000000002F"
+					item: "immersiveengineering:steel_fence"
+					type: "item"
+				}
+				{
+					count: 9L
+					id: "0000000000000030"
+					item: "minecraft:hopper"
+					type: "item"
+				}
+			]
+			title: "破碎机"
+			x: -5.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["0000000000000012"]
+			description: [
+				"当液压机配有模具和能源时，它为制造金属板、金属丝等提供了更节省材料的方法。"
+				"注意：Building Gadgets 和 Create 的蓝图可在 Enigmatica 6 实例文件夹中找到，以帮助您搭建此多方块结构。"
+			]
+			icon: "immersiveengineering:metal_press"
+			id: "0000000000000022"
+			tasks: [
+				{
+					id: "0000000000000028"
+					item: "minecraft:piston"
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "0000000000000029"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					type: "item"
+				}
+				{
+					id: "000000000000002A"
+					item: "immersiveengineering:heavy_engineering"
+					type: "item"
+				}
+				{
+					id: "000000000000002B"
+					item: "immersiveengineering:rs_engineering"
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "000000000000002C"
+					item: "immersiveengineering:conveyor_basic"
+					type: "item"
+				}
+			]
+			title: "金属冶炼炉"
+			x: -1.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["0000000000000012"]
+			description: [
+				"Le haut fourneau amélioré facilite l'automatisation de l'entrée/sortie. Vous pouvez également le faire fonctionner beaucoup plus rapidement en attachant un ou deux préchauffeurs de haut fourneau alimentés sur chaque côté."
+				"注意：Building Gadgets 和 Create 的蓝图可在 Enigmatica 6 实例文件夹中找到，以帮助您搭建此多方块结构。"
+			]
+			icon: "immersiveengineering:advanced_blast_furnace"
+			id: "0000000000000024"
+			tasks: [
+				{
+					count: 27L
+					id: "0000000000000025"
+					item: "immersiveengineering:blastbrick_reinforced"
+					type: "item"
+				}
+				{
+					id: "0000000000000031"
+					item: "minecraft:hopper"
+					type: "item"
+				}
+			]
+			title: "改进的高炉"
+			x: -5.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["0000000000000007"]
+			description: ["合金熔炉是一个2x2x2的简单结构，可以将不同类型的金属熔合在一起形成合金。"]
+			icon: "immersiveengineering:alloy_smelter"
+			id: "0000000000000026"
+			tasks: [{
+				count: 8L
+				id: "0000000000000027"
+				item: "immersiveengineering:alloybrick"
+				type: "item"
+			}]
+			title: "四份合金锭"
+			x: 0.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["0000000000000020"]
+			description: [
+				"电弧炉是一种大型高耗能机器，能以1:2的比例将矿石熔炼成锭，也可用于快速制造合金。"
+				"注意：Building Gadgets 和 Create 的蓝图可在 Enigmatica 6 实例文件夹中找到，以帮助您搭建此多方块结构。"
+			]
+			icon: "immersiveengineering:arc_furnace"
+			id: "0000000000000032"
+			tasks: [
+				{
+					count: 3L
+					id: "0000000000000033"
+					item: {
+						Count: 1
+						id: "immersiveengineering:graphite_electrode"
+						tag: {
+							graphDmg: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "000000000000006D"
+					item: "immersiveengineering:sheetmetal_steel"
+					type: "item"
+				}
+				{
+					count: 6L
+					id: "000000000000006E"
+					item: {
+						Count: 1
+						id: "itemfilters:tag"
+						tag: {
+							value: "forge:storage_blocks/steel"
+						}
+					}
+					title: "6x 钢制方块"
+					type: "item"
+				}
+				{
+					count: 14L
+					id: "000000000000006F"
+					item: "immersiveengineering:slab_sheetmetal_steel"
+					type: "item"
+				}
+				{
+					count: 5L
+					id: "0000000000000070"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					type: "item"
+				}
+				{
+					count: 5L
+					id: "0000000000000071"
+					item: "immersiveengineering:heavy_engineering"
+					type: "item"
+				}
+				{
+					id: "0000000000000072"
+					item: "immersiveengineering:rs_engineering"
+					type: "item"
+				}
+				{
+					id: "0000000000000073"
+					item: "minecraft:cauldron"
+					type: "item"
+				}
+				{
+					count: 10L
+					id: "0000000000000074"
+					item: "immersiveengineering:light_engineering"
+					type: "item"
+				}
+				{
+					count: 27L
+					id: "0000000000000075"
+					item: "immersiveengineering:blastbrick_reinforced"
+					type: "item"
+				}
+			]
+			title: "四箭齐发"
+			x: -6.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["000000000000000F"]
+			description: ["外部加热器是一种简单的机器，通电后可以为相邻的熔炉供暖。这样熔炉就能更快地熔化物品，而无需消耗燃料。"]
+			id: "0000000000000034"
+			tasks: [{
+				id: "0000000000000035"
+				item: "immersiveengineering:furnace_heater"
+				type: "item"
+			}]
+			x: -5.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["0000000000000012"]
+			description: ["热电发电机是另一种简单的供电方式。当它被冷热方块包围时，会根据温差产生能量（请参阅手册）。"]
+			id: "0000000000000036"
+			rewards: [{
+				count: 4
+				id: "0000000000000618"
+				item: "minecraft:blue_ice"
+				title: "蓝色冰川"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0000000000000037"
+				item: "immersiveengineering:thermoelectric_generator"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["0000000000000012"]
+			description: [
+				"La scierie fonctionne en deux étapes. Sans lame de scie, elle écorce les bûches ; avec une lame de scie, elle découpe les bûches écorcées en six planches chacune. Consultez le Manuel de l'Ingénieur pour plus d'informations, comme d'habitude."
+				"注意：Building Gadgets 和 Create 的蓝图可在 Enigmatica 6 实例文件夹中找到，以帮助您搭建此多方块结构。"
+			]
+			icon: "immersiveengineering:sawmill"
+			id: "0000000000000038"
+			tasks: [
+				{
+					id: "0000000000000039"
+					item: {
+						Count: 1
+						id: "immersiveengineering:sawblade"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "000000000000005B"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					type: "item"
+				}
+				{
+					count: 6L
+					id: "000000000000005C"
+					item: "immersiveengineering:light_engineering"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "000000000000005D"
+					item: "immersiveengineering:sheetmetal_iron"
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "000000000000005E"
+					item: "immersiveengineering:heavy_engineering"
+					type: "item"
+				}
+				{
+					id: "000000000000005F"
+					item: "immersiveengineering:rs_engineering"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "0000000000000060"
+					item: "immersiveengineering:conveyor_basic"
+					type: "item"
+				}
+			]
+			title: "Scierie"
+			x: -1.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["0000000000000012"]
+			description: [
+				"La presse peut fabriquer de l'huile végétale à partir de graines (idéalement du chanvre) et est également nécessaire pour produire du graphite HOP pour le Four à Arc. Le fermenteur produit de l'éthanol, utilisé avec l'huile végétale pour fabriquer du biodiesel."
+				"注意：Building Gadgets 和 Create 的蓝图可在 Enigmatica 6 实例文件夹中找到，以帮助您搭建这些多方块结构。"
+			]
+			icon: "immersiveengineering:fermenter"
+			id: "000000000000003A"
+			rewards: [{
+				count: 24
+				id: "0000000000000619"
+				item: "immersiveengineering:seed"
+				title: "工业大麻种子"
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "000000000000003B"
+					item: "immersiveengineering:plantoil_bucket"
+					type: "item"
+				}
+				{
+					id: "000000000000006C"
+					item: "immersiveengineering:ethanol_bucket"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "70D08B4C82FB5C6B"
+					item: "immersiveengineering:fluid_pipe"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "4441E2386DEA216C"
+					item: "immersiveengineering:light_engineering"
+					type: "item"
+				}
+				{
+					id: "5ED3D91D2AD0971A"
+					item: "minecraft:piston"
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "464B4E72E3BC8AED"
+					item: "immersiveengineering:rs_engineering"
+					type: "item"
+				}
+				{
+					count: 3L
+					id: "7666B18B85178129"
+					item: "immersiveengineering:steel_fence"
+					type: "item"
+				}
+				{
+					count: 12L
+					id: "052258FF50F1F0B4"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "01D48BF4891BC4B4"
+					item: "immersiveengineering:wooden_barrel"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "1DFE9615C079A317"
+					item: "minecraft:cauldron"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "0070E8EF982C0C6B"
+					item: "immersiveengineering:sheetmetal_iron"
+					type: "item"
+				}
+			]
+			title: "工业压榨机与发酵器"
+			x: -2.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["09AEE48CED288DD1"]
+			dependency_requirement: "one_completed"
+			description: [
+				"使用生物柴油或柴油，可为强大的（尽管嘈杂的）柴油发电机提供燃料，产生可观的FE/t。"
+				"注意：Building Gadgets 和 Create 的蓝图可在 Enigmatica 6 实例文件夹中找到，以帮助您搭建此多方块结构。"
+			]
+			icon: "immersiveengineering:diesel_generator"
+			id: "000000000000003C"
+			tasks: [
+				{
+					count: 5L
+					id: "37AAA90BDAB5CD72"
+					item: "immersiveengineering:fluid_pipe"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "284769224493A777"
+					item: "immersiveengineering:generator"
+					type: "item"
+				}
+				{
+					count: 13L
+					id: "459D17A377D44D7F"
+					item: "immersiveengineering:heavy_engineering"
+					type: "item"
+				}
+				{
+					count: 9L
+					id: "63E9727F7E04EBDA"
+					item: "immersiveengineering:radiator"
+					type: "item"
+				}
+				{
+					id: "06375C08B6AE1B06"
+					item: "immersiveengineering:rs_engineering"
+					type: "item"
+				}
+				{
+					count: 6L
+					id: "3D8DA60F68FB5A23"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					type: "item"
+				}
+			]
+			title: "柴油发电机"
+			x: -3.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["0000000000000061"]
+			description: [
+				"Une fois que vous avez déterminé un emplacement approprié pour creuser, vous pouvez y construire cette machine. Sachez que l'excavatrice nécessite une quantité d'énergie assez importante pour fonctionner."
+				"Plusieurs nœuds minéraux supplémentaires ont été ajoutés, tels que les sites de fouilles horodriques et les gisements de Naqada. Assurez-vous de consulter le Manuel de l'Ingénieur sous « Aperçu et ressources » pour la liste complète des gisements minéraux."
+				"注意：Building Gadgets 和 Create 的蓝图可在 Enigmatica 6 实例文件夹中找到，以帮助您搭建此多方块结构。"
+			]
+			icon: "immersiveengineering:bucket_wheel"
+			id: "0000000000000040"
+			tasks: [
+				{
+					count: 4L
+					id: "5B9AAE9A66CF1A1F"
+					item: "immersiveengineering:heavy_engineering"
+					type: "item"
+				}
+				{
+					count: 9L
+					id: "14152385FF2C7F94"
+					item: "immersiveengineering:light_engineering"
+					type: "item"
+				}
+				{
+					id: "715D9FF0DF871042"
+					item: "immersiveengineering:rs_engineering"
+					type: "item"
+				}
+				{
+					count: 3L
+					id: "0DC27129321B844B"
+					item: "immersiveengineering:radiator"
+					type: "item"
+				}
+				{
+					count: 16L
+					id: "486083D949A6EB82"
+					item: "immersiveengineering:sheetmetal_steel"
+					type: "item"
+				}
+				{
+					count: 26L
+					id: "14349203FE43E315"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					type: "item"
+				}
+				{
+					count: 9L
+					id: "1CA9D0AFE77C2611"
+					item: {
+						Count: 1
+						id: "itemfilters:tag"
+						tag: {
+							value: "forge:storage_blocks/steel"
+						}
+					}
+					title: "9x 钢制方块"
+					type: "item"
+				}
+			]
+			title: "挖掘机"
+			x: -6.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["0000000000000012"]
+			description: [
+				"Comme décrit dans la section « Minéraux » du manuel, certaines machines IE peuvent détecter et extraire d'immenses veines de minerai autrement inaccessibles. La première étape consiste à utiliser des outils de prospection et une perceuse à échantillons pour repérer les veines dans un chunk."
+				"Plusieurs nœuds minéraux personnalisés ont été ajoutés pour Enigmatica 6. Assurez-vous de les examiner car ils peuvent être très lucratifs !"
+			]
+			icon: "immersiveengineering:sample_drill"
+			id: "0000000000000061"
+			rewards: [{
+				id: "63F8CD5DAAB0252B"
+				item: {
+					Count: 1
+					id: "immersiveengineering:survey_tools"
+					tag: {
+						Damage: 0
+					}
+				}
+				title: "矿物勘探工具包"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0000000000000062"
+				item: "immersiveengineering:sample_drill"
+				type: "item"
+			}]
+			title: "矿脉中的矿物"
+			x: -5.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["0000000000000019"]
+			description: ["La cloche de jardin nécessite de l'énergie, de l'eau et, éventuellement, de l'engrais pour faire pousser les plantes à un rythme accéléré."]
+			id: "0000000000000241"
+			tasks: [{
+				id: "0000000000000242"
+				item: "immersiveengineering:cloche"
+				type: "item"
+			}]
+			title: "花园玻璃罩"
+			x: -8.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["0000000000000019"]
+			description: [
+				"La lanterne alimentée, lorsqu'elle reçoit une petite quantité d'énergie via un fil, empêchera l'apparition de mobs dans un rayon de 32 blocs (en plus de fournir de la lumière)."
+				"投影仪可用于照亮其前方的一个宽阔锥形区域。"
+			]
+			icon: "immersiveengineering:electric_lantern"
+			id: "0000000000000243"
+			rewards: [{
+				count: 4
+				id: "1D68375713C975F5"
+				item: "minecraft:glowstone"
+				title: "Pierre Lueur"
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "0000000000000244"
+					item: "immersiveengineering:electric_lantern"
+					type: "item"
+				}
+				{
+					id: "0000000000000245"
+					item: "immersiveengineering:floodlight"
+					type: "item"
+				}
+			]
+			title: "精心设计的照明方案"
+			x: -8.5d
+			y: -4.5d
+		}
+		{
+			dependencies: ["0000000000000019"]
+			description: [
+				"L'établi automatisé est un multibloc alimenté qui peut traiter automatiquement un type donné de recette de l'établi de l'ingénieur, lorsqu'il est fourni avec un plan. Pratique !"
+				"注意：Building Gadgets 和 Create 的蓝图可在 Enigmatica 6 实例文件夹中找到，以帮助您搭建此多方块结构。"
+			]
+			icon: "immersiveengineering:auto_workbench"
+			id: "0000000000000246"
+			tasks: [
+				{
+					count: 5L
+					id: "0000000000000247"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "0000000000000248"
+					item: "immersiveengineering:light_engineering"
+					type: "item"
+				}
+				{
+					id: "0000000000000249"
+					item: "immersiveengineering:rs_engineering"
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "000000000000024A"
+					item: "immersiveengineering:heavy_engineering"
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "000000000000024B"
+					item: "immersiveengineering:slab_treated_wood_horizontal"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "000000000000024C"
+					item: "immersiveengineering:conveyor_basic"
+					type: "item"
+				}
+			]
+			title: "Automatisation de l'établi"
+			x: -8.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["000000000000003A"]
+			description: [
+				"Dernière étape de la production de biodiesel, la raffinerie combine l'éthanol et l'huile végétale pour créer cet or liquide."
+				"注意：Building Gadgets 和 Create 的蓝图可在 Enigmatica 6 实例文件夹中找到，以帮助您搭建此多方块结构。"
+			]
+			icon: "immersiveengineering:refinery"
+			id: "09AEE48CED288DD1"
+			tasks: [
+				{
+					id: "54C23E962353498A"
+					item: "immersiveengineering:biodiesel_bucket"
+					type: "item"
+				}
+				{
+					count: 5L
+					id: "1A67249D2C25F193"
+					item: "immersiveengineering:fluid_pipe"
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "5F4622889A0ABCD6"
+					item: "immersiveengineering:heavy_engineering"
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "574214EAB054A87C"
+					item: "immersiveengineering:light_engineering"
+					type: "item"
+				}
+				{
+					id: "24F2731428E8E04E"
+					item: "immersiveengineering:rs_engineering"
+					type: "item"
+				}
+				{
+					count: 16L
+					id: "470D34BD4B7D2F05"
+					item: "immersiveengineering:sheetmetal_iron"
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "1B5140A06836C865"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					type: "item"
+				}
+			]
+			title: "精炼厂"
+			x: -2.5d
+			y: 1.5d
+		}
+	]
+	title: "沉浸式工程学 (Immersive Engineering)"
+}
