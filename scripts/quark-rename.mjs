@@ -31,7 +31,7 @@
  * 3. **不猜**：远端找不到对应 slug 记 missing、同 slug 多个远端条目记 ambiguous，一律跳过不改。
  */
 
-import { existsSync, mkdtempSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { basename, dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -429,7 +429,16 @@ async function main() {
     }
     console.log(`[校验] 目标 ${uniq.length} 个 slug（来源：${existsSync(targetsFile) ? targetsFile : '改名记录'}），逐个复查（含重试与间隔）`)
     const v = verifyShares({ changes: uniq, call, cli: QUARK_CLI, cwd: work, log: (m) => console.log(m) })
-    if (!dry) writeFileSync('research/tmp/quark-verify.json', `${JSON.stringify({ at: new Date().toISOString(), ...v }, null, 1)}\n`)
+    // research/tmp 是 gitignore 的临时目录，CI 的干净 checkout 里不存在 ——
+    // 第一次复查就是死在 ENOENT 上（校验一条都没跑）。先建目录，且写报告失败不能拖垮校验。
+    if (!dry) {
+      try {
+        mkdirSync('research/tmp', { recursive: true })
+        writeFileSync('research/tmp/quark-verify.json', `${JSON.stringify({ at: new Date().toISOString(), ...v }, null, 1)}\n`)
+      } catch (e) {
+        console.log(`::warning::校验报告写盘失败（不影响结论）：${e.message}`)
+      }
+    }
     console.log(`[校验] 可访问 ${v.ok}/${v.total}，重试后恢复 ${v.flaky.length}，仍失败 ${v.failed.length}`)
     if (v.failed.length) console.log(`::error::重试后仍不可访问 ${v.failed.length} 条：${v.failed.slice(0, 40).join(', ')}`)
     process.exit(v.failed.length ? 1 : 0)
