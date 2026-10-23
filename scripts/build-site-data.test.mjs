@@ -204,6 +204,26 @@ test('模板：夸克按钮必须在 quark 非空守卫内（空字符串绝不�
   assert.match(template, /if \(p\.download\.quark\) \{[\s\S]*?dl-quark/)
 })
 
+test('模板：下载区只有两个按钮——国内镜像 + GitHub 下载', () => {
+  assert.match(template, /国内镜像/, '镜像按钮文案应为「国内镜像」')
+  assert.match(template, /GitHub 下载/, 'zip 直链按钮文案应为「GitHub 下载」')
+  // 旧文案必须彻底消失，防止改一半留下僵尸按钮
+  assert.doesNotMatch(template, /夸克网盘镜像/, '旧文案「夸克网盘镜像」应已删除')
+  assert.doesNotMatch(template, /GitHub 仓库/, '第三个按钮（仓库链接）应已删除')
+})
+
+test('模板：quark 为空时按钮置灰（else 分支 is-disabled），不是隐藏', () => {
+  // 置灰态必须落在 `if (p.download.quark) { ... } else { ... }` 的 else 里：
+  // 隐藏会让还没镜像的包看起来「没有下载入口」
+  assert.match(template, /if \(p\.download\.quark\) \{[\s\S]*?\} else \{[\s\S]*?is-disabled/)
+  // 置灰用 span + aria-disabled，绝不能用 <a disabled> 或留下 href
+  assert.match(template, /<span class="cta dl-quark is-disabled" aria-disabled="true"/)
+})
+
+test('模板：zip 直链按钮仍是 id="dl-zip" 且指向 p.download.zip', () => {
+  assert.match(template, /id="dl-zip" href="' \+ esc\(p\.download\.zip\) \+ '" download>/)
+})
+
 test('模板：不能混装警告是普通可见块，不在 <details> 等可折叠容器里', () => {
   // 去掉 CSS/HTML 注释后再检查，避免注释里的举例文字（「不得放进 <details>」）误报
   const code = template.replace(/\/\*[\s\S]*?\*\//g, '').replace(/<!--[\s\S]*?-->/g, '')

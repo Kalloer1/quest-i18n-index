@@ -506,6 +506,7 @@ input::placeholder, textarea::placeholder { color: var(--ink-faint); }
 .cta.ghost { background: var(--slot); color: var(--ink); }
 .cta.ghost:hover { color: var(--ink); }
 .cta.dl-quark { background: var(--s-native); color: #06222a; }
+.cta.is-disabled { opacity:.55; cursor:not-allowed; filter:grayscale(.4); }
 
 .prov { margin-top: 14px; padding: 14px; background: var(--panel-2); box-shadow: inset 3px 3px 0 0 var(--sh), inset -3px -3px 0 0 var(--hl); }
 .prov .head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
@@ -1076,23 +1077,22 @@ code { background: var(--slot); padding: 1px 5px; font-size: .94em; box-shadow: 
     }
 
     // 视觉强分栏：本站产出 / 社区已有
-    // 详情页下载入口（工单 04）：zip 下载 + GitHub 仓库 + 夸克镜像（仅 quark 非空时渲染）。
-    // 夸克链接为空字符串时绝不渲染按钮，不显示假链接。
+    // 详情页下载入口：两个按钮——国内镜像（quark）+ GitHub 下载（zip 直链）。
+    // 没有镜像时按钮**置灰而不是隐藏**：还有几百个包没做镜像，隐藏会让这些包看起来
+    // 「根本没有下载入口」，玩家会以为汉化没做；置灰 + title 明说「镜像准备中」更诚实。
     var ours = '<section class="ours"><h2>本站产出</h2>';
-    if (p.download && (p.download.zip || p.download.github || p.download.quark)) {
+    if (p.download && (p.download.zip || p.download.quark)) {
       ours += '<div class="dl">';
-      if (p.download.zip) {
-        ours += '<a class="cta" id="dl-zip" href="' + esc(p.download.zip) + '" download>' + ICON.dl + " 下载补丁包 zip</a>";
-      } else {
-        ours += '<p class="empty p">本站已产出该整合包的任务书汉化，但 zip 暂未发布。</p>';
-      }
       if (p.download.quark) {
         ours += '<a class="cta dl-quark" href="' + esc(p.download.quark)
-          + '" target="_blank" rel="noopener noreferrer">' + ICON.cloud + " 夸克网盘镜像</a>";
+          + '" target="_blank" rel="noopener noreferrer">' + ICON.cloud + " 国内镜像</a>";
+      } else {
+        // 占位按钮：span 而非 a（a 的 disabled 无效），且不留 href，避免变成可点假链接
+        ours += '<span class="cta dl-quark is-disabled" aria-disabled="true" title="镜像准备中">'
+          + ICON.cloud + " 国内镜像（准备中）</span>";
       }
-      if (p.download.github) {
-        ours += '<a class="cta ghost" href="' + esc(p.download.github)
-          + '" target="_blank" rel="noopener noreferrer">' + ICON.gh + " GitHub 仓库</a>";
+      if (p.download.zip) {
+        ours += '<a class="cta ghost" id="dl-zip" href="' + esc(p.download.zip) + '" download>' + ICON.gh + " GitHub 下载</a>";
       }
       ours += '</div>';
     } else {
