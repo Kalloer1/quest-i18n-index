@@ -1,0 +1,154 @@
+# AI 初翻，未人工校对
+{
+	id: 356,
+	filename: "356",
+	order_index: 4,
+	title: "Interlude - 通往末地的旅程",
+	icon: "minecraft:end_portal_frame",
+	always_invisible: false,
+	group: 0,
+	default_quest_shape: "default",
+	images: [],
+	quests: [
+		{
+			x: -8.5d,
+			y: -5.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"-维度等级 30~70",
+				"-此章节仅在通关下界任务中的凋零任务后方可解锁",
+				"&b注：堡垒也生成于下界维度&f"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;199],
+			dependency_requirement: "all_completed",
+			id: 357,
+			tasks: [{
+				id: 358,
+				type: "dimension",
+				dimension: "minecraft:the_end"
+			}]
+		},
+		{
+			x: -4.5d,
+			y: -5.5d,
+			shape: "rsquare",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"-第30级",
+				"-&d末影龙格言：末影龙不受魔法伤害，而Mine and Slash法术本质上就是魔法伤害&f"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;357],
+			dependency_requirement: "all_completed",
+			id: 359,
+			tasks: [{
+				id: 360,
+				type: "kill",
+				entity: "minecraft:ender_dragon",
+				value: 1L
+			}],
+			rewards: [{
+				id: 1121,
+				type: "item",
+				item: "mmorpg:lootbox/big_gear_lootbox_3"
+			}]
+		},
+		{
+			title: "天空并非极限",
+			x: -0.5d,
+			y: -5.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["-没有鞘翅，我们也有其他方式翱翔天际~"],
+			min_required_dependencies: 0,
+			dependencies: [I;359],
+			dependency_requirement: "all_completed",
+			id: 365,
+			tasks: [{
+				id: 366,
+				type: "item",
+				item: {
+					id: "minecraft:elytra",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			title: "击杀奖励 - 末地维度",
+			icon: {
+				id: "mmorpg:lootbox/medium_gear_lootbox_3",
+				Count: 3b
+			},
+			x: -4.5d,
+			y: -8.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;359],
+			dependency_requirement: "all_completed",
+			id: 374,
+			tasks: [{
+				id: 375,
+				type: "checkmark"
+			}],
+			rewards: [{
+				id: 376,
+				type: "item",
+				icon: {
+					id: "mmorpg:lootbox/medium_gear_lootbox_3",
+					Count: 3b
+				},
+				item: {
+					id: "mmorpg:lootbox/medium_gear_lootbox_3",
+					Count: 3b
+				}
+			}]
+		},
+		{
+			title: "给法师的一点小福利",
+			icon: {
+				id: "aoa3:incomplete_mecha_staff",
+				Count: 10b
+			},
+			x: -4.5d,
+			y: -3.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"-你用法杖杀了那条龙吗？！真了不起的壮举！",
+				"我给你准备了10根法杖，希望能安慰到你~"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;359],
+			dependency_requirement: "all_completed",
+			id: 377,
+			tasks: [{
+				id: 378,
+				type: "checkmark"
+			}],
+			rewards: [{
+				id: 379,
+				type: "command",
+				title: "给你10根法杖~",
+				icon: {
+					id: "aoa3:incomplete_mecha_staff",
+					Count: 10b
+				},
+				auto: "enabled",
+				command: "/give @p mmorpg:staff/staff3 10",
+				player_command: false
+			}]
+		}
+	]
+}

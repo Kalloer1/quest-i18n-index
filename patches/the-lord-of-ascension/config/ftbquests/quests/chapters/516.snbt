@@ -1,0 +1,2704 @@
+# AI 初翻，未人工校对
+{
+	id: 516,
+	filename: "516",
+	order_index: 7,
+	title: "&2&l鲜花盛开，争奇斗艳",
+	icon: "aoa3:petals",
+	always_invisible: false,
+	group: 0,
+	default_quest_shape: "default",
+	images: [
+		{
+			x: -18.5d,
+			y: -5.0d,
+			width: 3.5d,
+			height: 12.0d,
+			rotation: 0.0d,
+			image: "minecraft:textures/gui/presets/xyzh.png",
+			hover: [],
+			click: ""
+		},
+		{
+			x: -13.3d,
+			y: -6.0d,
+			width: 5.0d,
+			height: 6.0d,
+			rotation: 0.0d,
+			image: "minecraft:textures/gui/presets/aylzzh.png",
+			hover: [],
+			click: ""
+		},
+		{
+			x: -2.5d,
+			y: -8.5d,
+			width: 3.5d,
+			height: 6.5d,
+			rotation: 0.0d,
+			image: "minecraft:textures/gui/presets/zwwzh.png",
+			hover: [],
+			click: ""
+		},
+		{
+			x: 3.5d,
+			y: -8.5d,
+			width: 5.0d,
+			height: 4.0d,
+			rotation: 0.0d,
+			image: "minecraft:textures/gui/presets/bxjwzh.png",
+			hover: [],
+			click: ""
+		},
+		{
+			x: 25.0d,
+			y: -6.0d,
+			width: 12.0d,
+			height: 10.0d,
+			rotation: 0.0d,
+			image: "minecraft:textures/gui/presets/asmtzh.png",
+			hover: [],
+			click: ""
+		}
+	],
+	quests: [
+		{
+			title: "欢迎来到第三阶段~",
+			x: 0.5d,
+			y: 12.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"-第3阶段的所有维度均为100~120层",
+				"-第3阶段的怪物强度是主世界的1.4倍，经验值是20倍，且&2怪物的强度至少为Adept级别&f",
+				"-提交2级血液后，才能开启第3阶段的任务"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;514],
+			dependency_requirement: "all_completed",
+			id: 517,
+			tasks: [{
+				id: 518,
+				type: "item",
+				item: "tloaadd:blood_of_rank_2",
+				consume_items: true
+			}]
+		},
+		{
+			title: "深渊的黑暗在你周围营造出一种寒意",
+			icon: "aoa3:abyss_realmstone",
+			x: -13.5d,
+			y: 2.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"-深渊的地形是丘陵和平地的混合。地下部分由深渊石构成，地表覆盖着一层深渊草。世界底部有一层基岩。深渊中没有土壤。整个维度呈深红色调",
+				"-深渊的地下遍布洞穴，经常能发现自然生成的血石矿石脉。在更深层，它由有毒方块构成，紧邻基岩层",
+				"-深渊的表面覆盖着触手、树木和其他血腥的植物"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;517],
+			dependency_requirement: "all_completed",
+			id: 519,
+			tasks: [{
+				id: 520,
+				type: "dimension",
+				dimension: "aoa3:abyss"
+			}]
+		},
+		{
+			x: -16.5d,
+			y: -1.0d,
+			shape: "square",
+			subtitle: "",
+			size: 1.0d,
+			description: ["摧毁深渊触手世界的红眼将有10%的几率掉落"],
+			min_required_dependencies: 0,
+			dependencies: [I;519],
+			dependency_requirement: "all_completed",
+			id: 521,
+			tasks: [{
+				id: 522,
+				type: "item",
+				item: "aoa3:staring_eye"
+			}],
+			rewards: [{
+				id: 1137,
+				type: "item",
+				item: "mmorpg:events/pumpkin_juice"
+			}]
+		},
+		{
+			title: "幻象祭坛",
+			icon: "aoa3:illusion_altar",
+			x: -16.5d,
+			y: -4.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"-在深渊世界的幻象树下自然生成",
+				"-手持凝视之眼并右键此祭坛，将召唤深渊领主 Elusive"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;521],
+			dependency_requirement: "all_completed",
+			id: 523,
+			tasks: [{
+				id: 524,
+				type: "checkmark"
+			}]
+		},
+		{
+			title: "开始出现重影了！",
+			x: -16.5d,
+			y: -7.0d,
+			shape: "rsquare",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"-第105级",
+				"生成后，Elusive 会每 15 秒尝试从目标处传送离开",
+				"-After being generated, the Elusive will generate a Elusive Clone every 15 seconds",
+				"-Elusive克隆体的每次攻击都会使玩家失明4秒（失明III），并在死亡后爆炸"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;523],
+			dependency_requirement: "all_completed",
+			id: 525,
+			tasks: [{
+				id: 526,
+				type: "kill",
+				entity: "aoa3:elusive",
+				value: 1L
+			}],
+			rewards: [
+				{
+					id: 1151,
+					type: "item",
+					item: "mmorpg:lootbox/medium_gear_lootbox_4"
+				},
+				{
+					id: 1242,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 50000000
+						}
+					}
+				},
+				{
+					id: 3429,
+					type: "random",
+					table: 9
+				}
+			]
+		},
+		{
+			x: -16.5d,
+			y: -10.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;525],
+			dependency_requirement: "all_completed",
+			id: 527,
+			tasks: [{
+				id: 528,
+				type: "item",
+				item: "tloaadd:elusiveess"
+			}]
+		},
+		{
+			title: "看不到它们的影子！",
+			x: -10.5d,
+			y: -7.0d,
+			shape: "rsquare",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"-第110级",
+				"-暗影领主释放的魔法实体在接触到实体/方块后，将产生强度为2的爆炸",
+				"-当影之主释放的咒术实体击中生物时，会对其造成伤害，并使其获得5秒的恶心效果I，然后根据影之主的生命值，逐渐施加枯萎和中毒效果"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;536],
+			dependency_requirement: "all_completed",
+			id: 529,
+			tasks: [{
+				id: 530,
+				type: "kill",
+				entity: "aoa3:shadowlord",
+				value: 1L
+			}],
+			rewards: [
+				{
+					id: 1152,
+					type: "item",
+					item: "mmorpg:lootbox/medium_gear_lootbox_4"
+				},
+				{
+					id: 1243,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 60000000
+						}
+					}
+				},
+				{
+					id: 3430,
+					type: "random",
+					table: 9
+				}
+			]
+		},
+		{
+			x: -10.5d,
+			y: -10.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;529],
+			dependency_requirement: "all_completed",
+			id: 531,
+			tasks: [{
+				id: 532,
+				type: "item",
+				item: "tloaadd:shadowlordess"
+			}]
+		},
+		{
+			x: -10.5d,
+			y: -1.0d,
+			shape: "square",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"击杀深渊怪物时有几率掉落 Nightmare Flakes",
+				"-使用噩梦碎片右键点击织网收割者，然后用任意附魔书右键点击织网收割者以获得暗影之书"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;519],
+			dependency_requirement: "all_completed",
+			id: 533,
+			tasks: [
+				{
+					id: 534,
+					type: "item",
+					item: "aoa3:nightmare_flakes"
+				},
+				{
+					id: 535,
+					type: "item",
+					item: "aoa3:book_of_shadows"
+				}
+			],
+			rewards: [{
+				id: 1138,
+				type: "item",
+				item: "mmorpg:events/pumpkin_juice"
+			}]
+		},
+		{
+			title: "暗影祭坛",
+			icon: "aoa3:shadow_altar",
+			x: -10.5d,
+			y: -4.0d,
+			shape: "square",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"-每个暗影领主平台都会自然生成一个暗影祭坛",
+				"-当玩家右键点击暗影祭坛的暗影之书时，暗影领主平台上的4盏血石灯将依次熄灭。第一盏灯在右键后1秒熄灭，之后每2秒熄灭一盏。所有灯熄灭5秒后，暗影领主将生成，4盏血石灯将同时亮起"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;533],
+			dependency_requirement: "all_completed",
+			id: 536,
+			tasks: [{
+				id: 537,
+				type: "checkmark"
+			}]
+		},
+		{
+			x: -16.0d,
+			y: 5.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;519],
+			dependency_requirement: "all_completed",
+			id: 538,
+			tasks: [{
+				id: 539,
+				type: "kill",
+				entity: "aoa3:slimer",
+				value: 1L
+			}],
+			rewards: [
+				{
+					id: 1551,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1695,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 20000000
+						}
+					}
+				}
+			]
+		},
+		{
+			x: -13.5d,
+			y: 5.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;519],
+			dependency_requirement: "all_completed",
+			id: 540,
+			tasks: [{
+				id: 541,
+				type: "kill",
+				entity: "aoa3:occulent",
+				value: 10L
+			}],
+			rewards: [
+				{
+					id: 1550,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1692,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 20000000
+						}
+					}
+				}
+			]
+		},
+		{
+			x: -11.0d,
+			y: 5.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;519],
+			dependency_requirement: "all_completed",
+			id: 542,
+			tasks: [{
+				id: 543,
+				type: "kill",
+				entity: "aoa3:bloodsucker",
+				value: 10L
+			}],
+			rewards: [
+				{
+					id: 1547,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1691,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 20000000
+						}
+					}
+				}
+			]
+		},
+		{
+			x: -16.0d,
+			y: 8.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;519],
+			dependency_requirement: "all_completed",
+			id: 544,
+			tasks: [{
+				id: 545,
+				type: "kill",
+				entity: "aoa3:distorter",
+				value: 10L
+			}],
+			rewards: [
+				{
+					id: 1552,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1694,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 20000000
+						}
+					}
+				}
+			]
+		},
+		{
+			x: -13.5d,
+			y: 8.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;519],
+			dependency_requirement: "all_completed",
+			id: 546,
+			tasks: [{
+				id: 547,
+				type: "kill",
+				entity: "aoa3:fiend",
+				value: 10L
+			}],
+			rewards: [
+				{
+					id: 1549,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1693,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 20000000
+						}
+					}
+				}
+			]
+		},
+		{
+			x: -11.0d,
+			y: 8.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;519],
+			dependency_requirement: "all_completed",
+			id: 548,
+			tasks: [{
+				id: 549,
+				type: "kill",
+				entity: "aoa3:apparition",
+				value: 10L
+			}],
+			rewards: [
+				{
+					id: 1548,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1690,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 20000000
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "击杀奖励 - 深渊 (Abyss)",
+			icon: {
+				id: "mmorpg:lootbox/medium_gear_lootbox_4",
+				Count: 2b
+			},
+			x: -13.5d,
+			y: 11.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;
+				538,
+				540,
+				542,
+				548,
+				546,
+				544
+			],
+			dependency_requirement: "all_completed",
+			id: 550,
+			tasks: [{
+				id: 551,
+				type: "checkmark"
+			}],
+			rewards: [{
+				id: 552,
+				type: "item",
+				icon: {
+					id: "mmorpg:lootbox/medium_gear_lootbox_4",
+					Count: 2b
+				},
+				item: {
+					id: "mmorpg:lootbox/medium_gear_lootbox_4",
+					Count: 2b
+				}
+			}]
+		},
+		{
+			title: "随着 Mysterium 带来的感觉，奇怪的噪音从传送门中传出",
+			icon: "aoa3:mysterium_realmstone",
+			x: 14.0d,
+			y: 2.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"-这个世界以方块生成，会生成陆地和水池，还有大小蘑菇（巨型蘑菇有概率合并生长），彩虹草也会在这里生成",
+				"-彩虹草：站在彩虹草上会获得短暂的跳跃加速效果"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;517],
+			dependency_requirement: "all_completed",
+			id: 553,
+			tasks: [{
+				id: 554,
+				type: "dimension",
+				dimension: "aoa3:mysterium"
+			}]
+		},
+		{
+			x: 14.0d,
+			y: -1.0d,
+			shape: "square",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"-通过合成获得",
+				"-将其投掷到Mysterium表面，等待片刻即可召唤Mysterium首领King Shroomus"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;553],
+			dependency_requirement: "all_completed",
+			id: 555,
+			tasks: [{
+				id: 556,
+				type: "item",
+				item: "aoa3:shroom_stone"
+			}],
+			rewards: [{
+				id: 1141,
+				type: "item",
+				item: "mmorpg:events/pumpkin_juice"
+			}]
+		},
+		{
+			title: "四面八方都传来真菌的气味，令人作呕",
+			x: 14.0d,
+			y: -4.0d,
+			shape: "rsquare",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"-第110级",
+				"-国王蘑菇会向目标发射凋零魔法。当此投射物击中实体时，会对其造成魔法伤害并施加负面效果：",
+				"-4秒的迟缓 III 效果",
+				"-4秒的中毒V效果",
+				"-7秒的恶心效果 I",
+				"-5秒的虚弱 III 效果",
+				"-生成蘑菇王后，每游戏刻有1/200的概率使用技能恢复生命。正在恢复生命的蘑菇王无法使用此技能",
+				"-蘑菇王使用技能后，会持续恢复生命值4秒"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;555],
+			dependency_requirement: "all_completed",
+			id: 557,
+			tasks: [{
+				id: 558,
+				type: "kill",
+				entity: "aoa3:king_shroomus",
+				value: 1L
+			}],
+			rewards: [
+				{
+					id: 1155,
+					type: "item",
+					item: "mmorpg:lootbox/medium_gear_lootbox_4"
+				},
+				{
+					id: 1244,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 60000000
+						}
+					}
+				},
+				{
+					id: 3433,
+					type: "random",
+					table: 9
+				}
+			]
+		},
+		{
+			x: 14.0d,
+			y: -7.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;
+				557,
+				2459
+			],
+			hide: true,
+			dependency_requirement: "all_completed",
+			id: 559,
+			tasks: [{
+				id: 560,
+				type: "item",
+				item: "tloaadd:kingshroomusess"
+			}]
+		},
+		{
+			x: 14.0d,
+			y: 8.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;553],
+			dependency_requirement: "all_completed",
+			id: 561,
+			tasks: [{
+				id: 562,
+				type: "kill",
+				entity: "aoa3:eeo",
+				value: 10L
+			}],
+			rewards: [
+				{
+					id: 1569,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1675,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 20000000
+						}
+					}
+				}
+			]
+		},
+		{
+			x: 11.5d,
+			y: 5.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;553],
+			dependency_requirement: "all_completed",
+			id: 563,
+			tasks: [{
+				id: 564,
+				type: "kill",
+				entity: "aoa3:fungat",
+				value: 10L
+			}],
+			rewards: [
+				{
+					id: 1565,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1677,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 20000000
+						}
+					}
+				}
+			]
+		},
+		{
+			x: 16.5d,
+			y: 5.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;553],
+			dependency_requirement: "all_completed",
+			id: 565,
+			tasks: [{
+				id: 566,
+				type: "kill",
+				entity: "aoa3:fungback",
+				value: 10L
+			}],
+			rewards: [
+				{
+					id: 1567,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1673,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 20000000
+						}
+					}
+				}
+			]
+		},
+		{
+			x: 14.0d,
+			y: 5.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;553],
+			dependency_requirement: "all_completed",
+			id: 567,
+			tasks: [{
+				id: 568,
+				type: "kill",
+				entity: "aoa3:fungik",
+				value: 10L
+			}],
+			rewards: [
+				{
+					id: 1566,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1674,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 20000000
+						}
+					}
+				}
+			]
+		},
+		{
+			x: 11.5d,
+			y: 8.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;553],
+			dependency_requirement: "all_completed",
+			id: 569,
+			tasks: [{
+				id: 570,
+				type: "kill",
+				entity: "aoa3:spirit_guardian",
+				value: 10L
+			}],
+			rewards: [
+				{
+					id: 1570,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1676,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 20000000
+						}
+					}
+				}
+			]
+		},
+		{
+			x: 16.5d,
+			y: 8.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;553],
+			dependency_requirement: "all_completed",
+			id: 571,
+			tasks: [{
+				id: 572,
+				type: "kill",
+				entity: "aoa3:spirit_protector",
+				value: 10L
+			}],
+			rewards: [
+				{
+					id: 1568,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1672,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 20000000
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "击杀奖励 - 神秘学 (Mysterium)",
+			icon: "mmorpg:lootbox/medium_gear_lootbox_4",
+			x: 14.0d,
+			y: 11.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;
+				563,
+				567,
+				565,
+				571,
+				561,
+				569
+			],
+			dependency_requirement: "all_completed",
+			id: 573,
+			tasks: [{
+				id: 574,
+				type: "checkmark"
+			}],
+			rewards: [{
+				id: 575,
+				type: "item",
+				item: "mmorpg:lootbox/medium_gear_lootbox_4"
+			}]
+		},
+		{
+			title: "你开始感到不适，奇怪的感觉在你体内滋生",
+			icon: "aoa3:vox_ponds_realmstone",
+			x: 6.5d,
+			y: -1.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"-Vox Ponds 维度的地表类似于丘陵。地面上会生成大量高毒性的垃圾湖。当玩家接触到高毒性垃圾液体时，会获得中毒 IV 和恶心 II 的效果。",
+				"-这里的树叶和灌木看起来都死了或被辐射了。所有的建筑都像是被遗弃或摧毁的",
+				"-&2玩家必须准备带有[提供氧气]功能的装备才能在此探索，例如Hazmat Suit和Face Mask。否则，玩家的健康会迅速下降并最终死亡&f"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;
+				517,
+				578
+			],
+			dependency_requirement: "all_completed",
+			id: 576,
+			tasks: [{
+				id: 577,
+				type: "dimension",
+				dimension: "aoa3:vox_ponds"
+			}]
+		},
+		{
+			title: "Hazmat Suit",
+			x: 8.5d,
+			y: -1.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["-&2也许你需要它们！&f"],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 578,
+			tasks: [
+				{
+					id: 579,
+					type: "item",
+					item: {
+						id: "aoa3:hazmat_helmet",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 580,
+					type: "item",
+					item: {
+						id: "aoa3:hazmat_chestplate",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 581,
+					type: "item",
+					item: {
+						id: "aoa3:hazmat_legs",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 582,
+					type: "item",
+					item: {
+						id: "aoa3:hazmat_boots",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "一股难闻的气味扑面而来！",
+			x: 6.5d,
+			y: -10.0d,
+			shape: "rsquare",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"-第115级",
+				"-&2肾脏破坏者！&f",
+				"-Voxxulon 不会移动，也不受重力影响",
+				"-Voxxulon 在每帧游戏内有一定几率触发以下技能：",
+				"-瞬移到60格范围内的目标位置",
+				"-在40格范围内的所有玩家获得5秒的毒V效果",
+				"-在最近的玩家头顶30格处生成一个法术投射物，该投射物在接触其他实体时会发生威力为1的爆炸"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;587],
+			dependency_requirement: "all_completed",
+			id: 583,
+			tasks: [{
+				id: 584,
+				type: "kill",
+				entity: "aoa3:voxxulon",
+				value: 1L
+			}],
+			rewards: [
+				{
+					id: 1154,
+					type: "item",
+					item: "mmorpg:lootbox/medium_gear_lootbox_4"
+				},
+				{
+					id: 1246,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 74000000
+						}
+					}
+				},
+				{
+					id: 3432,
+					type: "random",
+					table: 9
+				}
+			]
+		},
+		{
+			x: 6.5d,
+			y: -4.0d,
+			shape: "square",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"-Enigma Table 会自然生成在 Vox Ponds 维度地下湖的湖面上。右键点击 Enigma Table 时，4 个 Uncharged Stone drops 会从 Enigma Table 中飞出，随后 Enigma Table 会消失",
+				"-在合成台使用 8 个有毒垃圾和 1 个未充能的石头来合成 1 个污秽之石"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;576],
+			dependency_requirement: "all_completed",
+			id: 585,
+			tasks: [{
+				id: 586,
+				type: "item",
+				item: "aoa3:vile_stone"
+			}],
+			rewards: [{
+				id: 1140,
+				type: "item",
+				item: "mmorpg:events/pumpkin_juice"
+			}]
+		},
+		{
+			title: "沃克松祭坛",
+			icon: "aoa3:voxxulon_altar",
+			x: 6.5d,
+			y: -7.0d,
+			shape: "square",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"-Vox Ponds 世界的 Voxxulon 祭坛上自然生成",
+				"-手持Vile Stone并右键此祭坛，将召唤Vox Ponds的Boss Voxxulon"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;585],
+			dependency_requirement: "all_completed",
+			id: 587,
+			tasks: [{
+				id: 588,
+				type: "checkmark"
+			}]
+		},
+		{
+			x: 6.5d,
+			y: -12.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;583],
+			dependency_requirement: "all_completed",
+			id: 589,
+			tasks: [{
+				id: 590,
+				type: "item",
+				item: "tloaadd:voxxuloness"
+			}]
+		},
+		{
+			x: 4.0d,
+			y: 2.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;576],
+			dependency_requirement: "all_completed",
+			id: 591,
+			tasks: [{
+				id: 592,
+				type: "kill",
+				entity: "aoa3:alarmo",
+				value: 10L
+			}],
+			rewards: [
+				{
+					id: 1559,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1683,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 20000000
+						}
+					}
+				}
+			]
+		},
+		{
+			x: 6.5d,
+			y: 2.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;576],
+			dependency_requirement: "all_completed",
+			id: 593,
+			tasks: [{
+				id: 594,
+				type: "kill",
+				entity: "aoa3:centinel",
+				value: 10L
+			}],
+			rewards: [
+				{
+					id: 1562,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1680,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 20000000
+						}
+					}
+				}
+			]
+		},
+		{
+			x: 9.0d,
+			y: 2.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;576],
+			dependency_requirement: "all_completed",
+			id: 595,
+			tasks: [{
+				id: 2449,
+				type: "kill",
+				entity: "aoa3:toxxulous",
+				value: 10L
+			}],
+			rewards: [
+				{
+					id: 1564,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1679,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 20000000
+						}
+					}
+				}
+			]
+		},
+		{
+			x: 4.0d,
+			y: 4.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;576],
+			dependency_requirement: "all_completed",
+			id: 597,
+			tasks: [{
+				id: 598,
+				type: "kill",
+				entity: "aoa3:fischer",
+				value: 1L
+			}],
+			rewards: [
+				{
+					id: 1560,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1682,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 20000000
+						}
+					}
+				}
+			]
+		},
+		{
+			x: 6.5d,
+			y: 4.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;576],
+			dependency_requirement: "all_completed",
+			id: 599,
+			tasks: [{
+				id: 600,
+				type: "kill",
+				entity: "aoa3:gadgetoid",
+				value: 10L
+			}],
+			rewards: [
+				{
+					id: 1561,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1681,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 20000000
+						}
+					}
+				}
+			]
+		},
+		{
+			x: 9.0d,
+			y: 4.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;576],
+			dependency_requirement: "all_completed",
+			id: 601,
+			tasks: [{
+				id: 602,
+				type: "kill",
+				entity: "aoa3:grocculate",
+				value: 10L
+			}],
+			rewards: [
+				{
+					id: 1563,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1678,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 20000000
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "击杀奖励 - 沃克斯池塘",
+			icon: "mmorpg:lootbox/medium_gear_lootbox_4",
+			x: 6.5d,
+			y: 8.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;
+				591,
+				593,
+				595,
+				601,
+				599,
+				597
+			],
+			dependency_requirement: "all_completed",
+			id: 603,
+			tasks: [{
+				id: 604,
+				type: "checkmark"
+			}],
+			rewards: [{
+				id: 605,
+				type: "item",
+				item: "mmorpg:lootbox/medium_gear_lootbox_4"
+			}]
+		},
+		{
+			title: "Gardenciacia 为你带来清新的露水芬芳",
+			icon: "aoa3:gardencia_realmstone",
+			x: -5.5d,
+			y: -1.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"-加登西亚的地形由被海洋环绕的群岛组成。这些岛屿由紫色岩石和绿色草地构成。巨大的花朵点缀着风景，它们能触及云层，色彩缤纷",
+				"-加登西亚有三个生物群系。加登西亚的海洋是紫色的。但与主世界的普通海洋不同，如果玩家潜入加登西亚的海洋过深，会因水压而死亡。所以玩家只能在海洋表面游泳"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;517],
+			dependency_requirement: "all_completed",
+			id: 606,
+			tasks: [{
+				id: 607,
+				type: "dimension",
+				dimension: "aoa3:gardencia"
+			}]
+		},
+		{
+			title: "闻到花儿的香味了！",
+			x: -5.5d,
+			y: -10.0d,
+			shape: "rsquare",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"-第115级",
+				"每3.5秒，Vinocorne会在自身位置随机召唤蓝色花、黄色花、橙色花、绿色花和紫色花，每次各召唤1朵"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;614],
+			dependency_requirement: "all_completed",
+			id: 608,
+			tasks: [{
+				id: 609,
+				type: "kill",
+				entity: "aoa3:vinocorne",
+				value: 1L
+			}],
+			rewards: [
+				{
+					id: 1153,
+					type: "item",
+					item: "mmorpg:lootbox/medium_gear_lootbox_4"
+				},
+				{
+					id: 1245,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 74000000
+						}
+					}
+				},
+				{
+					id: 3431,
+					type: "random",
+					table: 9
+				}
+			]
+		},
+		{
+			x: -5.5d,
+			y: -12.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;608],
+			dependency_requirement: "all_completed",
+			id: 610,
+			tasks: [{
+				id: 611,
+				type: "item",
+				item: "tloaadd:vinocorneess"
+			}]
+		},
+		{
+			x: -5.5d,
+			y: -4.0d,
+			shape: "square",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"-在合成台用5种不同的花瓣合成而成",
+				"&b注：不同颜色的花瓣可以用Gardencia Tokens、Rosid Root和Silver Coin合成&f"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;606],
+			dependency_requirement: "all_completed",
+			id: 612,
+			tasks: [{
+				id: 613,
+				type: "item",
+				item: "aoa3:petals"
+			}],
+			rewards: [{
+				id: 1139,
+				type: "item",
+				item: "mmorpg:events/pumpkin_juice"
+			}]
+		},
+		{
+			title: "Vinocorne 神殿",
+			icon: "aoa3:vinocorne_shrine",
+			x: -5.5d,
+			y: -7.0d,
+			shape: "square",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"-在Gardencia世界的Floro城堡顶层自然生成",
+				"-手持花瓣并右键此祭坛，即可召唤Boss Gardencia的Vinocorne。召唤时有动画：从幼苗到花朵，最后Vinocorne出现。若在动画结束前攻击，Vinocorne的生成将被取消"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;612],
+			dependency_requirement: "all_completed",
+			id: 614,
+			tasks: [{
+				id: 615,
+				type: "checkmark"
+			}]
+		},
+		{
+			x: -3.0d,
+			y: 2.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;606],
+			dependency_requirement: "all_completed",
+			id: 616,
+			tasks: [{
+				id: 617,
+				type: "kill",
+				entity: "aoa3:archvine",
+				value: 10L
+			}],
+			rewards: [
+				{
+					id: 1557,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1684,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 20000000
+						}
+					}
+				}
+			]
+		},
+		{
+			x: -5.5d,
+			y: 2.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;606],
+			dependency_requirement: "all_completed",
+			id: 618,
+			tasks: [{
+				id: 619,
+				type: "kill",
+				entity: "aoa3:broccohead",
+				value: 10L
+			}],
+			rewards: [
+				{
+					id: 1556,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1687,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 20000000
+						}
+					}
+				}
+			]
+		},
+		{
+			x: -8.0d,
+			y: 2.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;606],
+			dependency_requirement: "all_completed",
+			id: 620,
+			tasks: [{
+				id: 621,
+				type: "kill",
+				entity: "aoa3:carrotop",
+				value: 10L
+			}],
+			rewards: [
+				{
+					id: 1553,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1688,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 20000000
+						}
+					}
+				}
+			]
+		},
+		{
+			x: -3.0d,
+			y: 4.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;606],
+			dependency_requirement: "all_completed",
+			id: 622,
+			tasks: [{
+				id: 623,
+				type: "kill",
+				entity: "aoa3:corny",
+				value: 10L
+			}],
+			rewards: [
+				{
+					id: 1558,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1685,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 20000000
+						}
+					}
+				}
+			]
+		},
+		{
+			x: -5.5d,
+			y: 4.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;606],
+			dependency_requirement: "all_completed",
+			id: 624,
+			tasks: [{
+				id: 625,
+				type: "kill",
+				entity: "aoa3:squasher",
+				value: 10L
+			}],
+			rewards: [
+				{
+					id: 1555,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1686,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 20000000
+						}
+					}
+				}
+			]
+		},
+		{
+			x: -8.0d,
+			y: 4.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;606],
+			dependency_requirement: "all_completed",
+			id: 626,
+			tasks: [{
+				id: 627,
+				type: "kill",
+				entity: "aoa3:sunny",
+				value: 10L
+			}],
+			rewards: [
+				{
+					id: 1554,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1689,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 20000000
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "击杀奖励 - 加登西亚 (Gardencia)",
+			icon: "mmorpg:lootbox/medium_gear_lootbox_4",
+			x: -5.5d,
+			y: 8.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;
+				616,
+				622,
+				624,
+				618,
+				620,
+				626
+			],
+			dependency_requirement: "all_completed",
+			id: 628,
+			tasks: [{
+				id: 629,
+				type: "checkmark"
+			}],
+			rewards: [{
+				id: 630,
+				type: "item",
+				item: "mmorpg:lootbox/medium_gear_lootbox_4"
+			}]
+		},
+		{
+			x: 0.5d,
+			y: -16.0d,
+			shape: "default",
+			subtitle: "",
+			size: 2.5d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 631,
+			tasks: [{
+				id: 632,
+				type: "item",
+				item: "tloaadd:blood_of_rank_3"
+			}]
+		},
+		{
+			title: "&5&l恶魔入侵！",
+			x: 18.5d,
+			y: -4.0d,
+			shape: "rsquare",
+			subtitle: "",
+			size: 2.0d,
+			description: ["-Asmodeus 入侵了秘密领域，夺走了蘑菇王的精华。建造祭坛，召唤并击败它！"],
+			min_required_dependencies: 0,
+			dependencies: [I;557],
+			hide: true,
+			dependency_requirement: "all_completed",
+			id: 2459,
+			tasks: [{
+				id: 2460,
+				type: "kill",
+				icon: {
+					id: "lycanitesmobs:aberrationspawn",
+					Count: 1b,
+					tag: {
+						CreatureInfoSpawnEgg: {
+							creaturename: "asmodeus"
+						}
+					}
+				},
+				entity: "lycanitesmobs:asmodeus",
+				value: 1L
+			}],
+			rewards: [{
+				id: 2466,
+				type: "item",
+				item: "tloaadd:fragment_of_challenage_2"
+			}]
+		},
+		{
+			x: 0.5d,
+			y: 17.5d,
+			shape: "default",
+			subtitle: "",
+			size: 2.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 2777,
+			tasks: [{
+				id: 2778,
+				type: "checkmark",
+				title: "以下齿轮符合本章的维度等级要求"
+			}]
+		},
+		{
+			x: 1.5d,
+			y: 19.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 2853,
+			tasks: [
+				{
+					id: 2854,
+					type: "item",
+					item: {
+						id: "aoa3:fungal_helmet",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 2855,
+					type: "item",
+					item: {
+						id: "aoa3:fungal_chestplate",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 2856,
+					type: "item",
+					item: {
+						id: "aoa3:fungal_legs",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 2857,
+					type: "item",
+					item: {
+						id: "aoa3:fungal_boots",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		},
+		{
+			x: 3.0d,
+			y: 19.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 2870,
+			tasks: [
+				{
+					id: 2871,
+					type: "item",
+					item: {
+						id: "aoa3:hazmat_helmet",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 2872,
+					type: "item",
+					item: {
+						id: "aoa3:hazmat_chestplate",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 2873,
+					type: "item",
+					item: {
+						id: "aoa3:hazmat_legs",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 2874,
+					type: "item",
+					item: {
+						id: "aoa3:hazmat_boots",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		},
+		{
+			x: 4.5d,
+			y: 19.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["-当你手持花瓣并右键点击花瓣合成台时，你将随机获得一件Hydrangic装备"],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 2875,
+			tasks: [
+				{
+					id: 2876,
+					type: "item",
+					item: {
+						id: "aoa3:hydrangic_helmet",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 2877,
+					type: "item",
+					item: {
+						id: "aoa3:hydrangic_chestplate",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 2878,
+					type: "item",
+					item: {
+						id: "aoa3:hydrangic_legs",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 2879,
+					type: "item",
+					item: {
+						id: "aoa3:hydrangic_boots",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		},
+		{
+			x: -2.0d,
+			y: 19.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 2963,
+			tasks: [{
+				id: 2964,
+				type: "item",
+				item: {
+					id: "aoa3:nightmare_bow",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			x: 6.0d,
+			y: 19.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["-每件幻影盔甲都可以通过与戈尔布工程师交易获得"],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 2970,
+			tasks: [
+				{
+					id: 2971,
+					type: "item",
+					item: {
+						id: "aoa3:phantasm_helmet",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 2972,
+					type: "item",
+					item: {
+						id: "aoa3:phantasm_chestplate",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 2973,
+					type: "item",
+					item: {
+						id: "aoa3:phantasm_legs",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 2974,
+					type: "item",
+					item: {
+						id: "aoa3:phantasm_boots",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		},
+		{
+			x: 1.5d,
+			y: 21.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 2975,
+			tasks: [
+				{
+					id: 2976,
+					type: "item",
+					item: {
+						id: "aoa3:poison_helmet",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 2977,
+					type: "item",
+					item: {
+						id: "aoa3:poison_chestplate",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 2978,
+					type: "item",
+					item: {
+						id: "aoa3:poison_legs",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 2979,
+					type: "item",
+					item: {
+						id: "aoa3:poison_boots",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		},
+		{
+			x: -3.5d,
+			y: 19.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 2980,
+			tasks: [{
+				id: 2981,
+				type: "item",
+				item: {
+					id: "aoa3:poison_bow",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			x: 3.0d,
+			y: 21.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 3010,
+			tasks: [
+				{
+					id: 3011,
+					type: "item",
+					item: {
+						id: "aoa3:rosidian_helmet",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 3012,
+					type: "item",
+					item: {
+						id: "aoa3:rosidian_chestplate",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 3013,
+					type: "item",
+					item: {
+						id: "aoa3:rosidian_legs",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 3014,
+					type: "item",
+					item: {
+						id: "aoa3:rosidian_boots",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		},
+		{
+			x: -2.0d,
+			y: 22.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["-在弗洛罗城堡的宝箱中发现"],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 3015,
+			tasks: [{
+				id: 3016,
+				type: "item",
+				item: {
+					id: "aoa3:rosidian_greatblade",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			x: -5.0d,
+			y: 21.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 3017,
+			tasks: [{
+				id: 3018,
+				type: "item",
+				item: {
+					id: "aoa3:rosidian_sword",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			x: -5.0d,
+			y: 19.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 3019,
+			tasks: [{
+				id: 3020,
+				type: "item",
+				item: {
+					id: "aoa3:rosidian_bow",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			x: 4.5d,
+			y: 21.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 3099,
+			tasks: [
+				{
+					id: 3100,
+					type: "item",
+					item: {
+						id: "aoa3:wither_helmet",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 3101,
+					type: "item",
+					item: {
+						id: "aoa3:wither_chestplate",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 3102,
+					type: "item",
+					item: {
+						id: "aoa3:wither_legs",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 3103,
+					type: "item",
+					item: {
+						id: "aoa3:wither_boots",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		},
+		{
+			x: 6.0d,
+			y: 21.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 3117,
+			tasks: [{
+				id: 3118,
+				type: "item",
+				item: {
+					id: "aoa3:face_mask",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			x: -0.5d,
+			y: 19.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 3139,
+			tasks: [{
+				id: 3140,
+				type: "item",
+				item: {
+					id: "aoa3:toxin_bow",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			x: -3.5d,
+			y: 21.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 3165,
+			tasks: [{
+				id: 3166,
+				type: "item",
+				item: {
+					id: "aoa3:bloodfury",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			x: -2.0d,
+			y: 21.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 3167,
+			tasks: [{
+				id: 3168,
+				type: "item",
+				item: {
+					id: "aoa3:bloodstone_sword",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			x: -0.5d,
+			y: 21.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 3187,
+			tasks: [{
+				id: 3188,
+				type: "item",
+				item: {
+					id: "aoa3:illusion_sword",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			x: -0.5d,
+			y: 24.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 3197,
+			tasks: [{
+				id: 3198,
+				type: "item",
+				item: {
+					id: "aoa3:shroomus_sword",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			x: -5.0d,
+			y: 22.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["-与戈尔布工程师交易3枚金币可获得"],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 3201,
+			tasks: [{
+				id: 3202,
+				type: "item",
+				item: {
+					id: "aoa3:ultraflame",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			x: -3.5d,
+			y: 22.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 3205,
+			tasks: [{
+				id: 3206,
+				type: "item",
+				item: {
+					id: "aoa3:bloodlurker",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			x: -2.0d,
+			y: 24.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 3227,
+			tasks: [{
+				id: 3228,
+				type: "item",
+				item: {
+					id: "aoa3:noxious_greatblade",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			x: -0.5d,
+			y: 22.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 3233,
+			tasks: [{
+				id: 3234,
+				type: "item",
+				item: {
+					id: "aoa3:shroomic_greatblade",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			x: -15.0d,
+			y: 1.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;519],
+			dependency_requirement: "all_completed",
+			id: 3503,
+			tasks: [{
+				id: 3504,
+				type: "item",
+				item: "aoa3:bloodstone",
+				count: 32L,
+				consume_items: true
+			}],
+			rewards: [{
+				id: 3511,
+				type: "item",
+				item: "mmorpg:lootbox/medium_currency_lootbox_3"
+			}]
+		},
+		{
+			x: -12.0d,
+			y: 1.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;3503],
+			dependency_requirement: "all_completed",
+			id: 3505,
+			tasks: [{
+				id: 3506,
+				type: "item",
+				item: "aoa3:bloodstone",
+				count: 64L,
+				consume_items: true
+			}],
+			rewards: [
+				{
+					id: 3513,
+					type: "random",
+					table: 10
+				},
+				{
+					id: 3515,
+					type: "item",
+					item: "mmorpg:lootbox/medium_gear_lootbox_4"
+				}
+			]
+		},
+		{
+			x: 12.5d,
+			y: 1.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;553],
+			dependency_requirement: "all_completed",
+			id: 3507,
+			tasks: [{
+				id: 3508,
+				type: "item",
+				item: "aoa3:mystite_ingot",
+				count: 32L,
+				consume_items: true
+			}],
+			rewards: [{
+				id: 3512,
+				type: "item",
+				item: "mmorpg:lootbox/medium_currency_lootbox_3"
+			}]
+		},
+		{
+			x: 15.5d,
+			y: 1.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;3507],
+			dependency_requirement: "all_completed",
+			id: 3509,
+			tasks: [{
+				id: 3510,
+				type: "item",
+				item: "aoa3:mystite_ingot",
+				count: 64L,
+				consume_items: true
+			}],
+			rewards: [
+				{
+					id: 3514,
+					type: "random",
+					table: 10
+				},
+				{
+					id: 3516,
+					type: "item",
+					item: "mmorpg:lootbox/medium_gear_lootbox_4"
+				}
+			]
+		}
+	]
+}
