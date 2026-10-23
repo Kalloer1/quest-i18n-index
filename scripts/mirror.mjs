@@ -35,10 +35,41 @@ import { dirname, join } from 'node:path'
 import { execFileSync } from 'node:child_process'
 import { STATUS } from '../shared/quest-status.mjs'
 import { defaultReportStatus } from './lib/report-status.mjs'
+import { slugFromZipName } from './build-index.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 export const DOWNLOADS_DIR = join(ROOT, 'downloads')
 export const MIRRORS_FILE = join(ROOT, 'research/quark-mirrors.json')
+
+/**
+ * 已知 slug 全集：patches/ 的目录名就是 slug 的本地真源。
+ * 用于 `slugFromZipName` 的「已知 slug 优先」判定，防 `a_v_something` 被误剥成 `a`。
+ */
+function knownSlugs() {
+  const dir = join(ROOT, 'patches')
+  return new Set(existsSync(dir) ? readdirSync(dir) : [])
+}
+
+/**
+ * slug → 磁盘上的 zip 路径。两种形态都认：
+ * 1. 旧名 `downloads/<slug>.zip`（精确）；
+ * 2. 新名 `downloads/<slug>_v<version>.zip`（readdir 匹配，多份取字典序最后）。
+ * 都找不到时返回旧名期望路径，让 runMirror 报「找不到补丁包」并留空（绝不伪造链接）。
+ *
+ * @param {string} slug
+ * @param {string} [dir]
+ * @returns {string}
+ */
+export function resolveZipPath(slug, dir = DOWNLOADS_DIR) {
+  const exact = join(dir, `${slug}.zip`)
+  if (existsSync(exact)) return exact
+  if (!existsSync(dir)) return exact
+  const hit = readdirSync(dir)
+    .filter(n => n.endsWith('.zip') && n.startsWith(`${slug}_v`))
+    .sort()
+    .at(-1)
+  return hit ? join(dir, hit) : exact
+}
 
 export const DEFAULT_RATE_LIMIT_MS = 300
 
@@ -245,13 +276,17 @@ if (isMain) {
   // 目标目录的父目录 fid。workflow 一直在传，旧代码从未读（D6 成因之一）。
   const PARENT_FID = process.env.QUARK_PARENT_FID || ''
 
-  // 待镜像目标：downloads/ 下的 zip；全量模式只取「尚无分享链接」的（幂等）
+  // 待镜像目标：downloads/ 下的 zip；全量模式只取「尚无分享链接」的（幂等）。
+  // 文件名可能是旧名 `<slug>.zip` 或新名 `<slug>_v<version>.zip`，统一反解成 slug。
   const existing = readMirrors()
+  const known = knownSlugs()
   const all = existsSync(DOWNLOADS_DIR)
-    ? readdirSync(DOWNLOADS_DIR).filter(n => n.endsWith('.zip')).map(n => n.slice(0, -4))
+    ? [...new Set(readdirSync(DOWNLOADS_DIR)
+        .filter(n => n.endsWith('.zip'))
+        .map(n => slugFromZipName(n.slice(0, -4), known)))]
     : []
   const slugs = IDS.length ? IDS : all.filter(s => !existing[s])
-  const targets = slugs.map(slug => ({ slug, zipPath: join(DOWNLOADS_DIR, `${slug}.zip`) }))
+  const targets = slugs.map(slug => ({ slug, zipPath: resolveZipPath(slug) }))
 
   if (!targets.length) {
     console.log('没有需要镜像的条目')

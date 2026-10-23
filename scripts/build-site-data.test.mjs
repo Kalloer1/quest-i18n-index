@@ -178,6 +178,20 @@ test('非 downloadable 包没有 download 字段', () => {
   }
 })
 
+// 文件名真源只有一个：索引里的 zipName（build-index 从 downloads/ 实测得出）。
+// 站点若继续自己拼 `<slug>.zip`，改名后所有下载链接会 404。
+test('download.zip 用索引里的 zipName（版本化文件名）', () => {
+  const inp = SYNTH()
+  inp.index.dataset[0].zipName = 'demo-pack_v2.0.16.zip'
+  const p = buildSiteData(inp, { now: 'T', githubRepo: GITHUB }).packs[0]
+  assert.equal(p.download.zip, `https://github.com/${GITHUB}/raw/main/downloads/demo-pack_v2.0.16.zip`)
+})
+
+test('download.zip：旧索引没有 zipName 字段时回退拼 <slug>.zip', () => {
+  const p = synthetic({ githubRepo: GITHUB }).packs[0]
+  assert.equal(p.download.zip, `https://github.com/${GITHUB}/raw/main/downloads/demo-pack.zip`)
+})
+
 test('quark 镜像链接从 quarkMirrors 合并进来；缺失条目留空（绝不伪造）', () => {
   const withQuark = synthetic({
     githubRepo: GITHUB,

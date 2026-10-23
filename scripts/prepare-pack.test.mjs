@@ -290,6 +290,41 @@ test('preparePack：已有任务书文件时跳过下载（幂等），不下载
   } finally { dirs.cleanup() }
 })
 
+test('preparePack：跳过下载时也写 .source.json（失败重试 / 中断残包重跑就走这条分支）', async () => {
+  const dirs = tempDirs()
+  try {
+    // 目录里已有产物（farm 打包后才删目录，重试时目录还在）→ 走幂等跳过分支
+    const langDir = join(dirs.packsDir, 'demo', 'config/ftbquests/quests/lang')
+    mkdirSync(langDir, { recursive: true })
+    writeFileSync(join(langDir, 'en_us.snbt'), 'quest.a.title: "Hi"\n')
+
+    const calls = []
+    const bodies = []
+    const result = await preparePack({
+      slug: 'demo', cfId: '1514778', apiKey: 'k', packsDir: dirs.packsDir, tmpDir: dirs.tmpDir,
+      fetchImpl: stubFetch({ calls, bodies, fileDate: '2026-09-01T00:00:00Z' }),
+    })
+    assert.equal(result.status, 'skipped')
+
+    // 版本必须落盘 —— 不写的话这些包永远产不出 `.source.json`（8 台 worker 实测一次都没写出）
+    const info = JSON.parse(readFileSync(join(dirs.packsDir, 'demo', '.source.json'), 'utf8'))
+    assert.equal(info.slug, 'demo')
+    assert.equal(info.platform, 'cf')
+    assert.equal(info.fileId, 7)
+    assert.equal(info.fileName, 'Demo-1.0.zip')
+    assert.equal(info.fileDate, '2026-09-01T00:00:00Z')
+    assert.match(info.fetchedAt, /^\d{4}-\d{2}-\d{2}T/)
+    assert.equal(info.recovered, false)
+
+    // 复用**当次** resolveLatestFile 的结果：不因写版本多发一次文件列表请求
+    assert.equal(calls.filter((c) => String(c.url).includes('/files?pageSize=1')).length, 1)
+    assert.deepEqual(bodies, [], '跳过时不该拉走任何 zip 字节')
+    // 本地副本一个字节都不能动，也不能凭空多出 zip
+    assert.equal(readFileSync(join(langDir, 'en_us.snbt'), 'utf8'), 'quest.a.title: "Hi"\n')
+    assert.ok(!existsSync(join(dirs.tmpDir, 'demo.zip')))
+  } finally { dirs.cleanup() }
+})
+
 test('preparePack：目录实况与权威清单一致时跳过下载，一个 zip 字节都不拉', async () => {
   const dirs = tempDirs()
   try {
@@ -307,6 +342,8 @@ test('preparePack：目录实况与权威清单一致时跳过下载，一个 zi
     })
     assert.equal(result.status, 'skipped')
     assert.equal(result.layout, LAYOUT.SEPARATE_SINGLE)
+    // 清单一致而跳过，同样要留下版本记录（两条 skip 分支同一口径）
+    assert.ok(existsSync(join(dirs.packsDir, 'demo', '.source.json')))
     assert.deepEqual(bodies.filter((b) => b.method === 'GET'), [], '一致时连整包 GET 都不该发')
     // 只花清单的钱：1 次 API + 1 次 HEAD + 2 次中央目录 Range
     assert.equal(calls.filter((c) => c.method === 'HEAD').length, 1)
@@ -445,6 +482,9 @@ test('preparePack --force：权威源里没有任务书文件时不动目录（�
     assert.equal(r.status, 'prepared')
     assert.equal(r.written, 0)
     assert.equal(readFileSync(join(langDir, 'en_us.snbt'), 'utf8'), 'quest.a.title: "Hi"\n')
+    // 门禁：提前 return 的「没有任务书文件」分支也要写版本，否则这类包永远缺 .source.json。
+    // `.source.json` 不是 .snbt，不影响目录实况判定。
+    assert.ok(existsSync(join(dirs.packsDir, 'demo', '.source.json')))
   } finally { dirs.cleanup() }
 })
 

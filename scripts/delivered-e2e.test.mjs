@@ -109,3 +109,30 @@ test('端到端：research/index-dataset.json 与 zip 一起入库（显式路�
     assert.ok(log.includes('site/data.json'), log)
   } finally { rmSync(dir, { recursive: true, force: true }) }
 })
+
+// 版本化文件名要一路贯通：release 产出 → build-index 认出 slug 并带出 zipName
+// → build-site-data 用 zipName 拼链接。任何一环掉回 `<slug>.zip` 都会 404。
+test('端到端：<slug>_v<version>.zip 命中 delivered 且站点链接正确', () => {
+  const { dir, git } = setup()
+  try {
+    writeFileSync(join(dir, 'patches', 'demo-pack', '.source.json'), JSON.stringify({
+      slug: 'demo-pack', platform: 'curseforge', fileId: 1,
+      fileName: 'Demo Pack - 2.0.16.zip', fileDate: null, fetchedAt: null,
+    }))
+    runRelease(dir)
+
+    assert.ok(existsSync(join(dir, 'downloads', 'demo-pack_v2.0.16.zip')), '应产出带版本的文件名')
+    assert.ok(!existsSync(join(dir, 'downloads', 'demo-pack.zip')), '不应同时留旧名')
+
+    const rec = readIndex(dir).dataset.find(d => d.slug === 'demo-pack')
+    assert.equal(rec.delivered, true, '版本化文件名也必须被认成该 slug 的产出')
+    assert.equal(rec.state, 'downloadable')
+    assert.equal(rec.zipName, 'demo-pack_v2.0.16.zip')
+
+    const p = readSite(dir).packs.find(x => x.slug === 'demo-pack')
+    assert.equal(p.download.zip, 'https://github.com/acme/repo/raw/main/downloads/demo-pack_v2.0.16.zip')
+
+    const log = git(['show', '--name-only', '--format=', 'HEAD'])
+    assert.ok(log.includes('downloads/demo-pack_v2.0.16.zip'), log)
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})

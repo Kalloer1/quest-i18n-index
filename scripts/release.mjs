@@ -3,8 +3,10 @@
  * 发布流水线（工单 04）：把流水线产出（patches/<slug>/）打成补丁包 zip 并发布。
  *
  * 流程：
- * 1. 对每个 slug：patches/<slug>/ 存在时打成 downloads/<slug>.zip（复用 pack-patch 的
- *    buildPatch，幂等：条目排序 + 固定时间戳，同输入逐字节相同）
+ * 1. 对每个 slug：patches/<slug>/ 存在时打成 downloads/<slug>_v<version>.zip（复用 pack-patch 的
+ *    buildPatch，幂等：条目排序 + 固定时间戳，同输入逐字节相同）。版本取自
+ *    patches/<slug>/.source.json；取不到时沿用旧名 downloads/<slug>.zip（见 buildZipName）。
+ *    改名只动文件名，**不动 zip 内容**——已上传夸克的分享链接不受影响。
  * 2. 重建索引（node scripts/build-index.mjs）：扫描 downloads/*.zip 置 delivered=true，
  *    使这些 slug 落入 downloadable 态（产品闭环的最后一环）
  * 3. 重建站点数据（node scripts/build-site-data.mjs，合并 quark 镜像链接到 site/data.json）
@@ -24,7 +26,7 @@
  *   node scripts/release.mjs --ids a --dry-run
  *   node scripts/release.mjs --ids a --no-push
  */
-import { readFileSync, writeFileSync, existsSync, readdirSync, statSync, mkdirSync } from 'node:fs'
+import { readFileSync, writeFileSync, existsSync, readdirSync, statSync, mkdirSync, rmSync } from 'node:fs'
 import { join, relative, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { execSync } from 'node:child_process'
@@ -32,6 +34,87 @@ import { buildPatch } from './pack-patch.mjs'
 
 // 脚本本体按自身位置解析（临时目录里没有 scripts/）；数据输入按 cwd 解析。
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url))
+
+// ---------- 补丁包文件名（版本化） ----------
+//
+// 命名规则：`<slug>_v<version>.zip`，版本取自 patches/<slug>/.source.json。
+// **文件名是唯一可变的部分**：zip 内容（条目、顺序、时间戳）完全不变，所以已上传
+// 夸克的分享链接不会因为改名失效——分享是按文件内容/上传产物算的，与本地名字无关。
+//
+// 版本串必须含至少一个点号：`1.20.1`、`2.0.16_hf` 合法；`v62hf`、`65` 只是构建号，
+// 拿它当版本会产生 `slug_v65.zip` 这种和上游版本对不上的名字。
+
+/** 去掉末尾扩展名（`.zip` / `.mrpack`），只剥「字母开头」的，避免吃掉 `x.1` 里的 `.1`。 */
+const TRAILING_EXT = /\.[A-Za-z][A-Za-z0-9]{0,4}$/
+
+/** 版本样式 token：必须以 `数字.数字` 开头，尾部允许字母/数字/点/下划线/连字符。 */
+const VERSION_TOKEN = /[vV]?(\d+(?:\.\d+)+[A-Za-z0-9._-]*)/g
+
+/** 文件名里不允许的字符（Windows 与 URL 双重口径）统一换成 `-`。 */
+const UNSAFE = /[ \/\\:*?"<>|]/g
+
+/** 版本串清洗：非法字符换 `-`，连续 `-` 收敛，去首尾 `-`。 */
+function sanitizeVersion(raw) {
+  return String(raw ?? '')
+    .replace(UNSAFE, '-')
+    .replace(/-{2,}/g, '-')
+    .replace(/^-+|-+$/g, '')
+}
+
+/**
+ * 从 `.source.json` 推导版本号。
+ *
+ * 顺序：
+ * 1. `fileName` 里**最后一个含点号的版本串**（`1.20.1 v62hf` → `1.20.1`）。
+ *    用「最后一个」而不是「结尾那个」：上游文件名尾部常见 `v62hf`（构建号）这类
+ *    没有点号的尾巴，它不配当版本。
+ * 2. 退而取 `fileDate` 的 `YYYYMMDD`。
+ * 3. 都没有 → null（调用方回退到旧名，不猜）。
+ *
+ * @param {{fileName?: string|null, fileDate?: string|null}|null|undefined} source
+ * @returns {string|null}
+ */
+export function versionFromSource(source) {
+  if (!source || typeof source !== 'object') return null
+
+  const fileName = typeof source.fileName === 'string' ? source.fileName.trim() : ''
+  if (fileName) {
+    const stem = fileName.replace(TRAILING_EXT, '')
+    let last = null
+    for (const m of stem.matchAll(VERSION_TOKEN)) last = m[1]
+    const v = last ? sanitizeVersion(last) : ''
+    if (v) return v
+  }
+
+  const digits = String(source.fileDate ?? '').replace(/\D/g, '')
+  if (digits) return digits.length > 8 ? digits.slice(0, 8) : digits
+
+  return null
+}
+
+/**
+ * 补丁包文件名：有版本 → `<slug>_v<version>.zip`；没版本 → 旧名 `<slug>.zip`。
+ * 无版本时回退旧名而不是编一个版本号——宁可不带版本，也不产生假版本。
+ *
+ * @param {string} slug
+ * @param {object|null} source `.source.json` 内容（可为 null）
+ * @returns {string}
+ */
+export function buildZipName(slug, source) {
+  const version = versionFromSource(source)
+  return version ? `${slug}_v${version}.zip` : `${slug}.zip`
+}
+
+/** 读 patches/<slug>/.source.json（缺失或损坏都返回 null）。 */
+function readSource(dir) {
+  const file = join(dir, '.source.json')
+  if (!existsSync(file)) return null
+  try {
+    return JSON.parse(readFileSync(file, 'utf8'))
+  } catch {
+    return null
+  }
+}
 
 function usage() {
   console.error('用法: node scripts/release.mjs --ids <slug,slug> | --all [--package-only] [--dry-run] [--no-push]')
@@ -107,10 +190,19 @@ export function runRelease({ ids = [], all = false, packageOnly = false, dryRun 
     const files = names.map(name => ({ name, text: readFileSync(join(dir, ...name.split('/')), 'utf8') }))
     const zip = buildPatch(files, { layout: layouts.get(slug) === 'embedded' ? 'embedded' : undefined })
     mkdirSync(DOWNLOADS_DIR, { recursive: true })
-    const outPath = join(DOWNLOADS_DIR, `${slug}.zip`)
+    // 文件名带上游版本（`<slug>_v<version>.zip`）；拿不到版本就沿用旧名。
+    const zipName = buildZipName(slug, readSource(dir))
+    const outPath = join(DOWNLOADS_DIR, zipName)
     writeFileSync(outPath, zip)
+    // 幂等：旧名 `<slug>.zip` 还在就删掉，否则 downloads/ 里同一个包会有两份
+    // （build-index 会把两份都当成 delivered，站点也会多出一个下载入口）。
+    const legacyPath = join(DOWNLOADS_DIR, `${slug}.zip`)
+    if (zipName !== `${slug}.zip` && existsSync(legacyPath)) {
+      rmSync(legacyPath, { force: true })
+      log(`[${slug}] 清理旧名 ${relative(ROOT, legacyPath)}`)
+    }
     log(`[${slug}] ✔ ${relative(ROOT, outPath)}（${names.length} 个文件，${(zip.length / 1024).toFixed(1)} KB）`)
-    staged.push(`downloads/${slug}.zip`)
+    staged.push(`downloads/${zipName}`)
   }
 
   if (!produced) {

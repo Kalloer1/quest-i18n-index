@@ -229,9 +229,11 @@ const countBy = (list, key) => list.reduce((acc, item) => {
 }, {})
 
 export function buildDataset(input, { now = new Date().toISOString() } = {}) {
-  // 已产出补丁包的 slug（downloads/<slug>.zip）。不传时为空，delivered 全为 false，
-  // 六态计数与旧行为一致。
+  // 已产出补丁包的 slug（downloads/<slug>.zip 或 downloads/<slug>_v<version>.zip）。
+  // 不传时为空，delivered 全为 false，六态计数与旧行为一致。
   const deliveredSlugs = input.deliveredSlugs ?? []
+  // slug → zip 文件名（含扩展名）。站点/镜像要的就是这个真源，不再自己拼 `<slug>.zip`。
+  const zipNames = input.zipNames ?? {}
   const packs = input.packs.map(p => {
     const delivered = deliveredSlugs.includes(p.slug)
     const c = classifyPack({ ...p, delivered }, input.vmEntries)
@@ -246,6 +248,9 @@ export function buildDataset(input, { now = new Date().toISOString() } = {}) {
       zhFiles: p.zhFiles,
       title: p.title ?? null,
       delivered,
+      // 补丁包实际文件名：只在已产出时有值。老调用方不传 zipNames 时回退旧名，
+      // 保证「索引 → 站点 → 镜像」对文件名只有一个真源。
+      zipName: delivered ? (zipNames[p.slug] ?? `${p.slug}.zip`) : null,
       state: c.state,
       probeIncomplete: c.probeIncomplete,
       stateWhy: c.why,
@@ -337,17 +342,66 @@ export function parseScanTsv(text) {
 }
 
 /**
+ * 从 zip 文件名（**不含** `.zip`）反解 slug。
+ *
+ * 补丁包名是 `<slug>.zip` 或 `<slug>_v<version>.zip`，而 slug 本身也可能含 `_v`
+ * （例如 `a_v_something`），所以不能见到 `_v` 就切。
+ *
+ * 判据按优先级：
+ * 1. **已知 slug 全等**优先——`knownSlugs` 里有这个名字，它就是 slug，一个字都不剥。
+ *    这是防误伤的主手段：`a_v2_pack` 这种「名字里天然带 `_v<数字>`」的 slug 由此保命。
+ * 2. 否则剥尾部 `_v<数字>...`：正则 `/^(.*)_v\d[\w.-]*$/` 的 `(.*)` 是**贪婪**的，
+ *    会匹配到**最后一个** `_v`+数字，`x_v_a_v2.0.16` → `x_v_a`。
+ * 3. 都不命中 → 原样返回（旧名 `<slug>.zip`）。
+ *
+ * 不用「`base.includes('_v')` 就切最后一个 `_v`」的写法：`a_v_something` 没有版本，
+ * 那样会把它切成 `a`，直接让这个包掉出 downloadable。
+ *
+ * @param {string} base 文件名去掉 `.zip`
+ * @param {Set<string>|string[]|null} [knownSlugs] 已知 slug 全集（来自扫描 TSV）
+ * @returns {string}
+ */
+export function slugFromZipName(base, knownSlugs = null) {
+  const known = knownSlugs instanceof Set ? knownSlugs : new Set(knownSlugs ?? [])
+  if (known.has(base)) return base
+  const m = /^(.*)_v\d[\w.-]*$/.exec(base)
+  return m ? m[1] : base
+}
+
+/**
+ * 扫 downloads/ 的 zip 文件名，得出 delivered 判定所需的两个视图。
+ *
+ * 返回的 `zipNames` 是「文件名的唯一真源」：站点、镜像都读它，不再各自拼 `<slug>.zip`。
+ * 同一 slug 出现两份（旧名 + 新名，改名迁移的中间态）时以**字典序最后**的那个为准，
+ * 与 mirror.mjs 的选法一致，避免两处指向不同文件。
+ *
+ * @param {string[]} zipFiles downloads/ 下的文件名（含 `.zip`）
+ * @param {Set<string>|string[]} [knownSlugs] 已知 slug 全集
+ * @returns {{deliveredSlugs: string[], zipNames: Record<string,string>}}
+ */
+export function collectDelivered(zipFiles, knownSlugs = null) {
+  const zipNames = {}
+  for (const file of [...zipFiles].sort()) {
+    if (!file.endsWith('.zip')) continue
+    const slug = slugFromZipName(file.slice(0, -4), knownSlugs)
+    zipNames[slug] = file
+  }
+  return { deliveredSlugs: Object.keys(zipNames), zipNames }
+}
+
+/**
  * 合成 buildDataset 的输入。
  *
  * 扫描 TSV 提供全部 500 条记录；标题由 pack-metadata.json 提供（覆盖全部 500 条），
  * 它是 VM 覆盖匹配的**唯一可信依据**（见 matchPack）。
  * vmEntries 由 build-input.json 提供（VM 官网 58 条）。
- * deliveredSlugs 是 downloads/ 下已有 zip 的 slug 列表，透传给 buildDataset 置 delivered。
+ * deliveredSlugs 是 downloads/ 下已有 zip 的 slug 列表，透传给 buildDataset 置 delivered；
+ * zipNames 是 slug → zip 文件名，用于产出 `zipName` 字段（见 collectDelivered）。
  *
  * @param {string} scanText  research/scan-cf500.tsv 的内容
- * @param {{titles?: Record<string,string|null>, vmEntries?: Array, deliveredSlugs?: string[]}} sources
+ * @param {{titles?: Record<string,string|null>, vmEntries?: Array, deliveredSlugs?: string[], zipNames?: Record<string,string>}} sources
  */
-export function composeScanInput(scanText, { titles = {}, vmEntries = [], deliveredSlugs = [] } = {}) {
+export function composeScanInput(scanText, { titles = {}, vmEntries = [], deliveredSlugs = [], zipNames = {} } = {}) {
   return {
     packs: parseScanTsv(scanText).map(row => {
       const title = titles[row.slug] ?? null
@@ -355,6 +409,7 @@ export function composeScanInput(scanText, { titles = {}, vmEntries = [], delive
     }),
     vmEntries,
     deliveredSlugs,
+    zipNames,
   }
 }
 
@@ -385,13 +440,17 @@ if (isMain) {
     (packMeta.packs || []).map(p => [p.slug, p.title ?? null]),
   )
   // downloads/ 下已有的 zip 即「已产出」：目录不存在时视为空（不破坏现有行为）。
-  const deliveredSlugs = existsSync('downloads')
-    ? readdirSync('downloads').filter(n => n.endsWith('.zip')).map(n => n.slice(0, -4))
-    : []
-  const input = composeScanInput(readFileSync(scanPath, 'utf8'), {
+  // 文件名可能是 `<slug>.zip` 或 `<slug>_v<version>.zip`，用扫描 TSV 的 slug 全集
+  // 做「已知 slug 优先」判定，避免把名字里天然带 `_v` 的 slug 切坏。
+  const scanText = readFileSync(scanPath, 'utf8')
+  const knownSlugs = new Set(parseScanTsv(scanText).map(row => row.slug))
+  const zipFiles = existsSync('downloads') ? readdirSync('downloads') : []
+  const { deliveredSlugs, zipNames } = collectDelivered(zipFiles, knownSlugs)
+  const input = composeScanInput(scanText, {
     titles,
     vmEntries: baseInput.vmEntries,
     deliveredSlugs,
+    zipNames,
   })
   const out = buildDataset(input)
   writeFileSync(outPath, JSON.stringify(out, null, 2) + '\n')

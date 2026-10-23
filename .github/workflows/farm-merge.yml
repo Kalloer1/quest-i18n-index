@@ -460,9 +460,14 @@ jobs:
           ' > "$FARM_DIR/slugs.txt"
 
           # 显式路径 git add（禁止 -A）：main 上还有别的代理在改脚本，-A 会把他们的半成品带进来。
+          # 补丁包有两种文件名：旧名 downloads/<slug>.zip、新名 downloads/<slug>_v<version>.zip。
+          # 用 glob 一次覆盖；`[ -e "$f" ]` 保证两种形态缺一种时不会因未匹配而报错。
           while IFS= read -r slug; do
-            for p in "patches/$slug" "research/packs/$slug.tar.gz" "downloads/$slug.zip"; do
+            for p in "patches/$slug" "research/packs/$slug.tar.gz"; do
               if [ -e "$p" ]; then git add -- "$p"; fi
+            done
+            for f in "downloads/$slug.zip" downloads/"$slug"_v*.zip; do
+              if [ -e "$f" ]; then git add -- "$f"; fi
             done
           done < "$FARM_DIR/slugs.txt"
           for p in research/index-dataset.json site/data.json research/quark-mirrors.json research/source-versions.json glossary.json; do
@@ -472,6 +477,8 @@ jobs:
       - name: Commit and push
         id: commit
         if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true || (github.event_name == 'schedule' && steps.mirrorTargets.outputs.count != '0'))
+        env:
+          MIRROR_ONLY: ${{ inputs.mirrorOnly }}
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
@@ -484,10 +491,20 @@ jobs:
           node --input-type=module -e '
             import { readFileSync } from "node:fs"
             const { bySlug } = JSON.parse(readFileSync(process.env.FARM_DIR + "/plan.json", "utf8"))
-            const byHost = {}
-            for (const item of Object.values(bySlug)) byHost[item.branch] = (byHost[item.branch] ?? 0) + 1
-            const parts = Object.entries(byHost).sort().map(([h, n]) => `${h}×${n}`).join(", ")
-            console.log(`farm: 合并 ${Object.keys(bySlug).length} 个整合包（${parts}）`)
+            const mirrorOnly = process.env.MIRROR_ONLY === "true"
+            // mirrorOnly 跑的是「补镜像」，**不合并任何产物**（checkout 那步被跳过）。
+            // 但 plan 里依然有全部待合并包，若照样按 plan 计数写 commit message，
+            // 就会出现「farm: 合并 80 个整合包」而 patches/downloads 零变更的假记录 ——
+            // 2026-10-23 连续四轮都这样，让人误判合并正常、实际 backlog 一直没动。
+            if (mirrorOnly) {
+              const n = (process.env.MIRROR_SLUGS || "").split(",").filter(Boolean).length
+              console.log(`farm: 夸克镜像回填 ${n} 个补丁包（未合并产物）`)
+            } else {
+              const byHost = {}
+              for (const item of Object.values(bySlug)) byHost[item.branch] = (byHost[item.branch] ?? 0) + 1
+              const parts = Object.entries(byHost).sort().map(([h, n]) => `${h}×${n}`).join(", ")
+              console.log(`farm: 合并 ${Object.keys(bySlug).length} 个整合包（${parts}）`)
+            }
           ' > "$FARM_DIR/commit-msg.txt"
           git commit -m "$(cat "$FARM_DIR/commit-msg.txt")"
           # 合并期间别的代理/工作流可能也推了 main：rebase 上来再推，别用 force。

@@ -7,6 +7,7 @@ import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { readZip } from './pack-patch.mjs'
 import { packBaseline } from './lib/baseline.mjs'
+import { versionFromSource, buildZipName } from './release.mjs'
 
 // 工单 04：release.mjs 端到端（git 步骤用临时仓库桩环境，不碰真实仓库、不 push）。
 
@@ -144,6 +145,70 @@ test('release：有 <slug>.tar.gz 时推归档，不推解包目录', () => {
     const staged = git(['show', '--name-only', '--format=', 'HEAD'])
     assert.ok(staged.includes('research/packs/demo-pack.tar.gz'), staged)
     assert.ok(!staged.includes('research/packs/demo-pack/chapters/a.snbt'), '不应再推解包目录')
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+// ---------- 文件名版本化：<slug>_v<version>.zip ----------
+//
+// 版本只写进**文件名**，zip 内容一字不改（夸克分享按内容，不受改名影响）。
+
+test('versionFromSource：取文件名里最后一个含点号的版本串', () => {
+  const cases = [
+    // [fileName, 期望] —— 上游命名形态很杂，这 6 条覆盖实际遇到的写法
+    ['DawnCraft - 2.0.16_hf.zip', '2.0.16_hf'],
+    // 尾部 `v62hf` 没有点号，是构建号不是版本 ⇒ 回退到前面那个含点号的 1.20.1
+    ['BMC4 [FORGE] 1.20.1 v62hf.zip', '1.20.1'],
+    ["A Demon Slayer's Journey2.5.2.zip", '2.5.2'],
+    ['a_shattered_prophecy_v2.6.zip', '2.6'],
+    // 无点号版本（V65 只是构建号）⇒ 没有可用版本
+    ['Advent of Ascension Plus V65.zip', null],
+    // 没有 fileName、也没有 fileDate ⇒ null（调用方回退旧名，不猜）
+    [{ slug: 'x', fileName: null, fileDate: null }, null],
+  ]
+  for (const [fileName, want] of cases) {
+    const source = typeof fileName === 'string' ? { fileName } : fileName
+    assert.equal(versionFromSource(source), want, `fileName=${JSON.stringify(fileName)}`)
+  }
+})
+
+test('versionFromSource：没有可用版本时退回 fileDate 的 YYYYMMDD', () => {
+  assert.equal(versionFromSource({ fileName: 'Pack V65.zip', fileDate: '20250814' }), '20250814')
+  assert.equal(versionFromSource({ fileName: null, fileDate: '2025-08-14T00:00:00Z' }), '20250814')
+  assert.equal(versionFromSource(null), null)
+  assert.equal(versionFromSource({}), null)
+})
+
+test('buildZipName：有版本用 <slug>_v<version>.zip，无版本回退旧名 <slug>.zip', () => {
+  assert.equal(buildZipName('dawncraft', { fileName: 'DawnCraft - 2.0.16_hf.zip' }), 'dawncraft_v2.0.16_hf.zip')
+  assert.equal(buildZipName('demo-pack', { fileName: 'Advent of Ascension Plus V65.zip' }), 'demo-pack.zip')
+  assert.equal(buildZipName('demo-pack', null), 'demo-pack.zip')
+})
+
+test('release：按 .source.json 产出带版本的文件名', () => {
+  const { dir } = setup()
+  try {
+    writeFileSync(join(dir, 'patches', 'demo-pack', '.source.json'), JSON.stringify({
+      slug: 'demo-pack', platform: 'curseforge', fileId: 1,
+      fileName: 'Demo Pack - 2.0.16.zip', fileDate: null, fetchedAt: null,
+    }))
+    runRelease(dir, ['--package-only'])
+    assert.ok(existsSync(join(dir, 'downloads', 'demo-pack_v2.0.16.zip')), '应产出 downloads/demo-pack_v2.0.16.zip')
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+// 幂等：同一个包改名后再发布，旧名必须消失，否则 downloads/ 里会有两份，
+// build-index 会把两份都当 delivered、站点也会多出一个下载入口。
+test('release：新名写好后删除旧名 <slug>.zip', () => {
+  const { dir } = setup()
+  try {
+    mkdirSync(join(dir, 'downloads'), { recursive: true })
+    writeFileSync(join(dir, 'downloads', 'demo-pack.zip'), 'stale-bytes')
+    writeFileSync(join(dir, 'patches', 'demo-pack', '.source.json'), JSON.stringify({
+      slug: 'demo-pack', fileName: 'Demo Pack - 2.0.16.zip',
+    }))
+    runRelease(dir, ['--package-only'])
+    assert.ok(existsSync(join(dir, 'downloads', 'demo-pack_v2.0.16.zip')), '新名应产出')
+    assert.ok(!existsSync(join(dir, 'downloads', 'demo-pack.zip')), '旧名应被删除')
   } finally { rmSync(dir, { recursive: true, force: true }) }
 })
 

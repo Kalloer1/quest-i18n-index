@@ -1,7 +1,7 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
-import { buildDataset, matchPack } from '../scripts/build-index.mjs'
+import { buildDataset, matchPack, slugFromZipName, collectDelivered } from '../scripts/build-index.mjs'
 
 const input = JSON.parse(readFileSync(new URL('../research/build-input.json', import.meta.url), 'utf8'))
 const bySlug = new Map(input.packs.map(p => [p.slug, p]))
@@ -94,4 +94,46 @@ test('元数据记录新旧覆盖数差异', () => {
   // 而它们的状态不是 gap-covered。
   assert.equal(ds.coverageChange.current, ds.stat.vmMatched)
   assert.ok(ds.coverageChange.reason.length > 0)
+})
+
+// ---------- delivered 判定：文件名可能是 <slug>.zip 或 <slug>_v<version>.zip ----------
+//
+// 改名后如果还按 `n.slice(0,-4)` 当 slug，660 个包会全掉出 downloadable（站点下载区整体消失）。
+
+/** 造一条最小 pack（separate-dir 布局、有英文源）。 */
+const pack = (slug) => ({ slug, cfId: 1, layout: 'separate-dir', enFiles: 1, zhFiles: 0 })
+const stateOf = (slug, deliveredSlugs, zipNames = {}) => buildDataset({
+  packs: [pack(slug)], vmEntries: [], deliveredSlugs, zipNames,
+}, { now: 'T' }).dataset[0]
+
+test('delivered：<slug>_v<version>.zip 也识别成该 slug，并带出 zipName', () => {
+  const { deliveredSlugs, zipNames } = collectDelivered(['demo-pack_v2.0.16.zip'])
+  assert.deepEqual(deliveredSlugs, ['demo-pack'])
+  assert.equal(zipNames['demo-pack'], 'demo-pack_v2.0.16.zip')
+
+  const rec = stateOf('demo-pack', deliveredSlugs, zipNames)
+  assert.equal(rec.delivered, true)
+  assert.equal(rec.state, 'downloadable')
+  assert.equal(rec.zipName, 'demo-pack_v2.0.16.zip', '站点/镜像要读这个真源，不能自己拼')
+})
+
+test('delivered：旧名 <slug>.zip 仍然有效（向后兼容，改名迁移期两种并存）', () => {
+  const { deliveredSlugs, zipNames } = collectDelivered(['demo-pack.zip'])
+  assert.deepEqual(deliveredSlugs, ['demo-pack'])
+  assert.equal(zipNames['demo-pack'], 'demo-pack.zip')
+  assert.equal(stateOf('demo-pack', deliveredSlugs, zipNames).state, 'downloadable')
+})
+
+test('slug 本身含 _v 时不误剥：已知 slug 全等优先', () => {
+  const known = new Set(['a_v_something', 'a_v2_pack'])
+  // 没有版本尾巴，一个字都不该剥
+  assert.equal(slugFromZipName('a_v_something', known), 'a_v_something')
+  // 天然含 `_v2`：如果先按 `_v` 切前缀会被切成 `a`，直接掉出 downloadable
+  assert.equal(slugFromZipName('a_v2_pack', known), 'a_v2_pack')
+  // 真的带版本时，只剥最后那一层
+  assert.equal(slugFromZipName('a_v_something_v2.0.16', known), 'a_v_something')
+  // 未知 slug 且无 `_v<数字>` 尾巴：原样返回
+  assert.equal(slugFromZipName('a_v_something'), 'a_v_something')
+  // 贪婪 `(.*)` 保证匹配到最后一个 `_v<数字>`（多层也不切错）
+  assert.equal(slugFromZipName('x_v1_a_v2.0.16', new Set()), 'x_v1_a')
 })

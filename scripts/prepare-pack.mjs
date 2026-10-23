@@ -426,6 +426,12 @@ export async function preparePack({
     if (verdict.unknown || verdict.fresh) {
       const why = verdict.unknown ? '（权威清单取不到，用本地副本）' : ''
       log(`[${slug}] 已有 ${existing.length} 个任务书文件，跳过下载${why}（--force 可强制重取）`)
+      // 跳过也必须记版本：farm 模式「打包后删目录」，但失败重试 / 中断残包重跑时目录还在，
+      // 走的就是这条分支 —— 不写的话这些包永远产不出 `.source.json`（实测 8 台 worker 一次都没写出来）。
+      // 数据用**当次** `file`（`resolveLatestFile` / `resolveLatestMrpack` 的结果，上面已取到，
+      // 跳过分支不额外发请求），绝不从本地副本推断：目录里的 .snbt 没有版本信息，
+      // 推出来的「基于哪个版本」只可能错。
+      writeSourceInfo(outDir, buildSourceInfo({ slug, platform, file }))
       return { slug, status: 'skipped', written: existing.length, layout: classifyLayout(existing).layout }
     }
     // 不一致 = 目录里有上一次不同来源的残留，或本地缺权威源里的文件。继续往下取源，
@@ -447,6 +453,9 @@ export async function preparePack({
         // 权威源里确实没有任务书文件：**不清目录**。`pruneStaleFiles` 会把「本次一个文件
         // 都没产出」理解成「目录里全是残留」，那会毁掉已发布包的基准键集。
         log(`[${slug}] 权威源里没有任务书文件，保留 research/packs/${slug}/ 现有英文源不动`)
+        // 版本记录仍要写：下游要知道这份（哪怕是继承下来的）源对应哪个上游文件。
+        // `.source.json` 不是 .snbt，不影响 classifyLayout / loadPack 对目录实况的判断。
+        writeSourceInfo(outDir, buildSourceInfo({ slug, platform, file }))
         return { slug, status: 'prepared', written: 0, layout: classifyLayout(written).layout }
       }
       const pruned = pruneStaleFiles(outDir, written)
@@ -487,6 +496,9 @@ export async function preparePack({
   if (written.length === 0) {
     // 权威源里确实没有任务书文件：目录原样不动（里面的英文源是基准键集），明确告知。
     log(`[${slug}] 权威源里没有任务书文件，保留 research/packs/${slug}/ 现有英文源不动`)
+    // 同上：版本记录与「目录里有什么」是两件事，提前 return 也要落盘，
+    // 否则这类包永远没有 `.source.json`（下游仍可据此知道它对应哪个上游文件）。
+    writeSourceInfo(outDir, buildSourceInfo({ slug, platform, file }))
     return { slug, status: 'prepared', written: 0, layout: info.layout }
   }
   const pruned = pruneStaleFiles(outDir, written)

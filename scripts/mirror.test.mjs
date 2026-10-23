@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { mkdtempSync, writeFileSync, rmSync, existsSync, readFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { runMirror, readMirrors, writeMirrors, makeUploader } from './mirror.mjs'
+import { runMirror, readMirrors, writeMirrors, makeUploader, resolveZipPath } from './mirror.mjs'
 import { STATUS } from '../shared/quest-status.mjs'
 import { defaultReportStatus } from './lib/report-status.mjs'
 
@@ -273,4 +273,56 @@ test('makeUploader：share 未返回 share_url 时报错（绝不伪造链接）
   }
   const upload = makeUploader('/cli.cjs', 'd', '/cwd', { call })
   await assert.rejects(() => upload('demo', '/downloads/demo.zip'), /share 未返回 share_url/)
+})
+
+// ---------- zip 定位：文件名可能是 <slug>.zip 或 <slug>_v<version>.zip ----------
+
+test('resolveZipPath：旧名 <slug>.zip 精确命中', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'mirror-'))
+  try {
+    writeFileSync(join(dir, 'demo.zip'), 'x')
+    assert.equal(resolveZipPath('demo', dir), join(dir, 'demo.zip'))
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('resolveZipPath：只有新名 <slug>_v<version>.zip 时也能找到', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'mirror-'))
+  try {
+    writeFileSync(join(dir, 'demo_v2.0.16.zip'), 'x')
+    assert.equal(resolveZipPath('demo', dir), join(dir, 'demo_v2.0.16.zip'))
+    // 前缀相近的别的包不能被误认（demo2 不等于 demo）
+    writeFileSync(join(dir, 'demo2_v1.0.zip'), 'x')
+    assert.equal(resolveZipPath('demo', dir), join(dir, 'demo_v2.0.16.zip'))
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('resolveZipPath：两份都在（迁移中间态）时优先精确旧名', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'mirror-'))
+  try {
+    writeFileSync(join(dir, 'demo.zip'), 'x')
+    writeFileSync(join(dir, 'demo_v2.0.16.zip'), 'x')
+    assert.equal(resolveZipPath('demo', dir), join(dir, 'demo.zip'))
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('resolveZipPath：都找不到时返回期望旧名路径（让 runMirror 留空，不伪造链接）', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'mirror-'))
+  try {
+    assert.equal(resolveZipPath('ghost', dir), join(dir, 'ghost.zip'))
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('镜像：版本化文件名照样能上传（zipPath 由 resolveZipPath 给出）', async () => {
+  const dir = mkdtempSync(join(tmpdir(), 'mirror-'))
+  try {
+    writeFileSync(join(dir, 'demo_v2.0.16.zip'), 'zip-bytes')
+    let uploaded = null
+    const { results, succeeded } = await runMirror({
+      targets: [{ slug: 'demo', zipPath: resolveZipPath('demo', dir) }],
+      upload: async (slug, zipPath) => { uploaded = zipPath; return `https://pan.quark.cn/s/${slug}` },
+    })
+    assert.equal(succeeded, 1)
+    assert.equal(uploaded, join(dir, 'demo_v2.0.16.zip'))
+    assert.equal(results.demo, 'https://pan.quark.cn/s/demo')
+  } finally { rmSync(dir, { recursive: true, force: true }) }
 })

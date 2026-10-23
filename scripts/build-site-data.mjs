@@ -109,11 +109,14 @@ export function buildSiteData({ index, vmStatus, packMeta, quarkMirrors }, { now
       zhFiles: row.zhFiles,
 
       // 详情页下载入口（工单 04）：仅本站已产出的包（downloadable）有下载区块。
-      // zip 走 GitHub raw（zips 随仓库分发，downloads/<slug>.zip）；
+      // zip 走 GitHub raw（zips 随仓库分发），文件名取索引里的 `zipName`
+      // （`<slug>.zip` 或 `<slug>_v<version>.zip`，由 build-index 从 downloads/ 实测得出）。
+      // 这里**不再自己拼** `<slug>.zip`：文件名的真源只有 build-index 一处，
+      // 否则改名后站点链接会全部 404。旧索引没有该字段时回退旧名。
       // quark 为空时详情页不渲染夸克按钮。
       download: row.state === 'downloadable'
         ? {
-            zip: githubRepo ? `https://github.com/${githubRepo}/raw/main/downloads/${row.slug}.zip` : null,
+            zip: githubRepo ? `https://github.com/${githubRepo}/raw/main/downloads/${row.zipName || `${row.slug}.zip`}` : null,
             github: githubRepo ? `https://github.com/${githubRepo}` : null,
             quark: quarkBySlug.get(row.slug) || '',
           }
