@@ -1,0 +1,1811 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "beginning"
+	group: ""
+	icon: "immersive_weathering:rooted_grass_block"
+	id: "68B24254C67B5AAC"
+	images: [{
+		height: 3.0d
+		image: "fertility:textures/gui/fertility_minecraft_title.png"
+		order: 3
+		rotation: 0.0d
+		width: 11.0d
+		x: 13.0d
+		y: -10.5d
+	}]
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"每一次冒险都始于指向正确方向的指示牌。跟随指示牌去寻找村庄吧！"
+				""
+				"当然，你也可以创建自己的村庄——甚至不必是村庄！建造一座巨大的城堡、酒店或市场大厅。这是你的游戏，不是吗？"
+			]
+			id: "288BAE0121F2B30E"
+			rewards: [{
+				id: "3E3DDC1429A12012"
+				item: "minecraft:baked_potato"
+				type: "item"
+			}]
+			shape: "diamond"
+			size: 2.0d
+			subtitle: "第一步可别迷路了！"
+			tasks: [{
+				icon: "supplementaries:sign_post_oak"
+				id: "3912815776349D68"
+				observe_type: 0
+				timer: 0L
+				title: "找到一个告示牌"
+				to_observe: "supplementaries:sign_post"
+				type: "observation"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["288BAE0121F2B30E"]
+			description: ["使用你的 &d&oMama's Knife&r&r 来通过 &2割草&r 获取你的 &9第一批种子和干草&r。"]
+			id: "3D818AECCFB9A37C"
+			rewards: [
+				{
+					count: 5
+					id: "0AE32713F03CE1C6"
+					item: "numismatic-overhaul:bronze_coin"
+					type: "item"
+				}
+				{
+					count: 3
+					id: "47F82FEFCA9AC7CE"
+					item: "immersive_weathering:earthen_clay"
+					type: "item"
+				}
+			]
+			subtitle: "每个农民都得从最底层做起！"
+			tasks: [
+				{
+					consume_items: false
+					count: 18L
+					id: "0D39335A566F81D3"
+					item: "minecraft:wheat_seeds"
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "7BAC1E2A604ACB37"
+					item: { Count: 8, id: "farmersdelight:straw" }
+					type: "item"
+				}
+			]
+			title: "获取种子和干草！"
+			x: 0.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["49078CF58DAAFFF2"]
+			description: [
+				"你知道吗？你可以吹口哨叫宠物过来。按\".\"（点号）键，它们就会跑过来。"
+				""
+				"此外，宠物在拴着你的情况下会随你一起传送。"
+			]
+			id: "238C27088F91CD4B"
+			subtitle: "最好的朋友总是陪伴在身边！"
+			tasks: [
+				{
+					icon: "minecraft:cod"
+					id: "216F26DC49C7AB8C"
+					observe_type: 6
+					timer: 0L
+					to_observe: "minecraft:cat"
+					type: "observation"
+				}
+				{
+					icon: "minecraft:bone"
+					id: "320B9E2D3BFB7283"
+					observe_type: 5
+					timer: 0L
+					to_observe: "minecraft:wolf"
+					type: "observation"
+				}
+			]
+			title: "吹口哨呼唤你的宠物！"
+			x: -2.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["288BAE0121F2B30E"]
+			description: [
+				"Fertility 附带一本 &oField Guide&r，能在游戏过程中帮助你了解许多主题。"
+				""
+				"建议你先看看里面 - &4但这不是强制的。&r"
+			]
+			icon: "minecraft:book"
+			id: "68648CCC474A79A0"
+			rewards: [{
+				count: 5
+				id: "48248A63353E4E1E"
+				item: "numismatic-overhaul:bronze_coin"
+				type: "item"
+			}]
+			subtitle: "里面有知识存在。"
+			tasks: [{
+				id: "1ED8EE9CFC0A6AB7"
+				title: "阅读这本书"
+				type: "checkmark"
+			}]
+			title: "阅读野外手册"
+			x: 0.0d
+			y: 3.0d
+		}
+		{
+			can_repeat: true
+			dependencies: ["68648CCC474A79A0"]
+			id: "7B94B3BFBA40F7A8"
+			optional: true
+			rewards: [{
+				command: "/give @s lavender:dynamic_book{\"BookId\":\"fertility:fertility_almanach\"}"
+				elevate_perms: true
+				exclude_from_claim_all: true
+				icon: "minecraft:book"
+				id: "521ACF883865C1DD"
+				silent: true
+				title: "给予野外指南 Field Guide"
+				type: "command"
+			}]
+			tasks: [{
+				id: "69EB4B69F8CBC711"
+				item: {
+					Count: 1
+					id: "minecraft:enchanted_book"
+					tag: {
+						StoredEnchantments: [{
+							id: "minecraft:protection"
+							lvl: 1s
+						}]
+					}
+				}
+				type: "item"
+			}]
+			title: "把野外指南交给我！"
+			x: 1.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["3D818AECCFB9A37C"]
+			description: ["作物在这里生长需要&2很长时间&r。根据&e当前季节&r和种植它们的&6土壤&r，你可以&2加快一点进程&r。"]
+			id: "49078CF58DAAFFF2"
+			rewards: [{
+				count: 2
+				id: "0CB1C1E421E17FA0"
+				item: "spelunkery:stone_pebble"
+				type: "item"
+			}]
+			subtitle: "你喜欢挖矿吗？"
+			tasks: [{
+				count: 3L
+				id: "0D6CEDF258D00D10"
+				item: { Count: 3, id: "minecraft:wheat" }
+				type: "item"
+			}]
+			title: "种出你的第一株小麦！"
+			x: 0.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["49078CF58DAAFFF2"]
+			description: [
+				"不同类型的泥土不仅能加快某些作物的生长速度，还能提供其他好处！"
+				""
+				"试试把水倒在黏土土上！这或许能帮你建一个规模不错的甘蔗农场。"
+				""
+				"你可以在&o野外指南&r中找到更多关于泥土的信息——或者亲自尝试！"
+			]
+			id: "49A3B68D03556127"
+			rewards: [{
+				id: "476A44EB139283DD"
+				item: "numismatic-overhaul:silver_coin"
+				type: "item"
+			}]
+			subtitle: "泥土 - 它是一个光谱。"
+			tasks: [
+				{
+					id: "3997B4A50F739CA3"
+					item: "immersive_weathering:earthen_clay"
+					type: "item"
+				}
+				{
+					id: "7B3B85C4AEB2F101"
+					item: "immersive_weathering:loam"
+					type: "item"
+				}
+				{
+					id: "5AB94136CA91F4E3"
+					item: "immersive_weathering:sandy_dirt"
+					type: "item"
+				}
+				{
+					id: "60722B2F83F006B6"
+					item: "immersive_weathering:silt"
+					type: "item"
+				}
+				{
+					id: "0B5CC8C3D1A1E292"
+					item: "farmersdelight:rich_soil"
+					type: "item"
+				}
+			]
+			title: "每种土壤都试试吧！"
+			x: 2.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["49078CF58DAAFFF2"]
+			description: ["你知道吗，用两块大小合适的石头就能把几乎所有东西都碾成粉末？"]
+			id: "73AA8701EDE192F9"
+			rewards: [{
+				count: 10
+				id: "3101709C73A671C9"
+				item: "numismatic-overhaul:bronze_coin"
+				type: "item"
+			}]
+			subtitle: "像洞穴居民那样做吧。"
+			tasks: [{
+				id: "3A18F4AB4AA4F48F"
+				item: "create:wheat_flour"
+				type: "item"
+			}]
+			title: "手动研磨一些面粉。"
+			x: 0.0d
+			y: -6.0d
+		}
+		{
+			dependencies: ["73AA8701EDE192F9"]
+			description: ["除了用石头，你还可以用磨石把小麦磨成面粉。"]
+			id: "327E5C1BE07DED8C"
+			rewards: [{
+				count: 10
+				id: "0837BF515EDA6F63"
+				item: "numismatic-overhaul:bronze_coin"
+				type: "item"
+			}]
+			subtitle: "大项目意味着大工具。"
+			tasks: [
+				{
+					id: "37ED9DE69D87F92F"
+					item: "minecraft:grindstone"
+					type: "item"
+				}
+				{
+					icon: "minecraft:wheat"
+					id: "056FC5EC99109806"
+					stat: "minecraft:interact_with_grindstone"
+					title: "在磨石上使用小麦"
+					type: "stat"
+					value: 1
+				}
+			]
+			title: "厨房：磨石（Grindstone）"
+			x: -2.0d
+			y: -6.0d
+		}
+		{
+			dependencies: ["73AA8701EDE192F9"]
+			description: ["有时候，你只需要一个研钵就能把东西磨碎。"]
+			id: "325B68D7C430EA62"
+			rewards: [{
+				id: "1221E5AF0B19F30A"
+				item: "minecraft:wheat"
+				type: "item"
+			}]
+			subtitle: "把东西碾碎能带来一种平静感。"
+			tasks: [{
+				id: "021DB68294A499DF"
+				item: "expandeddelight:mortar_and_pestle_item"
+				type: "item"
+			}]
+			x: -2.0d
+			y: -7.5d
+		}
+		{
+			dependencies: ["288BAE0121F2B30E"]
+			dependency_requirement: "one_started"
+			id: "37B3978AC380947E"
+			rewards: [{
+				id: "526A1167C4B40ABE"
+				item: "minecraft:villager_spawn_egg"
+				type: "item"
+			}]
+			shape: "hexagon"
+			size: 1.5d
+			tasks: [{
+				icon: "betterarcheology:villager_fossil_head"
+				id: "2CE144A2AF3E184A"
+				observe_type: 5
+				timer: 0L
+				title: "找到一个村民"
+				to_observe: "minecraft:villager"
+				type: "observation"
+			}]
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["37B3978AC380947E"]
+			description: ["满足村民的需求，见证村庄繁荣！他们会用新技术来回报你！"]
+			id: "37D939E67671A965"
+			rewards: [{
+				count: 50
+				id: "34FBFE33754FEBB6"
+				item: "numismatic-overhaul:bronze_coin"
+				type: "item"
+			}]
+			shape: "rsquare"
+			size: 1.5d
+			tasks: [{
+				icon: "createfood:grilled_cheese_sandwich"
+				id: "481952ECF5FD43D3"
+				title: "将村民升级到一定等级"
+				type: "custom"
+			}]
+			x: 9.5d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"37D939E67671A965"
+				"1378540D52DF9D7F"
+			]
+			description: ["所有村民职业都已开放，万事俱备！尽情交易，致富并收集村民提供的所有科技吧！"]
+			id: "17014BB6E2A8FE21"
+			rewards: [{
+				id: "7D12C7390E0D5E5F"
+				item: "tide:weather_radio"
+				type: "item"
+			}]
+			shape: "heart"
+			size: 1.5d
+			subtitle: "准备就绪，可以出发了！"
+			tasks: [{
+				advancement: "fertility:villager_02"
+				criterion: ""
+				icon: "naturalist:teddy_bear"
+				id: "566DFE6F2EE142EA"
+				title: "和所有职业进行交易！"
+				type: "advancement"
+			}]
+			x: 15.0d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"37D939E67671A965"
+				"17014BB6E2A8FE21"
+			]
+			dependency_requirement: "all_started"
+			description: ["将村民全部升级到大师级，可以获得强力物品并卖出高价食物。这很不错。"]
+			id: "154833AB51535181"
+			rewards: [{
+				id: "03832FC1D73A6888"
+				item: "brewinandchewin:kombucha"
+				type: "item"
+			}]
+			shape: "octagon"
+			size: 1.5d
+			subtitle: "同一个团队！"
+			tasks: [{
+				advancement: "fertility:villager_04"
+				criterion: ""
+				id: "2340263C7887A1B0"
+				title: "让9名村民达到专家等级"
+				type: "advancement"
+			}]
+			title: "让9名村民达到大师等级"
+			x: 20.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["154833AB51535181"]
+			description: ["和龙战斗既不舒服也不愉快。但是：你想做出史上最美味的菜肴。而那需要用龙肉来做。你其实没有选择的余地。"]
+			id: "0726EE2C23E6F6C8"
+			rewards: [{
+				id: "6F31B8E9D3E01DE2"
+				item: {
+					Count: 1
+					id: "simplyswords:sword_on_a_stick"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			shape: "pentagon"
+			size: 1.5d
+			subtitle: "是时候去见那条龙了。"
+			tasks: [{
+				count: 12L
+				id: "051C42911596A1E1"
+				item: { Count: 12, id: "minecraft:ender_eye" }
+				type: "item"
+			}]
+			x: 23.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0726EE2C23E6F6C8"]
+			description: ["击败巨龙，享用最美味的盛宴之后，便再无可追求。你已履行了自己的宿命。或许该放松一下，探索世界，找个爱好，好好吃饭。你做得很好。"]
+			id: "692DFAA1170BF790"
+			rewards: [{
+				count: 16
+				id: "66B4854A03B7B123"
+				item: {
+					Count: 1
+					id: "supplementaries:bunting"
+					tag: {
+						Color: "white"
+					}
+				}
+				type: "item"
+			}]
+			shape: "diamond"
+			size: 2.0d
+			subtitle: "这就是终点。"
+			tasks: [{
+				id: "3B2FB29327B80D60"
+				item: "ends_delight:dragon_leg_with_sauce_block"
+				type: "item"
+			}]
+			x: 27.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5BF7B56B2CA85891"]
+			id: "5454A83ABAC28FCD"
+			rewards: [{
+				id: "413AE3CCCF3582E2"
+				item: "clutter:crown"
+				type: "item"
+			}]
+			subtitle: "粉碎资本主义。通过成为资本主义。"
+			tasks: [{
+				count: 1000L
+				id: "6D839C563B209FC6"
+				item: {
+					Count: 1000
+					countInteger: 1000
+					id: "numismatic-overhaul:gold_coin"
+				}
+				type: "item"
+			}]
+			title: "变得富可敌国"
+			x: 15.0d
+			y: -8.0d
+		}
+		{
+			dependencies: ["2EC50DF19EB458E2"]
+			id: "64D0F53CC01CB5BB"
+			rewards: [{
+				count: 5
+				id: "3CAD0675178DACF0"
+				item: "numismatic-overhaul:silver_coin"
+				type: "item"
+			}]
+			subtitle: "我就是金色的田野。"
+			tasks: [{
+				count: 3072L
+				id: "6F1C60822AD4AAE2"
+				item: {
+					Count: 3072
+					countInteger: 3072
+					id: "minecraft:hay_block"
+				}
+				type: "item"
+			}]
+			title: "背包中有 3072 个干草块"
+			x: 7.0d
+			y: -7.0d
+		}
+		{
+			dependencies: [
+				"109DBF8252AF0393"
+				"3E25EDF22BC1D9F9"
+				"7448369AEB74847F"
+			]
+			description: ["通过大量交易来获得一枚金币。"]
+			id: "5BF7B56B2CA85891"
+			rewards: [{
+				id: "44F77CFA190090A6"
+				item: "supplementaries:safe"
+				type: "item"
+			}]
+			subtitle: "最初的百万是最困难的。"
+			tasks: [{
+				id: "2DB30181202DE117"
+				item: "numismatic-overhaul:gold_coin"
+				type: "item"
+			}]
+			title: "获取黄金！"
+			x: 15.0d
+			y: -6.5d
+		}
+		{
+			dependencies: ["49A3B68D03556127"]
+			description: [
+				"你已经知道某些季节作物生长得更快。有了温室，你就可以局部改变季节，即使在寒冷的时期也能帮助作物生长。"
+				""
+				"用绿色玻璃块建造一个屋顶即可。使用测试仪查看新屋顶下方方块的季节。"
+				""
+				"在冬季想要种植作物时尤其有用。因为这个季节室外几乎没什么能生长的。"
+			]
+			id: "0B66795AB5704EFB"
+			rewards: [{
+				id: "5109CA72A25F4F4F"
+				item: "numismatic-overhaul:silver_coin"
+				type: "item"
+			}]
+			subtitle: "宝贝，外面好冷啊。"
+			tasks: [{
+				count: 9L
+				id: "47181DA120F3D0BC"
+				item: { Count: 9, id: "seasonsextras:white_greenhouse_glass" }
+				type: "item"
+			}]
+			title: "建造一座温室"
+			x: 4.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["0B66795AB5704EFB"]
+			description: ["村民们会喜欢你用下界材料烹饪的食物，还会给出不错的价钱！"]
+			id: "339C07DB96E0F2E6"
+			rewards: [{
+				count: 2
+				id: "2164BD63A7C7F592"
+				item: "numismatic-overhaul:silver_coin"
+				type: "item"
+			}]
+			subtitle: "味道就像地狱一样！"
+			tasks: [
+				{
+					id: "2FE31BE2B848E0D7"
+					item: "minecraft:nether_wart"
+					type: "item"
+				}
+				{
+					id: "42E0A66BEB63C487"
+					item: "minecraft:crimson_fungus"
+					type: "item"
+				}
+			]
+			title: "来自下界的宝藏！"
+			x: 5.0d
+			y: -5.0d
+		}
+		{
+			dependencies: ["339C07DB96E0F2E6"]
+			description: [
+				"有许多作物可以种植——但首先需要获取它们。幸运的是，有几种方法可以获得它们："
+				""
+				"- 探索：去海滩、沙漠、丛林、寒冷森林和平原看看吧！"
+				""
+				"- 找到带有种子市场的悬赏板，完成订单以获取新种子。"
+				""
+				"- 用水槽清洗泥土。"
+				""
+				"- 找到一个流浪商人并与之讨价还价！"
+			]
+			id: "2EC50DF19EB458E2"
+			rewards: [
+				{
+					id: "1C79ECDF426702C5"
+					item: "advancementframes:advancement_frame"
+					type: "item"
+				}
+				{
+					id: "2E584C835677FC2C"
+					item: {
+						Count: 1
+						id: "minecraft:diamond_hoe"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			subtitle: "还有什么别的吗？"
+			tasks: [
+				{
+					id: "730E3A9F56D2F274"
+					item: "ubesdelight:ube"
+					type: "item"
+				}
+				{
+					id: "7D7F90C7A6111E7D"
+					item: "minecraft:potato"
+					type: "item"
+				}
+				{
+					id: "07CCFEC2AC0A0971"
+					item: "expandeddelight:sweet_potato"
+					type: "item"
+				}
+				{
+					id: "55E48927E322930F"
+					item: "minecraft:carrot"
+					type: "item"
+				}
+				{
+					id: "130F6C6324A6BC03"
+					item: "farmersdelight:onion"
+					type: "item"
+				}
+				{
+					id: "4C4B597C5430563D"
+					item: "farmersdelight:tomato"
+					type: "item"
+				}
+				{
+					id: "4B3E859466120146"
+					item: "farmersdelight:cabbage"
+					type: "item"
+				}
+				{
+					id: "07BCFA40615A37F0"
+					item: "farmersrespite:green_tea_leaves"
+					type: "item"
+				}
+				{
+					id: "653C6556F7189783"
+					item: "expandeddelight:chili_pepper"
+					type: "item"
+				}
+				{
+					id: "5743AFF45158D72E"
+					item: "ubesdelight:garlic"
+					type: "item"
+				}
+				{
+					id: "006C558BE808CE3A"
+					item: "ubesdelight:ginger"
+					type: "item"
+				}
+				{
+					id: "68C33E8FA651873B"
+					item: "minecraft:pumpkin"
+					type: "item"
+				}
+				{
+					id: "6EC077FAFAADED7D"
+					item: "minecraft:melon"
+					type: "item"
+				}
+				{
+					id: "67347CFFE89B52E7"
+					item: "minecraft:beetroot"
+					type: "item"
+				}
+				{
+					id: "4C4CDD31A3B4AADA"
+					item: "expandeddelight:asparagus"
+					type: "item"
+				}
+				{
+					id: "6BE9308F8FAB58C0"
+					item: "expandeddelight:peanut"
+					type: "item"
+				}
+				{
+					id: "70E60DE41B433F19"
+					item: "ubesdelight:lemongrass"
+					type: "item"
+				}
+				{
+					id: "36F107525B87A98C"
+					item: "farmersdelight:rice"
+					type: "item"
+				}
+				{
+					id: "1AB8D833FEAAA0EA"
+					item: "minecraft:sweet_berries"
+					type: "item"
+				}
+				{
+					id: "5E353B0276F4B6B8"
+					item: "festive_delight:cinnamon_sticks"
+					type: "item"
+				}
+			]
+			title: "把外面的所有作物都收集起来吧！"
+			x: 6.0d
+			y: -6.0d
+		}
+		{
+			dependencies: ["73AA8701EDE192F9"]
+			description: ["面包是制作更高级食物的绝佳基础。你应该烤一些。"]
+			icon: "minecraft:bread"
+			id: "786A3CED2B153367"
+			rewards: [{
+				count: 15
+				id: "44F84AFD8B185E3A"
+				item: "numismatic-overhaul:bronze_coin"
+				type: "item"
+			}]
+			subtitle: "尽情享受辛勤劳动带来的芬芳吧！"
+			tasks: [
+				{
+					id: "483099272C879D54"
+					item: "minecraft:bread"
+					type: "item"
+				}
+				{
+					id: "7935D64A4A92EB4C"
+					item: "minecraft:furnace"
+					type: "item"
+				}
+			]
+			title: "烤一个面包"
+			x: 2.0d
+			y: -6.0d
+		}
+		{
+			dependencies: ["786A3CED2B153367"]
+			description: ["用熔炉烹饪也不错。但用烟熏炉会更快。更快的方法是用风箱给它鼓风。而且，它看起来很酷，还会发出舒缓的声音。"]
+			icon: "supplementaries:bellows"
+			id: "40C65DB007142B82"
+			rewards: [{
+				count: 20
+				id: "5FD570FB6F3FDC90"
+				item: "numismatic-overhaul:bronze_coin"
+				type: "item"
+			}]
+			subtitle: "提高速度？"
+			tasks: [
+				{
+					id: "5EEB75DA625F8AD7"
+					item: "supplementaries:bellows"
+					type: "item"
+				}
+				{
+					id: "469ACDEF3A763E0E"
+					item: "minecraft:smoker"
+					type: "item"
+				}
+			]
+			x: 2.0d
+			y: -7.5d
+		}
+		{
+			dependencies: ["786A3CED2B153367"]
+			description: ["制作和售卖三明治可以成为赚取&6金钱&r的绝佳途径。同时也能补充你自己的&2营养&r。"]
+			id: "23AF9194E6C8F542"
+			rewards: [{
+				count: 25
+				id: "19795C2233E7C920"
+				item: "numismatic-overhaul:bronze_coin"
+				type: "item"
+			}]
+			subtitle: "每个人都有自己最喜欢的三明治。"
+			tasks: [{
+				id: "044B3F35C0921F63"
+				item: "createfood:vegetable_sandwich_beetroot_lettuce"
+				type: "item"
+			}]
+			x: 4.0d
+			y: -6.0d
+		}
+		{
+			dependencies: ["7F6793E93A091586"]
+			description: ["炼药锅用途广泛——既能安全储存液体，也能用于运输。试试把炼药锅放进背包栏里。现在你可以把桶里的液体倒进去，无需多个桶就能运输大量液体。"]
+			id: "3D59B73C40168EBB"
+			rewards: [{
+				id: "46A72916A16AC490"
+				item: "minecraft:bucket"
+				type: "item"
+			}]
+			subtitle: "多功能！"
+			tasks: [{
+				id: "328AC799DF6B5065"
+				item: "minecraft:cauldron"
+				type: "item"
+			}]
+			x: 8.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["37D939E67671A965"]
+			id: "7F6793E93A091586"
+			tasks: [{
+				id: "0AFC28110BB293A3"
+				item: "beansbackpacks:backpack"
+				type: "item"
+			}]
+			title: "购买一个背包"
+			x: 7.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["37D939E67671A965"]
+			id: "3E25EDF22BC1D9F9"
+			tasks: [{
+				id: "7AAF6D526ADCB1CD"
+				item: {
+					Count: 1
+					id: "sellingbin:selling_bin"
+					tag: {
+						material: "wood"
+						mode: "player_bound"
+					}
+				}
+				type: "item"
+			}]
+			x: 11.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["37D939E67671A965"]
+			id: "2A9FF70B3C0912A7"
+			tasks: [{
+				id: "02BDE528FBAC94E0"
+				item: "farmersdelight:cooking_pot"
+				type: "item"
+			}]
+			x: 9.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["37D939E67671A965"]
+			id: "4D0C1D80B01C710E"
+			tasks: [{
+				id: "6E99820320ADCB94"
+				item: "spelunkery:wooden_sluice"
+				type: "item"
+			}]
+			x: 8.5d
+			y: -2.5d
+		}
+		{
+			dependencies: [
+				"6025BF86281E450F"
+				"37D939E67671A965"
+			]
+			description: ["你可以建造几种不同的矿车来让生活更轻松。无论是运输物品、实体，还是仅仅用来犁地或修建大路。矿车能帮上大忙！"]
+			id: "0CC76B41FF46D4BA"
+			rewards: [{
+				count: 50
+				id: "76EA12F6290E522B"
+				item: "numismatic-overhaul:bronze_coin"
+				type: "item"
+			}]
+			subtitle: "傻瓜式交通工具指南！"
+			tasks: [{
+				count: 2L
+				id: "5A8029BC0C0FA3F2"
+				item: { Count: 2, id: "niftycarts:wheel" }
+				type: "item"
+			}]
+			title: "建造一辆矿车吗？"
+			x: 6.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["37B3978AC380947E"]
+			description: ["你在各种方块上行走速度更快。例如路径。"]
+			id: "45B4D02F986FE8D7"
+			rewards: [
+				{
+					count: 2
+					id: "4D8BCCA24F349591"
+					item: "minecraft:spruce_sign"
+					type: "item"
+				}
+				{
+					id: "0B05825036A9B348"
+					item: "via_romana:charting_map"
+					type: "item"
+				}
+			]
+			tasks: [{
+				icon: {
+					Count: 1
+					id: "minecraft:stone_shovel"
+					tag: {
+						Damage: 0
+					}
+				}
+				id: "5B61D133C3956F49"
+				observe_type: 0
+				timer: 0L
+				title: "右键点击泥土"
+				to_observe: "minecraft:dirt_path"
+				type: "observation"
+			}]
+			x: 4.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["45B4D02F986FE8D7"]
+			description: ["你可以建造道路来快速穿越世界。想象一下，在村庄里用本地地图快速从铁匠铺到弓箭匠。或者，如果你想，可以在整个地图上建造更宏伟的道路。"]
+			id: "6025BF86281E450F"
+			rewards: [
+				{
+					count: 2
+					id: "7F4897B290A34770"
+					item: "minecraft:spruce_sign"
+					type: "item"
+				}
+				{
+					count: 15
+					id: "4C949C0D3729E62C"
+					item: "numismatic-overhaul:bronze_coin"
+					type: "item"
+				}
+			]
+			tasks: [{
+				icon: "via_romana:charting_map"
+				id: "2F0102AAEBCB22AB"
+				stat: "via_romana:distance_charted"
+				title: "开辟一条道路 (Charter a Path)"
+				type: "stat"
+				value: 32
+			}]
+			x: 4.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["37B3978AC380947E"]
+			description: ["除了是许多实用工具的合成材料外，手边有指南针还能启用小地图。"]
+			id: "5969C6684AAF0963"
+			rewards: [{
+				count: 15
+				id: "17616E71544AF66E"
+				item: "numismatic-overhaul:bronze_coin"
+				type: "item"
+			}]
+			subtitle: "一遍又一遍地，找到一切东西。"
+			tasks: [{
+				id: "0EA6465FED554B5E"
+				item: "minecraft:compass"
+				type: "item"
+			}]
+			x: 2.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["3E25EDF22BC1D9F9"]
+			id: "4B06A668CA230B7E"
+			rewards: [{
+				count: 50
+				id: "114AF0FF17E5DC49"
+				item: "numismatic-overhaul:bronze_coin"
+				type: "item"
+			}]
+			tasks: [{
+				id: "7880B0B4AA2C7169"
+				item: "farmersdelight:potato_crate"
+				type: "item"
+			}]
+			x: 13.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["37D939E67671A965"]
+			id: "7448369AEB74847F"
+			tasks: [{
+				icon: "bountiful:bountyboard"
+				id: "11750F270BD6FC06"
+				observe_type: 0
+				timer: 0L
+				title: "找到一个悬赏公告板"
+				to_observe: "bountiful:bountyboard"
+				type: "observation"
+			}]
+			x: 10.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["2A9FF70B3C0912A7"]
+			icon: "brewinandchewin:flaxen_cheese_wheel"
+			id: "6D4CE01AECCE8F8C"
+			tasks: [
+				{
+					id: "19454EA479CD4C41"
+					item: "brewinandchewin:unripe_flaxen_cheese_wheel"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "64B23FCA04A11536"
+					item: { Count: 4, id: "brewinandchewin:flaxen_cheese_wedge" }
+					type: "item"
+				}
+			]
+			title: "制作一些奶酪 (Make some Cheese)"
+			x: 10.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["6D4CE01AECCE8F8C"]
+			id: "0F4C14E8C6EB04C4"
+			tasks: [
+				{
+					id: "67D2EE5C3F18B5C5"
+					item: "farmersrespite:kettle"
+					type: "item"
+				}
+				{
+					id: "44662200B8162C22"
+					item: "farmersrespite:green_tea"
+					type: "item"
+				}
+			]
+			x: 10.5d
+			y: -4.5d
+		}
+		{
+			dependencies: ["17014BB6E2A8FE21"]
+			description: ["厌倦了四处走动，挨个和村民交谈吗？这个好用的方块会把所有交易都集中在一处，让你轻松找到一切！"]
+			id: "109DBF8252AF0393"
+			rewards: [{
+				id: "0070C02F2188C980"
+				item: "numismatic-overhaul:silver_coin"
+				type: "item"
+			}]
+			subtitle: "直接访问所有村民！"
+			tasks: [{
+				id: "46F3280A5634CE0C"
+				item: "tradingpost:trading_post"
+				type: "item"
+			}]
+			x: 15.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["0CC76B41FF46D4BA"]
+			description: ["有人认为建造大型铁路网络是一项伟大的成就。尤其是在这个整合包里，收集所需资源是一项巨大的工程！"]
+			id: "188C81C753E19540"
+			rewards: [
+				{
+					id: "58D53AA47BC9EE3D"
+					item: "clutter:top_hat"
+					type: "item"
+				}
+				{
+					count: 5
+					id: "3E716A531A0378B3"
+					item: "numismatic-overhaul:silver_coin"
+					type: "item"
+				}
+			]
+			subtitle: "火车头！火车头！"
+			tasks: [{
+				id: "054C77DF371D6D89"
+				item: "create:controls"
+				type: "item"
+			}]
+			title: "建造一条铁路线怎么样？"
+			x: 9.5d
+			y: -6.0d
+		}
+		{
+			dependencies: ["49078CF58DAAFFF2"]
+			description: ["将鸡蛋扔到干草垛上即可孵化。注意不要投掷，否则可能会打破。"]
+			id: "0CE2D8ED4E7F6E84"
+			rewards: [{
+				id: "1E7F063E4C67A9F2"
+				item: "clutter:chicken_plushie"
+				type: "item"
+			}]
+			subtitle: "给鸡蛋用的床吗？"
+			tasks: [
+				{
+					id: "64020695FBE4EC6C"
+					item: "minecraft:hay_block"
+					type: "item"
+				}
+				{
+					id: "66E23B41BB3DFEC9"
+					item: "minecraft:egg"
+					type: "item"
+				}
+			]
+			x: -2.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["0CE2D8ED4E7F6E84"]
+			description: ["健康强壮的牛能给你产奶。但从它们身上取了几桶奶后，牛会精疲力尽，需要一段时间才能再次产奶。"]
+			id: "41F1AE569BC02360"
+			rewards: [{
+				id: "2C2B26CE991B39B8"
+				item: "clutter:cow_plushie"
+				type: "item"
+			}]
+			subtitle: "挤点牛奶吧！"
+			tasks: [{
+				id: "267A7AB374EBC65D"
+				item: "minecraft:milk_bucket"
+				type: "item"
+			}]
+			x: -4.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["41F1AE569BC02360"]
+			description: ["手动喂食动物固然温馨，但若想减少点击牲畜的时间，去做些别的事：不妨给自己建个喂食通道。"]
+			id: "1CA5AA891DFC33E6"
+			rewards: [{
+				id: "10F1052BE013E521"
+				item: "clutter:pig_plushie"
+				type: "item"
+			}]
+			subtitle: "自动的 om-nom-nom。"
+			tasks: [{
+				id: "18AD6733C3F02EEB"
+				item: "animal_feeding_trough:feeding_trough"
+				type: "item"
+			}]
+			x: -6.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["23AF9194E6C8F542"]
+			description: ["到目前为止，你一直在手动操作。试着&6升级村民&r，解锁高级技术来帮助你&d自动化&r。第一步可以是磨石。农民会出售它。"]
+			id: "00E3530DB1935198"
+			rewards: [{
+				id: "27AD5F06B2CF43A2"
+				item: "create:goggles"
+				type: "item"
+			}]
+			subtitle: "来搞点工业化的东西吧！"
+			tasks: [{
+				id: "26EF91147D22A7D2"
+				item: "create:millstone"
+				type: "item"
+			}]
+			x: 4.0d
+			y: -7.5d
+		}
+		{
+			dependencies: ["00E3530DB1935198"]
+			description: ["用搅拌机可以制作多种新食物。搅拌机可与炼药锅、传送带等方块结合。查看各种配方，搭建生产线。自动化面包制作是个不错的开端！"]
+			id: "0AC01F8D6FF41108"
+			rewards: [
+				{
+					id: "64513C83C5F5578D"
+					item: "minecraft:water_bucket"
+					type: "item"
+				}
+				{
+					id: "666E7A8B9697F924"
+					item: "create:wheat_flour"
+					type: "item"
+				}
+			]
+			subtitle: "调制鸡尾酒！"
+			tasks: [{
+				id: "70D8C9E78693F51D"
+				item: "create:mechanical_mixer"
+				type: "item"
+			}]
+			x: 4.0d
+			y: -9.0d
+		}
+		{
+			dependencies: ["0AC01F8D6FF41108"]
+			description: ["考虑为你的工业厨房建造一个大烤箱。这将通过降低烹饪成本和实现自动化，在未来为你节省大量资源！"]
+			id: "7023CC68D20D9E65"
+			rewards: [
+				{
+					id: "41DCF46BCE59DA1E"
+					item: "minecraft:coal_block"
+					type: "item"
+				}
+				{
+					id: "5F5A2975528A2E23"
+					item: {
+						Count: 1
+						id: "minecraft:flint_and_steel"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			subtitle: "像火焰一样呼吸！"
+			tasks: [{
+				id: "7BE46EEBF1040A18"
+				item: "create:encased_fan"
+				type: "item"
+			}]
+			x: 4.0d
+			y: -10.5d
+		}
+		{
+			dependencies: ["7023CC68D20D9E65"]
+			description: ["另一台好用的机器是这个切片器！它能帮你快速切碎东西。很适合自动化三明治！"]
+			id: "1AB4AF39B06C938C"
+			rewards: [{
+				count: 3
+				id: "0508172BBB01B312"
+				item: {
+					Count: 1
+					id: "farmersdelight:iron_knife"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			subtitle: "砍！砍！砍！"
+			tasks: [{
+				id: "1A42920DB5A93BCA"
+				item: "sliceanddice:slicer"
+				type: "item"
+			}]
+			x: 4.0d
+			y: -12.0d
+		}
+		{
+			dependencies: ["6ACFC931EEB30585"]
+			description: ["为了测试你新建的工业厨房，请为我们做些三明治！"]
+			id: "2E5F4583CF615897"
+			rewards: [{
+				count: 4
+				id: "7CBD116F7EDC5F7E"
+				item: "storagedrawers:upgrade_template"
+				type: "item"
+			}]
+			subtitle: "一大笔订单！"
+			tasks: [{
+				count: 128L
+				id: "2DC52DEF77C9DF18"
+				item: {
+					Count: 128
+					countInteger: 128
+					id: "createfood:vegetable_sandwich_beetroot_lettuce"
+				}
+				type: "item"
+			}]
+			x: 4.0d
+			y: -15.0d
+		}
+		{
+			dependencies: ["1AB4AF39B06C938C"]
+			description: ["...现在你应该知道流程了。这确实有助于做三明治 :D"]
+			id: "6ACFC931EEB30585"
+			rewards: [{
+				count: 8
+				id: "60037941CDABB2CB"
+				item: "create:belt_connector"
+				type: "item"
+			}]
+			subtitle: "把沙拉放在面包卷上。"
+			tasks: [{
+				id: "5F909197B73BC1B8"
+				item: "create:deployer"
+				type: "item"
+			}]
+			x: 4.0d
+			y: -13.5d
+		}
+		{
+			dependencies: [
+				"154833AB51535181"
+				"109DBF8252AF0393"
+			]
+			description: ["一些村民会卖给你非常强大的东西。你可以寻找这个自动交易站。"]
+			id: "4A16064047AD355E"
+			rewards: [{
+				id: "6D22DF0D3F68B668"
+				item: "naturalist:vulture_spawn_egg"
+				type: "item"
+			}]
+			subtitle: "进出口的荣耀！"
+			tasks: [{
+				id: "56F9B966C2647267"
+				item: "trading_floor:trading_depot"
+				type: "item"
+			}]
+			x: 20.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["339C07DB96E0F2E6"]
+			description: ["每个大厨房都需要一个烈焰炉！"]
+			id: "2F95FBF79573D98E"
+			rewards: [{
+				id: "5CBBDBDDD74F8F35"
+				item: "create:blaze_cake_base"
+				type: "item"
+			}]
+			subtitle: "越来越热！越来越热！"
+			tasks: [{
+				id: "449A08ED3C056824"
+				item: "create:blaze_burner"
+				type: "item"
+			}]
+			x: 5.0d
+			y: -13.5d
+		}
+		{
+			dependencies: ["273E102154D1AEC1"]
+			description: [
+				"挖矿时要小心！工具的品质决定了你能获得的矿石数量。"
+				"工具越好，获得的矿石就越多。"
+			]
+			id: "001F7D778F82EE80"
+			rewards: [{
+				count: 6
+				id: "4C9A51EF8CFC12B7"
+				item: "spelunkery:raw_iron_nugget"
+				type: "item"
+			}]
+			tasks: [
+				{
+					icon: "minecraft:iron_ore"
+					id: "3DC29CF1D62C67E7"
+					observe_type: 0
+					timer: 0L
+					title: "铁是一种宝贵的资源"
+					to_observe: "minecraft:iron_ore"
+					type: "observation"
+				}
+				{
+					count: 3L
+					id: "064EF74B4BD7707D"
+					item: { Count: 3, id: "spelunkery:raw_iron_nugget" }
+					type: "item"
+				}
+			]
+			x: 6.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["001F7D778F82EE80"]
+			description: [
+				"在这片土地上很难找到矿石。它们生成的频率较低，但如果生成的话，"
+				"它们会长成一大簇一大簇的！"
+			]
+			id: "6CAC338BE8073DE9"
+			rewards: [{
+				count: 6
+				id: "4BB1D70D7EDC724F"
+				item: "spelunkery:glowstick"
+				type: "item"
+			}]
+			tasks: [{
+				id: "5635E6619DBA2F5F"
+				title: "寻找大型矿石簇"
+				type: "checkmark"
+			}]
+			x: 6.5d
+			y: 5.0d
+		}
+		{
+			description: ["如你所见，物品有不同的品阶/品质。如果你运气好（或者非常执着），可以在初期就打造出相当不错的工具。"]
+			id: "273E102154D1AEC1"
+			rewards: [{
+				count: 3
+				id: "39597C1B279CF5FA"
+				item: "minecraft:cobblestone"
+				type: "item"
+			}]
+			tasks: [{
+				id: "6DA27E0B2FCAD2B1"
+				item: {
+					Count: 1
+					id: "minecraft:wooden_pickaxe"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 6.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["273E102154D1AEC1"]
+			description: [
+				"找到好物品后，你随时可以用制作它的材料来修复它——随时随地！"
+				""
+				"更棒的是：如果你想升级物品，完全可以！只需使用更高级的材料与你的物品一起合成即可！属性会随之转移。"
+			]
+			id: "5217314DD34310B0"
+			rewards: [{
+				id: "3C7329A50265B10B"
+				item: {
+					Count: 1
+					id: "minecraft:stone_pickaxe"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "4A9C5E9CA0E36866"
+				item: {
+					Count: 1
+					id: "minecraft:stone_pickaxe"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 8.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["57A2E8DE0ACA6742"]
+			description: ["将熔化的矿石倒入宝箱中，即可获得锭！"]
+			id: "7B8D89F8F45E1202"
+			rewards: [{
+				id: "1A38A53016FA10AF"
+				item: "minecraft:iron_ingot"
+				type: "item"
+			}]
+			subtitle: "正在填充！"
+			tasks: [
+				{
+					id: "7E3D2C42DC06783B"
+					item: "molten_metals:molten_iron_bucket"
+					type: "item"
+				}
+				{
+					id: "7E898D09CD7F37F4"
+					item: "molten_metals:ceramic_ingot_mold"
+					type: "item"
+				}
+			]
+			x: 9.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["6CAC338BE8073DE9"]
+			description: [
+				"这个整合包很难获得无限资源——但并非不可能！从矿物节点中提取不同材料，建立无限金属工厂！"
+				""
+				"去问问你的首席制图师，那些节点在哪里可以找到！"
+			]
+			id: "0EB28C6A334559B3"
+			rewards: [{
+				id: "14021A79B968A578"
+				item: "minecraft:map"
+				type: "item"
+			}]
+			subtitle: "无限资源？"
+			tasks: [
+				{
+					id: "18162CB1AE2AA729"
+					item: "deepdrilling:drill_core"
+					type: "item"
+				}
+				{
+					disable_toast: true
+					icon: "create:veridium"
+					id: "0CADD97338B033AD"
+					optional_task: true
+					structure: "deepdrilling:veridium_node"
+					type: "structure"
+				}
+				{
+					disable_toast: true
+					icon: "create:asurine"
+					id: "098760934A9C6C78"
+					optional_task: true
+					structure: "deepdrilling:asurine_node"
+					type: "structure"
+				}
+				{
+					disable_toast: true
+					icon: "create:crimsite"
+					id: "47DB8AB3400B7C80"
+					optional_task: true
+					structure: "deepdrilling:crimsite_node"
+					type: "structure"
+				}
+				{
+					disable_toast: true
+					icon: "create:ochrum"
+					id: "204D8A36BCB50503"
+					optional_task: true
+					structure: "deepdrilling:ochrum_node"
+					type: "structure"
+				}
+			]
+			x: 9.5d
+			y: 5.0d
+		}
+		{
+			dependencies: ["5217314DD34310B0"]
+			description: [
+				"钻头是提取资源最有效的方式。如果你发现矿石，最好用钻头开采。此外，稍后你还能找到矿物节点并从其中提取资源。"
+				""
+				"一位专业的制图师或许会为你提供其中一张的地图。"
+			]
+			id: "00C05AF2880A5B82"
+			rewards: [
+				{
+					id: "457376B035E304BB"
+					item: "minecraft:coal"
+					type: "item"
+				}
+				{
+					id: "0FB306F12917C2F0"
+					item: "numismatic-overhaul:silver_coin"
+					type: "item"
+				}
+			]
+			subtitle: "钻开它！"
+			tasks: [{
+				id: "0926CDE104E574C3"
+				item: "create:mechanical_drill"
+				type: "item"
+			}]
+			x: 9.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["001F7D778F82EE80"]
+			description: ["粉碎和熔炼矿物是进一步最大化资源的好方法。"]
+			id: "57A2E8DE0ACA6742"
+			rewards: [
+				{
+					id: "11E6D43EC768528D"
+					item: "create:crushed_raw_iron"
+					type: "item"
+				}
+				{
+					id: "6063BA776FFE7D89"
+					item: "molten_metals:unfired_ceramic_ingot_mold"
+					type: "item"
+				}
+			]
+			subtitle: "对矿物一见钟情，无法自拔。"
+			tasks: [{
+				id: "08DD8057D1C7EB34"
+				item: "create:crushed_raw_iron"
+				type: "item"
+			}]
+			x: 8.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["273E102154D1AEC1"]
+			description: ["这虽然是个小把戏，但挺实用的！你可以在路上留下小标记，方便随时回家！"]
+			id: "6B68E19414CE6541"
+			rewards: [{
+				id: "491510C1E674ACB9"
+				item: {
+					Count: 1
+					id: "chalk:glow_chalk"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			subtitle: "标记好你的路线！"
+			tasks: [{
+				id: "5BDD09E94ADE17EB"
+				item: {
+					Count: 1
+					id: "chalk:chalk"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			description: ["你肯定已经，或者即将收集到一大堆东西。或许再整理一下，能帮你更好地管理物品栏！"]
+			id: "1378540D52DF9D7F"
+			rewards: [{
+				id: "0AECF2181653460B"
+				item: "storagedrawers:iron_storage_upgrade"
+				type: "item"
+			}]
+			subtitle: "需要更多空间！"
+			tasks: [{
+				id: "54110555F063BA35"
+				item: "storagedrawers:oak_full_drawers_1"
+				type: "item"
+			}]
+			x: 15.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["4F0B6408AA0FC70E"]
+			description: ["有了这个方便的方块，你就能访问大型物品栏、搜索物品，甚至可以自动获取资源来合成。拥有的东西越多，它就越能帮上大忙。"]
+			id: "7E648DF47DD362FA"
+			rewards: [{
+				id: "292C3D8BB5A13B27"
+				item: "numismatic-overhaul:silver_coin"
+				type: "item"
+			}]
+			subtitle: "未来是数字化的！"
+			tasks: [{
+				id: "168FCA62DB9B2A61"
+				item: "toms_storage:ts.storage_terminal"
+				type: "item"
+			}]
+			x: 15.0d
+			y: 5.0d
+		}
+		{
+			dependencies: ["1378540D52DF9D7F"]
+			description: ["先进的箱子技术为箱子提供了更多空间。而且你还可以给它们上色！"]
+			id: "4F0B6408AA0FC70E"
+			rewards: [{
+				id: "43860422052100DC"
+				item: "compact_storage:upgrade_column"
+				type: "item"
+			}]
+			subtitle: "大脑升级，箱子升级！"
+			tasks: [{
+				id: "2AFECC8C90214F17"
+				item: "compact_storage:compact_chest_white"
+				type: "item"
+			}]
+			x: 15.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["7E648DF47DD362FA"]
+			description: ["满足所有存储需求的终极方案。需要更多空间？你需要地窖。"]
+			id: "560E4B34C4D7C598"
+			rewards: [{
+				count: 3
+				id: "7B892416AE4A31DF"
+				item: "create:item_vault"
+				type: "item"
+			}]
+			subtitle: "把东西放进去。"
+			tasks: [{
+				id: "6B332084F0264995"
+				item: "create:item_vault"
+				type: "item"
+			}]
+			x: 15.0d
+			y: 6.5d
+		}
+		{
+			description: ["走出夜晚，仰望星空，凝视繁星。你可以为单个星星命名，甚至可以组成星座！"]
+			id: "422699677E8765C8"
+			rewards: [{
+				id: "0A2A17BB15CF1EE9"
+				item: "comforts:sleeping_bag_green"
+				type: "item"
+			}]
+			subtitle: "爱好？当然是观星啦！"
+			tasks: [{
+				id: "7474064A74949816"
+				item: "minecraft:spyglass"
+				type: "item"
+			}]
+			x: 29.0d
+			y: 2.5d
+		}
+		{
+			description: ["你可以出发去世界各处绘画。从当地的商店里获取所需的一切！"]
+			id: "32ABEDFA87F4D223"
+			rewards: [{
+				id: "2B717DF5ED774D82"
+				item: "xercapaint:item_easel"
+				type: "item"
+			}]
+			subtitle: "爱好？绘画！"
+			tasks: [{
+				id: "1B8518D7E572B49A"
+				item: {
+					Count: 1
+					id: "xercapaint:item_palette"
+					tag: {
+						basic: [B;
+							1b
+							1b
+							1b
+							1b
+							1b
+							1b
+							1b
+							1b
+							1b
+							1b
+							1b
+							1b
+							1b
+							1b
+							1b
+							1b
+						]
+					}
+				}
+				type: "item"
+			}]
+			x: 29.0d
+			y: -2.5d
+		}
+		{
+			description: ["如果你想将某个瞬间永远保存下来，何不拍一张快照！"]
+			id: "3E02DD0C5683CBA3"
+			rewards: [{
+				id: "655A2D92B62C5463"
+				item: "exposure:black_and_white_film"
+				type: "item"
+			}]
+			subtitle: "爱好？当然是摄影啦！"
+			tasks: [{
+				id: "7F362755D24EB081"
+				item: "exposure:camera"
+				type: "item"
+			}]
+			x: 29.0d
+			y: -1.0d
+		}
+		{
+			description: ["独自演奏、谱写复杂旋律或与好友即兴合奏！有许多乐器可供你使用！"]
+			id: "401F0784C9D7440B"
+			rewards: [{
+				id: "4724E0AC8BE5B7A8"
+				item: "xercamusic:music_sheet"
+				type: "item"
+			}]
+			subtitle: "爱好？当然是音乐！"
+			tasks: [{
+				id: "363EF35C8A4542FB"
+				item: "xercamusic:piano"
+				type: "item"
+			}]
+			x: 29.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["0726EE2C23E6F6C8"]
+			description: ["到了游戏后期，想必你已经很强了。那不妨加点魔法元素。用这些异界基座，你就能自己锻造强大的附魔了。"]
+			id: "5BA4559968B49465"
+			rewards: [{
+				count: 6
+				id: "0A766793484498DD"
+				item: "minecraft:diamond"
+				type: "item"
+			}]
+			subtitle: "魔法！"
+			tasks: [{
+				id: "1E7B27AD535277BC"
+				item: "betterend:infusion_pedestal"
+				type: "item"
+			}]
+			x: 23.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["2F95FBF79573D98E"]
+			description: ["想象一下装满液体的大容器……美味的液体。融化的巧克力在管道中翻滚，被倒在蛋糕胚和其他糕点上。美滋滋……"]
+			id: "35F5DAA6509F8EC6"
+			rewards: [{
+				id: "11AFFC1F4B74F2F3"
+				item: "respitecreators:coffee_bucket"
+				type: "item"
+			}]
+			subtitle: "我唾弃你的饼干！"
+			tasks: [{
+				id: "73C5DBEDCCB998EF"
+				item: "create:spout"
+				type: "item"
+			}]
+			x: 5.0d
+			y: -15.0d
+		}
+	]
+	subtitle: ["树根需要时间来生长……"]
+	title: "开始"
+}
