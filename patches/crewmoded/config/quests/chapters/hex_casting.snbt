@@ -1,0 +1,486 @@
+# AI 初翻，未人工校对
+{
+	id: "413D8D5B1F90DA44"
+	group: "74CE4A09AC5F3CF1"
+	order_index: 14
+	filename: "hex_casting"
+	title: "Hex Casting"
+	icon: "hexcasting:wand_akashic"
+	subtitle: ["通过绘制独特的图案来施展魔法！"]
+	default_quest_shape: "hexagon"
+	default_hide_dependency_lines: false
+	images: [
+		{
+			x: 0.1d
+			y: -8.2d
+			width: 8.0d
+			height: 3.0d
+			rotation: 0.0d
+			image: "tnp:textures/other/hexcasting.png"
+			hover: [ ]
+			click: "https://www.curseforge.com/minecraft/mc-mods/hexcasting"
+			dev: false
+			corner: false
+		}
+		{
+			x: 0.1d
+			y: -10.6d
+			width: 0.8d
+			height: 0.8d
+			rotation: 0.0d
+			image: "tnp:textures/other/phantomenderium_cred.png"
+			hover: [ ]
+			click: ""
+			dev: false
+			corner: false
+		}
+		{
+			x: 0.1d
+			y: -11.2d
+			width: 3.0d
+			height: 1.25d
+			rotation: 0.0d
+			image: "tnp:textures/other/quest_credit7.png"
+			hover: [ ]
+			click: ""
+			dev: false
+			corner: false
+		}
+	]
+	quests: [
+		{
+			title: "媒体发现 (Media Discovery)"
+			x: 0.0d
+			y: 0.0d
+			subtitle: "发现地下晶洞并捡起一块充能紫水晶，开启你的 Hex Casting 之旅！"
+			description: [
+				"当你发现这个时，我们会给你一个向导和一些充能紫水晶，助你一臂之力！"
+				""
+				"如果你在有任何疑问或需要帮助，指南书中包含了 Discord 的链接！"
+				""
+				"&o&7……能听到那嗡嗡声吗？"
+			]
+			id: "14477492A254A726"
+			tasks: [
+				{
+					id: "7AA14B7CA004A4AC"
+					type: "item"
+					item: "hexcasting:charged_amethyst"
+				}
+				{
+					id: "09B81D118B485A32"
+					type: "advancement"
+					title: "Hexcasting 研究日志"
+					advancement: "hexcasting:root"
+					criterion: ""
+				}
+			]
+			rewards: [
+				{
+					id: "7C78B39E442FD008"
+					type: "item"
+					team_reward: false
+					item: {
+						id: "patchouli:guide_book"
+						Count: 1b
+						tag: {
+							"patchouli:book": "hexcasting:thehexbook"
+						}
+					}
+				}
+				{
+					id: "7E54007FEBC4C6C7"
+					type: "item"
+					item: "hexcasting:charged_amethyst"
+					count: 8
+				}
+				{
+					id: "7FE9B4090EAAB55D"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+			]
+		}
+		{
+			title: "这是一个“法杖”，而不是“魔杖”"
+			x: 0.0d
+			y: -1.5d
+			subtitle: "为自己制作一根魔法杖，绘制图案的方法！"
+			description: [
+				"&o&7你是个巫师，哈…这个笑话已经用过了吗？"
+				""
+				"作为奖励，完成此任务后，队伍中的每个人都可以选择一种最适合他们的颜料。这将改变你个人施放粒子以及其他一些事物的颜色。:)"
+			]
+			dependencies: ["14477492A254A726"]
+			id: "74FE53E15362843D"
+			tasks: [{
+				id: "059F78F9693A8C19"
+				type: "item"
+				title: "Hex Casting Staff"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "hexcasting:wands"
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "4ABD1805C9E8E9A5"
+					type: "choice"
+					title: "x1 任选免费颜料！尽情展现自我！"
+					icon: "hexcasting:uuid_colorizer"
+					team_reward: false
+					table_id: 1515775824222171011L
+				}
+				{
+					id: "492B9A0BCE536E35"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+			]
+		}
+		{
+			title: "命运的转变与理解之间的交流"
+			x: 0.0d
+			y: 4.5d
+			subtitle: "施展咒语时，以&k死亡为界，抵达启蒙之境"
+			description: [
+				""
+				"你已被启蒙。你已洞悉一切。请查看你的 Hex 指南手册。"
+				""
+				"你看到了。你看到了。你看到了。你看到了。你已看&k到一切。"
+			]
+			dependencies: ["3F1D881AD252ECB0"]
+			hide: true
+			hide_text_until_complete: true
+			id: "3423E7EAE06B5534"
+			tasks: [{
+				id: "081207946B1E61AB"
+				type: "advancement"
+				title: "???"
+				advancement: "hexcasting:enlightenment"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "744B9929CE3D4250"
+				type: "item"
+				item: "lootbagmod:lootbag"
+				count: 4
+			}]
+		}
+		{
+			x: 0.0d
+			y: 1.5d
+			subtitle: "试着用卷轴施放一个法术……然后失败了。"
+			dependencies: ["14477492A254A726"]
+			id: "7D164909880D6DC9"
+			tasks: [{
+				id: "6998CB49DD82D021"
+				type: "advancement"
+				title: "盲目的误导"
+				advancement: "hexcasting:y_u_no_cast_angy"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "4018CD0297D31551"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 1.5d
+			subtitle: "浪费大量媒介只为施放一个法术"
+			dependencies: ["14477492A254A726"]
+			id: "76F27B70F7C3A96D"
+			tasks: [{
+				id: "11B4BF336FA379F6"
+				type: "advancement"
+				title: "物尽其用，不浪费一点..."
+				advancement: "hexcasting:aaa_wasteful_cast"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "02C568060F20F13A"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "34D11FCE42BE2266"
+					type: "item"
+					item: "hexcasting:charged_amethyst"
+				}
+			]
+		}
+		{
+			x: 1.5d
+			y: 1.5d
+			subtitle: "施放单个法术时使用大量媒介物品"
+			dependencies: ["14477492A254A726"]
+			id: "5F4A69E754251DE2"
+			tasks: [{
+				id: "418F291862AD03DE"
+				type: "advancement"
+				title: "... 想要的不多"
+				advancement: "hexcasting:aab_big_cast"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "28A156EA9B92C462"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "70E993A287BDB6CA"
+					type: "item"
+					item: "hexcasting:charged_amethyst"
+					count: 64
+				}
+			]
+		}
+		{
+			x: 0.0d
+			y: 3.0d
+			subtitle: "用一块你的理智换取一个六边形，与自然融为一体"
+			description: ["不用媒介就能施放法术？你的脑子完全够用！"]
+			dependencies: ["7D164909880D6DC9"]
+			id: "3F1D881AD252ECB0"
+			tasks: [{
+				id: "2246AEFCEE907533"
+				type: "advancement"
+				title: "睁开了眼睛"
+				advancement: "hexcasting:opened_eyes"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "778EA358C64B702E"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			title: "我看到它了！"
+			x: 1.5d
+			y: 0.0d
+			subtitle: "制作一个窥视透镜 (Craft a Scrying Lense)"
+			dependencies: ["74FE53E15362843D"]
+			id: "1CEBEF490BA5AC83"
+			tasks: [{
+				id: "587B3CEB86231DAE"
+				type: "item"
+				item: "hexcasting:lens"
+			}]
+			rewards: [{
+				id: "119BBA9A2ECC1915"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			title: "数学？那是书呆子才干的事！"
+			x: 1.5d
+			y: -1.5d
+			subtitle: "制作一个算盘 (Craft an Abacus)"
+			description: ["&e! 更多信息请参见&7&dHex Notebook&7。"]
+			dependencies: ["74FE53E15362843D"]
+			id: "26206717E74CA76E"
+			tasks: [{
+				id: "7C49EE2E0B6D710F"
+				type: "item"
+				item: "hexcasting:abacus"
+			}]
+			rewards: [{
+				id: "66A966410D4DEE8B"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			title: "绞刑架的赌博"
+			x: -1.5d
+			y: -3.0d
+			subtitle: "制作一个聚焦透镜"
+			dependencies: ["74FE53E15362843D"]
+			id: "24AFA82E1B544201"
+			tasks: [{
+				id: "117A532B922A443E"
+				type: "item"
+				item: "hexcasting:focus"
+			}]
+			rewards: [{
+				id: "7B0137B8FA190D2A"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			title: "Hex 魔法书"
+			x: -1.5d
+			y: -4.5d
+			subtitle: "制作一本魔法书 (Craft a Spellbook)"
+			dependencies: ["24AFA82E1B544201"]
+			id: "313D31F3F0D6E110"
+			tasks: [{
+				id: "53A0CB3FC83F8B55"
+				type: "item"
+				item: "hexcasting:spellbook"
+			}]
+			rewards: [{
+				id: "15509DA37E65BC91"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			title: "基础法术容器"
+			x: 0.0d
+			y: -3.0d
+			subtitle: "制作一个 Cypher"
+			dependencies: ["74FE53E15362843D"]
+			id: "43F0F57101E922CD"
+			tasks: [{
+				id: "34BAB5D5C059BA9D"
+				type: "item"
+				item: "hexcasting:cypher"
+			}]
+			rewards: [{
+				id: "2BF5761C1ABCC96C"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			title: "中级法术容器"
+			x: 0.0d
+			y: -4.5d
+			subtitle: "制作一个 Trinket 饰品"
+			dependencies: ["43F0F57101E922CD"]
+			id: "4B6128234956EE77"
+			tasks: [{
+				id: "31660147B0D6A897"
+				type: "item"
+				item: "hexcasting:trinket"
+			}]
+			rewards: [{
+				id: "424D91D55F29CD1D"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			title: "高级法术容器"
+			x: 0.0d
+			y: -6.0d
+			subtitle: "制作一件神器 Artifact"
+			dependencies: ["4B6128234956EE77"]
+			id: "53C73F122D99F331"
+			tasks: [{
+				id: "5D92B0D6CAB506F4"
+				type: "item"
+				item: "hexcasting:artifact"
+			}]
+			rewards: [{
+				id: "055352182BA45C40"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			title: "小心切割"
+			x: -1.5d
+			y: -1.5d
+			subtitle: "制作一把珠宝匠之锤"
+			description: ["&e! 更多信息请参见&7&dHex Notebook&7。"]
+			dependencies: ["74FE53E15362843D"]
+			id: "10BD8BED366FC7B2"
+			tasks: [{
+				id: "525174219EF15197"
+				type: "item"
+				item: {
+					id: "hexcasting:jeweler_hammer"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "70CA1D22289E59C5"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			title: "Now I Understand!"
+			x: 1.5d
+			y: -3.0d
+			subtitle: "制作任意大小的卷轴来展示你的图案吧！"
+			dependencies: ["74FE53E15362843D"]
+			dependency_requirement: "one_completed"
+			id: "12BCD8F93B5427DE"
+			tasks: [
+				{
+					id: "0491F649A97C361E"
+					type: "item"
+					item: "hexcasting:scroll_small"
+				}
+				{
+					id: "2A04F3DAF94DCAD9"
+					type: "item"
+					item: "hexcasting:scroll_medium"
+				}
+				{
+					id: "26220D8D042A4D8C"
+					type: "item"
+					item: "hexcasting:scroll"
+				}
+			]
+			rewards: [{
+				id: "1412ED62D856F188"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			title: "三明治，不是地下火车"
+			x: -1.5d
+			y: -0.1d
+			subtitle: "制作一个潜艇三明治 (Submarine Sandwich)"
+			dependencies: ["74FE53E15362843D"]
+			id: "71468C735EE5C4B0"
+			tasks: [{
+				id: "72E04158F40967D9"
+				type: "item"
+				item: "hexcasting:sub_sandwich"
+			}]
+			rewards: [{
+				id: "2F42C270F76B938A"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			title: "一切都在逐渐成形！"
+			x: 1.5d
+			y: -4.5d
+			subtitle: "合成一个空白画布。看起来就是个更漂亮的图案显示板，我猜？"
+			dependencies: ["12BCD8F93B5427DE"]
+			id: "16036D0020CDD1EA"
+			tasks: [{
+				id: "3DB76522FF7015C1"
+				type: "item"
+				item: "hexcasting:slate"
+			}]
+			rewards: [{
+				id: "572D3DA77F6BA9A4"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+	]
+	quest_links: [ ]
+}

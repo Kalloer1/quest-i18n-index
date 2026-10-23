@@ -1,0 +1,3230 @@
+# AI 初翻，未人工校对
+{
+	id: "104C55708D3D74B4"
+	group: "74CE4A09AC5F3CF1"
+	order_index: 6
+	filename: "botania"
+	title: "Botania"
+	icon: "botania:white_mystical_flower"
+	subtitle: ["一个以自然魔法为主题的科技模组。"]
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	images: [
+		{
+			x: 10.5d
+			y: -4.6d
+			width: 4.0d
+			height: 1.5d
+			rotation: 0.0d
+			image: "tnp:textures/other/botania_logo.png"
+			hover: [ ]
+			click: ""
+			dev: false
+			corner: false
+		}
+		{
+			x: 10.5d
+			y: -3.5d
+			width: 0.6d
+			height: 0.6d
+			rotation: 0.0d
+			image: "tnp:textures/other/quest-tnp.png"
+			hover: ["Questline by: TNP Team, Gbergz."]
+			click: "https://www.curseforge.com/members/nexusproject/projects"
+			dev: false
+			corner: false
+		}
+	]
+	quests: [
+		{
+			title: "欢迎：Lexica Botania"
+			icon: "botania:lexicon"
+			x: 0.0d
+			y: 0.0d
+			shape: "hexagon"
+			subtitle: "领取 Lexica Botania 的权限"
+			size: 0.9d
+			id: "31A586FF8EC56C0B"
+			tasks: [{
+				id: "2C2C260AB3B850D3"
+				type: "checkmark"
+				title: "完成"
+			}]
+			rewards: [{
+				id: "029AE7307CFC018F"
+				type: "item"
+				team_reward: false
+				item: "botania:lexicon"
+			}]
+		}
+		{
+			title: "神秘的花朵"
+			icon: "botania:white_mystical_flower"
+			x: 1.1d
+			y: 0.0d
+			shape: "octagon"
+			subtitle: "获取任意一种神秘花朵。"
+			description: [
+				"在世界各地，你可能会偶然发现各种各样的神秘花朵。"
+				""
+				"&7发现这些花并不费力，因为它们会发出微光并闪闪发光。总共有16种不同的颜色。"
+				""
+				"这些花也可以用花卉肥料来种植"
+				""
+				"&7世界各地也有一些比普通神秘花更高的变种。这些只能用剪刀收集，但可以采摘到普通花朵两倍的花瓣。"
+			]
+			id: "27FE360D6CE04CFA"
+			tasks: [{
+				id: "14C2830E3754B5C0"
+				type: "item"
+				title: "任意的神秘花朵"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "tnp:mystical_flowers"
+					}
+				}
+			}]
+			rewards: [{
+				id: "3DA917E14A38EC39"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+		}
+		{
+			title: "神秘花瓣模组"
+			icon: "botania:white_petal"
+			x: 2.2d
+			y: 0.0d
+			shape: "octagon"
+			subtitle: "将任何神秘花朵转换为花瓣。"
+			description: ["这些花瓣可以制作成相应的染料。"]
+			dependencies: ["27FE360D6CE04CFA"]
+			id: "0F667F04FA5F2A97"
+			tasks: [{
+				id: "7E05C9CBC387AC73"
+				type: "item"
+				title: "任意的神秘花瓣 (Mystical Petals)"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "tnp:botania_petals"
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "2A7FBC367D96D9FF"
+					type: "item"
+					item: "botania:white_petal"
+					count: 2
+				}
+				{
+					id: "56981CFE19B1B4F0"
+					type: "item"
+					item: "botania:orange_petal"
+					count: 2
+				}
+				{
+					id: "737BB48603D32393"
+					type: "xp"
+					xp: 25
+				}
+			]
+		}
+		{
+			x: 1.1d
+			y: -1.0d
+			shape: "diamond"
+			subtitle: "制作一些花卉肥料。"
+			description: [
+				"将染料与骨粉混合，你将创造出不同类型的肥料。"
+				""
+				"如果你缺少神秘花朵，这种花卉肥料会在附近生长出一些来。"
+			]
+			dependencies: ["27FE360D6CE04CFA"]
+			size: 0.85d
+			optional: true
+			id: "08F610FE3B3A6A05"
+			tasks: [{
+				id: "4B9AB176C3DB91BF"
+				type: "item"
+				item: "botania:fertilizer"
+			}]
+			rewards: [{
+				id: "6F0BCE92647F7D78"
+				type: "item"
+				item: "botania:fertilizer"
+				count: 12
+			}]
+		}
+		{
+			x: 3.4d
+			y: 0.0d
+			shape: "octagon"
+			subtitle: "制作一个花瓣药剂师工作台。"
+			description: [
+				"要创造能听从命令的植物，植物学家需要一种将神秘能量注入植物的特殊方法。"
+				""
+				"&7幸运的是，花瓣药剂师正好能做到这一点。"
+				""
+				"放置在世界中并加入水（右键或用水桶）后，该方块会吸收投入的任何 Mystical Petals 的能量"
+				""
+				"&7提供正确的花瓣后，投入任意种子即可最终完成制作过程。"
+				""
+				"手持空手潜行右键点击花瓣药剂师，将移除最后投掷的物品。"
+			]
+			dependencies: ["0F667F04FA5F2A97"]
+			id: "40F5A1075189550F"
+			tasks: [{
+				id: "5C65E2B080E985F1"
+				type: "item"
+				item: "botania:apothecary_default"
+			}]
+			rewards: [{
+				id: "4EE395B84C73268F"
+				type: "item"
+				item: "minecraft:wheat_seeds"
+				count: 16
+			}]
+		}
+		{
+			x: 4.5d
+			y: 0.0d
+			shape: "octagon"
+			subtitle: "获取一朵纯净雏菊。"
+			description: [
+				"将4片白色花瓣和1个种子放入花瓣药房即可合成，纯雏菊是植物学家最重要的花朵。"
+				""
+				"&7这种花能将相邻的任何木材和石头方块（如下一页所示）净化为对应的净化版本，即活木和活岩。"
+				""
+				"这些资源是植物学家职业生涯中重要的合成材料。"
+				""
+				"&7将其他方块放置在花朵周围也可以净化它们。虽然不像活体方块那样独特和必要，但这些配方仍然很有用：</c1>"
+				""
+				"下界岩会净化成鹅卵石，灵魂沙会净化成沙子，冰会净化成压实冰，水会净化成雪。"
+			]
+			dependencies: ["40F5A1075189550F"]
+			id: "096F2F0D9F44C94C"
+			tasks: [{
+				id: "68F076E4EE3CBD78"
+				type: "item"
+				item: "botania:pure_daisy"
+			}]
+			rewards: [
+				{
+					id: "718AEE1B39E4CCAE"
+					type: "item"
+					item: "botania:pure_daisy"
+				}
+				{
+					id: "6231A5450B88364C"
+					type: "xp"
+					xp: 150
+				}
+			]
+		}
+		{
+			title: "森林魔杖"
+			x: 7.4d
+			y: 0.5d
+			shape: "octagon"
+			subtitle: "制作一根森林魔杖 (Wand of the Forest)"
+			description: [
+				"植物学家用来操控花朵最重要的工具是森林魔杖。"
+				""
+				"&7这支魔杖由几根活木枝和一对神秘花瓣制成，是完成大量植物学任务的必备品。"
+				""
+				"魔杖有两种模式：绑定模式和功能模式。在绑定模式下，潜行右键点击兼容方块以选中它，然后潜行右键点击其他地方以绑定这两个方块。"
+				""
+				"&7In Function Mode it simply doesn't perform this function, freeing the sneak-right click action up for other tasks."
+				""
+				"在空中潜行右击魔杖即可在两种模式之间切换。"
+				""
+				"&7Sneak-right clicking a block in Function Mode rotates the block around the axis of the side it was clicked on-- for example, using the wand on the top of a Chest will change the direction it faces. "
+				""
+				"大多数有方向性的方块都可以用这种方式重新定向。"
+			]
+			dependencies: ["45AEC2F7C194D9E6"]
+			id: "2957CF68FE593FB5"
+			tasks: [{
+				id: "460F2D15F7A13413"
+				type: "item"
+				title: "森林魔杖"
+				item: {
+					id: "botania:twig_wand"
+					Count: 1b
+					tag: {
+						color1: 0
+						color2: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "33FE9F45A3E5F864"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			title: "活木（Livingwood）"
+			icon: "botania:livingwood_log"
+			x: 5.9d
+			y: 0.5d
+			subtitle: "获取一根活木原木 (Livingwood Log)"
+			description: [
+				"在纯雏菊周围放置任意原木即可获得。"
+				""
+				"&7当原木开始闪烁时，转换就会开始。"
+				""
+				"将木材转换为活木大约需要一分钟左右。"
+			]
+			dependencies: ["096F2F0D9F44C94C"]
+			size: 0.85d
+			id: "45AEC2F7C194D9E6"
+			tasks: [{
+				id: "2D2EB0F1C2491F23"
+				type: "item"
+				title: "活木（Livingwood）"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "botania:livingwood_logs"
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "5CA57AA73002BFCC"
+					type: "item"
+					item: "botania:livingwood_log"
+					count: 4
+				}
+				{
+					id: "149874C15CF39F72"
+					type: "xp"
+					xp: 50
+				}
+			]
+		}
+		{
+			x: 5.9d
+			y: -0.6d
+			subtitle: "获取一个活岩生物（Livingrock）"
+			description: [
+				"将石头放置在纯雏菊周围即可获得。"
+				""
+				"&7当石头开始闪烁时，转换就会开始。"
+				""
+				"将石头转换为活岩大约需要一分钟左右。"
+			]
+			dependencies: ["096F2F0D9F44C94C"]
+			size: 0.85d
+			id: "5933AB28E68BFD23"
+			tasks: [{
+				id: "1B79A3BF45FDA6E1"
+				type: "item"
+				item: "botania:livingrock"
+			}]
+			rewards: [
+				{
+					id: "53CB5064E9C52189"
+					type: "item"
+					item: "botania:livingrock"
+					count: 4
+				}
+				{
+					id: "32D2FE3FBF69A585"
+					type: "xp"
+					xp: 50
+				}
+			]
+		}
+		{
+			x: 7.4d
+			y: -0.6d
+			shape: "octagon"
+			subtitle: "制作一个符文祭坛 (Craft a Runic Altar)"
+			description: [
+				"符文创造是一个复杂但重要的课题，对任何植物学家的职业发展都至关重要。然而，这种合成方式需要扎实掌握法力操控的概念才能使用。"
+				""
+				"&7在继续之前，阅读 Lexica Botania 该部分中的重点条目（斜体字）可能会有所帮助。"
+				""
+				"符文是复杂魔法装置或植物的重要组成部分，可在符文祭坛上创造。"
+				""
+				"&7要使用符文祭坛，首先将你想要创造的符文组件放置（通过右键或简单投掷）在祭坛上。"
+				""
+				"将装有法力储备的法力扩散器对准祭坛，让法力流动起来。"
+				""
+				"&7魔杖会显示传输进度；祭坛接收到足够的法力后，进度就会显现。届时，只需将一块活岩方块放置在祭坛上，然后用魔杖对其使用以收集你的符文。"
+				""
+				"共有16种符文存在。"
+				"最基本的符文以四元素命名，中等符文以四季命名，最高级的符文以七宗罪命名。在此体系之外，还存在独立的法力符文。"
+				""
+				"&7Sneak-right clicking the Runic Altar with an empty hand while it's not accepting mana will pull out the last item input."
+				""
+				"用于符文祭坛配方的任何符文都充当催化剂，在配方完成后会返还。"
+				""
+				"&7Similarly to the Petal Apothecary, right-clicking this block with an empty hand after a recipe is complete will pull another set of the items used for the last recipe, for faster crafting in bulk."
+			]
+			dependencies: ["5933AB28E68BFD23"]
+			id: "6C3678D13EE22AA7"
+			tasks: [{
+				id: "6C5C208B5C1B03A7"
+				type: "item"
+				item: "botania:runic_altar"
+			}]
+			rewards: [
+				{
+					id: "5991B543AD4A5738"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "08B6774416CF451D"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "31F0C812A05AA85C"
+					type: "item"
+					item: "mythicbotany:rune_holder"
+					count: 2
+				}
+			]
+		}
+		{
+			x: 5.22d
+			y: 0.48d
+			shape: "hexagon"
+			subtitle: "制作一个法力扩散器"
+			description: [
+				"Mana Spreader 会收集附近生成花朵或相邻 Mana Pool 中的法力，并通过脉冲将其传输给 Mana Pool、Mana Spreader 和其他可接受法力的方块"
+				""
+				"&7生成的花朵必须在6格半径内，种植时会发送到最近的散布器。"
+				""
+				"使用森林魔杖右键单击即可操控法力爆发的方向。"
+				""
+				"&7还有一种方法可以调整魔力扩散器的朝向，那就是将其绑定到另一个方块上。为此，先右键单击魔力扩散器，再右键单击另一个方块，魔力扩散器便会自动调整朝向，将魔力爆发导向该方块。"
+				""
+				"法力扩散器以离散脉冲而非连续流的方式发射法力。"
+			]
+			dependencies: ["45AEC2F7C194D9E6"]
+			size: 0.6d
+			id: "7D4ED6F4284DE170"
+			tasks: [{
+				id: "6729BCA1C34A67C1"
+				type: "item"
+				item: "botania:mana_spreader"
+			}]
+			rewards: [
+				{
+					id: "07AC660737824BEC"
+					type: "item"
+					item: "botania:mana_spreader"
+				}
+				{
+					id: "3C6F2C044D111141"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+		{
+			x: 5.9d
+			y: -1.6d
+			shape: "hexagon"
+			subtitle: "制作一个法力池。"
+			description: [
+				"用于储存魔力的方块，可储存极其庞大的魔力（比稀释魔力池多100倍，即1,000,000点魔力）。"
+				""
+				"&7池中储存的魔力可用于为Botania中需要魔力才能工作的其他方块供电，例如功能性花朵。"
+				""
+				"法力可以通过法力扩散器输入到法力池中，任何相邻的法力扩散器都会从池中抽取法力来填充其内部缓冲区。"
+				""
+				"&7右键点击法力池，并使用森林魔杖，即可将法力池中的法力值以条形图形式显示。"
+				""
+				"在池中显示的魔法量可以通过连续点击来更新。"
+				""
+				"&7许多资源都可以投入法力池，将其转化为不同形态。例如，将铁锭投入池中，可以将其转化为魔钢锭。"
+			]
+			dependencies: ["5933AB28E68BFD23"]
+			size: 0.85d
+			id: "4DFAB4A234396FC1"
+			tasks: [{
+				id: "5E0EAD96BDEF6597"
+				type: "item"
+				item: "botania:mana_pool"
+			}]
+			rewards: [
+				{
+					id: "4DB66D83D7A31761"
+					type: "item"
+					item: "botania:mana_pool"
+				}
+				{
+					id: "1A47EBBC7AD73BF7"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+		{
+			x: 5.4d
+			y: -2.2d
+			shape: "diamond"
+			subtitle: "获取附魔法力线（Mana Infused String）"
+			dependencies: ["4DFAB4A234396FC1"]
+			size: 0.5d
+			optional: true
+			id: "17BBF8AD94FF3021"
+			tasks: [{
+				id: "7F5A14E71E7010D4"
+				type: "item"
+				item: "botania:mana_string"
+			}]
+			rewards: [
+				{
+					id: "6441C8C19514FAA3"
+					type: "item"
+					item: "aquaculture:treasure_chest"
+				}
+				{
+					id: "516735124EFFA10A"
+					type: "xp"
+					xp: 150
+				}
+			]
+		}
+		{
+			x: 5.55d
+			y: -2.55d
+			shape: "diamond"
+			subtitle: "获取法力石英"
+			dependencies: ["4DFAB4A234396FC1"]
+			size: 0.5d
+			optional: true
+			id: "585494535356C355"
+			tasks: [{
+				id: "02F0C20A7455B940"
+				type: "item"
+				item: "botania:quartz_mana"
+			}]
+			rewards: [
+				{
+					id: "56D0FDFAA6E025A8"
+					type: "item"
+					item: "aquaculture:treasure_chest"
+				}
+				{
+					id: "38B726BF567D8B22"
+					type: "xp"
+					xp: 150
+				}
+			]
+		}
+		{
+			x: 6.4d
+			y: -2.2d
+			shape: "diamond"
+			subtitle: "获取法力粉末"
+			dependencies: ["4DFAB4A234396FC1"]
+			size: 0.5d
+			optional: true
+			id: "23F34E857F93304F"
+			tasks: [{
+				id: "56C0B7F936660649"
+				type: "item"
+				item: "botania:mana_powder"
+			}]
+			rewards: [
+				{
+					id: "30154456E2D5D5B8"
+					type: "item"
+					item: "aquaculture:treasure_chest"
+				}
+				{
+					id: "35E52C6B24797EBC"
+					type: "xp"
+					xp: 150
+				}
+			]
+		}
+		{
+			x: 6.25d
+			y: -2.55d
+			shape: "diamond"
+			subtitle: "获取曼纳格拉斯（Managlass）"
+			dependencies: ["4DFAB4A234396FC1"]
+			size: 0.5d
+			optional: true
+			id: "3E87021BE58689BC"
+			tasks: [{
+				id: "33104FB5E7B8AC22"
+				type: "item"
+				item: "botania:mana_glass"
+			}]
+			rewards: [
+				{
+					id: "13CC4AEDB6DDEB45"
+					type: "item"
+					item: "aquaculture:treasure_chest"
+				}
+				{
+					id: "6715BEC6055DC024"
+					type: "xp"
+					xp: 150
+				}
+			]
+		}
+		{
+			x: 6.55d
+			y: -1.8d
+			shape: "diamond"
+			subtitle: "获取一颗法力钻石"
+			dependencies: ["4DFAB4A234396FC1"]
+			size: 0.5d
+			id: "72A0425ADEF0885C"
+			tasks: [{
+				id: "714677FB96DF9670"
+				type: "item"
+				item: "botania:mana_diamond"
+			}]
+			rewards: [
+				{
+					id: "5FD1C7C36CB412AC"
+					type: "item"
+					item: "aquaculture:treasure_chest"
+				}
+				{
+					id: "23D2BDA57557AE0A"
+					type: "xp"
+					xp: 150
+				}
+			]
+		}
+		{
+			x: 5.25d
+			y: -1.8d
+			shape: "diamond"
+			subtitle: "获取一颗法力珍珠"
+			dependencies: ["4DFAB4A234396FC1"]
+			size: 0.5d
+			id: "598191C9C7021923"
+			tasks: [{
+				id: "21B118F75153E389"
+				type: "item"
+				item: "botania:mana_pearl"
+			}]
+			rewards: [
+				{
+					id: "25482316C282B7C4"
+					type: "item"
+					item: "aquaculture:treasure_chest"
+				}
+				{
+					id: "6B41B8E049EB9C0D"
+					type: "xp"
+					xp: 150
+				}
+			]
+		}
+		{
+			x: 5.9d
+			y: -2.85d
+			shape: "diamond"
+			subtitle: "获取一个曼纳斯钢锭"
+			dependencies: ["4DFAB4A234396FC1"]
+			size: 0.65d
+			id: "19A1F403AFF4CDDF"
+			tasks: [{
+				id: "1EB07F3C226B2702"
+				type: "item"
+				item: "botania:manasteel_ingot"
+			}]
+			rewards: [
+				{
+					id: "38340DC7A7201A0F"
+					type: "item"
+					item: "aquaculture:treasure_chest"
+				}
+				{
+					id: "0E3D83A9C4D3089B"
+					type: "xp"
+					xp: 150
+				}
+			]
+		}
+		{
+			x: 1.105d
+			y: 1.02d
+			shape: "diamond"
+			subtitle: "制作一个花之袋。"
+			dependencies: ["27FE360D6CE04CFA"]
+			size: 0.85d
+			optional: true
+			id: "7DDB0D3DC6D6D691"
+			tasks: [{
+				id: "413F473BA207FB2D"
+				type: "item"
+				item: "botania:flower_bag"
+			}]
+			rewards: [{
+				id: "45178784EF0B153C"
+				type: "random"
+				title: "任意的神秘花朵 x4"
+				icon: "botania:dice"
+				table_id: 3773689433164175811L
+			}]
+		}
+		{
+			x: 2.2d
+			y: -1.0d
+			shape: "diamond"
+			subtitle: "制作一个火花（Spark）物品。"
+			description: [
+				"火花很有趣。由原始能量和法力组合而成，只能放置在少数特定的含法力或可接受法力的方块上（尤其是法力池）。"
+				""
+				"&7某些方块能够利用火花来收集法力。"
+				""
+				"将火花置于法力池上方，再将另一个置于附近可接受的方块上，后者即可按需访问前者的储备。"
+				""
+				"&7要移除火花，只需潜行状态下右键点击它，并使用森林魔杖。普通右键点击会显示该火花可以转移到的其他火花。"
+				""
+				"火花可以用染料染色；不同颜色的火花永远不会相互作用。"
+			]
+			dependencies: ["0F667F04FA5F2A97"]
+			size: 0.85d
+			optional: true
+			id: "00FF81679B5822F1"
+			tasks: [{
+				id: "62ED0C83A7DDA1CE"
+				type: "item"
+				item: "botania:spark"
+			}]
+			rewards: [
+				{
+					id: "5EEA914525899DFF"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "4A57E674BE302020"
+					type: "random"
+					table_id: 139139633314877365L
+				}
+			]
+		}
+		{
+			x: 1.7d
+			y: -1.3d
+			shape: "diamond"
+			subtitle: "制作火花增幅器：散射型"
+			dependencies: ["00FF81679B5822F1"]
+			size: 0.5d
+			optional: true
+			id: "1CB5814163593BCD"
+			tasks: [{
+				id: "596C0ABA838DE61C"
+				type: "item"
+				item: "botania:spark_upgrade_dispersive"
+			}]
+			rewards: [
+				{
+					id: "7E803BF59EBBDC3F"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "4FE3A04E2CC90F9B"
+					type: "random"
+					table_id: 139139633314877365L
+				}
+				{
+					id: "67A9BDDA705AE1CE"
+					type: "random"
+					icon: "cyclic:dice"
+					table_id: 6166930144693596049L
+				}
+			]
+		}
+		{
+			x: 2.65d
+			y: -1.3d
+			shape: "diamond"
+			subtitle: "合成火花增幅器：支配型"
+			dependencies: ["00FF81679B5822F1"]
+			size: 0.5d
+			optional: true
+			id: "57406DE364E3F5A5"
+			tasks: [{
+				id: "751CA9DD18884728"
+				type: "item"
+				item: "botania:spark_upgrade_dominant"
+			}]
+			rewards: [
+				{
+					id: "5507C065F1CF7922"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "3BC57665B1A22ABA"
+					type: "random"
+					table_id: 139139633314877365L
+				}
+				{
+					id: "00737BC5B40A89E2"
+					type: "random"
+					icon: "cyclic:dice"
+					table_id: 6166930144693596049L
+				}
+			]
+		}
+		{
+			x: 2.4d
+			y: -1.55d
+			shape: "diamond"
+			subtitle: "合成火花增幅器：隐性基因"
+			dependencies: ["00FF81679B5822F1"]
+			size: 0.5d
+			optional: true
+			id: "49B02493D22E9272"
+			tasks: [{
+				id: "78EBC68DB2403CF2"
+				type: "item"
+				item: "botania:spark_upgrade_recessive"
+			}]
+			rewards: [
+				{
+					id: "7453B76CE3A7865C"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "52C9BBF24D1FEC3F"
+					type: "random"
+					table_id: 139139633314877365L
+				}
+				{
+					id: "54AB0A39EDAF0708"
+					type: "random"
+					icon: "cyclic:dice"
+					table_id: 6166930144693596049L
+				}
+			]
+		}
+		{
+			x: 1.95d
+			y: -1.55d
+			shape: "diamond"
+			subtitle: "合成火花增幅器：孤立状态"
+			dependencies: ["00FF81679B5822F1"]
+			size: 0.5d
+			optional: true
+			id: "1B57D05B337F4B8C"
+			tasks: [{
+				id: "6C18CE61691055AF"
+				type: "item"
+				item: "botania:spark_upgrade_isolated"
+			}]
+			rewards: [
+				{
+					id: "6E5F39BCB33B5F9E"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "1598C5D39E79B40D"
+					type: "random"
+					table_id: 139139633314877365L
+				}
+				{
+					id: "53C22184F3C030D0"
+					type: "random"
+					icon: "cyclic:dice"
+					table_id: 6166930144693596049L
+				}
+			]
+		}
+		{
+			x: 10.0d
+			y: -0.6d
+			shape: "pentagon"
+			subtitle: "合成一块陆地聚合板。"
+			description: [
+				"用途：用于制造泰拉钢。"
+				""
+				"&7When a single Manasteel Ingot, Mana Diamond and Mana Pearl are dropped on the center of the structure, the crafting process will begin and the plate block will start accepting Mana."
+				""
+				"虽然可以用Mana Spreaders提供法力，但Lexica Botania推荐使用Sparks以获得更高的传输速率。"
+				""
+				"&7如果在锻造过程中，有物品被放置在、拾取自或从板上消失，所有进度都将丢失，消耗的法力也无法恢复。"
+			]
+			dependencies: ["077791111078B7D9"]
+			id: "58FA310F082F0443"
+			tasks: [{
+				id: "29F5290DCE19D4A1"
+				type: "item"
+				item: "botania:terra_plate"
+			}]
+			rewards: [
+				{
+					id: "66294877060521E4"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "17D5ECF45A163AE4"
+					type: "item"
+					item: "botania:manasteel_ingot"
+					count: 4
+				}
+			]
+		}
+		{
+			title: "符文（Runes）"
+			x: 8.7d
+			y: -0.6d
+			shape: "hexagon"
+			subtitle: "制作任意一种符文。"
+			description: [
+				"符文是Botania中许多物品制作的重要组成部分，包括法力生产、功能性花朵、饰品（珠宝和腰带）以及神秘物品（武器、魔杖等）。"
+				""
+				"&7符文祭坛可以创造符文。"
+			]
+			dependencies: ["6C3678D13EE22AA7"]
+			id: "077791111078B7D9"
+			tasks: [{
+				id: "3D0A309596F6D28C"
+				type: "item"
+				title: "任意符文"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "tnp:botania_runes"
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "2FB3646581DB04E8"
+					type: "item"
+					item: "botania:rune_water"
+				}
+				{
+					id: "3E2A38C945D071AD"
+					type: "item"
+					item: "botania:rune_fire"
+					count: 2
+				}
+				{
+					id: "25404F465E7D0C7A"
+					type: "item"
+					item: "botania:mana_pearl"
+					count: 2
+				}
+			]
+		}
+		{
+			x: 11.3d
+			y: -0.6d
+			shape: "octagon"
+			subtitle: "制作一个泰拉钢锭。"
+			description: [
+				"&l设置&r：（5x 活岩 \& 4x 青金石块 + 1x 陆地聚合板。）-（活岩在板子下面）。"
+				"{image:tnp:textures/other/terrasteel_multiblock.png width:100 height:100 align:1}"
+				"&7When a single Manasteel Ingot, Mana Diamond and Mana Pearl are dropped on the center of the structure, the crafting process will begin and the plate block will start accepting Mana."
+				""
+				"虽然可以用Mana Spreaders提供法力，但Lexica Botania推荐使用Sparks以获得更高的传输速率。"
+				""
+				"&7如果在锻造过程中，有物品被放置在、拾取自或从板上消失，所有进度都将丢失，消耗的法力也无法恢复。"
+				""
+				"一旦该板获得 500,000 点法力，这三种物品将合成为一个 &a泰拉钢锭&f。"
+			]
+			dependencies: ["58FA310F082F0443"]
+			id: "779567EB6554EFB8"
+			tasks: [{
+				id: "020392CD4C9975D6"
+				type: "item"
+				item: "botania:terrasteel_ingot"
+			}]
+			rewards: [
+				{
+					id: "77B12B2347C9DAE4"
+					type: "item"
+					item: "botania:terrasteel_ingot"
+				}
+				{
+					id: "22A839D76D91A94E"
+					type: "xp_levels"
+					xp_levels: 15
+				}
+			]
+		}
+		{
+			x: 5.9d
+			y: -2.25d
+			shape: "octagon"
+			subtitle: "找到一个黑莲花（Black Lotus）"
+			description: [
+				"有一种名为黑莲的稀有花朵，但目前未知其生长或繁殖方式。"
+				""
+				"&7目前已知没有莲花的来源。"
+				""
+				"不过众所周知，每朵花都含有大量浓缩的魔力，可以通过在非空的魔力池内溶解来释放。"
+				""
+				"&7直接扔进去就行了，没问题的。"
+			]
+			dependencies: ["4DFAB4A234396FC1"]
+			size: 0.45d
+			optional: true
+			id: "0B52F11B44EEA997"
+			tasks: [{
+				id: "239C8C191C6BA052"
+				type: "item"
+				item: "botania:black_lotus"
+			}]
+			rewards: [
+				{
+					id: "51841D30B9417632"
+					type: "item"
+					item: "botania:black_lotus"
+				}
+				{
+					id: "6A0F3D1A7DE451F9"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "48CEFBF55D22CAFB"
+					type: "random"
+					table_id: 139139633314877365L
+				}
+			]
+		}
+		{
+			x: 4.16d
+			y: -1.3d
+			shape: "octagon"
+			subtitle: "制作一个法力虚空。"
+			description: [
+				"简单来说，虚空就是玛纳的坟墓。"
+				""
+				"&7倒入此方块的任何法力都会消失得无影无踪，再也无法被看见。"
+				""
+				"将其中一个放置在法力池下方，可使该池始终接受法力，但会丢弃任何无法容纳的部分。"
+			]
+			dependencies: ["5933AB28E68BFD23"]
+			size: 0.65d
+			optional: true
+			id: "4885E0E4AE16153C"
+			tasks: [{
+				id: "2D6946CEEFF65B35"
+				type: "item"
+				item: "botania:mana_void"
+			}]
+			rewards: [{
+				id: "2A70F058D6192E78"
+				type: "item"
+				item: "botania:manasteel_ingot"
+				count: 3
+			}]
+		}
+		{
+			x: 4.725d
+			y: -1.05d
+			shape: "octagon"
+			subtitle: "制作一个法力水晶。"
+			description: [
+				"用魔力扩散器运输魔力固然不错，但也有其他方式可以搬运这东西。"
+				""
+				"&7法力石板是一种可以携带法力的便携式物品。"
+				""
+				"此外，背包中的其他物品也可以从中获取物品供自己使用，使其成为必备工具。"
+				""
+				"&7Tossing a tablet into a Mana Pool will allow for flow of Mana between them."
+				""
+				"用森林魔杖右键（或使用分配器）点击法力池，可以改变法力的流动方向。"
+				""
+				"&7Unlike normal items, dropped tablets never despawn."
+			]
+			dependencies: ["5933AB28E68BFD23"]
+			size: 0.75d
+			id: "57E6DF2E72097BDA"
+			tasks: [{
+				id: "5A4A6B5F48E2BDB6"
+				type: "item"
+				item: "botania:mana_tablet"
+			}]
+			rewards: [
+				{
+					id: "7F7A42B2CDDA9DFB"
+					type: "item"
+					item: "botania:mana_tablet"
+				}
+				{
+					id: "06F97C3679D0EC0D"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			title: "任意特殊花朵"
+			x: 3.4d
+			y: 1.2d
+			shape: "hexagon"
+			subtitle: "合成任意一种特殊花朵。"
+			dependencies: ["40F5A1075189550F"]
+			id: "681EA568522B8386"
+			tasks: [{
+				id: "34CB4A04907526B8"
+				type: "item"
+				title: "任意特殊花朵"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "tnp:botania_special_flowers"
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "75BADF18E29F9FE3"
+					type: "item"
+					item: "botania:endoflame"
+				}
+				{
+					id: "4614542F1B5CC49B"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "4BA7D83DA1D15676"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			x: 11.325d
+			y: -2.4d
+			shape: "diamond"
+			subtitle: "制作一个泰拉钢头盔"
+			description: [
+				"&a全套盔甲套装加成："
+				"&a(远古意志)"
+				""
+				"法力工具和法杖的消耗减少20%。"
+				"&7即使饥饿未满，也能恢复饱食度。"
+				"在法力水晶上被动生成法力。"
+			]
+			dependencies: ["779567EB6554EFB8"]
+			size: 0.75d
+			optional: true
+			id: "484CB3682800336B"
+			tasks: [{
+				id: "74BF74522F2BF488"
+				type: "item"
+				item: {
+					id: "botania:terrasteel_helmet"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "35F66802578585AF"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "64EDFC7C114D0978"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "159949AC812C7661"
+					type: "item"
+					item: "botania:terrasteel_ingot"
+				}
+			]
+		}
+		{
+			x: 11.7d
+			y: -2.025d
+			shape: "diamond"
+			subtitle: "制作一个泰拉钢胸甲"
+			description: [
+				"&a全套盔甲套装加成："
+				"&a(远古意志)"
+				""
+				"法力工具和法杖的消耗减少20%。"
+				"&7即使饥饿未满，也能恢复饱食度。"
+				"在法力水晶上被动生成法力。"
+			]
+			dependencies: ["779567EB6554EFB8"]
+			size: 0.75d
+			optional: true
+			id: "0A0EB1D2B5B6FD48"
+			tasks: [{
+				id: "75029E9F8E8D3A5D"
+				type: "item"
+				item: {
+					id: "botania:terrasteel_chestplate"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "5C7E519F2FF768C9"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "3E1B39FFCA2E882C"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "6DF556296F862E93"
+					type: "item"
+					item: "botania:terrasteel_ingot"
+				}
+			]
+		}
+		{
+			x: 10.95d
+			y: -2.025d
+			shape: "diamond"
+			subtitle: "制作泰拉钢护腿 (Craft Terrasteel Leggings)"
+			description: [
+				"&a全套盔甲套装加成："
+				"&a(远古意志)"
+				""
+				"工具和鱼竿的消耗法力值减少20%。"
+				"&7即使饥饿未满，也能恢复饱食度。"
+				"在法力水晶上被动生成法力。"
+			]
+			dependencies: ["779567EB6554EFB8"]
+			size: 0.75d
+			optional: true
+			id: "682A0F5053892670"
+			tasks: [{
+				id: "023FF666C23E0397"
+				type: "item"
+				item: {
+					id: "botania:terrasteel_leggings"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "0287D4F56054DC48"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "52D194353D5AA2BC"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "5387D0F3756AE8D0"
+					type: "item"
+					item: "botania:terrasteel_ingot"
+				}
+			]
+		}
+		{
+			x: 11.325d
+			y: -1.65d
+			shape: "diamond"
+			subtitle: "制作泰拉钢靴 (Terrasteel Boots)"
+			description: [
+				"&a全套盔甲套装加成："
+				"&a(远古意志)"
+				""
+				"法力工具和法杖的消耗减少20%。"
+				"&7即使饥饿未满，也能恢复饱食度。"
+				"在法力水晶上生成被动法力。"
+			]
+			dependencies: ["779567EB6554EFB8"]
+			size: 0.75d
+			optional: true
+			id: "5097A810A020CDB7"
+			tasks: [{
+				id: "43A4C9AFCE2971D9"
+				type: "item"
+				item: {
+					id: "botania:terrasteel_boots"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "64D492C3A80DDF42"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "1434AE0A956B880A"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "7B5FCA343EE89BC0"
+					type: "item"
+					item: "botania:terrasteel_ingot"
+				}
+			]
+		}
+		{
+			x: 5.9d
+			y: -4.0d
+			shape: "diamond"
+			subtitle: "制作一个曼纳斯钢头盔。"
+			description: [
+				"&9全套盔甲套装加成："
+				"&9(法力亲和力)"
+				""
+				"法力工具和法杖的消耗减少10%。"
+			]
+			dependencies: ["19A1F403AFF4CDDF"]
+			size: 0.5d
+			optional: true
+			id: "1CBF7E6B3017B7C8"
+			tasks: [{
+				id: "400BBA1B16ABA7F5"
+				type: "item"
+				item: {
+					id: "botania:manasteel_helmet"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "6BF1B84CB6EEA2D4"
+					type: "random"
+					icon: "cyclic:dice"
+					table_id: 6166930144693596049L
+				}
+				{
+					id: "0C3997CBC660C0C8"
+					type: "random"
+					icon: "tnp:lootbag_piece"
+					table_id: 139139633314877365L
+				}
+				{
+					id: "6430751220F58B6E"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			x: 6.15d
+			y: -3.75d
+			shape: "diamond"
+			subtitle: "制作一件曼纳斯钢胸甲。"
+			description: [
+				"&9全套盔甲套装加成："
+				"&9(法力亲和力)"
+				""
+				"法力工具和法杖的消耗降低10%。"
+			]
+			dependencies: ["19A1F403AFF4CDDF"]
+			size: 0.5d
+			optional: true
+			id: "6DF5E7D685A42E79"
+			tasks: [{
+				id: "7B512C8E3343EFAC"
+				type: "item"
+				item: {
+					id: "botania:manasteel_chestplate"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "1A6BDF45FFD1B364"
+					type: "random"
+					icon: "cyclic:dice"
+					table_id: 6166930144693596049L
+				}
+				{
+					id: "466591FBB31D428F"
+					type: "random"
+					icon: "tnp:lootbag_piece"
+					table_id: 139139633314877365L
+				}
+				{
+					id: "2FF1BE093BE6FC2D"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			x: 5.65d
+			y: -3.75d
+			shape: "diamond"
+			subtitle: "制作曼纳斯钢护腿。"
+			description: [
+				"&9全套盔甲套装加成："
+				"&9(法力亲和)"
+				""
+				"法力工具和法杖的消耗减少10%。"
+			]
+			dependencies: ["19A1F403AFF4CDDF"]
+			size: 0.5d
+			optional: true
+			id: "3894F566F425DCEB"
+			tasks: [{
+				id: "6541EA88E9B0504B"
+				type: "item"
+				item: {
+					id: "botania:manasteel_leggings"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "5A6F67D6465FFDC6"
+					type: "random"
+					icon: "cyclic:dice"
+					table_id: 6166930144693596049L
+				}
+				{
+					id: "6E3FBB7624EC7E84"
+					type: "random"
+					icon: "tnp:lootbag_piece"
+					table_id: 139139633314877365L
+				}
+				{
+					id: "42A698FA059C0B02"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			x: 5.9d
+			y: -3.5d
+			shape: "diamond"
+			subtitle: "制作曼纳斯蒂尔靴子。"
+			description: [
+				"&9全套盔甲套装加成："
+				"&9(法力亲和)"
+				""
+				"法力工具和法杖的消耗减少10%。"
+			]
+			dependencies: ["19A1F403AFF4CDDF"]
+			size: 0.5d
+			optional: true
+			id: "0E49F2209E661366"
+			tasks: [{
+				id: "42F066B25C275E13"
+				type: "item"
+				item: {
+					id: "botania:manasteel_boots"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "769F5BAED049E955"
+					type: "random"
+					icon: "cyclic:dice"
+					table_id: 6166930144693596049L
+				}
+				{
+					id: "20DC3675AA194330"
+					type: "loot"
+					icon: "tnp:lootbag_piece"
+					table_id: 139139633314877365L
+				}
+				{
+					id: "0CFB756CE44581AF"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			x: 5.2d
+			y: -3.72d
+			subtitle: "制作任意一种透镜。"
+			description: [
+				"法力扩散器可以用法力透镜进行升级。最基础的法力透镜完全没有任何作用。"
+				""
+				"&7透镜可以与任意颜色的染料合成以染色，或与法力珍珠合成彩虹透镜。这会改变发射的冲击波颜色。"
+				""
+				"但透镜不仅仅是为了炫酷的颜色——它们可以用各种材料升级，从而在法力爆发中创造出各种各样的效果。"
+				""
+				"&7请注意，普通的法力扩散器必须指向一个能接收法力的方块才能发射。对于某些透镜，建议使用脉冲法力扩散器。"
+				""
+				"漏斗等方块可以添加或移除散布器的透镜。"
+				""
+				"&7速度透镜会大幅提升法力爆发的移动速度，但会消耗初始容量并加速法力流失。"
+				""
+				"效率透镜会延长法力爆发开始流失法力所需的时间，同时也会降低其流失速率。"
+				""
+				"&7伤害透镜能让法力爆发使用自身的法力来伤害任何被击中的生物。"
+				""
+				"&a> 在词典中阅读更多关于所有透镜的信息！"
+			]
+			dependencies: ["19A1F403AFF4CDDF"]
+			size: 0.4d
+			optional: true
+			id: "250A3A1D42E1F5D1"
+			tasks: [{
+				id: "144DE987326FEAD4"
+				type: "item"
+				title: "任何透镜 (Any Lenses)"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "botania:lens"
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "204654B28630A36D"
+					type: "item"
+					item: "botania:lens_normal"
+				}
+				{
+					id: "750897DFDE1F6E91"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			x: 11.325d
+			y: 0.3d
+			shape: "diamond"
+			subtitle: "合成 Terrablade。"
+			description: [
+				"Terra Blade 使用玩家背包中的 Mana Tablet 或其他提供 Mana 的物品来防止物品损坏或自我修复，每点耐久度消耗 100 Mana。"
+				""
+				"&7挥舞且攻击充能表已满时，将消耗100点法力，并创造一个能对受击生物造成7点伤害的法力爆发。"
+			]
+			dependencies: ["779567EB6554EFB8"]
+			size: 0.75d
+			optional: true
+			id: "6AA129DC3AE1A41E"
+			tasks: [{
+				id: "09607628C413B59F"
+				type: "item"
+				item: {
+					id: "botania:terra_sword"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "5D2DC8952E39D73E"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "3BB0D0D40FC8B33A"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+		{
+			x: 11.7d
+			y: 0.6749999999999999d
+			shape: "diamond"
+			subtitle: "合成 Terra Truncator。"
+			description: [
+				"Terra Truncator 使用玩家背包中的 Mana Tablet 或其他提供 Mana 的物品来防止物品损坏或自我修复，每点耐久度消耗 100 Mana。"
+				""
+				"&7用这把斧头破坏原木或树叶方块时，它会开始破坏所有直接或间接相连、最多穿过2个树叶方块、以被破坏方块为中心63x63x63范围内的所有原木和树叶。每破坏一个方块消耗1点耐久度。"
+				""
+				"如果玩家正在潜行或背包中有活跃的节制石，此能力将被抑制。"
+			]
+			dependencies: ["779567EB6554EFB8"]
+			size: 0.75d
+			optional: true
+			id: "61C97AF8B34AF2B0"
+			tasks: [{
+				id: "63B0DEC2A0FEC33B"
+				type: "item"
+				item: {
+					id: "botania:terra_axe"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "69967C93EEBA7797"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "660AA96726FE6AB4"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+		{
+			x: 10.95d
+			y: 0.6749999999999999d
+			shape: "diamond"
+			subtitle: "合成 Terra Shatterer。"
+			description: [
+				"Terra Shatterer 使用玩家背包中 Mana Tablet 或其他提供 Mana 的物品来防止物品损坏或自我修复，每点耐久度消耗 100 Mana。"
+				""
+				"&7镐子有好几个不同的等级，从 D、C、B、A、S 到 SS 不等。"
+				""
+				"要将工具从一个等级升级到另一个等级，必须将其放置在法力池上，使其吸收法力。吸收的法力越多，等级就越高。"
+				""
+				"&7从一级升到下一级所需的法力值会逐级增加十倍。"
+				""
+				"每个等级都有不同的主动能力强度，可通过右键激活。"
+				""
+				"&7工具激活期间，可以破坏更广阔范围内的方块。"
+			]
+			dependencies: ["779567EB6554EFB8"]
+			size: 0.75d
+			optional: true
+			id: "003860578299CBB9"
+			tasks: [{
+				id: "521C5ECD9953B989"
+				type: "item"
+				item: {
+					id: "botania:terra_pick"
+					Count: 1b
+					tag: {
+						mana: 9999
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "1F229862D91B69F6"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "2E48CE080BEC94F6"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+		{
+			x: 10.725d
+			y: -1.2d
+			shape: "diamond"
+			subtitle: "制作一个更强的磁化戒指。"
+			description: [
+				"Greater Ring of Magnetization 是 Ring of Magnetization 的升级版，将影响范围从 13x13 扩大到玩家周围的 33x33 区域。"
+				""
+				"&7最多可一次性吸取200个物品。佩戴此戒指的玩家掉落物品后，该物品在5秒内不会被吸向该玩家。"
+				""
+				"Solegnolia 花会阻止此戒指将物品吸入其范围，同时也会阻挡范围内玩家的戒指。"
+				""
+				"&7(戒指不会吸引遗物，或像法力锭这类含法力值的物品。)</c1>"
+				""
+				"（佩戴在奇物戒指插槽中。）"
+			]
+			hide_dependency_lines: true
+			dependencies: [
+				"779567EB6554EFB8"
+				"56FAA6E3030BC713"
+			]
+			size: 0.75d
+			optional: true
+			id: "4F1D7E4F7B4ED21B"
+			tasks: [{
+				id: "1D3DD7C001EF535C"
+				type: "item"
+				item: "botania:magnet_ring_greater"
+			}]
+			rewards: [
+				{
+					id: "437C51903F616281"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "2DFDA461E9669109"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+		{
+			x: 5.88d
+			y: -4.52d
+			subtitle: "制作一个磁化戒指 (Ring of Magnetization)"
+			description: [
+				"佩戴在 Curios Ring 插槽中，若未潜行，周围 13x13 范围内的物品都会被吸向佩戴者。"
+				""
+				"&7(最多可一次性提取200个物品。)</c1>"
+				""
+				"Solegnolia 花会阻止此戒指将物品吸入其范围，并阻挡范围内玩家的戒指。"
+				""
+				"&7(戒指不会吸引遗物，或像法力锭这类含法力值的物品。)</c1>"
+				""
+				"（装备在奇物戒指插槽中。）"
+			]
+			dependencies: [
+				"19A1F403AFF4CDDF"
+				"250A3A1D42E1F5D1"
+			]
+			size: 0.4d
+			optional: true
+			id: "56FAA6E3030BC713"
+			tasks: [{
+				id: "5389D54C38C080E6"
+				type: "item"
+				item: "botania:magnet_ring"
+			}]
+			rewards: [
+				{
+					id: "42A499FF1CC4C08B"
+					type: "random"
+					icon: "cyclic:dice"
+					table_id: 6166930144693596049L
+				}
+				{
+					id: "3AE7B4838CEF71BD"
+					type: "xp"
+					xp: 300
+				}
+				{
+					id: "2E17C518ED8CC8EC"
+					type: "item"
+					item: "tnp:lootbag_piece"
+					count: 5
+				}
+			]
+		}
+		{
+			x: 11.31d
+			y: 1.1050000000000002d
+			shape: "gear"
+			subtitle: "合成一个 Terrasteel AIOT。"
+			description: ["&e> 在 Terra Shatter 任务中了解如何升级此工具。"]
+			dependencies: [
+				"6AA129DC3AE1A41E"
+				"003860578299CBB9"
+				"61C97AF8B34AF2B0"
+			]
+			size: 0.7d
+			optional: true
+			id: "3124DCE5DBF6AF3F"
+			tasks: [{
+				id: "62A68537D6AC87FB"
+				type: "item"
+				item: {
+					id: "aiotbotania:terra_aiot"
+					Count: 1b
+					tag: {
+						mana: 9999
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "4BE12A57B56E1992"
+					type: "item"
+					item: "lootbagmod:lootbag"
+					count: 2
+				}
+				{
+					id: "7D351E384F6782A1"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "16BEDFEF5A1345CD"
+					type: "item"
+					item: "botania:mana_bottle"
+				}
+			]
+		}
+		{
+			x: 6.6d
+			y: -3.7d
+			shape: "rsquare"
+			subtitle: "制作一个法力手环 (Band of Mana)"
+			description: [
+				"佩戴法力手环后，它就能像法力石板一样储存法力。"
+				""
+				"&7可以储存 500,000 点法力值。"
+				""
+				"耐久度条表示的是储存在手环中的法力值，而非物品的实际耐久度；另一个更详细的耐久度条位于玩家快捷栏上方。"
+				""
+				"&7该手环还可升级为更强大的法力手环，可储存四倍的法力值。"
+				""
+				"（装备在奇物戒指插槽中。）"
+			]
+			dependencies: ["19A1F403AFF4CDDF"]
+			size: 0.4d
+			optional: true
+			id: "3290BCBB21EC361A"
+			tasks: [{
+				id: "06660D75B9DA9E48"
+				type: "item"
+				item: "botania:mana_ring"
+			}]
+			rewards: [
+				{
+					id: "1936D514733427BD"
+					type: "random"
+					icon: "cyclic:dice"
+					table_id: 6166930144693596049L
+				}
+				{
+					id: "24337B3410C263BC"
+					type: "xp"
+					xp: 150
+				}
+				{
+					id: "7653727CAEC83B50"
+					type: "random"
+					table_id: 139139633314877365L
+				}
+			]
+		}
+		{
+			x: 10.35d
+			y: -1.575d
+			shape: "diamond"
+			subtitle: "合成一个更强大的法力带。"
+			description: [
+				"大魔力手环是魔力手环的升级版，可储存 2,000,000 点魔力，是上一级的四倍。"
+				""
+				"&7耐久度条显示的是储存在手环中的法力值，而非物品的实际耐久度；另一个更清晰详细的耐久度条位于玩家快捷栏上方。"
+				""
+				"（佩戴在奇物戒指插槽中。）"
+			]
+			hide_dependency_lines: true
+			dependencies: ["3290BCBB21EC361A"]
+			size: 0.75d
+			optional: true
+			id: "49B8C9201E335B5F"
+			tasks: [{
+				id: "3E2F9A4D912FE28F"
+				type: "item"
+				item: "botania:mana_ring_greater"
+			}]
+			rewards: [
+				{
+					id: "0C0693DD76DC8E0E"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "3434DB4B19D15B66"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+		{
+			title: "通往阿尔弗雷姆的传送门"
+			icon: {
+				id: "ftbquests:custom_icon"
+				Count: 1b
+				tag: {
+					Icon: "tnp:textures/other/alfheim.png"
+				}
+			}
+			x: 12.7d
+			y: -0.6d
+			shape: "gear"
+			subtitle: "打开一个通往阿尔弗雷姆的传送门。"
+			description: [
+				""
+				"阿尔芙海姆传送门允许玩家交换特定的方块和物品。"
+				""
+				"&7与大多数传送门不同，阿尔弗雷姆传送门无法通行，玩家站在其中也不会被传送到任何地方。"
+				""
+				"（如果传送门耗尽法力，或结构的一部分被破坏，传送门将会关闭。）"
+				""
+				"&7At least 2 Natura Pylons with Mana Pools below them must be placed in an 11×11×11 area centered on the gateway core."
+				""
+				"结构完成后，使用森林魔杖作用于传送门核心以开启传送门。这将消耗&a200,000 Mana &f，由所有法力池共同承担。"
+				""
+				"&7> 设置："
+				"{image:tnp:textures/other/alfheim_setup.png width:100 height:100 align:1}"
+				""
+				"&7(创意法力池仅用于演示目的。)</c1>"
+				""
+				"&e&l合成配方：</c2></c1>"
+				"1x Livingwood -> 1x Dreamwood"
+				"&72x 魔钢锭 -> 1x 元素锭"
+				"2x 魔钢锭 -> 元素锭"
+				"&71x 法力珍珠 -> 1x 仙女粉尘"
+				"1x 法力钻石 -> 1x 龙之石"
+				"&71x 法力钻石块 -> 1x 龙石块"
+				"1x Nether Quartz -> 1x Elven Quartz"
+				"&71x Managlass -> 1x Alfglass"
+			]
+			dependencies: ["779567EB6554EFB8"]
+			id: "7A5268FCAF02E25B"
+			tasks: [
+				{
+					id: "070E71BC8A858581"
+					type: "item"
+					item: "botania:alfheim_portal"
+				}
+				{
+					id: "4954F64922E42F1C"
+					type: "item"
+					item: "botania:livingwood_log"
+					count: 8L
+				}
+				{
+					id: "12AB0DB49C9F128D"
+					type: "item"
+					item: "botania:glimmering_livingwood_log"
+					count: 3L
+				}
+				{
+					id: "0FD7DD3EA2C81542"
+					type: "item"
+					item: "botania:natura_pylon"
+					count: 2L
+				}
+			]
+			rewards: [
+				{
+					id: "79CE113DEE4BDEC2"
+					type: "item"
+					title: "法力值全满状态"
+					item: {
+						id: "botania:mana_pool"
+						Count: 1b
+						tag: {
+							BlockEntityTag: {
+								manaCap: 1000000
+								outputKey: ""
+								mana: 1000000
+								color: 0
+								canAccept: 1b
+								inputKey: ""
+								id: "botania:mana_pool"
+								canSpare: 1b
+								outputting: 0b
+							}
+							display: {
+								Lore: ["\"(+NBT)\""]
+							}
+						}
+					}
+				}
+				{
+					id: "330342729935E937"
+					type: "item"
+					item: "botania:terrasteel_ingot"
+					count: 3
+				}
+				{
+					id: "3EBE11EFEC5CD7E2"
+					type: "item"
+					item: "lootbagmod:lootbag"
+					count: 2
+				}
+			]
+		}
+		{
+			x: 14.2d
+			y: -0.6d
+			shape: "hexagon"
+			subtitle: "制作一个元素锭（Elementium Ingot）。"
+			description: [
+				"将2个曼纳斯钢锭投入阿尔弗雷姆传送门即可获得。"
+				""
+				"&7> 作为回报，你将获得 1x 元素锭。"
+			]
+			dependencies: ["7A5268FCAF02E25B"]
+			id: "6B7F5261BFE60BF5"
+			tasks: [{
+				id: "5F8A63C92E54DF2D"
+				type: "item"
+				item: "botania:elementium_ingot"
+			}]
+			rewards: [
+				{
+					id: "7DB24CE269A64700"
+					type: "item"
+					item: "botania:elementium_ingot"
+				}
+				{
+					id: "1932F8F6D2527AD9"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "3E7C6ACC4EBAB559"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+		{
+			x: 5.925d
+			y: 1.4d
+			shape: "octagon"
+			subtitle: "合成野性之角的号角"
+			description: ["按住使用按钮时，会吹响号角，在玩家周围25×25×7的区域收割草、花朵和作物。"]
+			dependencies: ["45AEC2F7C194D9E6"]
+			size: 0.75d
+			optional: true
+			id: "45BB8D86B7FDBE08"
+			tasks: [{
+				id: "61EA590A1D3C18F1"
+				type: "item"
+				item: "botania:horn_grass"
+			}]
+			rewards: [
+				{
+					id: "44D332E80DBEF0B3"
+					type: "random"
+					icon: "cyclic:dice"
+					table_id: 6166930144693596049L
+				}
+				{
+					id: "1CDA28997911DF33"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			x: 5.925d
+			y: 2.15d
+			shape: "octagon"
+			subtitle: "合成“天篷之角”（Horn of the Canopy）"
+			description: ["按住使用键时，会吹响号角，破坏玩家周围19×19×15范围内的树叶。"]
+			dependencies: ["45BB8D86B7FDBE08"]
+			size: 0.75d
+			optional: true
+			id: "58994465AC0DB441"
+			tasks: [{
+				id: "3EEE2ACB94D074EE"
+				type: "item"
+				item: "botania:horn_leaves"
+			}]
+			rewards: [
+				{
+					id: "2A6919A5D3AD0C16"
+					type: "random"
+					icon: "cyclic:dice"
+					table_id: 6166930144693596049L
+				}
+				{
+					id: "58FEBABF00FE0C80"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			x: 6.8999999999999995d
+			y: 1.4d
+			shape: "octagon"
+			subtitle: "合成野性之鼓（Drum of the Wild）"
+			description: [
+				"每当受到法力爆发攻击时，它都会在鼓周围25×25×7的区域里收割32个草、花或作物方块。"
+				""
+				"&7由于鼓不储存法力，需要脉冲法力扩散器或法力爆破器等爆发源来触发它。"
+			]
+			dependencies: ["45BB8D86B7FDBE08"]
+			size: 0.75d
+			optional: true
+			id: "0B7466DBB69F89E4"
+			tasks: [{
+				id: "4BE941B143D1AEDE"
+				type: "item"
+				item: "botania:drum_wild"
+			}]
+			rewards: [
+				{
+					id: "66A5207EF1ECDFCB"
+					type: "random"
+					icon: "cyclic:dice"
+					table_id: 6166930144693596049L
+				}
+				{
+					id: "67AAFAEC79F89420"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			x: 6.8999999999999995d
+			y: 2.15d
+			shape: "octagon"
+			subtitle: "合成天篷鼓 (Drum of the Canopy)"
+			description: [
+				"受到法力爆发攻击时，方块上方会因节拍触发而出现符号，树叶将被破坏，并留下如同手动破坏般的掉落物。"
+				""
+				"&7Effective range is 12 block square radius and +7 block vertical range"
+				""
+				"鼓不储存法力，所以射入其中的任何法力都会被立即消耗。"
+			]
+			dependencies: ["0B7466DBB69F89E4"]
+			size: 0.75d
+			optional: true
+			id: "1D62965217492282"
+			tasks: [{
+				id: "7E6F2B8BB6BB8831"
+				type: "item"
+				item: "botania:drum_canopy"
+			}]
+			rewards: [
+				{
+					id: "043BB082DC3118AF"
+					type: "random"
+					icon: "cyclic:dice"
+					table_id: 6166930144693596049L
+				}
+				{
+					id: "1FF793C2A83E9726"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			x: 14.174999999999999d
+			y: -2.4d
+			shape: "diamond"
+			subtitle: "制作一个元素头盔 (Elementium Helmet)"
+			description: [
+				"&d全套盔甲套装加成："
+				"&d(大妖精的祝福)"
+				""
+				"法力工具和法杖的消耗减少10%。"
+				"&7小精灵施加药水效果的几率。"
+			]
+			dependencies: ["6B7F5261BFE60BF5"]
+			size: 0.75d
+			optional: true
+			id: "6A19562304B9CB11"
+			tasks: [{
+				id: "55E7D859E010A4CF"
+				type: "item"
+				item: {
+					id: "botania:elementium_helmet"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "1C71503D160FE097"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "5352C72E23934C22"
+					type: "xp_levels"
+					xp_levels: 10
+				}
+				{
+					id: "335544DEC0F041A6"
+					type: "item"
+					item: "botania:elementium_nugget"
+					count: 5
+				}
+			]
+		}
+		{
+			x: 14.549999999999999d
+			y: -2.025d
+			shape: "diamond"
+			subtitle: "制作一个元素锭胸甲"
+			description: [
+				"&d全套盔甲套装加成："
+				"&d(大妖精的祝福)"
+				""
+				"法力工具和法杖的消耗减少10%。"
+				"&7小精灵施加药水效果的几率。"
+			]
+			dependencies: ["6B7F5261BFE60BF5"]
+			size: 0.75d
+			optional: true
+			id: "5CF21061D7E54E6D"
+			tasks: [{
+				id: "243A372A79E14F6D"
+				type: "item"
+				item: {
+					id: "botania:elementium_chestplate"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "38CA4CB0158259CF"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "73117482483F8D19"
+					type: "xp_levels"
+					xp_levels: 10
+				}
+				{
+					id: "1E554CF1E80F5DB8"
+					type: "item"
+					item: "botania:elementium_nugget"
+					count: 4
+				}
+			]
+		}
+		{
+			x: 13.799999999999999d
+			y: -2.025d
+			shape: "diamond"
+			subtitle: "制作元素锭护腿 (Elementium Leggings)"
+			description: [
+				"&d全套盔甲套装加成："
+				"&d(大妖精的祝福)"
+				""
+				"法力工具和法杖的消耗减少10%。"
+				"&7小精灵施加药水效果的几率。"
+			]
+			dependencies: ["6B7F5261BFE60BF5"]
+			size: 0.75d
+			optional: true
+			id: "4AC48F4EFB3ED7B2"
+			tasks: [{
+				id: "78FAAA65B52D85C7"
+				type: "item"
+				item: {
+					id: "botania:elementium_leggings"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "6CB5D6B559D6C6D7"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "47557154055CE330"
+					type: "xp_levels"
+					xp_levels: 10
+				}
+				{
+					id: "2F2222875509074A"
+					type: "item"
+					item: "botania:elementium_nugget"
+					count: 4
+				}
+			]
+		}
+		{
+			x: 14.174999999999999d
+			y: -1.65d
+			shape: "diamond"
+			subtitle: "制作元素锭靴子"
+			description: [
+				"&d全套盔甲套装加成："
+				"&d(大妖精的祝福)"
+				""
+				"法力工具和法杖的消耗减少10%。"
+				"&7小精灵施加药水效果的几率。"
+			]
+			dependencies: ["6B7F5261BFE60BF5"]
+			size: 0.75d
+			optional: true
+			id: "3DD5364851BB9D34"
+			tasks: [{
+				id: "3F6BD7789C2642C2"
+				type: "item"
+				item: {
+					id: "botania:elementium_boots"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "73B5D6BBFB61FF08"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "3F5B4A48EA09235E"
+					type: "xp_levels"
+					xp_levels: 10
+				}
+				{
+					id: "09F7BFE8582CA74C"
+					type: "item"
+					item: "botania:elementium_nugget"
+					count: 5
+				}
+			]
+		}
+		{
+			x: 5.13d
+			y: -2.475d
+			shape: "diamond"
+			subtitle: "制作一个卷云护身符"
+			description: [
+				"当玩家在Baubles Amulet栏位佩戴时，将能够进行二段跳。"
+				""
+				"&7在空中跳跃会消除所有坠落伤害和向下的冲力。"
+			]
+			dependencies: [
+				"17BBF8AD94FF3021"
+				"077791111078B7D9"
+				"19A1F403AFF4CDDF"
+			]
+			size: 0.45d
+			optional: true
+			id: "3C3051BD8C5BA9A8"
+			tasks: [{
+				id: "152459B93107A3B7"
+				type: "item"
+				item: "botania:cloud_pendant"
+			}]
+			rewards: [
+				{
+					id: "234792D9DC612B00"
+					type: "item"
+					item: "aquaculture:treasure_chest"
+				}
+				{
+					id: "48B8AE8ACBD5C215"
+					type: "xp"
+					xp: 150
+				}
+				{
+					id: "148DFDD7D35A96B7"
+					type: "random"
+					table_id: 139139633314877365L
+				}
+			]
+		}
+		{
+			x: 6.705d
+			y: -2.475d
+			shape: "diamond"
+			subtitle: "制作远行者束带 (Sojourner's Sash)"
+			description: [
+				"佩戴在Curios Belt槽位时，会将佩戴者的速度提高约1.3 m/s，跳跃高度提高1格，并在非潜行状态下提供步态辅助。"
+				""
+				"&7In addition the player will take 1 (Half Heart) less point of fall damage."
+				""
+				"这些能力的法力消耗为每秒2点法力。"
+			]
+			dependencies: [
+				"077791111078B7D9"
+				"19A1F403AFF4CDDF"
+			]
+			size: 0.45d
+			optional: true
+			id: "482AB88B1676E0D4"
+			tasks: [{
+				id: "36601EA14F67FF11"
+				type: "item"
+				item: "botania:travel_belt"
+			}]
+			rewards: [
+				{
+					id: "4FE2267BD14FD3FE"
+					type: "item"
+					item: "aquaculture:treasure_chest"
+				}
+				{
+					id: "30AB175220B21BE1"
+					type: "xp"
+					xp: 150
+				}
+				{
+					id: "4C0866DEDC94D985"
+					type: "random"
+					table_id: 139139633314877365L
+				}
+			]
+		}
+		{
+			x: 6.930000000000001d
+			y: -2.7d
+			shape: "diamond"
+			subtitle: "制作一个 Planestrider's Sash"
+			description: [
+				"佩戴在奇物腰带槽位时，只要移动，穿戴者的速度就会缓慢增加，最高可达 11 m/s。"
+				""
+				"&7穿戴者停止移动，速度加成将失效。"
+				""
+				"此外，玩家将获得步数辅助和1.5格的跳跃高度提升。"
+				""
+				"&7这些能力的法力消耗为每秒2点法力。"
+			]
+			dependencies: ["482AB88B1676E0D4"]
+			size: 0.45d
+			optional: true
+			id: "6E04E21995E11B74"
+			tasks: [{
+				id: "606D0DECF57F6885"
+				type: "item"
+				item: "botania:speed_up_belt"
+			}]
+			rewards: [
+				{
+					id: "5B0F16B6CFBB744B"
+					type: "item"
+					item: "aquaculture:treasure_chest"
+				}
+				{
+					id: "1FE5385E36975114"
+					type: "xp"
+					xp: 150
+				}
+				{
+					id: "5F972E83AC79A7EA"
+					type: "random"
+					table_id: 139139633314877365L
+				}
+			]
+		}
+		{
+			x: 13.125d
+			y: -1.575d
+			shape: "diamond"
+			subtitle: "制作一个环球旅行者的束带。"
+			description: [
+				"佩戴在 Curios Belt 槽位时，会将佩戴者的速度提高约 2.8 m/s，跳跃高度提高 2 格，并且在不潜行时提供步态辅助。"
+				""
+				"&7In addition the player will take 3 less points of fall damage."
+				""
+				"这些能力的法力消耗为每秒2点法力。"
+			]
+			dependencies: [
+				"6B7F5261BFE60BF5"
+				"482AB88B1676E0D4"
+			]
+			size: 0.75d
+			optional: true
+			id: "2135586413DE53DA"
+			tasks: [{
+				id: "6C0D53F3B0B1E600"
+				type: "item"
+				item: "botania:super_travel_belt"
+			}]
+			rewards: [
+				{
+					id: "004C6F386B1F2F68"
+					type: "item"
+					item: "botania:terrasteel_ingot"
+				}
+				{
+					id: "558C82D3B979E167"
+					type: "xp"
+					xp: 350
+				}
+				{
+					id: "4B23F6A82599F360"
+					type: "random"
+					table_id: 139139633314877365L
+				}
+			]
+		}
+		{
+			x: 13.5d
+			y: -1.2d
+			shape: "diamond"
+			subtitle: "合成一个大精灵之环。"
+			description: [
+				"佩戴在Curios Ring插槽中，有25%的几率生成一个Pixie，当受到伤害时，它会追击攻击者。"
+				""
+				"&7概率会随穿戴的盔甲和配饰（包括其他大妖精戒指）而累积叠加。"
+			]
+			dependencies: ["6B7F5261BFE60BF5"]
+			size: 0.75d
+			optional: true
+			id: "31E48D6848F50B5C"
+			tasks: [{
+				id: "6336E23D018613B9"
+				type: "item"
+				item: {
+					id: "botania:pixie_ring"
+					Count: 1b
+					tag: {
+						baubleUUID: [I;
+							1878118555
+							677071234
+							-1902723514
+							1301051004
+						]
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "76D49BCCA56AB831"
+					type: "item"
+					item: "botania:terrasteel_ingot"
+				}
+				{
+					id: "6465CB0855A4A4CD"
+					type: "xp"
+					xp: 350
+				}
+				{
+					id: "216A14F46FD2429E"
+					type: "loot"
+					table_id: 139139633314877365L
+				}
+			]
+		}
+		{
+			x: 4.905d
+			y: -2.7d
+			shape: "diamond"
+			subtitle: "制作一个 Nimbus Amulet。"
+			description: [
+				"当玩家在 Curios Amulet 插槽佩戴时，可以三连跳，比 Cirrus Amulet 多一次跳跃。"
+				""
+				"&7在空中跳跃会消除所有坠落伤害和向下的冲力。"
+			]
+			dependencies: [
+				"3C3051BD8C5BA9A8"
+				"6B7F5261BFE60BF5"
+			]
+			size: 0.45d
+			optional: true
+			id: "5CA5837157C5E3C4"
+			tasks: [{
+				id: "35BC69B4B82D72A5"
+				type: "item"
+				item: "botania:super_cloud_pendant"
+			}]
+			rewards: [
+				{
+					id: "751F76D0A7D07E21"
+					type: "item"
+					item: "aquaculture:treasure_chest"
+					count: 4
+				}
+				{
+					id: "6ECCB1E2F59DE8B2"
+					type: "xp"
+					xp: 500
+				}
+				{
+					id: "1A120AAF339B01C1"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+			]
+		}
+		{
+			x: 14.194999999999999d
+			y: 0.33999999999999997d
+			shape: "diamond"
+			subtitle: "制作一个星象学家。"
+			description: [
+				"Starcaller 使用玩家背包中的法力水晶或其他提供法力的物品来防止物品损坏或自我修复，每点耐久度消耗 100 点法力。"
+				""
+				"&7挥舞时有几率从目标方块上方24格处发射一枚导弹，消耗120点法力值和1点耐久度"
+				""
+				"该导弹造成5点伤害，并有25%的几率造成双倍伤害。"
+				""
+				"&7*泰拉瑞亚的音乐渐入高潮*</c1>"
+			]
+			dependencies: [
+				"6B7F5261BFE60BF5"
+				"6AA129DC3AE1A41E"
+			]
+			size: 0.85d
+			optional: true
+			id: "775F56109742DACE"
+			tasks: [{
+				id: "3677441DC2B49EAF"
+				type: "item"
+				item: {
+					id: "botania:star_sword"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "2DC2D6FFA88E5E5E"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "271236B6769A39B9"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "2D1DD16D4483C732"
+					type: "item"
+					item: "botania:elementium_ingot"
+				}
+			]
+		}
+		{
+			x: 15.7d
+			y: -0.6d
+			shape: "pentagon"
+			subtitle: "制作一个法力注入器。"
+			description: [
+				"魔力注入器主要用于制作阿尔法钢，也可以制作泰拉钢。"
+				""
+				"&7Unlike the Terrestrial Agglomeration Plate, the Mana Infuser requires a dominant spark augment to pull mana from sparks."
+				""
+				"用组件右键点击板块，它们会掉落到板块上。"
+			]
+			dependencies: ["6B7F5261BFE60BF5"]
+			id: "45E5728A7F0CBDFF"
+			tasks: [{
+				id: "0C04988880DED07F"
+				type: "item"
+				item: "mythicbotany:mana_infuser"
+			}]
+			rewards: [
+				{
+					id: "03582EF447F65B04"
+					type: "xp"
+					xp: 250
+				}
+				{
+					id: "6FBE7C2F9182FD34"
+					type: "item"
+					item: "botania:elementium_ingot"
+				}
+				{
+					id: "62D27659BDA7E4F1"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+			]
+		}
+		{
+			x: 17.2d
+			y: -0.6d
+			shape: "hexagon"
+			subtitle: "合成一个阿尔夫钢锭。"
+			description: [
+				"Alfsteel 是通过在 Mana Infuser 上举行灌注仪式来制作的。"
+				""
+				"&7要制作一个阿尔夫钢锭，请将一个元素锭、一个仙女粉尘和一个龙石扔到熔炉上。"
+				""
+				"然后，该板必须接收 2,000,000 点法力（2 个完整法力池），且 3 件物品均未被拾取。"
+				""
+				"&7如果捡起其中任何物品，充能就会失败。"
+				""
+				"作为进度指示，几缕粉红色的发光烟雾会从板上飞出，旋转，由蓝色变为绿色，最后撞击在一起，将物品结合成 Alfsteel。"
+				""
+				"&e&l设置&r&7：(5x 闪烁岩 \& 4x 金块 + 1x 法力注入器。) - (注入器下方有闪烁岩)"
+				"{image:tnp:textures/other/mana-infuser.png width:100 height:100 align:1}"
+				"&c注意："
+				"元素锭、仙女粉尘和龙石被视为投掷物品，因此会在5分钟后消失。"
+				""
+				"因此，确保有足够的法力来完成仪式非常重要，否则你可能会失去进度和物品。"
+			]
+			dependencies: ["45E5728A7F0CBDFF"]
+			id: "523E631AF16750C6"
+			tasks: [{
+				id: "2E9397D3AC2C06AA"
+				type: "item"
+				item: "mythicbotany:alfsteel_ingot"
+			}]
+			rewards: [
+				{
+					id: "3D5420BC1DF02736"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "5469C8C8FFF587ED"
+					type: "xp_levels"
+					xp_levels: 20
+				}
+				{
+					id: "191FF474190209A4"
+					type: "item"
+					item: "mythicbotany:alfsteel_ingot"
+				}
+			]
+		}
+		{
+			x: 17.175d
+			y: -2.4d
+			shape: "diamond"
+			subtitle: "制作一个阿尔夫钢头盔"
+			description: [
+				"&6全套盔甲套装加成："
+				"&6(远古意志)"
+				""
+				"法力工具和法杖的消耗减少20%。"
+				"&7即使饥饿未满，也能恢复饱食度。"
+				"在法力水晶上被动生成法力。"
+				"&7能让你跳得稍微远一点。"
+			]
+			dependencies: [
+				"523E631AF16750C6"
+				"4B4550BF827CE83F"
+				"0CBE84B98F45D8E3"
+				"402311A5BCC38681"
+			]
+			size: 0.75d
+			optional: true
+			id: "0EA986EF7CAA18A5"
+			tasks: [{
+				id: "71F7CCE3DA4EC264"
+				type: "item"
+				item: {
+					id: "mythicbotany:alfsteel_helmet"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "12AE679B87FF5B40"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "2553B7487E2237F1"
+					type: "xp_levels"
+					xp_levels: 15
+				}
+				{
+					id: "18EE5CE236E17B2E"
+					type: "item"
+					item: "mythicbotany:alfsteel_nugget"
+					count: 5
+				}
+			]
+		}
+		{
+			x: 17.55d
+			y: -2.025d
+			shape: "diamond"
+			subtitle: "制作一件阿尔夫钢胸甲"
+			description: [
+				"&6全套盔甲套装加成："
+				"&6(远古意志)"
+				""
+				"法力工具和法杖的消耗减少20%。"
+				"&7即使饥饿未满，也能恢复饱食度。"
+				"在法力水晶上被动生成法力。"
+				"&7能让你跳得稍微远一点。"
+			]
+			dependencies: ["523E631AF16750C6"]
+			size: 0.75d
+			optional: true
+			id: "402311A5BCC38681"
+			tasks: [{
+				id: "3E92C75F7903021A"
+				type: "item"
+				item: {
+					id: "mythicbotany:alfsteel_chestplate"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "69B912427048AAE0"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "66A5A06927525F25"
+					type: "xp_levels"
+					xp_levels: 15
+				}
+				{
+					id: "49527126F35D034B"
+					type: "item"
+					item: "mythicbotany:alfsteel_nugget"
+					count: 4
+				}
+			]
+		}
+		{
+			x: 16.8d
+			y: -2.025d
+			shape: "diamond"
+			subtitle: "制作阿尔夫钢护腿"
+			description: [
+				"&6全套盔甲套装加成："
+				"&6(远古意志)"
+				""
+				"法力工具和法杖的消耗减少20%。"
+				"&7即使饥饿未满，也能恢复饱食度。"
+				"在法力水晶上被动生成法力。"
+				"&7能让你跳得稍微远一点。"
+			]
+			dependencies: ["523E631AF16750C6"]
+			size: 0.75d
+			optional: true
+			id: "4B4550BF827CE83F"
+			tasks: [{
+				id: "2CC6E80E86050243"
+				type: "item"
+				item: {
+					id: "mythicbotany:alfsteel_leggings"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "0C0BD5CA43866D16"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "0C3E826849BA62F6"
+					type: "xp_levels"
+					xp_levels: 15
+				}
+				{
+					id: "4212016C3163186C"
+					type: "item"
+					item: "mythicbotany:alfsteel_nugget"
+					count: 4
+				}
+			]
+		}
+		{
+			x: 17.175d
+			y: -1.65d
+			shape: "diamond"
+			subtitle: "制作阿尔夫钢靴"
+			description: [
+				"&6全套盔甲套装加成："
+				"&6(远古意志)"
+				""
+				"法力工具和法杖的消耗减少20%。"
+				"&7即使饥饿未满，也能恢复饱食度。"
+				"在法力水晶上被动生成法力。"
+				"&7能让你跳得稍微远一点。"
+			]
+			dependencies: ["523E631AF16750C6"]
+			size: 0.75d
+			optional: true
+			id: "0CBE84B98F45D8E3"
+			tasks: [{
+				id: "16F653EA7F37D215"
+				type: "item"
+				item: {
+					id: "mythicbotany:alfsteel_boots"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "5EF809286D5D9BE2"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "4101EF84AEAD4EBF"
+					type: "xp_levels"
+					xp_levels: 15
+				}
+				{
+					id: "2D3BD5C2A3CDE750"
+					type: "item"
+					item: "mythicbotany:alfsteel_nugget"
+					count: 5
+				}
+			]
+		}
+		{
+			x: 16.5d
+			y: -1.2d
+			shape: "diamond"
+			subtitle: "合成最伟大的法力乐队（Greatest Band of Mana）"
+			dependencies: ["523E631AF16750C6"]
+			size: 0.75d
+			optional: true
+			id: "791C64A3DA422671"
+			tasks: [{
+				id: "1392E42D6A70ECDF"
+				type: "item"
+				item: "mythicbotany:mana_ring_greatest"
+			}]
+			rewards: [
+				{
+					id: "50FD5C217AAC4E8B"
+					type: "item"
+					item: "mythicbotany:alfsteel_nugget"
+					count: 4
+				}
+				{
+					id: "4B18A45BBC8CEDC8"
+					type: "xp"
+					xp: 750
+				}
+				{
+					id: "73C96C51ECCF1A7F"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+			]
+		}
+		{
+			x: 16.125d
+			y: -1.575d
+			shape: "diamond"
+			subtitle: "合成一个最伟大的光环乐队"
+			dependencies: ["523E631AF16750C6"]
+			size: 0.75d
+			optional: true
+			id: "6D9A71919DEC7B7B"
+			tasks: [{
+				id: "3C4710F6B768395F"
+				type: "item"
+				item: "mythicbotany:aura_ring_greatest"
+			}]
+			rewards: [
+				{
+					id: "1C7C7F586E8B590E"
+					type: "item"
+					item: "mythicbotany:alfsteel_nugget"
+					count: 5
+				}
+				{
+					id: "57FC10B0110B6EB5"
+					type: "xp"
+					xp: 750
+				}
+				{
+					id: "1F4DB7962BC558F5"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+			]
+		}
+		{
+			x: 17.175d
+			y: 0.3d
+			shape: "diamond"
+			subtitle: "制作一把阿尔法之刃。"
+			description: ["阿尔法之刃使用玩家背包中法力锭或其他提供法力的物品来防止物品损坏或自我修复，每点耐久度消耗100点法力。"]
+			dependencies: ["523E631AF16750C6"]
+			size: 0.75d
+			optional: true
+			id: "29FF08B720EF79FC"
+			tasks: [{
+				id: "0AB3C163609EA230"
+				type: "item"
+				item: {
+					id: "mythicbotany:alfsteel_sword"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "2C13019AEA8AA83C"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "36754621DF8C3244"
+					type: "xp_levels"
+					xp_levels: 8
+				}
+				{
+					id: "56369B19EE455C72"
+					type: "item"
+					item: "mythicbotany:alfsteel_nugget"
+					count: 2
+				}
+			]
+		}
+		{
+			x: 16.8d
+			y: 0.6749999999999999d
+			shape: "diamond"
+			subtitle: "制作一个阿尔法碎裂者。"
+			description: ["&e> 在 Terra Shatter 任务中了解如何升级此工具。"]
+			dependencies: ["523E631AF16750C6"]
+			size: 0.75d
+			optional: true
+			id: "3874B1E3115D87E1"
+			tasks: [{
+				id: "6A344A6CB237378F"
+				type: "item"
+				item: {
+					id: "mythicbotany:alfsteel_pick"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "07A81701F3535065"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "2D76CB14C0D00BB8"
+					type: "xp_levels"
+					xp_levels: 8
+				}
+				{
+					id: "13A3C759B783D781"
+					type: "item"
+					item: "mythicbotany:alfsteel_nugget"
+					count: 3
+				}
+			]
+		}
+		{
+			x: 17.55d
+			y: 0.6749999999999999d
+			shape: "diamond"
+			subtitle: "制作一个阿尔夫截断器。"
+			dependencies: ["523E631AF16750C6"]
+			size: 0.75d
+			optional: true
+			id: "2EA487780DC60CE8"
+			tasks: [{
+				id: "6AE67165067EB599"
+				type: "item"
+				item: {
+					id: "mythicbotany:alfsteel_axe"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "6113E09C68E6FD8A"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "1E13AA4B32C59271"
+					type: "xp_levels"
+					xp_levels: 8
+				}
+				{
+					id: "7C7C8D41A8DAE49F"
+					type: "item"
+					item: "mythicbotany:alfsteel_nugget"
+					count: 2
+				}
+			]
+		}
+		{
+			x: 17.175d
+			y: 1.05d
+			shape: "diamond"
+			subtitle: "制作一个 Alfsteel AIOT。"
+			description: ["&e> 在 Terra Shatter 任务中了解如何升级此工具。"]
+			dependencies: ["523E631AF16750C6"]
+			size: 0.75d
+			optional: true
+			id: "14598EAB4BBA185D"
+			tasks: [{
+				id: "4AF41C67532659E5"
+				type: "item"
+				item: {
+					id: "aiotbotania:alfsteel_aiot"
+					Count: 1b
+					tag: {
+						mana: 9999
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "3E947548EEC6AF88"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "5C1A666B52BB1682"
+					type: "xp_levels"
+					xp_levels: 8
+				}
+				{
+					id: "2EA940DBFC570D92"
+					type: "item"
+					item: "mythicbotany:alfsteel_nugget"
+					count: 2
+				}
+			]
+		}
+		{
+			title: "盖亚初始化"
+			x: 18.6d
+			y: -0.6d
+			shape: "octagon"
+			subtitle: "执行盖亚初始化任务。"
+			description: [
+				"要进行仪式，需要一个信标和4个盖亚柱。"
+				""
+				"&7使用 Lexica Botania 的结构预览功能，可以在世界中预览确切位置。（很有用！）"
+				""
+				"盖亚金字塔必须放置在信标方块的正上方一格。"
+				""
+				"&7尽管预览中显示的是铁块，但信标仪式并不需要有效的信标底座。"
+				""
+				"此外，信标周围必须有一个半径为11个方块的圆形地板。"
+				""
+				"&7建造完成后，在信标上右键单击Terrasteel Ingot即可召唤Guardian of Gaia。"
+				""
+				"如果竞技场有任何部分缺失或被遮挡，粉色粒子会显示违规位置。"
+				""
+				"&7> 更难的 boss？"
+				"&7Using a Gaia Spirit Ingot instead of a Terrasteel Ingot will summon the harder version of the Guardian for a bigger reward."
+				""
+				"&d> 设置：&r(示例)"
+				"{image:tnp:textures/other/gaia_ritual.png width:100 height:100 align:1}"
+			]
+			dependencies: ["523E631AF16750C6"]
+			id: "74CE8D1BB2AF5082"
+			tasks: [
+				{
+					id: "196B31284DB6FA16"
+					type: "item"
+					item: "botania:gaia_pylon"
+					count: 4L
+				}
+				{
+					id: "5693C1F4F44A7910"
+					type: "item"
+					item: "minecraft:beacon"
+				}
+			]
+			rewards: [{
+				id: "5315698273EFDC75"
+				type: "item"
+				item: {
+					id: "minecraft:potion"
+					Count: 1b
+					tag: {
+						Potion: "minecraft:strong_strength"
+					}
+				}
+			}]
+		}
+		{
+			title: "盖亚的守护者"
+			x: 20.0d
+			y: -0.6d
+			shape: "gear"
+			subtitle: "击败盖亚首领（Gaia Boss）。"
+			description: ["要召唤首领，请在附近有4个盖亚柱的活跃信标上，对着泰拉钢锭右键并按住Shift。"]
+			dependencies: ["74CE8D1BB2AF5082"]
+			size: 1.25d
+			id: "347E1D20E5D3F911"
+			tasks: [{
+				id: "160BAC26950917CC"
+				type: "kill"
+				icon: "botania:gaia_head"
+				entity: "botania:doppleganger"
+				value: 1L
+			}]
+			rewards: [
+				{
+					id: "061AE1F7CC99D227"
+					type: "item"
+					item: "botania:life_essence"
+				}
+				{
+					id: "400A0BB2A87C1F83"
+					type: "xp_levels"
+					xp_levels: 30
+				}
+				{
+					id: "2F167221475476C6"
+					type: "item"
+					item: "lootbagmod:lootbag"
+					count: 2
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+}
