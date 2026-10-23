@@ -1,0 +1,217 @@
+# AI 初翻，未人工校对
+{
+	always_invisible: true
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "magical"
+	group: "5A42857CD4E60814"
+	icon: "botania:corporea_index"
+	id: "1E2BFC921C6BD0BB"
+	images: [{
+		click: ""
+		corner: false
+		dev: false
+		height: 1.0d
+		hover: [ ]
+		image: "ftbskies:textures/quests/magical.png"
+		rotation: 0.0d
+		width: 4.771084337349397d
+		x: -5.0d
+		y: -8.5d
+	}]
+	order_index: 3
+	quest_links: [
+		{
+			id: "1EA4EBB0900CCCFA"
+			linked_quest: "623ECDC05E1FEEE1"
+			shape: "pentagon"
+			size: 2.0d
+			x: -1.5d
+			y: -1.0d
+		}
+		{
+			id: "6A365DFF56A6AE3C"
+			linked_quest: "38428BE09619A2C4"
+			shape: "pentagon"
+			size: 2.0d
+			x: -8.5d
+			y: -1.0d
+		}
+	]
+	quests: [
+		{
+			dependencies: ["33FF06F93A9B4510"]
+			description: [
+				"&bCorporea Sparks&r 是 &6Corporea 网络&r 的第一部分，能让你向已连接的物品栏 &6请求物品&r。网络只能处理 &6主动请求&r，不会被动操作，也永远无法向网络中 &o添加&r 物品。"
+				""
+				"Corporea Sparks会自动&6连接到附近同色的其他Corporea Sparks&r，颜色可用染料更改。每个网络还需要一个单独的&bMaster Corporea Spark&r。"
+				""
+				"Corporea Sparks 可以&6直接访问其正下方的物品栏中的物品&r。但这&c不适用于&rMaster Corporea Spark，它必须放置在物品栏上，却无法访问其中的物品……原因不明。"
+			]
+			icon: "botania:corporea_spark_master"
+			id: "69DE3088CD8EE75E"
+			min_width: 325
+			rewards: [{
+				count: 3
+				id: "4D1EC21D8967977E"
+				item: "botania:corporea_spark"
+				type: "item"
+			}]
+			subtitle: "魔法数字存储系统"
+			tasks: [
+				{
+					id: "7BDADA5B8D1D33BE"
+					item: "botania:corporea_spark"
+					type: "item"
+				}
+				{
+					id: "10BF64E787A0D9BC"
+					item: "botania:corporea_spark_master"
+					type: "item"
+				}
+			]
+			title: "Corporea Networks"
+			x: -6.5d
+			y: -5.5d
+		}
+		{
+			dependencies: ["69DE3088CD8EE75E"]
+			description: [
+				"靠近 &bCorporea Index&r 时，你可以在聊天中 &6say in chat&r 输入物品名称和数量，以从与其相连的 Corporea Spark 上请求物品。"
+				""
+				"你可以要求“&632个石头&r”或者“&6半组石头&r”，两者都有效。"
+				""
+				"由于索引在技术上没有物品栏，你可以将 Master Corporea Spark 放置其上而不会丢失任何功能。"
+			]
+			id: "473F60B947745A57"
+			subtitle: "语音指令"
+			tasks: [{
+				id: "481D8038C0EB0E18"
+				item: "botania:corporea_index"
+				type: "item"
+			}]
+			x: -5.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["69DE3088CD8EE75E"]
+			description: [
+				"当接收到&6红石信号&r时，&bCorporea漏斗&r会从其Corporea网络&r请求一个物品，并将其放入自身下方1或2格高的物品栏中，或将其掉落至地面。"
+				""
+				"放置一个&6已填充的物品展示框&r来设置所需物品。旋转一次可取2个，再旋转取4、8、16、32和64个。如果有多个物品展示框，它将随机选择一个来请求。"
+			]
+			id: "48462142316EC808"
+			subtitle: "红石请求"
+			tasks: [{
+				id: "72C42A8EEF2E8ACB"
+				item: "botania:corporea_funnel"
+				type: "item"
+			}]
+			x: -5.0d
+			y: -5.5d
+		}
+		{
+			dependencies: ["48462142316EC808"]
+			description: [
+				"当放置在上面的物品框中所请求的物品不可用时，&bCorporea Interceptor&r会发出红石脉冲。"
+				""
+				"这可以和 &6Corporea Funnel&r 配合使用，来制作你缺少的物品。例如，放置一个 1x1 的 &6Crafty Crate&r，再放置一个朝向它的 &6Hopper&r，接着放置一个带有 Spark 和物品展示框（里面放着石头）的 &6Corporea Funnel&r，最后再放置一个带有 Spark 和物品展示框（上面有按钮）的 &6Corporea Interceptor&r，放在 &o那个&r的上面。"
+				""
+				"当请求按钮但没有可用按钮时，拦截器会发出红石脉冲，这会激活漏斗，将石头发送到工艺箱，&6工艺箱会制作按钮并从底部掉落&r。"
+				""
+				"&6不幸的限制是&r你一次只能请求一个。你可以旋转漏斗的物品框来增加数量，但它仍然会始终制作该数量的物品。"
+			]
+			id: "0979860E89A3AD7F"
+			min_width: 325
+			subtitle: "自动化合成，勉强算吧"
+			tasks: [{
+				id: "583234D4E85265A7"
+				item: "botania:corporea_interceptor"
+				type: "item"
+			}]
+			x: -4.0d
+			y: -5.5d
+		}
+		{
+			dependencies: ["0979860E89A3AD7F"]
+			description: [
+				"将 &bCorporea Retainer&r 放置在 Corporea Interceptor 旁边，当拦截器...拦截物品时，Retainer 会记住。如果之后收到信号，它会忘记，请求拦截器物品的实体将再次请求。"
+				""
+				"举个例子，&6将 Retainer 放在上一个任务的 Interceptor 旁边&r。在附近放置一个监控 Buttons 的 Corporea Crystal Cube，并用 Comparator 将其连接到 Retainer。"
+				""
+				"现在，当请求按钮而当前没有可用按钮时，拦截器会发出信号，巴拉巴拉，最终制作一个按钮，并将其放置在网络中的某个位置，这会通知水晶立方，水晶立方会告诉保留器，&6保留器会将新制作的按钮发回给请求它的物品&r。"
+			]
+			id: "5F038BF46205DC9C"
+			min_width: 325
+			subtitle: "等等！先别动！"
+			tasks: [{
+				id: "1302DC1342279E4C"
+				item: "botania:corporea_retainer"
+				type: "item"
+			}]
+			x: -3.0d
+			y: -5.5d
+		}
+		{
+			dependencies: ["69DE3088CD8EE75E"]
+			description: [
+				"右键点击 &bCorporea 水晶立方体&r 并使用物品，它将 &6显示该物品在网络中的数量&r。"
+				""
+				"比较器也会根据可用物品的数量发出信号。"
+			]
+			id: "5D32A57D9BA2851E"
+			subtitle: "Clairvoyant Storage"
+			tasks: [{
+				id: "6F0E9B02EDC669E2"
+				item: "botania:corporea_crystal_cube"
+				type: "item"
+			}]
+			x: -5.0d
+			y: -6.5d
+		}
+		{
+			description: ["&b附魔图书馆&r可以&6存放附魔书&r，并能单独获取附魔效果。"]
+			id: "794BC3659E12AFE3"
+			rewards: [
+				{
+					id: "69E9D7E0CC73201A"
+					item: {
+						Count: 1b
+						id: "minecraft:enchanted_book"
+						tag: {
+							StoredEnchantments: [{
+								id: "minecraft:protection"
+								lvl: 1s
+							}]
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "3B2DAAB0A842EC14"
+					item: {
+						Count: 1b
+						id: "minecraft:enchanted_book"
+						tag: {
+							StoredEnchantments: [{
+								id: "minecraft:sharpness"
+								lvl: 1s
+							}]
+						}
+					}
+					type: "item"
+				}
+			]
+			size: 2.0d
+			subtitle: "制作一个附魔图书馆 Enchantment Library"
+			tasks: [{
+				id: "340185AD624FF4AF"
+				item: "apotheosis:library"
+				type: "item"
+			}]
+			x: -5.0d
+			y: -1.0d
+		}
+	]
+	title: "魔法的"
+}

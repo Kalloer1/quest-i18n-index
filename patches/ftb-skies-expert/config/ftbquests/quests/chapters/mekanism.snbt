@@ -1,0 +1,849 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "mekanism"
+	group: "43731E7F4BACB580"
+	icon: "mekanism:alloy_atomic"
+	id: "4F6ED2800B9E5204"
+	images: [{
+		click: ""
+		corner: false
+		dev: false
+		height: 1.0d
+		hover: [ ]
+		image: "ftbskies:textures/quests/mekanism.png"
+		rotation: 0.0d
+		width: 5.614457831325301d
+		x: -1.5d
+		y: -5.5d
+	}]
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["4A0DB1DF9DA80161"]
+			description: [
+				"&b裂变反应堆&r是一个会&6产生大量热量&r以及其他副产物的多方块结构。 &c开始前请阅读完接下来的三个任务。&r 裂变反应堆&l极其&r危险，你可能想在创造模式世界中进行测试。"
+				""
+				"[\"\",{\"text\":\"我们添加了Ponder来教你建造裂变反应堆。要么在裂变反应堆端口上Ponder，或者\",\"\"},{\"text\":\"点击这里\",\"color\":\"light_purple\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/create ponder mekanismgenerators:fission_reactor_port\"},\"hoverEvent\":{\"action\":\"show_text\",\"contents\":[\"/create ponder mekanismgenerators:fission_reactor_port\"]}},{\"text\":\"来代替。\"]}]}]"
+			]
+			icon: "mekanismgenerators:fission_fuel_assembly"
+			id: "7A12F045C037533B"
+			min_width: 250
+			subtitle: "建造一个裂变反应堆"
+			tasks: [
+				{
+					id: "15AF09B5380DCC9B"
+					item: {
+						Count: 1b
+						id: "itemfilters:or"
+						tag: {
+							items: [
+								{
+									Count: 1b
+									id: "mekanismgenerators:fission_reactor_casing"
+								}
+								{
+									Count: 1b
+									id: "mekanismgenerators:reactor_glass"
+								}
+							]
+						}
+					}
+					title: "反应堆外壳/玻璃"
+					type: "item"
+				}
+				{
+					id: "7BBFB85C499E3FE4"
+					item: "mekanismgenerators:fission_fuel_assembly"
+					type: "item"
+				}
+				{
+					id: "585FAD40DD6B4185"
+					item: "mekanismgenerators:control_rod_assembly"
+					type: "item"
+				}
+				{
+					id: "475A850153E02408"
+					item: "mekanismgenerators:fission_reactor_port"
+					type: "item"
+				}
+			]
+			title: "大型反应堆"
+			x: 2.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["7A12F045C037533B"]
+			description: [
+				"&c辐射&r在某些情况下可能会泄漏到环境中："
+				""
+				"• 反应堆熔毁\\n• 反应堆满载废料时仍在运行\\n• 破坏任何含有放射性材料的方块"
+				""
+				"以下材料具有放射性：\\n• 核废料（显而易见）\\n• 钋丸剂\\n• 钚丸剂\\n• 乏核废料"
+				""
+				"放射性废料是一种可以储存在&b放射性废料桶&r中的气体。事实上，那里是&o唯一&r可以储存它们的地方。&6右键单击一个&r即可查看其填充程度。"
+				""
+				"废料桶会&6以每秒1mB的速度删除废料&r。因此，最好多建一些。环境辐射也会随时间消散，但&c需要更长的时间&r（50游戏天）。你&c无法以任何方式安全地移动它们&r。"
+			]
+			icon: "mekanism:radioactive_waste_barrel"
+			id: "18E3F8DC5D6230F8"
+			min_width: 275
+			subtitle: "了解辐射的相关信息"
+			tasks: [{
+				id: "705E5264B6A3E450"
+				type: "checkmark"
+			}]
+			title: "辐射不过是辛辣的空气罢了"
+			x: 4.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["18E3F8DC5D6230F8"]
+			description: [
+				"穿上&b防护服&r后，它将&6隔绝环境辐射&r。"
+				""
+				"穿戴得越多，保护得越好。老实说，只穿其中一部分而不穿其余的，根本不值得。"
+				""
+				"注意，你&c并未完全受保护&r，只是大部分而已。"
+			]
+			icon: "mekanism:hazmat_mask"
+			id: "03249B1AEC0B9856"
+			subtitle: "危险环境防护服"
+			tasks: [
+				{
+					id: "622051A251C42965"
+					item: "mekanism:hazmat_mask"
+					type: "item"
+				}
+				{
+					id: "1D171D6683AC8211"
+					item: "mekanism:hazmat_gown"
+					type: "item"
+				}
+				{
+					id: "5D4E515F21F1A385"
+					item: "mekanism:hazmat_pants"
+					type: "item"
+				}
+				{
+					id: "59F4D0241D91B456"
+					item: "mekanism:hazmat_boots"
+					type: "item"
+				}
+			]
+			x: 4.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["18E3F8DC5D6230F8"]
+			description: [
+				"使用时，&b盖革计数器&r会&6告诉你当前所在位置的辐射暴露量&r。正常、安全的背景辐射水平约为 100 nSv/h，&m管他是什么东西呢&r。"
+				""
+				"&b剂量计&r会&6告诉你当前的辐射剂量&r。简单来说，就是你被辐射的程度。"
+				""
+				"显然，数字越大越糟糕。绿色是安全，黄色是不安全，橙色是危险，红色是危急。"
+			]
+			icon: "mekanism:geiger_counter"
+			id: "69F0F06CF33DC0E9"
+			subtitle: "说不上好，也说不上坏"
+			tasks: [
+				{
+					id: "206DD7724FE63DFA"
+					item: "mekanism:geiger_counter"
+					type: "item"
+				}
+				{
+					id: "338965184C00654F"
+					item: "mekanism:dosimeter"
+					type: "item"
+				}
+			]
+			title: "激进派"
+			x: 4.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["18E3F8DC5D6230F8"]
+			description: [
+				"裂变反应堆&c不产生FE&r，而是产生&o热量&r。热量用来制造蒸汽，蒸汽驱动&6涡轮机&r，从而产生FE。"
+				""
+				"冷却剂可以是水或钠。水更简单，但钠效率更高（因此更安全）。"
+				""
+				"{image:ftbskies:textures/quests/fission_gui_1.png width:210 height:100 align:1}"
+				""
+				"• &6Burn Rate&r 是燃料消耗速度\\n• &6Heating Rate&r 是冷却剂加热速度\\n• &6Temp&r 是温度。高于 1200K (926°C) 的温度会&c损坏 Reactor&r\\n• &6Damage&r 显示 Reactor 距离 &cMeltdown&r 有多近，后者会引发巨大爆炸并在 5 格半径内造成致命辐射\\n• &6Activate&r 用于开启，&6Scram&r 用于关闭"
+				""
+				"{image:ftbskies:textures/quests/fission_gui_2.png width:152 height:125 align:1}"
+				""
+				"在&6Statistics&r标签页底部，你可以设置&6Burn Rate Limit&r——即燃料燃烧速度。较高的燃烧限制意味着更高的温度和更快的加热速率。"
+				""
+				"&c警告&r：如果加热速率超过冷却剂的泵入能力，你的反应堆会迅速过热！"
+			]
+			icon: "mekanism:alloy_atomic"
+			id: "3EFD67B7F3E35F92"
+			min_width: 375
+			subtitle: "学习如何使用裂变反应堆"
+			tasks: [{
+				id: "721A38117E3114C9"
+				type: "checkmark"
+			}]
+			title: "原子分裂实验 (Splitting the Atom)"
+			x: 5.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["4A0DB1DF9DA80161"]
+			description: [
+				"&b激光&r使用FE从前端发射出一道光束。"
+				""
+				"激光束会伤害它触碰的任何生物，并使其着火。它还会挖掘方块。"
+			]
+			id: "33D7265E09AAD8BF"
+			subtitle: "激光，注意激光，注意"
+			tasks: [{
+				id: "091B9C611C6C127E"
+				item: "mekanism:laser"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["33D7265E09AAD8BF"]
+			description: [
+				"&b激光放大器&r可以从5个方向接收激光束，储存能量，然后从正面射出。"
+				""
+				"在GUI中，你可以设置触发所需的&6最低FE&r，以及&6单次可触发的最大次数&r。"
+				""
+				"你也可以设置一个以刻为单位的&6延迟&r。激光会短暂脉冲，然后等待延迟设定的时间，再重复。"
+				""
+				"如果放大器&6未发射&r激光，其他激光输入将直接转换为存储的FE。你可以通过配置为“拉取”的通用电缆来&6提取&r。其他模组的电缆无效。"
+			]
+			id: "2AA8BC86BA3E5BE0"
+			min_width: 275
+			subtitle: "&l激光&r"
+			tasks: [{
+				id: "64BA14811EE7239B"
+				item: "mekanism:laser_amplifier"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 2.5d
+		}
+		{
+			dependencies: [
+				"2AA8BC86BA3E5BE0"
+				"2C33D1D9DFB63524"
+			]
+			description: [
+				"&bFusion Reactor&r 是一种相当复杂的组合方块，能够产生极高数量的 FE。"
+				""
+				"[\"\",{\"text\":\"我们添加了Ponder来教你建造Fusion Reactor。可以在Fusion Reactor Controller上Ponder，或者点击这里，\"},{\"text\":\"点击这里\",\"color\":\"light_purple\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/create ponder mekanismgenerators:fusion_reactor_controller\"},\"hoverEvent\":{\"action\":\"show_text\",\"contents\":[\"/create ponder mekanismgenerators:fusion_reactor_controller\"]}},{\"text\":\"来学习。\"]}]}"
+				""
+				"建造完成后，用&6氘&r和&6氚&r为其供能，再用&6激光&r对准聚光矩阵进行&6400 MFE&r的启动！"
+			]
+			id: "72AE4E5705BEA62E"
+			min_width: 250
+			subtitle: "迪斯科反应堆"
+			tasks: [{
+				id: "3EA20FFEDD4C0D94"
+				item: "mekanismgenerators:fusion_reactor_controller"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["4B7957DA13CD57F0"]
+			description: ["&b钢制外壳&r是本模组大多数机器的基础。"]
+			id: "1F8C2AF0A3A3A486"
+			rewards: [
+				{
+					count: 4
+					id: "1BC08E78AC0FF083"
+					item: "mekanism:enriched_carbon"
+					type: "item"
+				}
+				{
+					id: "253723E4F86CA343"
+					item: "mekanism:configuration_card"
+					type: "item"
+				}
+			]
+			subtitle: "终于有钢制弹壳了！"
+			tasks: [{
+				id: "4A0DB1DF9DA80161"
+				item: "mekanism:steel_casing"
+				type: "item"
+			}]
+			x: -4.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["34DF47C888DB083E"]
+			description: [
+				"啊，对了……&eMekanism&r……"
+				""
+				"为数不多需要机器来制作机器外壳的模组之一。"
+				""
+				"&b冶金熔炼器&r用于&6创造合金&r，其中最重要的是钢。"
+			]
+			id: "4B7957DA13CD57F0"
+			min_width: 250
+			rewards: [
+				{
+					count: 2
+					id: "35C87C7C8259A9AC"
+					item: "mekanism:upgrade_energy"
+					type: "item"
+				}
+				{
+					count: 2
+					id: "26F265E778BB43C6"
+					item: "mekanism:upgrade_speed"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "0D4C681AB3CB6AD4"
+					item: "mekanism:upgrade_muffling"
+					type: "item"
+				}
+			]
+			subtitle: "我们不是要从框架开始吗！？"
+			tasks: [{
+				id: "7665F1BBCBF968EE"
+				item: "mekanism:metallurgic_infuser"
+				type: "item"
+			}]
+			x: -4.5d
+			y: -2.0d
+		}
+		{
+			dependencies: [
+				"1F8C2AF0A3A3A486"
+				"61C86A3CB0ACBCD4"
+			]
+			description: ["&b富集室&r用于&6压缩&r某些物品，以及&6精炼矿石&r……如果你能找到的话。"]
+			id: "3FBA24C65E4CB3BF"
+			rewards: [{
+				id: "547D7E7F83CDED03"
+				item: "mekanism:enriched_diamond"
+				type: "item"
+			}]
+			subtitle: "丰富，更丰富，再丰富"
+			tasks: [{
+				id: "2E07AAE28175F1D5"
+				item: "mekanism:enrichment_chamber"
+				type: "item"
+			}]
+			x: -6.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["4B7957DA13CD57F0"]
+			description: ["用一些红石和信号板，你终于可以开始制作一些&b充能合金&r了。"]
+			id: "02842172385BA9F8"
+			subtitle: "众多任务中的第一个"
+			tasks: [{
+				id: "5F3568A076875E06"
+				item: "mekanism:alloy_infused"
+				type: "item"
+			}]
+			x: -3.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["02842172385BA9F8"]
+			description: [
+				"&b强化合金&r是Mekanism合金的下一个等级。"
+				""
+				"强烈建议使用 &6Enrichment Chamber&r 来最大限度地利用你的灌注材料。"
+			]
+			id: "4EFD69C9CB62431B"
+			subtitle: "闪闪发光的蓝色物品"
+			tasks: [{
+				id: "53680FD1DE299AF5"
+				item: "mekanism:alloy_reinforced"
+				type: "item"
+			}]
+			x: -2.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["4EFD69C9CB62431B"]
+			description: [
+				"&6Mekanism&r合金的最终等级——&b原子合金&r"
+				""
+				"它们还有一种华丽的&5紫色&r可供选择"
+				""
+				"我相信，黑暗之主会批准的"
+			]
+			id: "7DB566911A941A8E"
+			subtitle: "注视着我美丽的双眼，看看我的眼睛"
+			tasks: [{
+				id: "7BA883FE1871D5F9"
+				item: "mekanism:alloy_atomic"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["4B7957DA13CD57F0"]
+			description: [
+				"每个像样的科技模组都需要电路，对吧？幸运的是，这些电路不像格雷科技的那样复杂。"
+				""
+				"&6Mekanism&r &bCircuits&r只需要几个部件，不需要大量微合成。"
+			]
+			id: "61C86A3CB0ACBCD4"
+			subtitle: "电路！？它们是怎么工作的？"
+			tasks: [{
+				id: "77151E3F9424AD93"
+				item: "mekanism:basic_control_circuit"
+				type: "item"
+			}]
+			x: -8.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["61C86A3CB0ACBCD4"]
+			description: ["&b高级控制电路&r用于更复杂的机器。"]
+			id: "4D31E10B02F63091"
+			subtitle: "接下来要处理的是下一项内容"
+			tasks: [{
+				id: "7A2553ACC9F962F9"
+				item: "mekanism:advanced_control_circuit"
+				type: "item"
+			}]
+			x: -8.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["4D31E10B02F63091"]
+			description: ["由上一等级合成，&b精英控制电路&r是下一级的电路。"]
+			id: "4D06BE879E20A6E9"
+			subtitle: "你知道钻头这个东西的，对吧"
+			tasks: [{
+				id: "486EFEDB8222C5E7"
+				item: "mekanism:elite_control_circuit"
+				type: "item"
+			}]
+			x: -8.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["4D06BE879E20A6E9"]
+			description: ["制作&b终极控制电路&r将解锁该模组的最高等级内容。"]
+			id: "15CE6667384505F6"
+			subtitle: "最终（最前）阶层"
+			tasks: [{
+				id: "2387DBD5A9264D17"
+				item: "mekanism:ultimate_control_circuit"
+				type: "item"
+			}]
+			x: -8.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["61C86A3CB0ACBCD4"]
+			description: [
+				"将&b基础安装器&r应用到大多数&eMekanism&r机器上，会将其转变为&6工厂&r。"
+				""
+				"工厂有&6多个处理槽位&r，这样你就可以搭建更紧凑的装置了。"
+			]
+			id: "4487546F94A4687A"
+			rewards: [{
+				count: 4
+				id: "2C066E3BF805CE32"
+				item: "mekanism:alloy_infused"
+				type: "item"
+			}]
+			subtitle: "工厂"
+			tasks: [{
+				id: "1FBE3D46C131B48C"
+				item: "mekanism:basic_tier_installer"
+				type: "item"
+			}]
+			x: -9.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["4D31E10B02F63091"]
+			description: [
+				"&b高级安装器&r会将基础工厂转换为&6高级工厂&r，后者拥有5条并行生产线。"
+				""
+				"建议使用 &6Energy Upgrades&r 来降低机器的能耗。"
+			]
+			id: "67FFE0F155AC0D0E"
+			rewards: [{
+				count: 4
+				id: "014125F223B6761E"
+				item: "mekanism:upgrade_energy"
+				type: "item"
+			}]
+			subtitle: "制作一个高级安装器 (Advanced Tier Installer)"
+			tasks: [{
+				id: "674B2DD1C8E8B162"
+				item: "mekanism:advanced_tier_installer"
+				type: "item"
+			}]
+			x: -9.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["4D06BE879E20A6E9"]
+			description: [
+				"这个&b精英级安装器&r能为你提供多达7个处理槽位。"
+				""
+				"此外，有了速度升级，你大概能轻松处理所有资源了"
+			]
+			id: "038B16C5B6C22F72"
+			rewards: [{
+				count: 4
+				id: "4D8BB993425BE539"
+				item: "mekanism:upgrade_speed"
+				type: "item"
+			}]
+			subtitle: "制作一个精英级安装器"
+			tasks: [{
+				id: "60E96E20CDEBBBD1"
+				item: "mekanism:elite_tier_installer"
+				type: "item"
+			}]
+			x: -9.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["15CE6667384505F6"]
+			description: ["&b精英工厂&r拥有&69条并行生产线&r。"]
+			id: "4C924190E846452E"
+			rewards: [
+				{
+					count: 4
+					id: "7FE9A8A9D8D1CFD5"
+					item: "mekanism:upgrade_energy"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "55576ACF3DC6C24E"
+					item: "mekanism:upgrade_speed"
+					type: "item"
+				}
+			]
+			subtitle: "永不满足！Never Enough!"
+			tasks: [{
+				id: "2DD73B6D6A1B8648"
+				item: "mekanism:ultimate_tier_installer"
+				type: "item"
+			}]
+			x: -9.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["1F8C2AF0A3A3A486"]
+			description: [
+				"矿石处理的下一步是&b化学注入室&r。"
+				""
+				"这样你就可以将 &63 种原矿转化为 8 个碎片&r。"
+			]
+			id: "52B617A43EC1BC5F"
+			subtitle: "制作一个化学注射室 Chemical Injection Chamber"
+			tasks: [{
+				id: "554DF58F5E6F8C26"
+				item: "mekanism:chemical_injection_chamber"
+				type: "item"
+			}]
+			x: -4.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["1F8C2AF0A3A3A486"]
+			description: ["&bCrusher&r 能够 &6crush items&r。"]
+			id: "28473029CD0CCFEE"
+			rewards: [{
+				id: "718F37186D0DD637"
+				table_id: 8339261241703954627L
+				title: "随机食物"
+				type: "random"
+			}]
+			subtitle: "制作一个破碎机 Crusher"
+			tasks: [{
+				id: "323CD12C4AD6DDD6"
+				item: "mekanism:crusher"
+				type: "item"
+			}]
+			x: -3.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["1F8C2AF0A3A3A486"]
+			description: ["&b净化室&r能让你&6从原矿中获得更多&r。"]
+			id: "7465EE35F1A7C50C"
+			rewards: [{
+				id: "196A25402711458D"
+				item: {
+					Count: 1b
+					id: "mekanism:basic_chemical_tank"
+					tag: {
+						mekData: {
+							GasTanks: [{
+								Tank: 0b
+								stored: {
+									amount: 32000L
+									gasName: "mekanism:oxygen"
+								}
+							}]
+						}
+					}
+				}
+				type: "item"
+			}]
+			subtitle: "制作一个净化室 (Purification Chamber)"
+			tasks: [{
+				id: "52A99A0202E2EDC4"
+				item: "mekanism:purification_chamber"
+				type: "item"
+			}]
+			x: -4.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["1F8C2AF0A3A3A486"]
+			description: ["&b加压反应室&r 是 Mekanism 的 &6核反应堆&r 的入口。准备好迎接即将到来的挑战吧。"]
+			id: "5CBB3901C4B91EFC"
+			rewards: [{
+				count: 16
+				id: "5F928E50F004C8C8"
+				item: "mekanism:fluorite_gem"
+				type: "item"
+			}]
+			subtitle: "制作一个高压反应室"
+			tasks: [{
+				id: "2BE4FE74FB0CD04E"
+				item: "mekanism:pressurized_reaction_chamber"
+				type: "item"
+			}]
+			x: -3.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["5CBB3901C4B91EFC"]
+			description: [
+				"&b太阳能中子活化器&r用于将一种液体转化为另一种液体，并且由&6太阳提供能量&r。"
+				""
+				"可以将&6锂转化为氚&r，也可以将&6核废料转化为钋&r。"
+			]
+			id: "35AB0E82434B81DF"
+			subtitle: "脑力激荡！"
+			tasks: [{
+				id: "023C51C58245BD3E"
+				item: "mekanism:solar_neutron_activator"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -0.5d
+		}
+		{
+			dependencies: [
+				"7A12F045C037533B"
+				"35AB0E82434B81DF"
+			]
+			description: ["在太阳能中子活化器中，你可以将&6核废料&r转化为&b钋&r（副产品是产生&c核废料&r）。"]
+			id: "2C33D1D9DFB63524"
+			rewards: [{
+				id: "6EF7E1F047FEA0A0"
+				item: "mekanism:radioactive_waste_barrel"
+				type: "item"
+			}]
+			subtitle: "不要弄洒你的废料！"
+			tasks: [{
+				id: "7DB238006762ABD9"
+				item: "mekanism:pellet_polonium"
+				type: "item"
+			}]
+			x: 0.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["2C33D1D9DFB63524"]
+			description: [
+				"&bMekaSuit&r 是一套极其强大的&6可升级盔甲套装&r。"
+				""
+				"它的&6升级单元&r可以在&6改装站&r中安装。"
+			]
+			icon: "mekanism:mekasuit_bodyarmor"
+			id: "65ABCBDF33FB459C"
+			rewards: [{
+				id: "0021711C9D7C82C0"
+				item: "mekanism:modification_station"
+				type: "item"
+			}]
+			subtitle: "我们已经到达游戏后期了吗？"
+			tasks: [
+				{
+					id: "56EEF7C2850D3AB6"
+					item: "mekanism:mekasuit_helmet"
+					type: "item"
+				}
+				{
+					id: "68ADB7D149A2494D"
+					item: "mekanism:mekasuit_bodyarmor"
+					type: "item"
+				}
+				{
+					id: "2F6F1738E5B8393E"
+					item: "mekanism:mekasuit_pants"
+					type: "item"
+				}
+				{
+					id: "185703CA4F631D5E"
+					item: "mekanism:mekasuit_boots"
+					type: "item"
+				}
+			]
+			title: "MekaSuit"
+			x: 0.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["2C33D1D9DFB63524"]
+			description: [
+				"&b超临界相移器&r是一种消耗大量FE的方块结构，用于将&6钋气转化为反物质气体&r。"
+				""
+				"[\"\",{\"text\":\"思考SPS端口，或者\",\"color\":\"light_purple\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/create ponder mekanism:sps_port\"},\"hoverEvent\":{\"action\":\"show_text\",\"contents\":[\"/create ponder mekanism:sps_port\"]}},{\"text\":\"查看其构造方式。\"}]}]"
+			]
+			icon: "mekanism:sps_port"
+			id: "1ED836C619117362"
+			rewards: [{
+				id: "6DC7A2CEDE665F46"
+				item: "mekanism:chemical_crystallizer"
+				type: "item"
+			}]
+			subtitle: "回归现实，恢复理智"
+			tasks: [
+				{
+					id: "4A52CD4E636F385E"
+					item: "mekanism:sps_casing"
+					type: "item"
+				}
+				{
+					id: "2B9E2F228E4A615E"
+					item: "mekanism:sps_port"
+					type: "item"
+				}
+				{
+					id: "3EB668D3D71F942C"
+					item: "mekanism:supercharged_coil"
+					type: "item"
+				}
+			]
+			title: "Antimatter-Dimensions"
+			x: 1.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["3EFD67B7F3E35F92"]
+			description: [
+				"&b工业涡轮机&r是一个&o非常&r复杂的组合方块，利用蒸汽来产生FE。"
+				""
+				"与 Reactors 配合使用时，这将产生巨量的 FE。"
+				""
+				"[\"\",{\"text\":\"我们添加了沉思来教你如何建造涡轮机。要么沉思涡轮机阀门，要么点击这里，\"},{\"text\":\"点击这里\",\"color\":\"light_purple\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/create ponder mekanismgenerators:turbine_valve\"},\"hoverEvent\":{\"action\":\"show_text\",\"contents\":[\"/create ponder mekanismgenerators:turbine_valve\"]}},{\"text\":\"来代替。\"}]}]"
+			]
+			icon: "mekanismgenerators:turbine_blade"
+			id: "11D6A515D73C196B"
+			subtitle: "ctf_turbine"
+			tasks: [
+				{
+					id: "3CD2925DF734A9CF"
+					item: "mekanismgenerators:turbine_casing"
+					type: "item"
+				}
+				{
+					id: "4C04BCDE6F93D9E7"
+					item: "mekanismgenerators:turbine_valve"
+					type: "item"
+				}
+				{
+					id: "58DD77AE99C04AE0"
+					item: "mekanismgenerators:turbine_vent"
+					type: "item"
+				}
+			]
+			x: 7.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["4B7957DA13CD57F0"]
+			description: ["本整合包的太阳能生成机制已大幅改动。它们几乎不产生FE能量，但与盐水塔配合使用时，将产生10倍于正常的热能。"]
+			id: "7DE50AED14AA463E"
+			rewards: [
+				{
+					count: 8
+					id: "1C6D67A858C007D8"
+					item: "mekanism:basic_thermodynamic_conductor"
+					team_reward: true
+					type: "item"
+				}
+				{
+					id: "3CE5636274DABDB1"
+					type: "xp"
+					xp: 10
+				}
+			]
+			tasks: [{
+				id: "7F3A941E22AD760B"
+				item: "mekanismgenerators:advanced_solar_generator"
+				type: "item"
+			}]
+			x: -3.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["4B7957DA13CD57F0"]
+			description: [
+				"使用&bThermal Evaporation Chamber&r制造盐水是获取核聚变能量的第一步。"
+				""
+				"你可能至少需要 2 个 &bThermal Evaporation Chambers&r。"
+				""
+				"一个用于 &9水&r -> &e盐水&r"
+				""
+				"一份用于将&eBrine&r转化为&6Lithium&r"
+				""
+				"多区块结构越高，运行速度越快。你也可以在顶部添加&6太阳能电池板&r，或使用带热管连接到阀门的&6RTG发电机&r来进一步提高速度。"
+			]
+			id: "4E249AEBE3EBC985"
+			rewards: [
+				{
+					id: "0B74D4D398B32EAF"
+					item: "mekanism:thermal_evaporation_valve"
+					type: "item"
+				}
+				{
+					count: 8
+					id: "3ECEAB113F0E3220"
+					item: "mekanism:thermal_evaporation_block"
+					type: "item"
+				}
+				{
+					id: "2E74D29ECDF3B95F"
+					item: "sfm:water_tank"
+					type: "item"
+				}
+			]
+			subtitle: "制作一个热蒸发室（Thermal Evaporation Chamber）"
+			tasks: [{
+				id: "767C7F9FD5704F26"
+				item: "mekanism:thermal_evaporation_controller"
+				type: "item"
+			}]
+			x: -5.0d
+			y: -3.0d
+		}
+	]
+	title: "Mekanism"
+}

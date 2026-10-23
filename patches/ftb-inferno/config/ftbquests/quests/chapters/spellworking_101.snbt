@@ -1,0 +1,954 @@
+# AI 初翻，未人工校对
+{
+	id: "05CA73477688D2AB"
+	group: "7044F2C841148E69"
+	order_index: 6
+	filename: "spellworking_101"
+	title: "咒语酿造入门 101"
+	icon: "ars_nouveau:source_gem"
+	subtitle: ["Ars Nouveau"]
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "森林之心 (Heart of the Grove)"
+			x: -0.5d
+			y: 3.5d
+			shape: "hexagon"
+			subtitle: "制作一个烈焰拱木树苗"
+			description: [
+				"结合了我从多个魔法流派中学到的知识，我能够创造出强大的&bArchwood Sapling&r！"
+				""
+				"当然，我首先要制作的是烈焰树苗。"
+			]
+			dependencies: [
+				"30BFD136F6B44257"
+				"00E0DB64568AA664"
+			]
+			size: 1.25d
+			id: "0B83AC9D22A3A363"
+			tasks: [{
+				id: "0C62B70377F44E98"
+				type: "item"
+				item: "ars_nouveau:red_archwood_sapling"
+			}]
+			rewards: [{
+				id: "2FE2835DFFFD4AA4"
+				type: "item"
+				item: "minecraft:lapis_lazuli"
+				count: 16
+			}]
+		}
+		{
+			title: "结晶化的魔法"
+			icon: "ars_nouveau:imbuement_chamber"
+			x: -0.5d
+			y: 5.0d
+			subtitle: "制作一个源宝石 (Source Gem)"
+			description: [
+				"该学派魔法依赖于&6源&r。源存在于大气中，但含量极少。"
+				""
+				"&b源宝石&r内部含有源能量，是创造许多魔法物品所必需的。"
+				""
+				"&bImbuement Chamber&r会&6将附近的源吸入其中&r，并将其注入物品内部。"
+				""
+				"附近有&6源罐&r时效果最佳，但也能&6缓慢地从空气中吸收源&r。"
+			]
+			dependencies: ["0B83AC9D22A3A363"]
+			dependency_requirement: "one_completed"
+			min_width: 250
+			id: "6BBA6FE9EE790FAA"
+			tasks: [
+				{
+					id: "7ABE9B1AC02B105D"
+					type: "item"
+					item: "ars_nouveau:imbuement_chamber"
+				}
+				{
+					id: "7A4F5B47DD735C5D"
+					type: "item"
+					item: "ars_nouveau:source_gem"
+				}
+			]
+			rewards: [
+				{
+					id: "462707EB7B3E8403"
+					type: "item"
+					item: "minecraft:lapis_lazuli"
+					count: 16
+				}
+				{
+					id: "3F609E5F01C24C28"
+					type: "item"
+					item: "woodenhopper:wooden_hopper"
+				}
+			]
+		}
+		{
+			title: "制造法力值（Mana）"
+			icon: "ars_nouveau:agronomic_sourcelink"
+			x: -0.5d
+			y: 6.5d
+			subtitle: "制作一个 Sourcelink"
+			description: [
+				"&bSourcelinks&r 是一种神奇的装置，能够通过与环境互动来&6生成 Source&r。"
+				""
+				"每个 Sourcelink 都会通过不同互动产生 Source，比如作物生长、生物繁殖等。"
+				""
+				"在 Sourcelink 中生成的源文件将&6自动移动到 Source Jars&r，距离不超过 5 格。"
+			]
+			min_required_dependencies: 1
+			dependencies: ["6BBA6FE9EE790FAA"]
+			min_width: 250
+			id: "41FDF75C443C7BCD"
+			tasks: [{
+				id: "7A4EE895E0DC0C3A"
+				type: "item"
+				title: "来源链接"
+				item: {
+					id: "itemfilters:id_regex"
+					Count: 1b
+					tag: {
+						value: "sourcelink"
+					}
+				}
+			}]
+			rewards: [{
+				id: "4EEC9353846A4DD0"
+				type: "item"
+				item: "ars_nouveau:source_jar"
+				count: 3
+			}]
+		}
+		{
+			title: "宝宝的初始魔导书"
+			x: -0.5d
+			y: 2.0d
+			subtitle: "制作初级魔法书 (Novice Spell Book)"
+			description: [
+				"没有咒语书的巫师什么都不是。我的咒语书不见了，我得从头开始。"
+				""
+				"有了我的&b新手法术书&r，我&6只能从一些基础咒语&r开始。我还能挖矿和攻击，但离我习惯的高度差远了。"
+				""
+				"I fear that it &cmay be some time before I can continue&r..."
+			]
+			dependencies: ["40D4850B34EC5677"]
+			id: "14164898F7962235"
+			tasks: [{
+				id: "20722631D11C327D"
+				type: "item"
+				item: "ars_nouveau:novice_spell_book"
+			}]
+			rewards: [
+				{
+					id: "73D041C6CA414664"
+					type: "item"
+					item: "ars_nouveau:source_berry_pie"
+				}
+				{
+					id: "42B4E0211C5D173B"
+					type: "item"
+					item: {
+						id: "ars_nouveau:novice_hood"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "分享即是关爱"
+			x: -4.0d
+			y: 3.5d
+			shape: "square"
+			subtitle: "制作一本带注释的百科全书"
+			description: [
+				"&bAnnotated Codex&r &6记录了我已知的所有Glyph&r，以便我能与他人分享我的知识。"
+				" "
+				"在法典中刻写和学习的成本是经验值。"
+			]
+			dependencies: ["505683302888DD1F"]
+			optional: true
+			id: "6E08A8BEA63DB628"
+			tasks: [{
+				id: "7FE68A26590E0C0B"
+				type: "item"
+				item: {
+					id: "ars_nouveau:annotated_codex"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "7EF41C37B3127B47"
+				type: "item"
+				item: "ars_nouveau:glyph_craft"
+			}]
+		}
+		{
+			title: "超自然文书工作"
+			x: -2.5d
+			y: 3.5d
+			subtitle: "制作一个抄写员工作台"
+			description: [
+				"刻录新法术&m需要2小时和50GP&r，还需要&b抄写台&r。"
+				""
+				"首先，我得在桌子上&6使用一本魔法书&r。在那里，我可以&6选择要制作的符文&r。"
+				""
+				"每个符文都需要特定的物品。选定符文后，我必须将材料&6投掷到&r桌子上。"
+				""
+				"右键点击符文即可学习，&6这样我就能在法术中使用它了&r。"
+			]
+			dependencies: ["0B83AC9D22A3A363"]
+			min_width: 275
+			id: "505683302888DD1F"
+			tasks: [{
+				id: "29E2BCDBFCF270FD"
+				type: "item"
+				item: "ars_nouveau:scribes_table"
+			}]
+			rewards: [
+				{
+					id: "7854E029365C91CA"
+					type: "item"
+					item: "ars_nouveau:source_gem_block"
+					count: 4
+				}
+				{
+					id: "4D9D34D005CCCD22"
+					type: "item"
+					item: {
+						id: "ars_nouveau:novice_boots"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "17DAA9815D171E6D"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+		{
+			title: "附魔 Enchantment"
+			icon: "ars_nouveau:enchanting_apparatus"
+			x: -2.5d
+			y: 6.5d
+			subtitle: "制作一个附魔装置 Enchanting Apparatus"
+			description: [
+				"&b附魔装置&r使用源来&6将附近物品的精华注入物体中&r。"
+				""
+				"我必须将&bArcane Core&r放在中心，再将Apparatus放在顶部。"
+				""
+				"在核心和装置周围3格内，我必须放置任意数量的&b神秘基座&r。"
+			]
+			dependencies: ["41FDF75C443C7BCD"]
+			min_width: 275
+			id: "7985ABCCCC272CE3"
+			tasks: [
+				{
+					id: "2A74FA351A3B2FFB"
+					type: "item"
+					item: "ars_nouveau:enchanting_apparatus"
+				}
+				{
+					id: "46FC25F9005AB129"
+					type: "item"
+					item: "ars_nouveau:arcane_core"
+				}
+				{
+					id: "7B6415CEF1315689"
+					type: "item"
+					item: "ars_nouveau:arcane_pedestal"
+				}
+			]
+			rewards: [
+				{
+					id: "4446E5277758886E"
+					type: "item"
+					item: {
+						id: "ars_nouveau:novice_leggings"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "53C3FD8E1F402655"
+					type: "item"
+					item: "ars_nouveau:arcane_pedestal"
+					count: 7
+				}
+			]
+		}
+		{
+			title: "喧闹的仪式"
+			x: 1.5d
+			y: 6.5d
+			subtitle: "制作一个仪式熔炉"
+			description: [
+				"仪式是&6集中于特定区域的强大魔法&r。"
+				""
+				"将石板放入&b仪式熔炉&r即可进行仪式。之后，你可以&6投掷物品来增强&r仪式，然后再次空手与熔炉互动。"
+				""
+				"某些仪式可能需要源才能运作，我可以用源罐在6格范围内提供。"
+			]
+			dependencies: ["41FDF75C443C7BCD"]
+			min_width: 225
+			id: "14CBBDEBFB6749EE"
+			tasks: [{
+				id: "3156D7D3A120F4FC"
+				type: "item"
+				item: "ars_nouveau:ritual_brazier"
+			}]
+			rewards: [
+				{
+					id: "742399E8793B829A"
+					type: "item"
+					item: {
+						id: "ars_nouveau:novice_robes"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "2CBD86A48DB769FB"
+					type: "item"
+					item: "ars_nouveau:wilden_wing"
+					count: 3
+				}
+				{
+					id: "3E6B6C5F9CEBEC27"
+					type: "item"
+					item: "minecraft:lapis_block"
+				}
+				{
+					id: "73C441D2317E432B"
+					type: "item"
+					item: "ars_nouveau:purple_archwood_log"
+				}
+			]
+		}
+		{
+			title: "更多远古森林遗迹"
+			icon: "ars_nouveau:manipulation_essence"
+			x: 1.5d
+			y: 3.5d
+			subtitle: "制作其他类型的远古木制品"
+			description: ["&bArchwood&r 有四种亲和性，但它们大多可以互换使用。"]
+			dependencies: [
+				"6BBA6FE9EE790FAA"
+				"0B83AC9D22A3A363"
+			]
+			id: "0CA8F708AD880F5F"
+			tasks: [
+				{
+					id: "1FA87B1C782FE961"
+					type: "item"
+					item: "ars_nouveau:purple_archwood_sapling"
+				}
+				{
+					id: "367A5EF704254C1A"
+					type: "item"
+					item: "ars_nouveau:blue_archwood_sapling"
+				}
+				{
+					id: "32BF69E609F3BCFF"
+					type: "item"
+					item: "ars_nouveau:green_archwood_sapling"
+				}
+				{
+					id: "5687C1784A182567"
+					type: "item"
+					item: "ars_nouveau:manipulation_essence"
+				}
+			]
+			rewards: [{
+				id: "45BEE76E04F8650E"
+				type: "item"
+				item: "ars_nouveau:glyph_fell"
+			}]
+		}
+		{
+			x: -2.5d
+			y: 5.0d
+			shape: "square"
+			subtitle: "制作一个铸造魔杖"
+			description: [
+				"&bCasting Wands&r 只能&c施放单个法术&r，并且&6在法术开头添加 Projectile -> Accelerate ->&r。"
+				""
+				"虽然这失去了我魔咒书的灵活性，但对于&6更强大的特殊法术&r很有用，因为法术可以实际拥有12个符文而不是10个。"
+			]
+			dependencies: [
+				"505683302888DD1F"
+				"6BBA6FE9EE790FAA"
+				"7985ABCCCC272CE3"
+			]
+			id: "791BC8C1D59A8770"
+			tasks: [{
+				id: "0EE3DBAFA40E6CA6"
+				type: "item"
+				item: {
+					id: "ars_nouveau:wand"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "745D9511061F6B1A"
+				type: "item"
+				item: "ars_nouveau:glyph_fortune"
+			}]
+		}
+		{
+			icon: "ars_nouveau:glyph_pickup"
+			x: -2.5d
+			y: 2.0d
+			subtitle: "制作任意一个 Tier 1 的 Glyph"
+			description: [
+				"&b符文&r分为三个等级，等级越高越强大。更高等级的符文需要更高等级的法术书。"
+				""
+				"曾经失去过法术，我不会再犯同样的错误。我一定会好好学习，这样即使有了新的法术书，也能&6永不忘掉它们&r。"
+			]
+			dependencies: [
+				"14164898F7962235"
+				"505683302888DD1F"
+			]
+			min_width: 275
+			id: "107EB4111DE1555C"
+			tasks: [{
+				id: "67E9C9AE2E13291D"
+				type: "item"
+				title: "Tier 1 符文"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "inferno:tier_one_glyph"
+					}
+				}
+			}]
+			rewards: [{
+				id: "09E31571ADC3DEF0"
+				type: "item"
+				item: "ars_nouveau:void_jar"
+			}]
+		}
+		{
+			icon: "ars_nouveau:glyph_accelerate"
+			x: -2.5d
+			y: 0.5d
+			subtitle: "制作任意一个 Tier 2 的 Glyph"
+			description: ["&b二阶符文&r更强大，但&6需要一本法师的魔法书&r。"]
+			dependencies: [
+				"107EB4111DE1555C"
+				"0C66312A6733D93E"
+			]
+			id: "666D5BF7A37EE6CA"
+			tasks: [{
+				id: "472D2AE7DEA44040"
+				type: "item"
+				title: "Tier 2 符文"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "inferno:tier_two_glyph"
+					}
+				}
+			}]
+			rewards: [{
+				id: "0386F76A642E03DC"
+				type: "item"
+				item: "ars_nouveau:glyph_firework"
+			}]
+		}
+		{
+			icon: "ars_nouveau:glyph_summon_undead"
+			x: -2.5d
+			y: -1.0d
+			subtitle: "制作任意一个 Tier 3 的 Glyph"
+			description: [
+				"&b三级符文&r是巅峰之作。最强、最强大的符文。"
+				""
+				"因此，它们只能通过&6大法师法术书&r来施放。"
+			]
+			dependencies: [
+				"666D5BF7A37EE6CA"
+				"17C5BCEE8A406DD2"
+			]
+			id: "3A21E8B6FF8F6C68"
+			tasks: [{
+				id: "1836B17F6F8A0485"
+				type: "item"
+				title: "Tier 3 符文"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "inferno:tier_three_glyph"
+					}
+				}
+			}]
+			rewards: [{
+				id: "52C5966F68D542DD"
+				type: "item"
+				item: "ars_nouveau:glyph_intangible"
+			}]
+		}
+		{
+			title: "奇幻织物"
+			x: -4.0d
+			y: 6.5d
+			subtitle: "制作 Magebloom 种子"
+			description: ["&bMagebloom&r 是一种魔法力量强大的花朵。其纤维可用于多种魔法合成配方。"]
+			dependencies: ["7985ABCCCC272CE3"]
+			id: "4791DF6BD19CB8F5"
+			tasks: [{
+				id: "6DC90FC098838822"
+				type: "item"
+				item: "ars_nouveau:magebloom_crop"
+			}]
+			rewards: [
+				{
+					id: "31E1CC0577434E63"
+					type: "item"
+					item: "ars_nouveau:glyph_grow"
+				}
+				{
+					id: "5F3A0673DED1673E"
+					type: "item"
+					item: "ars_nouveau:glyph_harvest"
+				}
+			]
+		}
+		{
+			title: "记事本+++"
+			x: -4.0d
+			y: 5.0d
+			shape: "square"
+			subtitle: "制作法术羊皮纸"
+			description: [
+				"&b法术卷轴&r可用于&6保存法术的副本&r。"
+				""
+				"从那里，它可以被应用到&6法术炮台&r和&6附魔师的物品&r上。"
+			]
+			dependencies: ["4791DF6BD19CB8F5"]
+			id: "2C91A8D6917F4220"
+			tasks: [{
+				id: "718E75868AA8EFD2"
+				type: "item"
+				item: {
+					id: "ars_nouveau:spell_parchment"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "5ED954A99F29CC3A"
+				type: "item"
+				item: {
+					id: "ars_nouveau:spell_parchment"
+					Count: 1b
+					tag: { }
+				}
+				count: 4
+			}]
+		}
+		{
+			title: "标记与回忆"
+			x: -5.5d
+			y: 6.5d
+			shape: "square"
+			subtitle: "制作一张传送卷轴"
+			description: [
+				"&bWarp Scrolls&r 可以在一个维度内实现即时传送。"
+				""
+				"但是，它们属于&c一次性使用&r的物品。"
+			]
+			dependencies: ["4791DF6BD19CB8F5"]
+			id: "12D2AD9546589490"
+			tasks: [{
+				id: "1BA531CF48F479B3"
+				type: "item"
+				item: {
+					id: "ars_nouveau:warp_scroll"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "08EF95618639CC41"
+				type: "item"
+				item: "ars_nouveau:glyph_summon_steed"
+			}]
+		}
+		{
+			title: "单程票 One Way Ticket"
+			icon: "ars_nouveau:arcane_bricks"
+			x: -7.0d
+			y: 6.5d
+			shape: "square"
+			subtitle: "制作一个传送门 (Warp Portal)"
+			description: [
+				"&bWarp Portals&r 创建一个&6永久单向传送门&r，通往由Warp Scroll标记的地点。"
+				" "
+				"传送门框架由&b秘术石&r制成，呈矩形，内部尺寸可在1x1至21x21之间。它们也可以是水平或垂直的。"
+				""
+				"制作框架，在旁边放置一个源罐，然后&6将卷轴投掷进去&r。"
+			]
+			dependencies: ["12D2AD9546589490"]
+			min_width: 225
+			id: "532C9E50AA176258"
+			tasks: [{
+				id: "39104C99C8670747"
+				type: "item"
+				title: "神秘砖块"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "ars_nouveau:arcane_bricks"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:ab_alternating"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:ab_basket"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:ab_herring"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:ab_mosaic"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:ab_smooth_slab"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:ab_smooth"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:ab_clover"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:sas_clover"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:sas_herring"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:sas_basket"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:sas_mosaic"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:sas_alternating"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:sas_ashlar"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "3923AADE7BE4A93C"
+				type: "item"
+				item: "ars_nouveau:glyph_slowfall"
+			}]
+		}
+		{
+			title: "向上搬迁，更上一层楼"
+			x: -0.5d
+			y: 0.5d
+			subtitle: "获取法师的魔法书 (Get the Mage's Spell Book)"
+			description: [
+				"通常，&b更强大的魔法书&r的创造由导师监督，但我们似乎没有导师了。"
+				" "
+				"不行，我得去&6用它交换&r。应该去&5Faustian Bargains&r章节里找找更多信息。"
+			]
+			dependencies: ["14164898F7962235"]
+			min_width: 225
+			id: "0C66312A6733D93E"
+			tasks: [{
+				id: "3390A335E31A0FBE"
+				type: "item"
+				item: "ars_nouveau:apprentice_spell_book"
+			}]
+			rewards: [{
+				id: "3A24C84112B2B99D"
+				type: "item"
+				item: "ars_nouveau:glyph_exchange"
+			}]
+		}
+		{
+			title: "完成施法者（Caster）的建造"
+			x: -0.5d
+			y: -1.0d
+			subtitle: "制作大魔导师的魔法书"
+			description: [
+				"要达到最高阶的现实扭曲，我需要再次升级我的魔法书。"
+				""
+				"由于它最强大，&b大魔导师魔典&r无疑是最难制作的。"
+			]
+			dependencies: ["0C66312A6733D93E"]
+			min_width: 225
+			id: "17C5BCEE8A406DD2"
+			tasks: [{
+				id: "7CCB01DCC17E5A96"
+				type: "item"
+				item: "ars_nouveau:archmage_spell_book"
+			}]
+			rewards: [{
+				id: "708B60C6F9818C27"
+				type: "item"
+				item: "ars_nouveau:glyph_lightning"
+			}]
+		}
+		{
+			title: "砰！砰！砰！"
+			icon: "ars_nouveau:basic_spell_turret"
+			x: -5.5d
+			y: 5.0d
+			shape: "square"
+			subtitle: "制作一个法术炮台"
+			description: [
+				"&b法术炮台&r使用源来&6施放卷轴中设置的法术&r，以投射物的形式朝其面对的方向发射。"
+				" "
+				"基础炮台需要红石信号才能开火，而&b定时法术炮台&r则会在可配置的定时后自动开火。"
+				""
+				"此外，&b附魔法术炮台&r施放法术所需的源石仅为普通的一半。"
+			]
+			dependencies: ["2C91A8D6917F4220"]
+			min_width: 225
+			id: "5F9C5850EC49892F"
+			tasks: [{
+				id: "25B96DA726D036F5"
+				type: "item"
+				title: "法术炮台"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "ars_nouveau:basic_spell_turret"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:spell_turret"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:timer_spell_turret"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "0004FA25E59D0A37"
+				type: "item"
+				item: "ars_nouveau:spell_prism"
+			}]
+		}
+		{
+			title: "华丽服饰"
+			icon: {
+				id: "ars_nouveau:novice_robes"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: -4.0d
+			y: 8.0d
+			shape: "square"
+			subtitle: "制作一套长袍套装"
+			description: [
+				"&b长袍&r能增加我的法力值和再生速度。"
+				" "
+				"与符文和魔法书一样，共有&6三个等级&r。更高等级的套装更昂贵，但提供的加成也更大。"
+				" "
+				"长袍的附魔潜力很高，并且&6升级时不会失去附魔&r。它们还能&6用我的法力自我修复&r！"
+			]
+			dependencies: ["4791DF6BD19CB8F5"]
+			min_width: 225
+			id: "56A23171B3AFC700"
+			tasks: [
+				{
+					id: "7937A5BA3526A81E"
+					type: "item"
+					title: "靴子"
+					item: {
+						id: "itemfilters:id_regex"
+						Count: 1b
+						tag: {
+							value: "ars.*boot"
+						}
+					}
+				}
+				{
+					id: "072B57477AF855CA"
+					type: "item"
+					title: "护腿（Leggings）"
+					item: {
+						id: "itemfilters:id_regex"
+						Count: 1b
+						tag: {
+							value: "ars.*leg"
+						}
+					}
+				}
+				{
+					id: "2E6ED30565289FE1"
+					type: "item"
+					title: "长袍"
+					item: {
+						id: "itemfilters:id_regex"
+						Count: 1b
+						tag: {
+							value: "ars.*robe"
+						}
+					}
+				}
+				{
+					id: "222A3B0ED824BA83"
+					type: "item"
+					title: "连帽衫"
+					item: {
+						id: "itemfilters:id_regex"
+						Count: 1b
+						tag: {
+							value: "ars.*hood"
+						}
+					}
+				}
+			]
+			rewards: [
+				{
+					id: "6A01E631FA2BE277"
+					type: "item"
+					item: {
+						id: "ars_nouveau:enchanters_shield"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "319581B4C4A11A2D"
+					type: "item"
+					item: {
+						id: "ars_nouveau:enchanters_mirror"
+						Count: 1b
+						tag: { }
+					}
+				}
+			]
+		}
+		{
+			title: "森林在移动"
+			x: 1.5d
+			y: 5.0d
+			shape: "square"
+			subtitle: "制作一块觉醒之石板（Tablet of Awakening）"
+			description: [
+				"&b觉醒石板&r是同名仪式的关键组件。"
+				""
+				"此仪式&6赋予附近的高大树木以智慧&r，使其觉醒成为&6林地行者&r，负责巡逻和保护该区域。"
+				""
+				"看来&6不同的远古林地各有不同特性&r。不知道我还能唤醒些什么呢……"
+			]
+			dependencies: [
+				"0CA8F708AD880F5F"
+				"14CBBDEBFB6749EE"
+			]
+			id: "03B037B2A279A055"
+			tasks: [{
+				id: "24F7D342E4DBB70C"
+				type: "item"
+				item: "ars_nouveau:ritual_awakening"
+			}]
+			rewards: [
+				{
+					id: "503C70BEAD4F04D9"
+					type: "item"
+					item: "minecraft:budding_amethyst"
+					count: 4
+				}
+				{
+					id: "02ECB17F4FB3A534"
+					type: "item"
+					item: "ars_nouveau:dominion_wand"
+				}
+			]
+		}
+		{
+			x: 3.0d
+			y: 6.5d
+			shape: "square"
+			subtitle: "制作一个飞行石板（Tablet of Flight）"
+			description: [
+				"&b飞行石板&r将让我能&6在其区域内自由飞行&r！"
+				""
+				"需要源矿，范围有限，真可惜，不过对我的基地来说非常有用！"
+			]
+			dependencies: ["14CBBDEBFB6749EE"]
+			id: "2D50A20C9FA4575F"
+			tasks: [{
+				id: "70E2BD596B03933E"
+				type: "item"
+				item: "ars_nouveau:ritual_flight"
+			}]
+		}
+		{
+			x: 1.5d
+			y: 8.0d
+			subtitle: "制作一个召唤野人的石板（Tablet of Summon Wilden）"
+			description: [
+				"&6Wilden&r 是一个痴迷于变形术的古老种族。几个世纪以来，他们的思想已经堕落，几乎与野兽无异。"
+				""
+				"虽然在家里很烦人，但我在这里还没遇到过。有了&b召唤瓦尔德的平板电脑&r，我就能和它们较量一番了。"
+				""
+				"仪式可以加入 Wilden 尖刺、角和翼，从而召唤出更强的敌人——&6Wilden 奇美拉&r。"
+			]
+			dependencies: ["14CBBDEBFB6749EE"]
+			min_width: 225
+			id: "3D408FF0728E10E6"
+			tasks: [{
+				id: "05DE634CC122E21C"
+				type: "item"
+				item: "ars_nouveau:ritual_wilden_summon"
+			}]
+		}
+	]
+}

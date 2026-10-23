@@ -1,0 +1,886 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "under_pressure"
+	group: "17B287771C7EC060"
+	icon: "pneumaticcraft:pressure_gauge"
+	id: "47FD0AC2A7918ADB"
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["308EF169B51EB98B"]
+			description: [
+				"有些材料和工艺无法在地球标准大气压下自然发生。为此，你需要重建我们的压力舱和压力发生器。首先需要压缩铁。通常用压力舱，但在你造出加固材料前，得用爆炸来完成。制作些TNT，炸掉铁块吧！"
+				""
+				"{@pagebreak}"
+				"如果你还没有获得火药，可以在辐射废土中寻找并杀死名为苦力怕的生物进行分析。完成此步骤后，我们便可以在合成获取中合成出它的部分爆炸特性。"
+			]
+			icon: "pneumaticcraft:ingot_iron_compressed"
+			id: "151DD8DC2F237690"
+			rewards: [
+				{
+					count: 8
+					id: "78872F5941470F6C"
+					item: "pneumaticcraft:ingot_iron_compressed"
+					type: "item"
+				}
+				{
+					id: "11D1C85C924CBA16"
+					item: "minecraft:tnt"
+					type: "item"
+				}
+				{
+					count: 16
+					id: "03A2809FBD8329B6"
+					item: "pneumaticcraft:reinforced_stone"
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "4D3ACED756DA6E44"
+					item: "pneumaticcraft:ingot_iron_compressed"
+					type: "item"
+				}
+				{
+					icon: "minecraft:creeper_head"
+					id: "42CE6D811982F520"
+					observe_type: 5
+					timer: 0L
+					title: "在野外观察一只苦力怕（creeper）"
+					to_observe: "minecraft:creeper"
+					type: "observation"
+				}
+			]
+			title: "压缩物流系统"
+			x: -0.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["151DD8DC2F237690"]
+			description: ["要创造一个高压环境，你需要建造一个空气压缩机。根据你使用的燃料类型，有许多种类可供选择。最简单的之一是Flux压缩机，它将FE能量直接转化为压力。这是推荐的压缩机，但最终决定权在你。"]
+			icon: "pneumaticcraft:flux_compressor"
+			id: "3DA48E8B58F0BDFD"
+			rewards: [
+				{
+					id: "7246B820BB10BEFE"
+					item: "pneumaticcraft:pneumatic_wrench"
+					type: "item"
+				}
+				{
+					count: 2
+					id: "0D5858E760EF5D8F"
+					item: "pneumaticcraft:regulator_tube_module"
+					type: "item"
+				}
+				{
+					id: "7B361F2C04E27496"
+					item: "pneumaticcraft:safety_tube_module"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "4840387DCE46E4B6"
+				item: {
+					Count: 1b
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "pneumaticcraft:flux_compressor"
+							}
+							{
+								Count: 1b
+								id: "pneumaticcraft:air_compressor"
+							}
+							{
+								Count: 1b
+								id: "pneumaticcraft:liquid_compressor"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "制作一个压缩机 (Compressor)"
+			x: 3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["151DD8DC2F237690"]
+			description: ["压力舱是一个空心多方块结构，由压力舱壁组成，每个面（非角落）至少有一个压力阀，以及分别用于输入和输出模式的2个压力舱接口。你可以用压力舱玻璃替换压力舱壁的各个面。"]
+			icon: "pneumaticcraft:pressure_chamber_valve"
+			id: "5563F6DC13575BD2"
+			rewards: [
+				{
+					count: 16
+					id: "6EC68280E01F3814"
+					item: "pneumaticcraft:pressure_tube"
+					type: "item"
+				}
+				{
+					id: "4C6FB4F87A90BDA6"
+					item: "pneumaticcraft:pressure_gauge_module"
+					type: "item"
+				}
+				{
+					id: "18C39500AF133EFC"
+					item: {
+						Count: 1b
+						id: "immersiveengineering:pickaxe_steel"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 4
+					id: "74AC714C891180E7"
+					item: "minecraft:experience_bottle"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "78364FBD898B2BE5"
+					item: "pneumaticcraft:pneumatic_cylinder"
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					count: 20L
+					id: "260FA60F496D8E0E"
+					item: "pneumaticcraft:pressure_chamber_wall"
+					type: "item"
+				}
+				{
+					id: "38B5E47FCC030B74"
+					item: "pneumaticcraft:pressure_chamber_valve"
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "757AB576F34F08B1"
+					item: "pneumaticcraft:pressure_chamber_interface"
+					type: "item"
+				}
+				{
+					count: 3L
+					id: "64CB786971BB9E6C"
+					item: "pneumaticcraft:pressure_chamber_glass"
+					type: "item"
+				}
+			]
+			title: "压力舱室"
+			x: 1.0d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"3DA48E8B58F0BDFD"
+				"5563F6DC13575BD2"
+			]
+			description: ["在足够高的压力下，我们甚至可以合成钻石。这将在许多更高级的建筑技巧中发挥巨大作用！"]
+			id: "56996D1717436A61"
+			rewards: [
+				{
+					count: 8
+					id: "2D63527CF7E4F311"
+					item: "rftoolsbase:dimensionalshard"
+					type: "item"
+				}
+				{
+					id: "33B5E035684BCF57"
+					type: "xp"
+					xp: 10
+				}
+			]
+			tasks: [{
+				id: "202D9F00FE51F23C"
+				item: "minecraft:diamond"
+				type: "item"
+			}]
+			title: "晶体合成"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["151DD8DC2F237690"]
+			description: ["用于光箱激活PCB的蓝图。可从Amadron快递服务处获取。如果没有平板电脑，请前往Synthetic Acquisitions获取一台。"]
+			id: "08F6344F59A38897"
+			rewards: [{
+				count: 8
+				id: "5368795EC90F88E8"
+				item: "pneumaticcraft:advanced_pressure_tube"
+				type: "item"
+			}]
+			tasks: [{
+				id: "6CD879D6DFC80D8B"
+				item: "pneumaticcraft:pcb_blueprint"
+				type: "item"
+			}]
+			x: -4.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["08F6344F59A38897"]
+			description: ["UV灯将紫外线聚焦到PCB上进行固化，使其准备好进行蚀刻。PCB暴露的时间越长，蚀刻的成功率就越高，但固化所需的时间也越长。"]
+			id: "6988ACD060F19626"
+			rewards: [{
+				count: 4
+				id: "603D1BB74F62ED35"
+				item: "pneumaticcraft:speed_upgrade"
+				type: "item"
+			}]
+			tasks: [{
+				id: "318C65F98571B386"
+				item: "pneumaticcraft:uv_light_box"
+				type: "item"
+			}]
+			x: -4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"7BFA6D42CAF1328C"
+				"5563F6DC13575BD2"
+				"17083DB226A62972"
+			]
+			description: ["根据 Nexa 档案，空 PCB 是在压力舱中用塑料和金块制成的。不幸的是，我们在你的金库附近完全没有检测到黄金，但档案中提到了一个富含黄金的维度，我们之前曾接触过。这或许值得探索。"]
+			id: "6FC1383AA11E692E"
+			rewards: [{
+				id: "7D9CAE3C5ABACB23"
+				item: "pneumaticcraft:security_upgrade"
+				type: "item"
+			}]
+			tasks: [{
+				id: "6EE1A554030AA728"
+				item: "pneumaticcraft:empty_pcb"
+				type: "item"
+			}]
+			x: -2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"6FC1383AA11E692E"
+				"6988ACD060F19626"
+			]
+			description: ["在光箱中完全固化PCB，为蚀刻阶段做好准备。虽然完全固化并非必需，但我们不能这么早就失败，所以花点时间把它做好。"]
+			id: "4E08456559490263"
+			rewards: [{
+				count: 4
+				id: "3B6C92415A7D5A26"
+				item: "pneumaticcraft:speed_upgrade"
+				type: "item"
+			}]
+			tasks: [{
+				id: "1AA6F228D0DA905C"
+				item: {
+					Count: 1b
+					id: "pneumaticcraft:empty_pcb"
+					tag: {
+						"pneumaticcraft:uv_exposure": 100
+					}
+				}
+				type: "item"
+			}]
+			title: "紫外线固化印刷电路板"
+			x: -2.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["5563F6DC13575BD2"]
+			description: ["加入蚀刻酸并放入UV固化PCB。你也可以加热到50°C以上以加快蚀刻速度，但这会慢慢消耗你的酸。"]
+			id: "221E0A3B15A1D0C7"
+			rewards: [{
+				count: 4
+				id: "7FA0792EC72D8E1D"
+				item: "pneumaticcraft:speed_upgrade"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0129EA11DE279014"
+				item: "pneumaticcraft:etching_tank"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["5563F6DC13575BD2"]
+			description: ["蚀刻酸在压力舱中制成，用于蚀刻PCB上的复杂电路图案，以制造最终的PCB。"]
+			id: "2E200A877390598D"
+			rewards: [
+				{
+					id: "5CCB2039A7CC221E"
+					item: {
+						Count: 1b
+						id: "mekanism:basic_fluid_tank"
+						tag: {
+							BlockEntityTag: {
+								FluidTanks: [{
+									Tank: 0b
+									stored: {
+										Amount: 8000
+										FluidName: "pneumaticcraft:etching_acid"
+									}
+								}]
+								ForgeCaps: { }
+								Items: [ ]
+								activeState: 0b
+								componentFrequency: {
+									Security: {
+										name: "Security"
+										owner: [I;
+											1322214020
+											-1310177861
+											-1296886500
+											-1782337265
+										]
+										publicFreq: 1b
+									}
+								}
+								componentSecurity: {
+									owner: [I;
+										1322214020
+										-1310177861
+										-1296886500
+										-1782337265
+									]
+									securityMode: 0
+								}
+								currentRedstone: 4
+								editMode: 0
+								id: "mekanism:basic_fluid_tank"
+								redstone: 0b
+								updateDelay: 0
+							}
+							display: {
+								Lore: ["\"(+NBT)\""]
+							}
+							mekData: {
+								FluidTanks: [{
+									Tank: 0b
+									stored: {
+										Amount: 8000
+										FluidName: "pneumaticcraft:etching_acid"
+									}
+								}]
+								editMode: 0
+								owner: [I;
+									1322214020
+									-1310177861
+									-1296886500
+									-1782337265
+								]
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "467D6EE53C87FB6B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			tasks: [{
+				id: "33FCCEC51A6122BE"
+				item: "pneumaticcraft:etching_acid_bucket"
+				type: "item"
+			}]
+			x: -0.5d
+			y: 1.5d
+		}
+		{
+			dependencies: [
+				"221E0A3B15A1D0C7"
+				"4E08456559490263"
+				"2E200A877390598D"
+			]
+			description: ["假设蚀刻成功，你现在应该有一个完成的 PCB。如果失败，你需要回收失败的电路板并重新开始。"]
+			id: "6BC76E37C32D622B"
+			rewards: [{
+				id: "27FE217B873BB2E8"
+				item: {
+					Count: 1b
+					id: "mekanism:basic_fluid_tank"
+					tag: {
+						BlockEntityTag: {
+							FluidTanks: [{
+								Tank: 0b
+								stored: {
+									Amount: 8000
+									FluidName: "pneumaticcraft:etching_acid"
+								}
+							}]
+							ForgeCaps: { }
+							Items: [ ]
+							activeState: 0b
+							componentFrequency: {
+								Security: {
+									name: "Security"
+									owner: [I;
+										1322214020
+										-1310177861
+										-1296886500
+										-1782337265
+									]
+									publicFreq: 1b
+								}
+							}
+							componentSecurity: {
+								owner: [I;
+									1322214020
+									-1310177861
+									-1296886500
+									-1782337265
+								]
+								securityMode: 0
+							}
+							currentRedstone: 4
+							editMode: 0
+							id: "mekanism:basic_fluid_tank"
+							redstone: 0b
+							updateDelay: 0
+						}
+						display: {
+							Lore: ["\"(+NBT)\""]
+						}
+						mekData: {
+							FluidTanks: [{
+								Tank: 0b
+								stored: {
+									Amount: 8000
+									FluidName: "pneumaticcraft:etching_acid"
+								}
+							}]
+							editMode: 0
+							owner: [I;
+								1322214020
+								-1310177861
+								-1296886500
+								-1782337265
+							]
+						}
+					}
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "12759B201BF157EF"
+				item: "pneumaticcraft:unassembled_pcb"
+				type: "item"
+			}]
+			x: -0.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["6BC76E37C32D622B"]
+			description: ["将晶体管和电容器组合起来，制成可用于无人机、压力服等多种先进气动技术的最终PCB。"]
+			id: "58B09F6D282B4642"
+			rewards: [
+				{
+					count: 4
+					id: "5C59DCC9DB009F61"
+					item: "pneumaticcraft:printed_circuit_board"
+					type: "item"
+				}
+				{
+					id: "631E4D89ADB074DF"
+					type: "xp"
+					xp: 10
+				}
+			]
+			tasks: [{
+				id: "38C065980822F46A"
+				item: "pneumaticcraft:printed_circuit_board"
+				type: "item"
+			}]
+			x: -0.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["58B09F6D282B4642"]
+			description: ["激光组装器是一种多方块结构，使用精密材料进行自动化高级合成。它能更高效地制作PCB等产品，并能创造我们Energistics Nexa中使用的先进电路。"]
+			icon: "pneumaticcraft:assembly_laser"
+			id: "586B3283715D58FA"
+			rewards: [
+				{
+					id: "7FE9FE7B6DF9CEDA"
+					item: "pneumaticcraft:assembly_program_laser"
+					type: "item"
+				}
+				{
+					id: "6BFF2C86D8C4762F"
+					type: "xp"
+					xp: 20
+				}
+				{
+					id: "6DB3B2E583FBF8E2"
+					item: "engineersdecor:sign_laser"
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "2CEE744C09758742"
+					item: "pneumaticcraft:assembly_controller"
+					type: "item"
+				}
+				{
+					id: "6A168BF353F75532"
+					item: "pneumaticcraft:assembly_io_unit_import"
+					type: "item"
+				}
+				{
+					id: "7BBCCD0075552F70"
+					item: "pneumaticcraft:assembly_io_unit_export"
+					type: "item"
+				}
+				{
+					id: "2055D87F6218FB7E"
+					item: "pneumaticcraft:assembly_laser"
+					type: "item"
+				}
+				{
+					id: "5C992B4F3F05D5A8"
+					item: "pneumaticcraft:assembly_platform"
+					type: "item"
+				}
+			]
+			title: "激光组装台"
+			x: -0.5d
+			y: 6.0d
+		}
+		{
+			dependencies: [
+				"586B3283715D58FA"
+				"0476AE20C34AB296"
+			]
+			description: ["&bSentient Processor&r 能将数据模型的内部学习算法升级，使其瞬间获得自我意识。这可以通过杀死生物来节省训练数据模型的大量时间。"]
+			id: "02EFF4B54834E589"
+			rewards: [{
+				count: 4
+				id: "10D639C68CC75523"
+				item: "ae2:engineering_processor"
+				type: "item"
+			}]
+			shape: "hexagon"
+			size: 1.25d
+			tasks: [{
+				id: "76064B9915027329"
+				item: "ftbgenesis:sentient_processor"
+				type: "item"
+			}]
+			x: -0.5d
+			y: 7.5d
+		}
+		{
+			dependencies: ["5563F6DC13575BD2"]
+			description: [
+				"你可以在压力舱中创造一些特定的附魔，包括丝绸之触、时运、效率、耐久和磁力。在JEI中查看压力舱的使用说明以获取配方。"
+				""
+				"有了附魔书后，你也可以直接将其用于压力舱内的物品。使用压力舱制作一本丝绸之触书，然后将其用于钢制镐上。"
+				""
+				"你也可以用类似的方法将附魔物品和空白书放入压力室，从而剥离物品的附魔。"
+			]
+			id: "605D81C7EB13C11F"
+			rewards: [
+				{
+					count: 4
+					id: "76BD76C4DC156B41"
+					item: "minecraft:lapis_lazuli"
+					type: "item"
+				}
+				{
+					id: "79A68C3BA41A9E86"
+					type: "xp"
+					xp: 5
+				}
+				{
+					count: 2
+					id: "5AD999C8BE455AC9"
+					item: "minecraft:bookshelf"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "731C12ED053E2CE0"
+				item: {
+					Count: 1b
+					id: "immersiveengineering:pickaxe_steel"
+					tag: {
+						Damage: 0
+						Enchantments: [{
+							id: "minecraft:silk_touch"
+							lvl: 1s
+						}]
+						RepairCost: 1
+					}
+				}
+				type: "item"
+			}]
+			title: "加压附魔系统 (Pressurized Enchanting)"
+			x: 3.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["3DA48E8B58F0BDFD"]
+			description: ["充电站可以让你为需要机械压力的任何设备加压，例如迷你枪、气动服和电钻等。"]
+			id: "14993154D5051FEB"
+			rewards: [
+				{
+					id: "021EAE56F0D5EE1A"
+					item: "ic2:circuit"
+					type: "item"
+				}
+				{
+					count: 8
+					id: "2F9BD117F5B3FE92"
+					item: "pneumaticcraft:reinforced_stone"
+					type: "item"
+				}
+				{
+					id: "3832A80FBA5E6C99"
+					item: "pneumaticcraft:pneumatic_cylinder"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "1941C290C1FBAF41"
+				item: "pneumaticcraft:charging_station"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["14993154D5051FEB"]
+			description: [
+				"冲击钻是一种非常多功能的工具。它能以同样的效率和便捷性挖掘泥土、砍伐树木和开采岩石。它可以在充电站进行升级或充电。根据安装的钻头，它可以通过脉矿挖掘开采从1x1到3x3的区域。你还可以将时运或丝绸之触的附魔书插入其中以进一步增强它。"
+				""
+				"搭配空中接口或带充电升级的气动护胸，它将成为你唯一需要的采矿多功能工具。"
+			]
+			id: "01CA1FC2A18B6F88"
+			rewards: [
+				{
+					count: 10
+					id: "4322DB467B2DA7FE"
+					item: "pneumaticcraft:speed_upgrade"
+					type: "item"
+				}
+				{
+					id: "7A6DEC51B40DD249"
+					item: "pneumaticcraft:magnet_upgrade"
+					type: "item"
+				}
+				{
+					id: "01DF6AC1D36C48EE"
+					item: "pneumaticcraft:drill_bit_compressed_iron"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "03F29A4429884F75"
+				item: "pneumaticcraft:jackhammer"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 1.5d
+		}
+		{
+			dependencies: [
+				"586B3283715D58FA"
+				"01CA1FC2A18B6F88"
+			]
+			description: ["为冲击钻制作钻石钻头后，按住 shift 并滚动可切换 3x3 挖掘模式，或在界面中设置。将其与下界合金锭结合，并再次通过装配线，即可制作出终极钻头。"]
+			id: "04A5060CF5ED337F"
+			rewards: [
+				{
+					id: "66510A542B404636"
+					item: "minecraft:netherite_ingot"
+					type: "item"
+				}
+				{
+					id: "5E5A3FAA7F8230CD"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Diggy Diggy Hole"
+			tasks: [{
+				id: "6DE73ED38C8A29DD"
+				item: "pneumaticcraft:drill_bit_diamond"
+				type: "item"
+			}]
+			title: "立方体采矿模组"
+			x: 5.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["586B3283715D58FA"]
+			description: [
+				"空中接口利用你的半数字意识，在实体形态与主 Nexa 网络间建立实时纠缠链接。放置后它将与你绑定，所有自动化系统均可将其视为箱子操作，但内容物是你的物品栏。通过巧妙自动化，你可以保持补给充足，甚至设计出无线压力充能系统。"
+				""
+				"只要提供能量，该接口还可以为需要FE能量的任何设备或奇物充电。"
+			]
+			id: "5BC3B47647E3B516"
+			rewards: [
+				{
+					id: "74EC910FC52F8BC8"
+					item: "electrodynamics:thermoelectricgenerator"
+					type: "item"
+				}
+				{
+					id: "104AEEB8D45AF67C"
+					item: {
+						Count: 1b
+						id: "cyclic:ender_pearl_reuse"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "41B4F5FB92656B01"
+				item: "pneumaticcraft:aerial_interface"
+				type: "item"
+			}]
+			title: "代理玩家 (Player by Proxy)"
+			x: 1.0d
+			y: 7.5d
+		}
+		{
+			dependencies: ["58B09F6D282B4642"]
+			description: [
+				"气动服不仅通过升级提供卓越的防护和实用功能，还能像防护服一样持续抵御废土中的辐射。其他几件护甲也能提供类似防护，你可以在JEI中搜索“wasteland”并查看工具提示来找到它们。"
+				""
+				"必须在充电站为套装充电才能发挥额外效果，但未充电时也能抵御辐射。"
+			]
+			icon: {
+				Count: 1b
+				id: "pneumaticcraft:pneumatic_chestplate"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "20133CDF1CC5C6C1"
+			optional: true
+			rewards: [
+				{
+					id: "5D23981E071B5411"
+					item: "pneumaticcraft:elytra_upgrade"
+					type: "item"
+				}
+				{
+					id: "16D628561CF49529"
+					item: "pneumaticcraft:volume_upgrade"
+					type: "item"
+				}
+				{
+					id: "6F4FC8B12B36D477"
+					item: "pneumaticcraft:charging_upgrade"
+					type: "item"
+				}
+			]
+			shape: "octagon"
+			size: 1.25d
+			tasks: [
+				{
+					id: "675F9447A26195B9"
+					item: {
+						Count: 1b
+						id: "pneumaticcraft:pneumatic_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "4972FF7240C0E9E9"
+					item: {
+						Count: 1b
+						id: "pneumaticcraft:pneumatic_chestplate"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "591871A903E31920"
+					item: {
+						Count: 1b
+						id: "pneumaticcraft:pneumatic_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "0A1722DFFF1D2283"
+					item: {
+						Count: 1b
+						id: "pneumaticcraft:pneumatic_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "压力之下的Excel"
+			x: 3.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["151DD8DC2F237690"]
+			description: ["僵尸让你头疼？想和骷髅算账？迷你枪是你的解决方案。一旦加压并装上弹药，这把现代防御武器就会高速旋转，向挡路的一切倾泻子弹。搭配胸甲的充能升级和物品寿命升级，可以随时间重新装填弹药，效果极佳。"]
+			hide_dependency_lines: true
+			id: "358CCBF022005305"
+			rewards: [
+				{
+					id: "7B75613AC474993A"
+					item: {
+						Count: 1b
+						id: "pneumaticcraft:gun_ammo_ap"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "795A3984E47245A8"
+					item: "pneumaticcraft:range_upgrade"
+					type: "item"
+				}
+				{
+					id: "420D4B0B0AAAEF73"
+					item: "pneumaticcraft:speed_upgrade"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "5CE3ABC4E625CACB"
+				item: "pneumaticcraft:minigun"
+				type: "item"
+			}]
+			title: "来和我的好朋友打个招呼吧。"
+			x: 1.5d
+			y: 3.0d
+		}
+	]
+	title: "在压力下"
+}

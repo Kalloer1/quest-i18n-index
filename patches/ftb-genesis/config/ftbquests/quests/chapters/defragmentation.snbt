@@ -1,0 +1,743 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "defragmentation"
+	group: "494B330CF50C8720"
+	icon: "megacells:cell_component_256m"
+	id: "219A2257821FECB6"
+	order_index: 3
+	quest_links: [{
+		id: "01ADC981F194403B"
+		linked_quest: "02EFF4B54834E589"
+		shape: "hexagon"
+		x: -0.5d
+		y: 9.5d
+	}]
+	quests: [
+		{
+			dependencies: [
+				"47EC01A0EEFF272F"
+				"586B3283715D58FA"
+				"4DA89AED6EA9C07B"
+				"40C9FC4B88B89CD5"
+			]
+			description: ["既然你已获得&b纠缠物质&r，我们就可以开始修复Nexa，为最终的撤离做准备。请提供所需的能量和纠缠物质，我们将开始隔离被污染的扇区。"]
+			icon: "boundlessflux:lesser_entangled_matter"
+			id: "1953BC9FB59C409D"
+			rewards: [
+				{
+					id: "4DBBAFADFE9D3C1E"
+					item: "rftoolsutility:matter_receiver"
+					team_reward: true
+					type: "item"
+				}
+				{
+					id: "2434C91329A0A0A9"
+					item: {
+						Count: 1b
+						id: "rftoolsutility:advanced_charged_porter"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			shape: "hexagon"
+			size: 1.25d
+			tasks: [
+				{
+					id: "371B0159DE865AE9"
+					max_input: 10000L
+					title: "磁盘碎片整理"
+					type: "forge_energy"
+					value: 2000000L
+				}
+				{
+					consume_items: true
+					id: "11ADF975D2DD6E5E"
+					item: "boundlessflux:lesser_entangled_matter"
+					type: "item"
+				}
+			]
+			x: -2.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["1953BC9FB59C409D"]
+			description: ["我们已经隔离了被污染的扇区，并将其与纠缠物质相连。现在我们应该能将它们弹出到物理世界，由你处理。准备好后，&6激活模拟&r并进入以开始修复扇区。"]
+			icon: "ae2:spatial_storage_cell_128"
+			id: "78A629287D1D2174"
+			rewards: [
+				{
+					icon: "ae2:spatial_cell_component_128"
+					id: "3A1DB5FE4D466FAF"
+					tags: ["prefab_quartz"]
+					team_reward: true
+					title: "激活模拟程序"
+					type: "custom"
+				}
+				{
+					id: "10CAA52FDAB2E2EB"
+					item: "ae2:spatial_storage_cell_128"
+					team_reward: true
+					type: "item"
+				}
+			]
+			tasks: [{
+				dimension: "minecraft:overworld"
+				icon: "ae2:spatial_pylon"
+				id: "2538F3CD8167AB7C"
+				ignore_dimension: true
+				position: [I;
+					-15
+					44
+					56
+				]
+				size: [I;
+					7
+					5
+					7
+				]
+				title: "前往模拟矩阵 Simulation Matrix"
+				type: "location"
+			}]
+			title: "激活数字竞技场"
+			x: -2.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["78A629287D1D2174"]
+			description: [
+				"在我们将腐化扇区上传到你的模拟矩阵时，你应该趁机准备&6收容系统&r。我们已下载了设计图，供你创建一个微型化模拟系统。你首先需要创建一个深度学习器和一个数据模型。"
+				""
+				"要将数据模型与实体关联，你需要用空白数据模型右键点击其中一个实体。这将编码实体类型以供模拟处理。"
+				""
+				"准备好后，前往该区域的中心并激活第一波攻势。"
+			]
+			icon: "hostilenetworks:deep_learner"
+			id: "09452F8E118B78CB"
+			rewards: [
+				{
+					id: "091AF4CBA45AC78D"
+					item: {
+						Count: 1b
+						id: "minecraft:lingering_potion"
+						tag: {
+							Potion: "apotheosis:long_resistance"
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "26A7C928F0A3473B"
+					item: {
+						Count: 1b
+						id: "minecraft:splash_potion"
+						tag: {
+							Potion: "minecraft:long_strength"
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "097AD5A0179852F0"
+					type: "xp"
+					xp: 20
+				}
+			]
+			tasks: [
+				{
+					id: "60298144AAAD7862"
+					item: "hostilenetworks:deep_learner"
+					type: "item"
+				}
+				{
+					id: "35E96EC980CBC7A2"
+					item: "hostilenetworks:blank_data_model"
+					type: "item"
+				}
+			]
+			title: "机器学习 Machine Learning"
+			x: -2.5d
+			y: 5.0d
+		}
+		{
+			dependencies: ["09452F8E118B78CB"]
+			description: ["准备好后，去竞技场中央并初始化波次。记得&6右键&r其中一个实体的数据模型以绑定它。如果未能击败所有腐化，我们将需要再次准备具象化，直到能完全收容为止。祝你好运，埃利里亚在精神上与你同在……"]
+			icon: "boundlessflux:first_sword"
+			id: "760BDD98711F713F"
+			rewards: [{
+				icon: {
+					Count: 1b
+					id: "gateways:gate_pearl"
+					tag: { }
+				}
+				id: "20FABC0D733D357D"
+				tags: ["start_first_gateway"]
+				team_reward: true
+				title: "启动辅助数据区门户"
+				type: "custom"
+			}]
+			tasks: [{
+				dimension: "minecraft:overworld"
+				icon: "botania:lens_flare"
+				id: "464A301C7BF9E1BF"
+				ignore_dimension: true
+				position: [I;
+					-21
+					46
+					78
+				]
+				size: [I;
+					16
+					10
+					16
+				]
+				title: "前往竞技场中心 (Goto the Center of the Arena)"
+				type: "location"
+			}]
+			title: "开始数据清除程序"
+			x: -2.5d
+			y: 6.5d
+		}
+		{
+			dependencies: ["760BDD98711F713F"]
+			description: ["你成功遏制了数据腐蚀，我们现在可以将部分存储的意识转移到新区块了。准备好它们的住所后，启动下载，它们就会实体化。首批返回埃利里亚的新殖民者。干得好！"]
+			icon: "megacells:cell_component_1m"
+			id: "22DF340987219CD6"
+			rewards: [
+				{
+					command: "/execute at @p run summon minecraft:villager"
+					icon: "nameless_trinkets:fate_emerald"
+					id: "01D443BD1DDBAE72"
+					team_reward: true
+					title: "正在初始化下载..."
+					type: "command"
+				}
+				{
+					id: "280F68F258913E31"
+					item: "ic2:villager_o_mat"
+					team_reward: true
+					type: "item"
+				}
+				{
+					auto: "invisible"
+					id: "6D2D3B8964774476"
+					tags: ["finish_first_gateway"]
+					team_reward: true
+					title: "不可见的任务书文本"
+					type: "custom"
+				}
+				{
+					id: "44090A57511865A1"
+					item: {
+						Count: 1b
+						id: "hostilenetworks:data_model"
+						tag: {
+							data_model: {
+								id: "hostilenetworks:drowned"
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "6623FACD5E0220C1"
+					item: {
+						Count: 1b
+						id: "hostilenetworks:data_model"
+						tag: {
+							data_model: {
+								id: "hostilenetworks:guardian"
+							}
+						}
+					}
+					type: "item"
+				}
+			]
+			shape: "hexagon"
+			size: 1.25d
+			tasks: [{
+				icon: "megacells:cell_component_1m"
+				id: "225E1C041D34B8EF"
+				title: "数据区已重新格式化"
+				type: "custom"
+			}]
+			title: "辅助数据区已重新格式化"
+			x: -2.5d
+			y: 8.0d
+		}
+		{
+			dependencies: ["22DF340987219CD6"]
+			description: ["使用&b模拟舱&r，我们可以利用编码的数据模型来模拟宿主实体的生物组件。结合数据模型、能量和预测矩阵，以获取与实体类型相对应的材料。"]
+			id: "0476AE20C34AB296"
+			rewards: [{
+				count: 32
+				id: "58E60ECDCF50CB75"
+				item: "hostilenetworks:empty_prediction"
+				type: "item"
+			}]
+			tasks: [{
+				id: "396C286D5054B497"
+				item: "hostilenetworks:sim_chamber"
+				type: "item"
+			}]
+			title: "生成式人工智能"
+			x: -0.5d
+			y: 8.0d
+		}
+		{
+			dependencies: ["0476AE20C34AB296"]
+			description: ["&b通用物质&r是一种可塑的原初物质，可以塑造成多种不同材料。获取它并将其融入你的制作需求中。"]
+			id: "32276D18F41C522F"
+			rewards: [{
+				count: 32
+				id: "23D6D125E738FB81"
+				item: "hostilenetworks:overworld_prediction"
+				type: "item"
+			}]
+			tasks: [{
+				id: "4510C6936BDCCE5A"
+				item: "hostilenetworks:overworld_prediction"
+				type: "item"
+			}]
+			x: 1.5d
+			y: 8.0d
+		}
+		{
+			dependencies: ["0476AE20C34AB296"]
+			description: ["在模拟实体时，模拟室偶尔能外推出具体的物品衍生品。这些特殊预测可用于战利品生成器，以生成与该实体相关的特定物品。"]
+			id: "36BC68AC31AC6A24"
+			rewards: [
+				{
+					id: "57CE9B6478712C06"
+					item: {
+						Count: 1b
+						id: "hostilenetworks:data_model"
+						tag: {
+							data_model: {
+								id: "hostilenetworks:zombified_piglin"
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "67A5803823B2711B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			tasks: [{
+				id: "233E70EF16E6A6B1"
+				item: {
+					Count: 1b
+					id: "hostilenetworks:prediction"
+					tag: {
+						data_model: {
+							id: "hostilenetworks:zombie"
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: 1.0d
+			y: 9.5d
+		}
+		{
+			dependencies: ["36BC68AC31AC6A24"]
+			description: ["&b战利品生成器&r可接受任何专用预测矩阵，并允许你从中选择想要复制的相关材料。"]
+			id: "4F45E721D86AA719"
+			rewards: [
+				{
+					id: "14C1F2F39236C560"
+					item: "cyclic:wireless_energy"
+					type: "item"
+				}
+				{
+					id: "7E3992F8DDA46CA4"
+					item: "cyclic:location_data"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "60DFDE4A5BD50F89"
+				item: "hostilenetworks:loot_fabricator"
+				type: "item"
+			}]
+			x: 2.5d
+			y: 9.5d
+		}
+		{
+			dependencies: ["22DF340987219CD6"]
+			description: ["一个区域已清除，干得好。我们需要为&bTertiary chamber&r启动一个收容场，并使用更强大的能量纠缠源。更高精度的纠缠物质和250万FE应该足以启动下一阶段。"]
+			icon: "boundlessflux:greater_entangled_matter"
+			id: "1199C75AD010BA3F"
+			rewards: [{
+				icon: {
+					Count: 1b
+					id: "gateways:gate_pearl"
+					tag: {
+						gateway: "gateways:corruption_gate2"
+					}
+				}
+				id: "065175660AFD8868"
+				tags: ["start_second_gateway"]
+				team_reward: true
+				title: "启动三级腐化之门"
+				type: "custom"
+			}]
+			tasks: [
+				{
+					id: "2A2789667BB48B41"
+					max_input: 10000L
+					title: "三级腐化区段"
+					type: "forge_energy"
+					value: 2500000L
+				}
+				{
+					consume_items: true
+					id: "41E8B85FC9D77E40"
+					item: "boundlessflux:greater_entangled_matter"
+					type: "item"
+				}
+			]
+			title: "三级腐化区段"
+			x: -5.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["1199C75AD010BA3F"]
+			description: ["你成功遏制了三级数据腐蚀，我们已将部分存储的意识转移到新区。假设你已准备好容纳他们的地方，请启动下载，他们即将具象化。殖民地不断壮大，我们对你的成功也愈发坚信！"]
+			id: "4A6B5BD9CE473EB1"
+			rewards: [
+				{
+					auto: "invisible"
+					id: "23CA8938FFFC3EDD"
+					tags: ["finish_second_gateway"]
+					team_reward: true
+					type: "custom"
+				}
+				{
+					command: "/execute at @p run summon minecraft:villager"
+					icon: "nameless_trinkets:fate_emerald"
+					id: "7FE3CEDE9E21D24B"
+					team_reward: true
+					title: "正在初始化下载..."
+					type: "command"
+				}
+				{
+					id: "399E9263A099718B"
+					item: {
+						Count: 1b
+						id: "hostilenetworks:data_model"
+						tag: {
+							data_model: {
+								id: "hostilenetworks:evoker"
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "3AD6A4E3117F453E"
+					item: {
+						Count: 1b
+						id: "hostilenetworks:data_model"
+						tag: {
+							data_model: {
+								id: "hostilenetworks:slime"
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "69BB871FEFAC7266"
+					item: "ic2:pixelfoam_greg"
+					type: "item"
+				}
+			]
+			shape: "hexagon"
+			size: 1.25d
+			tasks: [{
+				icon: "megacells:cell_component_4m"
+				id: "628ACB7C337A8C5C"
+				item: "minecraft:bedrock"
+				title: "数据区已重新格式化"
+				type: "item"
+			}]
+			title: "三级数据区已重新格式化"
+			x: -5.0d
+			y: 9.5d
+		}
+		{
+			dependencies: ["4A6B5BD9CE473EB1"]
+			description: ["现已清除两个扇区，进展显著！我们正在深入系统核心，这意味着需要更多能量来抑制数据腐化。此过程需要大量&b精炼的纠缠物质&r和10M FE。"]
+			icon: "boundlessflux:refined_entangled_matter"
+			id: "55C272B53C34E8A2"
+			rewards: [{
+				icon: {
+					Count: 1b
+					id: "gateways:gate_pearl"
+					tag: {
+						gateway: "gateways:enderman_gate_large"
+					}
+				}
+				id: "71BA18A11B010C55"
+				tags: ["start_third_gateway"]
+				title: "启动二级腐化区域"
+				type: "custom"
+			}]
+			tasks: [
+				{
+					consume_items: true
+					id: "6D20B8B90705C6EE"
+					item: "boundlessflux:refined_entangled_matter"
+					type: "item"
+				}
+				{
+					id: "70A61DCE7276D5B0"
+					max_input: 10000L
+					title: "次要腐化收容措施"
+					type: "forge_energy"
+					value: 10000000L
+				}
+			]
+			title: "次要腐化区段"
+			x: -2.5d
+			y: 9.5d
+		}
+		{
+			dependencies: ["55C272B53C34E8A2"]
+			description: ["快完成了！你遏制了次要的数据损坏，更多殖民者正迫不及待地等待加入。启动下载以开始具象化。这次确保有足够的空间，我们要派不少人过去！"]
+			icon: "megacells:cell_component_64m"
+			id: "297BE049D34390C0"
+			rewards: [
+				{
+					auto: "invisible"
+					id: "6D4D776253F28F9A"
+					team_reward: true
+					title: "完成第三阶段的奖励"
+					type: "custom"
+				}
+				{
+					icon: "nameless_trinkets:fate_emerald"
+					id: "2C6E3C5835B0A484"
+					tags: ["villager1"]
+					team_reward: true
+					title: "正在初始化下载..."
+					type: "custom"
+				}
+				{
+					id: "0783DF5CC2509062"
+					item: {
+						Count: 1b
+						id: "hostilenetworks:data_model"
+						tag: {
+							data_model: {
+								id: "hostilenetworks:elder_guardian"
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "7282B1900A8485AD"
+					item: {
+						Count: 1b
+						id: "hostilenetworks:data_model"
+						tag: {
+							data_model: {
+								id: "hostilenetworks:phantom"
+							}
+						}
+					}
+					type: "item"
+				}
+			]
+			shape: "hexagon"
+			size: 1.25d
+			tasks: [{
+				icon: "megacells:cell_component_64m"
+				id: "655E23B3DB306B62"
+				item: "minecraft:bedrock"
+				title: "数据区已重新格式化"
+				type: "item"
+			}]
+			title: "次要数据区已重新格式化"
+			x: -2.5d
+			y: 11.0d
+		}
+		{
+			dependencies: ["297BE049D34390C0"]
+			description: [
+				"你已进入 Nexa 的核心，并与腐化的根源建立了连接。我们需要集结所有资源和能量，将这股最后的巨大力量收容。它的触须深入 Elyria 的 Nexa 网络中心。"
+				""
+				"&bPristine Entangled Matter&r 和所需的 5000 万 FE 都来之不易，但现在你已有工具可以完成这项任务。我们与你同在！"
+			]
+			icon: "boundlessflux:pristine_entangled_matter"
+			id: "6F5AB878C1B13FA9"
+			rewards: [{
+				icon: {
+					Count: 1b
+					id: "gateways:gate_pearl"
+					tag: {
+						gateway: "gateways:corruption_gate4"
+					}
+				}
+				id: "11C36495296FA648"
+				tags: ["start_fourth_gateway"]
+				team_reward: true
+				title: "启动主腐化区域初始化程序"
+				type: "custom"
+			}]
+			tasks: [
+				{
+					consume_items: true
+					id: "4F04821ECE8E45D5"
+					item: "boundlessflux:pristine_entangled_matter"
+					type: "item"
+				}
+				{
+					id: "71C6DDA18ED0F9E8"
+					max_input: 10000L
+					title: "主要腐化区域收容协议"
+					type: "forge_energy"
+					value: 50000000L
+				}
+			]
+			title: "主要腐化区段"
+			x: -2.5d
+			y: 12.5d
+		}
+		{
+			dependencies: ["6F5AB878C1B13FA9"]
+			description: ["所有腐化数据节点已被清除。收容协议完成，数据完整性100%。你稳定了Nexa网络，为我们重返世界铺平了道路。准备好后请启动最终下载，经过这么久，我们很多人都迫不及待地想回家了。"]
+			id: "6A0000403C3D0ABA"
+			rewards: [
+				{
+					auto: "invisible"
+					id: "68A9DE80E0FC86C5"
+					tags: ["finish_fourth_gateway"]
+					team_reward: true
+					title: "完成第四个传送门"
+					type: "custom"
+				}
+				{
+					icon: "nameless_trinkets:fate_emerald"
+					id: "3E7934DBD2EC9721"
+					tags: ["villager2"]
+					team_reward: true
+					title: "开始最终下载..."
+					type: "custom"
+				}
+				{
+					id: "7C1E432375AE6626"
+					item: {
+						Count: 1b
+						id: "hostilenetworks:data_model"
+						tag: {
+							data_model: {
+								id: "hostilenetworks:warden"
+							}
+						}
+					}
+					type: "item"
+				}
+			]
+			shape: "hexagon"
+			size: 2.0d
+			tasks: [{
+				icon: "megacells:cell_component_256m"
+				id: "6942E35762CD9377"
+				item: "minecraft:bedrock"
+				type: "item"
+			}]
+			title: "主数据区已重新格式化"
+			x: -0.5d
+			y: 11.5d
+		}
+		{
+			dependencies: ["0476AE20C34AB296"]
+			description: ["有传言称，来自下界维度的一种古老而可怕的敌人。猪灵原住民详细描述了一种召唤仪式，需要使用凋骷髅头和灵魂沙来召唤该实体。 &b尝试召唤该实体&r，并使用纠缠数据模块捕捉它，以便进行进一步模拟。"]
+			id: "65944281BD763FF2"
+			rewards: [
+				{
+					id: "6060F4205F587E91"
+					item: {
+						Count: 1b
+						id: "hostilenetworks:data_model"
+						tag: {
+							data_model: {
+								id: "hostilenetworks:wither"
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "00F5F3A8ED565922"
+					type: "xp_levels"
+					xp_levels: 30
+				}
+				{
+					id: "7BAA2242E91544D9"
+					item: "nameless_trinkets:fate_emerald"
+					type: "item"
+				}
+			]
+			tasks: [{
+				entity: "minecraft:wither"
+				icon: {
+					Count: 1b
+					id: "hostilenetworks:data_model"
+					tag: {
+						data_model: {
+							id: "hostilenetworks:wither"
+						}
+					}
+				}
+				id: "646B2979F2610C9B"
+				title: "击杀凋零（Wither）"
+				type: "kill"
+				value: 1L
+			}]
+			x: -0.5d
+			y: 6.5d
+		}
+		{
+			dependencies: [
+				"33D864DB589FC5FC"
+				"65944281BD763FF2"
+			]
+			description: ["利用你之前完善的工程遗传学和从凋零生物处获得的新外星基因组，我们成功培育出它对下界高温的固有抗性。这种基因改造不会让你免疫火焰，但能防止下界的高温在没有防护服的情况下灼伤你。"]
+			icon: "mekanism:hazmat_mask"
+			id: "5F78B2ECE5539984"
+			optional: true
+			rewards: [{
+				auto: "invisible"
+				icon: "cataclysm:altar_of_fire"
+				id: "51A23D46EC7DD58E"
+				ignore_reward_blocking: true
+				stage: "fire_resistant"
+				team_reward: true
+				title: "火焰抗性基因 Fire Gesistant Gene"
+				type: "gamestage"
+			}]
+			shape: "hexagon"
+			size: 1.25d
+			tasks: [{
+				id: "61ABB0F38B705641"
+				title: "持续进化"
+				type: "checkmark"
+			}]
+			title: "持续进化"
+			x: 0.75d
+			y: 5.25d
+		}
+	]
+	title: "磁盘碎片整理"
+}

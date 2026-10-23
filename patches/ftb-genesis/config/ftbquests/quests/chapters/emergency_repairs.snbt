@@ -1,0 +1,336 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "emergency_repairs"
+	group: "4C0075272E2F720D"
+	icon: "hammerlib:wrench"
+	id: "69A066A04595C87F"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"别慌！针对你正在经历的灾难性中断，我们已制定了应急计划。"
+				"在数据访问部分的任务屏幕输入下方，你会发现一个金属桶，里面装着小型化石燃料应急发电系统。它无法长期维持任何东西，但足以重新建立连接。"
+			]
+			hide_text_until_complete: false
+			icon: "dynamicelectricity:motoraclv"
+			id: "1D084474BBF34A24"
+			rewards: [
+				{
+					id: "553904CA9E00FF4F"
+					item: "minecraft:lever"
+					team_reward: false
+					type: "item"
+				}
+				{
+					id: "0343584AE18C4756"
+					item: "electrodynamics:guidebook"
+					team_reward: false
+					type: "item"
+				}
+				{
+					id: "36BB4DC744974C27"
+					item: {
+						Count: 1b
+						id: "cyclic:cask"
+						tag: {
+							BlockEntityTag: {
+								ForgeCaps: { }
+								flow_down: 0b
+								flow_east: 0b
+								flow_north: 0b
+								flow_south: 0b
+								flow_up: 0b
+								flow_west: 0b
+								flowing: 0
+								fluid: {
+									Amount: 2000
+									FluidName: "pneumaticcraft:lubricant"
+								}
+								id: "cyclic:cask"
+								needsRedstone: 1
+								renderParticles: 0
+								timer: 0
+							}
+							display: {
+								Lore: ["\"(+NBT)\""]
+							}
+						}
+					}
+					team_reward: false
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "6A45B12941BD676D"
+				item: {
+					Count: 1b
+					id: "electrodynamics:coalgenerator"
+					tag: {
+						BlockEntityTag: {
+							ForgeCaps: { }
+							Items: [{
+								Count: 63b
+								Slot: 0b
+								id: "minecraft:charcoal"
+							}]
+							burnTime: 281
+							heat: 3000.0d
+							id: "electrodynamics:coalgenerator"
+							itemproperty_size: 1
+							joules: 0.0d
+							maxBurnTime: 1600
+							maxJoules: 0.0d
+							multiplier: 1.0d
+							voltage: 120.0d
+						}
+					}
+				}
+				type: "item"
+			}]
+			title: "备用电源"
+			x: -1.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["1D084474BBF34A24"]
+			description: [
+				"Electrodynamic Energy 使用类似于电学的瓦特和伏特系统。我们也可以将这种能量转换为许多其他形式的能量，如 FE 和 IC2 EU。为了掌握基础知识并重新建立联系，你应该建造一个小型电力系统。"
+				""
+				"Start by placing down the coal generator and giving it some fuel (charcoal should work fine for now). Next, connect a battery to the back of it. This setup can power &nany&r machine that take's &nElectrodynamics power&r or &nFE&r by just connecting this battery to Machines using IE Wires or even IC2C Tin Cables."
+				""
+				"{@pagebreak}"
+				"任务屏幕可能有点挑剔，因为它需要精确的数字才能完成，而细线电缆并不总是以均匀的脉冲发送电力包。为了解决这个问题，可以使用来自 IE 的 LV 电线将电池连接到任务屏幕作为替代方案。 &l你只需要为任务屏幕这样做。&r"
+				""
+				""
+				"{@pagebreak}"
+				"请确保已将屏幕上的任务正确设置为该任务，以提供足够的电力重启系统。"
+				""
+				""
+				"{image:ftbgenesis:textures/quests/powering_screen.png width:282 height:192 align:1}"
+				""
+				"如果任务界面提示用户权限问题，可能是之前测试留下的痕迹。技术员可能忘了重置，所以用木制镐或更好的工具&n打破并替换它&r即可。"
+			]
+			id: "6ADC4528E481A7B2"
+			min_width: 300
+			rewards: [
+				{
+					id: "21B23DD1CF66CE4D"
+					type: "xp"
+					xp: 10
+				}
+				{
+					id: "52719A72E91484BC"
+					item: "ic2:glass_fruit_tea"
+					type: "item"
+				}
+			]
+			shape: "hexagon"
+			size: 1.25d
+			tasks: [{
+				id: "3263615EC0D75141"
+				max_input: 5000L
+				title: "启动重启程序！"
+				type: "forge_energy"
+				value: 250000L
+			}]
+			title: "启动重启程序！"
+			x: -1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["1D084474BBF34A24"]
+			description: ["某些任务可能需要移动液体。在基础设施恢复运行之前，将农业区的部分流体运输机改作他用可能很有用。"]
+			id: "0105CA64E7AE9B58"
+			optional: true
+			rewards: [
+				{
+					count: 2
+					id: "26FC303027A1FE23"
+					item: "industrialforegoing:item_transporter_type"
+					type: "item"
+				}
+				{
+					id: "56586D0C41A0A1AD"
+					type: "xp"
+					xp: 2
+				}
+			]
+			tasks: [{
+				id: "42965E9F56129850"
+				item: "industrialforegoing:fluid_transporter_type"
+				type: "item"
+			}]
+			title: "大量涂抹润滑剂"
+			x: 0.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["6ADC4528E481A7B2"]
+			description: ["系统重启后，我们可以提供更直接的帮助。前往“合成获取”章节，将能量输入系统，创造物资来协助你完成各项事务。"]
+			icon: "electrodynamics:creativepowersource"
+			id: "0D4BA302A3BCAA07"
+			rewards: [
+				{
+					auto: "enabled"
+					description: ""
+					id: "75AB993356176FD2"
+					team_reward: true
+					title: "不完全的 EMC 服务器"
+					type: "toast"
+				}
+				{
+					id: "3376D1BF6175330E"
+					type: "xp"
+					xp: 10
+				}
+				{
+					id: "3467469A7D10376C"
+					item: {
+						Count: 1b
+						id: "apotheosis:gem"
+						tag: {
+							gem: "apotheosis:core/combatant"
+							rarity: "common"
+						}
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "4647BB4E89FC6693"
+				type: "checkmark"
+			}]
+			title: "能量转化为物质"
+			x: 3.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["0D4BA302A3BCAA07"]
+			description: [
+				"我们需要提供一个气候控制更好的环境，让你能培育保险库里的种子。这是你第一次使用模拟矩阵。过程可能有些复杂，但我们会引导你完成。"
+				""
+				"{@pagebreak}"
+				"首先，前往模拟矩阵，正前方即可。到达并输入足够能量后，点击此任务的奖励以加载模拟。请确保模拟矩阵周围没有任何方块。"
+			]
+			icon: {
+				Count: 1b
+				id: "ic2:crop_analyzer"
+				tag: {
+					charge: 50000
+				}
+			}
+			id: "08159C62B8ADC41A"
+			rewards: [
+				{
+					exclude_from_claim_all: true
+					icon: "ae2:spatial_cell_component_2"
+					id: "09CB0D71E21474B6"
+					tags: ["prefab_wheat"]
+					team_reward: true
+					title: "激活模拟程序"
+					type: "custom"
+				}
+				{
+					id: "63E85E121D7D9BA1"
+					item: "ae2:spatial_storage_cell_128"
+					team_reward: true
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "4F491F5FEEB4523A"
+					max_input: 1000L
+					type: "forge_energy"
+					value: 100000L
+				}
+				{
+					dimension: "minecraft:overworld"
+					icon: "ae2:spatial_pylon"
+					id: "36991302A749A950"
+					ignore_dimension: true
+					position: [I;
+						-15
+						44
+						56
+					]
+					size: [I;
+						7
+						5
+						7
+					]
+					title: "前往模拟矩阵 Simulation Matrix"
+					type: "location"
+				}
+			]
+			title: "模拟现实 (Simulated Reality)"
+			x: 3.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["08159C62B8ADC41A"]
+			description: [
+				"现在我们已经生成了模拟，需要将其编码到我们提供的空间磁盘上。编码后，你就可以随时加载和卸载这个模拟了。要将模拟保存到磁盘，请将空间磁盘插入模拟矩阵旁的空间IO端口。插入后，按下发光按钮以发送红石信号。"
+				""
+				""
+				"{@pagebreak}"
+				"如果一切编码完成，模拟应该会卸载并保存到磁盘。要加载模拟，只需"
+				"将磁盘移回 IO Port 的左侧，然后再次按下按钮。注意不要弄丢你的磁盘！"
+				""
+				"（注意：你可以在铁砧上给你的驱动器命名，以便更好地追踪它们）"
+				""
+				"前往康复章节，继续处理你的新农田吧。"
+			]
+			id: "2A791F59DB3D67E8"
+			rewards: [
+				{
+					id: "7C28B106B83687AE"
+					item: {
+						Count: 1b
+						id: "ic2:crop_analyzer"
+						tag: {
+							charge: 50000
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 8
+					id: "226194D6A3FFD11F"
+					item: "ic2:fertilizer"
+					type: "item"
+				}
+				{
+					count: 8
+					id: "2D20538486E95382"
+					item: {
+						Count: 1b
+						id: "ic2:crop_seed"
+						tag: {
+							crop: "ic2:sugarcane"
+							gain: 5.0d
+							growth: 5.0d
+							resistance: 5.0d
+							scan: 4b
+						}
+					}
+					type: "item"
+				}
+			]
+			shape: "hexagon"
+			size: 1.5d
+			tasks: [{
+				id: "08D848DF9D10637E"
+				item: "ae2:spatial_storage_cell_128"
+				type: "item"
+			}]
+			title: "Encoded Reality"
+			x: 0.8214285714285836d
+			y: -0.6964285714285694d
+		}
+	]
+	title: "紧急维修"
+}

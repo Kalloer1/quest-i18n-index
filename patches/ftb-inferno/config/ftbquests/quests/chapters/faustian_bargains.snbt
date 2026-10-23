@@ -1,0 +1,434 @@
+# AI 初翻，未人工校对
+{
+	id: "1B714B3593AF847D"
+	group: "7044F2C841148E69"
+	order_index: 2
+	filename: "faustian_bargains"
+	title: "与魔鬼的交易"
+	icon: "artifacts:villager_hat"
+	subtitle: ["村民"]
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "观察一个僵尸村民"
+			icon: "artifacts:villager_hat"
+			x: -1.0d
+			y: -3.0d
+			shape: "hexagon"
+			subtitle: "我是乘客，我骑行，我骑行……"
+			description: [
+				"这些仆从已经失去了曾经的模样。仅存的部分有时还不够。我需要同类。我本绝不会胆敢将更多灵魂拖入这座监狱，但是……"
+				""
+				"我的世界里有一种&c罕见疾病&r。据说它能将&6友善的村民&r变成&4渴求肉食的亡灵&r。他们的灵魂早已离去，但我能用仪式将他们悲惨的躯壳取来。我本可以将他们带到这里，研制解药，并&6利用他们生前掌握的知识&r。"
+				""
+				"我需要一瓶&b虚弱药水&r来攻击它们，然后用一个&b金苹果&r来完成治疗。"
+				""
+				"不过，首先：我回到了我的召唤祭坛，很快就能和一些老朋友重聚了。"
+				""
+				"&2补充说明！&r这些头脑简单的残骸对其他仆从着迷不已，会立刻冲过去加入他们，拒绝从事前世的职业。我得想办法在&5我的殖民地势力范围之外召唤它们&r。"
+			]
+			dependencies: [
+				"4B52BBBF01CDF027"
+				"6A7B93DC1ACE716B"
+				"00E0DB64568AA664"
+				"6AC1108487763770"
+			]
+			size: 1.5d
+			min_width: 375
+			id: "64067A45D5EC178C"
+			tasks: [
+				{
+					id: "3585E48ED5A9FBA7"
+					type: "observation"
+					title: "观察一个僵尸村民"
+					icon: "artifacts:villager_hat"
+					timer: 0L
+					observe_type: 5
+					to_observe: "minecraft:zombie_villager"
+				}
+				{
+					id: "56D2ED1B7CBF9EBD"
+					type: "item"
+					item: {
+						id: "minecraft:splash_potion"
+						Count: 1b
+						tag: {
+							Potion: "minecraft:weakness"
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "4D7F97FA0AFC0B89"
+				type: "item"
+				team_reward: true
+				item: "minecraft:golden_apple"
+				count: 5
+			}]
+		}
+		{
+			title: "欢迎回来，我的朋友……"
+			icon: "naturesaura:outpost_finder"
+			x: -1.0d
+			y: -1.0d
+			shape: "hexagon"
+			subtitle: "治愈一名村民"
+			description: [
+				"虽然有点内疚，但这些被治愈的灵魂必须靠劳动换取食物。"
+				""
+				"我可以通过在他们附近放置特定方块来&6分配职业&r。在&b锻造台&r旁，村民会成为一名&6工具匠&r。这让我能买到一些&6非常有用的蓝图&r，而这些蓝图我原本无法获取。"
+				""
+				"看来他们从作为不死生物的时光里留下了一些心理创伤。他们似乎完全着迷于&6黑暗宝石&r，为了它们而工作和交易。"
+				""
+				"这对我来说是个好消息，因为我还没找到任何绿宝石。"
+			]
+			dependencies: ["64067A45D5EC178C"]
+			min_width: 250
+			id: "7354005CC607E651"
+			tasks: [
+				{
+					id: "6AE790847C69C51B"
+					type: "observation"
+					title: "观察一个村民（Villager）"
+					icon: "naturesaura:outpost_finder"
+					timer: 0L
+					observe_type: 5
+					to_observe: "minecraft:villager"
+				}
+				{
+					id: "0F128193DBD73F86"
+					type: "item"
+					disable_toast: true
+					item: "minecraft:smithing_table"
+				}
+			]
+			rewards: [
+				{
+					id: "3184739089C0C4CD"
+					type: "item"
+					item: "minecraft:oak_door"
+					count: 4
+				}
+				{
+					id: "73A62D899A888BE6"
+					type: "item"
+					item: {
+						id: "gunswithoutroses:diamond_shotgun"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "The ARC"
+			x: -1.0d
+			y: 1.0d
+			shape: "hexagon"
+			subtitle: "购买电弧熔炉电极蓝图"
+			description: [
+				"果不其然，召唤来的工具匠能提供制造&6电弧炉&r&b电极&r所需的&b蓝图&r。"
+				""
+				"有了这些，我终于能制造出虚空传送门所需的魔导金属了！"
+			]
+			dependencies: ["7354005CC607E651"]
+			size: 1.5d
+			id: "6454DF379D047CB2"
+			tasks: [{
+				id: "046934BF0630EE49"
+				type: "item"
+				item: {
+					id: "immersiveengineering:blueprint"
+					Count: 1b
+					tag: {
+						blueprint: "electrode"
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "0768C2329AF9CA72"
+					type: "item"
+					item: {
+						id: "immersiveengineering:blueprint"
+						Count: 1b
+						tag: {
+							blueprint: "bullet"
+						}
+					}
+				}
+				{
+					id: "0E02DDF3249F487C"
+					type: "item"
+					item: {
+						id: "immersiveengineering:blueprint"
+						Count: 1b
+						tag: {
+							blueprint: "specialBullet"
+						}
+					}
+				}
+				{
+					id: "3937B4EDA72C362E"
+					type: "item"
+					item: "immersiveengineering:mold_bullet_casing"
+				}
+			]
+		}
+		{
+			title: "盔甲匠 (The Armorer)"
+			x: -4.5d
+			y: -3.0d
+			description: ["一个&b高炉&r能让村民成为&6盔甲匠&r，提供防御性交易。"]
+			dependencies: ["7354005CC607E651"]
+			optional: true
+			id: "30D79D1B3A0FD4D7"
+			tasks: [{
+				id: "1645FF1C9D3DB7F5"
+				type: "item"
+				item: "minecraft:blast_furnace"
+			}]
+		}
+		{
+			title: "屠夫"
+			x: 3.0d
+			y: -3.0d
+			description: [
+				"一个&bSmoker&r能让村民当&6Butcher&r，提供独特的肉块。比起我仆人的原味残羹，真是清爽多了。"
+				""
+				"值得注意的交易："
+				"• 批量绞肉"
+				"• 猪灵皮"
+				"• 填充的猪布林"
+				"• 下界烤肉串"
+				"• 宇宙肉丸"
+			]
+			dependencies: ["7354005CC607E651"]
+			optional: true
+			id: "3AC62CBC34FF4B3A"
+			tasks: [{
+				id: "0608B1D75FF4F0F3"
+				type: "item"
+				item: "minecraft:smoker"
+			}]
+			rewards: [{
+				id: "5183003AB9744B8C"
+				type: "item"
+				item: "evilcraft:dark_gem"
+			}]
+		}
+		{
+			title: "神职人员 (The Cleric)"
+			x: 3.0d
+			y: -2.0d
+			description: [
+				"一个&b酿造台&r能让村民成为&6牧师&r。牧师专精各种魔法，无疑很有用，但代价高昂。"
+				""
+				"值得注意的交易："
+				"• 绿宝石"
+				"• 末地之眼"
+				"• 冰川法杖"
+				"• 巴风特之印 (Sigil of Baphomet)"
+				"• 黑曜石骷髅头"
+			]
+			dependencies: ["7354005CC607E651"]
+			optional: true
+			id: "12382CCAD88CCC21"
+			tasks: [{
+				id: "16CAA84DF8BFFBD1"
+				type: "item"
+				item: "minecraft:brewing_stand"
+			}]
+			rewards: [{
+				id: "37ABA28DD3D5B20C"
+				type: "item"
+				item: "evilcraft:dark_gem"
+			}]
+		}
+		{
+			title: "农夫"
+			x: 3.0d
+			y: -1.0d
+			description: [
+				"&b堆肥桶&r能让村民成为&6农民&r。他们能提供更稀有的种子，或许还能聪明地&6创造更多水源&r。"
+				""
+				"值得注意的交易："
+				"• 卷心菜种子"
+				"• 番茄种子"
+				"• 批量堆肥器"
+				"• 黏液种子"
+				"• 肥沃农田和肥沃灵魂土"
+				"• 水源胶囊"
+			]
+			dependencies: ["7354005CC607E651"]
+			optional: true
+			id: "66BC5E274BE73CEC"
+			tasks: [{
+				id: "37483CD47358C57D"
+				type: "item"
+				item: "minecraft:composter"
+			}]
+			rewards: [{
+				id: "506B664F47DC2B0E"
+				type: "item"
+				item: "evilcraft:dark_gem"
+			}]
+		}
+		{
+			title: "渔夫 The Fisherman"
+			x: 3.0d
+			y: 0.0d
+			description: ["一个&b木桶&r能让村民成为&6渔夫&r。经验丰富的渔夫的知识远超我的仆从，能提供更丰厚的收益。"]
+			dependencies: ["7354005CC607E651"]
+			optional: true
+			id: "6BCD44D693B51AE3"
+			tasks: [{
+				id: "70BB5DABDCC88DB3"
+				type: "item"
+				item: "minecraft:barrel"
+			}]
+		}
+		{
+			title: "皮革工匠"
+			x: -4.5d
+			y: 1.0d
+			description: [
+				"一个&b炼药锅&r能让村民成为&6皮革匠&r，比我手下的仆从能更高效地鞣制皮革。"
+				""
+				"值得注意的交易："
+				"• 批量皮革"
+				"• 批量猪灵皮"
+				"• 超大号地狱背包"
+				"• Tinker's Creative Tool Upgrades"
+			]
+			dependencies: ["7354005CC607E651"]
+			optional: true
+			id: "4E8D7E6CBC2ADC8A"
+			tasks: [{
+				id: "6A429EE62978F563"
+				type: "item"
+				item: "minecraft:cauldron"
+			}]
+			rewards: [{
+				id: "2FF24425D2219040"
+				type: "item"
+				item: "evilcraft:dark_gem"
+			}]
+		}
+		{
+			title: "图书管理员"
+			x: -4.5d
+			y: 0.0d
+			description: [
+				"&b讲台&r能让村民成为&6图书管理员&r，从而获得稀有书籍、典籍和研究资料。"
+				""
+				"值得注意的交易："
+				"• 批量书籍"
+				"• 佩里提亚卷轴 (Tome of Peritia)"
+				"• 二级法师的魔法书"
+				"• 地狱知识的护身符"
+				"• 附魔图书馆 Enchantment Library"
+			]
+			dependencies: ["7354005CC607E651"]
+			optional: true
+			id: "0B3C5110170CC6E6"
+			tasks: [{
+				id: "0F1274C6FA6936C8"
+				type: "item"
+				item: "minecraft:lectern"
+			}]
+			rewards: [{
+				id: "74483CFEA3FCFDE4"
+				type: "item"
+				item: "evilcraft:dark_gem"
+			}]
+		}
+		{
+			title: "石匠 (The Mason)"
+			x: -4.5d
+			y: -2.0d
+			description: [
+				"&b采石匠&r能让村民成为&6石匠&r，专门从事建筑和拆除工作。"
+				""
+				"值得注意的交易："
+				"• 大量安山岩"
+				"• 批量陶土块"
+				"• 永不损坏的古代卷轴"
+				"• 完全充能的建筑小工具"
+				"• 破坏催化剂"
+			]
+			dependencies: ["7354005CC607E651"]
+			optional: true
+			id: "769717BA91DCFD98"
+			tasks: [{
+				id: "4B63F696D53E6584"
+				type: "item"
+				item: "minecraft:stonecutter"
+			}]
+			rewards: [{
+				id: "5143F9D75E1A91E4"
+				type: "item"
+				item: "evilcraft:dark_gem"
+			}]
+		}
+		{
+			title: "牧羊人"
+			x: -4.5d
+			y: -1.0d
+			description: [
+				"有了&b织布机&r，村民就能当&6牧羊人&r，用绵羊和羊毛制品来交易。"
+				""
+				"值得注意的交易："
+				"• 批量羊毛"
+				"• 批量羊肉排"
+				"• 包含500个羊之魂的灵魂碎片"
+				"• 万花筒剪刀"
+				"• 撕裂风暴 (Rending Gale)"
+			]
+			dependencies: ["7354005CC607E651"]
+			optional: true
+			id: "376B750BEA756ED7"
+			tasks: [{
+				id: "6D1670BB03F0D817"
+				type: "item"
+				item: "minecraft:loom"
+			}]
+			rewards: [{
+				id: "3F7ACF7DC4DA1312"
+				type: "item"
+				item: "evilcraft:dark_gem"
+			}]
+		}
+		{
+			title: "武器锻造大师"
+			x: 3.0d
+			y: 1.0d
+			description: [
+				"&b磨石&r能让村民成为&6武器匠&r，提供独特的进攻性商品。最好的防守就是更猛烈的进攻。"
+				""
+				"值得注意的交易："
+				"• 澄澈石英剑"
+				"• 钻石挖掘箭矢"
+				"• 锋利度V卷轴"
+				"• Tinker's Creative Upgrade Slots"
+				"• 骷髅火焰剑 (The Skullfire Sword)"
+			]
+			dependencies: ["7354005CC607E651"]
+			optional: true
+			id: "26D54C473C86B605"
+			tasks: [{
+				id: "40720594B5761DBD"
+				type: "item"
+				item: "minecraft:grindstone"
+			}]
+			rewards: [{
+				id: "1F879B938736E825"
+				type: "item"
+				item: "evilcraft:dark_gem"
+			}]
+		}
+	]
+}

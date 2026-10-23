@@ -1,0 +1,1004 @@
+# AI 初翻，未人工校对
+{
+	id: "1F25D8EFB8DEFD76"
+	group: "7044F2C841148E69"
+	order_index: 1
+	filename: "unnatural_aura"
+	title: "不自然的气息"
+	icon: "naturesaura:crimson_aura_mushroom"
+	subtitle: ["自然的气息 (Nature's Aura)"]
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "森林的仪式"
+			x: -1.0d
+			y: -2.5d
+			subtitle: "使用森林的仪式 (Ritual of the Forest)"
+			description: [
+				"我上课从来不怎么认真，不过还记得基础知识。"
+				""
+				"The &bRitual of the Forest&r requires &6placing items atop&r &bWooden Stands&r, surrounding a ring of Gold Dust, surrounding a Sapling. &6Growing the Sapling starts the ritual.&r"
+			]
+			dependencies: ["2E715A588FA9E513"]
+			min_width: 275
+			id: "30BFD136F6B44257"
+			tasks: [{
+				id: "76596098A53D4C3F"
+				type: "item"
+				item: "naturesaura:wood_stand"
+				count: 8L
+			}]
+		}
+		{
+			title: "装瓶的挫败感"
+			icon: "naturesaura:bottle_two_the_rebottling"
+			x: -1.0d
+			y: -0.5d
+			subtitle: "收集下界的精华（Collect the essence of the Nether）"
+			description: [
+				"&b瓶子和软木塞&r能让我&6将本地灵气装瓶&r，以便在仪式中使用。"
+				""
+				"考虑到我目前的情况，&bBottled Ghosts&r 是唯一可用的光环。"
+				""
+				"我需要记住：&c瓶装气场会将其从大气中移除&r。种植&6绯红气场真菌&r会补充气场。"
+			]
+			dependencies: ["2E715A588FA9E513"]
+			id: "3BCA3AB4E8E386B7"
+			tasks: [
+				{
+					id: "03D251829AD1B57A"
+					type: "item"
+					item: "naturesaura:bottle_two_the_rebottling"
+				}
+				{
+					id: "2D421E8C387FDB66"
+					type: "item"
+					item: {
+						id: "naturesaura:aura_bottle"
+						Count: 1b
+						tag: {
+							stored_type: "naturesaura:nether"
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "28A740B4C0CC57CB"
+				type: "item"
+				item: "naturesaura:crimson_aura_mushroom"
+				count: 4
+			}]
+		}
+		{
+			title: "自然祭坛并非天然存在"
+			x: 1.0d
+			y: -1.5d
+			subtitle: "制作自然祭坛 (Natural Altar)"
+			description: [
+				"&b自然祭坛&r会吸收周围的灵气来创造物品。"
+				""
+				"这个可怕的地方有着同样可怕的氛围。因此，放置后会腐化成为&c绯红祭坛&r。"
+				""
+				"祭坛需要周围有结构才能发挥作用。"
+				""
+				"&oSee the \"Harnessing Aura\" category of the &6Book of Natural Aura&r to see the structure"
+			]
+			dependencies: [
+				"30BFD136F6B44257"
+				"3BCA3AB4E8E386B7"
+			]
+			min_width: 225
+			id: "0BEFED4E45E00A84"
+			tasks: [{
+				id: "4B9BF494B301639D"
+				type: "item"
+				item: "naturesaura:nature_altar"
+			}]
+			rewards: [
+				{
+					id: "2EFD5F2BDC3037E9"
+					type: "item"
+					item: "naturesaura:gold_nether_brick"
+					count: 8
+				}
+				{
+					id: "75CF2664A2232D87"
+					type: "item"
+					item: "naturesaura:crimson_aura_mushroom"
+					count: 4
+				}
+			]
+		}
+		{
+			title: "魔法金属（Magical Metals）"
+			icon: "naturesaura:infused_iron"
+			x: 2.5d
+			y: -1.5d
+			subtitle: "制作浸染铁和污染金"
+			description: [
+				"我的普通合金可以&6大幅升级&r为&b灌注铁&r和&b污染金&r。"
+				""
+				"特别是浸透铁，在&6植物学家盔甲和工具&r中非常有用。"
+			]
+			dependencies: ["0BEFED4E45E00A84"]
+			id: "6A7B93DC1ACE716B"
+			tasks: [{
+				id: "38D980A4956E790C"
+				type: "item"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "naturesaura:infused_iron"
+								Count: 1b
+							}
+							{
+								id: "naturesaura:tainted_gold"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+		}
+		{
+			title: "我们在这里还能接收到信号吗？"
+			icon: "naturesaura:offering_table"
+			x: 4.0d
+			y: -1.5d
+			subtitle: "向众神献上祭品"
+			description: [
+				"联系神明&o这里&r的感觉，有点像被叫到校长办公室。希望他们能大发慈悲。"
+				""
+				"必须放置&b祭坛&r，并且周围必须有&6特定的花卉布置&r。"
+				""
+				"我必须将祭品放在桌上（数量不限），然后投下一个&b召唤之灵&r。神若愿意，我的祭品将被接受，我将会得到回报。"
+			]
+			dependencies: [
+				"6A7B93DC1ACE716B"
+				"6BBA6FE9EE790FAA"
+				"571BC20E3675397C"
+			]
+			min_width: 275
+			id: "3D0F0A989EF18326"
+			tasks: [
+				{
+					id: "5DC97AF30F9BA2AE"
+					type: "item"
+					item: "naturesaura:offering_table"
+				}
+				{
+					id: "2CD4C4C9E4456AEA"
+					type: "item"
+					item: "naturesaura:calling_spirit"
+				}
+			]
+		}
+		{
+			x: 5.5d
+			y: -1.5d
+			subtitle: "收集一些来自天空的锭（Ingots of the Skies）"
+			description: ["&bIngot of the Skies&r 是自然艺术提供的最强大的金属之一。它被&6用于多种魔法流派中强大物品的配方中&r。"]
+			dependencies: ["3D0F0A989EF18326"]
+			id: "2708CC826E342879"
+			tasks: [{
+				id: "7748C5D278741412"
+				type: "item"
+				item: "naturesaura:sky_ingot"
+			}]
+		}
+		{
+			title: "我简直不敢相信这不是金子！"
+			x: -3.0d
+			y: -1.5d
+			shape: "hexagon"
+			subtitle: "制作金粉"
+			description: [
+				"金叶子虽然很漂亮，但对我来说，作为&b金粉&r用处更大。"
+				""
+				"我可以用红石的方式放置它！"
+			]
+			dependencies: ["0EC270EA1F87DDFD"]
+			size: 1.5d
+			id: "2E715A588FA9E513"
+			tasks: [{
+				id: "52150047B776F718"
+				type: "item"
+				item: "naturesaura:gold_powder"
+			}]
+			rewards: [{
+				id: "76B5BA616130CBB1"
+				type: "item"
+				item: "infernalexp:luminous_fungus"
+			}]
+		}
+		{
+			title: "在远古空地；静谧的树荫下"
+			x: -0.75d
+			y: -3.5d
+			shape: "square"
+			subtitle: "制作一个远古树苗 Ancient Sapling"
+			description: [
+				"&b古树&r是一种充满魔力的生命体。"
+				""
+				"通常，远古树叶会&6补充周围区域的灵气&r。然而，它们&c在这个地狱般的地方不起作用&r。"
+				""
+				"因此，远古树木最好用于合成配方或装饰用途。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["30BFD136F6B44257"]
+			size: 0.5d
+			id: "5BCA38208920730E"
+			tasks: [{
+				id: "4188EC72735B8692"
+				type: "item"
+				item: "naturesaura:ancient_sapling"
+			}]
+		}
+		{
+			title: "衰败作为一种现存的生命形式而存在"
+			x: 2.25d
+			y: -2.5d
+			shape: "square"
+			subtitle: "制作一个凡人解缠器 Disentangler of Mortals"
+			description: [
+				"随着我使用周围的灵气，&6它需要被补充&r。当然，因为我命不好，&c和平的方法在这里行不通&r。我得做些更糟糕的事情。"
+				""
+				"&b凡人解缠器&r会在附近杀死被动生物时&6补充光环&r。"
+				""
+				"生物年龄越大，充能的灵气越多。大约一个半小时后达到最大值。"
+				""
+				"以这种方式被杀死的动物&c不会掉落物品&r。"
+				""
+				"Disentangler 需要一段时间才能生效。在此期间若杀死其他动物，&c光环和物品都会丢失&r。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["6A7B93DC1ACE716B"]
+			size: 0.5d
+			id: "48D4F9B16488D30D"
+			tasks: [{
+				id: "51B55D905ACCA099"
+				type: "item"
+				item: "naturesaura:animal_generator"
+			}]
+		}
+		{
+			title: "绯红凋零和其他有趣的效果"
+			icon: "minecraft:skeleton_skull"
+			x: 1.0d
+			y: 0.0d
+			shape: "gear"
+			subtitle: "光环失衡"
+			description: [
+				"当气场消耗或积累到极端时，可能会产生&b气场失衡&r。这会产生正面和负面的影响。"
+				""
+				"在&6自然气场之书&r中，有一个完整的关于气场失衡的类别。"
+				""
+				"可能发生的一些效果包括："
+				"• 方块会腐烂或生长"
+				"• 中立生物可能会变得具有攻击性"
+				"• 可能会导致无法呼吸的情况发生"
+				"• 生物可以自行繁殖"
+				"• 你的物品栏可能会充满光环"
+				"• 矿石可能取代石头/下界岩"
+			]
+			hide_dependency_lines: true
+			dependencies: ["3BCA3AB4E8E386B7"]
+			optional: true
+			id: "62FD05AA44D9A2F2"
+			tasks: [{
+				id: "27EE5204B5148B41"
+				type: "checkmark"
+			}]
+		}
+		{
+			title: "花的力量"
+			icon: {
+				id: "naturesaura:infused_iron_sword"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: 2.5d
+			y: -0.5d
+			shape: "square"
+			subtitle: "制作一些植物学家的工具和盔甲"
+			description: [
+				"由&6Infused Iron&r制成的&bBotanist's tools and armor&r能保持其&6iron-level effectiveness&r。如果站着不动偷偷潜行，也可以用&6Aura Cache&r来修理它们。"
+				""
+				"植物学家的工具各有&6额外效果&r。这些效果可以在自然光环之书里查看。"
+				""
+				"穿戴全套植物学家盔甲时，&6攻击我的人会受到凋零效果&r。此外，我还会获得再生 I 和 +2 幸运度"
+			]
+			dependencies: ["6A7B93DC1ACE716B"]
+			size: 0.5d
+			min_width: 275
+			id: "4FEB85BABA317308"
+			tasks: [
+				{
+					id: "3F75BEDB03632F81"
+					type: "item"
+					title: "植物学家的工具"
+					item: {
+						id: "itemfilters:or"
+						Count: 1b
+						tag: {
+							items: [
+								{
+									id: "naturesaura:infused_iron_sword"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+								{
+									id: "naturesaura:infused_iron_pickaxe"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+								{
+									id: "naturesaura:infused_iron_axe"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+								{
+									id: "naturesaura:infused_iron_shovel"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+								{
+									id: "naturesaura:infused_iron_hoe"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+							]
+						}
+					}
+				}
+				{
+					id: "3D64E02B74E66D55"
+					type: "item"
+					title: "植物学家的盔甲"
+					item: {
+						id: "itemfilters:or"
+						Count: 1b
+						tag: {
+							items: [
+								{
+									id: "naturesaura:infused_iron_helmet"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+								{
+									id: "naturesaura:infused_iron_chest"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+								{
+									id: "naturesaura:infused_iron_pants"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+								{
+									id: "naturesaura:infused_iron_shoes"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+							]
+						}
+					}
+				}
+			]
+		}
+		{
+			x: -1.25d
+			y: -3.5d
+			shape: "square"
+			subtitle: "制作一个环境之眼 Environmental Eye"
+			description: [
+				"手持&b环境之眼&r（或佩戴为饰品）时，我能够&6看到周围的环境等级&r。"
+				""
+				"光环条在中间位置表示该区域的普通光环量正常。"
+				""
+				"这样我就能&6看到含有光晕的方块有多少光晕&r了。满格表示光晕已满。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["30BFD136F6B44257"]
+			size: 0.5d
+			id: "3B2D95C045871D21"
+			tasks: [{
+				id: "64C53D701D79DC14"
+				type: "item"
+				item: "naturesaura:eye"
+			}]
+		}
+		{
+			x: 5.75d
+			y: 0.0d
+			shape: "square"
+			subtitle: "制作一个环境观测器 Environmental Ocular"
+			description: [
+				"&b环境之眼&r能显示比环境之眼&6多一倍的最大气场&r。"
+				""
+				"还能显示我所在位置的&6所有气场失衡效果&r，并且能作用于背包里的任何物品。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2708CC826E342879"]
+			size: 0.5d
+			id: "565F3A35F03BBD89"
+			tasks: [{
+				id: "2BD74F992EA0C361"
+				type: "item"
+				item: "naturesaura:eye_improved"
+			}]
+		}
+		{
+			title: "public void recurse() \{ recurse(); \}"
+			x: 2.75d
+			y: -2.5d
+			shape: "square"
+			subtitle: "制作一个分叉观察者 (Offshoot Observer)"
+			description: ["当&6史莱姆或岩浆块分裂&r时，&bOffshoot Observer&r会补充局部气场。"]
+			hide_dependency_lines: true
+			dependencies: ["6A7B93DC1ACE716B"]
+			size: 0.5d
+			id: "68D8D4C0636D6D2C"
+			tasks: [{
+				id: "02595EC08A173878"
+				type: "item"
+				item: "naturesaura:slime_split_generator"
+			}]
+		}
+		{
+			title: "创造的乐趣"
+			x: 3.75d
+			y: -2.5d
+			shape: "square"
+			subtitle: "制作一个创造催化剂 (Creational Catalyst)"
+			description: [
+				"光环生成装置&c在某个点后就不再工作&r。如果光环过多，它们就无法再产生更多了。"
+				""
+				"我可以直接把&bCreational Catalyst&r放在那些装置的正下方来解除限制。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["3D0F0A989EF18326"]
+			size: 0.5d
+			id: "01F7546D35852680"
+			tasks: [{
+				id: "609414E8851ABD9C"
+				type: "item"
+				item: "naturesaura:generator_limit_remover"
+			}]
+		}
+		{
+			x: 2.25d
+			y: 0.0d
+			shape: "square"
+			subtitle: "制作一个灵气缓存器"
+			description: [
+				"&b气场缓存&r能让我&6储存大量气场&r，供其他物品使用。"
+				""
+				"我可以通过&6站在自然（或绯红）祭坛附近&r来为其充能。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["6A7B93DC1ACE716B"]
+			size: 0.5d
+			id: "064E6B97237A040E"
+			tasks: [{
+				id: "5789C1C07F03A610"
+				type: "item"
+				item: "naturesaura:aura_cache"
+			}]
+		}
+		{
+			x: 5.25d
+			y: 0.0d
+			shape: "square"
+			subtitle: "制作一个灵气宝库 (Aura Trove)"
+			description: ["&bAura Trove&r 是升级版的 Aura Cache，&6内部可容纳三倍于普通缓存的 Aura&r。"]
+			hide_dependency_lines: true
+			dependencies: ["2708CC826E342879"]
+			size: 0.5d
+			id: "579097E27ADD673E"
+			tasks: [{
+				id: "0736BDD7928D4488"
+				type: "item"
+				item: "naturesaura:aura_trove"
+			}]
+		}
+		{
+			title: "屁股践踏"
+			x: 4.0d
+			y: -0.5d
+			shape: "square"
+			subtitle: "制作愤怒护符 (Amulet of Wrath)"
+			description: [
+				"&b愤怒护符&r能让我在坠落时潜行，从而&6制造冲击波&r。这需要消耗缓存中的气场。"
+				""
+				"穿戴全套&6植物学家盔甲&r时，冲击波会造成凋零效果。"
+			]
+			dependencies: ["3D0F0A989EF18326"]
+			size: 0.5d
+			id: "5177FDE229037B34"
+			tasks: [{
+				id: "428AA02D2726B62C"
+				type: "item"
+				item: "naturesaura:shockwave_creator"
+			}]
+		}
+		{
+			x: 2.75d
+			y: 0.0d
+			shape: "square"
+			subtitle: "制作一个神秘放大镜"
+			description: ["&b神秘放大镜&r会向我显示&6可作用方块的范围&r。"]
+			hide_dependency_lines: true
+			dependencies: ["6A7B93DC1ACE716B"]
+			size: 0.5d
+			id: "07FB6D050E325B9F"
+			tasks: [{
+				id: "251F83ED10FACDC6"
+				type: "item"
+				item: "naturesaura:range_visualizer"
+			}]
+		}
+		{
+			x: 5.5d
+			y: 1.0d
+			shape: "square"
+			subtitle: "制作一个“最后的机会戒指”"
+			description: ["&b最后的机会戒指&r基本上就是一个可以在我背包里&6任何地方使用的&r不死图腾。"]
+			hide_dependency_lines: true
+			dependencies: ["2708CC826E342879"]
+			size: 0.5d
+			id: "258CFF1E4B2BB766"
+			tasks: [{
+				id: "78DCE4FCD8F65D7D"
+				type: "item"
+				item: "naturesaura:death_ring"
+			}]
+		}
+		{
+			icon: {
+				id: "naturesaura:sky_sword"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: 5.5d
+			y: -0.5d
+			shape: "square"
+			subtitle: "制作一些Skyseeker的工具和盔甲"
+			description: [
+				"与植物学家的工具和盔甲一样，&b天空探索者的工具和盔甲&r拥有加成，并且可以用光环进行修复。"
+				""
+				"所有工具都具有&6额外效果&r，可以在自然光环之书（Book of Natural Aura）中查看。"
+				""
+				"穿戴全套盔甲时，我就能&6移动得更快，还能直接踩上方块&r，无需跳跃。"
+			]
+			dependencies: ["2708CC826E342879"]
+			size: 0.5d
+			min_width: 250
+			id: "0C37A882F7104FFD"
+			tasks: [
+				{
+					id: "2FF8166134BC5F70"
+					type: "item"
+					title: "Skyseeker 的工具"
+					item: {
+						id: "itemfilters:or"
+						Count: 1b
+						tag: {
+							items: [
+								{
+									id: "naturesaura:sky_sword"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+								{
+									id: "naturesaura:sky_pickaxe"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+								{
+									id: "naturesaura:sky_axe"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+								{
+									id: "naturesaura:sky_shovel"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+								{
+									id: "naturesaura:sky_hoe"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+							]
+						}
+					}
+				}
+				{
+					id: "59E149C2A9267E76"
+					type: "item"
+					title: "Skyseeker 的盔甲"
+					item: {
+						id: "itemfilters:or"
+						Count: 1b
+						tag: {
+							items: [
+								{
+									id: "naturesaura:sky_helmet"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+								{
+									id: "naturesaura:sky_chest"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+								{
+									id: "naturesaura:sky_pants"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+								{
+									id: "naturesaura:sky_shoes"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+							]
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 5.0d
+			y: 0.5d
+			shape: "square"
+			subtitle: "制作一根远古知识法杖"
+			description: ["使用相当多的灵气，&b远古知识之杖&r会指引我前往附近的&6远古残骸&r。"]
+			hide_dependency_lines: true
+			dependencies: ["2708CC826E342879"]
+			size: 0.5d
+			id: "00AEF380BE2B11A4"
+			tasks: [{
+				id: "626ECD79FA0BDD80"
+				type: "item"
+				item: "naturesaura:netherite_finder"
+			}]
+		}
+		{
+			x: 5.5d
+			y: 0.5d
+			shape: "square"
+			subtitle: "制作巴尔多的法杖 Staff of Baldur"
+			description: ["用一点灵气，&b巴尔的权杖&r就能让我&6射出一道光束&r，点燃生物并创造光源。"]
+			hide_dependency_lines: true
+			dependencies: ["2708CC826E342879"]
+			size: 0.5d
+			id: "2DCBA3039930D825"
+			tasks: [{
+				id: "60B8797530A3E46D"
+				type: "item"
+				item: "naturesaura:light_staff"
+			}]
+		}
+		{
+			x: 4.0d
+			y: 0.0d
+			shape: "square"
+			subtitle: "制作一把财富之杖 Staff of Riches"
+			description: ["使用大量灵气，&b财富之杖&r就能&6显示我附近物品的具体位置&r。在地下城里找宝箱可方便了！"]
+			dependencies: ["3D0F0A989EF18326"]
+			size: 0.5d
+			id: "020C81CB20295443"
+			tasks: [{
+				id: "2C7A2E75E05BD336"
+				type: "item"
+				item: "naturesaura:loot_finder"
+			}]
+		}
+		{
+			x: 4.0d
+			y: 0.5d
+			shape: "square"
+			subtitle: "制作一个阴影法杖 (Staff of Shadows)"
+			description: ["用一点灵气，&b影之杖&r就能&6让我看到怪物可能生成的位置&r，即使隔着墙也能看到！"]
+			dependencies: ["3D0F0A989EF18326"]
+			size: 0.5d
+			id: "5BEB67F61CCFEEE3"
+			tasks: [{
+				id: "497E96EE649BF202"
+				type: "item"
+				item: "naturesaura:cave_finder"
+			}]
+		}
+		{
+			x: 4.25d
+			y: -2.5d
+			shape: "square"
+			subtitle: "制作一个永生的春天 Everlasting Spring"
+			description: ["这个&b永恒之泉&r能让我&6抽取无限的水&r，即使在这里！要是能倒出来就好了……"]
+			hide_dependency_lines: true
+			dependencies: ["3D0F0A989EF18326"]
+			size: 0.5d
+			id: "68C30FB614FFAD97"
+			tasks: [{
+				id: "1EA471B66E1C9278"
+				type: "item"
+				item: "naturesaura:spring"
+			}]
+		}
+		{
+			x: 2.25d
+			y: -3.0d
+			shape: "square"
+			subtitle: "制作一个多余的火种器 Extraneous Firestarter"
+			description: [
+				"将&bExtraneous Firestarter&r放置在熔炉上可以&6使其工作更快&r，但会消耗Aura。"
+				""
+				"It could be useful to &6place these on the Smeltery's furnaces&r, I'm sure my minion would appreciate it."
+			]
+			hide_dependency_lines: true
+			dependencies: ["6A7B93DC1ACE716B"]
+			size: 0.5d
+			id: "5FF89325AF61B7EF"
+			tasks: [{
+				id: "1650FEDDC22487C5"
+				type: "item"
+				item: "naturesaura:furnace_heater"
+			}]
+		}
+		{
+			x: 1.75d
+			y: -3.0d
+			shape: "square"
+			subtitle: "制作一个锻造台助手 (Armorer's Aid)"
+			description: ["&b锻造助手&r可以放置在高炉上，它会&6偶尔将矿石翻倍&r，但会消耗气场。"]
+			dependencies: ["5FF89325AF61B7EF"]
+			size: 0.5d
+			id: "0FF6C8F5F25545C9"
+			tasks: [{
+				id: "43EF47247A43FE6C"
+				type: "item"
+				item: "naturesaura:blast_furnace_booster"
+			}]
+		}
+		{
+			title: "夜晚，&o白天！&r"
+			icon: "naturesaura:time_changer"
+			x: 5.25d
+			y: -2.5d
+			shape: "square"
+			subtitle: "制作一个可移动的日晷"
+			description: [
+				"这里最意想不到的烦恼之一就是时间的流逝。虽然我睡不着，但我的仆从们肯定能睡。这个&bShifting Sundial&r终于让我有了&6跳过时间&r的办法。"
+				""
+				"我必须把一个物品展示框放在侧面，并放入&b时间之手&r。我必须&6旋转它以匹配我想要的时间&r。"
+				""
+				"直立是午夜，倒立是正午。要激活它，我必须将&6时钟&r投掷到日晷上。"
+				""
+				"移动星星（虽然我看不见）是一项相当重大的行为，因此会消耗大量灵气。时间跨度越长，消耗的灵气就越多。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2708CC826E342879"]
+			size: 0.5d
+			min_width: 275
+			id: "631ED5D368818679"
+			tasks: [
+				{
+					id: "75C520CE7F1E7B30"
+					type: "item"
+					item: "naturesaura:time_changer"
+				}
+				{
+					id: "3E0D695E6A877722"
+					type: "item"
+					item: "naturesaura:clock_hand"
+				}
+			]
+		}
+		{
+			title: "Let it Snow"
+			x: 5.75d
+			y: -2.5d
+			shape: "square"
+			subtitle: "制作《冬日的呼唤》"
+			description: [
+				"自从来到这里，我就没感受过比“&c略低于高热&r”更凉爽的气候。如果找不到降温的方法，我怕我会发疯。"
+				""
+				"&bWinter's Calling&r 会在接收到红石信号时&6生成一片雪域&r。考虑到它甚至在这里都能正常工作，这可能是我目前为止最伟大的发明了。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2708CC826E342879"]
+			size: 0.5d
+			id: "56FA229AB8D39083"
+			tasks: [{
+				id: "3D4D4B9B762918A6"
+				type: "item"
+				item: "naturesaura:snow_creator"
+			}]
+		}
+		{
+			title: "灵气传送 (Aura Transportation)"
+			x: 6.0d
+			y: 0.5d
+			shape: "square"
+			subtitle: "制作一个气场吸引矿车"
+			description: [
+				"&b气场牵引车&r能让我在两地之间&6转移气场&r！"
+				""
+				"如果矿车经过&6带电的激活铁轨&r，它将开始&6吸收气场&r。"
+				""
+				"当矿车经过未通电的激活铁轨时，&6气场会释放&r。在此过程中会&c损失部分气场&r。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2708CC826E342879"]
+			size: 0.5d
+			id: "1F0A4472406C3AFA"
+			tasks: [{
+				id: "64C1D0F4449C2BA3"
+				type: "item"
+				item: "naturesaura:mover_cart"
+			}]
+		}
+		{
+			x: 1.0d
+			y: -2.5d
+			shape: "square"
+			subtitle: "制作一个气场探测器"
+			description: [
+				"&b气场探测器&r能让我&6自动检测气场过低&r的情况。"
+				""
+				"&6比较器&r会根据周围的环境中的气场强度发出信号。"
+			]
+			dependencies: ["0BEFED4E45E00A84"]
+			size: 0.5d
+			id: "1028B418BF720515"
+			tasks: [{
+				id: "0797B96DB05F5653"
+				type: "item"
+				item: "naturesaura:aura_detector"
+			}]
+		}
+		{
+			x: 1.0d
+			y: -3.0d
+			shape: "square"
+			subtitle: "制作一个实体之眼 (Corporeal Eye)"
+			description: [
+				"&bCorporeal Eye&r会消耗Aura，&6阻止动物离开其范围&r。"
+				""
+				"它基于红石信号工作。信号强度越高，半径越大。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["0BEFED4E45E00A84"]
+			size: 0.5d
+			id: "6F4EB303EC3FC9A5"
+			tasks: [{
+				id: "5221D5C28ADC1E96"
+				type: "item"
+				item: "naturesaura:animal_container"
+			}]
+		}
+		{
+			title: "地球重力的10000倍"
+			x: 2.75d
+			y: -3.0d
+			shape: "square"
+			subtitle: "制作一个物品收集器 (Item Grounder)"
+			description: ["&b物品拾取器&r会&6阻止我拾取掉落物品&r，除非我处于潜行状态。"]
+			hide_dependency_lines: true
+			dependencies: ["6A7B93DC1ACE716B"]
+			size: 0.5d
+			id: "22653E3335B3F393"
+			tasks: [{
+				id: "2C54D884A2137B2A"
+				type: "item"
+				item: "naturesaura:pickup_stopper"
+			}]
+		}
+		{
+			title: "巨无霸汉堡"
+			icon: "naturesaura:grated_chute"
+			x: 3.25d
+			y: -3.0d
+			shape: "square"
+			subtitle: "制作一个 Adept Hopper 和一个 Hopper Enhancement"
+			description: [
+				"&bAdept Hopper&r的速度略快，并且&6可以用物品框&r进行过滤。"
+				""
+				"只有物品框中的物品才能通过灵巧漏斗。我可以右键单击灵巧漏斗来反转此设置，将其变为黑名单而非白名单。"
+				""
+				"&bHopper Enhancement&r 能让漏斗拾取 &6最远7格内&r的物品。这需要消耗一些灵气，并且可以用 Adept Hopper 进行过滤。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["6A7B93DC1ACE716B"]
+			size: 0.5d
+			min_width: 250
+			id: "4A62C006BB60FEFB"
+			tasks: [
+				{
+					id: "01A2E4DA75795D75"
+					type: "item"
+					item: "naturesaura:grated_chute"
+				}
+				{
+					id: "1C1E0A22AE6D311E"
+					type: "item"
+					item: "naturesaura:hopper_upgrade"
+				}
+			]
+		}
+		{
+			title: "Rannuncarpus"
+			x: 2.5d
+			y: -3.5d
+			shape: "square"
+			subtitle: "制作一个不可察觉的建筑者"
+			description: [
+				"&bImperceptible Builder&r 将使用光环来&6自动放置方块&r。"
+				""
+				"我必须把要放置的方块放在建造者上方的一个箱子里。"
+				""
+				"建造者的作用范围是5格。要指定放置方块的位置，我必须使用一个&6物品展示框&r。它只会将方块放置在物品展示框中的方块上。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["6A7B93DC1ACE716B"]
+			size: 0.5d
+			id: "4A2B44E6A8E56D3E"
+			tasks: [{
+				id: "01E678602D3F827C"
+				type: "item"
+				item: "naturesaura:placer"
+			}]
+			rewards: [{
+				id: "6F28AAC122BA64B3"
+				type: "item"
+				item: "naturesaura:farming_stencil"
+			}]
+		}
+	]
+}
