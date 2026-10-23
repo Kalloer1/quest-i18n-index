@@ -413,11 +413,21 @@ async function main() {
   // 为什么需要它：整批 589 条改完后有 117 条被判"不可访问"，但那是**连续 589 次**
   // share-detail 的结果，很可能混着限流。不复查就回滚/重传，是在拿数据赌。
   if (verifyOnly) {
-    const { batches } = readRenames()
-    const changed = []
-    for (const b of batches) for (const [fid, it] of Object.entries(b.items ?? {})) changed.push({ slug: it.slug, fid, shareUrl: mirrors[it.slug]?.shareUrl || '' })
-    const uniq = [...new Map(changed.map((c) => [c.slug, c])).values()]
-    console.log(`[校验] 改名批次共 ${batches.length} 批、${uniq.length} 个 slug，开始逐个复查（含重试与间隔）`)
+    // 目标来源有两个：优先用登记过的失败清单（仓库里的文件，可审计），
+    // 其次才是本次工作区的改名记录 —— 后者不进 git，新 checkout 里恒为 0 批，
+    // 第一次跑就是这样空转的（"改名批次共 0 批"）。
+    const targetsFile = 'research/quark-verify-targets.txt'
+    let uniq = []
+    if (existsSync(targetsFile)) {
+      uniq = readFileSync(targetsFile, 'utf8').split('\n').map((x) => x.trim()).filter(Boolean)
+        .map((slug) => ({ slug, shareUrl: mirrors[slug]?.shareUrl || '' }))
+    } else {
+      const { batches } = readRenames()
+      const changed = []
+      for (const b of batches) for (const [fid, it] of Object.entries(b.items ?? {})) changed.push({ slug: it.slug, fid, shareUrl: mirrors[it.slug]?.shareUrl || '' })
+      uniq = [...new Map(changed.map((c) => [c.slug, c])).values()]
+    }
+    console.log(`[校验] 目标 ${uniq.length} 个 slug（来源：${existsSync(targetsFile) ? targetsFile : '改名记录'}），逐个复查（含重试与间隔）`)
     const v = verifyShares({ changes: uniq, call, cli: QUARK_CLI, cwd: work, log: (m) => console.log(m) })
     if (!dry) writeFileSync('research/tmp/quark-verify.json', `${JSON.stringify({ at: new Date().toISOString(), ...v }, null, 1)}\n`)
     console.log(`[校验] 可访问 ${v.ok}/${v.total}，重试后恢复 ${v.flaky.length}，仍失败 ${v.failed.length}`)

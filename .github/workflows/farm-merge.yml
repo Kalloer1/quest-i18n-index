@@ -81,7 +81,7 @@ jobs:
   merge:
     # quarkRename 是独立任务（只动网盘文件名，不碰仓库），由下面的 quark-rename job 承担。
     # 这里一个 job 级条件挡掉，比给 11 个 step 各加一条 `inputs.quarkRename != true` 可靠。
-    if: inputs.quarkRename != true
+    if: inputs.quarkRename != true && inputs.quarkVerifyOnly != true
     runs-on: ubuntu-latest
     # 主要成本是拉 blob + 夸克上传；给足余量，避免慢网被误杀。
     # 8 台主机、单轮最多 80 个包（含逐个上传）后 120 分钟不够用，350 覆盖「80 包 + 20 个回填」的最坏组合。
