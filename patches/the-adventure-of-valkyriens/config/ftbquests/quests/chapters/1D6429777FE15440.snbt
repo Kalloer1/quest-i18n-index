@@ -1,0 +1,167 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "1D6429777FE15440"
+	group: "0588C05ED77E8B81"
+	icon: {
+		Count: 1
+		id: "computercraft:disk"
+		tag: {
+			Color: 5744206
+		}
+	}
+	id: "1D6429777FE15440"
+	order_index: 8
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["00D85C6FD29172C2"]
+			description: [
+				"你可能会在某些船上发现一个带有火控磁盘的磁盘读取器"
+				"该硬盘自带自动安装程序，可为电脑安装火控系统。火控系统可控制火炮的偏航角，使其指向玩家视角所看的方块。&6俯仰角仍需使用传动装置调整&r"
+				"{image:pictures:textures/fc/insass.png width:100 height:50 align:center}"
+				"将磁盘读取器放在电脑旁边，启动电脑即可进入安装程序"
+				"火控总共分为两部分（文件）："
+				"-中央控制计算机"
+				"-直连火控电脑"
+				"{image:pictures:textures/fc/installation.png width:100 height:50 align:center}"
+				"点击&9\"Install commander\"&r安装中央控制器"
+				"点击&4\"Install Fire Control\"&r安装依附火炮的直控程序"
+				"点击&0\"Delete Control File\"&r删除现有的火控程序"
+				"&e重启能解决大部分报错&r"
+			]
+			hide: true
+			icon: {
+				Count: 1
+				id: "computercraft:disk"
+				tag: {
+					Color: 5744206
+				}
+			}
+			id: "1FB2BAE4AA522427"
+			subtitle: "CAInnon"
+			tasks: [{
+				id: "01062E6EC2048D18"
+				type: "checkmark"
+			}]
+			title: "火控磁盘"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["1FB2BAE4AA522427"]
+			description: [
+				"中央控制电脑用于控制直接控制电脑，一台电脑最多可连接四台直接控制火控"
+				"{image:pictures:textures/fc/cmdassem.png width:100 height:80 align:center}"
+				"硬件摆放方式如图所示，在任意两面分别贴上&6无线红石&r和&6末影调制解调器&r"
+				"无线红石用于接收玩家的瞄准指令信号"
+				"末影调制解调器用于与直连火控电脑交互"
+				"火控设置好后，接收到红石信号时会进行一次基于玩家视角的瞄准（头部瞄准）"
+				"可以使用遥控器绑定无线红石进行远程操作"
+			]
+			id: "5FBBC4738839A62F"
+			tasks: [{
+				id: "2A83FB7F10AE8AD1"
+				type: "checkmark"
+			}]
+			title: "中央控制计算机"
+			x: 2.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["1FB2BAE4AA522427"]
+			description: [
+				"{image:pictures:textures/fc/fcass.png width:130 height:100 align:center}"
+				"直控电脑是直接依附在火炮旁边的电脑，用于接收中控电脑的指令并控制火炮的偏航角，需要在组装火炮以后启动。"
+				"安装方法如图所示，在炮座任意一侧放置&6电脑&r，电脑任意一侧再放置&6末影调制解调器&r"
+				"&e火炮的瞄准是一次性的，不会随船体移动或头部视角变化而改变，需要手动重新瞄准目标点&r"
+			]
+			id: "5EDFC63D0A917D90"
+			subtitle: "开启手动副炮瞄准模式"
+			tasks: [{
+				id: "3DF04C5EED38B6F1"
+				type: "checkmark"
+			}]
+			title: "炮座直接控制计算机"
+			x: 2.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["5FBBC4738839A62F"]
+			description: [
+				"{image:pictures:textures/fc/commander.png width:160 height:100 align:center}"
+				"中央控制系统的操作面板如图所示，右上角显示的是本电脑ID"
+				"绿色按钮&2\"Change Computer ID\"&r 用于设置直控电脑的ID"
+				"蓝色按钮&9\"Set Owner\"&r 用于设置使用头瞄的玩家"
+				"红色按钮&c\"Location Mode\"&r 用于开启瞄准"
+			]
+			id: "265AFB06EF90669B"
+			tasks: [{
+				id: "2FFE03D5AF31F7B1"
+				type: "checkmark"
+			}]
+			title: "操作面板"
+			x: 4.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["265AFB06EF90669B"]
+			description: [
+				"{image:pictures:textures/fc/setid.png width:160 height:100 align:center}"
+				"点击&2绿色的按钮&r后会进入如上界面"
+				"中间一共有四个物品栏位"
+				"点击任意一个，之后可以输入直控电脑ID（在直控电脑界面查看），然后就可以控制那一台电脑"
+				"设置完成后，数字会发生变化，表示该电脑正在接收指令"
+				"点击任意空白区域直接返回主界面"
+			]
+			id: "3B3257A4B926A836"
+			tasks: [{
+				id: "1CD0704DA596E1B2"
+				type: "checkmark"
+			}]
+			title: "设置直接控制计算机的ID"
+			x: 5.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["265AFB06EF90669B"]
+			description: [
+				"{image:pictures:textures/fc/location.png width:170 height:100 align:center}"
+				"上图是点击&4红色按钮&r后进入的瞄准设置界面"
+				"一共有两种瞄准方式："
+				"点击\"Type the location\"后输入坐标进行瞄准"
+				"点击\"Player Aiming Mode\" 后开始使用玩家视角瞄准（需先设置头瞄玩家）"
+				"开启头部瞄准后，中央电脑每次接收到&c红石信号&r时都会进行一次瞄准，此时主界面会显示头部瞄准模式正在进行"
+				"瞄准频率不能过快"
+			]
+			id: "56DCAAA77ABA906B"
+			tasks: [{
+				id: "164F49A494C68846"
+				type: "checkmark"
+			}]
+			title: "开始瞄准目标，做好准备"
+			x: 4.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["5EDFC63D0A917D90"]
+			description: [
+				"{image:pictures:textures/fc/cainnon.png width:165 height:100 align:center}"
+				"如图所示的红色标题界面是直连火控程序"
+				"界面左上角是电脑的ID"
+				"点击第一行的\"Receiving From:\"可以修改接收的&b中控电脑ID&r（在中控电脑界面察看），修改完成后数字会发生改变，此时可以接收电脑指令"
+				"第二行为调试选项，炮座火控无需更改"
+			]
+			id: "431F5DBCB12F69AA"
+			tasks: [{
+				id: "4FFD3866BFE5B76C"
+				type: "checkmark"
+			}]
+			title: "设置中央控制计算机ID"
+			x: 4.0d
+			y: -1.0d
+		}
+	]
+	title: "火控系统"
+}

@@ -1,0 +1,268 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "67B2AA75F4EF64A0"
+	group: "0588C05ED77E8B81"
+	icon: "vscontrolcraft:servo"
+	id: "67B2AA75F4EF64A0"
+	order_index: 9
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["762AAA4EADA35B79"]
+			description: [
+				"VS_Control_Craft 添加了一系列自带控制功能的零件，可用于精确操控物理体，并保留其所有特性。"
+				"本章将介绍这些零件的功能和用法"
+			]
+			hide: true
+			hide_details_until_startable: true
+			id: "4B2B1FE3353CC0F6"
+			rewards: [
+				{
+					id: "008C912C519374D5"
+					item: "vscontrolcraft:awe_in_wand"
+					type: "item"
+				}
+				{
+					id: "744CA675538BFA48"
+					item: {
+						Count: 1
+						id: "patchouli:guide_book"
+						tag: {
+							"patchouli:book": "vscontrolcraft:controlcraft_guide"
+						}
+					}
+					type: "item"
+				}
+			]
+			subtitle: "控制可能是魔法，但控制是魔法不太可能"
+			tasks: [{
+				id: "414EECC6A4C34E9C"
+				type: "checkmark"
+			}]
+			title: "控制学零件"
+			x: -0.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["4B2B1FE3353CC0F6"]
+			description: [
+				"&4[警告]本版块含有禁忌知识，如阅读时出现头晕或昏睡等症状可忽略本版块&r"
+				"控制可以简单概括为使用数学公式实时计算输入，使系统稳定。最常见的算法是定值PID，将在后续章节讲解。控制学模组也广泛使用此方法，本教程将简单介绍如何使用模组中的PID，以及如何发挥控制学的最大效益。"
+			]
+			hide: true
+			icon: "minecraft:writable_book"
+			id: "603CEFF1C69F0F64"
+			tasks: [{
+				id: "66595A74EE8CE96C"
+				type: "checkmark"
+			}]
+			title: "控制理论基础"
+			x: -0.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["603CEFF1C69F0F64"]
+			description: [
+				"定值PID的命名很直球，三个字母分别代表三个项，加起来就是控制输出，&6即Out=P+I+D&r"
+				"-P是proportional，意思是和误差&6成正比&r"
+				"-I是Integral，意思是积分&6（累积）&r"
+				"-D是Derivative，意思是系统的&6微分&r（求导）"
+				"-PID中每一项前都有一个乘数，可在面板中调整，最终输出可写为-(Gp*P+Gi*I+Gd*D)，其中Gp,Gi,Gd分别为三项的系数（增益），是不变的数字，代表该项的反馈强度"
+				"-系数越大，稳定速度越快，物体转得更快更猛。但这些数字&6并非越大越好&r，采样到执行存在延迟，过大的数字会导致&6系统震荡&r。对于定值PID，更高的增益会导致更小的时间裕度（不发生震荡的最大系统延迟时间），因此需要找到控制效果好且不会使系统震荡的增益参数组合，即&6调参&r。"
+				"-控制器具有默认参数，参数效果与受控物体属性&6无关&r，但调整参数可优化控制表现及适应特定使用环境。"
+				"参数中最主要的是P增益，这是影响控制效果最直接的参数，然后是D增益，最后是I增益。通常的调参方法为不断提高整体数值，直到系统震荡。"
+				"-如果对精度要求不高，&6可以把I增益设为0&r。但对于整个控制系统来说，I和D至少要存在一个，否则系统仅靠P无法保持稳定。"
+			]
+			id: "2024D29C47E6FD64"
+			tasks: [{
+				id: "7D4ED3DC941C8E7D"
+				title: "定值PID控制导论"
+				type: "checkmark"
+			}]
+			x: -0.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["2024D29C47E6FD64"]
+			description: [
+				"P代表与误差成正比，e代表误差值，F代表状态，F0代表稳定时的状态"
+				"e = F-F0"
+				"误差越大，反馈输入就越大"
+			]
+			id: "513FCBB3064E39EF"
+			tasks: [{
+				id: "657EA29BCA902C6C"
+				title: "P"
+				type: "checkmark"
+			}]
+			x: -2.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["2024D29C47E6FD64"]
+			description: [
+				"I的意思是积分，就是系统误差的累积"
+				"由于控制系统中的程序是离散的（游戏每秒刷新20次，物理结构每秒刷新20的倍数次），误差累积可以表示为"
+				"I = I + e*dt"
+				"其中e是这一刻的误差，dt是两次刷新的时间间隔"
+				"此公式中的等号表示赋值，即I在原有基础上加上（或减去）e*dt"
+				"反馈的存在使系统能够稳定并消除稳态误差"
+			]
+			id: "13A052C2D0BB7FF2"
+			tasks: [{
+				id: "31DD90469A76CC6F"
+				title: "我"
+				type: "checkmark"
+			}]
+			x: -2.5d
+			y: -5.0d
+		}
+		{
+			dependencies: ["2024D29C47E6FD64"]
+			description: [
+				"D代表系统的微分，通常是对时间的微分，可以近似理解为求导。"
+				"用F(t)表示系统状态，t表示时间，在连续的情况下，D可以表示为"
+				"D = dF/dt"
+				"但是，在实际应用的时候，通常是处于离散状态下的，就是说状态是一个个不连续的点，这时候就可以用"
+				"D = (F-F0)/(t-t0)"
+				"即单位时间内状态变化的速度，由于时间极短，该数值可近似代表真实速度"
+				"反馈的存在使系统能平滑收敛至目标状态附近"
+			]
+			id: "11F52B99B8F2F36E"
+			tasks: [{
+				id: "7711593FCBF2AC93"
+				title: "D"
+				type: "checkmark"
+			}]
+			x: -2.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["2F299400D7818AD8"]
+			description: [
+				"自动调节角度的物理轴承，空手按住shift右键组装上方的物理结构，需预先用胶水选定区域"
+				"可以使用工具枪将其他物理结构连接上去"
+				"右键打开面板，可以调整控制参数和目标角度"
+				"需要在下方放置动力代理才能接入动力并按照输入动力旋转。"
+				"搭配CC电脑使用可以发挥最大功能"
+			]
+			icon: "vscontrolcraft:servo"
+			id: "641CF93D44CEC219"
+			rewards: [{
+				id: "5AB3F58CB10EA93C"
+				item: "vscontrolcraft:kinetic_proxy"
+				type: "item"
+			}]
+			tasks: [{
+				id: "3852A3D236DA0FF8"
+				type: "checkmark"
+			}]
+			title: "电机轴承"
+			x: -2.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["2F299400D7818AD8"]
+			description: ["自带稳定控制的高低机，空手shift右键组装物理结构，可以使用工具枪将外部物理结构连接上去"]
+			icon: "vscontrolcraft:joint"
+			id: "793001B126BFBD16"
+			tasks: [{
+				id: "2F1D4CB9D08D0FC1"
+				type: "checkmark"
+			}]
+			title: "电动升降台"
+			x: -3.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["4B2B1FE3353CC0F6"]
+			description: [
+				"用于连接和拆除物理结构连接的工具枪，可按照面板指引使用"
+				"按住alt后使用滚轮切换功能"
+			]
+			icon: "vscontrolcraft:awe_in_wand"
+			id: "2F299400D7818AD8"
+			tasks: [{
+				id: "2BB305EFF8E30A28"
+				type: "checkmark"
+			}]
+			title: "控制工具枪"
+			x: -2.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["4B2B1FE3353CC0F6"]
+			description: ["右键可以将视角切换到摄像头，同时保留玩家的移动能力"]
+			icon: "vscontrolcraft:camera"
+			id: "39D021CE6C9FDCF8"
+			tasks: [{
+				id: "247DAE35DFF91785"
+				type: "checkmark"
+			}]
+			title: "摄像头"
+			x: -2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["3B36C5D887A79244"]
+			icon: "vscontrolcraft:transmitter"
+			id: "20F7DA1831CC28A4"
+			tasks: [{
+				id: "1ABFBF2E5F7AFE7B"
+				type: "checkmark"
+			}]
+			title: "外围设备代理"
+			x: -0.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["4B2B1FE3353CC0F6"]
+			description: [
+				"多频无线红石终端可以贴在控制学组件上，用于集成控制组件"
+				"可以设置多个接收频率，并分配不同功能"
+			]
+			icon: "vscontrolcraft:terminal"
+			id: "3B36C5D887A79244"
+			tasks: [{
+				id: "280C3DD5F11E2F6C"
+				type: "checkmark"
+			}]
+			title: "多频无线红石终端"
+			x: -0.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["2F299400D7818AD8"]
+			description: [
+				"控制物理体高度（或伸长）的组件，空手shift右键组装，可将外部物理结构连接上去"
+				"右键打开面板，可以设置参数和目标位置"
+				"注意：活塞所在结构的质量需远大于所承载结构的质量（10倍以上），否则玩家在远离后会变得不稳定"
+			]
+			icon: "vscontrolcraft:slider"
+			id: "1CD31A170D231FE3"
+			tasks: [{
+				id: "2A797A106A8C737A"
+				type: "checkmark"
+			}]
+			title: "物理活塞"
+			x: -4.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["2F299400D7818AD8"]
+			description: ["用于拖拽物理结构，可以使用控制工具枪进行连接"]
+			icon: "vscontrolcraft:sphere_hinge"
+			id: "1EF2E0B8F853CA43"
+			tasks: [{
+				id: "0A27B012BC8985FB"
+				type: "checkmark"
+			}]
+			title: "铰链"
+			x: -4.0d
+			y: 1.0d
+		}
+	]
+	title: "控制学基础教程"
+}

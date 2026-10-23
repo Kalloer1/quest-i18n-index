@@ -1,0 +1,105 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "vs101"
+	group: "0588C05ED77E8B81"
+	id: "3E56CD1A80DC96E9"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["7E67B1D3E4322C6C"]
+			description: [
+				"Valkyrie是一个非常神奇的模组，它实现方块物理化的方式是："
+				"在主世界极远处（造船厂，&e亚空间&r）复制一份物理化的方块，然后将这些方块投影到当前坐标"
+				"也就是说，所有瓦尔基里载具在地图上都有一个备份，只是因为太远所以正常人不可能去到"
+				"所以，瓦基的方块文件保存在游戏地图里，就是那些数字特别大的"
+				"瓦基的车辆信息文件保存在data文件夹里，两者的位置不同"
+				"瓦基的位置运算高度基于坐标转换，将造船厂所在坐标转换到现实坐标，而一旦某个物理帧没有运算出来，瓦基载具就会物理上回到造船厂，也就是所谓的进亚空间"
+				"船下沉多半是因为船和区块加载不同步，导致瓦基船掉下去，然后在区块加载完成时被卡住"
+				"同时，瓦基还具有以下特性："
+				"-&6物体过大时碰撞会卡顿（vs_core配置里的LOD调大就行）&r"
+				"-&6必须在区块加载区域内才能移动（会卡在边界）&r"
+				"-质量小于0时会消失"
+			]
+			hide: true
+			icon: "vs_clockwork:wanderlite_crystal"
+			id: "637007608C0F7150"
+			tasks: [{
+				id: "6296E89EBB774903"
+				type: "checkmark"
+			}]
+			title: "神奇的女武神 (The Magical Valkyrie)"
+			x: -0.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["637007608C0F7150"]
+			description: [
+				"使用瓦尔基里自带的指令可以从地下或者亚空间捞船"
+				"tp指令: &6vs teleport 船的slug ~ ~ ~&r"
+				"带有物理轴承的船无法使用"
+				"其中，船的slug可以对船使用"
+				"&6vs get-ship&r  查看"
+				"使用&6vs ship 前用名 rename 新名字&r"
+				"可以重命名船只的名称"
+				"使用&6vs delete 船的名字&r 可以删除船"
+				"&4不要使用vs delete @v &r"
+				"&4这样做等同于向所有人宣战！&r"
+				"使用&6vs set-static&r 船只的名称"
+				"来使船处于静止状态"
+			]
+			id: "247D093DECB9C9EB"
+			tasks: [{
+				id: "30A0AEBCCEF1E62D"
+				type: "checkmark"
+			}]
+			title: "亚空间捞船指南"
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["637007608C0F7150"]
+			description: [
+				"使用vs delete删除载具指令时，不要@v，会删除&e所有载具&r"
+				"-不要高速将两个瓦基载具对撞"
+				"-谨慎使用&e陀螺仪&r"
+				"-船舵物理化前不能接地（目前无法用船舵物理化，因为事故太多了）"
+				"不要在&e鼓风机开着&r的时候挖掉"
+				"推进动力需要能够在船外关闭（溜船事故）"
+				"-不要在有物理轴承时使用vs teleport指令"
+				"尽可能减少物理化的载具&a总数量&r"
+			]
+			id: "6A1E90237E8B86CD"
+			tasks: [{
+				id: "0016A9C09AE61FEA"
+				type: "checkmark"
+			}]
+			title: "安全事项"
+			x: -0.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["247D093DECB9C9EB"]
+			description: [
+				"vmod提供了一些进阶指令"
+				"&6vmod teleport 船 ~ ~ ~&r"
+				"该指令可以传送带有物理轴承的船"
+				"&6vmod display-ships-in-order 页数&r"
+				"这个指令可以显示所有船的位置，用于找那些找不到的船"
+				"&6vmod op set-command-permission-level 数字&r"
+				"此指令可设置所有瓦基命令所需的等级，如能否删除船，4为管理员，2为普通玩家"
+			]
+			id: "49D556D1CF1C747A"
+			tasks: [{
+				id: "3FD9A5F56ED26359"
+				type: "checkmark"
+			}]
+			title: "亚空间捞船指南+"
+			x: 4.5d
+			y: 0.0d
+		}
+	]
+	title: "瓦尔基里基础与安全生产"
+}
