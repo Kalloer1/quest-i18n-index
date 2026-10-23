@@ -51,6 +51,16 @@ on:
         required: false
         default: '50'
         type: string
+      quarkRename:
+        description: '只做夸克网盘重命名（把已上传的文件改成带版本号的本地名），不合并、不镜像'
+        required: false
+        default: false
+        type: boolean
+      quarkRenameLimit:
+        description: 'quarkRename 时最多改多少条（0 = 全部；第一次请填 1 做试点）'
+        required: false
+        default: '0'
+        type: string
 
 permissions:
   contents: write
@@ -64,6 +74,9 @@ concurrency:
 
 jobs:
   merge:
+    # quarkRename 是独立任务（只动网盘文件名，不碰仓库），由下面的 quark-rename job 承担。
+    # 这里一个 job 级条件挡掉，比给 11 个 step 各加一条 `inputs.quarkRename != true` 可靠。
+    if: inputs.quarkRename != true
     runs-on: ubuntu-latest
     # 主要成本是拉 blob + 夸克上传；给足余量，避免慢网被误杀。
     # 8 台主机、单轮最多 80 个包（含逐个上传）后 120 分钟不够用，350 覆盖「80 包 + 20 个回填」的最坏组合。
@@ -598,3 +611,65 @@ jobs:
               ;;
           esac
           echo "::warning::夸克镜像部分失败（$OK 拿到链接），不判红：链接为空不阻断是本项目的既有设计，下一轮定时自愈会继续补。"
+
+  # 夸克网盘里的存量文件改成带版本号的名字。
+  #
+  # 为什么要单独一个 job：它只动网盘文件名，不写仓库。塞进 merge job 就得给十几个
+  # 合并/镜像步骤各加一条 `quarkRename != true` 的排除条件，改错一处就会在试点时
+  # 顺带合并+打包+提交。job 级隔离只有一行。
+  #
+  # 为什么先试点 1 条：分享链接是绑 FID 生成的，改名理论上不影响，但官方没有明文保证，
+  # `rename` 虽有 30 天 `rename-revert` 可回滚，先拿一条验证 `share-detail` 仍可访问更稳。
+  quark-rename:
+    if: github.event_name == 'workflow_dispatch' && inputs.quarkRename == true
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Run npm ci || npm install
+        run: npm ci || npm install
+
+      - name: Restore quark config
+        env:
+          QUARK_CONFIG_JSON: ${{ secrets.QUARK_CONFIG_JSON }}
+        run: |
+          if [ -z "$QUARK_CONFIG_JSON" ]; then
+            echo "::error::未提供 QUARK_CONFIG_JSON，无法登录夸克"
+            exit 1
+          fi
+          SKILL_DIR="$HOME/.pi/agent/skills/quarkclouddrive"
+          mkdir -p "$SKILL_DIR/qoder"
+          printf '%s' "$QUARK_CONFIG_JSON" > "$SKILL_DIR/qoder/config.json"
+          chmod 600 "$SKILL_DIR/qoder/config.json"
+          echo "登录态已写入（$(wc -c < "$SKILL_DIR/qoder/config.json" | tr -d ' ') 字节，内容不打印）"
+
+      - name: Install quark CLI
+        run: bash scripts/install-quark-cli.sh
+
+      - name: Rename quark files
+        env:
+          QODER_PRODUCT_ID: qoder
+          QODER_AGENT: 'true'
+          QUARK_DIR_NAME: 整合包汉化
+          QUARK_PARENT_FID: ${{ secrets.QUARK_PARENT_FID }}
+        run: |
+          set -euo pipefail
+          CLI="$HOME/.pi/agent/skills/quarkclouddrive/scripts/quark-drive.cjs"
+          if [ ! -f "$CLI" ]; then
+            echo "::error::夸克 CLI 不存在（Install quark CLI 未成功）"
+            exit 1
+          fi
+          export QUARK_CLI="$CLI"
+          LIMIT='${{ inputs.quarkRenameLimit }}'
+          case "$LIMIT" in ''|*[!0-9]*) LIMIT=0 ;; esac
+          echo "重命名上限：$LIMIT（0 = 全部）"
+          node scripts/quark-rename.mjs --limit "$LIMIT" --verify
