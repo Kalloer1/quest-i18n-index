@@ -1,0 +1,220 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "multiblock_madness"
+	group: ""
+	icon: "mm:chem_compressor"
+	id: "4874D24FCD5DCB04"
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["0ED365D379BCE010"]
+			description: [
+				"引入自定义的多方块结构，助力你的炼金自动化！"
+				""
+				"&lDissolution Centrifuge&r是一种多区块机器，能让&o物品更快地分解成化学成分&r。它的速度是普通分解器的2倍左右，最低能耗是2倍，输入栏位更大，最重要的是，溶解后的化学品和化合物的输出存储空间也大大增加了！"
+				""
+				"&l化学压缩机&r是一款实用的机器，它将&o组合器和压缩机的功能合二为一&r。由于其配方锁定机制，学习使用可能有些棘手，但它比炼金术同类机器快约2倍，最低能耗是其2倍，并且和DC一样，拥有更大的产物存储容量。这些机器可能很贵，但它们看起来超酷而且运行飞快；确保你有足够的电力来支持它们！"
+			]
+			id: "44FECE7FED88DEE6"
+			rewards: [
+				{
+					id: "09EAD7E6E4BA7738"
+					item: {
+						Count: 1
+						id: "mm:blueprint"
+						tag: {
+							MMStructure: "mm:dissolver_centrifuge"
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "42DAE194A411195C"
+					item: {
+						Count: 1
+						id: "mm:blueprint"
+						tag: {
+							MMStructure: "mm:chemical_compressor"
+						}
+					}
+					type: "item"
+				}
+			]
+			subtitle: "这些可能有点过头了……"
+			tasks: [{
+				id: "3D36AA18976D2439"
+				title: "更好的炼金术机器？"
+				type: "checkmark"
+			}]
+			x: -0.5d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"44FECE7FED88DEE6"
+				"6F60CF28362B76F8"
+			]
+			description: [
+				"这些是单个化学压缩机多区块涉及的所有端口，其余多区块部分可以在JEI或通过上一个任务的蓝图物品查看。"
+				""
+				"作为你努力的回报，给你一个免费的通量单元！"
+			]
+			id: "1AF117CA80D18075"
+			rewards: [{
+				id: "3B0087AB13AC2CAE"
+				item: {
+					Count: 1
+					id: "thermal:energy_cell"
+					tag: {
+						BlockEntityTag: {
+							Energy: 0
+							EnergyMax: 1000000
+							EnergyRecv: 1000
+							EnergySend: 1000
+						}
+					}
+				}
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "045ACBD6C871E8EB"
+					item: "mm:chem_compressor"
+					type: "item"
+				}
+				{
+					id: "30A1AFF6EAAC8025"
+					item: "mm:cc_target_input"
+					type: "item"
+				}
+				{
+					id: "324A6785368261B5"
+					item: "mm:alchem_item_output"
+					type: "item"
+				}
+				{
+					id: "19C64C5469A7DA40"
+					item: "mm:cc_compressor_input"
+					type: "item"
+				}
+				{
+					id: "1B709EDFE07CD24A"
+					item: "mm:alchem_fe_input"
+					type: "item"
+				}
+			]
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"44FECE7FED88DEE6"
+				"6F60CF28362B76F8"
+			]
+			description: [
+				"这些是溶解离心机多区块所需的所有端口，其余方块可通过JEI或上个任务的蓝图物品查看。"
+				""
+				"作为你努力的回报，给你一个免费的通量单元！"
+			]
+			id: "4564CC00E545D90B"
+			rewards: [{
+				id: "5CDF8620CA233E57"
+				item: {
+					Count: 1
+					id: "thermal:energy_cell"
+					tag: {
+						BlockEntityTag: {
+							Energy: 0
+							EnergyMax: 1000000
+							EnergyRecv: 1000
+							EnergySend: 1000
+						}
+					}
+				}
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "59F02B8D9B9574AF"
+					item: "mm:chem_dissolver_centrifuge"
+					type: "item"
+				}
+				{
+					id: "32333BA55E7842A3"
+					item: "mm:centrifuge_item_input"
+					type: "item"
+				}
+				{
+					id: "74DA31C412BEFEF3"
+					item: "mm:alchem_fe_input"
+					type: "item"
+				}
+				{
+					id: "74C8021A8CE83C30"
+					item: "mm:alchem_item_output"
+					type: "item"
+				}
+			]
+			x: -2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["44FECE7FED88DEE6"]
+			id: "7FCBD6EB6C6521F1"
+			rewards: [{
+				count: 6
+				id: "0117467CF9F466E1"
+				item: "thermal:energy_duct"
+				type: "item"
+			}]
+			subtitle: "迈向钢铁！"
+			tasks: [{
+				id: "1445CD867DBFA3F6"
+				item: "ad_astra:etrionic_blast_furnace"
+				type: "item"
+			}]
+			x: -0.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7FCBD6EB6C6521F1"]
+			id: "6F60CF28362B76F8"
+			rewards: [
+				{
+					count: 4
+					id: "109ECECCDAC8BF67"
+					item: "thermal:steel_ingot"
+					type: "item"
+				}
+				{
+					count: 6
+					id: "2F216AFAFF2717C0"
+					item: "thermal:steel_plate"
+					type: "item"
+				}
+			]
+			subtitle: "给你一个良好的开端，先走一步"
+			tasks: [
+				{
+					count: 4L
+					id: "2798EC785B1C60DB"
+					item: { Count: 4, id: "thermal:steel_ingot" }
+					type: "item"
+				}
+				{
+					count: 6L
+					id: "74F5FBEDB54F8ABD"
+					item: { Count: 6, id: "thermal:steel_plate" }
+					type: "item"
+				}
+			]
+			title: "真正的钢铁！"
+			x: -0.5d
+			y: -3.0d
+		}
+	]
+	title: "&b多区块疯狂"
+}
