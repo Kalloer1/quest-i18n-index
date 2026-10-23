@@ -344,6 +344,38 @@ function browseDir(cli, dirFid, cwd) {
   return { files, count: data.count ?? files.length }
 }
 
+/**
+ * 定位目标目录的 fid：先试 create-folder（同名幂等），失败再按名字在父目录里找。
+ *
+ * 为什么不能只靠 create-folder：实测它在「目录已存在」时会返回
+ * `code 1007: 创建操作失败`，而不是像文档说的返回已有 fid —— 试点成功后紧接着
+ * 跑整批就直接炸在这里。重试 + 按名查找两条兜底，比赌一个未文档化的行为可靠。
+ */
+function resolveDirFid(cli, dirName, parentFid, cwd) {
+  const folderArgs = ['create-folder', '--dir-path', dirName]
+  if (parentFid) folderArgs.push('--parent-fid', parentFid)
+  for (let i = 1; i <= 3; i++) {
+    try {
+      const r = call(cli, folderArgs, cwd)
+      if (r?.fid) return r.fid
+    } catch (e) {
+      console.log(`::warning::create-folder 第 ${i} 次失败：${String(e?.message || e).split('\n')[0].slice(0, 120)}`)
+      // 同步睡眠：这个脚本主体是同步流程，用 Atomics.wait 比拿子进程当 sleep 干净。
+      if (i < 3) Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, i * 3000)
+    }
+  }
+  // 兜底：父目录里按名字找文件夹。字段名在 CLI 的不同版本里叫法不一，逐个试。
+  const parent = parentFid || '0'
+  const { files } = browseDir(cli, parent, cwd)
+  const nameOf = (f) => f.filename ?? f.file_name ?? f.name ?? ''
+  const hit = files.find((f) => nameOf(f) === dirName)
+  if (hit?.fid) {
+    console.log(`[目录] create-folder 失败，按名字找到已有目录 fid=${hit.fid}`)
+    return hit.fid
+  }
+  throw new Error(`无法定位网盘目录「${dirName}」：create-folder 三次失败，且父目录里没有同名项`)
+}
+
 async function main() {
   const args = process.argv.slice(2)
   const dry = args.includes('--dry')
@@ -364,11 +396,10 @@ async function main() {
   const mirrors = readMirrors()
   const work = mkdtempSync(join(tmpdir(), 'quark-rename-'))
 
-  // 目录 fid：create-folder 同名幂等，返回已有目录的 fid（mirror.mjs 的 makeUploader 同一做法）。
-  const folderArgs = ['create-folder', '--dir-path', DIR_NAME]
-  if (PARENT_FID) folderArgs.push('--parent-fid', PARENT_FID)
-  const dirFid = call(QUARK_CLI, folderArgs, work).fid
-  if (!dirFid) throw new Error('create-folder 未返回 fid，无法定位目标目录')
+  // 目录 fid：create-folder 号称同名幂等，但实测第二次调用会以 `1007 创建操作失败`
+  // 被拒（试点成功、3 分钟后的整批就炸了）。所以：先重试几次，仍失败就退回
+  // 「列父目录按名字找」——两者都失败才报错，不能因为建目录失败就整个放弃。
+  const dirFid = resolveDirFid(QUARK_CLI, DIR_NAME, PARENT_FID, work)
 
   const { files, count } = browseDir(QUARK_CLI, dirFid, work)
   const nameFor = (slug) => {
