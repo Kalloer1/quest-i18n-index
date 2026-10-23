@@ -1,0 +1,1043 @@
+# AI 初翻，未人工校对
+{
+	id: "0000000000000002"
+	group: ""
+	order_index: 0
+	filename: "academygettingstartedname"
+	title: "{academy.gettingstarted.chapter}"
+	icon: "minecraft:grass_block"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "{academy.gettingwood.title}"
+			icon: "minecraft:oak_log"
+			x: 0.0d
+			y: 0.0d
+			subtitle: "{academy.gettingwood.subtitle}"
+			description: ["{academy.gettingwood.desc}"]
+			dependencies: ["000000000000004E"]
+			hide: true
+			id: "0000000000000003"
+			tasks: [{
+				id: "41E826809DD4011A"
+				type: "item"
+				title: "{academy.gettingwood.task}"
+				item: {
+					id: "itemfilters:and"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "itemfilters:tag"
+								Count: 1b
+								tag: {
+									value: "minecraft:logs"
+								}
+							}
+							{
+								id: "itemfilters:not"
+								Count: 1b
+								tag: {
+									items: [{
+										id: "itemfilters:or"
+										Count: 1b
+										tag: {
+											items: [
+												{
+													id: "itemfilters:id_regex"
+													Count: 1b
+													tag: {
+														value: "stripped"
+													}
+												}
+												{
+													id: "itemfilters:id_regex"
+													Count: 1b
+													tag: {
+														value: "wood"
+													}
+												}
+											]
+										}
+									}]
+								}
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "0000000000000005"
+				type: "item"
+				item: {
+					id: "minecraft:golden_axe"
+					Count: 1b
+					tag: {
+						Damage: 0
+						Enchantments: [{
+							lvl: 3s
+							id: "minecraft:unbreaking"
+						}]
+					}
+				}
+			}]
+		}
+		{
+			title: "{academy.firstquest.title}"
+			icon: "botania:cosmetic_questgiver_mark"
+			x: -3.0d
+			y: 0.0d
+			subtitle: "{academy.firstquest.subtitle}"
+			description: [
+				"{academy.firstquest.desc1}"
+				""
+				"{academy.firstquest.desc2}"
+				""
+				"{academy.firstquest.desc3}"
+			]
+			hide: true
+			min_width: 250
+			id: "000000000000004E"
+			tasks: [{
+				id: "0000000000000089"
+				type: "stat"
+				icon: {
+					id: "minecraft:clock"
+					Count: 1b
+					tag: {
+						"quark:clock_calculated": 1b
+					}
+				}
+				stat: "minecraft:play_one_minute"
+				value: 1
+			}]
+			rewards: [{
+				id: "00000000000000E7"
+				type: "item"
+				item: "minecraft:cooked_beef"
+				count: 8
+			}]
+		}
+		{
+			title: "{academy.ores.title}"
+			icon: "minecraft:iron_ore"
+			x: 3.0d
+			y: 0.0d
+			subtitle: "{academy.ores.subtitle}"
+			description: [
+				"{academy.ores.desc1}"
+				""
+				"{academy.ores.desc2}"
+				""
+				"{academy.ores.desc3}"
+			]
+			dependencies: ["0000000000000003"]
+			hide: true
+			min_width: 250
+			id: "0000000000000050"
+			tasks: [
+				{
+					id: "0000000000000051"
+					type: "item"
+					title: "{academy.ores.task1}"
+					item: {
+						id: "itemfilters:or"
+						Count: 1b
+						tag: {
+							items: [
+								{
+									id: "itemfilters:and"
+									Count: 1b
+									tag: {
+										items: [
+											{
+												id: "itemfilters:tag"
+												Count: 1b
+												tag: {
+													value: "forge:ores"
+												}
+											}
+											{
+												id: "itemfilters:mod"
+												Count: 1b
+												tag: {
+													value: "minecraft"
+												}
+											}
+										]
+									}
+								}
+								{
+									id: "minecraft:quartz"
+									Count: 1b
+								}
+								{
+									id: "minecraft:coal"
+									Count: 1b
+								}
+								{
+									id: "minecraft:redstone"
+									Count: 1b
+								}
+								{
+									id: "minecraft:lapis_lazuli"
+									Count: 1b
+								}
+								{
+									id: "minecraft:diamond"
+									Count: 1b
+								}
+								{
+									id: "minecraft:emerald"
+									Count: 1b
+								}
+							]
+						}
+					}
+				}
+				{
+					id: "00000000000000DD"
+					type: "item"
+					title: "{academy.ores.task2}"
+					item: {
+						id: "itemfilters:and"
+						Count: 1b
+						tag: {
+							items: [
+								{
+									id: "itemfilters:not"
+									Count: 1b
+									tag: {
+										items: [{
+											id: "itemfilters:mod"
+											Count: 1b
+											tag: {
+												value: "minecraft"
+											}
+										}]
+									}
+								}
+								{
+									id: "itemfilters:tag"
+									Count: 1b
+									tag: {
+										value: "forge:ores"
+									}
+								}
+							]
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "2B56F64C671DA52E"
+				type: "item"
+				item: {
+					id: "cyclic:charm_torch_cave"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			title: "{academy.claimchunk.title}"
+			icon: {
+				id: "ftbquests:custom_icon"
+				Count: 1b
+				tag: {
+					Icon: "ftbacademy:textures/chunks.png"
+				}
+			}
+			x: 0.0d
+			y: 2.5d
+			subtitle: "{academy.claimchunk.subtitle}"
+			description: [
+				"{academy.claimchunk.desc1}"
+				""
+				"{academy.claimchunk.desc2}"
+				""
+				"{academy.claimchunk.desc3}"
+				""
+				"{academy.claimchunk.desc4}"
+				""
+				"{academy.claimchunk.desc5}"
+			]
+			dependencies: ["0000000000000003"]
+			hide: true
+			min_width: 275
+			id: "0000000000000057"
+			tasks: [{
+				id: "27D97680C305B208"
+				type: "custom"
+				title: "认领一个区块！"
+				icon: {
+					id: "ftbquests:custom_icon"
+					Count: 1b
+					tag: {
+						Icon: "ftbacademy:textures/chunks.png"
+					}
+				}
+			}]
+		}
+		{
+			title: "{academy.backpacks.title}"
+			icon: {
+				id: "quark:backpack"
+				Count: 1b
+				tag: {
+					Inventory: [
+						{
+							id: "minecraft:air"
+							Count: 0b
+						}
+						{
+							id: "minecraft:air"
+							Count: 0b
+						}
+						{
+							id: "minecraft:air"
+							Count: 0b
+						}
+						{
+							id: "minecraft:air"
+							Count: 0b
+						}
+						{
+							id: "minecraft:air"
+							Count: 0b
+						}
+						{
+							id: "minecraft:air"
+							Count: 0b
+						}
+						{
+							id: "minecraft:air"
+							Count: 0b
+						}
+						{
+							id: "minecraft:air"
+							Count: 0b
+						}
+						{
+							id: "minecraft:air"
+							Count: 0b
+						}
+						{
+							id: "minecraft:air"
+							Count: 0b
+						}
+						{
+							id: "minecraft:air"
+							Count: 0b
+						}
+						{
+							id: "minecraft:air"
+							Count: 0b
+						}
+						{
+							id: "minecraft:air"
+							Count: 0b
+						}
+						{
+							id: "minecraft:air"
+							Count: 0b
+						}
+						{
+							id: "minecraft:air"
+							Count: 0b
+						}
+						{
+							id: "minecraft:air"
+							Count: 0b
+						}
+						{
+							id: "minecraft:air"
+							Count: 0b
+						}
+						{
+							id: "minecraft:air"
+							Count: 0b
+						}
+						{
+							id: "minecraft:air"
+							Count: 0b
+						}
+						{
+							id: "minecraft:air"
+							Count: 0b
+						}
+						{
+							id: "minecraft:air"
+							Count: 0b
+						}
+						{
+							id: "minecraft:air"
+							Count: 0b
+						}
+						{
+							id: "minecraft:air"
+							Count: 0b
+						}
+						{
+							id: "minecraft:air"
+							Count: 0b
+						}
+						{
+							id: "minecraft:air"
+							Count: 0b
+						}
+						{
+							id: "minecraft:air"
+							Count: 0b
+						}
+						{
+							id: "minecraft:air"
+							Count: 0b
+						}
+					]
+				}
+			}
+			x: 0.5d
+			y: 4.5d
+			subtitle: "{academy.backpacks.subtitle}"
+			description: [
+				"{academy.backpacks.desc1}"
+				""
+				"{academy.backpacks.desc2}"
+				""
+				"{academy.backpacks.desc3}"
+				""
+				"{academy.backpacks.desc4}"
+				""
+				"{academy.backpacks.desc5}"
+				""
+				"{academy.backpacks.desc6}"
+			]
+			hide_dependency_lines: true
+			dependencies: ["0000000000000003"]
+			hide: true
+			min_width: 300
+			id: "0000000000000059"
+			tasks: [{
+				id: "00000000000001AF"
+				type: "item"
+				title: "{academy.backpacks.task}"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								ForgeCaps: {
+									Parent: { }
+								}
+								id: "simplybackpacks:commonbackpack"
+								Count: 1b
+								tag: { }
+							}
+							{
+								ForgeCaps: {
+									Parent: { }
+								}
+								id: "simplybackpacks:uncommonbackpack"
+								Count: 1b
+								tag: { }
+							}
+							{
+								ForgeCaps: {
+									Parent: { }
+								}
+								id: "simplybackpacks:rarebackpack"
+								Count: 1b
+								tag: { }
+							}
+							{
+								ForgeCaps: {
+									Parent: { }
+								}
+								id: "simplybackpacks:epicbackpack"
+								Count: 1b
+								tag: { }
+							}
+							{
+								ForgeCaps: {
+									Parent: {
+										Size: 81
+										Items: [ ]
+									}
+								}
+								id: "cyclic:storage_bag"
+								Count: 1b
+								tag: { }
+							}
+							{
+								id: "quark:backpack"
+								Count: 1b
+								tag: {
+									Inventory: [
+										{ }
+										{ }
+										{ }
+										{ }
+										{ }
+										{ }
+										{ }
+										{ }
+										{ }
+										{ }
+										{ }
+										{ }
+										{ }
+										{ }
+										{ }
+										{ }
+										{ }
+										{ }
+										{ }
+										{ }
+										{ }
+										{ }
+										{ }
+										{ }
+										{ }
+										{ }
+										{ }
+									]
+								}
+							}
+							{
+								id: "refinedstorage:portable_grid"
+								Count: 1b
+								tag: { }
+							}
+							{
+								id: "industrialforegoing:infinity_backpack"
+								Count: 1b
+								tag: {
+									CanCharge: 1b
+									Special: 0b
+									Selected: "POOR"
+									Energy: 0L
+								}
+							}
+						]
+					}
+				}
+			}]
+		}
+		{
+			title: "{academy.naturescompass.title}"
+			x: -0.5d
+			y: 4.5d
+			subtitle: "{academy.naturescompass.subtitle}"
+			description: [
+				"{academy.naturescompass.desc1}"
+				""
+				"{academy.naturescompass.desc2}"
+			]
+			hide_dependency_lines: true
+			dependencies: ["0000000000000003"]
+			hide: true
+			min_width: 250
+			id: "000000000000005B"
+			tasks: [{
+				id: "000000000000005C"
+				type: "item"
+				item: {
+					id: "naturescompass:naturescompass"
+					Count: 1b
+					tag: { }
+				}
+			}]
+		}
+		{
+			title: "{academy.botpot.title}"
+			icon: "botanypots:botany_pot"
+			x: -1.0d
+			y: 3.5d
+			subtitle: "{academy.botpot.subtitle}"
+			description: [
+				"{academy.botpot.desc1}"
+				""
+				"{academy.botpot.desc2}"
+				""
+				"{academy.botpot.desc3}"
+				""
+				"{academy.botpot.desc4}"
+			]
+			hide_dependency_lines: true
+			dependencies: ["0000000000000003"]
+			hide: true
+			min_width: 275
+			id: "000000000000005D"
+			tasks: [
+				{
+					id: "000000000000005E"
+					type: "item"
+					title: "{academy.botpot.task1}"
+					item: {
+						id: "itemfilters:and"
+						Count: 1b
+						tag: {
+							items: [
+								{
+									id: "itemfilters:tag"
+									Count: 1b
+									tag: {
+										value: "botanypots:botany_pots"
+									}
+								}
+								{
+									id: "itemfilters:not"
+									Count: 1b
+									tag: {
+										items: [{
+											id: "itemfilters:tag"
+											Count: 1b
+											tag: {
+												value: "botanypots:hopper_botany_pots"
+											}
+										}]
+									}
+								}
+							]
+						}
+					}
+				}
+				{
+					id: "000000000000005F"
+					type: "item"
+					title: "{academy.botpot.task2}"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "botanypots:hopper_botany_pots"
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "00000000000000CA"
+				type: "loot"
+				table_id: 195L
+			}]
+		}
+		{
+			title: "{academy.ironchests.title}"
+			icon: "ironchest:iron_chest"
+			x: 0.0d
+			y: 3.5d
+			subtitle: "{academy.ironchests.subtitle}"
+			description: [
+				"{academy.ironchests.desc1}"
+				"{academy.ironchests.desc2}"
+				"{academy.ironchests.desc3}"
+				"{academy.ironchests.desc4}"
+				"{academy.ironchests.desc5}"
+				"{academy.ironchests.desc6}"
+				"{academy.ironchests.desc7}"
+				""
+				"{academy.ironchests.desc8}"
+			]
+			hide_dependency_lines: true
+			dependencies: ["0000000000000003"]
+			hide: true
+			min_width: 250
+			id: "0000000000000062"
+			tasks: [
+				{
+					id: "0000000000000064"
+					type: "item"
+					title: "{academy.ironchests.task1}"
+					item: {
+						id: "itemfilters:or"
+						Count: 1b
+						tag: {
+							items: [
+								{
+									id: "ironchest:copper_chest"
+									Count: 1b
+								}
+								{
+									id: "ironchest:iron_chest"
+									Count: 1b
+								}
+								{
+									id: "ironchest:silver_chest"
+									Count: 1b
+								}
+								{
+									id: "ironchest:gold_chest"
+									Count: 1b
+								}
+								{
+									id: "ironchest:diamond_chest"
+									Count: 1b
+								}
+								{
+									id: "ironchest:obsidian_chest"
+									Count: 1b
+								}
+								{
+									id: "ironchest:crystal_chest"
+									Count: 1b
+								}
+							]
+						}
+					}
+				}
+				{
+					id: "0000000000000065"
+					type: "item"
+					title: "{academy.ironchests.task2}"
+					item: {
+						id: "itemfilters:or"
+						Count: 1b
+						tag: {
+							items: [
+								{
+									id: "ironchest:wood_to_copper_chest_upgrade"
+									Count: 1b
+								}
+								{
+									id: "ironchest:wood_to_iron_chest_upgrade"
+									Count: 1b
+								}
+								{
+									id: "ironchest:copper_to_iron_chest_upgrade"
+									Count: 1b
+								}
+								{
+									id: "ironchest:copper_to_silver_chest_upgrade"
+									Count: 1b
+								}
+								{
+									id: "ironchest:silver_to_gold_chest_upgrade"
+									Count: 1b
+								}
+								{
+									id: "ironchest:iron_to_gold_chest_upgrade"
+									Count: 1b
+								}
+								{
+									id: "ironchest:gold_to_diamond_chest_upgrade"
+									Count: 1b
+								}
+								{
+									id: "ironchest:diamond_to_crystal_chest_upgrade"
+									Count: 1b
+								}
+								{
+									id: "ironchest:diamond_to_obsidian_chest_upgrade"
+									Count: 1b
+								}
+							]
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "0000000000000082"
+				type: "item"
+				item: "ironchest:dirt_chest"
+			}]
+		}
+		{
+			title: "{academy.drawers.title}"
+			icon: "storagedrawers:oak_full_drawers_1"
+			x: 1.0d
+			y: 2.5d
+			subtitle: "{academy.drawers.subtitle}"
+			description: [
+				"{academy.drawers.desc1}"
+				""
+				"{academy.drawers.desc2}"
+				""
+				"{academy.drawers.desc3}"
+				""
+				"{academy.drawers.desc4}"
+			]
+			hide_dependency_lines: true
+			dependencies: ["0000000000000003"]
+			hide: true
+			min_width: 275
+			id: "0000000000000066"
+			tasks: [
+				{
+					id: "0000000000000067"
+					type: "item"
+					title: "{academy.drawers.task}"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "storagedrawers:drawers"
+						}
+					}
+				}
+				{
+					id: "0000000000000068"
+					type: "item"
+					item: "storagedrawers:compacting_drawers_3"
+				}
+			]
+		}
+		{
+			title: "{academy.drawerups.title}"
+			icon: "storagedrawers:upgrade_template"
+			x: 1.75d
+			y: 2.25d
+			subtitle: "{academy.drawerups.subtitle}"
+			description: [
+				"{academy.drawerups.desc1}"
+				""
+				"{academy.drawerups.desc2}"
+				""
+				"{academy.drawerups.desc3}"
+				""
+				"{academy.drawerups.desc4}"
+				""
+				"{academy.drawerups.desc5}"
+				"{academy.drawerups.desc6}"
+				"{academy.drawerups.desc7}"
+			]
+			hide_dependency_lines: true
+			dependencies: ["0000000000000066"]
+			hide: true
+			size: 0.5d
+			min_width: 300
+			id: "0000000000000069"
+			tasks: [
+				{
+					id: "000000000000006A"
+					type: "item"
+					title: "{academy.drawerups.task1}"
+					item: {
+						id: "itemfilters:or"
+						Count: 1b
+						tag: {
+							items: [
+								{
+									id: "storagedrawers:obsidian_storage_upgrade"
+									Count: 1b
+								}
+								{
+									id: "storagedrawers:iron_storage_upgrade"
+									Count: 1b
+								}
+								{
+									id: "storagedrawers:gold_storage_upgrade"
+									Count: 1b
+								}
+								{
+									id: "storagedrawers:diamond_storage_upgrade"
+									Count: 1b
+								}
+								{
+									id: "storagedrawers:emerald_storage_upgrade"
+									Count: 1b
+								}
+								{
+									id: "storagedrawers:one_stack_upgrade"
+									Count: 1b
+								}
+							]
+						}
+					}
+				}
+				{
+					id: "000000000000006B"
+					type: "item"
+					title: "{academy.drawerups.task2}"
+					item: {
+						id: "itemfilters:or"
+						Count: 1b
+						tag: {
+							items: [
+								{
+									id: "storagedrawers:void_upgrade"
+									Count: 1b
+								}
+								{
+									id: "storagedrawers:illumination_upgrade"
+									Count: 1b
+								}
+								{
+									id: "storagedrawers:redstone_upgrade"
+									Count: 1b
+								}
+								{
+									id: "storagedrawers:min_redstone_upgrade"
+									Count: 1b
+								}
+								{
+									id: "storagedrawers:max_redstone_upgrade"
+									Count: 1b
+								}
+							]
+						}
+					}
+				}
+				{
+					id: "00000000000000A7"
+					type: "item"
+					title: "{academy.drawerups.task3}"
+					item: {
+						id: "itemfilters:or"
+						Count: 1b
+						tag: {
+							items: [
+								{
+									id: "storagedrawers:drawer_key"
+									Count: 1b
+								}
+								{
+									id: "storagedrawers:quantify_key"
+									Count: 1b
+								}
+							]
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "000000000000006F"
+				type: "item"
+				item: "storagedrawers:emerald_storage_upgrade"
+			}]
+		}
+		{
+			x: 1.75d
+			y: 2.75d
+			subtitle: "{academy.drawercontroller.subtitle}"
+			description: [
+				"{academy.drawercontroller.desc1}"
+				""
+				"{academy.drawercontroller.desc2}"
+				""
+				"{academy.drawercontroller.desc3}"
+				""
+				"{academy.drawercontroller.desc4}"
+				""
+				"{academy.drawercontroller.desc5}"
+			]
+			hide_dependency_lines: true
+			dependencies: ["0000000000000066"]
+			hide: true
+			size: 0.5d
+			min_width: 275
+			id: "000000000000006C"
+			tasks: [{
+				id: "000000000000006D"
+				type: "item"
+				item: "storagedrawers:controller"
+			}]
+			rewards: [{
+				id: "000000000000006E"
+				type: "item"
+				item: "storagedrawers:controller_slave"
+			}]
+		}
+		{
+			title: "{academy.jei.title}"
+			x: -1.0d
+			y: 2.5d
+			subtitle: "{academy.jei.subtitle}"
+			description: [
+				"{academy.jei.desc1}"
+				""
+				"{academy.jei.desc2}"
+				""
+				"{academy.jei.desc3}"
+				""
+				"{academy.jei.desc4}"
+				""
+				"{academy.jei.desc5}"
+				""
+				"{academy.jei.desc6}"
+			]
+			hide_dependency_lines: true
+			dependencies: ["0000000000000003"]
+			hide: true
+			min_width: 300
+			id: "00000000000000A8"
+			tasks: [{
+				id: "0000000000000188"
+				type: "item"
+				item: "kubejs:jei_certificate"
+			}]
+		}
+		{
+			title: "{academy.findme.title}"
+			icon: "minecraft:chest"
+			x: 1.0d
+			y: 3.5d
+			subtitle: "{academy.findme.subtitle}"
+			description: [
+				"{academy.findme.desc1}"
+				""
+				"{academy.findme.desc2}"
+			]
+			hide_dependency_lines: true
+			dependencies: ["0000000000000003"]
+			hide: true
+			min_width: 250
+			id: "00000000000000BD"
+			tasks: [{
+				id: "00000000000000BE"
+				type: "checkmark"
+			}]
+		}
+		{
+			title: "{academy.jei2.title}"
+			x: -1.75d
+			y: 2.5d
+			subtitle: "{academy.jei2.subtitle}"
+			description: [
+				"{academy.jei2.desc1}"
+				""
+				"{academy.jei2.desc2}"
+				""
+				"{academy.jei2.desc3part1} $ {academy.jei2.desc3part2} ${academy.jei2.desc3part3}"
+			]
+			dependencies: ["00000000000000A8"]
+			hide: true
+			size: 0.5d
+			id: "00000000000000C1"
+			tasks: [{
+				id: "00000000000000C2"
+				type: "checkmark"
+			}]
+		}
+		{
+			title: "{academy.spawnschool.title}"
+			icon: {
+				id: "botania:cosmetic_questgiver_mark"
+				Count: 1b
+				tag: { }
+			}
+			x: -3.0d
+			y: 0.75d
+			subtitle: "{academy.spawnschool.subtitle}"
+			description: [
+				"{academy.spawnschool.desc1}"
+				""
+				"{academy.spawnschool.desc2}"
+				""
+				"{academy.spawnschool.desc3}"
+			]
+			hide: true
+			size: 0.5d
+			optional: true
+			id: "5765EC5ACAC99915"
+			tasks: [{
+				id: "5513AF634204A9B4"
+				type: "checkmark"
+			}]
+		}
+	]
+}
