@@ -1,0 +1,2229 @@
+# AI 初翻，未人工校对
+{
+	autofocus_id: "5DA814E5350CF446"
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "the_base_depot"
+	group: "5432EAC98A4BC53A"
+	icon: {
+		Count: 1
+		id: "refurbished_furniture:red_sofa"
+		tag: { }
+	}
+	id: "3E65CAA19F8D880D"
+	order_index: 4
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["&6合成台&r可无法满足这豪华家具的需求。你需要一个&6工作台。&r你需要收集大量不同的材料来制作你想要的东西。幸运的是，&6工作台&r自带一个内置物品栏，可以让你将材料储存起来以备后用。然而，要使用&6工作台&r，你首先需要一种特殊的能源……"]
+			id: "64DDFEAF22A2E914"
+			shape: "gear"
+			subtitle: "不行。需要一个工作台！"
+			tasks: [{
+				id: "2B59855368BDB941"
+				item: "refurbished_furniture:workbench"
+				type: "item"
+			}]
+			title: "一个锯木厂？"
+			x: -2.5d
+			y: 0.5d
+		}
+		{
+			description: ["Mr.Crayfish's &lWrench &r是连接一切所需。首先，右键点击 &lGenerator 内部可见的橙色方块，将 &6Workbench &r连接到你的 &lGenerator &r上。 &r然后，右键点击 &6Workbench。 &r如果操作正确且发电机开启，恭喜你！你刚给你的第一件家具供电。随着家具增多，你可能会发现 &lGenerator &r的链接有限。但这不是问题，因为用电家具也可以连接多个设备。建议将所有设备连接到已知常开的物品上，如 &lCeiling Fan &r或灯。"]
+			id: "2C5A48E5F8F6E2B0"
+			shape: "gear"
+			subtitle: "“不！不！那是锤子！我想要的是扳手！”"
+			tasks: [{
+				id: "23CCC35F1910B09D"
+				item: "refurbished_furniture:wrench"
+				type: "item"
+			}]
+			title: "“这是一把扳手！”"
+			x: 1.5d
+			y: 0.5d
+		}
+		{
+			dependencies: [
+				"64DDFEAF22A2E914"
+				"2C5A48E5F8F6E2B0"
+				"3C3D9A5410304A5F"
+			]
+			description: ["等等。在开始制作所有家具之前，你首先需要 3 样东西：&6工作台、&r&l发电机和&r&l扳手。&r一旦你集齐了这 3 样东西并了解它们的使用方法，就可以开始改造你的庇护所，把它变成一个温馨的家。"]
+			icon: "mcwroofs:roofing_hammer"
+			id: "5DA814E5350CF446"
+			shape: "gear"
+			size: 3.0d
+			subtitle: "木工开始前需要知道的事情。"
+			tasks: [{
+				id: "372B1F0A6DA0D103"
+				title: "好的，我准备好了！"
+				type: "checkmark"
+			}]
+			title: "特殊家具制作的基础知识"
+			x: -0.5d
+			y: -2.0d
+		}
+		{
+			description: ["&l发电机&r将维持你的家具正常运行。无法使用其他类型的能源，所以这是家具的唯一动力来源。 &l发电机&r的运作方式与&8熔炉&r类似，通过燃烧&0燃料&r来产生能量，而非熔炼&7铁&r等。为了维持房屋运转而持续燃烧燃料，这看似繁琐，但如果你想自动化这一过程，可以请工程师通过AE2空间存储，利用一些&a物流运输机，接入稳定的废料供应。"]
+			id: "3C3D9A5410304A5F"
+			shape: "gear"
+			subtitle: "不过，你离得很近了，不是吗？"
+			tasks: [{
+				id: "2990C611E8436301"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "refurbished_furniture:dark_electricity_generator"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_electricity_generator"
+							}
+						]
+					}
+				}
+				title: "制作白色或黑色的发电机其中之一"
+				type: "item"
+			}]
+			title: "POWA- 等等，搞错模组了。"
+			x: -0.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["5DA814E5350CF446"]
+			icon: "createaddition:small_light_connector"
+			id: "0ACBF2B6A43A39FD"
+			subtitle: "火把已经是过去式了！"
+			tasks: [{
+				id: "27B3D9CE40AA91BB"
+				title: "要有光！"
+				type: "checkmark"
+			}]
+			title: "照明"
+			x: -6.5d
+			y: -6.5d
+		}
+		{
+			dependencies: ["5DA814E5350CF446"]
+			icon: "minecraft:oak_stairs"
+			id: "1DF07485012BB3CC"
+			subtitle: "在游戏里忙活一整天后，来一杯这个还是不错的。"
+			tasks: [{
+				id: "5F95BBEE12E9EEA1"
+				title: "拿去，拿一个吧！"
+				type: "checkmark"
+			}]
+			title: "座位"
+			x: 1.5d
+			y: -10.5d
+		}
+		{
+			dependencies: ["5DA814E5350CF446"]
+			icon: "minecraft:chest"
+			id: "58192A48988CD846"
+			subtitle: "把它藏起来，然后永远都别管它了！"
+			tasks: [{
+				id: "71D943C668045379"
+				title: "前方会有什么在等待着我们呢？"
+				type: "checkmark"
+			}]
+			title: "储物空间"
+			x: -2.5d
+			y: -10.5d
+		}
+		{
+			dependencies: ["5DA814E5350CF446"]
+			id: "07E77760AB5081E6"
+			subtitle: "其他3个分类里塞不下的东西都在这里了。"
+			tasks: [{
+				id: "1369C1AE730DAE4B"
+				title: "还有什么别的东西吗？"
+				type: "checkmark"
+			}]
+			title: "杂项任务"
+			x: 5.0d
+			y: -6.5d
+		}
+		{
+			dependencies: ["0ACBF2B6A43A39FD"]
+			description: ["&lLamps &r是一种基础又时尚的照明设备，最适合放在桌上。右键点击&lLamp &r也可以将其关闭。"]
+			id: "0408CEA1C824C7CF"
+			subtitle: "飞蛾磁铁！"
+			tasks: [{
+				id: "1DF7E0F7E25259A1"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "refurbished_furniture:gray_lamp"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:pink_lamp"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:lime_lamp"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:yellow_lamp"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_blue_lamp"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:magenta_lamp"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:orange_lamp"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:white_lamp"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_gray_lamp"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:cyan_lamp"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:purple_lamp"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:blue_lamp"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:brown_lamp"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:green_lamp"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:red_lamp"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:black_lamp"
+							}
+						]
+					}
+				}
+				title: "制作一盏你最喜欢的颜色的灯！"
+				type: "item"
+			}]
+			title: "L A M P"
+			x: -7.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["0ACBF2B6A43A39FD"]
+			description: ["&l吊扇&r是一种沉浸式的全动画风扇，通电后会旋转。右键点击时，中间的灯也会随之开启/关闭。尽管叫作&l&n吊&r&l扇，&r你可以把它放在任何方块的任何一侧。但请注意，扇叶接触时会造成少量伤害。"]
+			id: "1C278AF4BA039B08"
+			subtitle: "一圈又一圈，再一圈又一圈……"
+			tasks: [{
+				id: "67DF1BE727ED778B"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "refurbished_furniture:oak_light_ceiling_fan"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:spruce_light_ceiling_fan"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:birch_light_ceiling_fan"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:jungle_light_ceiling_fan"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:acacia_light_ceiling_fan"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:mangrove_light_ceiling_fan"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:cherry_light_ceiling_fan"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:crimson_light_ceiling_fan"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:warped_light_ceiling_fan"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:oak_dark_ceiling_fan"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:spruce_dark_ceiling_fan"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:birch_dark_ceiling_fan"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:jungle_dark_ceiling_fan"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:acacia_dark_ceiling_fan"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:dark_oak_dark_ceiling_fan"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:mangrove_dark_ceiling_fan"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:cherry_dark_ceiling_fan"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:crimson_dark_ceiling_fan"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:warped_dark_ceiling_fan"
+							}
+						]
+					}
+				}
+				title: "制作一个吊扇，祈祷它不要砸到你头上。"
+				type: "item"
+			}]
+			title: "很适合用来盯着看的东西！"
+			x: -8.5d
+			y: -5.5d
+		}
+		{
+			dependencies: ["0ACBF2B6A43A39FD"]
+			description: ["&l天花板灯&r是&6火把&r的现代版，可以放置在方块的任何一侧，且占用空间小。与其他光源一样，右键可切换灯光。"]
+			id: "15E4DD80B12BEEFA"
+			subtitle: "当你只需要基础内容的时候。"
+			tasks: [{
+				id: "76D2FC9A77210E9B"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_ceiling_light"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:dark_ceiling_light"
+							}
+						]
+					}
+				}
+				title: "制作一些天花板灯。"
+				type: "item"
+			}]
+			title: "简单又讨人喜欢"
+			x: -6.5d
+			y: -9.0d
+		}
+		{
+			dependencies: ["0ACBF2B6A43A39FD"]
+			description: ["&l电视&r能让你观看一些酷炫的动态画面。右键可以切换频道，如果你有&l遥控器，&r就能远程切换频道。"]
+			icon: "refurbished_furniture:television"
+			id: "7633E3C869F65401"
+			subtitle: "也许这会是一场不错的表演……"
+			tasks: [
+				{
+					id: "17F56E8F13FE0E2B"
+					item: "refurbished_furniture:television"
+					type: "item"
+				}
+				{
+					id: "22C967231B039EB6"
+					item: "refurbished_furniture:television_remote"
+					type: "item"
+				}
+			]
+			title: "还有什么别的东西在运行吗？"
+			x: -4.5d
+			y: -7.5d
+		}
+		{
+			dependencies: ["5DA814E5350CF446"]
+			description: ["&7计算机&r会记录所有连接到&l发电机&r的耗电设备。开启后，你可以手动开关家中的任何电器。最好把它放在你经常待的地方，比如卧室或客厅，以便随时使用。"]
+			id: "4FB676D709E7C81C"
+			shape: "gear"
+			size: 2.0d
+			subtitle: "什么样的应用程序能连接你的整栋房子！？"
+			tasks: [{
+				id: "00AD93672C0D2DCC"
+				item: "refurbished_furniture:computer"
+				type: "item"
+			}]
+			title: "头号头目"
+			x: -0.5d
+			y: -6.0d
+		}
+		{
+			dependencies: ["58192A48988CD846"]
+			description: ["&l冷饮瓶&r是一种色彩缤纷的容器，可以用来存放你所有喜爱的饮品。除此之外它没有其他用途，所以不妨制作一个来装饰吧。"]
+			id: "115C61B10CD29F0F"
+			subtitle: "而且它们还冰冰凉凉的，真舒服！"
+			tasks: [{
+				id: "423C19810C3B3572"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "refurbished_furniture:white_cooler"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:orange_cooler"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:magenta_cooler"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_blue_cooler"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:yellow_cooler"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:lime_cooler"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:pink_cooler"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:gray_cooler"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_gray_cooler"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:cyan_cooler"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:purple_cooler"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:blue_cooler"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:brown_cooler"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:green_cooler"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:red_cooler"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:black_cooler"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "喝下箱子中的东西！"
+			x: -4.0d
+			y: -9.75d
+		}
+		{
+			dependencies: ["58192A48988CD846"]
+			description: ["&l木箱&r是装饰性的&6箱子&r，不能通过放置另一个箱子在旁边来合并。最适合用于工业建筑或阁楼。"]
+			id: "5BA07E2CC4E5D0F4"
+			subtitle: "非常适合运输！"
+			tasks: [{
+				id: "7A2F55726480D444"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "refurbished_furniture:oak_crate"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:spruce_crate"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:birch_crate"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:jungle_crate"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:acacia_crate"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:dark_oak_crate"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:mangrove_crate"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:cherry_crate"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:crimson_crate"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:warped_crate"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "箱子创意！"
+			x: -4.0d
+			y: -10.75d
+		}
+		{
+			dependencies: ["58192A48988CD846"]
+			description: ["&1邮箱 &r是多人模式里超酷的功能！拥有邮箱就能收到礼物，还能收到专门发给你的消息哦！"]
+			id: "0EB4D0AFAA666E26"
+			subtitle: "“真想知道是谁寄来的……”"
+			tasks: [{
+				id: "2214822947C15CD7"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "refurbished_furniture:oak_mail_box"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:spruce_mail_box"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:birch_mail_box"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:jungle_mail_box"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:acacia_mail_box"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:dark_oak_mail_box"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:mangrove_mail_box"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:cherry_mail_box"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:crimson_mail_box"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:warped_mail_box"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "“我们刚收到一封信！”"
+			x: -3.5d
+			y: -11.75d
+		}
+		{
+			dependencies: ["58192A48988CD846"]
+			description: ["&lJARS！&r只需右键即可放入大量好东西，左键就能取出！你还能看到里面的物品，效果超棒！"]
+			id: "1EDBF1171BC42E00"
+			subtitle: "是的，还有任何你能塞进来的东西都可以！"
+			tasks: [{
+				id: "54652B789E1C18FF"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "refurbished_furniture:oak_storage_jar"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:spruce_storage_jar"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:birch_storage_jar"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:jungle_storage_jar"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:acacia_storage_jar"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:dark_oak_storage_jar"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:mangrove_storage_jar"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:cherry_storage_jar"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:crimson_storage_jar"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:warped_storage_jar"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "饼干！？"
+			x: -2.5d
+			y: -12.0d
+		}
+		{
+			dependencies: ["58192A48988CD846"]
+			description: ["&l储物柜&r有两种不同款式：一种用于日常，一种用于厨房用具。最好放在其他储物家具的上面。"]
+			id: "383A5EB61D4A3543"
+			subtitle: "比你想象的还要实用！"
+			tasks: [{
+				id: "27AB5B8DF1135BE9"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "refurbished_furniture:oak_storage_cabinet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:spruce_storage_cabinet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:birch_storage_cabinet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:jungle_storage_cabinet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:acacia_storage_cabinet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:dark_oak_storage_cabinet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:mangrove_storage_cabinet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:cherry_storage_cabinet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:crimson_storage_cabinet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:warped_storage_cabinet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:white_kitchen_storage_cabinet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:orange_kitchen_storage_cabinet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:magenta_kitchen_storage_cabinet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_blue_kitchen_storage_cabinet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:yellow_kitchen_storage_cabinet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:lime_kitchen_storage_cabinet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:pink_kitchen_storage_cabinet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:gray_kitchen_storage_cabinet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_gray_kitchen_storage_cabinet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:cyan_kitchen_storage_cabinet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:purple_kitchen_storage_cabinet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:blue_kitchen_storage_cabinet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:brown_kitchen_storage_cabinet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:green_kitchen_storage_cabinet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:red_kitchen_storage_cabinet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:black_kitchen_storage_cabinet"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "悬挂式箱子？"
+			x: -1.5d
+			y: -11.75d
+		}
+		{
+			dependencies: ["58192A48988CD846"]
+			description: ["与 &l储物柜不同，厨房抽屉 &r只有一种样式。不过，你可以用木材来制作顶部。最好放在 &r储物柜下方。"]
+			id: "6B58C772F8164B33"
+			subtitle: "在朋友家翻抽屉找餐具的尴尬感，真是没谁能比得上。"
+			tasks: [{
+				id: "21A204BF9106FF6C"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "refurbished_furniture:oak_kitchen_drawer"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:spruce_kitchen_drawer"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:birch_kitchen_drawer"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:jungle_kitchen_drawer"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:acacia_kitchen_drawer"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:dark_oak_kitchen_drawer"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:mangrove_kitchen_drawer"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:cherry_kitchen_drawer"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:crimson_kitchen_drawer"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:warped_kitchen_drawer"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:white_kitchen_drawer"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:orange_kitchen_drawer"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:magenta_kitchen_drawer"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_blue_kitchen_drawer"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:yellow_kitchen_drawer"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:lime_kitchen_drawer"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:pink_kitchen_drawer"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:gray_kitchen_drawer"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_gray_kitchen_drawer"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:cyan_kitchen_drawer"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:purple_kitchen_drawer"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:blue_kitchen_drawer"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:brown_kitchen_drawer"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:green_kitchen_drawer"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:red_kitchen_drawer"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:black_kitchen_drawer"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "到底是在哪个抽屉里来着？"
+			x: -1.0d
+			y: -10.75d
+		}
+		{
+			dependencies: ["1DF07485012BB3CC"]
+			description: ["&6木椅&r是最简单的座椅。虽然不如其他椅子舒适，但在劳累一天后，有它还是不错的。"]
+			id: "53B056E024D1F8F2"
+			subtitle: "嗯，还记得做那个任务吗？"
+			tasks: [{
+				id: "3D6C4165FF042F1B"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "refurbished_furniture:oak_chair"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:spruce_chair"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:birch_chair"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:jungle_chair"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:acacia_chair"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:dark_oak_chair"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:mangrove_chair"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:cherry_chair"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:crimson_chair"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:warped_chair"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "不再需要楼梯和告示牌了！"
+			x: 0.0d
+			y: -9.5d
+		}
+		{
+			dependencies: ["1DF07485012BB3CC"]
+			description: ["&l沙发&r由&l羊毛&r制成，颜色任你挑选。它们比&6木椅&r舒适得多，拥有柔软的质地和蓬松的靠垫。"]
+			id: "7E19F65381458EBC"
+			subtitle: "不知道坐垫之间有没有什么东西呢！"
+			tasks: [{
+				id: "7B760886CA57ACE2"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "refurbished_furniture:white_sofa"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:orange_sofa"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:magenta_sofa"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_blue_sofa"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:yellow_sofa"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:lime_sofa"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:pink_sofa"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:gray_sofa"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_gray_sofa"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:cyan_sofa"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:purple_sofa"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:blue_sofa"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:brown_sofa"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:green_sofa"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:red_sofa"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:black_sofa"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "非常适合用来闲逛放松！"
+			x: 0.0d
+			y: -11.5d
+		}
+		{
+			dependencies: ["1DF07485012BB3CC"]
+			description: ["&l凳子&r是更小、更矮、色彩缤纷的座位，与&l沙发很搭。 &r或者，它们也可以单独用于其他用途，如吧台和低桌。"]
+			id: "31A0D787E2BC0662"
+			subtitle: "人生中最棒的模组之一，不服来辩。"
+			tasks: [{
+				id: "5A54A759FEF2A6D3"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "refurbished_furniture:white_stool"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:orange_stool"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:magenta_stool"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_blue_stool"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:yellow_stool"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:lime_stool"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:pink_stool"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:gray_stool"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_gray_stool"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:cyan_stool"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:purple_stool"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:blue_stool"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:brown_stool"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:green_stool"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:red_stool"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:black_stool"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "脚踏板！Foot Rests!"
+			x: 3.0d
+			y: -11.5d
+		}
+		{
+			dependencies: ["1DF07485012BB3CC"]
+			description: ["&l马桶&r是浴室的主要设施。只需完成你的事，然后冲走！(免责声明：你实际上不能在这里拉屎或冲水，但可以往里面倒一桶水。)</c1>"]
+			id: "5E0A74972D975957"
+			subtitle: "……还有你身体里所有不好的东西都一起排出来！"
+			tasks: [{
+				id: "4322AB91F467CC00"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "refurbished_furniture:oak_toilet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:spruce_toilet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:birch_toilet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:jungle_toilet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:acacia_toilet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:dark_oak_toilet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:mangrove_toilet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:cherry_toilet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:crimson_toilet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:warped_toilet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:white_toilet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:orange_toilet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:magenta_toilet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_blue_toilet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:yellow_toilet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:lime_toilet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:pink_toilet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:gray_toilet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_gray_toilet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:cyan_toilet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:purple_toilet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:blue_toilet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:brown_toilet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:green_toilet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:red_toilet"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:black_toilet"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "把不好的气氛都冲走。"
+			x: 3.0d
+			y: -9.5d
+		}
+		{
+			dependencies: ["04B8A32E5D36D171"]
+			description: ["&l冰箱&r很适合用来储存肉类和冷冻食品等食物。下半部分还能无限制作&b冰块&r。只需在“燃料”栏位放入一块&b冰块&r，再在上面放一个水桶，你就能得到更多&b冰块！“燃料”栏位里的&b冰块&r也不会消耗，放一块进去，剩下的就留给自己用吧！"]
+			id: "043B9DD57496EBDB"
+			subtitle: "好。可不能让那些食物都变质了。"
+			tasks: [{
+				id: "0960E82165455E44"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_fridge"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:dark_fridge"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "你的冰箱（Refridgerator）在运行吗？"
+			x: 5.0d
+			y: -8.0d
+		}
+		{
+			dependencies: ["04B8A32E5D36D171"]
+			description: ["&l烤面包机&r能把切片面包烤成&6吐司&r。出于某种奇怪的原因，它还能烤奶酪，不过管他呢，能用就行。"]
+			id: "51DE2F0E5DD84202"
+			subtitle: "所有烤面包机都在烤面包！"
+			tasks: [{
+				id: "5BFEEBE48419D2DA"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_toaster"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:dark_toaster"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "你知道他们是怎么说的吗……"
+			x: 4.5d
+			y: -9.0d
+		}
+		{
+			dependencies: ["04B8A32E5D36D171"]
+			description: ["&l微波炉&r只有一个用处……就是把&6土豆&r变成&6烤土豆。 &r没错，这就是它唯一能做的……"]
+			id: "2300979266F06D0D"
+			subtitle: "*BEEP* MMMMMMM *BEEP* MMMMMMM *BEEP*"
+			tasks: [{
+				id: "74E6973F631AC060"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_microwave"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:dark_microwave"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"
+			x: 5.0d
+			y: -10.0d
+		}
+		{
+			dependencies: ["04B8A32E5D36D171"]
+			description: ["&l炉灶&r是此模组中烹饪所需的三种物品之一。接入电力后，可以开启炉灶，使其在顶部和内部产生热量。将特定物品放入烤箱，可以制作模组专属食物，或者将&l煎锅&r放在&l炉灶<c6>上，体验更慢节奏、更具沉浸感的桌面烹饪。"]
+			id: "7F7FEAD02C7A5A4E"
+			subtitle: "……至少它具备这个功能。"
+			tasks: [{
+				id: "3CA6E73AEDAF1686"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_stove"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:dark_stove"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "现在是真的烤箱了。"
+			x: 6.0d
+			y: -10.5d
+		}
+		{
+			dependencies: ["0ACBF2B6A43A39FD"]
+			description: ["&l抽油烟机&r会在正下方投射一些光线。除此之外没有其他用途，但能让厨房看起来更温馨。"]
+			id: "58B8C3291DC9D2E4"
+			subtitle: "以防万一你需要用！"
+			tasks: [{
+				id: "391CB1EE7120A14F"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_range_hood"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:dark_range_hood"
+							}
+						]
+					}
+				}
+				title: "制作一些抽油烟机。"
+				type: "item"
+			}]
+			title: "精准切割需要额外光线辅助。"
+			x: -8.5d
+			y: -8.0d
+		}
+		{
+			dependencies: ["07E77760AB5081E6"]
+			description: ["拨动&l电灯开关，&r所有相连的电子设备都会随之开启和关闭。不过，请确保只连接&l灯&r。可不想把烤面包机也关掉再打开，对吧？"]
+			id: "531AFA31EF678E88"
+			subtitle: "夜晚！白天！夜晚！白天！夜晚！白天！"
+			tasks: [{
+				id: "65AE373F8ED1B45C"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_lightswitch"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:dark_lightswitch"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "要有光！"
+			x: 3.0d
+			y: -6.5d
+		}
+		{
+			dependencies: ["2CF10B43FB1F49DE"]
+			description: ["&l门铃&r无需多言。把它们接好，确保人们能互动，这样才不会浪费！"]
+			id: "6DE2C9A88148621A"
+			subtitle: "你是谁？"
+			tasks: [{
+				id: "08B976A33181EEF1"
+				item: "refurbished_furniture:doorbell"
+				type: "item"
+			}]
+			title: "叮咚！"
+			x: 9.0d
+			y: -8.0d
+		}
+		{
+			dependencies: ["2CF10B43FB1F49DE"]
+			description: ["储物箱里的破烂多到烦？大扫除找不到岩浆池或仙人掌？直接扔进&l回收箱！&r启动电源，打开开关，然后走人！处理完成后，就能取出它从破烂中提取的经验值了！"]
+			id: "7E2701F58153F319"
+			subtitle: "当然还有……回收利用。"
+			tasks: [{
+				id: "5054470A63CFDB29"
+				item: "refurbished_furniture:recycle_bin"
+				type: "item"
+			}]
+			title: "减少使用，重复利用..."
+			x: 10.0d
+			y: -5.0d
+		}
+		{
+			dependencies: ["2CF10B43FB1F49DE"]
+			description: ["&6Door Mats &r是装饰品，可以用来欢迎客人、自己，甚至是闯入者。只需将它们放在前门（或后门）前，然后写上你想写的内容即可！"]
+			id: "62CABA9535A076AF"
+			subtitle: "比压力板好多了！"
+			tasks: [{
+				id: "674DB500E910D61C"
+				item: "refurbished_furniture:door_mat"
+				type: "item"
+			}]
+			title: "热烈的欢迎"
+			x: 11.0d
+			y: -8.0d
+		}
+		{
+			dependencies: ["2CF10B43FB1F49DE"]
+			description: [
+				"&l烤架&r的运作方式与其他烹饪方块略有不同。放入一些&0&n木炭，&r并且只能是&0&n木炭，&r将食物放在上面，然后拿起你的&l煎铲！&r如果不知道怎么用煎铲烹饪，请参阅&l煎铲&r任务。"
+				""
+				""
+				""
+				""
+				""
+				""
+				""
+				""
+				"  "
+				"{ \"text\": \"The quest in question.\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"06478B215AF035FB\" } }"
+			]
+			id: "2A1D9EDF2185EF75"
+			subtitle: "计划野餐吗？听起来很有趣！"
+			tasks: [{
+				id: "7F2E1D8A0B912647"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "refurbished_furniture:white_grill"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:orange_grill"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:magenta_grill"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_blue_grill"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:yellow_grill"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:lime_grill"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:pink_grill"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:gray_grill"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_gray_grill"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:cyan_grill"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:purple_grill"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:blue_grill"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:brown_grill"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:green_grill"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:red_grill"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:black_grill"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "亲吻厨师！Kiss the Cook!"
+			x: 11.0d
+			y: -6.0d
+		}
+		{
+			dependencies: ["2CF10B43FB1F49DE"]
+			description: ["&l蹦床&r太棒了！站在上面按住跳跃键就能飞得超级高！蹲下可以完全停止弹跳，确保安全着陆。"]
+			id: "765F07F31F6A02EE"
+			subtitle: "史莱姆方块是谁？WHO？"
+			tasks: [{
+				id: "77D4EC4CE2AD9D48"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "refurbished_furniture:white_trampoline"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:orange_trampoline"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:magenta_trampoline"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_blue_trampoline"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:yellow_trampoline"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:lime_trampoline"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:pink_trampoline"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:gray_trampoline"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_gray_trampoline"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:cyan_trampoline"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:purple_trampoline"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:blue_trampoline"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:brown_trampoline"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:green_trampoline"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:red_trampoline"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:black_trampoline"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "轰隆隆隆隆隆隆！"
+			x: 9.0d
+			y: -6.0d
+		}
+		{
+			dependencies: ["04B8A32E5D36D171"]
+			description: ["&6砧板&r因食谱较少且差异不大，常被&l农夫之乐&r变种所掩盖。不过，偶尔需要此模组的食谱或要切一些专属物品时，有它还是很方便的..."]
+			id: "3A75A2FFA4152D0C"
+			subtitle: "还是用 Farmer's Delight 里的那个比较好。"
+			tasks: [{
+				id: "5AFF10E1AED18DC9"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "refurbished_furniture:oak_cutting_board"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:spruce_cutting_board"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:birch_cutting_board"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:jungle_cutting_board"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:acacia_cutting_board"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:dark_oak_cutting_board"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:mangrove_cutting_board"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:cherry_cutting_board"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:crimson_cutting_board"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:warped_cutting_board"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "有点怪怪的，不太寻常的玩意儿……"
+			x: 6.0d
+			y: -7.5d
+		}
+		{
+			dependencies: ["04B8A32E5D36D171"]
+			description: ["&l锅铲&r是此模组烹饪所需的三种物品之一。当食物上的“汁水”消失时，右键煎锅翻面。食物熟后，再次用&l锅铲&r右键煎锅即可取出。"]
+			id: "06478B215AF035FB"
+			subtitle: "“煎肉饼！煎——糟了！糟了！”"
+			tasks: [{
+				id: "72BD642CA528ABF1"
+				item: {
+					Count: 1
+					id: "refurbished_furniture:spatula"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "烹饪肉饼！烹饪-烹饪-肉饼！"
+			x: 7.5d
+			y: -9.0d
+		}
+		{
+			dependencies: ["04B8A32E5D36D171"]
+			description: ["&l煎锅&r是此模组中烹饪所需的物品之一。只需将其放置在&l炉灶&r上即可！使用前请务必打开&l炉灶&r，使用后也别忘了关掉！"]
+			id: "7D8970F9446F28E8"
+			subtitle: "0/10，没有 B O N K"
+			tasks: [{
+				id: "1EC7FDFAFF1D9ACF"
+				item: "refurbished_furniture:frying_pan"
+				type: "item"
+			}]
+			title: "需要一个分配器——啊啊啊啊……"
+			x: 7.0d
+			y: -10.0d
+		}
+		{
+			dependencies: ["04B8A32E5D36D171"]
+			description: ["&l盘子&r可以放在方块上用来放置物品，甚至非食物类的物品！它们有点像&l物品展示框，&r但谁想从里面吃东西呢？"]
+			id: "4BBFC68F1BE07383"
+			subtitle: "因为每个人都值得在干净的地方享用美食！"
+			tasks: [{
+				id: "4AE60D411B73F59C"
+				item: "refurbished_furniture:plate"
+				type: "item"
+			}]
+			title: "活该你倒霉！"
+			x: 7.0d
+			y: -8.0d
+		}
+		{
+			dependencies: ["2CF10B43FB1F49DE"]
+			description: ["&1邮箱&r是邮政服务和整个投递系统的核心。打开邮箱，你就能访问世界中所有已放置的&1邮箱&r。点击你想送信的对象，然后开始输入。遗憾的是，你必须附上一份礼物才能发送信息，所以如果没有特别想送的礼物，只需放入一张&l纸&r即可。"]
+			id: "7157B07C5C5F0F71"
+			subtitle: "Draconic Machinations 邮政服务"
+			tasks: [{
+				id: "705B8E0E7BC71F8A"
+				item: "refurbished_furniture:post_box"
+				type: "item"
+			}]
+			title: "D.M.P.S"
+			x: 10.0d
+			y: -9.0d
+		}
+		{
+			dependencies: ["072D76E828D90B80"]
+			description: ["&l厨房水槽&r能装下的&9水&r和&l浴缸一样多，&r挺意外的。不过，它们不能通过水龙头无限生成&9水&r，所以比浴缸弱。显然，最适合放在厨房的台面上。"]
+			id: "1CD55D0EDC1AB191"
+			subtitle: "是啊，用老办法洗碗吧，懒骨头。"
+			tasks: [{
+				id: "0C411E9C3768316B"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "refurbished_furniture:oak_kitchen_sink"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:spruce_kitchen_sink"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:birch_kitchen_sink"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:jungle_kitchen_sink"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:acacia_kitchen_sink"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:dark_oak_kitchen_sink"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:mangrove_kitchen_sink"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:cherry_kitchen_sink"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:crimson_kitchen_sink"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:warped_kitchen_sink"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:white_kitchen_sink"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:orange_kitchen_sink"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:magenta_kitchen_sink"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_blue_kitchen_sink"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:yellow_kitchen_sink"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:lime_kitchen_sink"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:pink_kitchen_sink"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:gray_kitchen_sink"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_gray_kitchen_sink"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:cyan_kitchen_sink"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:purple_kitchen_sink"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:blue_kitchen_sink"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:brown_kitchen_sink"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:green_kitchen_sink"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:red_kitchen_sink"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:black_kitchen_sink"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "这可不是洗碗机……"
+			x: 6.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["072D76E828D90B80"]
+			description: ["&lBasins &r和&lBathtubs &r一样，可以无限储存&9Water。 &r不过，&lBasins &r一次只能装一桶水。这种水槽通常用于浴室洗手。"]
+			id: "31EB14FC26F9AE95"
+			subtitle: "去做吧。"
+			tasks: [{
+				id: "48AAA2033346B2E4"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "refurbished_furniture:oak_basin"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:spruce_basin"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:birch_basin"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:jungle_basin"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:acacia_basin"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:dark_oak_basin"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:mangrove_basin"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:cherry_basin"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:crimson_basin"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:warped_basin"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:white_basin"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:orange_basin"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:magenta_basin"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_blue_basin"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:yellow_basin"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:lime_basin"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:pink_basin"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:gray_basin"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_gray_basin"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:cyan_basin"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:purple_basin"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:blue_basin"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:brown_basin"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:green_basin"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:red_basin"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:black_basin"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "洗洗你他妈的手去。"
+			x: 8.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["072D76E828D90B80"]
+			description: ["&l浴缸&r的盖子可能只有一种颜色，但外壳多种多样！右键点击可向浴缸中添加1桶水。除了用桶舀走之外，没有其他方法可以去除水，这使得这个&l浴缸&r变成了一个&9无限水源。"]
+			id: "748D1E3C30344FAF"
+			subtitle: "按照刻板印象的说法是这样的。"
+			tasks: [{
+				id: "590C5AD143793ACC"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "refurbished_furniture:oak_bath"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:spruce_bath"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:birch_bath"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:jungle_bath"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:acacia_bath"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:dark_oak_bath"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:mangrove_bath"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:cherry_bath"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:crimson_bath"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:warped_bath"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:white_bath"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:orange_bath"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:magenta_bath"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_blue_bath"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:yellow_bath"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:lime_bath"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:pink_bath"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:gray_bath"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:light_gray_bath"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:cyan_bath"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:purple_bath"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:blue_bath"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:brown_bath"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:green_bath"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:red_bath"
+							}
+							{
+								Count: 1b
+								id: "refurbished_furniture:black_bath"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "游戏玩家的噩梦中最可怕的噩梦"
+			x: 8.5d
+			y: -4.5d
+		}
+		{
+			dependencies: ["07E77760AB5081E6"]
+			icon: {
+				Count: 1
+				id: "refurbished_furniture:knife"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "04B8A32E5D36D171"
+			subtitle: "……长得不错嘛？"
+			tasks: [{
+				id: "76E8872C6DF37FAB"
+				title: "...ew."
+				type: "checkmark"
+			}]
+			title: "在煮什么呢..."
+			x: 6.0d
+			y: -9.0d
+		}
+		{
+			dependencies: ["07E77760AB5081E6"]
+			icon: {
+				Count: 1
+				id: "minecraft:oak_sapling"
+				tag: { }
+			}
+			id: "2CF10B43FB1F49DE"
+			subtitle: "广阔的户外世界！"
+			tasks: [{
+				id: "2003FC887CD1A8A3"
+				title: "出来透透气新鲜空气吧！"
+				type: "checkmark"
+			}]
+			title: "是时候去外面看看了！"
+			x: 10.0d
+			y: -7.0d
+		}
+		{
+			dependencies: ["07E77760AB5081E6"]
+			icon: "create:fluid_pipe"
+			id: "072D76E828D90B80"
+			subtitle: "这就是游戏！"
+			tasks: [{
+				id: "78DCEB34F3013D66"
+				title: "勇敢的跳入水中吧！"
+				type: "checkmark"
+			}]
+			title: "管道工程"
+			x: 7.0d
+			y: -4.5d
+		}
+	]
+	subtitle: ["把你的基地变成一个家吧。"]
+	title: "基础物资库"
+}
