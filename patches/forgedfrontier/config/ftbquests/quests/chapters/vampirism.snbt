@@ -1,0 +1,281 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "vampirism"
+	group: "708AB93DA08BB5C6"
+	icon: "vampirism:vampire_fang"
+	id: "51591F186E7B3F42"
+	images: [{
+		height: 1.0d
+		image: "vampirism:textures/actions/vampire_rage.png"
+		rotation: 0.0d
+		width: 1.0d
+		x: 1.5d
+		y: -2.0d
+	}]
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"成为吸血鬼——用吸血鬼獠牙放弃你的理智。"
+				"步骤："
+				"1)获得吸血鬼獠牙。"
+				"2)右键点击以使用它。"
+				"3)存活20分钟，不要死亡——让转化过程完成。"
+			]
+			id: "1FF70CF2122D390D"
+			tasks: [{
+				advancement: "vampirism:vampire/become_vampire"
+				criterion: ""
+				icon: "vampirism:vampire_fang"
+				id: "3F1C6B75F448C1DA"
+				title: "成为一名吸血鬼"
+				type: "advancement"
+			}]
+			x: 0.5d
+			y: 0.0d
+		}
+		{
+			description: [
+				"成为吸血鬼猎人——系好安全带，坐上注射椅，注射大蒜针剂。"
+				"步骤："
+				"1)合成大蒜注射剂。"
+				"2)手持大蒜注射器，右键点击注射椅。"
+			]
+			id: "45968765D20C9AF6"
+			tasks: [{
+				advancement: "vampirism:hunter/become_hunter"
+				criterion: ""
+				icon: "vampirism:item_garlic"
+				id: "4DF9547D3DA19D9F"
+				title: "成为一名猎人"
+				type: "advancement"
+			}]
+			x: -1.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["45968765D20C9AF6"]
+			description: ["收集10瓶吸血鬼血，然后与吸血鬼猎人交易以提升你的等级。"]
+			id: "0912FCDB51504E8C"
+			rewards: [
+				{
+					id: "02273FCEC0DBA00D"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "30DD49A8ABC12990"
+					item: "vampirism:hunter_intel_0"
+					type: "item"
+				}
+			]
+			tasks: [{
+				count: 10L
+				id: "3D5FC6C0AD229FF3"
+				item: "vampirism:vampire_blood_bottle"
+				type: "item"
+			}]
+			title: "吸血鬼血液"
+			x: -2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0912FCDB51504E8C"]
+			description: ["与猎人训练师一同达到最高猎人等级。"]
+			id: "50FB2816710A7C12"
+			rewards: [{
+				id: "630BE0357E9AE49C"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			tasks: [{
+				advancement: "vampirism:hunter/max_level"
+				criterion: ""
+				id: "381313F9975F9726"
+				title: "最高等级"
+				type: "advancement"
+			}]
+			title: "最大等级"
+			x: -4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["45968765D20C9AF6"]
+			description: ["在成为猎人之后，去猎杀另一个猎人。"]
+			id: "5271243646335FEE"
+			rewards: [{
+				id: "1ECD43806D93DFB4"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "vampirism:hunter/betrayal"
+				criterion: ""
+				id: "3696622CA6D9A5D2"
+				title: "食人行为"
+				type: "advancement"
+			}]
+			title: "Omicide"
+			x: -2.5d
+			y: -1.5d
+		}
+		{
+			dependencies: [
+				"1FF70CF2122D390D"
+				"45968765D20C9AF6"
+			]
+			dependency_requirement: "one_completed"
+			description: ["杀死一个吸血鬼男爵。"]
+			id: "1213BF69056D8699"
+			rewards: [{
+				id: "7F1219A066043BBA"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			tasks: [{
+				advancement: "vampirism:main/regicide"
+				criterion: ""
+				id: "3B17BAAABBA76425"
+				title: "一个男爵（Un barone）"
+				type: "advancement"
+			}]
+			title: "男爵"
+			x: -0.5d
+			y: -2.5d
+		}
+		{
+			dependencies: [
+				"45968765D20C9AF6"
+				"1FF70CF2122D390D"
+			]
+			dependency_requirement: "one_completed"
+			description: ["找到了吸血鬼日记。"]
+			id: "453B47D22FC6B64A"
+			rewards: [{
+				id: "0AD6AF36EF437848"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "vampirism:main/ancient_knowledge"
+				criterion: ""
+				id: "0F8B5C2203F3A839"
+				title: "吸血鬼日记 (Vampire Diary)"
+				type: "advancement"
+			}]
+			title: "吸血鬼日记"
+			x: 0.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["1FF70CF2122D390D"]
+			description: [
+				"步骤："
+				"放置灵感祭坛。"
+				"用所需的祭品右键点击祭坛，完成第一个仪式。"
+				"用剩下的祭品重复此过程三次。"
+				"第四次仪式结束后，转化将完成。"
+			]
+			id: "4CE2785ECF238591"
+			rewards: [{
+				id: "58A32548E3B39AC2"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				icon: "vampirism:altar_inspiration"
+				id: "0DE9D7EEA56FFEEC"
+				stat: "vampirism:altar_of_inspiration_rituals_performed"
+				title: "最初的仪式"
+				type: "stat"
+				value: 4
+			}]
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["4CE2785ECF238591"]
+			description: ["在灌注祭坛上执行第一个仪式。"]
+			id: "65456B9CFD488028"
+			rewards: [{
+				id: "55D5B1A33EF8A91A"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				advancement: "vampirism:vampire/blood_cult"
+				criterion: ""
+				id: "3F26EF71F025688D"
+				title: "血之崇拜"
+				type: "advancement"
+			}]
+			title: "血之崇拜者团体"
+			x: 3.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["65456B9CFD488028"]
+			description: ["记录吸血鬼的最高等级。"]
+			id: "2A427E7B0DF6FF54"
+			rewards: [{
+				id: "002011265D7F1991"
+				type: "xp"
+				xp: 150
+			}]
+			tasks: [{
+				advancement: "vampirism:vampire/max_level"
+				criterion: ""
+				id: "607E2991E9E42059"
+				title: "最高等级"
+				type: "advancement"
+			}]
+			title: "最大等级"
+			x: 5.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["2A427E7B0DF6FF54"]
+			description: ["登上吸血鬼贵族之巅。首先与村庄里的吸血鬼代表交谈。"]
+			id: "22A11F26ED89E84A"
+			rewards: [{
+				id: "1FB5D69A00FB8D09"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			tasks: [{
+				advancement: "vampirism:vampire/max_lord"
+				criterion: ""
+				id: "0A6D4D3F9843EABE"
+				title: "真正的至高力量"
+				type: "advancement"
+			}]
+			title: "吸血鬼领主"
+			x: 6.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["50FB2816710A7C12"]
+			description: ["达到最高猎人领主等级——先与村庄里的猎人代表交谈。"]
+			id: "54A8227CFCE463A6"
+			rewards: [{
+				id: "4D65AF2C86FB3603"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			tasks: [{
+				advancement: "vampirism:hunter/max_lord"
+				criterion: ""
+				id: "2DAA2BFC760A3C42"
+				title: "猎人中的猎人"
+				type: "advancement"
+			}]
+			title: "猎人中的猎人"
+			x: -5.5d
+			y: 0.0d
+		}
+	]
+	title: "&c&l吸血鬼主义"
+}
