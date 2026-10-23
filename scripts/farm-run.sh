@@ -30,6 +30,14 @@ PUSH_EVERY=${PUSH_EVERY:-20}
 PUSH_MINUTES=${PUSH_MINUTES:-20}
 MAX_RESTARTS=${MAX_RESTARTS:-5}
 BACKOFF=${BACKOFF:-60}
+# 每批交给 translate-local 的包数上限（0 = 不限）。
+# 为什么必须有：`refresh_code` 只在**两批之间**生效，一个进程跑 100~198 包要几小时，
+# 期间 main 上的脚本更新永远进不来 —— 2026-10-23 的版本溯源特性 09:24 上线，
+# 08:11 之前起的进程全程用旧代码，一次都没写出 `.source.json`。
+# 25 包 ≈ 十几分钟一批：用「频繁短暂停」换「代码最长滞后一批」。
+FARM_BATCH_LIMIT=${FARM_BATCH_LIMIT:-25}
+# 连续多少批「已完成」数不涨就停机等人工（见主循环里的自旋防护）。
+STAGNANT_LIMIT=${STAGNANT_LIMIT:-3}
 
 cd "$REPO_DIR" || { echo "找不到仓库目录 $REPO_DIR" >&2; exit 1; }
 
@@ -74,6 +82,9 @@ if [ ! -f "$SLUG_FILE" ]; then
 fi
 
 restarts=0
+# 分批循环的进度指针：上一批「已完成 N 个」与连续未增长批次计数。
+done_prev=
+stagnant=0
 
 # ---- 每轮开跑前把「代码」刷新到 main，但**不碰产物路径** ----
 # 为什么必须刷新：farm 分支是从某一刻的 main 切出来的，之后 main 上的脚本修复
@@ -94,6 +105,13 @@ refresh_code() {
   fi
 }
 
+# ---- 主循环：分批跑，每批之间刷新代码 ----
+# 循环语义（rc=0 不再等于「不再重启」）：
+#   1) 每批传入 `--limit $FARM_BATCH_LIMIT`，进程跑完这一批就正常退出；
+#   2) rc=0 且本批日志最后一条是「本次处理 0 个」→ 真的做完了，break；
+#   3) rc=0 但还有待处理 → 回到循环顶部：查停止文件 → refresh_code → 下一批。
+# 判定「待处理 0」只能看**本次进程刚写的行**：上一轮的「本次处理 0 个」还躺在日志里，
+# 直接 tail 全文会把它当成本批的结果，于是第一批就跑完就误判「全部完成」而停机。
 while :; do
   if [ -f "$STOP_FILE" ]; then
     echo "发现 $STOP_FILE，停止重启" >&2
@@ -102,24 +120,56 @@ while :; do
 
   refresh_code
 
+  # 本批的日志起点（行号）。下面只用「起点之后」的行判断本批进度。
+  log_start=$(wc -l < "$LOG" 2>/dev/null | tr -d ' \t')
+  [ -n "$log_start" ] || log_start=0
+
   # nohup + & 再 wait：让 node 脱离当前会话（ssh 断开不跟着死），同时保留退出码。
   nohup node scripts/translate-local.mjs \
     --farm \
     --branch "farm/$HOST" \
     --slug-file "$SLUG_FILE" \
     --lanes "$LANES" \
+    --limit "$FARM_BATCH_LIMIT" \
     --push-every "$PUSH_EVERY" \
     --push-minutes "$PUSH_MINUTES" \
     >> "$LOG" 2>&1 &
   pid=$!
-  echo "$(date '+%Y-%m-%d %H:%M:%S') 启动 pid=$pid host=$HOST 日志=$LOG" >> "$LOG"
+  echo "$(date '+%Y-%m-%d %H:%M:%S') 启动 pid=$pid host=$HOST batch-limit=$FARM_BATCH_LIMIT 日志=$LOG" >> "$LOG"
   wait "$pid"
   rc=$?
 
+  # 本批最后一条进度行（translate-local 启动时打「…本次处理 K 个…」）。
+  # 只在本批新增区间里找，避免把上一轮的残留行当成这一轮的结果。
+  batch_tail=$(tail -n "+$((log_start + 1))" "$LOG" 2>/dev/null | grep '本次处理' | tail -n 1)
+  drained=0
+  case "$batch_tail" in
+    *"本次处理 0 个"*) drained=1 ;;
+  esac
+
   case "$rc" in
     0)
-      echo "正常结束（rc=0），不再重启" >> "$LOG"
-      break
+      if [ "$drained" -eq 1 ]; then
+        echo "本批 rc=0 且待处理 0 个（分片清单已清空），全部完成，退出" >> "$LOG"
+        break
+      fi
+      # 本批跑完但还有活：刷新代码后继续 —— rc=0 是「该换新代码了」，不是「收工」。
+      #
+      # 自旋防护：待处理队列里「失败但未 done」的包不会被移出（`pendingWorklist` 只看 done），
+      # 若队头这批每次都失败，就会以「30s 一批」的速度无限重试同一批，空烧 API 与日志。
+      # 用启动行里的「已完成 N 个」当进度指针：连续几批都不涨就停下来等人看。
+      done_now=$(printf '%s\n' "$batch_tail" | sed -n 's/.*已完成 \([0-9][0-9]*\) 个.*/\1/p')
+      if [ -n "$done_now" ] && [ "$done_now" = "${done_prev:-}" ]; then
+        stagnant=$((stagnant + 1))
+      else
+        stagnant=0
+      fi
+      if [ -n "$done_now" ]; then done_prev=$done_now; fi
+      if [ "$stagnant" -ge "$STAGNANT_LIMIT" ]; then
+        echo "连续 $STAGNANT_LIMIT 批「已完成」数没涨（最后已完成=$done_now），停下来人工排查。看 $LOG" >> "$LOG"
+        break
+      fi
+      echo "本批跑完（rc=0，limit=$FARM_BATCH_LIMIT，已完成=$done_now），刷新代码后继续下一批" >> "$LOG"
       ;;
     3|4)
       # 3 = 推送失败，4 = 磁盘不足。这两种都必须有人看一眼：
