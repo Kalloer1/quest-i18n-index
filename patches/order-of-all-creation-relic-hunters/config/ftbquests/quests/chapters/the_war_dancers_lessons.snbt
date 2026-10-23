@@ -31,14 +31,14 @@
 			description: [
 				"在&6Project: War Dance&r中，&aposture是一个量化战斗者站立稳定性的属性。&r它&a显示为经验条类似的绿色计量条，出现在快捷栏上方。同时，屏幕顶部也会显示你当前注视的敌人的posture。&r"
 				"{image:wardance:textures/quest/posture_bars.png width:600 height:300 align:1}"
-				"&a生物的姿态由其整体宽度和高度决定，并额外受钻石级护甲值（1格护甲）的影响&r。因此，双足僵尸的姿态可能与你相仿，而体型更大的铁傀儡则需要更多次攻击才会被击退。玩家天生拥有稍高的姿态值，但该值仍会因趴下或潜行等体型变化而调整。"
+				"&a生物的姿态取决于其整体宽度和高度，并额外受钻石级护甲值（1格护甲）的影响&r。因此，双足僵尸的姿态可能与你相仿，而体型更大的铁傀儡则需要更多次攻击才会被击退。玩家天生拥有稍高的姿态值，但该值仍会因趴下或潜行等体型变化而调整。"
 				""
 				""
 				"&a受到攻击或被格挡攻击时，姿态会降低。&r &4当它为空时，你会进入&l\"踉跄\"&r&4并被定身。&r"
 				""
-				"&a在短暂未受到姿态伤害后，姿态会开始迅速恢复。&r护甲值越高，所需时间越长。姿态恢复速度还会&4因手部冷却百分比而减慢&r，例如：武器挥砍后冷却一半时，姿态恢复会减慢50%。 &4当生命值接近0时，该减速效果会再降低最多75%&r，导致生命值越低越难以维持姿态。"
+				"&a在短暂未受到姿态伤害后，姿态会开始迅速恢复。&r护甲值越高，所需时间越长。姿态恢复速度还会&4因手部冷却百分比而减慢&r，例如：武器挥砍后冷却一半时，姿态恢复会减慢50%。 &4当生命值接近0时，该减速效果会再降低最多75%&r，导致生命值越低越难以维持。"
 				""
-				"&a单次战斗中，战斗者单次受到的架势伤害&r &o-除非由特殊行动以特殊方式造成-&r &a不能超过其最大值的40%&r，以防止被压倒性攻击瞬间击退。绕过此上限的伤害被标记为&a真实架势伤害&r。"
+				"&a单次攻击中战斗者受到的架势伤害&r &o-除非由特殊行动的特殊方式造成-&r &a不能超过其最大值的40%&r，以防止被压倒性攻击瞬间击退。绕过此上限的伤害被标记为&a真实架势伤害&r。"
 			]
 			dependencies: ["747B0ACA0C4C8204"]
 			min_width: 600
@@ -143,7 +143,7 @@
 				""
 				"&aWeapons, tools, and shields, when moused over in your inventory, show additional stats&r. &6Posture per attack&r &ais the amount of posture damage the weapon deals on hit&r, whether parried or not. &6Defense posture multiplier&r &ais the multiplier for how much posture damage is taken when parrying with the weapon or shield&r."
 				"{image:wardance:textures/quest/stat_example.png width:250 height:200 align:1}"
-				"例如，防御力为1的&a剑会承受正常的架势伤害&r。而防御力为2.0的&a匕首，若用于招架，则会被击中时承受双倍架势伤害&r（导致更强大的击退和更长的冷却时间），但不得超过单次受击最大架势伤害的40%。&4正在挥舞冷却中的武器无法招架&r，&a若有多把武器能招架，防御值最高的武器会优先招架&r。"
+				"例如，防御力为1的&a剑会承受正常的架势伤害&r。而防御力为2.0的&a匕首，若用于招架，则会被击中时承受双倍架势伤害&r（导致更强大的击退和更长的冷却时间），但最高不超过被击中时所受最大架势伤害的40%。 &4正在因挥舞而冷却的武器无法招架&r，&a并且防御值最高的武器在有能力招架时会优先招架&r。"
 				""
 				"&4格挡过多攻击导致架势耗尽，防御者将被击退&r。使对手击退的最后一下攻击将无视格挡并造成伤害。"
 			]
@@ -162,7 +162,7 @@
 			}]
 		}
 		{
-			title: "潜行：警觉性 (Stealth: Awareness)"
+			title: "潜行：警觉性（Stealth: Awareness）"
 			x: -3.0d
 			y: -6.0d
 			subtitle: "MaByE 那根本就不是什么大事"
@@ -202,10 +202,10 @@
 				"&6[吸收]&r：通常见于轻型或软质盔甲，或含量较少的金属中。 &a吸收会减少所受攻击的伤害，减少量等于你的总&r。"
 				" &a&oFor exmaple, Leather armor has a total of 1.6 absorption, which results in you taking 1.6 less points of damage from each attack&r. Absorption is effective as reducing smaller more rapid attacks rather than heavy blows. &aThis is done after overall armor damage reduction occurs&r."
 				""
-				"&6Deflection&r：通常出现在金属或镀层护甲上。 &aDeflection 会根据总防御值，在你周围增加一个基于护甲的额外招架范围。"
-				"&a通常，你可以向任一方向偏转60度，形成120度的正面锥形防御区。总共60度的偏转，即最大值，会在两侧各增加60度的窗口，由盔甲覆盖，使你能偏转最多240度。&r 如果偏转成功格挡了攻击，声音会略有不同，并且&a盔甲在偏转格挡时防御值始终为1，并能像盾牌一样格挡投射物&r。"
+				"&6偏转&r：通常出现在金属或镀层护甲上。 &a偏转会根据总防御值，在你周围增加一个基于护甲的额外招架范围。"
+				"&a通常，你可以向任一方向偏转60度，形成120度的正面锥形防御区。总共60度的偏转，即最大值，会在两侧各增加60度的窗口，由盔甲覆盖，让你最多可以偏转240度。&r 如果偏转成功格挡了攻击，声音会略有不同，并且&a盔甲在偏转格挡时防御值始终为1，并能像盾牌一样格挡投射物&r。"
 				""
-				"&6碎裂&r：通常出现在结晶风格的盔甲上，或部分胸甲上以少量存在。 &a碎裂会在受到攻击的瞬间起效，作为临时屏障抵御攻击伤害&r。"
+				"&6碎裂&r：通常出现在结晶风格的盔甲上，或部分胸甲上以少量存在。 &a碎裂会在你受到攻击的瞬间起效，作为临时屏障抵御攻击伤害&r。"
 				"&aFor example full diamond has a total shatter ticks of 32. When you first take a hit, shatter will protect you damaging attacks from enemies for 32 ticks (close to 1.5 seconds) afterwards, these attacks only being capable of dealing posture damage to you instead.&r Shatter is visually displayed as a diamond colored glow around your posture meter which goes away while it is active. &aShatter restores itself after 10 seconds of down time&r."
 				""
 				"&6Stealth&r will have it's own section following this one..."
@@ -240,7 +240,7 @@
 			description: [
 				"&6盾牌&r在特定情况下格挡更强：&a它们能以损失架势为代价来阻挡攻击，之后在一段时间内不会受到后续攻击的架势伤害。&r"
 				""
-				"在属性中显示为&a&o\"每Y秒可格挡X次\"&r。例如，&a原版Minecraft盾牌格挡时承受0.8倍姿势伤害，且被格挡的下次攻击在4秒内不会造成姿势伤害&r。而&aSpartan's Shields的铁质盾牌会格挡第一击的0.7倍姿势伤害，但6秒内的接下来两次攻击不会造成姿势伤害。&r"
+				"在属性中显示为&a&o\"每Y秒可格挡X次\"&r。例如，&a原版Minecraft盾牌格挡时承受0.8倍姿势伤害，且在此后4秒内被其阻挡的下次攻击不会造成姿势伤害&r。而&aSpartan's Shields的铁质盾牌会格挡第一击的0.7倍姿势伤害，但在6秒内的接下来两次攻击将不造成任何姿势伤害。&r"
 				"但是，&4如果护盾在持续时间内未能格挡，剩余时间内将进入冷却期&r，使战斗者处于暴露状态。"
 				""
 				"&aShields are also capable of blocking projectiles and other ranged attacks, either deflecting, destroying or triggering them&r while taking a varying amount of parries from the shield's current count depending on what the projectile is &3&o(this is all in the configs if you want a more in-depth inspection of the various projectiles)&r. However &4shields are incapable of parrying piercing projectiles&r such as those from enchanted crossbows or special arrows, and &4certain explosives or powerful projectiles will simply explode or trigger on impact&r dealing damage anyway."
@@ -255,7 +255,7 @@
 			tasks: [{
 				id: "1F010E2279144CFA"
 				type: "checkmark"
-				title: "掌握盾牌招架的技巧。"
+				title: "了解使用盾牌进行招架的方法。"
 			}]
 			rewards: [{
 				id: "311430194BD250C6"
@@ -270,7 +270,7 @@
 			y: -7.0d
 			subtitle: "准备好战斗了吗"
 			description: [
-				"&6战斗模式&r &a可通过按下 [Shift+R] 激活和停用&r。 &a在战斗模式下，你可以看到 Project War Dance 技能所消耗的其他战斗资源，并且装备后可以使用这些技能。&r"
+				"&6Combat mode&r &ais activated and deactivated by pressing [Shift+R]&r. &aWhen in combat mode you have vision over other combat resources used by Project War Dance's skills and the ability to use said skills once equipped.&r"
 				"{image:wardance:textures/quest/combat_mode.png width:550 height:400 align:1}"
 				"首先，&a即使你的副手是空的，在战斗模式下右键仍然可以挥舞武器。&r"
 				""
@@ -312,7 +312,7 @@
 				""
 				"&a环境中的其他因素会进一步以不同百分比增加或减少生物通过视野探测到你的距离&r："
 				"&6亮度&r为0时视野降低80%，而亮度为15时则提高10%。"
-				"&6移动速度&r也是一个因素。静止不动时，你的可见度会降低多达50%，但冲刺时会完全暴露，以特定方式高速移动时会格外显眼。"
+				"&6移动速度&r也是一个因素。静止不动时，你的可见度会降低多达50%，但冲刺时会完全暴露，以特定方式高速移动时则会格外显眼。"
 				"完全&6不在直接视线内&r时，视野半径会减少60%。"
 				""
 				"&4发现你的生物不会被光线、视野锥或速度可见性所阻碍&r。 &a但若失去视线且一段时间内未被发现，它们可能会丢失目标。&r 使用改变感知的技能或其他机制，如墓碑的&6\"消失之尘\"&r或对生物施加失明效果，也会导致这种情况。"
@@ -332,7 +332,7 @@
 			}]
 		}
 		{
-			title: "受伤、精疲力竭与燃尽殆尽"
+			title: "创伤、精疲力竭与职业倦怠"
 			icon: "cyclic:heart_empty"
 			x: 2.0d
 			y: -7.0d
