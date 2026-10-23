@@ -1,0 +1,393 @@
+# AI 初翻，未人工校对
+{
+	id: "068230998A94FC59"
+	group: "3C993182D3E6754B"
+	order_index: 4
+	filename: "3wizards"
+	title: "&3巫师们"
+	icon: {
+		id: "wizards:wizard_robe_head"
+		Count: 1b
+		tag: {
+			Damage: 0
+		}
+	}
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "建造一个 &c符文锻造祭坛"
+			x: -1.5d
+			y: 0.0d
+			subtitle: "使用&c符文锻造祭坛&r比工作台能获得更多&c符文&r。"
+			size: 1.2d
+			id: "3C03A3084AD4503A"
+			tasks: [{
+				id: "4024ECFFCC18A48C"
+				type: "item"
+				item: "runes:crafting_altar"
+			}]
+			rewards: [{
+				id: "6B1816E02B3A09CB"
+				type: "choice"
+				icon: "minecraft:amethyst_shard"
+				exclude_from_claim_all: true
+				table_id: 1781186890092740803L
+			}]
+		}
+		{
+			title: "制作一个 &c符文"
+			x: 0.0d
+			y: 0.0d
+			subtitle: "用作&a魔杖&r的弹药。"
+			dependencies: ["3C03A3084AD4503A"]
+			id: "52F3A430CA1161F4"
+			tasks: [{
+				id: "546892239C517A0A"
+				type: "item"
+				title: "任意数量的 #wizards:wizard_runes"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "wizards:wizard_runes"
+					}
+				}
+			}]
+			rewards: [{
+				id: "61BAE42F205C1310"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			title: "制作一个&a新手魔杖"
+			x: 0.0d
+			y: -1.5d
+			subtitle: "用于施放法术。"
+			dependencies: ["52F3A430CA1161F4"]
+			id: "5DD91A2BE7C75259"
+			tasks: [{
+				id: "3661C48446CC9A43"
+				type: "item"
+				item: {
+					id: "wizards:wand_novice"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "71A95BCA4411BDBB"
+					type: "item"
+					item: {
+						id: "wizards:wizard_robe_head"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "3A948AFC1962E431"
+					type: "item"
+					item: {
+						id: "wizards:wizard_robe_chest"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "1B645CB6C90B322A"
+					type: "item"
+					item: {
+						id: "wizards:wizard_robe_legs"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "44F96EA3604DCCF5"
+					type: "item"
+					item: {
+						id: "wizards:wizard_robe_feet"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "创建一个&6法术绑定台"
+			x: 0.0d
+			y: -3.0d
+			subtitle: "用于将法术绑定到&a魔杖&r上。添加书架可获得更好的法术。普通&5附魔台&r可用于为&a魔杖&r附加附魔。"
+			dependencies: ["5DD91A2BE7C75259"]
+			id: "1F63CB475EC9E7D3"
+			tasks: [{
+				id: "4C5003A828CA3E5B"
+				type: "item"
+				item: "spell_engine:spell_binding"
+			}]
+			rewards: [
+				{
+					id: "238964FEBC87BF60"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "6A631DF9C27E5A63"
+					type: "item"
+					item: "minecraft:lapis_lazuli"
+					count: 6
+				}
+			]
+		}
+		{
+			title: "找到一个&3巫师商人"
+			x: 1.5d
+			y: 0.0d
+			subtitle: "出售强大的巫师装备。"
+			id: "6B0A9F014D9985F3"
+			tasks: [{
+				id: "6B4491EA0D2428F6"
+				type: "structure"
+				title: "寻找一位巫师商人"
+				icon: {
+					id: "ftbquests:custom_icon"
+					Count: 1b
+					tag: {
+						Icon: "merchantmarkers:textures/entity/villager/markers/wizards__wizard_merchant.png"
+					}
+				}
+				structure: "wizards:wizard_merchant"
+			}]
+			rewards: [{
+				id: "62F09E28771EAD04"
+				type: "item"
+				item: "minecraft:emerald"
+				count: 3
+			}]
+		}
+		{
+			title: "制作三种最强大的&a魔杖"
+			x: -1.5d
+			y: -3.0d
+			subtitle: "不同类型的&a魔杖&r有不同的法术。"
+			dependencies: ["1F63CB475EC9E7D3"]
+			id: "3632E8A6A992F1C5"
+			tasks: [
+				{
+					id: "0FAEE43890CC3808"
+					type: "item"
+					item: {
+						id: "wizards:staff_crystal_arcane"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "1FE7A4AF394A2763"
+					type: "item"
+					item: {
+						id: "wizards:staff_ruby_fire"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "152B314C341DD0B6"
+					type: "item"
+					item: {
+						id: "wizards:staff_smaragdant_frost"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [
+				{
+					id: "48C73EC3FB548EE6"
+					type: "xp_levels"
+					xp_levels: 15
+				}
+				{
+					id: "7C06E2F4A2037EFE"
+					type: "choice"
+					icon: "minecraft:amethyst_shard"
+					exclude_from_claim_all: true
+					table_id: 1781186890092740803L
+				}
+			]
+		}
+		{
+			title: "制作所有三种 &bSpellblades"
+			x: 1.5d
+			y: -3.0d
+			subtitle: "它就像一根&a魔杖&r，但不是用&a魔杖&r，而是用&b刀刃！"
+			dependencies: ["1F63CB475EC9E7D3"]
+			id: "54885F1A5D622F0E"
+			tasks: [
+				{
+					id: "031ED5AFB0A24B12"
+					type: "item"
+					item: {
+						id: "spellbladenext:blade_arcane"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "03E02106B0280ED4"
+					type: "item"
+					item: {
+						id: "spellbladenext:blade_fire"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "0037F16FEA3AACB3"
+					type: "item"
+					item: {
+						id: "spellbladenext:blade_frost"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [
+				{
+					id: "6E6F1E2937847B82"
+					type: "xp_levels"
+					xp_levels: 15
+				}
+				{
+					id: "78A9D68804732347"
+					type: "choice"
+					icon: "minecraft:amethyst_shard"
+					exclude_from_claim_all: true
+					table_id: 1781186890092740803L
+				}
+			]
+		}
+		{
+			title: "制作所有三种&bSpellblade Ingot"
+			x: 1.5d
+			y: -1.5d
+			subtitle: "用于制作可提升&b法术之刃&r威力的法术之刃盔甲。"
+			id: "0C0AC243A78F1D49"
+			tasks: [
+				{
+					id: "52C15828671E1DF3"
+					type: "item"
+					item: "spellbladenext:runeblazing_ingot"
+				}
+				{
+					id: "10E741AAA068182C"
+					type: "item"
+					item: "spellbladenext:runegleaming_ingot"
+				}
+				{
+					id: "68FB492E090E08F8"
+					type: "item"
+					item: "spellbladenext:runefrosted_ingot"
+				}
+			]
+			rewards: [
+				{
+					id: "5915DE79E1352780"
+					type: "item"
+					item: "spellbladenext:runeblazing_ingot"
+				}
+				{
+					id: "0D948A0E756EF222"
+					type: "item"
+					item: "spellbladenext:runegleaming_ingot"
+				}
+				{
+					id: "209125C5A7E12E03"
+					type: "item"
+					item: "spellbladenext:runefrosted_ingot"
+				}
+			]
+		}
+		{
+			title: "为所有三种&3巫师&r装备套装制作帽子"
+			x: -1.5d
+			y: -1.5d
+			subtitle: "穿戴全套&4火焰&r / &b霜冻&r / &5奥术&r法师装备，将使该元素的法术威力大增。"
+			id: "65C4BF29F49AB821"
+			tasks: [
+				{
+					id: "0A641C77781C20EB"
+					type: "item"
+					item: {
+						id: "wizards:fire_robe_head"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "3CC5A0965AE5B15C"
+					type: "item"
+					item: {
+						id: "wizards:arcane_robe_head"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "7F7466E8FF101425"
+					type: "item"
+					item: {
+						id: "wizards:frost_robe_head"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [
+				{
+					id: "05D6AB9B34A79FF0"
+					type: "choice"
+					icon: "minecraft:amethyst_shard"
+					exclude_from_claim_all: true
+					table_id: 1781186890092740803L
+				}
+				{
+					id: "73CA607DB241317B"
+					type: "xp_levels"
+					xp_levels: 15
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+}

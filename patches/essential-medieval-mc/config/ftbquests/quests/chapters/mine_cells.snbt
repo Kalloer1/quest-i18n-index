@@ -1,0 +1,85 @@
+# AI 初翻，未人工校对
+{
+	id: "1CF65D6371AA2203"
+	group: "59C90AA1B128306B"
+	order_index: 2
+	filename: "mine_cells"
+	title: "&4Mine Cells"
+	icon: {
+		id: "ftbquests:custom_icon"
+		Count: 1b
+		tag: {
+			Icon: "minecells:textures/mob_effect/cursed.png"
+		}
+	}
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "前往&8监狱&r维度"
+			x: 0.5d
+			y: 0.5d
+			subtitle: "通往&8监狱&r维度的传送门会随机生成在&a主世界&r中。如果你曾拥有过&b钻石&r，传送门将处于激活状态。"
+			id: "79FA9140695A02C0"
+			tasks: [{
+				id: "1B45ED7E7358543E"
+				type: "dimension"
+				icon: "minecraft:cobblestone"
+				dimension: "minecells:prison"
+			}]
+			rewards: [{
+				id: "034A43F3D26FDDD4"
+				type: "item"
+				item: "minecells:health_flask"
+			}]
+		}
+		{
+			title: "击败 &dConjunctivius"
+			x: 2.0d
+			y: 0.5d
+			subtitle: "生成于地下&8监狱&r维度的&1The Lair&r。要对&dConjunctivius&r造成伤害，必须先杀死触手。可能掉落&4&lCursed Sword&r，手持时会赋予你&4Cursed &r效果。硬核模式慎用此剑 ;)"
+			dependencies: ["79FA9140695A02C0"]
+			id: "678B2562584E24EF"
+			tasks: [{
+				id: "34A86CD084A8B298"
+				type: "kill"
+				title: "击败 Conjunctivius"
+				icon: {
+					id: "minecells:tentacle"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				entity: "minecells:conjunctivius"
+				value: 1L
+			}]
+			rewards: [{
+				id: "4148F0D9C8D784F4"
+				type: "item"
+				item: "alloy_forgery:prismarine_bricks_forge_controller"
+			}]
+		}
+		{
+			title: "合成 2 个 &7电梯组装器"
+			x: 0.5d
+			y: 2.0d
+			subtitle: "要制作一个&8电梯&r，先清理出一个任意高度的3x3区域。然后，在竖井两侧放置链条。将&8电梯组装器&r放置在你想让&8电梯&r到达的高度。可以通过&4红石&r或右键激活&8电梯&r。确保链条延伸至顶部&8电梯&r之上，并且两侧都有链条环绕。"
+			dependencies: ["79FA9140695A02C0"]
+			id: "4EE0E9381F12E9E1"
+			tasks: [{
+				id: "40F83D5C1C42CF08"
+				type: "item"
+				item: "minecells:elevator_assembler"
+				count: 2L
+			}]
+			rewards: [{
+				id: "719FAB3F9EE90599"
+				type: "item"
+				item: "minecraft:chain"
+				count: 16
+			}]
+		}
+	]
+	quest_links: [ ]
+}
