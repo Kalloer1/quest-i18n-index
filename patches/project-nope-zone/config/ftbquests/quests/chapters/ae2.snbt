@@ -1,0 +1,680 @@
+# AI 初翻，未人工校对
+{
+	id: "1D1C5EFF3AD477C4"
+	group: "74A3DCC9C78243C6"
+	order_index: 0
+	filename: "ae2"
+	title: "AE2"
+	icon: "ae2:controller"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "陨石狩猎"
+			x: 2.0d
+			y: -0.5d
+			description: ["在世界各地寻找陨石。陨石罗盘有助于探索，但它会定位陨石本身，而非陨石内的宝箱。"]
+			dependencies: ["06C57D4BF0E4DE4C"]
+			id: "37AC844DF476B5F5"
+			tasks: [
+				{
+					id: "501D68A849BEE7E3"
+					type: "item"
+					item: "ae2:sky_compass"
+				}
+				{
+					id: "411DAFF215C6437F"
+					type: "item"
+					item: "ae2:calculation_processor_press"
+				}
+				{
+					id: "75D80F92B0D16D37"
+					type: "item"
+					item: "ae2:engineering_processor_press"
+				}
+				{
+					id: "4059F5C1A60FCE7E"
+					type: "item"
+					item: "ae2:logic_processor_press"
+				}
+				{
+					id: "486B2B1A3ADD4E98"
+					type: "item"
+					item: "ae2:silicon_press"
+				}
+			]
+			rewards: [{
+				id: "0E59953029F26077"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			title: "应用材料模组 (Applied Mats)"
+			x: 3.5d
+			y: -0.5d
+			description: ["制作电路和机器所需的材料。"]
+			dependencies: ["37AC844DF476B5F5"]
+			id: "4B9C972000BC265E"
+			tasks: [
+				{
+					id: "3B5C15B8CFE505EB"
+					type: "item"
+					item: "ae2:fluix_crystal"
+				}
+				{
+					id: "33CC6906877DFAC3"
+					type: "item"
+					item: "ae2:certus_quartz_crystal"
+				}
+				{
+					id: "3A1CAE34D1BDF200"
+					type: "item"
+					item: "ae2:charged_certus_quartz_crystal"
+				}
+				{
+					id: "0DAB52ACCD6CF30F"
+					type: "item"
+					title: "任意 #forge:silicon"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "forge:silicon"
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "63958E8BC6C656E7"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			x: 3.5d
+			y: -1.5d
+			description: ["将材料压在铁模板上以制作电路。"]
+			dependencies: ["4B9C972000BC265E"]
+			id: "2F635F7C4E309432"
+			tasks: [{
+				id: "08AA07141959D00D"
+				type: "item"
+				item: "ae2:inscriber"
+			}]
+			rewards: [{
+				id: "3616159DC4B89ADA"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+			}]
+		}
+		{
+			x: 2.0d
+			y: -1.5d
+			shape: "gear"
+			description: [
+				"计算 - 使机器更快地处理配方，但消耗更多电力。"
+				""
+				"Engineering - 使机器消耗更少的电力。"
+				""
+				"逻辑 - 使机器将配方结果翻倍，但消耗6倍电力。"
+			]
+			dependencies: ["2F635F7C4E309432"]
+			id: "4ADE49ADB272C306"
+			tasks: [{
+				id: "2C593D5BA49D7509"
+				type: "checkmark"
+				title: "定制机械升级模组 Custom Machinery Upgrades"
+			}]
+		}
+		{
+			title: "高级自动化系统 (Advanced AE)"
+			x: 3.5d
+			y: -2.5d
+			description: ["可以升级以加快处理速度的机器。"]
+			dependencies: ["2F635F7C4E309432"]
+			id: "19FB5F612D7B9CC6"
+			tasks: [
+				{
+					id: "625858D65C7FD3FB"
+					type: "item"
+					item: "ae2things:advanced_inscriber"
+				}
+				{
+					id: "721648D10B1E3BB3"
+					type: "item"
+					item: "ae2things:crystal_growth"
+				}
+			]
+			rewards: [{
+				id: "4BA79B55361F8509"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 3
+			}]
+		}
+		{
+			x: 5.0d
+			y: -1.5d
+			description: ["存储ME系统连接至其余部分后将访问的存储驱动器。"]
+			dependencies: ["2F635F7C4E309432"]
+			id: "1487500287FC2750"
+			tasks: [
+				{
+					id: "6D64B18CA1835146"
+					type: "item"
+					item: "ae2:drive"
+				}
+				{
+					id: "1F217AC500469157"
+					type: "item"
+					item: "ae2:crafting_terminal"
+				}
+			]
+			rewards: [
+				{
+					id: "0350AD572C12B854"
+					type: "item"
+					item: "contenttweaker:rak_coin"
+					count: 2
+				}
+				{
+					id: "25EF91B53D399B3E"
+					type: "item"
+					item: "ae2:fluix_glass_cable"
+					count: 8
+				}
+			]
+		}
+		{
+			x: 5.0d
+			y: -2.5d
+			dependencies: ["1487500287FC2750"]
+			id: "041C078FFAE65634"
+			tasks: [{
+				id: "10A238667128BE8C"
+				type: "item"
+				item: {
+					id: "ae2:item_storage_cell_1k"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "7ECC82DDF11CEDE3"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 2
+			}]
+		}
+		{
+			x: 4.0d
+			y: -3.5d
+			dependencies: ["041C078FFAE65634"]
+			id: "64DA8863843006DF"
+			tasks: [{
+				id: "5223F7DC35039A32"
+				type: "item"
+				item: {
+					id: "ae2:item_storage_cell_4k"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "34663920083E184B"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 4
+			}]
+		}
+		{
+			x: 4.0d
+			y: -4.5d
+			dependencies: ["64DA8863843006DF"]
+			id: "20CF249A036CE9B3"
+			tasks: [{
+				id: "1B8870D00A6E570B"
+				type: "item"
+				item: {
+					id: "ae2:item_storage_cell_16k"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "5199037AFF589E1C"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 6
+			}]
+		}
+		{
+			x: 4.0d
+			y: -5.5d
+			dependencies: ["20CF249A036CE9B3"]
+			id: "4DD635F8893670CA"
+			tasks: [{
+				id: "3C9DE40813A86A15"
+				type: "item"
+				item: {
+					id: "ae2:item_storage_cell_64k"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "0BBEBDD5CBFD0952"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 8
+			}]
+		}
+		{
+			x: 5.0d
+			y: -6.0d
+			dependencies: ["4DD635F8893670CA"]
+			id: "426321D4B4EC2AA5"
+			tasks: [{
+				id: "40CAF17BFB182FDE"
+				type: "item"
+				item: {
+					id: "ae2:item_storage_cell_256k"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "215D614B865A66F4"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 10
+			}]
+		}
+		{
+			x: 6.0d
+			y: -5.5d
+			dependencies: ["426321D4B4EC2AA5"]
+			id: "2336BD8AFFD1D3BF"
+			tasks: [{
+				id: "7B8FC3C25754C09A"
+				type: "item"
+				item: {
+					id: "ae2additions:item_storage_cell_1024"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "60C74E2FAB32518B"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 12
+			}]
+		}
+		{
+			x: 6.0d
+			y: -4.5d
+			dependencies: ["2336BD8AFFD1D3BF"]
+			id: "35F3F0A19BD8C8A6"
+			tasks: [{
+				id: "11307FE556E79F31"
+				type: "item"
+				item: {
+					id: "ae2additions:item_storage_cell_4096"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "2C4456B59D5E5840"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 14
+			}]
+		}
+		{
+			x: 6.0d
+			y: -3.5d
+			dependencies: ["35F3F0A19BD8C8A6"]
+			id: "10983EA4C926174A"
+			tasks: [{
+				id: "5DCDA3D9F931EF38"
+				type: "item"
+				item: {
+					id: "ae2additions:item_storage_cell_16384"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "446862BC9A74D1A9"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 16
+			}]
+		}
+		{
+			x: 7.0d
+			y: -3.5d
+			dependencies: ["10983EA4C926174A"]
+			id: "58F82C4228B93EE7"
+			tasks: [{
+				id: "470630446E8D57D0"
+				type: "item"
+				item: {
+					id: "ae2additions:item_storage_cell_65536"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "4A932196DCD94EFA"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 18
+			}]
+		}
+		{
+			x: 7.0d
+			y: -4.5d
+			description: ["ME 系统中的无限流体。"]
+			dependencies: ["58F82C4228B93EE7"]
+			id: "7EF209653E47AC97"
+			tasks: [{
+				id: "690CFF78A6C2BFA0"
+				type: "item"
+				item: "ae2:creative_fluid_cell"
+			}]
+			rewards: [{
+				id: "37A56B00E5239712"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 50
+			}]
+		}
+		{
+			x: 7.0d
+			y: -5.5d
+			description: ["ME 系统中无限量的 Botania 法力。"]
+			dependencies: ["7EF209653E47AC97"]
+			id: "1CCB456DA9693299"
+			tasks: [{
+				id: "10704DB4F09FFC28"
+				type: "item"
+				item: "appbot:creative_mana_cell"
+			}]
+			rewards: [{
+				id: "6C8476BF262B1BCC"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 50
+			}]
+		}
+		{
+			x: 7.0d
+			y: -6.5d
+			description: ["ME 系统中的无限物品。"]
+			dependencies: ["1CCB456DA9693299"]
+			id: "0EA7B3B9623B1AB0"
+			tasks: [{
+				id: "77D77F11CC169A2B"
+				type: "item"
+				item: "ae2:creative_item_cell"
+			}]
+			rewards: [{
+				id: "6F7D8CF47B0286D0"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 50
+			}]
+		}
+		{
+			x: 5.0d
+			y: -4.5d
+			shape: "gear"
+			description: [
+				"可以随意制作流体存储单元和/或超级存储单元。"
+				""
+				"超级存储单元可以容纳物品、流体和气体。"
+				""
+				"深层存储磁盘没有类型限制。"
+			]
+			dependencies: ["1487500287FC2750"]
+			id: "4A1DA26E5A8DC417"
+			tasks: [{
+				id: "11ADD38879DDA438"
+				type: "checkmark"
+				title: "AE 信息"
+			}]
+		}
+		{
+			x: 6.5d
+			y: -1.5d
+			description: [
+				"你可以试着把2个ME控制器放在彼此的两端，你会发现它仍然可以正常工作。"
+				""
+			]
+			dependencies: ["1487500287FC2750"]
+			id: "134BFE0E39DC10C1"
+			tasks: [{
+				id: "72FB62E456EF6193"
+				type: "item"
+				item: "ae2:controller"
+			}]
+			rewards: [{
+				id: "7D78278B51536E43"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 10
+			}]
+		}
+		{
+			x: 6.5d
+			y: -2.5d
+			description: ["为AE2提供无限的能源。"]
+			dependencies: ["134BFE0E39DC10C1"]
+			id: "471FBE938F27F0A9"
+			tasks: [{
+				id: "3F3BC708C9FE0A9E"
+				type: "item"
+				item: "ae2:creative_energy_cell"
+			}]
+			rewards: [{
+				id: "46496B3AA71CEE54"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 25
+			}]
+		}
+		{
+			title: "ME自动化"
+			x: 8.0d
+			y: -1.5d
+			description: ["基于请求的自动化系统。"]
+			dependencies: ["134BFE0E39DC10C1"]
+			id: "475DEBF2B6528595"
+			tasks: [
+				{
+					id: "6076E1D24E3015B4"
+					type: "item"
+					item: "ae2:pattern_encoding_terminal"
+				}
+				{
+					id: "6C7EB6F87CD7D102"
+					type: "item"
+					item: "ae2:crafting_accelerator"
+				}
+				{
+					id: "76533CD245D68D2F"
+					type: "item"
+					item: "ae2:1k_crafting_storage"
+				}
+				{
+					id: "089349B715AE97AD"
+					type: "item"
+					item: "ae2:molecular_assembler"
+				}
+				{
+					id: "21351FAA492F5F58"
+					type: "item"
+					item: "ae2:pattern_provider"
+				}
+			]
+			rewards: [{
+				id: "3EDB1AA4DD9522B6"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 6
+			}]
+		}
+		{
+			title: "实现无线连接"
+			x: 6.5d
+			y: -0.5d
+			description: ["将无线终端通过安全终端插入，并将无线接入点连接到ME系统。"]
+			dependencies: ["134BFE0E39DC10C1"]
+			id: "5D1A029C8C6DD8C6"
+			tasks: [
+				{
+					id: "2AFA02E2393354E3"
+					type: "item"
+					item: "ae2:security_station"
+				}
+				{
+					id: "023C932E4B3B24DD"
+					type: "item"
+					item: "ae2:wireless_access_point"
+				}
+			]
+			rewards: [{
+				id: "5DA7B2E9E56E9ABA"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 4
+			}]
+		}
+		{
+			x: 7.5d
+			y: -0.5d
+			description: ["放置在无线接入点内，这样你就可以在所在的维度内任何地方访问你的ME系统。"]
+			dependencies: ["5D1A029C8C6DD8C6"]
+			id: "013C3C6739A089BB"
+			tasks: [{
+				id: "2D3FDD85D99F3CDB"
+				type: "item"
+				item: "aeinfinitybooster:infinity_card"
+			}]
+			rewards: [{
+				id: "0CED22FCD936EEF4"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 4
+			}]
+		}
+		{
+			x: 7.5d
+			y: 0.5d
+			description: ["放置在无线接入点内，这样你就可以在任何维度的任何地方访问你的ME系统。"]
+			dependencies: ["013C3C6739A089BB"]
+			id: "13AAB1B17CE667ED"
+			tasks: [{
+				id: "32C0701E9AB7A2EA"
+				type: "item"
+				item: "aeinfinitybooster:dimension_card"
+			}]
+			rewards: [{
+				id: "0CB0505A57851818"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 6
+			}]
+		}
+		{
+			x: 6.5d
+			y: 0.5d
+			description: ["远程访问你的ME系统。"]
+			dependencies: ["5D1A029C8C6DD8C6"]
+			id: "68F7F39A3F0740A4"
+			tasks: [{
+				id: "029871C78EBF3D2C"
+				type: "item"
+				item: {
+					id: "ae2:wireless_crafting_terminal"
+					Count: 1b
+					tag: { }
+				}
+				match_nbt: false
+			}]
+			rewards: [{
+				id: "2B2D4E007C96A3A1"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 5
+			}]
+		}
+		{
+			x: 5.5d
+			y: 0.5d
+			description: ["远程访问你的ME系统。可将其他终端合并到此终端以访问所有内容。"]
+			dependencies: ["68F7F39A3F0740A4"]
+			id: "6FC5AD271E40950E"
+			tasks: [{
+				id: "3325EC94E0F0A0AB"
+				type: "item"
+				item: "ae2wtlib:wireless_universal_terminal"
+				match_nbt: false
+			}]
+			rewards: [{
+				id: "54A8B0A1820031EE"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 6
+			}]
+		}
+		{
+			x: 6.5d
+			y: 1.5d
+			description: ["无线终端的升级组件。"]
+			dependencies: ["68F7F39A3F0740A4"]
+			id: "7BC8567AAC59A6EB"
+			tasks: [
+				{
+					id: "7069E3C9E61F2BFB"
+					type: "item"
+					item: "ae2wtlib:infinity_booster_card"
+				}
+				{
+					id: "62F0BF2773A68906"
+					type: "item"
+					item: "ae2wtlib:magnet_card"
+				}
+			]
+			rewards: [{
+				id: "14A3681AE36F40D2"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 5
+			}]
+		}
+		{
+			x: 5.0d
+			y: -0.5d
+			description: ["允许你将能量转换为ME系统可用的能量，并且无需Me控制器即可使用最多8个频道。"]
+			dependencies: ["4B9C972000BC265E"]
+			id: "00814360057DB1CE"
+			tasks: [{
+				id: "654F15E1C70EB470"
+				type: "item"
+				item: "ae2:energy_acceptor"
+			}]
+			rewards: [{
+				id: "10D54C550DB706DD"
+				type: "item"
+				item: "contenttweaker:rak_coin"
+				count: 3
+			}]
+		}
+	]
+	quest_links: [ ]
+}
