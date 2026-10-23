@@ -1,0 +1,216 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "immersive_technology"
+	group: "48470846A78BFF53"
+	icon: "immersivetechnology:steam_turbine"
+	id: "717E2A0F3C374C18"
+	order_index: 6
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"沉浸式工程仅仅是个开始而已。"
+				""
+				"这项技术添加了大型高科技多方块，能产生惊人的电力。但首先，你需要合适的工具。"
+			]
+			id: "0000000000000B01"
+			rewards: [{
+				id: "0000000000000B02"
+				type: "xp"
+				xp: 50
+			}]
+			shape: "gear"
+			size: 2.0d
+			tasks: [{
+				id: "0000000000000B03"
+				item: {
+					Count: 1
+					id: "immersiveengineering:hammer"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "重工业"
+			x: 0.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["0000000000000B01"]
+			description: [
+				"涡轮很脆弱。脏水会损坏它们。"
+				""
+				"&3蒸馏器&r将水煮沸以去除杂质，从而产生&b蒸馏水&r。副产品是盐。请勿跳过此步骤！"
+			]
+			id: "0000000000000B11"
+			rewards: [{
+				count: 16
+				id: "0000000000000B12"
+				item: "immersivetechnology:stone_dust"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0000000000000B13"
+				item: "immersivetechnology:distiller"
+				type: "item"
+			}]
+			title: "纯净水源"
+			x: 0.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["0000000000000B11"]
+			description: [
+				"要转动涡轮机，你需要压力。"
+				""
+				"&6Boiler&r燃烧燃料（生物柴油、柴油等）将蒸馏水变成蒸汽。它基本上就是一个非常愤怒的开水壶。"
+			]
+			id: "0000000000000B21"
+			rewards: [{
+				id: "0000000000000B22"
+				item: "immersiveengineering:jerrycan"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0000000000000B23"
+				item: "immersivetechnology:boiler_tank"
+				type: "item"
+			}]
+			title: "高压锅"
+			x: -2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000000B11"]
+			description: [
+				"环保的蒸汽发电方式。"
+				""
+				"&6太阳能塔&r利用太阳光的热量来烧开水。它需要在周围建造一片太阳能反射镜（镜子）。赞美太阳！"
+			]
+			id: "0000000000000B31"
+			rewards: [{
+				count: 4
+				id: "0000000000000B32"
+				item: "immersiveengineering:connector_hv"
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "0000000000000B33"
+					item: "immersivetechnology:solar_tower"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "0000000000000B34"
+					item: "immersivetechnology:solar_reflector"
+					type: "item"
+				}
+			]
+			title: "太阳能热发电"
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"0000000000000B21"
+				"0000000000000B31"
+			]
+			description: [
+				"你发电站的核心部件。"
+				""
+				"&c蒸汽轮机&r将高压蒸汽转化为动能。它转得非常快。请勿触摸。"
+			]
+			id: "0000000000000B41"
+			rewards: [{
+				id: "0000000000000B42"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+			shape: "hexagon"
+			size: 1.5d
+			tasks: [{
+				id: "0000000000000B43"
+				item: "immersivetechnology:steam_turbine"
+				type: "item"
+			}]
+			title: "旋转赢大奖"
+			x: 0.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["0000000000000B41"]
+			description: [
+				"没有这个，动能就毫无用处了。"
+				""
+				"将&cAlternator&r连接到涡轮机的背面，将旋转转化为RF/IF能量。魔法就在这里发生。"
+			]
+			id: "0000000000000B51"
+			rewards: [{
+				count: 2
+				id: "0000000000000B52"
+				item: "immersiveengineering:connector_hv"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0000000000000B53"
+				item: "immersivetechnology:alternator"
+				type: "item"
+			}]
+			title: "电力生成"
+			x: 0.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["0000000000000B41"]
+			description: [
+				"完成这个循环，让一切回归正轨。"
+				""
+				"&b冷却塔&r将涡轮机的废气蒸汽冷却回水，以便将其泵回锅炉。"
+				""
+				"节约用水，拯救地球。"
+			]
+			id: "0000000000000B61"
+			rewards: [{
+				count: 8
+				id: "0000000000000B62"
+				item: "immersiveengineering:fluid_pipe"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0000000000000B63"
+				item: "immersivetechnology:cooling_tower"
+				type: "item"
+			}]
+			title: "放松一下，享受悠闲时光"
+			x: 2.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["0000000000000B11"]
+			description: [
+				"跳过蒸汽部分。"
+				""
+				"&e燃气轮机&r直接燃烧燃料来产生动能。它噪音大、动力强，比蒸汽装置更简单，但需要消耗大量燃料。"
+			]
+			id: "0000000000000B71"
+			rewards: [{
+				id: "0000000000000B72"
+				item: "immersivetechnology:alternator"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0000000000000B73"
+				item: "immersivetechnology:gas_turbine"
+				type: "item"
+			}]
+			title: "汽油狂饮者"
+			x: -2.0d
+			y: 2.0d
+		}
+	]
+	title: "&3&l沉浸式科技模组 (Immersive Technology)"
+}
