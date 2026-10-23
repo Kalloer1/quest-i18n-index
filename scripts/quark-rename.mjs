@@ -420,11 +420,11 @@ async function main() {
     let uniq = []
     if (existsSync(targetsFile)) {
       uniq = readFileSync(targetsFile, 'utf8').split('\n').map((x) => x.trim()).filter(Boolean)
-        .map((slug) => ({ slug, shareUrl: mirrors[slug]?.shareUrl || '' }))
+        .map((slug) => ({ slug, shareUrl: mirrors[slug] || '' }))  // readMirrors() 直接就是 slug→url 字符串
     } else {
       const { batches } = readRenames()
       const changed = []
-      for (const b of batches) for (const [fid, it] of Object.entries(b.items ?? {})) changed.push({ slug: it.slug, fid, shareUrl: mirrors[it.slug]?.shareUrl || '' })
+      for (const b of batches) for (const [fid, it] of Object.entries(b.items ?? {})) changed.push({ slug: it.slug, fid, shareUrl: mirrors[it.slug] || '' })
       uniq = [...new Map(changed.map((c) => [c.slug, c])).values()]
     }
     console.log(`[校验] 目标 ${uniq.length} 个 slug（来源：${existsSync(targetsFile) ? targetsFile : '改名记录'}），逐个复查（含重试与间隔）`)
