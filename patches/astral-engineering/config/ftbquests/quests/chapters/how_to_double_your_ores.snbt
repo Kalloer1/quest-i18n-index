@@ -1,0 +1,305 @@
+# AI 初翻，未人工校对
+{
+	id: "0181AACBCDCA9E0D"
+	group: "4E00F236C0BD2C6F"
+	order_index: 4
+	filename: "how_to_double_your_ores"
+	title: "Mekanism 矿石精炼指南"
+	icon: "minecraft:diamond_ore"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			icon: "mekanism:basic_enriching_factory"
+			x: 7.5d
+			y: -9.0d
+			shape: "gear"
+			subtitle: "这是可选支线任务链中的第一个，它将教你如何五倍化矿石！"
+			description: ["提示：每个标记里程碑（x2、x3 和 x4）的任务都会用圆形方形图标表示。"]
+			dependencies: ["62D2D5FA1059D613"]
+			size: 1.5d
+			optional: true
+			id: "2B1C582A68DB9091"
+			tasks: [{
+				id: "476B30FB150003F3"
+				type: "checkmark"
+				title: "伟大的矿石探险之旅！"
+			}]
+		}
+		{
+			title: "基础富集工艺（Basic Enrichment）"
+			x: 9.5d
+			y: -9.0d
+			shape: "rsquare"
+			subtitle: "首先，制作一个基础富集室。如果你愿意，可以将其升级为工厂版本。"
+			description: ["此物品提供你所习惯的基础矿石翻倍服务。"]
+			dependencies: ["2B1C582A68DB9091"]
+			optional: true
+			id: "70F4B1487B944DDC"
+			tasks: [{
+				id: "601E2664E763C3AF"
+				type: "item"
+				item: "mekanism:enrichment_chamber"
+			}]
+		}
+		{
+			title: "矿石三倍化 - 第1部分"
+			icon: "mekanism:purification_chamber"
+			x: 11.0d
+			y: -9.0d
+			subtitle: "要将矿石三倍化，先将其放入净化室中..."
+			dependencies: ["70F4B1487B944DDC"]
+			optional: true
+			id: "732963CAB9D7B086"
+			tasks: [{
+				id: "6AAB59029BFF4D03"
+				type: "item"
+				item: "mekanism:purification_chamber"
+			}]
+		}
+		{
+			title: "矿石三倍化 - 第2部分"
+			x: 11.0d
+			y: -7.5d
+			shape: "rsquare"
+			subtitle: "...然后将这些矿石块放入破碎机以获得泥土粉尘。通过富集室处理，并按常规熔炼以获得3倍矿石！"
+			dependencies: ["732963CAB9D7B086"]
+			optional: true
+			id: "1BB83F0C4FA32362"
+			tasks: [{
+				id: "0CD260BDD349380B"
+				type: "item"
+				item: "mekanism:crusher"
+			}]
+		}
+		{
+			title: "矿石四倍化 - 第1部分"
+			x: 13.0d
+			y: -7.5d
+			subtitle: "要开始四倍化矿石，你需要一个化学注射室。你的矿石将放入其中。"
+			dependencies: ["1BB83F0C4FA32362"]
+			optional: true
+			id: "5C18E00F6BDB013E"
+			tasks: [{
+				id: "4D5DAD72A520F0CE"
+				type: "item"
+				item: "mekanism:chemical_injection_chamber"
+			}]
+		}
+		{
+			title: "矿石四倍化 - 第2部分"
+			x: 13.0d
+			y: -9.0d
+			subtitle: "要开始四倍化矿石，你首先需要盐水。这可以通过热蒸发装置获得。"
+			description: [
+				"该结构底座为4x4方块，最低高度3格，最高18格。底座仅由Thermal Evaporation Blocks构成，墙壁内包含一个Thermal Evaporation Controller和至少2个Thermal Evaporation Valves。"
+				""
+				"该结构没有实体屋顶，可以通过移除多方块结构的顶部4个角，并用高级太阳能发电机来封顶。"
+			]
+			dependencies: ["5C18E00F6BDB013E"]
+			optional: true
+			id: "1A5F2375A4EC88C5"
+			tasks: [
+				{
+					id: "7F877088BBAC3DE7"
+					type: "item"
+					item: "mekanism:thermal_evaporation_controller"
+				}
+				{
+					id: "5EE21D789DE2710A"
+					type: "item"
+					item: "mekanism:thermal_evaporation_block"
+				}
+				{
+					id: "68BC2705541610FA"
+					type: "item"
+					item: "mekanismgenerators:advanced_solar_generator"
+					count: 4L
+				}
+				{
+					id: "14FE130667AFCCF8"
+					type: "item"
+					item: "mekanism:thermal_evaporation_valve"
+					count: 2L
+				}
+			]
+		}
+		{
+			title: "矿石四倍化 - 第3部分"
+			icon: "mekanism:electrolytic_separator"
+			x: 13.0d
+			y: -10.5d
+			subtitle: "接下来，你需要将这种盐水送入电解过程进行处理。"
+			description: ["这样做应该会产出氯气和钠元素。"]
+			dependencies: ["1A5F2375A4EC88C5"]
+			optional: true
+			id: "66E55EAFB4B36E40"
+			tasks: [{
+				id: "506C1E329FFAE795"
+				type: "checkmark"
+			}]
+		}
+		{
+			title: "矿石四倍化 - 第4部分"
+			x: 13.0d
+			y: -12.5d
+			subtitle: "从这里开始，必须将氯与氢结合以获得 HCl。"
+			description: ["如果没有提前设置，获取氢最简单的方法之一就是电解水。"]
+			dependencies: ["66E55EAFB4B36E40"]
+			optional: true
+			id: "576B860979257A32"
+			tasks: [{
+				id: "042983EACF4C293A"
+				type: "item"
+				item: "mekanism:chemical_infuser"
+			}]
+		}
+		{
+			title: "矿石四倍化 - 第5部分"
+			icon: "mekanism:shard_iron"
+			x: 14.5d
+			y: -11.5d
+			shape: "rsquare"
+			subtitle: "成功了！将 HCl 送入化学注射室。你现在将获得 4 块矿石碎片，而不是 3 块。像往常一样处理这些碎片即可。"
+			dependencies: ["576B860979257A32"]
+			optional: true
+			id: "64B75C0959BD44D0"
+			tasks: [{
+				id: "3BDBE80EB2BDE7BB"
+				type: "checkmark"
+			}]
+		}
+		{
+			title: "矿石五倍化 - 第1部分"
+			x: 14.5d
+			y: -9.5d
+			subtitle: "要开始五倍化矿石，你需要一个硫磺来源。其中一个方法是在化学注射室中将 HCl 和火药结合。"
+			dependencies: ["64B75C0959BD44D0"]
+			optional: true
+			id: "15EA055F6478D5D0"
+			tasks: [{
+				id: "342EABB18E2F441E"
+				type: "item"
+				item: "thermal:sulfur_dust"
+			}]
+		}
+		{
+			title: "矿石五倍化 - 第2部分"
+			x: 14.5d
+			y: -8.0d
+			subtitle: "接下来，你需要用化学氧化器处理这种硫磺，以获得二氧化硫。"
+			dependencies: ["15EA055F6478D5D0"]
+			optional: true
+			id: "17E42DA992C2186D"
+			tasks: [{
+				id: "202F45495494C4A6"
+				type: "item"
+				item: "mekanism:chemical_oxidizer"
+			}]
+		}
+		{
+			title: "矿石五倍化 - 第3部分"
+			icon: "mekanism:chemical_infuser"
+			x: 14.5d
+			y: -6.0d
+			subtitle: "必须将二氧化硫与氧气结合，以生成三氧化硫。"
+			dependencies: ["17E42DA992C2186D"]
+			optional: true
+			id: "14DB457B25359CF9"
+			tasks: [{
+				id: "2FFBE4999D094F24"
+				type: "checkmark"
+			}]
+		}
+		{
+			title: "矿石五倍化 - 旋转冷凝法"
+			x: 18.5d
+			y: -6.0d
+			subtitle: "你需要一个这个来把水变成水蒸气。"
+			hide_dependency_lines: true
+			dependencies: ["14DB457B25359CF9"]
+			optional: true
+			id: "1305604623509E74"
+			tasks: [{
+				id: "550701D0AA1AD20D"
+				type: "item"
+				item: "mekanism:rotary_condensentrator"
+			}]
+		}
+		{
+			title: "矿石五倍化 - 第4部分"
+			icon: "mekanism:sulfuric_acid_bucket"
+			x: 16.5d
+			y: -6.0d
+			subtitle: "接着，必须在化学催化器中结合三氧化硫和水蒸气，以生成硫酸。"
+			dependencies: [
+				"14DB457B25359CF9"
+				"1305604623509E74"
+			]
+			optional: true
+			id: "089A1474EEC20FF1"
+			tasks: [{
+				id: "3593D276ADEE3318"
+				type: "checkmark"
+			}]
+		}
+		{
+			title: "矿石五倍化 - 第5部分"
+			x: 16.5d
+			y: -4.5d
+			subtitle: "将矿石放入含有硫酸的化学溶解室中，即可获得矿石浆料。"
+			dependencies: ["089A1474EEC20FF1"]
+			optional: true
+			id: "140C32EE534C1C97"
+			tasks: [{
+				id: "2236787E41BD95FD"
+				type: "item"
+				item: "mekanism:chemical_dissolution_chamber"
+			}]
+		}
+		{
+			title: "矿石五倍化 - 第6部分"
+			x: 18.5d
+			y: -4.5d
+			subtitle: "这种矿石浆料随后在化学洗矿机中清洗，该机器需要供水才能运行。"
+			dependencies: ["140C32EE534C1C97"]
+			optional: true
+			id: "0EC5CF5A23E489F7"
+			tasks: [{
+				id: "72743FF65A23BEA5"
+				type: "item"
+				item: "mekanism:chemical_washer"
+			}]
+		}
+		{
+			title: "矿石五倍化 - 第 7 部分"
+			x: 20.5d
+			y: -4.5d
+			subtitle: "快到了！在化学结晶器中处理干净的矿石浆料，以获得矿石晶体。"
+			dependencies: ["0EC5CF5A23E489F7"]
+			optional: true
+			id: "60F39BB1C12A19A4"
+			tasks: [{
+				id: "05AEBAB197A5F010"
+				type: "item"
+				item: "mekanism:chemical_crystallizer"
+			}]
+		}
+		{
+			title: "终于！矿石五倍化！"
+			icon: "minecraft:diamond_ore"
+			x: 22.5d
+			y: -4.5d
+			shape: "gear"
+			subtitle: "将晶体通过盐酸驱动的化学反应室处理，就完成了！"
+			dependencies: ["60F39BB1C12A19A4"]
+			size: 1.5d
+			optional: true
+			id: "5A8B1C01D1AFB98E"
+			tasks: [{
+				id: "6A3428DC37A63635"
+				type: "checkmark"
+			}]
+		}
+	]
+}

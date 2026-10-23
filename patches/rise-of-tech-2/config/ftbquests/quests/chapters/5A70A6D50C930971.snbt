@@ -1,0 +1,473 @@
+# AI 初翻，未人工校对
+{
+	id: "5A70A6D50C930971"
+	group: "3DE85E8C83B4296B"
+	order_index: 3
+	filename: "5A70A6D50C930971"
+	title: "来电了，请接听电话。"
+	icon: "ftbic:nuclear_reactor_chamber"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			icon: "pneumaticcraft:heat_sink"
+			x: 10.0d
+			y: 0.0d
+			dependencies: ["41E95529DB717F5E"]
+			id: "74EC1D95754DB3DE"
+			tasks: [
+				{
+					id: "0EB8E17E2BC09054"
+					type: "item"
+					item: "pneumaticcraft:heat_sink"
+				}
+				{
+					id: "7E7D0E076056AD16"
+					type: "item"
+					item: "pneumaticcraft:air_grate_module"
+				}
+			]
+		}
+		{
+			icon: {
+				id: "ftbic:overclocked_heat_vent"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: 7.0d
+			y: 1.0d
+			subtitle: "热量→散热器+冷却液罐→蒸汽室→导出发电"
+			dependencies: ["5DCC6CE9005F2876"]
+			id: "753E5E1317CA605C"
+			tasks: [
+				{
+					id: "53C77E3CB7CF1D2B"
+					type: "item"
+					item: "nuclear_contraptions:coolant_tank"
+				}
+				{
+					id: "75811AD2AEF01777"
+					type: "item"
+					item: "nuclear_contraptions:steam_chamber"
+				}
+				{
+					id: "633B02F4142B8C38"
+					type: "item"
+					item: "nuclear_contraptions:iridium_heat_vent_block"
+				}
+			]
+			rewards: [
+				{
+					id: "54863A1D1C26A891"
+					type: "item"
+					item: {
+						id: "minecraft:written_book"
+						Count: 1b
+						tag: {
+							generation: 3
+							pages: [
+								"{\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false,\"color\":\"aqua\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"https://www.curseforge.com/minecraft/mc-mods/nuclear-contraptions\"},\"extra\":[{\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false,\"color\":\"black\",\"text\":\"\\n\\n该模块吸收来自相邻反应堆和热交换器的热量，并将热量排出到相邻的空气方块。\\n每个块面的传输速率为每刻36个热量(用于吸收热量)和20个热量/刻(排出热量)。\\n如果有相邻的冷却液罐，如果有空间，该块可以使用其中的水将1个热量转换为4mB的蒸汽。\"}],\"text\":\"超频散热排风模块\\n\"}"
+								"{\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false,\"color\":\"black\",\"text\":\"每个块面的传输速率为每刻36mB水，1mb水可以产生高达160mB的蒸汽。\\n对于每个相邻的空气方块，该块每次刻排出80mB的蒸汽。\\n该块在爆炸前最多可以承受10,000个热量。\"}"
+							]
+							title: "散热模块使用说明"
+							author: "curseforge mod详情页"
+							resolved: 1b
+						}
+					}
+				}
+				{
+					id: "5878136ED621DEEF"
+					type: "item"
+					item: {
+						id: "immersivepetroleum:projector"
+						Count: 1b
+						ForgeCaps: {
+							Parent: {
+								Size: 0
+								Items: [ ]
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			icon: "immersiveengineering:connector_hv"
+			x: 7.0d
+			y: 0.0d
+			subtitle: "用于导出反应堆的电能"
+			dependencies: ["5DCC6CE9005F2876"]
+			id: "69E096D1DEF448CD"
+			tasks: [
+				{
+					id: "2576D4A26FE933DE"
+					type: "item"
+					item: "immersiveengineering:connector_hv"
+				}
+				{
+					id: "2B93C418A0D73DE3"
+					type: "item"
+					item: "immersiveengineering:wirecoil_steel"
+				}
+			]
+		}
+		{
+			x: 5.5d
+			y: 1.0d
+			subtitle: "建议放远点，并且勤备份，这玩意会炸"
+			description: ["25k rf/t"]
+			dependencies: ["2808D92A8C06EE2D"]
+			id: "5DCC6CE9005F2876"
+			tasks: [{
+				id: "077E98DD2D76BA67"
+				type: "item"
+				item: "ftbic:nuclear_reactor"
+			}]
+		}
+		{
+			title: "铀燃料棒"
+			icon: "ftbic:uranium_rod"
+			x: 4.0d
+			y: 1.0d
+			dependencies: ["2D7959F918072920"]
+			id: "2808D92A8C06EE2D"
+			tasks: [
+				{
+					id: "5955BBC2B0E20AD7"
+					type: "item"
+					item: "thermal:machine_bottler"
+				}
+				{
+					id: "2B4F074AEFB99471"
+					type: "item"
+					item: "ftbic:uranium_rod"
+				}
+				{
+					id: "25F5F2BD259EFC67"
+					type: "item"
+					item: {
+						id: "ftbic:uranium_fuel_rod"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 2.5d
+			y: 1.0d
+			dependencies: ["5378E1058439F4B2"]
+			id: "2D7959F918072920"
+			tasks: [{
+				id: "4AA642981BFC78FF"
+				type: "item"
+				item: "mekanism:isotopic_centrifuge"
+			}]
+		}
+		{
+			x: 1.0d
+			y: 1.0d
+			dependencies: ["565CBCA3B9848DE9"]
+			id: "5378E1058439F4B2"
+			tasks: [{
+				id: "459314A5461AB30A"
+				type: "item"
+				item: "mekanism:chemical_dissolution_chamber"
+			}]
+		}
+		{
+			x: -0.5d
+			y: 1.0d
+			subtitle: "破坏氟石矿石会掉落物品"
+			dependencies: ["5BCCA91FE500FA34"]
+			id: "565CBCA3B9848DE9"
+			tasks: [{
+				id: "17FA47982FA8A5A7"
+				type: "item"
+				item: "mekanism:fluorite_gem"
+			}]
+		}
+		{
+			x: -3.5d
+			y: 1.0d
+			subtitle: "女巫掉落物品"
+			description: ["或者可以尝试和皮革匠进行交易"]
+			dependencies: ["7C73F4BB5CC810C5"]
+			id: "754AFD5BC036C94E"
+			tasks: [{
+				id: "6540AB613FBE569B"
+				type: "item"
+				item: "minecraft:glowstone_dust"
+			}]
+		}
+		{
+			title: "一个大家伙"
+			icon: "immersivepetroleum:crudeoil_bucket"
+			x: 8.5d
+			y: 1.0d
+			subtitle: "这玩意儿可真贵啊"
+			description: ["建造一个精馏塔"]
+			dependencies: ["753E5E1317CA605C"]
+			id: "5B34694510C32CF8"
+			tasks: [
+				{
+					id: "3E44F47D705EBFDB"
+					type: "item"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					count: 25L
+				}
+				{
+					id: "621D3F37587C1D0A"
+					type: "item"
+					item: "immersiveengineering:heavy_engineering"
+					count: 4L
+				}
+				{
+					id: "4F38D1D510671124"
+					type: "item"
+					item: "immersiveengineering:sheetmetal_iron"
+					count: 60L
+				}
+				{
+					id: "420613C957B43E9C"
+					type: "item"
+					item: "immersiveengineering:fluid_pipe"
+					count: 17L
+				}
+				{
+					id: "59A15CE4F77D49B6"
+					type: "item"
+					item: "immersiveengineering:rs_engineering"
+				}
+				{
+					id: "072A19E11B3AEF8C"
+					type: "item"
+					item: "immersiveengineering:slab_steel_scaffolding_grate_top"
+					count: 30L
+				}
+			]
+		}
+		{
+			x: 14.5d
+			y: 1.0d
+			dependencies: ["1664D0AC29D5CD52"]
+			id: "141B8DDB1D710A89"
+			tasks: [{
+				id: "5472B505A4544AE3"
+				type: "item"
+				item: "mekanism:hdpe_sheet"
+			}]
+		}
+		{
+			title: "纳米套装"
+			icon: {
+				id: "ftbic:quantum_helmet"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: 16.0d
+			y: 0.5d
+			subtitle: "可以通过背包中的创造电池供电"
+			description: ["创造电池需要在手持时右键一次才能激活"]
+			dependencies: ["141B8DDB1D710A89"]
+			id: "74530BE7F25BB11D"
+			tasks: [
+				{
+					id: "2BF62004BBE2900E"
+					type: "item"
+					item: {
+						id: "ftbic:quantum_helmet"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "79EDA96A2B6E0F0E"
+					type: "item"
+					item: {
+						id: "ftbic:quantum_chestplate"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "6501735EAC7D4C66"
+					type: "item"
+					item: {
+						id: "ftbic:quantum_leggings"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "27BC9C38F3930B22"
+					type: "item"
+					item: {
+						id: "ftbic:quantum_boots"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 10.0d
+			y: 2.0d
+			dependencies: ["7780502A9EF8CD8E"]
+			id: "4444171B2AA4AA7D"
+			tasks: [{
+				id: "4B70DCC21F3948BE"
+				type: "item"
+				item: "chemlib:chlorine_bucket"
+			}]
+		}
+		{
+			x: 10.0d
+			y: 1.0d
+			dependencies: ["5B34694510C32CF8"]
+			id: "58AB9149C0547061"
+			tasks: [{
+				id: "1F4A0BCD02D97AA3"
+				type: "item"
+				item: "chemlib:methane_bucket"
+			}]
+		}
+		{
+			x: 8.5d
+			y: 2.0d
+			dependencies: ["13D7A5D9D3E772C1"]
+			id: "7780502A9EF8CD8E"
+			tasks: [{
+				id: "359195658C331C7B"
+				type: "item"
+				item: "mekanism:brine_bucket"
+			}]
+		}
+		{
+			icon: "mekanism:thermal_evaporation_controller"
+			x: 5.5d
+			y: 2.0d
+			id: "6412B06542799499"
+			tasks: [
+				{
+					id: "7C9BAB475BF97F96"
+					type: "item"
+					item: "mekanism:thermal_evaporation_controller"
+				}
+				{
+					id: "7A83E257F0758774"
+					type: "item"
+					item: "mekanism:thermal_evaporation_valve"
+				}
+				{
+					id: "609CC04EDB526540"
+					type: "item"
+					item: "mekanism:thermal_evaporation_block"
+				}
+			]
+		}
+		{
+			x: -2.0d
+			y: 1.0d
+			dependencies: ["754AFD5BC036C94E"]
+			id: "5BCCA91FE500FA34"
+			tasks: [{
+				id: "6931FA6636328410"
+				type: "item"
+				item: "mekanism:dust_fluorite"
+			}]
+		}
+		{
+			x: 11.5d
+			y: 1.0d
+			dependencies: [
+				"58AB9149C0547061"
+				"4444171B2AA4AA7D"
+			]
+			id: "1BBB34F6FB0EDBE5"
+			tasks: [{
+				id: "57E4346EA6DAEA70"
+				type: "item"
+				item: "pneumaticcraft:plastic_bucket"
+			}]
+		}
+		{
+			x: 13.0d
+			y: 1.0d
+			dependencies: ["1BBB34F6FB0EDBE5"]
+			id: "1664D0AC29D5CD52"
+			tasks: [{
+				id: "56F614C7A5AE6D20"
+				type: "item"
+				item: "pneumaticcraft:plastic"
+			}]
+		}
+		{
+			x: 7.0d
+			y: 2.0d
+			dependencies: ["6412B06542799499"]
+			id: "13D7A5D9D3E772C1"
+			tasks: [{
+				id: "18A903D695A9C7DC"
+				type: "item"
+				item: "mekanism:fuelwood_heater"
+			}]
+		}
+		{
+			x: 8.5d
+			y: 0.0d
+			subtitle: "直接贴在排气孔上就行"
+			dependencies: ["753E5E1317CA605C"]
+			id: "41E95529DB717F5E"
+			tasks: [{
+				id: "42A5FCC707019A66"
+				type: "item"
+				item: "pneumaticcraft:pneumatic_dynamo"
+			}]
+		}
+		{
+			title: "又一个偷懒的任务而已"
+			x: -3.5d
+			y: 0.0d
+			id: "3C003872C3665D90"
+			tasks: [{
+				id: "04EB11492ECE16DE"
+				type: "item"
+				item: "mekanism:yellow_cake_uranium"
+				count: 32L
+				consume_items: true
+			}]
+			rewards: [{
+				id: "6CFDD3A7D3E799DE"
+				type: "item"
+				item: "minecraft:glowstone_dust"
+			}]
+		}
+		{
+			x: 16.0d
+			y: 1.5d
+			dependencies: ["141B8DDB1D710A89"]
+			id: "45E8817950013F63"
+			tasks: [{
+				id: "326DE744BBAEE6E9"
+				type: "item"
+				item: "avaritia:infinity_pickaxe"
+			}]
+		}
+	]
+	quest_links: [ ]
+}
