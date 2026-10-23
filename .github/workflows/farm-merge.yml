@@ -1,7 +1,7 @@
 name: farm-merge
 
-# 三台 serv00 主机（gfdrgfd / podsjk / jslfkds）各自把产物推到自己分支 farm/<host>，
-# 永不 push main。本工作流负责把三条分支的增量合进 main：取 delta → 补布局（build-index）
+# 每台主机（serv00 / instabox，名字由 origin/farm/* 自动发现）各自把产物推到自己分支 farm/<host>，
+# 永不 push main。本工作流负责把这些分支的增量合进 main：取 delta → 补布局（build-index）
 # → 过闸门 → 打包 → 镜像 → 补交付状态并重算站点数据 → 显式提交 → 触发部署。
 #
 # 为什么 build-index 要跑两次：layout 来自 research/scan-full.tsv 的 format 列，产物是
@@ -15,18 +15,26 @@ name: farm-merge
 # push 事件用的是「被推那条分支里」的 workflow 文件。farm 分支是从某一刻的 main 切出来的，
 # 之后 main 上的 workflow 修复永远不会自动流进去 —— 结果就是「改好了 main、push 上去
 # 却仍然按旧版报错」。schedule 与 workflow_dispatch 永远读默认分支的 workflow，不受这个影响。
-# 代价是合并最多滞后一个调度周期（30 分钟），而主机本身也是每 20 包 / 20 分钟才推一次，
+# 代价是合并最多滞后一个调度周期（15 分钟），而主机本身也是每 20 包 / 20 分钟才推一次，
 # 这个滞后相对整批耗时可忽略。
 on:
   schedule:
-    # 每 30 分钟扫一遍三条分支。主机侧 push 断网/超时也不会丢，分支上的提交会一直躺着。
-    - cron: '*/30 * * * *'
+    # 每 15 分钟扫一遍 farm/*。入口只有 schedule + workflow_dispatch 两条：
+    # push 触发已移除（原因见上：推送事件读被推分支自带的旧 workflow）。
+    # 为什么是 15 而不是 30：GitHub 对低活跃仓库的 cron 有排队延迟，30 分钟档实测经常
+    # 滑到 40+ 分钟；主机从 3 台扩到 8 台后产出翻倍，15 分钟档才追得上增量。
+    - cron: '*/15 * * * *'
   workflow_dispatch:
     inputs:
       hosts:
         description: '逗号分隔的主机名（留空 = 所有 farm/* 分支）'
         required: false
         default: ''
+        type: string
+      maxPacks:
+        description: '单轮最多合并多少个包（默认 80；超出按 slug 字典序截断，其余留待下一轮）'
+        required: false
+        default: '80'
         type: string
       dryRun:
         description: '只计算增量并输出摘要，不落盘、不镜像、不提交'
@@ -58,7 +66,8 @@ jobs:
   merge:
     runs-on: ubuntu-latest
     # 主要成本是拉 blob + 夸克上传；给足余量，避免慢网被误杀。
-    timeout-minutes: 120
+    # 8 台主机、单轮最多 80 个包（含逐个上传）后 120 分钟不够用，350 覆盖「80 包 + 20 个回填」的最坏组合。
+    timeout-minutes: 350
     steps:
       - name: Checkout main
         uses: actions/checkout@v4
@@ -79,8 +88,8 @@ jobs:
       - run: npm ci || npm install
 
       # 为什么是 --filter=blob:none + --depth=1：
-      # 三条分支的 tip 树各带数百 MB（patches/ 全量 + research/packs/*.tar.gz），
-      # 老实的 depth=1 同样会把树里所有 blob 全下下来，三台加起来单次就要拉上 GB。
+      # 每条 farm/<host> 分支的 tip 树都带数百 MB（patches/ 全量 + research/packs/*.tar.gz），
+      # 老实的 depth=1 同样会把树里所有 blob 全下下来，8 台加起来单次就要拉好几 GB。
       # blobless 只取 commit + tree（几 MB），随后 git checkout <ref> -- <path> 时才按路径
       # 按需拉那几个 blob；本轮真正要的通常只有几十个 .snbt 和一两个 tar.gz。
       - name: Fetch farm branches (blobless)
@@ -108,7 +117,7 @@ jobs:
           set -euo pipefail
           RAW="${{ inputs.hosts }}"
           if [ -n "$RAW" ]; then
-            # 手动触发可以只合一台，便于排障时不惊动另外两台。
+            # 手动触发可以只合一台，便于排障时不惊动其他主机。
             LIST=$(printf '%s' "$RAW" | tr ',' ' ')
           else
             LIST=$(git for-each-ref --format='%(refname:lstrip=4)' refs/remotes/origin/farm | sort | tr '\n' ' ')
@@ -153,6 +162,66 @@ jobs:
           node scripts/lib/farm-merge.mjs --dir "$FARM_DIR" \
             --hosts "$(printf '%s' "$HOSTS" | tr ' ' ',')" \
             --out "$FARM_DIR/plan.json" --github-output "$GITHUB_OUTPUT"
+
+      # 单轮上限：8 台主机同时产出时 delta 可能是几百个包，一轮全吃会把 job 拖过超时、
+      # 夸克上传也更容易撞风控。截断而不是「随机取一部分」：
+      # 按 slug 字典序取前 N 个 —— 顺序稳定、可重放，同一个 plan 每次都截出同一批；
+      # 而且被截掉的包下一轮仍在 diff 里（main 还没合它们），所以不会饿死，只是排后面。
+      # 为什么不按主机轮流取：那需要跨轮记住游标，计划就不再是纯函数，重跑结果会漂。
+      - name: Cap packs per run
+        id: cap
+        run: |
+          set -euo pipefail
+          if [ ! -f "$FARM_DIR/plan.json" ]; then
+            echo "::error::plan.json 不存在（Compute merge plan 未成功），无法确定本轮合并集合"
+            exit 1
+          fi
+          CAP="${{ inputs.maxPacks }}"
+          # 非数字或 0 一律退回 80：0 等于「本轮什么都不合」，与 dryRun 语义重叠，
+          # 真按 0 截断只会让后面的步骤对着空计划空转，属于误配而不是意图。
+          case "$CAP" in ''|*[!0-9]*) CAP=80 ;; esac
+          # 10# 前缀强制十进制：直接 `[ 080 -ge 1 ]` 会被当成八进制而报 "value too great for base"。
+          CAP=$((10#$CAP))
+          [ "$CAP" -ge 1 ] || CAP=80
+          CAP="$CAP" node --input-type=module -e '
+            import { appendFileSync, readFileSync, writeFileSync } from "node:fs"
+            const dir = process.env.FARM_DIR
+            const plan = JSON.parse(readFileSync(`${dir}/plan.json`, "utf8"))
+            const cap = Number(process.env.CAP)
+            const all = Object.keys(plan.bySlug)
+            // 只有真的超了才重排：没超时保持 bySlug 的原插入序，避免无谓地改写文件。
+            const kept = all.length > cap ? [...all].sort().slice(0, cap) : all
+            if (all.length > cap) {
+              const keep = new Set(kept)
+              const bySlug = {}
+              for (const slug of kept) bySlug[slug] = plan.bySlug[slug]
+              // conflicts 只留本轮真合并的 slug：被截断的包并没有进 main，
+              // 摘要里再写「取了哪台」会让人以为它已经落地了。
+              const conflicts = plan.conflicts.filter((c) => keep.has(c.slug))
+              // skipped 原样保留：它们是「候选不合格」的包，本来就不在 bySlug 里，
+              // 与截断无关；剔掉反而丢掉「这些包为什么一直合不进来」的线索。
+              const skipped = plan.skipped
+              const byHost = {}
+              for (const item of Object.values(bySlug)) byHost[item.branch] = (byHost[item.branch] ?? 0) + 1
+              const stats = {
+                count: kept.length,
+                byHost,
+                conflicts: conflicts.length,
+                skipped: skipped.length,
+              }
+              writeFileSync(`${dir}/plan.json`, `${JSON.stringify({ bySlug, conflicts, skipped, stats })}\n`)
+              // 摘要那一步在本进程之后才写，把这句话落到文件里交给它统一输出，
+              // 免得 Step Summary 出现「先一句截断、再一个标题」的错位。
+              writeFileSync(
+                `${dir}/trunc-note.txt`,
+                `- 本轮截断：**${all.length} → ${kept.length}**，剩余 ${all.length - kept.length} 个留待下一轮（按 slug 字典序）\n`,
+              )
+              console.log(`[cap] ${all.length} → ${kept.length}（上限 maxPacks=${cap}）`)
+            }
+            // 本步骤的 $GITHUB_OUTPUT 是独立文件（不能回写 steps.plan 的），
+            // 所以下游要拿「截断后」的集合就必须读这里的 count/slugs。
+            appendFileSync(process.env.GITHUB_OUTPUT, `count=${kept.length}\nslugs=${kept.join(",")}\n`)
+          '
 
       - name: Check out only the delta
         if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true) && inputs.mirrorOnly != true
@@ -228,8 +297,9 @@ jobs:
           set -euo pipefail
           # 闸门那步会把坏包从工作区删掉，这里必须按「目录还在」过滤一遍：
           # release.mjs 对空目录会打出只有一个 README 的空 zip，等于把坏包伪装成已发布。
+          # slug 取 cap 步骤的（= 截断后的集合），不能读 steps.plan：那是未截断的全量 delta。
           KEEP=""
-          for s in $(printf '%s' "${{ steps.plan.outputs.slugs }}" | tr ',' ' '); do
+          for s in $(printf '%s' "${{ steps.cap.outputs.slugs }}" | tr ',' ' '); do
             if [ -d "patches/$s" ]; then KEEP="$KEEP,$s"; fi
           done
           KEEP=${KEEP#,}
@@ -244,8 +314,15 @@ jobs:
       # 夸克登录态：CI 里没有浏览器，只能把本机已验证的存根写到 CLI 真正读取的位置。
       # 路径必须是 <技能根>/qoder/config.json；旧写法的 openclaw/config.json 不生效（实测），
       # 会让 CLI 表现为未登录：绿色通过但零链接。写入后只报字节数，绝不打印内容。
+      #
+      # 注意末尾 `|| (github.event_name == 'schedule' && steps.plan.outputs.count == '0')`：
+      # 定时轮次没有 delta 时也要走「自愈回填」（见 Resolve mirror targets 的第 3 个来源），
+      # 而回填同样需要登录态与 CLI。不加这个分支，自愈就是死代码 —— 步骤根本不会被执行。
+      # 这一句只放宽「什么时候跑」，dryRun / mirrorOnly 的语义一个字没动。
+      # 这里用粗条件（不判断是否真有缺口）是有意的：本步只是写一个小文件、下一步下 620KB，
+      # 都是幂等小动作；为了省它再插一个探测步骤，反而多一处要维护的判断。
       - name: Restore quark config
-        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true || (github.event_name == 'schedule' && steps.plan.outputs.count == '0'))
         env:
           QUARK_CONFIG_JSON: ${{ secrets.QUARK_CONFIG_JSON }}
         run: |
@@ -262,20 +339,21 @@ jobs:
       # CLI 是 620KB 自包含单文件，超 secret 48KB 上限，也不入库，只能每次下载。
       # 安装脚本本身容错（失败只警告、exit 0）；本轮「必须」镜像由 QUARK_REQUIRED=1 保证。
       - name: Install quark CLI
-        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true || (github.event_name == 'schedule' && steps.plan.outputs.count == '0'))
         run: bash scripts/install-quark-cli.sh
 
       - name: Resolve mirror targets
         id: mirrorTargets
-        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true || (github.event_name == 'schedule' && steps.plan.outputs.count == '0'))
         run: |
           set -euo pipefail
-          # 两个来源：
+          # 三个来源：
           #  1) 本轮合进来的包（PACKAGE_SLUGS）；
-          #  2) mirrorOnly 回填模式：有 zip 但 research/quark-mirrors.json 里 shareUrl 为空的历史包。
-          # 为什么要有 (2)：镜像失败只留空不阻断（设计如此），于是「uploaded 但没拿到分享链接」
-          # 会安静地停在空字符串上 —— 2026-10-23 就有 11 个包是这个状态，站点上按钮不渲染，
-          # 没人会发现。回填入口让这件事变成可以一键重跑的动作。
+          #  2) mirrorOnly 回填模式：有 zip 但 research/quark-mirrors.json 里 shareUrl 为空的历史包；
+          #  3) schedule 自愈：定时轮次没有 delta 时，自动补最多 20 个同样状态的历史包。
+          # 为什么要有 (2)(3)：镜像失败只留空不阻断（mirror.mjs 的设计如此），于是「uploaded 但
+          # 没拿到分享链接」会安静地停在空字符串上 —— 站点上按钮不渲染、页面也不报错，没人会发现。
+          # 2026-10-23 就有 11 个包是这个状态。手动回填 (2) 靠人想起来，(3) 让定时任务自己慢慢补完。
           LIST=""
           if [ -n "${PACKAGE_SLUGS:-}" ]; then
             LIST="$PACKAGE_SLUGS"
@@ -292,6 +370,20 @@ jobs:
             ')
             LIST="${LIST:+$LIST,}$BACKFILL"
           fi
+          # (3) 只认 schedule 且本轮 delta 为空：有 delta 的轮次已经在跑打包/上传，
+          # 再叠 20 个回填会把单轮耗时推高；空转的轮次才是补历史欠账的窗口。
+          # 数量固定 20，**不读 mirrorLimit** —— 那个额度是手动回填的一次性配额，
+          # 混用会让每晚的定时任务一次吃掉整轮配额，人工回填时反而没得跑。
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "${{ steps.plan.outputs.count }}" = "0" ]; then
+            HEAL=$(node --input-type=module -e '
+              import { readFileSync, readdirSync } from "node:fs"
+              const mirrors = JSON.parse(readFileSync("research/quark-mirrors.json", "utf8")).mirrors || {}
+              const zips = readdirSync("downloads").filter((f) => f.endsWith(".zip")).map((f) => f.slice(0, -4))
+              const missing = zips.filter((s) => !(mirrors[s] && mirrors[s].shareUrl)).sort()
+              console.log(missing.slice(0, 20).join(","))
+            ')
+            LIST="${LIST:+$LIST,}$HEAL"
+          fi
           # 去重且保序
           LIST=$(printf '%s' "$LIST" | tr ',' '\n' | awk 'NF' | awk '!seen[$0]++' | paste -sd, -)
           if [ "${{ inputs.mirrorOnly }}" = "true" ] && [ -n "$LIST" ]; then
@@ -300,13 +392,19 @@ jobs:
             LIST=$(printf '%s' "$LIST" | tr ',' '\n' | head -n "$LIMIT" | paste -sd, -)
           fi
           echo "MIRROR_SLUGS=$LIST" >> "$GITHUB_ENV"
-          echo "镜像目标：$(printf '%s' "$LIST" | tr ',' '\n' | grep -c . ) 个"
+          # 计数同时落在 output 上：后面的步骤要靠它判断「本轮到底有没有活要干」。
+          # `|| true` 是因为 grep -c 无匹配时退出码为 1，在 set -e 下会直接掐掉这一步。
+          N=$(printf '%s' "$LIST" | tr ',' '\n' | grep -c . || true)
+          echo "count=$N" >> "$GITHUB_OUTPUT"
+          echo "镜像目标：$N 个"
 
       - name: Mirror to Quark
         id: mirror
         # 镜像失败不阻断入库：译文是主要价值，先把 main 推进去；
         # 但「零链接却绿灯」不可接受，由末尾独立一步统一判红。
-        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
+        # 第三个分支是自愈回填：只有 Resolve 真的枚举出待补链接时才跑（count 来自那一步），
+        # 否则每个 15 分钟的定时轮次都会白跑一次 mirror.mjs 并刷一条「没有需要镜像的包」警告。
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true || (github.event_name == 'schedule' && steps.mirrorTargets.outputs.count != '0'))
         continue-on-error: true
         run: |
           CLI="$HOME/.pi/agent/skills/quarkclouddrive/scripts/quark-drive.cjs"
@@ -335,15 +433,17 @@ jobs:
       # 两次 build-index 是「先补布局、后补交付状态」，代价只多生成一次 13MB 的 JSON，
       # 换来打包与闸门拿到正确 layout——比在 release/validate 里各自猜布局便宜得多。
       # 索引与站点数据仍须在本轮 zip / 镜像链接落盘之后重算，否则新条目在站点上是「未交付」。
+      # 自愈回填那一轮没有新包，但 quark-mirrors.json 变了，站点上按钮要不要渲染取决于这份数据，
+      # 所以这条链必须跟着重算并提交，否则链接补好了也没人看得见。
       - name: Rebuild index (delivered pass) and site data
-        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true || (github.event_name == 'schedule' && steps.mirrorTargets.outputs.count != '0'))
         run: |
           node scripts/build-index.mjs
           node scripts/build-site-data.mjs
           node scripts/build-site-html.mjs
 
       - name: Stage artifacts
-        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true || (github.event_name == 'schedule' && steps.mirrorTargets.outputs.count != '0'))
         run: |
           set -euo pipefail
           node --input-type=module -e '
@@ -364,7 +464,7 @@ jobs:
 
       - name: Commit and push
         id: commit
-        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
+        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true || (github.event_name == 'schedule' && steps.mirrorTargets.outputs.count != '0'))
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
@@ -415,6 +515,26 @@ jobs:
                 console.log(`- 跳过：${skipped.length ? skipped.map((s) => `\`${s.slug}\` — ${s.reason}`).join("；<br>") : "无"}`)
               '
             fi
+            # 截断说明由 Cap packs per run 落成文件：没有截断就没有这个文件，摘要是干净的。
+            if [ -s "$FARM_DIR/trunc-note.txt" ]; then
+              cat "$FARM_DIR/trunc-note.txt"
+            fi
+            # 覆盖率放在最后统一算：它看的是整个仓库的存量（downloads 与 mirrors），
+            # 与本轮合并了什么都无关 —— 所以即使本轮无事可做，也要让人一眼看出还差多少个。
+            node --input-type=module -e '
+              import { existsSync, readFileSync, readdirSync } from "node:fs"
+              const zips = existsSync("downloads")
+                ? readdirSync("downloads").filter((f) => f.endsWith(".zip")).length
+                : 0
+              let links = 0
+              try {
+                const mirrors = JSON.parse(readFileSync("research/quark-mirrors.json", "utf8")).mirrors || {}
+                links = Object.values(mirrors).filter((m) => m && m.shareUrl).length
+              } catch {}
+              // 差额可能为负：mirrors.json 是只增不减的，包被删掉后旧链接还在里面。
+              // 负数是「有链接没包」的信号，不抹平 —— 抹成 0 就等于把异常藏起来。
+              console.log(`- 镜像覆盖：zip ${zips} / 有链接 ${links} / 缺口 ${zips - links}`)
+            '
             echo ""
             if [ "${{ inputs.dryRun }}" = "true" ]; then
               echo "> dryRun：未落盘、未镜像、未提交。"
@@ -422,9 +542,35 @@ jobs:
             echo "> 镜像步骤结果：${{ steps.mirror.outcome || 'skipped' }}"
           } >> "$GITHUB_STEP_SUMMARY"
 
-      # 夸克镜像没干成（登录态过期 / CLI 缺失）必须变红，但要在产物入库之后才判。
+      # 判红标准从「mirror 步骤失败」收紧为「本轮确有目标且一个都没拿到链接」。
+      # 为什么：没有目标时 mirror.mjs 会因 CLI 缺失 / 登录态过期而失败，但那不是本轮的账 ——
+      # 按旧条件，每个 15 分钟的定时轮次都会因此变红，真正的故障反而淹没在噪音里。
+      # MIRROR_SLUGS 由 Resolve mirror targets 写进 $GITHUB_ENV，跨步骤仍然可读，
+      # 所以这里不需要再猜一次「本轮想镜像什么」。
       - name: Fail if quark mirror totally failed
         if: steps.mirror.outcome == 'failure'
         run: |
-          echo "::error::夸克镜像未完成（多为登录态过期，或 CLI 下载/安装失败）。产物已入库；网盘字段为空，需修好后补跑镜像。"
-          exit 1
+          set -uo pipefail
+          if [ -z "${MIRROR_SLUGS:-}" ]; then
+            echo "本轮无镜像目标，跳过判红"
+            exit 0
+          fi
+          # 部分成功不算全挂：mirror.mjs 失败只留空不阻断，链接有没有真拿到要看落盘结果，
+          # 不能只信退出码 —— 退出码 1 也可能是「80 个里挂了 3 个」。
+          OK=$(MIRROR_SLUGS="$MIRROR_SLUGS" node --input-type=module -e '
+            import { readFileSync } from "node:fs"
+            const want = process.env.MIRROR_SLUGS.split(",").map((s) => s.trim()).filter(Boolean)
+            let mirrors = {}
+            try {
+              mirrors = JSON.parse(readFileSync("research/quark-mirrors.json", "utf8")).mirrors || {}
+            } catch {}
+            const ok = want.filter((s) => mirrors[s] && mirrors[s].shareUrl).length
+            console.log(`${ok}/${want.length}`)
+          ')
+          case "$OK" in
+            0/*)
+              echo "::error::夸克镜像全军覆没（$OK 拿到链接）：多为登录态过期，或 CLI 下载/安装失败。产物已入库；网盘字段为空，修好后用 mirrorOnly 补跑。"
+              exit 1
+              ;;
+          esac
+          echo "::warning::夸克镜像部分失败（$OK 拿到链接），不判红：链接为空不阻断是本项目的既有设计，下一轮定时自愈会继续补。"
