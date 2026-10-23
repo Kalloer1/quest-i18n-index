@@ -1,0 +1,1701 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "create"
+	group: "4CCFD14949BC42F7"
+	icon: "create:wrench"
+	id: "5738D11C5D82CF7A"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			can_repeat: true
+			description: ["由于某种生物群系生成模组，安山岩被限制在特定生物群系中，导致其极为稀有。为了让所有人都能获得该模组，我们引入了这个可重复的任务，为你提供安山岩以制作合金。"]
+			disable_toast: true
+			icon: "minecraft:andesite"
+			id: "52AFC5A30BBEC5C5"
+			optional: true
+			rewards: [{
+				count: 64
+				id: "2BCA5B1CB9C95A7D"
+				item: "minecraft:andesite"
+				type: "item"
+			}]
+			shape: "rsquare"
+			subtitle: "非常稀有"
+			tasks: [
+				{
+					id: "62AA318DD67AE110"
+					title: "找不到安山岩 (Can't Find Andesite)"
+					type: "checkmark"
+				}
+				{
+					consume_items: true
+					count: 32L
+					id: "3D9B6A7615F0C37F"
+					item: { Count: 32, id: "minecraft:stone" }
+					type: "item"
+				}
+			]
+			title: "获取安山岩（Andesite）"
+			x: -7.0d
+			y: 0.0d
+		}
+		{
+			description: ["安山合金是创造模式最重要的资源，可用于制造一切。你可以使用铁粒或锌粒。如果不用其他模组的铁自动化，用锌更便宜。"]
+			id: "2422BEF81A5DB67A"
+			rewards: [{
+				count: 8
+				id: "357D4A478A6DF963"
+				item: "create:andesite_alloy"
+				type: "item"
+			}]
+			shape: "heart"
+			subtitle: "我呼吸着它，如同空气一般"
+			tasks: [{
+				consume_items: false
+				id: "4F95A2493A5D5B0F"
+				item: "create:andesite_alloy"
+				only_from_crafting: true
+				type: "item"
+			}]
+			x: -4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["2422BEF81A5DB67A"]
+			description: ["Shafts 是一种拥有学士学位的能量电缆。你将逐渐理解 Shaft 的美妙之处。"]
+			hide_until_deps_visible: true
+			id: "0C26355CBAA5F99E"
+			progression_mode: "linear"
+			require_sequential_tasks: true
+			rewards: [{
+				id: "08E4B7C493A04F47"
+				item: "create:belt_connector"
+				type: "item"
+			}]
+			shape: "square"
+			subtitle: "电子游戏"
+			tasks: [{
+				id: "3E2C0018B6B13357"
+				item: "create:shaft"
+				type: "item"
+			}]
+			x: -5.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["2422BEF81A5DB67A"]
+			description: ["外壳可以看作其他科技模组中的机器框架，但它们还有其他功能。你可以右键点击转轴、皮带或齿轮上的外壳方块，以美观地改变外观，用所选外壳覆盖功能性部件。这样做不会消耗外壳！"]
+			id: "56369CFBD7876CE9"
+			rewards: [
+				{
+					count: 4
+					id: "76B3DEC65FF8E299"
+					item: "create:andesite_casing"
+					type: "item"
+				}
+				{
+					id: "64D7AC3AD1027337"
+					item: "farmersdelight:mixed_salad"
+					type: "item"
+				}
+			]
+			shape: "square"
+			subtitle: "纯素外壳"
+			tasks: [{
+				id: "4CE43E9C85D37FBB"
+				item: "create:andesite_casing"
+				type: "item"
+			}]
+			x: -3.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["0C26355CBAA5F99E"]
+			description: ["干海带是创造模式里超有用的物品，任何涉及物品或流体传输的环节都需要海带。我们需要一个&4&l工厂&r&r来生产完成所有任务所需的量。"]
+			id: "5A097D24C95FFA3B"
+			rewards: [
+				{
+					id: "42E5752BD2D68493"
+					item: "create:builders_tea"
+					type: "item"
+				}
+				{
+					id: "6D4612C02F24A181"
+					item: "farmersdelight:cooked_rice"
+					type: "item"
+				}
+			]
+			shape: "diamond"
+			subtitle: "不适合做成寿司的食材"
+			tasks: [{
+				id: "13E0E65D97DBCD2A"
+				item: "minecraft:dried_kelp"
+				type: "item"
+			}]
+			x: -6.0d
+			y: 4.0d
+		}
+		{
+			dependencies: [
+				"56369CFBD7876CE9"
+				"5A097D24C95FFA3B"
+				"4F36F72E350C1CB9"
+			]
+			description: [
+				"磨石是你能建造的 최초의 &4工厂&r。在本系列任务中，&4工厂&r是一种多方块结构，它接收物品并使用创造机器来制造其他物品。磨石工厂应仅占用 &27x2x2&r 的区域。磨石可以通过顶部和漏斗接收物品。磨石也可以通过底部接收 &3KE&r，但本任务不会这样做。"
+				"{@pagebreak}"
+				"首先选择一个7格长的区域，两端各放置一个方块，中间留出5格的空隙，在这两个方块上放置一个桶。在第一块方块前放置一个传动轴，用于固定机械带。右键点击一个传动轴，再右键另一个，有效路径会显示绿色粒子，无效路径则为红色。将磨石放在传动带中间方块上，然后右键点击该方块上的第三个传动轴，将其加入线路。将齿轮箱放在该传动轴上，再放一个小齿轮，这能为磨石和传动带提供动力。最后，将漏斗放在两个桶上，朝向传动带的一面，磨石也是如此。接下来，只需连接一个&3KE&r源即可。"
+			]
+			icon: "create:wheat_flour"
+			id: "2809A1337439BC2E"
+			rewards: [
+				{
+					exclude_from_claim_all: true
+					id: "62FBC11316C0982F"
+					table_id: 9083653420705199742L
+					type: "random"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "49130129D94D6233"
+					table_id: 9083653420705199742L
+					type: "loot"
+				}
+			]
+			shape: "gear"
+			subtitle: "老式英语"
+			tasks: [
+				{
+					id: "7E3E22637BB3B639"
+					item: "create:millstone"
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "7EEF369C004F590F"
+					item: "create:belt_connector"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "41BAA6B4F72B8D2D"
+					item: { Count: 4, id: "create:andesite_funnel" }
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "47B48A7F37B86240"
+					item: { Count: 2, id: "minecraft:barrel" }
+					type: "item"
+				}
+				{
+					id: "1FCAD7548D76FA0A"
+					item: "create:cogwheel"
+					type: "item"
+				}
+				{
+					id: "2F64589FB400395D"
+					item: "create:vertical_gearbox"
+					type: "item"
+				}
+				{
+					count: 3L
+					id: "060ABC7A35100BE0"
+					item: { Count: 3, id: "create:shaft" }
+					type: "item"
+				}
+			]
+			title: "第一座工厂"
+			x: -4.0d
+			y: 10.0d
+		}
+		{
+			dependencies: ["0C26355CBAA5F99E"]
+			description: ["虽然单独使用时用处不大，但水车是创造模式中最便宜的&3动能&r来源，不过速度较慢，且是所有被动发电机中&6应力承受能力&r最低的。"]
+			id: "6B77D5F2D1E44FF7"
+			rewards: [{
+				count: 4
+				id: "71A174EA09BEF501"
+				item: "create:andesite_casing"
+				type: "item"
+			}]
+			subtitle: "只是一个小小的家伙而已。"
+			tasks: [{
+				id: "2B477C9C1241BCAF"
+				item: "create:water_wheel"
+				type: "item"
+			}]
+			x: -4.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["6B77D5F2D1E44FF7"]
+			description: ["这是创造模式中最便宜、最可靠的&3动能&r来源，在同一根轴（轮子中间）上放置5-16个，你就能获得低&3RPM&r但高&eSU&r"]
+			id: "4F36F72E350C1CB9"
+			rewards: [{
+				id: "40E64BF46A7D73C3"
+				item: "create:speedometer"
+				type: "item"
+			}]
+			subtitle: "一群大哥哥组成的军队"
+			tasks: [{
+				id: "413BA06DD11F13FD"
+				item: "create:large_water_wheel"
+				type: "item"
+			}]
+			x: -4.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["4F36F72E350C1CB9"]
+			description: ["要想让大型水轮获得最高的初始&3RPM&r，你需要在末端连接一个小型水轮，并为它提供独立的水源。这样所有轮子的速度都会提升到较快的那个。这种方法对其他动力源也有效，但对水轮最为实用。以这种方式提高速度并不会降低&eSU&r容量。"]
+			id: "1C5D8F22C006F68D"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0C1E2F3A4B5C6D"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			subtitle: "速度与激情"
+			tasks: [{
+				id: "737FF093F57A51C8"
+				title: "高级水轮驱动系统"
+				type: "checkmark"
+			}]
+			x: -5.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["5A097D24C95FFA3B"]
+			description: ["皮带和链轮可以完成同样的功能，皮带可以斜向移动&3KE&r，链轮可以沿直线移动&3KE&r，它们本质上是皮带，但不能斜向移动……但是！链轮可以将&3KE&r从&5垂直&r方向转为&d水平&r方向。"]
+			id: "159BEC839CB0F98B"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "63D5C17022F92334"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			shape: "square"
+			subtitle: "把那个东西拿到这边来。"
+			tasks: [
+				{
+					id: "1F699EE23201D704"
+					item: "create:belt_connector"
+					type: "item"
+				}
+				{
+					count: 3L
+					id: "357E4541BFEBCB0F"
+					item: "create:encased_chain_drive"
+					type: "item"
+				}
+			]
+			x: -7.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["4F36F72E350C1CB9"]
+			description: ["So you want things to be fast, eh? Well you better be good at math. by attaching a large cog to a slow moving shaft we can start speeding things up, place a small cog at a diagonal to the large cog, this causes the small cog to rotate at double the &3RPM&r of the connected large cog. Place a large cog on the shaft of the small cog and connect another small cog to that large cog, and so on, up to an insane 256 &3RPM&r"]
+			icon: "create:andesite_encased_large_cogwheel"
+			id: "5886371714664D04"
+			rewards: [{
+				id: "05ECD4E717ECC63F"
+				item: "create:speedometer"
+				type: "item"
+			}]
+			shape: "square"
+			subtitle: "快点！"
+			tasks: [
+				{
+					id: "5AA0E611264BD44E"
+					item: "create:cogwheel"
+					type: "item"
+				}
+				{
+					id: "7071857AEF2EE38A"
+					item: "create:large_cogwheel"
+					type: "item"
+				}
+			]
+			title: "齿轮传动比"
+			x: -3.0d
+			y: 8.0d
+		}
+		{
+			dependencies: []
+			id: "767EFC450AD51DB0"
+			rewards: [{
+				count: 7
+				id: "657E0069E31EA741"
+				item: "create:iron_sheet"
+				type: "item"
+			}]
+			shape: "heart"
+			subtitle: "金属薄片"
+			tasks: [
+				{
+					id: "25DB603EA615C40B"
+					item: "create:iron_sheet"
+					type: "item"
+				}
+				{
+					id: "0FBD630BF2BC40EC"
+					item: "create:golden_sheet"
+					type: "item"
+				}
+				{
+					id: "1057DF5CE3BEB80C"
+					item: "create:copper_sheet"
+					type: "item"
+				}
+			]
+			title: "基础操作指南"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["767EFC450AD51DB0"]
+			id: "10C8F8F339C86CFC"
+			rewards: [
+				{
+					count: 16
+					id: "13F661A7A90E58E3"
+					item: "minecraft:copper_ingot"
+					type: "item"
+				}
+				{
+					id: "77A688C45F5D420D"
+					item: "farmersdelight:mixed_salad"
+					type: "item"
+				}
+			]
+			shape: "square"
+			subtitle: "仍然是纯素外壳 (Still Vegan Casings)"
+			tasks: [{
+				id: "6745E6E31D17A92E"
+				item: "create:copper_casing"
+				type: "item"
+			}]
+			title: "流体动力学模组 (Fluid Dynamics)"
+			x: 3.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["767EFC450AD51DB0"]
+			description: ["不过很有用。"]
+			id: "0F061A35F8D6BF3E"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0C2D3E4F5A6B7C"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			subtitle: "空气炸锅..."
+			tasks: [{
+				id: "5DC8FFD92545B842"
+				item: "create:propeller"
+				type: "item"
+			}]
+			x: -1.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["0F061A35F8D6BF3E"]
+			id: "5554B48BD0B271FB"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0C3E4F5A6B7C8D"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			shape: "square"
+			subtitle: "清洗、熏制、燃烧"
+			tasks: [{
+				count: 3L
+				id: "36D667B5792A0899"
+				item: "create:encased_fan"
+				type: "item"
+			}]
+			title: "处理性能"
+			x: -1.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["5554B48BD0B271FB"]
+			icon: "minecraft:potion"
+			id: "1132865ADAD63B3D"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0C4F5A6B7C8D9E"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			subtitle: "并非用于衣物制作的材料"
+			tasks: [
+				{
+					id: "3DC4EE7783F0D33E"
+					item: "create:encased_fan"
+					type: "item"
+				}
+				{
+					id: "7800724EE14C16E4"
+					item: "minecraft:water_bucket"
+					type: "item"
+				}
+				{
+					id: "0E364FBDE12E9BC0"
+					item: "create:depot"
+					type: "item"
+				}
+			]
+			title: "第一台洗衣机"
+			x: -2.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["5554B48BD0B271FB"]
+			icon: "minecraft:smoker"
+			id: "1156E57AE6A3672D"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0C5A6B7C8D9E0F"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			tasks: [
+				{
+					id: "05128808DB86FCA0"
+					item: "create:encased_fan"
+					type: "item"
+				}
+				{
+					id: "6D567B942243EDE6"
+					item: "minecraft:campfire"
+					type: "item"
+				}
+				{
+					id: "4749383516D8C96B"
+					item: "create:depot"
+					type: "item"
+				}
+			]
+			title: "改良型烟熏炉"
+			x: 0.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["5554B48BD0B271FB"]
+			icon: "minecraft:blast_furnace"
+			id: "6BFDA9068EF15A04"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0C6B7C8D9E0F1A"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			tasks: [
+				{
+					id: "2DB7F071BD4C9C15"
+					item: "create:encased_fan"
+					type: "item"
+				}
+				{
+					id: "703CDDE46AB3C546"
+					item: "minecraft:lava_bucket"
+					type: "item"
+				}
+				{
+					id: "1A4FCC290B14C030"
+					item: "create:depot"
+					type: "item"
+				}
+			]
+			title: "更好的爆破 (Better Blasting)"
+			x: 1.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["5554B48BD0B271FB"]
+			icon: "minecraft:soul_campfire"
+			id: "4E7AE46E07B87CDA"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0C7C8D9E0F1A2B"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			tasks: [
+				{
+					id: "06F77D4AF5645020"
+					item: "create:encased_fan"
+					type: "item"
+				}
+				{
+					id: "7B2F46245C8064AF"
+					item: "minecraft:soul_campfire"
+					type: "item"
+				}
+				{
+					id: "3689DAF48F35DDEC"
+					item: "create:depot"
+					type: "item"
+				}
+			]
+			title: "闹鬼的地方？"
+			x: -1.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["1132865ADAD63B3D"]
+			description: ["在洗衣机前的存货车上放置沙子，每个方块有 % 的几率变成陶土球！"]
+			id: "299BACEFC39659A3"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0C8D9E0F1A2B3C"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			shape: "heart"
+			subtitle: "仅仅是个开始"
+			tasks: [{
+				id: "1A6348764876564F"
+				item: "minecraft:clay_ball"
+				type: "item"
+			}]
+			title: "粘土生产"
+			x: -1.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["767EFC450AD51DB0"]
+			id: "66B494C816BFDE65"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0C9E0F1A2B3C4D"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			subtitle: "坚硬的峰峦"
+			tasks: [{
+				id: "69C38335E16903DD"
+				item: "create:whisk"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 2.0d
+		}
+		{
+			dependencies: [
+				"66B494C816BFDE65"
+				"7109245A6A04FC3C"
+			]
+			icon: "croptopia:trail_mix"
+			id: "556FDDA1DCF069F9"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0CA01B2C3D4E5F"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			shape: "square"
+			tasks: [
+				{
+					id: "6E04A176CFAB7B7D"
+					item: "create:mechanical_mixer"
+					type: "item"
+				}
+				{
+					id: "3F05872997679D04"
+					item: "create:basin"
+					type: "item"
+				}
+			]
+			x: 2.5d
+			y: 6.0d
+		}
+		{
+			can_repeat: true
+			dependencies: ["556FDDA1DCF069F9"]
+			description: ["把那些物品给我，作为交换，我会给你一个被我奴役的烈焰人。不过要确保在他们开始工作前先喂饱他们。"]
+			icon: "minecraft:blaze_powder"
+			id: "08E8BD1048E71F76"
+			rewards: [{
+				id: "0C7D01B9B9614277"
+				item: "create:blaze_burner"
+				type: "item"
+			}]
+			shape: "rsquare"
+			subtitle: "玩家们一直在破坏刷怪器。"
+			tasks: [
+				{
+					consume_items: true
+					id: "72F7454E82FA20B2"
+					item: "create:empty_blaze_burner"
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "5B53695544260441"
+					item: "minecraft:campfire"
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 3L
+					id: "60DA7984902E07DD"
+					item: "minecraft:lightning_rod"
+					type: "item"
+				}
+			]
+			title: "奴役烈焰人"
+			x: 2.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["66B494C816BFDE65"]
+			id: "7109245A6A04FC3C"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0CB12C3D4E5F6A"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			shape: "square"
+			subtitle: "更大的桶（A Bigger Bucket）"
+			tasks: [{
+				id: "6A004819D2CAFD67"
+				item: "create:basin"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 4.0d
+		}
+		{
+			dependencies: [
+				"7109245A6A04FC3C"
+				"299BACEFC39659A3"
+			]
+			icon: "minecraft:clay"
+			id: "6EC38F9C3F676436"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0CC23D4E5F6A7B"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			shape: "pentagon"
+			subtitle: "亚马逊的首次OSHA违规行为"
+			tasks: [
+				{
+					id: "07CBB5B41219F761"
+					item: "create:mechanical_press"
+					type: "item"
+				}
+				{
+					id: "773E9AA5F1AD84C3"
+					item: "create:basin"
+					type: "item"
+				}
+				{
+					id: "1608084F71BAA13A"
+					item: "create:chute"
+					type: "item"
+				}
+				{
+					id: "022DA9221444D19D"
+					item: "minecraft:barrel"
+					type: "item"
+				}
+			]
+			title: "打包中"
+			x: 0.0d
+			y: 10.0d
+		}
+		{
+			dependencies: ["556FDDA1DCF069F9"]
+			id: "1E8E91647DBCCC2A"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0CD34E5F6A7B8C"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			shape: "diamond"
+			tasks: [
+				{
+					id: "65DCCF8C425E3AF1"
+					item: "create:rose_quartz"
+					type: "item"
+				}
+				{
+					id: "36664C3A067E59D8"
+					item: {
+						Count: 1
+						id: "create:sand_paper"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			x: 3.5d
+			y: 8.0d
+		}
+		{
+			dependencies: [
+				
+				"7C2533F8AB99DDA8"
+			]
+			id: "64C46E0F25266D4A"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0CE45F6A7B8C9D"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			tasks: [{
+				id: "2C54A21B3FED06C2"
+				item: "create:brass_hand"
+				type: "item"
+			}]
+			x: 3.0d
+			y: 12.0d
+		}
+		{
+			dependencies: ["64C46E0F25266D4A"]
+			id: "3E3312D0BE0CBFA2"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0CF56A7B8C9D0E"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			shape: "square"
+			subtitle: "机器不能被奴役"
+			tasks: [{
+				id: "5AFA8AD7FC2965F0"
+				item: "create:deployer"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 14.0d
+		}
+		{
+			dependencies: ["3E3312D0BE0CBFA2"]
+			id: "1A3FA6950184FCE3"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0C067B8C9D0E1F"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			shape: "square"
+			subtitle: "你的第18次OSHA违规记录"
+			tasks: [{
+				id: "56A40113C5D90DFE"
+				item: "create:weighted_ejector"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 16.0d
+		}
+		{
+			dependencies: [
+				"1A3FA6950184FCE3"
+				"3E3312D0BE0CBFA2"
+				"7E4C06AA39F3E294"
+			]
+			description: [
+				"先建造一个5格高的塔，第一格由你选择，然后放一个桶和3个滑道。在塔底放置一根传动轴，再在距离它6格的地方放置另一根传动轴，然后用皮带连接两者。接着放置加权弹出器，对准顶部的滑道方块。放置2个链轮驱动，将弹出器的传动轴与皮带连接。然后放置一个齿轮箱，连接皮带传动轴的另外一侧，再在齿轮箱侧面安装一根传动轴，并在其正前方再安装一根（不必与前者共线）。然后用皮带连接这两根传动轴，皮带应呈“L”形。"
+				"{@pagebreak}"
+				"在两条传送带交汇处，将黄铜隧道放在主传送带上（长6格），这样进入的物品可以被分拣，继续处理或从循环中退出。接着，将第二个齿轮箱放置在投掷器连接的链传动上，并放置2根朝向滑道塔的传动轴，连接到齿轮箱上。在这些传动轴的末端，放置一个由3个链传动组成的塔，其中一个朝向传动轴方向，其余朝向传送带。最后3个链传动呈“T”形交叉放置，然后绕到另一侧，将部署器与黄铜手朝向传送带放置，看起来就像它们在戳传送带一样。"
+				"{@pagebreak}"
+				"最后，我知道这个过程漫长又复杂，但你非常勇敢，我为此感到骄傲。将漏斗放在分配器顶部，然后在短传送带末端放置一个方块和一个桶，接着将安山岩漏斗放在桶上，当然要对准传送带。之后，你可以在漏斗中放入5个小型齿轮、5个大型齿轮和5个铁粒，这样分配器就能按顺序持有这些物品。在滑道塔桶中放置一个金板。假设工厂中已有KE运行，一切应该都能顺利工作。一旦金板变成不完整机制，就取下来用它来过滤朝向喷射器的黄铜隧道口，再将其放回传送带以便继续运行，并用随机物品来过滤朝向短传送带的隧道出口。当它变成精密机制时，用它来替换掉那个随机物品过滤器。"
+			]
+			icon: "create:precision_mechanism"
+			id: "731C2D40DD396BD7"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0C178C9D0E1F2A"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			shape: "gear"
+			subtitle: "事情变得越来越复杂了……"
+			tasks: [
+				{
+					count: 3L
+					id: "2FBBBA20B60D5EFD"
+					item: "create:deployer"
+					type: "item"
+				}
+				{
+					count: 3L
+					id: "6250B56510E3AE7A"
+					item: "minecraft:hopper"
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "54A4D52C94030E15"
+					item: "create:belt_connector"
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "2248F95AB6C00853"
+					item: "minecraft:barrel"
+					type: "item"
+				}
+				{
+					id: "3A5BBD16BDA60E26"
+					item: "create:brass_tunnel"
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "543BDF8D7CD53A62"
+					item: "create:andesite_funnel"
+					type: "item"
+				}
+				{
+					consume_items: false
+					count: 6L
+					id: "7A0D6E2A70A9ACB9"
+					item: "create:shaft"
+					type: "item"
+				}
+				{
+					count: 3L
+					id: "589FC274F8F7DD83"
+					item: "create:chute"
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "123F4FF1A8954767"
+					item: { Count: 8, id: "create:encased_chain_drive" }
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "6E7E716D5AA016F3"
+					item: "create:gearbox"
+					type: "item"
+				}
+				{
+					id: "6F3376DB5F907EBD"
+					item: "create:weighted_ejector"
+					type: "item"
+				}
+			]
+			title: "机械装置工厂"
+			x: 1.0d
+			y: 18.0d
+		}
+		{
+			dependencies: [
+				"1E8E91647DBCCC2A"
+				
+			]
+			id: "7E4C06AA39F3E294"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0C289D0E1F2A3B"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			shape: "square"
+			tasks: [
+				{
+					id: "6B358707226E41D2"
+					item: "create:brass_funnel"
+					type: "item"
+				}
+				{
+					id: "3C716C60FCC68F44"
+					item: "create:brass_tunnel"
+					type: "item"
+				}
+			]
+			x: 4.5d
+			y: 10.0d
+		}
+		{
+			dependencies: ["731C2D40DD396BD7"]
+			id: "4B9CBA34658C83CF"
+			rewards: [
+				{
+					exclude_from_claim_all: true
+					id: "758FC402F8B54560"
+					table_id: 7200241764521212312L
+					type: "random"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "6CACAD3EFCD0025E"
+					table_id: 9083653420705199742L
+					type: "loot"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "0FC1F489E82A3353"
+					table_id: 9083653420705199742L
+					type: "random"
+				}
+				{
+					id: "2ADEA7A059685196"
+					item: "create_enchantment_industry:super_experience_block"
+					type: "item"
+				}
+			]
+			shape: "pentagon"
+			subtitle: "那种感觉？那是骄傲在作祟。"
+			tasks: [{
+				id: "79492BEAB756E286"
+				item: "create:precision_mechanism"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 20.0d
+		}
+		{
+			dependencies: ["1E8E91647DBCCC2A"]
+			id: "7C2533F8AB99DDA8"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "6DE707DA19C7B17B"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			shape: "diamond"
+			subtitle: "“嗡嗡嗡！”"
+			tasks: [{
+				id: "528EB95E28547D84"
+				item: "create:electron_tube"
+				type: "item"
+			}]
+			x: 3.0d
+			y: 10.0d
+		}
+		{
+			dependencies: [
+				"7E4C06AA39F3E294"
+				"6EC38F9C3F676436"
+				"634A140F93320A4A"
+			]
+			description: ["这个任务分多部分完成。这是我们做的第一个多机器工厂，也是所有里面最简单的一个。"]
+			icon: "minecraft:clay_ball"
+			id: "05693CAD7AFA6680"
+			rewards: [{
+				id: "13803969D0D1587E"
+				item: "croptopia:popcorn"
+				type: "item"
+			}]
+			shape: "gear"
+			subtitle: "是时候了。"
+			tasks: [
+				{
+					id: "0CDBCB3E12DAC8AA"
+					title: "我的身体已经准备好了"
+					type: "checkmark"
+				}
+				{
+					id: "4967483790B7540F"
+					title: "我的思绪已经准备就绪"
+					type: "checkmark"
+				}
+			]
+			title: "粘土工厂"
+			x: 0.0d
+			y: 16.0d
+		}
+		{
+			dependencies: ["05693CAD7AFA6680"]
+			description: ["建造一个9格长、3格宽、3格高的实心结构，然后在顶层建造一个双面鹅卵石生成器，并在鹅卵石生成的位置下方放置2个篮子（Farmer's Delight）。或者，你也可以将结构建高4格，在篮子位置放置滑道，下方放置物品存储箱。"]
+			icon: "minecraft:cobblestone"
+			id: "4B42BA484BB0D575"
+			rewards: [
+				{
+					id: "55F5842710D49A8D"
+					item: {
+						Count: 1
+						id: "beachparty:sunglasses"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "738E458D5B98C099"
+					item: "powah:solar_panel_starter"
+					type: "item"
+				}
+			]
+			shape: "diamond"
+			subtitle: "简单的开端"
+			tasks: [
+				{
+					consume_items: true
+					id: "0831B0F41A18FE96"
+					item: "minecraft:cobblestone"
+					type: "item"
+				}
+				{
+					id: "55680F0A30934EAF"
+					title: "步骤 1"
+					type: "checkmark"
+				}
+			]
+			title: "双倍鹅卵石生成器"
+			x: -1.0d
+			y: 18.0d
+		}
+		{
+			dependencies: [
+				"7C2533F8AB99DDA8"
+				"19FE13AE40CB1CD3"
+			]
+			description: ["可以用扳手旋转这些。小箭头显示了框架中的物品会组合的位置。可以把它想象成玩棋盘游戏，收集朋友，直到到达终点，大家用友谊的力量组合成最终产物。"]
+			id: "7916E11170F8E360"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0C390E1F2A3B4C"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			shape: "square"
+			subtitle: "合成中... 机械合成方式"
+			tasks: [{
+				count: 21L
+				id: "00035F0BC032FA83"
+				item: "create:mechanical_crafter"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 12.0d
+		}
+		{
+			dependencies: []
+			description: ["为了这个论点，烈焰人是动物，所以黄铜是动物劳动生产的，因此用黄铜制成的任何东西都不是纯素的。"]
+			icon: "create:brass_casing"
+			id: "19FE13AE40CB1CD3"
+			rewards: [{
+				id: "117F43712E9DAFB5"
+				item: "farmersdelight:roast_chicken"
+				type: "item"
+			}]
+			shape: "square"
+			subtitle: "不再是纯素食主义者了"
+			tasks: [
+				{
+					id: "78E5DBE94A399B22"
+					item: "create:brass_casing"
+					type: "item"
+				}
+				{
+					id: "7FBFAE03B04066A0"
+					title: "好的，关于烈焰人奴隶制这件事"
+					type: "checkmark"
+				}
+			]
+			x: 5.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["7916E11170F8E360"]
+			id: "634A140F93320A4A"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0C4A1F2A3B4C5D"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			shape: "square"
+			tasks: [{
+				count: 2L
+				id: "0D26A5072EC1FDD5"
+				item: { Count: 2, id: "create:crushing_wheel" }
+				type: "item"
+			}]
+			x: 5.0d
+			y: 14.0d
+		}
+		{
+			dependencies: ["616D137FA825EEF9"]
+			description: ["有几个模组能以独特的方式做到这一点，我建议你研究下那些方法，因为用压轮会很贵，但考虑到其他模组机器把原矿压成砾石的速度很慢，这绝对是最好的方法。最简单的做法是把一套压轮平放在传送带上空，是的，可以这么做，而且大多数情况下比在Y轴上放置压轮要好。"]
+			icon: "minecraft:gravel"
+			id: "16481BFF41FDAF0E"
+			rewards: [
+				{
+					id: "609E229BBA204980"
+					item: "mekanism:crusher"
+					type: "item"
+				}
+				{
+					id: "5A48427DC18B7879"
+					item: {
+						Count: 1
+						id: "beachparty:crocs"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			shape: "pentagon"
+			subtitle: "步骤 2"
+			tasks: [
+				{
+					id: "18C6E55AF2A070FA"
+					item: "minecraft:gravel"
+					type: "item"
+				}
+				{
+					id: "062020B91C153ABF"
+					title: "步骤 2"
+					type: "checkmark"
+				}
+			]
+			x: -2.0d
+			y: 22.0d
+		}
+		{
+			dependencies: ["16481BFF41FDAF0E"]
+			description: ["So how we going about this? Energized Power Crushers. They are a little slow, but if you crush cobble into gravel using those crushers and then crush the gravel into sand with crushing wheels you can make a lot of sand. It is important to note however that Energized Power machines can &bINPUT&r with Funnels but they cannot &dEXPORT&r with funnels, so you will need to &celevate them slightly with a diagonal belt&r and place a hopper under the EP Crusher that hopper &dexports&r into a barrel."]
+			icon: "minecraft:sand"
+			id: "3E37049FB0A1D2B4"
+			rewards: [
+				{
+					id: "39B62188E21B126B"
+					item: {
+						Count: 1
+						id: "beachparty:trunks"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "132651B59CD1CB0B"
+					item: "mekanism:crusher"
+					type: "item"
+				}
+			]
+			shape: "hexagon"
+			subtitle: "有些地方有沙子……"
+			tasks: [
+				{
+					id: "2492D80FBE97E26E"
+					item: "minecraft:sand"
+					type: "item"
+				}
+				{
+					id: "2C4871E932C34460"
+					title: "步骤 3"
+					type: "checkmark"
+				}
+			]
+			x: -2.0d
+			y: 24.0d
+		}
+		{
+			dependencies: [
+				
+				"6EC38F9C3F676436"
+			]
+			description: ["要制作最终产品的陶土，你需要从黏土球宝库中导出2种物品：一种用于黏土砖（详见另一任务），另一种用于包装黏土块（详见安山岩时代任务）。用机械臂创建一个过滤导出器，输入端应为只能存放4个黏土球的仓库，这可以通过使用过滤为每次仅输出4个物品的黄铜漏斗来实现。机械臂应能将4个球放入包装机的料斗，然后输出到滑槽，再进入单个物品宝库。整个装置需要抬高一点，但你应该能搞定。"]
+			icon: "minecraft:clay"
+			id: "2988876C32E80597"
+			rewards: [{
+				id: "51964C4A7D9F2D34"
+				item: "minecraft:chest"
+				type: "item"
+			}]
+			shape: "pentagon"
+			subtitle: "我们还没完事呢。"
+			tasks: [
+				{
+					id: "304ED8DC42E5E1C3"
+					item: "minecraft:clay"
+					type: "item"
+				}
+				{
+					id: "6A4421C725264076"
+					title: "贝索斯老爹"
+					type: "checkmark"
+				}
+			]
+			x: 1.0d
+			y: 12.0d
+		}
+		{
+			dependencies: [
+				"2988876C32E80597"
+				"6BFDA9068EF15A04"
+			]
+			description: ["不开玩笑，用砖块做的那个东西，这里也照做一遍。"]
+			icon: "minecraft:terracotta"
+			id: "4886284F317EA95A"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0C5B2A3B4C5D6E"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			shape: "hexagon"
+			subtitle: "再干一次，再干一次那个事情。"
+			tasks: [
+				{
+					id: "59F8B64E75C90D85"
+					item: "minecraft:terracotta"
+					type: "item"
+				}
+				{
+					id: "70C9D9B7AD2359C2"
+					title: "AAAAAAAAAAAAA"
+					type: "checkmark"
+				}
+			]
+			x: 1.0d
+			y: 14.0d
+		}
+		{
+			dependencies: [
+				"5A097D24C95FFA3B"
+				"6EC38F9C3F676436"
+				"1156E57AE6A3672D"
+			]
+			description: ["使用创造农场可以生产大量海带，用批量烟熏机烘干，然后输入打包机制作方块，再用你喜欢的方式储存起来。"]
+			id: "35A8748798676FC8"
+			rewards: [
+				{
+					count: 16
+					id: "0B12DDEE8DACBAE0"
+					item: "farmersdelight:kelp_roll_slice"
+					type: "item"
+				}
+				{
+					id: "4EEBA0F6246D3FCB"
+					item: "croptopia:tea_leaves"
+					type: "item"
+				}
+			]
+			shape: "gear"
+			subtitle: "好了，现在我们有足够的材料做寿司了"
+			tasks: [{
+				id: "0479BEF3C07C7A5B"
+				item: "minecraft:dried_kelp_block"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 18.0d
+		}
+		{
+			dependencies: [
+				"16481BFF41FDAF0E"
+				"3E37049FB0A1D2B4"
+				"7CF615C868FF8E7A"
+				"1FCC0DBAB89DEEE3"
+			]
+			description: ["所以...别生气...重做粘土工厂的前几部分，但两个原石入口不再只产沙子，一个产砾石，另一个产沙子。用机械手取4个砾石、4个沙子和1个绿色染料制作混凝土粉，然后用黄铜漏斗批量清洗，只保留硬化后的绿色混凝土。"]
+			id: "3900524086DD825C"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "1155B5DE8CEE2650"
+				table_id: 7200241764521212312L
+				type: "random"
+			}]
+			shape: "gear"
+			subtitle: "就像陶土工厂一样……"
+			tasks: [{
+				id: "5DDED80D20481B84"
+				item: "minecraft:green_concrete"
+				type: "item"
+			}]
+			x: -1.0d
+			y: 26.0d
+		}
+		{
+			dependencies: [
+				"2809A1337439BC2E"
+			]
+			description: ["使用创造农场可以生产仙人掌，将其投入磨石中，制作成绿色染料。"]
+			id: "7CF615C868FF8E7A"
+			rewards: [
+				{
+					count: 16
+					id: "745FB43BCC779257"
+					item: "minecraft:cactus"
+					type: "item"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "01E40CE7EB4D93FC"
+					table_id: 9083653420705199742L
+					type: "random"
+				}
+			]
+			shape: "octagon"
+			subtitle: "最便宜的染料 The Cheapest Dye"
+			tasks: [{
+				id: "4D6409E34CFD0FB7"
+				item: "minecraft:green_dye"
+				type: "item"
+			}]
+			x: 6.5d
+			y: 18.0d
+		}
+		{
+			dependencies: [
+				"4B9CBA34658C83CF"
+				"731C2D40DD396BD7"
+			]
+			description: ["机械臂就像用多个隧道向单个传送带出口，但问题少得多。我们稍后会用它来建造&4混凝土工厂&r。"]
+			id: "1FCC0DBAB89DEEE3"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0C6C3B4C5D6E7F"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			shape: "square"
+			subtitle: "我只有 2 只手！"
+			tasks: [{
+				id: "36CE7509C9801236"
+				item: "create:mechanical_arm"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 22.0d
+		}
+		{
+			dependencies: [
+				"767EFC450AD51DB0"
+				"10C8F8F339C86CFC"
+			]
+			id: "74A646F8CD5D3AD5"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "0247585972FD9E8D"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			shape: "diamond"
+			subtitle: "流体存储装置"
+			tasks: [{
+				id: "12CF09D7CDBDF2AE"
+				item: "create:fluid_tank"
+				type: "item"
+			}]
+			x: 3.0d
+			y: 4.0d
+		}
+		{
+			dependencies: [
+				"74A646F8CD5D3AD5"
+				"08E8BD1048E71F76"
+				"1FCC0DBAB89DEEE3"
+				"215767168FD87F15"
+			]
+			description: ["你可以字面意思地思考这一部分。"]
+			icon: "create:blaze_burner"
+			id: "51A038417E3AB7FF"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0C7D4C5D6E7F8A"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			shape: "pentagon"
+			subtitle: "军团要塞3什么时候出？"
+			tasks: [
+				{
+					id: "71F60969C21FD41A"
+					item: "create:steam_engine"
+					type: "item"
+				}
+				{
+					id: "4C61563C6C76FDDD"
+					item: "create:blaze_burner"
+					type: "item"
+				}
+			]
+			x: 2.0d
+			y: 24.0d
+		}
+		{
+			dependencies: ["767EFC450AD51DB0"]
+			description: ["注意，锯子的方向性很差，它们不会直接把原木变成木板，而是先剥皮，再切成木板。好消息是，我们不用它们干那种破事！做成装置后，它们会全速砍树，连叶子一起砍，并把掉落物存入相连的容器中。"]
+			id: "2421C1850E4FC270"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0C8E5D6E7F8A9B"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			subtitle: "OSHA 违规行为一大堆 GALORE"
+			tasks: [{
+				id: "12C360E0A1757134"
+				item: "create:mechanical_saw"
+				type: "item"
+			}]
+			x: 7.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["4886284F317EA95A"]
+			description: ["建造一个带锯子附件的立式风车，即可制作基础树木农场。参考 Saws and Deployers 的示例：前方的锯子砍伐树木，后方的部署器放置树苗。"]
+			id: "122DB18A5B1AD805"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0C9F6E7F8A9B0C"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			subtitle: "不过不是橡木的"
+			tasks: [{
+				id: "1023F305B31C6593"
+				item: "minecraft:oak_sapling"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 20.0d
+		}
+		{
+			dependencies: [
+				"122DB18A5B1AD805"
+				"2421C1850E4FC270"
+				"6BFDA9068EF15A04"
+			]
+			description: ["使用带过滤的黄铜漏斗的批量爆破装置来建造一个&4木炭工厂&r"]
+			icon: "minecraft:charcoal"
+			id: "310276BDCAD99167"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0CA07F8A9B0C1D"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			shape: "gear"
+			subtitle: "烈焰人的燃料"
+			tasks: [
+				{
+					id: "0E71E8B31A2FA192"
+					item: "minecraft:charcoal"
+					type: "item"
+				}
+				{
+					id: "576D8B46DA90559B"
+					title: "给奴隶们的一点小恩惠"
+					type: "checkmark"
+				}
+			]
+			x: 5.0d
+			y: 22.0d
+		}
+		{
+			dependencies: ["74A646F8CD5D3AD5"]
+			description: ["你可以字面意思地思考这一部分。"]
+			icon: "minecraft:campfire"
+			id: "215767168FD87F15"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0CB18A9B0C1D2E"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			shape: "square"
+			subtitle: "不太好"
+			tasks: [{
+				id: "5F71B5CC6A485E92"
+				item: "create:steam_whistle"
+				type: "item"
+			}]
+			title: "基础蒸汽动力"
+			x: 4.0d
+			y: 6.0d
+		}
+		{
+			dependencies: [
+				"51A038417E3AB7FF"
+				"310276BDCAD99167"
+			]
+			description: ["用机械臂在蒸汽发动机水箱下强行喂食烈焰人木炭，聪明的话，你可以造出能自我供能的机器。"]
+			icon: "modern_industrialization:quantum_upgrade"
+			id: "1CDA52E137E07E4D"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0CC29B0C1D2E3F"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			shape: "gear"
+			subtitle: "物理定律本就是为了被打破而存在的"
+			tasks: [
+				{
+					id: "26828FB1F04BF6EE"
+					title: "已违反的法律"
+					type: "checkmark"
+				}
+				{
+					id: "709538F3B3C4F624"
+					item: "create:mechanical_arm"
+					type: "item"
+				}
+			]
+			title: "无尽蒸汽 (Endless Steam)"
+			x: 2.0d
+			y: 26.0d
+		}
+		{
+			dependencies: ["3900524086DD825C"]
+			description: ["普通混凝土太难看了，不过 Blockus 来拯救了。只需放入 4 个混凝土块，就能得到 4 个混凝土砖。"]
+			id: "16B56C1ACAA8C55E"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "526E27E20727D905"
+				table_id: 9147013603947958127L
+				type: "random"
+			}]
+			shape: "pentagon"
+			subtitle: "更多打包内容"
+			tasks: [{
+				id: "5D48139A720E0AE4"
+				item: "minecraft:green_concrete"
+				type: "item"
+			}]
+			x: -1.0d
+			y: 28.0d
+		}
+		{
+			dependencies: ["10C8F8F339C86CFC"]
+			description: ["令人困惑的是，它能与岩浆兼容，并且将超过100个源块的源视为无限。"]
+			id: "6C672CE9B5200F7B"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0CD3AC1D2E3F4A"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			subtitle: "填充纯素香肠（Filling the Vegan Sausages）"
+			tasks: [{
+				id: "721BF15C59BC9143"
+				item: "create:hose_pulley"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["6C672CE9B5200F7B"]
+			description: ["用岩浆填满它。火车工厂将在下一个更新中加入。"]
+			id: "1615FC96265A6C89"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0CE4BD2E3F4A5B"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			tasks: [{
+				id: "0347CBCF73EECF4C"
+				item: "create:spout"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 6.0d
+		}
+		{
+			dependencies: []
+			description: ["副标题可不是开玩笑的。用制作陶球的方法，但别清洗和爆破，而是把砖块输入一个只接受砖块的黄铜漏斗，再倒入桶里。"]
+			icon: "minecraft:brick"
+			id: "6FEE9C77D0620C3E"
+			rewards: [{
+				id: "0845AD7F6D7C2740"
+				item: "farmersdelight:baked_cod_stew"
+				type: "item"
+			}]
+			shape: "diamond"
+			subtitle: "再试一次。但要有所不同。"
+			tasks: [{
+				id: "76F259F77A4A2688"
+				item: "minecraft:brick"
+				type: "item"
+			}]
+			x: 7.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["6FEE9C77D0620C3E"]
+			description: [
+				"好... 用机械工匠做些花盆吧。只需要4个工匠和一个黄铜漏斗。将存储容器里的砖块输出到黄铜漏斗里。不过先... 放置4个工匠，可以连接它们共享同一个输入，中间的方块是空白工匠，可以通过放置一个&6工匠槽盖&r来实现。然后把另外3个按桶/花盆/碗的图案放置，确保漏斗输入在机械工匠的背面。从背面可以用&6扳手&r右键工匠的边框来移除它们，这样所有需要输入物品的地方都会连接起来，你就不需要在工匠上放3个漏斗了。"
+				"{@pagebreak}"
+				"然后你需要在选定的输出侧放置一个安山岩漏斗。这将直接引导你进入下一个任务。"
+			]
+			icon: "minecraft:flower_pot"
+			id: "33C841C91F79E275"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0CF5CE3F4A5B6C"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			shape: "pentagon"
+			subtitle: "更复杂了！！！"
+			tasks: [{
+				id: "720ACD1A5BABB618"
+				item: "minecraft:flower_pot"
+				type: "item"
+			}]
+			x: 9.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["767EFC450AD51DB0"]
+			id: "54D4129E3CAE33C9"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "33FBB2BA91D9857C"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			shape: "heart"
+			subtitle: "你的最佳朋友"
+			tasks: [{
+				id: "4BF734136B37629B"
+				item: "create:wrench"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["4B42BA484BB0D575"]
+			description: ["钻头的作用正如你所想，当提供RPM以确定挖掘速度时，它会破坏钻头所朝向的方块。"]
+			id: "616D137FA825EEF9"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A0C06DF4A5B6C7D"
+				table_id: 9083653420705199742L
+				type: "random"
+			}]
+			subtitle: "模拟玩家行为中，请稍候..."
+			tasks: [{
+				id: "0DE53908466553B1"
+				item: "create:mechanical_drill"
+				type: "item"
+			}]
+			x: -1.0d
+			y: 20.0d
+		}
+	]
+	title: "创建"
+}
