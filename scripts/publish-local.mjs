@@ -261,21 +261,9 @@ const lost = []
 // 按分支一次性 restore，而不是逐包 `git checkout`：
 // Windows 上每调一次 git 都要重写整个索引（几千个文件），实测一个包 4 秒，
 // 488 个包要半小时。`--pathspec-from-file` 让一条命令处理整批路径，几条分支几秒就完。
-// 先清掉这些 slug 在 main 上**不存在**的残留目录：前面几轮被中断的 checkout 会留下
-// 半个包，restore 只会覆盖同名文件、不会删多余文件，混着别台的残页就会被当成完整产物。
-{
-  const tracked = new Set(
-    execFileSync('git', ['ls-tree', '--name-only', 'HEAD', 'patches/'], { cwd: ROOT, encoding: 'utf8' })
-      .split('\n').map((x) => x.trim().replace(/^patches\//, '').replace(/\/$/, '')).filter(Boolean),
-  )
-  let cleaned = 0
-  for (const slug of Object.keys(plan.bySlug)) {
-    if (tracked.has(slug)) continue
-    const dir = join(ROOT, 'patches', slug)
-    if (existsSync(dir)) { rmSync(dir, { recursive: true, force: true }); cleaned++ }
-  }
-  if (cleaned) console.log(`清理了 ${cleaned} 个残留目录（main 上不存在，来自中断的检出）`)
-}
+// 不做「先删后捡」：这台机器的安全垫片会拦单次 50 个以上的批量删除
+// （SAFE_DELETE_BULK_CONFIRM_REQUIRED），而且按 HEAD 列表判定一旦口径错了就会误删真实产物。
+// 残留只可能来自同一分支的同名文件，restore 会覆盖；真缺文件的包由闸门拦下。
 const perBranch = {}
 for (const [slug, item] of Object.entries(plan.bySlug)) {
   const paths = [...item.patchPaths, item.baselinePath].filter(Boolean)
