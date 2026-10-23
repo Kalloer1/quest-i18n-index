@@ -1,0 +1,155 @@
+# AI 初翻，未人工校对
+{
+	autofocus_id: "171D30BB0B64E741"
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "alcompanions"
+	group: ""
+	icon: "naturalist:teddy_bear"
+	id: "65F35ADCDF2CAD6D"
+	images: [
+		{
+			height: 4.0d
+			image: "kubejs:textures/imagenesnavida/companions.png"
+			rotation: 0.0d
+			width: 10.0d
+			x: 0.0d
+			y: -1.5d
+		}
+		{
+			height: 3.0d
+			image: "kubejs:textures/imagenesnavida/glove.png"
+			rotation: 0.0d
+			width: 3.0d
+			x: 2.5d
+			y: 5.5d
+		}
+		{
+			height: 3.0d
+			image: "kubejs:textures/imagenesnavida/allay.png"
+			rotation: 0.0d
+			width: 3.0d
+			x: 4.0d
+			y: 2.5d
+		}
+		{
+			height: 3.0d
+			image: "kubejs:textures/imagenesnavida/croissant.png"
+			rotation: 0.0d
+			width: 3.0d
+			x: -2.0d
+			y: 6.0d
+		}
+		{
+			height: 3.0d
+			image: "kubejs:textures/imagenesnavida/soulmage.png"
+			rotation: 0.0d
+			width: 3.0d
+			x: -4.0d
+			y: 3.0d
+		}
+	]
+	order_index: 3
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"&r欢迎来到Companions！这是一个用10种可驯服的生物来丰富你世界的模组，每种生物都拥有特殊能力。该模组还引入了具有独特技能的新敌对生物、新武器、一个Boss等等。"
+				""
+				"你的冒险始于找到这些友善的生物之一。请记住，伙伴有三种状态（游荡、坐下和跟随），可以用小精华和大精华（通过击杀敌对生物获得）来治疗它们。找到你的第一个伙伴，开始你的旅程吧！"
+			]
+			id: "171D30BB0B64E741"
+			subtitle: "&7&6探索伙伴！Mod&r，找到你的第一个忠实盟友。"
+			tasks: [{
+				id: "7E83B92DC680BD9D"
+				type: "checkmark"
+			}]
+			title: "&6&l任务：&r&e欢迎来到伙伴！"
+			x: 0.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["171D30BB0B64E741"]
+			description: ["&rCraft The Great Chalice using copper ingots, similar to how you would craft a cauldron. Fill the block by interacting with it using great essence or small essence, both obtained by killing monsters. When completely full, interact with an \"empty grail\" to obtain a filled grail, an item required for some recipes. ⚔"]
+			id: "7CD678A8B69D69E0"
+			subtitle: "&7&6制作伟大的圣杯并装满空杯&r"
+			tasks: [{
+				id: "523C443B841B78BC"
+				item: "knightlib:great_chalice"
+				type: "item"
+			}]
+			title: "&6&l任务：&r&e精华收集者 🏆🧪"
+			x: 0.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["7CD678A8B69D69E0"]
+			description: ["&r灵魂法师无法自然生成。在沼泽中找到金色阿莱，给予它法师的衣物（外套和帽子）及法杖以使其变形。为法师提供魔法书，并在灵魂熔炉中烹饪蜡烛以生成活蜡烛。当活蜡烛与法师结合时，它将保护法师免受致命伤害。⚔"]
+			icon: "companions:mage_staff"
+			id: "212C1B36E8C5517D"
+			subtitle: "&7&6见到灵魂法师（Soul Mage）"
+			tasks: [{
+				id: "7B779161301EABEA"
+				observe_type: 5
+				timer: 0L
+				to_observe: "companions:soul_mage"
+				type: "observation"
+			}]
+			title: "&6&l任务：&r&e与灵魂法师缔结契约，完成蜕变 🧙♂💜"
+			x: -2.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["7CD678A8B69D69E0"]
+			description: ["&rObtain a Croissant Egg by cooking a Big Bread in a Soul Furnace. Hatch the egg to get the Croissant Dragon companion. Feed it three buckets of milk to grow it until it can be tamed. Although its attacks deal no damage, they will slow down hostile mobs. ⚔"]
+			icon: "companions:big_bread"
+			id: "2E9896A88F3B8C27"
+			subtitle: "&7&6看到牛角包龙减缓了敌对生物的速度&r"
+			tasks: [{
+				id: "5E6653E15D42B8A9"
+				observe_type: 5
+				timer: 0L
+				to_observe: "companions:croissant_dragon"
+				type: "observation"
+			}]
+			title: "&6&l任务：&r&e驯服烤野兽 🥐🐉"
+			x: -1.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["7CD678A8B69D69E0"]
+			description: ["&r在沼泽中自然生成的黄金阿莱。找到后，必须给予它法师的衣物和魔法杖，才能将其驯服并变为灵魂法师伙伴。⚔"]
+			icon: "minecraft:allay_spawn_egg"
+			id: "05C603219BF6556E"
+			subtitle: "&7&6看到黄金的Allay&r"
+			tasks: [{
+				id: "5717724AAEA1C74E"
+				observe_type: 5
+				timer: 0L
+				to_observe: "companions:golden_allay"
+				type: "observation"
+			}]
+			title: "&6&l任务：&r&e寻找魔法伙伴 ✨💛"
+			x: 2.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["7CD678A8B69D69E0"]
+			description: ["&r在新建的女巫小屋结构中，找到魔法手套。与其互动，发起石头剪刀布的挑战。赢得游戏即可驯服它，并将其变为实用的傀儡手套。⚔"]
+			icon: "companions:hostile_puppet_glove_spawn_egg"
+			id: "35CF50018B996DF1"
+			subtitle: "&7&6用魔法手套赢得一场石头剪刀布游戏&r"
+			tasks: [{
+				id: "4D7AA8192E7102F1"
+				observe_type: 5
+				timer: 0L
+				to_observe: "companions:hostile_puppet_glove"
+				type: "observation"
+			}]
+			title: "&6&l任务：&r&e石头剪刀布挑战 🧤✨"
+			x: 1.5d
+			y: 4.0d
+		}
+	]
+	title: "&l&f伙伴！"
+}

@@ -1,0 +1,273 @@
+# AI 初翻，未人工校对
+{
+	id: "4C235246342A3A09"
+	group: "01F13B21E2878910"
+	order_index: 14
+	filename: "transportation"
+	title: "交通运输"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "汽车"
+			x: 0.0d
+			y: 0.0d
+			subtitle: "还有飞机和船只呢"
+			description: [
+				"获取一个工作站，这是用来制造汽车和其他载具的方块。"
+				"要将新制作的汽车放置到世界中，请将制作时获得的木箱放置于平坦区域，然后用扳手右键木箱顶部即可生成汽车。"
+				"放置后的汽车，当然可以驾驶，也可以按住 Shift 右键拾起，再按住 Shift 右键点击地面想要移动到的位置。"
+			]
+			id: "586B03A7098695A6"
+			tasks: [
+				{
+					id: "58076A947D701F88"
+					type: "item"
+					item: "vehicle:workstation"
+				}
+				{
+					id: "733CB565D45F753C"
+					type: "item"
+					item: "vehicle:wrench"
+				}
+			]
+			rewards: [{
+				id: "1636ACC266E69701"
+				type: "ftbmoney:money"
+				ftb_money: 20L
+			}]
+		}
+		{
+			x: 6.0d
+			y: 0.0d
+			subtitle: "效率不如汽车高"
+			id: "29E3CEBD4D8C8394"
+			tasks: [{
+				id: "0B0F507FA249641B"
+				type: "item"
+				item: "minecraft:minecart"
+			}]
+			rewards: [
+				{
+					id: "707B666D64BC0E40"
+					type: "item"
+					item: "minecraft:minecart"
+				}
+				{
+					id: "54BFBEABC5183C4E"
+					type: "ftbmoney:money"
+					ftb_money: 10L
+				}
+			]
+		}
+		{
+			x: -1.5d
+			y: -1.5d
+			description: ["获取一些末地树苗。为此，制作一个流体提取器，放入煤炭和末地珍珠，等待其处理，然后右键点击提取器上的空桶。"]
+			dependencies: ["5BEF5B45248ABE27"]
+			id: "5418C5617C3D9021"
+			tasks: [{
+				id: "632D7DEA0AE06CF6"
+				type: "item"
+				item: "vehicle:ender_sap_bucket"
+			}]
+			rewards: [{
+				id: "43D33A1B4954AB87"
+				type: "ftbmoney:money"
+				ftb_money: 30L
+			}]
+		}
+		{
+			x: 1.5d
+			y: -1.5d
+			description: ["和末地树苗一样，烈焰汁是在流体提取器中制作的。将煤炭和烈焰棒放入燃料提取器中制作烈焰汁，然后用空桶右键提取器即可获取一桶烈焰汁。"]
+			dependencies: ["5BEF5B45248ABE27"]
+			id: "513AB62B83A05243"
+			tasks: [{
+				id: "59C241DAC8BEF1C8"
+				type: "item"
+				item: "vehicle:blaze_juice_bucket"
+			}]
+			rewards: [{
+				id: "493C943121850BD7"
+				type: "ftbmoney:money"
+				ftb_money: 30L
+			}]
+		}
+		{
+			x: 0.0d
+			y: -4.5d
+			subtitle: "汽油当量"
+			description: [
+				"获取一桶燃料（Fuelium）。"
+				"要制作燃料，放置前一个任务中制作的流体提取器，并注意各侧的彩色输入/输出端口。"
+				"流体混合器只接受/输出匹配位置处的流体。"
+				"将流体泵连接到两个提取器的背面。"
+				"这一步你可以使用车辆模组里的，也可以使用 Create 的机械泵。"
+				"将烈焰汁倒入橙色输入口，将末地树苗倒入深绿色输入口。"
+				"在上方有火焰的槽位中加入一些煤炭，在另一个空槽中加入一些萤石粉，然后等待流体混合器生产出燃料。"
+				"你可以在流体混合器侧面的浅绿色输出槽上使用空桶来添加和移除燃料。"
+				"你也可以将燃料直接从该槽位泵入 Create 的流体储罐或气泵，从而为你的车辆加油。"
+			]
+			dependencies: ["4E9554973F329665"]
+			id: "1507D13BF07213E4"
+			tasks: [{
+				id: "3A2C518C27BD2E2D"
+				type: "item"
+				item: "vehicle:fuelium_bucket"
+			}]
+			rewards: [{
+				id: "4C7797628DA106BE"
+				type: "ftbmoney:money"
+				ftb_money: 50L
+			}]
+		}
+		{
+			x: 0.0d
+			y: -1.5d
+			description: ["流体提取器用于制作末影树液和烈焰汁，它们是制作燃料以驱动载具所需的前两种组件。"]
+			dependencies: ["586B03A7098695A6"]
+			id: "5BEF5B45248ABE27"
+			tasks: [{
+				id: "0C85EFB71844F4B3"
+				type: "item"
+				item: "vehicle:fluid_extractor"
+			}]
+			rewards: [{
+				id: "75D5C18ECB57512B"
+				type: "ftbmoney:money"
+				ftb_money: 30L
+			}]
+		}
+		{
+			x: 0.0d
+			y: -3.0d
+			description: [
+				"流体混合器是使用末地精华和烈焰汁液来制造燃料的机器。"
+				"前几个任务的末地树苗桶和烈焰汁桶可以通过右键点击方块直接放入流体混合器中。"
+			]
+			dependencies: ["5BEF5B45248ABE27"]
+			id: "4E9554973F329665"
+			tasks: [{
+				id: "0FBD42712AA4EC91"
+				type: "item"
+				item: "vehicle:fluid_mixer"
+			}]
+			rewards: [{
+				id: "40362905C0E128A3"
+				type: "ftbmoney:money"
+				ftb_money: 30L
+			}]
+		}
+		{
+			x: 0.0d
+			y: -6.0d
+			description: ["用于为你制作的任何载具提供燃料，前提是你里面有燃料。"]
+			dependencies: ["1507D13BF07213E4"]
+			id: "08E25ED9BBC2DDE1"
+			tasks: [{
+				id: "3F66F5C35EDD60B2"
+				type: "item"
+				item: "vehicle:gas_pump"
+			}]
+			rewards: [{
+				id: "32CDCA652805C210"
+				type: "ftbmoney:money"
+				ftb_money: 30L
+			}]
+		}
+		{
+			title: "铁轨"
+			x: 6.0d
+			y: -1.5d
+			dependencies: ["29E3CEBD4D8C8394"]
+			id: "54991DA619936BD8"
+			tasks: [
+				{
+					id: "0868C1ED6CC78A62"
+					type: "item"
+					item: "minecraft:rail"
+					count: 16L
+				}
+				{
+					id: "6EA132F84B2F085A"
+					type: "item"
+					item: "minecraft:powered_rail"
+					count: 16L
+				}
+			]
+			rewards: [{
+				id: "477B50F33BBB6CE6"
+				type: "ftbmoney:money"
+				ftb_money: 20L
+			}]
+		}
+		{
+			x: 7.5d
+			y: 0.0d
+			subtitle: "自动电源"
+			description: ["用于自动推动矿车链，前提是你为其提供燃料。"]
+			dependencies: ["29E3CEBD4D8C8394"]
+			id: "032C853F36425C3B"
+			tasks: [{
+				id: "7B6C0EF7E5A4D11B"
+				type: "item"
+				item: "minecraft:furnace_minecart"
+			}]
+			rewards: [
+				{
+					id: "18F13EFFA325E893"
+					type: "item"
+					item: "minecraft:chest_minecart"
+				}
+				{
+					id: "503D41921CE98229"
+					type: "ftbmoney:money"
+					ftb_money: 10L
+				}
+			]
+		}
+		{
+			x: 4.5d
+			y: 0.0d
+			subtitle: "便携式储物箱"
+			dependencies: ["29E3CEBD4D8C8394"]
+			id: "0AA1E222D3592637"
+			tasks: [{
+				id: "30EABACFC8937238"
+				type: "item"
+				item: "minecraft:chest_minecart"
+			}]
+			rewards: [
+				{
+					id: "69339FA0C2917288"
+					type: "item"
+					item: "minecraft:chest_minecart"
+				}
+				{
+					id: "5BE7FA3695EF851B"
+					type: "ftbmoney:money"
+					ftb_money: 10L
+				}
+			]
+		}
+		{
+			x: 6.0d
+			y: -3.0d
+			subtitle: "制作一辆火车"
+			description: ["矿车连接器可以让你将一列矿车连接起来，组成一列火车。"]
+			dependencies: ["54991DA619936BD8"]
+			id: "45BDB985AF071C06"
+			tasks: [{
+				id: "411D8FC0ECD6EDF3"
+				type: "item"
+				item: "create:minecart_coupling"
+			}]
+			rewards: [{
+				id: "041173D4F70B17BE"
+				type: "ftbmoney:money"
+				ftb_money: 20L
+			}]
+		}
+	]
+}

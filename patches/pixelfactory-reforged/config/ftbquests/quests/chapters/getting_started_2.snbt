@@ -1,0 +1,1008 @@
+# AI 初翻，未人工校对
+{
+	id: "0B7C962FE39071F5"
+	group: ""
+	order_index: 1
+	filename: "getting_started_2"
+	title: "入门指南"
+	icon: "minecraft:oak_log"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "16x 任意原木"
+			x: 0.0d
+			y: 0.0d
+			subtitle: "说到底，这仍然是我的世界（Minecraft）"
+			description: ["收集一些木材。这仍然是本整合包中较为重要的材料之一。"]
+			id: "5D403696925F92F1"
+			tasks: [{
+				id: "4C29AE4EABD73086"
+				type: "item"
+				title: "任意 #minecraft:logs 类型的原木方块"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "minecraft:logs"
+					}
+				}
+				count: 16L
+			}]
+			rewards: [
+				{
+					id: "019FFD9AC863F56C"
+					type: "item"
+					item: "minecraft:oak_log"
+					random_bonus: 15
+				}
+				{
+					id: "3CF72F23605B101C"
+					type: "ftbmoney:money"
+					ftb_money: 10L
+				}
+			]
+		}
+		{
+			x: 2.0d
+			y: 0.0d
+			subtitle: "普通的合成方式在这里仍然可以使用。"
+			description: ["制作一个工作台。初期的大部分合成都靠它完成。"]
+			dependencies: ["5D403696925F92F1"]
+			id: "059CC02CB0E63006"
+			tasks: [{
+				id: "16036529F33E5444"
+				type: "item"
+				item: "minecraft:crafting_table"
+			}]
+			rewards: [{
+				id: "412EB045B3833789"
+				type: "ftbmoney:money"
+				ftb_money: 10L
+			}]
+		}
+		{
+			x: 2.0d
+			y: 1.5d
+			subtitle: "新手工具包"
+			description: [
+				"你将使用的第一个工具。"
+				"除了下界合金外，所有AIOT都需用每种工具各一个制作，因为JEI似乎不显示配方。下界合金AIOT需用钻石AIOT和5个下界合金锭制作，合成时会保留所有附魔。"
+			]
+			dependencies: ["059CC02CB0E63006"]
+			id: "2008F51FF726DB31"
+			tasks: [{
+				id: "700577DC4D9B14BC"
+				type: "item"
+				item: {
+					id: "aiot:wooden_aiot"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "071D6E9C4A360644"
+				type: "ftbmoney:money"
+				ftb_money: 10L
+			}]
+		}
+		{
+			title: "32x 任意鹅卵石"
+			x: 4.5d
+			y: 0.0d
+			subtitle: "坚如磐石"
+			description: ["是鹅卵石。我还能说些什么呢？"]
+			dependencies: ["059CC02CB0E63006"]
+			id: "18653FEA1CCA140D"
+			tasks: [{
+				id: "1B59C00B7423F8EA"
+				type: "item"
+				title: "任意 #minecraft:stone_tool_materials"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "minecraft:stone_tool_materials"
+					}
+				}
+				count: 32L
+			}]
+			rewards: [
+				{
+					id: "74C4130A6270DB6A"
+					type: "item"
+					item: "minecraft:cobblestone"
+					count: 16
+					random_bonus: 16
+				}
+				{
+					id: "6AC430EA9F9094DE"
+					type: "ftbmoney:money"
+					ftb_money: 10L
+				}
+			]
+		}
+		{
+			title: "石制多功能工具包"
+			x: 6.0d
+			y: 0.0d
+			dependencies: ["18653FEA1CCA140D"]
+			id: "4701FB160BC60327"
+			tasks: [{
+				id: "5CBACFF5081C647D"
+				type: "item"
+				item: {
+					id: "aiot:stone_aiot"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "031571FCA3C9B2C7"
+					type: "item"
+					item: "minecraft:cobblestone"
+					random_bonus: 15
+				}
+				{
+					id: "0D6B8B474CBCA4C3"
+					type: "ftbmoney:money"
+					ftb_money: 10L
+				}
+			]
+		}
+		{
+			x: 4.5d
+			y: -1.5d
+			subtitle: "总得从某个地方开始不是吗。"
+			description: ["最差的熔炉。好在之后有升级。"]
+			dependencies: ["18653FEA1CCA140D"]
+			id: "32FFC92FE174B3E0"
+			tasks: [{
+				id: "0B27C5F695CCC826"
+				type: "item"
+				item: "minecraft:furnace"
+			}]
+			rewards: [{
+				id: "52147D294980653C"
+				type: "ftbmoney:money"
+				ftb_money: 10L
+			}]
+		}
+		{
+			title: "煤炭或木炭"
+			x: 4.5d
+			y: -3.0d
+			subtitle: "基础燃料。"
+			description: ["燃料用于为熔炉和火把提供动力，就像普通的我的世界一样。"]
+			dependencies: ["32FFC92FE174B3E0"]
+			id: "7D0EF92294FC242A"
+			tasks: [{
+				id: "1E64803EBF097A5E"
+				type: "item"
+				title: "任意数量的 #minecraft:coals"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "minecraft:coals"
+					}
+				}
+				count: 16L
+			}]
+			rewards: [{
+				id: "483BB822D7F43E57"
+				type: "ftbmoney:money"
+				ftb_money: 10L
+			}]
+		}
+		{
+			x: 3.0d
+			y: -3.0d
+			subtitle: "基础光源。"
+			description: ["早期的光源。看起来不怎么样，但能解决问题。"]
+			dependencies: ["7D0EF92294FC242A"]
+			id: "3EB69E122DB3077E"
+			tasks: [{
+				id: "68123DAAE6AF2FC3"
+				type: "item"
+				item: "minecraft:torch"
+				count: 16L
+			}]
+			rewards: [
+				{
+					id: "34DEF0DFB54F6506"
+					type: "item"
+					item: "minecraft:torch"
+					count: 16
+					random_bonus: 16
+				}
+				{
+					id: "2615380F26205EAC"
+					type: "ftbmoney:money"
+					ftb_money: 10L
+				}
+			]
+		}
+		{
+			x: 7.5d
+			y: 0.0d
+			dependencies: ["4701FB160BC60327"]
+			id: "17016A0777FBD6A9"
+			tasks: [{
+				id: "29AC0068AA8CAF8E"
+				type: "item"
+				item: "minecraft:iron_ore"
+				count: 16L
+			}]
+			rewards: [{
+				id: "36F337D8E327C17A"
+				type: "ftbmoney:money"
+				ftb_money: 10L
+			}]
+		}
+		{
+			x: 9.0d
+			y: 0.0d
+			description: ["解锁了铁质熔炉和铁质箱子的任务线。"]
+			dependencies: ["17016A0777FBD6A9"]
+			id: "349D92AF36A918FE"
+			tasks: [{
+				id: "19F532A85A6960BD"
+				type: "item"
+				item: "minecraft:iron_ingot"
+				count: 16L
+			}]
+			rewards: [
+				{
+					id: "78B7ACC2BD55B7E7"
+					type: "ftbmoney:money"
+					ftb_money: 10L
+				}
+				{
+					id: "14C21D4B475AD1FA"
+					type: "item"
+					item: {
+						id: "patchouli:guide_book"
+						Count: 1b
+						tag: {
+							"patchouli:book": "littlelogistics:guide"
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 4.5d
+			y: 2.0d
+			subtitle: "其实挺不错的。而且非常实用。"
+			description: ["解锁“大师厨师”任务线。"]
+			dependencies: [
+				"349D92AF36A918FE"
+				"059CC02CB0E63006"
+			]
+			id: "09A941DB25C0222A"
+			tasks: [{
+				id: "4883627BE30B29DF"
+				type: "item"
+				item: {
+					id: "minecraft:iron_hoe"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "0D6E1942DF0E0878"
+				type: "ftbmoney:money"
+				ftb_money: 10L
+			}]
+		}
+		{
+			x: 9.0d
+			y: 1.5d
+			subtitle: "故事的开端"
+			description: ["基础精灵球的材料。解锁精灵球任务线。"]
+			dependencies: ["349D92AF36A918FE"]
+			id: "3BF42669DD2DA06A"
+			tasks: [{
+				id: "28AF92CB02337BB4"
+				type: "item"
+				item: "pixelmon:iron_base"
+				count: 15L
+			}]
+			rewards: [{
+				id: "4B9617A49385FFFC"
+				type: "ftbmoney:money"
+				ftb_money: 10L
+			}]
+		}
+		{
+			x: 3.0d
+			y: -1.5d
+			subtitle: "精灵球材料。"
+			description: ["所有精灵球的所需材料。"]
+			dependencies: ["32FFC92FE174B3E0"]
+			id: "5D8A6265D438F47A"
+			tasks: [{
+				id: "08F66420A67CE1DF"
+				type: "item"
+				item: "minecraft:stone_button"
+				count: 16L
+			}]
+			rewards: [{
+				id: "723D43A0B0124AFE"
+				type: "ftbmoney:money"
+				ftb_money: 10L
+			}]
+		}
+		{
+			title: "铁质多功能工具包"
+			x: 10.5d
+			y: 0.0d
+			subtitle: "考虑到一切因素，这些工具相当不错了。"
+			dependencies: ["349D92AF36A918FE"]
+			id: "01737B94F574E83C"
+			tasks: [{
+				id: "019760338C92FBDA"
+				type: "item"
+				item: {
+					id: "aiot:iron_aiot"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "3053A9BB5605D9FF"
+					type: "item"
+					item: "minecraft:iron_ingot"
+					random_bonus: 7
+				}
+				{
+					id: "13F9E974B0E9E2AA"
+					type: "ftbmoney:money"
+					ftb_money: 10L
+				}
+			]
+		}
+		{
+			x: 9.5d
+			y: -2.0d
+			subtitle: "铁替代品"
+			description: ["铝可以制成铝底座，是基础精灵球中替代铁底座的等效材料。"]
+			dependencies: ["01737B94F574E83C"]
+			id: "7A92BA58D1B99FF9"
+			tasks: [{
+				id: "2A317DDD535D8D10"
+				type: "item"
+				item: "pixelmon:bauxite_ore"
+				count: 16L
+			}]
+			rewards: [
+				{
+					id: "69A6F5D978BE61A8"
+					type: "item"
+					item: "pixelmon:aluminium_ingot"
+					count: 4
+					random_bonus: 4
+				}
+				{
+					id: "7E74A3E5C613F2B3"
+					type: "ftbmoney:money"
+					ftb_money: 10L
+				}
+			]
+		}
+		{
+			x: 10.5d
+			y: -2.0d
+			description: ["硅主要用于制作银河队和等离子队的盔甲套装。"]
+			dependencies: ["01737B94F574E83C"]
+			id: "22864A9DDF55E88A"
+			tasks: [{
+				id: "049D6C26DA36E316"
+				type: "item"
+				item: "pixelmon:silicon_ore"
+				count: 16L
+			}]
+			rewards: [
+				{
+					id: "584E08C8FEDBCC32"
+					type: "item"
+					item: "pixelmon:silicon"
+					count: 4
+					random_bonus: 4
+				}
+				{
+					id: "7E447E22ECD311BA"
+					type: "ftbmoney:money"
+					ftb_money: 10L
+				}
+			]
+		}
+		{
+			x: 11.5d
+			y: -2.0d
+			subtitle: "最佳基础材料"
+			description: ["铂金用于制作铂金底座，而底座可用于制作高级球等精灵球。"]
+			dependencies: ["01737B94F574E83C"]
+			id: "32DDD0B2CEF3758B"
+			tasks: [{
+				id: "74D2ADA5DBF7F390"
+				type: "item"
+				item: "pixelmon:platinum_ore"
+				count: 16L
+			}]
+			rewards: [
+				{
+					id: "7F674916EA1AD859"
+					type: "item"
+					item: "pixelmon:platinum_ingot"
+					count: 4
+					random_bonus: 4
+				}
+				{
+					id: "260FDE9D44D559C2"
+					type: "ftbmoney:money"
+					ftb_money: 10L
+				}
+			]
+		}
+		{
+			x: 12.5d
+			y: -2.0d
+			description: ["白银主要用于制作白银底座，而白银底座可用于制作特殊精灵球。"]
+			dependencies: ["01737B94F574E83C"]
+			id: "532CC52C5BFCFA57"
+			tasks: [{
+				id: "02738C03850547FE"
+				type: "item"
+				item: "pixelmon:silver_ore"
+				count: 16L
+			}]
+			rewards: [
+				{
+					id: "6E77BF2CF1A8B5A5"
+					type: "item"
+					item: "pixelmon:silver_ingot"
+					count: 4
+					random_bonus: 4
+				}
+				{
+					id: "4154DA220DA8A6E9"
+					type: "ftbmoney:money"
+					ftb_money: 10L
+				}
+			]
+		}
+		{
+			x: 7.5d
+			y: -1.5d
+			subtitle: "安山岩的时代"
+			description: ["解锁创造系列任务线。"]
+			dependencies: ["349D92AF36A918FE"]
+			id: "61B0FFAAE1F6EBFE"
+			tasks: [{
+				id: "0A4B06C39F509B21"
+				type: "item"
+				item: "create:andesite_alloy"
+				count: 16L
+			}]
+			rewards: [
+				{
+					id: "4AA8F5EFEDEEC184"
+					type: "item"
+					item: "create:goggles"
+				}
+				{
+					id: "44B91F0C76BE970C"
+					type: "item"
+					item: "create:wrench"
+				}
+				{
+					id: "66D95597DBC7A51F"
+					type: "ftbmoney:money"
+					ftb_money: 10L
+				}
+			]
+		}
+		{
+			x: 12.5d
+			y: 0.0d
+			subtitle: "标志性的我的世界物品"
+			description: ["解锁像素宝可梦机器任务线。"]
+			dependencies: ["01737B94F574E83C"]
+			id: "222E3C01E377FBF2"
+			tasks: [{
+				id: "6F225E486163F327"
+				type: "item"
+				item: "minecraft:diamond"
+				count: 8L
+			}]
+			rewards: [{
+				id: "18FACA799D61DEEC"
+				type: "ftbmoney:money"
+				ftb_money: 10L
+			}]
+		}
+		{
+			title: "像素宝可梦宝石"
+			x: 12.0d
+			y: 1.5d
+			dependencies: ["01737B94F574E83C"]
+			id: "481A769F8AD642FE"
+			tasks: [
+				{
+					id: "394680886DA92B09"
+					type: "item"
+					item: "pixelmon:crystal"
+					count: 8L
+				}
+				{
+					id: "5B288A2D51EBD883"
+					type: "item"
+					item: "pixelmon:ruby"
+					count: 8L
+				}
+				{
+					id: "14F07AB10458636A"
+					type: "item"
+					item: "pixelmon:sapphire"
+					count: 8L
+				}
+				{
+					id: "0A79668AB8F1EED4"
+					type: "item"
+					item: "pixelmon:amethyst"
+					count: 8L
+				}
+			]
+			rewards: [
+				{
+					id: "643FCB80B4D3047D"
+					type: "item"
+					item: "pixelmon:crystal"
+					count: 4
+					random_bonus: 4
+				}
+				{
+					id: "42780DF27C38EE78"
+					type: "item"
+					item: "pixelmon:amethyst"
+					count: 4
+					random_bonus: 4
+				}
+				{
+					id: "1CDA703098AF5547"
+					type: "item"
+					item: "pixelmon:ruby"
+					count: 4
+					random_bonus: 4
+				}
+				{
+					id: "5F49A1A6F32388D9"
+					type: "item"
+					item: "pixelmon:sapphire"
+					count: 4
+					random_bonus: 4
+				}
+				{
+					id: "5F103E332EC0682C"
+					type: "ftbmoney:money"
+					ftb_money: 10L
+				}
+			]
+		}
+		{
+			x: 4.5d
+			y: 3.5d
+			subtitle: "除非你真是狂热者或疯子，否则最好还是止步于此。"
+			hide_dependency_lines: true
+			dependencies: [
+				"222E3C01E377FBF2"
+				"09A941DB25C0222A"
+			]
+			id: "69218FEA9EC1D671"
+			tasks: [{
+				id: "01146C4B328CAC72"
+				type: "item"
+				item: {
+					id: "minecraft:diamond_hoe"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "09C7EFE916A7CC2E"
+				type: "ftbmoney:money"
+				ftb_money: 10L
+			}]
+		}
+		{
+			title: "钻石全能工具包"
+			x: 14.0d
+			y: 0.0d
+			subtitle: "原版最佳，现已升级！"
+			dependencies: ["222E3C01E377FBF2"]
+			id: "39A05B43216F1ACC"
+			tasks: [{
+				id: "435FD27CCF8B7EEF"
+				type: "item"
+				item: {
+					id: "aiot:diamond_aiot"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "7F0D693BF5F51C8D"
+					type: "item"
+					item: "minecraft:diamond"
+					count: 4
+					random_bonus: 4
+				}
+				{
+					id: "69B059D59F5BD8B1"
+					type: "ftbmoney:money"
+					ftb_money: 10L
+				}
+			]
+		}
+		{
+			x: 16.0d
+			y: 0.0d
+			subtitle: "你知道现在是什么时候了吗"
+			description: ["解锁跨维度旅行者任务线。"]
+			dependencies: ["39A05B43216F1ACC"]
+			id: "187B1883D9675112"
+			tasks: [{
+				id: "48E9290CFF4152D6"
+				type: "item"
+				item: "minecraft:obsidian"
+				count: 14L
+			}]
+			rewards: [{
+				id: "7AEC016A52D6D47C"
+				type: "ftbmoney:money"
+				ftb_money: 10L
+			}]
+		}
+		{
+			x: 15.0d
+			y: 1.5d
+			subtitle: "魔法时刻"
+			dependencies: [
+				"187B1883D9675112"
+				"39A05B43216F1ACC"
+			]
+			id: "18386ADCDF18F4E3"
+			tasks: [{
+				id: "391F9AF2BA313792"
+				type: "item"
+				item: "minecraft:enchanting_table"
+			}]
+			rewards: [{
+				id: "7DC688C1A80924EF"
+				type: "ftbmoney:money"
+				ftb_money: 10L
+			}]
+		}
+		{
+			x: 2.0d
+			y: 3.0d
+			dependencies: ["2008F51FF726DB31"]
+			id: "00FFF3696A434A39"
+			tasks: [{
+				id: "66FD6686D0C16B23"
+				type: "item"
+				item: "minecraft:clay_ball"
+				count: 32L
+			}]
+			rewards: [
+				{
+					id: "629DD988FF75E364"
+					type: "item"
+					item: "minecraft:clay_ball"
+					count: 32
+				}
+				{
+					id: "2B286E516ECC6B06"
+					type: "ftbmoney:money"
+					ftb_money: 10L
+				}
+			]
+		}
+		{
+			x: 2.0d
+			y: 4.5d
+			description: ["解锁植物学花盆任务链。"]
+			dependencies: ["00FFF3696A434A39"]
+			id: "6913A94C01BFF571"
+			tasks: [{
+				id: "5CE8615CB5C2FF7D"
+				type: "item"
+				item: "minecraft:terracotta"
+				count: 5L
+			}]
+			rewards: [{
+				id: "480DE600E748268B"
+				type: "ftbmoney:money"
+				ftb_money: 10L
+			}]
+		}
+		{
+			x: 18.0d
+			y: 0.0d
+			subtitle: "近乎完美，但仍有不足"
+			description: ["去下界的深处挖掘下界合金吧。"]
+			dependencies: ["187B1883D9675112"]
+			id: "7DEDFC409591A5D8"
+			tasks: [{
+				id: "0152BD754D46E946"
+				type: "item"
+				item: "minecraft:netherite_ingot"
+			}]
+			rewards: [
+				{
+					id: "4984B5672D3C801C"
+					type: "item"
+					item: "minecraft:netherite_ingot"
+				}
+				{
+					id: "42232C934566DA1C"
+					type: "ftbmoney:money"
+					ftb_money: 10L
+				}
+			]
+		}
+		{
+			x: 10.5d
+			y: 1.5d
+			subtitle: "哦，亮闪闪的！"
+			dependencies: ["01737B94F574E83C"]
+			id: "7F7F1653A5DC4A98"
+			tasks: [{
+				id: "4449064FDF589E97"
+				type: "item"
+				item: "minecraft:gold_ore"
+				count: 16L
+			}]
+			rewards: [{
+				id: "5443530504A4E23B"
+				type: "ftbmoney:money"
+				ftb_money: 10L
+			}]
+		}
+		{
+			x: 4.5d
+			y: 5.0d
+			subtitle: "为什么？"
+			hide_dependency_lines: true
+			dependencies: [
+				"7DEDFC409591A5D8"
+				"69218FEA9EC1D671"
+			]
+			id: "63C47C4AA5F5D002"
+			tasks: [{
+				id: "2D5B4DF5E3C4B461"
+				type: "item"
+				item: {
+					id: "minecraft:netherite_hoe"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "11692A255A2A32F6"
+				type: "ftbmoney:money"
+				ftb_money: 10L
+			}]
+		}
+		{
+			x: 20.0d
+			y: 0.0d
+			subtitle: "全新的最佳选择"
+			description: [
+				"Emeraldite Ore 会生成在 Nether 的 Wailing Garth 生物群系中，任何高度都有可能。"
+				"彭多拉矿石会生成在下界恩布尔沼泽群系中，高度高于Y轴50。"
+			]
+			dependencies: ["7DEDFC409591A5D8"]
+			id: "39CBE46319B48D6E"
+			tasks: [{
+				id: "2462B29F9B17F442"
+				type: "item"
+				item: "byg:pendorite_ingot"
+			}]
+			rewards: [
+				{
+					id: "0242964DC7A8F84E"
+					type: "item"
+					item: "byg:pendorite_ingot"
+				}
+				{
+					id: "4692BD5758EB7267"
+					type: "ftbmoney:money"
+					ftb_money: 10L
+				}
+			]
+		}
+		{
+			x: 4.5d
+			y: 6.5d
+			subtitle: "不，说真的，到底为什么？"
+			hide_dependency_lines: true
+			dependencies: [
+				"39CBE46319B48D6E"
+				"63C47C4AA5F5D002"
+			]
+			secret: true
+			id: "6D0111642899327D"
+			tasks: [{
+				id: "52EFED51D112BAC0"
+				type: "item"
+				item: {
+					id: "byg:pendorite_hoe"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "5273627B1E4EC2A8"
+					type: "ftbmoney:money"
+					ftb_money: 50L
+				}
+				{
+					id: "74B44F62ECBAE04E"
+					type: "item"
+					item: {
+						id: "trophymanager:trophy"
+						Count: 1b
+						tag: {
+							TrophyItem: {
+								id: "byg:pendorite_hoe"
+								Count: 1b
+								tag: {
+									Damage: 0
+								}
+							}
+							TrophyType: "item"
+							Scale: 1.0f
+							OffsetY: 0.5d
+							BaseBlock: "quark:dirt_bricks_slab"
+							Name: "Farming Dedication Trophy"
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 15.0d
+			y: 3.5d
+			subtitle: "力量提升"
+			dependencies: ["18386ADCDF18F4E3"]
+			id: "0ED4A1D7E5F5E894"
+			tasks: [{
+				id: "413FD9132A3C476A"
+				type: "item"
+				title: "任意数量的 #forge:bookshelves"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "forge:bookshelves"
+					}
+				}
+				count: 32L
+			}]
+			rewards: [{
+				id: "5507834BF9354624"
+				type: "ftbmoney:money"
+				ftb_money: 10L
+			}]
+		}
+		{
+			x: 22.0d
+			y: 0.0d
+			subtitle: "呼啸山庄（Withering Heights）"
+			description: [
+				"在本整合包中，下界之星并非通过凋零获得。"
+				"取而代之的是，它们有时会从传说级和究极级首领宝可梦身上掉落。"
+				"或者，它们有 10% 的几率从以下传说宝可梦身上掉落："
+				"克雷色利亚"
+				"达克莱伊"
+				"Victini"
+				"Xerneas"
+				"Yveltal"
+				"Zygarde"
+				"它们也可以通过合成来获得。"
+			]
+			dependencies: ["39CBE46319B48D6E"]
+			id: "0701E60DCE5258F0"
+			tasks: [{
+				id: "01362365747D53A5"
+				type: "item"
+				item: "minecraft:nether_star"
+			}]
+			rewards: [{
+				id: "3F2B5E5DF9606C04"
+				type: "ftbmoney:money"
+				ftb_money: 50L
+			}]
+		}
+		{
+			x: 22.0d
+			y: 2.0d
+			subtitle: "我拥有力量！！！"
+			description: ["除了原版 Minecraft 的常规用途外，它们还用于制作 Create 模组的高级材料 Refined Radiance，可用于合成 Master Ball。"]
+			dependencies: ["0701E60DCE5258F0"]
+			id: "0EE973657219425A"
+			tasks: [{
+				id: "44B337232EC28B55"
+				type: "item"
+				item: "minecraft:beacon"
+			}]
+			rewards: [
+				{
+					id: "5B2BB22830D6B3E7"
+					type: "ftbmoney:money"
+					ftb_money: 50L
+				}
+				{
+					id: "2FD68DBDDA097C67"
+					type: "item"
+					item: {
+						id: "trophymanager:trophy"
+						Count: 1b
+						tag: {
+							TrophyItem: {
+								id: "minecraft:beacon"
+								Count: 1b
+							}
+							TrophyType: "item"
+							Scale: 1.0f
+							OffsetY: 0.25d
+							BaseBlock: "minecraft:blackstone_slab"
+							Name: "Beacon Trophy"
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 0.0d
+			y: -1.5d
+			subtitle: "终极之书"
+			description: ["虽然能放进这里的书不多，但这基本不花成本就能帮你腾出几个物品栏格子。"]
+			dependencies: ["5D403696925F92F1"]
+			id: "6D8430CB2269B352"
+			tasks: [{
+				id: "36A59E08FB9E0865"
+				type: "item"
+				item: "akashictome:tome"
+			}]
+			rewards: [{
+				id: "76E3280D66E09507"
+				type: "ftbmoney:money"
+				ftb_money: 10L
+			}]
+		}
+	]
+}
