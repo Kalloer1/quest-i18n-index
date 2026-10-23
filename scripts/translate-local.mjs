@@ -367,7 +367,7 @@ export function isAlreadyTranslated(root, slug) {
  * @param {string[]} [explicit] 显式 slug 清单（给了就不看已完成状态）
  * @returns {Array<object>}
  */
-export function pendingWorklist(root, all, state, explicit = [], { redoDone = false } = {}) {
+export function pendingWorklist(root, all, state, explicit = [], { redoDone = false, delivered = null, skipDone = false } = {}) {
   if (explicit.length) {
     const picked = all.filter((p) => explicit.includes(p.slug))
     // 分片清单也必须跳过已完成的包。
@@ -375,8 +375,15 @@ export function pendingWorklist(root, all, state, explicit = [], { redoDone = fa
     // 反复重翻，空转 5 小时，其中 734 个早就合进 main 了 —— 队列明明已经见底，
     // 日志却显示一直在跑。要强制重翻（改口径、重试坏包）请显式加 `--redo-done`。
     if (redoDone) return picked
+    // `--slug`（手动点名重翻）刻意不看已完成状态，这是既有语义、有测试钉着；
+    // 只有 `--slug-file`（分片跑批）才跳过已完成的包 —— 那条路径是无人值守的。
+    if (!skipDone) return picked
     const done = state?.done ?? {}
-    return picked.filter((p) => !done[p.slug] && !isAlreadyTranslated(root, p.slug))
+    // `delivered` 是 **origin/main 里已有的包**。只判本机产物远远不够：
+    // 重复是跨主机发生的 —— A 台翻完入库的包，B 台分片里还留着，
+    // 于是 B 台把它从头再翻一遍（2026-10-24 实测白跑 734 个包）。
+    return picked.filter((p) => !done[p.slug] && !isAlreadyTranslated(root, p.slug)
+      && !(delivered && delivered.has(p.slug)))
   }
   const done = state?.done ?? {}
   return all.filter((p) => !done[p.slug] && !isAlreadyTranslated(root, p.slug))
@@ -522,8 +529,18 @@ async function main() {
   // 用 `--limit N` 只能从队头取，会顺带把前面 N-1 个包一起重跑。
   const explicit = [...new Set(explicitList)]
   const redoDone = arg('redo-done', false) === true || arg('redo-done', '') === 'true'
-  const pending = pendingWorklist(ROOT, all, state, explicit, { redoDone })
-  const d = describeWorklist(ROOT, all, state, explicit, { redoDone })
+  // 一次 ls-tree 拿到 main 上已有的包（主机每批都会 fetch main，所以这份是新的）。
+  let delivered = null
+  if (explicit.length && !redoDone) {
+    try {
+      const out = execFileSync('git', ['ls-tree', '-d', '--name-only', 'origin/main', 'patches/'],
+        { cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] })
+      delivered = new Set(out.split('\n').map((x) => x.trim().replace(/^patches\//, '').replace(/\/$/, '')).filter(Boolean))
+    } catch { delivered = null }
+  }
+  const skipDone = Boolean(typeof slugFileArg === 'string' && slugFileArg)
+  const pending = pendingWorklist(ROOT, all, state, explicit, { redoDone, delivered, skipDone })
+  const d = describeWorklist(ROOT, all, state, explicit, { redoDone, delivered, skipDone })
   const worklist = explicit.length
     ? explicit.map((slug) => all.find((p) => p.slug === slug) ?? { slug, platform, layout, bytes: 0 })
     : (limit > 0 ? pending.slice(0, limit) : pending)
