@@ -1,0 +1,366 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "magic_1_arcane_foundations"
+	group: "390C2C59B01B5355"
+	icon: "irons_spellbooks:arcane_essence"
+	id: "35FB234E225B66DD"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"欢迎，年轻的魔法师，来学习完整的&dIron's Spells 'n Spellbooks&r及其三大扩展包。"
+				""
+				"本章是你的魔典。它将教你魔法系统的&o每&r一部分——从第一张卷轴到击败&5Nightwarden&r——沿途还会规划出："
+				""
+				"&2- 铁的魔法：&r 十大学派、魔法书、制作台、法师盔甲和终局BOSS。"
+				"&6- GTBC的占星术：&r &e地&r学派、回响和大地宗师。"
+				"&b- 冰与火：魔法书：&r 龙祭司法杖、长袍和面具。"
+				"&5- T.O Magic 'n Extras:&r 包括 &bAqua&r 学派、特色武器和一大群首领。"
+				""
+				"&7这里没有强制顺序——跟随吸引你的分支。完成任务以赢取神秘奖励。保持好奇心。&r"
+			]
+			icon: {
+				Count: 1
+				id: "irons_spellbooks:diamond_spell_book"
+				tag: {
+					"irons_spellbooks:spell_container": {
+						data: [ ]
+						maxSpells: 10
+						mustEquip: 1b
+						spellWheel: 1b
+					}
+				}
+			}
+			id: "295F70D4C5959E42"
+			shape: "gear"
+			size: 2.0d
+			subtitle: "Master Iron's Spells 'n Spellbooks 及其神秘扩展模组"
+			tasks: [{
+				id: "3D67130BAE29263A"
+				title: "我已经准备好学习魔法了！"
+				type: "checkmark"
+			}]
+			title: "&d&l神秘典籍&r</c2></c1>"
+			x: 3.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["295F70D4C5959E42"]
+			description: [
+				"所有施法都基于两个属性。好好掌握它们："
+				""
+				"&b&l法力&r就是你的燃料。每个法术都会消耗蓝色法力池中的法力，该池会随时间再生。法力耗尽后，在充满前无法施放法术。"
+				""
+				"&d&l法术强度&r就是你的力量。更高的法术强度意味着更高的伤害、更长的持续时间和更强的效果。每种&e学派&r（火、冰等）也有自己的强度属性，可由专用装备提升。"
+				""
+				"&7用法师护甲、戒指和护身符、&e升级球体&r镶嵌在装备上，以及&e属性&r来强化它们。 &6魔法数据卷轴&r（按任意法术的信息键）会显示法术在你当前强度下的具体效果。&r"
+			]
+			icon: "irons_spellbooks:arcane_essence"
+			id: "2D2CEDD0C1B8B575"
+			subtitle: "每个法师赖以生存的两个数字"
+			tasks: [{
+				id: "536330DF8F874992"
+				title: "明白了"
+				type: "checkmark"
+			}]
+			title: "&d法力 \& 法术强度&r"
+			x: 3.5d
+			y: 2.0d
+		}
+		{
+			description: [
+				"&d法术卷轴&r包含一个固定等级的法术。右键可&o免费施放一次&r——无需法力，无冷却——之后卷轴即被消耗。"
+				""
+				"但它真正的价值是作为&o教学工具&r：把它带到&6Inscription Table&r，将法术永久复制到Spell Book中，而不是浪费在一次施放上。"
+				""
+				"&7Scrolls drop from magical mobs, generate in dungeon loot, are sold by the &eApothecarist&r and Wandering Trader, or you can forge your own at the Scroll Forge.&r"
+			]
+			icon: "irons_spellbooks:scroll"
+			id: "602A31CD55E492A7"
+			subtitle: "搜寻、购买或找到你的第一份法术卷轴"
+			tasks: [{
+				id: "3ED2EFC60A18D9BF"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:scroll"
+					tag: {
+						"irons_spellbooks:spell_container": {
+							data: [{
+								id: "irons_spellbooks:gust"
+								index: 0
+								level: 3
+								locked: 1b
+							}]
+							maxSpells: 1
+							mustEquip: 0b
+							spellWheel: 0b
+						}
+					}
+				}
+				match_nbt: false
+				title: "获得任意一本&d法术卷轴&r"
+				type: "item"
+			}]
+			title: "&d力量卷轴&r"
+			x: 3.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["602A31CD55E492A7"]
+			description: [
+				"&d法术书&r是一种可充能的施法媒介。它包含多个&e法术槽&r；更高级的书籍能容纳更多。"
+				""
+				"将其装备在&e奇物栏位&r（按&bG&r打开奇物界面）- 无需手持即可施放。"
+				""
+				"等级，大致从最弱到最强排列如下："
+				"&7脆弱日志（普通）< 铁封卷轴（不常见）< 学徒手册（稀有）< 附魔卷轴（史诗）< 古代法典（传说）&r。"
+				""
+				"书的等级决定了其&e稀有度上限&r——它只能容纳该稀有度以下的法术，因此更强大的书会解锁更强大的法术。书籍&o没有&r学派限制，可以混合任意学派。"
+				""
+				"像&eGrimoire of Evokation&r、&eNecronomicon&r、&eBook of Illusions&r和&eDruidic Tome&r这样的独特书籍都预载了主题相关的法术。"
+			]
+			icon: {
+				Count: 1
+				id: "irons_spellbooks:diamond_spell_book"
+				tag: {
+					"irons_spellbooks:spell_container": {
+						data: [ ]
+						maxSpells: 10
+						mustEquip: 1b
+						spellWheel: 1b
+					}
+				}
+			}
+			id: "030B940BF40E2571"
+			subtitle: "书本里装着你的法术，把它装备在奇物栏里"
+			tasks: [{
+				id: "1BC0EAD5881EE07F"
+				item: {
+					Count: 1
+					id: "itemfilters:tag"
+					tag: {
+						value: "curios:spellbook"
+					}
+				}
+				title: "获得任意 #curios:spellbook 物品"
+				type: "item"
+			}]
+			title: "&d你的第一本魔法书&r"
+			x: 3.5d
+			y: 6.0d
+		}
+		{
+			description: [
+				"&6铭文台&r是法术的核心。放入&e法术书&r和&e法术卷轴&r，即可将法术复制到空槽中。此方法&o双向有效&r——你也可以将法术从书中提取为新的卷轴。"
+				""
+				"&e这里不消耗墨水。&r唯一的限制是&e稀有度&r：书籍会拒绝任何高于其稀有度上限的卷轴。"
+				""
+				"&7卷轴在书写时会消耗，但知识会永远留在书中。&r"
+			]
+			icon: "irons_spellbooks:inscription_table"
+			id: "4B60D489498E4F2B"
+			subtitle: "卷轴变为永久法术的地方"
+			tasks: [{
+				id: "3AC6380E638CD460"
+				item: "irons_spellbooks:inscription_table"
+				type: "item"
+			}]
+			title: "&d铭文台&r"
+			x: 3.5d
+			y: 8.0d
+		}
+		{
+			dependencies: ["4B60D489498E4F2B"]
+			description: [
+				"将一本书和一张可学习的卷轴放入铭文台并确认。你的书现在学会了这个法术。"
+				""
+				"法术还有&e稀有度&r（普通 -> 传说）。书籍只能刻写其稀有度所支持的法术，因此更高级的书籍会解锁最强的法术。"
+				""
+				"&7提示：按住书本并打开&e法术轮盘&r以确认法术已加载。&r"
+			]
+			icon: "irons_spellbooks:common_ink"
+			id: "63326BC86FFC8EE2"
+			subtitle: "将卷轴转化为可施放的法术位"
+			tasks: [{
+				id: "39EA1734DDE1837B"
+				title: "我刻下了我的第一个咒语！"
+				type: "checkmark"
+			}]
+			title: "&d刻写咒语&r"
+			x: 3.5d
+			y: 10.0d
+		}
+		{
+			description: [
+				"装备或手持书籍时，施放方式如下："
+				""
+				"&e- 法术轮盘：&r按住 &bV&r（默认）打开轮盘菜单，将鼠标移到法术上，松开以选择，然后用&e指定的施放键&r施放。"
+				"&e- 施放类型&r因法术而异：&o瞬发&r、&o蓄力&r（按住以增强）、&o持续&r（按住施放）和&o长效&r。"
+				"&e- 蹲下施放&r 多种法术会改变其行为 - 总是值得测试。"
+				""
+				"&7Origins/classes 的咒语使用完全不同的按键绑定 - 查看你的 Origin 屏幕 (&bO&r)。 &r"
+			]
+			icon: "irons_spellbooks:blank_rune"
+			id: "353FAE68B83A9C57"
+			subtitle: "法术轮，快速施放和施放类型"
+			tasks: [{
+				id: "26ACE3AC3781A88C"
+				title: "我施放了一个法术！"
+				type: "checkmark"
+			}]
+			title: "&d施放法术&r"
+			x: 3.5d
+			y: 12.0d
+		}
+		{
+			dependencies: ["353FAE68B83A9C57"]
+			description: [
+				"在&d秘法砧&r上使用时，&e法术栏改进&r（猪皮+秘法布）可为法术书增加&e+1个法术栏&r，最多可达&e12个栏位&r。"
+				""
+				"收集这些来制作一本包含各种法术工具的书，适用于任何情况。"
+			]
+			icon: "irons_spellbooks:lesser_spell_slot_upgrade"
+			id: "5A486F6BCEB2FB8D"
+			rewards: [{
+				id: "45B1A8E9FF57E4BD"
+				type: "xp"
+				xp: 200
+			}]
+			subtitle: "Spell Slot Improvements 为您的书籍增加了容量"
+			tasks: [{
+				id: "256D2AD92EFB098C"
+				item: "irons_spellbooks:lesser_spell_slot_upgrade"
+				title: "获得一个&d法术槽改进&r"
+				type: "item"
+			}]
+			title: "&d扩展你的力量&r"
+			x: 3.5d
+			y: 14.0d
+		}
+		{
+			dependencies: ["4B60D489498E4F2B"]
+			description: [
+				"&d秘法砧&r是你的魔法工作台。在这里你可以："
+				""
+				"&e- 用墨水为武器附魔法术&r，这样右键单击时剑就能施放法术。"
+				"将&e-编织升级球&r附在盔甲、法杖和武器上，以获得永久属性加成。"
+				"&e- 应用符文&r以获得特定学校的增益效果。"
+				"&e- 将咒语槽改进&r应用于书籍。"
+				"&e- 使用Shriving Stone&r从物品上移除附魔或升级。"
+			]
+			icon: "irons_spellbooks:arcane_anvil"
+			id: "54A1425B03ECB020"
+			rewards: [{
+				id: "7E78F92CCACEC100"
+				type: "xp"
+				xp: 150
+			}]
+			subtitle: "为武器附魔，应用球体 \& 符文，并缩小装备"
+			tasks: [{
+				id: "26827DCBBE09C0E6"
+				item: "irons_spellbooks:arcane_anvil"
+				type: "item"
+			}]
+			title: "&d神秘锻造台&r"
+			x: 1.5d
+			y: 8.0d
+		}
+		{
+			dependencies: ["4B60D489498E4F2B"]
+			description: [
+				"&6卷轴锻造台&r能让你&o制作&r已知法术的卷轴，消耗与法术稀有度匹配的&e墨水&r。"
+				""
+				"这能将你的法术书变成卷轴工厂——方便赠送法术、交易，或储备昂贵法术的单次施放卷轴。"
+			]
+			icon: "irons_spellbooks:scroll_forge"
+			id: "4C43B84F54F2919B"
+			rewards: [{
+				id: "29E5125BC595701A"
+				type: "xp"
+				xp: 150
+			}]
+			subtitle: "用墨水制作你自己的法术卷轴"
+			tasks: [{
+				id: "76F3931AF39ECFED"
+				item: "irons_spellbooks:scroll_forge"
+				type: "item"
+			}]
+			title: "&d卷轴锻造台&r"
+			x: 1.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["4B60D489498E4F2B"]
+			description: [
+				"&d炼金术士的坩埚&r是一个魔法酿造站。用它来："
+				""
+				"&e- 从不要的卷轴中&r提取墨水（将其溶解回可重复使用的墨水）。"
+				"&e- 酿造神秘消耗品&r，例如&e橡木精华&r、&e隐身精华&r、&e回避精华&r、&e施法者茶&r和&e高级治疗药水&r。"
+				""
+				"&7维持你的墨水经济流通的必备品。&r"
+			]
+			icon: "irons_spellbooks:alchemist_cauldron"
+			id: "624BA98A6BFBC3E2"
+			rewards: [{
+				id: "3E7D9EB22DC98939"
+				type: "xp"
+				xp: 200
+			}]
+			subtitle: "提取墨水并酿造神奇的药水"
+			tasks: [{
+				id: "0C6B124F719BB782"
+				item: "irons_spellbooks:alchemist_cauldron"
+				type: "item"
+			}]
+			title: "&d炼金术士的坩埚&r"
+			x: 1.5d
+			y: 10.0d
+		}
+		{
+			dependencies: ["54A1425B03ECB020"]
+			description: [
+				"墨水是魔法酿造的通用试剂。它有五个等级，对应魔法的稀有度："
+				""
+				"&f- 普通墨水&r  &a- 不常见墨水&r  &9- 稀有墨水&r  &5- 史诗墨水&r  &6- 传说墨水&r"
+				""
+				"你需要相应（或更高）品质的墨水来锻造卷轴、附魔武器或升级法术。在&d炼金坩埚&r中提取，或从施法者身上掠夺。"
+			]
+			icon: "irons_spellbooks:rare_ink"
+			id: "3F7B29DC69EE3995"
+			subtitle: "墨的稀有度决定了你能锻造和附魔的物品"
+			tasks: [{
+				id: "77707D4A8145D28B"
+				item: "irons_spellbooks:common_ink"
+				title: "获取任意一种&d墨水&r"
+				type: "item"
+			}]
+			title: "&d五种墨水&r"
+			x: 0.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["54A1425B03ECB020"]
+			description: [
+				"用&d基座&r（展示魔法物品）、&6壁炉&r和&6灵魂壁炉&r（照明与氛围）、&e萤火虫罐&r、&e智慧木书架&r和&e书堆&r来完善你的巫师塔。"
+				""
+				"&7纯粹的味道——但每位伟大的法师都需要一个合适的圣所。&r"
+			]
+			icon: "irons_spellbooks:pedestal"
+			id: "08D0A88B1402B77B"
+			optional: true
+			subtitle: "兼具装饰性与功能性的神秘家具"
+			tasks: [{
+				id: "0D4CD0F4A8DB2577"
+				item: "irons_spellbooks:pedestal"
+				type: "item"
+			}]
+			title: "&d基座 \& 火盆&r"
+			x: 0.0d
+			y: 10.0d
+		}
+	]
+	title: "&d神秘学基础&r"
+}
