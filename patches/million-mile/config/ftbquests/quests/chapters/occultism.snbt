@@ -1,0 +1,489 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "occultism"
+	group: "6D51B3EB701BA351"
+	icon: "occultism:ritual_dummy/custom_ritual"
+	id: "7EFADFBD6BF5995B"
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"要使用 Occultism 探索，必须先能看到 Otherworld。敲碎草块，收集一些 demon's dream seeds 并种植它们。吃掉果实，就有机会获得 third eye 效果，让你能看到 Otherworld 事物的真实面貌。"
+				""
+				"不过，还是把它们留到第二步再处理会更容易些。"
+			]
+			id: "51D4636734D87D69"
+			rewards: [{
+				id: "1DDE934AD1FEE673"
+				item: {
+					Count: 1b
+					id: "minecraft:flint_and_steel"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			size: 2.0d
+			subtitle: "步骤 1 - 绊脚球"
+			tasks: [{
+				id: "65E3744000E590F6"
+				item: "occultism:datura"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["51D4636734D87D69"]
+			description: [
+				"将恶魔之梦果实丢在地上并点燃，即可制作出灵魂之火。将物品投入其中，可将其兑换为异世界的等价物。"
+				""
+				"你可能还会在靠近地表的地方发现带有橡树的可疑安山岩洞穴。这些其实是来自异世界的，但你需要吃掉恶魔之梦才能收集里面的东西。"
+			]
+			id: "786BA414A4CA850D"
+			rewards: [{
+				count: 6
+				id: "665A96D4B2198D4B"
+				item: "thermal:silver_ingot"
+				type: "item"
+			}]
+			size: 2.0d
+			tasks: [
+				{
+					id: "2382754129CF08A4"
+					item: "occultism:otherstone"
+					type: "item"
+				}
+				{
+					id: "3F50AFF35CD1558A"
+					item: "occultism:spirit_attuned_gem"
+					type: "item"
+				}
+				{
+					id: "4E08C0B50612F402"
+					item: "occultism:otherworld_log"
+					type: "item"
+				}
+				{
+					id: "0299A0A4389302D7"
+					item: "occultism:otherworld_ashes"
+					type: "item"
+				}
+			]
+			title: "异界资源 (Otherworld Resources)"
+			x: 2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["51D4636734D87D69"]
+			description: ["用屠夫刀杀死猪和牛可以获得动物脂肪。这可以轻松制成仪式用的蜡烛。如果你喜欢，也可以用原版 Minecraft 的蜡烛。"]
+			icon: "occultism:candle_white"
+			id: "663A3CF6F5E87943"
+			rewards: [{
+				count: 16
+				id: "196ADAD85CA795B4"
+				item: "minecraft:honeycomb"
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "3F3CB8F3DAC7F0F1"
+					item: {
+						Count: 1b
+						id: "occultism:butcher_knife"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "487B36CC77E47FDD"
+					item: "occultism:tallow"
+					type: "item"
+				}
+				{
+					id: "765978552BBB8A10"
+					item: "occultism:candle_white"
+					type: "item"
+				}
+			]
+			title: "仪式蜡烛"
+			x: 0.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["786BA414A4CA850D"]
+			description: ["要进行仪式，你需要用异界材料制成的特殊粉笔。"]
+			id: "7291E15DD008418F"
+			rewards: [{
+				id: "76EB18E987E46125"
+				item: "occultism:brush"
+				type: "item"
+			}]
+			size: 2.0d
+			tasks: [{
+				id: "4B7A1752CCA1A7D7"
+				item: {
+					Count: 1b
+					id: "occultism:chalk_white"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "仪式用粉笔"
+			x: 5.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["786BA414A4CA850D"]
+			description: ["献祭碗需要围绕仪式地点摆放，具体方式取决于召唤对象。最后将物品放入金碗中，以此开始仪式。"]
+			icon: "occultism:golden_sacrificial_bowl"
+			id: "568578D56A58EE7F"
+			rewards: [{
+				id: "27C9C5CFB7EE3282"
+				item: "paraglider:horned_statue"
+				type: "item"
+			}]
+			size: 2.0d
+			tasks: [
+				{
+					count: 4L
+					id: "5940C22150F44CBA"
+					item: "occultism:sacrificial_bowl"
+					type: "item"
+				}
+				{
+					id: "16D6FE8D17E9BAB7"
+					item: "occultism:golden_sacrificial_bowl"
+					type: "item"
+				}
+			]
+			title: "仪式献祭"
+			x: 5.0d
+			y: 1.0d
+		}
+		{
+			dependencies: [
+				"7291E15DD008418F"
+				"568578D56A58EE7F"
+			]
+			description: ["首次召唤，Foliot Crusher是个好目标。Foliots是最弱的实体，Crusher能帮你把矿石翻倍。没有图解很难描述具体步骤，所以去Dictionary of Spirits里查仪式圈。JEI也有大部分信息，但没有仪式圈的摆放方法。"]
+			icon: "occultism:book_of_binding_foliot"
+			id: "632E395D9DA06E9B"
+			rewards: [{
+				count: 16
+				id: "7A49980BA4B4F4CE"
+				item: "minecraft:raw_iron"
+				type: "item"
+			}]
+			size: 2.0d
+			tasks: [
+				{
+					id: "3E1FEFE8EBBAF451"
+					title: "第一次仪式"
+					type: "checkmark"
+				}
+				{
+					id: "53C90296025A3338"
+					item: "occultism:book_of_binding_foliot"
+					type: "item"
+				}
+			]
+			title: "首次召唤仪式"
+			x: 7.5d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"7291E15DD008418F"
+				"632E395D9DA06E9B"
+			]
+			description: ["黄金粉笔是下一步。需要一点萤石粉，但你可能能在主世界冒险中找到。"]
+			id: "0DDC5791776D78B7"
+			rewards: [{
+				count: 3
+				id: "6558C68600B8159E"
+				item: "nethersdelight:nether_skewer"
+				type: "item"
+			}]
+			size: 2.0d
+			tasks: [{
+				id: "069DB6CEDFB73C2F"
+				item: {
+					Count: 1b
+					id: "occultism:chalk_gold"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 9.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["0DDC5791776D78B7"]
+			description: ["啃食迷幻水果并不是看到异界事物的最有效方法。不如做些仪式，为自己制作一副护目镜，让效果持续到你想要的时间。"]
+			id: "1805963DCD210959"
+			rewards: [{
+				count: 3
+				id: "6AE647E777576439"
+				item: "culturaldelights:spicy_curry"
+				type: "item"
+			}]
+			size: 1.5d
+			tasks: [{
+				id: "7D07239DD44CAD58"
+				item: {
+					Count: 1b
+					id: "occultism:otherworld_goggles"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 11.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0432B9145CF5C257"]
+			description: ["这把镐很脆，但可以挖掘Iesnium矿石。你可以在下界找到Iesnium，但如果你从未见过，那是因为它只有在拥有第三眼效果或佩戴其他世界护目镜时才可见。"]
+			id: "32CCCEF5478B3C65"
+			rewards: [{
+				count: 6
+				id: "44DC7F1F93C86A06"
+				item: "collectorsreap:portobello_rice_soup"
+				type: "item"
+			}]
+			size: 1.5d
+			tasks: [{
+				id: "7CD14261E492B009"
+				item: {
+					Count: 1b
+					id: "occultism:infused_pickaxe"
+					tag: {
+						Damage: 0
+						spiritName: "Fencresrinne"
+					}
+				}
+				type: "item"
+			}]
+			x: 12.0d
+			y: -6.0d
+		}
+		{
+			dependencies: ["32CCCEF5478B3C65"]
+			description: ["若与常规方块调谐，即可探测到其对应的外世界方块。例如，调谐至下界岩时，会探测到Iesnium矿石。"]
+			id: "0449999A818D16CC"
+			rewards: [{
+				id: "3439DABB4AAED789"
+				type: "xp"
+				xp: 30
+			}]
+			tasks: [{
+				id: "6DF118CC20ED7D04"
+				item: {
+					Count: 1b
+					id: "occultism:divination_rod"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: 13.5d
+			y: -5.5d
+		}
+		{
+			dependencies: ["32CCCEF5478B3C65"]
+			description: ["Iesnium 镐可以挖掘 Iesnium 矿石，但比附魔镐耐用得多。"]
+			id: "43386FBA3AA3A32C"
+			rewards: [{
+				id: "18FB9724BEDB11D7"
+				type: "xp"
+				xp: 30
+			}]
+			tasks: [{
+				id: "667E989AEB11F138"
+				item: {
+					Count: 1b
+					id: "occultism:iesnium_pickaxe"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 13.5d
+			y: -7.0d
+		}
+		{
+			dependencies: ["0DDC5791776D78B7"]
+			id: "0432B9145CF5C257"
+			rewards: [{
+				id: "675A714D0EDE6B95"
+				item: "morevillagers:purpur_altar"
+				type: "item"
+			}]
+			size: 2.0d
+			tasks: [{
+				id: "2A29AB819599681D"
+				item: {
+					Count: 1b
+					id: "occultism:chalk_purple"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 9.5d
+			y: -6.0d
+		}
+		{
+			dependencies: ["32CCCEF5478B3C65"]
+			description: ["更强大的召唤需要魔法灯。Foliot Miner 是个不错的选择。它们会自动为你挖掘随机物品。"]
+			icon: "occultism:magic_lamp_empty"
+			id: "334A2C5A508F6E43"
+			rewards: [{
+				count: 12
+				id: "53403F287C220328"
+				item: "occultism:raw_iesnium"
+				type: "item"
+			}]
+			size: 1.5d
+			tasks: [
+				{
+					id: "00E68EB143A61FF1"
+					item: "occultism:magic_lamp_empty"
+					type: "item"
+				}
+				{
+					id: "7778C121A64671F0"
+					item: "occultism:dimensional_mineshaft"
+					type: "item"
+				}
+			]
+			title: "魔法灯（Magic Lamps）"
+			x: 12.0d
+			y: -9.0d
+		}
+		{
+			dependencies: ["0432B9145CF5C257"]
+			description: ["制作红色粉笔需要召唤并杀死一些未受束缚的恶魔。"]
+			id: "7AADB471FB165F5C"
+			rewards: [{
+				count: 6
+				id: "22437BBC36CC2094"
+				item: "abnormals_delight:pike_with_beetroot"
+				type: "item"
+			}]
+			size: 2.0d
+			tasks: [{
+				id: "6C78E2AAE673F655"
+				item: {
+					Count: 1b
+					id: "occultism:chalk_red"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 9.5d
+			y: -9.5d
+		}
+		{
+			dependencies: ["0432B9145CF5C257"]
+			description: ["尝试一两个你熟悉的仪式，它们能带来很强大的效果。一个驯服戒指能让你更容易地让它们随你移动。"]
+			id: "098421C03C5F1B6B"
+			rewards: [{
+				count: 3
+				id: "16265F778F06011D"
+				item: "extradelight:haggis"
+				type: "item"
+			}]
+			tasks: [{
+				id: "458F20B3BF36BD89"
+				item: {
+					Count: 1b
+					ForgeCaps: {
+						Parent: {
+							hasFamiliar: 0b
+						}
+					}
+					id: "occultism:familiar_ring"
+					tag: {
+						spiritName: "Mrokurakvyrne"
+					}
+				}
+				type: "item"
+			}]
+			x: 7.0d
+			y: -6.0d
+		}
+		{
+			dependencies: ["0DDC5791776D78B7"]
+			description: ["为数不多的魔法主题大容量存储系统之一，而且非常实用！默认有128个槽位，每个最多可存放1024个相同物品，但可通过更多仪式进行扩展。"]
+			icon: "occultism:storage_controller_base"
+			id: "05DDC6398B2AC349"
+			rewards: [{
+				count: 6
+				id: "28EBE492661426D3"
+				item: "immersive_weathering:golden_moss_clump"
+				type: "item"
+			}]
+			size: 1.5d
+			tasks: [
+				{
+					id: "52630A970DB94F0F"
+					item: "occultism:storage_controller_base"
+					type: "item"
+				}
+				{
+					id: "3B0C3E894B2D7711"
+					item: {
+						Count: 1b
+						id: "occultism:dimensional_matrix"
+						tag: {
+							spiritName: "Holarkure"
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "异界存储 (Otherworldly Storage)"
+			x: 12.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["05DDC6398B2AC349"]
+			description: ["远程访问你的异位面恶魔仓库。"]
+			id: "4C3E6B5BFCB9A1DA"
+			rewards: [{
+				count: 6
+				id: "022D7CE0FFA63396"
+				item: "collectorsreap:spicy_grenadine_jelly"
+				type: "item"
+			}]
+			tasks: [{
+				id: "68000E6888A7925A"
+				item: {
+					Count: 1b
+					id: "occultism:storage_remote"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: 14.5d
+			y: -2.5d
+		}
+	]
+	title: "Occultism"
+}

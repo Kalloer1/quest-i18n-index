@@ -1,0 +1,187 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "gear"
+	filename: "automatic_wood"
+	group: "4F646440591467B1"
+	icon: "create:mechanical_saw"
+	id: "657F7D2010802C65"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["要制作一个自动收集木材的机器，你需要建造一个移动装置。这个装置需要本系列任务中的物品。组装它将是你的挑战。"]
+			id: "73FC19EA9EE0921D"
+			size: 3.0d
+			tasks: [{
+				id: "61A1F981A4077F0A"
+				title: "已开始"
+				type: "checkmark"
+			}]
+			title: "入门指南"
+			x: -9.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["73FC19EA9EE0921D"]
+			description: ["你需要某种旋转动力来驱动你的装置。不过，如果使用风车轴承作为装置的基础，那么只需在装置上放置至少8个风帆方块，它就能开始旋转。"]
+			id: "0C920037E4581312"
+			size: 1.5d
+			tasks: [{
+				id: "28A883F7031E5C4A"
+				title: "完成"
+				type: "checkmark"
+			}]
+			title: "旋转动力"
+			x: -6.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["0C920037E4581312"]
+			description: ["将风车轴承放置在你的装置底部，其余装置放在其上方"]
+			id: "3C767EA3D603763B"
+			size: 1.5d
+			tasks: [{
+				id: "47F267F26CDC87DA"
+				item: "create:windmill_bearing"
+				type: "item"
+			}]
+			x: -4.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["0C920037E4581312"]
+			description: ["将机械轴承放置在你的装置底部，其余装置放在其上方"]
+			id: "08AD7178DFF1C752"
+			size: 1.5d
+			tasks: [{
+				id: "53AABAB2075CA162"
+				item: "create:mechanical_bearing"
+				type: "item"
+			}]
+			x: -4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["3C767EA3D603763B"]
+			description: ["如果你选择了使用风车轴承，那么还需要风帆来为你的装置提供动力。"]
+			id: "3B3FED80C2894719"
+			size: 1.5d
+			tasks: [{
+				count: 8L
+				id: "5EA215DB9012FE42"
+				item: "create:white_sail"
+				type: "item"
+			}]
+			x: -2.25d
+			y: -3.0d
+		}
+		{
+			dependencies: [
+				"3B3FED80C2894719"
+				"08AD7178DFF1C752"
+			]
+			dependency_requirement: "one_completed"
+			description: ["机器的底座可以用任何你想要的方块，数量不限。"]
+			id: "4E207DB4E1413264"
+			size: 1.5d
+			tasks: [{
+				id: "6C1887BBDF874D3F"
+				title: "你选择的任意方块"
+				type: "checkmark"
+			}]
+			x: -0.75d
+			y: -0.75d
+		}
+		{
+			dependencies: ["2D74326B6E0379AF"]
+			description: ["要存放采集的木材，你需要至少2个便携式存储接口：一个在移动装置上，另一个在装置外部，连接到漏斗或其他能将物品移出背包的方块。"]
+			id: "059CCB72BF4FB9CE"
+			size: 1.5d
+			tasks: [{
+				count: 2L
+				id: "5E6F74BCA235157E"
+				item: "create:portable_storage_interface"
+				type: "item"
+			}]
+			x: 3.75d
+			y: -0.75d
+		}
+		{
+			dependencies: ["059CCB72BF4FB9CE"]
+			description: ["至少需要一个能将物品移出对面存贮箱的方块来存放原木。该方块必须连接到便携式存储接口。"]
+			id: "3C5F00D11B047E71"
+			size: 1.5d
+			tasks: [{
+				id: "1AD8CCF5C573ACA9"
+				title: "正在移动物品栏内容"
+				type: "checkmark"
+			}]
+			x: 6.0d
+			y: -0.75d
+		}
+		{
+			dependencies: ["3C5F00D11B047E71"]
+			description: [
+				""
+				"你需要一个地方来存放日志，还有什么比箱子更好的选择呢。"
+			]
+			id: "551E823347BB0686"
+			size: 1.5d
+			tasks: [{
+				id: "63A83C767D9E8E6E"
+				item: "minecraft:chest"
+				type: "item"
+			}]
+			x: 8.25d
+			y: -0.75d
+		}
+		{
+			dependencies: ["551E823347BB0686"]
+			description: ["你需要胶水来连接所选轴承上所有的方块。如果不全部连接，它们将无法随着装置的其余部分一起移动。"]
+			id: "6813A015CCD9C809"
+			size: 1.5d
+			tasks: [{
+				id: "7D531A9F8D3EBD04"
+				item: {
+					Count: 1b
+					id: "create:super_glue"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 10.5d
+			y: -0.75d
+		}
+		{
+			dependencies: ["6813A015CCD9C809"]
+			description: ["现在，用你喜欢的方式组装你的伐木机吧。"]
+			id: "63B5BC02BBFD3D95"
+			size: 1.5d
+			tasks: [{
+				id: "629F8EADB8147776"
+				title: "组装任务书"
+				type: "checkmark"
+			}]
+			title: "伐木者组装开始。"
+			x: 12.75d
+			y: -0.75d
+		}
+		{
+			dependencies: ["4E207DB4E1413264"]
+			description: ["至少需要一个机械锯来收集，机械收割机必须与作物处于同一方块高度，并且会收割沿途遇到的所有原木"]
+			id: "2D74326B6E0379AF"
+			size: 1.5d
+			tasks: [{
+				id: "65CCCB293C40C777"
+				item: "create:mechanical_saw"
+				type: "item"
+			}]
+			x: 1.5d
+			y: -0.75d
+		}
+	]
+	title: "自动木材 (Create)"
+}

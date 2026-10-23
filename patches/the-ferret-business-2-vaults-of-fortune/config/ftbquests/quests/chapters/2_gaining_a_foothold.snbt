@@ -1,0 +1,3540 @@
+# AI 初翻，未人工校对
+{
+	id: "63CB81CDA189AA62"
+	group: "1A78C6EA3A0ABFDA"
+	order_index: 1
+	filename: "2_gaining_a_foothold"
+	title: "[2] 站稳脚跟"
+	icon: "tfb2:glitched_ingot"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "一条进入的道路"
+			icon: "tfb2:shipping_crate_empty"
+			x: -8.25d
+			y: -1.25d
+			shape: "hexagon"
+			subtitle: "该从哪里开始呢……"
+			description: [
+				"&d行啦，强盗，我一直在想怎么用我们装在他们系统里的“管道”来搞点事情。把东西运出来再还给蠕虫，这种做法终究是有限的……"
+				""
+				"&5尤其是如果他们找到了，而我们没有其他入口的话，对吧？"
+				""
+				"&d没错。我们可以在&n&l安装些后门&r&d，但如果管道被发现，它们会最先检查那里。"
+				""
+				"&5所以你想通了，妹妹？有什么发现吗？"
+				""
+				"&d没错。我们从内部开始&n&l破坏系统的稳定性&r&d。如果在系统内部开始打孔，那么打开新孔就会更容易。"
+				""
+				"&5希望修复的内容比问题要多。"
+				""
+				"&dWon't know for sure till we try. Bandit, &n&lsend us one of the Factory Crates&r&d the FOP want for crystals. I have an idea...."
+			]
+			dependencies: [
+				"232779928B96328E"
+				"50D9EFE8ABEA9779"
+				"0AF2E388B45934CC"
+				"4342B9F453AD1F1B"
+				"7543E03FC25521E7"
+				"6FA6591AECD82843"
+			]
+			dependency_requirement: "one_completed"
+			id: "69C663CDD23190A9"
+			tasks: [{
+				id: "1D5961F65455B2B7"
+				type: "item"
+				title: "任意工厂木箱"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "tfb2:factory_crates"
+					}
+				}
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "16397A2DB65F2B3C"
+					type: "item"
+					item: {
+						id: "the_vault:card_deck"
+						Count: 1b
+						tag: {
+							id: "vhapi:hacked_backpack_01"
+						}
+					}
+				}
+				{
+					id: "3A5C48FED77FCBC2"
+					type: "gamestage"
+					title: "盲盒阶段 - 早期"
+					auto: "invisible"
+					ignore_reward_blocking: true
+					stage: "story_early"
+				}
+			]
+		}
+		{
+			title: "那个也需要研究一下吗？"
+			x: -8.924638605442183d
+			y: -1.243197278911559d
+			shape: "gear"
+			description: [
+				"&5哇，这么多有用的东西都... &n&l被研究内容和DLC锁住了&r&d。"
+				""
+				"&d有点荒谬，尤其是当你希望人们为你把所有资源都挖出来的时候。"
+				""
+				"&5嗯，要是有人努力到“赚到”它，就会觉得必须尽可能多地利用它吧。"
+				""
+				"&d我们可以&n&l提供商店平板电脑中他们DLC商店没有的一些资源&r&d，但我们必须小心通过管道输送的内容。"
+			]
+			dependencies: ["69C663CDD23190A9"]
+			dependency_requirement: "all_started"
+			size: 0.75d
+			id: "745405F9B434F931"
+			tasks: [{
+				id: "2535781CB291B4C4"
+				type: "checkmark"
+			}]
+		}
+		{
+			title: "……稍微翻找了一下……"
+			icon: {
+				id: "the_vault:booster_pack"
+				Count: 1b
+				tag: {
+					id: "vhapi:hacked_pack"
+				}
+			}
+			x: -6.0d
+			y: -1.25d
+			shape: "pentagon"
+			subtitle: "堆叠牌组 (Stacking the Deck)"
+			description: [
+				"&d所以，强盗，我刚刚给你的这个东西叫作&n&l牌组&r&d。算是吧。"
+				""
+				"&5等等，我读到过那是个&n&l中后期机制&r&5，是他们加的吗？"
+				""
+				"&d嗯，好主意。 &n&l收集卡牌，装备它们，在宝库中完成任务&r&d以获得更多奖励。而且这玩意儿bug满天飞。"
+				""
+				"&5哦，我明白了。弱点吗，还不错。"
+				""
+				"&d行，兄弟。所以班迪特，如果你&n&l按住并右键&r&d那个，就会打开一个拼凑起来的牌组。"
+				""
+				"&5强盗也需要一些卡牌才行。"
+				""
+				"&dYep. &n&lTake a card and Booster Pack&r&d, Bandit. I was able to modify the Card system with our own cards. &n&lHold and Right Click that Booster Pack to get a random card, then put both into your Deck and equip that. Then run Vaults till you complete an Objective&r&d."
+			]
+			dependencies: ["69C663CDD23190A9"]
+			id: "5FC0C65E68336246"
+			tasks: [{
+				id: "2A26065803FF5667"
+				type: "checkmark"
+				title: "远离厨房，保持本分"
+			}]
+			rewards: [
+				{
+					id: "77F589423CF041A4"
+					type: "item"
+					item: {
+						id: "the_vault:card"
+						Count: 1b
+						tag: {
+							data: {
+								tier: 1b
+								entries: [{
+									name: "{\"text\":\"Glitched Resource : Iron\"}"
+									groups: ["Resource"]
+									model: "minecraft:iron_ingot#inventory"
+									colors: ["WHITE"]
+									modifier: {
+										task: {
+											renderer: {
+												tooltip: "{\"text\":\"per ${target} Wooden Chests looted\"}"
+												type: "card"
+											}
+											counter: {
+												baseTarget: 11b
+												current: 0b
+												type: "target"
+												config: {
+													predicate: "GREATER_OR_EQUAL_TO"
+													variables: {
+														targetTierContribution: 1b
+													}
+													target: {
+														type: "uniform"
+														max: 14b
+														min: 10b
+													}
+												}
+												target: 11b
+											}
+											operating: 0b
+											type: "loot_chest"
+											children: [ ]
+											config: {
+												filter: "@the_vault:wooden"
+											}
+										}
+										type: "task_loot"
+										config: {
+											count: [{
+												tier: 1b
+												roll: {
+													type: "uniform"
+													max: 12b
+													min: 3b
+												}
+											}]
+											tooltip: "{\"color\":\"red\",\"extra\":[{\"text\":\"${count}\"},{\"color\":\"yellow\",\"text\":\" Iron Ingot \"},{\"text\":\"${task}\"}],\"text\":\"+ \"}"
+											highlightColor: 65280
+											loot: [
+												{
+													weight: 90.0d
+													item: "iron_ingot"
+												}
+												{
+													weight: 10.0d
+													item: "tfb2:glitched_ingot"
+												}
+											]
+											task: "@easy"
+											maxTier: 1b
+										}
+										uuid: [I;
+											1259908846
+											-1216655666
+											-2108620403
+											910539794
+										]
+										counts: [{
+											tier: 1b
+											count: 5b
+										}]
+									}
+								}]
+							}
+						}
+					}
+				}
+				{
+					id: "147D4F3F677A2EFD"
+					type: "item"
+					item: {
+						id: "the_vault:booster_pack"
+						Count: 1b
+						tag: {
+							Count: 1b
+							id: "vhapi:hacked_pack"
+							tag: {
+								id: "the_vault:default"
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "Glitched Out"
+			icon: "tfb2:glitched_ingot"
+			x: -4.0d
+			y: -1.25d
+			shape: "pentagon"
+			subtitle: "不太对劲"
+			description: [
+				"&d嗯，就是这样！好，&n&l当你完成一个宝库目标，并且满足了其中一张卡片上的条件时，你应该会在完成箱子里得到一些额外的物品&r&d。"
+				""
+				"&5哦，我明白了。把违禁品藏在他们自己的奖励系统里。不错嘛，姐妹。"
+				""
+				"&d这只是第一步，兄弟。第二步是……需要点运气。看，那些&n&l被篡改的卡牌？它们会从存储的最深处抽取资源&r&d。旧服务器、旧版本里那些不太对劲的东西。要是运气好的话……"
+				""
+				"&5...强盗会带回一些垃圾吗？"
+				""
+				"&d不是普通的垃圾。 &n&l出错的垃圾。有问题的、损坏的物品&r&d。我们可以用这些，所以 &n&l给我们寄，比如说5个&r&d？至少先寄这些。 &n&l还有5个那种出错的方块&r&d。如果这能行的话，我们需要很多……"
+			]
+			dependencies: ["5FC0C65E68336246"]
+			id: "7C074ABF2EDF12C1"
+			tasks: [
+				{
+					id: "4AF96E7F8EDA62A5"
+					type: "item"
+					title: "任何出错的物品 (Any Glitched Item)"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "tfb2:glitched_resources"
+						}
+					}
+					count: 5L
+					consume_items: true
+				}
+				{
+					id: "68A136A227C41126"
+					type: "item"
+					title: "任何被破坏的方块"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "tfb2:glitched_block"
+						}
+					}
+					count: 5L
+					consume_items: true
+				}
+			]
+			rewards: [{
+				id: "2A700F12E7742D9B"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "照亮前方的道路"
+			x: -2.0d
+			y: -1.25d
+			shape: "hexagon"
+			subtitle: "一个新的目标已经出现，等待着你去探索。"
+			description: [
+				"&d好的，Glitched Resources 运行良好。"
+				""
+				"&5看来你就要升到&n&l10级&r&5了，强盗。这应该会开启 Vaults 里的一个&n&l新目标&r&5。"
+				""
+				"&d或许还有另一种方法，能让我们从他们的服务器里吸走一些物品。"
+				""
+				"&5哦，不再是激活巨石了吗？&n&l点燃火盆&r&5..."
+				""
+				"&d看起来思路差不多：每个房间都有一个&n&l壁炉&r&d。你需要在&n&l离开地窖前激活一定数量的壁炉&r&d。"
+				""
+				"&5不过这不一样，姐妹。看起来是&n&l每个壁炉都会给你一个好坏的增益&r&5。有时只有一个……"
+				""
+				"&d失去宝库时间，真恶心。不过&n&l一旦集齐指定数量的火盆，就能激活更多来掠夺稀有战利品&r&d。这正是我想要的。去掠夺吧，强盗！"
+			]
+			dependencies: ["7C074ABF2EDF12C1"]
+			id: "76B7D44E338DC9B7"
+			tasks: [{
+				id: "479ED6452576353D"
+				type: "woldsvaults:vault_level"
+				title: "达到第10级"
+				icon: "woldsvaults:monolith"
+				value: 10
+			}]
+			rewards: [{
+				id: "6C675E40B1548C74"
+				type: "item"
+				item: "the_vault:crystal_seal_scout"
+			}]
+		}
+		{
+			title: "被洗劫和掠夺一空"
+			x: 0.25d
+			y: -1.25d
+			shape: "pentagon"
+			subtitle: "更多系统裂缝 (More System Cracks)"
+			description: [
+				"&d出色的强盗，又一个&n&l完成宝箱&r&d。里面应该有……"
+				""
+				"&5……那是什么，姐妹？"
+				""
+				"&d兄弟，计划的下一步。 &n&l每次打开一个完成品宝箱，你都会得到一个像这样&r&d的令牌。它们是 FOP 游戏服务器数据中心里的一个象征性'链接'。"
+				""
+				"&5等等...是计算机“链接”还是魔法“链接”？"
+				""
+				"&d是的。"
+				""
+				"&5你知道的，我早该想到的。好，那该让强盗藏起令牌吗？"
+				""
+				"&d不不，我只是需要把它们从数据中心拿出来以建立连接。其实，要不我们鼓励 Bandit 多弄点这些？"
+				""
+				"&5代币商店？"
+				""
+				"&d代币商店。查看&n&l商店目录&r&d，强盗，有些东西需要用代币购买。"
+			]
+			dependencies: ["76B7D44E338DC9B7"]
+			id: "10F607F18CE03D39"
+			tasks: [{
+				id: "2B4B2F0651EEFC4C"
+				type: "item"
+				title: "一个熔炉完成奖励箱"
+				item: "the_vault:vault_crate_monolith"
+			}]
+			rewards: [{
+				id: "324481C298B2397F"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "基础版马术技巧教学包"
+			x: 2.25d
+			y: -1.25d
+			shape: "pentagon"
+			subtitle: "原始资源（以及一些其他东西）"
+			description: [
+				"&d据调查，Bandit，一些高级玩家可以在名为“Skyvault”的服务器中开始游戏，这是一种特殊服务器，玩家在虚空世界中开局，需要从零开始建造基地。"
+				""
+				"&5...嘿，班迪特是从一开始就存在的吗？我们能分得清吗？"
+				""
+				"&d看得出来，但这并不影响我们取出它们的计划，反正我们还需要这个“Skyvault”模板里的几样东西。"
+				""
+				"&5哦？说来听听，姐妹。"
+				""
+				"&d现在，从一个没有资源的小岛开始，对FOP来说毫无意义，不是吗？除了一个无聊的Power User。所以，他们创造了一种特殊的宝库，叫做&n&l原始宝库&r&d。"
+				""
+				"&5哦！是&n&l原始宝库&r&5，没错。它们&n&l包含大量非宝库资源&r&5，用于建造基地、装备和机器。比如&n&l铁、钻石、石头&r&5等。"
+				""
+				"&d对了，&n&l原始宝库来自晶簇&r&d，它会像紫水晶一样&n&l生长&r&d。晶簇通常留给Skyvault用户，但只要稍微改点代码，&n&l你就能拥有一个了&r&d！"
+				""
+				"&5等等，姐妹，如果你能……我记得地下有那些大的&n&l紫水晶洞穴&r&5。你能……稍微改一下吗？给Budding Crystals做一个？"
+				""
+				"&d办妥了，兄弟。搞定，现在&n&l你也能在地下找到它们了&r&d！"
+			]
+			dependencies: ["10F607F18CE03D39"]
+			id: "3E2831A2D27654C0"
+			tasks: [{
+				id: "758524279B807786"
+				type: "observation"
+				title: "观察一个正在生长的水晶"
+				icon: "the_vault:crystal_budding"
+				timer: 0L
+				observe_type: 0
+				to_observe: "the_vault:crystal_budding"
+			}]
+			rewards: [{
+				id: "001A41EB98B1D2AA"
+				type: "choice"
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "回收与再利用 Recycling and Reusing"
+			x: -6.5d
+			y: -2.5d
+			shape: "rsquare"
+			subtitle: "重新利用的方块（Repurposed）"
+			description: [
+				"&d强盗，你很快就会注意到自己会开始获得更多Vault Gear，但其中大部分对你来说都没用……至少现在是这样。"
+				""
+				"&5这些装备还能&n&l派上用场&r&5，不只是卖给我们或还给FOP。 &n&l你可以回收它们&r&5。"
+				""
+				"&d&n&lVault Recycler&r&d 可以将 &n&lVault Gear、宝石和其他一些地窖物品&r&d 分解成一些资源。"
+				""
+				"&5这些资源通常可用于在Vault Forge中&n&l升级或制作装备&r&5。"
+				""
+				"&dThe Recycler is also the &n&lonly way you can get&r&d some resources, like &n&lVault Scrap&r&d."
+			]
+			dependencies: ["7543E03FC25521E7"]
+			id: "29198B5EA727A867"
+			tasks: [{
+				id: "0624F8EBEA7D786A"
+				type: "observation"
+				title: "观察一个 Vault 回收机"
+				icon: "the_vault:vault_recycler"
+				timer: 0L
+				observe_type: 0
+				to_observe: "the_vault:vault_recycler"
+			}]
+			rewards: [{
+				id: "37FD980BB0198DF4"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "口袋之魂"
+			icon: {
+				id: "the_vault:shard_pouch"
+				Count: 1b
+				tag: {
+					Inventory: { }
+				}
+			}
+			x: -4.0d
+			y: -2.5d
+			shape: "rsquare"
+			subtitle: "充满灵魂"
+			description: [
+				"&d强盗，你大概已经去过一两个宝库了，也获得了不少&n&l灵魂碎片&r&d，对吧？"
+				""
+				"&5即使堆叠到上限，你越擅长对抗宝库的怪物，它们填满的背包空间就越多。"
+				""
+				"&dFOP似乎鼓励玩家尽可能多地、高效地战斗，为此它加入了一个实用物品：&n&l碎片袋&r&d。"
+				""
+				"&5&n&lAs long as this Shard Pouch is in your main inventory&r&5 (not stuck in a backpack), it should &n&lcollect all the Soul Shards you get&r&5."
+				""
+				"&d还有一个&n&lCurios栏位&r&d可以放置你的灵魂袋。像黑市这样的东西可以帮你取出碎片。"
+			]
+			dependencies: ["0AF2E388B45934CC"]
+			id: "287AFB08CA4CC848"
+			tasks: [{
+				id: "3091F35A6756D661"
+				type: "item"
+				item: "the_vault:shard_pouch"
+			}]
+			rewards: [{
+				id: "20BE82A96F0ADB0C"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "一份未经烹饪的食谱"
+			x: 4.25d
+			y: -1.25d
+			shape: "diamond"
+			subtitle: "一个令牌，两个令牌，三个令牌，出发！"
+			description: [
+				"&d行啦，强盗，你得去&n&l跑一两个原始宝库&r&d，里面有几样东西你肯定想找的。"
+				""
+				"&5&n&l原始宝库&r&5有自己专属的箱子。它们没有木制、华丽等箱子，而是有&n&l硬化和血肉箱子&r&5。"
+				""
+				"&d别忘了真正的宝藏：&n&lEnigma Chests&r&d。"
+				""
+				"&5它们在原始宝库的灰褐色中格外显眼。 &n&l它们是黑曜石和紫色的。里面还有特殊宝藏&r&5。"
+				""
+				"&d很有用的东西，不过好在现在用不着！它们挺稀有的。不，强盗，你现在只想&n&l打开一堆硬化和血肉宝箱来寻找一些原始宝库代币&r&d。"
+				""
+				"&5尽可能多地用各种路线拿到这些“链接”能让我们的工作更轻松。就像向敌船投掷更多钩锁，能降低它们挣脱的概率。"
+			]
+			dependencies: ["3E2831A2D27654C0"]
+			id: "3011291910FDA2DC"
+			tasks: [{
+				id: "154F2F7EF5DBE99B"
+				type: "item"
+				item: "tfb2:token_raw"
+			}]
+			rewards: [{
+				id: "08EBE5AEC1FC20E2"
+				type: "choice"
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "宝库死亡，等级20，还有你"
+			icon: "minecraft:skeleton_skull"
+			x: 6.191964285714285d
+			y: -1.2232142857142918d
+			shape: "pentagon"
+			subtitle: "难度调整模组的一个特性"
+			description: [
+				"&d强盗，当你的&n&l等级达到20级&r&d，你应该&n&l在进入另一个宝库前等待&r&d！"
+				""
+				"&5好，&n&l事情变得有点棘手了&r&5，你知道吗，现在&n&l如果你在Vault里死亡，就会失去身上大部分装备&r&5。"
+				""
+				"&d&n&l并非永久&r&d(通常...)。 &n&l你的钱币袋至少应该随身携带，还有任何灵魂绑定装备&r&d。你的鬼魂之身应该是在&n&l你的床或世界出生点处&r&d。"
+				""
+				"&5&n&l要拿回装备，你得右键拾起这具尸体，然后带到灵魂提取器上。接着把尸体右键放到提取器上。&r&5"
+				""
+				"&d&n&lSpirit Extractor 会列出取回装备所需的 Vault Gold 数量。如果不够，你可以选择欠下 The Locker 的债务来换取物品&r&d。请参见下一节的 Spirit Extractor 任务。"
+			]
+			dependencies: ["3011291910FDA2DC"]
+			dependency_requirement: "one_completed"
+			id: "148669A61C9EFBF4"
+			tasks: [{
+				id: "1DCAF4CEF586F554"
+				type: "woldsvaults:vault_level"
+				title: "达到20级"
+				icon: "minecraft:skeleton_skull"
+				value: 20
+			}]
+			rewards: [{
+				id: "7797EC090D62CFF3"
+				type: "choice"
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "精心雕琢的珠宝 (Carefully Shaped Jewels)"
+			x: -7.5d
+			y: 1.0d
+			shape: "rsquare"
+			subtitle: "更好的工具力量模组"
+			description: [
+				"&d咦，旧珠宝切割台去哪儿了？"
+				""
+				"&5我猜这又是他们替换的另一个系统。知道现在是怎么运作的吗？"
+				""
+				"&d嗯，论坛的说法是……不太好。想法不错，但执行有缺陷。"
+				""
+				"&5你的意思是说，它需要打磨和抛光？一块未经雕琢的钻石？"
+				""
+				"&d与其说是改变，不如说是切割。我觉着我可以偷偷地做出一些微小的改动……只要改动很小，我就能把事情往对你有利的方向推，强盗。"
+				""
+				"&5不过，看在强盗的份上，这到底是怎么运作的？"
+				""
+				"&d哦，抱歉，强盗。好吧，你在宝库中找到的宝石有特殊效果，能增加战利品等。但它们只能作用于一种工具，比如稿子、斧子等。"
+				""
+				"&dUsing this &n&lJewel Crafting Station&r&d, and the &n&lgemstones&r&d you get from &n&lRecycling unused Jewels&r&d, you can craft and &n&ladd more Tool types&r&d and &n&lspecial abilities&r&d to your Vault Tools."
+			]
+			hide_dependency_lines: true
+			dependencies: [
+				"5252A91CF03F9FFB"
+				"29198B5EA727A867"
+			]
+			id: "5F19CA4A2A21E708"
+			tasks: [{
+				id: "1911BF5F548ADBB8"
+				type: "observation"
+				title: "观察一个宝石制作台 (Jewel Crafting Table)"
+				icon: "the_vault:jewel_crafting_table"
+				timer: 0L
+				observe_type: 0
+				to_observe: "the_vault:jewel_crafting_table"
+			}]
+			rewards: [{
+				id: "35394C1533E28E4E"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "适用于所有场合的工具"
+			x: -8.25d
+			y: 0.0d
+			shape: "rsquare"
+			subtitle: "像这样的还有很多……"
+			description: [
+				"&d为了鼓励玩家制作和提交各种常规工具，FOP 鼓励你使用可以在 &n&l工具台&r&d 中制作的 &n&l特殊宝库工具&r&d。"
+				""
+				"&5Vault 工具在低阶时就有&n&l相当高的耐用度&r&5。随着你&n&l提升 Vault 等级&r&5，可以制作出&n&l更强大、更优质的工具&r&5。"
+				""
+				"&d不过你只能&n&l修复它们有限次数&r&d。但早期你本来就会&n&l经常升级工具&r&d。"
+				""
+				"&5它们&n&l并不能像其他工具那样真正用作武器&r&5，至少不能有效地使用。"
+				""
+				"&d多用途性可以弥补这一点，兄弟。你可以用宝石&n&l增强和升级你的工具&r&d，这需要单独的任务来解释~。"
+			]
+			dependencies: ["232779928B96328E"]
+			id: "3E4FCFC9637F8B61"
+			tasks: [{
+				id: "2863933608E700CF"
+				type: "observation"
+				title: "观察一个工具台 Station"
+				icon: "the_vault:tool_station"
+				timer: 0L
+				observe_type: 0
+				to_observe: "the_vault:tool_station"
+			}]
+			rewards: [{
+				id: "70FDD9ABC8E0AAD9"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "简易附魔系统"
+			x: -9.75d
+			y: -3.5d
+			shape: "rsquare"
+			subtitle: "只需几颗绿宝石……"
+			description: [
+				"&d强盗，在之前的世界里，你要么用附魔台来附魔装备..."
+				""
+				"&5……或者通过掠夺附魔书来获得。"
+				""
+				"&dThe FOP have made it &n&la lot easier to apply enchantments&r&d to your gear, to get you in and out of Vaults more smoothly."
+				""
+				"&5&n&l宝库附魔师&r&5几乎能满足你对任何附魔的需求。当然，这并非免费服务……"
+				""
+				"&d ...但是&n&l相当便宜&r&d。通常只需要一些&n&l绿宝石&r&d和一些&n&l经验值&r&5。"
+				""
+				"&5虽然看起来有一些&n&l特殊的高成本附魔&r&5可以获取。最好还是留给更高级的装备吧。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["7543E03FC25521E7"]
+			id: "76705D95215E5BCA"
+			tasks: [{
+				id: "2E8C02053B857F63"
+				type: "observation"
+				title: "观察一个宝库附魔师"
+				icon: "the_vault:vault_enchanter"
+				timer: 0L
+				observe_type: 0
+				to_observe: "the_vault:vault_enchanter"
+			}]
+			rewards: [{
+				id: "16927F916C3E4B20"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "在灵魂市场之中"
+			x: -4.0d
+			y: -3.5d
+			shape: "rsquare"
+			subtitle: "明智消费"
+			description: [
+				"&d&n&l黑市&r&d能让你&n&l获得在宝库中用得上的物品和材料。代价？灵魂碎片&r&d，它能&n&l直接从你的灵魂袋中&r&d提取。"
+				""
+				"&5它会&n&l出售装备、资源和其他物品&r&5。但一次只能买三件……"
+				""
+				"&d…还有，固定价格的&n&l随机物品选项&r&d。如果获得专家技能，还能&n&l获得更多格子&r&d。"
+				""
+				"&5物品的价格各不相同，但中间的格子&n&l高亮为紫色&r&5，几乎总是被视为&n&l好交易&r&5。"
+				""
+				"&d还有一些物品&n&l只会出现在这个特殊栏位中&r&d，所以请留意它！"
+				""
+				"&5还有个特殊物品叫&n&lSoul Ichor&r&5，能让你&n&l'重roll'商店&r&5，不用等计时器结束。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["287AFB08CA4CC848"]
+			id: "7913E52AAC8DE521"
+			tasks: [{
+				id: "4D569048D87B18F3"
+				type: "observation"
+				title: "观察一个黑市 (Observe a Black Market)"
+				icon: "the_vault:black_market"
+				timer: 0L
+				observe_type: 0
+				to_observe: "the_vault:black_market"
+			}]
+			rewards: [{
+				id: "6200612309E30D52"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "水晶定制"
+			x: -2.5d
+			y: -2.5d
+			shape: "rsquare"
+			subtitle: "随你所欲，心想事成"
+			description: [
+				"&d所以，虽然一开始可能挺贵的，Bandit，你还是得弄一个这个来用用。"
+				""
+				"&5叫作&n&l水晶工作台&r&5。黑彩钢很贵，但掠夺那些火盆能让你早点弄到一个。"
+				""
+				"&d你需要用它来&n&l修改你制作的宝库水晶&r&d。前期能修改的东西不多，但是……"
+				""
+				"&5从我们这里拿到的&n&l海豹&r&5是修改水晶的方法之一。这将&n&l锁定宝库的&r&5目标。"
+				""
+				"&d对我们都有好处，因为我觉得我们需要用特定目标来破解系统。不过，你低等级的水晶不能修改太多。这就是&n&l容量，会随着你的等级提升而增加&r&d。"
+				""
+				"&5水晶可以做很多不同的事情。 &n&l顶石、主题等等&r&5。真有意思。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["76B7D44E338DC9B7"]
+			id: "4C97356EDF3283CB"
+			tasks: [{
+				id: "7A5C931B34C985DF"
+				type: "observation"
+				title: "观察一个水晶工作台 (Crystal Workbench)"
+				icon: "the_vault:crystal_workbench"
+				timer: 0L
+				observe_type: 0
+				to_observe: "the_vault:crystal_workbench"
+			}]
+			rewards: [
+				{
+					id: "354722987BE489EB"
+					type: "choice"
+					exclude_from_claim_all: true
+					table_id: 2640422954496342337L
+				}
+				{
+					id: "3ADBE05493AFAA99"
+					type: "item"
+					item: "the_vault:phoenix_feather"
+				}
+			]
+		}
+		{
+			title: "Artisinal Gear"
+			icon: "the_vault:vault_artisan_station"
+			x: -4.0d
+			y: 0.0d
+			shape: "rsquare"
+			subtitle: "获得了完美卷轴"
+			description: [
+				"&d在宝库中找到的宝库装备&n&l将处于该宝库的等级（而非你自己的等级）&r&d。"
+				""
+				"&5在市场找到的装备会与你同级；悬赏也有自己的等级。"
+				""
+				"&d&n&lUnidentified gear only has Level and minimum rarity stats until you roll it&r&d. These stats you can &n&lalter with the Vault Artisan Station&r&d."
+				""
+				"&5使用各种焦点...焦点？焦点们？"
+				""
+				"&dFocus like the &n&lWild Focus&r&d, you can &n&lreroll different aspects&r&d of a gear piece for the &n&lcost of some Vault Bronze and Vault Plating&r&d."
+				""
+				"&5What &n&lkind of gear determines what kind of Implicits (the set attributes of a piece), and Suffixes and Prefixes (additional attributes) it can have&r&5."
+				""
+				"&d&n&l装备的稀有度决定了其前缀和后缀槽的数量&r&d。越稀有，槽位越多。"
+			]
+			dependencies: ["7543E03FC25521E7"]
+			id: "6473A9F33F692821"
+			tasks: [
+				{
+					id: "10A57C9288A6ABCE"
+					type: "item"
+					item: "the_vault:wild_focus"
+				}
+				{
+					id: "47C080D6BF4BA314"
+					type: "observation"
+					title: "观察一个宝库工匠工作站"
+					icon: "the_vault:vault_artisan_station"
+					timer: 0L
+					observe_type: 0
+					to_observe: "the_vault:vault_artisan_station"
+				}
+			]
+			rewards: [{
+				id: "7A2AA904673711E2"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "相当有吸引力"
+			x: -14.0d
+			y: -1.25d
+			shape: "rsquare"
+			subtitle: "迷人的个性 (An Attractive Personality)"
+			description: [
+				"&d你可能还没有的 Vault Gear 之一是 &n&lMagnet&r&d。"
+				""
+				"&5非常适合用于搜刮的装备，尤其实用。 &n&l附近掉落的所有物品都会自动飞到你的身边，方便拾取&r&5。"
+				""
+				"&d如果你还没通过战利品获得，可以在&n&lVault Forge&r&d里制作一个，Bandit。它们可能拥有有用的能力。"
+				""
+				"&5磁铁有一个&n&l可通过快捷键切换的模式&r&5。默认情况下，你&n&l会处于拾取模式&r&5，即拾取附近的所有物品。"
+				""
+				"&d&n&l第二种模式是拾取+虚空&r&d。它会&n&l拾取你周围的所有物品，但会删除被登记为地牢设计的一部分的任何方块&r&d，例如泥土或砖块。"
+				""
+				"&5&n&l最后一个模式是关闭&r&5，会完全禁用你的磁铁。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["075AD2D046BFE367"]
+			id: "40008EC8697729A5"
+			tasks: [{
+				id: "399BE81D7BF4A49B"
+				type: "item"
+				item: {
+					id: "the_vault:magnet"
+					Count: 1b
+					tag: { }
+				}
+			}]
+		}
+		{
+			title: "炼金术增强模组 (Alchemy Augmented)"
+			x: -8.25d
+			y: -3.5d
+			shape: "rsquare"
+			description: [
+				"&d&n&lVault Potions&r&d（小瓶、混合物、酿造品等）可以通过使用&n&lAlchemy Table&r&d来进一步&n&laugmented&r&d。"
+				""
+				"&5You can slap on an &n&lextra ability&r&5 onto the Potion that &n&lactivates when it is consumed&r&5. Such as &n&lreplenshing Mana&r&5 as well as your Hitpoints."
+				""
+				"&d&n&l许多&r&d真正强大的&n&l药水能力只能在宝库&r&d中找到。但这些宝库&n&l要到至少&r&d20级&n&l才会出现&r&d。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["600061B7D508477A"]
+			id: "347572D8EA734FDC"
+			tasks: [{
+				id: "689680500F88380B"
+				type: "observation"
+				title: "观察一张炼金术台 Alchemy Table"
+				icon: "the_vault:alchemy_table"
+				timer: 0L
+				observe_type: 0
+				to_observe: "the_vault:alchemy_table"
+			}]
+			rewards: [{
+				id: "6D69C45C9F32EBF9"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "欢迎来到Vault Burger"
+			x: -9.75d
+			y: -2.5d
+			shape: "rsquare"
+			subtitle: "Vault 汉堡的家园"
+			description: [
+				"&d&n&l活着的箱子&r&d里经常有制作&n&l宝库汉堡&r&d的原料。"
+				""
+				"&5Vault汉堡并不能真正填饱你的肚子。相反，它们会&n&l给予你一些Vault经验值&r&5。"
+				""
+				"&d它们是&n&l快速升级&r&d的好方法。你的&n&l等级越高&r&d，找到的&n&l汉堡食材就越多&r&d，能做出&n&l更大的汉堡&r&d。"
+				""
+				"&5不过要小心，强盗。强烈建议你最好把找到的所有材料都……&n&l保存起来&r&5。"
+				""
+				"&d至少在升到大约&n&l50级&r&d之前都是这样，届时&n&l升级的XP曲线会急剧上升&r&d。"
+			]
+			dependencies: ["50D9EFE8ABEA9779"]
+			id: "4D3F25E7797D88D1"
+			tasks: [{
+				id: "6E813948C224298B"
+				type: "item"
+				item: "the_vault:plain_burger"
+			}]
+			rewards: [{
+				id: "1A36AC1076BCEE18"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "主题性决策"
+			x: -2.5d
+			y: -3.5d
+			shape: "rsquare"
+			subtitle: "你喜欢风格 A、B 还是 C 呢？"
+			description: [
+				"&d你可能注意到可以从完成品宝箱中获得其中一个&n&l&r&d。"
+				""
+				"&5它们被称为&n&lAugments&r&5，能让你&n&l在Vault Crystal上锁定特定主题&r&5。"
+				""
+				"&d主题决定了&n&l地牢的外观和会生成的生物&r&d。"
+				""
+				"&5有些主题还有&n&l独特的房间&r&5……比如&n&l海盗湾&r&5~"
+			]
+			hide_dependency_lines: true
+			dependencies: ["4C97356EDF3283CB"]
+			id: "420733071145A568"
+			tasks: [{
+				id: "272ED903C6F93751"
+				type: "item"
+				title: "任意增强组件"
+				item: "the_vault:augment"
+			}]
+			rewards: [{
+				id: "0123C95FCFAC3F0C"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "困难与死亡 Difficulties and Death"
+			x: 6.629464285714285d
+			y: -1.6607142857142918d
+			shape: "gear"
+			description: [
+				"&d所以，Bandit，&n&l在FOPGame服务器的地牢中死亡，处理方式取决于服务器/世界设置的地牢模式&r&d。"
+				""
+				"&5默认&n&l情况下，&r&5服务器设为普通模式&n&l。若设为&r&5&n&l休闲模式，物品栏会保留，但装备的耐久度会受损&r&5。"
+				""
+				"&dAnd if you are &n&lin Hardcore, there is no body&r&d, and no way to get your equipment back (outside of Server Commands)"
+				""
+				"&5强盗，我让我姐偷偷加了些额外指令。如果你在服务器上，有玩家想要不同的难度、成长曲线或其他设置，你应该试试 /extra_rules 和 /gamerule vaultExtra______ 指令"
+				""
+				""
+				"[[如果出现错误或其他问题，请参阅任务书的行政部分，了解物品栏检索命令或如何更改世界的Vault模式]]"
+			]
+			hide_dependency_lines: true
+			dependencies: ["148669A61C9EFBF4"]
+			size: 0.75d
+			id: "0D498B67088B2413"
+			tasks: [{
+				id: "2446F6DFF06C53B9"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "2518589876F1D218"
+				type: "choice"
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "依然存活"
+			x: -1.5d
+			y: -2.5d
+			shape: "rsquare"
+			subtitle: "烈焰归来"
+			description: [
+				"我们给你的&d&n&l凤凰基石&r&d，就是可以添加到宝库水晶上的物品之一。"
+				""
+				"&5每种晶体&n&l只能添加一种顶石&r&5，但它们通常非常强大。例如&n&l凤凰顶石，如果你在宝库&r&5内死亡，它会立即将你复活。"
+				""
+				"&d给了你另一次机会，但如果是因为被成群的怪物困住而死，那可能就不好了。"
+				""
+				"&5挥舞武器也不能太快，你懂的，对吧？"
+			]
+			hide_dependency_lines: true
+			dependencies: ["4C97356EDF3283CB"]
+			id: "3C78334E9B675974"
+			tasks: [{
+				id: "75977BC2DAF52BED"
+				type: "item"
+				item: "the_vault:phoenix_feather"
+			}]
+			rewards: [{
+				id: "667D81E8C22D861E"
+				type: "choice"
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "闪闪发光的宝石"
+			x: -9.0d
+			y: 1.0d
+			shape: "rsquare"
+			subtitle: "饰以力量，彰显荣耀"
+			description: [
+				"&d我们提到了在宝库中，或者更确切地说：&n&l珠宝袋&r&d中可以找到的&n&l珠宝&r&d。"
+				""
+				"&5通常可以在&n&l镀金宝箱&r&5中找到它们，&n&l拿起并右键单击&r&5它们会给你一个&n&l在三种不同宝石之间&r&5做出选择的选项。"
+				""
+				"&d&n&l有时&r&d宝石会拥有&n&l不止一种能力&r&d，但&n&l大多数来自袋子的宝石都将是10号大小&r&d。"
+				""
+				"&5如果你看你的&n&lVault Tools&r&5、Bandit，它们有一个&n&l容量&r&5。你用这个&n&lJewel Applicator&r&5把工具和所有宝石放进去，就能给它们装上宝石。"
+				""
+				"&d&n&l你可以在正式应用属性前，看到工具的最终属性&r&d。"
+			]
+			hide_dependency_lines: true
+			dependencies: [
+				"4342B9F453AD1F1B"
+				"3E4FCFC9637F8B61"
+			]
+			id: "5252A91CF03F9FFB"
+			tasks: [{
+				id: "2FC53A989F783AE4"
+				type: "observation"
+				title: "观察一个宝石涂抹器 (Jewel Applicator)"
+				icon: "the_vault:vault_jewel_application_station"
+				timer: 0L
+				observe_type: 0
+				to_observe: "the_vault:vault_jewel_application_station"
+			}]
+			rewards: [{
+				id: "61B1C995542D69E0"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "成为专家之路"
+			icon: "woldsvaults:expertise_orb"
+			x: 4.25d
+			y: 0.0d
+			shape: "rsquare"
+			subtitle: "智能力量模组"
+			description: [
+				"&d你很可能已经&n&l达到5级&r&d，强盗，所以你大概已经注意到你&n&l获得了一个专长点&r&d。"
+				""
+				"&5与技能不同，这些更像是... &n&l间接的增益&r&5，通常涉及与&n&l战斗或掠夺不直接相关&r&5的事物。"
+				""
+				"&d比如&n&l改进你的黑市或悬赏板&r&d。嗯，代码里还提到了专家球，稍等..."
+				""
+				"&5你找到了什么，姐妹？"
+				""
+				"&d…让我试试…该死。行，看来&n&l专家点数每5级只能加1点，是硬锁定的&r&d。不过系统里有个&n&l专家球&r&d，只是暂时拿不到。我本来想“黑”一个来测试，但系统很快就堵上了漏洞。拿着，班迪特，这个你先收着。"
+				""
+				"&5我们之后再想办法...打破这个Expertise系统吧。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["76B7D44E338DC9B7"]
+			id: "5BFB2FFADFE2072F"
+			tasks: [{
+				id: "0CE8BF2140F8E7B1"
+				type: "woldsvaults:vault_level"
+				title: "达到第5级"
+				icon: "woldsvaults:skill_orb"
+				value: 5
+			}]
+		}
+		{
+			title: "分解中"
+			x: 0.25d
+			y: -2.5d
+			shape: "rsquare"
+			subtitle: "No Tears, Only Souls"
+			description: [
+				"&d强盗，到现在你大概已经从宝库中收集了很多&n&l垃圾或废料&r&d了。"
+				""
+				"&5像POI里的石头或木头这类东西用处不大，但像木块&n&l这样的箱子里的东西可以分解成更实用的东西：灵魂粉尘&r&5。"
+				""
+				"&d&n&l木块和华丽砖块&r&d等物品可用于装饰和建造，但使用&n&l灵魂扩散器&r&d，你反而可以用它们来&n&l创造灵魂碎片&r&d。"
+				""
+				"&5Meaning, the more you loot from Vaults, the more souls you can get to use in the &n&lBlack Market&r&5."
+				""
+				"&d要知道，基础的&n&lSoul Diffusor速度不快&r&d。虽然有...升级，但那要贵得多..."
+				""
+				"&5...而且灵魂扩散器在低等级时就已经有点贵了。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["10F607F18CE03D39"]
+			id: "08E517D3A58B0E81"
+			tasks: [{
+				id: "3CE7972FD920A98E"
+				type: "observation"
+				title: "观察一个Vault Soul Diffuser（虚空灵魂扩散器）"
+				icon: "the_vault:vault_diffuser"
+				timer: 0L
+				observe_type: 0
+				to_observe: "the_vault:vault_diffuser"
+			}]
+			rewards: [{
+				id: "7CF59AE6AE796BB5"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "加法与减法"
+			x: -3.5d
+			y: 1.0d
+			shape: "rsquare"
+			subtitle: "或多或少集中注意力"
+			description: [
+				"&d如果你的装备有&n&l一个或多个空的前缀或后缀栏位&r&d，强盗，你可以用&n&l增幅焦点来为其中一个栏位添加内容&r&d。"
+				""
+				"&5硬币的另一面是&n&l无效化焦点&r&5，强盗。这有点冒险，因为你会&n&l移除单个后缀或前缀以腾出插槽&r&5。"
+				""
+				"&dIt &n&ltakes less Crafting Potential&r&d to use these, versus using a Wild Focus to reroll the entire thing."
+			]
+			hide_dependency_lines: true
+			dependencies: ["6473A9F33F692821"]
+			id: "3B4C4700E242F1FB"
+			tasks: [
+				{
+					id: "6B4C0E872FC9C421"
+					type: "item"
+					item: "the_vault:amplifying_focus"
+				}
+				{
+					id: "2A8C805B305C2030"
+					type: "item"
+					item: "the_vault:nullifying_focus"
+				}
+			]
+			rewards: [{
+				id: "44C768A1C0EB4D45"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "疯狂滚动中"
+			x: -4.5d
+			y: 1.0d
+			shape: "rsquare"
+			subtitle: "一起去赌博吧！"
+			description: [
+				"&d&n&lWild Focus的主要用途是重掷一件装备上所有的前缀和后缀槽位&r&d。"
+				""
+				"&5This means what &n&lprefix or suffix AND what tier they are&r&5. And also &n&lcan roll an empty slot&r&5 as well, keep that in mind, Bandit."
+				""
+				"&d除非是更高稀有度，否则重roll一个部件通常不值得。"
+				""
+				"&5或者你希望回收带有特定后缀或前缀的物品。"
+				""
+				"&d哦，对了，强盗。需要注意的是，&n&l每次重掷或修改&r&d一件宝库装备，你都会&n&l降低它的“制作潜力”属性&r&d。"
+				""
+				"&5一旦&n&l“制作潜力”耗尽，便无法再修改&r&5齿轮部件了。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["6473A9F33F692821"]
+			id: "534D269A9450DA3C"
+			tasks: [{
+				id: "743EE50FF93AAC60"
+				type: "item"
+				item: "the_vault:wild_focus"
+			}]
+			rewards: [{
+				id: "06815180A67018CA"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "站立并识别身份"
+			x: 0.25d
+			y: -3.5d
+			shape: "rsquare"
+			subtitle: "即时掷骰子"
+			description: [
+				"&d随着你升级，Bandit，你在宝库中找到的Vault Gear数量会增加。特别是如果你将技能和装备都偏向于获取更多战利品。"
+				""
+				"&5我强烈建议这样做。更多的战利品意味着更大概率能获得你真正想要的东西。"
+				""
+				"&d没错！把每件装备都“鉴定”一遍听起来很有趣，但大多数人过一会儿就觉得烦了。所以，&n&l鉴定台&r&d就登场了。"
+				""
+				"&5把这个放在基地里，当你的&n&l背包里装满了未知装备&r&5时，可以&n&l右键那个支架来一次性自动鉴定所有装备&r&5。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["76B7D44E338DC9B7"]
+			id: "7B4E0CC53475C2C5"
+			tasks: [{
+				id: "1ADFBF21B600CD78"
+				type: "observation"
+				title: "观察一个鉴定台 Identification Stand"
+				icon: "the_vault:identification_stand"
+				timer: 0L
+				observe_type: 0
+				to_observe: "the_vault:identification_stand"
+			}]
+			rewards: [{
+				id: "78CFD254607A7A48"
+				type: "choice"
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "一份丰厚的任务清单"
+			icon: "the_vault:bounty_block"
+			x: -5.5d
+			y: -2.5d
+			shape: "rsquare"
+			subtitle: "加倍努力，加倍收获"
+			description: [
+				"&d强盗，你看到那些在木箱里找到的&n&l悬赏珍珠&r&d了吗？它们对于制作和使用&n&l悬赏台&r&d非常有用。"
+				""
+				"&5&n&lBounty Table&r&5 是个相当&n&l不错的额外资源和装备来源&r&5。它会要求你要么&n&l完成某个任务，要么将某些物品&r&5提交给桌子以换取奖励。"
+				""
+				"&d例如在宝库中杀死特定类型的怪物，或收集一定数量的特定物品。"
+				""
+				"&5不过注意，&n&l只有物品来自“未掠夺”的箱子才算数&r&5。"
+				""
+				"&d&n&l提交物品也很简单&r&d。只需&n&l将其握在手中，右键点击悬赏台&r&d即可。"
+				""
+				"&5哦，还有，这张桌子有一个&n&l插槽可以存放所有你的赏金珍珠&r&5。你可以用它来&n&l“重掷”不想要的赏金，方法是选中它，然后点击圆形箭头&r&5。"
+			]
+			dependencies: ["232779928B96328E"]
+			hide_text_until_complete: false
+			id: "1A438987A9D3D7AD"
+			tasks: [
+				{
+					id: "4B0D3D515D15D5FA"
+					type: "item"
+					item: "the_vault:bounty_pearl"
+				}
+				{
+					id: "1214642D08705751"
+					type: "observation"
+					title: "观察一个悬赏告示板"
+					icon: "the_vault:bounty_block"
+					timer: 0L
+					observe_type: 0
+					to_observe: "the_vault:bounty_block"
+				}
+			]
+			rewards: [{
+				id: "7C10E7F0D9CE3C79"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "甜蜜的可口之物"
+			x: 2.25d
+			y: 0.0d
+			shape: "rsquare"
+			subtitle: "非常酥脆的（Very Crunchy）"
+			description: [
+				"&d可能有点早，强盗，但是&n&l如果你发现自己有太多的Vault Rocks&r&d，你总可以把它变成&n&lVault Rock Candy&r&d。"
+				""
+				"&5玩家们抱怨说，他们的箱子里最终堆满了这东西，希望有其他用途，所以……"
+				""
+				"&d带到地牢里相当不错、简单的&n&l食物&r&d。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["10F607F18CE03D39"]
+			id: "5FA6AD660F7FEFD9"
+			tasks: [{
+				id: "5D94E803A3DB0DC6"
+				type: "item"
+				item: "woldsvaults:vault_rock_candy"
+			}]
+			rewards: [{
+				id: "419563E1A0D7FAF4"
+				type: "choice"
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "来两杯小饮料"
+			x: -8.25d
+			y: -2.5d
+			shape: "rsquare"
+			subtitle: "只允许饮用已批准的饮品"
+			description: [
+				"&d你可能还没试过，强盗，但我们&n&l不建议服用普通药水&r&d，比如治疗药水之类的。"
+				""
+				"&5FOP不喜欢玩家堆叠装满药水包来保命，因为这会减少他们之后能获得的资源。"
+				""
+				"&d他们&n&l'认可'&r&d的方法是使用&n&lVault Vials、Potions 或 Brews&r&d。这些物品&n&l用途有限&r&d，但可以&n&l通过以下三种方式之一&r&d恢复使用次数："
+				""
+				"&5&n&l和平主义者随时间充能。屠戮者在击杀足够敌人时充能。而哥布林则在搜刮足够宝箱时充能&r&5。"
+				""
+				"&d它们也会在宝库之旅之间&n&l完全充能&r&d，谢天谢地。目前你只能制作小瓶，但随着&n&l正确的研究&r&d，你可以制作出&n&l更大、更好的瓶子&r&d。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["50D9EFE8ABEA9779"]
+			id: "600061B7D508477A"
+			tasks: [{
+				id: "356CD721DA1624B4"
+				type: "item"
+				title: "任意一个玻璃瓶"
+				item: "the_vault:bottle"
+			}]
+			rewards: [{
+				id: "14BBB7C19E4A07CA"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "闪耀的知识"
+			x: 2.25d
+			y: -2.5d
+			shape: "rsquare"
+			subtitle: "付出代价"
+			description: [
+				"&dIn the FOPGame Server, &n&lknowledge is power and is not free&r&d, unfortunately."
+				""
+				"&5这主要是用来鼓励玩家收集资源、制作物品，并将其发送到FOP的，当然啦。"
+				""
+				"&d&n&l需要知识来研究“模组”以解锁和使用它们&r&d。这些模组从小型单一功能的模组，到大型多功能的模组不等。"
+				""
+				"&5\"Mods\" in this case are the different 'product lines' the FOP has stolen for their game server."
+				""
+				"&d它们让用户制作这些产品，然后提交以换取金钱……"
+				""
+				"&5……或者更多的Vault水晶……"
+				""
+				"&d获得更多知识以重新开始循环。你不需要研究模组，强盗，但这会限制你建造新宝库的速度，因为成本会随着每个水晶而增加。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["10F607F18CE03D39"]
+			id: "50203F008ADF0804"
+			tasks: [{
+				id: "78917DC8115FDEE1"
+				type: "item"
+				item: "the_vault:knowledge_star"
+			}]
+			rewards: [{
+				id: "33781042456E9FEA"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "对战利品的偏爱 (An Affinity For Loot)"
+			icon: "the_vault:pogging_jewel"
+			x: -8.25d
+			y: 0.75d
+			shape: "gear"
+			subtitle: "破碎、切片与切丁"
+			description: [
+				"&d需要注意的一点是，强盗，&n&l金库工具可以破坏金库箱子&r&d。但&n&l前提是它们对该箱子有亲和力&r&d。"
+				""
+				"&5嗯，你得为宝库工具上的每个箱子&n&l都应用亲和力，这样能大大&r&5加快你的搜刮速度&n&l&r&5。"
+				""
+				"&d需要注意： &n&l木制箱子和其他箱子的“破坏”方式不同&r&d。 &n&l木制箱子&r&d必须作为整体&n&l&r&d来破坏，需要一定时间。"
+				""
+				"&5嗯，还有&n&lLiving、Ornate和Gilded已经被“切”了。每切一次会掉落一叠物品&r&5。不过你也可以直接&n&l按住按钮&r&5快速“切块”。</c9></c8></c7></c6></c5></c4></c3></c2></c1>"
+				""
+				"&dMakes quite a satisfying sound, I have to say."
+			]
+			hide_dependency_lines: true
+			dependencies: ["3E4FCFC9637F8B61"]
+			size: 0.75d
+			id: "6E76FC7B7537B0B8"
+			tasks: [{
+				id: "5BF11E8BDDDF8015"
+				type: "checkmark"
+			}]
+		}
+		{
+			title: "形状犹豫不决"
+			x: -8.25d
+			y: 2.0d
+			shape: "rsquare"
+			subtitle: "独树一帜的风格，与众不同"
+			description: [
+				"&d你的&n&l挖掘工具&r&d的&n&l形态&r&d取决于它具有的&n&l工具能力&r&d。如果只有挖掘能力，它就是稿子。"
+				""
+				"&5But that &n&lchanges&r&5 when ye got &n&lPicking and Shoveling&r&5. Or &n&lAxing and Reaping&r&5. Or more of them."
+				""
+				"&dYeah, but a &n&lcool thing happens&r&d if you &n&lremove ALL the tool abilities&r&d. No Picking, no Axing, etc. "
+				""
+				"&5系统不知道该显示哪个，所以它会&n&l循环显示所有选项&r&5！"
+				""
+				"&d我们认为这个主意很酷，所以想出了&n&lStylish Focus&r&d，并将其悄悄加入FOPGame System中。"
+				""
+				"&5&n&l用铁砧把它和你的宝库工具合并&r&5，就能保留工具原有的所有能力，而且还能切换所有外观样式！"
+			]
+			hide_dependency_lines: true
+			dependencies: ["3E4FCFC9637F8B61"]
+			id: "43A15992C3676506"
+			tasks: [{
+				id: "09831D85BA92EB29"
+				type: "item"
+				item: "woldsvaults:stylish_focus"
+			}]
+			rewards: [{
+				id: "2DC930CDBF6A9C67"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "锻造传奇，铸就未来"
+			x: -6.5d
+			y: 1.0d
+			shape: "rsquare"
+			subtitle: "从破旧到传奇"
+			description: [
+				"&d&n&lVault Forge&r&d 既实用，又需要大量资源才能发挥其最大功效。"
+				""
+				"&5用它，你就能&n&l制作任何等级等于或低于你等级的Vault Gear&r&5。"
+				""
+				"&d不过&n&l刚开始，你的熟练度会很低&r&d。 &n&l要提高熟练度，你需要Vault Scrap&r&d，可以通过将未使用的Gear投入Vault Recycler来获得&n&l&r&d。"
+				""
+				"&5然后&n&l把Vault Scrap带到Vault Forge，放到右上角的槽位里，&r&5形状要和Scrap一样。每级需要越来越多的废料来保持熟练度。"
+				""
+				"&d但同时，你掠夺更多、更快的能力也应该有所提升，对吧？"
+			]
+			dependencies: ["7543E03FC25521E7"]
+			id: "075AD2D046BFE367"
+			tasks: [{
+				id: "496EAB0B28AE28FF"
+				type: "observation"
+				title: "观察一个Vault Forge锻造炉"
+				icon: "the_vault:vault_forge"
+				timer: 0L
+				observe_type: 0
+				to_observe: "the_vault:vault_forge"
+			}]
+			rewards: [{
+				id: "4D26ECA45A4C5059"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "动物的专属领地"
+			x: -9.75d
+			y: 0.0d
+			shape: "rsquare"
+			subtitle: "被密封起来了"
+			description: [
+				"&dFOPGame 服务器的 Bandit 现已为玩家引入一项特殊的&n&l前期工具&r&d，用于&n&l降低系统延迟&r&d。"
+				""
+				"&5They are called &n&lAnimal Pens&r&5, and are good to &n&luse early&r&5 before more options open up."
+				""
+				"&d你需要先准备一些&n&l动物罐子&r&d。你可以&n&l潜行+右键将它们套在大多数常见动物（牛、猪、羊等）上&r&d来“捕捉”它们。"
+				""
+				"&5你可以&n&l潜行+右键&r&5地上的罐子来&n&l释放&r&5里面的动物，以防你不小心抓错了。"
+				""
+				"&d你需要&n&l两种动物的各两只&r&d才有用，强盗。然后你可以拿一个装有动物的&n&l动物罐子，右键点击放置好的动物围栏&r&5。"
+				""
+				"&5然后你就可以&n&l右键点击同一种食物来繁殖动物&r&5，就像在围栏里一样。像&n&l绵羊这样的动物可以剪毛，蜜蜂也一样，可以获得蜂巢&r&5。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["69C663CDD23190A9"]
+			id: "175A7FF1C22107B1"
+			tasks: [
+				{
+					id: "42CE2CFC109F51D7"
+					type: "item"
+					item: "the_vault:animal_pen"
+				}
+				{
+					id: "00E54450C956F2B2"
+					type: "item"
+					item: "the_vault:animal_jar"
+				}
+			]
+			rewards: [{
+				id: "26F86FB9DECD4CCC"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "神秘宝箱"
+			x: -2.0d
+			y: 1.0d
+			shape: "rsquare"
+			subtitle: "你手里拿着的是什么？"
+			description: [
+				"&d半不常见的战利品，强盗，就是&n&l神秘宝箱&r&d。"
+				""
+				"&5这里面可能含有几种&n&l有用的资源&r&5。嗯……比以前少多了。看来他们把这些东西削弱得厉害……"
+				""
+				"&d打扰了？不行。不能要。让我来修一下……"
+				""
+				"&5不知道他们为啥改了。反正你也拿不到一大堆这东西。"
+				""
+				"&d好了。现在你从这些里面获得更稀有地窖宝石的几率变大了。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["69C663CDD23190A9"]
+			id: "589513669CDDE01C"
+			tasks: [{
+				id: "1527D2FB9D7D99D5"
+				type: "item"
+				item: "the_vault:mystery_box"
+			}]
+			rewards: [{
+				id: "3BAAE5B37A1F9CE5"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "Eggy Surprise"
+			x: -2.0d
+			y: 2.0d
+			shape: "rsquare"
+			subtitle: "这是一个可爱的生物吗？Is it a Kinder Creature?"
+			description: [
+				"&d&n&l神秘之蛋&r&d很适合用来寻找某些难以定位的&n&l动物&r&d，以获取用于支付Vault Crystal成本的生物。"
+				""
+				"&5是的，有&n&l各种各样的和平生物&r&5可以通过神秘蛋获得，它们会掉落&n&l'生成蛋'&r&5。"
+				""
+				"&d&n&lSome of the Mods you can Research will require these Spawn Eggs&r&d to use them, like Cagerium for example."
+				""
+				"&5Ye can also turn the Mystery Egg into a &n&lHostile version&r&5. These ones will drop, well, hostile Spawn Eggs."
+				""
+				"&d就像名字说的那样，对吧。 &n&l僵尸、末影人等生物蛋&r&d会从这里面掉出来。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["50D9EFE8ABEA9779"]
+			id: "4AD8ED2C12A8B58D"
+			tasks: [
+				{
+					id: "6BCEDFBF8F2F4C1E"
+					type: "item"
+					item: "the_vault:mystery_egg"
+				}
+				{
+					id: "4B3416C268ED843D"
+					type: "item"
+					item: "the_vault:mystery_hostile_egg"
+				}
+			]
+			rewards: [{
+				id: "6FBD06DA0B620205"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "塑料试炼"
+			x: 0.25d
+			y: 0.0d
+			shape: "rsquare"
+			subtitle: "测试场地"
+			description: [
+				"&d随着你升级并获得更多技能和天赋的点数，强盗，你会开始构思出不同的&n&l构筑&r&d。"
+				""
+				"&5除了用测试假人或普通地牢外，实在没有好办法来测试这些建筑。所以玩家们抱怨了。"
+				""
+				"&d是的，FOP 决定发布 &n&lTrial Chamber's Vault Rock&r&d。它和放在 Vault Altar 上的普通 Vault Rock 基本一样。"
+				""
+				"&5不过这里没有&n&l任何战利品。甚至连灵魂碎片或宝库经验值都没有。但怪物确实会生成&r&b。"
+				""
+				"&d你可以&n&l用这种方式测试你的战斗配置。如果在试炼密室宝库中死亡，你不应会失去任何东西&r&d。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["69C663CDD23190A9"]
+			id: "159BD132C3F6B884"
+			tasks: [{
+				id: "26635C74B4103B75"
+				type: "item"
+				item: "the_vault:crystal_seal_trial_chamber"
+			}]
+			rewards: [{
+				id: "674920C55C2C7037"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "Assembling a Theme"
+			x: -1.5d
+			y: -3.5d
+			shape: "rsquare"
+			subtitle: "由你亲手设计"
+			description: [
+				"&d行啦，强盗，一开始建这个会显得挺&n&l贵&r&d的，不过我想它以后会很有用。"
+				""
+				"&5这个&n&l增幅台&r&5能让你&n&l制作所有已解锁的主题&r&5。"
+				""
+				"&d可以通过回收未使用的增幅器来获得&n&l增幅碎片&r&d。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["420733071145A568"]
+			id: "0DF63164F7EBCD97"
+			tasks: [{
+				id: "3B9462738A21DB21"
+				type: "observation"
+				title: "观察一个增幅台 Augment Station"
+				icon: "the_vault:augment_station"
+				timer: 0L
+				observe_type: 0
+				to_observe: "the_vault:augment_station"
+			}]
+			rewards: [{
+				id: "4E8DCD2AA086631C"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "Vault 头盔系列"
+			x: -13.0d
+			y: -2.75d
+			shape: "square"
+			subtitle: "保护你的脑袋瓜"
+			description: [
+				"&d&n&lVault Helmets&r&d 是标准 Vault Gear 套装的一部分。"
+				""
+				"&5&n&l25级之后&r&5，它们有一定概率获得&n&l幸运一击几率&r&5。"
+			]
+			dependencies: ["5E574242513BE343"]
+			id: "2F3C06F1E62AF95C"
+			tasks: [{
+				id: "7B887BA947416505"
+				type: "item"
+				item: {
+					id: "the_vault:helmet"
+					Count: 1b
+					tag: {
+						vaultGearData: [L;
+							674648648417815678L
+							-6050163630828979421L
+							2392537302042632L
+							576460752303423488L
+							2056L
+						]
+						clientCache: {
+							"presentthe_vault:is_legendary": 0b
+							color: [B; ]
+							gearName: [B; ]
+							"presentthe_vault:weapon_type": 0b
+							rollType: [B; ]
+							jcolors: [I; ]
+							hasModifierLEGENDARY: 0b
+							colors: [I;11184810]
+							hasModifierUNUSUAL: 0b
+							model: [B; ]
+							hasModifierGREATER: 0b
+							state: 0
+							hasModifierCORRUPTED: 0b
+							rarity: 0
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "37F33BB05B39E042"
+				type: "item"
+				item: {
+					id: "the_vault:helmet"
+					Count: 1b
+					tag: {
+						vaultGearData: [L;
+							8705853582866678878L
+							-2575794979323862729L
+							2398589014039857178L
+							1245127937339252741L
+							5793106916787126344L
+							-7564070352650422143L
+							2392537302082231L
+							576460752303423488L
+							2056L
+						]
+						clientCache: {
+							"presentthe_vault:is_legendary": 0b
+							color: [B; ]
+							gearName: [B; ]
+							"presentthe_vault:weapon_type": 0b
+							rollType: "Scrappy+"
+							jcolors: [I; ]
+							hasModifierLEGENDARY: 0b
+							colors: [I;11184810]
+							hasModifierUNUSUAL: 0b
+							model: [B; ]
+							hasModifierGREATER: 0b
+							state: 0
+							hasModifierCORRUPTED: 0b
+							rarity: 0
+						}
+					}
+				}
+			}]
+		}
+		{
+			title: "Vault 胸甲"
+			x: -13.0d
+			y: -1.75d
+			shape: "square"
+			subtitle: "保护你的核心 (Protect Yer Core)"
+			description: [
+				"&d&n&lVault Chestplates&r&d 是标准 Vault 装备套装的一部分。"
+				""
+				"&5在&n&l20级&r&5，你的胸甲附魔也能获得&n&l方块掉落率或法力&r&5了。"
+			]
+			dependencies: ["5E574242513BE343"]
+			id: "1BD8587B6DFE1A1B"
+			tasks: [{
+				id: "657A7D2FAF19AE64"
+				type: "item"
+				item: {
+					id: "the_vault:chestplate"
+					Count: 1b
+					tag: {
+						"the_vault:gear_roll_type": "Omega"
+					}
+				}
+			}]
+			rewards: [{
+				id: "45558FB9D2B64F32"
+				type: "item"
+				item: {
+					id: "the_vault:chestplate"
+					Count: 1b
+					tag: {
+						vaultGearData: [L;
+							-169323113656058578L
+							-455246282167383638L
+							2398589014039857176L
+							1245127937339252741L
+							5793106916787126344L
+							-7564070352650422143L
+							2392537302082231L
+							576460752303423488L
+							2056L
+						]
+						clientCache: {
+							"presentthe_vault:is_legendary": 0b
+							color: [B; ]
+							gearName: [B; ]
+							"presentthe_vault:weapon_type": 0b
+							rollType: "Scrappy+"
+							jcolors: [I; ]
+							hasModifierLEGENDARY: 0b
+							colors: [I;11184810]
+							hasModifierUNUSUAL: 0b
+							model: [B; ]
+							hasModifierGREATER: 0b
+							state: 0
+							hasModifierCORRUPTED: 0b
+							rarity: 0
+						}
+					}
+				}
+			}]
+		}
+		{
+			title: "Vault 皮革护腿"
+			x: -13.0d
+			y: -0.75d
+			shape: "square"
+			subtitle: "保护你的腿脚免受伤害"
+			description: [
+				"&d&n&l宝库护腿&r&d 是你标准宝库装备套装的一部分。"
+				""
+				"&5在&n&l20级&r&5，你的护腿可以开始在内在属性中随机获得&n&l额外法力&r&5。"
+			]
+			dependencies: ["5E574242513BE343"]
+			id: "2E7A8C9D47FDA009"
+			tasks: [{
+				id: "11D4655253AD81A0"
+				type: "item"
+				item: {
+					id: "the_vault:leggings"
+					Count: 1b
+					tag: {
+						vaultGearData: [L;
+							-1858462341374125762L
+							6649681659788917770L
+							2392537302042633L
+							576460752303423488L
+							2056L
+						]
+						clientCache: {
+							"presentthe_vault:is_legendary": 0b
+							color: [B; ]
+							gearName: [B; ]
+							"presentthe_vault:weapon_type": 0b
+							rollType: [B; ]
+							jcolors: [I; ]
+							hasModifierLEGENDARY: 0b
+							colors: [I;11184810]
+							hasModifierUNUSUAL: 0b
+							model: [B; ]
+							hasModifierGREATER: 0b
+							state: 0
+							hasModifierCORRUPTED: 0b
+							rarity: 0
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "77D1275C7D8D93AA"
+				type: "item"
+				item: {
+					id: "the_vault:leggings"
+					Count: 1b
+					tag: {
+						vaultGearData: [L;
+							2802252595395301150L
+							7905683491735304934L
+							2398589014039857176L
+							1245127937339252741L
+							5793106916787126344L
+							-7564070352650422143L
+							2392537302082231L
+							576460752303423488L
+							2056L
+						]
+						clientCache: {
+							"presentthe_vault:is_legendary": 0b
+							color: [B; ]
+							gearName: [B; ]
+							"presentthe_vault:weapon_type": 0b
+							rollType: "Scrappy+"
+							jcolors: [I; ]
+							hasModifierLEGENDARY: 0b
+							colors: [I;11184810]
+							hasModifierUNUSUAL: 0b
+							model: [B; ]
+							hasModifierGREATER: 0b
+							state: 0
+							hasModifierCORRUPTED: 0b
+							rarity: 0
+						}
+					}
+				}
+			}]
+		}
+		{
+			title: "Vault 靴子"
+			x: -13.0d
+			y: 0.25d
+			shape: "square"
+			subtitle: "保护你的针脚 (Protect Yer Pins)"
+			description: [
+				"&d&n&lVault Boots&r&d 是标准 Vault 装备套装的一部分。"
+				""
+				"在&5&n&l20级&r&5，你的靴子可以开始在内在属性中提供&n&l移动速度&r&5。"
+			]
+			dependencies: ["5E574242513BE343"]
+			id: "3625814A8BD1CD41"
+			tasks: [{
+				id: "32C49D7C6353DFD4"
+				type: "item"
+				item: {
+					id: "the_vault:boots"
+					Count: 1b
+					tag: {
+						vaultGearData: [L;
+							-8090804801956985106L
+							-8285789679904984097L
+							2392537302042633L
+							576460752303423488L
+							2056L
+						]
+						clientCache: {
+							"presentthe_vault:is_legendary": 0b
+							color: [B; ]
+							gearName: [B; ]
+							"presentthe_vault:weapon_type": 0b
+							rollType: [B; ]
+							jcolors: [I; ]
+							hasModifierLEGENDARY: 0b
+							colors: [I;11184810]
+							hasModifierUNUSUAL: 0b
+							model: [B; ]
+							hasModifierGREATER: 0b
+							state: 0
+							hasModifierCORRUPTED: 0b
+							rarity: 0
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "7E58A45BCBFFBFD7"
+				type: "item"
+				item: {
+					id: "the_vault:boots"
+					Count: 1b
+					tag: {
+						vaultGearData: [L;
+							-2174153350417430178L
+							-8872080062913699488L
+							2398589014039857179L
+							1245127937339252741L
+							5793106916787126344L
+							-7564070352650422143L
+							2392537302082231L
+							576460752303423488L
+							2056L
+						]
+						clientCache: {
+							"presentthe_vault:is_legendary": 0b
+							color: [B; ]
+							gearName: [B; ]
+							"presentthe_vault:weapon_type": 0b
+							rollType: "Scrappy+"
+							jcolors: [I; ]
+							hasModifierLEGENDARY: 0b
+							colors: [I;11184810]
+							hasModifierUNUSUAL: 0b
+							model: [B; ]
+							hasModifierGREATER: 0b
+							state: 0
+							hasModifierCORRUPTED: 0b
+							rarity: 0
+						}
+					}
+				}
+			}]
+		}
+		{
+			title: "Vault Swords"
+			x: -12.0d
+			y: -3.25d
+			shape: "square"
+			subtitle: "切片与切块"
+			description: [
+				"&d&n&lVault Swords&r&d are one of a variety of weapon types you can use. &n&lAll weapons gain a broader range of Suffixes and Prefixes as you level up&r&d."
+				""
+				"&5剑的&n&l伤害、速度和攻击范围都相当均衡&r&5。它们的&n&l横扫攻击能同时击中多个敌人&r&5。"
+			]
+			dependencies: ["5E574242513BE343"]
+			id: "0531AED0A46C562E"
+			tasks: [{
+				id: "44E6F19AA6192C66"
+				type: "item"
+				item: {
+					id: "the_vault:sword"
+					Count: 1b
+					tag: {
+						vaultGearData: [L;
+							-8227976071262970258L
+							-4046922947657189632L
+							2392537302042635L
+							576460752303423488L
+							2056L
+						]
+						clientCache: {
+							"presentthe_vault:is_legendary": 0b
+							color: [B; ]
+							gearName: [B; ]
+							"presentthe_vault:weapon_type": 0b
+							rollType: [B; ]
+							jcolors: [I; ]
+							hasModifierLEGENDARY: 0b
+							colors: [I;11184810]
+							hasModifierUNUSUAL: 0b
+							model: [B; ]
+							hasModifierGREATER: 0b
+							state: 0
+							hasModifierCORRUPTED: 0b
+							rarity: 0
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "7C93A7FB10C0F9B6"
+				type: "item"
+				item: {
+					id: "the_vault:sword"
+					Count: 1b
+					tag: {
+						vaultGearData: [L;
+							-3952054509475927922L
+							-3411227113974000434L
+							2398589014039857176L
+							1245127937339252741L
+							5793106916787126344L
+							-7564070352650422143L
+							2392537302082231L
+							576460752303423488L
+							2056L
+						]
+						clientCache: {
+							"presentthe_vault:is_legendary": 0b
+							color: [B; ]
+							gearName: [B; ]
+							"presentthe_vault:weapon_type": 0b
+							rollType: "Scrappy+"
+							jcolors: [I; ]
+							hasModifierLEGENDARY: 0b
+							colors: [I;11184810]
+							hasModifierUNUSUAL: 0b
+							model: [B; ]
+							hasModifierGREATER: 0b
+							state: 0
+							hasModifierCORRUPTED: 0b
+							rarity: 0
+						}
+					}
+				}
+			}]
+		}
+		{
+			title: "Vault 斧头系列"
+			x: -12.0d
+			y: -2.25d
+			shape: "square"
+			subtitle: "Chop Chop Chop"
+			description: [
+				"&d&n&lVault Axes&r&d 是多种可用武器类型之一。 &n&l所有武器在升级时都会获得更广泛的后缀和前缀&r&d。"
+				""
+				"&5斧头&n&l优先选择伤害而非速度&r&5，是唯一能造成&n&lReaving&r&5伤害的武器，&n&l首次攻击会额外造成百分比的生命值伤害&r&5。"
+			]
+			dependencies: ["5E574242513BE343"]
+			id: "142B51D402529387"
+			tasks: [{
+				id: "331A50AC372D6941"
+				type: "item"
+				item: {
+					id: "the_vault:axe"
+					Count: 1b
+					tag: {
+						vaultGearData: [L;
+							-8871291211930639218L
+							-3422052383963635899L
+							2392537302042634L
+							576460752303423488L
+							2056L
+						]
+						clientCache: {
+							"presentthe_vault:is_legendary": 0b
+							color: [B; ]
+							gearName: [B; ]
+							"presentthe_vault:weapon_type": 0b
+							rollType: [B; ]
+							jcolors: [I; ]
+							hasModifierLEGENDARY: 0b
+							colors: [I;11184810]
+							hasModifierUNUSUAL: 0b
+							model: [B; ]
+							hasModifierGREATER: 0b
+							state: 0
+							hasModifierCORRUPTED: 0b
+							rarity: 0
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "52B9C92003DE9BCD"
+				type: "item"
+				item: {
+					id: "the_vault:axe"
+					Count: 1b
+					tag: {
+						vaultGearData: [L;
+							2712249804566827246L
+							395511268031424838L
+							2398589014039857176L
+							1245127937339252741L
+							5793106916787126344L
+							-7564070352650422143L
+							2392537302082231L
+							576460752303423488L
+							2056L
+						]
+						clientCache: {
+							"presentthe_vault:is_legendary": 0b
+							color: [B; ]
+							gearName: [B; ]
+							"presentthe_vault:weapon_type": 0b
+							rollType: "Scrappy+"
+							jcolors: [I; ]
+							hasModifierLEGENDARY: 0b
+							colors: [I;11184810]
+							hasModifierUNUSUAL: 0b
+							model: [B; ]
+							hasModifierGREATER: 0b
+							state: 0
+							hasModifierCORRUPTED: 0b
+							rarity: 0
+						}
+					}
+				}
+			}]
+		}
+		{
+			title: "Vault Battlestaves"
+			x: -12.0d
+			y: -1.25d
+			shape: "square"
+			subtitle: "俯冲、潜行、闪避……"
+			description: [
+				"&d&n&lVault Battlestaves&r&d 是多种可用武器类型之一。 &n&l所有武器在升级时都会获得更广泛的后缀和前缀&r&d。"
+				""
+				"&5Battlestaves are the &n&lfast attacking&r&5 weapon available. &n&lEach hit doesn't do as much damage&r&5, and wielding one &n&ldisables anything in your Off Hand&r&5. To make up for this, the &n&lrange and number of Affixes it can have is higher&r&5 than other weapons."
+			]
+			dependencies: ["5E574242513BE343"]
+			id: "0208A42BA6C7203B"
+			tasks: [{
+				id: "0CCD16AC80C8D104"
+				type: "item"
+				item: {
+					id: "the_vault:battlestaff"
+					Count: 1b
+					tag: {
+						vaultGearData: [L;
+							-1857137544543310834L
+							5765769003096880845L
+							2392537302042635L
+							576460752303423488L
+							2056L
+						]
+						clientCache: {
+							"presentthe_vault:is_legendary": 0b
+							color: [B; ]
+							gearName: [B; ]
+							"presentthe_vault:weapon_type": 0b
+							rollType: [B; ]
+							jcolors: [I; ]
+							hasModifierLEGENDARY: 0b
+							colors: [I;11184810]
+							hasModifierUNUSUAL: 0b
+							model: [B; ]
+							hasModifierGREATER: 0b
+							state: 0
+							hasModifierCORRUPTED: 0b
+							rarity: 0
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "2371E8D6E34A105C"
+				type: "item"
+				item: {
+					id: "the_vault:battlestaff"
+					Count: 1b
+					tag: {
+						vaultGearData: [L;
+							-867384075166097138L
+							8399859946136960151L
+							2398589014039857177L
+							1245127937339252741L
+							5793106916787126344L
+							-7564070352650422143L
+							2392537302082231L
+							576460752303423488L
+							2056L
+						]
+						clientCache: {
+							"presentthe_vault:is_legendary": 0b
+							color: [B; ]
+							gearName: [B; ]
+							"presentthe_vault:weapon_type": 0b
+							rollType: "Scrappy+"
+							jcolors: [I; ]
+							hasModifierLEGENDARY: 0b
+							colors: [I;11184810]
+							hasModifierUNUSUAL: 0b
+							model: [B; ]
+							hasModifierGREATER: 0b
+							state: 0
+							hasModifierCORRUPTED: 0b
+							rarity: 0
+						}
+					}
+				}
+			}]
+		}
+		{
+			title: "宝库三叉戟"
+			x: -12.0d
+			y: -0.25d
+			shape: "square"
+			subtitle: "太棒了！"
+			description: [
+				"&d&n&lVault Tridents&r&d 是多种可用武器类型之一。 &n&l所有武器在升级时都会获得更广泛的后缀和前缀&r&d。"
+				""
+				"&5宝库三叉戟比剑或战杖的横扫攻击更&n&l专注于单体目标伤害&r&5。它们还拥有&n&l按住右键蓄力投掷的能力&r&5。"
+				""
+				"&d不过，除非三叉戟有&n&lLoyalty Implicit&r&d，否则你得跑过去捡起你的三叉戟。"
+			]
+			dependencies: ["5E574242513BE343"]
+			id: "3865C78C8C699553"
+			tasks: [{
+				id: "3687896638A7D324"
+				type: "item"
+				item: {
+					id: "the_vault:trident"
+					Count: 1b
+					tag: {
+						vaultGearData: [L;
+							2435425371490119550L
+							-702803925265453867L
+							2392537302042634L
+							576460752303423488L
+							2056L
+						]
+						clientCache: {
+							"presentthe_vault:is_legendary": 0b
+							color: [B; ]
+							gearName: [B; ]
+							"presentthe_vault:weapon_type": 0b
+							rollType: [B; ]
+							jcolors: [I; ]
+							hasModifierLEGENDARY: 0b
+							colors: [I;11184810]
+							hasModifierUNUSUAL: 0b
+							model: [B; ]
+							hasModifierGREATER: 0b
+							state: 0
+							hasModifierCORRUPTED: 0b
+							rarity: 0
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "134BB26DD39A6F87"
+				type: "item"
+				item: {
+					id: "the_vault:trident"
+					Count: 1b
+					tag: {
+						vaultGearData: [L;
+							5682565266350077646L
+							7629978591580874222L
+							2398589014039857176L
+							1245127937339252741L
+							5793106916787126344L
+							-7564070352650422143L
+							2392537302082231L
+							576460752303423488L
+							2056L
+						]
+						clientCache: {
+							"presentthe_vault:is_legendary": 0b
+							color: [B; ]
+							gearName: [B; ]
+							"presentthe_vault:weapon_type": 0b
+							rollType: "Scrappy+"
+							jcolors: [I; ]
+							hasModifierLEGENDARY: 0b
+							colors: [I;11184810]
+							hasModifierUNUSUAL: 0b
+							model: [B; ]
+							hasModifierGREATER: 0b
+							state: 0
+							hasModifierCORRUPTED: 0b
+							rarity: 0
+						}
+					}
+				}
+			}]
+		}
+		{
+			title: "Vaultarangs"
+			x: -12.0d
+			y: 0.75d
+			shape: "square"
+			subtitle: "原路返回"
+			description: [
+				"&d&n&lVaultarangs&r&d 是你可以使用的多种武器类型之一。 &n&l所有武器在升级时都会获得更广泛的后缀和前缀&r&d。"
+				""
+				"&5Vaultarangs 主要是一种&n&l远程武器&r&5，可以通过&n&l右键单击&r&5向敌人投掷。它们的&n&l伤害不如近身武器高&r&5，但能给你更多空间来&n&l移动和闪避&r&5。"
+			]
+			dependencies: ["5E574242513BE343"]
+			id: "2F2DDEF509AAFDD1"
+			tasks: [{
+				id: "3878E43B2FE820BF"
+				type: "item"
+				item: {
+					id: "the_vault:rang"
+					Count: 1b
+					tag: {
+						vaultGearData: [L;
+							-7831231178959720530L
+							7238128649986550874L
+							2392537302042632L
+							576460752303423488L
+							2056L
+						]
+						clientCache: {
+							"presentthe_vault:is_legendary": 0b
+							color: [B; ]
+							gearName: [B; ]
+							"presentthe_vault:weapon_type": 0b
+							rollType: [B; ]
+							jcolors: [I; ]
+							hasModifierLEGENDARY: 0b
+							colors: [I;11184810]
+							hasModifierUNUSUAL: 0b
+							model: [B; ]
+							hasModifierGREATER: 0b
+							state: 0
+							hasModifierCORRUPTED: 0b
+							rarity: 0
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "4BB81BDFF00E1013"
+				type: "item"
+				item: {
+					id: "the_vault:rang"
+					Count: 1b
+					tag: {
+						vaultGearData: [L;
+							1588274495854222558L
+							-4170199992004073054L
+							2398589014039857179L
+							1245127937339252741L
+							5793106916787126344L
+							-7564070352650422143L
+							2392537302082231L
+							576460752303423488L
+							2056L
+						]
+						clientCache: {
+							"presentthe_vault:is_legendary": 0b
+							color: [B; ]
+							gearName: [B; ]
+							"presentthe_vault:weapon_type": 0b
+							rollType: "Scrappy+"
+							jcolors: [I; ]
+							hasModifierLEGENDARY: 0b
+							colors: [I;11184810]
+							hasModifierUNUSUAL: 0b
+							model: [B; ]
+							hasModifierGREATER: 0b
+							state: 0
+							hasModifierCORRUPTED: 0b
+							rarity: 0
+						}
+					}
+				}
+			}]
+		}
+		{
+			title: "Vault 盾牌"
+			x: -11.0d
+			y: -3.25d
+			shape: "square"
+			subtitle: "打不到我！"
+			description: [
+				"&d&n&lVault Shields&r&d 是你可以使用的多种副手装备类型之一。 &n&l大多数副手装备在升级后会获得更广泛的词缀前缀和后缀&r&d。"
+				""
+				"&5宝库盾牌提供&n&l潜规则&r&5，使你&n&l有一定几率完全格挡攻击&r&5，或&n&l在被击中时用荆棘反伤&r&5。"
+				""
+				"&d有趣的是，系统认为&n&l任何伤害都是攻击&r&d，包括来自&n&l毒液区域&r&d或站在&n&l篝火上&r&d造成的伤害。"
+			]
+			dependencies: ["5E574242513BE343"]
+			id: "485448E854C656EC"
+			tasks: [{
+				id: "033E9ADE1B0F1B72"
+				type: "item"
+				item: {
+					id: "the_vault:shield"
+					Count: 1b
+					tag: {
+						vaultGearData: [L;
+							879874914535110286L
+							3986875361930783308L
+							2392537302042634L
+							576460752303423488L
+							2056L
+						]
+						clientCache: {
+							"presentthe_vault:is_legendary": 0b
+							color: [B; ]
+							gearName: [B; ]
+							"presentthe_vault:weapon_type": 0b
+							rollType: [B; ]
+							jcolors: [I; ]
+							hasModifierLEGENDARY: 0b
+							colors: [I;11184810]
+							hasModifierUNUSUAL: 0b
+							model: [B; ]
+							hasModifierGREATER: 0b
+							state: 0
+							hasModifierCORRUPTED: 0b
+							rarity: 0
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "0EB727D1B93BD6F6"
+				type: "item"
+				item: {
+					id: "the_vault:shield"
+					Count: 1b
+					tag: {
+						vaultGearData: [L;
+							-1248699076595883570L
+							-2850055789445571201L
+							2398589014039857179L
+							1245127937339252741L
+							5793106916787126344L
+							-7564070352650422143L
+							2392537302082231L
+							576460752303423488L
+							2056L
+						]
+						clientCache: {
+							"presentthe_vault:is_legendary": 0b
+							color: [B; ]
+							gearName: [B; ]
+							"presentthe_vault:weapon_type": 0b
+							rollType: "Scrappy+"
+							jcolors: [I; ]
+							hasModifierLEGENDARY: 0b
+							colors: [I;11184810]
+							hasModifierUNUSUAL: 0b
+							model: [B; ]
+							hasModifierGREATER: 0b
+							state: 0
+							hasModifierCORRUPTED: 0b
+							rarity: 0
+						}
+					}
+				}
+			}]
+		}
+		{
+			title: "宝库魔杖"
+			x: -11.0d
+			y: -2.25d
+			shape: "square"
+			subtitle: "我施放了火球术！"
+			description: [
+				"&d&n&lVault Wands&r&d 是多种副手装备类型之一。 &n&l大多数副手装备在升级后会获得更广泛的词缀前缀和后缀&r&d。"
+				""
+				"&5Vault Wands 专注于增加&n&l能力值&r&5，以及&n&l直接增强更多战斗特定能力&r&5，例如火球或新星。"
+			]
+			dependencies: ["5E574242513BE343"]
+			id: "0F8EECDA87360DD7"
+			tasks: [{
+				id: "692417B61F8EADE5"
+				type: "item"
+				item: {
+					id: "the_vault:wand"
+					Count: 1b
+					tag: {
+						vaultGearData: [L;
+							-6589505928286694546L
+							5098980475739745359L
+							2392537302042635L
+							576460752303423488L
+							2056L
+						]
+						clientCache: {
+							"presentthe_vault:is_legendary": 0b
+							color: [B; ]
+							gearName: [B; ]
+							"presentthe_vault:weapon_type": 0b
+							rollType: [B; ]
+							jcolors: [I; ]
+							hasModifierLEGENDARY: 0b
+							colors: [I;11184810]
+							hasModifierUNUSUAL: 0b
+							model: [B; ]
+							hasModifierGREATER: 0b
+							state: 0
+							hasModifierCORRUPTED: 0b
+							rarity: 0
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "77258CF04FBE73D2"
+				type: "item"
+				item: {
+					id: "the_vault:wand"
+					Count: 1b
+					tag: {
+						vaultGearData: [L;
+							-9153113657813188834L
+							7792426704886705503L
+							2398589014039857178L
+							1245127937339252741L
+							5793106916787126344L
+							-7564070352650422143L
+							2392537302082231L
+							576460752303423488L
+							2056L
+						]
+						clientCache: {
+							"presentthe_vault:is_legendary": 0b
+							color: [B; ]
+							gearName: [B; ]
+							"presentthe_vault:weapon_type": 0b
+							rollType: "Scrappy+"
+							jcolors: [I; ]
+							hasModifierLEGENDARY: 0b
+							colors: [I;11184810]
+							hasModifierUNUSUAL: 0b
+							model: [B; ]
+							hasModifierGREATER: 0b
+							state: 0
+							hasModifierCORRUPTED: 0b
+							rarity: 0
+						}
+					}
+				}
+			}]
+		}
+		{
+			title: "Vault Foci"
+			x: -11.0d
+			y: -1.25d
+			shape: "square"
+			subtitle: "它就在一本书里"
+			description: [
+				"&d&n&lVault Foci&r&d are one of a variety of Offhand gear types you can use. &n&lMost Offhand gear gain a broader range of Suffixes and Prefixes as you level up&r&d."
+				""
+				"&5Vault Foci通常是书籍或卷轴，专注于&n&l提升能力&r&5，包括战斗和非战斗类。"
+			]
+			dependencies: ["5E574242513BE343"]
+			id: "51B71631681D94F5"
+			tasks: [{
+				id: "034C24A677D6E46F"
+				type: "item"
+				item: {
+					id: "the_vault:focus"
+					Count: 1b
+					tag: {
+						vaultGearData: [L;
+							1953964598013200686L
+							6665241368895824224L
+							2392537302042635L
+							576460752303423488L
+							2056L
+						]
+						clientCache: {
+							"presentthe_vault:is_legendary": 0b
+							color: [B; ]
+							gearName: [B; ]
+							"presentthe_vault:weapon_type": 0b
+							rollType: [B; ]
+							jcolors: [I; ]
+							hasModifierLEGENDARY: 0b
+							colors: [I;11184810]
+							hasModifierUNUSUAL: 0b
+							model: [B; ]
+							hasModifierGREATER: 0b
+							state: 0
+							hasModifierCORRUPTED: 0b
+							rarity: 0
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "391F02DD5AEDE811"
+				type: "item"
+				item: {
+					id: "the_vault:focus"
+					Count: 1b
+					tag: {
+						vaultGearData: [L;
+							-5440414264325784530L
+							707308962728099554L
+							2398589014039857177L
+							1245127937339252741L
+							5793106916787126344L
+							-7564070352650422143L
+							2392537302082231L
+							576460752303423488L
+							2056L
+						]
+						clientCache: {
+							"presentthe_vault:is_legendary": 0b
+							color: [B; ]
+							gearName: [B; ]
+							"presentthe_vault:weapon_type": 0b
+							rollType: "Scrappy+"
+							jcolors: [I; ]
+							hasModifierLEGENDARY: 0b
+							colors: [I;11184810]
+							hasModifierUNUSUAL: 0b
+							model: [B; ]
+							hasModifierGREATER: 0b
+							state: 0
+							hasModifierCORRUPTED: 0b
+							rarity: 0
+						}
+					}
+				}
+			}]
+		}
+		{
+			title: "Vault 毛绒玩具"
+			x: -11.0d
+			y: -0.25d
+			shape: "square"
+			subtitle: "柔软可挤压的方块"
+			description: [
+				"&d&n&lVault Plushies&r&d are one of a variety of Offhand gear types you can use. &n&lMost Offhand gear gain a broader range of Suffixes and Prefixes as you level up&r&d."
+				""
+				"&5Vault Plushies focus on &n&lsurvival&r&5 in a Vault. They can &n&lincrease damage, give you immunity to specific damage types, boost up your movement abilities&r&5, etc."
+				""
+				"&d通常，Vault Plushies要到&n&l50级&r&d才会出现，但你可以在&n&lVault Forge&r&d中制作它们。"
+			]
+			dependencies: ["5E574242513BE343"]
+			id: "60B3337ABCF445FA"
+			tasks: [{
+				id: "3FA66834AB417EAE"
+				type: "item"
+				item: {
+					id: "the_vault:plushie"
+					Count: 1b
+					tag: {
+						vaultGearData: [L;
+							-3458318560066783106L
+							264030221569603699L
+							2392537302042632L
+							576460752303423488L
+							2056L
+						]
+						clientCache: {
+							"presentthe_vault:is_legendary": 0b
+							color: [B; ]
+							gearName: [B; ]
+							"presentthe_vault:weapon_type": 0b
+							rollType: [B; ]
+							jcolors: [I; ]
+							hasModifierLEGENDARY: 0b
+							colors: [I;11184810]
+							hasModifierUNUSUAL: 0b
+							model: [B; ]
+							hasModifierGREATER: 0b
+							state: 0
+							hasModifierCORRUPTED: 0b
+							rarity: 0
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "6E8B6148AE073B6F"
+				type: "item"
+				item: {
+					id: "the_vault:plushie"
+					Count: 1b
+					tag: {
+						vaultGearData: [L;
+							4644751634267950878L
+							-8086244036049083129L
+							2398589014039857179L
+							1245127937339252741L
+							5793106916787126344L
+							-7564070352650422143L
+							2392537302082231L
+							576460752303423488L
+							2056L
+						]
+						clientCache: {
+							"presentthe_vault:is_legendary": 0b
+							color: [B; ]
+							gearName: [B; ]
+							"presentthe_vault:weapon_type": 0b
+							rollType: "Scrappy+"
+							jcolors: [I; ]
+							hasModifierLEGENDARY: 0b
+							colors: [I;11184810]
+							hasModifierUNUSUAL: 0b
+							model: [B; ]
+							hasModifierGREATER: 0b
+							state: 0
+							hasModifierCORRUPTED: 0b
+							rarity: 0
+						}
+					}
+				}
+			}]
+		}
+		{
+			title: "宝库袋"
+			x: -11.0d
+			y: 0.75d
+			shape: "square"
+			subtitle: "把所有东西都放进袋子里！"
+			description: [
+				"&d&n&lVault Sacks&r&d 是多种副手装备类型之一。 &n&l大多数副手装备在升级后会获得更广泛的词缀前缀和后缀&r&d。"
+				""
+				"&5Vault Sacks 专注于&n&l提升你在宝库中的战利品获取能力&r&5。它们可以&n&l增加战利品、提升战利品质量、加快移动速度、解除陷阱&r&5等。"
+				""
+				"&d宝箱袋要到&n&l50级&r&d才会出现，但你可以在&n&l锻造台&r&d中制作它们。"
+			]
+			dependencies: ["5E574242513BE343"]
+			id: "173ED1C0127D1BB3"
+			tasks: [{
+				id: "756EBC8ACA49AD50"
+				type: "item"
+				item: {
+					id: "the_vault:loot_sack"
+					Count: 1b
+					tag: {
+						vaultGearData: [L;
+							2729414146317926254L
+							6122368315693595513L
+							2392537302042633L
+							576460752303423488L
+							2056L
+						]
+						clientCache: {
+							"presentthe_vault:is_legendary": 0b
+							color: [B; ]
+							gearName: [B; ]
+							"presentthe_vault:weapon_type": 0b
+							rollType: [B; ]
+							jcolors: [I; ]
+							hasModifierLEGENDARY: 0b
+							colors: [I;11184810]
+							hasModifierUNUSUAL: 0b
+							model: [B; ]
+							hasModifierGREATER: 0b
+							state: 0
+							hasModifierCORRUPTED: 0b
+							rarity: 0
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "00CEFD5905012389"
+				type: "item"
+				item: {
+					id: "the_vault:loot_sack"
+					Count: 1b
+					tag: {
+						vaultGearData: [L;
+							7482655500999612750L
+							1224077497335783646L
+							2398589014039857179L
+							1245127937339252741L
+							5793106916787126344L
+							-7564070352650422143L
+							2392537302082231L
+							576460752303423488L
+							2056L
+						]
+						clientCache: {
+							"presentthe_vault:is_legendary": 0b
+							color: [B; ]
+							gearName: [B; ]
+							"presentthe_vault:weapon_type": 0b
+							rollType: "Scrappy+"
+							jcolors: [I; ]
+							hasModifierLEGENDARY: 0b
+							colors: [I;11184810]
+							hasModifierUNUSUAL: 0b
+							model: [B; ]
+							hasModifierGREATER: 0b
+							state: 0
+							hasModifierCORRUPTED: 0b
+							rarity: 0
+						}
+					}
+				}
+			}]
+		}
+		{
+			title: "装备信息"
+			x: -9.75d
+			y: -1.25d
+			shape: "gear"
+			subtitle: "这到底是怎么回事？What Is Up With It?"
+			description: [
+				"&d行啦，强盗，给你快速介绍一下&n&lVault Gear及其属性&r&d。"
+				""
+				"&5所有Vault Gear的数值都分为&n&l三类词缀：内嵌、前缀和后缀&r&5。每件装备都有一定数量的&n&l这些词缀&r&5，通常&n&l取决于稀有度&r&5。"
+				""
+				"&d&n&lImplicits are the base stats&r&d of a piece. &n&lArmor always has Armor, Weapons always have Damage&r&d in their list of implicits. Some Implicit slots can be a number of things, like &n&lBlock OR Thorns on shields&r&d, but usually never both at the same time... at least as an Implicit."
+				""
+				"&5&n&lPrefixes and Suffixes are the various bonus stats&r&5 a piece of gear has, and are much &n&leasier to reroll than Implicits&r&5 are. They can be anything from &n&lextra armor or damage, more mana, better looting, or even special abilities&r&5 like causing a Poison or Frost nova to happen when you hit an enemy."
+				""
+				"&d哦，强盗！&n&l如果一个齿轮部件能提升某个已列出的能力，你至少需要1点该能力&r&d才能使用它！"
+			]
+			dependencies: ["5E574242513BE343"]
+			id: "739D201BBF702013"
+			tasks: [{
+				id: "66DE3B2D8804617F"
+				type: "checkmark"
+			}]
+		}
+		{
+			title: "独特的野外指南"
+			x: 1.75d
+			y: 1.0d
+			shape: "rsquare"
+			subtitle: "有点像“我能抽到什么好东西？”这个问题"
+			description: [
+				"&d看起来 FOP 添加了一个物品，用来&n&l帮助玩家寻找游戏中添加的特殊“唯一”物品&r&d。"
+				""
+				"&5嗯，他们本想鼓励玩家搜寻和挖掘这些稀有的独特装备，但事实证明，如果你根本不知道去哪儿找……"
+				""
+				"&d...这样玩家就不会费心去追了，对吧。所以他们推出了&n&l独特法典&r&d。"
+				""
+				"&5这玩意儿有点像我们加到仓库窗口（键：H）里的 VHat Can I Roll 工具。两者都挺实用的，对吧。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["76B7D44E338DC9B7"]
+			id: "7C06CB39886FCC9B"
+			tasks: [{
+				id: "0E41BFBAFDE67D5D"
+				type: "item"
+				item: "the_vault:unique_codex"
+			}]
+			rewards: [{
+				id: "383A243178D67811"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "独特发现"
+			x: 1.75d
+			y: 2.0d
+			shape: "rsquare"
+			subtitle: "为雨天准备的温馨小窝"
+			description: [
+				"&d嘿，强盗，FOP最近加了些有趣的东西。主要是他们叫的&n&lUniques&r&d。"
+				""
+				"&5嗯，独特物品嘛……你猜对了，它们是&n&l独特物品&r&5，大多是装备，&n&l外观独特，属性特殊&r&5。"
+				""
+				"&d你可以通过多种方式&n&l找到它们&r&d，通常在&n&l特定房间、黑市或自动售货机中&r&d。"
+				""
+				"&5And most recently they added these &n&lUnique Crates&r&5. Ye can find em in those &n&lbig crates in Factory Rooms, or in the catacombs beneath Village Rooms&r&5 in the Vaults."
+			]
+			hide_dependency_lines: true
+			dependencies: ["76B7D44E338DC9B7"]
+			id: "096608AC80F2A0F0"
+			tasks: [{
+				id: "6A36F4E0B8DA3824"
+				type: "observation"
+				title: "观察一个独特的木箱"
+				icon: "the_vault:unique_crate"
+				timer: 0L
+				observe_type: 0
+				to_observe: "the_vault:unique_crate"
+			}]
+			rewards: [{
+				id: "015E558ED94503F3"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "清除冲突"
+			icon: "the_vault:demagnetizer"
+			x: -6.0d
+			y: 2.0d
+			shape: "rsquare"
+			subtitle: "计算机，解除蜥蜴的激活状态"
+			description: [
+				"&d强盗，随着你等级提升，装备和工具越来越多，你可能需要... &n&l关闭基地里的一些工具&r&d。"
+				""
+				"&5第一次用超级锤子炸掉半个基地，确实没什么好玩的。"
+				""
+				"&d也不用总是翻背包去捡掉落物品了。"
+				""
+				"&5有几个东西可以帮你。这个&n&lBag Suppressor能阻止你的Sophisticated Backpacks自动拾取区域内的物品&r&5。"
+				""
+				"&d并且&n&l磁抑止器会禁用附近的所有地磁锁&r&d。"
+				""
+				"&5至于锤子，你可以用&n&lHammer Suppressor来禁用锤子的区域效果&r&5。省得自己头疼。"
+				""
+				"&d还有，如果你有宠物或村民，更省麻烦的是，&n&l能力抑制器还能关闭你大部分致命、造成伤害的能力&r&d。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["5FC0C65E68336246"]
+			id: "40B3DC65625197C4"
+			tasks: [
+				{
+					id: "57B9993F9ECD10AE"
+					type: "observation"
+					title: "观察一个磁屏蔽器 Magnet Suppressor"
+					icon: "the_vault:demagnetizer"
+					timer: 0L
+					observe_type: 0
+					to_observe: "the_vault:demagnetizer"
+				}
+				{
+					id: "1A4D3722695444F2"
+					type: "observation"
+					title: "观察一个袋子抑制器 Bag Suppressor"
+					icon: "the_vault:debagnetizer"
+					timer: 0L
+					observe_type: 0
+					to_observe: "the_vault:debagnetizer"
+				}
+				{
+					id: "0A7E6EA82B051A45"
+					type: "observation"
+					title: "观察一个锤子消音器 Hammer Suppressor"
+					icon: "the_vault:dehammerizer"
+					timer: 0L
+					observe_type: 0
+					to_observe: "the_vault:dehammerizer"
+				}
+				{
+					id: "4FC5530F1E56D77C"
+					type: "observation"
+					title: "观察一个能力抑制器"
+					icon: "the_vault:ability_suppressor"
+					timer: 0L
+					observe_type: 0
+					to_observe: "the_vault:ability_suppressor"
+				}
+			]
+			rewards: [{
+				id: "2844250BBBC7E16A"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "适者生存，不适者亡"
+			x: -5.5d
+			y: -3.5d
+			shape: "rsquare"
+			subtitle: "一次值得的牺牲"
+			description: [
+				"&d&n&l自适应焦点&r&d是一种稀有的焦点，你&n&l只能通过回收欧米茄稀有度的装备来获得&r&d。分解一件装备时有&n&l1/4的概率&r&d获得自适应焦点，但它可能非常强大。"
+				""
+				"&5When ye apply an Adaptive Focus to a piece of gear in the &n&lArtisan Station&r&5, it will &n&lupgrade the tier of EVERY modifier&r&5 on it."
+				""
+				"&dThe downside is twofold, though : It is &n&lvery expensive to apply&r&d, and it will &n&lconsume a Repair Slot&r&d on the piece of gear."
+			]
+			hide_dependency_lines: true
+			dependencies: [
+				"29198B5EA727A867"
+				"6473A9F33F692821"
+			]
+			id: "66FBB145605DD232"
+			tasks: [{
+				id: "155AF24522E6CF48"
+				type: "item"
+				item: "the_vault:adaptive_focus"
+			}]
+			rewards: [{
+				id: "5851CF93FCC2DDA1"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "保持一致性"
+			icon: {
+				id: "the_vault:mentors_brew"
+				Count: 1b
+				tag: { }
+			}
+			x: 4.25d
+			y: 2.0d
+			shape: "rsquare"
+			subtitle: "你等于我"
+			description: [
+				"&5如果你在&n&l服务器中游玩&r&5，而助手较晚加入游戏，你可以使用&n&l导师之酿来将他们提升至你的水平&r&5。"
+				""
+				"&d当你&n&l制作导师的饮品时，它会设置为你当时的等级&r&d。当别人&n&l饮用它时，他们的等级会提升到与你的等级一致&r&d。"
+				""
+				"&5注意：&n&l只有当饮用导师之饮的玩家等级低于该饮品设定的等级时，此效果才会生效&r&5！"
+			]
+			hide_dependency_lines: true
+			dependencies: ["76B7D44E338DC9B7"]
+			id: "2EB82342DD80197E"
+			tasks: [{
+				id: "74D91CEC8997C285"
+				type: "checkmark"
+			}]
+		}
+		{
+			title: "知识共享"
+			icon: {
+				id: "the_vault:knowledge_brew"
+				Count: 1b
+				tag: { }
+			}
+			x: 2.25d
+			y: -3.5d
+			shape: "rsquare"
+			subtitle: "我能做到吗？还差一点……"
+			description: [
+				"&5如果你在&n&l服务器中游玩&r&5，并且与其他助手组队，可以使用&n&l知识酿造来分享你已解锁的研究&r&5。"
+				""
+				"&d当你&n&l酿造该物品时，它会复制你拥有的所有研究&r&d。"
+				""
+				"&5When &n&lsomeone else drinks the Knowledge Brew, they will gain any Research from it they didn't have&r&5 yet."
+			]
+			hide_dependency_lines: true
+			dependencies: ["50203F008ADF0804"]
+			id: "74637538A0EBEA2E"
+			tasks: [{
+				id: "476BA6115EF77F10"
+				type: "checkmark"
+			}]
+		}
+		{
+			title: "额外的金字塔结构物"
+			icon: "the_vault:pylon"
+			x: -2.0d
+			y: 0.0d
+			shape: "rsquare"
+			subtitle: "建造？不，要摧毁它们！"
+			description: [
+				"&d在Vaults的各处，你偶尔会找到这些被称为Pylons的&n&l大型漂浮水晶&r&d。"
+				""
+				"&5每个金字塔都会为你提供&n&l特定增益，持续较短时间&r&5，如果你离得足够近，增益会&n&l显示在金字塔上方&r&5。"
+				""
+				"&d右键点击金字塔即可激活它。"
+				""
+				"&5……或者，你也可以&n&l摧毁金字塔&r&5！"
+				""
+				"&d破坏它会有&n&l小概率获得一个时空碎片&r&d。它们的掉落与其他宝库装备一样，并且&n&l可能拥有强大的能力&r&d。"
+				""
+				"&5时空碎片在使用时会被&n&l消耗&r&5，但你可以在不同宝库之间持有并保存碎片。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["69C663CDD23190A9"]
+			id: "3F5860F8A067ED38"
+			tasks: [{
+				id: "074E58FA044A2409"
+				type: "item"
+				item: {
+					id: "the_vault:temporal_shard"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "46EA8CBDB798891D"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "Steep Infusion"
+			x: -5.5d
+			y: 1.0d
+			shape: "rsquare"
+			subtitle: "赋予它力量吧"
+			description: [
+				"&d早期，Vault Hunters 物品和 Researched 物品的配方都会使用基础的 Vault 材料，如 Magic Silk、Vault Diamonds 等。"
+				""
+				"&5不过很快你'll需要&n&l更复杂的材料&r&5。这就是&n&lChromatic Iron Vault Infuser&r&5。有了它，你就能将各种Vault材料融合成更强大的资源。"
+				""
+				"&d配方中，&n&l左槽是基础材料&r&d，而&n&l中间槽是你要注入的材料&r&d。下方的&n&l进度条显示所需数量，&r&d悬停即可查看。"
+				""
+				"&5When the Choromatic Iron Vault Infuser becomes too slow, you can &n&lupgrade it into a Chromatic Steel Vault Infuser&r&5 instead."
+			]
+			hide_dependency_lines: true
+			dependencies: ["76B7D44E338DC9B7"]
+			hide: true
+			id: "2A847F412902DA5B"
+			tasks: [{
+				id: "0A4EC82715C95DDD"
+				type: "observation"
+				title: "观察一个 Chromatic Iron Vault Infuser"
+				icon: "woldsvaults:chromatic_iron_vault_infuser"
+				timer: 0L
+				observe_type: 0
+				to_observe: "woldsvaults:chromatic_iron_vault_infuser"
+			}]
+			rewards: [{
+				id: "55FC9E8CAA562232"
+				type: "item"
+				item: "woldsvaults:infused_driftwood"
+				count: 16
+			}]
+		}
+		{
+			title: "一杯温暖的饮品"
+			icon: "the_vault:cafe_vienne"
+			x: -9.75d
+			y: 2.0d
+			shape: "rsquare"
+			subtitle: "……以及别的不多"
+			description: [
+				"&5啊，寒冷的日子里来一杯热饮再好不过了，尤其是含有咖啡因的那种。"
+				""
+				"&d看起来FOP刚加了个新东西。给自己造一台&n&lVault Drink Machine&r&d，当然还要一个&n&lEmpty Glass&r&d来装饮料。"
+				""
+				"&5嗯，所以你刚把&n&l饮料机放下来&r&5，然后用&n&l空玻璃杯使用它&r&5，就能得到一杯&n&l热饮&r&5？"
+				""
+				"&d是的，它们都会让你获得几分钟的&n&l速度加成&r&d。"
+				""
+				"&5速度提升？这对地牢里的强盗来说会很方便。"
+				""
+				"&d抱歉，兄弟，看来你&n&l不能在Vault里喝这些&r&d。而且它们只能持续半分钟。"
+				""
+				"&5可是，那又怎样？这他妈的有什么意义？"
+				""
+				"&dThe Machine does look cool at least."
+			]
+			hide_dependency_lines: true
+			dependencies: ["69C663CDD23190A9"]
+			id: "5C112782F9CCABB1"
+			tasks: [
+				{
+					id: "5928B54D6CF431BC"
+					type: "item"
+					item: "the_vault:empty_glass_cup"
+				}
+				{
+					id: "4C9EC949EC7B31CD"
+					type: "observation"
+					title: "观察一台Vault饮料机"
+					icon: "the_vault:vault_coffee_machine"
+					timer: 0L
+					observe_type: 0
+					to_observe: "the_vault:vault_coffee_machine"
+				}
+			]
+			rewards: [{
+				id: "3CB189713DEDFBF3"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "祭坛所需物品"
+			icon: "woldsvaults:vaultar_box"
+			x: 2.8125d
+			y: -1.5d
+			shape: "gear"
+			subtitle: "祭坛的贪婪"
+			description: [
+				"&dThere is a special box in the &n&lRaw Vault loot pools&r&d you might be interested in. It's called the &n&lVaultar Box&r&d."
+				""
+				"&5宝库祭坛要求的东西可不少，而且随着你升级，要求会越来越多。"
+				""
+				"&d此箱子&n&l只包含祭坛可能需要的物品&r&d，即使你尚未达到所需等级。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["3E2831A2D27654C0"]
+			hide: true
+			size: 0.75d
+			id: "5D079C7B09BB29CA"
+			tasks: [{
+				id: "17A1C5DE546D3974"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "4262DB2003F63053"
+				type: "item"
+				item: "woldsvaults:vaultar_box"
+			}]
+		}
+		{
+			title: "不必要的添加物 (Unnecessary Additions)"
+			icon: {
+				id: "woldsvaults:chiseling_focus"
+				Count: 1b
+				tag: { }
+			}
+			x: -8.25d
+			y: 1.3125d
+			shape: "gear"
+			subtitle: "移除残次品（Cruft）的生成概率"
+			description: [
+				"&dAs you collect &n&lJewels&r&d, you'll find &n&lrarer ones&r&d that have &n&lmultiple attributes&r&d on them. And sometimes, &n&lone of those attributes you just don't want&r&d, while everything else is great."
+				""
+				"&5额外的属性可能会毁掉一件原本完美的工具。例如，拥有一个&n&l能像切黄油一样切开石头的木制破箱器，会带来更多问题&r&5。"
+				""
+				"&d要修复此问题，可以制作并使用&n&l凿刻专注&r&d。有许多不同的凿刻专注，&n&l每种都会移除特定的工具属性&r&d。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["5252A91CF03F9FFB"]
+			size: 0.75d
+			id: "03A3A60AFD7B5F59"
+			tasks: [{
+				id: "6773F9A1F0F0A4FF"
+				type: "checkmark"
+			}]
+		}
+		{
+			title: "不小心打得太重了"
+			x: -6.0d
+			y: 0.0d
+			shape: "rsquare"
+			subtitle: "玩家，粉碎！"
+			description: [
+				"&5嗯，我记得最让人头疼的就是想集齐足够的Vault Gems。尤其是特定种类，毕竟有十几种呢。有什么办法能解决这个问题吗，姐妹？"
+				""
+				"&d我也是这么想的，兄弟。要不加这些：&n&l破碎的宝库宝石&r&d！它们可以用来&n&l增加另一种你缺少的宝库宝石的数量&r&d。"
+				""
+				"&5喜欢复制它们吗？"
+				""
+				"&d嗯，所以你&n&l首先得有一个宝石&r&d，然后才能把一个Vault Gem转换成另一个。不过&n&l只有玩家，或者说，Bird Gems可以&r&d。Echo Gems我试了试，没成功。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["69C663CDD23190A9"]
+			id: "1FA20B877600934C"
+			tasks: [{
+				id: "0AD6532AF122B34F"
+				type: "item"
+				item: "woldsvaults:smashed_vault_gem"
+			}]
+			rewards: [{
+				id: "538E5585DA643592"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "缺少配方材料"
+			x: -4.0d
+			y: 2.0d
+			shape: "rsquare"
+			subtitle: "有替代品了吗？Got a Substitute?"
+			description: [
+				"&d有时Vault Altar会要求一些... &n&l难以获得的物品&r&d来制作水晶。也许你身处Skyvault，还没有那个生物蛋。也许最近的丛林在1万格之外。"
+				""
+				"&5无论如何，你都可以使用&n&lAltar Recatalyzer&r&5来&n&l重掷当前Vault Crystal&r&5的费用。"
+				""
+				"&d在祭坛上&n&l潜行+右键点击祭坛催化剂&r&d，它就会重新生成所需的物品。"
+				""
+				"&5Note that &n&lye don't get a refund&r&5 if you already put stuff in!"
+			]
+			hide_dependency_lines: true
+			dependencies: ["69C663CDD23190A9"]
+			hide: true
+			id: "1F6E50B20E961826"
+			tasks: [{
+				id: "05575025BAB15F47"
+				type: "item"
+				item: "woldsvaults:altar_recatalyzer"
+			}]
+			rewards: [{
+				id: "4B71CEE0BAB16BB5"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "玩家对战玩家"
+			icon: "the_vault:crystal_seal_pvp"
+			x: 0.25d
+			y: 1.0d
+			shape: "rsquare"
+			subtitle: "一场登顶之战"
+			description: [
+				"&d如果你在&n&l服务器&r&d上游玩，并希望与&n&l其他玩家一较高下&r&d，可以使用&n&lVault PVP 石头&r&d。"
+				""
+				"&5&n&l当第二名玩家进入宝库时，两分钟的计时器将启动并锁定宝库，使你无法离开。两分钟后，所有玩家将被传送到宝库中的随机位置&r&5。"
+				""
+				"&d&n&l要获胜，你必须成为第一个完成目标的人，或是最后幸存的玩家&r&d。"
+				""
+				"&5&n&l在PVP宝库中死亡，你的物品栏会恢复到进入宝库前的状态&r&5。"
+				""
+				"&d赢得其中一个比赛，似乎能拿到一个很棒的奖杯？"
+			]
+			hide_dependency_lines: true
+			dependencies: ["76B7D44E338DC9B7"]
+			hide: true
+			id: "058BF04047E53F79"
+			tasks: [{
+				id: "43BE0D2032BDCE23"
+				type: "checkmark"
+			}]
+		}
+		{
+			title: "视野开阔的宝库"
+			icon: "the_vault:spectator_terminal"
+			x: 0.25d
+			y: 2.0d
+			shape: "rsquare"
+			subtitle: "偷偷往里看"
+			description: [
+				"&5如果你在服务器中与其他玩家一起，可以使用这个&n&l旁观终端&r&5来&n&l旁观任何正在运行的Vault&r&d。"
+				""
+				"&5你&n&l无法在此模式下做任何事情&r&5，服务器可以更改设置，允许你自由走动，也可以将你锁定在某个玩家身边。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["76B7D44E338DC9B7"]
+			hide: true
+			id: "0FEA982B2C8F1E78"
+			tasks: [{
+				id: "46E1566C57421ECE"
+				type: "checkmark"
+			}]
+		}
+		{
+			title: "独特区块划分 (Uniquely Chunked)"
+			x: 2.75d
+			y: 1.0d
+			shape: "rsquare"
+			subtitle: "打破唯一性以创造唯一性"
+			description: [
+				"&d你可以找到各种各样的独特物品，每种都有特定的特殊地点可以寻找。"
+				""
+				"&5但有时你抽不到独特的物品，或者升级后它就没用了，导致闲置。"
+				""
+				"&d现在当你&n&l回收一个独特物品&r&d，你会得到&n&l独特碎片&r&d，可以在Vault Forge中用来锻造随机独特物品。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["7C06CB39886FCC9B"]
+			id: "20380D2D9EBE093E"
+			tasks: [{
+				id: "7BAB2C349CEE1353"
+				type: "item"
+				item: "the_vault:unique_shard"
+			}]
+			rewards: [{
+				id: "51D959923829F682"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 2245246540467579945L
+			}]
+		}
+		{
+			title: "实用宝库词汇手册"
+			icon: {
+				id: "patchouli:guide_book"
+				Count: 1b
+				tag: {
+					"patchouli:book": "patchouli:vault_lexicon"
+				}
+			}
+			x: 4.25d
+			y: -3.5d
+			shape: "rsquare"
+			subtitle: "词缀图鉴，修饰符手册"
+			description: [
+				"&d随着你开始收集Vault Gear，你会遇到&n&l更多作用不明的有趣Affix&r&d。例如&n&lHeart Frag Chance或Echoing&r&d，这些可都不是显而易见的！"
+				""
+				"&5To that, ye can get yerself a &n&lVault Lexicon&r&5! It contains &n&lentries on most affixes&r&5 available on Vault Gear, and a &n&ldescription of what they do&r&5."
+			]
+			hide_dependency_lines: true
+			dependencies: ["76B7D44E338DC9B7"]
+			hide: true
+			id: "4D137B677AC4309D"
+			tasks: [{
+				id: "7AAAC46CE5689FFB"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "04CF22AF22864D2C"
+				type: "item"
+				item: {
+					id: "patchouli:guide_book"
+					Count: 1b
+					tag: {
+						"patchouli:book": "patchouli:vault_lexicon"
+					}
+				}
+			}]
+		}
+		{
+			title: "一只引导之手"
+			icon: "the_vault:vault_compass"
+			x: 4.25d
+			y: -2.5d
+			shape: "rsquare"
+			subtitle: "这个东西说往北左走是什么意思？"
+			description: [
+				"&dBandit, a &n&lhelpful tool&r&d for navigating Vaults you can &n&lResearch&r&d is the &n&lVault Compass&r&d."
+				""
+				"&5这不仅仅是一个指向&n&l宝库传送门&r&5的普通指南针，宝库指南针非常强大。它能&n&l指向各种事物，从特殊门到目标&r&5或其他东西。"
+				""
+				"&d起初，指南针只能指向宝库传送门，但&n&l随着你探索更多宝库，你将解锁将其指向其他事物的能力&r&d。"
+				""
+				"&5你可以在&n&l宝库外免费设置指南针的目标，但在宝库中更改会消耗你10%的生命值&r&5。（当然，宝库结束后会返还）"
+			]
+			hide_dependency_lines: true
+			dependencies: ["76B7D44E338DC9B7"]
+			id: "028DF61EF05F2577"
+			tasks: [{
+				id: "75AA79635B71B73B"
+				type: "checkmark"
+			}]
+		}
+		{
+			title: "可爱的洋娃娃"
+			icon: {
+				id: "the_vault:vault_doll"
+				Count: 1b
+				tag: { }
+			}
+			x: 3.75d
+			y: 1.0d
+			shape: "rsquare"
+			subtitle: "它在盯着我看"
+			description: [
+				"&d如果你有&n&l助手&r&d，但他们&n&l无法以相同速度运行Vault&r&d，你可能需要考虑使用&n&lVault Dolls&r&d。"
+				""
+				"&5你可以让&n&l助手制作一个Vault Doll&r&5，它会&n&l带有他们的名字和角色皮肤&r&5。"
+				""
+				"&d&n&l将玩偶装备在 Curios 栏位的头上&r&d。确保你&n&l没有和该助手在 Vault Party 中，助手也不应进入 Vault&r&d。然后&n&l运行 Vault&r&d。它会随机&n&l'复制'你收集的部分战利品并储存在自身中&r&d。"
+				""
+				"&5&n&l宝库之后，把玩偶还给&r&5朋友。他们可以&n&l右键玩偶并将其放置在地面上以释放它&r&5。小心，&n&l请在封闭区域内操作&r&5！"
+				""
+				"&d看，当你&n&l'释放'玩偶时，它就会开始四处乱跑。要拿到战利品，你就得把它杀死&r&d。"
+				""
+				"&lServers can disable placing Vault Dolls and require using Doll Blenders, as Vault Dolls with high amounts of loot can crash servers. Change the gamerule enablePlacingVaultDolls to false!"
+			]
+			hide_dependency_lines: true
+			dependencies: ["76B7D44E338DC9B7"]
+			hide: true
+			id: "49C50AC9021411A0"
+			tasks: [{
+				id: "0F2B6CC25BD24BAD"
+				type: "checkmark"
+			}]
+		}
+		{
+			title: "安全地提取玩偶"
+			icon: "woldsvaults:doll_dismantler"
+			x: 4.75d
+			y: 1.0d
+			shape: "rsquare"
+			subtitle: "Will It Blend? 会融合吗？"
+			description: [
+				"&d要&n&l取回Vault Dolls收集的物品&r&d，通常的做法是部署玩偶，然后在它试图逃跑时将其击杀。"
+				""
+				"&5是啊，这可能会出问题，Bandit。如果人偶里装了太多物品，可能会导致服务器“卡顿”。或者助手卡顿，人偶就逃跑了。"
+				""
+				"&d所以，&n&lDoll Blender&r&d 是一个简单但略带病态的解决方案！把它放下，&n&l放入Vault Doll，Blend Vault Doll，搅拌机就会锁住战利品，让你能更安全地取回&r&d。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["49C50AC9021411A0"]
+			id: "59F111F615EEAC31"
+			tasks: [{
+				id: "46C0C69B5C61E37F"
+				type: "checkmark"
+			}]
+		}
+		{
+			title: "焕然一新，如同全新一般"
+			x: -6.5d
+			y: -3.5d
+			shape: "rsquare"
+			subtitle: "忽略那些划痕的痕迹，不要在意它们"
+			description: [
+				"&d随着等级提升，升级速度会减慢，但你在宝库中找到的装备数量会增加。"
+				""
+				"&5总有一天你会找到一件能用够久的装备，直到你&n&l把耐久度磨到临界点&r&5为止。"
+				""
+				"&d如果耐久度耗尽后，你仍想继续使用一件装备，就需要一个&n&l修复核心&r&d。"
+				""
+				"&5&n&lCombine a Repair Core with the piece of equipment in an Anvil&r&5 to repair it. It will &n&lconsume a Repair slot&r&5 on the equipment and refill the Durability."
+			]
+			hide_dependency_lines: true
+			dependencies: ["29198B5EA727A867"]
+			hide: true
+			id: "0CCBD4A4DBE2C736"
+			tasks: [{
+				id: "49FDF7B74CF66C95"
+				type: "item"
+				item: "the_vault:repair_core"
+			}]
+			rewards: [{
+				id: "68D1245AE859D950"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "独一无二的展示品"
+			x: 2.75d
+			y: 2.0d
+			shape: "rsquare"
+			subtitle: "小小的炫耀一下自己"
+			description: [
+				"&d如果你想有一个好方法来&n&l查看有哪些独特物品、如何找到它们，并展示你已找到的物品&r&d，那么非&n&lUnique Safe&r&d莫属了。"
+				""
+				"&5在这里，你可以看到一份&n&l所有独特物品&r&5的列表，以及&n&l寻找它们的提示&r&5。你还可以选择一个已解锁的物品，&n&l将其展示在独特安全箱上方的玩家假人上&r&5。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["7C06CB39886FCC9B"]
+			hide: true
+			id: "57482F02F417DCA5"
+			tasks: [{
+				id: "7A70EFB2918FB95E"
+				type: "observation"
+				title: "观察一个独特的保险箱"
+				icon: "the_vault:unique_wardrobe"
+				timer: 0L
+				observe_type: 0
+				to_observe: "the_vault:unique_wardrobe"
+			}]
+			rewards: [{
+				id: "6D63DEC87CC99816"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "Never Tell Me the Odds"
+			icon: "tfb2:blindboxblindbox"
+			x: -7.75d
+			y: -0.75d
+			shape: "gear"
+			description: [
+				"&d好的，强盗，&n&l随着你在Vault Hunters&r&d和我们的指引下不断前进，你将传播蠕虫。这样我们就能在奖励给你的盲盒中&n&l为你提供略高的概率&r&d。"
+				""
+				"&5行，就当是给你点&n&l额外动力&r&5，让你赶紧离开那儿。倒也不是说你缺那点动力。"
+				""
+				"&d这样我们就能测试管道在系统内外的工作情况，把更……值钱的物品放进强盗的爪子里，然后再送回系统。重复操作。"
+				""
+				"&5瓶子转呀转，停下来的地方...嗯，我们知道，哈！"
+			]
+			dependencies: ["69C663CDD23190A9"]
+			size: 0.75d
+			id: "4846A7DEA2396E44"
+			tasks: [{
+				id: "2839AED2AE49623D"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "7A58055E36D8D74A"
+				type: "item"
+				item: "tfb2:blindboxblindbox"
+			}]
+		}
+	]
+	quest_links: [ ]
+}

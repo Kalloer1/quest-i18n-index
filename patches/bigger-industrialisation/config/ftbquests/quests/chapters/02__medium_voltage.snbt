@@ -1,0 +1,617 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_min_width: 300
+	default_quest_shape: ""
+	filename: "02__medium_voltage"
+	group: "7C284955C6501D53"
+	icon: "gtceu:mv_electric_motor"
+	id: "282F9DDDF16E6415"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"&a拜耳法&r是从铝土矿中提取氧化铝（铝氧化物）的过程。铝土矿首先需要与氢氧化钠&d消化&r形成&d偏铝酸钠&r，然后加热得到&d氢氧化铝&r，最后将其爆破即可获得氧化铝粉尘。"
+				""
+				"这也会产生大量副产品&d红泥&r，可以将其再加工成像&a镓&r这样的宝贵材料。"
+				""
+				"注意，氢氧化铝的冶炼需要&d高压能量&r，因此你需要升级你的EBF。在没有高压能量舱之前，无法使用4x4的EBF方块。"
+			]
+			id: "06665F1BAC395C89"
+			tasks: [{
+				id: "0C6F11C332A519FF"
+				item: "gtceu:alumina_dust"
+				type: "item"
+			}]
+			title: "拜耳法（Bayer Process）"
+			x: -1.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["06665F1BAC395C89"]
+			description: [
+				"&a红泥&r是铝生产的副产品，其中含有从铝土矿中加工出的所有多余矿物废料。"
+				""
+				"再加工会产生一些额外的铁质材料，以及额外的&d镓&r。"
+			]
+			id: "4DDC23EE2215011C"
+			min_width: 300
+			optional: true
+			shape: "diamond"
+			tasks: [{
+				id: "26FA764ECACAFAE9"
+				item: "gtceu:red_mud_dust"
+				type: "item"
+			}]
+			title: "有毒的泥浆"
+			x: -2.5d
+			y: 2.5d
+		}
+		{
+			description: [
+				"不想用拜耳法提炼铝？行。你可以电解 &dEmerald Dust&r 来获取铝。"
+				""
+				"其实你已经知道了，因为这是一个隐藏任务。不管怎样，这效率低得多，你需要刷29个绿宝石才能换取两丁点微不足道的粉尘。"
+			]
+			id: "39D143EA4FFB606A"
+			invisible: true
+			optional: true
+			tasks: [{
+				id: "71A8A77283704C1D"
+				item: "gtceu:emerald_dust"
+				type: "item"
+			}]
+			title: "我讨厌奥地利人"
+			x: -2.5d
+			y: 4.0d
+		}
+		{
+			dependencies: [
+				"39D143EA4FFB606A"
+				"06665F1BAC395C89"
+			]
+			dependency_requirement: "one_completed"
+			description: [
+				"In the real world, the &eelectroylsis of alumina&r to straight aluminium is impossible due to the oxidisation of aluminium ions from a salt solution. Electrolysis of molten alumina is also impractical due to the melting point of alumina being too high. "
+				""
+				"相反，氧化铝被溶解在含有氟的卤化物矿物&9熔融冰晶石&r中。BI没有冰晶石，你可以直接电解氧化铝得到铝。算你幸运。"
+			]
+			id: "08330D01C36B3545"
+			tasks: [{
+				id: "6366590B9C5E2FD9"
+				item: "gtceu:aluminium_dust"
+				type: "item"
+			}]
+			title: "霍尔-赫鲁特工艺 (The Hall-Hérout Process)"
+			x: -1.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["08330D01C36B3545"]
+			description: [
+				"&a铬&r是一种几乎完全用于合金的金属。在铁质形态下，它是像&d不锈钢&r和&d钒钢&r等钢材的添加剂，而在原始形态下，它是&d铁铬钼&r合金卷的一部分。"
+				""
+				"原铬需要通过&e索尔维&r工艺生产&d碳酸钠&r（又称纯碱）。这需要少量氨作为初始原料，可通过蒸馏煤气获得。该氨会无限循环使用，并在反应中充当催化剂。"
+				""
+				"1. 将&d铬铁矿&r与纯碱一同爆破，可获得&d铬酸钠&r。"
+				"2. 用盐酸浸出&d铬酸钠&r，得到&d重铬酸钠&r。这会产生盐作为副产品，用于索尔维制碱法。"
+				"3. &d重铬酸钠&r被还原为三氧化铬和纯碱。此步骤与前一步骤对纯碱而言是一个闭环循环。"
+				"最后，使用铝将&d三氧化铬&r还原成&a铬金属&r。"
+				""
+				"这是MV层级中最复杂的化学链，但请注意：一切才刚刚开始。你应该好好利用你新获得的铁铬铝线圈。"
+			]
+			id: "7BEE21DF23576B53"
+			min_width: 400
+			tasks: [{
+				id: "5D073635FE894805"
+				item: "gtceu:chromium_ingot"
+				type: "item"
+			}]
+			title: "安装 Firefox 浏览器"
+			x: 0.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["7BEE21DF23576B53"]
+			description: [
+				"&aFerrochrolumium&r 是一种由铬、铝和铁组成的合金。它能制造出更优质的 &aEBF 线圈&r（同时还能消除你热解炉的速度惩罚。）"
+				""
+				"别说那个以K开头的词，不然商标忍者会来找你麻烦的。"
+			]
+			id: "224D936C415AA016"
+			optional: true
+			shape: "diamond"
+			tasks: [{
+				id: "66379C7902087ACD"
+				item: "gtceu:kanthal_ingot"
+				type: "item"
+			}]
+			title: "Ferrochrolumium"
+			x: 0.5d
+			y: 5.5d
+		}
+		{
+			dependencies: ["08330D01C36B3545"]
+			description: ["&a铝&r是高压等级的材料，在原版GTCEu中从中压等级提升而来。一旦你建立了铝土矿加工线，就可以在高炉中熔炼铝粉，并将铝锭轧成板材用于机器。"]
+			id: "14FCD4CDDDB798BC"
+			shape: "diamond"
+			tasks: [{
+				id: "542A581DC7A49548"
+				item: "gtceu:aluminium_plate"
+				type: "item"
+			}]
+			title: "HV 装甲板"
+			x: -1.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["535977705E793982"]
+			description: [
+				"&a电路组装器&r的独特之处在于，它们需要比自己高&o一阶&r的电路。这意味着LV电路组装器需要&dMV电路&r。"
+				""
+				"这对第一个电路主题(&oross scott voice&r 这个稍后再说!)用处不大，但可以稍微减少材料需求。不过，从&d第二个电路主题&r开始，它就会派上用场了。"
+			]
+			id: "07977A6D680C4DCB"
+			subtitle: "一台LV电路组装机器！"
+			tasks: [{
+				id: "0AAAA628B529D2BB"
+				item: "gtceu:lv_circuit_assembler"
+				type: "item"
+			}]
+			title: "一台LV机器？"
+			x: 6.0d
+			y: 4.0d
+		}
+		{
+			dependencies: [
+				"07977A6D680C4DCB"
+				"1C7211968F773774"
+			]
+			description: [
+				"你可能在想“但是，我已经做出了LV电路！我对安山合金有阴影了！”"
+				""
+				"看，GregTech电路有&d主题&r。主题是&a跨等级的&r，通常每个电压等级都有&a多个主题&r。除了特定等级最后一个主题外，每个主题都需要&d前一个电压等级的电路&r作为配方的一部分，所以你应该尽快升级到最后一个可能的主题。"
+				""
+				"你已经开始了“电子电路”主题；第二个主题是&a集成电路&r。这个比电子电路主题更节省资源，所以考虑用它来生产机器。"
+				""
+				"这些电路需要&d焊料合金&r，这是一种铅、锑和锡的混合物。"
+			]
+			id: "03045253789CA043"
+			min_width: 400
+			tasks: [{
+				id: "0658F6DE2D73C220"
+				item: "gtceu:basic_integrated_circuit"
+				type: "item"
+			}]
+			title: "又是LV电路！"
+			x: 6.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["03045253789CA043"]
+			description: ["这就像LV集成电路，不过是给MV机器用的。"]
+			id: "000CE46D72931AFD"
+			tasks: [{
+				id: "1FCFC0702015B58A"
+				item: "gtceu:good_integrated_circuit"
+				type: "item"
+			}]
+			title: "Mv Circuit #2"
+			x: 6.0d
+			y: 7.0d
+		}
+		{
+			dependencies: ["535977705E793982"]
+			description: [
+				"&a聚乙烯&r是格雷科技中&o极其重要&r的一种塑料。它被用于制造&d机器外壳&r（从HV阶段起为强制要求）和&d电路板&r等。"
+				""
+				"获取聚乙烯有多种途径。你可以蒸馏各种&d石油炼制产品&r（高压下裂解器多区块结构使蒸汽裂解更可行），最终通过丁烷/乙烷得到乙烯；或者，将生物质加工成&d生物质&r，再通过&d乙醇&r获取乙烯。"
+				""
+				"有了液态乙烯后，你应该用氧气而不是空气来制取聚乙烯，这样能获得1:1的比例，而不是2:1的比例。（说真的，如果你没有可靠的氧气装置，就该开始处理二氧化硅了！）"
+			]
+			id: "6946A93109A56A1B"
+			min_width: 400
+			subtitle: "糟糕！出事了！"
+			tasks: [{
+				id: "3FA7718AA6BD4AAF"
+				item: "gtceu:polyethylene_plate"
+				type: "item"
+			}]
+			title: "聚乙烯"
+			x: 0.5d
+			y: 7.0d
+		}
+		{
+			dependencies: ["6946A93109A56A1B"]
+			description: [
+				"&d晶体管&r是现代微处理器中最基本的组件之一。毫不夸张地说，场效应晶体管的发明是有史以来最重要的发明之一，仅次于诸如原始世界之类的东西。（当然，和原始世界不同，晶体管是真实存在的。）"
+				""
+				"GT 晶体管由 &d硅板&r、&d锡丝&r和用于外壳的 &d聚乙烯&r 制成。"
+			]
+			id: "3F52C49E18F7B1BE"
+			tasks: [{
+				id: "09BDC9AAD08024B2"
+				item: "gtceu:transistor"
+				type: "item"
+			}]
+			title: "Mossfet"
+			x: 2.0d
+			y: 6.5d
+		}
+		{
+			dependencies: ["6946A93109A56A1B"]
+			description: [
+				"聚乙烯基&d印刷电路板&r是下一级的电路板，只要有聚乙烯就能制作。"
+				""
+				"这些用于微处理器主题的电路元件。"
+			]
+			id: "082FB972D2FFFF5D"
+			tasks: [{
+				id: "533CDDEE815D7BDA"
+				item: "gtceu:plastic_printed_circuit_board"
+				type: "item"
+			}]
+			title: "真实的印刷电路板 (Real PCBs)"
+			x: 2.0d
+			y: 7.5d
+		}
+		{
+			dependencies: [
+				"3F52C49E18F7B1BE"
+				"000CE46D72931AFD"
+				"1C7211968F773774"
+			]
+			description: [
+				"你的第一个高压电路！"
+				""
+				"HV 很可能是你会停留一段时间的等级，所以准备好制作大量这些物品。"
+			]
+			id: "020FAE71BEDA6B1E"
+			shape: "hexagon"
+			size: 2.0d
+			tasks: [{
+				id: "0DF6B7DA492E932C"
+				item: "gtceu:advanced_integrated_circuit"
+				type: "item"
+			}]
+			title: "电路编号三"
+			x: 3.5d
+			y: 7.0d
+		}
+		{
+			dependencies: [
+				"535977705E793982"
+				"7BEE21DF23576B53"
+			]
+			description: [
+				"&aVanadium&r is used nearly entirely for &dvanadium steel&r used in multiblock casings, with a small amount of it used in electronics as the vanadium-gallium alloy later in the game."
+				""
+				"钒钢由&7钒铁合金&r制成，而钒铁合金则是通过铝热还原法将&d五氧化二钒&r与铁一同还原得到。你可以通过两种方式获得五氧化二钒："
+				""
+				"- 作为磁铁矿加工的副产品。"
+				"- 直接爆破粉碎的铁矿石所产生的炉渣再加工而成。"
+				""
+				"后者最容易自动化，因为只有赤铁矿能作为铁矿石自动化，来自&eOchrum orestone&r。"
+			]
+			id: "641046C8A91952E9"
+			min_width: 400
+			tasks: [{
+				id: "55D67CFC1BBB6BC7"
+				item: "gtceu:vanadium_steel_ingot"
+				type: "item"
+			}]
+			title: "LM312V04 胜利高达"
+			x: 2.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["0F12DC094370426B"]
+			description: [
+				"几乎所有电路都需要使用&aengraved wafers&r，然后可以切割成各种芯片。这些芯片有多种形式，但目前最有用的是&aRAM wafers&r（用于大多数MV之后的电路）和&aIC chip&r（用于LV和HV集成电路）。"
+				""
+				"你也可以制作&d系统芯片&r晶圆，它能替代除电路所用导线和PCB外的&o所有&r其他电子元件，但只能在远高于其所用电路的层级中建造。这对于需要过时电路层级的多区块结构很有用。"
+			]
+			id: "1C7211968F773774"
+			tasks: [
+				{
+					id: "7AB07EB683BDDC49"
+					item: "gtceu:ram_chip"
+					type: "item"
+				}
+				{
+					id: "3F4E43AA3F5A26D7"
+					item: "gtceu:ilc_chip"
+					type: "item"
+				}
+			]
+			title: "光刻术（Photolithography）"
+			x: 3.5d
+			y: 5.5d
+		}
+		{
+			dependencies: ["6946A93109A56A1B"]
+			description: [
+				"将电路板中的聚乙烯替换为&d聚氯乙烯&r，将使每单位塑料获得的电路板数量翻倍。"
+				""
+				"PVC 是通过裂解 &a1,2-二氯乙烷&r 制成的，而 1,2-二氯乙烷 本身是通过乙烯的氯化反应制成的。"
+			]
+			id: "7EF458879D3031AF"
+			optional: true
+			tasks: [{
+				id: "52F3239C7C553BD0"
+				item: "gtceu:polyvinyl_chloride_plate"
+				type: "item"
+			}]
+			title: "这并不完全是乳胶……"
+			x: -1.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["535977705E793982"]
+			description: [
+				"&d硅胶橡胶&r是橡胶的下一个“等级”；它可作为普通橡胶的替代品用于电线绝缘层，并且是高压组件的必需材料。"
+				""
+				"有几种制作方法，但每种都需要 &d硅尘&r、&d氯&r和 &d甲烷&r。"
+			]
+			id: "4D03AD6DD06D9401"
+			shape: "hexagon"
+			tasks: [{
+				id: "0384999D1E24ECEB"
+				item: "gtceu:silicone_rubber_plate"
+				type: "item"
+			}]
+			title: "二甲基二氯硅烷"
+			x: 2.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["020FAE71BEDA6B1E"]
+			description: [
+				"在开始 HV 升级之前，你应该先设置好第三个电路主题（&d微处理器）的生产线&r。"
+				""
+				"这些需要 &dMV Circuit Assembler&r 或更好的机器，你需要它们来制作下一批 HV 电路。"
+			]
+			id: "51EBB85EFEE47C29"
+			tasks: [{
+				id: "06B0303BF349DE81"
+				item: "gtceu:mv_circuit_assembler"
+				type: "item"
+			}]
+			title: "微型处理器制造"
+			x: 3.5d
+			y: 9.0d
+		}
+		{
+			dependencies: ["6946A93109A56A1B"]
+			description: ["这些是微处理器电路主题所必需的。"]
+			id: "2D8AF4A8CFFBBF3A"
+			tasks: [{
+				id: "375DCA75FEBDF3C8"
+				item: "gtceu:capacitor"
+				type: "item"
+			}]
+			title: "电容器"
+			x: 0.5d
+			y: 9.0d
+		}
+		{
+			dependencies: [
+				"2D8AF4A8CFFBBF3A"
+				"51EBB85EFEE47C29"
+			]
+			description: [
+				"这些是MV中最好的电路，也是制作Tier 2 HV电路所必需的。"
+				""
+				"你很可能还会继续使用MV机器一段时间，所以多储备一些这些是个好主意。"
+			]
+			id: "643156B9D9DF99FE"
+			tasks: [{
+				id: "5B8EA4418D0A51B4"
+				item: "gtceu:micro_processor"
+				type: "item"
+			}]
+			title: "Tier 3 MV Circuits"
+			x: 2.0d
+			y: 9.5d
+		}
+		{
+			dependencies: [
+				"2D8AF4A8CFFBBF3A"
+				"51EBB85EFEE47C29"
+			]
+			description: ["微处理器LV电路已不再用于更高级的用途，但你应该考虑将多余的LV电路生产转向这些电路，用于多区块结构。"]
+			id: "3A966CD1C5594520"
+			optional: true
+			tasks: [{
+				id: "479407E599D45BAD"
+				item: "gtceu:microchip_processor"
+				type: "item"
+			}]
+			title: "Tier 3 LV Circuits"
+			x: 2.0d
+			y: 8.5d
+		}
+		{
+			dependencies: ["020FAE71BEDA6B1E"]
+			description: ["HV Assembler 现已可用，正是投资制作 &dSMD 组件&r 的好时机。它们可用于替换普通组件来组装电路，并且在资源消耗上效率更高。"]
+			id: "240AADD043354E00"
+			optional: true
+			tasks: [
+				{
+					id: "49851FDF0C02DB6D"
+					item: "gtceu:smd_transistor"
+					type: "item"
+				}
+				{
+					id: "2BF6EAD01250D7B6"
+					item: "gtceu:smd_resistor"
+					type: "item"
+				}
+				{
+					id: "6DE73C8D392CF4E1"
+					item: "gtceu:smd_capacitor"
+					type: "item"
+				}
+				{
+					id: "033F1176F18ACF48"
+					item: "gtceu:smd_diode"
+					type: "item"
+				}
+				{
+					id: "69DB4FFEBE9569D8"
+					item: "gtceu:smd_inductor"
+					type: "item"
+				}
+			]
+			title: "表面安装设备"
+			x: 6.5d
+			y: 9.0d
+		}
+		{
+			description: [
+				"你应该考虑升级高炉和贝塞麦转炉，使用&dMV能量接口&r（如果不是所有&o输入/输出&r都用MV接口），以便运行HV配方。"
+				""
+				"注意，HV 能量舱需要 &9钠钾&r 来制作；两者都通过蒸发泥土水获得。更多信息请查看蒸发池的配方。"
+			]
+			id: "2585EF3B6EC40112"
+			min_width: 300
+			optional: true
+			tasks: [{
+				count: 2L
+				id: "0D585651002653BA"
+				item: { Count: 2, id: "gtceu:mv_energy_input_hatch" }
+				type: "item"
+			}]
+			title: "HV 多联块"
+			x: 5.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["020FAE71BEDA6B1E"]
+			description: [
+				"游戏中最糟糕的多方块结构！EV电路及更高只能组装在由&d塑石&r和/或洁净室玻璃构成的自由形式多方块结构——&a洁净室&r内。"
+				""
+				"你可以通过&d二极管&r（方块形态）或放置在墙上的普通&d机器外壳&r为洁净室多区块供电（没错，你不知道它们不只是合成材料吗？）。对于物品输入输出，你可以复用机器外壳或使用经典的&9模块化路由器&r将物品传送进去。要进入内部，可以用……一扇门。（门开着不会弄脏内部）。"
+				""
+				"（或者，你也可以去配置里禁用洁净室。我不会怪你的。配方写着“需要洁净室”，但那并不正确。）"
+			]
+			id: "19DA4C36B750D270"
+			tasks: [{
+				id: "6EA4557A6E4A1A09"
+				item: "gtceu:cleanroom"
+				type: "item"
+			}]
+			title: "洁净室 (The Cleanroom)"
+			x: 4.5d
+			y: 9.0d
+		}
+		{
+			dependencies: [
+				"19DA4C36B750D270"
+				"51EBB85EFEE47C29"
+			]
+			description: [
+				"解锁 HV 电路后，你几乎可以立即制作第一个 &dEV 电路&r。"
+				""
+				"这是微处理器主题的倒数第二个电路，不过你可能很快用不到下一个主题的内容了。"
+			]
+			id: "4838078FA4C199E3"
+			shape: "hexagon"
+			size: 1.5d
+			tasks: [{
+				id: "01FE04F1A3DD1778"
+				item: "gtceu:micro_processor_computer"
+				type: "item"
+			}]
+			title: "80286"
+			x: 4.0d
+			y: 10.5d
+		}
+		{
+			dependencies: ["535977705E793982"]
+			description: [
+				"优质集成电路和某些MV/HV配方需要&d金&r，可以是纯金或与&d银&r合金形成的&a电镀金&r。"
+				""
+				"原版/GT金矿石 -> 金锭的冶炼流程已被替换为定制的氰化物处理链，但你也可以通过&d磁铁矿&r、&d黄铜矿&r和&d银&r的副产品获得少量黄金；这些需要电弧炉将粉尘重新熔成锭。"
+				""
+				"在化学反应器中查找金粒的配方，然后倒推以获取更多详细信息。"
+				""
+				"你应该考虑囤积金浆残留物，直到能使用&d大型化学反应器&r，这样可以从反应物中回收更多黄金。"
+			]
+			id: "30E1F8DE8519B1B9"
+			min_width: 400
+			tasks: [{
+				id: "35B47543DAD71904"
+				item: "minecraft:gold_ingot"
+				type: "item"
+			}]
+			title: "黄金加工"
+			x: 3.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["4838078FA4C199E3"]
+			description: ["你的第三个电路组装器。这能加快一点速度，因为 IV 主机需要高级合金。"]
+			id: "445CC316071432B5"
+			tasks: [{
+				id: "1735FCFD0201B210"
+				item: "gtceu:hv_circuit_assembler"
+				type: "item"
+			}]
+			title: "更多电路装配器（Even More Circuit Assemblers）"
+			x: 2.0d
+			y: 10.5d
+		}
+		{
+			dependencies: ["19DA4C36B750D270"]
+			description: [
+				"有了 HV 技术和无尘室，你现在可以制作&d磷掺杂&r单晶硅了。"
+				""
+				"磷掺杂硅晶圆比常规硅能为砷化镓带来更多输入-组件比。"
+				""
+				"磷怎么获得？可以从&7灰烬&r（EBF 的副产品）、&6发光浆果&r，或者&9磷灰石矿脉&r中获得。"
+			]
+			id: "374EC252DC390528"
+			tasks: [{
+				id: "567DDF2F8F539788"
+				item: "gtceu:phosphorus_boule"
+				type: "item"
+			}]
+			title: "磷光电路"
+			x: 5.5d
+			y: 10.0d
+		}
+		{
+			dependencies: ["30E1F8DE8519B1B9"]
+			description: ["&dPrecision Laser Engraver&r用于在硅芯片用于组件和电路前对其进行雕刻。这需要&dMV Emitter&r，而它需要更高级别的祖母绿；你可以通过筛选祖母绿矿石或用激光雕刻普通祖母绿来获得。"]
+			id: "0F12DC094370426B"
+			tasks: [{
+				id: "49B727F1CA0CD1DB"
+				item: "gtceu:mv_laser_engraver"
+				type: "item"
+			}]
+			title: "激光芯片"
+			x: 3.5d
+			y: 4.0d
+		}
+		{
+			dependencies: [
+				"6946A93109A56A1B"
+				"14FCD4CDDDB798BC"
+			]
+			description: ["你可能已经注意到，LV 和 MV 船体需要 &d聚乙烯&r 来合成。HV 船体及更高阶的船体将&o全部需要&r相应阶的塑料；对于 HV，就是聚乙烯。使用聚乙烯薄片效率低下，你应该使用合成台配方。"]
+			id: "0F3DBB11014A4709"
+			tasks: [{
+				id: "179C973E978F2E08"
+				item: "gtceu:hv_machine_hull"
+				type: "item"
+			}]
+			title: "高压船体模组"
+			x: -1.0d
+			y: 7.0d
+		}
+	]
+	subtitle: ["真正的乐趣从这里开始。"]
+	title: "MV \& HV - jiyugaoka rebirth"
+}

@@ -1,0 +1,698 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "tacz"
+	group: "6F96FFEB4E3EFBCF"
+	id: "7312FD318BC6D9AD"
+	images: [{
+		height: 1.4d
+		image: "fgc:textures/gui/title/tacz.png"
+		rotation: 0.0d
+		width: 10.0d
+		x: -1.0d
+		y: -4.0d
+	}]
+	order_index: 8
+	quest_links: [ ]
+	quests: [
+		{
+			id: "621E1EC5B0C09DE7"
+			rewards: [
+				{
+					count: 15
+					id: "36C2AE48ED3C1E22"
+					item: {
+						count: 1
+						id: "minecraft:iron_ingot"
+					}
+					type: "item"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "3788A806D3FC15BE"
+					table_id: 1240179078436792263L
+					type: "random"
+				}
+			]
+			shape: "square"
+			tasks: [{
+				id: "441E9CED764E302D"
+				item: { count: 1, id: "tacz:gun_smith_table" }
+				match_components: "fuzzy"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["621E1EC5B0C09DE7"]
+			id: "27154F179048631E"
+			rewards: [
+				{
+					exclude_from_claim_all: true
+					id: "70FFB5E42A892A57"
+					table_id: 1240179078436792263L
+					type: "random"
+				}
+				{
+					id: "791FB4960EE81FEB"
+					type: "xp"
+					xp: 150
+				}
+			]
+			tasks: [{
+				id: "2CD7D9E83F919949"
+				item: { components: { "minecraft:custom_data": { BlockId: "tacz:attachment_workbench" } }, count: 1, id: "tacz:workbench_c" }
+				match_components: "fuzzy"
+				type: "item"
+			}]
+			x: -3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["621E1EC5B0C09DE7"]
+			id: "2BB83E79D373F28A"
+			rewards: [
+				{
+					count: 10
+					id: "70EB08FA649B3D1C"
+					item: {
+						count: 1
+						id: "minecraft:gunpowder"
+					}
+					type: "item"
+				}
+				{
+					count: 30
+					id: "757395B411F5D003"
+					item: {
+						count: 1
+						id: "minecraft:copper_ingot"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "73C19B350EF4861C"
+				item: { components: { "minecraft:custom_data": { BlockId: "tacz:ammo_workbench" } }, count: 1, id: "tacz:workbench_a" }
+				match_components: "fuzzy"
+				type: "item"
+			}]
+			x: 1.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["2BB83E79D373F28A"]
+			id: "7D121A9B6A2CE093"
+			rewards: [{
+				count: 10
+				id: "5B440106BA4FC302"
+				item: {
+					count: 1
+					id: "minecraft:gunpowder"
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "4807A245B95DD363"
+				item: { components: { "ftbfiltersystem:filter": "or(item(tacz:ammo_box))" }, count: 1, id: "ftbfiltersystem:smart_filter" }
+				type: "item"
+			}]
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["2BB83E79D373F28A"]
+			id: "1BD58AFCC5F18D95"
+			rewards: [{
+				count: 10
+				id: "056D5DB132407967"
+				item: {
+					count: 1
+					id: "minecraft:gunpowder"
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "0428C040B4FA9D9A"
+				item: { components: { "ftbfiltersystem:filter": "or(item(tacz:ammo))" }, count: 1, id: "ftbfiltersystem:smart_filter" }
+				type: "item"
+			}]
+			x: 0.0d
+			y: -2.0d
+		}
+		{
+			id: "7424F9FC697361A4"
+			optional: true
+			rewards: [
+				{
+					count: 15
+					id: "49E21108B009D176"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								AmmoId: "tacz:40mm"
+							}
+							"minecraft:max_stack_size": 6
+						}
+						count: 1
+						id: "tacz:ammo"
+					}
+					type: "item"
+				}
+				{
+					id: "2635E7ADF06DD9D6"
+					item: {
+						components: {
+							"minecraft:attribute_modifiers": {
+								modifiers: [
+									{
+										amount: 4.0d
+										id: "minecraft:base_attack_damage"
+										operation: "add_value"
+										slot: "mainhand"
+										type: "minecraft:generic.attack_damage"
+									}
+									{
+										amount: -3.0d
+										id: "minecraft:base_attack_speed"
+										operation: "add_value"
+										slot: "mainhand"
+										type: "minecraft:generic.attack_speed"
+									}
+									{
+										amount: 40.0d
+										id: "l2weaponry:shield_defense"
+										operation: "add_value"
+										slot: "hand"
+										type: "l2weaponry:shield_defense"
+									}
+									{
+										amount: -0.2d
+										id: "minecraft:burning_time"
+										operation: "add_multiplied_total"
+										slot: "hand"
+										type: "minecraft:generic.burning_time"
+									}
+									{
+										amount: 0.2d
+										id: "minecraft:explosion_knockback_resistance"
+										operation: "add_multiplied_total"
+										slot: "hand"
+										type: "minecraft:generic.explosion_knockback_resistance"
+									}
+								]
+							}
+							"minecraft:custom_data": {
+								fgc_id: "splendid_screen"
+								is_easter_egg: 1b
+							}
+							"minecraft:enchantment_glint_override": 0b
+							"minecraft:enchantments": {
+								levels: {
+									"minecraft:unbreaking": 2
+								}
+							}
+							"minecraft:item_name": "{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.modpack_fgc.easter_egg.splendid_screen.name\"}"
+							"minecraft:lore": [
+								"{\"color\":\"dark_aqua\",\"italic\":false,\"translate\":\"item.modpack_fgc.easter_egg.splendid_screen.lore.1\"}"
+								"{\"color\":\"gray\",\"translate\":\"item.modpack_fgc.easter_egg.lore\"}"
+							]
+							"minecraft:max_damage": 1572
+						}
+						count: 1
+						id: "l2weaponry:ironwood_round_shield"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "6E1354E8E8CD9992"
+				item: { components: { "minecraft:custom_data": { GunCurrentAmmoCount: 0, GunFireMode: "SEMI", GunId: "tacz:m320", HasBulletInBarrel: 0b } }, count: 1, id: "tacz:modern_kinetic_gun" }
+				match_components: "fuzzy"
+				type: "item"
+			}]
+			x: -1.5d
+			y: 1.0d
+		}
+		{
+			id: "6B36789D744050A3"
+			optional: true
+			rewards: [
+				{
+					count: 6
+					id: "62529A5721316882"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								AmmoId: "tacz:rpg_rocket"
+							}
+							"minecraft:max_stack_size": 6
+						}
+						count: 1
+						id: "tacz:ammo"
+					}
+					type: "item"
+				}
+				{
+					id: "2B53F522402DBB2E"
+					item: {
+						components: {
+							"bettercombat:preset_id": "bettercombat:vanilla_mace"
+							"minecraft:attribute_modifiers": {
+								modifiers: [
+									{
+										amount: -3.3d
+										id: "minecraft:base_attack_speed"
+										operation: "add_value"
+										slot: "mainhand"
+										type: "minecraft:generic.attack_speed"
+									}
+									{
+										amount: 14.0d
+										id: "minecraft:base_attack_damage"
+										operation: "add_value"
+										slot: "mainhand"
+										type: "minecraft:generic.attack_damage"
+									}
+									{
+										amount: 8.0d
+										id: "fgc:safe_fall_distance.market_gardener"
+										operation: "add_value"
+										slot: "mainhand"
+										type: "minecraft:generic.safe_fall_distance"
+									}
+								]
+							}
+							"minecraft:custom_data": {
+								fgc_id: "market_gardener"
+								is_easter_egg: 1b
+							}
+							"minecraft:enchantments": {
+								levels: {
+									"fgc:airborne": 15
+								}
+							}
+							"minecraft:item_name": "{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.modpack_fgc.easter_egg.market_gardener.name\"}"
+							"minecraft:lore": [
+								"{\"color\":\"dark_aqua\",\"italic\":false,\"translate\":\"item.modpack_fgc.easter_egg.market_gardener.lore.1\"}"
+								"{\"color\":\"dark_green\",\"italic\":false,\"translate\":\"item.modpack_fgc.easter_egg.market_gardener.lore.2\"}"
+								"{\"color\":\"gray\",\"translate\":\"item.modpack_fgc.easter_egg.lore\"}"
+							]
+							"minecraft:max_damage": 768
+						}
+						count: 1
+						id: "minecraft:iron_shovel"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "630C847A5AFB7C11"
+				item: { components: { "minecraft:custom_data": { GunCurrentAmmoCount: 0, GunFireMode: "SEMI", GunId: "tacz:rpg7", HasBulletInBarrel: 0b } }, count: 1, id: "tacz:modern_kinetic_gun" }
+				match_components: "fuzzy"
+				type: "item"
+			}]
+			x: 1.5d
+			y: 3.0d
+		}
+		{
+			id: "0B80CCD8ED6F4593"
+			optional: true
+			rewards: [
+				{
+					count: 144
+					id: "180420304B05AA57"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								AmmoId: "tacz:308"
+							}
+							"minecraft:max_stack_size": 48
+						}
+						count: 1
+						id: "tacz:ammo"
+					}
+					type: "item"
+				}
+				{
+					count: 4
+					id: "1EC57F7E8B0C6898"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								fgc_id: "sandvich"
+								is_easter_egg: 1b
+							}
+							"minecraft:food": {
+								can_always_eat: 1b
+								effects: [
+									{
+										effect: {
+											amplifier: 5b
+											duration: 80
+											id: "minecraft:regeneration"
+											show_icon: 0b
+											show_particles: 0b
+										}
+									}
+									{
+										effect: {
+											amplifier: 11b
+											duration: 80
+											id: "apothic_attributes:vitality"
+											show_icon: 0b
+											show_particles: 0b
+										}
+									}
+								]
+								nutrition: 10
+								saturation: 16.0f
+							}
+							"minecraft:item_name": "{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.modpack_fgc.easter_egg.sandvich.name\"}"
+							"minecraft:lore": [
+								"{\"color\":\"dark_aqua\",\"italic\":false,\"translate\":\"item.modpack_fgc.easter_egg.sandvich.lore.1\"}"
+								"{\"color\":\"dark_green\",\"italic\":false,\"translate\":\"item.modpack_fgc.easter_egg.sandvich.lore.2\"}"
+								"{\"color\":\"gray\",\"translate\":\"item.modpack_fgc.easter_egg.lore\"}"
+							]
+						}
+						count: 1
+						id: "farmersdelight:bacon_sandwich"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "373F84FA3198EC84"
+				item: { components: { "minecraft:custom_data": { GunCurrentAmmoCount: 9999, GunFireMode: "AUTO", GunId: "tacz:minigun", HasBulletInBarrel: 0b } }, count: 1, id: "tacz:modern_kinetic_gun" }
+				match_components: "fuzzy"
+				type: "item"
+			}]
+			x: -1.5d
+			y: 3.0d
+		}
+		{
+			id: "0CA4A0FC2DF98744"
+			optional: true
+			rewards: [
+				{
+					count: 30
+					id: "130DFB58AA9FCD43"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								AmmoId: "tacz:50bmg"
+							}
+							"minecraft:max_stack_size": 30
+						}
+						count: 1
+						id: "tacz:ammo"
+					}
+					type: "item"
+				}
+				{
+					id: "5817E871E6ABBDA6"
+					item: {
+						count: 1
+						id: "farmersdelight:skillet"
+					}
+					type: "item"
+				}
+				{
+					id: "6F5A56D54F65CFF5"
+					item: {
+						components: {
+							"minecraft:attribute_modifiers": {
+								modifiers: [{
+									amount: 4.0d
+									id: "puffish_attributes:natural_regeneration"
+									operation: "add_value"
+									slot: "chest"
+									type: "puffish_attributes:natural_regeneration"
+								}]
+							}
+							"minecraft:custom_data": {
+								fgc_id: "cozy_camper"
+								is_easter_egg: 1b
+							}
+							"minecraft:item_name": "{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.modpack_fgc.easter_egg.cozy_camper.name\"}"
+							"minecraft:lore": [
+								"{\"color\":\"dark_aqua\",\"italic\":false,\"translate\":\"item.modpack_fgc.easter_egg.cozy_camper.lore.1\"}"
+								"{\"color\":\"gray\",\"translate\":\"item.modpack_fgc.easter_egg.lore\"}"
+							]
+						}
+						count: 1
+						id: "sophisticatedbackpacks:backpack"
+					}
+					type: "item"
+				}
+				{
+					count: 12
+					id: "28ACA64643344CAC"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								fgc_id: "jarate"
+								is_easter_egg: 1b
+							}
+							"minecraft:item_name": "{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.modpack_fgc.easter_egg.jarate.name\"}"
+							"minecraft:lore": [
+								"{\"color\":\"dark_aqua\",\"italic\":false,\"translate\":\"item.modpack_fgc.easter_egg.jarate.lore.1\"}"
+								"{\"color\":\"dark_green\",\"italic\":false,\"translate\":\"item.modpack_fgc.easter_egg.jarate.lore.2\"}"
+								"{\"bold\":false,\"color\":\"gray\",\"italic\":true,\"translate\":\"item.modpack_fgc.easter_egg.lore\"}"
+							]
+							"minecraft:max_stack_size": 64
+							"minecraft:potion_contents": {
+								custom_color: 16765440
+								custom_effects: [
+									{
+										amplifier: 1b
+										duration: 200
+										id: "apothic_attributes:sundering"
+										show_icon: 0b
+									}
+									{
+										duration: 200
+										id: "minecraft:glowing"
+										show_icon: 0b
+									}
+								]
+							}
+						}
+						count: 1
+						id: "minecraft:splash_potion"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "67EAF5A0AE84C881"
+				item: { components: { "minecraft:custom_data": { AttachmentSCOPE: { components: { "minecraft:custom_data": { AttachmentId: "tacz:scope_contender" } }, count: 1, id: "tacz:attachment" }, GunCurrentAmmoCount: 0, GunFireMode: "SEMI", GunId: "tacz:m95", HasBulletInBarrel: 0b } }, count: 1, id: "tacz:modern_kinetic_gun" }
+				match_components: "fuzzy"
+				type: "item"
+			}]
+			x: 1.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["27154F179048631E"]
+			id: "3265F015EAD92B08"
+			optional: true
+			rewards: [
+				{
+					id: "09C8241CED09C72A"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "5F35B2C922FFA738"
+					table_id: 1240179078436792263L
+					type: "random"
+				}
+			]
+			tasks: [{
+				id: "33D8C070C7328371"
+				item: { components: { "minecraft:custom_data": { AttachmentId: "tacz:ammo_mod_i" } }, count: 1, id: "tacz:attachment" }
+				match_components: "fuzzy"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["27154F179048631E"]
+			id: "51537D9F40EE001E"
+			optional: true
+			rewards: [
+				{
+					id: "74C758A0468C72E4"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "209AA7FA44603C78"
+					table_id: 1240179078436792263L
+					type: "random"
+				}
+			]
+			tasks: [{
+				id: "7829D453C6F80973"
+				item: { components: { "minecraft:custom_data": { AttachmentId: "tacz:ammo_mod_hp" } }, count: 1, id: "tacz:attachment" }
+				match_components: "fuzzy"
+				type: "item"
+			}]
+			x: -3.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["27154F179048631E"]
+			id: "15E13934B5D611A3"
+			optional: true
+			rewards: [
+				{
+					id: "5E28F37837CA42DA"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "57BC68D360694ACA"
+					table_id: 1240179078436792263L
+					type: "random"
+				}
+			]
+			tasks: [{
+				id: "3D0B6C64870E89DA"
+				item: { components: { "minecraft:custom_data": { AttachmentId: "tacz:ammo_mod_he" } }, count: 1, id: "tacz:attachment" }
+				match_components: "fuzzy"
+				type: "item"
+			}]
+			x: -4.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["27154F179048631E"]
+			id: "59235B7FEE70C40B"
+			optional: true
+			rewards: [
+				{
+					id: "4CBD878874CE5C46"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "1342E4B0E3205772"
+					table_id: 1240179078436792263L
+					type: "random"
+				}
+			]
+			tasks: [{
+				id: "7B466152F473E97E"
+				item: { components: { "minecraft:custom_data": { AttachmentId: "tacz:ammo_mod_slug" } }, count: 1, id: "tacz:attachment" }
+				match_components: "fuzzy"
+				type: "item"
+			}]
+			x: -3.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["27154F179048631E"]
+			id: "665FFB00322EAEF5"
+			optional: true
+			rewards: [
+				{
+					id: "74FD9D33A249F6B2"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "77B0B312D654D426"
+					table_id: 1240179078436792263L
+					type: "random"
+				}
+			]
+			tasks: [{
+				id: "210BB6ACC708A932"
+				item: { components: { "minecraft:custom_data": { AttachmentId: "tacz:ammo_mod_fmj" } }, count: 1, id: "tacz:attachment" }
+				match_components: "fuzzy"
+				type: "item"
+			}]
+			x: -4.5d
+			y: 1.0d
+		}
+		{
+			id: "31558554AC4FEB08"
+			optional: true
+			rewards: [
+				{
+					count: 15
+					id: "38B83531203B4C69"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								AmmoId: "tacz:50ae"
+							}
+							"minecraft:max_stack_size": 48
+						}
+						count: 1
+						id: "tacz:ammo"
+					}
+					type: "item"
+				}
+				{
+					id: "33F7BFBA16F13036"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								fgc_id: "black_rose"
+								is_easter_egg: 1b
+							}
+							"minecraft:enchantment_glint_override": 0b
+							"minecraft:enchantments": {
+								levels: {
+									"farmersdelight:backstabbing": 8
+								}
+							}
+							"minecraft:item_name": "{\"bold\":true,\"color\":\"gold\",\"translate\":\"item.modpack_fgc.easter_egg.black_rose.name\"}"
+							"minecraft:lore": [
+								"{\"color\":\"dark_aqua\",\"italic\":false,\"translate\":\"item.modpack_fgc.easter_egg.black_rose.lore.1\"}"
+								"{\"color\":\"gray\",\"translate\":\"item.modpack_fgc.easter_egg.lore\"}"
+							]
+							"minecraft:max_damage": 1000
+						}
+						count: 1
+						id: "l2weaponry:black_steel_dagger"
+					}
+					type: "item"
+				}
+				{
+					count: 3
+					id: "0869240575FFA364"
+					item: {
+						components: {
+							"minecraft:potion_contents": {
+								potion: "minecraft:invisibility"
+							}
+						}
+						count: 1
+						id: "minecraft:potion"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "54CEDD3D7E576206"
+				item: { components: { "minecraft:custom_data": { GunCurrentAmmoCount: 0, GunFireMode: "SEMI", GunId: "tacz:deagle", HasBulletInBarrel: 0b } }, count: 1, id: "tacz:modern_kinetic_gun" }
+				match_components: "fuzzy"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 2.0d
+		}
+	]
+}

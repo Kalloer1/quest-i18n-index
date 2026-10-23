@@ -1,0 +1,226 @@
+# AI 初翻，未人工校对
+{
+	id: "AF00000000000001"
+	group: ""
+	order_index: 14
+	filename: "15_economy"
+	title: "货币与商业"
+	icon: "numismatic-overhaul:gold_coin"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			id: "AF00000000000010"
+			type: "task"
+			title: "第一枚硬币"
+			icon: "numismatic-overhaul:copper_coin"
+			x: 0d
+			y: 0d
+			description: ["Numismatic Overhaul 为 Solrise 添加了基于货币的经济系统。通过交易和出售物品赚取铜币。货币有铜、银、金和铂等面值。"]
+			tasks: [{
+				id: "AF00000000000011"
+				type: "item"
+				item: "numismatic-overhaul:copper_coin"
+				count: 16L
+			}]
+			rewards: [{
+				id: "AF00000000000012"
+				type: "item"
+				item: "numismatic-overhaul:silver_coin"
+				count: 4L
+			}]
+		}
+		{
+			id: "AF00000000000020"
+			type: "task"
+			title: "白银财富"
+			icon: "numismatic-overhaul:silver_coin"
+			x: 2d
+			y: 0d
+			description: ["通过与村民交易和完成悬赏来积累银币。银币能买到比铜币更好的商品。继续交易，你的财富就会增长。"]
+			dependencies: ["AF00000000000010"]
+			tasks: [{
+				id: "AF00000000000021"
+				type: "item"
+				item: "numismatic-overhaul:silver_coin"
+				count: 32L
+			}]
+			rewards: [{
+				id: "AF00000000000022"
+				type: "item"
+				item: "numismatic-overhaul:gold_coin"
+				count: 8L
+			}]
+		}
+		{
+			id: "AF00000000000030"
+			type: "task"
+			title: "黄金财富"
+			icon: "numismatic-overhaul:gold_coin"
+			x: 4d
+			y: 0d
+			description: ["赚取一笔可观的金币。在这个等级，你可以从商人那里买到稀有物品，也能买到 Solrise 商贸提供的最优质商品。"]
+			dependencies: ["AF00000000000020"]
+			tasks: [{
+				id: "AF00000000000031"
+				type: "item"
+				item: "numismatic-overhaul:gold_coin"
+				count: 32L
+			}]
+			rewards: [{
+				id: "AF00000000000032"
+				type: "item"
+				item: "numismatic-overhaul:platinum_coin"
+				count: 4L
+			}]
+		}
+		{
+			id: "AF00000000000040"
+			type: "task"
+			title: "赏金猎人"
+			icon: "bountiful:bounty_board"
+			x: 0d
+			y: 2d
+			description: ["完成村庄告示板上的十个悬赏。它们会奖励钱币、物品和经验。悬赏会随时间重置，所以经常回你访问过的村庄查看。"]
+			dependencies: ["AF00000000000010"]
+			tasks: [{
+				id: "AF00000000000041"
+				type: "checkmark"
+				title: "完成十个悬赏任务"
+			}]
+			rewards: [{
+				id: "AF00000000000042"
+				type: "item"
+				item: "numismatic-overhaul:silver_coin"
+				count: 16L
+			}]
+		}
+		{
+			id: "AF00000000000050"
+			type: "task"
+			title: "贸易站"
+			icon: "tradingpost:trading_post"
+			x: 2d
+			y: 2d
+			description: ["贸易站能让你在一个方块上同时和附近的多个村民交易。在贸易大厅中央建造一个，能大大加快进程。"]
+			dependencies: ["AF00000000000040"]
+			tasks: [{
+				id: "AF00000000000051"
+				type: "item"
+				item: "tradingpost:trading_post"
+				count: 1L
+			}]
+			rewards: [{
+				id: "AF00000000000052"
+				type: "item"
+				item: "minecraft:emerald"
+				count: 16L
+			}]
+		}
+		{
+			id: "AF00000000000060"
+			type: "task"
+			title: "村庄的英雄"
+			icon: "minecraft:emerald"
+			x: 4d
+			y: 2d
+			description: ["赢得突袭即可获得“村庄英雄”效果。之后很长一段时间内，所有村民都会向你打折。这是从村民大厅获得廉价交易的最佳方式。"]
+			dependencies: ["AF00000000000050"]
+			tasks: [{
+				id: "AF00000000000061"
+				type: "checkmark"
+				title: "获得“村庄英雄”称号"
+			}]
+			rewards: [{
+				id: "AF00000000000062"
+				type: "item"
+				item: "minecraft:emerald"
+				count: 32L
+			}]
+		}
+		{
+			id: "AF00000000000070"
+			type: "task"
+			title: "铂金财富"
+			icon: "numismatic-overhaul:platinum_coin"
+			x: 0d
+			y: 4d
+			description: ["积累了足够的铂金币。在这个财富水平上，你是索尔里斯最富有的商人之一。你的商业技巧无人能及。"]
+			dependencies: ["AF00000000000060"]
+			tasks: [{
+				id: "AF00000000000071"
+				type: "item"
+				item: "numismatic-overhaul:platinum_coin"
+				count: 16L
+			}]
+			rewards: [{
+				id: "AF00000000000072"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			id: "AF00000000000080"
+			type: "task"
+			title: "战利品日志"
+			icon: "loot_journal:loot_journal"
+			x: 2d
+			y: 4d
+			description: ["战利品日志会追踪你从宝箱中拾取的所有贵重物品。查看日志，了解你的最佳发现，并追踪哪些建筑给了你最好的奖励。"]
+			dependencies: ["AF00000000000070"]
+			tasks: [{
+				id: "AF00000000000081"
+				type: "checkmark"
+				title: "检查你的战利品日志"
+			}]
+			rewards: [{
+				id: "AF00000000000082"
+				type: "item"
+				item: "minecraft:book"
+				count: 1L
+			}]
+		}
+		{
+			id: "AF00000000000090"
+			type: "task"
+			title: "村庄网络"
+			icon: "minecraft:bell"
+			x: 4d
+			y: 4d
+			description: ["将多个村庄连接到你的传送石网络。定期访问每个村庄以获取悬赏、交易和补给。优秀的商人会光顾该地区的每个定居点。"]
+			dependencies: ["AF00000000000080"]
+			tasks: [{
+				id: "AF00000000000091"
+				type: "checkmark"
+				title: "用传送石连接三个村庄"
+			}]
+			rewards: [{
+				id: "AF00000000000092"
+				type: "item"
+				item: "waystones:warp_scroll"
+				count: 8L
+			}]
+		}
+		{
+			id: "AF0000000000000A"
+			type: "task"
+			title: "商业大师"
+			icon: "numismatic-overhaul:platinum_coin"
+			x: 2d
+			y: 6d
+			description: ["你已精通索尔瑞斯的经济。金币源源不断，悬赏每日完成，每个村庄都知道你的名字。你是这片土地上最富有的商人。"]
+			dependencies: ["AF00000000000090"]
+			tasks: [{
+				id: "AF0000000000000B"
+				type: "checkmark"
+				title: "成为索尔赖斯的商业大师"
+			}]
+			rewards: [{
+				id: "AF0000000000000C"
+				type: "item"
+				item: "numismatic-overhaul:platinum_coin"
+				count: 8L
+			}]
+		}
+	]
+}

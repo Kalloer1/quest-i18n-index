@@ -1,0 +1,1124 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "liquid_courage"
+	group: ""
+	icon: "brewery:beer_barley"
+	id: "2FD1B0E89119D89F"
+	images: [
+		{
+			height: 12.0d
+			image: "ftbquests:textures/homestead/liquid_courage.png"
+			rotation: 0.0d
+			width: 17.0d
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			height: 15.0d
+			image: "ftbquests:textures/homestead/liquid_courage_quest_bg.png"
+			order: -100
+			rotation: 0.0d
+			width: 30.0d
+			x: 0.0d
+			y: 0.0d
+		}
+	]
+	order_index: 6
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["Hop Seeds 是草中稀有的掉落物。它们是每种好饮品的基础。"]
+			id: "25CF21D8894F57A0"
+			rewards: [{
+				count: 4
+				id: "09D08BF96B753686"
+				item: "alcocraftplus:hop_seeds"
+				type: "item"
+			}]
+			shape: "diamond"
+			size: 2.0d
+			subtitle: "破坏草，直到获得 1x 跳跳种子。"
+			tasks: [{
+				count: 8L
+				id: "2D830510DB981988"
+				item: { Count: 8, id: "alcocraftplus:hop_seeds" }
+				type: "item"
+			}]
+			title: "跳跃好开端"
+			x: 7.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["25CF21D8894F57A0"]
+			description: ["啤酒花向下生长！种植在任何实心方块的下表面。"]
+			id: "44E1E7887623DD4E"
+			rewards: [{
+				count: 8
+				id: "543FEEB6D8894105"
+				item: "minecraft:bone_meal"
+				type: "item"
+			}]
+			subtitle: "在方块下方种植 8x 啤酒花种子以开始生长。"
+			tasks: [{
+				block: "alcocraftplus:hop"
+				block_type: 0
+				id: "745077924E465A4E"
+				replace: false
+				replaced: "minecraft:air"
+				title: "放置 8x 跳跳种子"
+				type: "questsadditions:place"
+				value: 8L
+			}]
+			title: "垂直农场"
+			x: 5.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["44E1E7887623DD4E"]
+			description: ["成熟的啤酒花可以徒手收割——无需破坏方块。"]
+			id: "3780747549EB3165"
+			rewards: [{
+				count: 8
+				id: "331063DD769D09E2"
+				item: "alcocraftplus:hop"
+				type: "item"
+			}]
+			subtitle: "右键点击完全成熟的啤酒花以收获 8x 啤酒花。"
+			tasks: [{
+				count: 8L
+				id: "04DB314014193F03"
+				item: { Count: 8, id: "alcocraftplus:hop" }
+				type: "item"
+			}]
+			title: "是时候收获了"
+			x: 9.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["3780747549EB3165"]
+			description: ["干种子能为你的饮品增添深度和口感。只需在熔炉中烘烤即可。"]
+			id: "25CE04B347A6979E"
+			rewards: [{
+				count: 32
+				id: "57C429DAB621C609"
+				item: "alcocraftplus:dry_seeds"
+				type: "item"
+			}]
+			subtitle: "在熔炉中冶炼小麦种子，可制作出32x干种子。"
+			tasks: [{
+				count: 32L
+				id: "7BA1F0D7D059D86A"
+				item: { Count: 32, id: "alcocraftplus:dry_seeds" }
+				type: "item"
+			}]
+			title: "Smokin' Seeds"
+			x: 5.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["25CE04B347A6979E"]
+			description: [
+				"木桶是你的发酵站。它能储存水，并将原料转化为饮品。"
+				""
+				"{image:ftbquests:textures/homestead/keg_recipe.png width:103 height:50 align:center}"
+			]
+			id: "512211AD135E5128"
+			rewards: [{
+				id: "11F7A5C96A140FF3"
+				item: "alcocraftplus:keg"
+				type: "item"
+			}]
+			subtitle: "酿造 1x 木桶。"
+			tasks: [{
+				id: "338EC17A0ECB7491"
+				item: "alcocraftplus:keg"
+				type: "item"
+			}]
+			title: "木桶架"
+			x: 9.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["512211AD135E5128"]
+			description: ["在开始酿造之前，你需要一桶完整的水桶。"]
+			id: "2B50B025A2C46356"
+			rewards: [{
+				count: 4
+				id: "77B4A07C46F4B737"
+				item: "minecraft:bucket"
+				type: "item"
+			}]
+			shape: "diamond"
+			size: 2.0d
+			subtitle: "用4个水桶右键木桶即可将其完全装满。"
+			tasks: [
+				{
+					block: "alcocraftplus:keg"
+					block_type: 0
+					checkItem: false
+					id: "320E2685DC305FF9"
+					isItemInteraction: false
+					type: "questsadditions:use"
+					value: 4L
+				}
+				{
+					count: 4L
+					id: "343CBC2B8E6052D1"
+					item: { Count: 5, id: "minecraft:water_bucket" }
+					type: "item"
+				}
+			]
+			title: "只需加水"
+			x: 7.0d
+			y: 0.0d
+		}
+		{
+			description: ["提供再生效果。一种明亮且能恢复活力的饮品。"]
+			hide_dependency_lines: true
+			id: "68679A2078FCFE69"
+			rewards: [{
+				id: "05A854802EDB4D37"
+				item: "alcocraftplus:sun_pale_ale"
+				type: "item"
+			}]
+			subtitle: "用以下材料在完整的橡木桶中酿造 Sun Pale Ale：啤酒花、干种子、向日葵、发光甜瓜片。"
+			tasks: [{
+				id: "6061587B03760024"
+				item: "alcocraftplus:sun_pale_ale"
+				type: "item"
+			}]
+			title: "阳光淡色艾尔啤酒"
+			x: 4.5d
+			y: 2.0d
+		}
+		{
+			description: ["赋予加速效果。非常适合挖矿时使用。"]
+			hide_dependency_lines: true
+			id: "4CC88FD6A64AD3AB"
+			rewards: [{
+				id: "63D50B59BFFD6A61"
+				item: "alcocraftplus:digger_bitter"
+				type: "item"
+			}]
+			subtitle: "酿造苦味挖掘者，需要：啤酒花、干种子、发光地衣、钻石。"
+			tasks: [{
+				id: "2EC6B2A1E11033D4"
+				item: "alcocraftplus:digger_bitter"
+				type: "item"
+			}]
+			title: "挖掘苦力怕"
+			x: 5.5d
+			y: 2.0d
+		}
+		{
+			description: ["赋予火焰抗性。暖烘烘，暖烘烘的。"]
+			hide_dependency_lines: true
+			id: "57195848638B5779"
+			rewards: [{
+				id: "7FD0696A0C5AEF8B"
+				item: "alcocraftplus:nether_porter"
+				type: "item"
+			}]
+			subtitle: "用以下材料酿造下界波特酒：啤酒花、干种子、金块、烈焰粉。"
+			tasks: [{
+				id: "646BAFFDFEE4A8B8"
+				item: "alcocraftplus:nether_porter"
+				type: "item"
+			}]
+			title: "下界搬运工"
+			x: 6.5d
+			y: 2.0d
+		}
+		{
+			description: ["赋予凋零之触。攻击并见证敌人凋零。"]
+			hide_dependency_lines: true
+			id: "4CF6B17360872DCA"
+			rewards: [{
+				id: "1B3E51218949FDC7"
+				item: "alcocraftplus:wither_stout"
+				type: "item"
+			}]
+			subtitle: "酿造凋零黑啤，需要：啤酒花、干种子、下界疣、凋零骷髅头。"
+			tasks: [{
+				id: "500E771A3F7E3D1A"
+				item: "alcocraftplus:wither_stout"
+				type: "item"
+			}]
+			title: "威瑟壮汉 (Wither Stout)"
+			x: 7.5d
+			y: 2.0d
+		}
+		{
+			description: ["赋予吸引力。可吸引附近的物品。"]
+			hide_dependency_lines: true
+			id: "1ECF0EE8B3147079"
+			rewards: [{
+				id: "4B9C5C889F1BD40F"
+				item: "alcocraftplus:magnet_pilsner"
+				type: "item"
+			}]
+			subtitle: "酿造磁化皮尔森啤酒，需要：啤酒花、干种子、铁粒、红石。"
+			tasks: [{
+				id: "370923A024D94E55"
+				item: "alcocraftplus:magnet_pilsner"
+				type: "item"
+			}]
+			title: "磁铁矿皮尔森啤酒"
+			x: 8.5d
+			y: 2.0d
+		}
+		{
+			description: ["赋予水肺和海豚的恩惠。像潮水一样游泳。"]
+			hide_dependency_lines: true
+			id: "0D44A0A5DC0D4F00"
+			rewards: [{
+				id: "54BDC96D6471687E"
+				item: "alcocraftplus:drowned_ale"
+				type: "item"
+			}]
+			subtitle: "用以下材料酿造溺尸艾尔：啤酒花、干种子、海晶碎片、海晶晶块。"
+			tasks: [{
+				id: "72353E4D3D87AF91"
+				item: "alcocraftplus:drowned_ale"
+				type: "item"
+			}]
+			title: "溺亡者艾尔（Drowned Ale）"
+			x: 9.5d
+			y: 2.0d
+		}
+		{
+			description: ["赋予夜视和充分休息（不再有幻象！）。"]
+			hide_dependency_lines: true
+			id: "6BFB884A22D59DA7"
+			rewards: [{
+				id: "061612C0416AB5D5"
+				item: "alcocraftplus:night_rauch"
+				type: "item"
+			}]
+			subtitle: "酿造之夜，加入：啤酒花、干种子、木炭、幻翼膜。"
+			tasks: [{
+				id: "0EEA044815618B50"
+				item: "alcocraftplus:night_rauch"
+				type: "item"
+			}]
+			title: "夜间烟雾效果（Night Rauch）"
+			x: 4.5d
+			y: 3.0d
+		}
+		{
+			description: ["给予 Frosty。在水上行走……字面意思。"]
+			hide_dependency_lines: true
+			id: "7FA1605F6BE8F5CF"
+			rewards: [{
+				id: "0D33D7FCD402FB64"
+				item: "alcocraftplus:ice_beer"
+				type: "item"
+			}]
+			subtitle: "用以下材料酿造冰啤酒：啤酒花、干种子、雪球、压实冰。"
+			tasks: [{
+				id: "3B06D1475F16A302"
+				item: "alcocraftplus:ice_beer"
+				type: "item"
+			}]
+			title: "冰镇啤酒"
+			x: 5.5d
+			y: 3.0d
+		}
+		{
+			description: ["提供健康提升和饱腹感。舒适又暖心。"]
+			hide_dependency_lines: true
+			id: "431C6DED723DD222"
+			rewards: [{
+				id: "1D8C56AE14900275"
+				item: "alcocraftplus:kvass"
+				type: "item"
+			}]
+			subtitle: "用以下材料酿造格瓦斯：啤酒花、苹果、蜂巢、面包。"
+			tasks: [{
+				id: "69D4CA7D1A275E19"
+				item: "alcocraftplus:kvass"
+				type: "item"
+			}]
+			title: "克瓦斯（Kvass）"
+			x: 6.5d
+			y: 3.0d
+		}
+		{
+			description: ["赋予幸运。追逐彩虹和稀有掉落物。"]
+			hide_dependency_lines: true
+			id: "539FBDBDD538B5E7"
+			rewards: [{
+				id: "2BA0FDA150E44076"
+				item: "alcocraftplus:leprechaun_cider"
+				type: "item"
+			}]
+			subtitle: "用以下材料酿造爱尔兰矮人苹果酒：啤酒花、干种子、绿宝石、兔脚。"
+			tasks: [{
+				id: "746512789F38B065"
+				item: "alcocraftplus:leprechaun_cider"
+				type: "item"
+			}]
+			title: "爱尔兰小精灵苹果酒"
+			x: 7.5d
+			y: 3.0d
+		}
+		{
+			description: ["赋予漂浮和缓慢下落效果。一款能让人蹦蹦跳跳、飘飘然的美妙饮品。"]
+			hide_dependency_lines: true
+			id: "2AC4773869F2C993"
+			rewards: [{
+				id: "4D3364787546AC41"
+				item: "alcocraftplus:chorus_ale"
+				type: "item"
+			}]
+			subtitle: "用以下材料酿造合唱麦酒：啤酒花、干种子、幻象膜、合唱果。"
+			tasks: [{
+				id: "07262FCB2494FE7A"
+				item: "alcocraftplus:chorus_ale"
+				type: "item"
+			}]
+			title: "紫颂花酿造的啤酒"
+			x: 8.5d
+			y: 3.0d
+		}
+		{
+			description: ["赋予飞行能力。没错。飞行。"]
+			hide_dependency_lines: true
+			id: "5AA8FCF2F4FB8117"
+			rewards: [{
+				id: "1FBBC527A18A7032"
+				item: "alcocraftplus:nether_star_lager"
+				type: "item"
+			}]
+			subtitle: "用以下材料酿造下界之星拉格：啤酒花、干种子、钻石、下界之星。"
+			tasks: [{
+				id: "08C6324F0CFF0F4D"
+				item: "alcocraftplus:nether_star_lager"
+				type: "item"
+			}]
+			title: "下界之星拉格啤酒"
+			x: 9.5d
+			y: 3.0d
+		}
+		{
+			description: [
+				"这些种子很稀有但必不可少。在泰加村庄和前哨基地中寻找它们。"
+				""
+				"或者在野外找到的它们的灌木丛也可以！"
+			]
+			id: "133718A3FD0C25E7"
+			rewards: [{
+				count: 8
+				id: "290B86A177F53220"
+				item: "brewery:hops_seeds"
+				type: "item"
+			}]
+			shape: "diamond"
+			size: 2.0d
+			subtitle: "在野外、结构或村庄中找到 8x 跳蚤种子。"
+			tasks: [{
+				count: 8L
+				id: "06FEF5D9904DD0FE"
+				item: { Count: 8, id: "brewery:hops_seeds" }
+				type: "item"
+			}]
+			title: "寻找啤酒花"
+			x: -7.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["133718A3FD0C25E7"]
+			description: ["大麦生长在河流、平原、向日葵平原或稀树草原中"]
+			id: "60FE47595880A1A6"
+			rewards: [{
+				count: 8
+				id: "73D0C3D4AF72E0D7"
+				item: "farm_and_charm:barley_seeds"
+				type: "item"
+			}]
+			subtitle: "在野外、结构或村庄中找到 8x 大麦种子。"
+			tasks: [{
+				count: 8L
+				id: "4206861A818BF818"
+				item: { Count: 8, id: "farm_and_charm:barley_seeds" }
+				type: "item"
+			}]
+			title: "大麦丰收季"
+			x: -5.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["60FE47595880A1A6"]
+			description: ["玉米生长在平原、稀树草原和恶地中。"]
+			id: "48C349C8ACAD4A5C"
+			rewards: [{
+				count: 8
+				id: "38E240A4EFD1FC9B"
+				item: "farm_and_charm:kernels"
+				type: "item"
+			}]
+			subtitle: "在野外、结构或村庄中找到 8x 玉米粒。"
+			tasks: [{
+				count: 8L
+				id: "4734B85C4CCC5858"
+				item: { Count: 8, id: "farm_and_charm:kernels" }
+				type: "item"
+			}]
+			title: "玉米任务包"
+			x: -8.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["398F2BE56C7FEB0D"]
+			description: [
+				"在合成台中间放大麦，两侧放线。"
+				""
+				"{image:ftbquests:textures/homestead/rope_recipe.png width:103 height:50 align:center}"
+			]
+			id: "1B28CB294EACE04C"
+			rewards: [{
+				count: 8
+				id: "7CE43A8FFC3CBBC0"
+				item: "brewery:rope"
+				type: "item"
+			}]
+			subtitle: "使用大麦和线合成8根绳子。"
+			tasks: [{
+				count: 8L
+				id: "25B950AFA7419FA7"
+				item: { Count: 8, id: "brewery:rope" }
+				type: "item"
+			}]
+			title: "收拾行囊，准备出发"
+			x: -8.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["1B28CB294EACE04C"]
+			description: ["种植你的新作物——它们是一切的基础。"]
+			id: "0A92F6114413C556"
+			rewards: [
+				{
+					count: 8
+					id: "23038EADB0990FB3"
+					item: "brewery:hops"
+					type: "item"
+				}
+				{
+					count: 8
+					id: "49D65027A382D022"
+					item: "farm_and_charm:barley"
+					type: "item"
+				}
+				{
+					count: 8
+					id: "72FD1B2B4586CDE4"
+					item: "farm_and_charm:corn"
+					type: "item"
+				}
+				{
+					count: 8
+					id: "6E34031C463F0E34"
+					item: "farm_and_charm:oat"
+					type: "item"
+				}
+			]
+			subtitle: "种植并收获8x啤酒花、大麦、玉米和燕麦各一份。"
+			tasks: [
+				{
+					count: 8L
+					id: "03CC58054C2F638E"
+					item: { Count: 8, id: "brewery:hops" }
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "5C8E5FE7D7149D20"
+					item: { Count: 8, id: "farm_and_charm:barley" }
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "6EB8B2CA9163D8B0"
+					item: { Count: 8, id: "farm_and_charm:corn" }
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "57EE0731685A7E06"
+					item: { Count: 8, id: "farm_and_charm:oat" }
+					type: "item"
+				}
+			]
+			title: "种植作物，收获财富"
+			x: -5.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["0A92F6114413C556"]
+			description: [
+				"青贮的干燥始于储存——筒仓可堆叠且高效。"
+				""
+				"{image:ftbquests:textures/homestead/wooden_silo_recipe.png width:103 height:50 align:center}"
+			]
+			id: "4DCB8817B8B15692"
+			rewards: [{
+				id: "1290C2272B32ADCD"
+				item: "farm_and_charm:silo_wood"
+				type: "item"
+			}]
+			subtitle: "制作8个木制筒仓。提示：你可以把它们堆叠到9层高！"
+			tasks: [{
+				count: 8L
+				id: "18E94EDEE49CE876"
+				item: { Count: 8, id: "farm_and_charm:silo_wood" }
+				type: "item"
+			}]
+			title: "堆叠式储物系统 (Stacking Storage)"
+			x: -8.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["4DCB8817B8B15692"]
+			id: "190F9645D217253D"
+			rewards: [
+				{
+					count: 8
+					id: "53FD2FC322E3CCF5"
+					item: "brewery:dried_wheat"
+					type: "item"
+				}
+				{
+					count: 8
+					id: "3B515137AD0554B6"
+					item: "brewery:dried_barley"
+					type: "item"
+				}
+				{
+					count: 8
+					id: "19DAA22B352AA5A1"
+					item: "brewery:dried_corn"
+					type: "item"
+				}
+				{
+					count: 8
+					id: "0EB93015BDDCD408"
+					item: "brewery:dried_oat"
+					type: "item"
+				}
+			]
+			subtitle: "使用筒仓将8x小麦、8x玉米、8x燕麦和8x大麦风干。"
+			tasks: [
+				{
+					count: 8L
+					id: "681E8D42032E8F07"
+					item: { Count: 8, id: "brewery:dried_wheat" }
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "6F76AE2CCED4090E"
+					item: { Count: 8, id: "brewery:dried_barley" }
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "703BABE56E1DE4D4"
+					item: { Count: 8, id: "brewery:dried_corn" }
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "2E23159C83896D35"
+					item: { Count: 8, id: "brewery:dried_oat" }
+					type: "item"
+				}
+			]
+			title: "作物转换"
+			x: -5.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["48C349C8ACAD4A5C"]
+			description: ["燕麦可以在草地和针叶林中找到"]
+			id: "398F2BE56C7FEB0D"
+			rewards: [{
+				count: 8
+				id: "3D500371D9463A8C"
+				item: "farm_and_charm:oat_seeds"
+				type: "item"
+			}]
+			subtitle: "在野外、结构或村庄中找到 8x 燕麦种子。"
+			tasks: [{
+				count: 8L
+				id: "4D0FE45DC5744586"
+				item: { Count: 8, id: "farm_and_charm:oat_seeds" }
+				type: "item"
+			}]
+			title: "很高兴认识你，燕麦先生"
+			x: -5.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["6BA946C6734053CB"]
+			description: [
+				"{image:ftbquests:textures/homestead/brewingstation_recipe.png width:103 height:50 align:center}"
+				"你操作的核心。酿造任何东西都需要这个！"
+				""
+				"&l先放入材料，再放水。酿造时要留意效果，以免召唤出 Booze！&r"
+				""
+				"&l要开始，用煤炭点击熔炉即可。 &r"
+				""
+				"&l然后迷你游戏就开始了。 &r"
+				""
+				"&n&l接下来可能发生以下3件事：&r&r"
+				""
+				"&l气泡会出现。&r要清除它们，用空桶右键点击即可。"
+				""
+				"&l水会被排干。&r要解决这个问题，就多加点水。"
+				""
+				"&l红石粒子将会出现。&r要解决这个问题，请走到酿造台的侧面，并右键计时器。"
+				""
+				"过了一段时间，如果你一边观察一边正确操作，你的水就会变成美味的金色美酒。"
+				""
+				"用空啤酒杯右键点击它，即可取回你刚酿造的烈酒。"
+				""
+				"&0&l如果漏掉步骤&r&r，或者什么都不做地运行，它会&6&l召唤出一个 Booze&r&r。一个会飞行、拥有 80 点生命值的实体。请务必完成步骤，以免死亡。"
+			]
+			id: "7F3673A6F0EE63C5"
+			rewards: [
+				{
+					id: "03734083D4210A16"
+					item: "minecraft:water_bucket"
+					type: "item"
+				}
+				{
+					count: 8
+					id: "536A375722624748"
+					item: "minecraft:coal"
+					type: "item"
+				}
+				{
+					id: "44CB938EE7C3E9CE"
+					type: "xp"
+					xp: 250
+				}
+			]
+			shape: "diamond"
+			size: 2.0d
+			subtitle: "制作1个木制酿造台。"
+			tasks: [{
+				id: "7B855603A22A57E1"
+				item: "brewery:wooden_brewingstation"
+				type: "item"
+			}]
+			title: "第一杯饮品"
+			x: -7.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["190F9645D217253D"]
+			description: [
+				"你需要这些来收集酿造好的药水。小心被抢劫！"
+				""
+				"{image:ftbquests:textures/homestead/beer_mug_recipe.png width:103 height:50 align:center}"
+			]
+			id: "6BA946C6734053CB"
+			rewards: [{
+				count: 32
+				id: "452DFF6D3D063FFA"
+				item: "brewery:beer_mug"
+				type: "item"
+			}]
+			subtitle: "酿造 32x 啤酒杯。"
+			tasks: [{
+				count: 32L
+				id: "1AA20A553591E61C"
+				item: { Count: 32, id: "brewery:beer_mug" }
+				type: "item"
+			}]
+			title: "每日马克杯任务书"
+			x: -8.5d
+			y: -1.0d
+		}
+		{
+			description: ["酵母是发酵所必需的。不要省略它！"]
+			hide_dependency_lines: true
+			id: "390F7C0C3EC9D054"
+			rewards: [{
+				count: 12
+				id: "00D1ADC7F6962416"
+				item: "farm_and_charm:yeast"
+				type: "item"
+			}]
+			subtitle: "使用水桶、糖和谷物在烹饪锅中制作12x酵母。"
+			tasks: [{
+				count: 12L
+				id: "0B954198122BD875"
+				item: { Count: 12, id: "farm_and_charm:yeast" }
+				type: "item"
+			}]
+			title: "制作酵母 (Make Yeast)"
+			x: -8.5d
+			y: 1.5d
+		}
+		{
+			description: ["白雪公主效果：和平生物会跟随你。"]
+			hide_dependency_lines: true
+			id: "56896DD92E2A6991"
+			rewards: [{
+				id: "078B77C73777946C"
+				item: "brewery:beer_wheat"
+				type: "item"
+			}]
+			subtitle: "用1x 干小麦、1x 酵母和1x 啤酒花酿造小麦啤酒。"
+			tasks: [{
+				id: "67DDE92B86E9C4D5"
+				item: "brewery:beer_wheat"
+				type: "item"
+			}]
+			title: "小麦啤酒"
+			x: -9.5d
+			y: 2.5d
+		}
+		{
+			description: ["魅力值：降低与村民的交易价格。"]
+			hide_dependency_lines: true
+			id: "4720502D9EAF7DB2"
+			rewards: [{
+				id: "091929F9089B3D15"
+				item: "brewery:beer_barley"
+				type: "item"
+			}]
+			subtitle: "用 1x 干大麦、1x 酵母和 1x 啤酒花酿造大麦啤酒。"
+			tasks: [{
+				id: "7F8A6BB2CB2AAB82"
+				item: "brewery:beer_barley"
+				type: "item"
+			}]
+			title: "大麦啤酒"
+			x: -8.5d
+			y: 2.5d
+		}
+		{
+			description: ["派对发起人：生物被击中时会爆炸出烟花。"]
+			hide_dependency_lines: true
+			id: "0F4244F50DEF2740"
+			rewards: [{
+				id: "10E068BA9023EA81"
+				item: "brewery:beer_hops"
+				type: "item"
+			}]
+			subtitle: "用1x酵母和2x啤酒花酿造啤酒。"
+			tasks: [{
+				id: "7F26CFC391C90BAE"
+				item: "brewery:beer_hops"
+				type: "item"
+			}]
+			title: "啤酒花啤酒"
+			x: -7.5d
+			y: 2.5d
+		}
+		{
+			description: ["Pacify：安全地观察末影人。减少怪物仇恨。"]
+			hide_dependency_lines: true
+			id: "03D6733DD4B40426"
+			rewards: [{
+				id: "5C157DAEF2CEADE9"
+				item: "brewery:beer_nettle"
+				type: "item"
+			}]
+			subtitle: "用野生荨麻、酵母和啤酒花酿造荨麻啤酒。"
+			tasks: [{
+				id: "48F1D05E0F76C75B"
+				item: "brewery:beer_nettle"
+				type: "item"
+			}]
+			title: "荨麻啤酒"
+			x: -6.5d
+			y: 2.5d
+		}
+		{
+			description: ["采矿：越往下挖，速度越快。"]
+			hide_dependency_lines: true
+			id: "1A1AEFD9FCD39683"
+			rewards: [{
+				id: "57F7E7EC7F14444F"
+				item: "brewery:beer_oat"
+				type: "item"
+			}]
+			subtitle: "用燕麦干、酵母和啤酒花酿造燕麦啤酒。"
+			tasks: [{
+				id: "79F95A68D1A11038"
+				item: "brewery:beer_oat"
+				type: "item"
+			}]
+			title: "燕麦啤酒"
+			x: -5.5d
+			y: 2.5d
+		}
+		{
+			description: ["Amorous Glide：赋予创造模式飞行能力。"]
+			hide_dependency_lines: true
+			id: "423A13FD3CD6DB1E"
+			rewards: [{
+				id: "50786B8257FA2705"
+				item: "brewery:beer_haley"
+				type: "item"
+			}]
+			subtitle: "用 1x 爆裂紫颂果、1x 酵母和 1x 啤酒花酿造海利啤酒。"
+			tasks: [{
+				id: "7447396BED4EC6C6"
+				item: "brewery:beer_haley"
+				type: "item"
+			}]
+			title: "海莉·比尔"
+			x: -4.5d
+			y: 2.5d
+		}
+		{
+			description: ["使用锻造台，加入哨卫装饰、铜锭和木制酿造台。"]
+			hide_dependency_lines: true
+			id: "1E23852964607A6F"
+			rewards: [
+				{
+					count: 16
+					id: "0810117656390449"
+					item: "brewery:hops"
+					type: "item"
+				}
+				{
+					id: "6F04E4415B146900"
+					type: "xp"
+					xp: 100
+				}
+			]
+			subtitle: "将木制酿造台升级为铜制酿造台。"
+			tasks: [{
+				id: "085928183E39DDB9"
+				item: "brewery:copper_brewingstation"
+				type: "item"
+			}]
+			title: "升级到铜制工具"
+			x: -7.5d
+			y: 1.5d
+		}
+		{
+			description: ["有毒接触：对命中的生物施加中毒效果。"]
+			hide_dependency_lines: true
+			id: "5996975F9EF78E94"
+			rewards: [{
+				id: "26251768C9C8D972"
+				item: "brewery:whiskey_jojannik"
+				type: "item"
+			}]
+			subtitle: "在升级后的酿造台里，用2x干大麦和1x酵母酿造JoJannik Select"
+			tasks: [{
+				id: "3B896ECBE12F5C6C"
+				item: "brewery:whiskey_jojannik"
+				type: "item"
+			}]
+			title: "JoJannik 精选"
+			x: -9.5d
+			y: 3.5d
+		}
+		{
+			description: ["派对发起人：生物被击中时会爆炸出烟花。"]
+			hide_dependency_lines: true
+			id: "55865F6A94DDD9E7"
+			rewards: [{
+				id: "1C5270DC48E67AAC"
+				item: "brewery:whiskey_lilitusinglemalt"
+				type: "item"
+			}]
+			subtitle: "在升级酿造台里用1x干小麦、1x干大麦和1x酵母酿造Lilitu单一麦芽"
+			tasks: [{
+				id: "7FA594A85DAE3822"
+				item: "brewery:whiskey_lilitusinglemalt"
+				type: "item"
+			}]
+			x: -8.5d
+			y: 3.5d
+		}
+		{
+			description: ["保护之触：使被击中的生物获得吸收效果。"]
+			hide_dependency_lines: true
+			id: "5B2789714FA74A04"
+			rewards: [{
+				id: "163C731B38A682B0"
+				item: "brewery:whiskey_cristelwalker"
+				type: "item"
+			}]
+			subtitle: "用 2x 干玉米和 1x 酵母酿造 CristelWalker 原创啤酒"
+			tasks: [{
+				id: "3FBE6DA3E1053F60"
+				item: "brewery:whiskey_cristelwalker"
+				type: "item"
+			}]
+			x: -7.5d
+			y: 3.5d
+		}
+		{
+			description: ["治愈之触：治疗被击中的生物。"]
+			hide_dependency_lines: true
+			id: "41AC462E72E8F3DC"
+			rewards: [{
+				id: "3FEFE9045F09D8D7"
+				item: "brewery:whiskey_maggoallan"
+				type: "item"
+			}]
+			subtitle: "用2x干小麦和1x酵母陈酿的布罗麦戈伦"
+			tasks: [{
+				id: "583C0DCF95C8C504"
+				item: "brewery:whiskey_maggoallan"
+				type: "item"
+			}]
+			x: -6.5d
+			y: 3.5d
+		}
+		{
+			description: ["更新之触：使被击中的生物获得再生效果。"]
+			hide_dependency_lines: true
+			id: "41AE4A3DB35C8416"
+			rewards: [{
+				id: "0CC0C71E97435A4D"
+				item: "brewery:whiskey_carrasconlabel"
+				type: "item"
+			}]
+			subtitle: "用 1x 干小麦、1x 干玉米和 1x 酵母酿造 Carrasconlabel 遗产"
+			tasks: [{
+				id: "16939E928571FE09"
+				item: "brewery:whiskey_carrasconlabel"
+				type: "item"
+			}]
+			x: -5.5d
+			y: 3.5d
+		}
+		{
+			description: ["闪电：有小概率召唤闪电。"]
+			hide_dependency_lines: true
+			id: "3465439E95EAB87F"
+			rewards: [{
+				id: "04D9C84FAC340658"
+				item: "brewery:whiskey_ak"
+				type: "item"
+			}]
+			subtitle: "用 1x 燕麦干、1x 玉米干和 1x 酵母酿造 AK 珍藏"
+			tasks: [{
+				id: "0362EF32EBFCEB01"
+				item: "brewery:whiskey_ak"
+				type: "item"
+			}]
+			x: -4.5d
+			y: 3.5d
+		}
+		{
+			description: ["排斥：每隔一段时间将敌人推开。"]
+			hide_dependency_lines: true
+			id: "6355DBDB90D286EA"
+			rewards: [{
+				id: "20DDBA882AAED4B7"
+				item: "brewery:whiskey_highland_hearth"
+				type: "item"
+			}]
+			subtitle: "用 1x 干小麦、1x 干燕麦和 1x 酵母酿造高地炉火特酿"
+			tasks: [{
+				id: "2AB1C9A07187D9F1"
+				item: "brewery:whiskey_highland_hearth"
+				type: "item"
+			}]
+			x: -8.0d
+			y: 4.5d
+		}
+		{
+			description: ["燃烧：点燃附近的敌人。"]
+			hide_dependency_lines: true
+			id: "6408B51A1A3E21C7"
+			rewards: [{
+				id: "7A2D81466D25128F"
+				item: "brewery:whiskey_smokey_reverie"
+				type: "item"
+			}]
+			subtitle: "用 2x 燕麦干和 1x 酵母酿造出 Smokey Reverie"
+			tasks: [{
+				id: "7990627DFE5B3828"
+				item: "brewery:whiskey_smokey_reverie"
+				type: "item"
+			}]
+			x: -7.0d
+			y: 4.5d
+		}
+		{
+			description: ["爆炸：击中时有几率射出火球。"]
+			hide_dependency_lines: true
+			id: "074D2E66FC2A7772"
+			rewards: [{
+				id: "1B5022D6C341E87E"
+				item: "brewery:whiskey_jamesons_malt"
+				type: "item"
+			}]
+			subtitle: "用 1x 干大麦、1x 干燕麦和 1x 酵母酿造詹姆森麦芽威士忌"
+			tasks: [{
+				id: "1EC4C8D22E3E8FC5"
+				item: "brewery:whiskey_jamesons_malt"
+				type: "item"
+			}]
+			x: -6.0d
+			y: 4.5d
+		}
+		{
+			description: ["因为有时候，你需要审视一下自己。"]
+			hide_dependency_lines: true
+			id: "60F46B1FBB453146"
+			rewards: [{
+				id: "70B77B33988E9B9B"
+				item: {
+					Count: 1
+					id: "brewery:brewfest_hat"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			subtitle: "制作一个酒精测试仪。"
+			tasks: [{
+				id: "758B174A055D95D3"
+				item: "brewery:breathalyzer"
+				type: "item"
+			}]
+			title: "请负责任地进行测试"
+			x: -5.5d
+			y: 1.5d
+		}
+		{
+			description: ["将下界合金升级模板、铜酿造站和一个下界合金锭放入锻造台，即可制作终极酿造工具。"]
+			hide_dependency_lines: true
+			id: "4E63C305B129AF3F"
+			rewards: [
+				{
+					id: "7A51200883C8A02A"
+					item: "brewery:whiskey_jamesons_malt"
+					type: "item"
+				}
+				{
+					id: "664CAF9592122644"
+					type: "xp"
+					xp: 100
+				}
+			]
+			subtitle: "使用锻造台将铜制酿造站升级为下界合金酿造站。"
+			tasks: [{
+				id: "6688778DCFFB0D5E"
+				item: "brewery:netherite_brewingstation"
+				type: "item"
+			}]
+			title: "在火焰中锻造"
+			x: -6.5d
+			y: 1.5d
+		}
+	]
+	title: "液态勇气"
+}

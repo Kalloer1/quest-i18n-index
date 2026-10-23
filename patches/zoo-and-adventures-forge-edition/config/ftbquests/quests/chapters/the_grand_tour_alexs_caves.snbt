@@ -1,0 +1,609 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "the_grand_tour_alexs_caves"
+	group: "676E3A4156533E4D"
+	icon: "minecraft:compass"
+	id: "3E00000000000000"
+	order_index: 3
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"欢迎来到Alexs Caves！"
+				""
+				"这些巨大而稀有的生物群系生成在主世界的深处。要找到它们，你必须先找到一个废弃的地下小屋。"
+				""
+				"搜刮里面的木桶，寻找洞穴石板。它们是解读洞穴位置的关键。"
+			]
+			icon: "minecraft:map"
+			id: "3E00000000000001"
+			rewards: [{
+				count: 2
+				id: "3E00000000000003"
+				item: "minecraft:emerald_block"
+				type: "item"
+			}]
+			tasks: [{
+				id: "3E00000000000002"
+				item: "alexscaves:cave_tablet"
+				title: "获得一块洞穴石碑"
+				type: "item"
+			}]
+			title: "地下小屋"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["3E00000000000001"]
+			description: [
+				"从小屋中取出探洞者之桌（或自己制作一张）。"
+				""
+				"将洞穴石碑和一张纸放入工作台。它会消耗你的经验值，将石碑解读成洞穴法典！"
+			]
+			icon: "minecraft:cartography_table"
+			id: "3E00000000000011"
+			rewards: [{
+				id: "3E00000000000014"
+				type: "xp_levels"
+				xp_levels: 30
+			}]
+			tasks: [
+				{
+					icon: "alexscaves:spelunkery_table"
+					id: "3E00000000000012"
+					item: "alexscaves:spelunkery_table"
+					title: "获得一张探洞者桌子 Spelunkers Table"
+					type: "item"
+				}
+				{
+					id: "3E00000000000013"
+					item: "alexscaves:cave_codex"
+					title: "获取一本洞穴图鉴 (Cave Codex)"
+					type: "item"
+				}
+			]
+			title: "洞穴探险家之桌"
+			x: 0.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["3E00000000000011"]
+			description: [
+				"将破译后的洞穴密码本与标准指南针结合，制作洞穴指南针。"
+				""
+				"拿着这个指南针，跟着发光的指针走。它会直接把你引向你解读出的特定洞穴群系。做好准备，向深处进发吧！"
+			]
+			icon: "minecraft:compass"
+			id: "3E00000000000021"
+			rewards: [{
+				id: "3E00000000000023"
+				item: "minecraft:diamond_block"
+				type: "item"
+			}]
+			tasks: [{
+				icon: {
+					Count: 1
+					id: "alexscaves:cave_map"
+					tag: {
+						BiomeTargetResourceKey: "alexscaves:magnetic_caves"
+					}
+				}
+				id: "3E00000000000022"
+				item: {
+					Count: 1
+					id: "alexscaves:cave_map"
+					tag: {
+						BiomeTargetResourceKey: "alexscaves:magnetic_caves"
+					}
+				}
+				title: "制作一张洞穴地图"
+				type: "item"
+			}]
+			title: "洞穴指南针"
+			x: 0.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["3E00000000000021"]
+			description: [
+				"跟随指南针，直到你到达磁洞窟。"
+				""
+				"这个生物群系充满了铅矿、绯红钕矿和蔚蓝钕矿。小心脚下，磁极性很容易把你扔进深渊！"
+			]
+			icon: "minecraft:raw_iron_block"
+			id: "3E00000000000101"
+			rewards: [{
+				count: 16
+				id: "3E00000000000103"
+				item: "minecraft:iron_block"
+				type: "item"
+			}]
+			tasks: [{
+				biome: "alexscaves:magnetic_caves"
+				icon: "minecraft:compass"
+				id: "3E00000000000102"
+				title: "进入磁性洞穴"
+				type: "biome"
+			}]
+			title: "磁性洞穴"
+			x: -5.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["3E00000000000101"]
+			description: [
+				"磁控管是一种极其危险的构造物，利用洞穴的相反极性来粉碎入侵者。"
+				""
+				"躲避它沉重的滚动攻击，摧毁它的核心！"
+			]
+			icon: "minecraft:redstone_block"
+			id: "3E00000000000111"
+			rewards: [{
+				count: 2
+				id: "3E00000000000113"
+				item: "minecraft:diamond_block"
+				type: "item"
+			}]
+			tasks: [{
+				entity: "alexscaves:magnetron"
+				icon: "minecraft:redstone_block"
+				id: "3E00000000000112"
+				title: "击杀：1x Magnetron"
+				type: "kill"
+				value: 1L
+			}]
+			title: "击败磁控管（Magnetron）"
+			x: -5.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["3E00000000000111"]
+			description: [
+				"使用从磁洞和磁控管中采集的材料来锻造铅矿护手。"
+				""
+				"这个神奇的工具能让你操控磁场，来拉动方块、实体，甚至是你自己！"
+			]
+			icon: "minecraft:iron_ingot"
+			id: "3E00000000000121"
+			rewards: [{
+				count: 2
+				id: "3E00000000000123"
+				item: "minecraft:netherite_ingot"
+				type: "item"
+			}]
+			tasks: [{
+				id: "3E00000000000122"
+				item: {
+					Count: 1
+					id: "alexscaves:galena_gauntlet"
+					tag: {
+						Damage: 0
+					}
+				}
+				title: "制作伽利拉手套 (Galena Gauntlet)"
+				type: "item"
+			}]
+			title: "加莱纳手套 (The Galena Gauntlet)"
+			x: -5.0d
+			y: 10.0d
+		}
+		{
+			dependencies: ["3E00000000000021"]
+			description: [
+				"跟随指南针，进入原始洞穴的史前深处。"
+				""
+				"这片茂密的地下丛林充满了远古恐龙、琥珀矿床和巨大的石灰岩构造。"
+			]
+			icon: "minecraft:bone_block"
+			id: "3E00000000000201"
+			rewards: [{
+				count: 16
+				id: "3E00000000000203"
+				item: "minecraft:gold_block"
+				type: "item"
+			}]
+			tasks: [{
+				biome: "alexscaves:primordial_caves"
+				icon: "minecraft:compass"
+				id: "3E00000000000202"
+				title: "进入原始洞穴 (Primordial Caves)"
+				type: "biome"
+			}]
+			title: "远古洞穴 (The Primordial Caves)"
+			x: -3.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["3E00000000000201"]
+			description: [
+				"震龙是原始洞穴的顶级掠食者。"
+				""
+				"小心它那毁灭性的咆哮和撼动大地的撕咬。击败它，彰显你对食物链的统治地位！"
+			]
+			icon: "minecraft:bone"
+			id: "3E00000000000211"
+			rewards: [{
+				count: 2
+				id: "3E00000000000213"
+				item: "minecraft:diamond_block"
+				type: "item"
+			}]
+			tasks: [{
+				entity: "alexscaves:tremorsaurus"
+				icon: "minecraft:bone"
+				id: "3E00000000000212"
+				title: "击杀：1x 震龙（Tremorsaurus）"
+				type: "kill"
+				value: 1L
+			}]
+			title: "击败震地恐龙（Tremorsaurus）"
+			x: -3.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["3E00000000000211"]
+			description: [
+				"远古洞穴的最终首领。"
+				""
+				"要召唤它，你必须制作一个不祥催化剂，并在生物群系内点燃一座巨大的火山。击败这只末日巨兽，赢取它的传说掉落物！"
+			]
+			icon: "minecraft:fire_charge"
+			id: "3E00000000000221"
+			rewards: [
+				{
+					id: "3E00000000000223"
+					item: "minecraft:netherite_block"
+					type: "item"
+				}
+				{
+					count: 2
+					id: "3E00000000000224"
+					item: "minecraft:enchanted_golden_apple"
+					type: "item"
+				}
+			]
+			tasks: [{
+				entity: "alexscaves:luxtructosaurus"
+				icon: "minecraft:fire_charge"
+				id: "3E00000000000222"
+				title: "击杀：1x Luxtructosaurus"
+				type: "kill"
+				value: 1L
+			}]
+			title: "卢克斯特罗托龙（Luxtructosaurus）"
+			x: -3.0d
+			y: 10.0d
+		}
+		{
+			dependencies: ["3E00000000000021"]
+			description: [
+				"你的指南针把你带到了一个放射性废土。"
+				""
+				"有毒洞穴充满了发光的酸液、受辐射的怪物和铀矿石。如果不加防护，你将持续受到辐射伤害！"
+			]
+			icon: "minecraft:slime_block"
+			id: "3E00000000000301"
+			rewards: [{
+				count: 8
+				id: "3E00000000000303"
+				item: "minecraft:emerald_block"
+				type: "item"
+			}]
+			tasks: [{
+				biome: "alexscaves:toxic_caves"
+				icon: "minecraft:compass"
+				id: "3E00000000000302"
+				title: "进入有毒洞穴"
+				type: "biome"
+			}]
+			title: "有毒洞穴 (The Toxic Caves)"
+			x: -1.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["3E00000000000301"]
+			description: [
+				"脑怪是一种可怕的变异怪物，能指挥体型较小的辐射僵尸。"
+				""
+				"击败它，夺取高放射性的掉落物，但请保持距离！"
+			]
+			icon: "minecraft:rotten_flesh"
+			id: "3E00000000000311"
+			rewards: [{
+				count: 2
+				id: "3E00000000000313"
+				item: "minecraft:diamond_block"
+				type: "item"
+			}]
+			tasks: [{
+				entity: "alexscaves:brainiac"
+				icon: "minecraft:rotten_flesh"
+				id: "3E00000000000312"
+				title: "击杀：1x Brainiac"
+				type: "kill"
+				value: 1L
+			}]
+			title: "击败脑控者 Brainiac"
+			x: -1.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["3E00000000000311"]
+			description: [
+				"在有毒洞穴中采集铀和镭，你就可以制作出射线枪。"
+				""
+				"这把毁灭性的能量武器能持续发射辐射束，轻松熔化你的敌人！"
+			]
+			icon: "minecraft:emerald"
+			id: "3E00000000000321"
+			rewards: [{
+				count: 2
+				id: "3E00000000000323"
+				item: "minecraft:netherite_ingot"
+				type: "item"
+			}]
+			tasks: [{
+				id: "3E00000000000322"
+				item: "alexscaves:raygun"
+				title: "制作射线枪 (Craft the Raygun)"
+				type: "item"
+			}]
+			title: "射线枪（The Raygun）"
+			x: -1.0d
+			y: 10.0d
+		}
+		{
+			dependencies: ["3E00000000000021"]
+			description: [
+				"一条恐怖、漆黑的海底沟壑。"
+				""
+				"深渊裂隙被水淹没，光线难以穿透水面。你需要出色的游泳装备才能在这片深水中生存。"
+			]
+			icon: "minecraft:prismarine"
+			id: "3E00000000000401"
+			rewards: [{
+				count: 16
+				id: "3E00000000000403"
+				item: "minecraft:lapis_block"
+				type: "item"
+			}]
+			tasks: [{
+				biome: "alexscaves:abyssal_chasm"
+				icon: "minecraft:compass"
+				id: "3E00000000000402"
+				title: "进入深渊裂谷 (Enter the Abyssal Chasm)"
+				type: "biome"
+			}]
+			title: "深渊裂谷"
+			x: 1.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["3E00000000000401"]
+			description: [
+				"黑暗水域中的顶级掠食者。"
+				""
+				"船体破碎机是一种巨大而极快的深海巨兽，会摧毁挡在它路上的一切。你需要强大的火力才能将其击败。"
+			]
+			icon: "minecraft:heart_of_the_sea"
+			id: "3E00000000000411"
+			rewards: [{
+				count: 2
+				id: "3E00000000000413"
+				item: "minecraft:diamond_block"
+				type: "item"
+			}]
+			tasks: [{
+				entity: "alexscaves:hullbreaker"
+				icon: "minecraft:heart_of_the_sea"
+				id: "3E00000000000412"
+				title: "击杀：1x 船体破坏者"
+				type: "kill"
+				value: 1L
+			}]
+			title: "击败船体破坏者（Hullbreaker）"
+			x: 1.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["3E00000000000411"]
+			description: [
+				"从深渊裂隙收集足够的资源来建造你自己的潜水艇。"
+				""
+				"这辆车能让你安全穿越深海，利用声呐在危险逼近前发现致命威胁！"
+			]
+			icon: "minecraft:iron_block"
+			id: "3E00000000000421"
+			rewards: [{
+				count: 2
+				id: "3E00000000000423"
+				item: "minecraft:netherite_ingot"
+				type: "item"
+			}]
+			tasks: [{
+				id: "3E00000000000422"
+				item: "alexscaves:submarine"
+				title: "制造一艘潜水艇"
+				type: "item"
+			}]
+			title: "潜水艇"
+			x: 1.0d
+			y: 10.0d
+		}
+		{
+			dependencies: ["3E00000000000021"]
+			description: [
+				"一个荒凉、贫瘠的洞穴系统，充满了蝙蝠粪和黑暗。"
+				""
+				"失落洼地危机四伏。这里的生物在黑暗中茁壮成长，一旦你的光源耗尽，它们就会伏击你。"
+			]
+			icon: "minecraft:obsidian"
+			id: "3E00000000000501"
+			rewards: [{
+				count: 32
+				id: "3E00000000000503"
+				item: "minecraft:obsidian"
+				type: "item"
+			}]
+			tasks: [{
+				biome: "alexscaves:forlorn_hollows"
+				icon: "minecraft:compass"
+				id: "3E00000000000502"
+				title: "进入失落幽谷 (Forlorn Hollows)"
+				type: "biome"
+			}]
+			title: "被遗忘的幽谷 (The Forlorn Hollows)"
+			x: 3.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["3E00000000000501"]
+			description: [
+				"Corrodent 是一种巨大而可怕的鼹鼠状生物。"
+				""
+				"它讨厌光。用火把和灯笼把它赶走，然后在它虚弱的时候攻击！"
+			]
+			icon: "minecraft:spider_eye"
+			id: "3E00000000000511"
+			rewards: [{
+				count: 2
+				id: "3E00000000000513"
+				item: "minecraft:diamond_block"
+				type: "item"
+			}]
+			tasks: [{
+				entity: "alexscaves:corrodent"
+				icon: "minecraft:spider_eye"
+				id: "3E00000000000512"
+				title: "击杀：1x Corrodent"
+				type: "kill"
+				value: 1L
+			}]
+			title: "击败腐蚀者（Corrodent）"
+			x: 3.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["3E00000000000511"]
+			description: [
+				"召唤并击败失落之地的最终首领：被遗弃者。"
+				""
+				"这个不死生物会使用强大的声纳冲击波并操控阴影。战胜它，收集其强大的残骸！"
+			]
+			icon: "minecraft:wither_skeleton_skull"
+			id: "3E00000000000521"
+			rewards: [
+				{
+					id: "3E00000000000523"
+					item: "minecraft:netherite_block"
+					type: "item"
+				}
+				{
+					count: 2
+					id: "3E00000000000524"
+					item: "minecraft:enchanted_golden_apple"
+					type: "item"
+				}
+			]
+			tasks: [{
+				entity: "alexscaves:forsaken"
+				icon: "minecraft:wither_skeleton_skull"
+				id: "3E00000000000522"
+				title: "击杀：1x 被遗弃者 (Forsaken)"
+				type: "kill"
+				value: 1L
+			}]
+			title: "被遗弃的领主 (The Forsaken Boss)"
+			x: 3.0d
+			y: 10.0d
+		}
+		{
+			dependencies: ["3E00000000000021"]
+			description: [
+				"一个甜美多彩、令人愉悦的地下仙境。"
+				""
+				"糖果蛀洞完全由巨型糖果、巧克力块和薄荷糖柱构成。它看起来无害，但切勿掉以轻心！"
+			]
+			icon: "minecraft:sugar"
+			id: "3E00000000000601"
+			rewards: [{
+				count: 64
+				id: "3E00000000000603"
+				item: "minecraft:sugar"
+				type: "item"
+			}]
+			tasks: [{
+				biome: "alexscaves:candy_cavity"
+				icon: "minecraft:compass"
+				id: "3E00000000000602"
+				title: "进入糖果空洞 (Candy Cavity)"
+				type: "biome"
+			}]
+			title: "糖果蛀牙洞窟"
+			x: 5.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["3E00000000000601"]
+			description: [
+				"这个甜蜜生物群系里最大的威胁是巨大的 Gum Worm。"
+				""
+				"它会迅速穿过糖果地形，并从下方伏击你。击败它，夺取那甜蜜的、胶状的掉落物！"
+			]
+			icon: "minecraft:slime_ball"
+			id: "3E00000000000611"
+			rewards: [{
+				count: 2
+				id: "3E00000000000613"
+				item: "minecraft:diamond_block"
+				type: "item"
+			}]
+			tasks: [{
+				entity: "alexscaves:gum_worm"
+				icon: "minecraft:slime_ball"
+				id: "3E00000000000612"
+				title: "击杀：1x 口香糖蠕虫"
+				type: "kill"
+				value: 1L
+			}]
+			title: "击败口香糖蠕虫"
+			x: 5.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["3E00000000000611"]
+			description: [
+				"收集遍布洞穴的大量薄荷、焦糖和软糖方块。"
+				""
+				"你可以用这些独特的资源来制作威力惊人、以糖为燃料的装备！"
+			]
+			icon: "minecraft:cake"
+			id: "3E00000000000621"
+			rewards: [
+				{
+					count: 2
+					id: "3E00000000000623"
+					item: "minecraft:netherite_ingot"
+					type: "item"
+				}
+				{
+					count: 2
+					id: "3E00000000000624"
+					item: "minecraft:enchanted_golden_apple"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "3E00000000000622"
+				title: "收获了甜蜜的果实！"
+				type: "checkmark"
+			}]
+			title: "糖霜冲刺"
+			x: 5.0d
+			y: 10.0d
+		}
+	]
+	title: "环球之旅：Alex的洞穴探险"
+}

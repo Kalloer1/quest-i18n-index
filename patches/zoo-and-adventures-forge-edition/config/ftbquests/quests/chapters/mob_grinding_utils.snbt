@@ -1,0 +1,397 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "rsquare"
+	filename: "mob_grinding_utils"
+	group: "16AE59190A45FE82"
+	icon: "mob_grinding_utils:mob_swab"
+	id: "1300000000000001"
+	order_index: 7
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"欢迎来到 Mob Grinding Utils！本模组提供高速向量板、致命生物粉碎机、流体经验值存储器和自定义蛋生成器。"
+				""
+				"服务器专用！重要规则：高速生物农场会导致严重的实体延迟。本服务器建造的所有农场都必须配备自动化或手动红石关闭开关，以便在不使用时能够关闭！"
+			]
+			icon: "mob_grinding_utils:mob_swab"
+			id: "0000000000013001"
+			rewards: [{
+				count: 16
+				id: "0000000000130012"
+				item: "minecraft:redstone"
+				type: "item"
+			}]
+			shape: "gear"
+			size: 1.5d
+			subtitle: "工业化生物掉落物和经验值"
+			tasks: [{
+				id: "0000000000130011"
+				title: "我理解农场性能指南"
+				type: "checkmark"
+			}]
+			title: "自动化生物收割系统"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000013001"]
+			description: [
+				"离线时运行无人监控的刷怪塔会导致实体堆积、方块实体延迟和服务器 TPS 下降。"
+				""
+				"建造农场前，先建造一个安全关闭装置："
+				"将杠杆或红石切换器连接到你的生物风扇或刷怪器上。"
+				"2. 确保打开开关能关闭风扇、降低光照以阻止生成，或切换红石敏感机械。"
+				"3. 退出登录前请务必将农场设为关闭状态！"
+			]
+			icon: "minecraft:lever"
+			id: "0000000000013002"
+			rewards: [
+				{
+					count: 4
+					id: "0000000000130024"
+					item: "minecraft:repeater"
+					type: "item"
+				}
+				{
+					count: 2
+					id: "0000000000130025"
+					item: "minecraft:comparator"
+					type: "item"
+				}
+			]
+			subtitle: "防止离线服务器卡顿"
+			tasks: [
+				{
+					id: "0000000000130021"
+					item: "minecraft:lever"
+					type: "item"
+				}
+				{
+					count: 16L
+					id: "0000000000130022"
+					item: "minecraft:redstone"
+					type: "item"
+				}
+				{
+					id: "0000000000130023"
+					item: "minecraft:redstone_lamp"
+					type: "item"
+				}
+			]
+			title: "服务器指令：红石紧急关闭开关"
+			x: 0.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["0000000000013001"]
+			description: [
+				"合成 Mob Fan 吧！"
+				""
+				"风扇通过非实体流体的方式推动实体。在风扇GUI中使用风扇升级来增强范围、宽度和速度。"
+				""
+				"提示：将红石杀戮开关直接连接到风扇上，这样在农场不活动时就能停止推送生物。"
+			]
+			icon: "mob_grinding_utils:fan"
+			id: "0000000000013003"
+			rewards: [{
+				count: 2
+				id: "0000000000130032"
+				item: "mob_grinding_utils:fan_upgrade_width"
+				type: "item"
+			}]
+			subtitle: "安全地移动实体"
+			tasks: [{
+				id: "0000000000130031"
+				item: "mob_grinding_utils:fan"
+				type: "item"
+			}]
+			title: "生物运输：风扇与传送带"
+			x: -2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000013003"]
+			description: [
+				"Craft Fan 升级："
+				"- 速度升级：加快推动速度。"
+				"- 高度/宽度升级：扩展推推维度。"
+				"- 距离升级：延长推的距离。"
+			]
+			icon: "mob_grinding_utils:fan_upgrade_speed"
+			id: "0000000000013004"
+			rewards: [{
+				count: 2
+				id: "0000000000130043"
+				item: "mob_grinding_utils:fan_upgrade_width"
+				type: "item"
+			}]
+			subtitle: "自定义气流方向"
+			tasks: [
+				{
+					id: "0000000000130041"
+					item: "mob_grinding_utils:fan_upgrade_speed"
+					type: "item"
+				}
+				{
+					id: "0000000000130042"
+					item: "mob_grinding_utils:fan_upgrade_height"
+					type: "item"
+				}
+			]
+			title: "风扇升级：距离与速度"
+			x: -4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000013001"]
+			description: [
+				"合成 Mob Masher (锯)!"
+				""
+				"用红石供电后，Mob Masher会快速击退来袭实体，并将造成的伤害计为玩家直接击杀，从而触发稀有战利品掉落和经验值生成。"
+			]
+			icon: "mob_grinding_utils:saw"
+			id: "0000000000013005"
+			rewards: [{
+				id: "0000000000130052"
+				item: "mob_grinding_utils:saw_upgrade_sharpness"
+				type: "item"
+			}]
+			subtitle: "玩家伤害大屠杀"
+			tasks: [{
+				id: "0000000000130051"
+				item: "mob_grinding_utils:saw"
+				type: "item"
+			}]
+			title: "致命处决：生物粉碎机"
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000013005"]
+			description: [
+				"使用专用配件升级你的生物粉碎器："
+				"- 锋利度升级：提高处决伤害。"
+				"- 战利品升级：应用战利品 III 的加成。"
+				"- 斩首升级：提高生物掉落头颅的概率。"
+				"- 火焰附加升级：点燃目标。"
+			]
+			icon: "mob_grinding_utils:saw_upgrade_looting"
+			id: "0000000000013006"
+			rewards: [{
+				count: 2
+				id: "0000000000130063"
+				item: "mob_grinding_utils:saw_upgrade_sharpness"
+				type: "item"
+			}]
+			subtitle: "最大化掉落物数量"
+			tasks: [
+				{
+					id: "0000000000130061"
+					item: "mob_grinding_utils:saw_upgrade_looting"
+					type: "item"
+				}
+				{
+					id: "0000000000130062"
+					item: "mob_grinding_utils:saw_upgrade_beheading"
+					type: "item"
+				}
+			]
+			title: "Masher 升级：掠夺与斩首"
+			x: 4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000013001"]
+			description: [
+				"合成吸收漏斗！Craft the Absorption Hopper!"
+				""
+				"吸收漏斗能将掉落物和经验球从自定义半径内的实心方块中吸出，将物品存入容器，并将经验球转化为流体经验。"
+			]
+			icon: "mob_grinding_utils:absorption_hopper"
+			id: "0000000000013007"
+			rewards: [{
+				count: 2
+				id: "0000000000130072"
+				item: "mob_grinding_utils:absorption_upgrade"
+				type: "item"
+			}]
+			subtitle: "吸取掉落物和经验值"
+			tasks: [{
+				id: "0000000000130071"
+				item: "mob_grinding_utils:absorption_hopper"
+				type: "item"
+			}]
+			title: "战利品收集：物品漏斗和真空吸尘器"
+			x: 0.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["0000000000013007"]
+			description: [
+				"1. 奇点储罐：可安全储存数千桶流体经验值，无实体延迟。"
+				"2. XP Tap：连接到 XP 储罐，将液态 XP 转换回可收集的 XP 球体。"
+				"3. XP Drain: 站在上面，将你的个人玩家等级直接排入储罐！"
+			]
+			icon: "mob_grinding_utils:tank"
+			id: "0000000000013008"
+			rewards: [{
+				id: "0000000000130083"
+				item: "mob_grinding_utils:tank_sink"
+				type: "item"
+			}]
+			subtitle: "液体经验管理模组"
+			tasks: [
+				{
+					id: "0000000000130081"
+					item: "mob_grinding_utils:tank"
+					type: "item"
+				}
+				{
+					id: "0000000000130082"
+					item: "mob_grinding_utils:xp_tap"
+					type: "item"
+				}
+			]
+			title: "流体经验值存储：储罐与龙头"
+			x: -2.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["0000000000013008"]
+			description: [
+				"将液态经验倒入固化模具以创造经验果冻宝宝。"
+				""
+				"XP果冻宝宝可以储存在箱子里，或者直接吃掉来瞬间获得大量经验。"
+			]
+			icon: "mob_grinding_utils:solid_xp_mould_baby"
+			id: "0000000000013009"
+			rewards: [{
+				count: 16
+				id: "0000000000130092"
+				item: "mob_grinding_utils:solid_xp_baby"
+				type: "item"
+			}]
+			subtitle: "可消耗的经验值物品"
+			tasks: [{
+				id: "0000000000130091"
+				item: "mob_grinding_utils:solid_xp_mould_baby"
+				type: "item"
+			}]
+			title: "经验果冻宝宝与附魔提取器"
+			x: 2.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["0000000000013002"]
+			description: [
+				"制作一个生物吸尘器。"
+				""
+				"用生物棉签左键点击任何生物（敌对或中立）以收集其DNA样本。可用于制作自定义生物种子和基因改造鸡饲料！"
+			]
+			icon: "mob_grinding_utils:mob_swab"
+			id: "0000000000013010"
+			rewards: [{
+				count: 16
+				id: "0000000000130102"
+				item: "minecraft:wheat_seeds"
+				type: "item"
+			}]
+			subtitle: "正在采集生物基因代码"
+			tasks: [{
+				id: "0000000000130101"
+				item: "mob_grinding_utils:mob_swab"
+				type: "item"
+			}]
+			title: "DNA提取：生物样本采集器"
+			x: -2.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["0000000000013010"]
+			description: [
+				"将DNA混合的Mob Swab与种子混合物和一杯XP结合，即可制作出GM鸡肉饲料。"
+				""
+				"用GM鸡饲料喂养一只原版鸡。鸡会爆炸，并产下一个与采样生物DNA匹配的必出生物蛋！"
+			]
+			icon: "mob_grinding_utils:gm_chicken_feed"
+			id: "0000000000013011"
+			rewards: [{
+				count: 16
+				id: "0000000000130112"
+				item: "minecraft:egg"
+				type: "item"
+			}]
+			subtitle: "基因改造鸡蛋"
+			tasks: [{
+				id: "0000000000130111"
+				item: "mob_grinding_utils:gm_chicken_feed"
+				type: "item"
+			}]
+			title: "GM 鸡饲料和生物蛋"
+			x: 0.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["0000000000013011"]
+			description: [
+				"在完全黑暗的环境中，将 GM 鸡饲料或暗物质施加于泥土上，可创造出恐怖泥土（生成敌对生物）或欢乐泥土（生成中立生物）。"
+				""
+				"性能提示：Dreadful Dirt 会极快地生成生物。您必须在 Dreadful Dirt 上方放置连接到 Redstone Kill Switch 的红石灯，以在离线时立即暂停泥土！"
+			]
+			icon: "mob_grinding_utils:dreadful_dirt"
+			id: "0000000000013012"
+			rewards: [{
+				count: 4
+				id: "0000000000130122"
+				item: "minecraft:redstone_lamp"
+				type: "item"
+			}]
+			subtitle: "超高速生成表面 (Hyper-Speed Spawning Surfaces)"
+			tasks: [{
+				id: "0000000000130121"
+				item: "mob_grinding_utils:dreadful_dirt"
+				type: "item"
+			}]
+			title: "可怕的泥土和令人愉快的泥土"
+			x: 2.0d
+			y: 2.0d
+		}
+		{
+			dependencies: [
+				"0000000000013004"
+				"0000000000013006"
+				"0000000000013012"
+			]
+			description: ["你已掌握自动化生物收集，建造了安全的红石杀戮开关，收获了液态经验值，并创建了自定义的恐怖泥土农场！"]
+			icon: "mob_grinding_utils:saw_upgrade_looting"
+			id: "0000000000013013"
+			rewards: [
+				{
+					id: "0000000000130132"
+					item: "minecraft:netherite_block"
+					type: "item"
+				}
+				{
+					count: 64
+					id: "0000000000130133"
+					item: "mob_grinding_utils:solid_xp_baby"
+					type: "item"
+				}
+			]
+			shape: "gear"
+			size: 1.5d
+			subtitle: "安全高效的屠宰方式"
+			tasks: [{
+				id: "0000000000130131"
+				title: "Mob Grinding Utils 已掌握"
+				type: "checkmark"
+			}]
+			title: "工业屠宰大师"
+			x: 0.0d
+			y: 6.0d
+		}
+	]
+	title: "Mob Grinding Utils：自动化屠宰场"
+}

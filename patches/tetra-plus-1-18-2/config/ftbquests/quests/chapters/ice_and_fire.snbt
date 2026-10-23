@@ -1,0 +1,823 @@
+# AI 初翻，未人工校对
+{
+	id: "6EB19BDB18ED060C"
+	group: "528088D94B4C1D40"
+	order_index: 1
+	filename: "ice_and_fire"
+	title: "冰与火"
+	icon: "iceandfire:dragon_stick"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "开始"
+			icon: "iceandfire:dragon_stick"
+			x: 1.5d
+			y: -1.0d
+			subtitle: "欢迎来到冰与火的世界"
+			description: ["Ice and fire 是一款包含神话生物和龙繁殖功能的奇妙模组。"]
+			id: "161BE95DBDE6EEFE"
+			tasks: [{
+				id: "49BCDDF3BA9EA452"
+				type: "checkmark"
+			}]
+			rewards: [
+				{
+					id: "6E304ED5842FF3FE"
+					type: "item"
+					item: "iceandfire:bestiary"
+				}
+				{
+					id: "720BDF4CAD51FAB4"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+		{
+			title: "写下神话笔记的内容"
+			x: -3.5d
+			y: 0.5d
+			description: ["收集手稿有助于你学习本模组的知识。丰富自己，挑战神话生物！"]
+			dependencies: ["161BE95DBDE6EEFE"]
+			id: "60733AC3A72C0F44"
+			tasks: [{
+				id: "3C7158B7392D3ECD"
+				type: "item"
+				item: "iceandfire:manuscript"
+				count: 16L
+			}]
+			rewards: [{
+				id: "750468FA7B24BFB4"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "完全掌握所有知识"
+			x: -3.5d
+			y: 7.0d
+			shape: "hexagon"
+			description: ["经过勤奋的学习，你终于掌握了所有知识。现在，这是你的奖励！"]
+			dependencies: [
+				"3977589456B848DB"
+				"7F4153E4A4CB391A"
+				"31E491788318F971"
+				"7AEBAEFEAA877E97"
+				"1D1AB708F09B631F"
+				"54A1F49A47E71FEB"
+				"6DDB1CE51E58F4FD"
+				"062A2F8912ECB643"
+			]
+			hide: true
+			id: "10B48F1713E82CDC"
+			tasks: [{
+				id: "73A6207CE42D5F92"
+				type: "item"
+				tags: ["fully_knowledge"]
+				item: {
+					id: "iceandfire:bestiary"
+					Count: 1b
+					tag: {
+						Pages: [I;
+							0
+							1
+							2
+							3
+							4
+							5
+							6
+							7
+							8
+							9
+							10
+							11
+							12
+							13
+							14
+							15
+							16
+							17
+							18
+							19
+							20
+							21
+							22
+							23
+							24
+							25
+							26
+						]
+					}
+				}
+				match_nbt: true
+			}]
+			rewards: [
+				{
+					id: "266C89EADFBBC820"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 3948332166029318293L
+				}
+				{
+					id: "64A2152A60E6647E"
+					type: "item"
+					item: "iceandfire:creative_dragon_meal"
+				}
+			]
+		}
+		{
+			title: "获得第一件龙宝藏物"
+			x: 7.0d
+			y: 0.5d
+			description: [
+				"你可以在外面幸运地找到龙的尸体，"
+				"收集战利品来制作一些有效的东西。"
+			]
+			dependencies: ["161BE95DBDE6EEFE"]
+			id: "78AE8ED3CCAE44E5"
+			tasks: [
+				{
+					id: "735DCAB804303A21"
+					type: "item"
+					title: "龙的头骨"
+					item: {
+						id: "itemfilters:id_regex"
+						Count: 1b
+						tag: {
+							value: "^iceandfire:dragon_skull_.*$"
+						}
+					}
+				}
+				{
+					id: "4F2EA8C22A7054EA"
+					type: "item"
+					item: "iceandfire:dragonbone"
+					count: 8L
+				}
+			]
+			rewards: [{
+				id: "3E373EC11785DB1A"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "追逐巨龙"
+			x: 7.0d
+			y: 2.5d
+			description: ["Dragonseeker 能在 500 格半径内找到活龙。"]
+			dependencies: ["78AE8ED3CCAE44E5"]
+			id: "76A7CC617D9C04C0"
+			tasks: [{
+				id: "0625C511FA3D65E2"
+				type: "item"
+				item: {
+					id: "dragonseeker:dragonseeker"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "4192D1D060CA0CFF"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "Here is johnny!"
+			icon: "iceandfire:ectoplasm"
+			x: -1.0d
+			y: 4.5d
+			description: [
+				"在早期阶段，幽灵是最烦人的生物。"
+				"你可以在打开墓地的宝箱后找到它。"
+				"或者它会在傍晚时分找到你。"
+				"仔细看看生物图鉴里的细节。"
+			]
+			dependencies: ["60733AC3A72C0F44"]
+			id: "7F4153E4A4CB391A"
+			tasks: [{
+				id: "182EAFF60BC17C4B"
+				type: "kill"
+				icon: "iceandfire:spawn_egg_ghost"
+				entity: "iceandfire:ghost"
+				value: 1L
+			}]
+			rewards: [{
+				id: "3DC9741D87B61B9D"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "奥德修斯的挑战"
+			icon: "iceandfire:shiny_scales"
+			x: -6.0d
+			y: 4.5d
+			description: ["仔细看看生物图鉴里的详细信息。"]
+			dependencies: ["60733AC3A72C0F44"]
+			id: "6DDB1CE51E58F4FD"
+			tasks: [{
+				id: "019683A28E1BE3C4"
+				type: "kill"
+				icon: "iceandfire:spawn_egg_siren"
+				entity: "iceandfire:siren"
+				value: 1L
+			}]
+			rewards: [{
+				id: "584DF6C1DF810E75"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "波塞冬之子模组 (Sons of Poseidon)"
+			icon: {
+				id: "iceandfire:cyclops_eye"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: -9.0d
+			y: 4.5d
+			description: ["仔细看看生物图鉴里的细节。"]
+			dependencies: ["60733AC3A72C0F44"]
+			id: "7AEBAEFEAA877E97"
+			tasks: [{
+				id: "0040DA15FDC78956"
+				type: "kill"
+				icon: "iceandfire:spawn_egg_cyclops"
+				entity: "iceandfire:cyclops"
+				value: 1L
+			}]
+			rewards: [{
+				id: "5AF30C69729EBDF7"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "海格力斯的挑战"
+			icon: "iceandfire:hydra_fang"
+			x: 2.0d
+			y: 4.5d
+			description: ["仔细看看生物图鉴里的详细信息。"]
+			dependencies: ["60733AC3A72C0F44"]
+			id: "3977589456B848DB"
+			tasks: [{
+				id: "3E199DED8018C57E"
+				type: "kill"
+				icon: "iceandfire:spawn_egg_hydra"
+				entity: "iceandfire:hydra"
+				value: 1L
+			}]
+			rewards: [{
+				id: "2F91C154CFA9AC06"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "雄性繁殖器官的发育过程"
+			icon: "iceandfire:cockatrice_eye"
+			x: -4.5d
+			y: 4.5d
+			description: ["仔细看看生物图鉴里的详细信息。"]
+			dependencies: ["60733AC3A72C0F44"]
+			id: "31E491788318F971"
+			tasks: [{
+				id: "4F2DA5AE72B5BF63"
+				type: "kill"
+				icon: "iceandfire:spawn_egg_cockatrice"
+				entity: "iceandfire:cockatrice"
+				value: 1L
+			}]
+			rewards: [{
+				id: "115BD74704D29F8C"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "蒙古陌生人"
+			icon: "iceandfire:deathworm_egg"
+			x: -7.5d
+			y: 4.5d
+			description: ["仔细看看生物图鉴里的详细信息。"]
+			dependencies: ["60733AC3A72C0F44"]
+			id: "54A1F49A47E71FEB"
+			tasks: [{
+				id: "0F55AD18BC271167"
+				type: "kill"
+				icon: "iceandfire:spawn_egg_death_worm"
+				entity: "iceandfire:deathworm"
+				value: 1L
+			}]
+			rewards: [{
+				id: "5A00278502797046"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "Wingardium Leviosa"
+			icon: "iceandfire:troll_tusk"
+			x: -2.5d
+			y: 4.5d
+			description: ["仔细看看生物图鉴里的细节。"]
+			dependencies: ["60733AC3A72C0F44"]
+			id: "1D1AB708F09B631F"
+			tasks: [{
+				id: "41232527390BE5F6"
+				type: "kill"
+				icon: "iceandfire:spawn_egg_troll"
+				entity: "iceandfire:troll"
+				value: 1L
+			}]
+			rewards: [{
+				id: "573EFA4EE322F618"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "Aegis 的诅咒"
+			icon: {
+				id: "iceandfire:gorgon_head"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: 0.5d
+			y: 4.5d
+			description: ["仔细看看生物图鉴里的详细信息。"]
+			dependencies: ["60733AC3A72C0F44"]
+			id: "062A2F8912ECB643"
+			tasks: [{
+				id: "1F923AABF401C453"
+				type: "kill"
+				icon: "iceandfire:spawn_egg_gorgon"
+				entity: "iceandfire:gorgon"
+				value: 1L
+			}]
+			rewards: [{
+				id: "1912A9F40230C935"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "火焰巨龙猎人"
+			x: 5.0d
+			y: 4.5d
+			description: ["狩猎巨龙证明了你是个合格的战士。现在，继续前进，去捕捉和驯养巨龙吧。"]
+			dependencies: ["76A7CC617D9C04C0"]
+			id: "22B4762CBD10974B"
+			tasks: [{
+				id: "19C7B6C3122382F6"
+				type: "kill"
+				icon: "iceandfire:fire_dragon_heart"
+				entity: "iceandfire:fire_dragon"
+				value: 1L
+			}]
+			rewards: [{
+				id: "24C4A12E2B22CD4D"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "冰龙猎人"
+			x: 7.0d
+			y: 4.5d
+			description: ["狩猎巨龙证明了你已是一名合格的战士。现在，继续前进，捕捉并训练巨龙吧。"]
+			dependencies: ["76A7CC617D9C04C0"]
+			id: "5D4DBE662AFD87BE"
+			tasks: [{
+				id: "2E62A8F884FB9FAB"
+				type: "kill"
+				icon: "iceandfire:ice_dragon_heart"
+				entity: "iceandfire:ice_dragon"
+				value: 1L
+			}]
+			rewards: [{
+				id: "2D3F3F846B2DB13C"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "闪电龙猎人"
+			x: 9.0d
+			y: 4.5d
+			description: ["狩猎巨龙证明了你是个合格的战士。现在，继续前进，去捕捉和驯养巨龙吧。"]
+			dependencies: ["76A7CC617D9C04C0"]
+			id: "1073C2A2DD1D4175"
+			tasks: [{
+				id: "30067B7764665A56"
+				type: "kill"
+				icon: "iceandfire:lightning_dragon_heart"
+				entity: "iceandfire:lightning_dragon"
+				value: 1L
+			}]
+			rewards: [{
+				id: "13230AAB85145FE9"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "小心火焰冲击波"
+			icon: "iceandfire:summoning_crystal_fire"
+			x: 5.0d
+			y: 6.0d
+			description: ["击败远古巨龙后，你将发现它们的龙蛋。孵化并训练你自己的巨龙战士！"]
+			dependencies: ["22B4762CBD10974B"]
+			id: "0392DEE8E5897C3C"
+			tasks: [
+				{
+					id: "64748ED0A3ADC189"
+					type: "item"
+					title: "火之龙蛋"
+					item: {
+						id: "itemfilters:id_regex"
+						Count: 1b
+						tag: {
+							value: "^iceandfire:dragonegg_(?:red|green|bronze|gray)$"
+						}
+					}
+				}
+				{
+					id: "3B14D18A644FF323"
+					type: "item"
+					item: "iceandfire:summoning_crystal_fire"
+				}
+			]
+			rewards: [{
+				id: "295EE68FE57525FB"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "小心冰冻冲击波"
+			icon: "iceandfire:summoning_crystal_ice"
+			x: 7.0d
+			y: 6.0d
+			description: ["击败远古巨龙后，你将发现它们的龙蛋。孵化并训练你自己的巨龙战士！"]
+			dependencies: ["5D4DBE662AFD87BE"]
+			id: "535071E938BB8504"
+			tasks: [
+				{
+					id: "598AF98354FFB88E"
+					type: "item"
+					item: {
+						id: "itemfilters:id_regex"
+						Count: 1b
+						tag: {
+							value: "^iceandfire:dragonegg_(?:blue|white|sapphire|silver)$"
+						}
+					}
+				}
+				{
+					id: "53B094C6D2A7FD0B"
+					type: "item"
+					item: "iceandfire:summoning_crystal_ice"
+				}
+			]
+			rewards: [{
+				id: "52A99C517E8EF3B0"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "小心雷暴冲击波"
+			icon: "iceandfire:summoning_crystal_lightning"
+			x: 9.0d
+			y: 6.0d
+			description: ["击败远古巨龙后，你将发现它们的龙蛋。孵化并训练你自己的巨龙战士！"]
+			dependencies: ["1073C2A2DD1D4175"]
+			id: "49D9BEC66810C7C5"
+			tasks: [
+				{
+					id: "4CA6EC03CC53A716"
+					type: "item"
+					item: {
+						id: "itemfilters:id_regex"
+						Count: 1b
+						tag: {
+							value: "^iceandfire:dragonegg_(?:electric|amythest|black|copper)$"
+						}
+					}
+				}
+				{
+					id: "0876485EC09D5EE7"
+					type: "item"
+					item: "iceandfire:summoning_crystal_lightning"
+				}
+			]
+			rewards: [{
+				id: "2A91DCB9814ADC52"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "吃得最好，长得最快"
+			x: 5.0d
+			y: 7.5d
+			description: ["龙之食是龙最营养的食物，能帮助他们快速成长，并与你并肩作战。"]
+			dependencies: [
+				"535071E938BB8504"
+				"49D9BEC66810C7C5"
+				"0392DEE8E5897C3C"
+			]
+			id: "1DB890297AB037D9"
+			tasks: [{
+				id: "2BA77DE826BA34D3"
+				type: "item"
+				item: "iceandfire:dragon_meal"
+				count: 100L
+			}]
+			rewards: [{
+				id: "6D01201933542223"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "绝对的力量"
+			x: 9.0d
+			y: 7.5d
+			description: ["建造龙之熔炉是提高装备品质的关键一步。在此之前，你必须将你的龙培育到能够喷发为止。"]
+			dependencies: [
+				"535071E938BB8504"
+				"49D9BEC66810C7C5"
+				"0392DEE8E5897C3C"
+			]
+			id: "36FC995425A2390C"
+			tasks: [
+				{
+					id: "4F90F84DD8D89AF0"
+					type: "item"
+					item: "iceandfire:dragonforge_fire_core_disabled"
+				}
+				{
+					id: "068685EC95960F86"
+					type: "item"
+					item: "iceandfire:dragonforge_ice_core_disabled"
+				}
+				{
+					id: "29E0776314EF773F"
+					type: "item"
+					item: "iceandfire:dragonforge_lightning_core_disabled"
+				}
+			]
+			rewards: [{
+				id: "427440BF3D72FA0C"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "炼狱熔炉"
+			x: 7.0d
+			y: 11.0d
+			shape: "hexagon"
+			description: ["使用龙之锻造炉能让铁锭获得火龙的力量，从而达到超凡的品质。"]
+			dependencies: ["36FC995425A2390C"]
+			id: "34AF3D641657100E"
+			tasks: [{
+				id: "176CFB0A7141B895"
+				type: "item"
+				item: "iceandfire:dragonsteel_fire_ingot"
+			}]
+			rewards: [{
+				id: "41234D63AEA93C49"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 3948332166029318293L
+			}]
+		}
+		{
+			title: "暴雪锻造台"
+			x: 9.0d
+			y: 11.0d
+			shape: "hexagon"
+			description: ["使用龙之锻造炉能让铁锭获得冰龙的加持，从而达到超凡的品质。"]
+			dependencies: ["36FC995425A2390C"]
+			id: "0DFDBD5CB5D17BBA"
+			tasks: [{
+				id: "57F000194D33CE6E"
+				type: "item"
+				item: "iceandfire:dragonsteel_ice_ingot"
+			}]
+			rewards: [{
+				id: "1A47A444CB9B3E4C"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 3948332166029318293L
+			}]
+		}
+		{
+			title: "雷鸣锻造台"
+			x: 11.0d
+			y: 11.0d
+			shape: "hexagon"
+			description: ["使用龙之锻造炉能让铁锭获得闪电巨龙的力量，从而达到超凡的品质。"]
+			dependencies: ["36FC995425A2390C"]
+			id: "6E446F26FCB949B8"
+			tasks: [{
+				id: "5E016E47AE49941D"
+				type: "item"
+				item: "iceandfire:dragonsteel_lightning_ingot"
+			}]
+			rewards: [{
+				id: "4807BDFF78272AF3"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 3948332166029318293L
+			}]
+		}
+		{
+			title: "来自故乡的声音"
+			x: 5.0d
+			y: 11.0d
+			description: ["龙角能让你把龙装在物品栏里，随时可以把它扔出去。"]
+			dependencies: ["1DB890297AB037D9"]
+			id: "657E30803366E4F8"
+			tasks: [{
+				id: "42BC3EB0A72D0FBA"
+				type: "item"
+				item: "iceandfire:dragon_horn"
+			}]
+			rewards: [{
+				id: "4F11B8D519F2A9B0"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "禁忌的陵墓"
+			icon: "iceandfire:dread_key"
+			x: 9.0d
+			y: 13.0d
+			description: ["恐怖巫妖会掉落墓主钥匙，其中蕴含着被禁忌的秘密……"]
+			dependencies: [
+				"34AF3D641657100E"
+				"6E446F26FCB949B8"
+				"0DFDBD5CB5D17BBA"
+			]
+			id: "1AEAE821556A21DE"
+			tasks: [
+				{
+					id: "429891B591061F49"
+					type: "kill"
+					icon: "iceandfire:spawn_egg_lich"
+					entity: "iceandfire:dread_lich"
+					value: 1L
+				}
+				{
+					id: "5BBCB81A9719AA3E"
+					type: "item"
+					item: "iceandfire:dread_key"
+				}
+				{
+					id: "1E094F1F515D4B4E"
+					type: "structure"
+					icon: "minecraft:filled_map"
+					structure: "iceandfire:mausoleum"
+				}
+			]
+			rewards: [{
+				id: "6EB37D5B86A33463"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "恐惧的力量"
+			x: 9.0d
+			y: 15.0d
+			description: ["进入陵墓，你便开始感受到死者的世界。恐惧碎片将再次增强你的力量。"]
+			dependencies: ["1AEAE821556A21DE"]
+			id: "01F660D835AD5E67"
+			tasks: [{
+				id: "2BF8BA4E192DF3B1"
+				type: "item"
+				item: "iceandfire:dread_shard"
+				count: 24L
+			}]
+			rewards: [{
+				id: "7DD2C79175B35482"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "Magalovania"
+			x: 9.0d
+			y: 17.0d
+			description: ["Dreadsteel 是这个世界最强大的材料。拥抱它的力量，成为主宰！"]
+			dependencies: ["01F660D835AD5E67"]
+			id: "22BB4D9C9D5148F1"
+			tasks: [{
+				id: "7D4A111B0152ECCA"
+				type: "item"
+				item: "dreadsteel:dreadsteel_ingot"
+			}]
+			rewards: [{
+				id: "07788A9DBE194756"
+				type: "random"
+				table_id: 3948332166029318293L
+			}]
+		}
+		{
+			title: "用恐惧之钢将我覆盖起来"
+			icon: "dreadsteel:dreadsteel_shield"
+			x: 7.5d
+			y: 18.5d
+			shape: "hexagon"
+			description: ["Dreadsteel 盔甲拥有无与伦比的防御能力，并且永恒不灭。"]
+			dependencies: ["22BB4D9C9D5148F1"]
+			id: "238ADA5F361EDA63"
+			tasks: [
+				{
+					id: "089FB7230B73F8B2"
+					type: "item"
+					item: "dreadsteel:dreadsteel_helmet"
+				}
+				{
+					id: "4D3AD204A9F219BB"
+					type: "item"
+					item: "dreadsteel:dreadsteel_chestplate"
+				}
+				{
+					id: "3CF2024C2BDC6DDB"
+					type: "item"
+					item: "dreadsteel:dreadsteel_leggings"
+				}
+				{
+					id: "5BDE35386F7A687F"
+					type: "item"
+					item: "dreadsteel:dreadsteel_boots"
+				}
+			]
+			rewards: [{
+				id: "17069811B0F8DA11"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 3948332166029318293L
+			}]
+		}
+		{
+			title: "死胡同"
+			x: 10.5d
+			y: 18.5d
+			shape: "hexagon"
+			description: ["Dreadsteel Scythe 拥有独特的能力，能自行破除 boss 的自适应附魔，同时兼具无与伦比的攻击力。"]
+			dependencies: ["22BB4D9C9D5148F1"]
+			id: "784C2686F4D9AE34"
+			tasks: [{
+				id: "478CD865253C908A"
+				type: "item"
+				item: "dreadsteel:dreadsteel_scythe"
+			}]
+			rewards: [{
+				id: "61645E8848984794"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 3948332166029318293L
+			}]
+		}
+	]
+	quest_links: [ ]
+}

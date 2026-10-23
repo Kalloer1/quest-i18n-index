@@ -1,0 +1,1733 @@
+# AI 初翻，未人工校对
+{
+	id: "3BD89FDA96EB215F"
+	group: "1A78C6EA3A0ABFDA"
+	order_index: 2
+	filename: "3_system_cracking"
+	title: "[3] 系统破解"
+	icon: "the_vault:vault_catalyst_chaos"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "狩猎与搜寻"
+			x: -8.75d
+			y: 0.25d
+			shape: "hexagon"
+			subtitle: "翻箱倒柜大搜寻"
+			description: [
+				"&d现在你已达到20级，强盗，有许多新内容向你开放。首先是宝库的一种新目标类型：拾荒者。"
+				""
+				"&5拾荒者可能是最难完成的目标之一，而与之匹配的完成奖励箱也是最...丰厚的。"
+				""
+				"&dOther than a blackout in Bingo at least."
+				""
+				"&5不确定强盗是否已经准备好迎接那个了。"
+				""
+				"&d也许吧。但现在我们说的是Scav Vaults！在这里，你会得到一份在该宝库中需要寻找的物品清单。它们会显示在屏幕顶部，并带有图标说明获取来源：宝箱、怪物或矿石。"
+				""
+				"&5收集所有物品、Bandit，并找到一个Scavenger Altar（大多数房间都会生成的绿色发光祭坛）。在计时器耗尽前，右键点击每个堆叠以存入物品。"
+				""
+				"&d要是没及时拿到足够的东西，就得在时间耗尽前通过传送门离开，强盗。"
+				""
+				"&5Highly suggest ye make and bring in a Scavenger Bag, Bandit. It'll hold all the Scav items ye find instead of filling yer pouches with em. "
+			]
+			dependencies: ["148669A61C9EFBF4"]
+			hide: true
+			id: "1881243BF68F0FAC"
+			tasks: [
+				{
+					id: "288CE78D02906B90"
+					type: "woldsvaults:vault_level"
+					title: "达到20级"
+					icon: "the_vault:scavenger_altar"
+					value: 20
+				}
+				{
+					id: "29C9416897D22864"
+					type: "item"
+					item: "woldsvaults:scavenger_pouch"
+				}
+			]
+			rewards: [{
+				id: "6F0925C1B31FC8B5"
+				type: "item"
+				item: "the_vault:crystal_seal_hunter"
+			}]
+		}
+		{
+			title: "一个商人门"
+			x: -9.25d
+			y: 1.5d
+			shape: "rsquare"
+			subtitle: "Vendoor: 资本主义万岁！"
+			description: [
+				"&d20级后，Vaults中会出现两种门，分别是Bandit和Bandit。"
+				""
+				"&5售卖门会通向内部有售卖基座的特殊房间。这些门会生成在宝库房间墙壁上，通常在最底层。"
+				""
+				"&dVendor Pedestal 可以出售多种物品，Bandit，其中一些只能在 Vendoor 房间内找到。"
+				""
+				"&5Money is Vault Gold, and the Pedestal will pull it directly from your Wallet or Pouches."
+				""
+				"&d拥有特定专长，可以从商人基座处获得折扣。"
+				""
+				"&5哦！还有，强盗，睁大你的眼睛。有些商人房间里藏有隐藏的宝藏。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["1881243BF68F0FAC"]
+			id: "4905625BD3C4B3C4"
+			tasks: [{
+				id: "4947C4D29A9DB40A"
+				type: "observation"
+				title: "观察一个自动售货机"
+				icon: "the_vault:vendor_door"
+				timer: 0L
+				observe_type: 0
+				to_observe: "the_vault:vendor_door"
+			}]
+			rewards: [{
+				id: "5A4EC26D95463661"
+				type: "choice"
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "“真正的”狩猎之旅"
+			x: -6.75d
+			y: 0.25d
+			shape: "pentagon"
+			subtitle: "5x5 的远古残骸"
+			description: [
+				"&d现在你升到20级了，强盗，你将在完成宝箱里开始发现未知遗物。"
+				""
+				"&5它们偶尔也会出现在黑市里。还有可能出现在悬赏板上，不过我本人没见过。"
+				""
+				"&d无论如何，FOP 都为普通用户和高级用户提供了“获胜”的方式：收集全部 25 件神器，完成“挂毯”，并击败最终 boss。"
+				""
+				"&5信使是它的名字，显然。它是FOP首席执行官的化身。"
+				""
+				"&d对于高级用户，FOP告诉他们这是通往自由的唯一途径。不过，有个小问题，Bandit。"
+				""
+				"&5你永远无法集齐全部25件文物。这个游戏从一开始就被操控了。"
+				""
+				"&d不过没关系。在能真正开始改造遗迹周围的东西之前，我们还有不少时间，毕竟这是一个受控的系统。但它并非无敌的。"
+			]
+			dependencies: ["1881243BF68F0FAC"]
+			id: "2EC8B80AE1A271D5"
+			tasks: [{
+				id: "1A159CA6200BF44C"
+				type: "observation"
+				title: "观察一本神器卷轴 Artifact Tome"
+				icon: "the_vault:artifact_projector_block"
+				timer: 0L
+				observe_type: 0
+				to_observe: "the_vault:artifact_projector_block"
+			}]
+			rewards: [{
+				id: "57FE043DE4C905F7"
+				type: "choice"
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "催化未来"
+			icon: "the_vault:vault_catalyst_infused"
+			x: -6.75d
+			y: 1.5d
+			shape: "rsquare"
+			subtitle: "坚定的命运 (Determined Destiny)"
+			description: [
+				"&d强盗，大约在24级时，你开始在镀金宝箱里发现催化剂碎片。"
+				""
+				"&524？好奇怪的关卡……"
+				""
+				"&d对吧，强盗，催化剂碎片可以组合，然后带到催化剂融合台里，变成有用的东西。"
+				""
+				"&5催化物可以应用到你的宝库水晶上（当然是在水晶工作台里），可以增加获得的宝箱、金币或其他有用物品的数量。"
+				""
+				"&d哦，这里的说明说只能在未修改的宝库中找到。现在看来，这意味着“施加了2个或更少催化剂的任何宝库”。"
+				""
+				"&5知道这个倒挺好。哦！差点忘了告诉他，姐。我们在FOP战利品池里偷偷加了一种新的“盲”盒：催化剂箱。里面是什么，显而易见啦，当然。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2EC8B80AE1A271D5"]
+			id: "46082D6F0590EDD4"
+			tasks: [
+				{
+					id: "40B665B067EE0A96"
+					type: "item"
+					item: "the_vault:vault_catalyst_fragment"
+				}
+				{
+					id: "777431CB0A796D7B"
+					type: "observation"
+					title: "观察一个催化剂注入台 Catalyst Infustion Table"
+					icon: "the_vault:catalyst_infusion_table"
+					timer: 0L
+					observe_type: 0
+					to_observe: "the_vault:catalyst_infusion_table"
+				}
+			]
+			rewards: [
+				{
+					id: "2DC40071E3BCF9F5"
+					type: "choice"
+					table_id: 5632731352558517809L
+				}
+				{
+					id: "2D49A7C4C483B355"
+					type: "item"
+					item: "woldsvaults:catalyst_box"
+				}
+			]
+		}
+		{
+			title: "跳转到第40个任务"
+			x: -4.75d
+			y: 0.25d
+			shape: "hexagon"
+			subtitle: "众神之眼"
+			description: [
+				"&d行啦，强盗，在升到40级之前，地窖里没别的东西能解锁了。"
+				""
+				"&5吃一堆Vault汉堡可能很诱人，对吧？我建议忍住，Bandit，50级之后事情会变得更慢。"
+				""
+				"&d另外，最好尽可能多地收集Vault资源，并“研究”和启动一些模组"
+				""
+				"&5嗯，嗯。好，那打开之后会是什么呢？"
+				""
+				"&d现在，你将在宝库中开始发现神坛。你可能已经见过它们了：它们看起来像巨大的摩艾石像头。这些神坛将供奉着四位宝库之神中的一位。"
+				""
+				"&5啊，我想起来了！听着，强盗，你可以激活其中一个祭坛，向“宝库之神”发起限时挑战。完成就能获得奖励！失败的话，就要受罚了……"
+			]
+			dependencies: ["2EC8B80AE1A271D5"]
+			id: "1799D40CDE8D8F82"
+			tasks: [{
+				id: "402CF30E42690945"
+				type: "woldsvaults:vault_level"
+				title: "达到40级"
+				icon: {
+					id: "the_vault:god_altar"
+					Count: 1b
+					tag: {
+						god: "tenos"
+					}
+				}
+				value: 40
+			}]
+			rewards: [{
+				id: "669278B6EBCFFB14"
+				type: "choice"
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "保护你的物品栏免受侵害"
+			x: -6.75d
+			y: -1.0d
+			shape: "rsquare"
+			subtitle: "KeepInventory=true"
+			description: [
+				"&dWith death changing at level 20, you might be feeling a bit under geared, or unprepared, or just don't want to deal with losing your inventory, you can make a Warden's Vault Rock."
+				""
+				"&5将它们像普通地牢岩一样放在地坛上，并按常规支付水晶的代价。但返还给你的地牢水晶将带有“来世”标记。"
+				""
+				"&d“来世”修饰器能让你在死亡或挑战失败时保留物品栏，但代价是无法在晶体制图台里进一步修改它。"
+				""
+				"&5哦，强盗，小心了，宝库里的经验值也会减半。这样升级会慢一点，正好有时间升级装备。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2EC8B80AE1A271D5"]
+			id: "4B2756DABC97E4C6"
+			tasks: [{
+				id: "4CC4C21A3F94DF6B"
+				type: "item"
+				item: "the_vault:wardens_pearl"
+			}]
+			rewards: [{
+				id: "3F4B4417C63DCBAD"
+				type: "choice"
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "一个被包含的世界"
+			x: -8.25d
+			y: 2.5d
+			shape: "rsquare"
+			subtitle: "You Spin Me Right Round"
+			description: [
+				"&d在地下城的宝库中，有小概率发现宝库水晶球。"
+				""
+				"&5当你在与 Bandit 互动的地球仪上操作时，它会向你“揭示”一部分宝库。寻找特殊房间的好方法！"
+			]
+			hide_dependency_lines: true
+			dependencies: ["0E520C1ADD9E71DF"]
+			id: "26943BB19E61CF27"
+			tasks: [{
+				id: "79772958EF616B60"
+				type: "observation"
+				title: "观察一个宝库地球仪"
+				icon: "the_vault:vault_globe"
+				timer: 0L
+				observe_type: 0
+				to_observe: "the_vault:vault_globe"
+			}]
+			rewards: [{
+				id: "234C595D82E73B2C"
+				type: "choice"
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "药水商人！"
+			x: -9.25d
+			y: 2.5d
+			shape: "rsquare"
+			subtitle: "把最强的药水都交给我吧"
+			description: [
+				"&d在大型地牢和宝库中，你有机会找到一个炼金术档案馆。"
+				""
+				"&5使用一个可以让你在三种新的修饰剂中进行选择，并将其应用到你的宝库药水之上。"
+				""
+				"&d它们通常相当强大，所以FOP把它们放在地牢里让人寻找。当然，这也是另一种激励方式。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["0E520C1ADD9E71DF"]
+			id: "13F372A316D67ABA"
+			tasks: [{
+				id: "21817CFEE523A409"
+				type: "observation"
+				title: "观察一个炼金术档案馆"
+				icon: "the_vault:alchemy_archive"
+				timer: 0L
+				observe_type: 0
+				to_observe: "the_vault:alchemy_archive"
+			}]
+			rewards: [{
+				id: "047926AB16981B3C"
+				type: "choice"
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "烹饪材料？"
+			x: -8.25d
+			y: 0.5625d
+			shape: "gear"
+			description: [
+				"&d如果你看过原版《Vault Hunters 3》的 Bandit，可能会困惑为什么 Scavenger 的物品都是……食物。"
+				""
+				"&5以前它们是护身符、血瓶、羊皮纸之类的东西。但我姐和我决定……为你稍微改变一下。"
+				""
+				"&d我把哪些物品算作“拾荒者掉落”改成了各种特殊食材。这样你就能在宝库之外更好地利用它们了。"
+				""
+				"&5看，通常离开地堡后，所有拾荒物品都会被删除。以前它们会变成[腐坏的]，你可以分解它们来获得灵魂碎片。"
+				""
+				"&d而这些“宝库材料”是开启系统的另一把钥匙。你需要它们来制作宝库食物，更多信息可以在Q.U.E.S.T.平板电脑的研究部分找到。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["1881243BF68F0FAC"]
+			size: 0.75d
+			invisible: true
+			id: "6A45494E0B112308"
+			tasks: [{
+				id: "32825A31A93C868B"
+				type: "checkmark"
+			}]
+		}
+		{
+			title: "铭刻一条道路"
+			icon: {
+				id: "the_vault:inscription"
+				Count: 1b
+				tag: {
+					data: {
+						completion: 0.05f
+						entries: [{
+							color: 16777215
+							count: 1
+							type: 0
+						}]
+						model: 0
+						time: 400
+						size: 10
+						instability: 0.01f
+					}
+				}
+			}
+			x: -7.25d
+			y: 2.5d
+			shape: "rsquare"
+			description: [
+				"&d在活宝箱和强盗中，你开始会找到铭文和铭文碎片。完整的铭文要么是普通房间，要么是特殊的宝库房间之一。"
+				""
+				"&5你可以在水晶工作台（Crystal Workbench）上为水晶宝库（Vault Crystal）添加铭文。如果房间不是普通房间，铭文将保证在该宝库中生成。"
+				""
+				"&d进入宝库后，传送门房间的地板上会有一张地图。中心的方块就是你的传送门房间。周围的每个方块都是一个房间。"
+				""
+				"&5这是一张藏宝图，强盗。当然，它会指引你找到宝藏。"
+				""
+				"&d对了，我们偷偷在 FOPGame Server 的掉落池里加了一种新箱子：铭文箱。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2EC8B80AE1A271D5"]
+			id: "341E8BC988FE57D3"
+			tasks: [
+				{
+					id: "15FA75428A81A404"
+					type: "item"
+					item: "the_vault:inscription_piece"
+				}
+				{
+					id: "7E131B77F23655BD"
+					type: "observation"
+					title: "观察一个铭文台 Inscription Table"
+					icon: "the_vault:inscription_table"
+					timer: 0L
+					observe_type: 0
+					to_observe: "the_vault:inscription_table"
+				}
+			]
+			rewards: [
+				{
+					id: "4B1576EA051C81D1"
+					type: "choice"
+					exclude_from_claim_all: true
+					table_id: 5632731352558517809L
+				}
+				{
+					id: "1152512474544891"
+					type: "item"
+					item: "woldsvaults:inscription_box"
+				}
+			]
+		}
+		{
+			title: "死亡在精神之中"
+			x: -10.0d
+			y: 0.25d
+			shape: "rsquare"
+			subtitle: "身体恢复（Body Recovery）"
+			description: [
+				"&d如果你在20级后死于地牢，强盗，你肯定发现大部分物品不见了，而且你的出生点还出现了一个鬼魂般的尸体。"
+				""
+				"&5好样的，强盗。如果你想拿回你的物品栏，就需要制作一个灵魂提取器了。"
+				""
+				"&d你可以将灵魂/鬼魂/身体放入灵魂提取器，然后支付所列的Vault Gold来取回物品。"
+				""
+				"&5FOP会根据你的装备、身上携带的背包数量以及其他一些因素来决定你的身体成本。"
+				""
+				"&d如果没有足够的Vault Gold，你仍然可以取回物品，但会欠下The Locker一笔债务。"
+				""
+				"&5嗯，这是对“戴维·琼斯之锁”的奇妙改编，对吧？在债务还清前，所有你建造的宝库都会应用这个锁。在带锁的宝库中，你将无法获得任何经验值。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["1881243BF68F0FAC"]
+			id: "5A04F0E50CF5F17F"
+			tasks: [{
+				id: "10EDEC96A6790AA3"
+				type: "observation"
+				title: "观察一个灵魂萃取器 Spirit Extractor"
+				icon: "the_vault:spirit_extractor"
+				timer: 0L
+				observe_type: 0
+				to_observe: "the_vault:spirit_extractor"
+			}]
+			rewards: [{
+				id: "60B3745CD09CE8C8"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "Baubles n' Trinkets"
+			x: -4.75d
+			y: 1.5d
+			shape: "rsquare"
+			subtitle: "用力量来点缀你的装备"
+			description: [
+				"&d一种新的装备开始出现，尽管非常罕见，那就是Vault Trinkets"
+				""
+				"&5有点像魔法戒指或护身符，强盗。佩戴它们能在宝库中获得某种加成或力量。"
+				""
+				"&5它们分为三种颜色：蓝色、红色和绿色。要装备它们，你需要一个宝库饰品袋。"
+				""
+				"&5注意它们的使用次数有限，强盗。每次携带一个进入宝库，都会消耗一次使用次数。"
+				""
+				"&d不过其中很多在宝库之外也很有用。比如二段跳，或者爬墙的那个。"
+				""
+				"&5给你，我们偷偷多拿了一个出来。既是考验，也是奖励。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2EC8B80AE1A271D5"]
+			id: "59D6A7EF6A2A5123"
+			tasks: [{
+				id: "516696AB84D7ACE5"
+				type: "item"
+				item: "the_vault:trinket"
+			}]
+			rewards: [
+				{
+					id: "36C88FE3865DFEAD"
+					type: "choice"
+					table_id: 2640422954496342337L
+				}
+				{
+					id: "64B3E705A3B217B7"
+					type: "item"
+					item: {
+						id: "the_vault:trinket"
+						Count: 1b
+						tag: { }
+					}
+				}
+			]
+		}
+		{
+			title: "战利品与掠夺"
+			x: -6.75d
+			y: -2.0d
+			shape: "rsquare"
+			subtitle: "独一无二的体验，尽在眼前"
+			description: [
+				"&dBandit，如果你觉得自己的装备升级速度过快，可以制作一个掠夺者宝库岩。</c1>"
+				""
+				"&5像普通的地牢岩一样，在地坛上使用它，并付出代价将其变成特殊的地牢水晶。"
+				""
+				"&d这个不能再修改了，但掠夺修饰器会改变一些事情。首先，在宝库中几乎得不到经验值。小东西可能会给一点经验，但远没有你通常能得到的那么多。"
+				""
+				"&5还能提升你找到的战利品。宝箱里的战利品会多一点，矿洞遗迹和房间里的 Vault Ores 比例也会更高。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2EC8B80AE1A271D5"]
+			id: "731864D511892F56"
+			tasks: [{
+				id: "5274C8F1E84DE605"
+				type: "item"
+				item: "the_vault:plunderer_pearl"
+			}]
+			rewards: [{
+				id: "24D05ED99D59BD14"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "一个不错的箱子"
+			x: -11.25d
+			y: 0.25d
+			shape: "rsquare"
+			subtitle: "为了艰苦的战斗"
+			description: [
+				"&d所以我们最终需要这些拾荒者木箱里的代币，强盗，但现在还不需要。"
+				""
+				"&5Scavenger 是单人用户最难完成的任务。有助手会容易些，但高级用户并不总能指望其他高级用户加入。"
+				""
+				"&dScav Crates 的掉落率通常最高。Brazier Crates 相对较低，因为完成 Brazier 太容易了。"
+				""
+				"&5你可以直接忽略里面的大多数生物。这样虽然拿不到太多灵魂，但是……"
+			]
+			hide_dependency_lines: true
+			dependencies: ["1881243BF68F0FAC"]
+			id: "1AA95F28498D1C57"
+			tasks: [{
+				id: "590F16B5A7F2DCAB"
+				type: "item"
+				item: "the_vault:vault_crate_scavenger"
+			}]
+			rewards: [{
+				id: "1AEF77A9FC59D468"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 2245246540467579945L
+			}]
+		}
+		{
+			title: "Zippity Zap"
+			x: -3.25d
+			y: 2.5d
+			shape: "rsquare"
+			description: [
+				"&d你肯定注意到了，当你获得一件新装备，如果它有一个你没见过的模型，你就会收到“解锁”通知。"
+				""
+				"&5这些是幻魔，你可以将一件装备的模型更改为你已解锁的另一种模型。"
+				""
+				"&d最棒的是，你可以通过多种方式解锁特殊Transmogs：研究模组、在Vault里完成酷炫操作等。"
+				""
+				"&5不行啊，强盗，你只能把物品变成同一种类型的物品。"
+				""
+				"&d这很蠢。我们在另一个部分有个特殊的东西可以解决这个问题，强盗~"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2EC8B80AE1A271D5"]
+			id: "1F97C49BAD78BAF3"
+			tasks: [{
+				id: "3DFBB8988F7B69AE"
+				type: "observation"
+				title: "观察一个变形工作台 Transmogrification Table"
+				icon: "the_vault:transmog_table"
+				timer: 0L
+				observe_type: 0
+				to_observe: "the_vault:transmog_table"
+			}]
+			rewards: [{
+				id: "325AFC4D9CA321F7"
+				type: "choice"
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "神亲和与声望系统 (God Affinity and Reputation System)"
+			x: -4.25d
+			y: -2.0d
+			shape: "rsquare"
+			subtitle: "众神反复无常"
+			description: [
+				"&d所以，了解神明相关的亲和力与声望的区别很重要。"
+				""
+				"&5FOP 让这个系统变得有点……复杂。至少一开始是这样，你知道的？好吧，我们可以从亲和力开始，姐妹。"
+				""
+				"&d亲和力，嗯...基本上就是向四大宝库之神之一：伊多娜、温达、特诺斯和维拉展示自己。"
+				""
+				"&5最简单的方法就是佩戴其中一个神符。还有一个专长可以帮助完成这个任务。"
+				""
+				"&d接下来是声望。你看，强盗，完成神坛的挑战后，你会获得增益和奖励，还有机会获得该神明的声望点数。"
+				""
+				"&5亲和力越高，获得声望的几率就越大。注意，每个宝库之神能拥有的声望都有上限。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["1799D40CDE8D8F82"]
+			id: "7C3EC303E343D3EB"
+			tasks: [{
+				id: "729CA4B35D4B6A72"
+				type: "item"
+				item: {
+					id: "the_vault:vault_god_charm"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "4AFFEC3D00EE46E4"
+				type: "item"
+				item: {
+					id: "the_vault:vault_god_charm"
+					Count: 1b
+					tag: { }
+				}
+			}]
+		}
+		{
+			title: "多种建筑样式"
+			icon: "the_vault:skill_altar"
+			x: -4.75d
+			y: -3.0d
+			shape: "rsquare"
+			subtitle: "交换齿轮装置"
+			description: [
+				"&d强盗，如果你想尝试不同的构筑，技能祭坛是必不可少的。"
+				""
+				"&5它能让你保存已选择的技能和天赋，之后以更少的悔恨之球代价恢复它们。"
+				""
+				"&d不过有个小窍门。导入以下这行内容，就可以加载一个“空白”的技能集："
+				""
+				"&5Heal_Base:0;Haste:0;Heal_Base|0"
+				""
+				"&d结尾0前面的竖线有时叫PIPE。它不是i也不是L。按住shift，再按键盘上标有\\\的键（平均键盘上）。</c1>"
+				""
+				"&l由于一个 bug，技能祭坛默认被禁用。可以通过 gamerule 重新启用它们。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2EC8B80AE1A271D5"]
+			id: "6B6D6C7C538FCDB8"
+			tasks: [{
+				id: "381A2EF6ED5A9D83"
+				type: "checkmark"
+			}]
+		}
+		{
+			title: "50, 下到一半了"
+			icon: "the_vault:neuralizer"
+			x: -0.75d
+			y: 0.25d
+			shape: "pentagon"
+			subtitle: "还是说，才走到一半的路程？"
+			description: [
+				"&d下一个是 Bandit，等级为 50。"
+				""
+				"&5一块巨大的垫脚石，对吧。会为你打开很多可能性。"
+				""
+				"&d新的宝库，新的机制，新的战利品。"
+				""
+				"&5尤其是最后一个。还有更多宝藏。"
+				""
+				"&d是啊，但新机制也开辟了更多侵入系统的新途径。"
+				""
+				"&5说起来，班迪特。拿着这个神经重置器。有点贵，但这是重置你专家分数的唯一方法。"
+				""
+				"&d嗯，随着你升级，你会发现有些专长不再那么有用。建议等到你确定要重新分配专长点数时再使用它们。"
+			]
+			dependencies: ["6CB7D3FCD65922FC"]
+			dependency_requirement: "one_completed"
+			id: "0332B6DA83347AEB"
+			tasks: [{
+				id: "3894EF6FB4D2DE42"
+				type: "woldsvaults:vault_level"
+				title: "达到50级"
+				icon: "the_vault:neuralizer"
+				value: 50
+			}]
+			rewards: [{
+				id: "4022E779223ACB0A"
+				type: "gamestage"
+				title: "游戏阶段 - 中期"
+				auto: "invisible"
+				ignore_reward_blocking: true
+				stage: "story_mid"
+			}]
+		}
+		{
+			title: "适合各种场合的服装套装"
+			x: -2.75d
+			y: 1.5d
+			shape: "rsquare"
+			subtitle: "我的超级战衣去哪儿了？！"
+			description: [
+				"&d既然你找到了这么多Vault Gear，其中一些肯定很棒，但不适合你现在的构筑，Bandit。"
+				""
+				"&5这衣柜不仅能让你存储一套装备配置并立即切换，还能存储你的主快捷栏。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2EC8B80AE1A271D5"]
+			id: "5E426379F71796D7"
+			tasks: [{
+				id: "0445239BD115F6A2"
+				type: "observation"
+				title: "观察一个衣柜 Wardrobe"
+				icon: "the_vault:wardrobe"
+				timer: 0L
+				observe_type: 0
+				to_observe: "the_vault:wardrobe"
+			}]
+			rewards: [{
+				id: "1C754D31405639E5"
+				type: "choice"
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "有点混乱了"
+			x: -1.25d
+			y: -1.0d
+			shape: "rsquare"
+			subtitle: "我的专注力是摇晃的"
+			description: [
+				"&d装备上的每个前缀或后缀都会随机生成一个等级。等级越高，可生成的范围就越广（当然，等级也越高）。"
+				""
+				"&5使用混沌焦点意味着其中一个只会重掷等级，并且有机会获得更高的等级。"
+				""
+				"&d如果你有想要的大量前缀和后缀，但其中一些数值偏低，这个就不错。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2EC8B80AE1A271D5"]
+			id: "70C2A6B274238476"
+			tasks: [{
+				id: "6480966164AFFC88"
+				type: "item"
+				item: "the_vault:chaotic_focus"
+			}]
+			rewards: [{
+				id: "02EC8BA1CE8DD16B"
+				type: "choice"
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "从根本上更出色 (Fundamentally Better)"
+			x: -1.25d
+			y: 1.5d
+			shape: "rsquare"
+			subtitle: "Ex Bawx"
+			description: [
+				"&dBandit，最后一个未解释的装备属性部分就是隐含属性。"
+				""
+				"&5这些是像攻击伤害、射程和一些特殊能力，它们只能作为隐式属性进行随机生成。"
+				""
+				"&d就像磁化末影人，或是三叉戟的引雷。"
+				""
+				"&5基本焦点会重掷所有隐含值，让你有机会获得更高的数值和一些额外能力。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2EC8B80AE1A271D5"]
+			id: "6D4ECD8F4B33AF24"
+			tasks: [{
+				id: "304008F23AC7EE79"
+				type: "item"
+				item: "the_vault:fundamental_focus"
+			}]
+			rewards: [{
+				id: "1019AA21315C7F9C"
+				type: "choice"
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "前后对比 Before and After"
+			x: -0.25d
+			y: 1.5d
+			shape: "rsquare"
+			subtitle: "上蜡，去蜡"
+			description: [
+				"&d你应该在Vault Artisan Station里获得一些新的Focus，Bandit。比如Waxing和Waning Focus。"
+				""
+				"&5Foci？Focuses？老分不清。不过，Wild Focus 能让你重掷所有前缀和后缀，而这俩只能重掷其中一种。"
+				""
+				"&d能帮你精准挑选适合你建筑的装备，非常有帮助。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2EC8B80AE1A271D5"]
+			id: "77761C3A93EA70CC"
+			tasks: [
+				{
+					id: "6577F246310D8DCB"
+					type: "item"
+					item: "the_vault:waxing_focus"
+				}
+				{
+					id: "51B1F59286A5B865"
+					type: "item"
+					item: "the_vault:waning_focus"
+				}
+			]
+			rewards: [{
+				id: "13D788EF7AED4240"
+				type: "choice"
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "诡异之门"
+			x: -8.25d
+			y: 1.5d
+			shape: "rsquare"
+			subtitle: "恐怖地牢，及其他更多内容"
+			description: [
+				"&520级后，Vaults中会开始出现两种类型的门，即Bandit门。"
+				""
+				"&d地牢门会出现在宝库房间的墙壁上，通常在最底层。门上会刻有特定怪物类型的符号。"
+				""
+				"&5打开地牢门时，弹窗会显示内部生成的生物的难度等级。"
+				""
+				"&d难度等级从简单、普通、困难、极具挑战性到不可能不等。"
+				""
+				"&5每个地牢都会生成一种桶，它们是箱子的替代版本，作用都与木制箱子相同。但要正确破坏它们，需要使用具有相应亲和力的工具。"
+				""
+				"&d在地下城的尽头，会生成特殊的冠军，即地下城的领主。通常比普通冠军更肉，掉落物也相当不错。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["1881243BF68F0FAC"]
+			id: "0E520C1ADD9E71DF"
+			tasks: [{
+				id: "3E8CDE870BD93874"
+				type: "observation"
+				title: "观察一个地牢之门"
+				icon: {
+					id: "the_vault:dungeon_door"
+					Count: 1b
+					tag: {
+						type: "spider"
+					}
+				}
+				timer: 0L
+				observe_type: 0
+				to_observe: "the_vault:dungeon_door"
+			}]
+			rewards: [{
+				id: "1A07AF4169199F48"
+				type: "choice"
+				table_id: 818089594093312426L
+			}]
+		}
+		{
+			title: "宝库庆典"
+			x: -6.25d
+			y: -3.0d
+			shape: "rsquare"
+			subtitle: "显而易见，这是一个谎言"
+			description: [
+				"&d强盗，继续留意这些特殊的宝库石。它们是用来制作名为蛋糕宝库的特殊宝库的。"
+				""
+				"&5蛋糕宝库很特别，强盗。目标是找到尽可能多的蛋糕。这个宝库里的房间只有一个出口：向外螺旋延伸的路径。"
+				""
+				"&d每个房间都只有一个蛋糕，藏在某个地方。当你靠近它时，你的视野会发生变化。"
+				""
+				"&5每个房间里还有一个克雷基底座。在准备好离开之前，不要与它互动！"
+				""
+				"&d看，每找到一个蛋糕都会给宝库添加修饰器。通常是好坏参半。更多战利品，但敌人也更强大。"
+				""
+				"&5在敌人变得太致命之前，尽可能深入，然后返回搜刮再离开，这是一个好策略。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2EC8B80AE1A271D5"]
+			id: "2E4634E02915378E"
+			tasks: [{
+				id: "4EF621A2C992EF90"
+				type: "item"
+				item: "the_vault:crystal_seal_cake"
+			}]
+			rewards: [{
+				id: "17BEB55D0D0D8F77"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "一点小小的混乱"
+			x: -7.25d
+			y: -3.0d
+			shape: "rsquare"
+			subtitle: "可能不止一点点而已"
+			description: [
+				"&d强盗，如果你在自动售货机或黑市上看到这个混沌宝库岩出售，我强烈建议你把它买下来！"
+				""
+				"&d这是一个特殊的宝库主题，它将所有其他主题的房间都混合在了一起。"
+				""
+				"&5这包括更危险的模组主题，如下界或虚空主题，以及其中的怪物。"
+				""
+				"&d兴趣点处的宝箱也是随机的！"
+				""
+				"&5看到了吗？混乱不堪。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2EC8B80AE1A271D5"]
+			id: "0C0EF3E7F086CF9F"
+			tasks: [{
+				id: "68A7530BD8CA535A"
+				type: "item"
+				item: "the_vault:vault_catalyst_chaos"
+			}]
+			rewards: [{
+				id: "504F2DBDD7ADB7ED"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "至尊级强力铁砧"
+			x: -4.75d
+			y: -1.0d
+			shape: "rsquare"
+			subtitle: "有点疯，有点傻，但很有趣"
+			description: [
+				"&d嗯，这东西看起来旧了不少。这就是地窖砧，强盗。"
+				""
+				"&5在这些特殊工作台加入之前，你必须用铁砧将特殊物品应用到水晶上。"
+				""
+				"&d有时候你就像切面包一样用铁砧。所以FOP听取了反馈，并实际实施了一项有用的物品：Vault Anvil。"
+				""
+				"&5这个砧板在使用时基本上不会受到任何伤害。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["1881243BF68F0FAC"]
+			id: "2E6BE62F1163E67B"
+			tasks: [{
+				id: "019165DD99058262"
+				type: "observation"
+				title: "观察一个宝库铁砧"
+				icon: "the_vault:vault_anvil"
+				timer: 0L
+				observe_type: 0
+				to_observe: "the_vault:vault_anvil"
+			}]
+			rewards: [{
+				id: "1AD642B649D2277B"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "模组好东西的盒子"
+			x: -7.25d
+			y: 3.5d
+			shape: "rsquare"
+			subtitle: "箱子里面是什么？嗯，你猜到了吗？"
+			description: [
+				"&d强盗，注意这些小蓝盒。它们叫模组盒子，里面装着……"
+				""
+				"&5……取决于你目前研究过的模组，会解锁不同的东西。"
+				""
+				"&d如果你尚未研究任何模组，模组箱会掉落知识碎片，助你更接近研究完成。一旦研究完成某些模组，模组箱只会掉落这些模组中的特定物品。"
+				""
+				"&5嘿，姐妹。我有个主意。你能稍微改改箱子吗？让强盗也有机会拿到知识碎片？"
+				""
+				"&d这倒也不是个坏主意。我会把概率设得比较低，因为在更高等级时，你可能更需要高级模组物品的机会，而不是知识碎片。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2EC8B80AE1A271D5"]
+			id: "4258E78EC459B8E3"
+			tasks: [{
+				id: "18A04F41AA4F5B97"
+				type: "item"
+				item: "the_vault:mod_box"
+			}]
+			rewards: [
+				{
+					id: "7B8FA85B7D175E19"
+					type: "choice"
+					exclude_from_claim_all: true
+					table_id: 2640422954496342337L
+				}
+				{
+					id: "48825395020344FF"
+					type: "item"
+					item: "the_vault:mod_box"
+				}
+			]
+		}
+		{
+			title: "怪物般的视野"
+			x: -2.75d
+			y: 3.5d
+			shape: "rsquare"
+			subtitle: "我们有全息投影了？！"
+			description: [
+				"&d动画矩阵是个有趣的小方块。用处不大，强盗，但很适合当伪装方块。"
+				""
+				"&5你可以用神秘蛋里得到的其中一个生成蛋，把它放进这里面。"
+				""
+				"&d它会把生物显示在Animatrix的上方。基本上就是个全息投影。如我所说，用处不大，但挺酷的。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2EC8B80AE1A271D5"]
+			id: "458B00C55596073B"
+			tasks: [{
+				id: "062EC1F605362099"
+				type: "observation"
+				title: "观察一个动画矩阵 Animatrix"
+				icon: "the_vault:animatrix_block"
+				timer: 0L
+				observe_type: 0
+				to_observe: "the_vault:animatrix_block"
+			}]
+			rewards: [
+				{
+					id: "67D23BA8FBBE6934"
+					type: "choice"
+					exclude_from_claim_all: true
+					table_id: 2640422954496342337L
+				}
+				{
+					id: "6585C4A5D94FDA1A"
+					type: "item"
+					item: "the_vault:mystery_egg"
+				}
+			]
+		}
+		{
+			title: "地牢视觉（Dungeon Vision）"
+			x: -9.25d
+			y: -1.0d
+			shape: "rsquare"
+			subtitle: "我看到了一个挑战！"
+			description: [
+				"&d地牢顶石可以在水晶工作台添加到水晶宝库中。"
+				""
+				"&5这样在Vault里时，地牢门就会高亮显示。非常实用。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2EC8B80AE1A271D5"]
+			id: "5E76F2D1629500C0"
+			tasks: [{
+				id: "7F2B8A5B868F55BC"
+				type: "item"
+				item: "the_vault:capstone_dungeon_hunter"
+			}]
+			rewards: [{
+				id: "55494898BB9EB409"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "寻找遗迹物品"
+			x: -9.25d
+			y: -2.0d
+			shape: "rsquare"
+			subtitle: "保证获得的羊皮纸卷轴"
+			description: [
+				"&d将Prosperous Capstone添加到Vault Crystal中，可确保Completion Crate内必定包含一件Artifact。"
+				""
+				"&5小心点，你知道的，首先要完成宝库才行。"
+				""
+				"&d是的，但你也可以为自己擅长的目标添加一个封印。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2EC8B80AE1A271D5"]
+			id: "4B7A874A465F7563"
+			tasks: [{
+				id: "55E2DEEEA6095970"
+				type: "item"
+				item: "woldsvaults:capstone_prosperous"
+			}]
+			rewards: [{
+				id: "5CBDDCF3FF987145"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "非凡的力量！"
+			x: -8.25d
+			y: -3.0d
+			shape: "rsquare"
+			subtitle: "迷你迷你生命条模组"
+			description: [
+				"&dThe Frenzy Capstone adds a curse called Frenzy to your Vault."
+				""
+				"&5这有点双刃剑的意思，强盗。怪物们会变得更强大、更快、也更致命。"
+				""
+				"&d但它们的生命值会骤降到1点……通常是这样。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2EC8B80AE1A271D5"]
+			id: "1200CB57AA912FF4"
+			tasks: [{
+				id: "42A396C3E83A347A"
+				type: "item"
+				item: "woldsvaults:capstone_frenzy"
+			}]
+			rewards: [{
+				id: "3C1F40F0B2E6F34A"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "Pylon View"
+			x: -8.25d
+			y: -2.0d
+			shape: "rsquare"
+			subtitle: "需要额外的金字塔结构物"
+			description: [
+				"&d金字塔顶石将使所有金字塔在宝库中高亮显示。"
+				""
+				"&5强盗，金字塔是那些散落在周围的增益水晶。能加力量、延长挖掘时间等等的那种。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2EC8B80AE1A271D5"]
+			id: "7F307FBDEDC63F14"
+			tasks: [{
+				id: "3906CE209E0117D2"
+				type: "item"
+				item: "the_vault:capstone_pylon_hunter"
+			}]
+			rewards: [{
+				id: "6110229CBA3CD7D5"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "Vendoor 愿景"
+			x: -8.25d
+			y: -1.0d
+			shape: "rsquare"
+			subtitle: "Sale-o-vision"
+			description: [
+				"&dThe Merchant Capstone can be added to Vault Crystal to get all Vendoors to highlight while you are in that Vault."
+				""
+				"&5行，记得多带点Vault币。不过，很多Vendoor房间里都有些好东西可以找。"
+				""
+				"&d离开前记得环顾四周。尤其是楼梯下面。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["1881243BF68F0FAC"]
+			id: "5F14F74106DDA042"
+			tasks: [{
+				id: "0CD1FD66DBB5E2EB"
+				type: "item"
+				item: "the_vault:capstone_vendoor_hunter"
+			}]
+			rewards: [{
+				id: "5250CFCD252F34C6"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "附魔测试 Enchanted Testing"
+			x: -9.25d
+			y: -3.0d
+			shape: "rsquare"
+			subtitle: "空气中的魔法"
+			description: [
+				"&d强盗，有了这些特殊顶石，我想试试新东西。我给你准备了个新顶石试试：附魔顶石。我已经把它放进地牢战利品里了，多留意点。"
+				""
+				"&5姐姐，那个有什么用呀？"
+				""
+				"&d所以，有时当你启动一个宝库时，会看到一些特殊修饰符被激活。比如，原始宝库总有特定的修饰符。我想我可以通过这个系统来搞点...小动作。"
+				""
+				"&5糟糕，她说要搞恶作剧。小心点，强盗。"
+				""
+				"&d没说错，只是不确定系统会怎么处理。有了附魔基石，就会添加一个自定义修饰符：附魔。运行该宝库时，偶尔会发生某种事件。如果这行得通，我有个主意正在酝酿中……"
+			]
+			hide_dependency_lines: true
+			dependencies: ["1881243BF68F0FAC"]
+			id: "08DF894A687E7AAB"
+			tasks: [{
+				id: "711CDCF51B4A2B34"
+				type: "item"
+				item: "woldsvaults:capstone_enchanted"
+			}]
+			rewards: [{
+				id: "7E9F54BDF987F8F2"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "透视作弊器"
+			x: -8.25d
+			y: 3.5d
+			shape: "rsquare"
+			subtitle: "超越视线的视野"
+			description: [
+				"&d好，又有另一个特殊的Capstone要你去找了，Bandit。它叫All-Seeing-Eye。这次我把它生成在了Vendoor房间里。"
+				""
+				"&5嗯，看名字，可能和商人或地牢顶石类似吧？"
+				""
+				"&d没错！所有箱子、门和目标方块（比如罗盘石或火盆）都会显示在同一房间里。还有……可能更远的地方……"
+				""
+				"&5还要更深处吗？！"
+				""
+				"&d嗯，可能调得有点太准了。如果你靠近走廊，可能能看到下一个房间的情况……"
+				""
+				"&5一下子要看的...东西太多了。光是想想就头疼了。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2EC8B80AE1A271D5"]
+			id: "52CC29799F792FCB"
+			tasks: [{
+				id: "5B7FF45FE0F9B448"
+				type: "item"
+				item: "woldsvaults:capstone_all_seeing_eye"
+			}]
+		}
+		{
+			title: "神形岩石 (Godly Shaped Rocks)"
+			x: -5.25d
+			y: -2.0d
+			shape: "rsquare"
+			subtitle: "每位神明各一份"
+			description: [
+				"&d有了神祇基石，我想我们可以调整一些东西，为每位神祇建造一个特殊的宝库。"
+				""
+				"&5这能帮你更快地获得特定神明的声望，从而更好地构建你的神圣悖论。"
+				""
+				"&d制作这四种特殊神物之一，像其他地窖岩一样放置在地窖祭坛上。完成地窖水晶后，你将获得一个特殊的狂热者地窖。"
+				""
+				"&5The whole Vault will be themed to that God, and all God Altars ye find will be for that God only."
+			]
+			hide_dependency_lines: true
+			dependencies: ["1799D40CDE8D8F82"]
+			id: "55C6A431EBF09D21"
+			tasks: [
+				{
+					id: "472E186670369A73"
+					type: "item"
+					item: "woldsvaults:idona_dagger"
+				}
+				{
+					id: "5854BB21C8B598EE"
+					type: "item"
+					item: "woldsvaults:wendarr_gem"
+				}
+				{
+					id: "376837BCC9E6ED64"
+					type: "item"
+					item: "woldsvaults:velara_apple"
+				}
+				{
+					id: "6342EC2DA2581EC7"
+					type: "item"
+					item: "woldsvaults:tome_of_tenos"
+				}
+			]
+			rewards: [{
+				id: "6A4E4C3F5FCDDD03"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 2245246540467579945L
+			}]
+		}
+		{
+			title: "有点古怪的小家伙"
+			x: -0.25d
+			y: -1.0d
+			shape: "rsquare"
+			subtitle: "换句话说：不寻常的（充满爱意的）"
+			description: [
+				"&dVault Artisan Station 的新焦点类型，Bandit。Eccentric Focus。"
+				""
+				"&5这个焦点能让你添加一个不寻常的修饰符。这些修饰符通常无法添加到该装备上。"
+				""
+				"&d好的。我也不确定用其他焦点会怎么样，所以小心点。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2EC8B80AE1A271D5"]
+			id: "5BBB1921175BF0C4"
+			tasks: [{
+				id: "11E251DB8CB2AF48"
+				type: "item"
+				item: "woldsvaults:eccentric_focus"
+			}]
+			rewards: [{
+				id: "123B546236386792"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 2640422954496342337L
+			}]
+		}
+		{
+			title: "锻造一些配件出来吧"
+			x: -4.75d
+			y: 3.5d
+			shape: "rsquare"
+			subtitle: "Baubled 偏好设置"
+			description: [
+				"&d一旦你开始收集 Trinkets, Bandit，你迟早会发现自己用不上的那些。"
+				""
+				"&5还有那些你已经拥有但不需要的物品。"
+				""
+				"&d你可以在Vault Recycler中回收这些Trinkets，通常会得到Vault Trinket Scrap。"
+				""
+				"&5将它们带到这个宝库饰品锻造台，再与其他材料结合，你就能用已解锁的饰品锻造出新的饰品。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["59D6A7EF6A2A5123"]
+			id: "5B29F5CA1BCECFB6"
+			tasks: [{
+				id: "715930A847963258"
+				type: "observation"
+				title: "观察一个 Trinket Forge 锻造台"
+				icon: "the_vault:trinket_forge"
+				timer: 0L
+				observe_type: 0
+				to_observe: "the_vault:trinket_forge"
+			}]
+			rewards: [{
+				id: "6555FFDC32845DA2"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "时尚便携包"
+			x: -5.25d
+			y: 2.5d
+			shape: "rsquare"
+			subtitle: "满是闪光宝可梦的口袋球"
+			description: [
+				"&5In the FOP Game Server, Trinkets require ye to wear a Trinket Pouch to equip them."
+				""
+				"&d入门饰品袋可让你装备一个蓝色和一个红色饰品。你可以通过战利品或其他途径找到其他饰品袋，它们能让你装备绿色饰品、两个同色饰品，或超过2个饰品。"
+				""
+				"&5另外，强盗，你可以移除一个饰品袋，里面的饰品会保留，这样你就可以为不同的构筑更换不同的饰品组合了。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["59D6A7EF6A2A5123"]
+			hide: true
+			id: "5DA329FC1A2F69DA"
+			tasks: [{
+				id: "653F16D9669ED71D"
+				type: "item"
+				title: "任意的小饰品袋"
+				icon: {
+					id: "woldsvaults:trinket_pouch"
+					Count: 1b
+					tag: {
+						id: "woldsvaults:basic_vanilla"
+					}
+				}
+				item: {
+					id: "woldsvaults:trinket_pouch"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "76053F9923B235A9"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "强大的编织术"
+			x: -4.25d
+			y: 2.5d
+			shape: "rsquare"
+			subtitle: "缝纫命运"
+			description: [
+				"&d编织台用于制作其他饰品袋。"
+				""
+				"&5By default, ye can craft one of three starting Trinket Pouches with it, which give ye some combination of the three Trinket colors : Blue, Red, and Green."
+				""
+				"&d还有一些特殊的 Trinket Pouch 配方需要你去寻找和掠夺！"
+			]
+			hide_dependency_lines: true
+			dependencies: ["5DA329FC1A2F69DA"]
+			hide: true
+			id: "2FD33954095C8638"
+			tasks: [{
+				id: "654F3C88C14756B9"
+				type: "observation"
+				title: "观察一个编织站 Weaving Station"
+				icon: "woldsvaults:weaving_station"
+				timer: 0L
+				observe_type: 0
+				to_observe: "woldsvaults:weaving_station"
+			}]
+			rewards: [{
+				id: "042C85DB15D7B00C"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "模组盒子中的模组盒子"
+			x: -6.25d
+			y: 3.5d
+			shape: "rsquare"
+			subtitle: "拳击 装箱的箱子 箱子 盒子"
+			description: [
+				"&5Mod Box Workstation 是一种可研究的工具，能让你制作定向 Mod Box。"
+				""
+				"&5这些箱子只会掉落所列模组中的物品。"
+				""
+				"&5To craft a specific box, you must have that mod Researched."
+				""
+				"&l&4(需要研究)"
+			]
+			hide_dependency_lines: true
+			dependencies: ["4258E78EC459B8E3"]
+			hide: true
+			id: "3473933CA0BA9431"
+			tasks: [{
+				id: "2E2E39CED92832BB"
+				type: "observation"
+				title: "观察一个模组工作台 Mod Box Workstation"
+				icon: "woldsvaults:mod_box_workstation"
+				timer: 0L
+				observe_type: 0
+				to_observe: "woldsvaults:mod_box_workstation"
+			}]
+			rewards: [{
+				id: "3EE72AC1589B4D24"
+				type: "item"
+				item: "the_vault:mod_box"
+				count: 2
+			}]
+		}
+		{
+			title: "宝库旁的果实"
+			x: -2.75d
+			y: -1.0d
+			shape: "rsquare"
+			subtitle: "甜蜜，甜蜜的时光"
+			description: [
+				"&d大约在第20级时，你将在完成宝箱和其他来源中开始发现Vault Fruit。"
+				""
+				"&5Vault Fruit 能让你延长 Vault Timer 的时间，帮你多捞点战利品，或者刚好能完成目标。"
+				""
+				"&d每消耗一个Vault Fruit，都会消耗你最大生命值的10%。"
+				""
+				"&5等级越高，你就能找到更好更大的水果。其中一些还有特殊副作用。"
+				""
+				"&d拿着这个水果袋，强盗。你可以把大量地堡水果存进去，需要的时候再用。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["1881243BF68F0FAC"]
+			hide: true
+			id: "6CFEA59289784411"
+			tasks: [{
+				id: "75C92F8199751526"
+				type: "item"
+				item: "the_vault:sweet_kiwi"
+			}]
+			rewards: [{
+				id: "79340F9E98783755"
+				type: "item"
+				item: {
+					id: "vaultfruitbag:bag"
+					Count: 1b
+					tag: {
+						Inventory: { }
+					}
+				}
+			}]
+		}
+		{
+			title: "虚空中的可能性"
+			x: -3.25d
+			y: -3.0d
+			shape: "rsquare"
+			subtitle: "直接拒绝就好"
+			description: [
+				"&d通过研究垃圾管理，你将获得一个实用工具，帮你清空背包和物品栏中的多余方块，尤其是当你使用锤子时：虚空熔炉。"
+				""
+				"&5嗯，有了拾取+虚空模式下的磁铁，你就能选择要清除或保留的方块了。"
+				""
+				"&d这样放置的方块不会消耗你的磁铁耐久度。至少，理论上是这样。"
+				""
+				"&5In the Void Crucible interface, in the top tab, ye can look through the different themes and select blocks to blacklist and disable voiding on."
+				""
+				"&d底部标签页会显示所有你已加入黑名单的物品，可以点击将其移除。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["2EC8B80AE1A271D5"]
+			hide: true
+			id: "6CA424DD23A91F38"
+			tasks: [{
+				id: "09F3193359B63E8E"
+				type: "observation"
+				title: "观察一个虚空熔炉 Void Crucible"
+				icon: "the_vault:vault_charm_controller"
+				timer: 0L
+				observe_type: 0
+				to_observe: "the_vault:vault_charm_controller"
+			}]
+			rewards: [{
+				id: "73D339C1F5AEB118"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+		{
+			title: "这是一个（不）是陷阱的任务书文本"
+			x: -9.25d
+			y: 3.5d
+			shape: "rsquare"
+			subtitle: "陷阱解除 (100)"
+			description: [
+				"&5如果你受够了寻找大量陷阱箱，却没有足够的宝石来给你的宝库工具装上陷阱解除器，那么贪婪基石或许能帮到你。"
+				""
+				"&5Applying this Capstone to a Vault Crystal will negate almost all Trap chances."
+			]
+			hide_dependency_lines: true
+			dependencies: ["1881243BF68F0FAC"]
+			id: "5B3FD01BD5755364"
+			tasks: [{
+				id: "5A9A86EC177BB764"
+				type: "item"
+				item: "the_vault:eye_of_avarice"
+			}]
+			rewards: [{
+				id: "7FA21F9026799FAC"
+				type: "item"
+				item: "the_vault:eye_of_avarice"
+			}]
+		}
+		{
+			title: "更大的挑战"
+			icon: {
+				id: "the_vault:sigil"
+				Count: 1b
+				tag: {
+					SigilId: "adept"
+					SigilModel: "the_vault:sigil/adept_sigil#inventory"
+				}
+			}
+			x: -2.75d
+			y: -2.0d
+			shape: "rsquare"
+			subtitle: "高风险，高回报"
+			description: [
+				"&5想要更难的挑战和更好的奖励，盗贼，那就给你的宝库水晶施加一个印记吧。"
+				""
+				"&d符文共有5个等级，每个等级都会增加宝库的难度，但同时也会提高宝箱的等级，从而在完成目标后提升其中的奖励。"
+				""
+				"&5The first four tiers are craftable, but the 5th their can only be found in Treasure Sand."
+			]
+			hide_dependency_lines: true
+			dependencies: ["2EC8B80AE1A271D5"]
+			id: "18F19FAD4E12E01C"
+			tasks: [{
+				id: "52283160286E8720"
+				type: "item"
+				title: "任意符文 (Any Sigil)"
+				icon: {
+					id: "the_vault:sigil"
+					Count: 1b
+					tag: {
+						SigilId: "adept"
+						SigilModel: "the_vault:sigil/adept_sigil#inventory"
+					}
+				}
+				item: {
+					id: "the_vault:sigil"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "5497AF5571CEB76C"
+				type: "item"
+				item: {
+					id: "the_vault:sigil"
+					Count: 1b
+					tag: {
+						SigilId: "adept"
+						SigilModel: "the_vault:sigil/adept_sigil#inventory"
+					}
+				}
+			}]
+		}
+		{
+			title: "一杯时尚的饮品"
+			icon: {
+				id: "the_vault:transmog_brew"
+				Count: 1b
+				tag: { }
+			}
+			x: -2.25d
+			y: 2.5d
+			shape: "rsquare"
+			subtitle: "我的衣柜 你的衣柜"
+			description: [
+				"&5你们是在和其他助手一起玩服务器吗？有人找到大家都想要的超稀有外观坐骑了吗？"
+				""
+				"&d接着，你需要制作&l外观转换药水！&r&d有了它，制作者就能将自己解锁的外观转换分享给他人！"
+				""
+				"&5请注意，这并不包括特殊外观，例如通过神明声望解锁、有特殊解锁条件等外观。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["1F97C49BAD78BAF3"]
+			id: "0A81698853E5D2CC"
+			tasks: [{
+				id: "7338181B1EC5A558"
+				type: "checkmark"
+			}]
+		}
+		{
+			title: "BOSS 战斗！"
+			x: -2.75d
+			y: 0.25d
+			shape: "pentagon"
+			subtitle: "社区领袖还是城市领袖？"
+			description: [
+				"&5在50级时，会解锁另一种更普通的宝库类型：寻找符文。"
+				""
+				"&5这些要难一些，因为你要对抗一个大型 Boss 型敌人。但要召唤这个 Boss，你需要先找到符文。"
+				""
+				"&5符文会偶尔出现在宝箱中，你需要至少5个才能召唤首领。每个符文都会修改首领的生命值、伤害、能力使用频率，并增加奖励。"
+				""
+				"&5添加超过5个符文可增加奖励，但请注意，在20、40和60个符文时，Boss会获得额外的特殊能力。"
+				""
+				"&5你可以挑选合适的符文来构筑你心仪的Boss。只需将符文带回第一间房间，放入底座，然后击杀Boss即可。简单至极。"
+			]
+			dependencies: ["1799D40CDE8D8F82"]
+			hide: true
+			id: "6CB7D3FCD65922FC"
+			tasks: [{
+				id: "552282F2443A2B05"
+				type: "woldsvaults:vault_level"
+				title: "达到50级"
+				icon: {
+					id: "the_vault:boss_rune"
+					Count: 1b
+					tag: { }
+				}
+				value: 50
+			}]
+			rewards: [{
+				id: "0970AA2D367B8BBB"
+				type: "item"
+				item: "the_vault:crystal_seal_executioner"
+			}]
+		}
+		{
+			title: "虚空过滤器 (A Filter of the Void)"
+			x: -2.25d
+			y: -3.0d
+			shape: "rsquare"
+			subtitle: "更多虚空之力 More Void Power"
+			description: [
+				"&d虚空熔炉和虚空拾取模式的问题在于，它们会清除所有非宝库方块，而黑名单最多只能保存54个方块免受虚空清除的影响。"
+				""
+				"&5这确实是个问题，尤其是在 FOP 游戏服务器里，有好多超棒的方块，你可能想留着寄给我们，或者自己用在自己的建筑里。"
+				""
+				"&d进入过滤项链！利用Create的过滤器和属性过滤器的力量，你可以更精准地选择要虚空化的物品。"
+				""
+				"&5拿着过滤项链右键打开，可以放入大量过滤器或属性过滤器。"
+				""
+				"&d佩戴过滤项链时，它只会过滤掉你内部过滤器中所设置的条件相符的方块。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["6CA424DD23A91F38"]
+			hide: true
+			id: "71C0F8F2A9785A59"
+			tasks: [{
+				id: "10DF667CBC39441F"
+				type: "item"
+				item: "woldsvaults:filter_necklace"
+			}]
+			rewards: [{
+				id: "579854025F62C63C"
+				type: "item"
+				item: "create:attribute_filter"
+				count: 2
+			}]
+		}
+		{
+			title: "预制房屋"
+			x: -6.25d
+			y: 2.5d
+			shape: "rsquare"
+			subtitle: "就像一台3D打印机……专为建筑而生"
+			description: [
+				"&d解锁了铭文台后，你会发现有一个“主世界铭文”选项卡。"
+				""
+				"&5这些可制作的铭文是预先做好的房屋、基地和其他建筑，你可以使用建筑师熔炉来生成它们。"
+				""
+				"&dPlace down the Architect's Crucible, and put in an Overworld Inscription. You can preview and move around the build before having it spawn the build."
+			]
+			hide_dependency_lines: true
+			dependencies: ["341E8BC988FE57D3"]
+			hide: true
+			id: "18098C9A8D3B9BF5"
+			tasks: [{
+				id: "3A8E4150FC99CCA7"
+				type: "observation"
+				title: "观察建筑师之熔炉 (Architect's Crucible)"
+				icon: "the_vault:schematic_terminal"
+				timer: 0L
+				observe_type: 0
+				to_observe: "the_vault:schematic_terminal"
+			}]
+			rewards: [{
+				id: "7CFF13A5C763FA94"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 5632731352558517809L
+			}]
+		}
+	]
+	quest_links: [ ]
+}

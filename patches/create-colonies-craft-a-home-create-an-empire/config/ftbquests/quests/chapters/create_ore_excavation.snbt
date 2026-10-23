@@ -1,0 +1,215 @@
+# AI 初翻，未人工校对
+{
+	consume_items: false
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	disable_toast: true
+	filename: "create_ore_excavation"
+	group: "1E1ECA0B31EDA78D"
+	icon: "createoreexcavation:drilling_machine"
+	id: "0ABFAA4C2785E98B"
+	order_index: 1
+	progression_mode: "linear"
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"矿石脉探测器是创造矿石挖掘中用于定位区块内隐藏矿石脉的扫描工具。这些矿脉在世界上不可见，无法通过正常采矿发现。它们以不可见的资源矿床形式存在，必须在放置钻井机前探测到。"
+				""
+				"使用矿石脉络探测器（通常在站立于区块中时右键）会检查该区块，并告知是否存在脉络。若存在，会显示可开采的资源类型。若未找到，则会相应提示。"
+				""
+				"因此，Ore Vein Finder 对于规划自动化装置至关重要，因为钻孔机只有在特定区块放置时才会产出资源"
+				"里面实际上含有一个矿脉的区块。"
+				""
+				""
+				"&4This system does not replace normal Minecraft ore generation. Regular ore blocks still spawn in the world as usual and can be mined normally. The ore veins from this mod are an additional resource system designed for automated extraction using Create machinery."
+				"&r"
+			]
+			icon: "createoreexcavation:vein_finder"
+			id: "334D840CBD58612D"
+			rewards: [
+				{
+					id: "002549D80C80128A"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+				{
+					count: 2
+					id: "55DF45042F32CAD9"
+					item: "minecraft:bread"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "1B05FAF167F95DA8"
+				item: "createoreexcavation:vein_finder"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["334D840CBD58612D"]
+			description: [
+				"小型矿脉是生成最慢但最常见的矿脉类型。每500个游戏刻生成一种资源。"
+				""
+				"以下资源可能以小矿脉的形式出现："
+				"煤炭、铬铁矿、赭石、焦土、天蓝石、翡翠和浮石。"
+				""
+				"此外，煤炭脉仅存在于小型类别中，这意味着煤炭不会以中型或大型脉的形式生成。"
+				""
+				"小矿脉在早期或需要多个分散采集点时有用，但其产出速度最低。"
+			]
+			id: "754A2836A9184379"
+			tasks: [{
+				id: "170865D84AAC7645"
+				title: "测试"
+				type: "checkmark"
+			}]
+			title: "小型矿脉 (Small Ore Veins)"
+			x: -2.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["334D840CBD58612D"]
+			description: [
+				"中等矿脉每250个游戏刻生成一种资源，速度是小型矿脉的两倍。"
+				""
+				"以下资源可以以中等矿脉的形式出现："
+				"Crimsite、Ochrum、Scorchia、Asurine、Veridium 和 Scoria。"
+				""
+				"中等矿脉提供均衡的产出率，通常是可用性和产出速度之间的良好折中。"
+			]
+			id: "7D89BAD16860722C"
+			tasks: [{
+				id: "06A19E133B2626E5"
+				title: "中等矿石脉脉"
+				type: "checkmark"
+			}]
+			x: 4.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["334D840CBD58612D"]
+			description: [
+				"大型矿脉是速度最快的类型，每125个游戏刻生成一种资源。"
+				""
+				"以下资源可以以大矿脉的形式出现："
+				"Crimsite、Ochrum、Scorchia、Asurine、Veridium 和 Scoria。"
+				""
+				"大型矿脉提供最高的产出率，非常适合需要最大资源产出的大规模自动化装置。"
+			]
+			id: "5D64273422BAB61C"
+			tasks: [{
+				id: "4D2CE16709B59122"
+				title: "大型矿脉 (Large Ore Veins)"
+				type: "checkmark"
+			}]
+			x: 1.0d
+			y: 6.5d
+		}
+		{
+			dependencies: ["334D840CBD58612D"]
+			description: [
+				"钻孔机是创造模式矿石挖掘的核心组件，用于从探测到的矿脉中提取资源。它必须放置在包含有效矿脉的区块内，否则不会产生任何物品。"
+				""
+				"该机器需要来自Create模组的旋转动力。你提供的应力承受能力和稳定旋转越高，其运行就越可靠。一旦供电并正确放置，钻孔机将自动生成与该区块矿脉关联的资源。"
+				""
+				"只要钻井机有动力且处于有效区块中，它就会持续产出物品。这使得它非常适合全自动采矿，无需手动挖掘方块。"
+			]
+			icon: "createoreexcavation:drilling_machine"
+			id: "213ABA7310018BEB"
+			rewards: [
+				{
+					id: "350703ED61B4B4B0"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "1223728B660DDEA5"
+					item: "minecraft:bread"
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "1C37549B63A934BF"
+					item: "createoreexcavation:drilling_machine"
+					type: "item"
+				}
+				{
+					id: "3089AF19F0450D04"
+					item: "createoreexcavation:drill"
+					type: "item"
+				}
+			]
+			title: "钻孔中"
+			x: -0.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["334D840CBD58612D"]
+			description: [
+				"矿石脉系图谱是一种用于存储和管理已发现的矿石脉系信息的实用物品。矿石脉系探测器仅检查你当前所在的区块，而图谱则能让你永久记录脉系数据并在之后查阅。"
+				""
+				"使用样本钻头配合矿石脉图"
+				""
+				""
+				"然后你可以将结果与 Ore Vein Atlas 结合使用，以存储矿脉数据。保存后，该图谱会记录："
+				""
+				"- 矿脉类型"
+				""
+				"- 区块位置"
+				""
+				"- 矿脉大小（小、中或大）"
+				""
+				"此组合可让你用样本钻系统扫描区域，并将所有发现的矿脉记录在矿石脉系图谱中。无需手动标记坐标，可用图谱作为结构化参考，规划钻探机和大自动化装置的布局。"
+				""
+				"简而言之，样本钻头用于分析区块，而矿脉图谱用于整理和存储收集到的矿脉信息。"
+			]
+			icon: "createoreexcavation:vein_atlas"
+			id: "0D4F1C8878FFDDF7"
+			rewards: [{
+				id: "64B59EA6739B4635"
+				type: "xp_levels"
+				xp_levels: 2
+			}]
+			tasks: [
+				{
+					id: "4B26A1AD50FB4C92"
+					item: "createoreexcavation:vein_atlas"
+					type: "item"
+				}
+				{
+					id: "3E8B4CA61F1A6F57"
+					item: "createoreexcavation:sample_drill"
+					type: "item"
+				}
+			]
+			x: 2.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["213ABA7310018BEB"]
+			description: [
+				"大型矿脉通常每125个游戏刻产出一件物品，是标准矿脉中最快的类型。不过，其产出速度还可以进一步提高。"
+				""
+				"如果大型矿脉上的钻头供水，其生成率会显著提高。当水充足时，出料速度提升至每70个游戏刻一个物品。"
+				""
+				"此优化仅适用于大型矿脉。中小型矿脉不会获得速度加成。"
+				""
+				"向大型矿脉装置供水可以大幅提高资源产出，使其成为该系统中最高效的开采方法。"
+			]
+			icon: "minecraft:water_bucket"
+			id: "2B505AEEFB42C861"
+			tasks: [{
+				id: "1C843E04CD2A9AEE"
+				title: "水冷系统"
+				type: "checkmark"
+			}]
+			x: -0.5d
+			y: -2.0d
+		}
+	]
+	title: "创建矿石挖掘任务"
+}

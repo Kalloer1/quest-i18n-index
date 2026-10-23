@@ -1,0 +1,260 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "the_otherside"
+	group: "1BE2A75DFA51F751"
+	icon: "minecraft:sculk"
+	id: "2B51366110AA4580"
+	order_index: 4
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["在&1守卫沉睡的大门&f后面，是一个&9安静而黑暗的维度&f..."]
+			hide_until_deps_complete: false
+			id: "51BF1B01AC897626"
+			invisible: true
+			tasks: [{
+				dimension: "deeperdarker:otherside"
+				icon: "minecraft:sculk"
+				id: "1FFCBF2662AA29D5"
+				ignore_dimension: false
+				position: [I;
+					0
+					0
+					0
+				]
+				size: [I;
+					1
+					1
+					1
+				]
+				title: "The Otherside"
+				type: "location"
+			}]
+			title: "The Otherside"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["51BF1B01AC897626"]
+			description: ["获取&5木材&f的好地方。小心碎裂生物！"]
+			id: "5F61EA8B96B93C2C"
+			rewards: [{
+				count: 2
+				id: "0CE82F52369886E3"
+				item: "numismatics:sprocket"
+				type: "item"
+			}]
+			tasks: [{
+				biome: "deeperdarker:echoing_forest"
+				icon: "deeperdarker:echo_wood"
+				id: "2DBF21A24529F1A2"
+				title: "回响森林"
+				type: "biome"
+			}]
+			x: -1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["51BF1B01AC897626"]
+			description: ["填充了可用于建造的&5gloomstone&f。"]
+			id: "1D1F71D05C1DAB0F"
+			rewards: [{
+				count: 2
+				id: "1ABBE8BE75429B55"
+				item: "numismatics:sprocket"
+				type: "item"
+			}]
+			tasks: [{
+				biome: "deeperdarker:overcast_columns"
+				icon: "deeperdarker:gloomslate"
+				id: "4F5DFBFA789A7292"
+				title: "阴沉的柱体"
+				type: "biome"
+			}]
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["51BF1B01AC897626"]
+			description: ["&5deeplands&f 里充满了 &esculk gleam&f，但更重要的是它们&d内部&f的东西……"]
+			id: "2D0AD4F37B7D4785"
+			rewards: [{
+				count: 2
+				id: "35B04D7375D989C0"
+				item: "numismatics:sprocket"
+				type: "item"
+			}]
+			tasks: [{
+				biome: "deeperdarker:deeplands"
+				icon: "deeperdarker:sculk_gleam"
+				id: "61F93B562FAC2DAF"
+				title: "Deeplands"
+				type: "biome"
+			}]
+			x: 0.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["2D0AD4F37B7D4785"]
+			description: ["找到一个&l&1远古神殿&f&r，探索并赢取一些&d丰厚奖励&f！"]
+			id: "1CC3A775E01AC339"
+			rewards: [{
+				count: 2
+				id: "43D99266AF3BC08A"
+				item: "numismatics:sprocket"
+				type: "item"
+			}]
+			tasks: [{
+				icon: "deeperdarker:sculk_stone_bricks"
+				id: "181197103FA64239"
+				structure: "deeperdarker:ancient_temple"
+				title: "远古神殿"
+				type: "structure"
+			}]
+			x: 0.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["1CC3A775E01AC339"]
+			description: [
+				"在&1远古神殿&f内，可能会生成一只&5潜行者&f。"
+				"它会掉落一些非常有趣的东西……"
+			]
+			id: "1F72807BEB022295"
+			rewards: [{
+				count: 2
+				id: "2918590D6FFB0A8B"
+				item: "numismatics:cog"
+				type: "item"
+			}]
+			tasks: [{
+				entity: "deeperdarker:stalker"
+				icon: "deeperdarker:soul_crystal"
+				id: "2B7E42B6839246A6"
+				title: "潜行者 (The Stalker)"
+				type: "kill"
+				value: 1L
+			}]
+			title: "...你并不孤单，我们与你同在"
+			x: 0.0d
+			y: -5.0d
+		}
+		{
+			dependencies: [
+				"3BF86E8DB7026014"
+				"1F72807BEB022295"
+			]
+			description: ["有了&5鞘翅&r和解决了&5潜行者&f，你就可以把潜行者掉落的&9灵魂水晶&f和鞘翅结合，制作出&1灵魂鞘翅&f，它能提供3点护甲，而且不需要火箭就能加速！"]
+			id: "5B3EFD7B6405BC4F"
+			rewards: [
+				{
+					count: 4
+					id: "796E7117D128B68C"
+					item: "numismatics:cog"
+					type: "item"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "33EE011755B67915"
+					table_id: 3460226802740974457L
+					type: "random"
+				}
+			]
+			tasks: [{
+				id: "0E13428172455BDB"
+				item: {
+					Count: 1
+					id: "deeperdarker:soul_elytra"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "更好的鞘翅模组 (Better elytra)"
+			x: 0.0d
+			y: -6.5d
+		}
+		{
+			dependencies: ["1F72807BEB022295"]
+			description: ["厌倦了卫道士的声波束？那就自己利用起来吧！"]
+			id: "476B17A25E7C37DA"
+			rewards: [{
+				count: 4
+				id: "333BD88CF84A9D50"
+				item: "numismatics:cog"
+				type: "item"
+			}]
+			tasks: [{
+				id: "3D0E41CDAAEB849B"
+				item: {
+					Count: 1
+					id: "deeperdarker:sonorous_staff"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 1.5d
+			y: -6.0d
+		}
+		{
+			dependencies: ["1F72807BEB022295"]
+			description: ["允许你绑定一个存储设备，并能远程访问它！"]
+			id: "3D0AD23FA31150D5"
+			rewards: [{
+				count: 4
+				id: "5CE8BC12777BB416"
+				item: "numismatics:cog"
+				type: "item"
+			}]
+			tasks: [{
+				id: "1A3C08BF5724593E"
+				item: "deeperdarker:sculk_transmitter"
+				type: "item"
+			}]
+			title: "远程存储系统"
+			x: -1.5d
+			y: -6.0d
+		}
+		{
+			dependencies: ["2D0AD4F37B7D4785"]
+			description: ["制作比铁装备稍好一些的装备的组件之一"]
+			id: "688527FCA294BF70"
+			rewards: [{
+				count: 4
+				id: "7926E933788ACE55"
+				item: "numismatics:sprocket"
+				type: "item"
+			}]
+			tasks: [{
+				id: "25CA4E2A08A73EB1"
+				item: "deeperdarker:resonarium"
+				type: "item"
+			}]
+			title: "佳得乐果冻"
+			x: 1.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["1CC3A775E01AC339"]
+			description: ["主要产自&l&3远古城市&r&r和&l&8<glitch f=3 j=0.02 b=0.3 s=3>异世界</glitch>&r&r"]
+			disable_toast: true
+			id: "5A2939CA25B02E77"
+			subtitle: "获取一个锻造模板（潜行者）"
+			tasks: [{
+				id: "71F85D44F42A5088"
+				item: "deeperdarker:warden_upgrade_smithing_template"
+				type: "item"
+			}]
+			title: "下界合金并不是终点！"
+			x: -1.5d
+			y: -4.5d
+		}
+	]
+	subtitle: ["安静点！"]
+	title: "<glitch>另一个世界</glitch>"
+}

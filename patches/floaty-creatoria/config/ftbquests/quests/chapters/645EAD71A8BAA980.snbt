@@ -1,0 +1,230 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "645EAD71A8BAA980"
+	group: ""
+	icon: "minecraft:golden_apple"
+	id: "645EAD71A8BAA980"
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["现在女巫会掉落腐烂的苹果"]
+			id: "379CAA1E4B04B8D4"
+			size: 1.5d
+			subtitle: "请不要随地乱扔垃圾"
+			tasks: [{
+				id: "44785AE356A48B61"
+				item: "kubejs:rotten_apple"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			description: [
+				"具体来说，手持水瓶右键泥土类方块即可将其转化为泥巴。"
+				""
+				"你可以通过钓鱼获得水瓶，或者击杀女巫获得空瓶再装水。"
+			]
+			icon: "minecraft:mud"
+			id: "6588C2E3E9A82451"
+			subtitle: "用水瓶向泥土中注水"
+			tasks: [{
+				id: "176EB139A761F347"
+				observe_type: 0
+				timer: 0L
+				to_observe: "minecraft:mud"
+				type: "observation"
+			}]
+			title: "陷入泥泞中无法自拔"
+			x: 0.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["6588C2E3E9A82451"]
+			description: [
+				"将泥土放在农夫乐事的砧板上并用铲子右键，有概率在其中挖掘出黏土球。"
+				""
+				"不要把衣服弄脏了。"
+			]
+			id: "7BB7780F811A0BF4"
+			subtitle: "小小的空岛上挖呀挖"
+			tasks: [{
+				id: "69579770690F5EF9"
+				item: "minecraft:clay_ball"
+				type: "item"
+			}]
+			x: 2.0d
+			y: -2.0d
+		}
+		{
+			dependencies: [
+				"7BB7780F811A0BF4"
+				"379CAA1E4B04B8D4"
+			]
+			description: [
+				"用烂苹果右键花盆有1/8概率在其中种下一个橡树树苗。"
+				""
+				"这是你在治愈僵尸村民前获取苹果的唯一途径。"
+			]
+			icon: "minecraft:flower_pot"
+			id: "7195685F32A0CF6C"
+			subtitle: "这是一棵苹果树吗？"
+			tasks: [
+				{
+					id: "5A09DFEC69728A41"
+					item: "minecraft:flower_pot"
+					type: "item"
+				}
+				{
+					id: "6975BEEEBFD2781C"
+					item: "minecraft:oak_sapling"
+					type: "item"
+				}
+			]
+			title: "我种下了一颗种子，在泥土里，在阳光里，在希望里，在梦想里，在每一个需要它的地方。"
+			x: 2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"76C8440969B18A9B"
+				"36158816E2D929BF"
+			]
+			dependency_requirement: "one_completed"
+			icon: "minecraft:golden_apple"
+			id: "7D87916276AF8A9C"
+			subtitle: "完全无法远离这个地方了"
+			tasks: [{
+				id: "39B7A7DEB5355444"
+				item: "minecraft:golden_apple"
+				type: "item"
+			}]
+			title: "僵尸科实习医生"
+			x: 5.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["1C0CCFEB9E3F9185"]
+			icon: "minecraft:brewing_stand"
+			id: "4020C2C83560F929"
+			subtitle: "自己酿造虚弱药水"
+			tasks: [{
+				id: "6C0822D70C7DC64E"
+				item: "minecraft:brewing_stand"
+				type: "item"
+			}]
+			title: "肝度更高？"
+			x: 6.0d
+			y: 1.5d
+		}
+		{
+			id: "300E1FA0FFFA5D53"
+			subtitle: "借用女巫的虚弱药水"
+			tasks: [{
+				id: "0BCC87E878422DC8"
+				type: "checkmark"
+			}]
+			title: "更技巧？"
+			x: 6.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["0251AED1D89ECD72"]
+			id: "45281E5F38F4034F"
+			size: 0.75d
+			tasks: [{
+				id: "2270FB2264EF4660"
+				item: "minecraft:fermented_spider_eye"
+				type: "item"
+			}]
+			x: 6.75d
+			y: 1.875d
+		}
+		{
+			dependencies: ["7195685F32A0CF6C"]
+			id: "36158816E2D929BF"
+			subtitle: "医生远离我"
+			tasks: [{
+				id: "448AE7184FF1BF6D"
+				item: "minecraft:apple"
+				type: "item"
+			}]
+			x: 4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"7D87916276AF8A9C"
+				"300E1FA0FFFA5D53"
+				"4020C2C83560F929"
+				"45281E5F38F4034F"
+				"08C7422A15A1639B"
+			]
+			dependency_requirement: "one_completed"
+			description: ["用金苹果右键虚弱效果的僵尸村民，将其治愈。"]
+			icon: {
+				Count: 1
+				id: "ftbquests:custom_icon"
+				tag: {
+					Icon: "minecraft:textures/entity_icon/villager/librarian.png"
+				}
+			}
+			id: "60D57E48ACCC55C5"
+			subtitle: "恭喜你转正成功！"
+			tasks: [{
+				id: "003E1FC3232CB86E"
+				observe_type: 5
+				timer: 0L
+				to_observe: "minecraft:villager"
+				type: "observation"
+			}]
+			title: "僵尸科医生"
+			x: 7.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["60D57E48ACCC55C5"]
+			description: ["你已经证明了强大的生产力与获得财富的能力。"]
+			id: "47D4946A13930709"
+			rewards: [{
+				count: 64
+				id: "59C7FB1C33E6C282"
+				item: "minecraft:emerald"
+				type: "item"
+			}]
+			subtitle: "财源滚滚而来，滚滚而来"
+			tasks: [{
+				count: 64L
+				id: "6744D9C90A706C82"
+				item: { Count: 64, id: "minecraft:emerald" }
+				type: "item"
+			}]
+			x: 10.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["1C54385DCB572B1B"]
+			description: ["下界疣可以通过绯红菌的下界疣块获得。"]
+			id: "08C7422A15A1639B"
+			size: 0.75d
+			tasks: [
+				{
+					id: "295EE763F4F9DF10"
+					item: "minecraft:crimson_fungus"
+					type: "item"
+				}
+				{
+					id: "2E1DE3E56B3086EA"
+					item: "minecraft:nether_wart"
+					type: "item"
+				}
+			]
+			x: 7.5d
+			y: 1.875d
+		}
+	]
+	title: "病毒、食物与财富"
+}

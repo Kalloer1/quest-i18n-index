@@ -1,0 +1,258 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "0BE71F6C9C7ADEBC"
+	group: "6C341A096943346A"
+	hide_quest_until_deps_visible: true
+	icon: "mekanism:crystal_iron"
+	id: "0BE71F6C9C7ADEBC"
+	order_index: 8
+	quest_links: [{
+		id: "52B08FA0874E504F"
+		linked_quest: "2FD6FC271F09622D"
+		shape: "gear"
+		x: -0.5d
+		y: 0.0d
+	}]
+	quests: [
+		{
+			dependencies: ["2FD6FC271F09622D"]
+			dependency_requirement: "one_started"
+			hide_until_deps_visible: false
+			id: "429CA8DA971957D3"
+			subtitle: "从水源抽取水（可用机械动力的动力泵等替代）"
+			tasks: [{
+				id: "0806DBA77A8B5FA0"
+				item: {
+					Count: 1
+					id: "mekanism:electric_pump"
+					tag: {
+						mekData: {
+							EnergyContainers: [ ]
+							FluidTanks: [ ]
+							componentUpgrade: {
+								Items: [ ]
+								upgrades: [ ]
+							}
+							controlType: 0
+							owner: [I;
+								-1952848669
+								-1962328003
+								-2060424269
+								-542375693
+							]
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: 1.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["429CA8DA971957D3"]
+			dependency_requirement: "one_started"
+			hide_until_deps_visible: false
+			id: "76E298CA442189D1"
+			subtitle: "电解水/盐水制取氧/氯"
+			tasks: [{
+				id: "09193B06E17FC869"
+				item: {
+					Count: 1
+					id: "mekanism:electrolytic_separator"
+					tag: {
+						mekData: {
+							EnergyContainers: [{
+								Container: 0b
+								stored: "800"
+							}]
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: 2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["76E298CA442189D1"]
+			dependency_requirement: "one_started"
+			hide_until_deps_visible: false
+			id: "4CDFBA670BA804DC"
+			subtitle: "合成氯化氢"
+			tasks: [{
+				id: "3FE03B47BF87EB07"
+				item: {
+					Count: 1
+					id: "mekanism:chemical_infuser"
+					tag: {
+						mekData: {
+							EnergyContainers: [ ]
+							GasTanks: [ ]
+							componentConfig: {
+								config0: {
+									side0: 1
+									side1: 1
+									side2: 1
+									side3: 1
+									side4: 1
+									side5: 1
+								}
+								config2: {
+									side0: 4
+									side1: 2
+									side2: 3
+									side3: 0
+									side4: 0
+									side5: 0
+								}
+								config6: {
+									side0: 4
+									side1: 2
+									side2: 3
+									side3: 8
+									side4: 0
+									side5: 0
+								}
+								eject0: 0b
+								eject2: 1b
+								eject6: 0b
+							}
+							componentEjector: {
+								color0: -1
+								color1: -1
+								color2: -1
+								color3: -1
+								color4: -1
+								color5: -1
+								strictInput: 0b
+							}
+							componentUpgrade: {
+								Items: [ ]
+								upgrades: [ ]
+							}
+							controlType: 0
+							owner: [I;
+								-1952848669
+								-1962328003
+								-2060424269
+								-542375693
+							]
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: 2.5d
+			y: 1.5d
+		}
+		{
+			dependencies: [
+				"4CDFBA670BA804DC"
+				"5E884C8FC1965A6D"
+			]
+			dependency_requirement: "one_started"
+			description: [
+				"提示："
+				"可直接在化学压射室下方的槽位加入盐以代替氯化氢气体。"
+			]
+			hide_until_deps_visible: false
+			id: "227563F7D76326D1"
+			subtitle: "将粗矿转化为矿物碎片"
+			tasks: [{
+				id: "617D07B5108008AF"
+				item: "mekanism:chemical_injection_chamber"
+				type: "item"
+			}]
+			x: 4.0d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"76E298CA442189D1"
+				"227563F7D76326D1"
+			]
+			dependency_requirement: "one_started"
+			hide_until_deps_visible: false
+			id: "373189BA6A9DB71C"
+			subtitle: "富集矿物碎片为碎块"
+			tasks: [{
+				id: "518DD400E1A590D7"
+				item: "mekanism:purification_chamber"
+				type: "item"
+			}]
+			x: 5.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["373189BA6A9DB71C"]
+			dependency_requirement: "one_started"
+			hide_until_deps_visible: false
+			id: "4847EC94BA7F129A"
+			subtitle: "粉碎矿物碎块得到污浊矿粉"
+			tasks: [{
+				id: "2A7B006CE183BED5"
+				item: "mekanism:crusher"
+				type: "item"
+			}]
+			x: 7.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["4847EC94BA7F129A"]
+			dependency_requirement: "one_started"
+			hide_until_deps_visible: false
+			id: "2B1E12EFE1CBE625"
+			subtitle: "富集污浊矿粉得到矿粉"
+			tasks: [{
+				id: "771C4B60B9F1F9CD"
+				item: "mekanism:enrichment_chamber"
+				type: "item"
+			}]
+			x: 8.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["2B1E12EFE1CBE625"]
+			dependency_requirement: "one_started"
+			hide_until_deps_visible: false
+			id: "2B09A70CB8F19DE8"
+			subtitle: "熔炼矿粉得到矿物锭"
+			tasks: [{
+				id: "427E9FAFE04CEF2A"
+				item: "mekanism:energized_smelter"
+				type: "item"
+			}]
+			x: 10.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["2FD6FC271F09622D"]
+			hide_until_deps_visible: false
+			id: "15EF5DB6C8F6B1EE"
+			subtitle: "TFC矿石粉碎"
+			tasks: [{
+				id: "237968453BDFD432"
+				item: "mekanism:crusher"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["15EF5DB6C8F6B1EE"]
+			hide_until_deps_visible: false
+			id: "5E884C8FC1965A6D"
+			subtitle: "将所得的tfc矿粉富集合成粗矿"
+			tasks: [{
+				id: "637CF2577E7BCB3D"
+				item: "mekanism:enrichment_chamber"
+				type: "item"
+			}]
+			x: 2.5d
+			y: 3.0d
+		}
+	]
+	title: "5.2倍矿产线"
+}

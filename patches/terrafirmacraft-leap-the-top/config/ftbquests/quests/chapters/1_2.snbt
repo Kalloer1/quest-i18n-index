@@ -1,0 +1,161 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "1_2"
+	group: "6C341A096943346A"
+	hide_quest_until_deps_visible: true
+	icon: "mekanism:shard_iron"
+	id: "02CEA5838A660D3B"
+	order_index: 7
+	quest_links: [{
+		id: "6CFF500AEDAA4701"
+		linked_quest: "2FD6FC271F09622D"
+		shape: "gear"
+		x: -3.5d
+		y: -1.5d
+	}]
+	quests: [
+		{
+			dependencies: ["2FD6FC271F09622D"]
+			dependency_requirement: "one_started"
+			hide_until_deps_visible: false
+			id: "3E3264469B66D993"
+			subtitle: "从水源抽取水（可用机械动力的动力泵等替代）"
+			tasks: [{
+				id: "0737326867396397"
+				item: {
+					Count: 1
+					id: "mekanism:electric_pump"
+					tag: {
+						mekData: {
+							EnergyContainers: [ ]
+							FluidTanks: [ ]
+							componentUpgrade: {
+								Items: [ ]
+								upgrades: [ ]
+							}
+							controlType: 0
+							owner: [I;
+								-1952848669
+								-1962328003
+								-2060424269
+								-542375693
+							]
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: -2.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["3E3264469B66D993"]
+			dependency_requirement: "one_started"
+			hide_until_deps_visible: false
+			id: "140C198931EF0086"
+			subtitle: "电解水制氧为提纯仓提供原料"
+			tasks: [{
+				id: "3D49A4BAFF0ADB23"
+				item: {
+					Count: 1
+					id: "mekanism:electrolytic_separator"
+					tag: {
+						mekData: {
+							EnergyContainers: [{
+								Container: 0b
+								stored: "800"
+							}]
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: -0.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["2FD6FC271F09622D"]
+			hide_until_deps_visible: false
+			id: "0CE442A44FD979A3"
+			subtitle: "TFC矿石粉碎"
+			tasks: [{
+				id: "4AA2276EED666840"
+				item: "mekanism:crusher"
+				type: "item"
+			}]
+			x: -2.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["0CE442A44FD979A3"]
+			hide_until_deps_visible: false
+			id: "656FF905FCC0353C"
+			subtitle: "将所得的tfc矿粉富集合成粗矿"
+			tasks: [{
+				id: "022A0CBDF617BF0F"
+				item: "mekanism:enrichment_chamber"
+				type: "item"
+			}]
+			x: -0.5d
+			y: 1.0d
+		}
+		{
+			dependencies: [
+				"140C198931EF0086"
+				"656FF905FCC0353C"
+			]
+			hide_until_deps_visible: false
+			id: "3B96D83C939C0D31"
+			subtitle: "提纯粗矿以获得矿物碎片"
+			tasks: [{
+				id: "36856D79C4EDCAA6"
+				item: "mekanism:purification_chamber"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["3B96D83C939C0D31"]
+			hide_until_deps_visible: false
+			id: "40BDB3C3CF675BC0"
+			subtitle: "粉碎矿物碎块得到污浊矿粉"
+			tasks: [{
+				id: "371C158ED555694A"
+				item: "mekanism:crusher"
+				type: "item"
+			}]
+			x: 2.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["40BDB3C3CF675BC0"]
+			hide_until_deps_visible: false
+			id: "6E9713EA820002E5"
+			subtitle: "富集污浊矿粉得到矿粉"
+			tasks: [{
+				id: "271461044CC73D00"
+				item: "mekanism:enrichment_chamber"
+				type: "item"
+			}]
+			x: 4.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["6E9713EA820002E5"]
+			hide_until_deps_visible: false
+			id: "4CA33423A711144E"
+			subtitle: "熔炼矿粉得到矿物锭"
+			tasks: [{
+				id: "2F5B6575F5EC2AFC"
+				item: "mekanism:energized_smelter"
+				type: "item"
+			}]
+			x: 5.5d
+			y: 1.0d
+		}
+	]
+	title: "4倍矿产线"
+}

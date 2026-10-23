@@ -1,0 +1,1135 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "integrated_dynamics"
+	group: "7443A395826D5064"
+	id: "2A368941FC7850DA"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["&3Integrated Dynamics 让你用逻辑线缆搭建逻辑网络，再用各种部件读写数值来控制机器和存储。你将从收集 Menril 资源开始，用挤压器和干燥盆制作 Menril 树脂和结晶 Menril，然后制作可变卡来存储数值并驱动网络。随着进展，你会添加读取器、写入器和接口，通常还会搭配 Integrated Tunnels 在同一逻辑下传输物品、流体和能量。"]
+			id: "1FE35B6B8FC14539"
+			rewards: [{
+				id: "796928568EF7BB5F"
+				type: "xp"
+				xp: 100
+			}]
+			size: 1.3d
+			tasks: [{
+				id: "6767EF35AAA7913D"
+				item: {
+					Count: 1
+					id: "integrateddynamics:on_the_dynamics_of_integration"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "电线、变量、自动化"
+			x: -0.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["1FE35B6B8FC14539"]
+			description: ["&7Menril logs are the starting point of Integrated Dynamics: squeeze them to obtain Menril Resin, then dry that into Crystallized Menril for early machines and crafting. Menril trees are most easily found via Meneglin biomes, and a Squeezer beside a Drying Basin will turn a single log’s resin into a Block of Crystallized Menril over time."]
+			id: "2DA5A48DDA049554"
+			rewards: [
+				{
+					count: 8
+					id: "5EA3A2C44EB2E60C"
+					item: {
+						Count: 1
+						id: "integrateddynamics:crystalized_menril_chunk"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "6B4F0E270003813F"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "3305C803BFF88416"
+				item: {
+					Count: 1
+					id: "integrateddynamics:menril_log"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "蓝色血液自动化"
+			x: -0.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["2DA5A48DDA049554"]
+			description: ["&7挤压器可将物品（如Menril原木）压成流体和副产品——站在上面并跳跃即可处理，确保下方有一个实心方块，上方有三个空气方块。挤压后，施加红石脉冲以重置压机，使其可以再次运行。"]
+			id: "51E4C315E9446218"
+			rewards: [
+				{
+					id: "464E5CD89091438A"
+					item: {
+						Count: 1
+						id: "integrateddynamics:squeezer"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					count: 6
+					id: "74A7EC18C4FF63D4"
+					item: {
+						Count: 1
+						id: "integrateddynamics:menril_log"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "76BC53E0A25A9549"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "13DC57804C375E66"
+				item: {
+					Count: 1
+					id: "integrateddynamics:squeezer"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "跳跃，挤入，获利"
+			x: -0.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["51E4C315E9446218"]
+			description: ["&7干燥盆可以固化流体和物品——最主要是将门里树脂变成结晶门里树脂（后续还有其他配方）。把它放在榨汁机旁边，树脂就会自动被接住，然后等待干燥。请勿投入高温流体。"]
+			id: "5BA7EC2BF6F86425"
+			rewards: [
+				{
+					count: 2
+					id: "7F8C352C88D5AAC2"
+					item: {
+						Count: 1
+						id: "integrateddynamics:drying_basin"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					count: 3
+					id: "5F859349863CBF57"
+					item: {
+						Count: 1
+						id: "minecraft:bucket"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "18A2485AFAB9D77D"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "5E47802CCA47515D"
+				item: {
+					Count: 1
+					id: "integrateddynamics:drying_basin"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "从树脂到水晶"
+			x: -0.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["5BA7EC2BF6F86425"]
+			description: ["&7在干燥盆中，将Menril树脂在普通玻璃上烘干制成的自发光玻璃。它是制作存储终端和其他集成终端组件的必要材料。"]
+			id: "35BA27EC6B6D5FDA"
+			rewards: [
+				{
+					count: 4
+					id: "37FC980FAD71635C"
+					item: {
+						Count: 1
+						id: "integratedterminals:menril_glass"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					count: 16
+					id: "26B578548EB0CF34"
+					item: {
+						Count: 1
+						id: "minecraft:glass"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "66B9548AE18E64B8"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "3F9D1C4E5BEA5C79"
+				item: {
+					Count: 1
+					id: "integratedterminals:menril_glass"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "夜光玻璃"
+			x: -0.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["35BA27EC6B6D5FDA"]
+			description: ["&7Crafted in the Drying Basin by infusing glass with Liquid Chorus, Chorus Glass allows entities to pass through it—handy for clever mob routing and player shortcuts in base designs."]
+			id: "12C436A27C4D980B"
+			rewards: [
+				{
+					count: 4
+					id: "03572179DA8AA1E6"
+					item: {
+						Count: 1
+						id: "integratedterminals:chorus_glass"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					count: 3
+					id: "4BCDA66E321B8ABC"
+					item: {
+						Count: 1
+						id: "minecraft:chorus_fruit"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "49A1E83CB093553E"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "750B7711195A3D58"
+				item: {
+					Count: 1
+					id: "integratedterminals:chorus_glass"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "穿过墙壁行走"
+			x: 1.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["5BA7EC2BF6F86425"]
+			description: ["&7通过挤压 Menril 原木提取树脂并晾干可制作此方块，它是早期核心资源，可合成回 9 个结晶化 Menril 块。它是 Integrated Dynamics 早期进程的许多配方基础。"]
+			id: "2758F48938DC1860"
+			rewards: [
+				{
+					count: 8
+					id: "455DD280EC0B3130"
+					item: {
+						Count: 1
+						id: "integrateddynamics:crystalized_menril_block"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					count: 12
+					id: "2EE06695D16401F2"
+					item: {
+						Count: 1
+						id: "integrateddynamics:crystalized_menril_chunk"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "2B2EDD0908D66F49"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "27897947F459A6FE"
+				item: {
+					Count: 1
+					id: "integrateddynamics:crystalized_menril_block"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "Menril，固化形态"
+			x: 1.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["51E4C315E9446218"]
+			description: ["&7挤压器完成后，必须在下一物品前用红石脉冲重置。一个简单的红石火把或拉杆就能提供这个脉冲，让你的手动或自动化装置能可靠循环。"]
+			id: "0ECE7C1681D59F30"
+			rewards: [
+				{
+					count: 3
+					id: "3B09775AA2209A86"
+					item: {
+						Count: 1
+						id: "minecraft:redstone_block"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "234D07163CC7B641"
+					item: {
+						Count: 1
+						id: "minecraft:lever"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "5EB5F25339CB1D86"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "01FEA6D79C374E0A"
+				item: {
+					Count: 1
+					id: "minecraft:redstone_torch"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "点击重置任务进度，点击以重置"
+			x: 1.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["0D82A8F3B2C76C6E"]
+			description: ["&7逻辑线缆是构成集成动态网络的电线，让相连线缆上的部件能在系统中读写数值。先搭建线缆主干，再连接读取器、写入器和接口，让数值流向所需之处。"]
+			id: "59406321158CFB4C"
+			rewards: [
+				{
+					count: 4
+					id: "54F9256C732A2B93"
+					item: {
+						Count: 1
+						id: "minecraft:chorus_fruit"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "7435430AB3C6BE20"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "38CEB55845429E5E"
+				item: {
+					Count: 1
+					id: "integrateddynamics:cable"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "网络的支柱 (Backbone of the Network)"
+			x: -2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["59406321158CFB4C"]
+			description: ["&7变量卡是Integrated Dynamics中承载数值的主要媒介。一张卡可以持有静态值或由操作符/读取器产生的动态值，各部件利用这些卡在网络上进行计算、比较和决策。"]
+			id: "77F52713E709792B"
+			rewards: [
+				{
+					id: "2CB9EC3BEA957B01"
+					item: {
+						Count: 1
+						id: "integrateddynamics:variablestore"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "50A96F945D039843"
+					item: {
+						Count: 1
+						id: "integrateddynamics:logic_programmer"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "14590375628650BF"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "7DFBFFFF4C89C10B"
+				item: {
+					Count: 1
+					id: "integrateddynamics:variable"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "口袋里的价值 (Values in Your Pocket)"
+			x: -2.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["77F52713E709792B"]
+			description: ["&7用于构建网络读取器的组件，如红石或物品读取器。它也用于单向连接器和集成隧道导入器的配方中，将感知到的值引入你的逻辑电路。"]
+			id: "673F935B72112E98"
+			rewards: [
+				{
+					count: 8
+					id: "6ACF3C47A399F7F1"
+					item: {
+						Count: 1
+						id: "integrateddynamics:variable_transformer_input"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "6D65404D08C00877"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "2BBF35E1DCE38068"
+				item: {
+					Count: 1
+					id: "integrateddynamics:variable_transformer_input"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "将大脑接入电路"
+			x: -2.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["673F935B72112E98"]
+			description: ["&7所有作家方块、静态光面板和显示面板等方块的核心组件。也用于单向连接器和集成隧道导出器，让你的网络能作用于世界。"]
+			id: "0EA8722C934FE7C3"
+			rewards: [
+				{
+					count: 2
+					id: "32970A11EC6D7986"
+					item: {
+						Count: 1
+						id: "ironchest:crystal_chest"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "6A780DCA03898120"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "0C6D4779EE0C5F70"
+				item: {
+					Count: 1
+					id: "integrateddynamics:variable_transformer_output"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "连接输出端口"
+			x: -2.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["1FE35B6B8FC14539"]
+			description: ["&7使用扳手管理你的逻辑线缆网络：右键线缆或部件可将其与相邻部分断开，按住 Shift 右键可完全移除线缆或部件。这是维护和重塑 Integrated Dynamics 网络的专用工具。"]
+			id: "0D82A8F3B2C76C6E"
+			rewards: [
+				{
+					count: 8
+					id: "6F80A3E3A92FB438"
+					item: {
+						Count: 1
+						id: "integrateddynamics:cable"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "5469F9D4FF91FA8D"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "057A86278A037060"
+				item: {
+					Count: 1
+					id: "integrateddynamics:wrench"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "点击，剪切，完成"
+			x: -2.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["673F935B72112E98"]
+			description: ["&7读取所朝方块的红石数据，提供“红石存在”等布尔值、精确水平和比较器输出的整数，甚至还有可配置的时钟脉冲。将方面绑定到变量卡，即可在网络的其他位置使用该值。"]
+			id: "035A77F24C609315"
+			rewards: [
+				{
+					id: "6FF75FA6F09EF5C7"
+					item: {
+						Count: 1
+						id: "integrateddynamics:part_display_panel"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					count: 32
+					id: "399A9DB413DE9974"
+					item: {
+						Count: 1
+						id: "minecraft:redstone"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "548DD7DD7ECDA738"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "177ED0F800BBFFCB"
+				item: {
+					Count: 1
+					id: "integrateddynamics:part_redstone_reader"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "信号是什么？"
+			x: -3.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["673F935B72112E98"]
+			description: ["&7它会读取相邻物品栏的信息，如槽位数、物品、填充率和物品堆栈列表——仅读取，不转移。将所选方面写入变量卡，然后将其输入到你的逻辑电路或显示器中。"]
+			id: "7BF78E4413EE7033"
+			rewards: [
+				{
+					count: 12
+					id: "18941CEB3F21B57F"
+					item: {
+						Count: 1
+						id: "minecraft:apple"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "12A0AE58A5257601"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "3D8C94455844865E"
+				item: {
+					Count: 1
+					id: "integrateddynamics:part_inventory_reader"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "计数与清单 (Count It, List It)"
+			x: -5.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["0EA8722C934FE7C3"]
+			description: ["&7一个简单的光源方块；静态变种提供恒定光照，而该系列方块也可以通过布尔或整数变量进行控制。非常适合用作状态灯或与你的网络主题相协调的干净基础照明。"]
+			id: "499932F531DD6112"
+			rewards: [
+				{
+					count: 12
+					id: "52B027380485A994"
+					item: {
+						Count: 1
+						id: "minecraft:glowstone"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "3D1EAB0E25FFEC55"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "4D9F2FE13A7F46F4"
+				item: {
+					Count: 1
+					id: "integrateddynamics:part_static_light_panel"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "Always-On Glow"
+			x: -3.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["499932F531DD6112"]
+			description: ["&7显示变量卡中存储的值——非常适合监控数字、列表、物品或调试输出。你可以用扳手旋转它，并将显示的值从GUI复制到剪贴板，供其他地方使用。"]
+			id: "5BA1631C484BCAB0"
+			rewards: [
+				{
+					count: 8
+					id: "3CE91E4CF3F52335"
+					item: {
+						Count: 1
+						id: "minecraft:end_stone"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "0793A35973B2A3F9"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "4FE8D3562EFDEAC2"
+				item: {
+					Count: 1
+					id: "integrateddynamics:part_display_panel"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "Show, Don't Tell"
+			x: -5.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["035A77F24C609315"]
+			description: ["&7根据布尔值 true/false 输出全功率红石，或根据整数输出精确强度，也可根据脉冲模式在变化时触发，并提供强功率选项。这是将逻辑信号转化为实际红石的标准方法。"]
+			id: "476665A89C7BBD27"
+			rewards: [
+				{
+					count: 8
+					id: "4CF9BF96E4A786A3"
+					item: {
+						Count: 1
+						id: "minecraft:redstone_lamp"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "6B1B3E699435FAEC"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "3D28DD08CD47EE78"
+				item: {
+					Count: 1
+					id: "integrateddynamics:part_redstone_writer"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "让电力发挥作用"
+			x: -3.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7BF78E4413EE7033"]
+			description: ["&7Performs actions related to inventories and pipes (such as interacting with slots) when driven by a Variable Card—again, it does not move items by itself. Combine with Integrated Tunnels for actual item transfer under logic control."]
+			id: "2DF09DB19FD8E64F"
+			rewards: [
+				{
+					id: "3A3F29C1047AB406"
+					item: {
+						Count: 1
+						id: "trashcans:item_trash_can"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "156D4C8AD0C2C402"
+					item: {
+						Count: 1
+						id: "integrateddynamics:part_connector_omni_directional"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "031CEF9C710E6F67"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "471C79CA88809DFB"
+				item: {
+					Count: 1
+					id: "integrateddynamics:part_inventory_writer"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "推动宝箱"
+			x: -5.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["2DA5A48DDA049554"]
+			description: ["&7The Logic Programmer lets you create values and Operators for your network, building Variable Cards that compute numbers, booleans, lists and more. It exists as both a block and an item, and it does not have to be connected to a network to use."]
+			id: "51B6A4115AA41B68"
+			rewards: [
+				{
+					count: 3
+					id: "4B8B2EBCC552C02B"
+					item: {
+						Count: 1
+						id: "integrateddynamics:cable"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					count: 4
+					id: "64AA587716D2DA0D"
+					item: {
+						Count: 1
+						id: "integrateddynamics:variable"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "77713F9EF4602BEE"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "6D8E559D94340F61"
+				item: {
+					Count: 1
+					id: "integrateddynamics:logic_programmer"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "逻辑诞生的地方"
+			x: 1.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["51B6A4115AA41B68"]
+			description: ["&7A handheld version of the Logic Programmer with the same GUI and functionality as the placed block, perfect for on-the-go variable and operator creation. You can also craft it back into the block variant if needed."]
+			id: "79766FC6F66F4076"
+			rewards: [
+				{
+					id: "70D793F04B0A9A18"
+					item: {
+						Count: 1
+						id: "integrateddynamics:labeller"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					count: 3
+					id: "177CBF87B7B26D55"
+					item: {
+						Count: 1
+						id: "integrateddynamics:variable_transformer_input"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "7618593F2D5CF334"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "41BFDABAAA0B4681"
+				item: {
+					Count: 1
+					id: "integrateddynamics:portable_logic_programmer"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "口袋里的代码 (Code in Your Pocket)"
+			x: 2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["79766FC6F66F4076"]
+			description: ["&7Dynamic variables that reference other variables need access to those sources at evaluation time. Place the referenced Variable Cards into a Variable Store on the same network so complex operations (like math or predicates) can resolve correctly."]
+			id: "1D3C654CE7617995"
+			rewards: [
+				{
+					count: 4
+					id: "42D1FED747B30262"
+					item: {
+						Count: 1
+						id: "integrateddynamics:variable"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "2C408AC2816C053F"
+					item: {
+						Count: 1
+						id: "integrateddynamics:coal_generator"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "0B46389370431370"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "36DA876E548BF65B"
+				item: {
+					Count: 1
+					id: "integrateddynamics:variablestore"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "保持引用有效 (Keep References Alive)"
+			x: 4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["77F52713E709792B"]
+			description: ["&7Materializer 会将动态的 Variable Card 转换为当前值的静态快照，写入一张全新的空白卡片中。当你不再需要实时更新，或想记录值以供后续复用时，这非常理想。"]
+			id: "144347999DF10135"
+			rewards: [
+				{
+					count: 4
+					id: "47F9F7567FDC8639"
+					item: {
+						Count: 1
+						id: "integrateddynamics:variable"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					count: 12
+					id: "4284D7FCA78848C2"
+					item: {
+						Count: 1
+						id: "minecraft:redstone_torch"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "56E9A967B8A3819A"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "7AF1D70EE0A4CD7E"
+				item: {
+					Count: 1
+					id: "integrateddynamics:materializer"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "冻结那个阅读进度条"
+			x: -3.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["144347999DF10135"]
+			description: ["&7代理卡提供对另一张变量卡的动态引用。将源卡插入顶部插槽，然后编写新卡，这些新卡将始终反映源卡的值——这样你就可以替换上游的单张卡，从而一次性更新所有镜像使用。"]
+			id: "68CA2413E6699549"
+			rewards: [
+				{
+					count: 8
+					id: "2632F058188482EC"
+					item: {
+						Count: 1
+						id: "integrateddynamics:cable"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "7909C178C95DE3F9"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "2A0A7A1D965EEC58"
+				item: {
+					Count: 1
+					id: "integrateddynamics:proxy"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "一张卡片统御一切"
+			x: -5.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0D82A8F3B2C76C6E"]
+			description: ["&7The Item Interface is the hub where item transfer touches your network. Importers push items into the network via an Interface and Exporters pull items out from an Interface to adjacent inventories, with options for speed, priority, and channel plus rich logic filters."]
+			id: "513081836E69C059"
+			rewards: [
+				{
+					count: 4
+					id: "3288879C9C79403D"
+					item: {
+						Count: 1
+						id: "integratedtunnels:part_interface_filter_item"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "7AAC1A15F4576790"
+					item: {
+						Count: 1
+						id: "integratedtunnels:part_importer_item"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "7B752DFF791289E7"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "325B668EACBF6372"
+				item: {
+					Count: 1
+					id: "integratedtunnels:part_interface_item"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -3.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["1FE35B6B8FC14539"]
+			description: ["&7The Storage Terminal shows tabs for every storage type attached to your network—items, fluids, and energy—and totals per tab. Crafting requires Menril Glass from a Drying Basin; with Integrated Tunnels installed you can interact with items and fluids directly through this GUI."]
+			id: "35F5F027711121FD"
+			rewards: [
+				{
+					count: 8
+					id: "424A37B3D572CEFB"
+					item: {
+						Count: 1
+						id: "integratedterminals:menril_glass"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "78A3EC9ADF3D20A7"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "39713080149B5A3F"
+				item: {
+					Count: 1
+					id: "integratedterminals:part_terminal_storage"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "一个面板，满足所有需求"
+			x: 1.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["35F5F027711121FD"]
+			description: ["&7用于连接相距最多512格的两条网络的长距离无线桥。在每个网络上放置一个朝向彼此的连接器；连接有效时它们会亮起。无需布线，仅需单点连接时理想选择。"]
+			id: "74F22DE1FF5189E9"
+			rewards: [
+				{
+					id: "5D16F2C9A0D694F6"
+					item: {
+						Count: 1
+						id: "minecraft:shulker_shell"
+						tag: {
+							affix_data: {
+								sockets: 1
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "03A5CF54285F3C31"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "4F2B8AD0C0DAB841"
+				item: {
+					Count: 1
+					id: "integrateddynamics:part_connector_mono_directional"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "直线式上行链路"
+			x: 1.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["35F5F027711121FD"]
+			description: ["&7使用全向连接器，将多个网络无线连接，即使跨越维度，只需分配相同的组ID。可通过简易合成复制或创建组，放置时粒子颜色会显示所属组别。"]
+			id: "418876108AC726AC"
+			rewards: [
+				{
+					id: "652A47266F994BD8"
+					item: {
+						Count: 1
+						id: "minecraft:shulker_shell"
+						tag: {
+							affix_data: {
+								sockets: 1
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "58F0A2678A061BB1"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "19322F86C22D33AB"
+				item: {
+					Count: 1
+					id: "integrateddynamics:part_connector_omni_directional"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "将所有物品链接起来"
+			x: 2.5d
+			y: -2.0d
+		}
+		{
+			dependencies: [
+				"74F22DE1FF5189E9"
+				"418876108AC726AC"
+			]
+			description: ["&7Make a Portable Terminal by attaching Crystallized Menril Chunks to a Storage Terminal, then link it by right-clicking an Omni-Directional Connector in your base. After linking, open it from your inventory to access your network remotely."]
+			id: "5559140601813B77"
+			rewards: [
+				{
+					count: 4
+					id: "4DBF9B5B370E51F1"
+					item: {
+						Count: 1
+						id: "integrateddynamics:crystalized_menril_chunk"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					count: 4
+					id: "157FDF3BE577425D"
+					item: {
+						Count: 1
+						id: "integrateddynamics:crystalized_chorus_chunk"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "3D45BD1F02A8403F"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "3CE356E0CB0CAA9C"
+				item: {
+					Count: 1
+					id: "integratedterminals:terminal_storage_portable"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "便携式储物箱"
+			x: 3.0d
+			y: -3.5d
+		}
+	]
+	title: "&9Integrated Dynamics"
+}

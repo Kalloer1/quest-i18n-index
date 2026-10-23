@@ -1,0 +1,359 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "celestial"
+	group: "0FFECF43B1AA7173"
+	icon: {
+		Count: 1
+		id: "mekanism:hdpe_elytra"
+		tag: {
+			Damage: 0
+		}
+	}
+	id: "03DD4612C1C0B4FE"
+	order_index: 6
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["你出生时是 Celestial 的身份。"]
+			entity_vis_size: 1.0f
+			id: "4D7482A9F39C697E"
+			size: 1.5d
+			tasks: [{
+				icon: {
+					Count: 1
+					id: "mekanism:hdpe_elytra"
+					tag: {
+						Damage: 0
+					}
+				}
+				id: "18BE6843EA14D664"
+				title: "神圣的帕拉丁们"
+				type: "custom"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["4D7482A9F39C697E"]
+			description: ["&e如果你还没注意到，你获得了一个神圣回响。这是一种特殊的项链，能让你使用随机的附魔法术。不过，你需要先达到10级才能开始附魔。&r"]
+			entity_vis_size: 1.0f
+			id: "4C0617C9D124413E"
+			rewards: [{
+				id: "43D9F1C8704F9E61"
+				type: "xp"
+				xp: 100
+			}]
+			size: 1.5d
+			tasks: [{
+				id: "75A31145FF8A82C8"
+				item: {
+					Count: 1
+					id: "traveloptics:holy_echo"
+					tag: { }
+				}
+				match_nbt: false
+				type: "item"
+				weak_nbt_match: true
+			}]
+			x: -3.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["4C0617C9D124413E"]
+			description: ["&e你神圣符文的基础！&r"]
+			entity_vis_size: 1.0f
+			id: "030C90D92ECB239B"
+			size: 1.5d
+			tasks: [{
+				id: "65D814A6FED76353"
+				item: "irons_spellbooks:divine_pearl"
+				type: "item"
+			}]
+			x: -7.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["4D7482A9F39C697E"]
+			description: ["&e天使天生就能让自己腾空而起。只需按下默认键位\"G\"&r"]
+			entity_vis_size: 1.0f
+			id: "0CA3857F1F027655"
+			rewards: [{
+				id: "607B2ABC360DFBC4"
+				type: "xp"
+				xp: 100
+			}]
+			size: 1.5d
+			tasks: [{
+				id: "6977813F794B19C0"
+				title: "终极飞行！"
+				type: "checkmark"
+			}]
+			x: 2.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["030C90D92ECB239B"]
+			description: ["&e这可真是神圣的圣物！&r"]
+			entity_vis_size: 1.0f
+			id: "34A865F38EC8FECB"
+			rewards: [{
+				id: "7A268975DEBAF07F"
+				type: "xp"
+				xp: 100
+			}]
+			size: 1.5d
+			tasks: [{
+				id: "612952569090006E"
+				item: "irons_spellbooks:holy_rune"
+				type: "item"
+			}]
+			x: -5.0d
+			y: -6.5d
+		}
+		{
+			dependencies: ["34A865F38EC8FECB"]
+			description: ["&e神圣的球体！&r"]
+			entity_vis_size: 1.0f
+			id: "5348F0E04B5E05E6"
+			rewards: [{
+				id: "1E3409CF0BDA0DE1"
+				type: "xp"
+				xp: 100
+			}]
+			size: 1.5d
+			tasks: [{
+				id: "4C5D120D89D68DAD"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:holy_upgrade_orb"
+					tag: {
+						"irons_spellbooks:upgrade_orb_type": "irons_spellbooks:holy_power"
+					}
+				}
+				type: "item"
+			}]
+			x: -8.5d
+			y: -6.5d
+		}
+		{
+			can_repeat: true
+			dependencies: [
+				"6211AF8D50907902"
+				"2E0FD7F4C7D6DC24"
+				"5348F0E04B5E05E6"
+			]
+			description: [
+				"卷轴交换商店"
+				""
+				"&4&l警告：提交前，请确保背包中只有你想交换的卷轴。丢弃所有不想交换的卷轴&r&r"
+			]
+			entity_vis_size: 1.0f
+			id: "08C29E46E85E5750"
+			rewards: [{
+				id: "06C1D81F09AE99F6"
+				table_id: 3116736367618900305L
+				type: "random"
+			}]
+			size: 1.5d
+			tasks: [{
+				consume_items: true
+				count: 20L
+				id: "5F4A00732043D900"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:scroll"
+					tag: {
+						"irons_spellbooks:spell_container": {
+							data: [{
+								id: "traveloptics:vortex_of_the_deep"
+								index: 0
+								level: 2
+								locked: 1b
+							}]
+							maxSpells: 1
+							mustEquip: 0b
+							spellWheel: 0b
+						}
+					}
+				}
+				title: "输入任意卷轴"
+				type: "item"
+			}]
+			title: "卷轴商店"
+			x: -11.0d
+			y: -9.0d
+		}
+		{
+			dependencies: ["34A865F38EC8FECB"]
+			description: ["&e牧师套装！提供永恒的 divine protection！&r"]
+			entity_vis_size: 1.0f
+			id: "54FF469CDAE4CE11"
+			rewards: [{
+				id: "1E41D7EE7AC695B0"
+				type: "xp"
+				xp: 1000
+			}]
+			size: 1.5d
+			tasks: [
+				{
+					id: "7365FB3187BFF334"
+					item: {
+						Count: 1
+						id: "irons_spellbooks:priest_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "4649CA0E8D19990B"
+					item: {
+						Count: 1
+						ForgeCaps: {
+							"fracturepoint:plate_holder": { }
+						}
+						id: "irons_spellbooks:priest_chestplate"
+						tag: {
+							Damage: 0
+							"irons_spellbooks:spell_container": {
+								data: [ ]
+								maxSpells: 1
+								mustEquip: 1b
+								spellWheel: 1b
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "0710705BAE44F93B"
+					item: {
+						Count: 1
+						id: "irons_spellbooks:priest_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "6000B35CC3BAC238"
+					item: {
+						Count: 1
+						id: "irons_spellbooks:priest_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			x: -2.0d
+			y: -9.5d
+		}
+		{
+			dependencies: ["34A865F38EC8FECB"]
+			description: ["&e简单却神圣！&r"]
+			entity_vis_size: 1.0f
+			id: "799E6CC389C6E580"
+			rewards: [{
+				id: "4967176D16591609"
+				type: "xp"
+				xp: 500
+			}]
+			size: 1.5d
+			tasks: [{
+				id: "32DB27A244787DBF"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:villager_spell_book"
+					tag: {
+						"irons_spellbooks:spell_container": {
+							data: [ ]
+							maxSpells: 10
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: 1.5d
+			y: -6.5d
+		}
+		{
+			dependencies: ["34A865F38EC8FECB"]
+			description: ["&e天使应有的武器！&r"]
+			entity_vis_size: 1.0f
+			id: "375432C62A362F9B"
+			rewards: [{
+				id: "74B850776A731047"
+				type: "xp"
+				xp: 500
+			}]
+			size: 1.5d
+			tasks: [{
+				id: "6AF258165F850A30"
+				item: {
+					Count: 1
+					id: "traveloptics:scourge_of_the_sands"
+					tag: {
+						"irons_spellbooks:spell_container": {
+							data: [{
+								id: "traveloptics:stele_cascade"
+								index: 0
+								level: 6
+								locked: 1b
+							}]
+							maxSpells: 1
+							mustEquip: 0b
+							spellWheel: 1b
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: -12.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["375432C62A362F9B"]
+			description: ["&e大天使们值得信赖的武器库！&r"]
+			entity_vis_size: 1.0f
+			id: "16EF23B215F39796"
+			rewards: [{
+				id: "4E273BFA54348AEC"
+				type: "xp"
+				xp: 500
+			}]
+			size: 1.5d
+			tasks: [{
+				id: "21A2B9F57D8DC2B2"
+				item: {
+					Count: 1
+					id: "traveloptics:charged_sands"
+					tag: {
+						"irons_spellbooks:spell_container": {
+							data: [{
+								id: "irons_spellbooks:lightning_lance"
+								index: 0
+								level: 10
+								locked: 1b
+							}]
+							maxSpells: 1
+							mustEquip: 0b
+							spellWheel: 1b
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: -16.0d
+			y: -2.5d
+		}
+	]
+	title: "天体相关的物品和生物会出现在这里。"
+}

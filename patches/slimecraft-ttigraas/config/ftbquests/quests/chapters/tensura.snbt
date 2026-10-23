@@ -1,0 +1,490 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "tensura"
+	group: "3F766641C508912E"
+	icon: {
+		Count: 1b
+		id: "tensura:anti_magic_mask"
+		tag: {
+			Damage: 0
+		}
+	}
+	id: "47316AA745175C81"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			hide_dependency_lines: false
+			id: "653BF35BAB86D8D6"
+			progression_mode: "linear"
+			rewards: [
+				{
+					id: "6727F53945EA2512"
+					item: {
+						Count: 1b
+						id: "minecraft:stone_sword"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "4CA0EF20A5ECA40F"
+					item: {
+						Count: 1b
+						id: "minecraft:stone_shovel"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "3267057716897A92"
+					item: {
+						Count: 1b
+						id: "minecraft:stone_pickaxe"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "4DC93DDF21D7F4A8"
+					item: {
+						Count: 1b
+						id: "minecraft:stone_axe"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 10
+					id: "557932CA5CA21C4E"
+					item: "minecraft:cooked_beef"
+					random_bonus: 10
+					type: "item"
+				}
+				{
+					auto: "enabled"
+					id: "1C900DB8AB7E59DF"
+					item: "ftbquests:book"
+					type: "item"
+				}
+				{
+					auto: "enabled"
+					command: "/gamerule resetCounterBonusUnique 4"
+					icon: "minecraft:paper"
+					id: "169993DCE71D8F95"
+					silent: true
+					title: "4 次重置 = 1 个新独特技能"
+					type: "command"
+				}
+			]
+			shape: "octagon"
+			size: 2.0d
+			subtitle: "欢迎来到史莱姆世界！以下是一些开启你旅程的物品"
+			tasks: [{
+				advancement: "tensura:reincarnated"
+				criterion: ""
+				icon: {
+					Count: 1b
+					id: "tensura:anti_magic_mask"
+					tag: {
+						Damage: 0
+					}
+				}
+				id: "6B9BC8CB927D57E4"
+				type: "advancement"
+			}]
+			title: "&b欢迎！"
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["653BF35BAB86D8D6"]
+			hide: true
+			icon: "tensura:full_potion"
+			id: "1E145858B7F77380"
+			rewards: [
+				{
+					command: "/tensura edit @p stat magicule add max 250"
+					icon: "tensura:full_potion"
+					id: "797765B04C790585"
+					silent: true
+					title: "额外的魔法粒子"
+					type: "command"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "30FCF85117F346DB"
+					table_id: 3449151676604928079L
+					type: "loot"
+				}
+			]
+			subtitle: "每场比赛开始时都有一定数量的 &bMagicules&r。这个数量可以通过 &n&c击杀生物来增加"
+			tasks: [{
+				id: "3132394B4E4E4AF3"
+				title: "魔法粒子"
+				type: "checkmark"
+			}]
+			title: "&b魔法粒子"
+			x: 2.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["1E145858B7F77380"]
+			hide: true
+			icon: "tensura:full_potion"
+			id: "402B90227FA7D81B"
+			rewards: [
+				{
+					command: "/tensura edit @p stat magicule add max 250"
+					icon: "tensura:full_potion"
+					id: "2AB667174246236A"
+					silent: true
+					title: "额外的魔法粒子"
+					type: "command"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "06AD77BC029E91AC"
+					table_id: 3449151676604928079L
+					type: "loot"
+				}
+			]
+			subtitle: "目前我知道的，恢复魔法微粒的方法只有随着时间的推移，通过&b&n睡觉&r，以及进入&a&n迷宫&r"
+			tasks: [{
+				id: "387D04E7EAF440B3"
+				title: "正在再生魔法粒子 (magicules)"
+				type: "checkmark"
+			}]
+			title: "&e再生中的&r &b魔法粒子"
+			x: 2.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["653BF35BAB86D8D6"]
+			hide: true
+			icon: {
+				Count: 1b
+				id: "tensura:hihiirokane_katana"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "09AF796299BCF41D"
+			rewards: [
+				{
+					command: "/tensura edit @p stat aura add max 250"
+					icon: {
+						Count: 1b
+						id: "tensura:hihiirokane_katana"
+						tag: {
+							Damage: 0
+						}
+					}
+					id: "19A6EE84642CE58E"
+					silent: true
+					title: "额外光环 (Extra Aura)"
+					type: "command"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "6B482584C8E45889"
+					table_id: 3449151676604928079L
+					type: "loot"
+				}
+			]
+			subtitle: "每场比赛开始时都有一定数量的 &9aura&r。这个数量可以通过杀死生物来 &c&n增加"
+			tasks: [{
+				id: "701C8CFFAF0E1A04"
+				title: "光环"
+				type: "checkmark"
+			}]
+			title: "&9光环"
+			x: 4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["09AF796299BCF41D"]
+			hide: true
+			icon: {
+				Count: 1b
+				id: "tensura:hihiirokane_katana"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "285075B64CA33480"
+			rewards: [
+				{
+					command: "/tensura edit @p stat aura add max 250"
+					icon: {
+						Count: 1b
+						id: "tensura:hihiirokane_katana"
+						tag: {
+							Damage: 0
+						}
+					}
+					id: "5AF18C0EAF48E385"
+					silent: true
+					title: "额外光环 (Extra Aura)"
+					type: "command"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "18740CBF4D5CA6A8"
+					table_id: 3449151676604928079L
+					type: "loot"
+				}
+			]
+			subtitle: "目前我所知的恢复奥拉的方法只有&e&n\"Battlewill\"技能&r和&b&n睡觉&r。"
+			tasks: [{
+				id: "6548DC46BA08C7AC"
+				title: "再生光环 (Regerating Aura)"
+				type: "checkmark"
+			}]
+			title: "&e再生&r &9光环"
+			x: 5.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["653BF35BAB86D8D6"]
+			hide: true
+			icon: {
+				Count: 1b
+				id: "iceandfire:armor_copper_metal_helmet"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "1B5EAECD48AB744B"
+			rewards: [
+				{
+					count: 10
+					id: "0BFD7C40D759CC57"
+					item: "minecraft:iron_ingot"
+					title: "这里有一些东西可以让你开始上手"
+					type: "item"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "387338CC3C2424B7"
+					table_id: 3449151676604928079L
+					type: "loot"
+				}
+			]
+			subtitle: "&b前期&r护甲，我推荐用&e铜甲&r，因为铜非常容易获得。 &n重点收集33个铁锭，制作锻造台以获取更好的护甲。"
+			tasks: [{
+				id: "5E272C875B086651"
+				title: "盔甲"
+				type: "checkmark"
+			}]
+			title: "&b前期&r盔甲"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["1B5EAECD48AB744B"]
+			hide: true
+			icon: {
+				Count: 1b
+				id: "tensura:monster_leather_helmet_d"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "7919A1D2A76A00C8"
+			rewards: [
+				{
+					count: 10
+					icon: "tensura:monster_leather_c"
+					id: "36F0E7960FD19883"
+					item: "tensura:monster_leather_c"
+					type: "item"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "1BCDD2ACC19EE43D"
+					table_id: 3449151676604928079L
+					type: "loot"
+				}
+			]
+			subtitle: "&3中后期&r的护甲，我推荐&e怪物皮革护甲&r，因为它&f&n吸收的EP越多就越强&r。D级吸收2k EP进化为C，C级吸收5k EP进化为B，B-A需要10k EP，A-Special A需要40-56K EP。 &n在进化这套护甲的同时，你应该着手获取Magisteel护甲。"
+			tasks: [{
+				id: "23ADE2254906A7F9"
+				title: "中后期游戏阶段的盔甲"
+				type: "checkmark"
+			}]
+			title: "&3中后期&r盔甲"
+			x: -1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["29FD908862A0D7E7"]
+			icon: {
+				Count: 1b
+				id: "tensura:low_magisteel_helmet"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "7C13614D93B3920D"
+			rewards: [
+				{
+					exclude_from_claim_all: true
+					id: "514C33B816B02735"
+					table_id: 3449151676604928079L
+					type: "loot"
+				}
+				{
+					id: "0E6C324867F58E0B"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+			subtitle: "最好的&c后期&r盔甲是&9Magisteel&r，因为它&f&n的进化方式和怪物皮革盔甲一样&r。这次，它在不同的EP等级进化。低-高：18K EP。高-纯：52K EP。纯-Adamantite：225K EP。Adamantite-Hihi'irokane：750K EP"
+			tasks: [{
+				id: "7412EA410F341946"
+				title: "后期游戏护甲"
+				type: "checkmark"
+			}]
+			title: "&c中后期&r盔甲"
+			x: -4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7919A1D2A76A00C8"]
+			hide: true
+			id: "29FD908862A0D7E7"
+			rewards: [
+				{
+					id: "554EC75B690AD79C"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7ACF6467C6E4E703"
+					table_id: 3449151676604928079L
+					type: "loot"
+				}
+			]
+			subtitle: "要获得 Magisteel，你需要 Kilm。要获得 Kilm，你需要下界合金。别担心记不住，我会有任务引导你完成。"
+			tasks: [{
+				id: "7F10AE3F56EC3D36"
+				title: "Magisteel"
+				type: "checkmark"
+			}]
+			title: "&9Magisteel"
+			x: -3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"7C13614D93B3920D"
+				"402B90227FA7D81B"
+				"285075B64CA33480"
+				"2C3E5C9632888E75"
+				"36A5B292BAB4D499"
+			]
+			hide: true
+			hide_dependency_lines: true
+			icon: {
+				Count: 1b
+				id: "tensura:anti_magic_mask"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "67E626BD9A1B0F42"
+			rewards: [
+				{
+					exclude_from_claim_all: true
+					id: "386D0D7DCEEC823B"
+					table_id: 3449151676604928079L
+					type: "loot"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "3DD31E9744948BB3"
+					table_id: 7896724164442028524L
+					type: "loot"
+				}
+			]
+			size: 2.0d
+			tasks: [{
+				id: "292AD7C8A309D93F"
+				title: "祝你好运"
+				type: "checkmark"
+			}]
+			title: "祝你好运！"
+			x: 2.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["653BF35BAB86D8D6"]
+			hide: true
+			icon: "tensura:stellar_gold_coin"
+			id: "2C3E5C9632888E75"
+			rewards: [
+				{
+					exclude_from_claim_all: true
+					id: "481C035B822EFB80"
+					table_id: 3449151676604928079L
+					type: "loot"
+				}
+				{
+					id: "5947ED891C06962B"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+			subtitle: "你可以在&eGuild&r用&bMagic Crystals&r和&6Monster Leather&r兑换&eMoney&r。 &eMoney&r可用于召唤Boss、购买护甲和额外补给。"
+			tasks: [{
+				id: "5DBDAB9C54357092"
+				title: "金钱"
+				type: "checkmark"
+			}]
+			title: "&e金钱"
+			x: 0.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["653BF35BAB86D8D6"]
+			hide: true
+			icon: "tensura:race_reset_scroll"
+			id: "36A5B292BAB4D499"
+			rewards: [
+				{
+					exclude_from_claim_all: true
+					id: "6626E44DAB06DB81"
+					table_id: 3449151676604928079L
+					type: "loot"
+				}
+				{
+					id: "17C40E8ACD0BC5ED"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+			subtitle: "击败&cIfrit&r、&eThe Elemental Collosus&r、&bCharybdis&r、&aThe Orc Disaster&r、&fHinata，&n&5达到最终进化&r，并觉醒为&d&nTrue Demon Lord&r或&6&nTrue Hero&r后，即可使用&aCharacter Reset Scroll&r获得一个额外的独特技能"
+			tasks: [{
+				id: "5888BCEBD48B566D"
+				title: "角色重置 (Character Resets)"
+				type: "checkmark"
+			}]
+			title: "&e重置计数器"
+			x: 4.0d
+			y: -1.5d
+		}
+	]
+	title: "SlimeCraft 简介"
+}

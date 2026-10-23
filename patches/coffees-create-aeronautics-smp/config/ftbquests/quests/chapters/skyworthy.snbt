@@ -1,0 +1,152 @@
+# AI 初翻，未人工校对
+{
+	id: "1400000000000001"
+	group: ""
+	order_index: 3
+	filename: "skyworthy"
+	title: "Skyworthy"
+	icon: {
+		id: "aeroclaims:claim_block"
+		Count: 1
+	}
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: 0.0d
+			y: 0.0d
+			shape: "circle"
+			id: "1400000000000002"
+			title: "造船匠的轮盘"
+			subtitle: "每位船长都始于一个轮盘和一个梦想"
+			description: [
+				"想翱翔天际吗？一切从这里开始。",
+				"",
+				"制作一个方向盘——任何船只的核心部件。",
+				"把它安装在你的建筑上，这样你的船在飞行时就可以被操控了。"
+			]
+			tasks: [{
+				id: "1400000000000003"
+				type: "item"
+				item: {
+					id: "simulated:steering_wheel"
+					Count: 1
+				}
+			}]
+			rewards: [{
+				id: "1400000000000004"
+				type: "item"
+				item: {
+					id: "create:andesite_alloy"
+					Count: 16
+				}
+			}]
+		}
+		{
+			x: 2.0d
+			y: 0.0d
+			shape: "hexagon"
+			size: 1.5d
+			id: "1400000000000010"
+			dependencies: ["1400000000000002"]
+			title: "处女航 (Maiden Voyage)"
+			subtitle: "它会飞！"
+			description: [
+				"物理组装器能将你的建筑变成一艘真正的飞行船。",
+				"",
+				"制作一个——然后带上我们赠送的这块&6领地方块&r。",
+				"",
+				"&e将Claim Block放置到船上，并在组装完成后立即注册您的船只。&r",
+				"未登记的船只给港口管理员的账本（还有服务器！）带来了负担。",
+				"已占用的船是受保护的船——也是所有人的低延迟港口。"
+			]
+			tasks: [{
+				id: "1400000000000011"
+				type: "item"
+				item: {
+					id: "simulated:physics_assembler"
+					Count: 1
+				}
+			}]
+			rewards: [{
+				id: "1400000000000012"
+				type: "item"
+				item: {
+					id: "aeroclaims:claim_block"
+					Count: 1
+				}
+			}]
+		}
+		{
+			x: 4.0d
+			y: 0.0d
+			shape: "circle"
+			id: "1400000000000020"
+			dependencies: ["1400000000000010"]
+			title: "在注册表上"
+			subtitle: "已注册并得到认可"
+			description: [
+				"将你的领地方块放置于组装好的船上，然后打开以注册船只。",
+				"",
+				"好好欣赏一下你的杰作吧——天空现在都认识你的名字了，船长。",
+				"",
+				"用下面的命名牌给你的船重新命名。\"ship\"可不是云之女士该有的名字。"
+			]
+			tasks: [{
+				id: "1400000000000021"
+				type: "observation"
+				timer: 0L
+				observe_type: 0
+				to_observe: "aeroclaims:claim_block"
+			}]
+			rewards: [
+				{
+					id: "1400000000000022"
+					type: "item"
+					item: {
+						id: "minecraft:name_tag"
+						Count: 1
+					}
+				}
+				{
+					id: "1400000000000023"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+		{
+			x: 6.0d
+			y: 0.0d
+			shape: "circle"
+			id: "1400000000000030"
+			dependencies: ["1400000000000020"]
+			title: "舰队总司令"
+			subtitle: "一艘船是爱好。一支舰队是传奇"
+			description: [
+				"再造一艘船？用物理组装器和注册表来换购",
+				"会为你发放一个新的用于她的领地方块。",
+				"",
+				"&7(可重复 — 每艘船一个Claim Block，所以每艘船都注册飞行。)&r"
+			]
+			repeatable: true
+			tasks: [{
+				id: "1400000000000031"
+				type: "item"
+				item: {
+					id: "simulated:physics_assembler"
+					Count: 1
+				}
+				consume_items: true
+			}]
+			rewards: [{
+				id: "1400000000000032"
+				type: "item"
+				item: {
+					id: "aeroclaims:claim_block"
+					Count: 1
+				}
+			}]
+		}
+	]
+}

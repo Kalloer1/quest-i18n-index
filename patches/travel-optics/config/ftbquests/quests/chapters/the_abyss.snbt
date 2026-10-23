@@ -1,0 +1,458 @@
+# AI 初翻，未人工校对
+{
+	id: "76F5ADC3E7A4E878"
+	group: ""
+	order_index: 7
+	filename: "the_abyss"
+	title: "另一面（深渊）"
+	icon: "theabyss:unstable_obsidian"
+	default_quest_shape: "rsquare"
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "凝视深渊，洞悉一切！"
+			x: -3.0d
+			y: -0.5d
+			subtitle: "建造深渊传送门并穿过它..."
+			description: [
+				""
+				"很久以前，深渊曾是充满生机与活力的地方，遍布美丽的生物。直到夜刃的出现，他命令幻影吞噬一切，将这片光明与魔法的国度变为扭曲的时空夹缝，与主世界平行。现在，轮到你拯救主世界，阻止蔓延的深渊吞噬其他维度了。"
+				""
+				"做了这样的梦后，你发现自己需要一些不稳定的特殊原始黑曜石和一个传送门激活器，才能到达梦境世界的起源……"
+				"将黑曜石按传送门形状放置并用激活器点燃即可创建传送门。"
+				""
+				"准备好踏入另一个世界了吗？"
+			]
+			dependencies: [
+				"398E53AD5A4E8216"
+				"6D71A33198B57AD1"
+				"2A5761F8585C3879"
+				"74F1A7BC6ED87B42"
+			]
+			id: "788F84F42161F091"
+			tasks: [{
+				id: "06EAD1F087C1EE35"
+				type: "dimension"
+				title: "访问维度：深渊 (The Abyss)"
+				icon: {
+					id: "theabyss:the_abyss"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				dimension: "theabyss:the_abyss"
+			}]
+			rewards: [{
+				id: "13EBD0913D9167A8"
+				type: "xp_levels"
+				xp_levels: 20
+			}]
+		}
+		{
+			title: "对待长辈的方式怎么能这样！"
+			x: -1.5d
+			y: 2.0d
+			subtitle: "杀死远古者..."
+			dependencies: ["788F84F42161F091"]
+			id: "526F4CC299AC8179"
+			tasks: [{
+				id: "7D8D3161D0DC906B"
+				type: "kill"
+				icon: "theabyss:elder_eye"
+				entity: "theabyss:elder"
+				value: 1L
+			}]
+			rewards: [
+				{
+					id: "06D31289ADACAD88"
+					type: "item"
+					item: "aquamirae:poseidons_breakfast"
+					count: 2
+				}
+				{
+					id: "5DB51D1F58A7952C"
+					type: "item"
+					item: "minecraft:experience_bottle"
+					count: 24
+				}
+			]
+		}
+		{
+			title: "给我展示点魔法吧！"
+			x: 0.0d
+			y: 1.0d
+			subtitle: "杀死魔术师……"
+			dependencies: ["788F84F42161F091"]
+			id: "17208ECB2F02AAEE"
+			tasks: [{
+				id: "1F78FB53B589D013"
+				type: "kill"
+				icon: {
+					id: "relics:magic_mirror"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				entity: "theabyss:magician"
+				value: 1L
+			}]
+			rewards: [
+				{
+					id: "73A2401617C67104"
+					type: "item"
+					item: "nameless_trinkets:reverse_card"
+				}
+				{
+					id: "70B63877E759EF40"
+					type: "random"
+					table_id: 5356582985346508839L
+				}
+			]
+		}
+		{
+			title: "我能造出这个东西吗？Can I Build This Thing?"
+			x: -1.5d
+			y: -3.0d
+			subtitle: "杀死一个水晶傀儡……"
+			description: [
+				"水晶哥布林是一个高约3格的小BOSS。除了大BOSS外，它的生命值在游戏中名列前茅。"
+				""
+				"水晶哥布林会掉落1个水晶手。这不受抢夺效果影响。水晶手只能用于制作深渊之眼。该生物也遵循“生物升级系统”。"
+			]
+			dependencies: ["788F84F42161F091"]
+			id: "4310471DAF0C0B34"
+			tasks: [{
+				id: "0857E5E792DA23D8"
+				type: "kill"
+				icon: "theabyss:crystal_hand"
+				entity: "theabyss:crystal_golem"
+				value: 1L
+			}]
+			rewards: [
+				{
+					id: "235B790C1C000695"
+					type: "item"
+					item: {
+						id: "aquamirae:abyssal_tiara"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "51D97B54739FFD91"
+					type: "item"
+					item: "minecraft:experience_bottle"
+					count: 24
+				}
+			]
+		}
+		{
+			title: "结束这一切吧！！"
+			x: 3.5d
+			y: -0.5d
+			subtitle: "击杀夜刃（NightBlade）..."
+			description: [
+				"在夜之祭坛上使用深渊之眼来召唤夜刃。这是游戏终局物品，不能用于其他用途。"
+				""
+				"夜刃是主要Boss之一。他可以通过夜刃召唤结构被召唤出来。他会使用2把深渊之剑进行攻击。"
+				""
+				"要召唤夜刃，必须点亮夜刃召唤结构中所有的砖石柱。可以使用灵魂之心来点亮。所有砖石柱点亮后，必须在夜祭坛上放置深渊之眼。放置深渊之眼后，闪电会劈中夜祭坛，从而召唤出夜刃。"
+			]
+			dependencies: [
+				"526F4CC299AC8179"
+				"0BED7CDFE28A4049"
+				"4310471DAF0C0B34"
+			]
+			id: "0A8FB088F797E513"
+			tasks: [{
+				id: "651D463564F9CAF4"
+				type: "kill"
+				icon: {
+					id: "theabyss:abyss_sword"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				entity: "theabyss:night_blade_boss_clone"
+				value: 1L
+			}]
+			rewards: [
+				{
+					id: "3B48670DCA51CCE9"
+					type: "item"
+					item: {
+						id: "aquamirae:divider"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "1D25358CFFBE101D"
+					type: "item"
+					item: {
+						id: "aquamirae:abyssal_heaume"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "6BB85869E1DB3168"
+					type: "item"
+					item: "aquamirae:frozen_chest"
+					count: 7
+				}
+				{
+					id: "13A1D775DE7982F1"
+					type: "item"
+					item: "aquamirae:frozen_key"
+					count: 7
+				}
+				{
+					id: "10DD97691859BD30"
+					type: "item"
+					item: {
+						id: "theabyss:ring_of_blackstrike"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "336DE4A2F74C44E1"
+					type: "item"
+					item: "ironchest:obsidian_chest"
+					count: 8
+				}
+				{
+					id: "1095CA8551EF8D04"
+					type: "item"
+					item: {
+						id: "theabyss:loran_energy"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+					count: 3
+				}
+				{
+					id: "3A1307A5A657EDA5"
+					type: "item"
+					item: "waystones:waystone"
+					count: 2
+				}
+				{
+					id: "2C8C6404373F639A"
+					type: "item"
+					item: "minecraft:experience_bottle"
+					count: 64
+				}
+			]
+		}
+		{
+			title: "前置任务！"
+			x: -3.0d
+			y: -3.5d
+			subtitle: "击杀末影龙..."
+			id: "398E53AD5A4E8216"
+			tasks: [{
+				id: "1CF0635F573DA859"
+				type: "kill"
+				icon: "minecraft:dragon_head"
+				entity: "minecraft:ender_dragon"
+				value: 1L
+			}]
+			rewards: [{
+				id: "3A54F5CAF1C6526B"
+				type: "item"
+				item: {
+					id: "patchouli:guide_book"
+					Count: 1b
+					tag: {
+						"patchouli:book": "theabyss:abyssbookitem"
+					}
+				}
+			}]
+		}
+		{
+			title: "黏滑蜘蛛人??"
+			x: 0.0d
+			y: -2.0d
+			subtitle: "击杀史莱姆蜘蛛……"
+			description: [
+				"史莱姆蜘蛛会生成于史莱姆森林生物群系。史莱姆蜘蛛可掉落1个怪异史莱姆。怪异史莱姆可用于史莱姆融合。这些掉落物不受抢夺等附魔的影响。"
+				""
+				"它们还遵循“生物升级系统”，并且弱于“神圣打击”。"
+			]
+			dependencies: ["788F84F42161F091"]
+			id: "7CE5CA2A9F0BADF0"
+			tasks: [{
+				id: "70684D9CBA91C289"
+				type: "kill"
+				icon: {
+					id: "alexsmobs:spiked_turtle_shell"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				entity: "theabyss:slime_spider"
+				value: 20L
+			}]
+			rewards: [
+				{
+					id: "613CAF29FF1F5A1C"
+					type: "item"
+					item: {
+						id: "gateways:gate_pearl"
+						Count: 1b
+						tag: {
+							gateway: "gateways:slime_gate_large"
+						}
+					}
+				}
+				{
+					id: "0BE9CF566407510F"
+					type: "item"
+					item: "theabyss:slime_stage_1"
+					count: 3
+				}
+				{
+					id: "4B4942B4EE5CE186"
+					type: "random"
+					table_id: 5356582985346508839L
+				}
+			]
+		}
+		{
+			x: -5.5d
+			y: -0.5d
+			subtitle: "你梦到了一个像美丽森林一样的地方……"
+			description: [
+				"那是什么梦？我身处一片充满美丽的魔法森林。我看到了一些让我说不出话的东西。"
+				""
+				"但是这太令人困惑了，我以前从未来过这里。那我为什么会梦到这个神秘的地方呢？"
+			]
+			id: "6D71A33198B57AD1"
+			tasks: [{
+				id: "5EBCB1D26AEB1D80"
+				type: "advancement"
+				advancement: "theabyss:strange_rem_phases"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "644E1DA31DE18EC3"
+				type: "item"
+				item: {
+					id: "spartanweaponry:rapier_wood"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			x: -4.5d
+			y: -0.5d
+			subtitle: "你又做梦了，但那已不再是之前所说的那个美丽的森林了..."
+			description: [
+				"我又梦到了那片魔法森林，但它看起来……截然不同。森林失去了所有的美丽。我周围的一切都是死寂的。"
+				""
+				"真想知道这里发生过什么。但我更好奇……我为什么会一直梦到这个地方？"
+			]
+			id: "2A5761F8585C3879"
+			tasks: [{
+				id: "312519851AFD27F7"
+				type: "advancement"
+				advancement: "theabyss:story_adv"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "1FF3D8F396794A42"
+				type: "item"
+				item: {
+					id: "patchouli:guide_book"
+					Count: 1b
+					tag: {
+						"patchouli:book": "theabyss:abyssbookitem"
+					}
+				}
+			}]
+		}
+		{
+			title: "这是一朵花还是一块水晶？"
+			x: -3.0d
+			y: 2.5d
+			subtitle: "尽可能多地收集洛兰……"
+			description: [
+				"这是一栋废弃的房子吗？这里有台收音机。不知道还能不能用？（你试着打开收音机）"
+				""
+				"呼！我又回来了。这些植物是什么，看起来挺有用的。或许我该在四处看看的时候收集它们。"
+				""
+				""
+				"你需要在森林里找到一间废弃小屋。里面有一台坏掉的收音机。右键点击它，就能再次传送到收音机维度。不同的是，你这次能看到洛兰植物。一段时间后你就会被传送回来，所以尽可能多地收集洛兰，这是最简单的获取方式。"
+			]
+			id: "74F1A7BC6ED87B42"
+			tasks: [{
+				id: "63016EDEFDF91271"
+				type: "item"
+				item: "theabyss:loran"
+				count: 32L
+			}]
+			rewards: [
+				{
+					id: "26D68B0E0127DA3B"
+					type: "item"
+					item: "aquaculture:neptunium_ingot"
+					count: 2
+				}
+				{
+					id: "06423F7013ACDF99"
+					type: "random"
+					table_id: 5356582985346508839L
+				}
+			]
+		}
+		{
+			title: "一只巨大的猪灵壮汉？"
+			x: 1.0d
+			y: -0.5d
+			subtitle: "杀死罗卡……"
+			description: ["Roka 是一种生成于蓝色森林的迷你首领。Roka 的脸庞与猪灵残暴者相似。它有着相对较大的身体和手臂，以及弯曲的腿。Roka 会掉落 1 个 Roka 角，掉落率为 100%。与大多数掉落物一样，该掉落物不受抢夺效果影响。Roka 角可以制作成各种戒指以及深渊之眼。"]
+			dependencies: ["788F84F42161F091"]
+			id: "0BED7CDFE28A4049"
+			tasks: [{
+				id: "277D0200491D79E8"
+				type: "kill"
+				icon: "theabyss:roka_horn"
+				entity: "theabyss:the_roka"
+				value: 1L
+			}]
+			rewards: [
+				{
+					id: "74944C7452010B3D"
+					type: "item"
+					item: "minecraft:enchanted_golden_apple"
+					count: 5
+				}
+				{
+					id: "7B62A6B79A71B330"
+					type: "item"
+					item: "minecraft:experience_bottle"
+					count: 32
+				}
+			]
+		}
+	]
+}

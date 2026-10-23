@@ -1,0 +1,962 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "tfmg_electricity"
+	group: "3F44C044ABB15054"
+	icon: "tfmg:rotor"
+	id: "7332B6BB3E51839A"
+	images: [
+		{
+			alpha: 127
+			height: 1.2d
+			image: "tfmg:block/caution_block/yellow"
+			rotation: 0.0d
+			width: 1.2d
+			x: 0.0d
+			y: -3.5d
+		}
+		{
+			click: " "
+			height: 1.0d
+			hover: [
+				"I = U / R"
+				"P = U x I"
+				"P = R x I^2"
+			]
+			image: "tfmg:block/voltage_cube"
+			rotation: 0.0d
+			width: 1.0d
+			x: -6.0d
+			y: -0.5d
+		}
+		{
+			height: 1.0d
+			hover: ["Hmm what could this mean..."]
+			image: "tfmg:textures/particle/electric_spark.png"
+			rotation: 0.0d
+			width: 1.0d
+			x: -3.5d
+			y: -1.0d
+		}
+		{
+			click: " "
+			height: 1.0d
+			hover: ["\"Wat's dis hole in da wall?\""]
+			image: "tfmg:block/glass_aluminum_pipe"
+			rotation: 0.0d
+			width: 1.0d
+			x: 7.0d
+			y: -2.0d
+		}
+		{
+			height: 1.0d
+			image: "tfmg:item/screwdriver"
+			rotation: -130.0d
+			width: 1.0d
+			x: 6.392857142857146d
+			y: -1.9250000000000043d
+		}
+		{
+			height: 1.0d
+			image: "tfmg:block/steel_casing_cable_hub"
+			rotation: 0.0d
+			width: 1.0d
+			x: 5.5d
+			y: -2.0d
+		}
+	]
+	order_index: 3
+	quest_links: [{
+		id: "666F2E40745E7CAD"
+		linked_quest: "18FC3D21BB6EBF76"
+		shape: "hexagon"
+		x: -4.5d
+		y: -3.5d
+	}]
+	quests: [
+		{
+			dependencies: [
+				"062051ED6D130ACD"
+				"037621E5EC46F613"
+				"0E63C1AD9074987E"
+			]
+			icon: "tfmg:magnetic_alloy_ingot"
+			id: "4CDB3F8E217ADC8E"
+			rewards: [{
+				id: "1DB648BC057B48CA"
+				item: "tfmg:silicon_ingot"
+				type: "item"
+			}]
+			subtitle: "在加热盆中进行混合。"
+			tasks: [{
+				count: 2L
+				id: "30A370C48011F8E0"
+				item: "tfmg:magnetic_alloy_ingot"
+				type: "item"
+			}]
+			x: -3.0d
+			y: -2.0d
+		}
+		{
+			dependencies: [
+				"4CDB3F8E217ADC8E"
+				"435C9E741CE14DDF"
+			]
+			description: [
+				"在雷暴期间将&6磁性合金&r放在避雷针上，等待被击中。使用蓄力三叉戟也行。"
+				""
+				"此过程的产出率约为 50%。"
+			]
+			id: "066FA99DD39A0BF4"
+			shape: "square"
+			subtitle: "格鲁格吸引闪电，格鲁格制造磁铁。"
+			tasks: [{
+				id: "08561D013A95690A"
+				item: "tfmg:magnet"
+				type: "item"
+			}]
+			title: "如何制作一个磁铁"
+			x: -3.0d
+			y: -0.5d
+		}
+		{
+			hide_dependent_lines: true
+			id: "3E8DFC1B03297B5D"
+			shape: "octagon"
+			size: 1.5d
+			subtitle: "我庄严宣誓，绝不和家里的配电箱接吻。"
+			tasks: [{
+				id: "00630EBE0774E1F8"
+				type: "checkmark"
+			}]
+			title: "我庄严地发誓……"
+			x: -6.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["3E8DFC1B03297B5D"]
+			id: "435C9E741CE14DDF"
+			shape: "hexagon"
+			subtitle: "格鲁格看见闪电。格鲁格想要闪电的力量。"
+			tasks: [{
+				id: "4DBD9258BE6EA507"
+				item: "minecraft:lightning_rod"
+				type: "item"
+			}]
+			x: -4.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["3E8DFC1B03297B5D"]
+			id: "2F9B52EA41B4DFF0"
+			rewards: [{
+				count: 8
+				id: "27A19C8DD8ECD0C8"
+				item: "tfmg:copper_wire"
+				type: "item"
+			}]
+			tasks: [{
+				count: 8L
+				id: "7DC9C6E290D5EB58"
+				item: { Count: 8, id: "tfmg:copper_wire" }
+				type: "item"
+			}]
+			x: 0.0d
+			y: 3.5d
+		}
+		{
+			dependencies: [
+				"0104893F8F3458DA"
+				"2D94489E09F8DD9C"
+				"3E8DFC1B03297B5D"
+			]
+			description: [
+				"消耗 &6电线&r 卷轴来缠绕物品。"
+				""
+				"涉及卷线器（如发电机、电位器）的合成配方将始终卷取精确所需的量。"
+				""
+				"绕制&6磁线圈&r时，可以指定绕线&b百分比&r（共1000匝），最低为100匝（10% = 100匝）。超过100匝仅用于变压器线圈。剩余线轴匝数可通过&e护目镜&r查看。"
+				""
+				"物品无法手动提取（电线轴除外），但没有未完成的物品过滤器。手动绕线操作请使用漏斗和杠杆。"
+			]
+			id: "4A19E3387DBD7FB0"
+			shape: "hexagon"
+			subtitle: "你成功地惹恼了我，这下可麻烦了。"
+			tasks: [{
+				id: "6EC8614D309CBD20"
+				item: "tfmg:winding_machine"
+				type: "item"
+			}]
+			x: -3.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["4F8BAA7B943299D9"]
+			id: "2E10AFB432824AB1"
+			rewards: [{
+				count: 8
+				id: "0189EB501ECD39FD"
+				item: "tfmg:constantan_wire"
+				type: "item"
+			}]
+			tasks: [{
+				count: 8L
+				id: "070AC6878A395BE8"
+				item: "tfmg:constantan_wire"
+				type: "item"
+			}]
+			x: -6.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["2E10AFB432824AB1"]
+			id: "138B96B20044ED12"
+			tasks: [{
+				id: "4B20573B1E828C26"
+				item: {
+					Count: 1
+					id: "tfmg:constantan_spool"
+					tag: {
+						Amount: 1000
+					}
+				}
+				type: "item"
+			}]
+			x: -6.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["6D7CC9EA47063963"]
+			id: "6F8352887E69377D"
+			optional: true
+			rewards: [{
+				count: 8
+				id: "77CC5651597006EA"
+				item: "tfmg:aluminum_wire"
+				type: "item"
+			}]
+			tasks: [{
+				count: 8L
+				id: "4E5356397A515014"
+				item: { Count: 8, id: "tfmg:aluminum_wire" }
+				type: "item"
+			}]
+			x: 1.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["6F8352887E69377D"]
+			id: "2CF4904C77DBC705"
+			optional: true
+			tasks: [{
+				id: "7008026DE61960DA"
+				item: {
+					Count: 1
+					id: "tfmg:aluminum_spool"
+					tag: {
+						Amount: 1000
+					}
+				}
+				type: "item"
+			}]
+			x: 1.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["066FA99DD39A0BF4"]
+			description: ["将电表放置在电路的某一部分上以测量不同属性。使用&6护目镜&r可查看具体数值，用&6扳手&r可更改所测量的数量。"]
+			id: "776451A1A5F3B2FB"
+			rewards: [{
+				id: "011CCECC7AEDD24F"
+				item: "tfmg:magnet"
+				type: "item"
+			}]
+			subtitle: "我仔细测量后的结果表明……"
+			tasks: [{
+				id: "1AA6A91537C7CD44"
+				item: "tfmg:voltmeter"
+				type: "item"
+			}]
+			x: -3.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["776451A1A5F3B2FB"]
+			description: [
+				"比原版更好、更便携的电压表。非常适合用来检查是否有足够的&2电流&r和&c功率。&r"
+				""
+				"&4迪&6亚&e布&a勒&3尔&5勒&d勒&c！"
+			]
+			id: "4FFD6C191AD6FCC5"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "62E54B817A73795B"
+				type: "choice"
+			}]
+			shape: "gear"
+			subtitle: "!! 戴护目镜时无法使用 !!"
+			tasks: [{
+				id: "0065C74DF48708EC"
+				item: "tfmg:multimeter"
+				type: "item"
+			}]
+			x: -4.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["062051ED6D130ACD"]
+			id: "4E058BAF38B16EE0"
+			rewards: [{
+				count: 4
+				id: "496B822ADB370B4E"
+				item: "tfmg:capacitor_item"
+				type: "item"
+			}]
+			subtitle: "然后我们连接起来——砰！"
+			tasks: [{
+				count: 4L
+				id: "334AA5B111E5ED0E"
+				item: { Count: 4, id: "tfmg:capacitor_item" }
+				type: "item"
+			}]
+			x: -1.5d
+			y: 2.5d
+		}
+		{
+			dependencies: [
+				"4E058BAF38B16EE0"
+				"066FA99DD39A0BF4"
+				"1578A7A80B07816E"
+			]
+			description: [
+				"&2发电机&r消耗SU来发电。转速越快，产生的电压和功率越高，最高可达&3255V&r和&c12.1kW&r。下一页有更详细的说明。"
+				""
+				"这是一个多步骤的部署配方，其中一个步骤涉及&e绞线机&r。"
+				"从一个&6竖井&r开始，并按照以下步骤操作："
+				""
+				"1. 电容器"
+				"2. 重型板甲"
+				"3. 使用&e绕线机&r，将75圈&6铜线&r缠绕在它上面。"
+				"4. 磁铁"
+				"5. 钢铁机械装置"
+				"6. 螺丝刀"
+				""
+				"重复三次，将有83%的几率获得一台发电机。"
+				""
+				"{@pagebreak}"
+				"&30RPM - 40RPM&r"
+				"无法生成电力"
+				""
+				"&341RPM - 223RPM&r"
+				"电压从1V线性升高至255V"
+				"恒定电流限制为40A，因此输出功率范围在40W - 10.2kW之间"
+				""
+				"&3224RPM - 256RPM&r"
+				"恒定255V，输出功率增至12.1kW"
+				"当前限制提升至 47.5A"
+			]
+			icon: "tfmg:generator"
+			id: "52D8B15C3B75AB7F"
+			rewards: [{
+				count: 8
+				id: "0097306C3EEBEBF8"
+				item: "tfmg:copper_wire"
+				type: "item"
+			}]
+			shape: "hexagon"
+			subtitle: "你获得了力量。"
+			tasks: [{
+				id: "34D27F4CAE9B1726"
+				item: "tfmg:generator"
+				type: "item"
+			}]
+			title: "生成器"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["138B96B20044ED12"]
+			description: [
+				"电位器将输入电压的&b百分比&r输送到输出端。与现实中不同，它们不会浪费电力。"
+				""
+				"例如，如果你的基地是 &33kV&r，但照明只需要 &3150V&r，你可以为照明设置一个 5% 的电位器。这样它们就不会在零增益的情况下消耗数千瓦的电力。"
+				""
+				"这个方块末端模糊的箭头形状就是输出端。"
+			]
+			id: "1188D57C76DBD215"
+			rewards: [{
+				count: 2
+				id: "1FCE96C86B97E48F"
+				item: "tfmg:steel_cogwheel"
+				type: "item"
+			}]
+			subtitle: "缓解一下紧张的气氛。"
+			tasks: [{
+				id: "42C5DE2BFA7F8F76"
+				item: "tfmg:potentiometer"
+				type: "item"
+			}]
+			x: -6.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["2F9B52EA41B4DFF0"]
+			id: "1578A7A80B07816E"
+			tasks: [{
+				id: "66A125A80B617D6C"
+				item: {
+					Count: 1
+					id: "tfmg:copper_spool"
+					tag: {
+						Amount: 1000
+					}
+				}
+				type: "item"
+			}]
+			x: 0.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["066FA99DD39A0BF4"]
+			description: [
+				"&2电动机&r将电能转化为SU，效率略有损耗。"
+				""
+				"这是一个多步骤的部署配方，其中一个步骤涉及&e绞线机&r。"
+				"从一个&6竖井&r开始，并按照以下步骤操作："
+				""
+				"1. 使用&e绕线机&r，将75圈&6铜线&r缠绕在它上面"
+				"2. 磁铁"
+				"3. 钢铁机械装置"
+				"4. 螺丝刀"
+				""
+				"重复三次，将有94%的几率获得一个电机。"
+				""
+				"{@pagebreak}"
+				"旋转方向可以配置。"
+				""
+				"&30V - 320V&r"
+				"电机的SU输出和速度取决于输入电压，最高可达&611,220SU，转速为255RPM&r。这会消耗&c960W&r的功率。"
+				""
+				"&3320V - 1000V&r"
+				"仍能产生最大SU，但消耗更多电力。没必要来这里。"
+			]
+			icon: "tfmg:electric_motor"
+			id: "5B960A074B904E80"
+			rewards: [{
+				count: 8
+				id: "1AE1F759E2113B29"
+				item: "tfmg:copper_wire"
+				type: "item"
+			}]
+			shape: "hexagon"
+			subtitle: "按需旋转。"
+			tasks: [{
+				id: "474B1475A3A57BB9"
+				item: "tfmg:electric_motor"
+				type: "item"
+			}]
+			title: "电动机"
+			x: 0.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["4CDB3F8E217ADC8E"]
+			id: "7111C78368C786CD"
+			rewards: [{
+				id: "68511E2844C6F425"
+				item: "tfmg:magnetic_alloy_ingot"
+				type: "item"
+			}]
+			tasks: [{
+				count: 2L
+				id: "75626C8BB0D5175F"
+				item: "tfmg:unfinished_electromagnetic_coil"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["563A3503CD040E41"]
+			description: [
+				"变压器可以根据各&6电磁线圈&r的匝数比来升高或降低&3电压&r。例如，输入线圈为&a100匝&r，输出为&a400匝&r，则匝数比为&e4，&r电压将升高4倍。"
+				""
+				"Coils are added by right clicking them on the transformer. The &binput coil&r is always placed first followed by the &6output&r (or in real life terms, &3primary&r and &6secondary&r coils)."
+				""
+				"目前，除了顶部的噪点纹理外，变压器没有很好的方法区分输入和输出。它们不是双向的。带有棋盘格 &0🙿&r 图案的“手柄”顶部是 &b输入&r 端。放置方块时，它会在左侧。"
+			]
+			id: "27A11A6ED27A72D2"
+			rewards: [{
+				id: "56B53868FD6E7ADE"
+				item: "tfmg:unfinished_electromagnetic_coil"
+				type: "item"
+			}]
+			shape: "hexagon"
+			subtitle: "这就是为什么西屋公司能赢的原因。"
+			tasks: [{
+				id: "46887065E824E276"
+				item: "tfmg:transformer"
+				type: "item"
+			}]
+			x: 0.0d
+			y: -3.5d
+		}
+		{
+			dependencies: [
+				"7111C78368C786CD"
+				"4A19E3387DBD7FB0"
+				"66A125A80B617D6C"
+			]
+			icon: {
+				Count: 1
+				id: "tfmg:electromagnetic_coil"
+				tag: { }
+			}
+			id: "563A3503CD040E41"
+			tasks: [
+				{
+					id: "67D6C990DD02F867"
+					item: {
+						Count: 1
+						id: "tfmg:electromagnetic_coil"
+						tag: { }
+					}
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "79164691DB50656C"
+					type: "checkmark"
+				}
+			]
+			x: -1.5d
+			y: -3.5d
+		}
+		{
+			dependencies: [
+				"138B96B20044ED12"
+				"445ACC0E40DB3D96"
+			]
+			id: "554102109E795CD3"
+			rewards: [{
+				id: "6887AA44280818AC"
+				item: "tfmg:constantan_ingot"
+				type: "item"
+			}]
+			tasks: [{
+				id: "4B2F5F7CDE347F5A"
+				item: {
+					Count: 1
+					id: "tfmg:resistor"
+					tag: { }
+				}
+				optional_task: true
+				type: "item"
+			}]
+			x: -4.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["2F9B52EA41B4DFF0"]
+			hide_dependency_lines: true
+			id: "445ACC0E40DB3D96"
+			rewards: [{
+				id: "04BC5BDBF3AFB50A"
+				item: {
+					Count: 1
+					id: "tfmg:unfinished_resistor"
+					tag: { }
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "037FB688FE770FA9"
+				item: {
+					Count: 1
+					id: "tfmg:unfinished_resistor"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -4.5d
+			y: 3.5d
+		}
+		{
+			dependencies: [
+				"4E058BAF38B16EE0"
+				"554102109E795CD3"
+				"776451A1A5F3B2FB"
+				"52D8B15C3B75AB7F"
+			]
+			description: [
+				"尽管提示框上这么说，它仍然会吸收&6磁性合金&r。"
+				""
+				"把它接到发电机上，在叉齿上放一个合金，看着指针上升直到&eZAP！&r你就能得到一块磁铁。"
+			]
+			id: "5C21D02BB2644A39"
+			rewards: [{
+				count: 2
+				id: "1DCFFDE90B5B443B"
+				item: "tfmg:magnetic_alloy_ingot"
+				type: "item"
+			}]
+			shape: "hexagon"
+			subtitle: "格鲁格用文明的方式制作磁铁。"
+			tasks: [{
+				id: "1565630C6BA73ABD"
+				item: "tfmg:polarizer"
+				type: "item"
+			}]
+			x: -3.0d
+			y: 2.5d
+		}
+		{
+			dependencies: [
+				"27A11A6ED27A72D2"
+				"52D8B15C3B75AB7F"
+				"279400FC730CD9F1"
+			]
+			description: [
+				"&3Steel vats&r required in a 2x2x2 box, plus heated."
+				""
+				"铜电极或锌电极都可以。务必将二氧化碳排出。"
+				""
+				"电极座需要至少 &25A&r 才能工作，即每个必须提供至少 &3500V&r。这可以通过一个最大速度 &6发电机&r 和一个匝数比为 &e4&r 的 &6变压器&r 实现。"
+			]
+			id: "6177966365A058A2"
+			rewards: [{
+				id: "0E1DE274A280F7F9"
+				item: "tfmg:exhaust"
+				type: "item"
+			}]
+			shape: "hexagon"
+			subtitle: "铝的制造方法。"
+			tasks: [
+				{
+					count: 2L
+					id: "10CA853AAED9247B"
+					item: { Count: 2, id: "tfmg:electrode_holder" }
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "78796D7E1EA35C81"
+					item: { Count: 2, id: "tfmg:copper_electrode" }
+					optional_task: true
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "318FA46FD5A17D83"
+					item: { Count: 2, id: "tfmg:zinc_electrode" }
+					optional_task: true
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "07AC9D388D86DF8E"
+					item: { Count: 8, id: "tfmg:steel_chemical_vat" }
+					type: "item"
+				}
+			]
+			title: "铝电解精炼"
+			x: 2.5d
+			y: -0.5d
+		}
+		{
+			id: "34F87E2C1256F5DE"
+			shape: "square"
+			tasks: [{
+				count: 2L
+				id: "2EB4C517BA899B5D"
+				item: { Count: 4, id: "tfmg:bauxite" }
+				type: "item"
+			}]
+			x: 4.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["34F87E2C1256F5DE"]
+			id: "1E1016523BF3849D"
+			rewards: [{
+				count: 4
+				id: "252EA1149AD9567C"
+				item: "tfmg:bauxite_powder"
+				type: "item"
+			}]
+			tasks: [{
+				count: 4L
+				id: "1BADD256E28C1CB3"
+				item: { Count: 4, id: "tfmg:bauxite_powder" }
+				type: "item"
+			}]
+			x: 4.0d
+			y: -2.0d
+		}
+		{
+			dependencies: [
+				"6177966365A058A2"
+				"1E1016523BF3849D"
+			]
+			description: ["使用化学槽来制作吧！"]
+			id: "6D7CC9EA47063963"
+			rewards: [{
+				id: "7AE4C00008E1C8A2"
+				item: "immersiveengineering:ingot_aluminum"
+				type: "item"
+			}]
+			shape: "square"
+			size: 1.5d
+			subtitle: "不再是贵金属了。"
+			tasks: [{
+				id: "71D93D94BC597073"
+				item: "immersiveengineering:ingot_aluminum"
+				type: "item"
+			}]
+			x: 4.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["6D7CC9EA47063963"]
+			description: [
+				"能产生比那小发电机高得多的电压和功率。"
+				""
+				"用大量铝和钢在&6机械合成器&r中组装组件。"
+				""
+				"用定子包围转子以完成多方块结构。"
+				""
+				"{@pagebreak}"
+				"&30RPM - 70RPM&r"
+				"无法生成电力"
+				""
+				"&371RPM - 256RPM&r"
+				"电压从12V线性升高至2232kV"
+				"恒定电流限制为24.6A，因此输出功率范围在295W至54.9kW之间"
+			]
+			id: "21800FC0CDC937CB"
+			rewards: [{
+				id: "0E4BCF5A41ED060D"
+				item: "tfmg:steel_block"
+				type: "item"
+			}]
+			shape: "gear"
+			size: 1.5d
+			subtitle: "更强的力量！"
+			tasks: [
+				{
+					id: "77D465BDF24A5D2B"
+					item: "tfmg:rotor"
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "2AD73191F0264B51"
+					item: { Count: 8, id: "tfmg:stator" }
+					type: "item"
+				}
+			]
+			x: 6.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["6D7CC9EA47063963"]
+			id: "19A9DA93FF046BD9"
+			rewards: [{
+				id: "332DE3A83B559F19"
+				item: "tfmg:industrial_aluminum_casing"
+				type: "item"
+			}]
+			tasks: [{
+				id: "40AD6E2C676A0F5D"
+				item: "tfmg:industrial_aluminum_casing"
+				type: "item"
+			}]
+			x: 4.0d
+			y: 1.0d
+		}
+		{
+			dependencies: [
+				"062051ED6D130ACD"
+				"2F9B52EA41B4DFF0"
+			]
+			id: "2DB9E531DE956C77"
+			tasks: [{
+				count: 4L
+				id: "0248C3C0C03B89B8"
+				item: { Count: 4, id: "tfmg:electric_post" }
+				type: "item"
+			}]
+			x: 0.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["2F9B52EA41B4DFF0"]
+			id: "663C6397EAA8C2A5"
+			tasks: [{
+				count: 2L
+				id: "6A4496BC65373DB7"
+				item: "tfmg:copper_cable_hub"
+				type: "item"
+			}]
+			x: -0.5d
+			y: 4.5d
+		}
+		{
+			dependencies: [
+				"19A9DA93FF046BD9"
+				"68E50F7501B945BB"
+				"037621E5EC46F613"
+			]
+			description: [
+				"能量从底部输入，从顶部输出。"
+				""
+				"输出电压继承输入电压。若无输入连接，默认为 12V。"
+			]
+			icon: {
+				Count: 1
+				id: "tfmg:accumulator"
+				tag: { }
+			}
+			id: "19936E26E71B5F68"
+			rewards: [{
+				id: "31F22658714FC932"
+				item: "tfmg:industrial_aluminum_casing"
+				type: "item"
+			}]
+			shape: "hexagon"
+			subtitle: "储存能量。"
+			tasks: [{
+				id: "1555CC4A39C6EE44"
+				item: {
+					Count: 1
+					id: "tfmg:accumulator"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "蓄电器"
+			x: 4.0d
+			y: 2.5d
+		}
+		{
+			dependencies: [
+				"3E8DFC1B03297B5D"
+				"71EDE15818D4C2A1"
+			]
+			description: ["在高炉中熔炼 &6石英&r，并铸造出得到的 &6液态硅&r。"]
+			id: "0E63C1AD9074987E"
+			shape: "square"
+			subtitle: "高炉的另一种用途。"
+			tasks: [{
+				id: "40AC0803D60668CD"
+				item: "tfmg:silicon_ingot"
+				type: "item"
+			}]
+			x: -4.5d
+			y: -2.0d
+		}
+		{
+			dependencies: [
+				"27A11A6ED27A72D2"
+				"2B6E2CD796D4ADF3"
+			]
+			description: [
+				"用扳手切换输入/输出。"
+				""
+				"输入端用&3蓝色&r连接，输出端用&6橙色&r标记"
+				"连接。"
+				""
+				"将FE转换为TFMG能量时，可将所需电压设置为最高250V。"
+			]
+			id: "5EB59B43781EB61D"
+			optional: true
+			rewards: [{
+				count: 8
+				id: "196D83EA67511065"
+				item: "tfmg:copper_wire"
+				type: "item"
+			}]
+			shape: "hexagon"
+			subtitle: "将TFMG能量转换为FE，反之亦然。"
+			tasks: [{
+				id: "45C93A2B4B234BBC"
+				item: "tfmg:converter"
+				type: "item"
+			}]
+			x: 1.5d
+			y: -3.5d
+		}
+		{
+			dependencies: [
+				"6D7CC9EA47063963"
+				"062051ED6D130ACD"
+			]
+			description: [
+				"无需使用&6二极管&r或其他分路元件，即可将电器元件串并联分组。"
+				""
+				"不同的组号是平行的，并且表现得像是处于不同的二极管上。"
+			]
+			id: "4EBD5363B552085D"
+			rewards: [{
+				id: "013F37D35D9EE78E"
+				item: "tfmg:steel_cogwheel"
+				type: "item"
+			}]
+			tasks: [{
+				id: "2AA8C2A248BB1F13"
+				item: "tfmg:electricians_wrench"
+				type: "item"
+			}]
+			title: "串联与并联电路系列任务书"
+			x: 5.5d
+			y: 1.0d
+		}
+		{
+			dependencies: [
+				"6CED1EA18861E384"
+				"6177966365A058A2"
+			]
+			description: [
+				"需要3x3x2的箱子放置&4防火桶&r。"
+				""
+				"需要石墨电极。务必将二氧化碳排出。"
+				""
+				"电极座需要至少 &25A&r 才能工作，但与电解器不同，它们的电阻是3倍。每个电极座必须提供至少 &31.5KV&r 的电压。这可以通过2个最大速度 &6发电机&r、一个变比 &e6&r 的 &6变压器&r 和每个电极座上的 &6二极管&r 来实现。"
+			]
+			icon: "tfmg:graphite_electrode"
+			id: "53EA40114B347A83"
+			optional: true
+			rewards: [{
+				id: "33BC690C127967E7"
+				item: "tfmg:exhaust"
+				type: "item"
+			}]
+			subtitle: "为了更快的钢铁。"
+			tasks: [
+				{
+					count: 3L
+					id: "61200BB8BF9D33C3"
+					item: { Count: 3, id: "tfmg:electrode_holder" }
+					type: "item"
+				}
+				{
+					count: 3L
+					id: "07A752FE6A1A4689"
+					item: { Count: 3, id: "tfmg:graphite_electrode" }
+					type: "item"
+				}
+				{
+					count: 18L
+					id: "5F037143621051EB"
+					item: { Count: 18, id: "tfmg:fireproof_chemical_vat" }
+					type: "item"
+				}
+			]
+			title: "&d电弧炉"
+			x: 2.5d
+			y: -2.0d
+		}
+	]
+	title: "伏特与爱迪生"
+}

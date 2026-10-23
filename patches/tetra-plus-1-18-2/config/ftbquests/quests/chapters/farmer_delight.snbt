@@ -1,0 +1,775 @@
+# AI 初翻，未人工校对
+{
+	id: "4A4CF7000EAE1934"
+	group: "48973260D2B7A41C"
+	order_index: 7
+	filename: "farmer_delight"
+	title: "农夫生活"
+	icon: {
+		id: "farmersdelight:flint_knife"
+		Count: 1b
+		tag: {
+			Damage: 0
+		}
+	}
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "开始"
+			icon: "solcarrot:food_book"
+			x: -1.5d
+			y: -1.5d
+			subtitle: "欢迎来到农夫的生活"
+			description: ["本部分将指导你如何使用各种工具来改善饮食并提升身体健康。"]
+			id: "6565D682A511D777"
+			tasks: [{
+				id: "32015E1F879AA8C7"
+				type: "checkmark"
+			}]
+			rewards: [
+				{
+					id: "1D0C768F4B720AF1"
+					type: "item"
+					item: "solcarrot:food_book"
+				}
+				{
+					id: "44B3A2FB4187641B"
+					type: "item"
+					item: "cookingforblockheads:recipe_book"
+				}
+			]
+		}
+		{
+			title: "首个厨房工具包"
+			icon: {
+				id: "farmersdelight:flint_knife"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: -1.5d
+			y: 2.0d
+			description: ["刀和砧板是烹饪的基础，但砧板还能做更多事，比如劈开石英块 :D"]
+			dependencies: ["6565D682A511D777"]
+			id: "7B76241B6616AC5C"
+			tasks: [
+				{
+					id: "42430B8EBCA6196F"
+					type: "item"
+					item: {
+						id: "farmersdelight:flint_knife"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "65D0774959743BF3"
+					type: "item"
+					item: "farmersdelight:cutting_board"
+				}
+			]
+			rewards: [{
+				id: "6E503982EFDF2CCD"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "美味的回忆"
+			x: 4.0d
+			y: 2.0d
+			description: ["食谱记录了所有你能烹饪的物品。一旦拥有它，你就正式开启了烹饪之旅。"]
+			dependencies: ["6565D682A511D777"]
+			id: "57CEBB25DF7AB017"
+			tasks: [{
+				id: "468B84459C8D96D6"
+				type: "item"
+				item: "cookingforblockheads:crafting_book"
+			}]
+			rewards: [{
+				id: "1327FF5A6BD9815B"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "后院"
+			icon: "kubejs:item_windy_garden"
+			x: -7.0d
+			y: 2.0d
+			description: [
+				"花园系列植物在破坏后会给你各种各样的种子和植物。"
+				"找到它们以收集更多食物配方。"
+			]
+			dependencies: ["6565D682A511D777"]
+			min_required_tasks: 1
+			id: "303E5F3453743C1B"
+			tasks: [
+				{
+					id: "4CA16B4BD10B4EF3"
+					type: "questsadditions:break"
+					icon: "kubejs:item_windy_garden"
+					block_type: 0
+					block: "pamhc2crops:windygarden"
+					value: 5L
+					checkItem: false
+				}
+				{
+					id: "20DDDF46B64E2ADE"
+					type: "questsadditions:break"
+					icon: "kubejs:item_tropical_garden"
+					block_type: 0
+					block: "pamhc2crops:tropicalgarden"
+					value: 5L
+					checkItem: false
+				}
+				{
+					id: "164704535D413CC9"
+					type: "questsadditions:break"
+					icon: "kubejs:item_soggy_garden"
+					block_type: 0
+					block: "pamhc2crops:soggygarden"
+					value: 5L
+					checkItem: false
+				}
+				{
+					id: "50814C0285F295BA"
+					type: "questsadditions:break"
+					icon: "kubejs:item_shaded_garden"
+					block_type: 0
+					block: "pamhc2crops:shadedgarden"
+					value: 5L
+					checkItem: false
+				}
+				{
+					id: "1809F1EC31699603"
+					type: "questsadditions:break"
+					icon: "kubejs:item_frost_garden"
+					block_type: 0
+					block: "pamhc2crops:frostgarden"
+					value: 5L
+					checkItem: false
+				}
+				{
+					id: "5E7EB573A3BBADDF"
+					type: "questsadditions:break"
+					icon: "kubejs:item_arid_garden"
+					block_type: 0
+					block: "pamhc2crops:aridgarden"
+					value: 5L
+					checkItem: false
+				}
+			]
+			rewards: [{
+				id: "7E42A46104AFAA92"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "小世界模组"
+			icon: "kubejs:item_tropical_garden"
+			x: -9.5d
+			y: 4.0d
+			shape: "octagon"
+			description: ["摧毁任何类型的花园，证明你就是大师旅行者！"]
+			dependencies: ["303E5F3453743C1B"]
+			hide: true
+			id: "28397C8A6A45BFD8"
+			tasks: [
+				{
+					id: "0A2D765CE23B4FA5"
+					type: "questsadditions:break"
+					icon: "kubejs:item_windy_garden"
+					block_type: 0
+					block: "pamhc2crops:windygarden"
+					value: 100L
+					checkItem: false
+				}
+				{
+					id: "491A92757985D51F"
+					type: "questsadditions:break"
+					icon: "kubejs:item_tropical_garden"
+					block_type: 0
+					block: "pamhc2crops:tropicalgarden"
+					value: 100L
+					checkItem: false
+				}
+				{
+					id: "036A9FDCE15D2F2E"
+					type: "questsadditions:break"
+					icon: "kubejs:item_soggy_garden"
+					block_type: 0
+					block: "pamhc2crops:soggygarden"
+					value: 100L
+					checkItem: false
+				}
+				{
+					id: "72187291D33C1573"
+					type: "questsadditions:break"
+					icon: "kubejs:item_shaded_garden"
+					block_type: 0
+					block: "pamhc2crops:shadedgarden"
+					value: 100L
+					checkItem: false
+				}
+				{
+					id: "7E00B0C123A983D4"
+					type: "questsadditions:break"
+					icon: "kubejs:item_frost_garden"
+					block_type: 0
+					block: "pamhc2crops:frostgarden"
+					value: 100L
+					checkItem: false
+				}
+				{
+					id: "4644AD5359B2FF54"
+					type: "questsadditions:break"
+					icon: "kubejs:item_arid_garden"
+					block_type: 0
+					block: "pamhc2crops:aridgarden"
+					value: 100L
+					checkItem: false
+				}
+			]
+			rewards: [{
+				id: "0780C587B50E6D88"
+				type: "random"
+				table_id: 4224656839171477572L
+			}]
+		}
+		{
+			title: "胜利者，胜利者，鸡尾酒晚餐！"
+			icon: "farmersdelight:cooking_pot"
+			x: -1.5d
+			y: 6.0d
+			description: ["用锅或煎锅，你可以烹饪出美味的农夫之乐菜肴。热食总是格外美味！"]
+			dependencies: ["21160F2761089934"]
+			id: "2D7AFEB01591B942"
+			tasks: [
+				{
+					id: "30E331A68E8AE2CF"
+					type: "item"
+					item: "farmersdelight:cooking_pot"
+				}
+				{
+					id: "756E31FB0A2BD235"
+					type: "item"
+					item: {
+						id: "farmersdelight:skillet"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "69564C49AAFB8546"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "超级大餐 8000"
+			x: -1.5d
+			y: 8.0d
+			description: ["炉子比篝火是更优质的热源。它可控、更快，而且不会烧伤你。"]
+			dependencies: ["2D7AFEB01591B942"]
+			id: "07C8619F0CF6FB43"
+			tasks: [{
+				id: "02F6CE6997E15C62"
+				type: "item"
+				item: "farmersdelight:stove"
+			}]
+			rewards: [{
+				id: "1455B90D7649A687"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "草寇海贼团"
+			x: -4.5d
+			y: 4.0d
+			description: ["你可以用刀子从草里获得稻草。"]
+			dependencies: ["7B76241B6616AC5C"]
+			id: "4577AD8BCA56EFDA"
+			tasks: [{
+				id: "48104BB6F7464CD6"
+				type: "item"
+				item: "farmersdelight:straw"
+				count: 162L
+			}]
+			rewards: [{
+				id: "5085F5369645694D"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "丰饶的土地"
+			x: -4.5d
+			y: 6.0d
+			description: ["有机堆肥是极好的肥料，会随时间降解为富饶土壤。"]
+			dependencies: ["4577AD8BCA56EFDA"]
+			id: "5DC500B4C4C27134"
+			tasks: [{
+				id: "0E790FD6CB83BA42"
+				type: "item"
+				item: "farmersdelight:organic_compost"
+				count: 80L
+			}]
+			rewards: [{
+				id: "4CC8D4947FE95928"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "Citadels"
+			x: -4.5d
+			y: 8.0d
+			description: [
+				"降解为富饶的土壤后，你可以移除许多种植限制。"
+				"你可以在它周围放置与蘑菇相关的方块来加速降解。"
+			]
+			dependencies: ["5DC500B4C4C27134"]
+			id: "02B858E24FEC1E56"
+			tasks: [{
+				id: "44F0943928BA0263"
+				type: "item"
+				item: "farmersdelight:rich_soil"
+			}]
+			rewards: [{
+				id: "11B3EDD9A549AD97"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "着火了！！！"
+			x: -1.5d
+			y: 4.0d
+			description: ["烹饪时，你肯定需要一个热源。在这种情况下，篝火是个不错的选择。"]
+			dependencies: ["7B76241B6616AC5C"]
+			id: "21160F2761089934"
+			tasks: [{
+				id: "04520E9BEE9E11FA"
+				type: "item"
+				item: "minecraft:campfire"
+			}]
+			rewards: [{
+				id: "0DBF855E18563454"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "感恩节快乐，祝你们用餐愉快！"
+			x: -1.5d
+			y: 10.0d
+			shape: "hexagon"
+			description: ["吃掉所有农夫的惊喜食物，能让你更健康、更强壮！"]
+			dependencies: ["07C8619F0CF6FB43"]
+			id: "118DA74516B1D0F2"
+			tasks: [{
+				id: "7F981A8F67D15F1F"
+				type: "advancement"
+				advancement: "farmersdelight:main/master_chef"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "7279E8A0596C1C0F"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 3948332166029318293L
+			}]
+		}
+		{
+			title: "一切的开端"
+			x: 4.0d
+			y: 4.0d
+			description: ["烹饪台会自动读取厨房里的物品并检查配方。它就像厨房里的自动合成台一样。"]
+			dependencies: ["57CEBB25DF7AB017"]
+			id: "208B45EBC23D331B"
+			tasks: [{
+				id: "7069C89B80DAF8AB"
+				type: "item"
+				item: "cookingforblockheads:cooking_table"
+			}]
+			rewards: [{
+				id: "4DB6940A945E086D"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "添加厨房家具"
+			icon: "cookingforblockheads:sink"
+			x: 4.0d
+			y: 6.0d
+			description: ["这些工具能让你的厨房更便利。只需把所有食材放进冰箱，就可以开始工作了。"]
+			dependencies: ["208B45EBC23D331B"]
+			id: "4D95BF9DCA1D9982"
+			tasks: [
+				{
+					id: "6ECEC4AF94EFBB18"
+					type: "item"
+					item: "cookingforblockheads:fridge"
+					count: 2L
+				}
+				{
+					id: "31411E2D129E91B3"
+					type: "item"
+					item: "cookingforblockheads:counter"
+					count: 2L
+				}
+				{
+					id: "6922BC8B2949475C"
+					type: "item"
+					item: "cookingforblockheads:tool_rack"
+					count: 4L
+				}
+				{
+					id: "6F1DDB37DC104A29"
+					type: "item"
+					item: "cookingforblockheads:oven"
+				}
+			]
+			rewards: [{
+				id: "69E7D88C2C3E3E30"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "早午餐"
+			icon: "cookingforblockheads:milk_jar"
+			x: 6.5d
+			y: 6.0d
+			description: ["牛奶罐是本模组中牛奶的来源，但我能在哪里生成牛奶呢……？"]
+			dependencies: ["208B45EBC23D331B"]
+			id: "61D4EB34A6953CF1"
+			tasks: [
+				{
+					id: "1F66D259A0953A65"
+					type: "item"
+					item: "cookingforblockheads:milk_jar"
+				}
+				{
+					id: "4E693E32C0697AE5"
+					type: "item"
+					item: "minecraft:anvil"
+				}
+			]
+			rewards: [{
+				id: "06A8F5EB8603B220"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "自由移动"
+			x: 6.5d
+			y: 8.0d
+			description: ["把砧板丢在牛上面会发生什么呢？"]
+			dependencies: ["61D4EB34A6953CF1"]
+			id: "0E856BAAACBE094E"
+			tasks: [{
+				id: "1660C738AA4389A6"
+				type: "item"
+				item: "cookingforblockheads:cow_jar"
+			}]
+			rewards: [{
+				id: "763D701B4E290717"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "快乐地生活下去吧"
+			x: 4.0d
+			y: 8.0d
+			description: [
+				"“厨房地板”可以连接到你的厨房，让烹饪台能从更远的地方接收物品。"
+				"而且，它还挺漂亮的 :D"
+			]
+			dependencies: ["4D95BF9DCA1D9982"]
+			id: "29263709442CFF65"
+			tasks: [{
+				id: "00CEAF7D24017BB4"
+				type: "item"
+				item: "cookingforblockheads:white_kitchen_floor"
+				count: 24L
+			}]
+			rewards: [{
+				id: "60D589AA0ED429CB"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "以物易物"
+			icon: "farmingforblockheads:market"
+			x: -7.0d
+			y: 4.0d
+			description: ["市场能让你轻松获得各种种子和树苗，方便你扩展农场。"]
+			dependencies: ["303E5F3453743C1B"]
+			id: "37044D0A61E90796"
+			tasks: [
+				{
+					id: "0DCB00497F1245C6"
+					type: "item"
+					item: "farmingforblockheads:market"
+				}
+				{
+					id: "76D7D7DDBB73F190"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 8L
+				}
+			]
+			rewards: [{
+				id: "5011DAAB424C9E55"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "厨房用具 1"
+			x: 1.5d
+			y: 6.0d
+			description: ["熟能生巧，但拥有合适的工具也同样重要。"]
+			dependencies: ["208B45EBC23D331B"]
+			id: "60F32AE75D53C9CF"
+			tasks: [
+				{
+					id: "7B39BC6A64BEC915"
+					type: "item"
+					item: "pamhc2foodcore:grinderitem"
+				}
+				{
+					id: "5A46A64E497782D1"
+					type: "item"
+					item: "pamhc2foodcore:mixingbowlitem"
+				}
+				{
+					id: "722759D330611450"
+					type: "item"
+					item: "pamhc2foodcore:juiceritem"
+				}
+				{
+					id: "2AE094E13042D426"
+					type: "item"
+					item: "pamhc2foodcore:bakewareitem"
+				}
+				{
+					id: "5806749EAEE02C17"
+					type: "item"
+					item: "pamhc2foodcore:rolleritem"
+				}
+			]
+			rewards: [{
+				id: "5AC0DA6482C1C7C2"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "厨房用具 2"
+			x: 1.5d
+			y: 8.0d
+			description: ["熟能生巧，但拥有合适的工具也同样重要。"]
+			dependencies: ["60F32AE75D53C9CF"]
+			id: "202C3EAAC905E1B3"
+			tasks: [
+				{
+					id: "016CD8E0D436C745"
+					type: "item"
+					item: "pamhc2foodcore:potitem"
+				}
+				{
+					id: "61DDC984FC4CED2B"
+					type: "item"
+					item: "pamhc2foodcore:cuttingboarditem"
+				}
+				{
+					id: "3423008E692EDB1C"
+					type: "item"
+					item: "pamhc2foodcore:saucepanitem"
+				}
+				{
+					id: "4A14C14E1B7851A1"
+					type: "item"
+					item: "pamhc2foodcore:skilletitem"
+				}
+			]
+			rewards: [{
+				id: "4B600B212B5A8B6F"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "回收机？不，是玩家。"
+			x: -7.0d
+			y: 6.0d
+			description: ["Stock 是早期最容易获得的食品之一，但吃太多并不会补充足够的饱食度。"]
+			dependencies: ["37044D0A61E90796"]
+			id: "492A178539645382"
+			tasks: [{
+				id: "6AB2A533914475E0"
+				type: "item"
+				item: "pamhc2foodcore:stockitem"
+				count: 24L
+			}]
+			rewards: [{
+				id: "4979F668D5553F25"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "健康餐食"
+			x: -7.0d
+			y: 8.0d
+			description: ["水果沙拉是早期就能获得的另一种简单食物，但它能提供很好的饥饿恢复效果。"]
+			dependencies: ["492A178539645382"]
+			id: "586BBAB2358E055B"
+			tasks: [{
+				id: "7B98B098AEBEB4CB"
+				type: "item"
+				item: "pamhc2foodcore:fruitsaladitem"
+				count: 18L
+			}]
+			rewards: [{
+				id: "40E0AC110D19C1EB"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "食物大师"
+			x: -7.0d
+			y: 10.0d
+			shape: "hexagon"
+			description: ["你品尝了超过500种不同的食物，成为了烹饪大师，获得了远超常人的非凡健康。"]
+			dependencies: ["586BBAB2358E055B"]
+			id: "67E6D5A961802F5C"
+			tasks: [{
+				id: "707DA0B8F8DC9EB9"
+				type: "custom"
+				title: "吃掉超过500顿饭"
+				icon: "pamhc2foodextended:delightedmealitem"
+			}]
+			rewards: [{
+				id: "1F62815E9DBE9A7F"
+				type: "random"
+				table_id: 3948332166029318293L
+			}]
+		}
+		{
+			title: "食物之神"
+			x: -7.0d
+			y: 12.0d
+			shape: "octagon"
+			description: ["品尝了所有食物后，你现在可以当之无愧地称自己为食物之神，并获得了惊人的耐力。"]
+			dependencies: ["67E6D5A961802F5C"]
+			hide: true
+			id: "77C5C33D4D246225"
+			tasks: [{
+				id: "1D276B0FABAE3A9A"
+				type: "custom"
+				title: "吃掉游戏中的所有食物"
+				icon: "pamhc2foodextended:chickentendersmealitem"
+			}]
+			rewards: [{
+				id: "4A25D6419D90F356"
+				type: "random"
+				table_id: 4224656839171477572L
+			}]
+		}
+		{
+			title: "严肃奉献+"
+			x: 1.5d
+			y: 4.0d
+			description: ["制作下界合金刀证明你是个技艺高超的厨师。但要小心别把它变成四合工具！"]
+			dependencies: ["7B76241B6616AC5C"]
+			id: "4B2751240A9E11D7"
+			tasks: [{
+				id: "0917F710145B1549"
+				type: "item"
+				item: {
+					id: "farmersdelight:netherite_knife"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "38806F3262EF6CE6"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "为肥料而进行农业劳作"
+			icon: "farmingforblockheads:green_fertilizer"
+			x: -9.5d
+			y: 6.0d
+			description: ["肥料是种植过程中必不可少的一部分。使用不同的肥料可以不同程度地提升作物。"]
+			dependencies: ["37044D0A61E90796"]
+			id: "1A4901B06086F7DD"
+			tasks: [
+				{
+					id: "45C1F20D920B2A28"
+					type: "item"
+					item: "farmingforblockheads:green_fertilizer"
+				}
+				{
+					id: "7149200FECE1D93B"
+					type: "item"
+					item: "farmingforblockheads:red_fertilizer"
+				}
+				{
+					id: "586181074E61A363"
+					type: "item"
+					item: "farmingforblockheads:yellow_fertilizer"
+				}
+			]
+			rewards: [{
+				id: "7CF48D42425850EC"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+	]
+	quest_links: [ ]
+}

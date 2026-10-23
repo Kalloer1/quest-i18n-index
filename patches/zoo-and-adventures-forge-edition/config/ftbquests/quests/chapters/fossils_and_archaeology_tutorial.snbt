@@ -1,0 +1,225 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "rsquare"
+	filename: "fossils_and_archaeology_tutorial"
+	group: "0007C26F0B59F0CA"
+	icon: "fossil:fossil_bio"
+	id: "7CB2F346C62847F6"
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"欢迎来到化石与考古学教程！"
+				""
+				"在将传奇生物填入主展品之前，你需要先学习提取DNA和培养胚胎的精细科学。开始挖掘吧！"
+			]
+			id: "123C5D03E8228C8D"
+			rewards: [{
+				id: "23E0F1CFD060B30B"
+				item: {
+					Count: 1
+					id: "minecraft:iron_shovel"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "6CA4C2E9693B13C3"
+				title: "我准备好迎接科学了！"
+				type: "checkmark"
+			}]
+			title: "史前起源 Prehistoric Origins"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["123C5D03E8228C8D"]
+			description: [
+				"制作一个 Sifter。"
+				""
+				"将沙子、砾石和泥土等方块放入筛子中，就有机会发现隐藏的遗迹残片、生物化石和古代种子。"
+			]
+			id: "3B3FC8D58D1E2DBE"
+			rewards: [{
+				count: 32
+				id: "78A898D683C079E8"
+				item: "minecraft:sand"
+				type: "item"
+			}]
+			tasks: [{
+				id: "42F61A8B7521D04D"
+				item: "fossil:sifter"
+				type: "item"
+			}]
+			title: "筛选机 The Sifter"
+			x: -1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["123C5D03E8228C8D"]
+			description: [
+				"制作一个分析仪。"
+				""
+				"这台机器是你实验室的支柱。你将把发现的所有化石放入其中，以提取宝贵的DNA（或生物凝胶和骨粉等有用的副产品）。"
+				""
+				"注意：化石可以在洞穴中找到。"
+			]
+			id: "02777B02692B403F"
+			rewards: [{
+				count: 4
+				id: "7D1C55A2CC005E49"
+				item: "fossil:fossil_bio"
+				type: "item"
+			}]
+			tasks: [{
+				id: "7778CBE364CEBBB8"
+				item: "fossil:analyzer"
+				type: "item"
+			}]
+			title: "分析仪 (The Analyzer)"
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["3B3FC8D58D1E2DBE"]
+			description: [
+				"在分析仪中处理化石时，你不可避免地会获得生物凝胶。"
+				""
+				"请勿丢弃！这是后续种植过程所需的至关重要的营养膏。"
+			]
+			id: "36462B1745E5B6BF"
+			rewards: [{
+				count: 4
+				id: "1E5F2CFD174220E7"
+				item: "minecraft:glass_bottle"
+				type: "item"
+			}]
+			tasks: [{
+				count: 3L
+				id: "30A5358847137E57"
+				item: "fossil:bio_goo"
+				type: "item"
+			}]
+			title: "正在提取生物凝胶 (Bio-Goo)"
+			x: -1.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["02777B02692B403F"]
+			description: ["持续分析化石，直到成功提取出一段恐龙DNA。本教程将重点获取三角龙的DNA。"]
+			id: "53AA098D58E2A3D4"
+			rewards: [{
+				id: "67E6AC70846233E1"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+			tasks: [{
+				id: "2FA20029766AC7CD"
+				item: "fossil:triceratops_dna"
+				type: "item"
+			}]
+			title: "恐龙DNA样本（Dinosaur DNA）"
+			x: 1.5d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"36462B1745E5B6BF"
+				"53AA098D58E2A3D4"
+			]
+			description: [
+				"制作一个耕种机。"
+				""
+				"这个装满液体的容器用于孵化你提取的DNA链，将其变成可孵化的蛋或胚胎。"
+			]
+			id: "13F5B041D2BC446A"
+			rewards: [{
+				id: "32B48BB8727F014D"
+				item: "minecraft:milk_bucket"
+				type: "item"
+			}]
+			tasks: [{
+				id: "1B151A2FC5F29464"
+				item: "fossil:culture_vat"
+				type: "item"
+			}]
+			title: "种植者 (The Cultivator)"
+			x: 0.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["13F5B041D2BC446A"]
+			description: [
+				"将三角龙的DNA和生物凝胶放入耕种机。你还需要为机器提供牛奶、水或营养液体。"
+				""
+				"等待孵化过程完成，即可领取你的全新三角龙蛋！现在可以把它放在地上进行孵化。"
+			]
+			id: "1C3E44012BF1B769"
+			rewards: [{
+				count: 4
+				id: "65C5BFDD23156E58"
+				item: "minecraft:hay_block"
+				type: "item"
+			}]
+			tasks: [{
+				id: "7C661081878AD9FB"
+				item: "fossil:egg_item_triceratops"
+				type: "item"
+			}]
+			title: "培育一枚鸡蛋"
+			x: 0.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["1C3E44012BF1B769"]
+			description: [
+				"制作一本恐龙百科全书。"
+				""
+				"这是所有古生物饲养员最重要的工具。右键点击孵化后的恐龙，并用 Dinopedia 查看其健康、饥饿、心情和驯养状态！"
+			]
+			id: "0A0FDC8217C5C333"
+			rewards: [{
+				count: 2
+				id: "03CB86E2A377C95D"
+				item: "minecraft:book"
+				type: "item"
+			}]
+			tasks: [{
+				id: "05026C41863B3C6A"
+				item: "fossil:dinopedia"
+				type: "item"
+			}]
+			title: "恐龙百科全书 (Dinopedia)"
+			x: -1.5d
+			y: 7.5d
+		}
+		{
+			dependencies: ["1C3E44012BF1B769"]
+			description: [
+				"恐龙的胃口很大！制作一个喂食器。"
+				""
+				"用肉食动物的肉，或食草动物的植物（如蕨、小麦和苹果）填满它。恐龙饿了会自动靠近喂食器。"
+			]
+			id: "41D70C33E23E5C59"
+			rewards: [{
+				count: 16
+				id: "7195E07BF5C412A9"
+				item: "minecraft:beef"
+				type: "item"
+			}]
+			tasks: [{
+				id: "2CDA6A758763EA1A"
+				item: "fossil:feeder"
+				type: "item"
+			}]
+			title: "自动化喂食系统"
+			x: 1.5d
+			y: 7.5d
+		}
+	]
+	title: "化石与考古复兴进阶教程"
+}

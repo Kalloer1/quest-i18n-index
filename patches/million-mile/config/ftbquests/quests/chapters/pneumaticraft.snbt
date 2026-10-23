@@ -1,0 +1,345 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "pneumaticraft"
+	group: "600B8466D10265F4"
+	icon: "pneumaticcraft:pressure_gauge"
+	id: "5F96D3E76C5AA443"
+	order_index: 3
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["在地上扔些铁锭，然后用炸药把它们炸掉。没错，这就是我们的开局方式。大部分都会变成压缩铁。"]
+			id: "51EA24433A9D0125"
+			rewards: [{
+				count: 6
+				id: "0D130EB0916002FE"
+				item: "pneumaticcraft:ingot_iron_compressed"
+				type: "item"
+			}]
+			size: 2.0d
+			tasks: [{
+				id: "15162700C63D751A"
+				item: "pneumaticcraft:ingot_iron_compressed"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["51EA24433A9D0125"]
+			description: ["用压缩铁制作一些基础的空气压缩机。参考 PNC:R 手册，了解如何建造压力室，这是无损制造更多压缩铁的关键设备。"]
+			icon: "pneumaticcraft:air_compressor"
+			id: "66AD88850902F570"
+			rewards: [{
+				count: 6
+				id: "79275D04C7C2E5E5"
+				item: "pneumaticcraft:sourdough_bread"
+				type: "item"
+			}]
+			size: 2.0d
+			tasks: [
+				{
+					count: 32L
+					id: "6A3C863484659B0D"
+					item: "pneumaticcraft:pressure_tube"
+					type: "item"
+				}
+				{
+					id: "42CBAED879CB7313"
+					item: "pneumaticcraft:air_compressor"
+					type: "item"
+				}
+				{
+					id: "028F861B760BAF8D"
+					item: "pneumaticcraft:pressure_chamber_valve"
+					type: "item"
+				}
+				{
+					id: "4B0A6F3B14B46F7C"
+					item: "pneumaticcraft:pressure_chamber_interface"
+					type: "item"
+				}
+			]
+			title: "早期气动装置 (Early Pneumatics)"
+			x: 0.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["31EA3C296E270DE9"]
+			description: ["现在有了压力舱，我们就可以制作PCB所需的组件和机器了。制作一个UV灯箱和一个蚀刻台。为此你需要从Amadron那里购买PCB蓝图。制作一些空PCB并在UV灯箱中曝光。曝光充分后，将PCB和蚀刻酸放入蚀刻台。最后用一些晶体管和电容器完成制作。"]
+			icon: "pneumaticcraft:printed_circuit_board"
+			id: "1EB00D6E1E39F568"
+			rewards: [
+				{
+					count: 32
+					id: "00EA57158B16902E"
+					item: "pneumaticcraft:plastic"
+					type: "item"
+				}
+				{
+					count: 6
+					id: "421E6FF9935C6466"
+					item: "extradelight:apple_sauce"
+					type: "item"
+				}
+			]
+			size: 2.0d
+			tasks: [
+				{
+					id: "38EDA703392AF5F1"
+					item: "pneumaticcraft:etching_acid_bucket"
+					type: "item"
+				}
+				{
+					id: "0F956023DC07F44D"
+					item: "pneumaticcraft:etching_tank"
+					type: "item"
+				}
+				{
+					id: "1956FBE2B33225F9"
+					item: "pneumaticcraft:uv_light_box"
+					type: "item"
+				}
+				{
+					id: "507AC7E5EDE37A16"
+					item: "pneumaticcraft:printed_circuit_board"
+					type: "item"
+				}
+				{
+					id: "15252E1F0E0DD2BD"
+					item: "pneumaticcraft:amadron_tablet"
+					type: "item"
+				}
+			]
+			title: "电路板"
+			x: 0.0d
+			y: -11.0d
+		}
+		{
+			dependencies: ["66AD88850902F570"]
+			description: ["这些机器利用高压空气来提炼原油和其他石油副产品。在野外找到石油，提炼出来供你使用。塑料尤其有用。"]
+			id: "31EA3C296E270DE9"
+			rewards: [{
+				id: "0B08CCDE927F516E"
+				item: "pneumaticcraft:plastic_bucket"
+				type: "item"
+			}]
+			size: 2.0d
+			tasks: [
+				{
+					id: "6033D1A1F725D9D1"
+					item: "pneumaticcraft:thermopneumatic_processing_plant"
+					type: "item"
+				}
+				{
+					id: "3AD7B6C50A70CC63"
+					item: "pneumaticcraft:refinery"
+					type: "item"
+				}
+				{
+					id: "5D4D483651D75000"
+					item: "pneumaticcraft:refinery_output"
+					type: "item"
+				}
+			]
+			title: "气动石油化学工艺模组"
+			x: 0.0d
+			y: -7.0d
+		}
+		{
+			dependencies: ["1EB00D6E1E39F568"]
+			description: ["使用PCB，你可以制作并编程一条装配线来制造更先进的压力管。这些压力管可用于制造更好的气动设备。"]
+			icon: "pneumaticcraft:assembly_controller"
+			id: "78D0C28878039330"
+			rewards: [{
+				count: 32
+				id: "490EC7794728413B"
+				item: "pneumaticcraft:advanced_pressure_tube"
+				type: "item"
+			}]
+			size: 2.0d
+			tasks: [
+				{
+					id: "049153D5C70ED387"
+					item: "pneumaticcraft:assembly_controller"
+					type: "item"
+				}
+				{
+					id: "2114B311311137AE"
+					item: "pneumaticcraft:assembly_platform"
+					type: "item"
+				}
+				{
+					id: "618E51197A5952FC"
+					item: "pneumaticcraft:assembly_io_unit_import"
+					type: "item"
+				}
+				{
+					id: "0A908AAAF4B838C3"
+					item: "pneumaticcraft:assembly_io_unit_export"
+					type: "item"
+				}
+				{
+					id: "29F19CF4131C2034"
+					item: "pneumaticcraft:assembly_drill"
+					type: "item"
+				}
+				{
+					id: "032710A0109310B2"
+					item: "pneumaticcraft:assembly_laser"
+					type: "item"
+				}
+				{
+					id: "292863E408FE60F5"
+					item: "pneumaticcraft:advanced_pressure_tube"
+					type: "item"
+				}
+			]
+			title: "高级气动系统 (Advanced Pneumatics)"
+			x: 4.0d
+			y: -11.0d
+		}
+		{
+			dependencies: ["1EB00D6E1E39F568"]
+			description: ["一套动力盔甲，但用的是压缩空气而非电力。投入足够资源，你可以通过模块对其进行改造和升级，使其成为游戏中最好的盔甲之一。"]
+			id: "79B474EF8DFECC46"
+			rewards: [
+				{
+					id: "2625B039BC25C25D"
+					item: "pneumaticcraft:charging_station"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "09D03EE89D212094"
+					item: "pneumaticcraft:upgrade_matrix"
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "00D2222E926540AF"
+					item: {
+						Count: 1b
+						id: "pneumaticcraft:pneumatic_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "4E529024E0CE87AA"
+					item: {
+						Count: 1b
+						id: "pneumaticcraft:pneumatic_chestplate"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "7CD73B17AF187FE1"
+					item: {
+						Count: 1b
+						id: "pneumaticcraft:pneumatic_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "6C61A82CF22819B8"
+					item: {
+						Count: 1b
+						id: "pneumaticcraft:pneumatic_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "气动盔甲"
+			x: -3.0d
+			y: -11.0d
+		}
+		{
+			dependencies: ["1EB00D6E1E39F568"]
+			description: ["无人机可以编程，以多种方式为您执行任务：采矿、合成、移动实体（如生物和箱子）等等。"]
+			icon: "pneumaticcraft:drone"
+			id: "6AB83C948C1221BF"
+			rewards: [
+				{
+					count: 32
+					id: "75E460084867A289"
+					item: "pneumaticcraft:ingot_iron_compressed"
+					type: "item"
+				}
+				{
+					count: 16
+					id: "4753C83DC758E65B"
+					item: "pneumaticcraft:programming_puzzle"
+					type: "item"
+				}
+			]
+			size: 1.5d
+			tasks: [
+				{
+					id: "35149B6F5FB26298"
+					item: "pneumaticcraft:programmer"
+					type: "item"
+				}
+				{
+					id: "00D06CFD0B456D5C"
+					item: "pneumaticcraft:drone"
+					type: "item"
+				}
+			]
+			title: "无人机"
+			x: 0.0d
+			y: -14.0d
+		}
+		{
+			dependencies: ["31EA3C296E270DE9"]
+			description: ["用于空气压缩机的可再生燃料。"]
+			id: "2AED1618CA47A270"
+			rewards: [{
+				count: 6
+				id: "39F915A1EDA0E52B"
+				item: "pneumaticcraft:cod_n_chips"
+				type: "item"
+			}]
+			tasks: [{
+				id: "7987A3103E48B840"
+				item: "pneumaticcraft:biodiesel_bucket"
+				type: "item"
+			}]
+			title: "生物柴油"
+			x: -3.0d
+			y: -7.0d
+		}
+		{
+			dependencies: ["78D0C28878039330"]
+			description: ["最先进的气动机器，可直接连接到放置者本人的物品栏。只要空中接口所在的区块已加载，无论所有者身在何处，都能通过管道进行物品的输入输出。"]
+			id: "712AFB0AC46F67C1"
+			rewards: [{
+				id: "1BC7BFFF3359D61B"
+				type: "xp"
+				xp: 500
+			}]
+			tasks: [{
+				id: "03F1C07AB5D30F31"
+				item: "pneumaticcraft:aerial_interface"
+				type: "item"
+			}]
+			x: 4.0d
+			y: -14.0d
+		}
+	]
+	title: "Pneumaticraft"
+}

@@ -1,0 +1,409 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "mystical_agriculture"
+	group: "78B624749388DE0F"
+	id: "3E4098A8EE0703A1"
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["&2Inferium essence&r 可由怪物掉落。或者，你可以在地下深处找到 &2inferium ore &r。"]
+			id: "7D8884F505CD43CE"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "42CA39EC2FB8DB32"
+				table_id: 5699529449623842498L
+				type: "choice"
+			}]
+			subtitle: "&2Inferium essence &r是制作种子的关键。"
+			tasks: [
+				{
+					count: 10L
+					id: "003F39C0CF1F676C"
+					item: "mysticalagriculture:inferium_essence"
+					title: "获取 Inferium 精华"
+					type: "item"
+				}
+				{
+					count: 10L
+					id: "388ED0D9E1F004A9"
+					item: { Count: 10, id: "mysticalagriculture:prosperity_shard" }
+					type: "item"
+				}
+			]
+			title: "&5&l获取 Inferium 精华"
+			x: 2.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["7D8884F505CD43CE"]
+			id: "4EFB46857F24FF7D"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7A5E3A13679A8A96"
+				table_id: 3710718200219029633L
+				type: "random"
+			}]
+			subtitle: "Inferium 种子是获取 inferium 更快、更高效的方式。"
+			tasks: [{
+				count: 10L
+				id: "64F6D01C22F1AFC2"
+				item: { Count: 10, id: "mysticalagriculture:inferium_seeds" }
+				title: "获取 inferium 种子"
+				type: "item"
+			}]
+			title: "&5&l获取 Inferium 种子"
+			x: 2.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["4EFB46857F24FF7D"]
+			description: [
+				"制作种子和其他物品需要用到&3infusion altar&r。先放置它，然后在周围一圈放置基座。你可以使用"
+				"&3魔杖&r来启动它。"
+			]
+			id: "5EB35EC3F86BD2F6"
+			rewards: [
+				{
+					id: "3E2C4A4EE3C36260"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+				{
+					exclude_from_claim_all: true
+					id: "70951673389CF32E"
+					table_id: 1404902952723356929L
+					type: "random"
+				}
+			]
+			shape: "octagon"
+			size: 1.5d
+			subtitle: "制作种子和其他配方需要用到&3infusion altar&r。"
+			tasks: [
+				{
+					block: "mysticalagriculture:infusion_altar"
+					block_type: 0
+					id: "1D9CC0FC248BF227"
+					replace: false
+					replaced: "minecraft:air"
+					title: "放置一个灌注祭坛"
+					type: "questsadditions:place"
+					value: 1L
+				}
+				{
+					block: "mysticalagriculture:infusion_pedestal"
+					block_type: 0
+					id: "1FB6027DD8DDDC6B"
+					replace: false
+					replaced: "minecraft:air"
+					title: "在祭坛周围放置灌注基座"
+					type: "questsadditions:place"
+					value: 8L
+				}
+				{
+					id: "0517A8E24862DF17"
+					item: "mysticalagriculture:wand"
+					title: "获得魔杖以激活祭坛"
+					type: "item"
+				}
+			]
+			title: "&5&l建造一个灌注祭坛"
+			x: 2.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["5EB35EC3F86BD2F6"]
+			description: [
+				"不同的种子可以长出不同的资源，比如铁锭甚至钻石！先从铁种子开始吧。你可以制作它们"
+				"使用 &3infusion altar 来进行充能。"
+			]
+			id: "37DE814B728208FD"
+			subtitle: "你可以用铁种子来种植铁锭。"
+			tasks: [{
+				count: 10L
+				id: "5A980ED6AD3A8BBC"
+				item: { Count: 10, id: "mysticalagriculture:iron_seeds" }
+				title: "获取铁种子"
+				type: "item"
+			}]
+			title: "&5&l获取铁种子"
+			x: 0.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["37DE814B728208FD"]
+			description: ["你可以用&3灌注祭坛来获得钻石种子。 &r快去吧，试试看！"]
+			id: "10CD94D57313E383"
+			subtitle: "哦吼吼，亮闪闪的……"
+			tasks: [{
+				count: 10L
+				id: "3884C080627B06E6"
+				item: { Count: 10, id: "mysticalagriculture:diamond_seeds" }
+				title: "获取钻石种子"
+				type: "item"
+			}]
+			title: "&5&l获取钻石种子"
+			x: 1.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["5EB35EC3F86BD2F6"]
+			description: ["要填满灵魂瓶，你需要用&3灵魂锭匕首杀死生物。"]
+			id: "0E090568E91A9067"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "62D71D7FA0C716C3"
+				table_id: 1937499058442170717L
+				type: "random"
+			}]
+			subtitle: "&3灵魂工具&r是收集&3灵魂精华所必需的。"
+			tasks: [
+				{
+					id: "7A313BC912B73DF6"
+					item: {
+						Count: 1
+						id: "mysticalagriculture:soulium_dagger"
+						tag: {
+							Damage: 0
+						}
+					}
+					title: "获得一把灵魂锭匕首"
+					type: "item"
+				}
+				{
+					id: "4687706892A9403C"
+					item: "mysticalagriculture:soul_jar"
+					title: "获取一个灵魂容器"
+					type: "item"
+				}
+			]
+			title: "&5&l获取灵魂工具"
+			x: 3.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["0E090568E91A9067"]
+			description: ["你可以用生物种子来培育不同的生物。通过&3仪式来获得它们。"]
+			id: "716EA75DDE75C9D7"
+			subtitle: "植物和僵尸达成了联盟吗？"
+			tasks: [{
+				id: "34514EABA64AAE49"
+				item: "mysticalagriculture:zombie_seeds"
+				title: "获取僵尸种子"
+				type: "item"
+			}]
+			title: "&5&l获取僵尸种子"
+			x: 3.0d
+			y: -4.5d
+		}
+		{
+			dependencies: [
+				"10CD94D57313E383"
+				"716EA75DDE75C9D7"
+			]
+			id: "1D287A9CB4F74B83"
+			min_required_tasks: 1
+			rewards: [
+				{
+					id: "41B901C290CA28F6"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					exclude_from_claim_all: true
+					id: "56936133A0BDD6BB"
+					table_id: 1404902952723356929L
+					type: "random"
+				}
+			]
+			shape: "octagon"
+			size: 1.5d
+			subtitle: "一种强大而奇特的材料。相当强大。"
+			tasks: [
+				{
+					id: "734049EE9CB09CA3"
+					item: {
+						Count: 1
+						id: "mysticalagriculture:inferium_sword"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "7D8FA7A618C8FB07"
+					item: {
+						Count: 1
+						id: "mysticalagriculture:inferium_pickaxe"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "361867870D7F85F6"
+					item: {
+						Count: 1
+						id: "mysticalagriculture:inferium_shovel"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "7B83E49D72043ECF"
+					item: {
+						Count: 1
+						id: "mysticalagriculture:inferium_hoe"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "074A00049FD55651"
+					item: {
+						Count: 1
+						id: "mysticalagriculture:inferium_watering_can"
+						tag: {
+							Active: 0b
+							Water: 0b
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "1717B9C87546B886"
+					item: {
+						Count: 1
+						id: "mysticalagriculture:inferium_bow"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "3C4714D4189DCDEF"
+					item: {
+						Count: 1
+						id: "mysticalagriculture:inferium_axe"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "70DEF3D024DEA35A"
+					item: {
+						Count: 1
+						id: "mysticalagriculture:inferium_crossbow"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "098D770A0187AA26"
+					item: {
+						Count: 1
+						id: "mysticalagriculture:inferium_shears"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "760B050BA58AE665"
+					item: {
+						Count: 1
+						id: "mysticalagriculture:inferium_fishing_rod"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "149F0ECB8CA1278C"
+					item: {
+						Count: 1
+						id: "mysticalagriculture:inferium_sickle"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "0524DC164FF41BE2"
+					item: {
+						Count: 1
+						id: "mysticalagriculture:inferium_scythe"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "401987A8CC7C167B"
+					item: {
+						Count: 1
+						id: "mysticalagriculture:inferium_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "1665E4F4E8CEBFCA"
+					item: {
+						Count: 1
+						id: "mysticalagriculture:inferium_chestplate"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "14557883634DE634"
+					item: {
+						Count: 1
+						id: "mysticalagriculture:inferium_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "74E2BC10FC960951"
+					item: {
+						Count: 1
+						id: "mysticalagriculture:inferium_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "&5&l获得inferium装备"
+			x: 2.0d
+			y: -6.0d
+		}
+	]
+	title: "神秘农业（Mystical Agriculture）"
+}

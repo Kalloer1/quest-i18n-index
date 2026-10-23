@@ -1,0 +1,548 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "stage_1_initiate"
+	group: ""
+	icon: "chunkbychunk:chunkspawner"
+	id: "3D98BD5352732BFB"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["3379C026AA184447"]
+			description: [
+				"既然你已经有了 World Forge，就该开始着手制作你的第一个 World Core 了。"
+				""
+				"此物品由四个世界水晶制成，世界水晶由四个世界碎片制成，而世界碎片则由四个世界碎片制成。"
+				"{@pagebreak}"
+				"世界碎片是最小的世界精华，在世界的熔炉中需要16个原石才能制作。按照这个计算，你需要8组原石来制作一个世界核心。这或许很多，但有了原石生成器或大型地下采矿工程，你的第一个新区块很快就会到来！"
+			]
+			icon: "chunkbychunk:worldcore"
+			id: "53FEE782BFE4EFE9"
+			rewards: [{
+				id: "1F366425FADA1299"
+				item: "chunkbychunk:worldshard"
+				random_bonus: 1
+				type: "item"
+			}]
+			shape: "square"
+			tasks: [{
+				advancement: "chunkbychunk:worldcoreobtained"
+				criterion: ""
+				id: "2A906C3732A6E2CE"
+				title: "获取一个世界核心！"
+				type: "advancement"
+			}]
+			title: "锻造你的世界"
+			x: -1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: [
+				"53FEE782BFE4EFE9"
+				"2CB81840CB4AD41C"
+			]
+			description: [
+				"获得第一个核心后，你就可以制作区块生成器了！"
+				""
+				"需要1个世界核心和4个铜锭，区块生成器会将区块像正常生成一样放置到世界中。将生成器放在区块边缘，右键点击即可生成一个新的区块供你探索！"
+			]
+			icon: "chunkbychunk:chunkspawner"
+			id: "35225C34AD43FF75"
+			rewards: [{
+				id: "2DA5CE3BAE374AD6"
+				item: "chunkbychunk:worldshard"
+				random_bonus: 1
+				type: "item"
+			}]
+			shape: "hexagon"
+			tasks: [{
+				advancement: "chunkbychunk:chunkspawnerobtained"
+				criterion: ""
+				id: "03CE76ACAB433E34"
+				title: "获取一个区块生成器！"
+				type: "advancement"
+			}]
+			title: "一个新的区块！"
+			x: 0.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["3379C026AA184447"]
+			description: [
+				"建议你尽早搭建一个简单的作物农场。通过破坏大量草块，你可以种植小麦、鼠尾草和恶魔之梦果。"
+				"{@pagebreak}"
+				"小麦可以做成面包，是很好的早期食物来源，适合在树木没有掉落果实时使用。鼠尾草在女巫术模组 Hexerei 中有一些用途，但很快会用于其他事情。恶魔之梦果实能让你创造灵火，这对 Occultism 的一些配方至关重要。"
+				"{@pagebreak}"
+				"你还需要一把刀，用它能在不消耗耐久的情况下，通过破坏草来获得稻草。砧板能让你烹饪时切碎各种物品，还能从原木中获得树皮等资源。"
+			]
+			icon: {
+				Count: 1b
+				id: "minecraft:iron_hoe"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "068C6FE8D747B52C"
+			rewards: [
+				{
+					id: "21AE0F27B0C4667B"
+					item: "chunkbychunk:worldshard"
+					random_bonus: 1
+					type: "item"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "6A71B8F57F29D686"
+					table_id: 8619344399709960206L
+					type: "choice"
+				}
+			]
+			shape: "square"
+			tasks: [
+				{
+					consume_items: false
+					id: "6C47A3697C422075"
+					item: "minecraft:wheat_seeds"
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "5AFF73EFF555A1C9"
+					item: "hexerei:sage_seed"
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "5357C39763EBF141"
+					item: "occultism:datura_seeds"
+					type: "item"
+				}
+				{
+					id: "4BD038E0D6B98447"
+					item: "minecraft:wheat"
+					type: "item"
+				}
+				{
+					id: "768738754D55312E"
+					item: "hexerei:sage"
+					type: "item"
+				}
+				{
+					id: "62CA81FA3FF97665"
+					item: "occultism:datura"
+					type: "item"
+				}
+			]
+			title: "奇幻农场"
+			x: 0.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["068C6FE8D747B52C"]
+			description: ["另一个好资源是蜜蜂！在花朵旁种植橡木或桦木树苗，就有几率生成蜜蜂巢，里面可能有几只蜜蜂。在巢穴下方放置并点燃篝火，能让蜜蜂更温顺，更容易相处。"]
+			icon: "minecraft:honeycomb"
+			id: "1201A4DF6884A7AD"
+			rewards: [
+				{
+					count: 2
+					id: "1AB70EA1A6E6853B"
+					item: "minecraft:honeycomb"
+					random_bonus: 1
+					type: "item"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "550FDF2E731CA43F"
+					table_id: 8619344399709960206L
+					type: "choice"
+				}
+			]
+			shape: "hexagon"
+			tasks: [
+				{
+					icon: "minecraft:bee_nest"
+					id: "3723F91830F00637"
+					observe_type: 0
+					timer: 0L
+					title: "发现了一个蜜蜂巢！"
+					to_observe: "minecraft:bee_nest"
+					type: "observation"
+				}
+				{
+					id: "3E0FD2B97B15ABDB"
+					item: "minecraft:campfire"
+					type: "item"
+				}
+				{
+					id: "51D0DFD291A5CF12"
+					item: "minecraft:honeycomb"
+					type: "item"
+				}
+			]
+			title: "又一只忙碌的小蜜蜂"
+			x: 0.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["068C6FE8D747B52C"]
+			description: [
+				"如果你找到了燧石，应该用它制作燧石钢，这样可以帮助你点燃第一团灵魂之火。将恶魔之梦果扔到地上并点燃，它的位置就会生成灵魂之火。"
+				"{@pagebreak}"
+				"在精神之火中，你可以有效利用的第一个东西是小麦。将其投入火焰中，它会变成亚麻，一种可以制成线的材料。用它制作干架，这是烘干鼠尾草束和将腐肉变成皮革所必需的！"
+			]
+			id: "52EA395F1B059ACF"
+			rewards: [
+				{
+					id: "1BED2DA63B1DB631"
+					item: "chunkbychunk:worldshard"
+					random_bonus: 1
+					type: "item"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "65A760B7F20775C7"
+					table_id: 8619344399709960206L
+					type: "choice"
+				}
+			]
+			tasks: [{
+				id: "17298A7154400D31"
+				item: "supplementaries:flax"
+				type: "item"
+			}]
+			title: "被诅咒的前驱者"
+			x: -1.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["3379C026AA184447"]
+			description: [
+				"探索你的区块中的洞穴和资源，应该是获得新区块后最先做的事情之一。由于某些资源在区块中只会出现一次，所以尽早勘探它们通常是个好主意。"
+				"{@pagebreak}"
+				"如果封住区块边缘，就很难看清区块里有哪些资源了，因为很多矿石和洞穴入口都出现在那里。你甚至可能发现一两个显露出来的地牢可以探索！敏锐的眼睛在早期会帮上大忙。用它来获取一些基础矿石吧！"
+			]
+			icon: "minecraft:furnace"
+			id: "2CB81840CB4AD41C"
+			rewards: [{
+				count: 2
+				id: "278C2C131B3DF655"
+				item: "chunkbychunk:worldshard"
+				random_bonus: 1
+				type: "item"
+			}]
+			shape: "square"
+			tasks: [
+				{
+					id: "37C6D1058BFBCBBA"
+					item: "minecraft:raw_iron"
+					type: "item"
+				}
+				{
+					id: "705D429CF5075432"
+					item: "minecraft:raw_gold"
+					type: "item"
+				}
+				{
+					id: "7443BEC101F38EDB"
+					item: "minecraft:raw_copper"
+					type: "item"
+				}
+				{
+					id: "28B814338623B25B"
+					item: "minecraft:flint"
+					type: "item"
+				}
+			]
+			title: "去……洞穴里吗？"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"2D8F6C86D69070F7"
+				"52EA395F1B059ACF"
+			]
+			description: ["如果你想种植亚麻并节省小麦，那就制作一些亚麻种子吧！用你的混合锅，你可以用种子和亚麻制作可持续的亚麻供应。"]
+			id: "558238DBB67488C2"
+			rewards: [
+				{
+					count: 3
+					id: "52B56D38B56065E9"
+					item: "chunkbychunk:worldshard"
+					random_bonus: 2
+					type: "item"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "53B8C6F11F933047"
+					table_id: 8619344399709960206L
+					type: "choice"
+				}
+			]
+			shape: "hexagon"
+			tasks: [{
+				id: "7D984E0C83BEA056"
+				item: "supplementaries:flax_seeds"
+				type: "item"
+			}]
+			title: "可种植的线状物（Farmable String）"
+			x: -1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["52EA395F1B059ACF"]
+			description: ["你也可以决定用线来制作羊毛，这样就能得到一张床！幻影在早期非常烦人，所以尽早睡上一觉可以减轻它们的威胁。"]
+			id: "56D4D87821B8A347"
+			rewards: [{
+				id: "06F7EAD59DC2BA99"
+				type: "xp"
+				xp: 250
+			}]
+			shape: "hexagon"
+			tasks: [{
+				id: "79E7B1A53352C18C"
+				item: "minecraft:white_bed"
+				type: "item"
+			}]
+			title: "应得的休息"
+			x: -1.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["068C6FE8D747B52C"]
+			description: ["树皮可以用任意斧头在砧板上砍伐原木获得。这样也能剥下树皮，你还可以把它做成木炭。树皮也是很好的堆肥材料，能帮你获得骨粉来种植草或作物。如果你愿意，甚至可以用树皮造纸！"]
+			icon: "farmersdelight:tree_bark"
+			id: "5DD2F30DA106E0CA"
+			rewards: [{
+				id: "44BDB3666F2BD2C9"
+				item: "chunkbychunk:worldshard"
+				random_bonus: 1
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "56307E329D2EFB0B"
+					item: "farmersdelight:tree_bark"
+					type: "item"
+				}
+				{
+					advancement: "farmersdelight:main/use_cutting_board"
+					criterion: ""
+					id: "765C1372149AD243"
+					title: "制作一个砧板！Make a Cutting Board!"
+					type: "advancement"
+				}
+				{
+					id: "407B4B5279828EDA"
+					item: "minecraft:composter"
+					type: "item"
+				}
+			]
+			title: "更多树皮，更多堆肥"
+			x: 1.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["5DD2F30DA106E0CA"]
+			description: ["刀可以切割植物和肉类，但更重要的是植物。用刀挥舞草地可以获得稻草，可用于制作画布，这是制作书籍时皮革的替代品。而且稻草的堆肥效果也非常好！"]
+			icon: {
+				Count: 1b
+				id: "farmersdelight:flint_knife"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "22AAF6D8363B7201"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "3B5FFC3C754861CD"
+				table_id: 8619344399709960206L
+				type: "choice"
+			}]
+			shape: "hexagon"
+			tasks: [
+				{
+					advancement: "farmersdelight:main/craft_knife"
+					criterion: ""
+					id: "18DD96D936A7E4C0"
+					title: "制作一把刀！"
+					type: "advancement"
+				}
+				{
+					advancement: "farmersdelight:main/harvest_straw"
+					criterion: ""
+					id: "2E228389EB5D0986"
+					title: "获取稻草！"
+					type: "advancement"
+				}
+			]
+			title: "快刀斩乱麻，直入主题"
+			x: 1.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["2CB81840CB4AD41C"]
+			description: ["本整合包下一步要制作你的第一个混合熔炉。用不少铁就能做出这个有趣的合成台，能调配几种配方。这个熔炉甚至能酿造药水，不需要烈焰粉！"]
+			id: "2D8F6C86D69070F7"
+			rewards: [
+				{
+					id: "79DC9A5815758180"
+					item: "chunkbychunk:worldshard"
+					random_bonus: 1
+					type: "item"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "51EF8A499132CB53"
+					table_id: 4559509528929943557L
+					type: "choice"
+				}
+			]
+			tasks: [{
+				id: "1364BCA4F8A9B6BE"
+				item: "hexerei:mixing_cauldron"
+				type: "item"
+			}]
+			title: "新颖的巫术学 (Novel Witchcraft)"
+			x: 0.0d
+			y: 1.5d
+		}
+		{
+			dependencies: [
+				"2D8F6C86D69070F7"
+				"5DD2F30DA106E0CA"
+			]
+			description: ["在开启你的首次魔法之旅前，你需要制作一个女巫榛子树苗。这需要在混合锅中放入干鼠尾草束、普通鼠尾草和树皮，并确保先倒入两桶水！"]
+			id: "5B2FA47C2442BC2C"
+			rewards: [
+				{
+					id: "6D161BC735BAA94C"
+					item: "chunkbychunk:worldshard"
+					random_bonus: 1
+					type: "item"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "578B356A9E245284"
+					table_id: 4559509528929943557L
+					type: "choice"
+				}
+			]
+			tasks: [{
+				id: "76B7BF40B06626BE"
+				item: "hexerei:witch_hazel_sapling"
+				type: "item"
+			}]
+			title: "毫无防备的魔法树 (Unsuspecting Magic Tree)"
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["5B2FA47C2442BC2C"]
+			description: ["除非你想先种女巫榛子树苗，否则现在可以将其投入你的灵魂之火。它会变成符文木树苗，这是你进入首个大型魔法模组 Malum 的主要途径！"]
+			id: "4E2B2F257AFC73A2"
+			rewards: [
+				{
+					id: "77CDCC658FC65146"
+					item: "chunkbychunk:worldcrystal"
+					random_bonus: 1
+					type: "item"
+				}
+				{
+					count: 2
+					id: "77704B016B8798B4"
+					item: "malum:holy_caramel"
+					random_bonus: 1
+					type: "item"
+				}
+				{
+					id: "7E5A9BE83733CD80"
+					item: "malum:encyclopedia_arcana"
+					type: "item"
+				}
+			]
+			shape: "hexagon"
+			tasks: [{
+				id: "6ABE338AAC27D82E"
+				item: "malum:runewood_sapling"
+				type: "item"
+			}]
+			title: "精神强化 (Spiritual Enhancement)"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["35225C34AD43FF75"]
+			description: [
+				"想为游戏初期做好更充分的准备吗？世界扫描仪就是你的不二之选。"
+				""
+				"此方块会扫描你周围的一大片区块，寻找与输入物品匹配的其他方块。"
+				""
+				"将扫描目标放在顶部槽位，底部槽位放入一些世界碎片，见证周围未知世界开始揭示其秘密。"
+			]
+			hide_dependency_lines: true
+			hide_dependent_lines: true
+			id: "49AD06BE4FCC6F60"
+			optional: true
+			shape: "rsquare"
+			tasks: [{
+				id: "2C7362B7F341DF82"
+				item: "chunkbychunk:worldscanner"
+				type: "item"
+			}]
+			title: "扫描计划风扇"
+			x: 0.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["49AD06BE4FCC6F60"]
+			description: [
+				"苔石仅在两种情况下生成："
+				""
+				"1) 作为泰加生物群系中的一块天然巨石"
+				""
+				"2) 作为地牢的主要建筑材料之一"
+				""
+				"添加到你的世界扫描仪中，看看能发现什么吧！"
+			]
+			icon: "minecraft:spawner"
+			id: "0FF3CEE4AF9D20D5"
+			optional: true
+			shape: "rsquare"
+			tasks: [{
+				id: "4D573FF33F0C40A7"
+				item: "minecraft:mossy_cobblestone"
+				type: "item"
+			}]
+			title: "地牢探险"
+			x: 1.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["49AD06BE4FCC6F60"]
+			description: [
+				"在地下深处，你可能会发现随机的营地。这里可能有可搜寻的宝箱或木桶，但其中一个可能是拟态怪！"
+				""
+				"击杀拟态怪会使其掉落一件遗物。它们都具有非常实用的能力！"
+				""
+				"考虑使用你的世界扫描仪来查看它们可能的位置。"
+			]
+			icon: "minecraft:campfire"
+			id: "006B9220F80433B4"
+			optional: true
+			shape: "rsquare"
+			tasks: [{
+				id: "55FAF0A8457BDC15"
+				item: "minecraft:campfire"
+				type: "item"
+			}]
+			title: "寻找毫无防备的露营者"
+			x: -1.5d
+			y: -3.0d
+		}
+	]
+	subtitle: ["渐进式世界扩张"]
+	title: "第一阶段：逐块建造"
+}

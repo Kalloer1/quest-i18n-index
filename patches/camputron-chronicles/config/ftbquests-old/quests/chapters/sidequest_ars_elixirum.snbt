@@ -1,0 +1,373 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "sidequest_ars_elixirum"
+	group: "365C838293E956B5"
+	icon: "elixirum:elixir"
+	id: "6E2030C76B6AA0E5"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"Ars Elixirum 是一门发现的工艺。世界上的每种材料都由隐藏的 &e精粹&r 编织而成——通过提取它们，你可以酿造出独具特色的强力药水。"
+				""
+				"从 &e蜂蜜溶剂&r 开始：一个玻璃瓶和一个蜂巢。它是解锁配料秘密的关键。"
+				""
+				"按 &bY&r 键熟悉基础知识。"
+			]
+			icon: "elixirum:honey_solvent"
+			id: "3C1E0C8C8E1979E1"
+			rewards: [{
+				id: "16D5B6271A2A556D"
+				type: "xp"
+				xp: 100
+			}]
+			size: 1.5d
+			subtitle: "成为一名炼金术大师。"
+			tasks: [{
+				id: "2280F0952C65F131"
+				item: "elixirum:honey_solvent"
+				title: "合成 &e蜂蜜溶剂&r"
+				type: "item"
+			}]
+			title: "&d&l药水艺术&r"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			description: [
+				"将一种原料和蜂蜜溶剂放入&e酿造台&r中。溶剂会从原料中抽取一种随机精粹，留下一个&e提取物&r，并揭示原料的部分构成。"
+				""
+				"每次提取都会增加你的&e发现&r。"
+			]
+			icon: "elixirum:extract"
+			id: "7178CA0B867B78BE"
+			rewards: [
+				{
+					id: "272AB96EE708A061"
+					type: "xp"
+					xp: 100
+				}
+				{
+					count: 8
+					id: "17B446456E1A64D5"
+					item: "elixirum:honey_solvent"
+					type: "item"
+				}
+			]
+			subtitle: "从世界中抽取第一个秘密。"
+			tasks: [{
+				id: "103CE0C84F3567A2"
+				item: "elixirum:extract"
+				title: "获取一个 &eExtract&r"
+				type: "item"
+			}]
+			title: "&d首次提取&r"
+			x: 0.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7178CA0B867B78BE"]
+			description: ["用铁和线绑定的末影之眼。戴在头上，能让你读取任何已发现的物品的完整本质构成。"]
+			icon: {
+				Count: 1
+				id: "elixirum:alchemist_eye"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "7E4C5FB940EDCCC8"
+			rewards: [{
+				id: "5A98E19579781774"
+				type: "xp"
+				xp: 150
+			}]
+			subtitle: "看到他人无法看到的事物。"
+			tasks: [{
+				id: "4C644C228A6E68D6"
+				item: {
+					Count: 1
+					id: "elixirum:alchemist_eye"
+					tag: {
+						Damage: 0
+					}
+				}
+				title: "合成&e炼金术士之眼&r"
+				type: "item"
+			}]
+			title: "&d炼金术士之眼&r"
+			x: -1.75d
+			y: 2.75d
+		}
+		{
+			dependencies: ["7178CA0B867B78BE"]
+			description: [
+				"所有炼金术都源于九种本质："
+				""
+				"&7药水、圣体、灵魂、毒液、治愈、生长、突变、幸运、黑暗。&r"
+				""
+				"每种都掌管着一类效果。继续提取吧——发现的精华越多，你的技艺就越广博。"
+			]
+			icon: "elixirum:extract"
+			id: "29F5E8BE1384F4D6"
+			rewards: [{
+				id: "510EF610EDF12DBE"
+				type: "xp"
+				xp: 200
+			}]
+			subtitle: "绘制魔法的构成方块。"
+			tasks: [{
+				consume_items: false
+				id: "1C6E60631E806183"
+				item: { Count: 4, id: "elixirum:extract" }
+				title: "收集 &e4 份提取物&r"
+				type: "item"
+			}]
+			title: "&d九种精华&r"
+			x: -1.75d
+			y: 1.5d
+		}
+		{
+			description: ["你的酿造容器。将其置于火源——火焰、篝火、岩浆——上煮沸，然后加入材料进行酿造。"]
+			icon: "elixirum:glass_cauldron"
+			id: "31372D11A306A394"
+			rewards: [{
+				id: "1E9B98D650083AD7"
+				type: "xp"
+				xp: 150
+			}]
+			subtitle: "在这里，材料可以炼制成灵药。"
+			tasks: [{
+				id: "72B389F566041E60"
+				item: "elixirum:glass_cauldron"
+				title: "制作一个&e玻璃炼药锅&r"
+				type: "item"
+			}]
+			title: "&d玻璃炼药锅&r"
+			x: 1.75d
+			y: 1.5d
+		}
+		{
+			dependencies: [
+				"31372D11A306A394"
+				"7178CA0B867B78BE"
+			]
+			description: [
+				"煮沸坩埚，投入你的材料。猜错了，你会得到一份&e可疑混合物&r——猜对了，真正的&e……的灵药&r就会成形。"
+				""
+				"查阅&e收藏&r以保存和优化你的配方。"
+			]
+			icon: "elixirum:elixir"
+			id: "73520FFD4E17B073"
+			rewards: [
+				{
+					id: "0D0053FF1B67CDF4"
+					type: "xp"
+					xp: 200
+				}
+				{
+					count: 8
+					id: "344854C72C067BE2"
+					item: "elixirum:honey_solvent"
+					type: "item"
+				}
+			]
+			subtitle: "第一瓶由你亲手制作的药水。"
+			tasks: [{
+				id: "188C44F2FE073B86"
+				item: "elixirum:elixir"
+				title: "酿造任意一种&e药水&r"
+				type: "item"
+			}]
+			title: "&d第一杯饮品&r"
+			x: 1.75d
+			y: 3.0d
+		}
+		{
+			description: ["一个存放和展示你日益壮大的药水收藏品的地方。"]
+			icon: "elixirum:potion_shelf"
+			id: "0D330585A71E1161"
+			rewards: [{
+				id: "38354C4AFDF811F5"
+				type: "xp"
+				xp: 150
+			}]
+			subtitle: "为你最杰出的作品打造的家园。"
+			tasks: [{
+				id: "3C8F48E6A6EB47DC"
+				item: "elixirum:potion_shelf"
+				title: "制作一个&e药水架&r"
+				type: "item"
+			}]
+			title: "&d药水架&r"
+			x: 3.5d
+			y: 3.0d
+		}
+		{
+			description: ["炼金术士从不缺材料。批量酿造，试试&e瞬发&r和&e滞留&r变种，可以投掷或留下形成云团。"]
+			icon: "elixirum:elixir"
+			id: "03B99BEC5CDA30E7"
+			rewards: [
+				{
+					id: "2B61C8288906F67D"
+					type: "xp"
+					xp: 300
+				}
+				{
+					count: 16
+					id: "39D5941F81935422"
+					item: "minecraft:glass_bottle"
+					type: "item"
+				}
+			]
+			subtitle: "酿造飞溅和滞留变种药水。"
+			tasks: [{
+				consume_items: false
+				id: "6BE5FFC00D305840"
+				item: { Count: 8, id: "elixirum:elixir" }
+				title: "同时持有 &e8 瓶药水&r"
+				type: "item"
+			}]
+			title: "&d填满货架&r"
+			x: 1.75d
+			y: 4.5d
+		}
+		{
+			description: [
+				"每个保存的配方酿造都会提升其&e熟练度&r，从而提升你的整体&e炼金术熟练度&r等级——最高可达100。"
+				""
+				"更高的精通度会解锁新的视觉&e风格&r，并产出更稀有、更优质的药水，直至&e传说级&r。"
+			]
+			icon: "elixirum:elixir"
+			id: "0D115BD984E860E6"
+			rewards: [
+				{
+					id: "2D0ADBE55978BF63"
+					type: "xp"
+					xp: 500
+				}
+				{
+					id: "46144CBFB64628C0"
+					item: {
+						Count: 1
+						id: "elixirum:alchemist_eye"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			size: 1.25d
+			subtitle: "一遍又一遍地完善你的配方。"
+			tasks: [{
+				consume_items: false
+				id: "7152C7A2035EFD9F"
+				item: { Count: 16, id: "elixirum:elixir" }
+				title: "一次持有 &e16 瓶药水&r"
+				type: "item"
+			}]
+			title: "&d炼金术精通&r"
+			x: 1.75d
+			y: 6.0d
+		}
+		{
+			description: ["一位热爱音乐的炼金术士留下的奇怪唱片。 &7(Luigi Elettrico - Wunschpunsch)&r"]
+			icon: "elixirum:music_disc_wunschpunsch"
+			id: "474D205C05CB12AD"
+			rewards: [
+				{
+					id: "0C5D6834667EE16A"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "1BD444818F5D1E18"
+					item: "minecraft:jukebox"
+					type: "item"
+				}
+			]
+			subtitle: "每个优秀的实验室都需要一首背景音乐。"
+			tasks: [{
+				id: "494032B572423437"
+				item: "elixirum:music_disc_wunschpunsch"
+				title: "获取 &eWunschpunsch&r 音乐唱片"
+				type: "item"
+			}]
+			title: "&d一曲奇异的旋律&r"
+			x: -1.75d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0D115BD984E860E6"]
+			description: ["女巫们对死亡本身的回应。一个酿造而非发现的图腾——证明你的炼金术现已与她们不相上下。"]
+			icon: "elixirum:witch_totem_of_undying"
+			id: "45FAB3E9B76BC60F"
+			rewards: [{
+				id: "1939A0779BFB3A0E"
+				type: "xp"
+				xp: 400
+			}]
+			subtitle: "用自制的药水来欺骗死亡。"
+			tasks: [{
+				id: "042BDEB8AE05B478"
+				item: "elixirum:witch_totem_of_undying"
+				title: "获得一个&5女巫的不朽图腾&r"
+				type: "item"
+			}]
+			title: "&5女巫的财富&r"
+			x: 0.0d
+			y: 7.5d
+		}
+		{
+			description: [
+				""
+				"你已走过炼金术士的完整道路：发现、提取、酿造与精通。"
+				""
+				"&7&o世界的精华，任君驱使。调制传说药水，赢取你的称号。&r&r"
+			]
+			icon: "elixirum:witch_totem_of_undying"
+			id: "0BAA56CFA385E8EB"
+			rewards: [
+				{
+					id: "3BA3628FD0A6A17E"
+					type: "xp"
+					xp: 1500
+				}
+				{
+					id: "41BB50760862FC61"
+					item: "elixirum:music_disc_wunschpunsch"
+					type: "item"
+				}
+				{
+					count: 16
+					id: "56F55133CA6B74CB"
+					item: "elixirum:honey_solvent"
+					type: "item"
+				}
+			]
+			size: 1.5d
+			subtitle: "世界的精粹将臣服于你的意志。"
+			tasks: [
+				{
+					id: "1B6578238E96AF0A"
+					item: "elixirum:witch_totem_of_undying"
+					title: "手持一个&5女巫的不朽图腾&r"
+					type: "item"
+				}
+				{
+					id: "674CFA39577C8690"
+					item: "elixirum:elixir"
+					title: "手持一个&dFabled Elixir&r"
+					type: "item"
+				}
+			]
+			title: "&5&l炼金术大师&r"
+			x: 0.0d
+			y: 9.0d
+		}
+	]
+	title: "&b炼金术士的秘药&r"
+}

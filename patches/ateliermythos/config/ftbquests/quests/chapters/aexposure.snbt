@@ -1,0 +1,781 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "aexposure"
+	group: "70C73C21FE301B1A"
+	id: "44123223A1BB1F96"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["&3Exposure 添加了完整的胶片相机工作流程：将胶卷装入相机，通过取景器构图，调整焦距、快门速度、闪光灯和指南，然后在暗房中冲洗和打印照片。照片是实体物品，可以预览、打印（黑白或彩色）、装裱或分类，甚至还有附加镜头/滤镜/胶片的扩展包。"]
+			id: "54720188BA06C6B6"
+			rewards: [{
+				id: "2FA08EE5D77F099C"
+				type: "xp"
+				xp: 100
+			}]
+			size: 1.3d
+			tasks: [{
+				id: "0D0953759EC69A57"
+				item: {
+					Count: 1
+					id: "exposure:camera"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "曝光，胶片摄影！"
+			x: -1.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["54720188BA06C6B6"]
+			description: ["&7暗房是曝光照片的打印机。插入冲印好的胶片可预览底片并打印照片——黑白照片需要纸张+黑色染料；彩色则需要青色、品红、黄色染料。"]
+			id: "3F041F1B172ACCED"
+			rewards: [
+				{
+					count: 3
+					id: "40EDC4DD8E618D07"
+					item: {
+						Count: 1
+						id: "exposure:color_film"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "3ECCBB7E575CE64A"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "4084679DB0F27B22"
+				item: {
+					Count: 1
+					id: "exposure:lightroom"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "暗室打印机"
+			x: -1.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["44DBBA270F823F55"]
+			description: ["&7Color Film 是 Exposure 相机的进阶底片。一卷有 16 张；拍摄后，用 Awkward、Thick 和 Mundane Potion 合成曝光的胶卷进行冲洗（见 JEI）。之后才能在 Lightroom 中使用 Cyan、Magenta、Yellow 染料和纸进行冲印。"]
+			id: "00AB6C68F7000375"
+			rewards: [
+				{
+					count: 4
+					id: "119D3A2F8129398F"
+					item: {
+						Count: 1
+						id: "minecraft:magenta_dye"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					count: 4
+					id: "33AF90C345B47068"
+					item: {
+						Count: 1
+						id: "minecraft:cyan_dye"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "16771E1639098779"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "469717C8742B9BF5"
+				item: {
+					Count: 1
+					id: "exposure:color_film"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "CMY，不是RGB"
+			x: 0.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["54720188BA06C6B6"]
+			description: ["&7最多可存储16张照片（及笔记）。相册可放置于讲台和雕纹书架上；在讲台上，你可以点击页码进行选择，这也能让你控制讲台的比较器输出，用于红石装置。"]
+			id: "5C512D17F5AF4273"
+			rewards: [
+				{
+					id: "20D17902A59A9466"
+					item: {
+						Count: 1
+						id: "minecraft:lectern"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "1927DC0A5EBEF68D"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "14BD2A4D9E963265"
+				item: {
+					Count: 1
+					id: "exposure:album"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "整理好你的弹药架"
+			x: -2.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["5C512D17F5AF4273"]
+			description: ["&7用于展示曝光照片的专用相框（将照片直接放入相框）。照片也可以放在相册中，或者作为物品分享，如果你不想把它们挂起来的话。"]
+			id: "1634E60FE68BBC87"
+			rewards: [
+				{
+					count: 4
+					id: "5D3C4021ACD252C3"
+					item: {
+						Count: 1
+						id: "exposure:photograph_frame"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					count: 12
+					id: "1D8334E1B03394B5"
+					item: {
+						Count: 1
+						id: "minecraft:paper"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "6C785EDE328FD1DB"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "2649F27F055F6F17"
+				item: {
+					Count: 1
+					id: "exposure:photograph_frame"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "在墙上"
+			x: -2.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["54720188BA06C6B6"]
+			description: ["&7Exposure 相机的简化胶卷。装入后可拍摄 16 张/卷，然后用单个水瓶制作已冲洗的胶卷，即可在 Lightroom 中打印黑白照片。"]
+			id: "44DBBA270F823F55"
+			rewards: [
+				{
+					count: 8
+					id: "3DBD3AE185F70F37"
+					item: {
+						Count: 1
+						id: "minecraft:black_dye"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					count: 4
+					id: "1403FF1633B0F400"
+					item: {
+						Count: 1
+						id: "minecraft:paper"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "7F5814F65709499A"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "1F2F7CEC85D8AFB9"
+				item: {
+					Count: 1
+					id: "exposure:black_and_white_film"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "单体滚动"
+			x: 0.5d
+			y: -1.0d
+		}
+		{
+			description: ["&3With Stardew Fishing mod, the vanilla rod triggers a Stardew-style minigame: keep the green bobber bar on the fish to fill the progress bar and land the catch. The mod supports vanilla rods and works with others (e.g., Aquaculture 2, Tide), and it adds bobbers that modify the minigame."]
+			id: "2016F5D475FA69A8"
+			rewards: [
+				{
+					count: 8
+					id: "44B3F074393743DE"
+					item: {
+						Count: 1
+						id: "waterloggedchests:worm_bait"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "6D47E9E1817874C4"
+					type: "xp"
+					xp: 100
+				}
+			]
+			size: 1.3d
+			tasks: [{
+				id: "48841541C4DC1B03"
+				item: {
+					Count: 1
+					id: "minecraft:fishing_rod"
+					tag: {
+						Damage: 0
+						affix_data: {
+							sockets: 0
+						}
+					}
+				}
+				type: "item"
+			}]
+			title: "钓鱼，星露谷风格"
+			x: -4.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["2016F5D475FA69A8"]
+			description: ["&7当鱼不在浮漂下时，进度条消耗会变慢的浮漂，模仿了Stardew的效果（逃脱变慢）。在本模组中，浮漂可以装在鱼竿上（通过钓鱼台/渔具箱，或在较新版本中右键悬停）。"]
+			id: "0DF07F3F1BE1EFC7"
+			rewards: [{
+				id: "4229A1C19861B6F5"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				id: "57B058D210245922"
+				item: {
+					Count: 1
+					id: "stardew_fishing:trap_bobber"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "减缓它们的逃脱速度"
+			x: -4.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["0DF07F3F1BE1EFC7"]
+			description: ["&7将软木浮漂附在鱼竿上，可增大绿色钓鱼条，让小游戏更简单。 (此模组中浮漂可附魔并添加独特效果；软木浮漂会增大钓鱼条。)</c1>"]
+			id: "3CFA005D2753CCF6"
+			rewards: [
+				{
+					id: "27E49252271A2AD4"
+					item: {
+						Count: 1
+						id: "minecraft:enchanted_book"
+						tag: {
+							StoredEnchantments: [{
+								id: "minecraft:lure"
+								lvl: 2s
+							}]
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "55F221D8EF083591"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "5A94E0071AC62363"
+				item: {
+					Count: 1
+					id: "stardew_fishing:cork_bobber"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "酒吧越大越好"
+			x: -4.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["3CFA005D2753CCF6"]
+			description: ["&7优质鱼漂能提升你的渔获：在《星露谷物语》中能提高鱼的品质，在本模组中则大幅增加钓鱼经验值，若安装了优质食物模组，还能提高钓到的鱼的品质。将其挂在鱼竿上即可生效。"]
+			id: "52BDA751E9B92830"
+			rewards: [
+				{
+					count: 3
+					id: "7B9D29FF50688ABE"
+					item: {
+						Count: 1
+						id: "minecraft:tropical_fish_bucket"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "7288E8E50B76082D"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "5B040F777D5FF7C2"
+				item: {
+					Count: 1
+					id: "stardew_fishing:quality_bobber"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "垂钓优质物品"
+			x: -4.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["2016F5D475FA69A8"]
+			description: ["&7用于展示珍贵渔获的装饰方块。放置它并放入鱼，即可展示你最好的收获。此模组在最近的一次更新中添加。"]
+			id: "50DC94F50103CAC2"
+			rewards: [
+				{
+					id: "1A9F3C1B9C4EADF5"
+					item: {
+						Count: 1
+						id: "artifacts:anglers_hat"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "28E23E2DFAB4B7C1"
+					item: {
+						Count: 1
+						id: "minecraft:name_tag"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "2231374A271327BF"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "71B4ED588B74FC7F"
+				item: {
+					Count: 1
+					id: "stardew_fishing:fish_display"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "炫耀你的战利品"
+			x: -6.0d
+			y: -1.0d
+		}
+		{
+			id: "4BFCF7EC5139CC7A"
+			rewards: [{
+				id: "4E3DBD873F7E1F0B"
+				type: "xp"
+				xp: 300
+			}]
+			tasks: [{
+				id: "18D0F0DB58FEFAF8"
+				item: {
+					Count: 1
+					id: "stardew_fishing:goliath_grouper"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -6.0d
+			y: 0.5d
+		}
+		{
+			id: "1E1079F18045D00B"
+			rewards: [{
+				id: "12EC879C7022E0EB"
+				type: "xp"
+				xp: 300
+			}]
+			tasks: [{
+				id: "3C0EFF08C572EB52"
+				item: {
+					Count: 1
+					id: "stardew_fishing:vampire_payara"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -6.0d
+			y: 1.5d
+		}
+		{
+			id: "5E68E58E89CD6C84"
+			rewards: [{
+				id: "7C7F5C7B30FCB9C8"
+				type: "xp"
+				xp: 300
+			}]
+			tasks: [{
+				id: "5CD77257A11BDF32"
+				item: {
+					Count: 1
+					id: "stardew_fishing:golden_snook"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -6.0d
+			y: 2.5d
+		}
+		{
+			id: "047CBF2A98A22F02"
+			rewards: [{
+				id: "75A89E4BB8CE0171"
+				type: "xp"
+				xp: 300
+			}]
+			tasks: [{
+				id: "0336AFAACB30A5E6"
+				item: {
+					Count: 1
+					id: "stardew_fishing:sabretoothed_tigerfish"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -6.0d
+			y: 3.5d
+		}
+		{
+			id: "765A600CC67091E5"
+			rewards: [{
+				id: "6D35606D4EDA632F"
+				type: "xp"
+				xp: 300
+			}]
+			tasks: [{
+				id: "07EA13EE0D1602E3"
+				item: {
+					Count: 1
+					id: "stardew_fishing:chromatic_arapaima"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -7.0d
+			y: 0.5d
+		}
+		{
+			id: "0903EA7FAC6A1190"
+			rewards: [{
+				id: "17DC28AD64EECF3F"
+				type: "xp"
+				xp: 300
+			}]
+			tasks: [{
+				id: "3B736C3237737AAE"
+				item: {
+					Count: 1
+					id: "stardew_fishing:cyclops_mahimahi"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -7.0d
+			y: 1.5d
+		}
+		{
+			id: "758F15E1AD5C7EA5"
+			rewards: [{
+				id: "0194FA43B6DEA8CF"
+				type: "xp"
+				xp: 300
+			}]
+			tasks: [{
+				id: "5AAB17A2D5FF74E8"
+				item: {
+					Count: 1
+					id: "stardew_fishing:storm_tarpon"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -7.0d
+			y: 2.5d
+		}
+		{
+			id: "2DD334501CCF3BCD"
+			rewards: [{
+				id: "2008802D32E30E15"
+				type: "xp"
+				xp: 300
+			}]
+			tasks: [{
+				id: "0FB93DB2DEEDC63B"
+				item: {
+					Count: 1
+					id: "stardew_fishing:blazing_oarfish"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -7.0d
+			y: 3.5d
+		}
+		{
+			id: "41D532EBF0925DF6"
+			rewards: [{
+				id: "095E9C950842BD29"
+				type: "xp"
+				xp: 300
+			}]
+			tasks: [{
+				id: "0AC0EB1EBDED3322"
+				item: {
+					Count: 1
+					id: "stardew_fishing:demon_gar"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -8.0d
+			y: 1.5d
+		}
+		{
+			id: "49ACD4013B419E8A"
+			rewards: [{
+				id: "4A9359FDD307BD0A"
+				type: "xp"
+				xp: 300
+			}]
+			tasks: [{
+				id: "05D97094878C13BF"
+				item: {
+					Count: 1
+					id: "stardew_fishing:crystalline_snakehead"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -8.0d
+			y: 2.5d
+		}
+		{
+			description: [
+				"&3The Longwings mod adds new butterflys and moths to the world. You can collect and store them in your butterfly and moth handbook, as well as see information on their species, where they spawn and what you can use to lure them."
+				""
+				"&7手册很可爱，和《动物森友会》的昆虫图鉴很像！"
+			]
+			id: "521ED8070363E4D8"
+			rewards: [
+				{
+					id: "78BA2EF420BBF81D"
+					item: {
+						Count: 1
+						id: "yuushya:butterfly_blue"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "4C237C4C186D5CD2"
+					type: "xp"
+					xp: 100
+				}
+			]
+			size: 1.3d
+			tasks: [{
+				id: "53EDFAD9194C8603"
+				item: {
+					Count: 1
+					id: "longwings:butterfly_handbook"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "精美收藏集"
+			x: 2.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["521ED8070363E4D8"]
+			description: ["&7捕虫网让你右键点击蝴蝶和飞蛾来捕捉它们。"]
+			id: "3BFADACDF31E8945"
+			rewards: [
+				{
+					count: 3
+					id: "444157BE05405DD4"
+					item: {
+						Count: 1
+						id: "longwings:apple_butterfly_brew_bottle"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "416140CF043AF559"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "7ECB96A8BE42EC32"
+				item: {
+					Count: 1
+					id: "longwings:catching_net"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "捕捉新朋友"
+			x: 2.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["3BFADACDF31E8945"]
+			description: ["&7玻璃罐可以用来展示蝴蝶和蛾子。"]
+			id: "6357DAFE8E1E9733"
+			rewards: [
+				{
+					count: 4
+					id: "6257CE10148FF2E0"
+					item: {
+						Count: 1
+						id: "longwings:glass_jar"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "360361D9D9EEE3C8"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "08AFD932696CD68E"
+				item: {
+					Count: 1
+					id: "longwings:glass_jar"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "向它们炫耀一下吧！"
+			x: 2.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["6357DAFE8E1E9733"]
+			description: ["&7蝴蝶诱饵——用于吸引和喂养蝴蝶。请务必查阅手册，了解特定蝴蝶喜欢吃什么花蜜。"]
+			id: "08BF885038A7E28A"
+			rewards: [
+				{
+					id: "2DE6D7E87018B321"
+					item: {
+						Count: 1
+						id: "simplehats:flowercrown"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "13FC6212FD868C60"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "419DC679307EC59C"
+				item: {
+					Count: 1
+					id: "longwings:butterfly_driplure"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "友好陷阱机制整合包"
+			x: 2.5d
+			y: 3.5d
+		}
+		{
+			description: ["&3一本关于Alex's Mobs所添加的所有生物的手册指南。"]
+			id: "589B15DF2E138A4D"
+			rewards: [
+				{
+					id: "6C70EC34894F6689"
+					item: {
+						Count: 1
+						id: "easy_mob_farm:animal_plains_farm"
+						tag: {
+							CustomModelData: 1
+							TierLevel: 1
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "2729D0491B7C2955"
+					type: "xp"
+					xp: 100
+				}
+			]
+			size: 1.3d
+			tasks: [{
+				id: "0E360C697E6B0E44"
+				item: {
+					Count: 1
+					id: "alexsmobs:animal_dictionary"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "动物商店"
+			x: -1.0d
+			y: 2.5d
+		}
+	]
+	title: "&a温馨增添模组包"
+}

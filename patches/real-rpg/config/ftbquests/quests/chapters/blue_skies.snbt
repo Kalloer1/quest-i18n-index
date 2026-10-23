@@ -1,0 +1,390 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "blue_skies"
+	group: "60D945A894F0E3D9"
+	icon: "blue_skies:multi_portal_item"
+	id: "7714DA114254B4F1"
+	images: [{
+		height: 2.0d
+		image: "kubejs:textures/equipolumencraft_img/blue_skys.png"
+		rotation: 0.0d
+		width: 10.0d
+		x: 0.0d
+		y: -5.0d
+	}]
+	order_index: 4
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["守门人位于扎伦平原的南部。你需要在一处发光岩石群附近搜寻。"]
+			id: "6F8DE304A5E8E625"
+			rewards: [{
+				id: "26835DC24605E4EE"
+				type: "xp"
+				xp: 10
+			}]
+			subtitle: "在平原或山脉生物群系中找到守门人。"
+			tasks: [{
+				icon: "blue_skies:gatekeeper_spawn_egg"
+				id: "5D82D3F7DD1FE26E"
+				observe_type: 5
+				timer: 0L
+				to_observe: "blue_skies:gatekeeper"
+				type: "observation"
+			}]
+			title: "&l寻找守门人 (Find the Gatekeeper)"
+			x: 0.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["6F5D4A611389802E"]
+			dependency_requirement: "one_completed"
+			description: ["将 Zeal Lighter 用于由 Turquoise Stone Bricks 建造的传送门结构上。"]
+			id: "337A7D0C975AFAFF"
+			rewards: [{
+				id: "759B7DB3E767F71B"
+				type: "xp"
+				xp: 20
+			}]
+			subtitle: "使用狂热打火机激活通往Everbright的传送门。"
+			tasks: [{
+				dimension: "blue_skies:everbright"
+				icon: "blue_skies:everbright_portal"
+				id: "0607EF4A95B88407"
+				type: "dimension"
+			}]
+			title: "激活通往Everbright的传送门"
+			x: -2.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["6F5D4A611389802E"]
+			description: ["将狂热打火机用于由月亮石砖建造的传送门结构上。"]
+			id: "09507D9DA00469E4"
+			rewards: [{
+				id: "00D4921966CA4164"
+				type: "xp"
+				xp: 20
+			}]
+			subtitle: "使用狂热打火机激活通往永恒黎明的传送门。"
+			tasks: [{
+				dimension: "blue_skies:everdawn"
+				icon: "blue_skies:everdawn_portal"
+				id: "72D7A20F7F74C332"
+				type: "dimension"
+			}]
+			title: "激活通往永恒黎明的传送门"
+			x: 2.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["6F8DE304A5E8E625"]
+			description: ["与守门人交易以获得这些物品，它们能让你点燃传送门。"]
+			id: "6F5D4A611389802E"
+			rewards: [
+				{
+					id: "4F1F611C14023ED9"
+					item: {
+						Count: 1
+						id: "blue_skies:zeal_lighter"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 5
+					id: "3B51CA78B5A29F38"
+					item: "blue_skies:turquoise_stonebrick"
+					type: "item"
+				}
+				{
+					count: 5
+					id: "617DF1A573A557EE"
+					item: "blue_skies:lunar_stonebrick"
+					type: "item"
+				}
+			]
+			subtitle: "与守门人交易以获得狂热打火机与蓝色日志。"
+			tasks: [
+				{
+					id: "4BD034A1A8BF6EDF"
+					item: "blue_skies:blue_journal"
+					type: "item"
+				}
+				{
+					id: "31C4617457C2E1C0"
+					item: {
+						Count: 1
+						id: "blue_skies:zeal_lighter"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "&lTrade with the Gatekeeper"
+			x: 0.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["337A7D0C975AFAFF"]
+			description: ["前往 Everbright 探索冰雪生物群系。记录可用的资源。"]
+			hide_until_deps_visible: false
+			id: "798689A3449E81A9"
+			rewards: [
+				{
+					id: "5BB83E0C6FF5D220"
+					type: "xp"
+					xp: 25
+				}
+				{
+					count: 8
+					id: "432976EA0230AD3D"
+					item: "blue_skies:midnight_sand"
+					type: "item"
+				}
+			]
+			subtitle: "进入 Everbright 维度，探索雪原生物群系。"
+			tasks: [{
+				dimension: "blue_skies:everbright"
+				id: "2931D52C9654E720"
+				type: "dimension"
+			}]
+			title: "探索永光维度 (Exploring the Everbright Dimension)"
+			x: -2.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["798689A3449E81A9"]
+			description: ["在致盲地牢中击败召唤者。"]
+			icon: "blue_skies:summoner_spawn_egg"
+			id: "33E175BAD159C6BC"
+			rewards: [
+				{
+					id: "4B36116B409113CE"
+					type: "xp"
+					xp: 30
+				}
+				{
+					id: "5C9052F5D7015199"
+					item: {
+						Count: 1
+						id: "blue_skies:loot_bag_summoner"
+						tag: {
+							LootTable: "blue_skies:loot_bags/summoner/common"
+							Rarity: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			subtitle: "召唤者居住在致盲地牢的深处。击败首领以解锁更多资源。"
+			tasks: [{
+				entity: "blue_skies:summoner"
+				id: "7BE6BA05354CCC77"
+				type: "kill"
+				value: 1L
+			}]
+			title: "击败召唤者（Summoner）"
+			x: -3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["798689A3449E81A9"]
+			description: ["击败星光破碎机以赢取稀有奖励。"]
+			icon: "blue_skies:starlit_crusher_spawn_egg"
+			id: "509992919BBE0B5D"
+			rewards: [
+				{
+					id: "35534432189C2A7F"
+					item: "blue_skies:starlit_sapling"
+					type: "item"
+				}
+				{
+					id: "5FC9C9E3A2C2DEE6"
+					type: "xp"
+					xp: 50
+				}
+			]
+			subtitle: "在自然地下城击败星光破碎机。"
+			tasks: [{
+				entity: "blue_skies:starlit_crusher"
+				id: "0B2C4AD8F6B49A0E"
+				type: "kill"
+				value: 1L
+			}]
+			title: "击败星光破碎机 (Starlit Crusher)"
+			x: -1.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["09507D9DA00469E4"]
+			description: ["前往埃弗多恩，探索阳光明媚、温暖宜人的生物群系。发现新的动植物物种。"]
+			id: "731B32BFC6B4F3EB"
+			rewards: [
+				{
+					id: "2890BA2274F9AE53"
+					type: "xp"
+					xp: 25
+				}
+				{
+					count: 8
+					id: "147A1411B521439A"
+					item: "blue_skies:crystal_sand"
+					type: "item"
+				}
+			]
+			subtitle: "进入永恒黎明维度，探索温暖的生物群系。"
+			tasks: [{
+				dimension: "blue_skies:everdawn"
+				id: "0CDAFAE06B7E02FC"
+				type: "dimension"
+			}]
+			title: "探索永昼维度（Everdawn Dimension）"
+			x: 2.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["731B32BFC6B4F3EB"]
+			description: ["炼金术士居住在永恒黎明的致盲地牢中。击败此首领以继续前进。"]
+			id: "4BB425D0690BE6B7"
+			require_sequential_tasks: false
+			rewards: [
+				{
+					id: "1D58A31AA2E96A18"
+					type: "xp"
+					xp: 30
+				}
+				{
+					id: "4982A4EF441D3F85"
+					item: {
+						Count: 1
+						id: "blue_skies:loot_bag_alchemist"
+						tag: {
+							LootTable: "blue_skies:loot_bags/alchemist/common"
+							Rarity: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			subtitle: "在永恒黎明的致盲地牢中击败炼金术士。"
+			tasks: [{
+				entity: "blue_skies:alchemist"
+				icon: "blue_skies:alchemist_spawn_egg"
+				id: "6A33F0E6E6A2E9B1"
+				type: "kill"
+				value: 1L
+			}]
+			title: "击败炼金术士（Defeat the Alchemist）"
+			x: 1.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["731B32BFC6B4F3EB"]
+			description: ["蛛王是毒地牢中一个致命的首领。击败它以获得丰厚奖励。"]
+			icon: "blue_skies:arachnarch_spawn_egg"
+			id: "54505A371A6D6529"
+			rewards: [
+				{
+					auto: "disabled"
+					id: "7EF204B7B8593DFD"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "0C737C3724C9B386"
+					item: {
+						Count: 1
+						id: "blue_skies:loot_bag_arachnarch"
+						tag: {
+							LootTable: "blue_skies:loot_bags/arachnarch/common"
+							Rarity: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			subtitle: "在毒地牢中击败蛛巢领主。"
+			tasks: [{
+				entity: "blue_skies:arachnarch"
+				id: "42FED39F84B2AB90"
+				type: "kill"
+				value: 1L
+			}]
+			title: "击败蛛巢领主 (Arachnarch)"
+			x: 3.0d
+			y: -1.5d
+		}
+		{
+			description: ["自然之弧能让你进入自然地下城。在这里你能找到稀有资源和最终首领。"]
+			id: "6471F94B34161227"
+			rewards: [{
+				id: "6DEA0F1F647404D8"
+				type: "xp"
+				xp: 100
+			}]
+			subtitle: "使用自然之弧进入自然地下城。"
+			tasks: [
+				{
+					id: "1C8FADCA23BF5D1A"
+					item: {
+						Count: 1
+						id: "blue_skies:nature_arc"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					icon: "blue_skies:nature_keystone"
+					id: "60659207A71A8F3C"
+					observe_type: 0
+					timer: 0L
+					to_observe: "blue_skies:nature_keystone"
+					type: "observation"
+				}
+			]
+			title: "进入自然地下城 (Nature Dungeon)"
+			x: -3.0d
+			y: -0.5d
+		}
+		{
+			description: ["毒之弧开启了毒之地下城，那里的危险更加巨大。"]
+			id: "746C0FE10A28362E"
+			rewards: [{
+				id: "1CECAB2559C77067"
+				type: "xp"
+				xp: 100
+			}]
+			subtitle: "使用有毒电弧进入有毒地牢。"
+			tasks: [
+				{
+					id: "17BFEE24A65A8764"
+					item: {
+						Count: 1
+						id: "blue_skies:poison_arc"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					icon: "blue_skies:poison_keystone"
+					id: "367713F8051FCD02"
+					observe_type: 0
+					timer: 0L
+					to_observe: "blue_skies:poison_keystone"
+					type: "observation"
+				}
+			]
+			title: "进入中毒地牢 (Access the Poison Dungeon)"
+			x: 3.0d
+			y: -0.5d
+		}
+	]
+	title: "蓝天模组"
+}

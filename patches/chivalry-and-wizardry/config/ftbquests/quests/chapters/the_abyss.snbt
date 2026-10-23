@@ -1,0 +1,890 @@
+# AI 初翻，未人工校对
+{
+	id: "756FD0CF9A436F8A"
+	group: "4AF1E1C369D1D388"
+	order_index: 5
+	filename: "the_abyss"
+	title: "深渊"
+	icon: {
+		id: "patchouli:guide_book"
+		Count: 1b
+		tag: {
+			"patchouli:book": "theabyss:abyssbookitem"
+		}
+		ForgeCaps: {
+			"dungeons_libraries:built_in_enchantments": {
+				BuiltInEnchantments: [ ]
+			}
+			"customnpcs:itemscripteddata": { }
+		}
+	}
+	subtitle: ["一个似乎已被腐化的黑暗世界。"]
+	default_quest_shape: "square"
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "可不是什么美梦了得"
+			icon: "minecraft:blue_bed"
+			x: -4.0d
+			y: -0.5d
+			description: ["要开始，你需要睡觉。有时你会进入梦境维度。尽可能多地从那里获取资源"]
+			id: "269E66F828C90AA9"
+			tasks: [{
+				id: "40EFBACAA1D1B6D8"
+				type: "dimension"
+				dimension: "theabyss:dream"
+			}]
+			rewards: [{
+				id: "22EA6ADE8F74E4DB"
+				type: "xp"
+				xp: 15
+			}]
+		}
+		{
+			title: "旧版静态内容"
+			x: -1.5d
+			y: -0.5d
+			description: ["要进入传送门，你需要找到一个收音机，与收音机互动后，它会给你所需的东西。"]
+			dependencies: ["269E66F828C90AA9"]
+			id: "73F9E73143CDC54B"
+			tasks: [{
+				id: "32E70D9676DAD191"
+				type: "structure"
+				title: "在森林里找到一个废弃的无线电小屋"
+				structure: "theabyss:forest_hut"
+			}]
+			rewards: [{
+				id: "72FE86ABD47C3AC1"
+				type: "xp"
+				xp: 15
+			}]
+		}
+		{
+			title: "闪闪发光的植物"
+			x: 1.0d
+			y: -0.5d
+			description: ["与废弃房屋里的收音机互动，你将被传送到另一个维度。那里有叫洛兰的浅蓝色花朵。尽可能多地收集它们。"]
+			dependencies: ["73F9E73143CDC54B"]
+			id: "1DD8F29E68293861"
+			tasks: [{
+				id: "1551F7390B256CF8"
+				type: "item"
+				item: {
+					id: "theabyss:loran"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "0A61826B75A0109C"
+					type: "xp"
+					xp: 15
+				}
+				{
+					id: "57CBCED15ADCBD05"
+					type: "item"
+					item: {
+						id: "minecraft:crying_obsidian"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+					count: 4
+				}
+			]
+		}
+		{
+			title: "正在准备中"
+			x: 3.5d
+			y: -0.5d
+			description: ["不稳定黑曜石是建造传送门的第一步（形状与下界传送门相同）。但你不能用打火石和钢，需要特殊的激活器才能启动。"]
+			dependencies: ["1DD8F29E68293861"]
+			id: "5CDC2CCA243A3D33"
+			tasks: [
+				{
+					id: "0B762ACB8E7E9C83"
+					type: "item"
+					item: {
+						id: "theabyss:unstable_obsidian"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+					count: 10L
+				}
+				{
+					id: "24F4A0900B868D5C"
+					type: "item"
+					item: {
+						id: "theabyss:the_abyss"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "65ABFEDF5295E02D"
+				type: "xp"
+				xp: 40
+			}]
+		}
+		{
+			title: "深处正等待着你的到来"
+			icon: "theabyss:loran_flower"
+			x: 6.0d
+			y: -0.5d
+			description: ["是时候面对深渊，进入传送门了。"]
+			dependencies: ["5CDC2CCA243A3D33"]
+			id: "038B3F296CCED50D"
+			tasks: [{
+				id: "0AF057DB9A6092D4"
+				type: "dimension"
+				dimension: "theabyss:the_abyss"
+			}]
+			rewards: [{
+				id: "4D6C2D42FE85591F"
+				type: "xp"
+				xp: 30
+			}]
+		}
+		{
+			title: "一种不寻常的混合物"
+			x: 13.0d
+			y: -0.5d
+			description: [
+				"Somnium 瓶子用于深渊中的某些炼金配方，也是制作 Somnium 注入器所需的材料。"
+				"也可以饮用，这样你就能使用它的力量来使用特殊戒指了。"
+			]
+			dependencies: ["6B61EE162B9C0BDD"]
+			id: "419FB3DBF2874307"
+			tasks: [{
+				id: "1F5AD5595B81B50B"
+				type: "item"
+				item: {
+					id: "theabyss:bottle_of_somnium"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "4B5BED0EC99B7F50"
+					type: "xp"
+					xp: 25
+				}
+				{
+					id: "18DF2A2FE78B4327"
+					type: "item"
+					item: {
+						id: "minecraft:glass_bottle"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+					count: 3
+				}
+			]
+		}
+		{
+			title: "有什么东西正在酝酿之中"
+			x: 15.5d
+			y: -0.5d
+			description: ["Somnium Infuser 几乎就是普通酿造台的另一个版本，可以制作出各种不同的新药水。"]
+			dependencies: ["419FB3DBF2874307"]
+			id: "1019536D0E3B9B7E"
+			tasks: [{
+				id: "3B3AB36F4056434B"
+				type: "item"
+				item: {
+					id: "theabyss:somnium_infuser"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "28DB7BD46545BF1F"
+					type: "xp"
+					xp: 30
+				}
+				{
+					id: "29E4EA0C3DBB0CF4"
+					type: "item"
+					item: {
+						id: "theabyss:loran"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+					count: 5
+				}
+			]
+		}
+		{
+			title: "重返灭绝时代"
+			x: 2.0d
+			y: -4.5d
+			description: ["深渊龙是一种像霸王龙一样的生物，在深渊的生物群中漫游。找到它，向它证明你就是下一颗陨石。"]
+			dependencies: ["038B3F296CCED50D"]
+			id: "26402C9A594B55A8"
+			tasks: [{
+				id: "141C4E687D859390"
+				type: "kill"
+				entity: "theabyss:abyssaur"
+				value: 1L
+			}]
+			rewards: [{
+				id: "1E2E017A61D6DB34"
+				type: "xp"
+				xp: 15
+			}]
+		}
+		{
+			title: "索姆尼乌姆的开端"
+			x: 10.5d
+			y: -0.5d
+			description: ["Somnium 提取器可将普通 Loran 转化为强大的配方所需的 Somnium 能量。"]
+			dependencies: ["0E3E7C8E32173F9D"]
+			id: "6B61EE162B9C0BDD"
+			tasks: [{
+				id: "519DAE6DECFCB960"
+				type: "item"
+				item: {
+					id: "theabyss:somnium_extractor"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "4E3AA93CA91A5EFD"
+					type: "xp"
+					xp: 20
+				}
+				{
+					id: "63FAD7DC8998EC06"
+					type: "item"
+					item: {
+						id: "theabyss:somnium"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+					count: 3
+				}
+			]
+		}
+		{
+			title: "充满活力的水晶碎片"
+			icon: "theabyss:crystal_hand"
+			x: 4.0d
+			y: -4.5d
+			description: [
+				"水晶哥布林是由岩石和水晶构成的怪物，击败它，证明你的力量。"
+				"掉落物可能很有用……"
+			]
+			dependencies: ["038B3F296CCED50D"]
+			id: "5D6BA3E3A3900FD4"
+			tasks: [{
+				id: "44F8115BC7E7CF6D"
+				type: "kill"
+				entity: "theabyss:crystal_golem"
+				value: 1L
+			}]
+			rewards: [{
+				id: "3CA691C62A4C92F5"
+				type: "xp"
+				xp: 25
+			}]
+		}
+		{
+			title: "扭曲的生物"
+			icon: "theabyss:roka_horn"
+			x: 6.0d
+			y: -4.5d
+			description: ["Roka 是一种旅途中会遇到的迷你首领。它虽然很难对付，但掉落物对推进进度很重要。"]
+			dependencies: ["038B3F296CCED50D"]
+			id: "38CE197EFF1E240A"
+			tasks: [{
+				id: "1BD4422C0095D53B"
+				type: "kill"
+				entity: "theabyss:the_roka"
+				value: 1L
+			}]
+			rewards: [{
+				id: "5A11687F90598155"
+				type: "xp"
+				xp: 30
+			}]
+		}
+		{
+			title: "远古的宿敌"
+			icon: "theabyss:elder_eye"
+			x: 8.0d
+			y: -4.5d
+			description: ["长老们是游荡在深渊之民的腐化版本。他们身上有件有价值的东西，或许你想从他们那里夺走。"]
+			dependencies: ["038B3F296CCED50D"]
+			id: "18652244BCB56EE7"
+			tasks: [{
+				id: "360039DAA116B89F"
+				type: "kill"
+				entity: "theabyss:elder"
+				value: 1L
+			}]
+			rewards: [{
+				id: "78A68766B7F939EE"
+				type: "xp"
+				xp: 30
+			}]
+		}
+		{
+			title: "新魔法"
+			x: 8.0d
+			y: -0.5d
+			description: ["找到 Incorythe 矿石并将其制成 Loran 能量，你会需要它的。"]
+			dependencies: ["038B3F296CCED50D"]
+			id: "0E3E7C8E32173F9D"
+			tasks: [{
+				id: "3F6E40AA242DED3A"
+				type: "item"
+				item: {
+					id: "theabyss:loran_energy"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [{
+				id: "205EA0BBE6E1F373"
+				type: "xp"
+				xp: 25
+			}]
+		}
+		{
+			title: "力量的戒指"
+			x: 13.0d
+			y: 1.5d
+			description: ["秘法工作台是用来获取魔法戒指的。这些物品很强大，但也很昂贵，因为制作它们需要水晶。"]
+			dependencies: ["419FB3DBF2874307"]
+			id: "7ECFA95F66619906"
+			tasks: [{
+				id: "770F35F61E2E0825"
+				type: "item"
+				item: {
+					id: "theabyss:arcane_workbench"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "50263B356A66992E"
+					type: "xp"
+					xp: 20
+				}
+				{
+					id: "573DC83CA8DDEDCE"
+					type: "item"
+					item: {
+						id: "theabyss:loran_energy"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "将晶体研磨成粉末"
+			x: 15.5d
+			y: 1.5d
+			description: ["研钵和研杵用于将晶体转化为粉末，可用于新的配方。"]
+			dependencies: ["7ECFA95F66619906"]
+			id: "4443DF12A5F68ED1"
+			tasks: [{
+				id: "42D4E359C409502B"
+				type: "item"
+				item: {
+					id: "theabyss:mortar_and_pestle"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [{
+				id: "444040174B1B31BD"
+				type: "xp"
+				xp: 15
+			}]
+		}
+		{
+			title: "你相信魔法吗？"
+			x: 10.0d
+			y: -4.5d
+			description: ["魔术师是一个能把你减速到几乎完全停止的 boss 敌人。它有很多花招，可能是一个很难对付的对手。"]
+			dependencies: ["038B3F296CCED50D"]
+			id: "28BDC735E034CC1D"
+			tasks: [{
+				id: "35E0A256243740BC"
+				type: "kill"
+				entity: "theabyss:magician"
+				value: 1L
+			}]
+			rewards: [{
+				id: "7101CD868A9DAE5D"
+				type: "xp"
+				xp: 20
+			}]
+		}
+		{
+			title: "最终的决斗"
+			icon: {
+				id: "theabyss:abyss_sword"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: 6.0d
+			y: -10.5d
+			description: ["Nightblade 是本整合包的最终 boss。他拥有超过 1000 的生命值、强大的魔法能力，并且一击如重锤般沉重，绝对是一项严峻的挑战。击败他，你才能真正称自己为深渊之王。"]
+			dependencies: ["1DAEFAFB73A56F76"]
+			id: "4839328FEF7BE822"
+			tasks: [{
+				id: "3DF76F98AD31DD41"
+				type: "kill"
+				entity: "theabyss:night_blade_boss_clone"
+				value: 1L
+			}]
+			rewards: [
+				{
+					id: "6FB7EBBE484E7587"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "7D835F22AFCA21D4"
+					type: "item"
+					item: {
+						id: "theabyss:incorythe_gem"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+					count: 20
+				}
+				{
+					id: "7D8803AECEABC346"
+					type: "item"
+					item: {
+						id: "theabyss:apple_of_immortality"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "把它们全部找出来"
+			x: 6.0d
+			y: 3.5d
+			description: ["找到每种金属锭各一个，才能真正了解这个维度的材料。"]
+			dependencies: ["038B3F296CCED50D"]
+			id: "6D5D7B081868E7C7"
+			tasks: [
+				{
+					id: "247AB99E7FD0854E"
+					type: "item"
+					item: {
+						id: "theabyss:fusion_ingot"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+				}
+				{
+					id: "3DF44F25F00ECAD5"
+					type: "item"
+					item: {
+						id: "theabyss:phantom_ingot"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+				}
+				{
+					id: "72D8EDE31F9DE1A8"
+					type: "item"
+					item: {
+						id: "theabyss:loran_ingot"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+				}
+				{
+					id: "2A34E056FD8984FC"
+					type: "item"
+					item: {
+						id: "theabyss:garnite_ingot"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+				}
+				{
+					id: "66E40EA469504B59"
+					type: "item"
+					item: {
+						id: "theabyss:unorithe_ingot"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+				}
+				{
+					id: "72D1B97F65FAE4F2"
+					type: "item"
+					item: {
+						id: "theabyss:florite_gem"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+				}
+				{
+					id: "6540428099DEA828"
+					type: "item"
+					item: {
+						id: "theabyss:bricked_knight_ingot"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+				}
+				{
+					id: "7CCB27EBBBF6E5A8"
+					type: "item"
+					item: {
+						id: "theabyss:knight_ingot"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+				}
+			]
+			rewards: [
+				{
+					id: "28FAA1595103DF9E"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "2F055CDFE34B112F"
+					type: "item"
+					item: {
+						id: "theabyss:somnium"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+					count: 32
+				}
+			]
+		}
+		{
+			title: "最后一个物品"
+			x: 6.0d
+			y: -8.5d
+			description: ["深渊之眼用于召唤该模组的最终Boss。做好准备，你需要尽可能收集所有强大的装备和魔法戒指。这场战斗极其困难。"]
+			dependencies: [
+				"26402C9A594B55A8"
+				"5D6BA3E3A3900FD4"
+				"28BDC735E034CC1D"
+				"38CE197EFF1E240A"
+				"18652244BCB56EE7"
+			]
+			id: "1DAEFAFB73A56F76"
+			tasks: [{
+				id: "32F7045C1F48FFC5"
+				type: "item"
+				item: {
+					id: "theabyss:eye_of_abyss"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "1F1A50BE41A2EF7B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					id: "2E87BAB82C42D350"
+					type: "item"
+					item: {
+						id: "theabyss:slime_stage_1"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+					count: 27
+				}
+			]
+		}
+		{
+			title: "成为神一般的存在"
+			x: 8.0d
+			y: 2.0d
+			description: ["深渊为图腾带来了新机遇，这些肯定能派上用场。"]
+			dependencies: ["038B3F296CCED50D"]
+			id: "37677173FA6F7B75"
+			tasks: [
+				{
+					id: "0155F5BAE2EED502"
+					type: "item"
+					item: {
+						id: "theabyss:totem_of_abyss"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+				}
+				{
+					id: "018BFDA25C8FB1A0"
+					type: "item"
+					item: {
+						id: "theabyss:totem_of_thunder"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+				}
+				{
+					id: "17F1391046F3FD61"
+					type: "item"
+					item: {
+						id: "theabyss:totem_of_time"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+				}
+			]
+			rewards: [
+				{
+					id: "3DEC7BAC5C66CCAF"
+					type: "xp"
+					xp: 45
+				}
+				{
+					id: "47F7E3A43B0A9921"
+					type: "item"
+					item: {
+						id: "theabyss:somnium_regen_upgrade"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+					count: 3
+				}
+			]
+		}
+		{
+			title: "令人作呕的强大力量"
+			x: 4.0d
+			y: 2.0d
+			description: ["这个史莱姆融合物可用于制作整个模组中最强大的装备。如果能获得它，你的实力将大幅提升。"]
+			dependencies: ["038B3F296CCED50D"]
+			id: "677547CBD782C4DE"
+			tasks: [{
+				id: "0E61F6C99B7BCACB"
+				type: "item"
+				item: {
+					id: "theabyss:slime_stage_4"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+						"customnpcs:itemscripteddata": { }
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "11882D810B90A9FD"
+					type: "xp"
+					xp: 25
+				}
+				{
+					id: "7D2C52E0BA81BD83"
+					type: "item"
+					item: {
+						id: "theabyss:somnium_damage_upragde"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+							"customnpcs:itemscripteddata": { }
+						}
+					}
+					count: 3
+				}
+			]
+		}
+	]
+}

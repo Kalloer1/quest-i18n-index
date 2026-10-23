@@ -1,0 +1,337 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "tom"
+	group: "308DFF7200F6CA7C"
+	icon: "toms_storage:ts.inventory_connector"
+	id: "05ADC2E0A7649AC7"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"是不是经常在箱子里翻找东西却一无所获？"
+				"整理箱子时发现种类太多，搞得焦头烂额吗？"
+				""
+				"快来试试&6tom的简易存储&r吧！"
+				"无需电力，即可轻松解决存储难题"
+			]
+			icon: "toms_storage:ts.inventory_connector"
+			id: "4806938A4DAB5634"
+			rewards: [{
+				id: "52165A3A71ADB569"
+				item: {
+					Count: 1b
+					id: "lightmanscurrency:coin_iron"
+					tag: { }
+				}
+				type: "item"
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "2C6577D17B5B135D"
+				title: "我已经了解了这个整合包的任务说明。"
+				type: "checkmark"
+			}]
+			title: "简易的简易存储系统"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["4806938A4DAB5634"]
+			description: [
+				"与&6存储终端&r组合使用，用于整合大量相邻容器的完整方块。"
+				""
+				"将其放置在容器旁（六个面均可），它会自动识别并链接该容器，形成&d存储网络&r。此时右键点击&6存储驱动器&r，将显示其链接容器所拥有的总空间和剩余空间格数。"
+				""
+				"如果此容器与其他容器相邻，&6存储整合器&r会将它们视为一个整体链接，最大连接距离为16格（理论上可连接以存储整合器为中心32*32*32范围内的所有容器）。"
+			]
+			id: "7843988CB0F906B3"
+			rewards: [{
+				count: 8
+				id: "36397C2C40CEEC9A"
+				item: "minecraft:barrel"
+				type: "item"
+			}]
+			subtitle: "链接存储网络"
+			tasks: [{
+				id: "5B673BB7287B4024"
+				item: "toms_storage:ts.inventory_connector"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7843988CB0F906B3"]
+			description: ["将其放置在&6存储整合器&r上，即可方便地访问整合存储网络"]
+			id: "7EA63EFEECF4628D"
+			rewards: [{
+				count: 8
+				id: "1E8E446A5F45EA6B"
+				item: "functionalstorage:oak_1"
+				type: "item"
+			}]
+			subtitle: "操作存储网络"
+			tasks: [{
+				id: "02DD6FA9DC43CB97"
+				item: "toms_storage:ts.storage_terminal"
+				type: "item"
+			}]
+			x: 4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7EA63EFEECF4628D"]
+			description: ["升级版的&6存储终端&r，带有一个工作台面板，是正常情况下首选的型号。"]
+			id: "06CFAD62C6DC65CA"
+			rewards: [{
+				id: "0BE186401EC124A1"
+				item: "functionalstorage:storage_controller"
+				type: "item"
+			}]
+			subtitle: "获得升级"
+			tasks: [{
+				id: "0DA3B74A7AD87B88"
+				item: "toms_storage:ts.crafting_terminal"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7843988CB0F906B3"]
+			description: [
+				"用于搭建&d存储网络&r，可合成&6框架存储线缆&r。"
+				""
+				"用于连接&6存储终端、合成终端&r或其他容器时必须与&6存储线缆&r连接器搭配使用。"
+			]
+			id: "17D8CDADACFB7134"
+			rewards: [{
+				count: 2
+				icon: "lightmanscurrency:coin_gold"
+				id: "5A2C147659F191D6"
+				item: "lightmanscurrency:coin_gold"
+				type: "item"
+			}]
+			subtitle: "远程链接"
+			tasks: [{
+				id: "7DBD3D95D6FE5315"
+				item: "toms_storage:ts.inventory_cable"
+				type: "item"
+			}]
+			x: 3.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["06CFAD62C6DC65CA"]
+			description: [
+				"&6存储代理器&r在概念上等同于扩展了某个容器的某一面。实际上完全可以视作一个&2朝向容器某个面的输入管道&r。"
+				"{image:kubejs:textures/task/tom_1.png width:160 height:90 align:1}"
+				"图中描绘的是一个常见场景：中心是&6存储代理器&r，其&2指向右侧红框箱子&r；同时通过手持钻石右键代理器的左侧，使得左侧蓝框箱子作为&6样板容器&r存在于该体系中。"
+				""
+				"{@pagebreak}"
+				"{image:kubejs:textures/task/tom_2.png width:160 height:75 align:1}"
+				""
+				"图中为蓝框箱子的摆放内容，通过设置其中物品的摆放，&2存储代理器便可控制右侧的容器&r，使之容器极限为模板箱子设置的内容。"
+				""
+				"&2对应位置只能存放对应物品&r，且数量不超过设定。若模板箱设为空格，则代表任何物品均可放入。"
+				""
+				"{@pagebreak}"
+				"模板箱设置完成后，将物品放入漏斗中，就会按照设定的上限填充物品。&2物品填充的顺序与输入方式有关&r。"
+				""
+				"并且由于代理器可被视为一个&6输入管道&r，因此可输入的槽位受容器与代理器贴合面的限制。"
+				""
+				"例如，如果左右两侧都放置了熔炉，尽管你在输入槽内设置了物品，但由于&2熔炉只能从顶部输入&r，因此物品也只能流入到燃料槽。"
+				""
+				"{image:kubejs:textures/task/tom_3.png width:160 height:75 align:1}"
+				""
+				"{@pagebreak}"
+				"此外，使用砧锤以k-v格式命名箱子等物品，可以定义容器的部分属性。"
+				"目前仅支持："
+				"-'&6ignoreSize&r'忽略物品堆叠数"
+				"-'&6maxCount=<max value>&r'设置空槽位中的最大堆叠数"
+				""
+				"例如，你可以设置&2ignoreSize=true&r来忽略物品上限的设置。"
+			]
+			id: "3A4DBF039CE9A9E9"
+			rewards: [{
+				count: 3
+				id: "6FC6A6867709F689"
+				item: "lightmanscurrency:coin_gold"
+				type: "item"
+			}]
+			subtitle: "灵活存储...但用途有限"
+			tasks: [{
+				id: "746A3841940970D5"
+				item: "toms_storage:ts.inventory_proxy"
+				type: "item"
+			}]
+			x: 7.25d
+			y: -1.5d
+		}
+		{
+			dependencies: ["06CFAD62C6DC65CA"]
+			description: ["手持时，可从更远处（&516格&r）右键终端并打开其界面。（无线终端使用前需要先绑定对应的终端）"]
+			id: "0E870625DCF57C7A"
+			rewards: [{
+				id: "06457B545226E084"
+				item: "lightmanscurrency:coin_gold"
+				type: "item"
+			}]
+			subtitle: "远程访问术"
+			tasks: [{
+				id: "0E0AAB585801DDF7"
+				item: "toms_storage:ts.wireless_terminal"
+				type: "item"
+			}]
+			x: 7.75d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0E870625DCF57C7A"]
+			description: [
+				"在&6存储整合器&r旁放置一个单层信标，即可让&6先进无线终端&r在本世界任何地方打开终端。"
+				""
+				"在驱动器旁放置一个满级信标，并使用整合包自带的FTB地图强制加载该区块后，即可用先进无线终端跨世界打开终端。"
+				""
+				"此外，一座信标可以为多个&6存储整合器&r发挥作用。"
+				""
+				"&7打开FTB地图后，在左上角的认领区块中，先左键认领区块，再shift+左键使其强制加载。（区块区域出现斜线即为操作正确）&r"
+			]
+			icon: "toms_storage:ts.adv_wireless_terminal"
+			id: "0004C045EF8274F8"
+			rewards: [
+				{
+					count: 8
+					id: "63A711EC01B48CCE"
+					item: "lightmanscurrency:coin_gold"
+					type: "item"
+				}
+				{
+					id: "1EB3E2BC872FDCCC"
+					item: "minecraft:nether_star"
+					type: "item"
+				}
+			]
+			subtitle: "信标的额外用途"
+			tasks: [{
+				id: "12C75A7B277719CD"
+				item: "toms_storage:ts.adv_wireless_terminal"
+				type: "item"
+			}]
+			title: "无限距离访问"
+			x: 9.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["17D8CDADACFB7134"]
+			description: [
+				"裸露的走线看起来很笨拙，但不是每个人都有双层墙壁可以埋设管道。"
+				""
+				"因此，制作一些嵌框线缆，使用&6喷涂工具&r将其上色伪装。管线便能和周围的环境融为一体！"
+			]
+			icon: "toms_storage:ts.inventory_cable_framed"
+			id: "742289A3FE32A740"
+			rewards: [{
+				count: 3
+				id: "4D3B0829CFA70EA1"
+				item: "lightmanscurrency:coin_gold"
+				type: "item"
+			}]
+			subtitle: "融为一体"
+			tasks: [
+				{
+					id: "7A6003F60A3D30F9"
+					item: "toms_storage:ts.inventory_cable_framed"
+					type: "item"
+				}
+				{
+					id: "77BE1C2D7D293283"
+					item: {
+						Count: 1
+						id: "toms_storage:ts.paint_kit"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			x: 5.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["17D8CDADACFB7134"]
+			description: [
+				"除了使用相邻容器直接传递外，你还可以使用&2存储线缆连接器来链接容器&r（例如抽屉）。"
+				""
+				"此外，可将连接器置于信标上层，当信标光束无遮挡时，即可将物品网络接入当前维度。在其他位置设置信标，并通过配置连接器右上角的输入/输出，即可实现&2多个网络间无视距离的内容共享&r。"
+				""
+				"建造二层信标，即可在不同维度间共享网络内容。"
+				""
+				"或许你可以试着在私人维度中搭建你的私人网络。"
+			]
+			icon: "toms_storage:ts.inventory_cable_connector"
+			id: "15E4E2C92DF895CA"
+			rewards: [{
+				id: "459E9B5B85B26C05"
+				item: "lightmanscurrency:coin_gold"
+				type: "item"
+			}]
+			subtitle: "合并容器，扩大网络"
+			tasks: [{
+				id: "6DC82FBC2821C637"
+				item: "toms_storage:ts.inventory_cable_connector"
+				type: "item"
+			}]
+			title: "并入新网络"
+			x: 5.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7EA63EFEECF4628D"]
+			description: [
+				"&2敞口箱&r会将前方一格空气方块内的物品全都视作在容器内。同时如果网络将物品输送到敞口箱，其物品也会掉落在前方一格内。"
+				""
+				"这通常用于物品销毁或作为缓存。也适用于需要水流运输等世界生成相关的场景。"
+			]
+			id: "01EF48B3999B5BBE"
+			rewards: [{
+				id: "167B101D58E11673"
+				item: "lightmanscurrency:coin_gold"
+				type: "item"
+			}]
+			tasks: [{
+				id: "2AD8943DADC3951C"
+				item: "toms_storage:ts.open_crate"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["7843988CB0F906B3"]
+			description: [
+				"&6基础存储漏斗&r可用于向网络中输入或输出物品。手持物品右键存储漏斗可为其设置过滤白名单。"
+				""
+				"如果漏斗用于&2两个网络之间的物品传输&r，则必须设置过滤，否则漏斗将不会工作！"
+			]
+			id: "450CA5A5B76B188E"
+			rewards: [{
+				id: "3958B11495AA31D7"
+				item: "lightmanscurrency:coin_gold"
+				type: "item"
+			}]
+			tasks: [{
+				id: "68F7E0E9C890904B"
+				item: "toms_storage:ts.inventory_hopper_basic"
+				type: "item"
+			}]
+			x: 4.0d
+			y: 2.25d
+		}
+	]
+	title: "Tom简易存储：整合一切"
+}

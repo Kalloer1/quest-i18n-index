@@ -1,0 +1,403 @@
+# AI 初翻，未人工校对
+{
+	id: "4303E25D027452E9"
+	group: ""
+	order_index: 2
+	filename: "storage"
+	title: "储物空间"
+	icon: "tfc:wood/trapped_chest/pine"
+	default_quest_shape: "rsquare"
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "陶瓷制品"
+			icon: {
+				id: "tfc:ceramic/vessel"
+				Count: 1b
+				tag: { }
+				ForgeCaps: {
+					Parent: {
+						heat: 0.0f
+						ticks: 0L
+					}
+				}
+			}
+			x: 3.5d
+			y: -1.5d
+			description: ["你找到了黏土——用它来制作一个存放物品的容器。TFC指南会教你如何把黏土塑形，制成未烧制的形态。"]
+			dependencies: [
+				"2DB43046BD0FCBD6"
+				"43A3F6984C4136E3"
+			]
+			hide: true
+			id: "4A97A21CE49425F5"
+			tasks: [
+				{
+					id: "43FF063E5F058639"
+					type: "item"
+					title: "容器"
+					item: {
+						id: "tfc:ceramic/unfired_vessel"
+						Count: 1b
+						ForgeCaps: {
+							"tfc:item_heat": {
+								heat: 0.0f
+								ticks: 0L
+							}
+						}
+					}
+				}
+				{
+					id: "4ABCEB8C4EB99C9A"
+					type: "item"
+					item: {
+						id: "tfc:ceramic/vessel"
+						Count: 1b
+						tag: { }
+						ForgeCaps: {
+							Parent: {
+								heat: 0.0f
+								ticks: 0L
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "大型船只"
+			icon: {
+				id: "tfc:ceramic/unfired_large_vessel/orange"
+				Count: 1b
+				ForgeCaps: {
+					"tfc:item_heat": {
+						heat: 0.0f
+						ticks: 0L
+					}
+				}
+			}
+			x: 5.0d
+			y: -1.5d
+			description: ["大型容器能装下更多物品。你可以携带一个装满的大型容器，甚至可以像背包一样背在身上。"]
+			dependencies: [
+				"2DB43046BD0FCBD6"
+				"4A97A21CE49425F5"
+			]
+			hide: true
+			id: "50B8838BD9145E3C"
+			tasks: [
+				{
+					id: "63440B51E2E525BE"
+					type: "item"
+					title: "容器"
+					item: {
+						id: "tfc:ceramic/unfired_large_vessel"
+						Count: 1b
+						ForgeCaps: {
+							"tfc:item_heat": {
+								heat: 0.0f
+								ticks: 0L
+							}
+						}
+					}
+				}
+				{
+					id: "7CE812537F7596B1"
+					type: "item"
+					item: "tfc:ceramic/large_vessel"
+				}
+			]
+		}
+		{
+			x: 6.5d
+			y: -1.5d
+			description: ["如果你已经制作了木板，就可以制作箱子了。动手吧！"]
+			dependencies: ["50B8838BD9145E3C"]
+			hide: true
+			id: "7D1BA16E49E5FF47"
+			tasks: [{
+				id: "04C2A83C89AC502D"
+				type: "item"
+				title: "木制箱子"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "forge:chests/wooden"
+					}
+				}
+			}]
+		}
+		{
+			title: "精炼系统存储 (Refined System Storage)"
+			icon: "refinedstorage:crafting_monitor"
+			x: 3.5d
+			y: 1.5d
+			description: ["制作硅后，你就能建造特殊的精炼存储系统，这需要永久连接到电源。"]
+			dependencies: [
+				"43A3F6984C4136E3"
+				"3490ED7CDC9A2831"
+			]
+			hide: true
+			id: "1CAF3AF81B2F92B9"
+			tasks: [
+				{
+					id: "0F9EED435FCD5E51"
+					type: "item"
+					title: "硅晶圆"
+					icon: "refinedstorage:silicon"
+					item: "refinedstorage:silicon"
+				}
+				{
+					id: "53F0F21FA19566D7"
+					type: "item"
+					item: "refinedstorage:crafting_grid"
+				}
+			]
+		}
+		{
+			title: "控制器"
+			icon: "refinedstorage:controller"
+			x: 5.5d
+			y: 1.5d
+			description: ["控制器是我们系统的心脏，是整个基础设施运行所必需的。"]
+			dependencies: ["1CAF3AF81B2F92B9"]
+			hide: true
+			id: "4B0318BD9F6E4DA4"
+			tasks: [
+				{
+					id: "76FDD408459EF455"
+					type: "item"
+					item: "refinedstorage:controller"
+				}
+				{
+					id: "6FBE7B0E8F2B2993"
+					type: "item"
+					item: "refinedstorage:cable"
+					count: 8L
+				}
+			]
+		}
+		{
+			x: 7.5d
+			y: 1.5d
+			description: ["用这个连接你的桶、箱子和抽屉，即可访问系统中的所有物品。"]
+			dependencies: ["4B0318BD9F6E4DA4"]
+			hide: true
+			id: "6EA7CC7C62F2E0BB"
+			tasks: [{
+				id: "75A225D96AB257A7"
+				type: "item"
+				item: "refinedstorage:external_storage"
+			}]
+		}
+		{
+			icon: "refinedstorage:disk_drive"
+			x: 9.5d
+			y: 1.5d
+			description: ["连接驱动器后，你就可以把所有物品都存在上面了。存储量取决于磁盘的大小。记住，系统必须始终连接到电源。"]
+			dependencies: ["6EA7CC7C62F2E0BB"]
+			hide: true
+			id: "7C5EB4766FB2E5BA"
+			tasks: [
+				{
+					id: "0B1F8F58B4B35E8E"
+					type: "item"
+					item: "refinedstorage:disk_drive"
+				}
+				{
+					id: "235EAD7800739AD7"
+					type: "item"
+					item: "refinedstorage:1k_storage_disk"
+				}
+			]
+		}
+		{
+			title: "抽屉系统"
+			x: 8.0d
+			y: -1.5d
+			description: ["抽屉可以存储大量单一物品或流体。"]
+			dependencies: ["7D1BA16E49E5FF47"]
+			hide: true
+			id: "0E4E07FFB5A820BE"
+			tasks: [
+				{
+					id: "34C727824053385D"
+					type: "item"
+					title: "任意 #functionalstorage:drawer"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "functionalstorage:drawer"
+						}
+					}
+				}
+				{
+					id: "314484187AD9A47F"
+					type: "item"
+					item: "functionalstorage:fluid_1"
+				}
+			]
+		}
+		{
+			title: "带框架的抽屉"
+			x: 9.5d
+			y: -1.5d
+			description: ["你可以将带框抽屉与其他方块结合，以个性化其外观。"]
+			dependencies: ["0E4E07FFB5A820BE"]
+			hide: true
+			id: "51D650AAD722ADAC"
+			tasks: [{
+				id: "2F964AF039014E9F"
+				type: "item"
+				item: "functionalstorage:framed_2"
+			}]
+		}
+		{
+			title: "工具"
+			x: 11.0d
+			y: -1.5d
+			description: ["你将使用工具来配置抽屉。"]
+			dependencies: ["51D650AAD722ADAC"]
+			hide: true
+			id: "42202A001946F064"
+			tasks: [
+				{
+					id: "36F36DFC21DA7BE2"
+					type: "item"
+					item: {
+						id: "functionalstorage:linking_tool"
+						Count: 1b
+						tag: {
+							Action: "ADD"
+							Mode: "SINGLE"
+						}
+					}
+				}
+				{
+					id: "47BCA0E8BD65870B"
+					type: "item"
+					item: {
+						id: "functionalstorage:configuration_tool"
+						Count: 1b
+						tag: {
+							Mode: "LOCKING"
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 12.5d
+			y: -1.5d
+			description: ["控制器将用于控制所有抽屉。"]
+			dependencies: ["42202A001946F064"]
+			hide: true
+			id: "04B4185E65F36C6C"
+			tasks: [{
+				id: "37941A5CB02E995A"
+				type: "item"
+				item: "functionalstorage:storage_controller"
+			}]
+		}
+		{
+			title: "升级内容"
+			x: 14.0d
+			y: -1.5d
+			description: ["升级容量。"]
+			dependencies: ["04B4185E65F36C6C"]
+			hide: true
+			id: "495F8A2EEA846144"
+			tasks: [
+				{
+					id: "6A4DEB4557535005"
+					type: "item"
+					item: "functionalstorage:copper_upgrade"
+				}
+				{
+					id: "32B9A00E087D9E18"
+					type: "item"
+					item: "functionalstorage:gold_upgrade"
+				}
+				{
+					id: "1BEA7EF5B160EF27"
+					type: "item"
+					item: {
+						id: "functionalstorage:pusher_upgrade"
+						Count: 1b
+						tag: {
+							Direction: "down"
+						}
+					}
+				}
+				{
+					id: "1E089B436C5E6BC0"
+					type: "item"
+					item: "functionalstorage:void_upgrade"
+				}
+				{
+					id: "4BF39AA81E53FADB"
+					type: "item"
+					item: {
+						id: "functionalstorage:collector_upgrade"
+						Count: 1b
+						tag: {
+							Direction: "down"
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 11.5d
+			y: 0.0d
+			description: ["为您的整个物品栏添加无线访问功能。"]
+			dependencies: ["7C5EB4766FB2E5BA"]
+			hide: true
+			id: "3640DC0066DC7F25"
+			tasks: [{
+				id: "5C149717644E9F34"
+				type: "item"
+				item: "refinedstorage:wireless_grid"
+			}]
+		}
+		{
+			x: 11.5d
+			y: 1.0d
+			dependencies: ["7C5EB4766FB2E5BA"]
+			hide: true
+			id: "35CEEED65269F431"
+			tasks: [{
+				id: "175D8CD55CAD23C8"
+				type: "item"
+				item: "refinedstorage:detector"
+			}]
+		}
+		{
+			x: 11.5d
+			y: 2.0d
+			dependencies: ["7C5EB4766FB2E5BA"]
+			hide: true
+			id: "5E7D38526E14BE88"
+			tasks: [{
+				id: "76D2002A1BCA709B"
+				type: "item"
+				item: "refinedstorage:crafter"
+			}]
+		}
+		{
+			x: 11.5d
+			y: 3.0d
+			dependencies: ["7C5EB4766FB2E5BA"]
+			hide: true
+			id: "4CC166427FC0E754"
+			tasks: [{
+				id: "4DB4787663B6F629"
+				type: "item"
+				item: "refinedstorage:interface"
+			}]
+		}
+	]
+	quest_links: [ ]
+}

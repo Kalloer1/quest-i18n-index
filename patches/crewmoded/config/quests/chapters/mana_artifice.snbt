@@ -1,0 +1,3088 @@
+# AI 初翻，未人工校对
+{
+	id: "6BF18DA62DD284A5"
+	group: "74CE4A09AC5F3CF1"
+	order_index: 20
+	filename: "mana_artifice"
+	title: "法力与人工制品 (Mana \& Artifice)"
+	icon: "mna:guide_book"
+	subtitle: ["酿造并施放强大的魔法！"]
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	images: [{
+		x: -8.0d
+		y: -3.1d
+		width: 3.5d
+		height: 1.25d
+		rotation: 0.0d
+		image: "tnp:textures/other/carlos_credit.png"
+		hover: [ ]
+		click: ""
+		dev: false
+		corner: false
+	}]
+	quests: [
+		{
+			title: "欢迎来到 Mana \& Artifice"
+			x: -2.295918367346914d
+			y: 0.6557823129251474d
+			shape: "pentagon"
+			subtitle: "找到《神秘法典》(Codex Arcana)"
+			description: ["这将是你的最重要物品之一。它包含了你开始所需的所有知识！"]
+			size: 2.0d
+			id: "05A692F0121FAB19"
+			tasks: [{
+				id: "31DCD939CD27699E"
+				type: "item"
+				item: "mna:guide_book"
+			}]
+			rewards: [{
+				id: "6494E5F424C13199"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			x: -2.3d
+			y: 3.3d
+			subtitle: "阅读神秘学手册 (Codex Arcana)"
+			description: ["一旦你开始阅读，知识或许会涌入你的脑海。又或许，还有魔法？"]
+			dependencies: ["05A692F0121FAB19"]
+			id: "393AA6A532AFFFDF"
+			tasks: [{
+				id: "1CA844DB476EB184"
+				type: "advancement"
+				title: "学徒"
+				icon: "minecraft:book"
+				advancement: "mna:codex_trade"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "38D680548EF77DDB"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+		}
+		{
+			x: 0.1d
+			y: 3.3d
+			subtitle: "制作一把简易魔杖"
+			description: ["魔法得从某处开始，不如先制作一根简易的应急魔杖？"]
+			dependencies: ["393AA6A532AFFFDF"]
+			id: "149D4E140C189A06"
+			tasks: [{
+				id: "4A54185A7090BEA5"
+				type: "item"
+				item: {
+					id: "mna:improvised_manaweaver_wand"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "6EBC6BF5F5B2BEB4"
+				type: "item"
+				item: "tnp:lootbag_piece"
+				count: 3
+			}]
+		}
+		{
+			x: -4.4d
+			y: 5.9d
+			subtitle: "制作一些尘埃吧！"
+			description: ["此粉尘可用于将铁锭转换为维特姆锭。"]
+			dependencies: ["169A49C03359D8EA"]
+			id: "29E11C7B8E12D169"
+			tasks: [{
+				id: "16DCB3207EBDD28E"
+				type: "item"
+				item: "mna:vinteum_dust"
+			}]
+			rewards: [{
+				id: "556F79F078EB66A7"
+				type: "item"
+				item: "tnp:lootbag_piece"
+				count: 2
+			}]
+		}
+		{
+			x: -2.9d
+			y: 5.9d
+			subtitle: "合成涂层铁锭 (Craft the Coated Iron Ingot)"
+			description: ["将新制作的粉尘与一个铁锭合并。"]
+			dependencies: ["29E11C7B8E12D169"]
+			id: "562CBBECFA89F566"
+			tasks: [{
+				id: "1C551CA0A866402A"
+				type: "item"
+				item: "mna:vinteum_coated_iron"
+			}]
+			rewards: [{
+				id: "2F53912CB6D89814"
+				type: "item"
+				item: "tnp:lootbag_piece"
+				count: 2
+			}]
+		}
+		{
+			x: -1.5d
+			y: 5.9d
+			subtitle: "终于得到了维特姆锭（Vinteum Ingot）"
+			description: ["在熔炉中冶炼涂层锭。"]
+			dependencies: ["562CBBECFA89F566"]
+			id: "4F149B18097FFF52"
+			tasks: [{
+				id: "77A950FDB31414E7"
+				type: "item"
+				item: "mna:vinteum_ingot"
+			}]
+			rewards: [{
+				id: "5D49251490A965D1"
+				type: "item"
+				item: "mna:vinteum_ingot"
+				count: 3
+			}]
+		}
+		{
+			x: -4.4d
+			y: 3.3d
+			subtitle: "开采你的第一块 Vinteum 矿石"
+			description: ["Vinteum 是一种非常重要的矿石，可用于多种合成！"]
+			dependencies: ["393AA6A532AFFFDF"]
+			id: "169A49C03359D8EA"
+			tasks: [{
+				id: "427D12BDC9819D47"
+				type: "item"
+				item: "mna:vinteum_ore"
+			}]
+			rewards: [{
+				id: "60B1121BA3A9DB6A"
+				type: "item"
+				item: "tnp:lootbag_piece"
+				count: 2
+			}]
+		}
+		{
+			x: 0.09999999999999964d
+			y: 5.9d
+			subtitle: "更强大的魔杖"
+			description: ["获得 Vinteum Ingot 后，你可能想制作更好的魔杖。这种魔杖制作简单，耐用性也更高！"]
+			dependencies: [
+				"4F149B18097FFF52"
+				"149D4E140C189A06"
+			]
+			id: "7355FB9D42F1CEDA"
+			tasks: [{
+				id: "4341605498A21A60"
+				type: "item"
+				item: {
+					id: "mna:manaweaver_wand"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "2117103752A248FF"
+				type: "item"
+				item: "tnp:lootbag_piece"
+				count: 4
+			}]
+		}
+		{
+			title: "咒语法术"
+			icon: "cyclic:fireball"
+			x: 2.3d
+			y: 3.3d
+			subtitle: "你的第一个法术"
+			description: [
+				"Cantrips 是可以用魔杖施放的简单法术。"
+				" "
+				"按住控制键并用魔杖右键，会打开一个包含所有已知小法术的菜单。"
+				" "
+				"每个法术都有一个图案。你必须用魔杖在空中重现该图案。为此，只需按住右键，并按照你想要施放的法术所对应的图案操作即可。"
+				""
+				"不想绘制图案的话，也可以使用轮盘菜单。请查看选项，寻找 Mana 和 Artifice 的按键绑定。"
+			]
+			dependencies: ["149D4E140C189A06"]
+			id: "27E08939DD425117"
+			tasks: [{
+				id: "085B60A9BEFF75F7"
+				type: "checkmark"
+				title: "咒语法术"
+			}]
+			rewards: [{
+				id: "55DA4B8E3A2BF722"
+				type: "item"
+				item: "tnp:lootbag_piece"
+				count: 2
+			}]
+		}
+		{
+			x: 2.3d
+			y: 5.9d
+			subtitle: "将铜转化为转化银！"
+			description: [
+				"用你新获得的魔杖，可以施展下一阶段非常重要的法术。这个法术叫“Transmute”"
+				" "
+				"在地板上放置一个铜块（不要掉落，要放置），并使用“Transmute”法术。注意图案，这样才能成功施放！"
+			]
+			dependencies: ["27E08939DD425117"]
+			id: "546F95503A75CE0C"
+			tasks: [{
+				id: "3D0662F16521EB7C"
+				type: "item"
+				item: "mna:transmuted_silver"
+			}]
+			rewards: [{
+				id: "5E6BAA1E71FEBE7D"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 2.3d
+			y: 10.0d
+			subtitle: "制作一张基础桌子"
+			description: ["这是许多合成配方所需的物品。而且放在房间里也很好看，不是吗？"]
+			dependencies: ["546F95503A75CE0C"]
+			id: "5A6F2ACCA54D9365"
+			tasks: [{
+				id: "3FAF406F6A90AE47"
+				type: "item"
+				item: "mna:basic_table"
+			}]
+			rewards: [{
+				id: "57DB077D10FDDC96"
+				type: "item"
+				item: "tnp:lootbag_piece"
+				count: 3
+			}]
+		}
+		{
+			x: 0.1d
+			y: 8.1d
+			subtitle: "制作一张华丽的桌子 (Craft an Ornate Table)"
+			description: ["行，那个只能用来制作 Occulus。但它看起来比另一个好多了！"]
+			dependencies: ["5A6F2ACCA54D9365"]
+			id: "4FBB96CA1CF38C47"
+			tasks: [{
+				id: "0E5BD8038055C49F"
+				type: "item"
+				item: "mna:ornate_table"
+			}]
+			rewards: [{
+				id: "2F01453B3B216E91"
+				type: "item"
+				item: "tnp:lootbag_piece"
+				count: 4
+			}]
+		}
+		{
+			x: -4.4d
+			y: 8.1d
+			subtitle: "进度流程"
+			description: [
+				"奥库鲁斯是一个非常实用的物品。放置后你可以右键点击。"
+				" "
+				"你会打开一个有许多标签页的UI。第一个标签页非常重要。它会显示你需要做什么才能获得更强大的法师。"
+			]
+			dependencies: [
+				"4FBB96CA1CF38C47"
+				"29E11C7B8E12D169"
+			]
+			id: "7A10548ACA3F5AAB"
+			tasks: [{
+				id: "5BDA14337700B543"
+				type: "item"
+				item: "mna:occulus"
+			}]
+			rewards: [{
+				id: "7C515011B91EC080"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: -0.3d
+			y: 12.0d
+			subtitle: "魔法师的工作台 (Workbench for Magicians)"
+			description: [
+				"这是一个改良版的合成台。"
+				" "
+				"它有物品栏。它还能记住配方。"
+			]
+			dependencies: ["5A6F2ACCA54D9365"]
+			id: "1CD400563C363F25"
+			tasks: [{
+				id: "41AAD47E3455B183"
+				type: "item"
+				item: "mna:magicians_workbench"
+			}]
+			rewards: [{
+				id: "440BF8429761514B"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 7.3d
+			y: 3.3d
+			subtitle: "Glyph Crafting"
+			description: ["符文是实用的合成元素，可用于魔法编织祭坛或仪式中。"]
+			dependencies: ["27E08939DD425117"]
+			id: "51B9B858F1BBF4D8"
+			tasks: [{
+				id: "0F502530FDF2F97E"
+				type: "item"
+				item: {
+					id: "mna:stone_rune_blank"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [
+				{
+					id: "03BFB4D0557F0C73"
+					type: "item"
+					item: {
+						id: "mna:stone_rune_blank"
+						Count: 1b
+						tag: { }
+					}
+					count: 2
+				}
+				{
+					id: "26B0FCB288C8AC2D"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+			]
+		}
+		{
+			x: 2.3d
+			y: -0.9d
+			subtitle: "制作或寻找 Manaweaving 祭坛"
+			description: [
+				"用这个祭坛，你可以制作很多东西。"
+				" "
+				"制作当然需要物品，但可能还需要你用魔杖画出一些形状！"
+				""
+				"所有可制作的配方，请参阅 occlus。其中有一个标签页列出了您当前等级下的所有可能性。"
+			]
+			dependencies: [
+				"5820BEB4AAC421EF"
+				"363FB6C7927049AA"
+			]
+			id: "4CBA865EE8D91836"
+			tasks: [{
+				id: "4EAB5DF934589B3F"
+				type: "item"
+				item: "mna:manaweaving_altar"
+			}]
+			rewards: [{
+				id: "4C383A916E1B7732"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 7.3d
+			y: 5.9d
+			subtitle: "制作或找到一个符文锻造炉"
+			description: ["Runforge 很适合用来制作骨粉。但它也能当熔炉用（虽然很慢，不过免费）。"]
+			dependencies: [
+				"546F95503A75CE0C"
+				"51B9B858F1BBF4D8"
+			]
+			id: "531096BE06220211"
+			tasks: [{
+				id: "7545C63AE32F224F"
+				type: "item"
+				item: "mna:runeforge"
+			}]
+			rewards: [{
+				id: "2FEE9F03EE87A8F0"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 11.3d
+			y: 4.8999999999999995d
+			subtitle: "仪式的举行地，仪式的基地"
+			dependencies: ["531096BE06220211"]
+			id: "6240C5310CECD4E3"
+			tasks: [{
+				id: "490B600741780C73"
+				type: "item"
+				item: "mna:bone_ash"
+			}]
+			rewards: [
+				{
+					id: "5203FA5FB91BA834"
+					type: "item"
+					item: "mna:bone_ash"
+					count: 8
+				}
+				{
+					id: "0FD8EBD7013547FD"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+			]
+		}
+		{
+			x: 2.8d
+			y: 0.9d
+			subtitle: "将砂岩转化为神秘砂岩"
+			description: ["使用法术转换将砂岩转化为神秘砂岩"]
+			dependencies: ["27E08939DD425117"]
+			id: "363FB6C7927049AA"
+			tasks: [{
+				id: "04F0BA6D63491477"
+				type: "item"
+				item: "mna:decoration/arcane_sandstone"
+			}]
+			rewards: [
+				{
+					id: "7F15D7DFB233318F"
+					type: "item"
+					item: "mna:decoration/arcane_sandstone"
+					count: 8
+				}
+				{
+					id: "69B47CAE9A2F20F0"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+			]
+		}
+		{
+			x: 1.8d
+			y: 0.9d
+			subtitle: "将石头转化为秘术石"
+			description: ["使用法术转换将石头转化为秘法石。"]
+			dependencies: ["27E08939DD425117"]
+			id: "5820BEB4AAC421EF"
+			tasks: [{
+				id: "25F61BEADD9673C1"
+				type: "item"
+				item: "mna:decoration/arcane_stone"
+			}]
+			rewards: [
+				{
+					id: "4BF7208D0B75A3F1"
+					type: "item"
+					item: "mna:decoration/arcane_stone"
+					count: 8
+				}
+				{
+					id: "629D9CE9EC879109"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+			]
+		}
+		{
+			x: 15.8d
+			y: 4.9d
+			subtitle: "仪式：粉笔（Rituals: Chalk）"
+			description: ["粉笔是用来在地上画图案的。嗯，我知道，这很明显。"]
+			dependencies: ["6240C5310CECD4E3"]
+			id: "1B4FC091D2EF96C8"
+			tasks: [{
+				id: "0F89A3A9C9C3A9FE"
+				type: "item"
+				item: {
+					id: "mna:wizard_chalk"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "211372BAF02054FC"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 15.8d
+			y: 2.9d
+			subtitle: "仪式：口袋仪式 (Rituals: The Pouch)"
+			description: [
+				"这是一个魔法背包。要打开它，你必须使用控制键并右键单击。"
+				""
+				"但它也可以用来存储仪式。为此，你必须按住 Shift 键并右键点击仪式图案。保存后，如果你的包裹里有所需物品，就可以把它放置在地上了。"
+				""
+				"要选择一个仪式储槽，请使用已配置的热键。（与法术形状相同）"
+			]
+			dependencies: ["1B4FC091D2EF96C8"]
+			id: "051517F5C6BD5906"
+			tasks: [{
+				id: "1D0F15B014EBABEC"
+				type: "item"
+				item: {
+					id: "mna:practitioners_pouch"
+					Count: 1b
+					tag: {
+						patches: { }
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "0B7B7D831CD3D745"
+					type: "item"
+					item: {
+						id: "mna:wizard_chalk"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "0135311108B8DBFB"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+			]
+		}
+		{
+			x: 11.3d
+			y: 6.3d
+			description: ["你需要这个来制作 Arcane Ash"]
+			dependencies: ["6240C5310CECD4E3"]
+			id: "726764CCDEEB028D"
+			tasks: [{
+				id: "6DBC0815D25AE998"
+				type: "item"
+				item: "mna:arcane_compound"
+			}]
+			rewards: [
+				{
+					id: "3DF264F73491F5EE"
+					type: "item"
+					item: "mna:arcane_compound"
+				}
+				{
+					id: "4E4FA64B3781DDD1"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+			]
+		}
+		{
+			x: 11.3d
+			y: 8.1d
+			description: ["为此，你必须用符文锻造炉烧制一些奥术化合物"]
+			dependencies: ["726764CCDEEB028D"]
+			id: "3213B33FC3796AB0"
+			tasks: [{
+				id: "2407DE2D0F34F2A0"
+				type: "item"
+				item: "mna:arcane_ash"
+			}]
+			rewards: [{
+				id: "6E07E91061E71CB5"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 13.8d
+			y: 10.0d
+			subtitle: "仪式：激活物品"
+			description: [
+				"要激活仪式，你必须使用那个东西。"
+				""
+				"右键一次以查看物品放置位置，再右键一次以激活仪式。"
+				""
+				"所有仪式请参阅《神秘法典》。"
+			]
+			dependencies: ["3213B33FC3796AB0"]
+			id: "206A821A5300BC0C"
+			tasks: [{
+				id: "09D2A133D9358E64"
+				type: "item"
+				item: "mna:purified_vinteum_dust"
+			}]
+			rewards: [
+				{
+					id: "459146C1953CEF80"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+				{
+					id: "7DF38EE0C9AC3687"
+					type: "item"
+					item: "mna:purified_vinteum_dust"
+				}
+			]
+		}
+		{
+			x: 4.0d
+			y: -0.9d
+			subtitle: "自动化之路"
+			description: ["在祭坛附近使用，这样就不用再画了！"]
+			dependencies: ["4CBA865EE8D91836"]
+			id: "7FBBEDBB37E24755"
+			tasks: [{
+				id: "7EC048F2FBE02E38"
+				type: "item"
+				item: "mna:manaweave_projector"
+			}]
+			rewards: [{
+				id: "481D1D62B670D46B"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 5.1d
+			y: -0.9d
+			subtitle: "已保存的模式"
+			description: ["在投影仪上使用一个图案。然后用投影仪将图案“投影”到你的祭坛上。"]
+			dependencies: ["7FBBEDBB37E24755"]
+			id: "553CBCFA0C8506DC"
+			tasks: [{
+				id: "1758496E709EBCE9"
+				type: "item"
+				item: {
+					id: "mna:manaweaving_pattern_recipe_paper"
+					Count: 1b
+					tag: {
+						manaweave_pattern_id: "mna:manaweave_patterns/inverted_split_triangle"
+					}
+				}
+			}]
+			rewards: [{
+				id: "2BD232EFAF3AE458"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 8.5d
+			y: 10.0d
+			subtitle: "想要一些法术吗？"
+			description: [
+				"铭文台将用于制作法术。"
+				""
+				"你需要 Velum、Arcane Ash 和 Arcanist's Ink。我们来制作最后一个。"
+			]
+			dependencies: [
+				"5A6F2ACCA54D9365"
+				"3213B33FC3796AB0"
+			]
+			id: "1C727B5122E759ED"
+			tasks: [{
+				id: "2EF8B3C704123F42"
+				type: "item"
+				item: "mna:inscription_table"
+			}]
+			rewards: [{
+				id: "3E918ED58BF18B61"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 11.3d
+			y: 12.2d
+			subtitle: "制作一些羊皮纸卷轴"
+			description: ["怎么做？很简单！你有两种选择。一、手持皮革，右键点击水源方块。二、手持皮革，右键点击炼药锅（别忘了里面要有水）。"]
+			dependencies: ["1C727B5122E759ED"]
+			id: "58F54284CCB6C3C1"
+			tasks: [{
+				id: "317E393E871799F4"
+				type: "item"
+				item: "mna:vellum"
+			}]
+			rewards: [
+				{
+					id: "5283AF9CB289E3DA"
+					type: "item"
+					item: "mna:vellum"
+					count: 5
+				}
+				{
+					id: "5FFF03E98A285487"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+			]
+		}
+		{
+			x: 11.3d
+			y: 10.0d
+			dependencies: ["1C727B5122E759ED"]
+			id: "6D88DAA52281361D"
+			tasks: [{
+				id: "4DDB9F5088A4E6BE"
+				type: "item"
+				item: {
+					id: "mna:arcanist_ink"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "23E6C02E069F1019"
+					type: "item"
+					item: {
+						id: "mna:arcanist_ink"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "14076625915F159E"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+		}
+		{
+			x: 13.7d
+			y: 12.2d
+			subtitle: "制作你的第一个法术"
+			description: [
+				"创建任意咒语配方。（配方完成后，你需要用它来制作咒语）"
+				""
+				"左上角必须添加墨水、羊皮纸和奥术灰烬。"
+				"然后选择法术的效果。"
+				""
+				""
+				"左侧是所有已解锁的魔法效果。部分效果旁有一个小图标。你必须从中选择一个，这就是魔法的类型（例如：投射物、接触魔法等）。"
+				""
+				"在右侧，你有两个面板可供选择。"
+				"最上方的显示了制作配方所需的墨水（墨水有耐久度，4x 不代表 4 个墨水，而是 4 点耐久度）、羊皮纸和神秘灰烬的成本。它还显示了施放所需的法力值消耗。"
+				"最下面的是制作法术所需的材料（不是我们正在制作的配方）。它们需要与铭文台获得的配方一起在秘术仪式中使用。"
+			]
+			dependencies: [
+				"6D88DAA52281361D"
+				"58F54284CCB6C3C1"
+			]
+			secret: true
+			id: "43E5DCC1B02558B7"
+			tasks: [{
+				id: "66D85B9726288969"
+				type: "item"
+				item: "mna:enchanted_vellum"
+			}]
+			rewards: [{
+				id: "11B2FDA337D75C71"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 15.819047619047616d
+			y: 12.195238095238103d
+			shape: "hexagon"
+			subtitle: "制作这个法术配方中的物品"
+			description: [
+				"现在你有了配方，必须完成秘术仪式来制作法术。请参阅秘术法典。"
+				""
+				"仪式期间，你必须绘制（或使用快捷键）图案才能完成仪式。"
+				""
+				"如果你想自定义法术，可以手持法术，按 CTRL + 右键。你可以更改它的名称、颜色、图标并查看它的属性。"
+			]
+			dependencies: [
+				"43E5DCC1B02558B7"
+				"1B4FC091D2EF96C8"
+				"206A821A5300BC0C"
+			]
+			size: 1.5d
+			id: "7DB50A418E676ACB"
+			tasks: [{
+				id: "1A56CF6215F1ED2B"
+				type: "item"
+				item: {
+					id: "mna:spell"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "51763A29821FD54A"
+				type: "item"
+				item: "lootbagmod:lootbag"
+				count: 2
+			}]
+		}
+		{
+			x: 17.9d
+			y: 12.2d
+			subtitle: "法术太多了？！"
+			description: [
+				"把法术都放在快捷栏里不太合适。不如制作一本漂亮的法术书，把法术都放进去吧？"
+				""
+				"打开后，你会看到两页。左边是可施放的法术，右边是已存储的法术。"
+			]
+			dependencies: ["7DB50A418E676ACB"]
+			id: "3CB72E5D5193D8AC"
+			tasks: [{
+				id: "42B1C4A3B047823E"
+				type: "item"
+				item: "mna:spell_book"
+			}]
+			rewards: [
+				{
+					id: "5A3B1655551D8D1D"
+					type: "item"
+					item: "mna:vellum"
+				}
+				{
+					id: "515A5005C395842B"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+			]
+		}
+		{
+			title: "建造"
+			icon: "mna:constructs/construct_basic_head_wickerwood"
+			x: 15.5d
+			y: 14.3d
+			subtitle: "一个会动的……东西？"
+			description: [
+				"放置一个盔甲架，然后将你为这个任务制作的物品都放在上面。"
+				"然后用灵魂粉尘对它进行处理。"
+			]
+			dependencies: ["7F98B1E8257F4ED6"]
+			id: "3DF531659DE38ECF"
+			tasks: [
+				{
+					id: "403BC01E3D701ABE"
+					type: "item"
+					item: "minecraft:armor_stand"
+				}
+				{
+					id: "41E1C85FFE117BCE"
+					type: "item"
+					item: "mna:constructs/construct_basic_head_wickerwood"
+				}
+				{
+					id: "0C84B33D15F43F36"
+					type: "item"
+					item: "mna:constructs/construct_basic_torso_wickerwood"
+				}
+				{
+					id: "6AAF269B15256354"
+					type: "item"
+					item: "mna:constructs/construct_basic_legs_wickerwood"
+				}
+				{
+					id: "5B799AAD23A10408"
+					type: "item"
+					item: "mna:constructs/construct_blade_arm_right_wickerwood"
+				}
+				{
+					id: "1B28D721D348A5E8"
+					type: "item"
+					item: "mna:constructs/construct_grabber_arm_left_wickerwood"
+				}
+				{
+					id: "08A68E999CD95D61"
+					type: "item"
+					item: "mna:animus_dust"
+				}
+			]
+			rewards: [{
+				id: "2B723325386C1BD1"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 17.4d
+			y: 15.4d
+			subtitle: "控制你的构造体！"
+			description: [
+				"既然你已经有了一个构造体，就用这个铃铛直接命令它吧！"
+				"有关构造体的更多信息，请参阅神秘法典。"
+			]
+			dependencies: ["3DF531659DE38ECF"]
+			id: "1B87F04F43CBAE37"
+			tasks: [{
+				id: "59B2FB5AFA3883EB"
+				type: "item"
+				item: "mna:bell_of_bidding"
+			}]
+			rewards: [{
+				id: "61919EDC2BA7903E"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 11.3d
+			y: 14.3d
+			subtitle: "构造体的基础部分"
+			description: ["Constructs 是你可以控制的实体，用于自动化。该工作站即为此用。注意，你需要 Tier 2 物品（符文：标记）才能正确使用它。"]
+			dependencies: ["58F54284CCB6C3C1"]
+			id: "7F98B1E8257F4ED6"
+			tasks: [{
+				id: "28027FA715F4BCD8"
+				type: "item"
+				item: "mna:delegation_station"
+			}]
+			rewards: [{
+				id: "1B385A20ED12FA83"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 11.3d
+			y: 15.6d
+			subtitle: "下一阶段的自动化系统"
+			description: ["这样，你终于可以告诉构造体该做什么了！更多信息请参阅《神秘法典》。"]
+			dependencies: ["7F98B1E8257F4ED6"]
+			id: "4396B0751BD9CFB3"
+			tasks: [{
+				id: "66674EABFEF8F5AA"
+				type: "item"
+				item: "mna:rune_marking"
+			}]
+			rewards: [{
+				id: "7E801BB368EF9B71"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 11.3d
+			y: 17.0d
+			subtitle: "比以往任何时候都更好了。"
+			description: ["这是一个更出色的委派站，可能性要多得多。"]
+			dependencies: ["4396B0751BD9CFB3"]
+			id: "7B9559305BCF89DC"
+			tasks: [{
+				id: "4FC26BCDA8D74CBD"
+				type: "item"
+				item: "mna:lodestar"
+			}]
+			rewards: [{
+				id: "151E008C6175DE80"
+				type: "item"
+				item: "lootbagmod:lootbag"
+				count: 2
+			}]
+		}
+		{
+			x: -0.9d
+			y: -2.5d
+			subtitle: "制作一个骨羽护身符"
+			description: ["你应该在装备着它的时候从非常高的地方摔下来。"]
+			dependencies: ["4CBA865EE8D91836"]
+			id: "4AB78745FD6398CD"
+			tasks: [{
+				id: "3F5704799EEF1978"
+				type: "item"
+				item: {
+					id: "mna:fall_charm"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "692A5EBC7E6F3333"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 0.09999999999999998d
+			y: -3.5d
+			subtitle: "合成煤炭羽毛护身符"
+			description: ["我觉得你应该试试在岩浆里游泳。"]
+			dependencies: ["4CBA865EE8D91836"]
+			id: "6243D75CA717F2AF"
+			tasks: [{
+				id: "0065C4E43302F82E"
+				type: "item"
+				item: {
+					id: "mna:burn_charm"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "4470D307922ABD26"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 0.09999999999999998d
+			y: -2.5d
+			subtitle: "制作芦苇羽毛护身符"
+			description: ["如果你需要呼吸新鲜空气，在水下..."]
+			dependencies: ["4CBA865EE8D91836"]
+			id: "74AC1A7E3ED2828B"
+			tasks: [{
+				id: "42B22E9C366204D0"
+				type: "item"
+				item: {
+					id: "mna:drown_charm"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "741A6C7D78022A1B"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: -0.9d
+			y: -3.5d
+			subtitle: "合成末影羽毛护身符"
+			description: ["当离得太远时，请使用此物品返回家中。"]
+			dependencies: ["4CBA865EE8D91836"]
+			id: "68753B8AB8D698E6"
+			tasks: [{
+				id: "344D4429957F0509"
+				type: "item"
+				item: {
+					id: "mna:bed_charm"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "2C92D1D430E94570"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 17.4d
+			y: 14.3d
+			subtitle: "制作一把魔法扫帚"
+			dependencies: ["3DF531659DE38ECF"]
+			id: "09D5BE8C96B83B6D"
+			tasks: [{
+				id: "7EAE859D9AEDA12A"
+				type: "item"
+				item: "mna:magic_broom"
+			}]
+			rewards: [{
+				id: "4CA7A2BB24E7EB54"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: -7.4d
+			y: 5.1d
+			subtitle: "一块水晶？"
+			description: [
+				"参考《神秘法典》。（你的魔法等级应为5级）"
+				"你的等级显示在法力值条的下方。"
+			]
+			dependencies: ["169A49C03359D8EA"]
+			id: "5E085ABBEA1DCA1B"
+			tasks: [{
+				id: "4DFF996FF43E17A8"
+				type: "item"
+				item: "mna:chimerite_gem"
+			}]
+			rewards: [{
+				id: "36B8C0CEE9AA20B3"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: -9.1d
+			y: 5.1d
+			subtitle: "更快的法力再生速度"
+			description: ["靠近它就能提升你的法力再生速度！"]
+			dependencies: ["5E085ABBEA1DCA1B"]
+			id: "74D1C7B5F62F6E0C"
+			tasks: [{
+				id: "52C1FD366E403B91"
+				type: "item"
+				item: "mna:mana_crystal"
+			}]
+			rewards: [{
+				id: "2DCD2725AB2CCD83"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 19.6d
+			y: 2.3d
+			subtitle: "执行被遗忘的传说仪式"
+			dependencies: ["1B4FC091D2EF96C8"]
+			id: "649EDA89FCC49169"
+			tasks: [{
+				id: "6785EE4A53AF6ED1"
+				type: "item"
+				item: "mna:mote_arcane"
+			}]
+			rewards: [{
+				id: "568EFA323E1B5788"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 19.6d
+			y: 7.3d
+			subtitle: "完成无尽虚空仪式 (Do the Ritual of the Enless Void)"
+			dependencies: ["1B4FC091D2EF96C8"]
+			id: "64BC6F09A04BC0C1"
+			tasks: [{
+				id: "4145255CB19DE149"
+				type: "item"
+				item: "mna:mote_ender"
+			}]
+			rewards: [{
+				id: "57108EAC448856CE"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 19.6d
+			y: 3.3d
+			subtitle: "完成未被驯服的风的仪式"
+			dependencies: ["1B4FC091D2EF96C8"]
+			id: "20EC75D6722BD686"
+			tasks: [{
+				id: "7E7C02CE8E215BC7"
+				type: "item"
+				item: "mna:mote_air"
+			}]
+			rewards: [{
+				id: "7E77472809BFED5F"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 19.6d
+			y: 4.3d
+			subtitle: "完成灼热炼狱的仪式"
+			dependencies: ["1B4FC091D2EF96C8"]
+			id: "1498063D2C0B9112"
+			tasks: [{
+				id: "4BA933E8AD8D6492"
+				type: "item"
+				item: "mna:mote_fire"
+			}]
+			rewards: [{
+				id: "79B93598C5AC8B9F"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 19.6d
+			y: 5.3d
+			subtitle: "完成深海仪式（Ritual of the Deep Ocean）"
+			dependencies: ["1B4FC091D2EF96C8"]
+			id: "095E90C73340E2F4"
+			tasks: [{
+				id: "2E072A7F19D6A996"
+				type: "item"
+				item: "mna:mote_water"
+			}]
+			rewards: [{
+				id: "03B3E15C5CF56F35"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 19.6d
+			y: 6.3d
+			subtitle: "完成远古石头的仪式"
+			dependencies: ["1B4FC091D2EF96C8"]
+			id: "2D52A5DDEA8C615D"
+			tasks: [{
+				id: "2CF68ABB161C5E71"
+				type: "item"
+				item: "mna:mote_earth"
+			}]
+			rewards: [{
+				id: "1BA8D8A6F08E7A16"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 8.1d
+			y: -1.3d
+			dependencies: ["51B9B858F1BBF4D8"]
+			id: "705A2BE6F6293DCE"
+			tasks: [{
+				id: "33BE473DE433F7E6"
+				type: "item"
+				item: {
+					id: "mna:stone_rune_black"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "55B8C84703F075DD"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 9.2d
+			y: -3.5d
+			dependencies: ["51B9B858F1BBF4D8"]
+			id: "19A9338817E981B9"
+			tasks: [{
+				id: "7E091F3D9D975966"
+				type: "item"
+				item: {
+					id: "mna:stone_rune_blue"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "011588C3CB684004"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 9.2d
+			y: -2.4d
+			dependencies: ["51B9B858F1BBF4D8"]
+			id: "09D4798AE0F4C456"
+			tasks: [{
+				id: "7DE58617C78D287C"
+				type: "item"
+				item: {
+					id: "mna:stone_rune_brown"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "117DFB7DAD796687"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 8.1d
+			y: -0.2d
+			dependencies: ["51B9B858F1BBF4D8"]
+			id: "766BBF7BF0B0D9B8"
+			tasks: [{
+				id: "76E4E1F3D12A45FA"
+				type: "item"
+				item: {
+					id: "mna:stone_rune_cyan"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "5CC4E0DBF6B0D8A3"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 9.2d
+			y: -1.3d
+			dependencies: ["51B9B858F1BBF4D8"]
+			id: "437F19BFB3689619"
+			tasks: [{
+				id: "17DAEB66487BB061"
+				type: "item"
+				item: {
+					id: "mna:stone_rune_gray"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "050370AE378E5DC6"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 9.2d
+			y: -0.2d
+			dependencies: ["51B9B858F1BBF4D8"]
+			id: "24A142D96279D39F"
+			tasks: [{
+				id: "69032E854B636549"
+				type: "item"
+				item: {
+					id: "mna:stone_rune_green"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "56A46D904186BC5B"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 10.3d
+			y: -3.5d
+			dependencies: ["51B9B858F1BBF4D8"]
+			id: "0D16C11BDD86BE2A"
+			tasks: [{
+				id: "31399C9DEA1742F4"
+				type: "item"
+				item: {
+					id: "mna:stone_rune_light_blue"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "3CEEDE7D87CB69EB"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 10.3d
+			y: -2.4d
+			dependencies: ["51B9B858F1BBF4D8"]
+			id: "323E569AE717D972"
+			tasks: [{
+				id: "3E1B7B8D3D9432F9"
+				type: "item"
+				item: {
+					id: "mna:stone_rune_light_gray"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "73B43025BDE8197B"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 10.3d
+			y: -1.3d
+			dependencies: ["51B9B858F1BBF4D8"]
+			id: "4E1ED2F026904ABD"
+			tasks: [{
+				id: "57DD148146012F82"
+				type: "item"
+				item: {
+					id: "mna:stone_rune_lime"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "7B88674529B78F68"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 8.1d
+			y: -2.4d
+			dependencies: ["51B9B858F1BBF4D8"]
+			id: "4DF32D87C8E05C1A"
+			tasks: [{
+				id: "5BD5A3D6D6F302D0"
+				type: "item"
+				item: {
+					id: "mna:stone_rune_magenta"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "7E88C1FF7CFBEE47"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 8.1d
+			y: -3.5d
+			dependencies: ["51B9B858F1BBF4D8"]
+			id: "521AE36B0329EB4E"
+			tasks: [{
+				id: "37DFEAF3326C01D1"
+				type: "item"
+				item: {
+					id: "mna:stone_rune_orange"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "74D2FFE8D4549A9A"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 11.4d
+			y: -2.4d
+			dependencies: ["51B9B858F1BBF4D8"]
+			id: "6FC480C2CCE9A2F8"
+			tasks: [{
+				id: "42337DFBE2A6F44A"
+				type: "item"
+				item: {
+					id: "mna:stone_rune_orange"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "03E46AC9F3137D9C"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 11.4d
+			y: -3.5d
+			dependencies: ["51B9B858F1BBF4D8"]
+			id: "1E729E2A48BEFF21"
+			tasks: [{
+				id: "236FEBDB3028236C"
+				type: "item"
+				item: {
+					id: "mna:stone_rune_pink"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "5B6C7A81FAE5F362"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 11.5d
+			y: -1.3d
+			dependencies: ["51B9B858F1BBF4D8"]
+			id: "0CDFC0AE7D06C1AE"
+			tasks: [{
+				id: "13B0F5A905E2BD55"
+				type: "item"
+				item: {
+					id: "mna:stone_rune_purple"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "33F518879D5E2CE1"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 12.5d
+			y: -2.4d
+			dependencies: ["51B9B858F1BBF4D8"]
+			id: "621442A8067D4F49"
+			tasks: [{
+				id: "691895BFFD6A238C"
+				type: "item"
+				item: {
+					id: "mna:stone_rune_red"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "2D2A22A41DE1C556"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 12.5d
+			y: -3.5d
+			dependencies: ["51B9B858F1BBF4D8"]
+			id: "608F263B656F922B"
+			tasks: [{
+				id: "1F1064A58AA92B6D"
+				type: "item"
+				item: {
+					id: "mna:stone_rune_white"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "21BB4922E71EE8C0"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 10.3d
+			y: -0.2d
+			dependencies: ["51B9B858F1BBF4D8"]
+			id: "6553B1D187DF6940"
+			tasks: [{
+				id: "0F5D30574D48785C"
+				type: "item"
+				item: {
+					id: "mna:stone_rune_yellow"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "1ABE8721D0C42AB0"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 2.3d
+			y: 14.6d
+			subtitle: "制作一个未烧制的符文板"
+			description: ["在符文锻造炉中将其烧毁！"]
+			dependencies: ["3050236F0E873987"]
+			id: "00FE34C27CA4CE25"
+			tasks: [{
+				id: "7BFB3FC6CB6EAD41"
+				type: "item"
+				item: "mna:rune_clay_plate"
+			}]
+			rewards: [
+				{
+					id: "072E58635AE30028"
+					type: "item"
+					item: "mna:rune_clay_plate"
+					count: 4
+				}
+				{
+					id: "25F1C7B0354BE6E0"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+			]
+		}
+		{
+			x: 9.4d
+			y: 15.6d
+			subtitle: "是时候升级一下了！"
+			dependencies: ["7F98B1E8257F4ED6"]
+			id: "40EBCD7BE4F15389"
+			tasks: [{
+				id: "17568E50942E5C78"
+				type: "item"
+				item: "mna:construct_workbench"
+			}]
+			rewards: [{
+				id: "6860D598EB78298F"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 9.4d
+			y: 17.0d
+			subtitle: "让你的造物获得亲和力！"
+			description: ["请参阅《神秘法典》(Codex Arcana) 的说明。"]
+			dependencies: ["40EBCD7BE4F15389"]
+			id: "64D2C8DF8839CF93"
+			tasks: [{
+				id: "63930EFDDAC4A4EC"
+				type: "item"
+				item: "mna:chimerite_crystal_black"
+			}]
+			rewards: [
+				{
+					id: "193CDBE177554C35"
+					type: "item"
+					item: "mna:chimerite_crystal_black"
+				}
+				{
+					id: "7E32AD6382EADD58"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+		}
+		{
+			title: "木制构造体"
+			icon: "mna:constructs/construct_basic_head_wood"
+			x: 15.5d
+			y: 16.5d
+			subtitle: "一个由木头构成的生物体"
+			dependencies: ["3DF531659DE38ECF"]
+			id: "04358974EFBF814A"
+			tasks: [
+				{
+					id: "5A390404934B7F2C"
+					type: "item"
+					item: "mna:constructs/construct_basic_head_wood"
+				}
+				{
+					id: "1A1DB10DBA387468"
+					type: "item"
+					item: "mna:constructs/construct_basic_torso_wood"
+				}
+				{
+					id: "2E34774B91FB1C2C"
+					type: "item"
+					item: "mna:constructs/construct_basic_legs_wood"
+				}
+			]
+			rewards: [{
+				id: "199D9AF8CD6B5F89"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			title: "石制构造体"
+			icon: "mna:constructs/construct_basic_head_stone"
+			x: 15.5d
+			y: 17.6d
+			subtitle: "那是一个原始人吗？"
+			dependencies: ["04358974EFBF814A"]
+			id: "7F72D91E1570B9CE"
+			tasks: [
+				{
+					id: "092C1921176A3B29"
+					type: "item"
+					item: "mna:constructs/construct_basic_head_stone"
+				}
+				{
+					id: "1A212F6FB63D2213"
+					type: "item"
+					item: "mna:constructs/construct_basic_torso_stone"
+				}
+				{
+					id: "7BAD910A26995F48"
+					type: "item"
+					item: "mna:constructs/construct_basic_legs_stone"
+				}
+			]
+			rewards: [{
+				id: "2A9DA028851404DC"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			title: "钢铁构造体"
+			icon: "mna:constructs/construct_basic_head_iron"
+			x: 15.5d
+			y: 18.700000000000003d
+			subtitle: "讽刺构造体"
+			dependencies: ["7F72D91E1570B9CE"]
+			id: "7233DD472B39E784"
+			tasks: [
+				{
+					id: "4C56B20384CBAF1E"
+					type: "item"
+					item: "mna:constructs/construct_basic_head_iron"
+				}
+				{
+					id: "094ED647474FCF61"
+					type: "item"
+					item: "mna:constructs/construct_basic_torso_iron"
+				}
+				{
+					id: "244D6387B4F991FD"
+					type: "item"
+					item: "mna:constructs/construct_basic_legs_iron"
+				}
+			]
+			rewards: [{
+				id: "115C6CEC9AF7C6D6"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			title: "黄金构造体"
+			icon: "mna:constructs/construct_basic_head_gold"
+			x: 15.5d
+			y: 19.799999999999997d
+			subtitle: "一个璀璨的构造体"
+			dependencies: ["7233DD472B39E784"]
+			id: "46E52E2287A464AB"
+			tasks: [
+				{
+					id: "4388C2E4742659F9"
+					type: "item"
+					item: "mna:constructs/construct_basic_head_gold"
+				}
+				{
+					id: "34062D4CBE9D6E6A"
+					type: "item"
+					item: "mna:constructs/construct_basic_torso_gold"
+				}
+				{
+					id: "3DB7060152B83AFF"
+					type: "item"
+					item: "mna:constructs/construct_basic_legs_gold"
+				}
+			]
+			rewards: [{
+				id: "6374F5954033D277"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			title: "钻石构造体"
+			icon: "mna:constructs/construct_basic_head_diamond"
+			x: 15.5d
+			y: 20.9d
+			subtitle: "使用钻石的更佳方式！"
+			dependencies: ["46E52E2287A464AB"]
+			id: "00AB7A8E22C938A5"
+			tasks: [
+				{
+					id: "06D6124BD5F607D1"
+					type: "item"
+					item: "mna:constructs/construct_basic_head_diamond"
+				}
+				{
+					id: "2C75E5875CDF569A"
+					type: "item"
+					item: "mna:constructs/construct_basic_torso_diamond"
+				}
+				{
+					id: "06E507EAFA2C76C9"
+					type: "item"
+					item: "mna:constructs/construct_basic_legs_diamond"
+				}
+			]
+			rewards: [{
+				id: "7ECDFA812F0C1665"
+				type: "item"
+				item: "lootbagmod:lootbag"
+				count: 2
+			}]
+		}
+		{
+			title: "黑曜石构造体"
+			icon: "mna:constructs/construct_basic_head_obsidian"
+			x: 15.5d
+			y: 22.0d
+			subtitle: "不可破坏的构造体？"
+			dependencies: ["00AB7A8E22C938A5"]
+			id: "2361916B95E2139C"
+			tasks: [
+				{
+					id: "636BCB733127D18E"
+					type: "item"
+					item: "mna:constructs/construct_basic_head_obsidian"
+				}
+				{
+					id: "4277EE164B14D1D4"
+					type: "item"
+					item: "mna:constructs/construct_basic_torso_obsidian"
+				}
+				{
+					id: "6F5AE2E84115ECB4"
+					type: "item"
+					item: "mna:constructs/construct_basic_legs_obsidian"
+				}
+			]
+			rewards: [{
+				id: "66B55E50F5E88FE6"
+				type: "item"
+				item: "lootbagmod:lootbag"
+				count: 4
+			}]
+		}
+		{
+			x: -1.5d
+			y: 12.0d
+			subtitle: "修改你的法术亲和度"
+			description: ["参考《阿卡纳法典》。"]
+			dependencies: ["5A6F2ACCA54D9365"]
+			id: "5085DD63EE5B9FA2"
+			tasks: [{
+				id: "7D4AE60376D5C950"
+				type: "item"
+				item: "mna:affinity_tinker"
+			}]
+			rewards: [{
+				id: "3196AE4D4B195C74"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 15.8d
+			y: -0.10000000000000009d
+			dependencies: ["52AE00590501055D"]
+			id: "0EEECADAC148FB9F"
+			tasks: [{
+				id: "19552376102C8B87"
+				type: "item"
+				item: "mna:patch_glyph"
+			}]
+			rewards: [{
+				id: "528F2BED50DC4B2B"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 14.8d
+			y: -0.10000000000000009d
+			dependencies: ["52AE00590501055D"]
+			id: "755D2DB0F356D369"
+			tasks: [{
+				id: "18BF79BB3A442402"
+				type: "item"
+				item: "mna:patch_mote"
+			}]
+			rewards: [{
+				id: "5E85A6B96E1C12ED"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 17.9d
+			y: -0.10000000000000009d
+			dependencies: ["52AE00590501055D"]
+			id: "240FA5263FA70F4C"
+			tasks: [{
+				id: "13A0C4ECB2F785CE"
+				type: "item"
+				item: "mna:patch_speed"
+			}]
+			rewards: [{
+				id: "3E70294C3996CDBC"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 17.9d
+			y: -1.0999999999999999d
+			dependencies: ["240FA5263FA70F4C"]
+			id: "0A71DE14C7B49645"
+			tasks: [{
+				id: "42103DCE59DC53E1"
+				type: "item"
+				item: "mna:patch_speed_2"
+			}]
+			rewards: [{
+				id: "6D3015364B1DC20C"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 17.9d
+			y: -2.1d
+			dependencies: ["0A71DE14C7B49645"]
+			id: "3552970488C84419"
+			tasks: [{
+				id: "17D381121C6D82D7"
+				type: "item"
+				item: "mna:patch_speed_3"
+			}]
+			rewards: [{
+				id: "65E428575451DF82"
+				type: "item"
+				item: "lootbagmod:lootbag"
+				count: 2
+			}]
+		}
+		{
+			x: 16.799999999999997d
+			y: -0.10000000000000009d
+			dependencies: ["52AE00590501055D"]
+			id: "13528E8D1E485D7F"
+			tasks: [{
+				id: "75D2B9EA0FE9CF13"
+				type: "item"
+				item: "mna:patch_depth"
+			}]
+			rewards: [{
+				id: "44F38F5C564412DA"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 16.799999999999997d
+			y: -1.0999999999999999d
+			dependencies: ["13528E8D1E485D7F"]
+			id: "09FDFBF15291BF52"
+			tasks: [{
+				id: "57257B9A882D5B27"
+				type: "item"
+				item: "mna:patch_depth_2"
+			}]
+			rewards: [{
+				id: "7771A3D7F982B649"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 13.8d
+			y: -0.10000000000000009d
+			dependencies: ["52AE00590501055D"]
+			id: "4D482749F7169B73"
+			tasks: [{
+				id: "636FF8C80076BF8F"
+				type: "item"
+				item: "mna:patch_collection"
+			}]
+			rewards: [{
+				id: "4E998D8408E99ED4"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: -9.1d
+			y: 6.6d
+			subtitle: "创造你的符文吧！"
+			description: ["主要用于制作符文。但也可用于其他用途。请参阅《神秘法典》。"]
+			dependencies: ["5E085ABBEA1DCA1B"]
+			id: "072584AFE4FA66C7"
+			tasks: [{
+				id: "746984FCFBE8096E"
+				type: "item"
+				item: "mna:runic_anvil"
+			}]
+			rewards: [{
+				id: "5794CD221EAB63D3"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 15.8d
+			y: 1.4d
+			subtitle: "快把它修好！"
+			dependencies: ["051517F5C6BD5906"]
+			id: "52AE00590501055D"
+			tasks: [{
+				id: "5C0B32339F647C0B"
+				type: "item"
+				item: {
+					id: "mna:sorcerous_sewing_set"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "67991BA866C59572"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 2.3d
+			y: 12.1d
+			subtitle: "应用符文！"
+			dependencies: ["5A6F2ACCA54D9365"]
+			id: "3050236F0E873987"
+			tasks: [{
+				id: "3E16B20BF58A429C"
+				type: "item"
+				item: "mna:runescribing_table"
+			}]
+			rewards: [{
+				id: "73918EB09E9D6E9B"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 4.8d
+			y: 12.1d
+			dependencies: ["3050236F0E873987"]
+			id: "1064245E4B8685F9"
+			tasks: [{
+				id: "1640C7517941F826"
+				type: "item"
+				item: {
+					id: "mna:runesmith_hammer"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "56E8B0C13CBCAAFA"
+					type: "item"
+					item: "minecraft:clay_ball"
+					count: 16
+				}
+				{
+					id: "7BEF73926F02C9B7"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+			]
+		}
+		{
+			x: 4.8d
+			y: 14.6d
+			dependencies: ["3050236F0E873987"]
+			id: "2A96A422ECDBFA79"
+			tasks: [{
+				id: "75B43B85BC22D127"
+				type: "item"
+				item: {
+					id: "mna:runesmith_chisel"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "2678E85E36501EA0"
+					type: "item"
+					item: "minecraft:clay_ball"
+					count: 16
+				}
+				{
+					id: "18B078C5824B7529"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+			]
+		}
+		{
+			x: 2.3d
+			y: 16.6d
+			subtitle: "所有符文的基础！"
+			description: ["要制作符文，你必须绘制它。点击每条线即可。按 Shift + 点击可移除线条（你的工作台必须有黏土）"]
+			dependencies: ["00FE34C27CA4CE25"]
+			id: "489D2CC04CD43A4B"
+			tasks: [{
+				id: "229B63F7CB27B46B"
+				type: "item"
+				item: "mna:rune_pattern"
+			}]
+			rewards: [{
+				id: "6B0E2CC9A9EE9F75"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 0.8d
+			y: 20.1d
+			dependencies: ["489D2CC04CD43A4B"]
+			id: "520B36D4AB7C23A0"
+			tasks: [{
+				id: "261DA608F7497D92"
+				type: "item"
+				item: "mna:rune_pattern_ritual_metal"
+			}]
+			rewards: [{
+				id: "5B8F701F8E690F9D"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 3.8d
+			y: 19.1d
+			dependencies: ["489D2CC04CD43A4B"]
+			id: "0B00B44F43888AD3"
+			tasks: [{
+				id: "740A9EFC7A7B5910"
+				type: "item"
+				item: "mna:rune_pattern_defense"
+			}]
+			rewards: [{
+				id: "3295DFF9C9550FCC"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 2.8d
+			y: 19.1d
+			dependencies: ["489D2CC04CD43A4B"]
+			id: "70D0E619FD2260DA"
+			tasks: [{
+				id: "29D123AD8B0C9BC8"
+				type: "item"
+				item: "mna:rune_pattern_aura"
+			}]
+			rewards: [{
+				id: "6432E2CC5325E1A5"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 2.8d
+			y: 24.1d
+			dependencies: ["489D2CC04CD43A4B"]
+			id: "7AABB86517E7F2FF"
+			tasks: [{
+				id: "509977CA6660EA58"
+				type: "item"
+				item: "mna:rune_pattern_projection"
+			}]
+			rewards: [{
+				id: "4D08DB72D89AE6DF"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 1.8d
+			y: 24.1d
+			dependencies: ["489D2CC04CD43A4B"]
+			id: "7DC22F95E8A0E153"
+			tasks: [{
+				id: "0DC7FAE3F50CECC0"
+				type: "item"
+				item: "mna:rune_pattern_marking"
+			}]
+			rewards: [{
+				id: "346D9A16DF3E9D18"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 3.8d
+			y: 21.1d
+			dependencies: ["489D2CC04CD43A4B"]
+			id: "0D698E383A40C1C9"
+			tasks: [{
+				id: "746063842A2BA814"
+				type: "item"
+				item: "mna:rune_pattern_air"
+			}]
+			rewards: [{
+				id: "3702F7BBF9A042B5"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 1.8d
+			y: 19.1d
+			dependencies: ["489D2CC04CD43A4B"]
+			id: "1E32A00010625170"
+			tasks: [{
+				id: "76A8BA2737CB4970"
+				type: "item"
+				item: "mna:rune_pattern_earth"
+			}]
+			rewards: [{
+				id: "5BBCF8B21FF659CB"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 0.8d
+			y: 19.1d
+			dependencies: ["489D2CC04CD43A4B"]
+			id: "131BA1FD8BE69694"
+			tasks: [{
+				id: "69F08AA71666EB3B"
+				type: "item"
+				item: "mna:rune_pattern_water"
+			}]
+			rewards: [{
+				id: "674A7D36B5662DB3"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 1.8d
+			y: 20.1d
+			dependencies: ["489D2CC04CD43A4B"]
+			id: "7767E6E4503E7AD0"
+			tasks: [{
+				id: "5079B40A0035FEA2"
+				type: "item"
+				item: "mna:rune_pattern_ender"
+			}]
+			rewards: [{
+				id: "357FA89B24DF39A7"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 1.8d
+			y: 21.1d
+			dependencies: ["489D2CC04CD43A4B"]
+			id: "7D665FA0B9475A0B"
+			tasks: [{
+				id: "141E91FCB9988531"
+				type: "item"
+				item: "mna:rune_pattern_fire"
+			}]
+			rewards: [{
+				id: "4027110B34301C63"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 3.8d
+			y: 20.1d
+			dependencies: ["489D2CC04CD43A4B"]
+			id: "21226376F5E3325E"
+			tasks: [{
+				id: "04C092EE56A465A8"
+				type: "item"
+				item: "mna:rune_pattern_arcane"
+			}]
+			rewards: [{
+				id: "1A6789F54BCA01C3"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 2.8d
+			y: 20.1d
+			dependencies: ["489D2CC04CD43A4B"]
+			id: "08982974BED22BE1"
+			tasks: [{
+				id: "7837D9968235B1C3"
+				type: "item"
+				item: "mna:pattern_vinteum_needle"
+			}]
+			rewards: [{
+				id: "0ACE832A566F4701"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 2.8d
+			y: 21.1d
+			dependencies: ["489D2CC04CD43A4B"]
+			id: "0DF2F0B5C79CD548"
+			tasks: [{
+				id: "60831A50F0FC709C"
+				type: "item"
+				item: "mna:mundane_bracelet_pattern"
+			}]
+			rewards: [{
+				id: "259BF51AE64F479C"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 0.8d
+			y: 21.1d
+			dependencies: ["489D2CC04CD43A4B"]
+			id: "116811FD11723294"
+			tasks: [{
+				id: "570E8693DC9F42EE"
+				type: "item"
+				item: "mna:mundane_ring_pattern"
+			}]
+			rewards: [{
+				id: "7EC8FFD35B71E3A7"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 2.8d
+			y: 23.1d
+			dependencies: ["489D2CC04CD43A4B"]
+			id: "247368C63B7D1526"
+			tasks: [{
+				id: "088E1FBE4ED2B5B3"
+				type: "item"
+				item: "mna:pattern_belt_buckle"
+			}]
+			rewards: [{
+				id: "6875A4B95979D962"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 0.8d
+			y: 22.1d
+			dependencies: ["489D2CC04CD43A4B"]
+			id: "6F8E5E8B4C8EBAB5"
+			tasks: [{
+				id: "0A7EB8A1CE6FC84D"
+				type: "item"
+				item: "mna:mundane_amulet_pattern"
+			}]
+			rewards: [{
+				id: "3B3FFB02A49D3DAF"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 1.8d
+			y: 22.1d
+			dependencies: ["489D2CC04CD43A4B"]
+			id: "6A57C4649618B7A2"
+			tasks: [{
+				id: "56E002AD5FD7DB0F"
+				type: "item"
+				item: "mna:constructs/rune_pattern_torso"
+			}]
+			rewards: [{
+				id: "0D404AB1458C5BDE"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 2.8d
+			y: 22.1d
+			dependencies: ["489D2CC04CD43A4B"]
+			id: "1C40993610157B99"
+			tasks: [{
+				id: "442B0ABE71C58807"
+				type: "item"
+				item: "mna:constructs/rune_pattern_hips"
+			}]
+			rewards: [{
+				id: "6D5D456EBDD5FAF6"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 3.8d
+			y: 22.1d
+			dependencies: ["489D2CC04CD43A4B"]
+			id: "473FC673F3D47862"
+			tasks: [{
+				id: "614D23F55BE3C302"
+				type: "item"
+				item: "mna:constructs/rune_pattern_hammer"
+			}]
+			rewards: [{
+				id: "0C3AB96CBF8F9B76"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 0.8d
+			y: 23.1d
+			dependencies: ["489D2CC04CD43A4B"]
+			id: "3CC3193890A82139"
+			tasks: [{
+				id: "501F8460687CD8F4"
+				type: "item"
+				item: "mna:constructs/rune_pattern_claw"
+			}]
+			rewards: [{
+				id: "6940D1AA7A39A66C"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 1.8d
+			y: 23.1d
+			dependencies: ["489D2CC04CD43A4B"]
+			id: "4FEB618793926C02"
+			tasks: [{
+				id: "4A9BCAB8D3679A77"
+				type: "item"
+				item: "mna:constructs/rune_pattern_head"
+			}]
+			rewards: [{
+				id: "5619157F9676CCAC"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 3.8d
+			y: 23.1d
+			dependencies: ["489D2CC04CD43A4B"]
+			id: "2EBAB57437F5DC90"
+			tasks: [{
+				id: "1ABE9AAC991274EA"
+				type: "item"
+				item: "mna:constructs/rune_pattern_axe"
+			}]
+			rewards: [{
+				id: "1740C0BFDA66F521"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: -2.7d
+			y: 10.0d
+			subtitle: "Wellspring Energy"
+			description: [
+				"你可以用它来生成井泉能量。"
+				"你可以在 occlus 上看到你有多少能量。"
+			]
+			dependencies: ["5A6F2ACCA54D9365"]
+			id: "03D4554F75B75245"
+			tasks: [{
+				id: "49884B8908F42A34"
+				type: "item"
+				item: "mna:eldrin_fume"
+			}]
+			rewards: [
+				{
+					id: "6B816C0E41731FD7"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+				{
+					id: "7AB2AEC673317030"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+		}
+		{
+			x: -0.3d
+			y: 14.0d
+			subtitle: "学习时间到了"
+			dependencies: ["5A6F2ACCA54D9365"]
+			id: "7ABD799ECF09522A"
+			tasks: [{
+				id: "0AD27ABB1D9275E9"
+				type: "item"
+				item: "mna:study_desk"
+			}]
+			rewards: [{
+				id: "0B9C32A179D251A0"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			title: "时尚"
+			x: 0.8d
+			y: -5.4d
+			subtitle: "合成法师盔甲"
+			description: ["对于法师来说，长袍确实是时尚单品！"]
+			dependencies: ["4CBA865EE8D91836"]
+			id: "14C943ABD243778F"
+			tasks: [
+				{
+					id: "7AC56897BBF932B9"
+					type: "item"
+					item: {
+						id: "mna:mage_hood"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "37735D13D559058A"
+					type: "item"
+					item: {
+						id: "mna:mage_robes"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "234AD49B6574D04D"
+					type: "item"
+					item: {
+						id: "mna:mage_leggings"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "1D1960975B3EA7DC"
+					type: "item"
+					item: {
+						id: "mna:mage_boots"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "13A2F0465342E66A"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: -7.4d
+			y: 6.6d
+			subtitle: "无限的力量"
+			description: ["或者至少是无限的耐久度……"]
+			dependencies: ["5E085ABBEA1DCA1B"]
+			id: "23F6B086923CA2C5"
+			tasks: [{
+				id: "585A46D8D307EDA6"
+				type: "item"
+				item: "mna:manaweaver_wand_advanced"
+			}]
+			rewards: [{
+				id: "1B29B343292BC1DC"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 13.0d
+			subtitle: "复制法术 (Copy Spells)"
+			description: [
+				"用一本咒语书、一个咒语卷轴（要获得咒语卷轴，必须多次使用该咒语）、墨水、青金石和一个咒语容器，你就可以复制咒语了。"
+				"你还需要井泉能量和一个导管。"
+			]
+			dependencies: ["5A6F2ACCA54D9365"]
+			id: "5C19414781E78D21"
+			tasks: [{
+				id: "760868F19B121D11"
+				type: "item"
+				item: "mna:spell_infusion"
+			}]
+			rewards: [{
+				id: "010751E380EDDC1A"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 2.3d
+			y: -5.4d
+			subtitle: "奇怪的球体"
+			description: ["你可以在里面注入法力。但为什么？你应该阅读《神秘法典》。"]
+			dependencies: ["4CBA865EE8D91836"]
+			id: "73A50498D6054999"
+			tasks: [{
+				id: "061FDB24A299F60C"
+				type: "item"
+				item: {
+					id: "mna:eldritch_orb"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "311FF420B0FE6040"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: -0.3d
+			y: 13.0d
+			subtitle: "解除物品的附魔！"
+			description: [
+				"你需要 Wellsprint 能量、一个投影符文和一个附魔物品。"
+				"参考神秘学手册。"
+			]
+			dependencies: ["5A6F2ACCA54D9365"]
+			id: "410B8DDBF77909EC"
+			tasks: [{
+				id: "1A8F1D8587DCD971"
+				type: "item"
+				item: "mna:disenchanter"
+			}]
+			rewards: [{
+				id: "0B85A9C5DDF80DF4"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 7.2d
+			subtitle: "加热它！"
+			dependencies: ["4F149B18097FFF52"]
+			id: "28768AFC603CD56A"
+			tasks: [{
+				id: "61BCB6B6EF7D2766"
+				type: "item"
+				item: "mna:superheated_vinteum_ingot"
+			}]
+			rewards: [
+				{
+					id: "47D10C2A6145D702"
+					type: "item"
+					item: "mna:superheated_vinteum_ingot"
+					count: 3
+				}
+				{
+					id: "4DF87703A7384530"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+			]
+		}
+		{
+			x: 13.8d
+			y: 8.6d
+			subtitle: "看起来很眼熟的样子"
+			dependencies: ["206A821A5300BC0C"]
+			id: "25FEE8B7369E3BB3"
+			tasks: [{
+				id: "1D9336211D609C45"
+				type: "item"
+				item: "mna:purified_vinteum_coated_iron"
+			}]
+			rewards: [
+				{
+					id: "097C7BD3672BCF9E"
+					type: "item"
+					item: "mna:purified_vinteum_dust"
+					count: 4
+				}
+				{
+					id: "254FF9D62CCED4B4"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+		}
+		{
+			x: 13.8d
+			y: 7.5d
+			subtitle: "烹饪它！"
+			description: ["你知道的，和Vinteum锭一样。"]
+			dependencies: ["25FEE8B7369E3BB3"]
+			id: "41C63389DEF22A89"
+			tasks: [{
+				id: "092AD3F24329633E"
+				type: "item"
+				item: "mna:purified_vinteum_ingot"
+			}]
+			rewards: [
+				{
+					id: "2B13729AE0615176"
+					type: "item"
+					item: "mna:purified_vinteum_dust"
+					count: 4
+				}
+				{
+					id: "441C3B03CF3400E6"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+		}
+		{
+			x: 13.8d
+			y: 6.4d
+			subtitle: "超高温锭？又来了？！"
+			description: ["相同却又不相同。"]
+			dependencies: ["41C63389DEF22A89"]
+			id: "66C9AF435504AC03"
+			tasks: [{
+				id: "3FF394B4D8B99867"
+				type: "item"
+				item: "mna:superheated_purified_vinteum_ingot"
+			}]
+			rewards: [{
+				id: "15E350CE5AE26011"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			x: 21.1d
+			y: 2.3d
+			subtitle: "合成一个更强大的魔法微粒"
+			description: ["制作时请使用升级后的导管，否则祭坛将无法工作！"]
+			dependencies: ["649EDA89FCC49169"]
+			id: "7C7D8BC1F3A6D67E"
+			tasks: [{
+				id: "31673A4E4D5C7CE4"
+				type: "item"
+				item: "mna:greater_mote_arcane"
+			}]
+			rewards: [{
+				id: "3CD216A1E0028139"
+				type: "item"
+				item: "lootbagmod:lootbag"
+				count: 2
+			}]
+		}
+		{
+			x: 21.1d
+			y: 3.3d
+			subtitle: "合成一个更强大的空气微粒"
+			description: ["制作时请使用升级后的导管，否则祭坛将无法工作！"]
+			dependencies: ["20EC75D6722BD686"]
+			id: "594A501988B89527"
+			tasks: [{
+				id: "1450FDF9B4460488"
+				type: "item"
+				item: "mna:greater_mote_air"
+			}]
+			rewards: [{
+				id: "60CF18D2A2185DD9"
+				type: "item"
+				item: "lootbagmod:lootbag"
+				count: 2
+			}]
+		}
+		{
+			x: 21.1d
+			y: 4.3d
+			subtitle: "制作一个更强大的火之微粒"
+			description: ["制作时请使用升级后的导管，否则祭坛将无法工作！"]
+			dependencies: ["1498063D2C0B9112"]
+			id: "01075E8BED276CEF"
+			tasks: [{
+				id: "65DB5720ACAD235F"
+				type: "item"
+				item: "mna:greater_mote_fire"
+			}]
+			rewards: [{
+				id: "1AD274CA12075A0E"
+				type: "item"
+				item: "lootbagmod:lootbag"
+				count: 2
+			}]
+		}
+		{
+			x: 21.1d
+			y: 5.3d
+			subtitle: "合成一个更强大的水之微粒"
+			description: ["制作时请使用升级后的导管，否则祭坛将无法工作！"]
+			dependencies: ["095E90C73340E2F4"]
+			id: "7F7A63B95A5F2A36"
+			tasks: [{
+				id: "6ED2381DC93FBB99"
+				type: "item"
+				item: "mna:greater_mote_water"
+			}]
+			rewards: [{
+				id: "2A1C2EBB5E68B535"
+				type: "item"
+				item: "lootbagmod:lootbag"
+				count: 2
+			}]
+		}
+		{
+			x: 21.1d
+			y: 6.3d
+			subtitle: "制作一个大地精华（Greater Mote of Earth）"
+			description: ["制作时请使用升级后的导管，否则祭坛将无法工作！"]
+			dependencies: ["2D52A5DDEA8C615D"]
+			id: "1011C16CE4E236D6"
+			tasks: [{
+				id: "6DB634CD111C4B13"
+				type: "item"
+				item: "mna:greater_mote_earth"
+			}]
+			rewards: [{
+				id: "07DFA9DB68F2AF98"
+				type: "item"
+				item: "lootbagmod:lootbag"
+				count: 2
+			}]
+		}
+		{
+			x: 21.1d
+			y: 7.3d
+			subtitle: "合成一个更强大的末影粒子"
+			description: ["制作时请使用升级后的导管，否则祭坛将无法工作！"]
+			dependencies: ["64BC6F09A04BC0C1"]
+			id: "26D2CD39A500A299"
+			tasks: [{
+				id: "198ABF790564522F"
+				type: "item"
+				item: "mna:greater_mote_ender"
+			}]
+			rewards: [{
+				id: "61CDB776FA57139B"
+				type: "item"
+				item: "lootbagmod:lootbag"
+				count: 2
+			}]
+		}
+		{
+			title: "小精灵导管（Lesser Eldrin Conduit）"
+			x: -4.3d
+			y: 10.0d
+			subtitle: "制作任意一个 Lesser Eldrin Conduit"
+			description: [
+				"只需一个次级埃尔德林导管即可验证该任务。"
+				"它们用于消耗你的 Wellspring 能量。会从你的“网络”中提取能量，并发送给需要能量的机器。（例如：Disenchanter）"
+				""
+				"注意，如果导管之间靠得太近，它们将无法正常工作。"
+			]
+			dependencies: ["03D4554F75B75245"]
+			min_required_tasks: 1
+			id: "242465F7DF6250B5"
+			tasks: [
+				{
+					id: "1167431D9DFD4F35"
+					type: "item"
+					item: "mna:lesser_eldrin_conduit_fire"
+				}
+				{
+					id: "3A906A3099ABC26C"
+					type: "item"
+					item: "mna:lesser_eldrin_conduit_water"
+				}
+				{
+					id: "704B8D9002E5D70E"
+					type: "item"
+					item: "mna:lesser_eldrin_conduit_earth"
+				}
+				{
+					id: "4D44CF4E48FA9D59"
+					type: "item"
+					item: "mna:lesser_eldrin_conduit_air"
+				}
+				{
+					id: "2C2121EB1FCD9FD1"
+					type: "item"
+					item: "mna:lesser_eldrin_conduit_ender"
+				}
+				{
+					id: "18E96BAAD5757AAE"
+					type: "item"
+					item: "mna:lesser_eldrin_conduit_arcane"
+				}
+			]
+			rewards: [{
+				id: "4AEBF8FCA2218299"
+				type: "item"
+				item: "lootbagmod:lootbag"
+			}]
+		}
+		{
+			title: "埃尔德林导管"
+			x: -6.0d
+			y: 10.0d
+			subtitle: "一次升级！"
+			description: [
+				"你仍然只需要制作其中一个管道即可。"
+				"那些是更好的导管版本。而且它们靠得太近时不会相互抵消。"
+			]
+			dependencies: ["242465F7DF6250B5"]
+			min_required_tasks: 1
+			id: "5844320B8BF4BCB6"
+			tasks: [
+				{
+					id: "698E18BBB2376D4F"
+					type: "item"
+					item: "mna:eldrin_conduit_fire"
+				}
+				{
+					id: "3FED5C5B946E94A4"
+					type: "item"
+					item: "mna:eldrin_conduit_water"
+				}
+				{
+					id: "692E13DC278CD9C8"
+					type: "item"
+					item: "mna:eldrin_conduit_earth"
+				}
+				{
+					id: "1F2832E6BD7D9605"
+					type: "item"
+					item: "mna:eldrin_conduit_air"
+				}
+				{
+					id: "4D2BEC3F4776F940"
+					type: "item"
+					item: "mna:eldrin_conduit_ender"
+				}
+				{
+					id: "1F22EBF0659B2C2E"
+					type: "item"
+					item: "mna:eldrin_conduit_arcane"
+				}
+			]
+			rewards: [{
+				id: "0E41D205C8C2CA6B"
+				type: "item"
+				item: "lootbagmod:lootbag"
+				count: 2
+			}]
+		}
+		{
+			x: 7.3d
+			y: 7.6d
+			subtitle: "升级你的符文锻造炉"
+			dependencies: ["531096BE06220211"]
+			id: "6ECB0239F40A4023"
+			tasks: [{
+				id: "751E377AE6918196"
+				type: "item"
+				item: "mna:brimstone_charm"
+			}]
+			rewards: [
+				{
+					id: "45CBB5BA84C5BD39"
+					type: "item"
+					item: "mna:mote_fire"
+				}
+				{
+					id: "4631716BDF6C7D48"
+					type: "item"
+					item: "lootbagmod:lootbag"
+				}
+			]
+		}
+		{
+			x: 3.8d
+			y: -5.4d
+			subtitle: "制作一个瞬移隧道 (Craft a Transitory Tunnel)"
+			description: ["想穿过墙壁吗？用这个，它会暂时开辟一条通路。"]
+			dependencies: ["4CBA865EE8D91836"]
+			id: "5427638EDEC03BFD"
+			tasks: [{
+				id: "6F7DADBE2870BA35"
+				type: "item"
+				item: "mna:transitory_tunnel"
+			}]
+			rewards: [{
+				id: "630616D1364708AC"
+				type: "item"
+				item: "lootbagmod:lootbag"
+				count: 2
+			}]
+		}
+		{
+			x: 8.5d
+			y: 11.2d
+			subtitle: "制作一个神秘焦点（小）(Craft a Mystic Focus (Minor))"
+			dependencies: ["1C727B5122E759ED"]
+			id: "3D371DAF63AC7F15"
+			tasks: [{
+				id: "592186E1A6886FE3"
+				type: "item"
+				item: "mna:ritual_focus_minor"
+			}]
+			rewards: [
+				{
+					id: "6178DC079478F6E0"
+					type: "item"
+					item: "mna:ritual_focus_minor"
+				}
+				{
+					id: "771F13F83EFDAE5A"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+			]
+		}
+		{
+			x: 8.5d
+			y: 12.4d
+			subtitle: "制作一个神秘焦点（初级）"
+			dependencies: ["3D371DAF63AC7F15"]
+			id: "48F43690507E2203"
+			tasks: [{
+				id: "77910A8E71F69E50"
+				type: "item"
+				item: "mna:ritual_focus_lesser"
+			}]
+			rewards: [
+				{
+					id: "7F33669F2E632421"
+					type: "item"
+					item: "mna:ritual_focus_lesser"
+				}
+				{
+					id: "3671F28733F18D2A"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+		}
+		{
+			x: 8.5d
+			y: 13.6d
+			subtitle: "制作一个神秘焦点（高级）"
+			dependencies: ["48F43690507E2203"]
+			id: "7DC58BF8A63D9CCD"
+			tasks: [{
+				id: "16184BE049F32BA4"
+				type: "item"
+				item: "mna:ritual_focus_greater"
+			}]
+			rewards: [
+				{
+					id: "4FC573B68853837E"
+					type: "item"
+					item: "mna:ritual_focus_greater"
+				}
+				{
+					id: "4D0960B69A1F5707"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+}

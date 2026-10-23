@@ -1,0 +1,1151 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "big_cannons"
+	group: "6C63E06C7D908B4B"
+	id: "71ECCE3426850D50"
+	order_index: 7
+	quest_links: [ ]
+	quests: [
+		{
+			can_repeat: true
+			description: [""]
+			disable_toast: true
+			id: "0E0CA43A4EEAFC22"
+			rewards: [{
+				command: "/tellraw @p {\"text\":\"[Create Big Cannons]\",\"underlined\":true,\"color\":\"aqua\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"https://modrinth.com/mod/create-big-cannons\"}}"
+				exclude_from_claim_all: true
+				id: "1CB527C623F6636C"
+				silent: true
+				team_reward: false
+				title: "发送给我维基链接 URL"
+				type: "command"
+			}]
+			subtitle: "这将为您提供模组维基以获取更多信息"
+			tasks: [{
+				disable_toast: true
+				id: "7229AEABEB4C5B83"
+				optional_task: true
+				type: "checkmark"
+			}]
+			title: "模组维基"
+			x: -3.0d
+			y: -3.5d
+		}
+		{
+			description: [
+				"要组装它，请在锤子一侧输入红石信号"
+				""
+				"要射击，请在控制器一侧输入红石信号"
+				""
+				"要旋转，就用带轴的侧面提供旋转动力"
+			]
+			id: "5634B2779CD40CCF"
+			rewards: [{
+				id: "6C2BCCF7BC9BCBAB"
+				item: "create:hand_crank"
+				type: "item"
+			}]
+			subtitle: "大炮底座"
+			tasks: [{
+				id: "09D3A01F66768B56"
+				item: "createbigcannons:cannon_mount"
+				type: "item"
+			}]
+			x: -3.0d
+			y: 1.0d
+		}
+		{
+			description: ["要将大炮横向旋转，请将其置于大炮底座下，并从底部给予其旋转动力"]
+			id: "6EC4B7B5C2C5409B"
+			rewards: [{
+				id: "50D900CF999450B3"
+				item: "create:hand_crank"
+				type: "item"
+			}]
+			subtitle: "用于旋转大炮"
+			tasks: [{
+				id: "544635AEAC7FA714"
+				item: "createbigcannons:yaw_controller"
+				type: "item"
+			}]
+			x: -3.0d
+			y: 2.0d
+		}
+		{
+			description: ["可以使用普通弹匣"]
+			id: "413D5AA37F204C16"
+			rewards: [{
+				id: "10574C3D7BE2C352"
+				item: "minecraft:oak_log"
+				type: "item"
+			}]
+			subtitle: "有时可以处理1次充能"
+			tasks: [{
+				id: "0570B30D512FEA0F"
+				item: {
+					Count: 1
+					id: "itemfilters:id_regex"
+					tag: {
+						value: "createbigcannons:.*log"
+					}
+				}
+				title: "日志大炮"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 2.0d
+		}
+		{
+			dependencies: [
+				"0270F3E0855367D7"
+				"144CE1F183D4BFCF"
+			]
+			dependency_requirement: "one_completed"
+			id: "1030128B87C5A51F"
+			rewards: [
+				{
+					id: "700A74907E82C3AC"
+					item: {
+						Count: 1
+						id: "createbigcannons:big_cartridge"
+						tag: {
+							Power: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 4
+					id: "278A715E6A301BE2"
+					item: "createbigcannons:nitropowder"
+					type: "item"
+				}
+			]
+			subtitle: "当获得旋转动力时，它会自行开合以进行装载"
+			tasks: [{
+				id: "3FF6B86D30FA5076"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "createbigcannons:nethersteel_screw_breech"
+							}
+							{
+								Count: 1b
+								id: "createbigcannons:steel_screw_breech"
+							}
+						]
+					}
+				}
+				title: "螺旋桨尾管螺钉"
+				type: "item"
+			}]
+			x: 8.0d
+			y: 3.5d
+		}
+		{
+			dependencies: [
+				"6EF5BA1859994B19"
+				"798BF88EB4486737"
+				"0270F3E0855367D7"
+			]
+			dependency_requirement: "one_completed"
+			description: [""]
+			id: "4061E7FE3180147B"
+			rewards: [{
+				id: "7586B26550F06C01"
+				item: {
+					Count: 1
+					id: "createbigcannons:powder_charge"
+					tag: { }
+				}
+				type: "item"
+			}]
+			subtitle: "可通过预安装的拉杆打开/关闭"
+			tasks: [{
+				id: "78D38A5C40FFE904"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "createbigcannons:cast_iron_quickfiring_breech"
+							}
+							{
+								Count: 1b
+								id: "createbigcannons:steel_quickfiring_breech"
+							}
+							{
+								Count: 1b
+								id: "createbigcannons:bronze_quickfiring_breech"
+							}
+						]
+					}
+				}
+				title: "快速射击弹匣"
+				type: "item"
+			}]
+			x: 5.5d
+			y: 3.5d
+		}
+		{
+			dependencies: [
+				"6EF5BA1859994B19"
+				"798BF88EB4486737"
+				"0270F3E0855367D7"
+			]
+			description: ["不会给你完整的强度，会因1次电力中断而降低"]
+			id: "4AAF037B84848FCE"
+			rewards: [{
+				id: "64B20B36FD0B150F"
+				item: "create:hand_crank"
+				type: "item"
+			}]
+			subtitle: "可通过旋转动力开启/关闭"
+			tasks: [{
+				id: "31D9895B0ECD8006"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "createbigcannons:cast_iron_sliding_breech"
+							}
+							{
+								Count: 1b
+								id: "createbigcannons:bronze_sliding_breech"
+							}
+							{
+								Count: 1b
+								id: "createbigcannons:steel_sliding_breech"
+							}
+						]
+					}
+				}
+				title: "滑动式弹仓"
+				type: "item"
+			}]
+			x: 4.5d
+			y: 3.5d
+		}
+		{
+			id: "6B2B304FC493A047"
+			rewards: [{
+				id: "4B92BA8F44A036A2"
+				item: {
+					Count: 1
+					id: "createbigcannons:solid_shot"
+					tag: { }
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "6ECF702503CA1B2B"
+				item: {
+					Count: 1
+					id: "itemfilters:and"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "itemfilters:or"
+								tag: {
+									items: [
+										{
+											Count: 1b
+											id: "itemfilters:id_regex"
+											tag: {
+												value: "^createbigcannons:.*shell$"
+											}
+										}
+										{
+											Count: 1b
+											id: "itemfilters:id_regex"
+											tag: {
+												value: "createbigcannons:.*shot"
+											}
+										}
+									]
+								}
+							}
+							{
+								Count: 1b
+								id: "itemfilters:not"
+								tag: {
+									items: [{
+										Count: 1b
+										id: "itemfilters:id_regex"
+										tag: {
+											value: "shot_balls"
+										}
+									}]
+								}
+							}
+						]
+					}
+				}
+				title: "弹壳与炮弹"
+				type: "item"
+			}]
+			x: -1.5d
+			y: 3.5d
+		}
+		{
+			description: [
+				"只能使用每种大炮指定的数量（给太多或太少的螺旋桨会导致大炮爆炸）"
+				""
+				"腔室数量 = 火药装填物数量"
+				"（Big Cartrige 除外，算作 4 个 Powder Charges，必须用 Nitropowder 装填，每次射击后需取出）"
+			]
+			id: "3D318A36C9AFF9BB"
+			rewards: [{
+				id: "2EBA70D3AC35EDEE"
+				item: {
+					Count: 1
+					id: "createbigcannons:big_cartridge"
+					tag: {
+						Power: 0
+					}
+				}
+				type: "item"
+			}]
+			subtitle: "用于为炮击充能，使其威力增强"
+			tasks: [{
+				id: "1ED6B84922DC8020"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "createbigcannons:powder_charge"
+								tag: { }
+							}
+							{
+								Count: 1b
+								id: "createbigcannons:big_cartridge"
+								tag: {
+									Power: 0
+								}
+							}
+							{
+								Count: 1b
+								id: "createbigcannons:big_cartridge"
+								tag: {
+									Power: 1
+								}
+							}
+							{
+								Count: 1b
+								id: "createbigcannons:big_cartridge"
+								tag: {
+									Power: 2
+								}
+							}
+							{
+								Count: 1b
+								id: "createbigcannons:big_cartridge"
+								tag: {
+									Power: 4
+								}
+							}
+							{
+								Count: 1b
+								id: "createbigcannons:big_cartridge"
+								tag: {
+									Power: 3
+								}
+							}
+						]
+					}
+				}
+				title: "推进剂"
+				type: "item"
+			}]
+			x: -3.0d
+			y: 3.5d
+		}
+		{
+			description: [
+				"螺旋桨必须在舱室中"
+				""
+				"炮弹/弹壳必须在桶中"
+				""
+				"炮弹/弹壳不能被其他物体阻挡（否则大炮会爆炸）"
+			]
+			id: "7A36AE769B33B820"
+			rewards: [{
+				id: "263C6B19E87FC8FD"
+				item: {
+					Count: 1
+					id: "createbigcannons:powder_charge"
+					tag: { }
+				}
+				type: "item"
+			}]
+			subtitle: "用于将螺旋桨和炮弹/弹壳推入大炮中"
+			tasks: [{
+				id: "4D25FDB4F58B8F66"
+				item: "createbigcannons:ram_rod"
+				type: "item"
+			}]
+			x: -4.5d
+			y: 3.5d
+		}
+		{
+			description: [""]
+			id: "27F465C27EC48EE6"
+			rewards: [{
+				count: 8
+				id: "72E3FD183C7C5679"
+				item: "create:piston_extension_pole"
+				type: "item"
+			}]
+			subtitle: "会自动将螺旋桨、炮弹/弹壳推入大炮中"
+			tasks: [
+				{
+					id: "23179320A7440AE9"
+					item: "createbigcannons:ram_head"
+					type: "item"
+				}
+				{
+					id: "4A96D9EAEEFF242B"
+					item: "create:piston_extension_pole"
+					type: "item"
+				}
+				{
+					id: "5486C6E375B03873"
+					item: "createbigcannons:cannon_loader"
+					type: "item"
+				}
+			]
+			title: "自动冲压机套装"
+			x: -4.5d
+			y: 5.0d
+		}
+		{
+			id: "07CFCF6E7DE0AE86"
+			rewards: [{
+				id: "614386820467D691"
+				item: "createbigcannons:impact_fuze"
+				type: "item"
+			}]
+			subtitle: "用于改变外壳对行为的影响方式"
+			tasks: [{
+				id: "005003E71EBC2A70"
+				item: {
+					Count: 1
+					id: "itemfilters:id_regex"
+					tag: {
+						value: "fuze"
+					}
+				}
+				title: "Fuze"
+				type: "item"
+			}]
+			x: -1.5d
+			y: 5.0d
+		}
+		{
+			dependencies: ["52DAA2FE87F4F490"]
+			id: "6B90FB8FB727B812"
+			rewards: [{
+				id: "48B261FF4327D650"
+				item: {
+					Count: 1
+					id: "createbigcannons:drop_mortar_shell"
+					tag: { }
+				}
+				type: "item"
+			}]
+			subtitle: "生成迫击炮而不是加农炮"
+			tasks: [{
+				id: "1F30B72433EFB1F4"
+				item: "createbigcannons:wrought_iron_drop_mortar_end"
+				type: "item"
+			}]
+			x: 1.5d
+			y: 3.5d
+		}
+		{
+			description: [
+				"可以使用普通弹匣，也可以使用掉落弹匣"
+				" "
+			]
+			id: "52DAA2FE87F4F490"
+			rewards: [{
+				id: "4690FAE55F95D552"
+				item: "createbigcannons:wrought_iron_cannon_chamber"
+				type: "item"
+			}]
+			subtitle: "可承受 1 次充能"
+			tasks: [{
+				id: "63A8F69F94077A92"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "createbigcannons:wrought_iron_cannon_end"
+							}
+							{
+								Count: 1b
+								id: "createbigcannons:wrought_iron_cannon_chamber"
+							}
+						]
+					}
+				}
+				title: "锻铁大炮"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 2.0d
+		}
+		{
+			dependencies: [
+				"52DAA2FE87F4F490"
+				"413D5AA37F204C16"
+				"6EF5BA1859994B19"
+				"798BF88EB4486737"
+				"0270F3E0855367D7"
+			]
+			id: "5F029D15CEBE0D50"
+			rewards: [{
+				id: "18A6F9871B54BF8B"
+				item: {
+					Count: 1
+					id: "createbigcannons:solid_shot"
+					tag: { }
+				}
+				type: "item"
+			}]
+			subtitle: "始终关闭，必须从前端加载才能打开"
+			tasks: [{
+				id: "4C887BD96740FB8D"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "createbigcannons:log_cannon_end"
+							}
+							{
+								Count: 1b
+								id: "createbigcannons:wrought_iron_cannon_end"
+							}
+							{
+								Count: 1b
+								id: "createbigcannons:cast_iron_cannon_end"
+							}
+							{
+								Count: 1b
+								id: "createbigcannons:bronze_cannon_end"
+							}
+						]
+					}
+				}
+				title: "普通弹匣"
+				type: "item"
+			}]
+			x: 2.5d
+			y: 3.5d
+		}
+		{
+			id: "16471F0ADA1773D1"
+			rewards: [{
+				id: "523ADD12CF499008"
+				item: "createbigcannons:molten_cast_iron_bucket"
+				type: "item"
+			}]
+			tasks: [{
+				id: "4BB4BA5B9CFD173A"
+				item: {
+					Count: 1
+					id: "itemfilters:and"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "itemfilters:id_regex"
+								tag: {
+									value: "createbigcannons:.*cast_iron"
+								}
+							}
+							{
+								Count: 1b
+								id: "itemfilters:id_regex"
+								tag: {
+									value: "createbigcannons:.*autocannon"
+								}
+							}
+						]
+					}
+				}
+				title: "铸铁自动火炮"
+				type: "item"
+			}]
+			x: -6.5d
+			y: 2.0d
+		}
+		{
+			id: "3BCEBA2BC25E2ECC"
+			rewards: [{
+				id: "4A04989D31059502"
+				item: "createbigcannons:molten_bronze_bucket"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0429605CFC17DB66"
+				item: {
+					Count: 1
+					id: "itemfilters:and"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "itemfilters:id_regex"
+								tag: {
+									value: "createbigcannons:.*autocannon"
+								}
+							}
+							{
+								Count: 1b
+								id: "itemfilters:id_regex"
+								tag: {
+									value: "createbigcannons:.*bronze"
+								}
+							}
+						]
+					}
+				}
+				title: "青铜自动炮台"
+				type: "item"
+			}]
+			x: -8.0d
+			y: 2.0d
+		}
+		{
+			description: ["只能使用螺旋桨式弹匣"]
+			id: "144CE1F183D4BFCF"
+			rewards: [{
+				id: "716DE08353E3B7F9"
+				item: "createbigcannons:molten_nethersteel_bucket"
+				type: "item"
+			}]
+			subtitle: "可承受 8 次充能冲击"
+			tasks: [{
+				id: "25BD0BA6AA3C03C4"
+				item: {
+					Count: 1
+					id: "itemfilters:and"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "itemfilters:id_regex"
+								tag: {
+									value: "createbigcannons:.*cannon"
+								}
+							}
+							{
+								Count: 1b
+								id: "itemfilters:id_regex"
+								tag: {
+									value: "createbigcannons:.*nethersteel"
+								}
+							}
+							{
+								Count: 1b
+								id: "itemfilters:not"
+								tag: {
+									items: [{
+										Count: 1b
+										id: "itemfilters:id_regex"
+										tag: {
+											value: "createbigcannons:.*autocannon"
+										}
+									}]
+								}
+							}
+						]
+					}
+				}
+				title: "下界钢大炮"
+				type: "item"
+			}]
+			x: 8.0d
+			y: 2.0d
+		}
+		{
+			description: ["可使用 Screw Breech、Sliding Breach、Quick Fire Breach"]
+			id: "0270F3E0855367D7"
+			rewards: [{
+				id: "7D0AB5D5807809AD"
+				item: "createbigcannons:molten_steel_bucket"
+				type: "item"
+			}]
+			subtitle: "可承受 5 次充能打击"
+			tasks: [{
+				id: "2C3B765040138ED2"
+				item: {
+					Count: 1
+					id: "itemfilters:and"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "itemfilters:id_regex"
+								tag: {
+									value: "createbigcannons:.*cannon"
+								}
+							}
+							{
+								Count: 1b
+								id: "itemfilters:id_regex"
+								tag: {
+									value: "createbigcannons:.*steel"
+								}
+							}
+							{
+								Count: 1b
+								id: "itemfilters:not"
+								tag: {
+									items: [{
+										Count: 1b
+										id: "itemfilters:id_regex"
+										tag: {
+											value: "createbigcannons:.*autocannon"
+										}
+									}]
+								}
+							}
+							{
+								Count: 1b
+								id: "itemfilters:not"
+								tag: {
+									items: [{
+										Count: 1b
+										id: "itemfilters:id_regex"
+										tag: {
+											value: "createbigcannons:.*nethersteel"
+										}
+									}]
+								}
+							}
+						]
+					}
+				}
+				title: "钢铁大炮"
+				type: "item"
+			}]
+			x: 6.5d
+			y: 2.0d
+		}
+		{
+			description: ["可使用滑动式弹仓、快速式弹仓、普通式弹仓"]
+			id: "798BF88EB4486737"
+			rewards: [{
+				id: "2D9684E7EB080C25"
+				item: "createbigcannons:molten_bronze_bucket"
+				type: "item"
+			}]
+			subtitle: "可承受 4 次充能打击"
+			tasks: [{
+				id: "4A06220EEFE64005"
+				item: {
+					Count: 1
+					id: "itemfilters:and"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "itemfilters:id_regex"
+								tag: {
+									value: "createbigcannons:.*cannon"
+								}
+							}
+							{
+								Count: 1b
+								id: "itemfilters:id_regex"
+								tag: {
+									value: "createbigcannons:.*bronze"
+								}
+							}
+							{
+								Count: 1b
+								id: "itemfilters:not"
+								tag: {
+									items: [{
+										Count: 1b
+										id: "itemfilters:id_regex"
+										tag: {
+											value: "createbigcannons:.*autocannon"
+										}
+									}]
+								}
+							}
+						]
+					}
+				}
+				title: "青铜大炮"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 2.0d
+		}
+		{
+			description: ["可使用滑动式弹仓、快速式弹仓、普通式弹仓"]
+			id: "6EF5BA1859994B19"
+			rewards: [{
+				id: "0D30213926167248"
+				item: "createbigcannons:molten_cast_iron_bucket"
+				type: "item"
+			}]
+			subtitle: "可承受 2 次充能冲击"
+			tasks: [{
+				id: "1C1A87507EDB4A3B"
+				item: {
+					Count: 1
+					id: "itemfilters:and"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "itemfilters:id_regex"
+								tag: {
+									value: "createbigcannons:.*cannon"
+								}
+							}
+							{
+								Count: 1b
+								id: "itemfilters:not"
+								tag: {
+									items: [{
+										Count: 1b
+										id: "itemfilters:id_regex"
+										tag: {
+											value: "createbigcannons:.*autocannon"
+										}
+									}]
+								}
+							}
+							{
+								Count: 1b
+								id: "itemfilters:id_regex"
+								tag: {
+									value: "createbigcannons:.*cast_iron"
+								}
+							}
+						]
+					}
+				}
+				title: "铸铁大炮"
+				type: "item"
+			}]
+			x: 3.5d
+			y: 2.0d
+		}
+		{
+			id: "0E55FBFBA77D1A82"
+			rewards: [{
+				id: "5B4EBA6452C10D2B"
+				item: "createbigcannons:molten_steel_bucket"
+				type: "item"
+			}]
+			tasks: [{
+				id: "6E2F9CA025E19DEB"
+				item: {
+					Count: 1
+					id: "itemfilters:and"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "itemfilters:id_regex"
+								tag: {
+									value: "createbigcannons:.*autocannon"
+								}
+							}
+							{
+								Count: 1b
+								id: "itemfilters:id_regex"
+								tag: {
+									value: "createbigcannons:.*steel"
+								}
+							}
+						]
+					}
+				}
+				title: "钢铁自动炮"
+				type: "item"
+			}]
+			x: -9.5d
+			y: 2.0d
+		}
+		{
+			id: "64846FF10A42F94C"
+			rewards: [{
+				count: 16
+				id: "56A31D674DE5D0A8"
+				item: {
+					Count: 1
+					id: "createbigcannons:machine_gun_round"
+					tag: { }
+				}
+				type: "item"
+			}]
+			subtitle: "另一种加载带太空追踪炮弹选项的自动炮的方法"
+			tasks: [{
+				id: "3F0C43F748CB69CD"
+				item: {
+					Count: 1
+					id: "createbigcannons:autocannon_ammo_container"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -8.0d
+			y: 4.0d
+		}
+		{
+			description: [
+				"漏斗无法跟上自动炮的射速，建议使用滑槽"
+				""
+				"穿甲弹 (AP) - 可破坏方块"
+				""
+				"霰弹 - 会爆炸"
+				""
+				"机器射击 - 仅对实体造成伤害"
+			]
+			id: "02301C40F195789E"
+			rewards: [{
+				count: 4
+				id: "46A1492CC55168A7"
+				item: {
+					Count: 1
+					id: "createbigcannons:autocannon_cartridge"
+					tag: {
+						Projectile: {
+							Count: 1b
+							id: "createbigcannons:ap_autocannon_round"
+						}
+					}
+				}
+				type: "item"
+			}]
+			subtitle: "必须用滑道/漏斗装载到炮台支架上"
+			tasks: [{
+				id: "0DB7682BE205E754"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "createbigcannons:autocannon_cartridge"
+								tag: {
+									Projectile: {
+										Count: 1b
+										id: "createbigcannons:ap_autocannon_round"
+										tag: { }
+									}
+								}
+							}
+							{
+								Count: 1b
+								id: "createbigcannons:autocannon_cartridge"
+								tag: {
+									Projectile: {
+										Count: 1b
+										id: "createbigcannons:flak_autocannon_round"
+										tag: { }
+									}
+								}
+							}
+							{
+								Count: 1b
+								id: "createbigcannons:machine_gun_round"
+								tag: { }
+							}
+						]
+					}
+				}
+				title: "自动加农炮弹药"
+				type: "item"
+			}]
+			x: -9.5d
+			y: 4.0d
+		}
+		{
+			description: ["将熔铸模具置于中心，按3×3排列，再压入沙子并填充熔化的金属，即可制成特定的火炮部件。"]
+			id: "049040F11FFA1075"
+			rewards: [{
+				count: 3
+				id: "1494BA52A22483A9"
+				item: "createbigcannons:casting_sand"
+				type: "item"
+			}]
+			subtitle: "用于铸造大炮的部件"
+			tasks: [{
+				id: "0D42385FA13BAD07"
+				item: "createbigcannons:casting_sand"
+				type: "item"
+			}]
+			x: -4.0d
+			y: -2.0d
+		}
+		{
+			description: ["Motlen金属正在缓慢冷却"]
+			id: "383F767AE38CC13B"
+			rewards: [{
+				id: "57D746D9E485AC23"
+				item: "create:andesite_alloy"
+				type: "item"
+			}]
+			subtitle: "将材料放入盆中并用盖子盖好后，它便会开始生成熔化的版本"
+			tasks: [{
+				id: "4B8D5CB5F46668C6"
+				item: "createbigcannons:basin_foundry_lid"
+				type: "item"
+			}]
+			x: -5.0d
+			y: -2.0d
+		}
+		{
+			description: ["大炮必须旋转，转速（RPM）与钻头相同 + 钻孔时会掉落废料（可再次熔炼）"]
+			id: "3B45FE8AB07D4DC3"
+			rewards: [{
+				id: "7417B2D590813852"
+				item: "create:andesite_casing"
+				type: "item"
+			}]
+			subtitle: "用于在铸造好的大炮内部创建一个孔洞"
+			tasks: [{
+				id: "3EAF9EE67890556A"
+				item: "createbigcannons:cannon_drill"
+				type: "item"
+			}]
+			x: -2.5d
+			y: -2.0d
+		}
+		{
+			description: ["仅用于钢和地狱钢"]
+			id: "7B82C6564BDEC073"
+			rewards: [{
+				id: "3666C5C139620FCB"
+				item: "create:andesite_casing"
+				type: "item"
+			}]
+			subtitle: "用于叠加层来创造大炮的各个部分"
+			tasks: [{
+				id: "6AE8F9F075398D79"
+				item: "createbigcannons:cannon_builder"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -2.0d
+		}
+		{
+			id: "5A900718743DE276"
+			rewards: [{
+				id: "42EE712AE2FC75AD"
+				item: "create:brass_ingot"
+				type: "item"
+			}]
+			subtitle: "用于连接大炮的各个部分"
+			tasks: [{
+				id: "7EC5789F44892D57"
+				item: {
+					Count: 1
+					id: "createbigcannons:cannon_welder"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: -4.5d
+			y: 0.0d
+		}
+		{
+			id: "3D720B996967E1BB"
+			rewards: [{
+				id: "341A39E31EAF2622"
+				item: "create:piston_extension_pole"
+				type: "item"
+			}]
+			subtitle: "用于手动提取墨囊的容器"
+			tasks: [{
+				id: "7D0160376CE85795"
+				item: "createbigcannons:worm"
+				type: "item"
+			}]
+			x: -5.5d
+			y: 3.5d
+		}
+		{
+			id: "52359826AB62E06C"
+			rewards: [{
+				id: "6A4A8D900A20E859"
+				item: "create:piston_extension_pole"
+				type: "item"
+			}]
+			subtitle: "弹匣的提取可以是自动的"
+			tasks: [{
+				id: "336AA4016FEDF02C"
+				item: "createbigcannons:worm_head"
+				type: "item"
+			}]
+			x: -5.5d
+			y: 5.0d
+		}
+		{
+			id: "4D3D189B67EDCF7D"
+			rewards: [{
+				id: "1FAE5253416873BC"
+				item: "minecraft:glass"
+				type: "item"
+			}]
+			subtitle: "抵御毒气云层的保护"
+			tasks: [{
+				id: "4EEB73312FD77EFD"
+				item: "createbigcannons:gas_mask"
+				type: "item"
+			}]
+			x: -5.5d
+			y: 0.0d
+		}
+		{
+			id: "138CCA86CC714275"
+			rewards: [{
+				id: "20E31FBB64DE60A0"
+				item: "minecraft:oak_log"
+				type: "item"
+			}]
+			subtitle: "与Cannon Mount类似，但可以推动，而非自动"
+			tasks: [{
+				id: "74393C7861194711"
+				item: "createbigcannons:cannon_carriage"
+				type: "item"
+			}]
+			x: -6.5d
+			y: 0.0d
+		}
+	]
+	title: "大型火炮"
+}

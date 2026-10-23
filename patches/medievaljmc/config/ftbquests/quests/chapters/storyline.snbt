@@ -1,0 +1,175 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "storyline"
+	group: "79C06F01ECAB188D"
+	icon: {
+		Count: 1
+		id: "amethyst_imbuement:book_of_lore"
+		tag: { }
+	}
+	id: "594A5BC1CEECB923"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			description: [""]
+			id: "36399B18854C9688"
+			tasks: [{
+				id: "5C2FE90401B38F6D"
+				item: "minecraft:crafting_table"
+				type: "item"
+			}]
+			title: "开始"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["36399B18854C9688"]
+			description: ["我发现自己身处一个对你来说&6未知的地方&f，我该怎么办？首先，&6装备好初始物品。"]
+			hide: true
+			icon: {
+				Count: 1
+				id: "minecraft:wooden_pickaxe"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "31D672A23377DB87"
+			rewards: [{
+				count: 3
+				id: "35DE857744035CB5"
+				item: "minecraft:bread"
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "721E4B840BEDABE4"
+					item: {
+						Count: 1
+						id: "minecraft:wooden_pickaxe"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "1604CB9907C01F18"
+					item: {
+						Count: 1
+						id: "minecraft:wooden_axe"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "必要的工具"
+			x: 2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["31D672A23377DB87"]
+			description: ["我已经获得了必要的工具。接下来我需要&6弄清楚我在哪里，并寻找智慧生命。"]
+			id: "43E8116C80017112"
+			rewards: [{
+				count: 20
+				id: "302327AC6901C3C1"
+				item: "numismatic-overhaul:silver_coin"
+				type: "item"
+			}]
+			tasks: [{
+				id: "678F1A90E6681E61"
+				structure: "#minecraft:village"
+				type: "structure"
+			}]
+			title: "智慧生命体"
+			x: 5.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["43E8116C80017112"]
+			description: ["我找到了一个村庄，但那里有些奇怪的人。他们不说话，只会哼歌，还试图用天价把东西卖给我。我试着问他们怎么出去，但除了劫掠者之外，我一句也听不懂。也许如果我帮了他们，他们也会帮我。"]
+			icon: {
+				Count: 1
+				id: "minecraft:crossbow"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "43AEF64A38D48F14"
+			rewards: [{
+				count: 40
+				id: "5D2A5977C128771E"
+				item: "numismatic-overhaul:silver_coin"
+				type: "item"
+			}]
+			tasks: [{
+				entity: "minecraft:pillager"
+				id: "254C40CA22BF6081"
+				type: "kill"
+				value: 5L
+			}]
+			title: "村民求助信息"
+			x: 7.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["43AEF64A38D48F14"]
+			description: ["干掉掠夺者后，他们告诉了我关于其他维度、下界和遗迹的事。或许我能在外面找到&6出路？"]
+			icon: "minecraft:netherrack"
+			id: "55A6398592DC37B2"
+			rewards: [{
+				id: "4398C31620D6C0DD"
+				item: {
+					Count: 1
+					id: "scholar:black_writable_book"
+					tag: {
+						pages: ["§4I understand, I understand how to get out of here!\nAll you need to do is kill the ender dragon! I really hope this is true, I'm starting to go crazy here."]
+					}
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "2A7251DA6DEC3405"
+				structure: "repurposed_structures:ruins_nether"
+				type: "structure"
+			}]
+			title: "正在寻找一个家"
+			x: 10.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["55A6398592DC37B2"]
+			description: ["我找到一张奇怪的纸条，上面写着要出去需要&6杀死末影龙？"]
+			id: "460B937246B2E718"
+			rewards: [{
+				auto: "enabled"
+				command: "/execute in graveyard:past run teleport @s 0 80 0"
+				id: "1FF7AAF07F0172DE"
+				type: "command"
+			}]
+			tasks: [{
+				entity: "minecraft:ender_dragon"
+				id: "5A8B6DB58A554427"
+				type: "kill"
+				value: 1L
+			}]
+			title: "击杀末影龙"
+			x: 11.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["460B937246B2E718"]
+			description: ["&4那...那是什么东西发出的声音？"]
+			id: "7C5453E1063465A7"
+			title: "???"
+			x: 11.5d
+			y: -4.0d
+		}
+	]
+	title: "故事情节"
+}

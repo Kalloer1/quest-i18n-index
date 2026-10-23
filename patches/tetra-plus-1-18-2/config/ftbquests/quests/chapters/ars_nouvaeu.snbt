@@ -1,0 +1,1548 @@
+# AI 初翻，未人工校对
+{
+	id: "6826FF9011A795A6"
+	group: "48973260D2B7A41C"
+	order_index: 1
+	filename: "ars_nouvaeu"
+	title: "Ars Nouveau"
+	icon: "arsomega:arcane_book"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "开始"
+			x: 3.5d
+			y: -1.5d
+			subtitle: "欢迎来到 Ars Nouveau"
+			description: ["本章将教你如何玩 ars nouvaeu，并成为最强的魔法师！"]
+			id: "3D5435AE9717F82D"
+			tasks: [{
+				id: "764115638132369C"
+				type: "item"
+				item: "ars_nouveau:novice_spell_book"
+			}]
+			rewards: [{
+				id: "3BB7FF2C25FA0C11"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			title: "写下你自己的创意"
+			x: -3.0d
+			y: 2.5d
+			description: [
+				"文士台是 ars nouveau 的基础，"
+				"你需要写下知识来学习强大的魔法。"
+			]
+			dependencies: ["64DF99CCA2BA9DEA"]
+			id: "6856584ECB3BF572"
+			tasks: [{
+				id: "665124661DFCF12C"
+				type: "item"
+				item: "ars_nouveau:scribes_table"
+			}]
+			rewards: [{
+				id: "605D913A95CA11A4"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "有什么不可思议的事情发生吗？"
+			icon: "ars_nouveau:imbuement_chamber"
+			x: -5.5d
+			y: 2.5d
+			description: [
+				"附魔室能让你创造大量魔法精华来编写新魔法。"
+				"源文件用于存储源，源可以提高附魔的执行速度。"
+			]
+			dependencies: ["64DF99CCA2BA9DEA"]
+			id: "111453A4A519C9C4"
+			tasks: [
+				{
+					id: "34A2A3AA810A9B34"
+					type: "item"
+					item: "ars_nouveau:imbuement_chamber"
+				}
+				{
+					id: "2B62C4AD071FB658"
+					type: "item"
+					item: "ars_nouveau:arcane_pedestal"
+					count: 8L
+				}
+				{
+					id: "15086B3F4DCEA8BD"
+					type: "item"
+					item: "ars_nouveau:source_jar"
+				}
+			]
+			rewards: [{
+				id: "65D1009F32B3915D"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "新魔法ccccc！"
+			icon: "ars_nouveau:blank_glyph"
+			x: -3.0d
+			y: 5.5d
+			description: ["Glyphes 是法术的基础，使用 scribe's table 创造新的魔法！"]
+			dependencies: ["6856584ECB3BF572"]
+			id: "4B96F639E417F73B"
+			tasks: [{
+				id: "082D09255A81BBD9"
+				type: "item"
+				title: "任意一个符文"
+				item: {
+					id: "itemfilters:id_regex"
+					Count: 1b
+					tag: {
+						value: "^ars_nouveau:glyph_*"
+					}
+				}
+			}]
+			rewards: [{
+				id: "32FFC35B68014BA0"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "请写下这张纸条，拜托了"
+			x: 9.5d
+			y: 0.5d
+			description: [
+				"仪式是通往更强大魔法的途径，"
+				"你需要用粉笔来绘制仪式图案。"
+			]
+			dependencies: ["3D5435AE9717F82D"]
+			id: "2574E91CD0725AC4"
+			tasks: [{
+				id: "58191ABF44F7EBCB"
+				type: "item"
+				item: "ars_nouveau:ritual_brazier"
+			}]
+			rewards: [
+				{
+					id: "0113146A91388623"
+					type: "choice"
+					exclude_from_claim_all: true
+					table_id: 3762149912793611757L
+				}
+				{
+					id: "28D6FE06E4B6EF05"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 2179164532636674591L
+				}
+			]
+		}
+		{
+			title: "华丽的附魔工艺"
+			icon: "ars_nouveau:enchanting_apparatus"
+			x: -8.0d
+			y: 10.5d
+			description: ["Enchanting Apparatus 是新魔法灌注的基础，你可以制作诸如 Enchanter's Bow 和其他魔法工具！"]
+			dependencies: ["1690155A0D203EB7"]
+			id: "77D934D4BD153E1D"
+			tasks: [
+				{
+					id: "27B02795312EFBC5"
+					type: "item"
+					item: "ars_nouveau:enchanting_apparatus"
+				}
+				{
+					id: "542B10481455416C"
+					type: "item"
+					item: "ars_nouveau:arcane_core"
+				}
+			]
+			rewards: [{
+				id: "72AB8CFACC4537A4"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "正在生成法力资源"
+			x: -8.0d
+			y: 8.0d
+			description: [
+				"Sourcelink 可以用熔炉或装置生成合成配方。"
+				"你需要制作源容器来储存源物质。"
+			]
+			dependencies: ["5F24673FA14D4204"]
+			id: "1690155A0D203EB7"
+			tasks: [{
+				id: "72C1BFE3AAC34CFA"
+				type: "item"
+				title: "任何来源链接"
+				item: {
+					id: "itemfilters:id_regex"
+					Count: 1b
+					tag: {
+						value: "^ars_nouveau:[a-z]*_sourcelink"
+					}
+				}
+			}]
+			rewards: [{
+				id: "59C3E03B7306CE2E"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "拥有充足的法力值后"
+			x: -3.0d
+			y: 0.5d
+			description: ["Archwood 是 ars nouveau 的基础木材，你可以在巫师塔或任何森林群系中找到它们。"]
+			dependencies: ["3D5435AE9717F82D"]
+			id: "64DF99CCA2BA9DEA"
+			tasks: [{
+				id: "2AE8D9535425630B"
+				type: "item"
+				title: "32x 任意的原木"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "forge:logs/archwood"
+					}
+				}
+				count: 32L
+			}]
+			rewards: [
+				{
+					id: "7434A675E83F2BE9"
+					type: "choice"
+					exclude_from_claim_all: true
+					table_id: 3762149912793611757L
+				}
+				{
+					id: "029290EF9114EB36"
+					type: "random"
+					exclude_from_claim_all: true
+					table_id: 2179164532636674591L
+				}
+			]
+		}
+		{
+			title: "更强大"
+			x: 3.5d
+			y: 2.5d
+			description: ["合成法师的咒语书以使用二级符文。"]
+			dependencies: ["3D5435AE9717F82D"]
+			id: "1941FD937885E046"
+			tasks: [{
+				id: "05583213B292F302"
+				type: "item"
+				item: "ars_nouveau:apprentice_spell_book"
+			}]
+			rewards: [{
+				id: "0E723F0CCFA0A639"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "最强大的那个"
+			x: 3.5d
+			y: 5.5d
+			description: ["合成大魔导师的魔法书以使用三级符文。"]
+			dependencies: [
+				"1941FD937885E046"
+				"063C1D22694CB51C"
+			]
+			id: "7D3698FE12D86A7F"
+			tasks: [{
+				id: "6318671C6C80DE85"
+				type: "item"
+				item: "ars_nouveau:archmage_spell_book"
+			}]
+			rewards: [{
+				id: "10D8DB749858F20B"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "与恶魔进行交易"
+			x: 3.5d
+			y: 13.0d
+			description: [
+				"这是 Ars Nouveau 中最高的魔法书，"
+				"你可以用这本书来施放4阶的符文。"
+			]
+			dependencies: [
+				"7D3698FE12D86A7F"
+				"2C84F1E865120D79"
+			]
+			id: "28DCD3CA5F0C897A"
+			tasks: [{
+				id: "7D967916DC9C900A"
+				type: "item"
+				item: "arsomega:arcane_book"
+			}]
+			rewards: [{
+				id: "02D00F8A1BCBC85D"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "正在收集法力值"
+			icon: "ars_nouveau:ritual_tribute"
+			x: 7.5d
+			y: 2.5d
+			description: [
+				"仪式是使用法力源创造神秘的方式。"
+				"你可以召唤一些生物，比如宠物或野性生物。"
+			]
+			dependencies: ["2574E91CD0725AC4"]
+			id: "3BA6489EE1ECF696"
+			tasks: [{
+				id: "298DA4129D1A34F6"
+				type: "item"
+				title: "任何仪式"
+				item: {
+					id: "itemfilters:id_regex"
+					Count: 1b
+					tag: {
+						value: "^ars_nouveau:ritual"
+					}
+				}
+			}]
+			rewards: [{
+				id: "3D5D82D4696B01F6"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "法师的护符 Sigil of wizard"
+			icon: "arsomega:sigil_binding"
+			x: 11.5d
+			y: 2.5d
+			description: [
+				"Sigil 是引导魔法力量的方式。"
+				"使用粉笔和仪式火盆来创造符文。"
+				"某些符文需要符文印记作为材料。"
+			]
+			dependencies: ["2574E91CD0725AC4"]
+			id: "398CA1A053B587E0"
+			tasks: [
+				{
+					id: "6B32F1C5433370B2"
+					type: "item"
+					title: "任意一个图腾印记"
+					item: {
+						id: "itemfilters:id_regex"
+						Count: 1b
+						tag: {
+							value: "^arsomega:sigil"
+						}
+					}
+				}
+				{
+					id: "4F6E82C7CAA0AD10"
+					type: "item"
+					item: "arsomega:chalk"
+				}
+			]
+			rewards: [{
+				id: "083DD6913A4DDFD5"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "自动拼写检查已开启"
+			x: -0.5d
+			y: 15.0d
+			description: ["法术炮台可以发射一些法术，并使用源来施放它们。"]
+			dependencies: ["38E44ADA55036452"]
+			id: "7248877BF2F80088"
+			tasks: [{
+				id: "1056913B2137A670"
+				type: "item"
+				item: "ars_nouveau:basic_spell_turret"
+			}]
+			rewards: [{
+				id: "161D2E61D1AE5996"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "直面恐惧"
+			icon: "ars_nouveau:wilden_tribute"
+			x: 5.5d
+			y: 4.0d
+			description: ["召唤野人能让你召唤野生生物，我们需要和它们战斗，并获取战利品。"]
+			dependencies: ["3BA6489EE1ECF696"]
+			id: "063C1D22694CB51C"
+			tasks: [
+				{
+					id: "245F9F6C434B4126"
+					type: "item"
+					item: "ars_nouveau:ritual_wilden_summon"
+				}
+				{
+					id: "28BBDD9728D428FD"
+					type: "item"
+					item: "ars_nouveau:wilden_tribute"
+				}
+			]
+			rewards: [{
+				id: "020ED6B291D91B39"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "你最好的朋友"
+			icon: "ars_nouveau:familiar_starbuncle"
+			x: 9.5d
+			y: 4.5d
+			description: ["使用束缚仪式，你可以与伙伴签订契约，随时召唤他们。他们会为你提供有益的效果。"]
+			dependencies: ["3BA6489EE1ECF696"]
+			id: "4EC44CD4C7FE9B40"
+			tasks: [{
+				id: "750AF33E430587AA"
+				type: "item"
+				title: "绑定任何一只信标生物"
+				item: {
+					id: "itemfilters:id_regex"
+					Count: 1b
+					tag: {
+						value: "^ars_nouveau:familiar"
+					}
+				}
+			}]
+			rewards: [{
+				id: "7DEAC62BD2ACC6F4"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "魔法大师"
+			x: -3.0d
+			y: 13.0d
+			description: ["Dominion Wand 拥有指挥所有基于法术的事件的力量，是控制的关键工具。"]
+			dependencies: ["77D934D4BD153E1D"]
+			id: "38E44ADA55036452"
+			tasks: [{
+				id: "0E740B78FAA812C2"
+				type: "item"
+				item: "ars_nouveau:dominion_wand"
+			}]
+			rewards: [{
+				id: "0BF36FE340EFCAEB"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "法力导管"
+			x: -3.0d
+			y: 15.0d
+			description: ["通过 Source Relay 系列方块，可以有效控制魔法的流动并将其传输到所需位置。"]
+			dependencies: ["38E44ADA55036452"]
+			id: "5A64EAB1291594AB"
+			tasks: [{
+				id: "6034779923409CC1"
+				type: "item"
+				item: "ars_nouveau:relay"
+			}]
+			rewards: [{
+				id: "6E068FBF0E53BC17"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "魔法的哆来咪"
+			icon: "ars_nouveau:wixie_cauldron"
+			x: 20.5d
+			y: 13.0d
+			description: ["Wixie 会消耗源材料并自动精炼物品或药水。"]
+			dependencies: ["113AB92E4F1807C6"]
+			id: "1B183D1514537E99"
+			tasks: [{
+				id: "677D95A6DB2D34E3"
+				type: "item"
+				item: "minecraft:cauldron"
+			}]
+			rewards: [{
+				id: "0C885EE48CF63AF7"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "星团（Starbuncle）"
+			x: 17.5d
+			y: 11.0d
+			description: ["星团是一种非常可爱的生物，既害羞又喜欢黄金。"]
+			hide_dependency_lines: true
+			dependencies: ["4EC44CD4C7FE9B40"]
+			hide: true
+			id: "197614D051D9B8FD"
+			tasks: [{
+				id: "4365ECB2F500034D"
+				type: "item"
+				item: {
+					id: "ars_nouveau:starbuncle_charm"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "40F55CAB12519AAE"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "书虫巫师"
+			x: 19.0d
+			y: 11.0d
+			description: ["Bookwyrm 充满智慧，理解人类的法术，并能熟练施放它们。"]
+			hide_dependency_lines: true
+			dependencies: ["4EC44CD4C7FE9B40"]
+			hide: true
+			id: "59E7862CD076BA77"
+			tasks: [{
+				id: "352589A3350E0957"
+				type: "item"
+				item: "ars_nouveau:bookwyrm_charm"
+			}]
+			rewards: [{
+				id: "271752BF5C1161FE"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "Wixie"
+			x: 20.5d
+			y: 11.0d
+			description: ["Wixie 是一位调皮的女巫，擅长酿造药水与制作物品。"]
+			hide_dependency_lines: true
+			dependencies: ["4EC44CD4C7FE9B40"]
+			hide: true
+			id: "113AB92E4F1807C6"
+			tasks: [{
+				id: "2A1F0706125D7932"
+				type: "item"
+				item: "ars_nouveau:wixie_charm"
+			}]
+			rewards: [{
+				id: "543B839DC0612F1F"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "漩涡之泉"
+			x: 16.0d
+			y: 11.0d
+			description: ["Whirlisprig 是大自然的守护者，喜爱众多朋友和美丽的环境。"]
+			hide_dependency_lines: true
+			dependencies: ["4EC44CD4C7FE9B40"]
+			hide: true
+			id: "0D984FFD8196B61B"
+			tasks: [{
+				id: "4C9805D07CC2D150"
+				type: "item"
+				item: "ars_nouveau:whirlisprig_charm"
+			}]
+			rewards: [{
+				id: "7117C5AAA72F6F28"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "Drygmy"
+			x: 14.0d
+			y: 11.0d
+			description: ["Drygmy喜欢和动物交朋友，并把它们的掉落物当作友谊的证明收集起来。"]
+			hide_dependency_lines: true
+			dependencies: ["4EC44CD4C7FE9B40"]
+			hide: true
+			id: "3358E502942E2736"
+			tasks: [{
+				id: "7EE863402C186694"
+				type: "item"
+				item: "ars_nouveau:drygmy_charm"
+			}]
+			rewards: [{
+				id: "4F811A0D46C9637F"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "紫水晶哥布林"
+			x: 12.5d
+			y: 11.0d
+			description: ["紫水晶哥布林偏爱紫水晶，能从紫水晶方块中挖掘出母岩进行采集。"]
+			hide_dependency_lines: true
+			dependencies: ["4EC44CD4C7FE9B40"]
+			hide: true
+			id: "213D05D645D3EB03"
+			tasks: [{
+				id: "72EA90E67B959D35"
+				type: "item"
+				item: "ars_nouveau:amethyst_golem_charm"
+			}]
+			rewards: [{
+				id: "595880BF3A727CC9"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "塞壬"
+			x: 11.0d
+			y: 11.0d
+			description: ["塞壬是游泳高手，能协助你捕捉水生生物。"]
+			hide_dependency_lines: true
+			dependencies: ["4EC44CD4C7FE9B40"]
+			hide: true
+			id: "12B05A2C84139C6D"
+			tasks: [{
+				id: "4F08F4E694EEE9BF"
+				type: "item"
+				item: "ars_elemental:siren_charm"
+			}]
+			rewards: [{
+				id: "1CADCBE3736B95B0"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "Flarecannon"
+			x: 9.5d
+			y: 11.0d
+			description: ["Flarecannon 是你最忠诚的守护者，会协助你保护你的伙伴。"]
+			hide_dependency_lines: true
+			dependencies: ["4EC44CD4C7FE9B40"]
+			hide: true
+			id: "790E00202F07F8A6"
+			tasks: [{
+				id: "1CF4C2E7A4CB3B80"
+				type: "item"
+				item: "ars_elemental:firenando_charm"
+			}]
+			rewards: [{
+				id: "35629370C753D8C5"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			x: 7.5d
+			y: 6.5d
+			description: ["你的法术研究遇到了瓶颈。你决定召唤一个恶魔，并从其邪恶的力量中汲取能量。"]
+			dependencies: ["063C1D22694CB51C"]
+			id: "2FB7B729BD1286E9"
+			tasks: [{
+				id: "1051219D2E45E38A"
+				type: "item"
+				item: "ars_nouveau:ritual_demonic_summoning"
+			}]
+			rewards: [{
+				id: "623B8C16DBC148CC"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "自愿流放 (Voluntary Exile)"
+			icon: "ars_nouveau:ritual_banishment"
+			x: 5.5d
+			y: 8.5d
+			description: ["自我放逐或许并非明智之举，但也许是探索禁忌知识的唯一机会。"]
+			dependencies: ["2FB7B729BD1286E9"]
+			id: "5EE6EF3D0A19784A"
+			tasks: [
+				{
+					id: "20A33C51B56F8385"
+					type: "item"
+					item: "ars_nouveau:ritual_banishment"
+				}
+				{
+					id: "4C1E706454C20720"
+					type: "dimension"
+					title: "前往恶魔领域"
+					icon: "arsomega:demonic_stone"
+					dimension: "arsomega:demon_realm"
+				}
+			]
+			rewards: [{
+				id: "4FC0C7E00A71C53D"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "恶魔的低语 (Whispers of the Demon)"
+			x: 5.5d
+			y: 11.0d
+			description: [
+				"击败魔王，并驾驭他的力量来增强自己。"
+				"使用魔杖可以召唤出魔王。"
+			]
+			dependencies: ["5EE6EF3D0A19784A"]
+			id: "2C84F1E865120D79"
+			tasks: [{
+				id: "47B66A0F069058F5"
+				type: "item"
+				item: "arsomega:demonic_crystal"
+			}]
+			rewards: [{
+				id: "61D1238E1AA86A19"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "跨维度传送门"
+			icon: "ars_nouveau:ritual_open_portal"
+			x: 9.5d
+			y: 8.5d
+			description: ["进入一个维度后，你可以使用维度水晶来记录它。然后通过传送门仪式，你就能创建通往该维度的传送门。"]
+			dependencies: ["2FB7B729BD1286E9"]
+			id: "3702AE92609CDB1C"
+			tasks: [
+				{
+					id: "495448E6FEB63AFD"
+					type: "item"
+					item: "arsomega:dimension_crystal"
+				}
+				{
+					id: "634D398EC1F5657C"
+					type: "item"
+					item: "ars_nouveau:ritual_open_portal"
+				}
+			]
+			rewards: [{
+				id: "78DA972252E3FABE"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "最可爱的宠物小精灵"
+			icon: "ars_nouveau:red_sbed"
+			x: 17.5d
+			y: 13.0d
+			description: ["Starbuncle 可以帮助在两点之间运输物品，并且可以配置黑名单或白名单。"]
+			dependencies: ["197614D051D9B8FD"]
+			id: "689B147F6B680A3B"
+			tasks: [
+				{
+					id: "40997FB556AB1810"
+					type: "item"
+					item: "ars_nouveau:allow_scroll"
+				}
+				{
+					id: "530F87DFE2DE5A11"
+					type: "item"
+					item: "ars_nouveau:deny_scroll"
+				}
+				{
+					id: "39A1FC28B2A01F33"
+					type: "item"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "ars_nouveau:summon_bed"
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "6CC1F6A3850DC2FC"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "Expelliarmus"
+			icon: "ars_nouveau:bookwyrm_lectern"
+			x: 19.0d
+			y: 13.0d
+			description: ["书虫可以自动施放你交给它的法术，并尝试对附近的方块施放。"]
+			dependencies: ["59E7862CD076BA77"]
+			id: "3A3588CAC0FA3A40"
+			tasks: [
+				{
+					id: "5B0F31B3AA40C40E"
+					type: "item"
+					item: "minecraft:lectern"
+				}
+				{
+					id: "711853A278BDE16D"
+					type: "item"
+					item: {
+						id: "ars_nouveau:spell_parchment"
+						Count: 1b
+						tag: { }
+					}
+				}
+			]
+			rewards: [{
+				id: "0AB5242D7C5BF980"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "牧羊犬"
+			icon: "ars_nouveau:drygmy_stone"
+			x: 14.0d
+			y: 13.0d
+			description: ["在苔石附近召唤干格米，它会自主收集附近生物掉落物并存放在箱子里。"]
+			dependencies: ["3358E502942E2736"]
+			id: "0FF50A397773B07C"
+			tasks: [{
+				id: "4B207A9433E1EB62"
+				type: "item"
+				item: "minecraft:mossy_cobblestone"
+			}]
+			rewards: [{
+				id: "622D9D4C46B9DD93"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "Budding Fabricator"
+			icon: "minecraft:amethyst_cluster"
+			x: 12.5d
+			y: 13.0d
+			description: ["紫水晶哥布林可以将紫水晶块转化为萌芽状态，并收集生成的紫水晶。"]
+			dependencies: ["213D05D645D3EB03"]
+			id: "2F8F764E3B1F8B17"
+			tasks: [{
+				id: "625298D79C08561A"
+				type: "item"
+				item: "minecraft:amethyst_block"
+				count: 9L
+			}]
+			rewards: [{
+				id: "4154BC107056ACEF"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "海妖的房子"
+			icon: "ars_elemental:mermaid_rock"
+			x: 11.0d
+			y: 13.0d
+			description: ["在棱镜岩附近召唤的海妖可以帮助我们捕鱼，并将鱼存入附近的箱子中。"]
+			dependencies: ["12B05A2C84139C6D"]
+			id: "6E70B0E2A5484752"
+			tasks: [{
+				id: "5690F14A14333A93"
+				type: "item"
+				item: "minecraft:prismarine"
+			}]
+			rewards: [{
+				id: "125661964B357649"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "烈焰弹头"
+			icon: "minecraft:magma_block"
+			x: 9.5d
+			y: 13.0d
+			description: ["使用岩浆块或灵魂沙可以切换Flarecannon的形式。被击败后，可以用烈焰粉或岩浆膏来复活它们。"]
+			dependencies: ["790E00202F07F8A6"]
+			id: "085D1AD0F52FC45E"
+			tasks: [
+				{
+					id: "51883E5E03B4EF0E"
+					type: "item"
+					item: "minecraft:magma_block"
+					count: 10L
+				}
+				{
+					id: "092E4DEBFD3B391B"
+					type: "item"
+					item: "minecraft:soul_sand"
+					count: 10L
+				}
+				{
+					id: "530967A26248074F"
+					type: "item"
+					title: "烈焰粉/岩浆膏"
+					item: {
+						id: "itemfilters:or"
+						Count: 1b
+						tag: {
+							items: [
+								{
+									id: "minecraft:blaze_powder"
+									Count: 1b
+								}
+								{
+									id: "minecraft:magma_cream"
+									Count: 1b
+								}
+							]
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "26E61B6F2A680787"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "环境守护者"
+			icon: "ars_nouveau:whirlisprig_flower"
+			x: 16.0d
+			y: 13.0d
+			description: ["在花朵附近召唤 Whirlisprig，它会认为这里是家，并尝试通过生成自然相关资源来美化它。"]
+			dependencies: ["0D984FFD8196B61B"]
+			id: "7B4AC391B1143C5F"
+			tasks: [{
+				id: "7BA2AA71EAB3B150"
+				type: "item"
+				title: "任意的花朵"
+				item: {
+					id: "itemfilters:tag"
+					Count: 1b
+					tag: {
+						value: "minecraft:flowers"
+					}
+				}
+			}]
+			rewards: [{
+				id: "1961069F4702FEDD"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "附魔的种子"
+			x: -7.0d
+			y: 13.0d
+			description: ["Magebloom 是一种注入了法力能量的纤维，用于编织长袍和魔法材料。"]
+			dependencies: ["77D934D4BD153E1D"]
+			id: "0BB3B2BD1A4E55F7"
+			tasks: [
+				{
+					id: "62FB9903B6097893"
+					type: "item"
+					item: "ars_nouveau:magebloom_crop"
+				}
+				{
+					id: "28CCD1A4B44F4841"
+					type: "item"
+					item: "ars_nouveau:magebloom_fiber"
+					count: 16L
+				}
+			]
+			rewards: [{
+				id: "38CB9160BA23D994"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "法力编织 (Mana Weaving)"
+			icon: {
+				id: "ars_nouveau:apprentice_hood"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: -7.0d
+			y: 15.0d
+			description: ["由 Magebloom 编织而成的法师装备能增强法力并减少消耗。其效果随护甲值的降低而增强。"]
+			dependencies: ["0BB3B2BD1A4E55F7"]
+			id: "4E98E96262ECAB0B"
+			tasks: [
+				{
+					id: "00F4E4A934596D06"
+					type: "item"
+					title: "任意法师兜帽"
+					item: {
+						id: "itemfilters:id_regex"
+						Count: 1b
+						tag: {
+							value: "^ars_nouveau:.*_hood"
+						}
+					}
+				}
+				{
+					id: "0DC843BF149A368B"
+					type: "item"
+					title: "任意一件法师长袍"
+					item: {
+						id: "itemfilters:id_regex"
+						Count: 1b
+						tag: {
+							value: "^ars_nouveau:.*_robe"
+						}
+					}
+				}
+				{
+					id: "57BF280F0CAAE0B5"
+					type: "item"
+					title: "任意一件法师护腿 (Any Mage Leggings)"
+					item: {
+						id: "itemfilters:id_regex"
+						Count: 1b
+						tag: {
+							value: "^ars_nouveau:.*_leggings"
+						}
+					}
+				}
+				{
+					id: "45841C9FF86F2700"
+					type: "item"
+					title: "任意一款法师靴子"
+					item: {
+						id: "itemfilters:id_regex"
+						Count: 1b
+						tag: {
+							value: "^ars_nouveau:.*_boots"
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "4A065B4660921939"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "大师级编织"
+			icon: {
+				id: "arsomega:arcane_helmet"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: -7.0d
+			y: 17.0d
+			shape: "hexagon"
+			description: ["来自 Ars Omega 的高级法师装备带来了更强大的魔法和更低的消耗。"]
+			dependencies: ["4E98E96262ECAB0B"]
+			hide: true
+			id: "630DD214D2B9106A"
+			tasks: [
+				{
+					id: "5F31A87B116B486E"
+					type: "item"
+					title: "先进头套"
+					item: {
+						id: "itemfilters:id_regex"
+						Count: 1b
+						tag: {
+							value: "^arsomega:.*_helmet"
+						}
+					}
+				}
+				{
+					id: "36969AE313FE82AE"
+					type: "item"
+					title: "进阶长袍"
+					item: {
+						id: "itemfilters:id_regex"
+						Count: 1b
+						tag: {
+							value: "^arsomega:.*_chestplate"
+						}
+					}
+				}
+				{
+					id: "4BC0E5E3F4FC7602"
+					type: "item"
+					title: "进阶护腿 (Advance Leggings)"
+					item: {
+						id: "itemfilters:id_regex"
+						Count: 1b
+						tag: {
+							value: "^arsomega:.*_leggings"
+						}
+					}
+				}
+				{
+					id: "6CD5FD1DC7887157"
+					type: "item"
+					title: "进阶靴子"
+					item: {
+						id: "itemfilters:id_regex"
+						Count: 1b
+						tag: {
+							value: "^arsomega:.*_boots"
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "06511FD2E8A57CDA"
+				type: "random"
+				table_id: 3948332166029318293L
+			}]
+		}
+		{
+			title: "魔法侦测"
+			x: -0.5d
+			y: 2.5d
+			description: ["罗盘可以帮助你找到阿瑞斯新风格的紫水晶洞穴或生物，但它的使用次数有限。"]
+			dependencies: ["64DF99CCA2BA9DEA"]
+			id: "269324CBFF337DCB"
+			tasks: [{
+				id: "43ABEC67B14C5A88"
+				type: "item"
+				item: {
+					id: "ars_nouveau:dowsing_rod"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "1E8B5F133661815D"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "本质的罪孽"
+			icon: "ars_nouveau:manipulation_essence"
+			x: -10.5d
+			y: 8.0d
+			description: ["精粹是 Ars Nouvaeu 的基础材料，所有精粹都是通过合成获得的"]
+			dependencies: ["5F24673FA14D4204"]
+			hide: true
+			id: "5D5A6678303FFCE5"
+			tasks: [{
+				id: "616DC866B7CFF356"
+				type: "item"
+				item: {
+					id: "itemfilters:id_regex"
+					Count: 1b
+					tag: {
+						value: "^ars_nouveau:.*_essence"
+					}
+				}
+				count: 8L
+			}]
+			rewards: [{
+				id: "429C2F017FD7B4C5"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "驯服大师"
+			icon: "ars_nouveau:allow_scroll"
+			x: 15.0d
+			y: 15.0d
+			shape: "hexagon"
+			description: ["恭喜你成为驯兽大师！享受与驯兽伙伴的时光，建造你自己的家园吧！"]
+			dependencies: [
+				"7B4AC391B1143C5F"
+				"0FF50A397773B07C"
+				"3A3588CAC0FA3A40"
+				"689B147F6B680A3B"
+				"1B183D1514537E99"
+				"6E70B0E2A5484752"
+				"2F8F764E3B1F8B17"
+				"085D1AD0F52FC45E"
+			]
+			id: "329B2A709C835F3A"
+			tasks: [{
+				id: "4A18C5ED20ACAE2A"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "5E4EB324FCC0781E"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "BAKA and TEST"
+			x: -9.0d
+			y: 13.0d
+			description: [
+				"召唤焦点能增强召唤生物的身体素质，提升它们的战斗能力。"
+				"同时，它也是其他专精方向所需的前置材料。"
+			]
+			dependencies: ["77D934D4BD153E1D"]
+			id: "18E2D0C773635892"
+			tasks: [{
+				id: "5F1B8F7AD98FF4C4"
+				type: "item"
+				item: "ars_nouveau:summon_focus"
+			}]
+			rewards: [{
+				id: "5F711C633302ECC1"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "Metalmorph"
+			x: -0.5d
+			y: 17.0d
+			description: ["法术棱镜可以重定向入射魔法，并从其他面发射出来。"]
+			dependencies: ["7248877BF2F80088"]
+			id: "37DFC7DF10F8C91F"
+			tasks: [{
+				id: "04099E8A9A6D1F13"
+				type: "item"
+				item: "ars_nouveau:spell_prism"
+			}]
+			rewards: [{
+				id: "2D6C2D7ED0B430B8"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			x: 11.5d
+			y: 6.5d
+			description: ["如果你的星灵经常死亡，可以用这张卷轴把它召唤回凡间。"]
+			dependencies: ["4EC44CD4C7FE9B40"]
+			id: "012510559EA326D3"
+			tasks: [{
+				id: "45BA3363EEEEA6E2"
+				type: "item"
+				item: {
+					id: "ars_instrumentum:scroll_of_save_starbuncle"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "28762618F2528770"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "可视化法力值（Visualizing Mana）"
+			x: -12.5d
+			y: 13.0d
+			description: ["佩戴此护身符，你可以清楚地看到你的法力值以及消耗数值。"]
+			dependencies: ["77D934D4BD153E1D"]
+			id: "2251DBF817D4BC13"
+			tasks: [{
+				id: "17AE3BA03967AAFC"
+				type: "item"
+				item: "ars_instrumentum:numeric_mana_charm"
+			}]
+			rewards: [{
+				id: "776969428E1E5D55"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "四维的"
+			x: -4.5d
+			y: 15.0d
+			description: ["Trinlets Pouch 提供了存放遗物的便捷空间，可放置在奇物栏中以便携带。"]
+			dependencies: ["0BB3B2BD1A4E55F7"]
+			id: "38F9C2BAB482FC88"
+			tasks: [{
+				id: "6F05BC25B9948ADD"
+				type: "item"
+				item: "ars_elemental:curio_bag"
+			}]
+			rewards: [{
+				id: "673FBDF3001825FE"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			x: 13.5d
+			y: 4.5d
+			description: ["魔法粉笔是存储法术的便捷工具。你可以将法术施加在粉笔痕迹上，让经过的生物受到法术效果的影响。"]
+			dependencies: ["398CA1A053B587E0"]
+			id: "57B7779D1FFB4530"
+			tasks: [{
+				id: "754F988EF5488675"
+				type: "item"
+				item: {
+					id: "arsomega:magic_chalk"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "59A8D5A1F902709A"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "探索元素的力量 Exploring the Power of elements"
+			icon: "ars_elemental:lesser_fire_focus"
+			x: -5.5d
+			y: 8.0d
+			description: ["元素专注会提升你对特定学派符文的掌握，增强其威力并降低法力消耗。"]
+			hide_dependency_lines: false
+			dependencies: ["5F24673FA14D4204"]
+			hide: true
+			id: "436E473FC34885C6"
+			tasks: [{
+				id: "4E67A5135F96EC16"
+				type: "item"
+				title: "任意的小焦点（Lesser Focus）"
+				item: {
+					id: "itemfilters:id_regex"
+					Count: 1b
+					tag: {
+						value: "^ars_elemental:(?=lesser).*_focus"
+					}
+				}
+			}]
+			rewards: [{
+				id: "7D3A0B65CE492973"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			x: -9.0d
+			y: 17.0d
+			shape: "hexagon"
+			description: ["高级聚焦可以转化那些更难获得的材料。"]
+			dependencies: ["12908392C3B7BF90"]
+			hide: true
+			id: "67F82E7C7F508105"
+			tasks: [{
+				id: "0832AA1B896DBFCC"
+				type: "item"
+				item: "arsomega:focus_of_advanced_alchemy"
+			}]
+			rewards: [{
+				id: "17542F04D9FDBCE2"
+				type: "random"
+				table_id: 3948332166029318293L
+			}]
+		}
+		{
+			x: -9.0d
+			y: 15.0d
+			description: ["炼金术的焦点增强了转换符文的威力，并让你能获取来自更神秘维度的材料。"]
+			dependencies: ["18E2D0C773635892"]
+			id: "12908392C3B7BF90"
+			tasks: [{
+				id: "529A64783B63FCB8"
+				type: "item"
+				item: "arsomega:focus_of_alchemy"
+			}]
+			rewards: [{
+				id: "631139DF6968FC0B"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "Mooncell"
+			x: -8.0d
+			y: 5.5d
+			description: ["源宝石是 Ars Nouveau 中最关键的材料之一，许多配方都依赖于此。建议提前准备大量源宝石。"]
+			dependencies: ["111453A4A519C9C4"]
+			id: "5F24673FA14D4204"
+			tasks: [{
+				id: "79A33EFA96705F40"
+				type: "item"
+				item: "ars_nouveau:source_gem"
+				count: 16L
+			}]
+			rewards: [{
+				id: "7DD655087CA3A846"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "元素大师 Elemental Master"
+			icon: "ars_elemental:necrotic_focus"
+			x: -11.5d
+			y: 15.0d
+			description: ["彻底掌握元素的力量后，你可以进一步增幅、强化和削减。此外，本阶段的专注点可以强化亡灵魔法法术。"]
+			dependencies: ["18E2D0C773635892"]
+			id: "78BB9A82C4CD7059"
+			tasks: [{
+				id: "7EDDE219A5BEBB99"
+				type: "item"
+				title: "任意元素焦点（Any elemental focus）"
+				item: {
+					id: "itemfilters:id_regex"
+					Count: 1b
+					tag: {
+						value: "^ars_elemental:(?!lesser).*_focus"
+					}
+				}
+			}]
+			rewards: [{
+				id: "3CDD20AE7B0C3511"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "便携式衣柜"
+			x: -4.5d
+			y: 17.0d
+			description: [
+				"衣柜最多可存放三套服装，甚至可以容纳快捷栏的物品。"
+				"不过，如前所述，使用时请注意，以免不小心移走快捷栏中的物品。"
+			]
+			dependencies: ["38F9C2BAB482FC88"]
+			id: "434D8F1145663451"
+			tasks: [{
+				id: "42FCC98AFE665D92"
+				type: "item"
+				item: {
+					id: "ars_instrumentum:wizards_armarium"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "61F2A707D24438E9"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "弱点政策"
+			x: -3.0d
+			y: 17.0d
+			description: [
+				"Runic Stone of Storage 是避免清除 Source Relay 记录的物品。"
+				"使用后，它会缓冲路径源中继器所拥有的路径。"
+			]
+			dependencies: ["5A64EAB1291594AB"]
+			id: "6B51DBD1B9C05AED"
+			tasks: [{
+				id: "5B083926DCAF718E"
+				type: "item"
+				item: {
+					id: "ars_instrumentum:runic_storage_stone"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "48156C8518721FA3"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+		{
+			title: "自动化园艺系统 (Autonomous Gardening)"
+			icon: "dtarsnouveau:yellow_archwood_seed"
+			x: -0.5d
+			y: 5.5d
+			description: ["由于动态树木模组，获取拱木树苗更难了，但你仍然需要自己种植，不是吗？"]
+			dependencies: ["64DF99CCA2BA9DEA"]
+			invisible: true
+			id: "06B27260E8E0FA5F"
+			tasks: [{
+				id: "5FCC9B1D5F8C8127"
+				type: "item"
+				title: "任意一种远古木树苗"
+				item: {
+					id: "itemfilters:id_regex"
+					Count: 1b
+					tag: {
+						value: "^ars_nouveau:.*_archwood_sapling"
+					}
+				}
+			}]
+			rewards: [{
+				id: "04E3C179781EFBCA"
+				type: "random"
+				exclude_from_claim_all: true
+				table_id: 2179164532636674591L
+			}]
+		}
+	]
+	quest_links: [ ]
+}

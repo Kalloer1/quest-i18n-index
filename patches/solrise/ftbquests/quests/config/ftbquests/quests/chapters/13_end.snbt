@@ -1,0 +1,228 @@
+# AI 初翻，未人工校对
+{
+	id: "AD00000000000001"
+	group: ""
+	order_index: 12
+	filename: "13_end"
+	title: "传送门之外"
+	icon: "minecraft:end_stone"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			id: "AD00000000000010"
+			type: "task"
+			title: "末地之眼"
+			icon: "minecraft:ender_eye"
+			x: 0d
+			y: 0d
+			description: ["将末影珍珠与烈焰粉结合，制作末影之眼。你需要十二个来激活末地传送门。将它们抛向空中，以追踪要塞的位置。"]
+			tasks: [{
+				id: "AD00000000000011"
+				type: "item"
+				item: "minecraft:ender_eye"
+				count: 12L
+			}]
+			rewards: [{
+				id: "AD00000000000012"
+				type: "item"
+				item: "minecraft:ender_pearl"
+				count: 8L
+			}]
+		}
+		{
+			id: "AD00000000000020"
+			type: "task"
+			title: "找到要塞 (Find the Stronghold)"
+			icon: "minecraft:stone_bricks"
+			x: 2d
+			y: 0d
+			description: ["用末影之眼定位要塞。YUNG's Better Strongholds 将其改造成一个正式的地下城。在激活末地传送门前，请仔细探索。"]
+			dependencies: ["AD00000000000010"]
+			tasks: [{
+				id: "AD00000000000021"
+				type: "checkmark"
+				title: "找到要塞 (Find the Stronghold)"
+			}]
+			rewards: [{
+				id: "AD00000000000022"
+				type: "item"
+				item: "minecraft:golden_apple"
+				count: 4L
+			}]
+		}
+		{
+			id: "AD00000000000030"
+			type: "task"
+			title: "进入末地"
+			icon: "minecraft:end_portal_frame"
+			x: 4d
+			y: 0d
+			description: ["激活末地传送门并穿过。务必做好准备。带上下界合金装备、药水，还有充足的食物。与末影龙的战斗比看起来容易，但坠落伤害可不是闹着玩的。"]
+			dependencies: ["AD00000000000020"]
+			tasks: [{
+				id: "AD00000000000031"
+				type: "checkmark"
+				title: "进入末地"
+			}]
+			rewards: [{
+				id: "AD00000000000032"
+				type: "item"
+				item: "minecraft:end_stone"
+				count: 32L
+			}]
+		}
+		{
+			id: "AD00000000000040"
+			type: "task"
+			title: "屠龙勇士"
+			icon: "minecraft:dragon_egg"
+			x: 0d
+			y: 2d
+			description: ["先摧毁黑曜石柱上的末地水晶，等末影龙飞到喷泉上再攻击。它死亡、字幕滚动的那一刻，是值得庆祝的里程碑。"]
+			dependencies: ["AD00000000000030"]
+			tasks: [{
+				id: "AD00000000000041"
+				type: "stat"
+				stat: "minecraft:killed"
+				substat: "minecraft:ender_dragon"
+				value: 1
+			}]
+			rewards: [{
+				id: "AD00000000000042"
+				type: "item"
+				item: "minecraft:elytra"
+				count: 1L
+			}]
+		}
+		{
+			id: "AD00000000000050"
+			type: "task"
+			title: "龙之蛋"
+			icon: "minecraft:dragon_egg"
+			x: 2d
+			y: 2d
+			description: ["从喷泉中夺取龙之蛋。它是游戏中最稀有的方块，无法通过其他方式获得。在基地中自豪地展示它，作为你胜利的证明。"]
+			dependencies: ["AD00000000000040"]
+			tasks: [{
+				id: "AD00000000000051"
+				type: "item"
+				item: "minecraft:dragon_egg"
+				count: 1L
+			}]
+			rewards: [{
+				id: "AD00000000000052"
+				type: "item"
+				item: "minecraft:dragon_breath"
+				count: 4L
+			}]
+		}
+		{
+			id: "AD00000000000060"
+			type: "task"
+			title: "Nullscape"
+			icon: "minecraft:chorus_fruit"
+			x: 4d
+			y: 2d
+			description: ["Nullscape 重制了末地，加入了新的群系和地形。外岛现在看起来完全不同了。击败末影龙后，通过传送门投掷末影珍珠即可探索它们。"]
+			dependencies: ["AD00000000000050"]
+			tasks: [{
+				id: "AD00000000000061"
+				type: "checkmark"
+				title: "探索末地的外围岛屿"
+			}]
+			rewards: [{
+				id: "AD00000000000062"
+				type: "item"
+				item: "minecraft:shulker_shell"
+				count: 4L
+			}]
+		}
+		{
+			id: "AD00000000000070"
+			type: "task"
+			title: "末地城市"
+			icon: "minecraft:purpur_block"
+			x: 0d
+			y: 4d
+			description: ["寻找并突袭一座末地城。里面含有鞘翅、潜影盒和稀有的附魔装备。用获得的潜影盒建造便携储物系统，供游戏剩余时间使用。"]
+			dependencies: ["AD00000000000060"]
+			tasks: [{
+				id: "AD00000000000071"
+				type: "item"
+				item: "minecraft:shulker_box"
+				count: 1L
+			}]
+			rewards: [{
+				id: "AD00000000000072"
+				type: "item"
+				item: "minecraft:purpur_block"
+				count: 32L
+			}]
+		}
+		{
+			id: "AD00000000000080"
+			type: "task"
+			title: "鞘翅翅膀"
+			icon: "minecraft:elytra"
+			x: 2d
+			y: 4d
+			description: ["装备你的鞘翅，展翅高飞。用烟花火箭来加速。从空中看世界完全不一样。这是探索Solrise的终极方式。"]
+			dependencies: ["AD00000000000070"]
+			tasks: [{
+				id: "AD00000000000081"
+				type: "item"
+				item: "minecraft:elytra"
+				count: 1L
+			}]
+			rewards: [{
+				id: "AD00000000000082"
+				type: "item"
+				item: "minecraft:firework_rocket"
+				count: 16L
+			}]
+		}
+		{
+			id: "AD00000000000090"
+			type: "task"
+			title: "龙之鳞甲套装"
+			icon: "dragonloot:dragon_scale"
+			x: 4d
+			y: 4d
+			description: ["龙之宝藏模组让末影龙掉落鳞片。收集它们，制作强大的末影龙鳞片盔甲。这是击败巨龙者的荣耀奖励。"]
+			dependencies: ["AD00000000000080"]
+			tasks: [{
+				id: "AD00000000000091"
+				type: "item"
+				item: "dragonloot:dragon_scale"
+				count: 8L
+			}]
+			rewards: [{
+				id: "AD00000000000092"
+				type: "item"
+				item: "minecraft:diamond"
+				count: 8L
+			}]
+		}
+		{
+			id: "AD0000000000000A"
+			type: "task"
+			title: "三世界之主"
+			icon: "minecraft:nether_star"
+			x: 2d
+			y: 6d
+			description: ["你征服了主世界，幸存于下界，并在末地击败了末影龙。你见证了所有三个维度，并活了下来。现在，真正的冒险才刚刚开始。"]
+			dependencies: ["AD00000000000090"]
+			tasks: [{
+				id: "AD0000000000000B"
+				type: "checkmark"
+				title: "征服所有三个维度"
+			}]
+			rewards: [{
+				id: "AD0000000000000C"
+				type: "xp"
+				xp: 300
+			}]
+		}
+	]
+}

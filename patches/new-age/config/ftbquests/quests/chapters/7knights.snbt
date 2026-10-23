@@ -1,0 +1,595 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "7knights"
+	group: "5176EA89B02D5874"
+	id: "1295A195D46D4A12"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["怪物精华可用于制作强大的&6骑士&r盔甲。通过击杀怪物来获取它！"]
+			icon: "totemic:eagle_bone"
+			id: "512DA0AE4839DB1F"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "4AAFD64E2EFA12D1"
+				table_id: 4535501826419328933L
+				type: "random"
+			}]
+			subtitle: "你可以通过击杀僵尸或骷髅来获得怪物精华。"
+			tasks: [{
+				count: 4L
+				id: "1007AEF4466E8E9F"
+				item: { Count: 4, id: "knightlib:small_essence" }
+				type: "item"
+			}]
+			title: "&6&l获取怪物精华 (Obtain Monster Essence)</c2></c1>"
+			x: -0.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["512DA0AE4839DB1F"]
+			description: ["你需要更强大的精华来制作更强大的盔甲。先制作4个吧！"]
+			id: "2895838D916F1970"
+			subtitle: "合成 Great Essence 来开始制作强大的盔甲吧！"
+			tasks: [{
+				count: 4L
+				id: "616AEA18AD484A60"
+				item: { Count: 4, id: "knightlib:great_essence" }
+				type: "item"
+			}]
+			title: "&6&l合成更强大的怪物精华"
+			x: -1.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["512DA0AE4839DB1F"]
+			description: ["可以使用大杯来制作&6骑士盔甲&r。它可以用&a精华来填充。"]
+			id: "22E97F21172E1968"
+			subtitle: "如果你想制作盔甲，大杯是一个非常非常重要的方块。"
+			tasks: [{
+				block: "knightlib:great_chalice"
+				block_type: 0
+				icon: "knightlib:great_chalice"
+				id: "4558D62C1C3FDE6C"
+				replace: false
+				replaced: "minecraft:air"
+				title: "放置一个大圣杯"
+				type: "questsadditions:place"
+				value: 1L
+			}]
+			title: "&6&l放置一个大圣杯"
+			x: 0.5d
+			y: -2.0d
+		}
+		{
+			dependencies: [
+				"22E97F21172E1968"
+				"2895838D916F1970"
+			]
+			description: ["装满圣杯，然后用高脚杯制作&6盔甲！"]
+			icon: {
+				Count: 1
+				id: "minecraft:iron_sword"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "5E5653141CE7160E"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "73AF511AAC855FF9"
+				table_id: 4535501826419328933L
+				type: "random"
+			}]
+			size: 1.4d
+			subtitle: "要制作大多数可用的盔甲，你需要一个完整的圣杯。但首先，要填满圣杯！"
+			tasks: [{
+				block: "knightlib:great_chalice"
+				block_type: 0
+				checkItem: true
+				icon: "knightlib:great_essence"
+				id: "40E066437297F2DD"
+				isItemInteraction: false
+				item: "knightlib:great_essence"
+				title: "将圣杯装满"
+				type: "questsadditions:use"
+				value: 3L
+			}]
+			title: "&6&l填满圣杯"
+			x: -0.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["5E5653141CE7160E"]
+			description: ["圣杯可以用&a精华来填充。"]
+			id: "64834C93FA5A95A8"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "62CAEE6778E30883"
+				table_id: 3710718200219029633L
+				type: "random"
+			}]
+			subtitle: "圣杯可用于大多数涉及盔甲的合成配方。"
+			tasks: [{
+				id: "2DBB5A18820556DC"
+				item: "knightlib:empty_grail"
+				title: "制作一个圣杯 (Craft a grail)"
+				type: "item"
+			}]
+			title: "&6&l制作一个圣杯"
+			x: -0.5d
+			y: -5.5d
+		}
+		{
+			description: [
+				"鼠人是很危险的生物！它们&a敏捷&r，攻击速度快。通常它们会成群结队，当生命值低时，"
+				"它们可以射出&c火焰箭&r或&8烟雾弹！"
+				"它们死亡时，会掉落&c鼠人眼。"
+			]
+			id: "7B766A3ED10E1BFA"
+			rewards: [
+				{
+					id: "61DB739DA2084E13"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+				{
+					exclude_from_claim_all: true
+					id: "0EA7A5A81186F72E"
+					table_id: 2984437215509173013L
+					type: "random"
+				}
+			]
+			shape: "diamond"
+			subtitle: "Ratmen 会出现在丛林生物群系中，并用致命的十字弓攻击，所以带上盾牌！"
+			tasks: [{
+				entity: "knightquest:ratman"
+				icon: {
+					Count: 1
+					id: "minecraft:crossbow"
+					tag: {
+						Damage: 0
+					}
+				}
+				id: "0573FEA239C5D6A2"
+				title: "杀死30个Ratmen"
+				type: "kill"
+				value: 30L
+			}]
+			title: "&6&l干掉那些讨厌的老鼠！"
+			x: 1.0d
+			y: -7.0d
+		}
+		{
+			description: [
+				"小心与&cGremlins!&r战斗！当它们的血量变低时，有一定几率会进入&c暴走&r状态，从而提升伤害和速度。"
+				"它们还能召唤&cGhastlings&r，它们会朝你飞来并爆炸！"
+				"如果你觉得打不过它们，给它们一个&6金锭&r就能分散它们的注意力！"
+			]
+			id: "1B8A5CAEAACB9C94"
+			rewards: [
+				{
+					id: "030E1CAF74363F92"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+				{
+					exclude_from_claim_all: true
+					id: "040ABD386C57FE82"
+					table_id: 3710718200219029633L
+					type: "random"
+				}
+			]
+			shape: "diamond"
+			subtitle: "格雷姆林是邪恶的小野兽。它们会出现在绯红森林里。"
+			tasks: [{
+				entity: "knightquest:gremlin"
+				icon: "minecraft:crimson_roots"
+				id: "10FEB228880CE5D9"
+				title: "小精灵？！"
+				type: "kill"
+				value: 20L
+			}]
+			title: "&6&l小精灵？！"
+			x: -2.0d
+			y: -5.5d
+		}
+		{
+			description: [
+				"&3鬼魂&r本身并不危险，但它们会赋予附近敌人&3无敌&r，所以务必小心"
+				"为此而战的！"
+			]
+			icon: "minecraft:dandelion"
+			id: "6E1CB98B0DD4D421"
+			rewards: [{
+				id: "50B0FA5519F51A7E"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			shape: "diamond"
+			subtitle: "幽灵有时会出现在森林或针叶林里。"
+			tasks: [{
+				entity: "knightquest:ghosty"
+				icon: "minecraft:dandelion"
+				id: "7C2A645BE5866B24"
+				title: "杀死 20 只幽灵怪"
+				type: "kill"
+				value: 20L
+			}]
+			title: "&6&l这些难道是……鬼魂吗？！"
+			x: 1.0d
+			y: -3.5d
+		}
+		{
+			description: ["&cBad Patches&r行动迅速，会用它们的&cclaws&r攻击，但它们很脆弱，可以轻松击败。"]
+			id: "11794B2CA30C235D"
+			rewards: [
+				{
+					id: "29A6C077383E308A"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+				{
+					exclude_from_claim_all: true
+					id: "625DD31C2096F2A7"
+					table_id: 3710718200219029633L
+					type: "random"
+				}
+			]
+			shape: "diamond"
+			subtitle: "Bad Patches 有时会出现在下界中。"
+			tasks: [{
+				entity: "knightquest:bad_patch"
+				icon: "alexsmobs:dropbear_claw"
+				id: "4C4F0BF8F2F8DD01"
+				title: "击杀 20 个坏地皮生物"
+				type: "kill"
+				value: 20L
+			}]
+			title: "&6&l地狱之咬"
+			x: -2.0d
+			y: -7.5d
+		}
+		{
+			description: ["&3Eld Bombs&r 是一种奇怪的生物。它们和 &2Creepers&r 类似，会跟踪你并在靠近时爆炸。"]
+			icon: "supplementaries:bomb"
+			id: "3D290E8302098D21"
+			rewards: [{
+				id: "4DD2F02C5590F186"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			shape: "diamond"
+			subtitle: "Eld Bombs有时会出现在雪地生物群系中。"
+			tasks: [{
+				entity: "knightquest:eldbomb"
+				icon: "supplementaries:bomb"
+				id: "16A6C0E405D59247"
+				title: "击杀 20 个 Eld 炸弹"
+				type: "kill"
+				value: 20L
+			}]
+			title: "&6&l轰隆！！"
+			x: 1.5d
+			y: -10.5d
+		}
+		{
+			description: [
+				"这些&3骑士&r是生命值超高的强大敌人。"
+				"生命值低时，它们可以召唤&3Eld炸弹&r和&2毒云！"
+			]
+			id: "1C7B344463A15ECF"
+			rewards: [
+				{
+					id: "4E12A026CAD5F379"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+				{
+					exclude_from_claim_all: true
+					id: "0A829AC0F64F7C8C"
+					table_id: 3710718200219029633L
+					type: "random"
+				}
+			]
+			shape: "diamond"
+			subtitle: "Eld Knights 是强大的敌人，通常出现在雪地生物群系中。"
+			tasks: [{
+				entity: "knightquest:eldknight"
+				icon: {
+					Count: 1
+					id: "iceandfire:silver_axe"
+					tag: {
+						Damage: 0
+					}
+				}
+				id: "61DA36ADA337416C"
+				title: "击杀5名Eld骑士"
+				type: "kill"
+				value: 5L
+			}]
+			title: "&6&l金属的宿敌"
+			x: 2.5d
+			y: -8.0d
+		}
+		{
+			description: [
+				"当你靠近时，这些危险的敌人会用斧头攻击你。"
+				"血量低时，它们还可以&c投掷斧头&r。"
+			]
+			id: "0BB5F8D2F269C60D"
+			rewards: [
+				{
+					id: "6FB18101930CE30F"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+				{
+					exclude_from_claim_all: true
+					id: "0208C9D17A168AE1"
+					table_id: 3710718200219029633L
+					type: "random"
+				}
+			]
+			shape: "diamond"
+			subtitle: "沼泽人经常出现在沼泽或河流中。"
+			tasks: [{
+				entity: "knightquest:swampman"
+				icon: "minecraft:lily_pad"
+				id: "16A68BB75091E993"
+				title: "杀死5个沼泽人（Swampsmen）"
+				type: "kill"
+				value: 5L
+			}]
+			title: "&l&6人形与爬行类生物的结合体"
+			x: 1.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["59403938C0AD937C"]
+			id: "446C5EFFF2787E70"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7C98B41E711AEB0D"
+				table_id: 4535501826419328933L
+				type: "random"
+			}]
+			subtitle: "Radiant Essence 是一种由 Nether Stars 和 Greater Essence 制成的稀有物品。"
+			tasks: [{
+				id: "53F1C698298B7A20"
+				item: "knightquest:radiant_essence"
+				title: "获得一个光辉精华 (Radiant Essence)"
+				type: "item"
+			}]
+			title: "&6&l获取光辉精华 (Radiant Essence)</c2></c1>"
+			x: 4.0d
+			y: -10.0d
+		}
+		{
+			dependencies: ["446C5EFFF2787E70"]
+			id: "7CBC81A4D92D137A"
+			rewards: [
+				{
+					exclude_from_claim_all: true
+					id: "5A7B9B11B4677139"
+					table_id: 1404902952723356929L
+					type: "random"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "0497A7B503459F63"
+					table_id: 4655027388003733417L
+					type: "random"
+				}
+			]
+			shape: "octagon"
+			size: 1.6d
+			subtitle: "下界建筑师是一个危险的 boss。它可以用光辉精华召唤出来。"
+			tasks: [{
+				entity: "knightquest:netherman"
+				icon: {
+					Count: 1
+					id: "minecraft:netherite_chestplate"
+					tag: {
+						Damage: 0
+					}
+				}
+				id: "6468F747A218AAE2"
+				title: "击杀下界建筑师（Nether Architect）"
+				type: "kill"
+				value: 1L
+			}]
+			title: "&6&l下界建筑师"
+			x: 4.0d
+			y: -7.5d
+		}
+		{
+			dependencies: ["64834C93FA5A95A8"]
+			description: ["Some of these &6weapons&r have great &3magical &rpowers."]
+			icon: {
+				Count: 1
+				id: "knightquest:paladin_sword"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "59403938C0AD937C"
+			min_required_tasks: 1
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "247C948ED37E994B"
+				table_id: 2984437215509173013L
+				type: "random"
+			}]
+			subtitle: "获得以下这些极其强大的武器中的任意一种。"
+			tasks: [
+				{
+					id: "2F7C98098F2C86B3"
+					item: {
+						Count: 1
+						id: "knightquest:paladin_sword"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "0A62658AC21E01EC"
+					item: {
+						Count: 1
+						id: "knightquest:khopesh_claymore"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "078AC1E9E6FA69FE"
+					item: {
+						Count: 1
+						id: "knightquest:cleaver"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "2E1FBF8CC8454F61"
+					item: {
+						Count: 1
+						id: "knightquest:kukri_dagger"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "489DA3392841B7E1"
+					item: {
+						Count: 1
+						id: "knightquest:uchigatana_katana"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "195BA7572111BA6B"
+					item: {
+						Count: 1
+						id: "knightquest:nail_glaive"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "5003ADF2E5410A64"
+					item: {
+						Count: 1
+						id: "knightquest:steel_sword"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "652CBD25304FFF02"
+					item: {
+						Count: 1
+						id: "knightquest:steel_axe"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "&6&l获得一把骑士任务武器！"
+			x: 1.5d
+			y: -9.0d
+		}
+		{
+			dependencies: ["64834C93FA5A95A8"]
+			description: ["一套好盔甲，常被&3骑士&r和类似的人使用。"]
+			id: "772CBBF4ED58D9DD"
+			ignore_reward_blocking: true
+			min_required_tasks: 1
+			rewards: [
+				{
+					exclude_from_claim_all: true
+					id: "7A197E8D33296DA4"
+					table_id: 3710718200219029633L
+					type: "random"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "78BB99F7CD8DDAB4"
+					table_id: 4655027388003733417L
+					type: "random"
+				}
+			]
+			subtitle: "获得一件侍从盔甲的部件。"
+			tasks: [
+				{
+					id: "503921F68070114E"
+					item: {
+						Count: 1
+						id: "knightquest:squire_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "28861D3C0D43D076"
+					item: {
+						Count: 1
+						id: "knightquest:squire_chestplate"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "27DD0B50ED526217"
+					item: {
+						Count: 1
+						id: "knightquest:squire_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "503F44DD6C887E34"
+					item: {
+						Count: 1
+						id: "knightquest:squire_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "&l&6真正的骑士！"
+			x: -1.5d
+			y: -9.0d
+		}
+	]
+	title: "&7骑士的征途"
+}

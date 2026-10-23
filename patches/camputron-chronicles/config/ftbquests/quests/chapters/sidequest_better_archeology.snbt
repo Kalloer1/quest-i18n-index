@@ -1,0 +1,684 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "sidequest_better_archeology"
+	group: "1C2EAB6B6133A7D7"
+	icon: "betterarcheology:archeology_table"
+	id: "059D1C1E03B316AF"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"世界被遗忘的历史所覆盖——失落的村庄、古老的野兽和埋在尘土下的遗迹。"
+				""
+				"&eBetter Archeology&r将挖掘变成一门真正的工艺：更坚固的&e刷子&r、可供发掘的&e可疑地点&r、用于鉴定发现的&e考古台&r，以及可供挖掘和展示的完整&e化石&r。"
+				""
+				"拿起画笔，拼凑起过去的点点滴滴。"
+				""
+				"&o刷可疑方块和化石土，以发现文物和骨头。&r"
+			]
+			icon: "betterarcheology:archeology_table"
+			id: "7AD13596322E2D2D"
+			rewards: [{
+				id: "54FF64E69521052C"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "gear"
+			size: 2.0d
+			subtitle: "&7每一粒沙子都隐藏着一个故事。&r"
+			tasks: [{
+				id: "05AD0EFC321CD477"
+				title: "拿起画笔，开始创作吧"
+				type: "checkmark"
+			}]
+			title: "&e过去的秘密&r"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7AD13596322E2D2D"]
+			description: [
+				"Vanilla brushes wear out fast. &eBetter Archeology&r adds tougher ones that excavate faster and last far longer."
+				""
+				"开始你的工具包："
+				"&8- 普通的 &e刷子&r"
+				"&8- 一把&e铁刷子&r"
+			]
+			icon: {
+				Count: 1
+				id: "betterarcheology:iron_brush"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "7CA14102E78349B1"
+			rewards: [{
+				id: "775AB014CC6ACDF3"
+				type: "xp"
+				xp: 150
+			}]
+			shape: "hexagon"
+			subtitle: "&7更稳的手需要更结实的画笔。&r"
+			tasks: [
+				{
+					id: "030D77FB31BD20B1"
+					item: {
+						Count: 1
+						id: "minecraft:brush"
+						tag: {
+							Damage: 0
+						}
+					}
+					title: "制作一个 &e刷子&r"
+					type: "item"
+				}
+				{
+					id: "2984152D7575F7DB"
+					item: {
+						Count: 1
+						id: "betterarcheology:iron_brush"
+						tag: {
+							Damage: 0
+						}
+					}
+					title: "制作一个&e铁刷子&r"
+					type: "item"
+				}
+			]
+			title: "&e挖掘工具&r"
+			x: 0.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7CA14102E78349B1"]
+			description: ["建造&e考古台&r——用于清理、研究和鉴定你挖掘到的遗迹的工作台。"]
+			icon: "betterarcheology:archeology_table"
+			id: "4F1356911F7F1AC2"
+			rewards: [{
+				id: "1B0441FDAF183654"
+				type: "xp"
+				xp: 200
+			}]
+			shape: "hexagon"
+			subtitle: "&7垃圾变宝藏的地方。&r"
+			tasks: [{
+				id: "5A35ADBF10066257"
+				item: "betterarcheology:archeology_table"
+				title: "制作&e考古学工作台&r"
+				type: "item"
+			}]
+			title: "&eThe Archeology Table&r"
+			x: 0.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["7CA14102E78349B1"]
+			description: [
+				"更好的考古学在世界各地散布了新的挖掘点。寻找并清理这些标志性的方块："
+				"&8- 可疑的红沙和可疑的泥土。"
+				""
+				"刷取它们会掉落&eArtifact Shards&r——考古学的原始货币。"
+			]
+			icon: "betterarcheology:artifact_shards"
+			id: "6F912C50DED2BC6F"
+			rewards: [{
+				id: "64C914DBBD6E28E7"
+				type: "xp"
+				xp: 200
+			}]
+			subtitle: "&7并非所有泥土都生而平等。&r"
+			tasks: [
+				{
+					id: "106A15B5FAF969E7"
+					item: "betterarcheology:suspicious_red_sand"
+					title: "找到 &e可疑的红沙&r"
+					type: "item"
+				}
+				{
+					id: "4FEABE3FBF60E034"
+					item: "betterarcheology:suspicious_dirt"
+					title: "找到 &e可疑的泥土&r"
+					type: "item"
+				}
+				{
+					count: 5L
+					id: "646E6AF3E77E68D7"
+					item: "betterarcheology:artifact_shards"
+					title: "升级&eArtifact Shards&r"
+					type: "item"
+				}
+			]
+			title: "&e可疑的地点&r"
+			x: -1.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["6F912C50DED2BC6F"]
+			description: [
+				"清理挖掘点可能会发现一个 &e未知遗迹&r——一件蒙着灰尘的神秘物品。"
+				""
+				"将其带到&e考古台&r上鉴定，以揭示一个&e已鉴定文物&r。"
+			]
+			icon: "betterarcheology:unidentified_artifact"
+			id: "704C8877EFFAD20A"
+			rewards: [{
+				id: "07D7695B38F3D151"
+				type: "xp"
+				xp: 300
+			}]
+			shape: "hexagon"
+			subtitle: "&7会是什么呢？&r"
+			tasks: [{
+				id: "09CEFA0534A41AD8"
+				item: "betterarcheology:unidentified_artifact"
+				title: "挖掘出一个&e未知遗迹&r"
+				type: "item"
+			}]
+			title: "&e发掘历史&r"
+			x: 0.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["704C8877EFFAD20A"]
+			description: [
+				"升级到业内最好的刷子——速度更快、更耐用，损坏珍贵遗物的可能性更低："
+				"&8- 钻石刷子与下界合金刷子。"
+			]
+			icon: {
+				Count: 1
+				id: "betterarcheology:netherite_brush"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "44EDF76FF8E6FED4"
+			rewards: [
+				{
+					id: "14C142FB6A49D52F"
+					type: "xp"
+					xp: 600
+				}
+				{
+					id: "6E293F33A60F9B09"
+					item: {
+						Count: 1
+						id: "betterarcheology:netherite_brush"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			shape: "hexagon"
+			subtitle: "&7The finest bristles for the finest finds.&r"
+			tasks: [
+				{
+					id: "1AB053E39409FC9B"
+					item: {
+						Count: 1
+						id: "betterarcheology:diamond_brush"
+						tag: {
+							Damage: 0
+						}
+					}
+					title: "制作一个&b钻石刷子&r"
+					type: "item"
+				}
+				{
+					id: "61B9869BA8EE3BB4"
+					item: {
+						Count: 1
+						id: "betterarcheology:netherite_brush"
+						tag: {
+							Damage: 0
+						}
+					}
+					title: "制作一把&8下界合金刷子&r"
+					type: "item"
+				}
+			]
+			title: "&e大师的画笔&r"
+			x: 0.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["7CA14102E78349B1"]
+			description: [
+				"在地下深处有&6Fossiliferous Dirt&r，刷取它能发现远古骨骼。"
+				""
+				"收集一些 &6Fossiliferous Dirt&r 和一块 &6Chiseled Bone Block&r。"
+			]
+			icon: "betterarcheology:fossiliferous_dirt"
+			id: "1F38DAC504978AD4"
+			rewards: [{
+				id: "44232FD71EADA271"
+				type: "xp"
+				xp: 200
+			}]
+			shape: "hexagon"
+			subtitle: "&7Bones beneath the soil.&r"
+			tasks: [
+				{
+					id: "0E1F5A79E7C16E27"
+					item: "betterarcheology:fossiliferous_dirt"
+					title: "寻找 &6Fossiliferous Dirt&r"
+					type: "item"
+				}
+				{
+					id: "1BEADF036F81A3E1"
+					item: "betterarcheology:chiseled_bone_block"
+					title: "获得一个&6雕凿过的骨块&r"
+					type: "item"
+				}
+			]
+			title: "&6化石泥土&r"
+			x: -4.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["1F38DAC504978AD4"]
+			description: ["拼凑出七种远古生物的完整站立化石——它们是早已逝去的世界令人不安的遗迹："]
+			icon: "betterarcheology:creeper_fossil"
+			id: "7171D87CE4CA257B"
+			rewards: [{
+				id: "3C0FD01580764D0B"
+				type: "xp"
+				xp: 400
+			}]
+			shape: "hexagon"
+			subtitle: "&7重组远古的巨兽。&r"
+			tasks: [
+				{
+					id: "1183343E7E1CDAAB"
+					item: "betterarcheology:villager_fossil"
+					title: "&6村民化石&r"
+					type: "item"
+				}
+				{
+					id: "02747EF7B46BAF88"
+					item: "betterarcheology:ocelot_fossil"
+					title: "&6奥西洛特化石&r"
+					type: "item"
+				}
+				{
+					id: "24D6AF67A7C76D7C"
+					item: "betterarcheology:wolf_fossil"
+					title: "&6狼化石&r"
+					type: "item"
+				}
+				{
+					id: "7E2B9515E54569E4"
+					item: "betterarcheology:sheep_fossil"
+					title: "&6绵羊化石&r"
+					type: "item"
+				}
+				{
+					id: "19BB0AF5EAB94305"
+					item: "betterarcheology:chicken_fossil"
+					title: "&6鸡化石&r"
+					type: "item"
+				}
+				{
+					id: "629B3830C5A7D637"
+					item: "betterarcheology:creeper_fossil"
+					title: "&6苦力怕化石&r"
+					type: "item"
+				}
+				{
+					id: "637A4E974F11FB46"
+					item: "betterarcheology:guardian_fossil"
+					title: "&6守护者化石&r"
+					type: "item"
+				}
+			]
+			title: "&6生物图鉴&r"
+			x: -6.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["1F38DAC504978AD4"]
+			description: ["收集每种生物的化石&6头骨&r - 每个展示套装的 [1/2]："]
+			icon: "betterarcheology:villager_fossil_head"
+			id: "6DDFBC4A84131ED5"
+			optional: true
+			rewards: [{
+				id: "72C0F66800B625BA"
+				type: "xp"
+				xp: 500
+			}]
+			shape: "hexagon"
+			subtitle: "&7一排古老的头骨架子。&r"
+			tasks: [
+				{
+					id: "30F4BDDCC1D91AF0"
+					item: "betterarcheology:villager_fossil_head"
+					title: "村民的头骨（Villager Skull）"
+					type: "item"
+				}
+				{
+					id: "41E096620F4BA154"
+					item: "betterarcheology:ocelot_fossil_head"
+					title: "美洲狮头骨"
+					type: "item"
+				}
+				{
+					id: "2C9EEF1DA658498C"
+					item: "betterarcheology:wolf_fossil_head"
+					title: "狼的頭顱"
+					type: "item"
+				}
+				{
+					id: "092FB59F3B18160E"
+					item: "betterarcheology:sheep_fossil_head"
+					title: "绵羊头骨"
+					type: "item"
+				}
+				{
+					id: "6389A32B688E20A3"
+					item: "betterarcheology:chicken_fossil_head"
+					title: "鸡的骷髅头"
+					type: "item"
+				}
+				{
+					id: "78B4EFACB001ECE2"
+					item: "betterarcheology:creeper_fossil_head"
+					title: "苦力怕的头骨"
+					type: "item"
+				}
+				{
+					id: "5359CC05D298016F"
+					item: "betterarcheology:guardian_fossil_head"
+					title: "守护者头骨"
+					type: "item"
+				}
+			]
+			title: "&6远古的头骨&r"
+			x: -4.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["1F38DAC504978AD4"]
+			description: ["收集每种生物的化石化&6身体&r——完成每个展示套装的[2/2]："]
+			icon: "betterarcheology:villager_fossil_body"
+			id: "25CE27429C642662"
+			rewards: [{
+				id: "0F9E8FA765AF8055"
+				type: "xp"
+				xp: 350
+			}]
+			shape: "hexagon"
+			subtitle: "&7完成所有骷髅的建造任务。&r"
+			tasks: [
+				{
+					id: "51A2442E0EE2BED2"
+					item: "betterarcheology:villager_fossil_body"
+					title: "村民的身体部位（Villager Body）"
+					type: "item"
+				}
+				{
+					id: "13F511E2883AA6FF"
+					item: "betterarcheology:ocelot_fossil_body"
+					title: "猫科动物身体部件"
+					type: "item"
+				}
+				{
+					id: "19029469C12C68BE"
+					item: "betterarcheology:wolf_fossil_body"
+					title: "狼的身体"
+					type: "item"
+				}
+				{
+					id: "731831C6586ED140"
+					item: "betterarcheology:sheep_fossil_body"
+					title: "绵羊的身体"
+					type: "item"
+				}
+				{
+					id: "3383A9126E81AC5E"
+					item: "betterarcheology:chicken_fossil_body"
+					title: "鸡的身体"
+					type: "item"
+				}
+				{
+					id: "3F21C9DF88984FE9"
+					item: "betterarcheology:creeper_fossil_body"
+					title: "苦力怕的身体"
+					type: "item"
+				}
+				{
+					id: "1614E3BEBDF74A36"
+					item: "betterarcheology:guardian_fossil_body"
+					title: "守护者之躯"
+					type: "item"
+				}
+			]
+			title: "&6远古遗骸&r"
+			x: -3.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["704C8877EFFAD20A"]
+			description: [
+				"最幸运的挖掘会挖出能用的&d图腾&r。收集这些实用遗物："
+				"&8- &dTotem of Growth&r - 加速附近作物的生长。"
+				"&8- &dTotem of Radiance&r - 揭示并灼烧附近的怪物。"
+			]
+			icon: "betterarcheology:growth_totem"
+			id: "5ED9746841448F22"
+			rewards: [{
+				id: "00DCF340448E451A"
+				type: "xp"
+				xp: 300
+			}]
+			shape: "hexagon"
+			subtitle: "&7某些遗迹仍保留着它们的魔力。&r"
+			tasks: [
+				{
+					id: "5B473AC9386AF980"
+					item: "betterarcheology:growth_totem"
+					title: "获得&dTotem of Growth&r"
+					type: "item"
+				}
+				{
+					id: "1DA2641A3463804A"
+					item: "betterarcheology:radiance_totem"
+					title: "获得&d光辉图腾&r"
+					type: "item"
+				}
+			]
+			title: "&d力量的遗迹&r"
+			x: 4.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["5ED9746841448F22"]
+			description: [
+				"&dTotem of Torrents&r 能让你在坚实的地面上疾驰而过。"
+				""
+				"从一件遗物中恢复一个物品。"
+			]
+			icon: {
+				Count: 1
+				id: "betterarcheology:torrent_totem"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "4C50D7AA080B6C22"
+			rewards: [{
+				id: "4065684F052F0EAA"
+				type: "xp"
+				xp: 300
+			}]
+			subtitle: "&7乘着浪花，在陆地上疾驰而过。&r"
+			tasks: [{
+				id: "5D6F5D69EF14B23C"
+				item: {
+					Count: 1
+					id: "betterarcheology:torrent_totem"
+					tag: {
+						Damage: 0
+					}
+				}
+				title: "获得&dTotem of Torrents&r"
+				type: "item"
+			}]
+			title: "&dTotem of Torrents&r"
+			x: 6.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["5ED9746841448F22"]
+			description: [
+				"&dTotem of Souls&r会伤害目标，并反过来治愈你。"
+				""
+				"从一件遗物中恢复一个物品。"
+			]
+			icon: {
+				Count: 1
+				id: "betterarcheology:soul_totem"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "4A8C79EB3DDEC508"
+			rewards: [{
+				id: "1E6447668359D902"
+				type: "xp"
+				xp: 300
+			}]
+			subtitle: "&7从敌人那里夺走生命。&r"
+			tasks: [{
+				id: "7F7FAFA8EC815EC9"
+				item: {
+					Count: 1
+					id: "betterarcheology:soul_totem"
+					tag: {
+						Damage: 0
+					}
+				}
+				title: "获得&dTotem of Souls&r"
+				type: "item"
+			}]
+			title: "&dTotem of Souls&r"
+			x: 4.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["7CA14102E78349B1"]
+			description: [
+				"&3远古花瓶&r会生成在考古遗址中，有时里面装有战利品。"
+				""
+				"完好无损地回收&3古代花瓶&r。"
+			]
+			icon: "betterarcheology:vase"
+			id: "2866BCBFB9D54297"
+			rewards: [{
+				id: "3990DF4DC3F81A85"
+				type: "xp"
+				xp: 200
+			}]
+			subtitle: "&7失落时代的脆弱宝藏。&r"
+			tasks: [{
+				count: 3L
+				id: "4960C8214D517E73"
+				item: "betterarcheology:vase"
+				title: "Collect &3Ancient Vases&r"
+				type: "item"
+			}]
+			title: "&3远古花瓶&r"
+			x: 2.5d
+			y: 3.0d
+		}
+		{
+			description: [
+				"并非所有遗迹都无害。 &cRusty Bomb&r 是一种威力不减的古代爆炸物。"
+				""
+				"从你的挖掘物中找回一个&cRusty Bomb&r。"
+			]
+			icon: "betterarcheology:bomb"
+			id: "6ACD2DE662BF40C3"
+			rewards: [{
+				id: "1E35C76439542E99"
+				type: "xp"
+				xp: 250
+			}]
+			subtitle: "&7古老，但仍然充满活力。&r"
+			tasks: [{
+				id: "11FC47228118D3AD"
+				item: "betterarcheology:bomb"
+				title: "获得一个 &cRusty Bomb&r"
+				type: "item"
+			}]
+			title: "&c生锈的炸弹&r"
+			x: 3.0d
+			y: 4.5d
+		}
+		{
+			dependencies: [
+				"7171D87CE4CA257B"
+				"6DDFBC4A84131ED5"
+				"25CE27429C642662"
+				"6ACD2DE662BF40C3"
+				"4A8C79EB3DDEC508"
+				"4C50D7AA080B6C22"
+				"44EDF76FF8E6FED4"
+			]
+			description: [
+				"从第一笔刷子到最后一根埋藏的骨头，你发掘了世界被遗忘的历史——辨识了它的文物，重组了它的野兽，并找回了它失落的图腾。"
+				""
+				"你是一位真正的&e考古大师&r。"
+				""
+				"&o完整收集完成后，勾选此项。&r"
+			]
+			icon: "minecraft:sniffer_egg"
+			id: "2ED6C953D9025A9E"
+			rewards: [
+				{
+					id: "7044615B099BFB07"
+					type: "xp"
+					xp: 2000
+				}
+				{
+					id: "390458DA8F60A1CC"
+					item: {
+						Count: 1
+						id: "betterarcheology:netherite_brush"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 64
+					id: "53DBB0CE31DE5434"
+					item: "dungeonnowloading:great_experience_bottle"
+					type: "item"
+				}
+				{
+					count: 2
+					id: "5C0E9EAF8C9C25C6"
+					item: "chroniclescompass:chronicles_compass"
+					type: "item"
+				}
+			]
+			shape: "gear"
+			size: 2.0d
+			subtitle: "&7你已经将过去的一切重新拼凑了起来。&r"
+			tasks: [{
+				id: "4EA5376D96DE5E45"
+				title: "完成收集品收集"
+				type: "checkmark"
+			}]
+			title: "&e&l考古学大师&r"
+			x: 0.0d
+			y: 7.5d
+		}
+	]
+	title: "&dBetter Archeology&r"
+}
