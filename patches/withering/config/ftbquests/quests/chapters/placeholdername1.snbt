@@ -1,0 +1,109 @@
+# AI 初翻，未人工校对
+{
+	id: "579AC9EC2945AB6F"
+	group: ""
+	order_index: 1
+	filename: "placeholdername1"
+	title: "石头的秩序 (The Order of the Stone)"
+	icon: "witherstormmod:amulet"
+	subtitle: ["第0至第4阶段的指南"]
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "找到 Rundown House 的位置"
+			icon: "minecraft:compass"
+			x: 0.0d
+			y: 0.0d
+			shape: "circle"
+			subtitle: "在出生点附近找到破败小屋"
+			description: ["在出生点附近找一栋破房子，房顶上有 Wither Storm 的结构。你需要将 Wither Skeleton Skull 放在 Wither 上才能召唤 Wither Storm。"]
+			dependencies: ["78381581806CB13E"]
+			hide: true
+			id: "21A9C3425AA7DE85"
+			tasks: [{
+				id: "4A5C07D03FBB6951"
+				type: "structure"
+				structure: "witherstormmod:storm_spawn_platform"
+			}]
+			rewards: [{
+				id: "148F4C55E2B2551A"
+				type: "item"
+				item: "minecraft:bread"
+				count: 6
+			}]
+		}
+		{
+			icon: "minecraft:wither_skeleton_skull"
+			x: 2.5d
+			y: 0.0d
+			subtitle: "将凋灵骷髅头放置在命令方块上"
+			description: ["出生台旁边有一个凋零骷髅头，将骷髅头放在命令方块上后，你有50秒的时间来逃跑，否则凋零风暴会开始吞噬世界"]
+			dependencies: ["21A9C3425AA7DE85"]
+			id: "7A437315CE395A22"
+			tasks: [{
+				id: "41352D39A604C2A7"
+				type: "observation"
+				title: "召唤凋零风暴"
+				icon: "minecraft:command_block"
+				timer: 0L
+				observe_type: 5
+				to_observe: "witherstormmod:wither_storm"
+			}]
+		}
+		{
+			title: "获取一匹马"
+			icon: "minecraft:saddle"
+			x: 7.5d
+			y: 0.0d
+			subtitle: "马对于逃离凋零风暴至关重要"
+			description: ["马对于跨世界旅行至关重要，新增的QOL模组让骑马更简单，你可以把马放进船里，还能同时有2名玩家骑乘"]
+			dependencies: ["3CC2DBE5DE98A8F1"]
+			id: "169F7B7A2E91A8AA"
+			tasks: [
+				{
+					id: "70E588486962E527"
+					type: "observation"
+					title: "找到一匹马"
+					icon: "minecraft:leather_horse_armor"
+					timer: 0L
+					observe_type: 5
+					to_observe: "minecraft:horse"
+				}
+				{
+					id: "118A74681D53201D"
+					type: "item"
+					title: "制作一个鞍子 (Craft a Saddle)"
+					icon: "minecraft:saddle"
+					item: "minecraft:saddle"
+				}
+			]
+		}
+		{
+			title: "接下来要做什么？"
+			icon: "minecraft:writable_book"
+			x: 10.0d
+			y: 0.0d
+			description: ["下一章是第5阶段，你可能还没达到。可能需要等一段时间才能进化。"]
+			dependencies: ["169F7B7A2E91A8AA"]
+			id: "6202EE1F2DCE4BEE"
+			tasks: [{
+				id: "2F985C8609B03301"
+				type: "checkmark"
+			}]
+		}
+		{
+			title: "凋零风暴"
+			icon: "witherstormmod:infected_flesh_block"
+			x: 5.0d
+			y: 0.0d
+			description: ["凋零风暴会开始缓慢进化，一旦进入第4阶段，它就会在全球范围内追逐你，所以你需要交通工具。马是逃离凋零风暴的有效方式"]
+			dependencies: ["7A437315CE395A22"]
+			id: "3CC2DBE5DE98A8F1"
+			tasks: [{
+				id: "051FFB86D25C6BF2"
+				type: "checkmark"
+			}]
+		}
+	]
+}

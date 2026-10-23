@@ -1,0 +1,207 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "ground_zero"
+	group: "2D8BFEC18ED120A5"
+	id: "7BFF53B64AEBA784"
+	order_index: 3
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["5DF99F9BB2B620AF"]
+			description: ["把旧地图和实际情况对比了一下。根本找不到边缘。曾经在这里的城市，现在不过是纸上谈兵。"]
+			icon: {
+				Count: 1
+				id: "minecraft:filled_map"
+				tag: {
+					map: 0
+				}
+			}
+			id: "477B8136EB231859"
+			rewards: [{
+				id: "4D96AD91C3997E60"
+				item: "minecraft:map"
+				type: "item"
+			}]
+			subtitle: "检查了地图。"
+			tasks: [{
+				id: "3D79B1428E44C643"
+				title: "回忆"
+				type: "checkmark"
+			}]
+			x: -7.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["477B8136EB231859"]
+			description: ["一座房子，一半埋在根须和霜冻里。周围既没有城镇，也没有道路。"]
+			hide_until_deps_complete: true
+			id: "2DC842B41688B972"
+			rewards: [
+				{
+					count: 6
+					id: "183C76C5CB9D7AC1"
+					item: "minecraft:baked_potato"
+					type: "item"
+				}
+				{
+					id: "53AD055CCBE7E695"
+					type: "xp"
+					xp: 15
+				}
+			]
+			subtitle: "找到了一个房子。"
+			tasks: [{
+				icon: "betterarcheology:rotten_door"
+				id: "4CCE1207776B1A78"
+				structure: "abandoned:house_1"
+				title: "屹立不倒的一座房屋"
+				type: "structure"
+			}]
+			x: -5.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["2DC842B41688B972"]
+			description: ["卡在架子后面，潮湿肿胀。墨水褪色了，但还能辨认出部分内容。"]
+			id: "24599413FA759C97"
+			rewards: [
+				{
+					count: 2
+					id: "41F0F5FFCD5E2A78"
+					item: "minecraft:wheat_seeds"
+					type: "item"
+				}
+				{
+					id: "1914AC43A55CB00A"
+					item: "farmersdelight:tomato_seeds"
+					type: "item"
+				}
+			]
+			subtitle: "一本旧书，年代久远。"
+			tasks: [{
+				count: 3L
+				id: "4604BD3A946B062B"
+				item: { Count: 3, id: "minecraft:book" }
+				type: "item"
+			}]
+			title: "被遗忘的过去"
+			x: -4.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["2DC842B41688B972"]
+			description: ["房子底下有个地窖，比上面的树根还要古老。寒冷，但避风。"]
+			id: "60373188E438B27B"
+			optional: true
+			rewards: [
+				{
+					count: 2
+					id: "6F2E08F7BA56EB9B"
+					item: "minecraft:diamond"
+					type: "item"
+				}
+				{
+					id: "4AA13D44F5CA99AD"
+					type: "xp"
+					xp: 20
+				}
+			]
+			subtitle: "我进入了地下世界。"
+			tasks: [{
+				icon: {
+					Count: 1
+					id: "minecraft:iron_pickaxe"
+					tag: {
+						Damage: 0
+					}
+				}
+				id: "1B711651E62D8D38"
+				structure: "bettermineshafts:mineshaft_ice"
+				title: "地窖门 (Cellar Doors)"
+				type: "structure"
+			}]
+			x: -4.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["2DC842B41688B972"]
+			description: ["收音机坏了，天线可能也坏了。收集了铜、电线、铁。"]
+			id: "0B444CE56DC0F132"
+			rewards: [
+				{
+					id: "4FB6479CC59692C1"
+					item: "minecraft:spyglass"
+					type: "item"
+				}
+				{
+					id: "37CD1A48863627D5"
+					type: "xp"
+					xp: 20
+				}
+			]
+			subtitle: "用于制作天线的零件。"
+			tasks: [
+				{
+					consume_items: true
+					id: "03D0639F1E2368C0"
+					item: "minecraft:lightning_rod"
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 8L
+					id: "4527D9F0E94695D2"
+					item: { Count: 8, id: "minecraft:redstone" }
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 2L
+					id: "6656DCDF4A08C454"
+					item: { Count: 2, id: "minecraft:amethyst_shard" }
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 4L
+					id: "2D06245EFE05CCEF"
+					item: { Count: 4, id: "minecraft:iron_bars" }
+					type: "item"
+				}
+			]
+			title: "回收物资"
+			x: -5.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["0B444CE56DC0F132"]
+			description: ["刚收到一个信号。听起来像个人声。叫了我的名字。但我过去看时，那里空无一人。"]
+			id: "4E46329675E1507C"
+			rewards: [
+				{
+					id: "7FE2FB9B5F46DD59"
+					type: "xp"
+					xp: 25
+				}
+				{
+					auto: "invisible"
+					command: "/tellraw @a [{\"text\":\"[Radio] \",\"color\":\"gray\",\"italic\":true},{\"selector\":\"@s\",\"color\":\"gray\",\"italic\":true},{\"text\":\" turn around...\",\"color\":\"gray\",\"italic\":true}]"
+					id: "57903D62E2AE7332"
+					team_reward: true
+					type: "command"
+				}
+			]
+			subtitle: "修复了天线的问题。"
+			tasks: [{
+				id: "09B2DBE0BA4E00F5"
+				title: "静态的"
+				type: "checkmark"
+			}]
+			x: -5.5d
+			y: 0.5d
+		}
+	]
+	title: "初始之地"
+}

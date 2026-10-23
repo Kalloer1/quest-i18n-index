@@ -1,0 +1,648 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "under_pressure"
+	group: "1D3C6B808213FE3C"
+	id: "6B7EFC3F9C40E045"
+	order_index: 5
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["396298949C43085F"]
+			description: ["用这枚火箭，你就能去火星了。"]
+			id: "50E67FF30837B59F"
+			tasks: [{
+				id: "2F238667600BBE33"
+				item: {
+					Count: 1b
+					id: "ad_astra:tier_2_rocket"
+					tag: {
+						BotariumData: { }
+					}
+				}
+				type: "item"
+			}]
+			x: -3.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["50E67FF30837B59F"]
+			id: "00A73155027CB271"
+			tasks: [{
+				dimension: "ad_astra:mars"
+				id: "7D918E07EC88C724"
+				type: "dimension"
+			}]
+			x: -2.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["00A73155027CB271"]
+			description: ["你可以在火星上找到奥斯特姆矿石。"]
+			id: "426885AEBF8B0A1F"
+			tasks: [{
+				id: "7211D0FE0A4E39B0"
+				item: "ad_astra:ostrum_ingot"
+				type: "item"
+			}]
+			x: -0.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["00A73155027CB271"]
+			description: ["你可以在火星上找到冰晶矿石。"]
+			id: "4A36EA217A19ED83"
+			tasks: [{
+				id: "53F3B07D5A75E5B9"
+				item: "ad_astra:ice_shard"
+				type: "item"
+			}]
+			x: -2.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["4A36EA217A19ED83"]
+			description: ["将冰晶放入冷冻器可获得冷冻燃料。一桶冷冻燃料足以启动火箭。"]
+			id: "515DC388D3F475AD"
+			tasks: [
+				{
+					id: "6B1EA53B43B15AC6"
+					item: "ad_astra:cryo_freezer"
+					type: "item"
+				}
+				{
+					id: "3FAF55374DD472C8"
+					item: "ad_astra:cryo_fuel_bucket"
+					type: "item"
+				}
+			]
+			x: -2.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["426885AEBF8B0A1F"]
+			description: ["一个更快的管道。"]
+			id: "41EB1A6B8B399590"
+			tasks: [{
+				id: "6B1CAD73325D535E"
+				item: "ad_astra:ostrum_fluid_pipe"
+				type: "item"
+			}]
+			x: -0.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["426885AEBF8B0A1F"]
+			description: ["下一个要介绍的模组是 pneumaticcraft:repressurized。首先，在地上放一些 ostrum 锭，在旁边放一个 TNT 并点燃。这样会将 ostrum 转化为压缩铁，但部分会在此过程中丢失。"]
+			id: "29B281BB2C6BEA4D"
+			tasks: [{
+				id: "1B8AEE9207610469"
+				item: "pneumaticcraft:ingot_iron_compressed"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["29B281BB2C6BEA4D"]
+			description: ["在 Pneumaticcraft 中，压力是关键。基础压力管可承受 5 巴和 1000 毫巴的空气。扳手可用于切换连接。如果给该模组的机器施加过大压力，它会爆炸。此外，管道在长距离传输时会损失大量压力。"]
+			id: "131B2B077E37C7B9"
+			tasks: [
+				{
+					id: "6F65CC6EAF2CDE4F"
+					item: "pneumaticcraft:pressure_tube"
+					type: "item"
+				}
+				{
+					id: "6516D546FF664331"
+					item: "pneumaticcraft:pneumatic_wrench"
+					type: "item"
+				}
+			]
+			x: 2.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["131B2B077E37C7B9"]
+			description: [
+				"要开始，你必须建造一个多方块结构：压力舱。它可以是 3x3x3、4x4x4 或 5x5x5。边缘必须由墙壁或玻璃构成，侧面可以由所有压力舱方块组成。舱室需要至少一个阀门、一个输入接口和一个输出接口。组装完成后，压力舱有 3 种不同的接口："
+				"1. 点击方块的那个：我会从左到右、从上到下介绍按钮。首先是信息按钮。点击它，你就能看到机器的相关信息，比如它的功能。其次是升级按钮。它会告诉你具体能用哪些升级、数量以及效果。在压力标签页中，你可以看到机器内的压力信息。警告标签页会显示机器未工作的原因，状态标签页则显示机器的大小。4个蓝色插槽用于放置升级，还有一个压力显示屏。"
+				"2. 输入阀：每输入一个物品消耗1000 mb空气。此界面中，你主要会看到与多区块相同的物品，但它还独立拥有一个红石控制标签页，其升级也与多区块中的升级无关。"
+				"3. 输出阀门：它与输入阀门相同，但有一个按钮可以切换要输出的物品。"
+			]
+			id: "777FA4237B25E118"
+			tasks: [
+				{
+					id: "20B476BC92ED1834"
+					item: "pneumaticcraft:pressure_chamber_wall"
+					type: "item"
+				}
+				{
+					id: "631D1D476A1C0431"
+					item: "pneumaticcraft:pressure_chamber_glass"
+					type: "item"
+				}
+				{
+					id: "5432F92E5F666C5F"
+					item: "pneumaticcraft:pressure_chamber_valve"
+					type: "item"
+				}
+				{
+					id: "42D621FCFB569A8B"
+					item: "pneumaticcraft:pressure_chamber_interface"
+					type: "item"
+				}
+			]
+			x: 4.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["777FA4237B25E118"]
+			description: [
+				"现在你需要压力了。设置一个压缩机："
+				"液体压缩机：使用液体燃料"
+				"空气压缩机：使用物品作为燃料"
+				"手动压缩机：长按以产生压力"
+				"热能发电机：利用两侧的温度差来产生压力。例如，一侧放岩浆，另一侧放水。但两侧会交换热量，最终岩浆会变成黑曜石，水则会消失。"
+				"现在将你的发电机连接到压力舱阀门上。"
+			]
+			id: "28DD6EF72023F455"
+			tasks: [
+				{
+					id: "78DB6CAE393591CC"
+					item: "pneumaticcraft:liquid_compressor"
+					type: "item"
+				}
+				{
+					id: "0F24258B329FBD36"
+					item: "pneumaticcraft:air_compressor"
+					type: "item"
+				}
+				{
+					id: "23124A4EAE3BC17A"
+					item: "pneumaticcraft:manual_compressor"
+					type: "item"
+				}
+				{
+					id: "0EE66DDC28A05B79"
+					item: "pneumaticcraft:thermal_compressor"
+					type: "item"
+				}
+			]
+			x: 5.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["28DD6EF72023F455"]
+			description: ["我建议你在每个 pneumaticcraft 机器里都安装一个安全模块，因为安装后，当压力过高时，机器就不会爆炸了。"]
+			id: "73D9C14917768A21"
+			tasks: [{
+				id: "0F19B02299E18EAB"
+				item: "pneumaticcraft:security_upgrade"
+				type: "item"
+			}]
+			x: 5.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["28DD6EF72023F455"]
+			description: [
+				"Pneumaticcraft 中有几种模块可以安装在管道上，用途各异。我只会介绍其中几种。用扳手右键点击管道，即可在不破坏管道的情况下移除模块。"
+				"压力表模块：显示管道内的压力。"
+				"安全模块：与安保升级相同，但用于管道。当压力过高时会释放压力，防止管道爆炸。"
+				"充电模块：通过压力，为它所面向的背包中的所有物品进行充放电。"
+				"真空泵模块：将压力推向一侧，并从另一侧抽出。"
+			]
+			id: "3B8DD8C68BF3E4B1"
+			tasks: [
+				{
+					id: "7AE88C0557794735"
+					item: "pneumaticcraft:pressure_gauge_module"
+					type: "item"
+				}
+				{
+					id: "59A8816528E0A804"
+					item: "pneumaticcraft:safety_tube_module"
+					type: "item"
+				}
+				{
+					id: "5380159C1C791F42"
+					item: "pneumaticcraft:charging_module"
+					type: "item"
+				}
+			]
+			x: 5.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["28DD6EF72023F455"]
+			description: ["允许两根管道交叉而不交换压力。"]
+			id: "18B1D3286C20112F"
+			tasks: [{
+				id: "2FE72A34BB08E96E"
+				item: "pneumaticcraft:tube_junction"
+				type: "item"
+			}]
+			x: 4.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["28DD6EF72023F455"]
+			description: ["将所需物品放入压力室即可制作涡轮叶片。注意，物品需推入输入端，但会从输出端的任意相邻物品栏中推出。"]
+			id: "6D49DDD1A13C914E"
+			tasks: [{
+				id: "28AEEE0CA50A19FB"
+				item: "pneumaticcraft:turbine_rotor"
+				type: "item"
+			}]
+			x: 7.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["6D49DDD1A13C914E"]
+			id: "29047C5E98CE31ED"
+			tasks: [{
+				id: "4E3CC01404D2B291"
+				item: "pneumaticcraft:thermopneumatic_processing_plant"
+				type: "item"
+			}]
+			x: 8.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["29047C5E98CE31ED"]
+			id: "0DC25CE3F926462E"
+			tasks: [{
+				id: "5790124357F39BC4"
+				item: "pneumaticcraft:oil_bucket"
+				type: "item"
+			}]
+			x: 10.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["0DC25CE3F926462E"]
+			description: ["炼油机用于加工石油。建造多方块结构时，将控制器放在底部，2-4个输出堆叠在顶部。你可以在JEI中看到不同产物所需的输出数量。"]
+			id: "1E35EF607A9D9BD7"
+			tasks: [
+				{
+					id: "4676FE7ADF3EED77"
+					item: "pneumaticcraft:refinery"
+					type: "item"
+				}
+				{
+					id: "38324C635B2C0938"
+					item: "pneumaticcraft:refinery_output"
+					type: "item"
+				}
+			]
+			x: 11.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["1E35EF607A9D9BD7"]
+			description: ["你可以把它们放在多区块的侧面来隔离它。这个方块的好处是你可以直接穿过它。如果你潜行或手持镐，就可以与延迟本身进行交互。"]
+			id: "64D6758D55C18614"
+			tasks: [{
+				id: "62CBBA395A6948F0"
+				item: "pneumaticcraft:thermal_lagging"
+				type: "item"
+			}]
+			x: 11.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["1E35EF607A9D9BD7"]
+			description: ["Pneumaticcraft 模组里有个加热系统。要让炼油机工作，你必须先给它加热，并用任何方块（也包括管道）或隔热砖将其隔离。热散器直接放置在机器上会使其冷却。注意，必须直接放在机器上，不能只是放在旁边。涡管利用压力来加热红色侧并冷却蓝色侧。由于两侧始终处于热连接状态，即冷侧会冷却热侧，反之亦然，建议在未使用的侧放置一个散热器。"]
+			id: "46613A51787D543B"
+			tasks: [
+				{
+					id: "41B25776A1313077"
+					item: "pneumaticcraft:heat_sink"
+					type: "item"
+				}
+				{
+					id: "7C881F58D99BFDDF"
+					item: "pneumaticcraft:vortex_tube"
+					type: "item"
+				}
+			]
+			x: 13.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["46613A51787D543B"]
+			id: "67D0CE2CBE3CF5C7"
+			tasks: [{
+				id: "77439277915B33FA"
+				item: "pneumaticcraft:plastic_bucket"
+				type: "item"
+			}]
+			x: 14.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["67D0CE2CBE3CF5C7"]
+			description: ["能承受更大压力的改良型管道。"]
+			id: "2C008F980CD3281A"
+			tasks: [{
+				id: "0173C5E5F18FE8CE"
+				item: "pneumaticcraft:reinforced_pressure_tube"
+				type: "item"
+			}]
+			x: 16.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["2C008F980CD3281A"]
+			description: ["为此，你需要将一桶熔融塑料放置到世界中，并等待一秒。"]
+			id: "0388C4D40DF0C3AC"
+			tasks: [{
+				id: "2DD5BC91E66A3CA2"
+				item: "pneumaticcraft:plastic"
+				type: "item"
+			}]
+			x: 17.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["692035C61ACEFB66"]
+			id: "521251829612EA0D"
+			tasks: [{
+				id: "0BF22D47682EC21D"
+				item: "pneumaticcraft:etching_acid_bucket"
+				type: "item"
+			}]
+			x: 26.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["7A5889079BA062A8"]
+			description: ["给平板电脑充电。然后右键点击物品栏或储罐，再点击以打开平板电脑的界面。现在你可以通过右键点击物品来订购，左键点击来取消订单。你可以滚动查看不同的交易选项。有些是固定的，有些是随机的村民交易。拿到所有想要的东西后，点击下单按钮。一架无人机会来把你的物品从箱子或储罐中取走，然后返回并把订单带给你。"]
+			id: "4E2EE599337C1E99"
+			tasks: [{
+				id: "4BE50D4327128C68"
+				item: "pneumaticcraft:amadron_tablet"
+				type: "item"
+			}]
+			x: 20.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["0388C4D40DF0C3AC"]
+			description: ["用于通过压力为物品充能。"]
+			id: "7A5889079BA062A8"
+			tasks: [{
+				id: "3E17304EA7FAFE03"
+				item: "pneumaticcraft:charging_station"
+				type: "item"
+			}]
+			x: 19.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["4E2EE599337C1E99"]
+			description: ["你可以用平板电脑来订购这个物品"]
+			id: "4EFAD804091BC588"
+			tasks: [{
+				id: "19F0EE228917B308"
+				item: "pneumaticcraft:pcb_blueprint"
+				type: "item"
+			}]
+			x: 22.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["4EFAD804091BC588"]
+			id: "5752C097B8947A99"
+			tasks: [{
+				id: "0C66DA0D35A1BBF3"
+				item: "pneumaticcraft:empty_pcb"
+				type: "item"
+			}]
+			x: 23.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["5752C097B8947A99"]
+			description: ["将空白的PCB放入此处以使其暴露在紫外线下。这将提高下一步的成功率。通过阈值，你可以决定其暴露的程度直至被输出。"]
+			id: "692035C61ACEFB66"
+			tasks: [{
+				id: "4040B62A38EB3969"
+				item: "pneumaticcraft:uv_light_box"
+				type: "item"
+			}]
+			x: 25.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["521251829612EA0D"]
+			description: ["当你的空 PCB 吸收了足够的紫外线后，就可以将其放入蚀刻槽中，但请先用蚀刻酸填满。暴露在紫外线下越久，成功几率越高。注意，你还需要加热蚀刻槽。"]
+			id: "6ECB47179C4B0187"
+			tasks: [{
+				id: "7C5E0CC535279F57"
+				item: "pneumaticcraft:etching_tank"
+				type: "item"
+			}]
+			x: 28.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["6ECB47179C4B0187"]
+			description: ["你的PCB似乎失败了。别担心，你只需在高炉中熔炼它，就能得到一个空的PCB。"]
+			id: "2BEA813F7A24435C"
+			tasks: [{
+				id: "401FAEAFFA1EEAC2"
+				item: "pneumaticcraft:failed_pcb"
+				type: "item"
+			}]
+			x: 28.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["6ECB47179C4B0187"]
+			description: ["干得好，你这个PCB没有失败。"]
+			id: "1818849E0506645C"
+			tasks: [{
+				id: "7EED64685985BED3"
+				item: "pneumaticcraft:unassembled_pcb"
+				type: "item"
+			}]
+			x: 29.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["1818849E0506645C"]
+			description: ["你的成品PCB终于准备好了。提示：将牛奶和绿色染料放入压力室可以获得史莱姆球。"]
+			id: "746A061F82543BF6"
+			tasks: [{
+				id: "55C0686ECAD45ECF"
+				item: "pneumaticcraft:printed_circuit_board"
+				type: "item"
+			}]
+			x: 31.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["746A061F82543BF6"]
+			description: ["用这个点击管状模块即可升级它们。"]
+			id: "7488433AFBBD9723"
+			tasks: [{
+				id: "27C8D5A50F86972C"
+				item: "pneumaticcraft:module_expansion_card"
+				type: "item"
+			}]
+			x: 31.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["746A061F82543BF6"]
+			description: [
+				"装配线是本模组中最后一个大型内容。它由几个必须相互连接的方块组成："
+				"平台：每个手臂都必须能到达这里，因为物品会在处理过程中存储于此。"
+				"进出口：将物品从相邻的箱子中取到平台上，反之亦然。可到达对角线方块。"
+				"激光/钻头：处理物品。无法到达对角线方块。"
+				"控制器：控制所有机械臂。你只需在此输入压力即可。"
+			]
+			id: "0AAAE93745DF7709"
+			tasks: [
+				{
+					id: "7EE79FC779ABC2F0"
+					item: "pneumaticcraft:assembly_platform"
+					type: "item"
+				}
+				{
+					id: "43C898CF4CB8CD03"
+					item: "pneumaticcraft:assembly_io_unit_import"
+					type: "item"
+				}
+				{
+					id: "23A05EE9F65ABDCF"
+					item: "pneumaticcraft:assembly_io_unit_export"
+					type: "item"
+				}
+				{
+					id: "4407422B834781A5"
+					item: "pneumaticcraft:assembly_drill"
+					type: "item"
+				}
+				{
+					id: "08B955629D6954CD"
+					item: "pneumaticcraft:assembly_laser"
+					type: "item"
+				}
+				{
+					id: "181C04AB6208804F"
+					item: "pneumaticcraft:assembly_controller"
+					type: "item"
+				}
+			]
+			x: 32.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["0AAAE93745DF7709"]
+			description: ["每个程序都有特定的配方。将程序放入控制器，当导入臂在相邻的容器中放置物品后，该物品即可被此程序处理，装配线便会开始工作。你可以在JEI中查看哪些配方需要哪些程序。装配线也可以在无紫外线灯的情况下，将空白的PCB直接处理成未完成的PCB。"]
+			id: "4BC939324D5ECECD"
+			tasks: [
+				{
+					id: "48760C340C2F6D0C"
+					item: "pneumaticcraft:assembly_program_laser"
+					type: "item"
+				}
+				{
+					id: "1BEF627AAC320825"
+					item: "pneumaticcraft:assembly_program_drill"
+					type: "item"
+				}
+				{
+					id: "1E27A42BB0A43F7A"
+					item: "pneumaticcraft:assembly_program_drill_laser"
+					type: "item"
+				}
+			]
+			x: 34.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["4BC939324D5ECECD"]
+			description: ["最后一个管子。可容纳20个压力板。"]
+			id: "269CEF6197ADBA56"
+			tasks: [{
+				id: "72D2DB56F488B6F4"
+				item: "pneumaticcraft:advanced_pressure_tube"
+				type: "item"
+			}]
+			x: 35.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["269CEF6197ADBA56"]
+			description: ["更快的压缩机。"]
+			id: "6D0E01D63926E4DC"
+			tasks: [
+				{
+					id: "6A4206E2743EF106"
+					item: "pneumaticcraft:advanced_liquid_compressor"
+					type: "item"
+				}
+				{
+					id: "07A99FE1D86FA081"
+					item: "pneumaticcraft:advanced_air_compressor"
+					type: "item"
+				}
+			]
+			x: 37.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["6D0E01D63926E4DC"]
+			description: ["将能量转化为压力。"]
+			id: "7B4A21DBD5C64455"
+			tasks: [{
+				id: "66EBF4EBA0AB346C"
+				item: "pneumaticcraft:flux_compressor"
+				type: "item"
+			}]
+			x: 38.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["7B4A21DBD5C64455"]
+			id: "6C9267FEC67F9C7B"
+			tasks: [{
+				id: "3C9D636D3BD33441"
+				item: "kubejs:mechanism_lv_1"
+				type: "item"
+			}]
+			x: 40.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["0388C4D40DF0C3AC"]
+			description: ["要自动化，可以使用 cyclic mod 的流体放置器。在左上角设为始终激活即可。"]
+			id: "0C6FA775646F3B53"
+			tasks: [{
+				id: "1D202571F6CD6340"
+				item: "cyclic:placer_fluid"
+				type: "item"
+			}]
+			x: 17.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["0C6FA775646F3B53"]
+			description: ["然后你就可以用物品收集器来拾取物品了。把它放在一个物品栏的上方，这样就行了。在界面上，底部有过滤选项，你可以切换是否显示其作用区域，也可以用箭头按钮来改变范围。"]
+			id: "7D36DA39C1B02105"
+			tasks: [{
+				id: "4D926DBAF00C7CE5"
+				item: "itemcollectors:advanced_collector"
+				type: "item"
+			}]
+			x: 17.5d
+			y: -2.0d
+		}
+	]
+	title: "6. 在压力下"
+}

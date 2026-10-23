@@ -1,0 +1,392 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "abyssal_chasm"
+	group: "63886E77C59163B5"
+	icon: "alexscaves:submarine"
+	id: "22247CC0B457EC60"
+	images: [
+		{
+			height: 2.0d
+			image: "alexscaves:item/tripodfish"
+			rotation: 0.0d
+			width: 2.0d
+			x: 2.0d
+			y: -1.5d
+		}
+		{
+			height: 2.2d
+			image: "alexscaves:item/submarine"
+			rotation: 0.0d
+			width: 2.2d
+			x: -4.0d
+			y: -3.5d
+		}
+		{
+			height: 11.0d
+			image: "alexscaves:textures/gui/book/abyssal_chapter.png"
+			rotation: 0.0d
+			width: 11.0d
+			x: 8.0d
+			y: -1.5d
+		}
+	]
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["{image:alexscaves:textures/gui/book/abyssal_chapter.png width:60 height:60 align:center}"]
+			id: "02FEDD41D90377E8"
+			rewards: [{
+				id: "5B930C75107E8BF0"
+				type: "xp"
+				xp: 20
+			}]
+			shape: "pentagon"
+			size: 1.4d
+			subtitle: "超越海洋"
+			tasks: [{
+				biome: "alexscaves:abyssal_chasm"
+				icon: "alexscaves:submarine"
+				id: "68FB2263D550FE8B"
+				title: "深渊裂谷"
+				type: "biome"
+			}]
+			title: "&3&l深渊裂谷"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["02FEDD41D90377E8"]
+			description: ["通过破坏&l贻贝&r，你可以发现&l&d珍珠&r，这是&l深海生物&r的货币。"]
+			id: "118A433B49A36D3D"
+			rewards: [{
+				id: "5DE4F57CA3B5B3B7"
+				type: "xp"
+				xp: 50
+			}]
+			subtitle: "海洋钻石"
+			tasks: [{
+				id: "273F79FD793C2CBF"
+				item: "alexscaves:pearl"
+				type: "item"
+			}]
+			title: "&l&d找到一个珍珠"
+			x: -2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["118A433B49A36D3D"]
+			id: "00DB35801E4A3BBD"
+			rewards: [{
+				id: "1C45AFB433ED4F2E"
+				type: "xp"
+				xp: 50
+			}]
+			subtitle: "一份祭品"
+			tasks: [{
+				advancement: "alexscaves:alexscaves/pearl_on_abyssal_altar"
+				criterion: ""
+				id: "006318633BCDCD20"
+				title: "将一颗珍珠放置在深渊祭坛上"
+				type: "advancement"
+			}]
+			title: "&l&3将珍珠放置在深渊祭坛上"
+			x: -3.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["00DB35801E4A3BBD"]
+			description: ["原来它们并非天生具有攻击性，只是领地意识很强。"]
+			id: "0A212A8840947543"
+			rewards: [{
+				id: "71640AF390D2D100"
+				type: "xp"
+				xp: 50
+			}]
+			subtitle: "与深海生物进行交易"
+			tasks: [{
+				advancement: "alexscaves:alexscaves/trade_with_deep_one"
+				criterion: ""
+				id: "2CC08710D9E7AE34"
+				title: "与深海生物进行交易"
+				type: "advancement"
+			}]
+			title: "&l&3一份理解协议"
+			x: -2.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["0A212A8840947543"]
+			id: "279105874F511E31"
+			rewards: [{
+				id: "5BBE6CD55217D0F0"
+				type: "xp"
+				xp: 50
+			}]
+			subtitle: "赢得足够的声望，他们会来为你辩护"
+			tasks: [{
+				advancement: "alexscaves:alexscaves/deep_ones_become_helpful"
+				criterion: ""
+				id: "430FD15BDE49CA02"
+				title: "伙伴时刻现已上线"
+				type: "advancement"
+			}]
+			title: "&l&3所有伙伴，即刻行动！"
+			x: -2.0d
+			y: -5.0d
+		}
+		{
+			dependencies: ["02FEDD41D90377E8"]
+			id: "6649AA1E55F1AFF1"
+			rewards: [{
+				id: "46B1FDED77435C09"
+				type: "xp"
+				xp: 10
+			}]
+			subtitle: "击败一个爆炸性敌人"
+			tasks: [{
+				entity: "alexscaves:mine_guardian"
+				icon: "alexscaves:depth_charge"
+				id: "7B45B69882886BC9"
+				title: "Mine Guardian"
+				type: "kill"
+				value: 1L
+			}]
+			title: "&l&7Mine Guardian"
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["02FEDD41D90377E8"]
+			hide_dependency_lines: true
+			id: "545CDA9384611F5F"
+			rewards: [
+				{
+					count: 2
+					id: "0EB92181E011195B"
+					item: "minecraft:iron_ingot"
+					type: "item"
+				}
+				{
+					count: 2
+					id: "7FF83F8DE2BA5312"
+					item: "minecraft:copper_ingot"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "103E36B0764558A9"
+				item: {
+					Count: 1
+					id: "alexscaves:diving_helmet"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 0.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["02FEDD41D90377E8"]
+			hide_dependency_lines: true
+			id: "466D6F758EA2FC24"
+			rewards: [
+				{
+					count: 2
+					id: "2DB0E3867FA1E369"
+					item: "minecraft:iron_ingot"
+					type: "item"
+				}
+				{
+					count: 2
+					id: "1E9DD975C74FA24F"
+					item: "minecraft:copper_ingot"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "62D1512102F27DD8"
+				item: {
+					Count: 1
+					id: "alexscaves:diving_chestplate"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 0.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["02FEDD41D90377E8"]
+			hide_dependency_lines: true
+			id: "399DBC14B72D707C"
+			rewards: [
+				{
+					count: 2
+					id: "3D65131467320C32"
+					item: "minecraft:iron_ingot"
+					type: "item"
+				}
+				{
+					count: 2
+					id: "7053B83BC32C17D8"
+					item: "minecraft:copper_ingot"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "365AE26AE1AD4E68"
+				item: {
+					Count: 1
+					id: "alexscaves:diving_leggings"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 0.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["02FEDD41D90377E8"]
+			hide_dependency_lines: true
+			id: "00C40ED8951B9359"
+			rewards: [
+				{
+					count: 2
+					id: "469EFB9E662675BD"
+					item: "minecraft:iron_ingot"
+					type: "item"
+				}
+				{
+					count: 2
+					id: "7AB2E02BFA7A1454"
+					item: "minecraft:copper_ingot"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "358F209640DA9EF5"
+				item: {
+					Count: 1
+					id: "alexscaves:diving_boots"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 0.0d
+			y: -1.5d
+		}
+		{
+			dependencies: [
+				"545CDA9384611F5F"
+				"466D6F758EA2FC24"
+				"399DBC14B72D707C"
+				"00C40ED8951B9359"
+			]
+			description: ["一件&l&9潜水服&r能让你&l在水下呼吸&r，非常适合探索海洋。"]
+			id: "5B920CB70BB22CC2"
+			rewards: [
+				{
+					id: "24C614CFCE1F9A75"
+					type: "xp"
+					xp: 25
+				}
+				{
+					id: "60259ACCC8D60CDB"
+					item: "rustic_engineer:book_abyssal_submarine"
+					type: "item"
+				}
+			]
+			subtitle: "拥有一套完整的潜水服"
+			tasks: [{
+				advancement: "alexscaves:alexscaves/diving_armor"
+				criterion: ""
+				icon: "hammerlib:gears/copper"
+				id: "1D1D421E5680E016"
+				title: "独眼巨人（The Cyclops）"
+				type: "advancement"
+			}]
+			title: "&l&6独眼巨人（The Cyclops）"
+			x: 1.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["02FEDD41D90377E8"]
+			description: ["Obtain these &lpowerful items&r by &ltrading&r with &l&9The Deep Ones&r."]
+			id: "3A216BE3D4A58CC0"
+			rewards: [
+				{
+					id: "6F1796611472A8C6"
+					item: "alexscaves:floater"
+					type: "item"
+				}
+				{
+					id: "6C9C6ECB01A63945"
+					item: "minecraft:tide_armor_trim_smithing_template"
+					type: "item"
+				}
+				{
+					id: "7CFE3365546110EA"
+					type: "xp"
+					xp: 10
+				}
+			]
+			shape: "hexagon"
+			subtitle: "深海居民的宝藏"
+			tasks: [
+				{
+					id: "25B2AD82CB75AFA5"
+					item: {
+						Count: 1
+						id: "alexscaves:magic_conch"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "17379C6A71A95DD3"
+					item: {
+						Count: 1
+						id: "alexscaves:ortholance"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "05A6D781000F3C60"
+					item: {
+						Count: 1
+						id: "alexscaves:sea_staff"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "0DE0A471DAA91D49"
+					item: "alexscaves:gazing_pearl"
+					type: "item"
+				}
+			]
+			title: "&l&9波塞冬的力量"
+			x: 0.0d
+			y: 2.5d
+		}
+	]
+	title: "&3&l深渊裂谷"
+}

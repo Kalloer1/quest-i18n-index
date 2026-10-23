@@ -1,0 +1,959 @@
+# AI 初翻，未人工校对
+{
+	id: 740,
+	filename: "6",
+	order_index: 10,
+	title: "&e&l光明王国",
+	icon: {
+		id: "aoa3:gods_greatblade",
+		Count: 1b,
+		tag: {
+			Damage: 0
+		}
+	},
+	always_invisible: false,
+	group: 0,
+	default_quest_shape: "default",
+	images: [
+		{
+			x: 10.0d,
+			y: -5.5d,
+			width: 22.0d,
+			height: 10.0d,
+			rotation: 0.0d,
+			image: "minecraft:textures/gui/presets/ygzszh.png",
+			hover: [],
+			click: ""
+		},
+		{
+			x: -0.9d,
+			y: -22.5d,
+			width: 20.0d,
+			height: 15.0d,
+			rotation: 0.0d,
+			image: "minecraft:textures/gui/presets/wyzh.png",
+			hover: [],
+			click: ""
+		}
+	],
+	quests: [
+		{
+			title: "&e&l欢迎来到最终阶段！",
+			x: -1.0d,
+			y: 10.0d,
+			shape: "default",
+			subtitle: "",
+			size: 2.0d,
+			description: [
+				"-维度等级140及以上",
+				"-所有怪物都比主世界强1.6倍，经验值是75倍，&e怪物至少是老兵级别&f",
+				"--只有在提交&d最终血液&f后，才能开启通往最终阶段的门"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 741,
+			tasks: [{
+				id: 742,
+				type: "item",
+				item: "tloaadd:final_blood",
+				consume_items: true
+			}],
+			rewards: [{
+				id: 2450,
+				type: "item",
+				item: "tloaadd:final_blood"
+			}]
+		},
+		{
+			title: "一道刺眼的光芒从传送门中射出",
+			icon: "aoa3:shyrelands_realmstone",
+			x: -1.0d,
+			y: 1.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"-Shyrelands 没有昼夜循环，太阳的位置始终固定不变",
+				"- 希雷兰的地表非常平坦，只有少数起伏。地面上有希雷木、希雷植物以及一些完好和损坏的结构。希雷地表的平均高度超过 Y=100",
+				"-Shyre 地下会生成 Bright Rock、Shyrestone Ore 和 Shyregem Ore。Bright Rock 仅延伸至 Y=62。虚空之上有一层 Shyre 地壳。部分地下结构也会生成在 Bright Rock 中。Y=62 以下，玩家可以直达虚空。在 Shining Rocks 下，玩家可以看到连接 Shyre 大陆的 Shyre Pillars，就像它们支撑着整个 Shyre 大陆一样。"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;741],
+			dependency_requirement: "all_completed",
+			id: 745,
+			tasks: [{
+				id: 746,
+				type: "dimension",
+				dimension: "aoa3:shyrelands"
+			}]
+		},
+		{
+			title: "&6向指挥官发起了挑战！",
+			x: -1.0d,
+			y: -5.5d,
+			shape: "rsquare",
+			subtitle: "",
+			size: 2.0d,
+			description: [
+				"-150 等级",
+				"- 克雷克斯修斯会向目标发射两种类型的投射物：",
+				"-Craexxeus 射击：",
+				"-接触到实体时会对其造成普通投射物伤害，接触到实体/方块时会消失",
+				"-Craexxeus核弹：",
+				"- Craexxeus 发射此投射物时有 15 秒的冷却时间。冷却结束前 2 秒会发出音效，提醒玩家即将发射。此投射物飞行速度更快、精度更高，难度越高，精度越高",
+				"-当Craexxeus死亡时，Xxeus将在死亡地点生成"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;753],
+			dependency_requirement: "all_completed",
+			id: 747,
+			tasks: [{
+				id: 748,
+				type: "kill",
+				entity: "aoa3:craexxeus",
+				value: 1L
+			}]
+		},
+		{
+			title: "&6最后的Xxeus",
+			x: -1.0d,
+			y: -8.5d,
+			shape: "rsquare",
+			subtitle: "",
+			size: 2.0d,
+			description: ["-Xxeus会跳跃并劈砍目标，每次跳跃和劈砍后都有3秒的冷却时间"],
+			min_required_dependencies: 0,
+			dependencies: [I;747],
+			dependency_requirement: "all_completed",
+			id: 749,
+			tasks: [{
+				id: 750,
+				type: "kill",
+				entity: "aoa3:xxeus",
+				value: 1L
+			}],
+			rewards: [
+				{
+					id: 1173,
+					type: "item",
+					icon: {
+						id: "mmorpg:lootbox/big_gear_lootbox_4",
+						Count: 5b
+					},
+					item: {
+						id: "mmorpg:lootbox/big_gear_lootbox_4",
+						Count: 5b
+					}
+				},
+				{
+					id: 1254,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 1000000000
+						}
+					}
+				}
+			]
+		},
+		{
+			x: -1.0d,
+			y: -1.0d,
+			shape: "square",
+			subtitle: "",
+			size: 1.0d,
+			description: ["-需通过 Shyre Archer 兑换，2 个 Shyrestone Ingot 加 2 个 Shyregem 可兑换 1 个 Ancient Ring"],
+			min_required_dependencies: 0,
+			dependencies: [I;745],
+			dependency_requirement: "all_completed",
+			id: 751,
+			tasks: [{
+				id: 752,
+				type: "item",
+				item: "aoa3:ancient_ring"
+			}],
+			rewards: [{
+				id: 1172,
+				type: "item",
+				item: "mmorpg:events/pumpkin_juice"
+			}]
+		},
+		{
+			title: "Craexxeus 祭坛",
+			icon: "aoa3:craexxeus_altar",
+			x: -1.0d,
+			y: -3.0d,
+			shape: "square",
+			subtitle: "",
+			size: 1.0d,
+			description: [
+				"自然生成于 Shyrelands 的 Craexxeus 塔中",
+				"-手持远古戒指，右键点击Craexxeus祭坛即可召唤Craexxeus"
+			],
+			min_required_dependencies: 0,
+			dependencies: [I;751],
+			dependency_requirement: "all_completed",
+			id: 753,
+			tasks: [{
+				id: 754,
+				type: "checkmark"
+			}]
+		},
+		{
+			title: "&6Xxeusess",
+			x: -1.0d,
+			y: -11.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;749],
+			dependency_requirement: "all_completed",
+			id: 755,
+			tasks: [{
+				id: 756,
+				type: "item",
+				item: "tloaadd:xxeusess"
+			}]
+		},
+		{
+			x: -4.0d,
+			y: 0.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;745],
+			dependency_requirement: "all_completed",
+			id: 759,
+			tasks: [{
+				id: 760,
+				type: "kill",
+				entity: "aoa3:arcbeast",
+				value: 30L
+			}],
+			rewards: [
+				{
+					id: 1596,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1726,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 88000000
+						}
+					}
+				}
+			]
+		},
+		{
+			x: -4.5d,
+			y: 2.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;745],
+			dependency_requirement: "all_completed",
+			id: 761,
+			tasks: [{
+				id: 762,
+				type: "kill",
+				entity: "aoa3:arcworm",
+				value: 30L
+			}],
+			rewards: [
+				{
+					id: 1595,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1727,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 88000000
+						}
+					}
+				}
+			]
+		},
+		{
+			x: -3.5d,
+			y: 4.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;745],
+			dependency_requirement: "all_completed",
+			id: 763,
+			tasks: [{
+				id: 764,
+				type: "kill",
+				entity: "aoa3:axiolight",
+				value: 30L
+			}],
+			rewards: [
+				{
+					id: 1594,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1728,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 88000000
+						}
+					}
+				}
+			]
+		},
+		{
+			x: 2.5d,
+			y: 0.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;745],
+			dependency_requirement: "all_completed",
+			id: 765,
+			tasks: [{
+				id: 766,
+				type: "kill",
+				entity: "aoa3:omnilight",
+				value: 30L
+			}],
+			rewards: [
+				{
+					id: 1589,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1725,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 88000000
+						}
+					}
+				}
+			]
+		},
+		{
+			x: 3.0d,
+			y: 2.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;745],
+			dependency_requirement: "all_completed",
+			id: 767,
+			tasks: [{
+				id: 768,
+				type: "kill",
+				entity: "aoa3:shyre_knight",
+				value: 30L
+			}],
+			rewards: [
+				{
+					id: 1590,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1724,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 88000000
+						}
+					}
+				}
+			]
+		},
+		{
+			x: 1.5d,
+			y: 4.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;745],
+			dependency_requirement: "all_completed",
+			id: 769,
+			tasks: [{
+				id: 770,
+				type: "kill",
+				entity: "aoa3:soulscorne",
+				value: 30L
+			}],
+			rewards: [
+				{
+					id: 1591,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1723,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 88000000
+						}
+					}
+				}
+			]
+		},
+		{
+			x: -2.0d,
+			y: 6.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;745],
+			dependency_requirement: "all_completed",
+			id: 771,
+			tasks: [{
+				id: 772,
+				type: "kill",
+				entity: "aoa3:stimulo",
+				value: 30L
+			}],
+			rewards: [
+				{
+					id: 1593,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1729,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 88000000
+						}
+					}
+				}
+			]
+		},
+		{
+			x: 0.0d,
+			y: 6.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;745],
+			dependency_requirement: "all_completed",
+			id: 773,
+			tasks: [{
+				id: 774,
+				type: "kill",
+				entity: "aoa3:sysker",
+				value: 30L
+			}],
+			rewards: [
+				{
+					id: 1592,
+					type: "random",
+					table: 0
+				},
+				{
+					id: 1722,
+					type: "item",
+					item: {
+						id: "mmorpg:give_exp",
+						Count: 1b,
+						tag: {
+							exp: 88000000
+						}
+					}
+				}
+			]
+		},
+		{
+			title: "击杀奖励 - 害羞之地 (Shyrelands)",
+			icon: {
+				id: "mmorpg:lootbox/big_gear_lootbox_4",
+				Count: 30b
+			},
+			x: -1.0d,
+			y: 4.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;
+				765,
+				767,
+				769,
+				773,
+				771,
+				763,
+				761,
+				759
+			],
+			dependency_requirement: "all_completed",
+			id: 775,
+			tasks: [{
+				id: 776,
+				type: "checkmark"
+			}],
+			rewards: [{
+				id: 777,
+				type: "item",
+				icon: {
+					id: "mmorpg:lootbox/big_gear_lootbox_4",
+					Count: 30b
+				},
+				item: {
+					id: "mmorpg:lootbox/big_gear_lootbox_4",
+					Count: 30b
+				}
+			}]
+		},
+		{
+			title: "&6&l这...就是终点了吗？",
+			x: 3.5d,
+			y: -11.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.5d,
+			description: ["-使用所有首领的精华来合成一把钥匙，开启你的新旅程！"],
+			min_required_dependencies: 0,
+			dependencies: [I;755],
+			dependency_requirement: "all_completed",
+			id: 2329,
+			tasks: [{
+				id: 2330,
+				type: "item",
+				item: "dimdungeons:item_portal_key"
+			}]
+		},
+		{
+			title: "&c&l恶魔来袭！",
+			icon: {
+				id: "lycanitesmobs:undeadspawn",
+				Count: 1b,
+				tag: {
+					CreatureInfoSpawnEgg: {
+						creaturename: "amalgalich"
+					}
+				}
+			},
+			x: -1.0d,
+			y: -14.0d,
+			shape: "rsquare",
+			subtitle: "",
+			size: 3.0d,
+			description: ["-Amalgalich 降临 AoA 之巅，让它瞧瞧谁才是真正的飞升之主！"],
+			min_required_dependencies: 0,
+			dependencies: [I;755],
+			hide: true,
+			dependency_requirement: "all_completed",
+			id: 2461,
+			tasks: [
+				{
+					id: 2463,
+					type: "item",
+					item: "lycanitesmobs:soulkey"
+				},
+				{
+					id: 2464,
+					type: "kill",
+					icon: {
+						id: "lycanitesmobs:undeadspawn",
+						Count: 1b,
+						tag: {
+							CreatureInfoSpawnEgg: {
+								creaturename: "amalgalich"
+							}
+						}
+					},
+					entity: "lycanitesmobs:amalgalich",
+					value: 1L
+				}
+			],
+			rewards: [{
+				id: 2465,
+				type: "item",
+				item: "tloaadd:fragment_of_challenage_1"
+			}]
+		},
+		{
+			x: 11.0d,
+			y: 1.5d,
+			shape: "default",
+			subtitle: "",
+			size: 2.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 2781,
+			tasks: [{
+				id: 2782,
+				type: "checkmark",
+				title: "以下齿轮符合本章的维度等级要求"
+			}]
+		},
+		{
+			x: 10.0d,
+			y: 5.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 2899,
+			tasks: [{
+				id: 2900,
+				type: "item",
+				item: {
+					id: "aoa3:knights_guard",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			x: 12.0d,
+			y: 3.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 2901,
+			tasks: [
+				{
+					id: 2902,
+					type: "item",
+					item: {
+						id: "aoa3:knight_helmet",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 2903,
+					type: "item",
+					item: {
+						id: "aoa3:knight_chestplate",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 2904,
+					type: "item",
+					item: {
+						id: "aoa3:knight_legs",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				},
+				{
+					id: 2905,
+					type: "item",
+					item: {
+						id: "aoa3:knight_boots",
+						Count: 1b,
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		},
+		{
+			x: 8.5d,
+			y: 3.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 3119,
+			tasks: [{
+				id: 3120,
+				type: "item",
+				item: {
+					id: "aoa3:atlantic_bow",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			x: 7.0d,
+			y: 3.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 3131,
+			tasks: [{
+				id: 3132,
+				type: "item",
+				item: {
+					id: "aoa3:shyregem_bow",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			x: 5.5d,
+			y: 3.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: ["-可与Shyre Archer交易以获得"],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 3137,
+			tasks: [{
+				id: 3138,
+				type: "item",
+				item: {
+					id: "aoa3:sunshine_bow",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			x: 10.0d,
+			y: 3.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 3169,
+			tasks: [{
+				id: 3170,
+				type: "item",
+				item: {
+					id: "aoa3:candlefire_sword",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			x: 8.5d,
+			y: 5.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 3189,
+			tasks: [{
+				id: 3190,
+				type: "item",
+				item: {
+					id: "aoa3:lights_way",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			x: 7.0d,
+			y: 5.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 3217,
+			tasks: [{
+				id: 3218,
+				type: "item",
+				item: {
+					id: "aoa3:gods_greatblade",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			x: 5.5d,
+			y: 5.0d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 3225,
+			tasks: [{
+				id: 3226,
+				type: "item",
+				item: {
+					id: "aoa3:millennium_greatblade",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			x: 10.0d,
+			y: 6.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;],
+			dependency_requirement: "all_completed",
+			id: 3235,
+			tasks: [{
+				id: 3236,
+				type: "item",
+				item: {
+					id: "aoa3:shyre_sword",
+					Count: 1b,
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		},
+		{
+			x: -2.0d,
+			y: 0.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;745],
+			dependency_requirement: "all_completed",
+			id: 3524,
+			tasks: [{
+				id: 3525,
+				type: "item",
+				item: "aoa3:shyrestone_ingot",
+				count: 32L,
+				consume_items: true
+			}],
+			rewards: [{
+				id: 3528,
+				type: "item",
+				item: "mmorpg:lootbox/medium_currency_lootbox_3"
+			}]
+		},
+		{
+			x: 0.0d,
+			y: 0.5d,
+			shape: "default",
+			subtitle: "",
+			size: 1.0d,
+			description: [],
+			min_required_dependencies: 0,
+			dependencies: [I;3524],
+			dependency_requirement: "all_completed",
+			id: 3526,
+			tasks: [{
+				id: 3527,
+				type: "item",
+				item: "aoa3:shyrestone_ingot",
+				count: 64L,
+				consume_items: true
+			}],
+			rewards: [
+				{
+					id: 3529,
+					type: "random",
+					table: 10
+				},
+				{
+					id: 3530,
+					type: "item",
+					item: "mmorpg:lootbox/big_gear_lootbox_4"
+				}
+			]
+		}
+	]
+}

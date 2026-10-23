@@ -1,0 +1,194 @@
+# AI 初翻，未人工校对
+{
+	id: "750D01ACB3EE03D3"
+	group: "61A140EAD46EB24F"
+	order_index: 7
+	filename: "the_end"
+	title: "The End"
+	icon: "minecraft:end_stone"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "The End?"
+			x: 0.0d
+			y: 0.0d
+			description: ["你可能意识到自己从未去过末地维度，但现在情况变了，我们需要末地传送门框架。"]
+			dependencies: ["3C0406E692AC41C8"]
+			id: "0333AB47BF0ED581"
+			tasks: [{
+				id: "04639D55824A266B"
+				type: "item"
+				item: "minecraft:end_stone"
+			}]
+		}
+		{
+			title: "建造传送门"
+			x: 0.0d
+			y: 2.0d
+			description: ["想去末地的话就需要一个传送门，所以先做一个吧。"]
+			dependencies: ["0333AB47BF0ED581"]
+			id: "540E2C14402EAE61"
+			tasks: [{
+				id: "24DD4AD513AAD6A5"
+				type: "item"
+				item: "minecraft:end_portal_frame"
+				count: 12L
+			}]
+		}
+		{
+			title: "The End"
+			icon: "minecraft:end_stone"
+			x: 0.0d
+			y: 4.0d
+			description: ["前往末地。"]
+			dependencies: ["540E2C14402EAE61"]
+			id: "13FB4BA7A9B4E1DD"
+			tasks: [{
+				id: "484641117DEFDAB1"
+				type: "dimension"
+				dimension: "minecraft:the_end"
+			}]
+		}
+		{
+			title: "新一代的崛起"
+			x: 0.0d
+			y: 6.0d
+			description: ["最后，现在让我们回到火山那里去吧。"]
+			dependencies: ["13FB4BA7A9B4E1DD"]
+			id: "62A058934D34DDD3"
+			tasks: [{
+				id: "4FCF72B4FC55388D"
+				type: "item"
+				item: "minecraft:dragon_egg"
+			}]
+		}
+		{
+			title: "巨型合成台"
+			x: 0.0d
+			y: 8.0d
+			description: ["这是我见过的最大的机械合成器，希望你能真的把它造出来。"]
+			dependencies: ["62A058934D34DDD3"]
+			id: "4D48945371D9D110"
+			tasks: [{
+				id: "080C57D8034ACEB1"
+				type: "item"
+				item: "create:mechanical_crafter"
+				count: 57L
+			}]
+		}
+		{
+			title: "终于，REMAGIUM！"
+			x: 0.0d
+			y: 10.0d
+			shape: "gear"
+			description: ["将配方最后的部件放入合成台，你闭上双眼，期待被传送到另一个全新的宇宙..."]
+			dependencies: ["4D48945371D9D110"]
+			size: 2.0d
+			id: "173E25FEBBE60EC9"
+			tasks: [{
+				id: "051ABC53C1C28B0D"
+				type: "item"
+				item: "kubejs:remagium"
+			}]
+		}
+		{
+			x: 0.0d
+			y: 12.0d
+			description: [
+				"片刻后你再次睁开眼睛，一切安好，没有东西爆炸，你的手中握着 remagium。"
+				""
+				"你再次打开任务书，看到最后一个任务，你知道自己该做什么了。"
+			]
+			dependencies: ["173E25FEBBE60EC9"]
+			hide: true
+			hide_details_until_startable: true
+			id: "47C4A82371D4A423"
+			tasks: [{
+				id: "7609DAE3EDA916C3"
+				type: "checkmark"
+				title: "还有更多内容吗？"
+			}]
+		}
+		{
+			title: "坠入深渊"
+			x: 0.0d
+			y: 14.0d
+			description: [
+				"为了这最后一个合成，你需要重新排列机械合成器，制作火箭时我会把其他需要的东西给你。"
+				""
+				"你登上新的火箭，将目标锁定在月球上。"
+				""
+				"&c(你必须去月球，去别的地方会永久锁定，因为你无法制造燃料)"
+			]
+			dependencies: ["47C4A82371D4A423"]
+			id: "389EEE35DCDBAF26"
+			tasks: [{
+				id: "3F8B10336FD09BF3"
+				type: "item"
+				item: {
+					id: "beyond_earth:rocket_t4"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [
+				{
+					id: "6CDBD956E70D176E"
+					type: "item"
+					item: "beyond_earth:rocket_launch_pad"
+					count: 9
+				}
+				{
+					id: "3380ACBC8ECF9AD9"
+					type: "item"
+					item: "beyond_earth:fuel_bucket"
+				}
+				{
+					id: "6159FE4A7BE4414E"
+					type: "item"
+					item: "beyond_earth:fuel_bucket"
+				}
+				{
+					id: "43EF709E9C3A86B4"
+					type: "item"
+					item: "beyond_earth:fuel_bucket"
+				}
+				{
+					id: "572192910AF81008"
+					type: "command"
+					auto: "invisible"
+					ignore_reward_blocking: true
+					command: "/gamerule keepInventory true"
+				}
+			]
+		}
+		{
+			title: "前往月球"
+			x: 0.0d
+			y: 16.0d
+			subtitle: "你没有成功做到……"
+			description: [
+				"将火箭送入月球轨道后，你开始放松，朝着月球飞去。"
+				""
+				"但命运弄人，你听到驾驶舱扬声器里传来刺耳的警报声。"
+				""
+				"“主引擎故障，正在关闭所有引擎”"
+				""
+				"意识到自己陷入困境，无法脱身，你决定按下紧急休眠按钮。"
+				""
+				"随着温度下降，你在被冰冻前最后一次闭上双眼，随后乘坐破败的火箭在太空中漂流。"
+			]
+			dependencies: ["389EEE35DCDBAF26"]
+			invisible: true
+			id: "0484256BF964D332"
+			tasks: [{
+				id: "3DE913769497EDB7"
+				type: "dimension"
+				icon: "beyond_earth:moon_stone"
+				dimension: "beyond_earth:moon"
+			}]
+		}
+	]
+	quest_links: [ ]
+}

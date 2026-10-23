@@ -1,0 +1,985 @@
+# AI 初翻，未人工校对
+{
+	id: "0110A84A248B593E"
+	group: ""
+	order_index: 2
+	filename: "fixing_things_up"
+	title: "整理一下东西，把一切弄好"
+	icon: "silents_mechanisms:wrench"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: 0.0d
+			y: 0.0d
+			description: [
+				"在基地周围找找，看能不能找到一个熔炉发电机"
+				"这个发电机暂时够用，但未来会有更强大的能源"
+				""
+				"*提示：看看穹顶的顶部"
+			]
+			dependencies: ["14BB563253AFE8C2"]
+			id: "27BBEDF4A3F0ED89"
+			tasks: [{
+				id: "5993771B7D9B7590"
+				type: "item"
+				item: "industrialforegoing:mycelial_furnace"
+			}]
+			rewards: [{
+				id: "17CD4DBA3FBB0F71"
+				type: "item"
+				item: "cyclic:energy_pipe"
+				count: 8
+			}]
+		}
+		{
+			x: 2.0d
+			y: 0.0d
+			description: ["还用我说吗？想变强就得用mekanism，而这正是它的基础。"]
+			dependencies: ["27BBEDF4A3F0ED89"]
+			id: "377CE934223A76A5"
+			tasks: [{
+				id: "0FDEF19E8D7C8C3A"
+				type: "item"
+				item: "mekanism:metallurgic_infuser"
+			}]
+			rewards: [
+				{
+					id: "4AFCFA7AAE485DE2"
+					type: "item"
+					item: "mekanism:alloy_infused"
+					count: 8
+				}
+				{
+					id: "22198A8DE0A475FE"
+					type: "item"
+					item: "mekanism:basic_control_circuit"
+					count: 8
+				}
+			]
+		}
+		{
+			icon: "mekanism:enrichment_chamber"
+			x: 4.0d
+			y: 0.0d
+			description: [
+				"全新富集室，仅需 99.99 美元（不含运费），让你的注入物发挥更大价值"
+				""
+				"或者你也可以自己制作。随你选择。"
+			]
+			dependencies: ["377CE934223A76A5"]
+			dependency_requirement: "one_completed"
+			id: "24746405E9576736"
+			tasks: [{
+				id: "1C0495B9321FEEB4"
+				type: "item"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "mekanism:enrichment_chamber"
+								Count: 1b
+							}
+							{
+								id: "minecraft:sunflower"
+								Count: 1b
+								tag: {
+									RepairCost: 0
+									display: {
+										Name: "{\"text\":\"Money\"}"
+									}
+								}
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "7891ECA66DF85506"
+				type: "item"
+				team_reward: true
+				item: "mekanism:enrichment_chamber"
+			}]
+		}
+		{
+			x: 6.0d
+			y: 0.0d
+			description: [
+				"铀矿的化学式是 UO2。所以将一些氧注入铀中，你就能得到铀矿"
+				"然后你就可以用这种铀矿来为反应堆提供动力了"
+			]
+			dependencies: [
+				"24746405E9576736"
+				"1A1219DD1BA64050"
+			]
+			id: "0832A4567D9468D7"
+			tasks: [{
+				id: "71826BFB60106AC5"
+				type: "item"
+				item: "mekanism:purification_chamber"
+			}]
+			rewards: [{
+				id: "0360D423D0C540A9"
+				type: "item"
+				item: "powah:uraninite"
+				count: 8
+			}]
+		}
+		{
+			title: "合金冶炼"
+			x: 2.0d
+			y: -4.0d
+			description: ["合金比单个部件更坚固。它们还可以用来创造更坚固、更强大的物品"]
+			dependencies: ["72F718C47960CF6B"]
+			id: "4F5C5ED1A9C2268D"
+			tasks: [
+				{
+					id: "57E46874D6E7750A"
+					type: "item"
+					item: "silents_mechanisms:bronze_ingot"
+					count: 8L
+				}
+				{
+					id: "42162EB86C5295E1"
+					type: "item"
+					item: "silents_mechanisms:basic_alloy_smelter"
+				}
+			]
+			rewards: [{
+				id: "326EBA8FD6017CB0"
+				type: "item"
+				item: "mekanism:ingot_steel"
+				count: 4
+			}]
+		}
+		{
+			title: "破碎机"
+			x: 4.0d
+			y: -2.0d
+			description: [
+				"浩克粉碎"
+				"利用活塞和能量的力量来制造某些材料的粉尘"
+			]
+			dependencies: ["4F5C5ED1A9C2268D"]
+			id: "634970B4B50923D2"
+			tasks: [
+				{
+					id: "0E40D4954DB0846D"
+					type: "item"
+					item: "silents_mechanisms:basic_crusher"
+				}
+				{
+					id: "681698FF1E024E99"
+					type: "item"
+					item: "mekanism:crusher"
+				}
+			]
+			rewards: [{
+				id: "7DFED2C4D859385C"
+				type: "item"
+				team_reward: true
+				item: "mekanism:electrolytic_core"
+			}]
+		}
+		{
+			x: 6.0d
+			y: -2.0d
+			description: ["使用电力可以将水分解成氢和氧。这些元素随后可以被重组为其他物质"]
+			dependencies: ["634970B4B50923D2"]
+			id: "1A1219DD1BA64050"
+			tasks: [{
+				id: "0F51436706DAA091"
+				type: "item"
+				item: "mekanism:electrolytic_separator"
+			}]
+			rewards: [{
+				id: "652A7AB3238949CC"
+				type: "item"
+				item: "mekanism:upgrade_gas"
+				count: 4
+			}]
+		}
+		{
+			title: "Powah 的开始"
+			x: 8.0d
+			y: 0.0d
+			description: ["要充分利用铀矿，需要更多材料。红石和煤炭可以提高能量的效率和产量。而冰块则有助于冷却铀矿的使用率。干冰最好，但很难获得，所以这里有一些供你使用。"]
+			dependencies: ["0832A4567D9468D7"]
+			id: "0AB6660821A7AB89"
+			tasks: [
+				{
+					id: "2DE6C8FA3D1DAFC6"
+					type: "item"
+					item: "powah:uraninite"
+					count: 64L
+				}
+				{
+					id: "5EB14AF1C6E70AC6"
+					type: "item"
+					item: "minecraft:coal_block"
+					count: 64L
+				}
+				{
+					id: "4636059A61B5E77F"
+					type: "item"
+					item: "minecraft:redstone_block"
+					count: 64L
+				}
+			]
+			rewards: [{
+				id: "4AA7A96297DBB12F"
+				type: "item"
+				item: "powah:dry_ice"
+				count: 16
+				random_bonus: 16
+			}]
+		}
+		{
+			title: "处理中"
+			x: 8.0d
+			y: 2.0d
+			description: ["如果你想玩红石，就需要这些处理器了"]
+			dependencies: ["0AB6660821A7AB89"]
+			id: "6793446B2AF5C9CA"
+			tasks: [
+				{
+					id: "5E403E7FC522FA88"
+					type: "item"
+					item: "refinedstorage:basic_processor"
+					count: 4L
+				}
+				{
+					id: "7350EF764F784E19"
+					type: "item"
+					item: "refinedstorage:improved_processor"
+					count: 4L
+				}
+				{
+					id: "50F728F04D23F8AE"
+					type: "item"
+					item: "refinedstorage:advanced_processor"
+					count: 4L
+				}
+			]
+			rewards: [{
+				id: "0AB8E13D7D1940E4"
+				type: "item"
+				item: "extradisks:withering_processor"
+				count: 4
+			}]
+		}
+		{
+			x: 10.0d
+			y: 0.0d
+			description: ["这台机器能将气体凝结成液体，也能将液体汽化成气体"]
+			dependencies: [
+				"1A1219DD1BA64050"
+				"0AB6660821A7AB89"
+			]
+			id: "03ACA4686AD97ADE"
+			tasks: [{
+				id: "450499D551A29C32"
+				type: "item"
+				item: "mekanism:rotary_condensentrator"
+			}]
+			rewards: [{
+				id: "2E1E9AE4BC8FEAE7"
+				type: "item"
+				item: "mekanism:upgrade_energy"
+				count: 4
+			}]
+		}
+		{
+			x: 10.0d
+			y: -2.0d
+			description: ["PRC 能让你将液体、气体和固体结合，创造出不同的固体和气体。你可以用这台机器制作基料、乙烯、葡萄糖等。"]
+			dependencies: [
+				"03ACA4686AD97ADE"
+				"1A1219DD1BA64050"
+			]
+			id: "20C2BD5A1DE92334"
+			tasks: [{
+				id: "79D113BC1ED65BF0"
+				type: "item"
+				item: "mekanism:pressurized_reaction_chamber"
+			}]
+			rewards: [{
+				id: "519D4E9BEC31F278"
+				type: "item"
+				item: "mekanism:upgrade_energy"
+				count: 4
+			}]
+		}
+		{
+			title: "食物"
+			x: 12.0d
+			y: 0.0d
+			description: ["在这片虚空维度里，食物很难获得。但葡萄糖可以由氢、氧和碳制成。这是一种相当不错的食物，但携带起来可能很麻烦"]
+			dependencies: ["20C2BD5A1DE92334"]
+			id: "5B62CDE5B040676F"
+			tasks: [{
+				id: "4DB4BD6A0D451341"
+				type: "item"
+				item: "natchathiram:glucose"
+				count: 32L
+			}]
+			rewards: [
+				{
+					id: "417BDD10D222876A"
+					type: "item"
+					item: "cyclic:inventory_cake"
+				}
+				{
+					id: "35DB6AEC99365513"
+					type: "random"
+					table_id: 1248826073087960274L
+				}
+			]
+		}
+		{
+			x: 14.0d
+			y: 0.0d
+			description: ["这台机器非常实用，因为它能把食物变成高营养气体，储存在头盔里的特殊容器里"]
+			dependencies: ["5B62CDE5B040676F"]
+			id: "1A59FB485631B052"
+			tasks: [{
+				id: "0DF469C98BAB8FCA"
+				type: "item"
+				item: "mekanism:nutritional_liquifier"
+			}]
+			rewards: [{
+				id: "190D636993981982"
+				type: "item"
+				item: {
+					id: "mekanism:configurator"
+					Count: 1b
+					tag: {
+						mekData: {
+							EnergyContainers: [{
+								Container: 0b
+								stored: "60000"
+							}]
+						}
+					}
+				}
+			}]
+		}
+		{
+			x: 8.0d
+			y: 4.0d
+			description: ["嘿，存储很重要。这个存储方块就像可放置的存储磁盘，可以放在RS系统的任何地方"]
+			dependencies: ["6793446B2AF5C9CA"]
+			id: "58944F24A088190A"
+			tasks: [{
+				id: "038B9F4943E16F47"
+				type: "item"
+				item: "refinedstorage:16k_storage_part"
+			}]
+			rewards: [{
+				id: "7F51A4D3D73D1A24"
+				type: "item"
+				item: "refinedstorage:16k_storage_block"
+			}]
+		}
+		{
+			title: "火箭背包"
+			x: 4.0d
+			y: -4.0d
+			description: ["你的盔甲自带鞘翅。你得到的护身符能让你在空中加速两次。但这有时还不够，所以你应该能用刚造的粉碎机和富集室来制作火药和纸。"]
+			dependencies: ["634970B4B50923D2"]
+			id: "3FD1003F675E7B1D"
+			tasks: [
+				{
+					id: "07A497A4F8DC22C9"
+					type: "item"
+					item: "minecraft:paper"
+					count: 16L
+				}
+				{
+					id: "43C3BFCDBCC2B822"
+					type: "item"
+					item: "minecraft:gunpowder"
+					count: 16L
+				}
+				{
+					id: "3658C1A83A1705C0"
+					type: "item"
+					item: "minecraft:firework_rocket"
+					count: 48L
+				}
+			]
+			rewards: [
+				{
+					id: "6839225DB9C9690D"
+					type: "item"
+					item: {
+						id: "botania:tornado_rod"
+						Count: 1b
+						tag: { }
+					}
+				}
+				{
+					id: "5158015E7E81E262"
+					type: "item"
+					item: {
+						id: "botania:mana_tablet"
+						Count: 1b
+						tag: {
+							mana: 250000
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 2.0d
+			y: 2.0d
+			dependencies: ["377CE934223A76A5"]
+			optional: true
+			id: "14D4289DC2F500CA"
+			tasks: [{
+				id: "6F2F2C02E3B1FECD"
+				type: "item"
+				item: "mekanism:ultimate_infusing_factory"
+			}]
+			rewards: [{
+				id: "566E292E44D8B2F7"
+				type: "random"
+				icon: "mekanism:alloy_atomic"
+				table_id: 5431052621145497898L
+			}]
+		}
+		{
+			x: 4.0d
+			y: 2.0d
+			dependencies: ["24746405E9576736"]
+			hide: true
+			optional: true
+			id: "08838CB4D5A48F4C"
+			tasks: [{
+				id: "0C4DDD648774F627"
+				type: "item"
+				item: "mekanism:ultimate_enriching_factory"
+			}]
+			rewards: [{
+				id: "33696B4D75E15971"
+				type: "random"
+				icon: "mekanism:alloy_atomic"
+				table_id: 5431052621145497898L
+			}]
+		}
+		{
+			x: 6.0d
+			y: 2.0d
+			dependencies: ["0832A4567D9468D7"]
+			hide: true
+			optional: true
+			id: "2B24A8C69496ED48"
+			tasks: [{
+				id: "772143E8FFBE77C1"
+				type: "item"
+				item: "mekanism:ultimate_purifying_factory"
+			}]
+			rewards: [{
+				id: "01E2DAB2C4AB2799"
+				type: "random"
+				icon: "mekanism:alloy_atomic"
+				table_id: 5431052621145497898L
+			}]
+		}
+		{
+			title: "高级合金冶炼"
+			x: 2.0d
+			y: -6.0d
+			dependencies: ["4F5C5ED1A9C2268D"]
+			optional: true
+			id: "4DC27FB4B270A15C"
+			tasks: [
+				{
+					id: "5785EDBABCF491FE"
+					type: "item"
+					item: "silents_mechanisms:alloy_smelter"
+				}
+				{
+					id: "18B75D8BF3BC1DBB"
+					type: "item"
+					item: "silentgear:metal_alloyer"
+				}
+			]
+			rewards: [{
+				id: "4F1E6999E15CB706"
+				type: "random"
+				icon: "mekanism:alloy_atomic"
+				table_id: 5431052621145497898L
+			}]
+		}
+		{
+			x: 6.0d
+			y: -4.0d
+			dependencies: ["634970B4B50923D2"]
+			optional: true
+			id: "1C8500C5A8656336"
+			tasks: [{
+				id: "5C80951290E63192"
+				type: "item"
+				item: "mekanism:ultimate_crushing_factory"
+			}]
+			rewards: [{
+				id: "46684E95C52E2DAE"
+				type: "random"
+				icon: "mekanism:alloy_atomic"
+				table_id: 5431052621145497898L
+			}]
+		}
+		{
+			x: 8.0d
+			y: 6.0d
+			dependencies: ["58944F24A088190A"]
+			optional: true
+			id: "596C4C85DEF47C6E"
+			tasks: [{
+				id: "373974C9AFBACD1E"
+				type: "item"
+				item: "extradisks:infinite_storage_part"
+			}]
+			rewards: [{
+				id: "6F6EA967A7D0F018"
+				type: "random"
+				icon: "mekanism:alloy_atomic"
+				table_id: 5431052621145497898L
+			}]
+		}
+		{
+			x: 10.0d
+			y: 2.0d
+			description: [
+				"能量非常重要，所以最好有个地方来储存能量。基地中心应该有个德拉科尼球，但可能缺少一些部件，用这些来修复并启动它"
+				"能量塔离能量球太远，无法输入和输出能量，所以你需要把它们移得更近"
+			]
+			dependencies: ["0AB6660821A7AB89"]
+			id: "72891CCECFBB0E0E"
+			tasks: [{
+				id: "6C8ED25B95F32C81"
+				type: "checkmark"
+				title: "能量球"
+				icon: "draconicevolution:energy_core"
+			}]
+			rewards: [{
+				id: "072100921207C4AE"
+				type: "item"
+				item: "draconicevolution:draconium_block"
+				count: 3
+			}]
+		}
+		{
+			x: 6.0d
+			y: 4.0d
+			description: ["这些合成器能让你自动合成，让长链合成变得更简单"]
+			dependencies: ["6793446B2AF5C9CA"]
+			id: "34EEC6FEB30F9A8E"
+			tasks: [{
+				id: "3AF5DE1C48CFF16A"
+				type: "item"
+				item: "refinedstorage:crafter"
+			}]
+			rewards: [{
+				id: "5AA18A6BAAADCF71"
+				type: "item"
+				item: "refinedstorage:speed_upgrade"
+				count: 4
+			}]
+		}
+		{
+			title: "创意合成"
+			x: 6.0d
+			y: 6.0d
+			dependencies: ["34EEC6FEB30F9A8E"]
+			optional: true
+			id: "646CF3F627C94508"
+			tasks: [{
+				id: "762B4AD9C0359B33"
+				type: "item"
+				item: "creativecrafter:creative_crafter"
+				count: 4L
+			}]
+			rewards: [{
+				id: "698A38E6C8B74CD9"
+				type: "random"
+				icon: "mekanism:alloy_atomic"
+				table_id: 5431052621145497898L
+			}]
+		}
+		{
+			title: "导入与导出"
+			x: 10.0d
+			y: 4.0d
+			description: ["导入和导出功能可让您在 RS 系统中自动移动材料"]
+			dependencies: ["6793446B2AF5C9CA"]
+			id: "0E54152DD404FFC9"
+			tasks: [
+				{
+					id: "435B2EF99A88ED76"
+					type: "item"
+					item: "refinedstorage:importer"
+				}
+				{
+					id: "4E0463A14F6519B0"
+					type: "item"
+					item: "refinedstorage:exporter"
+				}
+				{
+					id: "22D0CF803E741DE7"
+					type: "item"
+					item: "refinedstorage:interface"
+				}
+				{
+					id: "1CB8221D2D87F5A5"
+					type: "item"
+					item: "refinedstorage:external_storage"
+				}
+			]
+			rewards: [{
+				id: "46A5107B30E600E9"
+				type: "item"
+				item: "refinedstorage:stack_upgrade"
+				count: 4
+			}]
+		}
+		{
+			title: "创意模式导入与导出功能"
+			x: 10.0d
+			y: 6.0d
+			dependencies: ["0E54152DD404FFC9"]
+			optional: true
+			id: "1779947FE6F66859"
+			tasks: [
+				{
+					id: "31F7C6B51EED35C8"
+					type: "item"
+					item: "cabletiers:creative_exporter"
+				}
+				{
+					id: "7499050F0C2D1FA5"
+					type: "item"
+					item: "cabletiers:creative_importer"
+				}
+			]
+			rewards: [{
+				id: "0522C305AA9EE930"
+				type: "random"
+				icon: "mekanism:alloy_atomic"
+				table_id: 5431052621145497898L
+			}]
+		}
+		{
+			title: "更多合金工艺 (More Alloying)"
+			x: 0.0d
+			y: -4.0d
+			dependencies: ["4F5C5ED1A9C2268D"]
+			id: "2008CD6FCD8C0E7D"
+			tasks: [
+				{
+					id: "2F6A7551D27B5038"
+					type: "item"
+					item: "silents_mechanisms:redstone_alloy_ingot"
+				}
+				{
+					id: "0F377B552C569BB5"
+					type: "item"
+					item: "silents_mechanisms:signalum_ingot"
+				}
+				{
+					id: "53E6F1BD352D4A40"
+					type: "item"
+					item: "silents_mechanisms:electrum_ingot"
+				}
+				{
+					id: "100737B8D16C1C0D"
+					type: "item"
+					item: "silents_mechanisms:brass_ingot"
+				}
+				{
+					id: "136716387A18614C"
+					type: "item"
+					item: "silents_mechanisms:bismuth_brass_ingot"
+				}
+				{
+					id: "57D37DFE60BE7354"
+					type: "item"
+					item: "silents_mechanisms:bismuth_steel_ingot"
+				}
+				{
+					id: "2BACBE3C1AA70DE6"
+					type: "item"
+					item: "silents_mechanisms:aluminum_steel_ingot"
+				}
+			]
+			rewards: [{
+				id: "6A0937DDCE93FF4E"
+				type: "item"
+				item: {
+					id: "silentgear:blueprint_book"
+					Count: 1b
+					tag: {
+						Inventory: {
+							Items: [
+								{
+									Slot: 0
+									id: "silentgear:jeweler_tools"
+									Count: 1b
+								}
+								{
+									Slot: 1
+									id: "silentgear:rod_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 2
+									id: "silentgear:tip_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 3
+									id: "silentgear:coating_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 4
+									id: "silentgear:grip_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 5
+									id: "silentgear:binding_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 6
+									id: "silentgear:lining_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 7
+									id: "silentgear:bowstring_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 8
+									id: "silentgear:fletching_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 9
+									id: "silentgear:sword_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 10
+									id: "silentgear:katana_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 11
+									id: "silentgear:machete_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 12
+									id: "silentgear:spear_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 13
+									id: "silentgear:knife_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 14
+									id: "silentgear:dagger_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 15
+									id: "silentgear:pickaxe_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 16
+									id: "silentgear:shovel_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 17
+									id: "silentgear:axe_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 18
+									id: "silentgear:paxel_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 19
+									id: "silentgear:hammer_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 20
+									id: "silentgear:excavator_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 21
+									id: "silentgear:saw_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 22
+									id: "silentgear:mattock_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 23
+									id: "silentgear:prospector_hammer_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 24
+									id: "silentgear:sickle_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 25
+									id: "silentgear:shears_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 26
+									id: "silentgear:fishing_rod_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 27
+									id: "silentgear:bow_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 28
+									id: "silentgear:crossbow_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 29
+									id: "silentgear:slingshot_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 30
+									id: "silentgear:shield_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 31
+									id: "silentgear:helmet_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 32
+									id: "silentgear:chestplate_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 33
+									id: "silentgear:leggings_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 34
+									id: "silentgear:boots_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 35
+									id: "silentgear:elytra_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 36
+									id: "silentgear:arrow_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 37
+									id: "silentgear:ring_blueprint"
+									Count: 1b
+								}
+								{
+									Slot: 38
+									id: "silentgear:bracelet_blueprint"
+									Count: 1b
+								}
+							]
+						}
+						display: {
+							Name: "{\"text\":\"Fully-Loaded Blueprint Book\"}"
+						}
+					}
+				}
+			}]
+		}
+		{
+			title: "更高级的合金工艺"
+			x: 0.0d
+			y: -2.0d
+			dependencies: ["2008CD6FCD8C0E7D"]
+			optional: true
+			id: "0BE9E3B23933E379"
+			tasks: [
+				{
+					id: "010420856B6F1F43"
+					type: "item"
+					item: "silentgear:crimson_steel_ingot"
+				}
+				{
+					id: "297C85376DEF6A9D"
+					type: "item"
+					item: "silentgear:azure_electrum_ingot"
+				}
+				{
+					id: "1766B6134DC48540"
+					type: "item"
+					item: "silents_mechanisms:lumium_ingot"
+				}
+				{
+					id: "25BEEE58BCD4B52A"
+					type: "item"
+					item: "silents_mechanisms:enderium_ingot"
+				}
+				{
+					id: "7EAA3199DA771CB5"
+					type: "item"
+					item: "silentgear:tyrian_steel_ingot"
+				}
+			]
+			rewards: [{
+				id: "165E5C80BCB2960A"
+				type: "random"
+				table_id: 5431052621145497898L
+			}]
+		}
+		{
+			x: 2.0d
+			y: -2.0d
+			dependencies: ["377CE934223A76A5"]
+			id: "72F718C47960CF6B"
+			tasks: [{
+				id: "72E0D153710322A8"
+				type: "item"
+				item: "minecraft:clay"
+				count: 16L
+			}]
+		}
+	]
+}

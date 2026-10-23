@@ -1,0 +1,806 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "69D8D0A837DB24ED"
+	group: ""
+	icon: "vs_clockwork:physics_infuser"
+	id: "69D8D0A837DB24ED"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"关于瓦尔基里大冒险的说明"
+				"&c本整合包略为硬核并且对机械动力和瓦尔基里的经验有一定要求&r"
+				""
+				"本整合包以载具战斗为核心玩法，并支持完&e整的船只自定义&r。"
+				""
+				"整合包取消了下界和末地的生成，相关资源会以其他方式获得。（多半是战利品）"
+				""
+				"海上会随机刷新敌对船只结构来攻击玩家，击毁它们可以获得大量战利品。"
+				""
+				"本章将详细说明机制，并引导玩家开始游戏。"
+			]
+			id: "621812CB6EF5FE5A"
+			rewards: [
+				{
+					auto: "enabled"
+					command: "/tellraw @p {\"text\": \"欢迎来到瓦尔基里大冒险，请打开FTB任务界面并阅读背景章节\",\"color\": \"aqua\"}"
+					elevate_perms: true
+					icon: "minecraft:oak_sign"
+					id: "644E5818939B1933"
+					title: "欢迎来到瓦尔基里大冒险"
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					command: "/tellraw @p {\"text\": \"本整合包为完全免费，如果你是花钱买到的，你被骗了\",\"color\": \"red\"}"
+					elevate_perms: true
+					icon: "minecraft:oak_sign"
+					id: "1C7028E649F08496"
+					title: "免费整合包！"
+					type: "command"
+				}
+			]
+			subtitle: "前言"
+			tasks: [{
+				dimension: "minecraft:overworld"
+				id: "52600E51065A873F"
+				type: "dimension"
+			}]
+			title: "欢迎来到瓦尔基里大冒险"
+			x: -3.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["0609FA72F74C3B6B"]
+			description: ["用漫游石手杖右键选中区域（可以看到区域预览），然后放入物理注入器，等待动画效果完成物理化。"]
+			icon: "vs_clockwork:wanderwand"
+			id: "52514A1A77D6E608"
+			rewards: [
+				{
+					id: "2F14A24507557703"
+					item: "vs_clockwork:wanderwand"
+					type: "item"
+				}
+				{
+					id: "6AD94BB7E7992FBD"
+					item: "vs_clockwork:physics_infuser"
+					type: "item"
+				}
+			]
+			subtitle: "可视化飞行基地"
+			tasks: [{
+				id: "395F9BF3C9DA36B6"
+				type: "checkmark"
+			}]
+			title: "物理化学"
+			x: -0.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["0609FA72F74C3B6B"]
+			description: [
+				"船舵可以使少量方块物理化（最多9个）"
+				"放下船舵并确保连接的方块完全悬空，按住shift右键打开船舵界面即可物理化。"
+				""
+				"船舵最重要的作用是&e平衡并直接操控船只&r。放下船舵后，载具会自动获得稳定的效果，并且能够激活&6浮子&r。"
+				"船舵本身的机动性比较笨重，可以在船上放置船舶引擎或者动力船舶引擎以增加移速。"
+				""
+				"在已实体化的方块上放置船舵并右键，即可操控船只。使用WASD可以移动。"
+			]
+			icon: "vs_eureka:oak_ship_helm"
+			id: "4EBBB38E5BDBF834"
+			rewards: [{
+				id: "2FCEC2652720D1F0"
+				item: "vs_eureka:oak_ship_helm"
+				type: "item"
+			}]
+			subtitle: "不太会开船的样子"
+			tasks: [{
+				id: "41BD3967A7BBA7C2"
+				type: "checkmark"
+			}]
+			title: "船舵及其使用效果说明"
+			x: 2.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["594FD7731AA6D60B"]
+			description: [
+				"游戏中的火炮机制如下："
+				"-大炮炮弹的威力进行了重新平衡"
+				"穿甲弹的威力取决于距离、初速度和入射角度"
+				"高爆弹变为抗爆检测器，不具备穿甲能力"
+				"-当方块的抗爆能力达到一定数值时可以免疫高爆伤害"
+				"-大炮和机炮可以生存放置"
+				"机炮炮弹破坏方块的能力大幅削弱，但对实体伤害提高"
+				"-所有炮弹和机炮无视护甲"
+				"火炮材料和炮闩的强度提高"
+				"火炮的俯角被削弱了"
+				"穿甲弹在跳弹时不会造成任何伤害"
+				"韧性过低的方块不会弹开炮弹"
+				"&4不确定是否会炸膛，用胶刷取出炮弹重新装填&r"
+				""
+				"当然，这些都是后话了，您可以在游戏过程中慢慢理解火炮的这些机制，&6游戏初期的难度受到了限制，您有足够的时间&r。"
+			]
+			icon: {
+				Count: 1
+				id: "createbigcannons:ap_shot"
+				tag: { }
+			}
+			id: "37F282DE5A80FFAF"
+			rewards: [{
+				id: "0F23D43B9D7E8B0F"
+				item: "createbigcannons:worm"
+				type: "item"
+			}]
+			subtitle: "我们的游戏很平衡"
+			tasks: [{
+				id: "0D2DFEA102B9D9F8"
+				type: "checkmark"
+			}]
+			title: "火炮的修改内容如下："
+			x: 0.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["705D1DC7004F9DE0"]
+			description: [
+				"游戏中的装甲能力分为两类："
+				"&e- MC本身的爆炸抗性&r"
+				"&e- 火炮添加的穿甲抗性&r"
+				"两者互不影响，其中抗性检测器的数值均为穿甲抗性，韧性是抗穿时的血量，大致代表抗穿能力"
+				"爆炸抗性目前无法直接在游戏内探测"
+				"以下方块进行了抗性加强："
+				"沉浸式工程的金属板"
+				"- 气鸣铁路的金属板"
+				"- 红石组件"
+				"- 原版混凝土和陶瓦"
+				"&4不要尝试制造下界合金载具&r"
+			]
+			icon: "railways:white_flat_riveted_locometal"
+			id: "471B242A7916D5AC"
+			rewards: [{
+				id: "585B7BE963E30DFF"
+				item: "createbigcannons:block_armor_inspection_tool"
+				type: "item"
+			}]
+			subtitle: "高强度甲弹对抗"
+			tasks: [{
+				id: "32213CBA9CF2A400"
+				type: "checkmark"
+			}]
+			title: "护甲的变动情况如下："
+			x: 2.0d
+			y: 1.0d
+		}
+		{
+			dependencies: [
+				"0609FA72F74C3B6B"
+				"705D1DC7004F9DE0"
+			]
+			description: [
+				"野生的&2原版结构&r船只会在海上随机刷新，并使用主炮攻击玩家和船只"
+				""
+				"游戏加入了&e世界等级机制&r，会随着进度解锁，当有玩家达到&6新的进度等级&r时，新的野怪将会开始生成。同时，野怪的数量也会变多"
+				"当分别进入世界等级3、4和5时，原本处于世界等级1、2、3中的一些船只将会发生变化"
+				""
+				"主炮带有区块加载和卸载机制，会在&e视距之外&r攻击玩家，具体距离参考图鉴"
+				"主炮区块加载时会&c提醒玩家&r，但是依然请时刻留意身边的炮弹"
+				"不同船只的主炮弹种类有所不同，具体请参考图鉴"
+				"主炮索敌逻辑&4随机&r"
+			]
+			id: "3C61573AFA2C20B7"
+			rewards: [
+				{
+					id: "3EA928988166F328"
+					item: "vs_clockwork:gravitron"
+					type: "item"
+				}
+				{
+					id: "741E433ECAE86F64"
+					item: "create:wrench"
+					type: "item"
+				}
+			]
+			subtitle: "超视距打击"
+			tasks: [{
+				id: "3646E1E7BEED8CD2"
+				type: "checkmark"
+			}]
+			title: "瓦尔基里大冒险"
+			x: 4.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["3C61573AFA2C20B7"]
+			description: [
+				"船只的整体结构分为核心区、上层建筑和火炮"
+				"核心区有装甲防护，内部集中放有大量战利品（出核心未必是好事）"
+				"&c战利品和弹药箱一旦被摧毁就不会掉落任何物品&r"
+				"部分船只的上层建筑内有零散的战利品"
+				"刷怪笼位于肉眼可见之处"
+				""
+				"野怪内有创哥电脑，使用这个工具可以在击毁后将其移除。"
+			]
+			id: "3AA37AE6CC1CB092"
+			rewards: [{
+				id: "722F08752A55614C"
+				item: {
+					Count: 1
+					id: "warshiparise:command_computer_remover"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			subtitle: "火力越大并不一定越好"
+			tasks: [{
+				id: "7626C43AADA21234"
+				type: "checkmark"
+			}]
+			title: "船只机制"
+			x: 5.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["38FEBDB02FDA0FF3"]
+			description: [
+				"刷怪笼经过抗性修改后穿透抗性非常低，能够被机炮轻易摧毁"
+				"刷怪笼可以直接使用&e机炮&r高效清除，也可以手动清理"
+				"刷怪笼的刷怪效率更高，范围更大"
+				"刷怪笼可能会在船体外部向船内刷怪"
+				"刷怪笼可以在&e白天刷怪&r"
+			]
+			icon: "minecraft:spawner"
+			id: "104F350B69BC9B48"
+			rewards: [{
+				id: "32DE9CA5068A8A38"
+				item: "createbigcannons:steel_autocannon_recoil_spring"
+				type: "item"
+			}]
+			subtitle: "这火把怎么一点用都没有啊"
+			tasks: [{
+				id: "56BF616DF8FC2313"
+				type: "checkmark"
+			}]
+			title: "神奇刷怪笼"
+			x: 10.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["104F350B69BC9B48"]
+			description: [
+				"魔改后的沉浸式工程左轮怪"
+				"分为普通和防登船两种类型"
+				"都具有高护甲值"
+				"弹药种类随机，包括穿甲弹、卡苏尔弹、鹿弹和药水弹"
+				"防登船左轮具有&e深海探索者IV&r的效果"
+				"死亡后掉落挖掘疲劳滞留药水"
+			]
+			icon: "immersiveengineering:commando_spawn_egg"
+			id: "6FCB5358EDFD2A25"
+			subtitle: "不止六发子弹"
+			tasks: [{
+				id: "7E1F9C1669580BAA"
+				type: "checkmark"
+			}]
+			title: "左轮手枪战士"
+			x: 9.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["104F350B69BC9B48"]
+			description: [
+				"魔改过的沉浸电磁炮怪"
+				"高护甲、高攻击，并且无视护甲"
+				"攻击距离比较近"
+				"基本位于甲板"
+				"头顶有挖掘疲劳药水效果"
+			]
+			icon: "immersiveengineering:fusilier_spawn_egg"
+			id: "20B252264B79145D"
+			subtitle: "雷电法王"
+			tasks: [{
+				id: "4F3FF31127994510"
+				type: "checkmark"
+			}]
+			title: "电磁炮怪"
+			x: 12.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["104F350B69BC9B48"]
+			description: [
+				"魔改后的沉浸喷枪怪"
+				"通常位于上层建筑内"
+				"头顶上也有一瓶挖掘疲劳药水"
+				"如果愿意放弃部分战利品，会很容易打过去"
+			]
+			icon: "immersiveengineering:bulwark_spawn_egg"
+			id: "356329BE25AC365F"
+			subtitle: "多喝岩浆"
+			tasks: [{
+				id: "0C73AE9DD67FA9C6"
+				type: "checkmark"
+			}]
+			title: "喷枪怪"
+			x: 11.5d
+			y: 0.5d
+		}
+		{
+			dependencies: [
+				"104F350B69BC9B48"
+				"7040595C366282D3"
+			]
+			description: [
+				"游戏中的不同野生船只进行了分级，包括："
+				"普通"
+				"精英"
+				"超级战舰"
+				"各等级之间的难度差异显著"
+				""
+				"游戏中可以手动解锁船只图鉴，用于了解敌对船只的配置和刷新条件"
+			]
+			id: "2557FBF161AE376E"
+			subtitle: "量力而行，不要逞强"
+			tasks: [{
+				id: "58F507B28C24419D"
+				type: "checkmark"
+			}]
+			title: "载具分级系统"
+			x: 12.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["2557FBF161AE376E"]
+			description: [
+				"除了敌对的船只外，还会生成一些&e非敌对船只&r，包括一些商船和运输船。"
+				"这些船上会刷新各种商人，其中一些会出售难以获得的物品。"
+				"商人有小概率刷新船只设计师，他们会出售预制船只（以后再讲）。"
+			]
+			id: "6790F150C800D745"
+			tasks: [{
+				id: "07235705AEBE91A5"
+				type: "checkmark"
+			}]
+			title: "商船"
+			x: 14.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["104F350B69BC9B48"]
+			description: [
+				"机制集中的卫道士"
+				"通常位于甲板上"
+				"攻击伤害非常低"
+				"击退效果很高"
+				"速度非常快"
+				"&9击中玩家后会将其随机传送走&r"
+				"比隔壁同行有精神多了"
+				"由于他们过于愤怒，你可能需要一小段时间以后才能看见他们"
+			]
+			icon: "minecraft:vindicator_spawn_egg"
+			id: "3D98E088E3D2F0B7"
+			subtitle: "就你小子打扰我修船是吧"
+			tasks: [{
+				id: "14D2035899110F6E"
+				type: "checkmark"
+			}]
+			title: "脾气暴躁的水手"
+			x: 9.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["104F350B69BC9B48"]
+			description: [
+				"魔改过的掠夺者"
+				"拥有深海探索者IV的皮鞋"
+				"速度更快"
+				"具有多重射击能力"
+				"具有快速装填2"
+				"药水箭"
+				"- 瞬间伤害II"
+				"- 挖掘疲劳IV"
+				"- 缓慢 II"
+			]
+			icon: "minecraft:pillager_spawn_egg"
+			id: "2571D317C32D49B9"
+			subtitle: "惊人的臂力"
+			tasks: [{
+				id: "5A54C768EBB01922"
+				type: "checkmark"
+			}]
+			title: "掠夺者"
+			x: 10.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["6790F150C800D745"]
+			description: ["请使用搜索功能寻找废弃船坞，并修理好港口的船只"]
+			id: "3AD9EFD63887D6B6"
+			rewards: [
+				{
+					id: "5820C2367E5F8DC4"
+					item: "minecraft:oak_boat"
+					type: "item"
+				}
+				{
+					command: "/locate structure warshiparise:starter_land"
+					elevate_perms: true
+					icon: "minecraft:map"
+					id: "320ACB9C57FD6DE9"
+					title: "寻找废弃港口"
+					type: "command"
+				}
+			]
+			tasks: [{
+				id: "0FFB50BFCD049CF3"
+				type: "checkmark"
+			}]
+			title: "准备出发吧，冒险家们！"
+			x: 15.5d
+			y: -2.0d
+		}
+		{
+			dependencies: [
+				"471B242A7916D5AC"
+				"37F282DE5A80FFAF"
+			]
+			description: [
+				"游戏对装甲进行了标准化平衡"
+				"护甲可分为三类："
+				"- 均衡"
+				"- 抗穿刺"
+				"- 抗爆"
+				"均衡类装甲对穿甲弹和半穿甲弹的抵抗力较为平均"
+				"抗穿类装甲对穿甲弹和半穿甲弹有很强的防护力，但无法免疫任何高爆"
+				"抗爆类装甲免疫所有高爆伤害，但容易被穿甲弹碾压"
+				""
+				"&e[开启装甲图鉴]&r"
+			]
+			icon: {
+				Count: 1
+				id: "createbigcannons:ap_shell"
+				tag: { }
+			}
+			id: "6EE3F9C7AC8A59A0"
+			subtitle: "打不动，扛不住"
+			tasks: [{
+				id: "67D6C8233755337D"
+				type: "checkmark"
+			}]
+			title: "装甲与弹药的对抗"
+			x: 1.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["3AA37AE6CC1CB092"]
+			description: [
+				"整合包将载具按难度划分，除三大等级外，还使用&a经验公式&r，从&4火力配置&r、&8装甲&r、&6机制&r等方面衡量，得出一个数字化标准：&l强度参考系数&r"
+				"战利品数量&e约等于&r这个数字，但各项内容和占比有所差异"
+				""
+				"同时，一些船还会带有自己独特的战利品"
+				"大部分弹药战利品&e不计入&r战利品总数"
+				"此外，强度参考系数的颜色也能代表载具的强度："
+				"&8弱鸡&r"
+				"&a中规中矩&r"
+				"&b有强度或者能够针对特定载具&r"
+				"&e强&r"
+				"&4非常强&r"
+			]
+			id: "0B828EDC215A0744"
+			rewards: [{
+				description: ""
+				icon: "minecraft:writable_book"
+				id: "385F43F596811FCE"
+				team_reward: true
+				title: "开启战利品图鉴"
+				type: "toast"
+			}]
+			subtitle: "我们的游戏很平衡"
+			tasks: [{
+				id: "249FACEBA745624D"
+				type: "checkmark"
+			}]
+			title: "难度分级和战利品"
+			x: 6.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["621812CB6EF5FE5A"]
+			description: [
+				"如果你是第一次玩Valkyrie或Create模组，强烈建议先进入创造模式熟悉玩法"
+				"在创建世界界面选择相同的群岛世界，并以&5创造模式&r进入，找到废弃船坞后修好新手船并探索机械动力和瓦尔基里的使用方法吧！"
+				"整合包包含瓦尔基里和火炮的教程，机械动力自带详细的&6思考教程&r，创造模式下能更方便地进行试错！"
+				"准备好之后，就开始你的大冒险吧！"
+				"[&c本整合包完全免费&r]"
+				"[&e如果你花钱买了这个整合包，那你就被骗了&r]"
+				"[&e整合包相关条例的最终解释权归作者所有&r]"
+			]
+			id: "2E91F8288D5D9F26"
+			subtitle: "前方才是真正的冒险旅程"
+			tasks: [{
+				id: "2D6666BCC5B43FC9"
+				type: "checkmark"
+			}]
+			title: "入门指南"
+			x: -5.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["7040595C366282D3"]
+			description: [
+				"此方块会定时对半径24格内的生存玩家施加&c挖掘疲劳&r、&c放置疲劳&r和&c缓慢&r效果，并持续造成少量伤害。"
+				"&c放置疲劳&r：玩家因过于疲劳而无法放置任何方块"
+				"这种方块上会带有&e黄色标记&r"
+			]
+			icon: "warshiparise:fatigue_block"
+			id: "27F51D76FB41A4B6"
+			subtitle: "你有点累了，需要休息一下吗？"
+			tasks: [{
+				id: "3DDEA8C4CCE7B284"
+				type: "checkmark"
+			}]
+			title: "疲劳方块"
+			x: 9.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["7040595C366282D3"]
+			description: [
+				"此方块会定时向半径16格内的玩家施加持续2秒的&9空间紊乱&r效果。仅有部分船只拥有此方块，图鉴中亦有说明。"
+				"&9空间紊乱&r：效果结束时，玩家会自动传送到附近的某个地方。"
+				"这种方块上会带有&b淡蓝色标记&r"
+			]
+			icon: "warshiparise:expulsion_block"
+			id: "2257506C0F55DA85"
+			subtitle: "你不属于这个地方，请离开这里。"
+			tasks: [{
+				id: "191F7C19EF52C495"
+				type: "checkmark"
+			}]
+			title: "驱逐方块"
+			x: 11.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["54B913C10508BE51"]
+			description: [
+				"敌对船只上有一些反登船机制，用于阻止玩家在未破坏火炮的情况下强行掠夺战利品。"
+				"正常游玩时，先打掉火炮，再使用机枪清理刷怪笼会很高效"
+			]
+			id: "38FEBDB02FDA0FF3"
+			tasks: [{
+				id: "0E260C21AF418B18"
+				type: "checkmark"
+			}]
+			title: "防登船机制"
+			x: 9.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["38FEBDB02FDA0FF3"]
+			description: [
+				"整合包使用了一些自制的神奇方块"
+				"这些方块能直接赋予玩家效果以阻止强行登船，并且难以被挖掘"
+				"机枪和炮弹可以非常高效地清理这些方块"
+				""
+				"这些方块会带有一些标记，可以&e隔着方块看见&r。"
+				""
+				"由于这些方块的存在，&c交战时请勿靠敌船太近&r，直到所有火炮都被摧毁"
+				""
+				"部分方块位于船体内部，请跟随标记将其摧毁"
+			]
+			id: "7040595C366282D3"
+			tasks: [{
+				id: "060B65CB35A732BB"
+				type: "checkmark"
+			}]
+			title: "神奇方块"
+			x: 10.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["02A31F0C599D532F"]
+			description: [
+				"船只的移动基于Valkyrien Mod，这是一个能将任何方块实体化并保留完整交互的模组。"
+				"必须先对指定方块&6进行物理化&r才能使其动起来，目前的物理化方法有："
+				"-浮石权杖"
+				"-船舵"
+				"之后就可以用各种方法让船动起来（以后再讲）"
+				""
+				"同时，一些mod提供的结构也可以在物理化后的方块上放置，比如机械动力的&9蓝图&r，使用蓝图对着物理化后的方块右键便可以投影并部署，若使用蓝图加农炮，需要也放置在物理载具上。"
+				""
+				"瓦尔基里的“漏水”问题暂时无法修复（会严重影响性能）。但可以通过一些方法&6规避&r，比如专门设计船底浮力层。同时，您也&6不必担心&r船只进水后迅速沉没的问题，您的船会&6非常耐打&r。"
+			]
+			id: "0609FA72F74C3B6B"
+			tasks: [{
+				id: "428196E61D27F11B"
+				type: "checkmark"
+			}]
+			title: "关于自定义船只的内容如下："
+			x: 1.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["4EBBB38E5BDBF834"]
+			description: [
+				"这种浮子可以为船舵提供浮力，需要在船上放置船舵以激活效果。"
+				""
+				"每个浮子都能为船只提供一定浮力，但它们本身很脆弱，请注意防护。"
+			]
+			icon: "vs_eureka:floater"
+			id: "3E63E08509E6EC2A"
+			tasks: [{
+				id: "6D54DBFE76D16C3F"
+				type: "checkmark"
+			}]
+			title: "浮子"
+			x: 1.5d
+			y: -5.0d
+		}
+		{
+			dependencies: ["4EBBB38E5BDBF834"]
+			description: ["在船上放置船舶引擎并使用煤炭启动可以增加船的移速，数量可以叠加"]
+			icon: "vs_eureka:engine"
+			id: "5541520F191DE76A"
+			tasks: [{
+				id: "746AB085F3A61D69"
+				type: "checkmark"
+			}]
+			title: "船舶引擎"
+			x: 3.5d
+			y: -5.0d
+		}
+		{
+			dependencies: ["02A31F0C599D532F"]
+			description: [
+				"火炮在海战中非常重要，您需要使用火炮来摧毁敌人的火炮。"
+				"整合包中的武器主要由&6机械动力：火炮（CBC）&r提供，主要类型包括："
+				"-&e大炮&r"
+				"-&e机炮&r"
+				"-??"
+				""
+				"这些武器都是机械动力的结构，需要使用炮座来组装。"
+				"大炮是一种单发武器，需要按顺序装填弹头和发射药才能开火，发射后还需要退出弹壳。这是战舰最主要的武器（之一？）也是战舰的核心组成。"
+				""
+				"机炮是一种连发武器，可以使用漏斗进行装填，主要用途为清理刷怪笼和防登船方块。这也是战舰正常战斗不可缺少的武器。"
+				""
+				"整合包提供&e完整的大炮使用教程&r，以及相关说明，可以在之后的章节了解具体内容。"
+				""
+				"随着游戏进程的推进，可能会出现一些&b不讲武德&r的武器。"
+			]
+			icon: "createbigcannons:steel_quickfiring_breech"
+			id: "594FD7731AA6D60B"
+			tasks: [{
+				id: "5F13525FD62113AC"
+				type: "checkmark"
+			}]
+			title: "巨舰大炮的时代已经回来了！"
+			x: 0.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["594FD7731AA6D60B"]
+			description: [
+				"拥有火炮后，就需要考虑如何防御敌人的攻击。装甲的作用就是如此。"
+				"游戏中修改了大量护甲的抗性，可以为战舰提供不错的防护。但同时，护甲本身也很重，需要使用浮子让船浮起来。"
+				"后面的内容会详细介绍装甲的种类和特性。"
+			]
+			icon: "minecraft:iron_ingot"
+			id: "705D1DC7004F9DE0"
+			tasks: [{
+				id: "5AD373BCFF051CDE"
+				type: "checkmark"
+			}]
+			title: "火炮的对立面"
+			x: 2.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["37F282DE5A80FFAF"]
+			description: [
+				"从这里可以开始火炮的详细教程章节"
+				""
+				"{ \"text\": \"开启火炮教程章节\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"0503AA0FF36B308C\" } }"
+			]
+			icon: "createbigcannons:cannon_mount"
+			id: "7EA897DF85644EC4"
+			tasks: [{
+				id: "0D3C1F5E9FD4EE76"
+				type: "checkmark"
+			}]
+			title: "开启教程：火炮"
+			x: -1.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["621812CB6EF5FE5A"]
+			description: [
+				"整合包高度依赖机械动力，并且启动时跳过了大量机械动力的内容，不过不要紧，&6这里有教程&r"
+				""
+				"另外，不要尝试制造机械动力刷铁机。"
+			]
+			icon: "create:brass_hand"
+			id: "02A31F0C599D532F"
+			tasks: [{
+				id: "6667F9AA06B0B2F1"
+				type: "checkmark"
+			}]
+			title: "战舰建造的基础：机械动力"
+			x: -2.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["0B828EDC215A0744"]
+			description: [
+				"在本整合包中，世界等级区分了野怪难度，也区分了玩家可接触到的资源，每个等级有独特的主导玩法。随着世界等级的提升，新装备的获取将会大大改变玩家的游玩和战斗方式。"
+				""
+				"世界等级1：这是最低的世界等级，主要用于让玩家&6熟悉并适应海上的生活与战斗&r。此等级中的野怪强度较低，且无法进行超远程攻击。同时，玩家只能获取低级的主炮材料并使用传统的传动式火炮控制。普通的商船会在海上刷新，出售基础资源和载具装备。预制船也会出售，但玩家需要在世界等级2获取&e造船厂加农炮&r才能将其打印出来。"
+				""
+				"世界等级2：此等级的野怪强度有所提高，并开始出现具有防空特色的船只，&6但尚未解锁整合包的大部分特性&r。野怪强度小幅增加，方便玩家适应接下来的战斗。野怪仍然无法进行超远程攻击。玩家将在此等级解锁&e科技线&r，这是一种可以按顺序研发并获取载具的任务链。玩家将获取制造&e船厂加农炮&r的配方，这是一种用于打印预制蓝图的特殊加农炮，预制船、预制载具零件和一些预制建筑都依赖于此。此外，一些带有下界物品的船只将会出现。"
+				"{@pagebreak}"
+				"世界等级3：这是一个&e解锁了大量玩法与特性的等级&r，大量新的野怪、机制和资源出现，难度也有显著提升。多数野怪在这个等级获得了远程机制，可以在很远的距离与玩家交火且在近处火力强大，这使得作战方式逐渐&e转向远程&r。部分野怪获得了鱼雷，这是一种对海上目标杀伤极大的武器，请注意海面的不明漂浮物体。同时，潜艇将会出现！"
+				""
+				"世界中会刷新售卖更高级物品的商船，并可以开启易市岛任务，完成后将会刷新&e易市岛&r--这是一个聚集商店的岛屿，上面会出售更高级的物品，包括&e控制工艺&r的零件，这将极大改变船只的设计结构和操作方式。部分野怪也会刷新火控磁盘，火控将极大增加射击的效率。岛上会刷新出售飞机零件的商店，但飞控需要到4级获取。"
+				"{@pagebreak}"
+				"世界等级4：此等级将开始刷新强大的超级战舰和舰队，野怪的强度会再升一级，并开始出现使用高装药量主炮的野怪，这些野怪的射程更远，威力更大。玩家能够获取到更多高级的装备和资源，包括下界合金炮及其速射炮闩。"
+				""
+				"同时，野生的非敌对航母也会出现，出售飞机零件和&e飞控&r。"
+			]
+			id: "54B913C10508BE51"
+			tasks: [{
+				id: "769616EA6CCF3C9B"
+				type: "checkmark"
+			}]
+			title: "世界等级-你将遇到什么"
+			x: 8.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["621812CB6EF5FE5A"]
+			description: [
+				"遇到bug或者不会造东西了？去&6频道&r看看吧。"
+				"QQ频道&a搜索&r：pd58253827"
+				""
+				"描述问题时附上&6图片或视频复现&r能更有助于他人找到原因。仅一句话或模糊描述会让人无从下手。此外，并非所有问题都能直接修复，模组和整合包是社区产物，需要社区成员共同寻找解决方案。"
+				"&6截图方法&r：打开QQ后同时按下ctrl+alt+A，必须按顺序操作。"
+				"&e视频录制方法&r：推荐使用OBS Studio"
+				""
+				"&6缺少船员？想找人一起玩？&r可以去频道里面&e寻找服务器&r或者&e招募船员&r。美好的一天从友善的问候开始（这个整合包就是这么诞生的）"
+				"使用局域网联机时，可用的软件有&c樱花&r（付费）、&9Radmin&r（免费），教程可在Bilibili上搜索。"
+			]
+			id: "099D95537D4DB58A"
+			rewards: [
+				{
+					count: 4
+					id: "60950514628111F2"
+					item: {
+						Count: 1
+						id: "cbcmoreshells:he_rocket"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					count: 4
+					id: "4B0D6652B65DE950"
+					item: "createbigcannons:impact_fuze"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "35407E5E62344C0C"
+				type: "checkmark"
+			}]
+			title: "船员招募与问题反馈"
+			x: -5.0d
+			y: -1.0d
+		}
+	]
+	title: "序章"
+}

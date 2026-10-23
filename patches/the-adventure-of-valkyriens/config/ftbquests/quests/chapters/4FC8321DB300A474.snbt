@@ -1,0 +1,586 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "4FC8321DB300A474"
+	group: "0588C05ED77E8B81"
+	icon: "cbcmoreshells:steel_projectile_rack_chamber"
+	id: "4FC8321DB300A474"
+	order_index: 11
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["20BB44E0D9137A54"]
+			description: ["整合包内有多种武器可供选择，本章节会介绍武器的发展路径和获取方式"]
+			hide: true
+			id: "19C0F361FD928E25"
+			tasks: [{
+				id: "33A1C9044B3C8AF5"
+				type: "checkmark"
+			}]
+			title: "关于武器"
+			x: -2.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["19C0F361FD928E25"]
+			description: [
+				"整合包修改了炮弹的穿甲判定机制，有如下变化："
+				"-&6跳射时不再破坏方块&r"
+				"-&6弹头质量*穿透力大于装甲韧性时，不会跳弹&r"
+				""
+				"因此，对于动能炮弹，可以用大角度的装甲将其弹开以&e完全规避&r伤害。每种炮弹都有初始跳弹角，当入射角大于这个角度时才会有概率发生跳弹，角度越大，概率越大。"
+				""
+				"对于抗爆类等方块韧性过低的装甲，穿甲弹会形成&c碾压&r，炮弹命中后无论入射角度都不会跳弹，且破坏方块后的衰竭更低。因此，这种装甲在受到穿甲弹攻击时会承受巨大伤害。"
+				""
+				"所有炮弹默认具有0.01的&6阻力系数&r和20m/tick^2的&6重力加速度&r"
+			]
+			id: "3F6433C09AF1A29F"
+			subtitle: "并非宇宙常数"
+			tasks: [{
+				id: "2A9A8540545BFDCF"
+				type: "checkmark"
+			}]
+			title: "护甲穿透机制的修改"
+			x: -0.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["3F6433C09AF1A29F"]
+			description: [
+				"大炮是战舰最主要的武器。"
+				"组装大炮需要炮闩、至少一个炮腔和炮筒。"
+				"大炮需要在炮座上组装。"
+				"大炮通常发射分装炮弹，即弹头和发射药独立装填，发射后需要排出空弹壳。可以使用动力臂进行自动装填。"
+				"炮座上组装大炮后，可以接入动力来旋转角度。"
+				"大炮操作不当时会发生炸膛。"
+				""
+				"[ \"[\", { \"text\": \"点击前往大炮的详细教程\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"0503AA0FF36B308C\" } }, \"]\" ]"
+			]
+			id: "55781F4B8A852EEA"
+			tasks: [{
+				consume_items: false
+				id: "19784ABEAB5DEAC8"
+				item: "createbigcannons:cast_iron_quickfiring_breech"
+				type: "item"
+			}]
+			title: "大炮与炮弹"
+			x: 1.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["3F6433C09AF1A29F"]
+			description: [
+				"机炮是战舰上的次要武器，主要发射机枪子弹，用于清除防登船方块，也就是靠近野怪时会高亮的那个方块。"
+				"机炮需要在炮座上组装，至少需要一个枪管和一个炮闩。"
+				"机炮通常射速较快，但是不具备对抗装甲的能力。"
+				"用扳手右键炮闩可将机炮切换为手动操作模式。"
+				""
+				"[ \"[\", { \"text\": \"前往机炮的详细教程\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"1FC6411008ED30E5\" } }, \"]\" ]"
+			]
+			id: "1A48CC2E1BA39BFB"
+			tasks: [{
+				consume_items: false
+				id: "2EF723FD0C4B0040"
+				item: "createbigcannons:steel_autocannon_breech"
+				type: "item"
+			}]
+			title: "自动炮台"
+			x: 1.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["55781F4B8A852EEA"]
+			description: [
+				"大炮的炮弹弹头分为有引信和无引信。"
+				"无引信的炮弹使用动能杀伤，用来直接破坏砸中的装甲，比如穿甲弹。"
+				"有引信的炮弹使用爆炸造成伤害，例如高爆弹。部分有引信的炮弹也具备穿透能力。"
+				""
+				"炮弹的发射药一般为大型弹药，发射后会留下一个空弹壳并可以重新装填发射药。通常来说，发射药的装药量为4。"
+				""
+				"引信用于引爆炮弹，可在合成台与炮弹合成以安装，未安装引信的炮弹不会爆炸。引信类型有："
+				"-碰炸引信：碰到就会爆炸"
+				"-延迟引信：发射后过一会爆炸，右键引信可设置时间"
+				"-近炸引信：前方有东西的时候爆炸"
+				"延时碰炸引信：碰到东西后过一会儿会爆炸。"
+				""
+				"游戏初期主要使用穿甲弹和高爆弹，前者仅能穿透，后者仅能爆炸。随着游戏推进，会获得更多不同类型的炮弹。"
+				"至于劣质高爆，实在没炮弹可用时可以使用。"
+			]
+			id: "57D518E311660F79"
+			tasks: [
+				{
+					consume_items: false
+					id: "2EE0B04305899212"
+					item: {
+						Count: 1
+						id: "createbigcannons:he_shell"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "082B38921A2597F1"
+					item: {
+						Count: 1
+						id: "createbigcannons:ap_shot"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "74B5BFFCE7433CA2"
+					item: {
+						Count: 1
+						id: "createbigcannons:big_cartridge"
+						tag: {
+							Power: 4
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "基础的大炮炮弹"
+			x: 2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["1A48CC2E1BA39BFB"]
+			description: [
+				"机炮的炮弹可以直接放入弹药箱，拿着弹药箱对机炮右键可以放上去。"
+				"可以在炮座上放置一个漏斗，用于自动装填机炮炮弹。"
+				""
+				"在游戏中使用机枪子弹即可破坏防登船方块。"
+			]
+			id: "549F8953795EA51D"
+			tasks: [{
+				consume_items: false
+				id: "24C55F3BEADEAA2E"
+				item: {
+					Count: 1
+					id: "createbigcannons:machine_gun_round"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "基础型机炮炮弹"
+			x: 2.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["46ED926734DF0DD8"]
+			description: ["世界等级3时会解锁许多新武器装备，获取方式包括：解锁新的贸易岛或商船、野怪战利品。同时会解锁一些进阶船只零件的获取途径，能极大影响战斗力。"]
+			id: "04E83771A69713F3"
+			tasks: [{
+				id: "5190C6814945CAC5"
+				type: "checkmark"
+			}]
+			title: "通往世界等级3的道路"
+			x: 5.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["04E83771A69713F3"]
+			description: [
+				"CBC More Shells 为游戏添加了鱼雷"
+				"鱼雷可通过专用鱼雷发射管发射，支持机械臂装填或类似速射炮闩的装填，但装填时间更长。鱼雷发射管的组装需要一个&e装填口&r和至少一个&e发射管&r"
+				"鱼雷没有固定的深度，大部分鱼雷在发射后会先下潜再上浮，沿一个方向以固定速度前进，并服从如下动力学规则："
+				"-&e鱼雷不在水中时，仅受到正常的重力&r"
+				"-&e鱼雷在水中时，会受到浮力和重力方向的阻尼，水平方向不受影响&r"
+				"因此，鱼雷的上浮时间或定深取决于发射时的状态，包括初始俯仰角和距水面高差"
+				"鱼雷发射后威力很低，在&e入水一段时间后&r威力会大幅提升"
+				""
+				"鱼雷分为爆炸和破片两种破坏方式。爆炸鱼雷只有爆炸伤害，破片鱼雷会向前发射许多破片从而无视水的影响，并伴随一个较小的爆炸。"
+				""
+				"&6鱼雷和发射管可以在世界等级3后从商人和部分野怪中获取。&r"
+			]
+			id: "387CA3C7946C1899"
+			tasks: [
+				{
+					consume_items: false
+					id: "7AFF230EAA125AE0"
+					item: "cbcmoreshells:steel_torpedo_tube_barrel"
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "2B0A6699BC6CAF61"
+					item: {
+						Count: 1
+						id: "cbcmoreshells:sharpnel_torpedo"
+						tag: { }
+					}
+					type: "item"
+				}
+			]
+			title: "吃一颗没逝的（Chī yī kē mèi shì de）"
+			x: 6.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["04E83771A69713F3"]
+			description: [
+				"火炮的威力部分取决于炮弹的质量。世界等级3中可以获得兼具爆炸和穿甲能力的炮弹，以及一些有特殊特性的炮弹。"
+				""
+				"穿甲榴弹和半穿甲弹兼具爆炸和穿甲威力。穿甲榴弹侧重穿透，击穿后可造成更多毁伤。半穿甲弹侧重爆炸，不会对抗爆装甲束手无策。这些炮弹需搭配碰炸延时引信以发挥最大威力，该引信在接触物体后过一段时间才会引爆炮弹。"
+				""
+				"风帽穿甲弹具有特殊的跳弹角度，远距离射击命中甲板时的跳弹概率更低。"
+				""
+				"超重穿甲弹碾压能力更强，击中韧性低于35的方块时不会弹跳，击穿损耗更低。目前&6只能在研发局补给箱&r中获得，请谨慎购买。"
+			]
+			icon: {
+				Count: 1
+				id: "cbcmoreshells:ap_super_heavy_shot"
+				tag: { }
+			}
+			id: "6150B09FE8C33373"
+			rewards: [{
+				count: 24
+				id: "58F68AB240BE78D8"
+				item: {
+					Count: 1
+					id: "cbcmoreshells:ap_super_heavy_shot"
+					tag: { }
+				}
+				type: "item"
+			}]
+			tasks: [
+				{
+					count: 16L
+					id: "2F166B72D5D4B628"
+					item: {
+						Count: 1
+						id: "cbcmoreshells:sap_shell"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					count: 16L
+					id: "0F9D0C993A991CEF"
+					item: {
+						Count: 1
+						id: "createbigcannons:ap_shell"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					count: 16L
+					id: "3F100C0993DA06C1"
+					item: {
+						Count: 1
+						id: "cbcmoreshells:apbc_shot"
+						tag: { }
+					}
+					type: "item"
+				}
+			]
+			title: "更好的炮弹模组（Better Projectiles）"
+			x: 6.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["04E83771A69713F3"]
+			description: [
+				"挂载架可以投射航弹，包括炸弹、跳弹炸弹、火箭弹、航空鱼雷等。"
+				"支架需在炮座上组装，至少需要一个卡扣和两个主体以支持动力臂自动装填。"
+				""
+				"&6这种武器可以在世界等级3后的部分商船、商店或野怪中获取&r"
+			]
+			id: "07D486A2C5E06591"
+			tasks: [{
+				consume_items: false
+				id: "60960494B86CB0C2"
+				item: "cbcmoreshells:steel_projectile_rack_quickfiring_breech"
+				type: "item"
+			}]
+			title: "我丢"
+			x: 6.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["387CA3C7946C1899"]
+			description: [
+				"鱼雷监视设备，即水听器，可用于监测并高亮周围的鱼雷。水听器需要&6接入动力&r才能正常工作与冷却，并使用红石信号启动。该设备对船只，尤其是小船，能有效规避鱼雷，帮助极大。"
+				""
+				"鱼雷监视设备可从&6部分商人&r处获取。最近有传言称&b吃雷的都是有水听的&r，这是&c不对&r的，请勿迷信，&e请坚持购买本公司的产品&r。"
+			]
+			id: "587E3732B555677A"
+			subtitle: "让我听听你在哪儿呢，小家伙"
+			tasks: [{
+				consume_items: false
+				id: "0D367C5DDFFBC31D"
+				item: "cbcmoreshells:torpedo_detection_device"
+				type: "item"
+			}]
+			title: "向大海搜寻"
+			x: 8.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["07D486A2C5E06591"]
+			description: [
+				"航弹和火箭弹等可以在挂架上发射，也可以通过红石信号直接投掷出去。"
+				"[ \"航弹和挂架的具体使用方法将在\", { \"text\": \"主线介绍\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"5BA101FF2AF92EB5\" } }, \"\" ]"
+				""
+				"&6纯爆炸类航弹可从商人处购买或由野怪掉落，而穿甲炸弹和双联火箭支架则只能通过野怪掉落。&r"
+			]
+			id: "518C933AD6ED2D36"
+			tasks: [
+				{
+					consume_items: false
+					id: "0F49D8C3EF293EBB"
+					item: {
+						Count: 1
+						id: "cbcmoreshells:he_bomb"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "5776CAD1471F79A5"
+					item: {
+						Count: 1
+						id: "cbcmoreshells:he_bouncing_bomb"
+						tag: { }
+					}
+					type: "item"
+				}
+			]
+			title: "把炸弹送到他们头上去吧"
+			x: 9.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["6150B09FE8C33373"]
+			description: [
+				"控制学的轴承拥有比物理轴承更加强大的功能，包括："
+				"兼容电路板或电脑自动控制角度"
+				"-重新连接物理结构"
+				"-更好的信号接收配置"
+				""
+				"轴承的面板可以直接配置信号输入后的旋转方向，无需接入动力。"
+				""
+				"用这种轴承做炮塔能有效解决头掉了以后的尴尬情况。"
+				""
+				"控制学元件大多在&6易市岛&r的随机商店中获取，部分野怪也可能掉落。"
+			]
+			id: "51CF24EB046F0456"
+			tasks: [{
+				consume_items: false
+				id: "016A2C2B3095C94D"
+				item: "vscontrolcraft:servo"
+				type: "item"
+			}]
+			title: "更好的轴承"
+			x: 8.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["51CF24EB046F0456"]
+			description: [
+				"游戏中加入了多种辅助瞄准的工具，包括："
+				"-多功能指示器"
+				"-弹道表"
+				"-预制火控系统"
+				""
+				"多功能指示器可装在炮塔上以标明朝向，快速完成水平瞄准。弹道表可根据距离给出初始仰角设置，用于快速校准。预制火控可直接让火炮指向目视方向。"
+				""
+				"同时，控制学的电路板也能用于制作火控。"
+				""
+				"&6指示器可从大多数野怪掉落获得，弹道表和预制火控会从特定野怪作为特殊战利品掉落。&r"
+			]
+			id: "1432264BD5EFF778"
+			tasks: [{
+				consume_items: false
+				id: "50E3B1C51096729C"
+				item: "cbcmoreshells:landing_indicator"
+				type: "item"
+			}]
+			title: "更好的瞄准 (Better Aim)"
+			x: 9.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["587E3732B555677A"]
+			description: [
+				"深水炸弹是一种反潜武器，后面忘了。。。"
+				""
+				"好吧没忘，这种炸弹只有在水下才能正常爆炸。爆炸同时具有大量爆炸伤害和破片伤害，并能引爆周围一定范围内的鱼雷。这种炸弹可以用于针对水下舰种，或者在某些情况下救自己一命（&m也有的时候会把自己送走&r）"
+				""
+				"深水炸弹可以从部分商人处购买。"
+			]
+			id: "435C47ADC66EDC31"
+			tasks: [{
+				consume_items: false
+				id: "0BC1F07922D8884D"
+				item: {
+					Count: 1
+					id: "cbcmoreshells:depth_charge"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "水下反制措施"
+			x: 9.5d
+			y: -0.5d
+		}
+		{
+			dependencies: [
+				"1432264BD5EFF778"
+				"435C47ADC66EDC31"
+				"518C933AD6ED2D36"
+				"7F441C23740761D5"
+			]
+			description: ["世界等级4后出现了一些能提升效率的武器或设备，能让操作更舒适或简单，从而提升整体的战斗力。"]
+			id: "6FE2B16444BBC3BD"
+			tasks: [{
+				id: "5EAFA5B8E1D4CEC2"
+				type: "checkmark"
+			}]
+			title: "通往世界等级4的道路"
+			x: 11.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["6FE2B16444BBC3BD"]
+			description: [
+				"飞行控制器是一项伟大的发明，能完成一些看似不可思议的事情。"
+				"飞行控制器目前有襟翼控制和节流阀，需要使用电路板安装并完成配置。安装方法可查询大冒险图鉴。"
+				""
+				"&6飞行控制器可以在天琴座号航母上购买，一次性购买后可永久使用。&r"
+			]
+			id: "627DA8D888AB9E59"
+			tasks: [{
+				consume_items: false
+				id: "28C6F396E6F3A8CC"
+				item: "vscontrolcraft:circuit"
+				type: "item"
+			}]
+			title: "控制你的飞机"
+			x: 13.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["6150B09FE8C33373"]
+			description: [
+				"弹药架可用于自动装填火炮、鱼雷和挂架等，并支持切换弹药。"
+				"手持物品右键弹药架的架子可将其放入其中。弹药架支持动力臂自动装填。向挂架输入红石信号可顺序切换弹种。对于大炮，发射药不计入换弹过滤，因此仅需一个弹药架即可完成整门大炮的装填。"
+				"弹药架适合紧凑的设计，缺点是载弹量较低。"
+				""
+				"弹药架可以从部分商人处购买"
+			]
+			id: "69B3D8EF1E1FBFD2"
+			tasks: [{
+				consume_items: false
+				id: "36485C54B6E592D7"
+				item: "cbcmoreshells:ammo_rack"
+				type: "item"
+			}]
+			title: "更小的装载结构"
+			x: 8.0d
+			y: 2.5d
+		}
+		{
+			dependencies: [
+				"57D518E311660F79"
+				"549F8953795EA51D"
+			]
+			description: [
+				"沉浸式飞机中的双翼机可以用于侦察。"
+				"拿着飞机右键地面即可放下，按住shift右键打开飞机界面，可以添加燃料、升级品和武器。"
+				"燃料通常是木炭和煤炭。"
+				"升级品需要放置在专门的槽位中。"
+				"武器需放置在武器槽位并提供弹药。这些武器威力不高，无法对抗有护甲的目标。"
+				""
+				"侦察分为两种方式，一种是跑图并寻找目标，另一种是飞到自己头顶校准弹道。"
+			]
+			id: "46ED926734DF0DD8"
+			tasks: [{
+				consume_items: false
+				id: "5C5AB10E48C04DB6"
+				item: "immersive_aircraft:biplane"
+				type: "item"
+			}]
+			title: "简易飞机"
+			x: 4.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["627DA8D888AB9E59"]
+			description: [
+				"集成襟翼是集成版本的普通襟翼，但不止于此，&m这种襟翼bug更少&r"
+				"这种襟翼能更好地配置气动参数以实现更好的机动性，注意，&c请勿输入巨大数字！&r"
+				""
+				"&6集成襟翼可以从天琴座上购买。&r"
+			]
+			id: "39B8D13F60EF5EF6"
+			tasks: [{
+				consume_items: false
+				id: "1954C380BEB6E407"
+				item: "vscontrolcraft:compact_flap"
+				type: "item"
+			}]
+			title: "高级飞机零件"
+			x: 14.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["6FE2B16444BBC3BD"]
+			description: [
+				"这种炮闩可以组装支持动力臂装填的下界钢炮，这种炮的精度比别的炮好得多，但是需要耗费更多应力来转动。"
+				""
+				"&6下界钢速射炮闩可以从部分野怪中获取。&r"
+			]
+			id: "1895E0E24A4D5956"
+			tasks: [{
+				consume_items: false
+				id: "2DB5596B04DEDE64"
+				item: "cbcmoreshells:nethersteel_quickfiring_breech"
+				type: "item"
+			}]
+			title: "精准的主炮"
+			x: 13.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["04E83771A69713F3"]
+			description: [
+				"瓦尔基里的各种附属提供了制造飞机的零件。"
+				""
+				"襟翼Flap用于提供翼面，并可以组装进一些轴承中作为可动翼面控制飞机。"
+				"机翼Wing和襟翼差不多，但是能提供一些升力，方便飞机起飞和低速航行。"
+				""
+				"襟翼轴承可以组装襟翼并控制飞机，需要使用胶水连接。这种轴承通入动力后才工作，使用红石信号可以改变角度。"
+				"电动襟翼轴承的组装方法和襟翼轴承类似，但不需要动力。轴承内部可以配置具体的红石信号内容，同时支持多频无线红石终端。"
+				""
+				"螺旋桨和螺旋桨控制器可以为飞机提供动力，并支持电路板控制。"
+				""
+				"&6这些物品可以在易市岛的部分商店获取。&r"
+			]
+			id: "7F441C23740761D5"
+			tasks: [
+				{
+					consume_items: false
+					id: "330855C4B43D633B"
+					item: "vscontrolcraft:wing_controller"
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "00EEAA044223F3F3"
+					item: "vscontrolcraft:propeller"
+					type: "item"
+				}
+			]
+			title: "真正的飞机"
+			x: 8.0d
+			y: 0.5d
+		}
+	]
+	title: "武器大师之路"
+}

@@ -1,0 +1,463 @@
+# AI 初翻，未人工校对
+{
+	consume_items: false
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "0FA356FE556C4A6B"
+	group: "0588C05ED77E8B81"
+	hide_quest_until_deps_visible: true
+	id: "0FA356FE556C4A6B"
+	images: [{
+		height: 10.0d
+		image: "pictures:textures/cra/shipstructure.png"
+		rotation: 0.0d
+		width: 31.4d
+		x: 1.0d
+		y: 1.0d
+	}]
+	order_index: 4
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["31792916E802B549"]
+			description: [
+				"传动结构用于连接动力源和各种部件（火炮等），通常埋在甲板或地板中。"
+				"Create和Creative Transmission提供了许多传动部件，主要分为&6传动杆&r、&6齿轮&r、&6传动箱&r，具体细节可在&6Create的教程&r中查询。"
+				""
+				"传动杆：很普通的一根杆子，可以转，可以传递&2轴方向&r的动力。"
+				""
+				"齿轮：通过与其他齿轮啮合传动，可以传递&2横向&r的动力，每次传动会导致旋转方向相反。"
+				""
+				"传动箱：传动箱种类繁多，通常用于使传动轴&2拐弯&r，在机械动力教程中可以看到每种传动箱的具体功能。"
+				""
+				"使用外壳右键传动杆和齿轮即可为其套壳。"
+				""
+				"转速控制器可以修改输出动力的转速，需要搭配大齿轮使用"
+			]
+			id: "1D5FE9ED8845115C"
+			rewards: [{
+				id: "3F51282A9141577D"
+				type: "xp"
+				xp: 600
+			}]
+			size: 0.7d
+			tasks: [
+				{
+					id: "314E3AB9CD83B8FF"
+					type: "checkmark"
+				}
+				{
+					id: "3AABC63C4015914B"
+					item: "create:shaft"
+					type: "item"
+				}
+				{
+					id: "49B4BDF1932ED2BC"
+					item: "create:cogwheel"
+					type: "item"
+				}
+				{
+					id: "43366D46BE8725E9"
+					item: "create:encased_chain_drive"
+					type: "item"
+				}
+				{
+					id: "1503C833ABA8F19E"
+					item: "create:gearbox"
+					type: "item"
+				}
+				{
+					id: "293FB6C3CEB433DF"
+					item: "create:vertical_gearbox"
+					type: "item"
+				}
+				{
+					id: "498F5B67ACD88EED"
+					item: "create_connected:parallel_gearbox"
+					type: "item"
+				}
+				{
+					id: "1EA3B3DC7F051A29"
+					item: "create_connected:vertical_parallel_gearbox"
+					type: "item"
+				}
+				{
+					id: "19BDCBEB83F44711"
+					item: "create:large_cogwheel"
+					type: "item"
+				}
+				{
+					id: "217D12B757220BBE"
+					item: "create:rotation_speed_controller"
+					type: "item"
+				}
+			]
+			title: "传动装置"
+			x: 0.7d
+			y: 4.2d
+		}
+		{
+			dependencies: ["31792916E802B549"]
+			description: [
+				"应力源是为整艘船提供动力的系统，通常有&e蒸汽引擎&r、&e电机&r和&9水车&r。"
+				""
+				"蒸汽引擎：使用蒸汽锅炉搭配引擎，需要持续通入水，可以使用厨房水槽接一个泵完成。引擎的动力同时取决于热量（烈焰人燃烧室数量），水量（水泵速度）和体积（流体储罐数量）。需要给烈焰人燃烧室喂燃料才能发挥最大效率。"
+				""
+				"电机：通电旋转，转速可调。电机本身很方便使用，但需要电池。"
+				""
+				"水车：依靠水流提供少量动力，至于为什么会有这种动力源，瓦尔基里的内容不能使用现代物理学理解。"
+			]
+			id: "5036B207F80CBFCC"
+			rewards: [{
+				id: "14D3867427EB2693"
+				type: "xp"
+				xp: 600
+			}]
+			size: 0.7d
+			tasks: [
+				{
+					id: "22DBBCE05BD54B71"
+					type: "checkmark"
+				}
+				{
+					id: "1BF055EA4166D315"
+					item: "create:steam_engine"
+					type: "item"
+				}
+				{
+					id: "1A10CBCC59EAA80C"
+					item: "create:fluid_tank"
+					type: "item"
+				}
+				{
+					id: "6162F89F83F7C32B"
+					item: "create_connected:fluid_vessel"
+					type: "item"
+				}
+				{
+					id: "6C07D2C8C12E7808"
+					item: "create:blaze_burner"
+					type: "item"
+				}
+				{
+					id: "63DA52EDABE36218"
+					item: "createaddition:electric_motor"
+					type: "item"
+				}
+				{
+					id: "1D91D4DD7265B736"
+					item: "create:water_wheel"
+					type: "item"
+				}
+			]
+			title: "应力源"
+			x: 1.4d
+			y: 3.15d
+		}
+		{
+			dependencies: ["31792916E802B549"]
+			description: [
+				"火炮是击败敌人的关键，目前主要有两种形式的火炮系统："
+				"-炮座火炮"
+				"-炮塔"
+				""
+				"炮座底部可接入动力实现旋转，侧面接入动力控制俯仰，从而直接控制转向。炮座结构简单，&2易于维修&r，但&c炮管数量过多&r后会变得很复杂。"
+				""
+				"炮塔目前可以用&5物理轴承&r或者&e电机轴承&r实现。这两种轴承可以旋转上方的整个结构，因此适用于制造多联装炮塔。炮塔的好处在于&2火力密度高&r，但是结构更加复杂和集成，&c维修比较困难&r。电机轴承上的炮塔可以&e拆卸并再次安装&r。"
+				""
+				"通常，火炮和传动结构需要大量装甲保护。"
+			]
+			id: "1B705025683A6323"
+			rewards: [{
+				id: "4A4EB4C17F71E0FB"
+				type: "xp"
+				xp: 2000
+			}]
+			tasks: [
+				{
+					id: "220746AA753FEA0A"
+					item: "createbigcannons:cannon_mount"
+					type: "item"
+				}
+				{
+					id: "02919D75BF011222"
+					item: "vscontrolcraft:servo"
+					type: "item"
+				}
+				{
+					id: "323C6B4D65EC3094"
+					item: "vs_clockwork:phys_bearing"
+					type: "item"
+				}
+				{
+					id: "23BE5F20D59904F4"
+					type: "checkmark"
+				}
+			]
+			title: "火炮"
+			x: 9.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["31792916E802B549"]
+			description: [
+				"动力装置用于为船只提供额外推力，目前主要有两类"
+				"&6-直接推力&r"
+				"&6-船舵加成&r"
+				""
+				"直接推力：可使用螺旋桨轴承或大小螺旋桨。螺旋桨轴承需用&6风帆&r组装，再接入大量应力使用，转速越高，推力越大。大小螺旋桨可直接通入红石提供动力，仅水下生效，且每个螺旋桨需单独配置"
+				""
+				"船舵加持：可用船舶引擎或动力船舶引擎为&6船舵&r增加速度和推力。船舶引擎需燃烧煤炭，可叠加多个引擎累积推力。动力船舶引擎的效果与船舶引擎一致，但需接入动力才能生效。"
+			]
+			id: "05665DC85DA4BD52"
+			rewards: [{
+				id: "72D9DCCA4228E093"
+				type: "xp"
+				xp: 500
+			}]
+			size: 0.7d
+			tasks: [
+				{
+					id: "693DB4AC23C6A724"
+					type: "checkmark"
+				}
+				{
+					id: "540564E9F96AEDAA"
+					item: "vs_clockwork:propeller_bearing"
+					type: "item"
+				}
+				{
+					id: "5EAF5CA978429B51"
+					item: "create_eureka:rotation_engine"
+					type: "item"
+				}
+				{
+					id: "43F04287769D91EA"
+					item: "vs_eureka:engine"
+					type: "item"
+				}
+				{
+					id: "77A6799C21794994"
+					item: "vs_tournament:prop_small"
+					type: "item"
+				}
+				{
+					id: "79340A28D8195531"
+					item: "vs_tournament:prop_big"
+					type: "item"
+				}
+			]
+			title: "动力装置"
+			x: -8.049999999999999d
+			y: 3.5d
+		}
+		{
+			dependencies: ["31792916E802B549"]
+			description: [
+				"破片鱼雷可以无视水破坏方块。"
+				"鱼雷用于在船体外侧开洞，但对所有船只都无效，只有部分敌船的主炮在水线以下有额外结构。"
+				"具体使用方法和火炮类似。"
+			]
+			id: "3137F5118C90872B"
+			rewards: [{
+				id: "020A5C9314F9C3B1"
+				type: "xp"
+				xp: 400
+			}]
+			size: 0.7d
+			tasks: [
+				{
+					id: "6F05403ADD64623A"
+					type: "checkmark"
+				}
+				{
+					id: "3AED07A396A8CA29"
+					item: "cbcmoreshells:steel_torpedo_quickfiring_breech"
+					type: "item"
+				}
+				{
+					id: "36FAF537EF7E4102"
+					item: "cbcmoreshells:steel_torpedo_tube_chamber"
+					type: "item"
+				}
+				{
+					id: "196C87309F820F88"
+					item: "cbcmoreshells:steel_torpedo_tube_barrel"
+					type: "item"
+				}
+			]
+			title: "鱼雷发射管"
+			x: -3.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["31792916E802B549"]
+			description: [
+				"机炮是击败敌人所需的辅助火力，大多数情况下直接位于炮座上。"
+				""
+				"用扳手右键未组装的机炮闩可以添加一个把手，组装后玩家&2可以直接操控&r机炮，瞄准很方便。"
+				"机炮几乎无法破坏大多数方块，但可以高效清除&c刷怪笼&r和&c防登船方块&r，并且在攻击生物时&9无视护甲&r。"
+				""
+				"机炮通常安装在次要位置。"
+			]
+			id: "72B4D11D0DAE332D"
+			rewards: [{
+				id: "0AE2D11E82E2808B"
+				type: "xp"
+				xp: 500
+			}]
+			size: 0.7d
+			tasks: [
+				{
+					id: "76F90AA9802739EF"
+					type: "checkmark"
+				}
+				{
+					id: "544B6D6DFD7344BA"
+					item: "createbigcannons:steel_autocannon_breech"
+					type: "item"
+				}
+				{
+					id: "57CAB2BAB477DC79"
+					item: "createbigcannons:steel_autocannon_recoil_spring"
+					type: "item"
+				}
+				{
+					id: "110A9A463774B2CB"
+					item: "createbigcannons:steel_autocannon_barrel"
+					type: "item"
+				}
+				{
+					id: "16F8F263562229F9"
+					item: {
+						Count: 1
+						id: "createbigcannons:machine_gun_round"
+						tag: { }
+					}
+					type: "item"
+				}
+			]
+			title: "自动炮台"
+			x: 5.6d
+			y: 1.4d
+		}
+		{
+			dependencies: ["31792916E802B549"]
+			description: [
+				"船体上层通常有一些建筑结构，用于辅助甲板作业，或辅助需要视野的任务（船长室）。"
+				"上层建筑的防御能力通常有限，过多的装甲容易导致重量过大且重心过高。"
+			]
+			id: "295636040DA0E02B"
+			rewards: [{
+				id: "59D6EDC3877E09CA"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				id: "27F94E63FDCF06FD"
+				type: "checkmark"
+			}]
+			title: "上层建筑"
+			x: 3.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["31792916E802B549"]
+			description: [
+				"船体内部舱室可提供大量防护，通常用于安放需要防护的部件，如仓库和动力源。"
+				"舱内空间通常有限，需合理规划传动和整体布局，避免实战时挡路。"
+			]
+			id: "7AB86B893BF7DD55"
+			rewards: [{
+				id: "7D59224EFA0BC94B"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				id: "3A3B22177E2BB47A"
+				type: "checkmark"
+			}]
+			title: "船体内部舱室"
+			x: 2.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["31792916E802B549"]
+			description: ["可以在船底设计一个额外的浮力舱，用于抬高船体，避免舱内进水（瓦尔基里气室一时半会指望不上了）"]
+			id: "446C418314363807"
+			rewards: [{
+				id: "059C9F861755B494"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				id: "529E902F2CEE4ACD"
+				type: "checkmark"
+			}]
+			title: "船底"
+			x: 3.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["31792916E802B549"]
+			description: [
+				"用于站在高处观察远处的目标和落弹点。"
+				"小心摔倒。"
+			]
+			id: "0DDC467D48A51C59"
+			rewards: [{
+				id: "0C07E481AAF2B0B8"
+				type: "xp"
+				xp: 3
+			}]
+			size: 0.7d
+			tasks: [{
+				id: "406F90F0A6082DC3"
+				type: "checkmark"
+			}]
+			title: "桅杆"
+			x: 1.05d
+			y: -1.05d
+		}
+		{
+			dependencies: ["31792916E802B549"]
+			description: [
+				"一些红石零件可以控制传动装置的旋转、停止和方向，这样就能用遥控器控制火炮的转动了。"
+				""
+				"通常，传动控制由无线红石搭配&6反向离合器&r和&6反转齿轮箱&r完成。"
+				""
+				"反向离合器：只有在通入红石信号时才会转动。"
+				"反向齿轮箱：输入红石信号后，旋转方向会相反。"
+				""
+				"无线红石需要用扳手右键设置为&6接收模式&r（会看到一个天线环），才能接收遥控器的信号。"
+			]
+			id: "673B2F413F328DF2"
+			rewards: [{
+				id: "02B2FD040FAAE945"
+				type: "xp"
+				xp: 200
+			}]
+			size: 0.7d
+			tasks: [
+				{
+					id: "72514CC5D827B86A"
+					type: "checkmark"
+				}
+				{
+					id: "610270667108EC24"
+					item: "create_connected:inverted_clutch"
+					type: "item"
+				}
+				{
+					id: "7EF26DE2617217F1"
+					item: "create:gearshift"
+					type: "item"
+				}
+			]
+			title: "传动控制系统"
+			x: 6.3d
+			y: 3.85d
+		}
+	]
+	title: "船舶建造基础教程"
+}
