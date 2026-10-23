@@ -1,0 +1,319 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "how_to_tran_your_dragon"
+	group: ""
+	icon: "iceandfire:bestiary"
+	id: "5494FEBBB0320340"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"这是一个以“冰与火：巨龙”模组为核心的整合包。"
+				"你的第一个任务是找到遗留下来的古代手稿"
+				"被一位久被遗忘的探险家所写。用三本手稿制作一本生物图鉴！这将是你了解这个世界生物的主要指南。"
+			]
+			icon: "iceandfire:bestiary"
+			id: "37866896A5BA8C24"
+			rewards: [
+				{
+					id: "445819CF288E4A5D"
+					item: "iceandfire:manuscript"
+					type: "item"
+				}
+				{
+					id: "572CE7E4AEF78247"
+					type: "xp_levels"
+					xp_levels: 10
+				}
+			]
+			shape: "hexagon"
+			subtitle: "前方有巨龙出没"
+			tasks: [{
+				id: "6C383D30CCDAA8C7"
+				title: "明白了"
+				type: "checkmark"
+			}]
+			title: "欢迎"
+			x: 0.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["37866896A5BA8C24"]
+			description: [
+				"背包是在这片土地上正常穿行所必需的工具。"
+				"使用以下材料合成一个物品："
+				""
+				"- 箱子 1x"
+				""
+				"- 皮革 4x"
+				""
+				"- 字符串 4x"
+				""
+				"背包相当灵活，可以升级以满足你的需求。"
+			]
+			icon: "sophisticatedbackpacks:backpack"
+			id: "2BCB2C29582C9B1E"
+			rewards: [{
+				count: 2
+				id: "44DCEEFEA3CCF765"
+				item: "sophisticatedbackpacks:upgrade_base"
+				type: "item"
+			}]
+			shape: "hexagon"
+			subtitle: "在开始新的一天之前"
+			tasks: [
+				{
+					id: "638EE783D5FD07BB"
+					item: "sophisticatedbackpacks:backpack"
+					type: "item"
+				}
+				{
+					id: "3866991D27510493"
+					title: "明白了"
+					type: "checkmark"
+				}
+			]
+			x: -1.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["37866896A5BA8C24"]
+			description: ["夜晚相当危险，所以需要睡过去。用三块羊毛制作睡袋，可以让你跳过夜晚而不会改变出生点。"]
+			icon: "comforts:sleeping_bag_white"
+			id: "359C8D255256BCF8"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "445FE9010C71476D"
+				table_id: 6012913597900024019L
+				type: "choice"
+			}]
+			shape: "pentagon"
+			subtitle: "夜晚的时间到了..."
+			tasks: [
+				{
+					id: "1BDE9AA314944F28"
+					item: "comforts:sleeping_bag_white"
+					type: "item"
+				}
+				{
+					id: "6A553A30B8F116A4"
+					title: "明白了"
+					type: "checkmark"
+				}
+			]
+			x: 0.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["37866896A5BA8C24"]
+			description: ["制作一把剑来战斗。显而易见。"]
+			id: "442FA482C7DAD56F"
+			rewards: [{
+				count: 8
+				id: "66D8611D5EF2DE9D"
+				item: "reliquary:glowing_bread"
+				type: "item"
+			}]
+			shape: "hexagon"
+			subtitle: "独自行动太危险了..."
+			tasks: [{
+				id: "5AC71940ECAAFB16"
+				item: {
+					Count: 1
+					id: "minecraft:wooden_sword"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "武器"
+			x: 1.0d
+			y: 0.5d
+		}
+		{
+			dependencies: [
+				"2BCB2C29582C9B1E"
+				"442FA482C7DAD56F"
+				"359C8D255256BCF8"
+			]
+			icon: "irons_spellbooks:furled_map"
+			id: "66ADF66940B795CE"
+			rewards: [
+				{
+					count: 16
+					id: "5C0FA38530FB5E99"
+					item: "minecraft:emerald"
+					type: "item"
+				}
+				{
+					id: "01123C16A6F87914"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+			shape: "hexagon"
+			subtitle: "找到一个村庄"
+			tasks: [
+				{
+					id: "11BAC8EF89E572F7"
+					structure: "#minecraft:village"
+					title: "家园？"
+					type: "structure"
+				}
+				{
+					id: "2F39AA7347E7D351"
+					title: "找到一个了！"
+					type: "checkmark"
+				}
+			]
+			x: 0.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["66ADF66940B795CE"]
+			id: "2CDA3F5366E5338A"
+			rewards: [
+				{
+					id: "3FD171EE29CA8171"
+					item: {
+						Count: 1
+						id: "minecraft:flint_and_steel"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "7A4E28ED25ADCE89"
+					item: "minecraft:netherrack"
+					type: "item"
+				}
+			]
+			shape: "hexagon"
+			subtitle: "找到一个龙蛋，现在把它烧掉..."
+			tasks: [{
+				advancement: "iceandfire:iceandfire/dragon_egg"
+				criterion: ""
+				icon: "iceandfire:dragonegg_red"
+				id: "57997811138233A9"
+				title: "我们能把他留下来吗？"
+				type: "advancement"
+			}]
+			x: -2.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["66ADF66940B795CE"]
+			icon: "iceandfire:dragon_skull_fire"
+			id: "2FB09F8EBFB5DE65"
+			rewards: [{
+				id: "2EB906D586E5CEBB"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+			shape: "hexagon"
+			subtitle: "制作一个龙之角"
+			tasks: [
+				{
+					advancement: "iceandfire:iceandfire/dragon_horn"
+					criterion: ""
+					icon: "iceandfire:dragon_skull_fire"
+					id: "0FA55A9B492FEA48"
+					title: "宝可梦？不，更好的是"
+					type: "advancement"
+				}
+				{
+					id: "218FA54DF19B3F15"
+					title: "得把它们都抓住——算了，不管了"
+					type: "checkmark"
+				}
+			]
+			x: -1.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["66ADF66940B795CE"]
+			id: "2A2A5F39F346586B"
+			rewards: [{
+				id: "4F52296F163F8024"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+			shape: "hexagon"
+			subtitle: "制作一个龙之指令法杖"
+			tasks: [{
+				advancement: "iceandfire:iceandfire/dragon_staff"
+				criterion: ""
+				icon: "iceandfire:dragon_skull_ice"
+				id: "3359E02340E89A8C"
+				type: "advancement"
+			}]
+			title: "把它们变成你的专属物品吧"
+			x: 1.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["66ADF66940B795CE"]
+			id: "1A271BC095A844B3"
+			rewards: [{
+				id: "255E91B2206C464C"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+			shape: "hexagon"
+			subtitle: "制作龙粮来喂养你的龙吧"
+			tasks: [{
+				advancement: "iceandfire:iceandfire/dragon_meal"
+				criterion: ""
+				id: "6D0FABE0DAE6CB5D"
+				title: "经验糖果……"
+				type: "advancement"
+			}]
+			x: 2.5d
+			y: 2.5d
+		}
+		{
+			dependencies: [
+				"2A2A5F39F346586B"
+				"2FB09F8EBFB5DE65"
+				"1A271BC095A844B3"
+				"2CDA3F5366E5338A"
+			]
+			hide_dependency_lines: true
+			icon: "minecraft:ender_eye"
+			id: "3AB6FA51F33235D4"
+			rewards: [{
+				id: "783616EB29C493B7"
+				type: "xp_levels"
+				xp_levels: 30
+			}]
+			shape: "circle"
+			size: 1.5d
+			subtitle: "寻找最终的巨龙……"
+			tasks: [
+				{
+					advancement: "minecraft:story/enter_the_end"
+					criterion: ""
+					icon: "minecraft:ender_eye"
+					id: "303E58C68393EF66"
+					title: "前往末地探险吧"
+					type: "advancement"
+				}
+				{
+					id: "523806BC1016D4B6"
+					title: "我（Wǒ）看（kàn）见（jiàn）了（le）"
+					type: "checkmark"
+				}
+			]
+			title: "还有另外一个吗？"
+			x: 0.0d
+			y: 4.0d
+		}
+	]
+	title: "如何驯服你的龙（How To Tran YOUR Dragon）"
+}
