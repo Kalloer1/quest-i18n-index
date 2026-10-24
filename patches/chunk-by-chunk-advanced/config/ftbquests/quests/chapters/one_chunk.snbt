@@ -1,0 +1,221 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "one_chunk"
+	group: "7B2F9C5994E6C3F7"
+	id: "02E0A91E3274FCD2"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["你被困在这里了。试着收集材料并生存下来吧！"]
+			id: "1BBD1BBFDE9354AA"
+			tasks: [{
+				id: "6874914AC010EB4E"
+				title: "开始部分"
+				type: "checkmark"
+			}]
+			x: -2.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["1BBD1BBFDE9354AA"]
+			description: [
+				"木材将是你最宝贵的物品。"
+				"如果你的区块里没有木头开局，虽然也能玩，但会难很多"
+			]
+			id: "65CB7CBA8D4DFD12"
+			tasks: [{
+				id: "781E97DFFC42DC81"
+				item: {
+					Count: 1
+					id: "ftbfiltersystem:smart_filter"
+					tag: {
+						"ftbfiltersystem:filter": "item_tag(minecraft:logs)"
+					}
+				}
+				type: "item"
+			}]
+			title: "木头！"
+			x: -2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["65CB7CBA8D4DFD12"]
+			description: [
+				"树苗也将变得非常重要。"
+				"树苗没了，木材也没了，所以尽可能多收集一些。"
+			]
+			id: "31E0DFC2789D8237"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "1DFCB02A4BFB062E"
+				table_id: 7024619555230254512L
+				type: "choice"
+			}]
+			tasks: [{
+				id: "3E3FBDF90569A14C"
+				item: {
+					Count: 1
+					id: "ftbfiltersystem:smart_filter"
+					tag: {
+						"ftbfiltersystem:filter": "item_tag(minecraft:saplings)"
+					}
+				}
+				type: "item"
+			}]
+			title: "树苗"
+			x: -1.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["65CB7CBA8D4DFD12"]
+			description: [
+				"也许你运气好，能得到苹果呢。"
+				"作为第一口食物会很有帮助。"
+			]
+			id: "56082736B3D6DE30"
+			optional: true
+			rewards: [{
+				count: 4
+				id: "162508168D4BA010"
+				item: "minecraft:apple"
+				type: "item"
+			}]
+			tasks: [{
+				id: "6D7DFE9DEBA9AA00"
+				item: "minecraft:apple"
+				type: "item"
+			}]
+			x: -1.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["1BBD1BBFDE9354AA"]
+			description: [
+				"你需要获取种子作为食物，并制作面包。"
+				"记住，你可以杀动物来获取食物，但这并不推荐，因为你不知道什么时候才能获得其他食物。"
+			]
+			id: "0DFD51DFE51029DF"
+			rewards: [{
+				count: 4
+				id: "3E8F7B9C7135B5F8"
+				item: "minecraft:bread"
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "68AB3BD9B968F63F"
+					item: "minecraft:wheat_seeds"
+					type: "item"
+				}
+				{
+					id: "0A38C11AF2666349"
+					item: "minecraft:wheat"
+					type: "item"
+				}
+				{
+					id: "426C6605E89ABE4D"
+					item: "minecraft:bread"
+					type: "item"
+				}
+			]
+			title: "小麦"
+			x: -4.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["65CB7CBA8D4DFD12"]
+			id: "527F10DE7454CC92"
+			rewards: [{
+				count: 4
+				id: "0AAB3C2E46A47B73"
+				item: "minecraft:oak_log"
+				type: "item"
+			}]
+			tasks: [{
+				id: "4B72DB69E567E9B9"
+				item: {
+					Count: 1
+					id: "ftbfiltersystem:smart_filter"
+					tag: {
+						"ftbfiltersystem:filter": "item_tag(minecraft:tools)"
+					}
+				}
+				type: "item"
+			}]
+			title: "第一工具"
+			x: -4.0d
+			y: 2.0d
+		}
+		{
+			description: [
+				"你刚刚是不是在眼角瞥见了什么东西？"
+				"不，你肯定被允许了，不是吗？或者不是吗？"
+			]
+			id: "23777C8475B81E4E"
+			invisible: true
+			tasks: [{
+				id: "25AD7C7BD56F5DDC"
+				observe_type: 5
+				timer: 0L
+				title: "什么？"
+				to_observe: "true_herobrine:herobrine"
+				type: "observation"
+			}]
+			title: "我刚才都看到了些什么东西？"
+			x: -1.0d
+			y: -2.0d
+		}
+		{
+			dependencies: [
+				"527F10DE7454CC92"
+				"31E0DFC2789D8237"
+				"65CB7CBA8D4DFD12"
+			]
+			description: ["踏入全新的石器时代！"]
+			id: "411CFFB78EF391AD"
+			rewards: [{
+				count: 16
+				id: "005875227094ADE5"
+				item: "minecraft:stone"
+				type: "item"
+			}]
+			tasks: [
+				{
+					count: 16L
+					id: "2B0E1E3E7131EB99"
+					item: { Count: 16, id: "minecraft:cobblestone" }
+					type: "item"
+				}
+				{
+					advancement: "minecraft:story/mine_stone"
+					criterion: ""
+					id: "16DE0F30346B7697"
+					type: "advancement"
+				}
+			]
+			title: "石器时代"
+			x: -2.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["1BBD1BBFDE9354AA"]
+			description: [
+				"一个区块在一个方块里？荒谬，但却是事实。"
+				"传说称，它藏在地下深处某个孤零零的箱子里。"
+			]
+			id: "09367EE77054B253"
+			tasks: [{
+				id: "2BE26FD5BBBD2361"
+				item: "chunkbychunk:chunkspawner"
+				type: "item"
+			}]
+			title: "区块？"
+			x: -2.5d
+			y: -3.5d
+		}
+	]
+	title: "开端"
+}
