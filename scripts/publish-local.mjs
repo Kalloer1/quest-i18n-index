@@ -350,9 +350,21 @@ step('3.5', '发布自检（计划 vs 分支树）')
     treeByBranch[h] = out.split('\n').filter(Boolean)
   }
   const bad = checkPublishCounts(plan.bySlug, treeByBranch)
-  if (bad.length) {
-    console.error(`\n✘ 发布自检失败：${bad.length} 个包分支树上的 .snbt 比计划多 —— 计划漏捞了文件，合并会静默丢它们：`)
-    for (const { slug, branch, expected, actual } of bad) {
+  // 树上比计划多的文件，可能只是「main 里已经有、内容还一样」：
+  // main 已经合过这个包时，diff 只会列出有差异的文件，树上自然更多 —— 不是漏捞。
+  // 2026-10-24 实测：38 个包全部属于这种（另台的产物早已入库，本台只是同一批文件的子集），
+  // 按原口径会把整轮发布拦下。逐 slug 用 `git diff --quiet` 判「这些多出来的文件是否真与 main 不同」。
+  const reallyBad = bad.filter(({ slug, branch }) => {
+    const planned = new Set(plan.bySlug[slug].patchPaths)
+    const extra = treeByBranch[branch]
+      .filter((p) => p.startsWith(`patches/${slug}/`) && p.endsWith('.snbt') && !planned.has(p))
+    if (!extra.length) return false
+    // gitTry 在「无差异」时返回 true（exit 0）→ 内容一致，不算漏捞
+    return !gitTry(['diff', '--quiet', 'origin/main', `origin/farm/${branch}`, '--', ...extra])
+  })
+  if (reallyBad.length) {
+    console.error(`\n✘ 发布自检失败：${reallyBad.length} 个包分支树上的 .snbt 比计划多 —— 计划漏捞了文件，合并会静默丢它们：`)
+    for (const { slug, branch, expected, actual } of reallyBad) {
       const planned = new Set(plan.bySlug[slug].patchPaths)
       const extra = treeByBranch[branch]
         .filter((p) => p.startsWith(`patches/${slug}/`) && p.endsWith('.snbt') && !planned.has(p))
@@ -361,7 +373,7 @@ step('3.5', '发布自检（计划 vs 分支树）')
     console.error('多为 rename 检测又把新增文件配成 R：确认 diff 取数带 --no-renames 后重跑。')
     process.exit(1)
   }
-  console.log(`自检通过：${Object.keys(plan.bySlug).length} 个包文件数一致`)
+  console.log(`自检通过：${Object.keys(plan.bySlug).length} 个包文件数一致${bad.length ? `（其中 ${bad.length} 个的多余文件与 main 一致，不计漏捞）` : ''}`)
 }
 
 // ---------- 4. 布局趟 ----------
