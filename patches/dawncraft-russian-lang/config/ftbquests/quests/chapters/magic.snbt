@@ -1,0 +1,380 @@
+# AI 初翻，未人工校对
+{
+	id: "3FBF22A12EB77153"
+	group: "0A520B482648497B"
+	order_index: 2
+	filename: "magic"
+	title: "Моё имя — Мага"
+	icon: "irons_spellbooks:mana_ring"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "咒语 \& 咒语之书"
+			icon: {
+				id: "endrem:magical_eye"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: -2.5d
+			y: 0.0d
+			description: ["Здесь вы узнаете, как получить магические способности, позволяющие улучшить ваши физические данные, призывать существ или накладывать разрушительные заклинания на врагов!"]
+			size: 2.0d
+			id: "43BE75F09C4043F8"
+			tasks: [{
+				id: "089777A5C1B95D8D"
+				type: "checkmark"
+				title: "完全明白！"
+			}]
+		}
+		{
+			title: "Еврей грабит постройки"
+			icon: {
+				id: "irons_spellbooks:magehunter"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: -5.25d
+			y: 1.5d
+			description: [
+				"Начальные этапы вашего магического журнала начинаются с поиска магических сооружений, обыска их сундуков и, возможно, победы над живущими там магами."
+				"Это и будет ваш основной источник свитков, которые позволят вам начать произносить заклинания!"
+			]
+			dependencies: ["5D6F2EF2A0FABB1E"]
+			size: 1.5d
+			id: "0614C37C1534939E"
+			tasks: [{
+				id: "21D7529F64458A1B"
+				type: "checkmark"
+				title: "Ясненько!"
+			}]
+		}
+		{
+			title: "Книга заклинаний"
+			icon: {
+				id: "irons_spellbooks:legendary_spell_book"
+				Count: 1b
+				tag: {
+					ISB_spellbook: {
+						spells: [ ]
+						spellSlots: 12
+						activeSpellIndex: -1
+					}
+				}
+			}
+			x: -2.5d
+			y: -2.0d
+			description: ["Свитки можно использовать только один раз, прежде чем они исчезнут. Чтобы полностью использовать свитки, лучше всего хранить их в Книге Заклинаний. Начните с создания хрупкого дневника!\\n\\n(Если ваш класс астролог, пропустите этот шаг.)"]
+			dependencies: ["43BE75F09C4043F8"]
+			id: "1F327242C2CCCF3C"
+			tasks: [{
+				id: "5AFA2C0E12D601FD"
+				type: "checkmark"
+				title: "Да, Сэр!"
+			}]
+		}
+		{
+			x: 2.0d
+			y: -2.0d
+			description: ["Письменный стол позволяет вам начать помещать свитки в вашу книгу заклинаний. Однако обратите внимание, что свитки можно помещать ТОЛЬКО в книги заклинаний той же или более высокой редкости!!"]
+			dependencies: ["1F327242C2CCCF3C"]
+			id: "39BD15E37DD2B01C"
+			tasks: [{
+				id: "069021CAEE611130"
+				type: "item"
+				item: "irons_spellbooks:inscription_table"
+				consume_items: false
+				only_from_crafting: false
+			}]
+			rewards: [{
+				id: "364D3C4B4475BC0D"
+				type: "xp"
+				xp: 5
+			}]
+		}
+		{
+			x: -7.5d
+			y: 1.0d
+			description: ["Помимо грабежа построек, создание кузницы свитков является достойным альтернативным способом получения свитков. Материалы для кузницы свитков можно найти в Аду.\\n\\nИспользуйте панель поиска в своем инвентаре, чтобы найти различные рецепты свитков! Обратите внимание, что можно создавать только свитки 1-го уровня. Обновление уровней прокрутки произойдет позже."]
+			dependencies: ["5D6F2EF2A0FABB1E"]
+			id: "5178B560C8B827E3"
+			tasks: [{
+				id: "56950BA8A3BB0936"
+				type: "item"
+				item: "irons_spellbooks:scroll_forge"
+				consume_items: false
+				only_from_crafting: false
+			}]
+		}
+		{
+			title: "Оборудование начинающего мага"
+			icon: {
+				id: "irons_spellbooks:wandering_magician_helmet"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: 0.5d
+			y: 0.0d
+			description: ["Лучшим стартовым снаряжением для волшебника будет комплект странствующего волшебника, для изготовления которого требуется кузнечный стол."]
+			dependencies: ["43BE75F09C4043F8"]
+			id: "4E54C208CEF187D1"
+			tasks: [{
+				id: "63C62CE5AFA476B1"
+				type: "checkmark"
+				title: "完全正确！"
+			}]
+		}
+		{
+			title: "Продвинутое снаряжение мага"
+			icon: {
+				id: "irons_spellbooks:pyromancer_helmet"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: 3.0d
+			y: 0.0d
+			description: [
+				"Помимо снаряжения странствующего мага, маги могут создавать механизмы для конкретных элементов, которые усиливают способности определенных элементов к произнесению заклинаний."
+				"Чтобы создать это классовое снаряжение, маги должны получить рунные камни стихий. Для изготовления материалов этих рунных камней иногда требуются ритуалы. Используйте функцию поиска рецептов, чтобы задуматься!"
+			]
+			dependencies: ["4E54C208CEF187D1"]
+			id: "1EE082F0F108BFBA"
+			tasks: [{
+				id: "21F74BED3827CB09"
+				type: "checkmark"
+				title: "Крутяк!"
+			}]
+		}
+		{
+			x: -5.0d
+			y: 3.0d
+			description: ["魔法创作最重要的材料之一。只能通过掠夺和击败魔法使用者来获得。"]
+			dependencies: ["0614C37C1534939E"]
+			id: "4CEED19552F9272D"
+			tasks: [{
+				id: "04C0D0354D3DFBA3"
+				type: "item"
+				item: "irons_spellbooks:arcane_essence"
+				consume_items: false
+				only_from_crafting: false
+			}]
+		}
+		{
+			title: "Обновление твоего снаряжения"
+			icon: {
+				id: "irons_spellbooks:pumpkin_helmet"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: 6.0d
+			y: 0.0d
+			description: [
+				"Чтобы улучшить снаряжение, вам понадобятся сфера улучшения и магическая наковальня. Рецепт сферы улучшения может быть дорогим, а самые сложные предметы — тайный трофей и эссенция пепла."
+				"\\n"
+				"Вы можете улучшить часть снаряжения мага до 3 раз. Различные сферы улучшения дают разные бонусы к характеристикам, такие как увеличение стихийного урона или увеличение маны."
+			]
+			dependencies: [
+				"1EE082F0F108BFBA"
+				"5C76F132FD8587F9"
+				"607E8D1ADA6ED3A0"
+			]
+			id: "37B5F30D3F4B99F6"
+			tasks: [{
+				id: "3BE9AFC332C9476E"
+				type: "checkmark"
+				title: "欧克-多克！"
+			}]
+			rewards: [{
+				id: "56DD80B6574EC6C2"
+				type: "item"
+				item: "irons_spellbooks:blank_rune"
+				count: 3
+			}]
+		}
+		{
+			x: -4.0d
+			y: 2.5d
+			description: ["Основа для создания всех остальных рун. Можно найти в магических сооружениях или у магов, проживающих в этих сооружениях."]
+			dependencies: ["0614C37C1534939E"]
+			id: "49B1AA2C35454C74"
+			tasks: [{
+				id: "1B902538D23196EB"
+				type: "item"
+				item: "irons_spellbooks:blank_rune"
+				consume_items: false
+				only_from_crafting: false
+			}]
+		}
+		{
+			title: "Расположение Мертвого Короля"
+			x: -0.7d
+			y: 1.4d
+			description: [
+				"Мертвый Король — могущественный нежить, обитающий в катакомбах глубоко под землей. Единственный способ найти его — скрафтить и следовать за шальным компасом."
+				"Этот скелет использует мощные заклинания, чтобы отразить расхитителей гробниц. Даже не пытайтесь, если вы не полностью готовы! С другой стороны, если вам удастся упокоить его, награда будет более чем удовлетворительной... Это может даже поднять ваше волшебное путешествие на новую высоту!"
+			]
+			dependencies: ["0614C37C1534939E"]
+			size: 1.4d
+			id: "73A2334F5E27719A"
+			tasks: [{
+				id: "45DD5B0FAD17B43A"
+				type: "item"
+				item: {
+					id: "irons_spellbooks:wayward_compass"
+					Count: 1b
+					tag: { }
+				}
+			}]
+		}
+		{
+			title: "Древнее поле битвы"
+			icon: {
+				id: "mutantmonsters:mutant_skeleton_skull"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: -1.3d
+			y: 2.6d
+			description: ["Древнее поле битвы можно найти в Аду. Вы можете оживить Древних Рыцарей, раскопав груды доспехов киркой."]
+			dependencies: ["0614C37C1534939E"]
+			size: 1.3d
+			id: "28F664AE3CBA9E87"
+			tasks: [{
+				id: "04B7F97553E6079A"
+				type: "checkmark"
+				title: "Чет, как-то это странно выглядит"
+			}]
+		}
+		{
+			x: 3.0d
+			y: 2.0d
+			description: ["Компонент, необходимый для создания сферы улучшения. Можно получить ТОЛЬКО после победы над древними рыцарями на древнем поле битвы."]
+			dependencies: ["28F664AE3CBA9E87"]
+			id: "0CFC93A854B6EBE1"
+			tasks: [{
+				id: "3727B06E2FE205B4"
+				type: "item"
+				item: "irons_spellbooks:cinder_essence"
+			}]
+			rewards: [{
+				id: "155E77020EC84993"
+				type: "item"
+				item: "irons_spellbooks:arcane_essence"
+				count: 4
+			}]
+		}
+		{
+			title: "获取卷轴的方法如下："
+			icon: "ob_core:scroll_primitive_rites"
+			x: -5.25d
+			y: 0.0d
+			description: ["Есть два основных способа получить свитки..."]
+			dependencies: ["43BE75F09C4043F8"]
+			size: 1.5d
+			id: "5D6F2EF2A0FABB1E"
+			tasks: [{
+				id: "4DB549B82B05387F"
+				type: "checkmark"
+				title: "来，让我看看你的本事！"
+			}]
+		}
+		{
+			x: 6.0d
+			y: -2.0d
+			description: ["用于升级卷轴、改进装备和强化武器。"]
+			dependencies: ["39BD15E37DD2B01C"]
+			id: "5C76F132FD8587F9"
+			tasks: [{
+				id: "65079F0A627BA537"
+				type: "item"
+				item: "irons_spellbooks:arcane_anvil"
+				consume_items: false
+				only_from_crafting: false
+			}]
+		}
+		{
+			x: 6.0d
+			y: 2.0d
+			description: ["Базовый шар для улучшения вашего снаряжения. Для использования необходимо наполнить рунами."]
+			dependencies: ["0CFC93A854B6EBE1"]
+			id: "607E8D1ADA6ED3A0"
+			tasks: [{
+				id: "450C6924ABAA82D0"
+				type: "item"
+				item: "irons_spellbooks:upgrade_orb"
+			}]
+		}
+		{
+			title: "Уникальные реликвии \& Книги заклинаний"
+			icon: "irons_spellbooks:emerald_stoneplate_ring"
+			x: -6.8d
+			y: -2.55d
+			description: ["На каждом этапе приключений следите за кольцами, уникальными книгами заклинаний, именными книгами заклинаний и магическими ресурсами!"]
+			hide_dependency_lines: true
+			dependencies: ["43BE75F09C4043F8"]
+			size: 1.7d
+			id: "142D6C7E522A3208"
+			tasks: [{
+				id: "128B025C180FB6B2"
+				type: "checkmark"
+				title: "凯法里基（Kai Fariki）"
+			}]
+		}
+		{
+			x: -6.0d
+			y: 3.0d
+			description: ["Необходимый компонент для создания свитка. Можно найти в магических сооружениях или у могущественных магических существ."]
+			dependencies: ["0614C37C1534939E"]
+			id: "4200E32F0492E2E3"
+			tasks: [{
+				id: "58DEDE820A0E14A3"
+				type: "item"
+				item: "irons_spellbooks:common_ink"
+			}]
+		}
+		{
+			title: "Создание вашего первого свитка"
+			icon: {
+				id: "irons_spellbooks:scroll"
+				Count: 1b
+				tag: {
+					ISB_spell: {
+						type: 1
+						level: 1
+					}
+				}
+			}
+			x: -7.5d
+			y: 4.0d
+			description: ["У вас есть чернила и кузница для свитков, вы готовы создать свой первый свиток!"]
+			dependencies: [
+				"5178B560C8B827E3"
+				"4200E32F0492E2E3"
+			]
+			id: "55DE5FDCFC67E4A2"
+			tasks: [{
+				id: "454D6DA7C5585A1B"
+				type: "checkmark"
+				title: "谢谢！"
+			}]
+			rewards: [{
+				id: "62DD7A9F0FD11783"
+				type: "item"
+				item: "irons_spellbooks:magic_cloth"
+			}]
+		}
+	]
+	quest_links: [ ]
+}
