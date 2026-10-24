@@ -66,7 +66,12 @@ export function outputName(name, layout) {
  * @returns {{layout: string, files: Array<{name: string, root: object}>, units: Array<{file: string, key: string, path: string, node: object, text: string}>}}
  */
 export function extractPack({ files, layout }) {
-  const parsed = (files ?? []).map((f) => ({ name: f.name, root: parse(f.text) }))
+  // 纯 NUL 文件等同空文件，跳过（与 validate-quests 的 isPureNul 先例同口径）。
+  // 实测（2026-10-24，`jetlagg-presents-the-altar`）：23 个章节里 8 个内容全是 0x00 ——
+  // 上游写坏的空文件，没有任何可翻译文本；不跳过会让整包解析失败。
+  // 输出 zip 里因此不含这几个文件 —— 上游那几个文件本来就是游戏读不动的垃圾。
+  const isPureNul = (text) => String(text ?? '').replace(/\u0000/g, '').trim() === ''
+  const parsed = (files ?? []).filter((f) => !isPureNul(f.text)).map((f) => ({ name: f.name, root: parse(f.text) }))
   const units = []
   for (const pf of parsed) {
     for (const { path, node } of collectStrings(pf.root)) {
