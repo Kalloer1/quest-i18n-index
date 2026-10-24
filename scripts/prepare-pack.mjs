@@ -55,7 +55,7 @@ import { repairUnclosedStringLists, repairKeyInsideList, repairEmptyKeyEntries, 
 import { classifyLayout } from './lib/candidates.mjs'
 import { resolveLatestMrpack } from './lib/modrinth.mjs'
 import { fetchZipTexts, listZip } from './lib/zip-range.mjs'
-import { fetchRetry } from './lib/fetch-retry.mjs'
+import { fetchRetry, normalizeCdnUrl } from './lib/fetch-retry.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const DATASET_FILE = join(ROOT, 'research/index-dataset.json')
@@ -195,18 +195,18 @@ export function platformOf(records, slug) {
 }
 
 /**
- * 把 CurseForge 下载主机从 edge.forgecdn.net 改写成 mediafilez.forgecdn.net。
+ * 把 CurseForge 下载主机统一改写成 mediafiles.forgecdn.net。
  *
- * 为什么：本机网络到 edge.forgecdn.net 连接超时（连那记 302 都拉不到），但
- * mediafilez.forgecdn.net 可达且全速（实测 Range 206 ~1s，代理要 ~7s）。CF 的下载
- * 地址在 edge 上、会 302 跳到 mediafilez 的同路径文件；既然 edge 连不上，直接改写
- * 主机跳过那步。两者是同一批文件，mediafilez 是 CF 规范文件主机（serv00 上也可达），
- * 改写安全通用。
+ * 历史：早期本机网络只有 edge.forgecdn.net 连不上、mediafilez 可达，故 edge→mediafilez。
+ * 2026-10-24 实测反过来：mediafilez 直连超时、经代理连续 8 次 CONNECT 失败，而
+ * mediafiles.forgecdn.net（同一份对象、支持 Range）直连 206 ~0.2s。
+ * 统一改写到 mediafiles：任何 *.forgecdn.net 主机名都换成它，路径一字不改。
+ * （enrich-source-versions.mjs 早就用同一招治过它的 CONNECT 502。）
  * @param {string} url
  * @returns {string}
  */
 export function rewriteCdnHost(url) {
-  return String(url).replace(/(^https?:\/\/)edge\.forgecdn\.net/, '$1mediafilez.forgecdn.net')
+  return normalizeCdnUrl(url)
 }
 
 /**

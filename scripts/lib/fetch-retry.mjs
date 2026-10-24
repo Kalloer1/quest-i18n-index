@@ -35,3 +35,25 @@ export async function fetchRetry(url, init = {}, tries = 5, timeoutMs = 60_000, 
   }
   throw last
 }
+
+/**
+ * CF 的 `downloadUrl` 指向的 CDN 主机在部分网络下不可达：
+ * `mediafilez.forgecdn.net` 直连超时、经代理也被重置（实测 2026-10-24，
+ * 连续 8 次 CONNECT 失败）；`mediafiles.forgecdn.net` 是同一份对象的可达域名
+ * 且支持 Range。换主机名，路径（含签名/编码）一字不改。
+ *
+ * 先例：`enrich-source-versions.mjs` 的同名函数（实测 CONNECT 502 的场合）。
+ * 这里抽成共享库，prepare-pack 的 `downloadUrlOf` 也走它。
+ *
+ * @param {string} url
+ * @returns {string}
+ */
+export function normalizeCdnUrl(url) {
+  try {
+    const u = new URL(url)
+    if (/(^|\.)forgecdn\.net$/i.test(u.hostname)) u.hostname = 'mediafiles.forgecdn.net'
+    return u.toString()
+  } catch {
+    return url
+  }
+}

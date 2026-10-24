@@ -177,20 +177,21 @@ test('downloadUrlOf：没有 downloadUrl 时明确报错，不猜替代地址', 
   assert.throws(() => downloadUrlOf(null), /downloadUrl/)
 })
 
-test('rewriteCdnHost：把不可达的 edge.forgecdn.net 改写成可达的 mediafilez.forgecdn.net', () => {
-  // 本机到 edge 超时、到 mediafilez 全速；CF 的 edge 会 302 跳到 mediafilez 同路径文件。
+test('rewriteCdnHost：把 forgecdn 系主机统一改写成可达的 mediafiles.forgecdn.net', () => {
+  // 2026-10-24 实测：mediafilez 直连超时、经代理 CONNECT 失败；mediafiles（同一份对象、
+  // 支持 Range）可达。任何 forgecdn 主机名（edge / mediafilez）都统一改写到 mediafiles。
   assert.equal(
     rewriteCdnHost('https://edge.forgecdn.net/files/8989/794/x.zip'),
-    'https://mediafilez.forgecdn.net/files/8989/794/x.zip',
+    'https://mediafiles.forgecdn.net/files/8989/794/x.zip',
   )
   assert.equal(
     rewriteCdnHost('http://edge.forgecdn.net/files/1/2/y.zip'),
-    'http://mediafilez.forgecdn.net/files/1/2/y.zip',
+    'http://mediafiles.forgecdn.net/files/1/2/y.zip',
   )
-  // 已在 mediafilez 的不动
+  // 已在 mediafilez 的也改写（它同样可能不可达）
   assert.equal(
     rewriteCdnHost('https://mediafilez.forgecdn.net/files/1/2/y.zip'),
-    'https://mediafilez.forgecdn.net/files/1/2/y.zip',
+    'https://mediafiles.forgecdn.net/files/1/2/y.zip',
   )
   // 别的域名不动
   assert.equal(rewriteCdnHost('https://cdn.example/a.zip'), 'https://cdn.example/a.zip')
