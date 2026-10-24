@@ -260,8 +260,10 @@ function parseResultLine(stdout) {
  * 而真正的错误码（如 `-602 文件浏览器实例不存在`）在 stdout 的 result 行里。
  * 实跑 run 39166450472 的日志就只剩一句被截断的
  * `[ERROR][FileBrowserManager] createFo…`，完全无法定位。
+ *
+ * 导出给 quark-sync.mjs 复用（建链 / browse 同一套调用与错误透传，不复制一份）。
  */
-function quarkCall(cli, args, cwd) {
+export function quarkCall(cli, args, cwd) {
   let stdout
   try {
     stdout = execFileSync(process.execPath, [cli, ...args], {

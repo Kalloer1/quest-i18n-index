@@ -338,8 +338,10 @@ function localSlugs(known) {
  * 为什么必须读 Artifact 而不是 result：`browse` 的 `result.data.file_list` 只给最多 5 条预览，
  * 完整结果写在 `artifact.data.file_path` 指向的 JSONL 里（file-ops.md / file-search.md）。
  * 目录 593 个文件，只读预览等于什么都没看到。
+ *
+ * 导出：quark-sync.mjs 列网盘实际文件时复用同一套读取逻辑（含 artifact 全量消费）。
  */
-function browseDir(cli, dirFid, cwd) {
+export function browseDir(cli, dirFid, cwd) {
   const { data, lines } = callRaw(cli, ['browse', '--parent-fid', dirFid, '--all'], cwd)
   const artifact = lastOfType(lines, 'artifact')
   const filePath = artifact?.data?.file_path
@@ -362,8 +364,10 @@ function browseDir(cli, dirFid, cwd) {
  * 为什么不能只靠 create-folder：实测它在「目录已存在」时会返回
  * `code 1007: 创建操作失败`，而不是像文档说的返回已有 fid —— 试点成功后紧接着
  * 跑整批就直接炸在这里。重试 + 按名查找两条兜底，比赌一个未文档化的行为可靠。
+ *
+ * 导出：quark-sync.mjs 定位目标目录时复用（两条兜底逻辑不复制）。
  */
-function resolveDirFid(cli, dirName, parentFid, cwd) {
+export function resolveDirFid(cli, dirName, parentFid, cwd) {
   const folderArgs = ['create-folder', '--dir-path', dirName]
   if (parentFid) folderArgs.push('--parent-fid', parentFid)
   for (let i = 1; i <= 3; i++) {
