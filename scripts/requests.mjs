@@ -296,7 +296,8 @@ async function main() {
         : null)
     if (!t) {
       console.log(`- ${entry.id}: ✘ 链接解析不出平台/slug，人工处理（url=${entry.url}）`)
-      appendSubmission(buildRecord({ entry, status: mapLegacyStatus(entry.status), requestedAt: entry.submittedAt, processedAt: now(), note: 'URL 解析失败' }))
+      // dry-run 必须零副作用：审核（phase3-review）发现这里漏了闸，解析失败的分支会写 jsonl
+      if (!DRY) appendSubmission(buildRecord({ entry, status: mapLegacyStatus(entry.status), requestedAt: entry.submittedAt, processedAt: now(), note: 'URL 解析失败' }))
       continue
     }
     const { platform, slug } = t
