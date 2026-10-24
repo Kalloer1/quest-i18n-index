@@ -1,0 +1,505 @@
+# AI 初翻，未人工校对
+{
+	id: "707C89F17A4596E5"
+	group: "12185A36D8BFAA8A"
+	order_index: 1
+	filename: "707C89F17A4596E5"
+	title: "出发！暮色森林！"
+	icon: "twilightforest:steeleaf_ingot"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "前往暮色森林"
+			icon: "twilightforest:twilight_portal_miniature_structure"
+			x: -3.0d
+			y: 0.5d
+			description: ["暮色森林传送门的搭建方法很简单，你只需要挖个2x2的坑放无限水，然后周围围上任意一种花，最后往水里丢一个钻石即可开启传送门"]
+			id: "2E93F0C00219BE4A"
+			tasks: [{
+				id: "6AC288D96414258B"
+				type: "dimension"
+				dimension: "twilightforest:twilightforest"
+			}]
+		}
+		{
+			x: -1.5d
+			y: -0.5d
+			description: ["渡鸦羽毛是制作暮色森林中非常重要的魔法地图所需的材料"]
+			dependencies: ["2E93F0C00219BE4A"]
+			id: "08E5A6E54BB10767"
+			tasks: [{
+				id: "3A1E984F6A6F3DCD"
+				type: "item"
+				item: "twilightforest:raven_feather"
+			}]
+		}
+		{
+			x: 0.0d
+			y: 0.5d
+			description: ["这就是制作魔法地图所需的材料之一"]
+			dependencies: [
+				"08E5A6E54BB10767"
+				"603685971F163538"
+			]
+			id: "2626DE63805EF0A9"
+			tasks: [{
+				id: "61BD775A7D76B16A"
+				type: "item"
+				item: "twilightforest:magic_map_focus"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 1.5d
+			description: ["可在暮色森林中找到，也是制作魔法地图的材料"]
+			dependencies: ["2E93F0C00219BE4A"]
+			id: "603685971F163538"
+			tasks: [{
+				id: "3E7B15EE8A8FB707"
+				type: "item"
+				item: "twilightforest:torchberries"
+			}]
+		}
+		{
+			x: 2.0d
+			y: 0.5d
+			description: ["魔法地图可以带你寻找暮色的BOSS结构"]
+			dependencies: ["2626DE63805EF0A9"]
+			id: "29F618AC11958BF1"
+			tasks: [{
+				id: "158E09F30A6C0D6C"
+				type: "item"
+				item: "twilightforest:magic_map"
+			}]
+		}
+		{
+			x: 3.5d
+			y: 1.5d
+			description: [
+				"暮色森林的第一个BOSS，击杀后掉落娜迦鳞片以及对应的奖杯"
+				"特点：它能摧毁几乎所有方块（开启防止怪物破坏规则除外）。"
+				"BOSS技能："
+				"它会偶尔短暂停止移动并迅速调整方向使自身面部朝向玩家，然后快速前进，可以破坏任何方块。；"
+				"如果玩家在很高的地方，娜迦会隔空破坏玩家脚下的方块；"
+				"30秒内未持续受伤则会持续回血，身体也会慢慢长大。"
+				"生命值和攻击力根据难度计算："
+				"生命值：简单：120，普通：200，困难：250"
+				"攻击力：【头部】简单：4，普通：6，困难：9"
+				"【身躯】简单：2，普通：3，困难：4"
+			]
+			dependencies: ["29F618AC11958BF1"]
+			id: "4A60E12F4E641F8F"
+			tasks: [{
+				id: "5FBEDED4CB4A736E"
+				type: "kill"
+				icon: "twilightforest:naga_trophy"
+				entity: "twilightforest:naga"
+				value: 1L
+			}]
+		}
+		{
+			x: 4.5d
+			y: 0.0d
+			id: "37EC6FE6E2C8DA9D"
+			tasks: [{
+				id: "191C69BAB49E90AA"
+				type: "kill"
+				entity: "twilightforest:skeleton_druid"
+				value: 8L
+			}]
+		}
+		{
+			x: 5.5d
+			y: 1.5d
+			description: ["娜迦BOSS掉落物，可用于合成娜迦套"]
+			dependencies: ["4A60E12F4E641F8F"]
+			id: "145C87C2CD96D819"
+			tasks: [{
+				id: "5BE3C7A7A32741AE"
+				type: "item"
+				item: "twilightforest:naga_scale"
+			}]
+		}
+		{
+			x: 7.0d
+			y: 0.5d
+			description: [
+				"暮色森林的第二个BOSS，击杀掉落随机一把权杖、末影珍珠（1~4+抢夺附魔等级）、骨头（5~9+抢夺附魔等级）、金剑或金制防具（2~5+抢夺附魔等级，带10-40级附魔属性，可重复）及对应的奖杯。"
+				"技能："
+				"利奇刚出现时，会先召唤五个法术护盾，全方位环绕保护自己。在此期间，除魔法（如伤害药水等）外的攻击都无法对其造成伤害，只有受到对应伤害时，才会失去一个护盾；"
+				"巫妖第一阶段会使用吸血杖吸收原版怪物（蜘蛛、僵尸、骷髅、苦力怕和末影人）及林地府邸蜘蛛，被吸收的怪物随后会消失；但现在该机制被重做，巫妖吸收怪物时会拿出吸血杖，被吸收的怪物与巫妖之间会出现一条红色连线，并为巫妖恢复2点生命值。同时，在巫第二阶段且生命低于1/2时，也会吸收自己的仆从，被吸收的仆从会为巫妖恢复其剩余的生命值。"
+				"巫妖第一形态时，会在自身周围随机召唤1~4个法术幻影攻击玩家（巫妖从生成开始，每发射一次魔法球或火球便会召唤一个幻影，最多存在4个），这些幻影不会受到任何伤害；"
+				"巫妖的第一和第二阶段，在3秒的准备后，会向玩家发射接触固体方块或生物就会自然爆炸的火球。材质为岩浆膏。这些法术火球在受到任何攻击（如玩家的左键、箭矢、雪球）后会直接爆炸，也可以用盾牌反弹。"
+				"巫妖的第一和第二阶段有时会在3秒的准备后，使用黄昏权杖发射受重力影响可忽略的黄昏魔法球。这些法珠使用了末影珍珠的纹理材质，但不具备任何有关末影珍珠的特殊能力。"
+				"巫妖的第二形态会使用僵尸权杖召唤最多9个亡灵仆从（攻击力更强的僵尸），这些亡灵仆从在被召唤后会立即攻击玩家。"
+				"巫妖第一形态下，每次发射魔法球或火球后都会围绕玩家瞬移一次（幻影也是如此）；其他形态下，巫妖使用法术传送的频率会大大增加，每次受到攻击后有100%（非第三形态）或1/4（第三形态）的概率围绕玩家瞬移一次；"
+				"巫妖进入第三形态后会彻底狂暴，此时他会使用一把原版普通金剑近距离攻击玩家。"
+				"BOSS的生命值和攻击力："
+				"生命值：100"
+				"攻击力（魔法球）：6"
+				"攻击力（火球）：简单：9-13，普通：15-20，困难：22-30"
+				"近战攻击力：简单：4，普通：6，困难：9"
+			]
+			dependencies: ["145C87C2CD96D819"]
+			id: "56FBF9A5DA9D590F"
+			tasks: [{
+				id: "3993745CA31BD671"
+				type: "kill"
+				icon: "twilightforest:lich_trophy"
+				entity: "twilightforest:lich"
+				value: 1L
+			}]
+		}
+		{
+			x: 9.0d
+			y: 0.5d
+			dependencies: ["56FBF9A5DA9D590F"]
+			id: "2C6233D89E37226A"
+			tasks: [{
+				id: "62B4F24F3240F54D"
+				type: "kill"
+				entity: "twilightforest:minotaur"
+				value: 12L
+			}]
+		}
+		{
+			x: 11.5d
+			y: 0.5d
+			description: [
+				"暮色森林的第三个BOSS，击杀后掉落米诺菇战斧、米诺菇沙拉酱肉及对应的奖杯"
+				"技能："
+				"手持斧头的米诺菇，攻击可以破盾，使盾牌进入1.6秒的冷却。"
+				"米诺菇原地跑步蓄力后，会快速冲向面朝的方向，撞到玩家会将其击飞一定高度，并使其受到坠落伤害。在 3.8.654 及以后的版本中，米诺菇的跑步蓄力攻击还能破坏经过的方块。"
+				"米诺菇手持斧子蓄力一段时间后，会猛击地面，造成以自身为中心的大范围伤害，该攻击无视物理护甲且能穿透墙壁。"
+				"生命值：160"
+				"攻击力（武器/冲撞）：简单：4，普通：7，困难：10"
+				"攻击力（横扫）：简单4，普通：6，困难：8"
+			]
+			dependencies: ["2C6233D89E37226A"]
+			id: "24C42EE86F0368C2"
+			tasks: [{
+				id: "453DCD45F2398CF5"
+				type: "kill"
+				icon: "twilightforest:minoshroom_trophy"
+				entity: "twilightforest:minoshroom"
+				value: 1L
+			}]
+		}
+		{
+			x: 10.5d
+			y: 2.0d
+			dependencies: ["2C6233D89E37226A"]
+			id: "73E40F36BB4213E5"
+			tasks: [{
+				id: "38BFC676CE9422F2"
+				type: "kill"
+				entity: "twilightforest:slime_beetle"
+				value: 14L
+			}]
+			rewards: [
+				{
+					id: "39B8B0B59B6DE7DB"
+					type: "random"
+					table_id: 801932895213463482L
+				}
+				{
+					id: "591ACFEDAD380FB7"
+					type: "item"
+					item: "candylands:vanilla_cupcake"
+				}
+			]
+		}
+		{
+			x: 10.5d
+			y: -1.0d
+			dependencies: ["2C6233D89E37226A"]
+			id: "66148CE51729AAD8"
+			tasks: [{
+				id: "0D486D203CDDBA85"
+				type: "kill"
+				entity: "twilightforest:pinch_beetle"
+				value: 8L
+			}]
+		}
+		{
+			x: 13.5d
+			y: 0.5d
+			description: ["吃掉它你就能前往火焰沼泽了，那里有很强大的九头蛇BOSS"]
+			dependencies: ["24C42EE86F0368C2"]
+			id: "2796696492BDC26E"
+			tasks: [{
+				id: "6B7B97DC91FAA8A2"
+				type: "item"
+				item: "twilightforest:meef_stroganoff"
+			}]
+		}
+		{
+			x: 15.5d
+			y: 0.5d
+			description: [
+				"暮色森林的第四个BOSS"
+				"九头蛇，虽然它初始并不是九个头，但是你如果打掉一头，之后会出现两头。你如果攻击下身，那么造成的伤害并不高。技能：九头蛇会发射爆炸火球，以及发射火焰。"
+				"当玩家与九头蛇的距离小于20格时，玩家将免疫所有远程伤害。"
+				"成功击杀九头蛇后，会掉落九头蛇肉排、炽热的血液以及对应的奖杯。"
+			]
+			dependencies: ["2796696492BDC26E"]
+			id: "61D41A9F33A97ED1"
+			tasks: [{
+				id: "5866F2A8DA226C26"
+				type: "kill"
+				icon: "twilightforest:hydra_trophy"
+				entity: "twilightforest:hydra"
+				value: 1L
+			}]
+		}
+		{
+			x: 17.0d
+			y: -1.0d
+			dependencies: ["61D41A9F33A97ED1"]
+			id: "0413F4918B32D30F"
+			tasks: [{
+				id: "2A9DABBB25A3B259"
+				type: "item"
+				item: "twilightforest:hydra_chop"
+			}]
+		}
+		{
+			x: 17.0d
+			y: 2.0d
+			description: ["可用于制作炽热的装备"]
+			dependencies: ["61D41A9F33A97ED1"]
+			id: "7233258438234AEA"
+			tasks: [{
+				id: "1D6A0F43B533D2A1"
+				type: "item"
+				item: "twilightforest:fiery_blood"
+			}]
+		}
+		{
+			x: 18.0d
+			y: 0.5d
+			description: [
+				"暮色森林的第五个BOSS，击杀后可获得30级随机附魔的幻影护甲任意三件，30级随机附魔的骑士武器或工具任意四件及对应的奖杯。（注：该战利品存放于奖励箱内）"
+				"特点：能够穿过实体方块。"
+				"手持骑士剑的幻影骑士能迅速冲撞玩家（由于骑士剑的特性，能对有护甲的玩家造成额外伤害）。"
+				"手持骑士斧的幻影骑士能向玩家方向远距离投掷多把骑士斧，手持骑士镐的幻影骑士能向自身周围多方向短距离投掷多把骑士镐。"
+			]
+			dependencies: ["61D41A9F33A97ED1"]
+			id: "3528F02A98B27994"
+			tasks: [{
+				id: "20FF505728051CA8"
+				type: "kill"
+				icon: "twilightforest:knight_phantom_trophy"
+				entity: "twilightforest:knight_phantom"
+				value: 1L
+			}]
+		}
+		{
+			x: 20.0d
+			y: 0.5d
+			description: [
+				"激活砷铅铁机关以进行召唤"
+				"激活砷铅铁机关的方法是：将六个面都放上红石块即可"
+				"可在恶魂塔中找到，也可手动合成"
+			]
+			dependencies: ["3528F02A98B27994"]
+			id: "2FFFB922B57B4EFF"
+			tasks: [{
+				id: "662F96F4A733121F"
+				type: "kill"
+				entity: "twilightforest:tower_ghast"
+				value: 6L
+			}]
+			rewards: [
+				{
+					id: "5E38ED8B6373CD77"
+					type: "item"
+					item: "minecraft:golden_apple"
+				}
+				{
+					id: "67D8FA01DBF40570"
+					type: "xp"
+					xp: 240
+				}
+			]
+		}
+		{
+			x: 22.0d
+			y: 0.5d
+			description: [
+				"暮色森林的第六个BOSS，击杀后会掉落火药、恶魂之泪，以及奖励箱形式的战利品：炽热之泪6-10个、砷铅铁矿石6-10个及对应的奖杯"
+				"BOSS技能：发射三颗造成爆炸伤害的火球。"
+				"降下泪雨，对玩家造成持续伤害，头盔受损严重。此时游戏内天气将被强制设为雷雨，且可能无法使用其他模组物品及指令修改。"
+				"塔顶的四个房间内会生成迷你幽灵（砷铅铁恶灵），之后会吸收它回血。"
+				"生命值：250"
+				"攻击力：火球：16，泪雨：3"
+			]
+			dependencies: ["2FFFB922B57B4EFF"]
+			id: "06AB3DBE0BE768DC"
+			tasks: [{
+				id: "765DD159950C95F0"
+				type: "kill"
+				icon: "twilightforest:ur_ghast_trophy"
+				entity: "twilightforest:ur_ghast"
+				value: 1L
+			}]
+		}
+		{
+			x: 26.0d
+			y: 0.5d
+			description: [
+				"暮色森林的第七个BOSS，掉落雪人首领毛皮、冰霜炸弹及对应的奖杯"
+				"BOSS技能："
+				"举起并投掷玩家，造成坠落伤害。"
+				"不断挥舞手臂，对周围造成每秒一点伤害和击退效果。"
+				"向远处喷射寒冰炸弹，造成持续伤害与冰冻减速效果。"
+				"制造一层冰雪保护膜并召唤大冰块落下来造成伤害。"
+				"生命值：200点"
+			]
+			dependencies: ["621F3394235FDE6C"]
+			id: "0B54351A279764E2"
+			tasks: [{
+				id: "230E13473C0D5EFA"
+				type: "kill"
+				icon: "twilightforest:yeti_trophy"
+				entity: "twilightforest:yeti_alpha"
+				value: 1L
+			}]
+		}
+		{
+			x: 24.0d
+			y: 0.5d
+			dependencies: ["06AB3DBE0BE768DC"]
+			id: "621F3394235FDE6C"
+			tasks: [{
+				id: "2911F87F1EFA985E"
+				type: "kill"
+				entity: "twilightforest:yeti"
+				value: 6L
+			}]
+		}
+		{
+			x: 28.0d
+			y: 0.5d
+			description: [
+				"暮色森林目前已完成的最终BOSS。"
+				"冰雪喷射：飞到与玩家同一高度的位置，使用发射冰雪的魔法，类似于暮色恶魂的吸血功能。"
+				"坠落冲击：飞到玩家上空进行坠落攻击，该攻击只会破坏冰块，坠落前会有下雪预警。"
+				"召唤数个冰晶来攻击玩家。"
+				"这些冰层能免疫所有伤害，并使冰雪女王能够飞行，即玩家无法通过攻击底座伤害到她（但可以从缝隙中攻击）。"
+				"生命值：200点"
+				"攻击力："
+				"简单：4，普通：7，困难：10"
+				"冰雪喷射：0.5秒/点"
+				"坠落冲击：随机"
+			]
+			dependencie: ["0B54351A279764E2"]
+			id: "0E2520BF247E0186"
+			tasks: [{
+				id: "60A5DA30CC4CFA6F"
+				type: "kill"
+				icon: "twilightforest:snow_queen_trophy"
+				entity: "twilightforest:snow_queen"
+				value: 1L
+			}]
+		}
+		{
+			x: 19.0d
+			y: 2.0d
+			dependencies: ["7233258438234AEA"]
+			id: "760ADFF3215A1C9C"
+			tasks: [{
+				id: "05797D80F6AAD0A8"
+				type: "item"
+				item: "twilightforest:fiery_ingot"
+			}]
+		}
+		{
+			x: 22.7d
+			y: 2.0d
+			description: ["炽铁工具有多种效果，赤铁剑能灼烧目标，炽铁镐能直接采集冶炼后的矿物，省去了冶炼过程..."]
+			id: "334103EB493DDFF9"
+			tasks: [
+				{
+					id: "3EA2707CC18D4835"
+					type: "item"
+					item: {
+						id: "twilightforest:fiery_sword"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "5C790B4F0F77BA71"
+					type: "item"
+					item: {
+						id: "twilightforest:fiery_pickaxe"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "61664F4A8C19D749"
+					type: "item"
+					item: {
+						id: "twilightforest:fiery_helmet"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "52B817C110E4C4A5"
+					type: "item"
+					item: {
+						id: "twilightforest:fiery_chestplate"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "3CDDE693B6182D8F"
+					type: "item"
+					item: {
+						id: "twilightforest:fiery_leggings"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "1CC0EEE6ED863702"
+					type: "item"
+					item: {
+						id: "twilightforest:fiery_boots"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [
+				{
+					id: "147760287BFB0CB1"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+				{
+					id: "53D13BF799C61591"
+					type: "random"
+					table_id: 801932895213463482L
+				}
+			]
+		}
+	]
+}

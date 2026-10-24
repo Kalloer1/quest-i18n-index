@@ -1,0 +1,284 @@
+# AI 初翻，未人工校对
+{
+	id: "74B28B27104BFF5A"
+	group: ""
+	order_index: 2
+	filename: "74B28B27104BFF5A"
+	title: "糖果糖果❤❤❤"
+	icon: "candylands:jelly_bean_ore"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: -2.0d
+			y: 4.0d
+			description: ["你可以查看Beastiary指南来引导你探索糖果世界（当然也可以用此任务线来游玩）"]
+			id: "4E595EB2764C9EEF"
+			tasks: [{
+				id: "733EAE40D26D68F4"
+				type: "checkmark"
+				title: "了解糖果世界"
+			}]
+			rewards: [{
+				id: "6871A190AE40F534"
+				type: "item"
+				item: "candylands:candylands_guidebook"
+			}]
+		}
+		{
+			x: -1.0d
+			y: 5.5d
+			description: ["用于前往糖果世界（糖果大陆）维度，但是想要回来，还得做一个折返糖果。"]
+			dependencies: ["4E595EB2764C9EEF"]
+			id: "6C94B4FA8583103B"
+			tasks: [{
+				id: "6FA4EB6FB5753BAB"
+				type: "item"
+				item: "candylands:wrappedpop"
+			}]
+		}
+		{
+			title: "甜蜜的糖果世界！"
+			x: -2.0d
+			y: 7.0d
+			description: [
+				"至此，糖果世界的旅程正式开启。你可以找到各种地牢、12种生物群系、超多生物（包括2个BOSS）等等。尽情探索吧！"
+				"{image:eobw:textures/ftb_images/candy_land.png width:176 height:100 align:1}"
+			]
+			dependencies: [
+				"6C94B4FA8583103B"
+				"1B289F11981018FD"
+			]
+			id: "42691EF4F249A17F"
+			tasks: [{
+				id: "2AEE711D10BE4DAA"
+				type: "dimension"
+				dimension: "candylands:candylands"
+			}]
+			rewards: [
+				{
+					id: "36D33D2A3D15C004"
+					type: "item"
+					item: "minecraft:diamond"
+					count: 2
+				}
+				{
+					id: "2E93F5F297405C2B"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+			]
+		}
+		{
+			x: -2.0d
+			y: 9.5d
+			description: ["位于棉花糖海盗船结构内。"]
+			dependencies: ["42691EF4F249A17F"]
+			id: "5884CE0E20CB10E1"
+			tasks: [{
+				id: "7EBDED7C1EC81F2A"
+				type: "kill"
+				entity: "candylands:marshmellopirate"
+				value: 10L
+			}]
+		}
+		{
+			x: -2.0d
+			y: 11.0d
+			description: ["糖果世界的BOSS，300血，击杀棉花糖海盗小怪有几率召唤，被攻击者有几率获得漂浮效果"]
+			dependencies: ["5884CE0E20CB10E1"]
+			id: "743DE77F84B8E919"
+			tasks: [{
+				id: "0A9DA1323DD59468"
+				type: "kill"
+				entity: "candylands:marshmellopiratecaptain"
+				value: 1L
+			}]
+			rewards: [{
+				id: "4C680872334D9EAE"
+				type: "xp"
+				xp: 60
+			}]
+		}
+		{
+			x: -3.0d
+			y: 5.5d
+			description: ["折返糖用于从糖果世界返回主世界，吃下这颗糖果就能返回了"]
+			hide_dependency_lines: false
+			dependencies: ["4E595EB2764C9EEF"]
+			id: "1B289F11981018FD"
+			tasks: [{
+				id: "4E47479F4270C6BE"
+				type: "item"
+				item: "candylands:returnpop"
+			}]
+		}
+		{
+			x: -3.0d
+			y: 8.5d
+			description: ["{image:eobw:textures/ftb_images/2023-02-26_13.15.26.png width:176 height:100 align:1}"]
+			dependencies: ["42691EF4F249A17F"]
+			id: "4B1BE5D05E9B103A"
+			tasks: [{
+				id: "5CB782ECA33D3D0B"
+				type: "biome"
+				title: "棒棒糖大陆"
+				icon: "candylands:orange_lollipop"
+				biome: "candylands:lollipop_jungle"
+			}]
+		}
+		{
+			x: -1.0d
+			y: 8.5d
+			description: ["{image:eobw:textures/ftb_images/2023-02-26_13.07.17.png width:176 height:100 align:1}"]
+			dependencies: ["42691EF4F249A17F"]
+			id: "098754EE524BA847"
+			tasks: [{
+				id: "5CF5208E8C16E06C"
+				type: "biome"
+				title: "玉米山"
+				icon: "candylands:candycorn"
+				biome: "candylands:candy_corn_peaks"
+			}]
+		}
+		{
+			x: -2.0d
+			y: 14.0d
+			description: ["糖果世界的最终BOSS，350血，攻击带凋零效果，受伤后会将攻击者传送到它旁边"]
+			dependencies: ["1B8E020517871C13"]
+			id: "2EA783B68AE71DE5"
+			tasks: [{
+				id: "3C13DA1E352EB985"
+				type: "kill"
+				entity: "candylands:licorice_cyclops"
+				value: 1L
+			}]
+			rewards: [
+				{
+					id: "02FD777A57A9F4D1"
+					type: "random"
+					table_id: 801932895213463482L
+				}
+				{
+					id: "759A8D6F940DD832"
+					type: "xp_levels"
+					xp_levels: 4
+				}
+			]
+		}
+		{
+			x: 0.5d
+			y: 8.5d
+			id: "06A40103542666B1"
+			tasks: [{
+				id: "5F2128A6D90D0555"
+				type: "item"
+				item: "candylands:strawberry_cupcake"
+			}]
+		}
+		{
+			x: -0.5d
+			y: 10.0d
+			id: "4B63D03821009AAE"
+			tasks: [{
+				id: "3879C8BFFFAAC7B7"
+				type: "item"
+				item: "candylands:blueberry_joghurt_bowl"
+			}]
+		}
+		{
+			x: -4.5d
+			y: 8.5d
+			id: "184FA331B65D1EE6"
+			tasks: [{
+				id: "6C0D4C01A4545907"
+				type: "item"
+				item: "candylands:cottonstick"
+			}]
+		}
+		{
+			x: -3.5d
+			y: 7.0d
+			id: "097509C49B7B0D34"
+			tasks: [{
+				id: "2B728A45F7071839"
+				type: "item"
+				item: "candylands:blue_cotton_candy_food"
+			}]
+		}
+		{
+			x: -0.5d
+			y: 7.0d
+			id: "632C002F412D06A4"
+			tasks: [{
+				id: "370BF904FC7C2E61"
+				type: "item"
+				item: "candylands:strawberry_cakepop"
+			}]
+		}
+		{
+			x: -3.5d
+			y: 10.0d
+			description: ["生成于饼干女巫塔"]
+			id: "12F6DBEFBDCBF0D9"
+			tasks: [{
+				id: "534C92E2CB03AE42"
+				type: "kill"
+				entity: "candylands:cookie_witch"
+				value: 12L
+			}]
+		}
+		{
+			x: -0.5d
+			y: 14.0d
+			description: ["甘草独眼巨人的BOSS战利品"]
+			dependencies: ["2EA783B68AE71DE5"]
+			id: "65A07852F69D2E8A"
+			tasks: [{
+				id: "611C43A3C84A0EB6"
+				type: "item"
+				item: "candylands:licoricestring"
+			}]
+		}
+		{
+			x: -2.0d
+			y: 12.5d
+			description: ["用于开启甘草地牢来挑战甘草独眼巨人BOSS"]
+			dependencies: ["743DE77F84B8E919"]
+			id: "1B8E020517871C13"
+			tasks: [{
+				id: "51E18EB3C199C43B"
+				type: "item"
+				item: "candylands:licorice_key"
+			}]
+		}
+		{
+			x: -3.5d
+			y: 14.0d
+			dependencies: ["2EA783B68AE71DE5"]
+			id: "7143B69D7B1E74EC"
+			tasks: [{
+				id: "767C2EBCEB443BC7"
+				type: "item"
+				item: "candylands:licorice_artifact"
+			}]
+		}
+		{
+			x: -2.0d
+			y: 15.5d
+			dependencies: ["2EA783B68AE71DE5"]
+			id: "6D88F3A796E862FE"
+			tasks: [{
+				id: "6BD3BBFAB451F1F6"
+				type: "item"
+				item: {
+					id: "candylands:liquorice_tool"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+	]
+}

@@ -1,0 +1,263 @@
+# AI 初翻，未人工校对
+{
+	id: "0AEB3A6E19F73B93"
+	group: "12185A36D8BFAA8A"
+	order_index: 0
+	filename: "0AEB3A6E19F73B93"
+	title: "阿图姆"
+	icon: "atum:khnumite"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: -4.0d
+			y: 1.0d
+			shape: "rsquare"
+			description: ["圣金甲虫——用于开启阿图姆传送门的重要物品"]
+			id: "692EF0F3406D8C75"
+			tasks: [{
+				id: "0852798D91FFD96D"
+				type: "item"
+				item: "atum:scarab"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 1.0d
+			description: [
+				"阿图姆是一个沙漠维度，那里有各种各样的古老生物，比如木乃伊、法老...还有很多元素等着你探索。祝你好运！"
+				"传送门的摆放方式如下所示："
+				"{image:eobw:textures/ftb_images/atum_portal.png width:176 height:138 align:1}"
+				"最后将圣金甲虫投入水中即可开启传送门。"
+			]
+			dependencies: ["692EF0F3406D8C75"]
+			id: "514F0556536F9205"
+			tasks: [{
+				id: "603C4F46533CAE28"
+				type: "dimension"
+				title: "前往阿图姆"
+				icon: "atum:sand"
+				dimension: "atum:atum"
+			}]
+			rewards: [
+				{
+					id: "4AB68CDB4CFD3C2F"
+					type: "loot"
+					table_id: 801932895213463482L
+				}
+				{
+					id: "447E0E9E5FB748C0"
+					type: "xp_levels"
+					xp_levels: 6
+				}
+			]
+		}
+		{
+			x: 0.5d
+			y: 0.0d
+			dependencies: ["514F0556536F9205"]
+			id: "7967B87691B37C8F"
+			tasks: [{
+				id: "08186D03B2ECF2BB"
+				type: "kill"
+				entity: "atum:bonestorm"
+				value: 8L
+			}]
+			rewards: [
+				{
+					id: "168D166F8A6B9939"
+					type: "random"
+					table_id: 801932895213463482L
+				}
+				{
+					id: "7CCFCF08374616AF"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+			]
+		}
+		{
+			x: 0.5d
+			y: 2.0d
+			dependencies: ["514F0556536F9205"]
+			id: "702969BA1806A22E"
+			tasks: [{
+				id: "4968F9EF2A0B4D2F"
+				type: "kill"
+				entity: "atum:forsaken"
+				value: 10L
+			}]
+		}
+		{
+			x: 2.5d
+			y: 1.0d
+			description: ["用于召唤阿图姆BOSS法老"]
+			dependencies: [
+				"7967B87691B37C8F"
+				"702969BA1806A22E"
+			]
+			id: "21D7574691DF40B2"
+			tasks: [{
+				id: "4A31BBC00B03A859"
+				type: "item"
+				item: "atum:nebu_torch"
+				count: 4L
+			}]
+		}
+		{
+			x: 5.0d
+			y: 1.0d
+			shape: "hexagon"
+			description: [
+				"阿图姆BOSS。法老的生命值为300点；自然护甲值为10点。虽然它免疫火焰，但属于亡灵生物，因此也可以使用亡灵杀手进行伤害加成。法老会召唤1-3个木乃伊协助战斗，并且会开门...击杀法老将获得250经验，并解锁棺材以获得里面的战利品"
+				"可用金字塔最底部的棺材召唤该BOSS，找到并在周围的四个錾制石灰岩砖上放上已点亮的皇家火把即可召唤法老。"
+			]
+			dependencies: ["21D7574691DF40B2"]
+			id: "459C88FC8B7B4345"
+			tasks: [{
+				id: "295F6C042FD8728F"
+				type: "kill"
+				entity: "atum:pharaoh"
+				value: 1L
+			}]
+			rewards: [
+				{
+					id: "109239DDBBAFC327"
+					type: "xp"
+					xp: 620
+				}
+				{
+					id: "6C698B4227DB3C8C"
+					type: "random"
+					table_id: 6947797322419008865L
+				}
+			]
+		}
+		{
+			x: -0.5d
+			y: 3.5d
+			id: "6D2E23A6BFFAD6FA"
+			tasks: [{
+				id: "2FC599BCFAD9134A"
+				type: "item"
+				item: {
+					id: "atum:osiris_blessing"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			x: 1.5d
+			y: 3.5d
+			id: "798AA56CF503E73E"
+			tasks: [{
+				id: "3FFF7177AB6986E9"
+				type: "item"
+				item: "atum:isis_healing"
+			}]
+		}
+		{
+			x: 3.5d
+			y: 2.5d
+			id: "2F96314EC5FFCA3B"
+			tasks: [{
+				id: "7A63E607BCA870FC"
+				type: "item"
+				item: {
+					id: "atum:gebs_toil"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			x: -2.5d
+			y: 2.5d
+			id: "1B5264E9E0930452"
+			tasks: [{
+				id: "5C5C6E2C58C88DCD"
+				type: "kill"
+				entity: "atum:tarantula"
+				value: 5L
+			}]
+			rewards: [{
+				id: "0977AA8B5DEBE49C"
+				type: "random"
+				table_id: 801932895213463482L
+			}]
+		}
+		{
+			x: 3.5d
+			y: -0.5d
+			id: "324BCDBFECE744F2"
+			tasks: [{
+				id: "66E4A2D8FCD9C274"
+				type: "kill"
+				entity: "atum:brigand"
+				value: 3L
+			}]
+		}
+		{
+			x: -2.5d
+			y: -0.5d
+			id: "32C6523FF6A0AD61"
+			tasks: [{
+				id: "15751DFCEF84EB4F"
+				type: "item"
+				item: {
+					id: "atum:seths_venom"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			x: -0.5d
+			y: -1.5d
+			id: "0311E9FDA6D7A8D3"
+			tasks: [{
+				id: "3FA03F0B1A249704"
+				type: "biome"
+				title: "沙漠绿洲"
+				icon: "atum:fertile_soil"
+				biome: "atum:oasis"
+			}]
+		}
+		{
+			x: 1.5d
+			y: -1.5d
+			id: "296A9EF19BA4ABC9"
+			tasks: [{
+				id: "6FB8F41E8412C9FA"
+				type: "item"
+				item: {
+					id: "atum:iron_club"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			title: "提示"
+			x: 7.0d
+			y: 1.0d
+			description: ["一些非常强大的道具都是法老BOSS的战利品，需要击败法老并开启棺材才能获得"]
+			dependencies: ["459C88FC8B7B4345"]
+			id: "6E6749F2EFC1DEDF"
+			tasks: [{
+				id: "4D6C3512FCFBD29D"
+				type: "checkmark"
+				title: "一些非常强的武器/工具需要击败法老并开启棺材有概率获得"
+			}]
+		}
+	]
+}

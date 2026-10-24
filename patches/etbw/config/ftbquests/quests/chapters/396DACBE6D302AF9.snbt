@@ -1,0 +1,234 @@
+# AI 初翻，未人工校对
+{
+	id: "396DACBE6D302AF9"
+	group: ""
+	order_index: 3
+	filename: "396DACBE6D302AF9"
+	title: "黑暗混沌之地"
+	icon: "chaosrealm:chaoscrystal"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "前往维度的准备工作已完成"
+			x: -0.5d
+			y: -5.5d
+			description: [
+				"用青金石和蜘蛛眼合成一个\"可以的发光眼睛\"，然后找到一头牛，对它右键即可转化成独特的牛（会攻击玩家），再用桶对它右键获得血液，最后用石英块摆成地狱门的外观，用血液激活。"
+				"{image:eobw:textures/ftb_images/3-1-1.png width:150 height:100 align:1}"
+				"{image:eobw:textures/ftb_images/3-1-2.png width:150 height:100 align:1}"
+				"{image:eobw:textures/ftb_images/3-1-3.png width:100 height:108 align:1}"
+			]
+			id: "51B1A89CD981899E"
+			tasks: [
+				{
+					id: "53E28BECEBB4DEB7"
+					type: "item"
+					item: "chaosrealm:blood_bucket"
+				}
+				{
+					id: "65C1030229B519D9"
+					type: "item"
+					item: "minecraft:quartz_block"
+					count: 10L
+				}
+				{
+					id: "733015DBFB67D1E6"
+					type: "item"
+					item: "chaosrealm:suspicious_glowing_eye"
+				}
+			]
+		}
+		{
+			title: "黑暗混沌之地"
+			x: -0.5d
+			y: -4.0d
+			description: [
+				"完成所有步骤后，踏入传送门，黑暗混沌之地的旅程便开始了。"
+				"{image:eobw:textures/ftb_images/3.png width:176 height:102 align:1}"
+			]
+			dependencies: ["51B1A89CD981899E"]
+			id: "1ED8B7C517E79A2C"
+			tasks: [{
+				id: "5F8084C85D9B2965"
+				type: "dimension"
+				dimension: "chaosrealm:darkchaosrealm"
+			}]
+			rewards: [
+				{
+					id: "795F668D5A3F1F59"
+					type: "item"
+					item: "minecraft:golden_apple"
+					count: 3
+				}
+				{
+					id: "4FF037FADBA94F9E"
+					type: "item"
+					item: "minecraft:netherite_scrap"
+				}
+				{
+					id: "4E19E75DA3DF74D1"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+		{
+			icon: "chaosrealm:corrupted_bush"
+			x: -0.5d
+			y: -2.5d
+			description: [
+				"自然生成与ChaosRealm维度的基础怪物，生成设定与原版几乎一样。"
+				"生命值：24，护甲：3，攻击伤害：4，主要掉落物：腐肉"
+				"{image:eobw:textures/ftb_images/5.png width:100 height:140 align:1}"
+			]
+			dependencies: ["1ED8B7C517E79A2C"]
+			id: "04F4F7DA1FDF2D55"
+			tasks: [{
+				id: "45F9771BCFA96B6C"
+				type: "kill"
+				title: "混沌僵尸"
+				entity: "chaosrealm:chaoszombie_entity"
+				value: 10L
+			}]
+		}
+		{
+			icon: "chaosrealm:corrupted_bush"
+			x: 1.0d
+			y: -2.5d
+			description: [
+				"自然生成于ChaosRealm维度中的稀有品种，因此本任务将设为分支任务。"
+				"生命值：30，护甲：3.5，攻击伤害：5，主要掉落物：腐肉。"
+				"{image:eobw:textures/ftb_images/6.png width:100 height:140 align:1}"
+			]
+			dependencies: ["04F4F7DA1FDF2D55"]
+			id: "7B405A631D822765"
+			tasks: [{
+				id: "64D545CC74EB681C"
+				type: "kill"
+				title: "黑暗混沌僵尸"
+				entity: "chaosrealm:darkchaoszombie_entity"
+				value: 5L
+			}]
+		}
+		{
+			icon: "minecraft:bone"
+			x: -0.5d
+			y: -1.0d
+			description: [
+				"生命值：25，护甲：3，攻击伤害：3（近战，远程与原版本相同），攻击方式：弓箭射击"
+				"{image:eobw:textures/ftb_images/7.png width:100 height:140 align:1}"
+			]
+			dependencies: ["04F4F7DA1FDF2D55"]
+			id: "012DA746B3B3482B"
+			tasks: [{
+				id: "14E45C6360C9E459"
+				type: "kill"
+				title: "混沌骷髅"
+				entity: "chaosrealm:chaosskeleton_entity"
+				value: 10L
+			}]
+		}
+		{
+			title: "灰烬之王"
+			icon: "silentgems:corrupting_powder"
+			x: -0.5d
+			y: 2.0d
+			description: [
+				"先杀了这个，可能是最容易的"
+				"生成于黑暗混沌城堡（必须像所有的boss一样手动召唤!）"
+				"生命值：300，护甲：4.5+金质护甲，攻击伤害：8+铁剑/斧"
+				"将邪恶发光的水晶丢在最中心的混沌石砖饰品上即可召唤（不是旁边的）"
+			]
+			dependencies: ["012DA746B3B3482B"]
+			id: "4E28DA541CB307F5"
+			tasks: [{
+				id: "6811C2CB96E6D45F"
+				type: "kill"
+				entity: "chaosrealm:ashking_entity"
+				value: 1L
+			}]
+		}
+		{
+			icon: {
+				id: "silentgems:soul_gem"
+				Count: 1b
+				tag: {
+					SGems_SoulGem: "chaosrealm:corrupted_cow_entity"
+				}
+			}
+			x: -0.5d
+			y: 3.5d
+			description: [
+				"可能比灰王（Ash King）更难一点，这个可作为第二个BOSS！"
+				"生成于混沌寺（必须像所有的boss一样手动召唤!）"
+				"生命值：325，护甲：无自然护甲+混沌护甲（别小看这个，这盔甲很结实！），攻击伤害：9"
+				"将邪恶发光水晶丢在混沌石砖饰品上即可召唤"
+			]
+			dependencies: ["4E28DA541CB307F5"]
+			id: "1590C116D353EBBF"
+			tasks: [
+				{
+					id: "22DF47568FCAE4A6"
+					type: "kill"
+					title: "黑暗亡灵法师混沌霸王"
+					entity: "chaosrealm:necromancer_entity"
+					value: 1L
+				}
+				{
+					id: "3E2A94FE194AF0F4"
+					type: "item"
+					item: "chaosrealm:chaos_bricks_ornament"
+				}
+			]
+		}
+		{
+			icon: "chaosrealm:corruption_shard"
+			x: 1.0d
+			y: 3.5d
+			description: [
+				"这是目前最难的BOSS，建议最后打这个！"
+				"生成于古混沌恶魔监狱（必须像所有的BOSS一样手动召唤!）"
+				"生命值：450，护甲：10，攻击伤害：10"
+				"将邪恶发光的水晶丢在中心的方块附近即可召唤，不需要太远"
+			]
+			dependencies: ["1590C116D353EBBF"]
+			id: "4D18A640D4FCD099"
+			tasks: [{
+				id: "6AAA3EC95AA25A24"
+				type: "kill"
+				title: "远古混沌恶魔"
+				entity: "chaosrealm:chaosdemon_entity"
+				value: 1L
+			}]
+		}
+		{
+			icon: "chaosrealm:decaying_poppy"
+			x: 1.0d
+			y: 0.5d
+			description: [
+				"自然生成于：失去希望的山（地表和地下，要小心），据说一些非常强大的生物可以召唤他们的地狱犬奴才来帮助他们在战斗中..."
+				"生命值：10，护甲：1，攻击伤害：6"
+			]
+			id: "2EAFAD58F5E5CEC7"
+			tasks: [{
+				id: "30CDA084F5A37185"
+				type: "kill"
+				title: "地狱犬"
+				entity: "chaosrealm:hellhound_entity"
+				value: 1L
+			}]
+		}
+		{
+			x: -0.5d
+			y: 0.5d
+			description: ["用于召唤混沌之地三个BOSS的物品"]
+			id: "5324E0CBE3ED50B2"
+			tasks: [{
+				id: "1974BA8D7C9AB278"
+				type: "item"
+				item: "chaosrealm:chaoscrystal"
+			}]
+		}
+	]
+}
