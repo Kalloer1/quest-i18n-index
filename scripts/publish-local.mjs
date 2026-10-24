@@ -184,8 +184,14 @@ if (!allHosts.length) {
 console.log(`候选主机 ${allHosts.length} 台：${allHosts.join(', ')}`)
 
 for (const h of allHosts) {
+  // `--no-renames` 是必须的：整棵树 pathspec 下 git 默认开 rename 检测，
+  // main 上某个包删掉/改名的同名章节，会和 farm 侧新增的整章文件配成 R，
+  // 被 `--diff-filter=AM` 滤掉 —— 于是 plan 里的 patchPaths 缺文件，
+  // checkout 只还原一部分，闸门报「缺 N 个键」，看起来像翻译坏了。
+  // 2026-10-24 实测：aestheticaplus 在同一分支上只出 9/13 个文件，
+  // 加 --no-renames 才 13 个；30 个被拦的包共缺 166 个文件，全部是 R 状态。
   const out = git(
-    ['-c', 'core.quotePath=false', 'diff', '--name-only', '--diff-filter=AM',
+    ['-c', 'core.quotePath=false', 'diff', '--name-only', '--no-renames', '--diff-filter=AM',
       'origin/main', `origin/farm/${h}`, '--', 'patches', 'research/packs'],
     { quiet: true },
   )

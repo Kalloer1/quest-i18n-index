@@ -173,7 +173,10 @@ jobs:
           # 否则每轮都会把同事刚合进来的产物当成待删项，越合越少。
           # core.quotePath=false：别让 git 把非 ASCII 路径转成 \xxx 转义，否则解析不出 slug。
           for h in $HOSTS; do
-            git -c core.quotePath=false diff --name-only --diff-filter=AM \
+            # --no-renames：整树 pathspec 下默认的 rename 检测会把「新增整章文件」
+            # 和别处同名的删除配成 R，再被 --diff-filter=AM 滤掉 → 还原清单缺文件 →
+            # 闸门误报「缺 N 个键」。2026-10-24 实测 30 个包共缺 166 个文件，全是 R。
+            git -c core.quotePath=false diff --name-only --no-renames --diff-filter=AM \
               origin/main "origin/farm/$h" -- patches research/packs > "$FARM_DIR/diff-$h.txt"
           done
           node scripts/lib/farm-merge.mjs --dir "$FARM_DIR" \
