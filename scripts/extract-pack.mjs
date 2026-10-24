@@ -202,23 +202,156 @@ export function readEntry(buf, entry) {
 
 /**
  * 从内存里的 zip 字节解出任务书文件到 outDir。
+ *
+ * 中央目录失效（EOCD 找不到 / 条目数不符 / 本地头签名错位）时，退化到
+ * salvageQuestFiles 按原始本地头扫捞 —— 这是窄兑底，不是第二条主路径。
  * @param {Buffer} buf
  * @param {string} outDir
- * @returns {{written: string[], entryCount: number}} written 是落盘相对路径（`/` 分隔）
+ * @returns {{written: string[], entryCount: number, salvaged?: boolean, error?: string}} written 是落盘相对路径（`/` 分隔）
  */
 export function extractFromBuffer(buf, outDir) {
-  const entries = listEntries(buf)
+  try {
+    const entries = listEntries(buf)
+    const written = []
+    for (const entry of entries) {
+      if (entry.name.endsWith('/')) continue
+      if (!isQuestFile(entry.name)) continue
+      const rel = toOutputPath(entry.name)
+      const dest = join(outDir, rel)
+      mkdirSync(dirname(dest), { recursive: true })
+      writeFileSync(dest, readEntry(buf, entry))
+      written.push(rel)
+    }
+    return { written, entryCount: entries.length }
+  } catch (err) {
+    // 扫不出任何任务书文件就抛回原始错误 —— 兑底失败不是成功。
+    const salvaged = salvageQuestFiles(buf, outDir)
+    if (salvaged.written.length === 0) throw err
+    return { ...salvaged, salvaged: true, error: String(err?.message ?? err) }
+  }
+}
+
+/** 扫捞时用到的三种边界签名：下一个本地头 / 中央目录头 / 数据描述符。 */
+const SCAN_SIGS = [
+  Buffer.from([0x50, 0x4b, 0x03, 0x04]), // PK\x03\x04 本地头
+  Buffer.from([0x50, 0x4b, 0x01, 0x02]), // PK\x01\x02 中央目录头
+  Buffer.from([0x50, 0x4b, 0x07, 0x08]), // PK\x07\x08 数据描述符
+]
+const SIG_LOCAL_BYTES = SCAN_SIGS[0]
+
+/** buf 中 from 之后最近的边界签名位置；找不到返回 -1。 */
+function nextSignature(buf, from) {
+  let best = -1
+  for (const sig of SCAN_SIGS) {
+    const at = buf.indexOf(sig, from)
+    if (at >= 0 && (best < 0 || at < best)) best = at
+  }
+  return best
+}
+
+/**
+ * 中央目录失效时的兑底：按原始本地头（PK\x03\x04）逐个扫捞任务书文件。
+ *
+ * 为什么需要：上游打包工具可能改写条目却不同步中央目录 —— 2026-10-25 实测
+ * `fresh-adventures-2` 的官方 mrpack（sha1 与发布页一致，包本身就是坏的）中央目录
+ * 记的本地头偏移全体错位 5289 字节，`readEntry` 全部报「本地头签名错误」，整包判死；
+ * 但 14 个 .snbt 的原始本地头完好，逐个扫捞全部解出且 parse 全绿
+ * （research/tmp/diag-bad6/ 的 fa2-rawscan.py 与诊断报告）。
+ * 处置参照 lindenfeld（截断 salvage）先例：上游坏但内容可救 → 救，如实记录。
+ *
+ * 窄路径，不做泛化：
+ *   - 只解 isQuestFile 选中的 .snbt，其他条目不碰；
+ *   - 条目名必须全为可见 ASCII（乱字节里的假签名过不了这关）；
+ *   - data-descriptor 条目（本地头无尺寸）逐候选边界试 inflate ——
+ *     inflateRawSync 在流自然结束即停、忽略尾部多余字节，切多了没关系，
+ *     切少了（签名出现在压缩流内部）会抛错，那就换下一个候选；
+ *   - 拿不准（解不出 / 尺寸对不上）就跳过该条目，绝不写盘垃圾字节。
+ *
+ * @param {Buffer} buf
+ * @param {string} outDir
+ * @returns {{written: string[], entryCount: number}}
+ */
+export function salvageQuestFiles(buf, outDir) {
+  // 先把所有像本地头的位置扫出来（不预判真伪，逐个验证）。
+  const headers = []
+  let pos = 0
+  for (;;) {
+    const at = buf.indexOf(SIG_LOCAL_BYTES, pos)
+    if (at < 0 || at + 30 > buf.length) break
+    const nameLen = buf.readUInt16LE(at + 26)
+    const extraLen = buf.readUInt16LE(at + 28)
+    const dataStart = at + 30 + nameLen + extraLen
+    if (dataStart <= buf.length) {
+      headers.push({ at, dataStart, name: buf.toString('utf8', at + 30, at + 30 + nameLen) })
+    }
+    pos = at + 4 // 压缩数据里也可能出现 PK 字节序列，继续逐字节扫
+  }
+
   const written = []
-  for (const entry of entries) {
-    if (entry.name.endsWith('/')) continue
-    if (!isQuestFile(entry.name)) continue
-    const rel = toOutputPath(entry.name)
+  const seen = new Set()
+  for (const h of headers) {
+    // 任务书条目名全是可见 ASCII（ftbquests/…/x.snbt）；含控制字节的灵认为是乱字节里的假签名。
+    if (!/^[\x20-\x7e]+$/.test(h.name)) continue
+    if (!isQuestFile(h.name)) continue
+    const rel = toOutputPath(h.name)
+    if (seen.has(rel)) continue
+    const data = readRawEntry(buf, h)
+    if (!data) continue
     const dest = join(outDir, rel)
     mkdirSync(dirname(dest), { recursive: true })
-    writeFileSync(dest, readEntry(buf, entry))
+    writeFileSync(dest, data)
+    seen.add(rel)
     written.push(rel)
   }
-  return { written, entryCount: entries.length }
+  return { written, entryCount: headers.length }
+}
+
+/**
+ * 按原始本地头读一个条目（不信任中央目录）。
+ * 返回解出的字节；形态不认识 / 解不出 / 尺寸对不上时返回 null（调用方跳过）。
+ */
+function readRawEntry(buf, { at, dataStart }) {
+  const flags = buf.readUInt16LE(at + 6)
+  const method = buf.readUInt16LE(at + 8)
+  const compSize = buf.readUInt32LE(at + 18)
+  const uncompSize = buf.readUInt32LE(at + 22)
+  if (method !== 0 && method !== 8) return null
+
+  const decompress = (end) => {
+    const raw = buf.subarray(dataStart, end)
+    try {
+      return method === 0 ? Buffer.from(raw) : inflateRawSync(raw)
+    } catch {
+      return null // 边界切早了（签名在压缩流内部）或数据真的坏了
+    }
+  }
+
+  let data
+  if (compSize > 0) {
+    // 普通条目：本地头自带尺寸，精确切片。
+    const end = dataStart + compSize
+    if (end > buf.length) return null
+    data = decompress(end)
+  } else if (flags & 0x08) {
+    // data-descriptor 条目：尺寸在数据之后的描述符里，本地头读到 0。
+    // 逐候选边界试，第一个能解开的即为流尾（尾部多余字节会被 inflate 忽略）。
+    let from = dataStart
+    data = null
+    for (;;) {
+      const end = nextSignature(buf, from)
+      if (end < 0 || end <= dataStart) break
+      data = decompress(end)
+      if (data) break
+      from = end + 4
+    }
+    if (!data) return null
+  } else {
+    // 无描述符且 compSize=0：空文件。
+    data = Buffer.alloc(0)
+  }
+  // 尺寸对不上说明边界猜错或头是假的，不写盘。
+  if (uncompSize > 0 && data.length !== uncompSize) return null
+  return data
 }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]

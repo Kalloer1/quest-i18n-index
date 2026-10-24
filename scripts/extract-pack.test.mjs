@@ -10,7 +10,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { deflateRawSync } from 'node:zlib'
 import {
-  isQuestFile, toOutputPath, extractFromBuffer, listEntries,
+  isQuestFile, toOutputPath, extractFromBuffer, listEntries, salvageQuestFiles,
 } from './extract-pack.mjs'
 import { classifyLayout, LAYOUT } from './lib/candidates.mjs'
 
@@ -282,4 +282,123 @@ test('extractFromBuffer 覆盖写：同目录重复解不残留旧文件', () =>
 
 test('非 zip 输入明确报错', () => {
   assert.throws(() => listEntries(Buffer.from('not a zip at all')), /EOCD/)
+})
+
+// ---------- 中央目录失效 → 按原始本地头扫捞（salvage 兜底） ----------
+// 2026-10-25 实测（诊断报告 research/tmp/diag-bad6/task-5.md）：fresh-adventures-2
+// 官方 mrpack 的 sha1 与发布页一致（包本身就是坏的），但中央目录记的本地头偏移全体
+// 错位 5289 字节，readEntry 全部报「本地头签名错误」。14 个 .snbt 的原始本地头完好，
+// 按 PK\x03\x04 逐个扫捞全部解出且 parse 全绿。处置参照 lindenfeld（截断 salvage）
+// 先例：上游坏但内容可救 → 救，如实记录；不放宽 validate-quests 任何断言。
+
+/** 把中央目录里每个条目的 localOffset 加 delta（模拟 fresh-adventures-2 的偏移错位）。 */
+function shiftLocalOffsets(zip, delta) {
+  const eocd = zip.length - 22
+  let p = zip.readUInt32LE(eocd + 16)
+  while (p + 46 <= zip.length && zip.readUInt32LE(p) === 0x02014b50) {
+    const nameLen = zip.readUInt16LE(p + 28)
+    const extraLen = zip.readUInt16LE(p + 30)
+    const commentLen = zip.readUInt16LE(p + 32)
+    zip.writeUInt32LE(zip.readUInt32LE(p + 42) + delta, p + 42)
+    p += 46 + nameLen + extraLen + commentLen
+  }
+}
+
+/** 抹掉 EOCD 签名 → findEocd 找不到 → listEntries 报「找不到 EOCD」。 */
+function killEocd(zip) {
+  const broken = Buffer.from(zip)
+  broken.writeUInt32LE(0, broken.length - 22)
+  return broken
+}
+
+test('EOCD 被抹掉：按原始本地头扫捞出任务书文件（deflated + stored），如实带 salvaged 标记', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'extract-salvage-'))
+  try {
+    const zip = killEocd(buildZip([
+      { name: 'overrides/config/ftbquests/quests/chapters/a.snbt', data: SNBT },
+      { name: 'overrides/config/ftbquests/quests/chapters/b.snbt', data: SNBT, method: 0 },
+      { name: 'overrides/mods/foo.jar', data: 'not a quest file' },
+    ]))
+    const r = extractFromBuffer(zip, dir)
+    assert.equal(r.salvaged, true, '必须如实标记走了扫捞，不许假装正常解包')
+    assert.match(r.error, /EOCD/)
+    assert.deepEqual(r.written.sort(), [
+      'config/ftbquests/quests/chapters/a.snbt',
+      'config/ftbquests/quests/chapters/b.snbt',
+    ])
+    assert.equal(readFileSync(join(dir, 'config/ftbquests/quests/chapters/a.snbt'), 'utf8'), SNBT, 'deflated 内容一字不差')
+    assert.equal(readFileSync(join(dir, 'config/ftbquests/quests/chapters/b.snbt'), 'utf8'), SNBT, 'stored 内容一字不差')
+  } finally {
+    rmSync(dir, { recursive: true, force: true })
+  }
+})
+
+test('中央目录偏移全体错位（fresh-adventures-2 形态）：本地头签名错也能扫出', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'extract-salvage-'))
+  try {
+    const zip = buildZip([
+      { name: 'overrides/config/ftbquests/quests/chapters/alexs_caves.snbt', data: SNBT },
+    ])
+    shiftLocalOffsets(zip, 5289)
+    const r = extractFromBuffer(zip, dir)
+    assert.equal(r.salvaged, true)
+    assert.match(r.error, /本地头签名错误/)
+    assert.deepEqual(r.written, ['config/ftbquests/quests/chapters/alexs_caves.snbt'])
+    assert.equal(readFileSync(join(dir, 'config/ftbquests/quests/chapters/alexs_caves.snbt'), 'utf8'), SNBT)
+  } finally {
+    rmSync(dir, { recursive: true, force: true })
+  }
+})
+
+test('data-descriptor 条目（本地头无尺寸，bit 3）：流式扫捞也能解出', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'extract-salvage-'))
+  try {
+    // 手工构造带数据描述符的条目：本地头 compSize/uncompSize 均为 0，真实尺寸在数据后。
+    const name = 'overrides/config/ftbquests/quests/data.snbt'
+    const nameBuf = Buffer.from(name, 'utf8')
+    const comp = deflateRawSync(Buffer.from(SNBT, 'utf8'))
+    const local = Buffer.alloc(30)
+    local.writeUInt32LE(0x04034b50, 0)
+    local.writeUInt16LE(20, 4)
+    local.writeUInt16LE(0x0008, 6) // bit 3：数据描述符
+    local.writeUInt16LE(8, 8)
+    local.writeUInt16LE(nameBuf.length, 26)
+    const desc = Buffer.alloc(16) // PK\x07\x08 + crc + comp + uncomp（扫捞不读它）
+    desc.writeUInt32LE(0x08074b50, 0)
+    const zip = killEocd(Buffer.concat([
+      local, nameBuf, comp, desc,
+      Buffer.from('trailing garbage that is not a zip at all'),
+    ]))
+    const r = extractFromBuffer(zip, dir)
+    assert.equal(r.salvaged, true)
+    assert.deepEqual(r.written, ['config/ftbquests/quests/data.snbt'])
+    assert.equal(readFileSync(join(dir, 'config/ftbquests/quests/data.snbt'), 'utf8'), SNBT)
+  } finally {
+    rmSync(dir, { recursive: true, force: true })
+  }
+})
+
+test('扫捞不出任何任务书文件时抛回原始错误，不制造「成功」的假象', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'extract-salvage-'))
+  try {
+    assert.throws(() => extractFromBuffer(killEocd(buildZip([
+      { name: 'overrides/mods/foo.jar', data: 'no quest files inside' },
+    ])), dir), /EOCD/)
+    assert.equal(existsSync(join(dir, 'overrides')), false, '没扫出文件就不落盘')
+  } finally {
+    rmSync(dir, { recursive: true, force: true })
+  }
+})
+
+test('正常 zip 不走扫捞（返回值无 salvaged 标记）', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'extract-salvage-'))
+  try {
+    const r = extractFromBuffer(buildZip([
+      { name: 'overrides/config/ftbquests/quests/chapters/a.snbt', data: SNBT },
+    ]), dir)
+    assert.equal(r.salvaged, undefined)
+    assert.equal(r.written.length, 1)
+  } finally {
+    rmSync(dir, { recursive: true, force: true })
+  }
 })

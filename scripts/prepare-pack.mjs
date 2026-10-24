@@ -527,7 +527,13 @@ export async function preparePack({
     writeFileSync(join(tmpDir, `${slug}.zip`), buf)
   }
 
-  const { written } = extractFromBuffer(buf, outDir)
+  const extraction = extractFromBuffer(buf, outDir)
+  // 扫捞兑底要如实记录（参照 lindenfeld 先例）：下游复盘时必须能看出这份源
+  // 不是正常解包出来的，而是中央目录失效后按原始本地头扫捞的。
+  if (extraction.salvaged) {
+    log(`[${slug}] zip 中央目录失效（${extraction.error}），按原始本地头扫捞出 ${extraction.written.length} 个任务书文件（salvage）`)
+  }
+  const { written } = extraction
   const info = classifyLayout(written)
   if (written.length === 0) {
     // 权威源里确实没有任务书文件：目录原样不动（里面的英文源是基准键集），明确告知。
