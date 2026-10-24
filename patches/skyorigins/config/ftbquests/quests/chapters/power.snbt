@@ -1,0 +1,216 @@
+# AI 初翻，未人工校对
+{
+	id: "0FE6D938A50A2B8C"
+	group: ""
+	order_index: 6
+	filename: "power"
+	title: "力量"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "Mekanism 路线"
+			x: -2.5d
+			y: -2.5d
+			dependencies: ["54348B830B1A6BA3"]
+			id: "7A81D8584D3F341A"
+			tasks: [{
+				id: "68E9767BAD3C80AB"
+				type: "item"
+				item: "mekanismgenerators:heat_generator"
+			}]
+			rewards: [{
+				id: "7540080C946D58FF"
+				type: "loot"
+				exclude_from_claim_all: true
+				table_id: 5012033539501589211L
+			}]
+		}
+		{
+			title: "热能路线"
+			x: -2.5d
+			y: -0.5d
+			dependencies: ["54348B830B1A6BA3"]
+			id: "59CA28688E4DB2D4"
+			tasks: [{
+				id: "5148FEEEB5FD6B06"
+				type: "item"
+				item: "thermal:dynamo_stirling"
+			}]
+			rewards: [{
+				id: "669F2C51D5C68ECF"
+				type: "loot"
+				exclude_from_claim_all: true
+				table_id: 5012033539501589211L
+			}]
+		}
+		{
+			title: "powah路线"
+			x: -2.5d
+			y: 1.5d
+			dependencies: ["54348B830B1A6BA3"]
+			id: "668BF2E35FF7E4BC"
+			tasks: [{
+				id: "1F9992E6C2EF084E"
+				type: "item"
+				item: "powah:furnator_starter"
+			}]
+			rewards: [{
+				id: "2EA52577B1F4FD75"
+				type: "loot"
+				exclude_from_claim_all: true
+				table_id: 5012033539501589211L
+			}]
+		}
+		{
+			x: 0.0d
+			y: -2.5d
+			dependencies: ["7A81D8584D3F341A"]
+			id: "4898F5362C651283"
+			tasks: [
+				{
+					id: "4F7B2D98036E7FC8"
+					type: "item"
+					item: "mekanism:basic_energy_cube"
+				}
+				{
+					id: "22D8E6295ABBA9D1"
+					type: "item"
+					item: "mekanism:basic_energy_cube"
+				}
+			]
+			rewards: [{
+				id: "00CA7668D2892DE0"
+				type: "item"
+				item: "powah:energy_cable_starter"
+				count: 4
+			}]
+		}
+		{
+			x: 0.0d
+			y: -0.5d
+			dependencies: ["59CA28688E4DB2D4"]
+			id: "1F03E1BD7F84E723"
+			tasks: [
+				{
+					id: "704FEF8B62DFB894"
+					type: "item"
+					item: "powah:energy_cell_basic"
+				}
+				{
+					id: "44FDD895663951A3"
+					type: "item"
+					item: "powah:energy_cell_basic"
+				}
+			]
+			rewards: [{
+				id: "565D405F84C6F1AA"
+				type: "item"
+				item: "powah:energy_cable_starter"
+				count: 4
+			}]
+		}
+		{
+			x: 0.0d
+			y: 1.5d
+			dependencies: ["668BF2E35FF7E4BC"]
+			id: "27AA4E23A503280D"
+			tasks: [{
+				id: "212A93F0C831DA11"
+				type: "item"
+				item: {
+					id: "integrateddynamics:energy_battery"
+					Count: 1b
+					tag: {
+						energy: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "55C265548052DCF2"
+				type: "item"
+				item: "powah:energy_cable_starter"
+				count: 4
+			}]
+		}
+		{
+			title: "无线电力传输系统"
+			x: 4.5d
+			y: -0.5d
+			dependencies: [
+				"4898F5362C651283"
+				"1F03E1BD7F84E723"
+				"27AA4E23A503280D"
+			]
+			dependency_requirement: "one_completed"
+			id: "1D8E94D9E6D6E44B"
+			tasks: [
+				{
+					id: "17AB27A745445220"
+					type: "item"
+					item: "fluxnetworks:flux_core"
+					count: 3L
+				}
+				{
+					id: "0A7B4D113E6C34CF"
+					type: "item"
+					item: "fluxnetworks:flux_point"
+				}
+				{
+					id: "43EA763FD13E9086"
+					type: "item"
+					item: "fluxnetworks:flux_plug"
+				}
+			]
+			rewards: [
+				{
+					id: "79D61909F7ACD230"
+					type: "item"
+					item: "fluxnetworks:flux_controller"
+				}
+				{
+					id: "6C630393C220E934"
+					type: "item"
+					item: "minecraft:redstone_block"
+					count: 2
+				}
+			]
+		}
+		{
+			title: "生成更多像太阳一样的东西，就像生成她一样"
+			x: 7.5d
+			y: -0.5d
+			dependencies: ["1D8E94D9E6D6E44B"]
+			id: "084BDA6112557089"
+			tasks: [{
+				id: "7F267E1A3FE626E3"
+				type: "item"
+				item: "mekanismgenerators:solar_generator"
+			}]
+			rewards: [
+				{
+					id: "6C2FB3FCCC0B32DC"
+					type: "item"
+					item: "mekanismgenerators:solar_generator"
+				}
+				{
+					id: "45E58C4DB31B5771"
+					type: "item"
+					item: "minecraft:daylight_detector"
+				}
+			]
+		}
+		{
+			x: 10.0d
+			y: -0.5d
+			dependencies: ["084BDA6112557089"]
+			id: "6603C2573FC037D1"
+			tasks: [{
+				id: "6FE2FDB623732CF8"
+				type: "item"
+				item: "powah:energy_cell_spirited"
+			}]
+		}
+	]
+	quest_links: [ ]
+}

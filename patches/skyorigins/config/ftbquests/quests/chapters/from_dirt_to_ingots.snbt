@@ -1,0 +1,304 @@
+# AI 初翻，未人工校对
+{
+	id: "6CC7313608A8D7AB"
+	group: ""
+	order_index: 1
+	filename: "from_dirt_to_ingots"
+	title: "从泥土到锭块"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	progression_mode: "linear"
+	quests: [
+		{
+			title: "筛选成功之路"
+			x: -4.0d
+			y: 0.0d
+			hide_dependency_lines: true
+			dependencies: ["622DC0730A453658"]
+			hide: true
+			id: "26027C2F93201327"
+			tasks: [
+				{
+					id: "7B42FC34ED19B70E"
+					type: "custom"
+					title: "筛选砾石"
+					icon: "minecraft:gravel"
+				}
+				{
+					id: "280230D32C77A9E3"
+					type: "item"
+					item: "exnihilosequentia:iron_pieces"
+				}
+			]
+			rewards: [
+				{
+					id: "5ADF6834BE4EA511"
+					type: "item"
+					item: "minecraft:gravel"
+					count: 8
+				}
+				{
+					id: "240F0BE77ABB16E1"
+					type: "item"
+					item: "exnihilosequentia:iron_pieces"
+					count: 4
+				}
+			]
+		}
+		{
+			title: "更好的网格模型 (better mesh)"
+			x: -1.5d
+			y: 0.0d
+			dependencies: ["26027C2F93201327"]
+			id: "32ABEB0E2A0B0062"
+			tasks: [{
+				id: "2B1DDB87141CEA73"
+				type: "item"
+				item: "exnihilosequentia:flint_mesh"
+			}]
+			rewards: [
+				{
+					id: "5D61F6A6C538A8D0"
+					type: "item"
+					item: "minecraft:flint"
+					count: 6
+				}
+				{
+					id: "1C4CE4D38780D2A5"
+					type: "item"
+					item: "minecraft:gravel"
+					count: 4
+				}
+			]
+		}
+		{
+			title: "矿石碎片"
+			x: 1.0d
+			y: 0.0d
+			dependencies: ["32ABEB0E2A0B0062"]
+			id: "1113A9CA41440A6F"
+			tasks: [{
+				id: "310DC445649B8B64"
+				type: "item"
+				item: "minecraft:raw_iron"
+			}]
+			rewards: [{
+				id: "3BCF83B75680E8E4"
+				type: "item"
+				item: "minecraft:iron_ingot"
+				count: 2
+			}]
+		}
+		{
+			title: "tinker smeltery"
+			x: 3.0d
+			y: 0.0d
+			dependencies: ["1113A9CA41440A6F"]
+			id: "686D4D61F89881AB"
+			tasks: [
+				{
+					id: "23F471506B1A7026"
+					type: "item"
+					item: {
+						id: "tconstruct:smeltery_controller"
+						Count: 1b
+						tag: {
+							texture: "tconstruct:seared_bricks"
+						}
+					}
+				}
+				{
+					id: "08B11DD5B575F31A"
+					type: "item"
+					item: "tconstruct:seared_heater"
+				}
+				{
+					id: "750FD2CB7984ED08"
+					type: "item"
+					item: "tconstruct:seared_table"
+				}
+				{
+					id: "533D6021323D6A6A"
+					type: "item"
+					item: {
+						id: "tconstruct:seared_drain"
+						Count: 1b
+						tag: {
+							texture: "tconstruct:seared_bricks"
+						}
+					}
+				}
+			]
+			rewards: [
+				{
+					id: "4469BB3B1506D693"
+					type: "item"
+					item: "minecraft:lava_bucket"
+				}
+				{
+					id: "5EDCDA464D7CC659"
+					type: "item"
+					item: "tconstruct:seared_bricks"
+					count: 8
+				}
+			]
+		}
+		{
+			title: "基础自动化系统"
+			x: 5.5d
+			y: 0.0d
+			dependencies: ["686D4D61F89881AB"]
+			id: "5D22F47E627020C4"
+			tasks: [{
+				id: "7B4BBB223D9512BC"
+				type: "item"
+				item: "excompressum:auto_hammer"
+			}]
+			rewards: [
+				{
+					id: "478C8481B561DF18"
+					type: "item"
+					item: "minecraft:gravel"
+					count: 16
+				}
+				{
+					id: "1BD21A35F0B314C8"
+					type: "item"
+					item: "minecraft:coal"
+					count: 8
+				}
+			]
+		}
+		{
+			x: 8.5d
+			y: 0.0d
+			dependencies: ["5D22F47E627020C4"]
+			id: "0AB8CA3A9B7203DA"
+			tasks: [
+				{
+					id: "067D0269206CFAF3"
+					type: "item"
+					item: "minecraft:lava_bucket"
+				}
+				{
+					id: "62EEDC17F969F729"
+					type: "item"
+					item: "exnihilosequentia:fired_crucible"
+				}
+			]
+			rewards: [{
+				id: "14D80491A0CA15B2"
+				type: "item"
+				item: "exnihilosequentia:fired_crucible"
+			}]
+		}
+		{
+			x: 11.5d
+			y: 0.0d
+			dependencies: ["0AB8CA3A9B7203DA"]
+			id: "34158BF641438BE5"
+			tasks: [{
+				id: "2E6EB25135DA8F19"
+				type: "item"
+				item: "simplecobblegen:cobble_generator"
+			}]
+			rewards: [{
+				id: "18F0CB9B7DD3B2B9"
+				type: "item"
+				item: "excompressum:compressed_gravel"
+			}]
+		}
+		{
+			title: "铁器时代"
+			x: 14.0d
+			y: 0.0d
+			dependencies: ["34158BF641438BE5"]
+			id: "662A96D0E4F7DABB"
+			tasks: [
+				{
+					id: "59CBC9102774AD49"
+					type: "item"
+					item: {
+						id: "exnihilosequentia:iron_hammer"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "374E9FDBF03844C6"
+					type: "item"
+					item: "minecraft:bucket"
+				}
+			]
+			rewards: [
+				{
+					id: "1DAA6D1925305FE1"
+					type: "item"
+					item: "minecraft:iron_ingot"
+					count: 4
+				}
+				{
+					id: "48ABCC4F600293F1"
+					type: "item"
+					item: "minecraft:water_bucket"
+				}
+			]
+		}
+		{
+			title: "黄金热"
+			x: 16.5d
+			y: 0.0d
+			dependencies: ["662A96D0E4F7DABB"]
+			id: "2D83752B9305A056"
+			tasks: [
+				{
+					id: "53D1D953D68CDB47"
+					type: "item"
+					item: "minecraft:gold_ingot"
+				}
+				{
+					id: "7F9631D398D054FD"
+					type: "item"
+					item: "exnihilosequentia:gold_pieces"
+					count: 4L
+				}
+			]
+			rewards: [{
+				id: "3F5FA28FC8513644"
+				type: "item"
+				item: "minecraft:sand"
+				count: 16
+			}]
+		}
+		{
+			title: "合金时代"
+			x: 18.5d
+			y: 0.0d
+			dependencies: ["2D83752B9305A056"]
+			id: "5C8BC68F33670876"
+			tasks: [
+				{
+					id: "6330306422683967"
+					type: "fluid"
+					fluid: "tconstruct:flowing_molten_bronze"
+					amount: 1000L
+				}
+				{
+					id: "6A65D5F9513E361A"
+					type: "fluid"
+					fluid: "tconstruct:flowing_molten_invar"
+					amount: 1000L
+				}
+			]
+			rewards: [{
+				id: "64E1ED91EB73E704"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 4196477342006451531L
+			}]
+		}
+	]
+	quest_links: [ ]
+}
