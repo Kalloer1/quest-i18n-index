@@ -81,11 +81,13 @@ jobs:
         run: |
           CLI="$HOME/.pi/agent/skills/quarkclouddrive/scripts/quark-drive.cjs"
           test -f "$CLI" || { echo "::error::夸克 CLI 安装失败，本轮终止"; exit 1; }
+          # 注意：QUARK_CLI 必须在 run 脚本里 export —— workflow env 块不做 $HOME 展开，
+          # 写成 `QUARK_CLI: $HOME/...` 会传字面量，脚本按「本机无 CLI」静默跳过（试点踩过）。
+          export QUARK_CLI="$CLI"
           FLAGS=""
           if [ "${{ inputs.limit }}" != "0" ]; then FLAGS="$FLAGS --limit ${{ inputs.limit }}"; fi
           node scripts/quark-sync.mjs $FLAGS --batch "${{ inputs.batch }}" --delay "${{ inputs.delay }}"
         env:
-          QUARK_CLI: $HOME/.pi/agent/skills/quarkclouddrive/scripts/quark-drive.cjs
           QUARK_DIR_NAME: 整合包汉化
           QUARK_PARENT_FID: ${{ secrets.QUARK_PARENT_FID }}
           QODER_PRODUCT_ID: qoder
