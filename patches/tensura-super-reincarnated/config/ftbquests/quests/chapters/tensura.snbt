@@ -1,0 +1,96 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "tensura"
+	group: ""
+	id: "5691B878223C0B94"
+	order_index: 0
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			id: "2FB69D394DB52CEA"
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/gamemode survival @p"
+					exclude_from_claim_all: true
+					id: "7B66341A0821B175"
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/tensura edit @p ability revoke everything"
+					exclude_from_claim_all: true
+					icon: "minecraft:polished_andesite"
+					id: "6FB173FDC83AE763"
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					command: "/execute as @p run clear @s minecraft:bedrock"
+					id: "394A687F7D8CD86E"
+					type: "command"
+				}
+			]
+			tasks: [
+				{
+					id: "0D618B67CF1C5657"
+					title: "检查"
+					type: "checkmark"
+				}
+				{
+					consume_items: true
+					id: "28C0D0010C33CE28"
+					item: "minecraft:bedrock"
+					type: "item"
+				}
+			]
+			title: "首个任务：复活与清理"
+			x: -7.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["2FB69D394DB52CEA"]
+			id: "0DAAB542322D6FA5"
+			rewards: [
+				{
+					auto: "enabled"
+					command: "/tensura reset @p"
+					icon: "minecraft:diamond_block"
+					id: "18D9710A899E23E4"
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					command: "/ftbquests change_progress @p reset 5691B878223C0B94"
+					icon: "minecraft:bedrock"
+					id: "381D892264DB8A28"
+					type: "command"
+				}
+				{
+					command: "/ftbquests change_progress @p reset 0DAAB542322D6FA5"
+					icon: "minecraft:sand"
+					id: "2682003B059AF708"
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/execute as @p run clear @s minecraft:bedrock"
+					id: "091469137285DA4B"
+					team_reward: false
+					type: "command"
+				}
+			]
+			tasks: [{
+				id: "17FD4115246DFDCF"
+				title: "Tensura 重置"
+				type: "checkmark"
+			}]
+			x: -6.5d
+			y: 1.0d
+		}
+	]
+	title: "死亡复活与重置"
+}
