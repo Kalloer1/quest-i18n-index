@@ -74,11 +74,15 @@ const arg = (name, dflt) => {
  * 筛选口径与 `translate-parallel.mjs` 的 listTranslatable 一致，但多两个维度：
  * 平台（CF 才有 downloadUrl 能力）与布局（先分离后内嵌）。
  *
+ * `includeSlugs`：强制收录通道。2026-10-25 实测 sky-energy-tech 等 3 个包
+ * zh_cn 覆盖率仅 0~1.5%，被 newZh>0 的整包判断误杀 —— `--slug` 显式点名的包
+ * 绕过该过滤（其余口径照旧），不带时行为不变。
+ *
  * @param {string} text
- * @param {{platform?: string, layout?: string}} [opts]
+ * @param {{platform?: string, layout?: string, includeSlugs?: string[]}} [opts]
  * @returns {Array<{slug:string, platform:string, layout:string, bytes:number}>}
  */
-export function pickTranslatable(text, { platform, layout } = {}) {
+export function pickTranslatable(text, { platform, layout, includeSlugs } = {}) {
   const lines = String(text ?? '').split(/\r?\n/).filter((l) => l.trim())
   if (lines.length < 2) return []
   const header = lines[0].split('\t')
@@ -87,13 +91,16 @@ export function pickTranslatable(text, { platform, layout } = {}) {
     if (!(col in idx)) throw new Error(`扫描 TSV 缺列：${col}`)
   }
   const PRODUCIBLE = new Set([LAYOUT.SEPARATE_DIR, LAYOUT.SEPARATE_SINGLE, LAYOUT.EMBEDDED])
+  const forced = new Set(Array.isArray(includeSlugs) ? includeSlugs.map(String) : [])
   const rows = []
   for (const line of lines.slice(1)) {
     const f = line.split('\t')
     const fmt = f[idx.format]
     if (!PRODUCIBLE.has(fmt)) continue
     // 自带中文的包没有翻译价值（本站产出会覆盖掉作者译文）。
-    if (Number(f[idx.newZh]) > 0) continue
+    // --slug 显式点名的除外（强制收录）：newZh 的粒度是整包，覆盖率极低的
+    // 中文残片不该把整个包判死（2026-10-25 实测 sky-energy-tech 等误杀）。
+    if (Number(f[idx.newZh]) > 0 && !forced.has(f[idx.slug])) continue
     const plat = f[idx.platform]
     if (platform && plat !== platform) continue
     if (layout === 'separate' && !/^separate-/.test(fmt)) continue
@@ -553,7 +560,12 @@ async function main() {
   // （不同内核/登录方式对单参数长度限制不一，超了是 `Argument list too long` 或静默截断）。
   // 文件里允许逗号、换行、空白混合分隔，方便人工追加。
   const explicitList = []
-  if (typeof slugArg === 'string') explicitList.push(...slugArg.split(',').map((s) => s.trim()).filter(Boolean))
+  // 只把 `--slug` 手工点名的当强制收录（绕过 newZh>0 过滤）；分片文件
+  // （--slug-file）是批量分配，口径保持默认，不撞自带中文的包。
+  const forcedSlugs = typeof slugArg === 'string'
+    ? slugArg.split(',').map((s) => s.trim()).filter(Boolean)
+    : []
+  explicitList.push(...forcedSlugs)
   if (typeof slugFileArg === 'string' && slugFileArg) {
     const file = isAbsolute(slugFileArg) ? slugFileArg : resolve(process.cwd(), slugFileArg)
     if (!existsSync(file)) throw new Error(`找不到 slug 清单：${file}`)
@@ -564,7 +576,12 @@ async function main() {
   if (!existsSync(scanFile)) throw new Error(`找不到扫描结果：${SCAN_FILE}`)
   console.log(`扫描结果 ${scanFile}`)
 
-  const all = pickTranslatable(readFileSync(scanFile, 'utf8'), { platform: platform || undefined, layout: layout || undefined })
+  const all = pickTranslatable(readFileSync(scanFile, 'utf8'), {
+    platform: platform || undefined,
+    layout: layout || undefined,
+    // --slug 显式点名的包绕过「自带中文」过滤（强制收录通道）。
+    includeSlugs: forcedSlugs,
+  })
   const state = loadState()
 
   // `--slug` 直接给清单，跳过 limit/platform/layout 筛选，也不看已完成状态。

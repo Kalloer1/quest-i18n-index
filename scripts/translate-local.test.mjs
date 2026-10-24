@@ -325,6 +325,22 @@ test('pickTranslatable：自带中文（newZh>0）与不可产出 format 依然�
   assert.deepEqual(pickTranslatable(tsv), [])
 })
 
+test('pickTranslatable：includeSlugs 点名的包绕过 newZh>0 过滤，其余照旧被排除', () => {
+  // 2026-10-25 实测：sky-energy-tech 等 3 个包 zh_cn 覆盖率仅 0~1.5%，newZh 的整包判断
+  // 把它们误杀。--slug 显式点名的包（强制收录通道）应进入工作列表；
+  // 默认（不带 includeSlugs）口径不变，批量路不会因此翻进自带中文的包。
+  const tsv = [
+    HEADER,
+    'mr\t1\tsky-energy-tech\t100\tembedded\t30\t1\t3\t10\tx',
+    'mr\t2\tother-zh-pack\t100\tembedded\t30\t9\t3\t10\tx',
+  ].join('\n')
+  assert.deepEqual(pickTranslatable(tsv), [], '默认口径：newZh>0 仍整包排除')
+  const rows = pickTranslatable(tsv, { includeSlugs: ['sky-energy-tech'] })
+  assert.equal(rows.length, 1, '点名的包应进入工作列表')
+  assert.equal(rows[0].slug, 'sky-energy-tech')
+  assert.equal(rows[0].layout, 'embedded', '平台/布局信息来自扫描行，不再是空壳 stub')
+})
+
 // ---------- farmExitFlush：分片收尾强制推剩余成果 ----------
 // 2026-10-24 实测踩坑：work 主机一轮只剩 19 个包（< pushEvery=20），分片处理完直接退出，
 // 19 个成果全部滞留在本地 HEAD，直到人工上机比对才发现。退出前必须补一次 commit+push。
