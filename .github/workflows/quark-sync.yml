@@ -1,0 +1,114 @@
+name: quark-sync
+
+# 夸克全量镜像同步（决策 #7 / Phase 4）：downloads/*.zip 增量上传 + 分批建链，
+# 回填 research/quark-mirrors.json 并提交（push main 后 Deploy to Cloudflare 自动重建站点数据）。
+#
+# 触发：仅 workflow_dispatch（本机不自动跑；试点 limit=50，全量 limit=0）。
+#
+# 登录态：CI 无浏览器，靠 secret QUARK_CONFIG_JSON（qoder 产品 config.json 的完整内容）
+# 恢复登录；cookie 过期时在本机重新登录后 `gh secret set QUARK_CONFIG_JSON < config.json` 刷新。
+# 日志纪律：恢复步骤只打印字节数，绝不 echo 内容；CLI 调用的 stdout 由脚本解析，不整段打印。
+#
+# 与旧 translate.yml 镜像旁路的差异：本工作流只做镜像，不烧翻译、不碰 patches/；
+# 失败不污染别的流水线（独立 workflow + 独立 concurrency 组）。
+
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: '本轮处理的工作项上限（0 = 全量增量；试点用 50）'
+        required: false
+        default: '0'
+        type: string
+      batch:
+        description: '补链分批大小（默认 200）'
+        required: false
+        default: '200'
+        type: string
+      delay:
+        description: '补链批间休眠毫秒（默认 30000）'
+        required: false
+        default: '30000'
+        type: string
+
+permissions:
+  contents: write
+
+# 与 deploy 以外的写仓库工作流串行（deploy 自己读 commit 部署，不互斥）。
+concurrency:
+  group: repo-write
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm ci || npm install
+
+      - name: Run tests
+        run: npm test
+
+      # 登录配置：secret 整体写入文件，只打印字节数（内容绝不进日志）。
+      - name: Restore quark config
+        env:
+          QUARK_CONFIG_JSON: ${{ secrets.QUARK_CONFIG_JSON }}
+        run: |
+          if [ -z "$QUARK_CONFIG_JSON" ]; then
+            echo "::error::缺少 secret QUARK_CONFIG_JSON：在本机 `gh secret set QUARK_CONFIG_JSON < config.json` 后重跑"
+            exit 1
+          fi
+          SKILL_DIR="$HOME/.pi/agent/skills/quarkclouddrive"
+          mkdir -p "$SKILL_DIR/qoder"
+          printf '%s' "$QUARK_CONFIG_JSON" > "$SKILL_DIR/qoder/config.json"
+          chmod 600 "$SKILL_DIR/qoder/config.json"
+          echo "登录态已写入（$(wc -c < "$SKILL_DIR/qoder/config.json" | tr -d ' ') 字节，内容不打印）"
+
+      # CLI 620KB 单文件，超 secret 上限、不入库，按官方安装方式从服务端取（脚本自带重试与告警）。
+      - name: Install quark CLI
+        run: bash scripts/install-quark-cli.sh
+
+      - name: Quark sync
+        id: sync
+        run: |
+          CLI="$HOME/.pi/agent/skills/quarkclouddrive/scripts/quark-drive.cjs"
+          test -f "$CLI" || { echo "::error::夸克 CLI 安装失败，本轮终止"; exit 1; }
+          FLAGS=""
+          if [ "${{ inputs.limit }}" != "0" ]; then FLAGS="$FLAGS --limit ${{ inputs.limit }}"; fi
+          node scripts/quark-sync.mjs $FLAGS --batch "${{ inputs.batch }}" --delay "${{ inputs.delay }}"
+        env:
+          QUARK_CLI: $HOME/.pi/agent/skills/quarkclouddrive/scripts/quark-drive.cjs
+          QUARK_DIR_NAME: 整合包汉化
+          QUARK_PARENT_FID: ${{ secrets.QUARK_PARENT_FID }}
+          QODER_PRODUCT_ID: qoder
+          QODER_AGENT: 'true'
+
+      # 回填结果提交（needs contents: write）。push main 自动触发 deploy 重建站点数据。
+      - name: Commit mirrors
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -- research/quark-mirrors.json
+          if git diff --cached --quiet; then
+            echo "本轮无镜像记录变更"
+            exit 0
+          fi
+          git commit -m "quark-sync: 回填分享链接（run ${{ github.run_id }}，limit=${{ inputs.limit || '0' }}）"
+          git push origin HEAD:main
+
+      # 失败清单传 artifact（不进仓库）：失败项下轮自动重试（记录缺失 → 重新规划）。
+      - name: Upload failures artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: quark-sync-failures
+          path: research/quark-sync-failures.json
+          if-no-files-found: ignore
