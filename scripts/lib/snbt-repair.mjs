@@ -300,3 +300,275 @@ export function repairNestedSingleQuotes(text) {
   if (!repaired.length) return { text: src, repaired: [] }
   return { text: out.join(eol), repaired }
 }
+
+/**
+ * 修复第五种上游损坏：**用 `//` 写注释**（SNBT 注释是 `#`，不是 `//`）。
+ *
+ * 实测（2026-10-24，`the-world-of-dinosaurs` 的 `chapters/exploration.snbt`）：
+ *
+ * ```
+ *   "custom_task_type": "graves_recovery"
+ *   // Placeholder: requires custom trigger …   ← 值位置出现 // 注释
+ *   }
+ * ```
+ *
+ * 解析器在值位置遇到 `/` 报「无法解析的值："/"」。修法是把行首 `//` 换成 `#`：
+ * 注释内容原样保留（readTrivia 消费 `#` 到行尾），语义零损失。
+ *
+ * 判据收窄：
+ *   1. 全局守卫：整份文件当前解析失败；
+ *   2. 行去空白后以 `// ` 开头（注释是散文，URL 在字符串里不会独立成行）；
+ *   3. 行内没有任何未转义 `"`（排除多行字符串里的 URL 行；撇号不拦 —— 实测
+ *      `Xaero's Minimap` 的注释带 `'`，一并放行，误改由守卫 4 回滚）；
+ *   4. 转换后**整份文件**必须能解析，否则全部回滚（防把字符串内容改坏）。
+ *
+ * @param {string} text
+ * @returns {{text: string, repaired: Array<{line: number, key: string}>}}
+ */
+export function repairSlashComments(text) {
+  const src = String(text ?? '')
+  if (!src.includes('//')) return { text: src, repaired: [] }
+  // 全局守卫：文件能解析就绝不修改。
+  try { parse(src); return { text: src, repaired: [] } } catch { /* 坏文件才继续 */ }
+  const eol = src.includes('\r\n') ? '\r\n' : '\n'
+  const lines = src.split(/\r?\n/)
+  const out = []
+  const repaired = []
+  let changed = false
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i]
+    const trimmed = line.trim()
+    if (trimmed.startsWith('// ') && !line.includes(DQ)) {
+      const at = line.indexOf('//')
+      out.push(line.slice(0, at) + '#' + line.slice(at + 2))
+      repaired.push({ line: i + 1, key: '//' })
+      changed = true
+      continue
+    }
+    out.push(line)
+  }
+  if (!changed) return { text: src, repaired: [] }
+  const fixed = out.join(eol)
+  // 回滚守卫：转换后必须能解析，否则宁可不修。
+  try { parse(fixed) } catch { return { text: src, repaired: [] } }
+  return { text: fixed, repaired }
+}
+
+/**
+ * 修复第六种上游损坏：**compound 条目只有键没有值**（`dependencies:` 后面空了）。
+ *
+ * 实测（2026-10-24，`lindenfeld-via-gastronomica` 的两个 chapters 文件）：
+ *
+ * ```
+ *   dependencies:
+ *   description: [       ← 下一行是另一个键，上一行的值丢了
+ * ```
+ *
+ * 解析器把下一行的键当成值读，随后报「compound 条目缺少 ":"」。
+ * 修法是补一个空列表 `[]`：依赖为空正是「没写依赖」的自然语义，不编造内容。
+ *
+ * 判据收窄到四条：
+ *   1. 全局守卫：整份文件当前解析失败；
+ *   2. 行是「空白 + 键 + `:` + 行尾」（无值）；
+ *   3. 下一非空行是 `key:` 形式（值的开头是 `{ [ "` 等，绝不会长得像键值对）；
+ *   4. 该行单独包一层 `{ }` 无法解析（排除「值在行内、只是行尾有多余空白」的误判）。
+ *
+ * @param {string} text
+ * @returns {{text: string, repaired: Array<{line: number, key: string}>}}
+ */
+export function repairEmptyValueEntries(text) {
+  const src = String(text ?? '')
+  // 全局守卫：文件能解析就绝不修改。
+  try { parse(src); return { text: src, repaired: [] } } catch { /* 坏文件才继续 */ }
+  const eol = src.includes('\r\n') ? '\r\n' : '\n'
+  const lines = src.split(/\r?\n/)
+  const out = []
+  const repaired = []
+  const KEY_LINE = /^\s*[A-Za-z0-9_.+\-]+:\s/
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i]
+    const m = /^(\s*[A-Za-z0-9_.+\-]+):(\s*)$/.exec(line)
+    if (m) {
+      let j = i + 1
+      while (j < lines.length && !lines[j].trim()) j++
+      const standaloneOk = (() => { try { parse('{' + line + '}'); return true } catch { return false } })()
+      if (j < lines.length && KEY_LINE.test(lines[j]) && !standaloneOk) {
+        out.push(m[1] + ': []')
+        repaired.push({ line: i + 1, key: m[1].trim() })
+        continue
+      }
+    }
+    out.push(line)
+  }
+  if (!repaired.length) return { text: src, repaired: [] }
+  return { text: out.join(eol), repaired }
+}
+
+/**
+ * 修复第七种上游损坏：**compound 少写一个收尾 `}`**，解析器在 `]` 上撞车。
+ *
+ * 实测（2026-10-24，`pixelgo-sky` 的 `chapters/balls.snbt`）：
+ *
+ * ```
+ *   item: {
+ *     tag: {
+ *       PokeBallID: "ultra_ball"
+ *     }
+ *     match_nbt: true      ← item 的 } 丢了，match_nbt 之后直接是 }]
+ * }]
+ * ```
+ *
+ * 解析器在任务 compound 里读到 `]` 报「无法解析的值："]"」。
+ * 修法是在出错位置（` ] ` 处）补一个 `}`：让最近的未闭合 compound 就此收口。
+ * 括号配对统计佐证：整份文件 `{` 比 `}` 恰好多 1。
+ *
+ * 判据收窄：
+ *   1. 全局守卫：文件当前解析失败，且错误是「无法解析的值："]"」；
+ *   2. 在出错下标插入 `}` 后整份文件能解析（插入点即解析器撞车处，
+ *      语义上是让当前 compound 提前收口 —— 对翻译无影响：布尔/结构字段不在可译字段内）。
+ *
+ * @param {string} text
+ * @returns {{text: string, repaired: Array<{line: number, key: string}>}}
+ */
+export function repairMissingCloseBrace(text) {
+  const src = String(text ?? '')
+  // 全局守卫：文件能解析就绝不修改。
+  try { parse(src); return { text: src, repaired: [] } } catch (e) {
+    if (!(e instanceof Object) || e.message === undefined || !/无法解析的值："\]"/.test(String(e.message))) return { text: src, repaired: [] }
+    const index = e.index
+    const fixed = src.slice(0, index) + '}' + src.slice(index)
+    try { parse(fixed) } catch { return { text: src, repaired: [] } }
+    const line = src.slice(0, index).split('\n').length
+    return { text: fixed, repaired: [{ line, key: '(补 })' }] }
+  }
+}
+
+/**
+ * 修复第八种上游损坏：**单行字符串列表里混进一个没转义的 `"`**（双引号版串中串）。
+ *
+ * 实测（2026-10-24，`dawncraft-russian-lang` 俄语原生包）：
+ *
+ * ```
+ *   description: ["Энта можно вызвать … из \«Порванной записки»\.\"."]
+ *                                                    杂物 `".` ↑ 让串提前闭合
+ * ```
+ *
+ * 字符串在杂物引号处提前闭合，`."` 剩在外面把解析器带偏，最终在几行之后
+ * 报「无法解析的值："Х"」。修法是给那个多余的 `"` 补 `\` 转义：所有字节保留，
+ * 值内容只多一个字面引号（与上游先例 `Kayra\'s` 同款修法）。
+ *
+ * 判据收窄到五条：
+ *   1. 全局守卫：整份文件当前解析失败；
+ *   2. 行是「键: [单行列表]」形态（`key: [… one line …]`）；
+ *   3. 该行**单独**无法解析（健康行绝不碰）；
+ *   4. 行内未转义 `"` ≥ 3（首 = 开引号，末 = 闭引号，中间才有嫌疑人）；
+ *   5. 从左到右逐个试：给某个中间 `"` 插 `\` 后整行能独立解析才接受（只改第一个成功的）。
+ *
+ * @param {string} text
+ * @returns {{text: string, repaired: Array<{line: number, key: string}>}}
+ */
+export function repairStrayQuoteInStringList(text) {
+  const src = String(text ?? '')
+  // 全局守卫：文件能解析就绝不修改。
+  try { parse(src); return { text: src, repaired: [] } } catch { /* 坏文件才继续 */ }
+  const eol = src.includes('\r\n') ? '\r\n' : '\n'
+  const lines = src.split(/\r?\n/)
+  const out = []
+  const repaired = []
+  const LIST_LINE = /^\s*[A-Za-z0-9_.+\-]+:\s*\[.*\]\s*$/
+
+  const unescapedQuotes = (line) => {
+    const idx = []
+    for (let i = 0; i < line.length; i++) {
+      if (line[i] === DQ && line[i - 1] !== BS) idx.push(i)
+    }
+    return idx
+  }
+
+  for (let n = 0; n < lines.length; n++) {
+    const line = lines[n]
+    if (!LIST_LINE.test(line)) { out.push(line); continue }
+    // 判据 3：健康的行不碰。行是 `key: [...]` 键值对形态，独立测要包一层 compound。
+    const wrapped = '{ ' + line.trim() + ' }'
+    let lineBroken = false
+    try { parse(wrapped) } catch { lineBroken = true }
+    if (!lineBroken) { out.push(line); continue }
+    const q = unescapedQuotes(line)
+    if (q.length < 3) { out.push(line); continue }
+    // 判据 5：逐个试中间引号，取第一个能解析的。
+    let fixed = null
+    for (let k = 1; k < q.length - 1 && !fixed; k++) {
+      const at = q[k]
+      const candidate = line.slice(0, at) + BS + DQ + line.slice(at + 1)
+      try { parse('{ ' + candidate.trim() + ' }'); fixed = candidate } catch { /* 下一个 */ }
+    }
+    if (fixed) {
+      const key = line.trim().slice(0, line.trim().indexOf(':'))
+      out.push(fixed)
+      repaired.push({ line: n + 1, key })
+      continue
+    }
+    out.push(line)
+  }
+  if (!repaired.length) return { text: src, repaired: [] }
+  return { text: out.join(eol), repaired }
+}
+
+/**
+ * 修复第九种上游损坏：**普通字符串值忘了收尾引号**（规则①的纯字符串版）。
+ *
+ * 实测（2026-10-24，`lindenfeld-via-gastronomica` 的两个 chapters 文件）：
+ *
+ * ```
+ *   group: "0F9BFF21DB6FDC1E        ← 少右引号，下一行被吞进字符串
+ *   icon: "dustydecorations:bookstack"
+ * ```
+ *
+ * 字符串跨行吞掉后续内容直到撞上下一个 `"`，整个文件的状态从此错位。
+ * 修法同规则①：行末补 `"`。判据与规则①同构，只是值形态从 `["…` 换成 `"…`：
+ *
+ *   1. 全局守卫：整份文件当前解析失败；
+ *   2. 行首是 `key: "`，开引号之后行内**再无**未转义的 `"`；
+ *   3. 下一非空行是 `key:` 形式（正常跨行长文本的下一行不会长得像键值对）且不以 `]` 开头。
+ *
+ * @param {string} text
+ * @returns {{text: string, repaired: Array<{line: number, key: string}>}}
+ */
+export function repairUnclosedStringValue(text) {
+  const src = String(text ?? '')
+  if (!src.includes(DQ)) return { text: src, repaired: [] }
+  // 全局守卫：文件能解析就绝不修改。
+  try { parse(src); return { text: src, repaired: [] } } catch { /* 坏文件才继续 */ }
+  const eol = src.includes('\r\n') ? '\r\n' : '\n'
+  const lines = src.split(/\r?\n/)
+  const out = []
+  const repaired = []
+  const OPENS = /^\s*([A-Za-z0-9_.+\-]+):\s*"/
+  const KEY_LINE = /^\s*[A-Za-z0-9_.+\-]+:\s/
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i]
+    const m = OPENS.exec(line)
+    if (m) {
+      const afterOpen = line.slice(line.indexOf(DQ) + 1)
+      let unclosed = true
+      for (let k = 0; k < afterOpen.length; k++) {
+        if (afterOpen[k] === BS) { k++; continue }
+        if (afterOpen[k] === DQ) { unclosed = false; break }
+      }
+      if (unclosed) {
+        let j = i + 1
+        while (j < lines.length && !lines[j].trim()) j++
+        const next = lines[j]
+        if (next !== undefined && KEY_LINE.test(next) && !next.trim().startsWith(']')) {
+          out.push(line + DQ)
+          repaired.push({ line: i + 1, key: m[1] })
+          continue
+        }
+      }
+    }
+    out.push(line)
+  }
+  if (!repaired.length) return { text: src, repaired: [] }
+  return { text: out.join(eol), repaired }
+}

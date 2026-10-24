@@ -16,7 +16,7 @@ import {
 import { parse } from './snbt.mjs'
 import { readFileSync } from 'node:fs'
 import { fetchRetry } from './lib/fetch-retry.mjs'
-import { repairUnclosedStringLists, repairKeyInsideList, repairEmptyKeyEntries, repairNestedSingleQuotes } from './lib/snbt-repair.mjs'
+import { repairUnclosedStringLists, repairKeyInsideList, repairEmptyKeyEntries, repairNestedSingleQuotes, repairSlashComments, repairEmptyValueEntries, repairMissingCloseBrace, repairStrayQuoteInStringList, repairUnclosedStringValue } from './lib/snbt-repair.mjs'
 
 // ---------- format-codes ----------
 
@@ -405,4 +405,159 @@ test('repairNestedSingleQuotes：合法多引号行与含混行不动', () => {
   const ambiguous = '{ x: \'a\', nbt: \'{Name:\\\'{"t":1}\'} }'.replace(/\\\\'/g, "'")
   const { repaired } = repairNestedSingleQuotes(ambiguous + '\n}')
   assert.equal(repaired.length, 0, 'x 的闭合引号不贴 {}，太含混不动')
+})
+
+// ---------- snbt-repair：// 注释 ----------
+// 实测（2026-10-24，the-world-of-dinosaurs 的 exploration.snbt）：
+// 值位置出现 `// Placeholder: …`（SNBT 注释是 `#`），解析器报「无法解析的值："/"」。
+
+test('repairSlashComments：行首 // 换成 #，注释内容保留，文件转为可解析', () => {
+  const bad = [
+    '{',
+    '  "task": {',
+    '    "type": "custom" ',
+    '    // Placeholder: requires custom trigger',
+    '  }',
+    '}',
+  ].join('\n')
+  const { text, repaired } = repairSlashComments(bad)
+  assert.equal(repaired.length, 1)
+  assert.match(text, /# Placeholder: requires custom trigger/)
+  assert.ok(!text.includes('//'))
+  assert.doesNotThrow(() => parse(text))
+})
+
+test('repairSlashComments：撇号注释（Xaero\'s）也放行；转换后仍不可解析则整体回滚', () => {
+  const bad = '{\n\t"a": "b"\n\t// Xaero\'s Minimap note\n}'
+  const { text, repaired } = repairSlashComments(bad)
+  assert.equal(repaired.length, 1)
+  assert.match(text, /# Xaero's Minimap note/)
+  // 转换救不活的文件 → 一个字节不动
+  const hopeless = '{\n\t"a": "b"\n\t// note\n\t???\n}'
+  const r2 = repairSlashComments(hopeless)
+  assert.equal(r2.repaired.length, 0)
+  assert.equal(r2.text, hopeless)
+})
+
+test('repairSlashComments：字符串里的 URL 行不动', () => {
+  const ok = '{\n\tdoc: ["see https://example.com/x for details"]\n}'
+  const r = repairSlashComments(ok)
+  assert.equal(r.repaired.length, 0)
+  assert.equal(r.text, ok)
+})
+
+// ---------- snbt-repair：条目只有键没有值 ----------
+
+test('repairEmptyValueEntries：空值条目补 []，下一行是键值对才触发', () => {
+  const bad = [
+    '{',
+    '\tdependencies:',
+    '\tdescription: [',
+    '\t\t"prose"',
+    '\t]',
+    '}',
+  ].join('\n')
+  const { text, repaired } = repairEmptyValueEntries(bad)
+  assert.equal(repaired.length, 1)
+  assert.equal(repaired[0].key, 'dependencies')
+  assert.match(text, /dependencies: \[\]/)
+  assert.doesNotThrow(() => parse(text))
+})
+
+test('repairEmptyValueEntries：下一行是值开头（列表/字符串）时不误伤', () => {
+  // 下一行是字符串元素 → 不是「键吃掉下一行键名」的形态，不动
+  const ok = '{\n\titems: [\n\t\t"a"\n\t]\n}'
+  const r = repairEmptyValueEntries(ok)
+  assert.equal(r.repaired.length, 0)
+  assert.equal(r.text, ok)
+})
+
+// ---------- snbt-repair：compound 少收尾 } ----------
+
+test('repairMissingCloseBrace：在撞车的 ] 处补 }，修后可解析', () => {
+  const bad = [
+    '{',
+    '\ttasks: [{',
+    '\t\titem: {',
+    '\t\t\ttag: {',
+    '\t\t\t\tPokeBallID: "ultra_ball"',
+    '\t\t\t}',
+    '\t\t\tmatch_nbt: true',
+    '\t}]',
+    '}',
+  ].join('\n')
+  const { text, repaired } = repairMissingCloseBrace(bad)
+  assert.equal(repaired.length, 1)
+  assert.doesNotThrow(() => parse(text))
+  const root = parse(text).value
+  const tasks = root.entries.find((e) => e.key.value === 'tasks').value
+  assert.equal(tasks.type, 'list')
+})
+
+test('repairMissingCloseBrace：能解析的文件不动', () => {
+  const ok = '{\n\ttasks: [{\n\t\titem: {}\n\t}]\n}'
+  const r = repairMissingCloseBrace(ok)
+  assert.equal(r.repaired.length, 0)
+  assert.equal(r.text, ok)
+})
+
+// ---------- snbt-repair：单行字符串列表里混进没转义的 " ----------
+
+test('repairStrayQuoteInStringList：杂物引号补 \\ 转义，字节全保留', () => {
+  // 原文（dawncraft 实测形态）：行尾 `…«Note»\."."]` —— `\.` 后的裸 `"` 让串提前闭合。
+  const BSx = String.fromCharCode(92)
+  const raw = '{\n\tdescription: ["text from «Note»' + BSx + '."."]\n}'
+  const { text, repaired } = repairStrayQuoteInStringList(raw)
+  assert.equal(repaired.length, 1)
+  const root = parse(text).value
+  const d = root.entries.find((e) => e.key.value === 'description').value
+  assert.equal(d.type, 'list')
+  assert.equal(d.items[0].value.value, 'text from «Note»' + BSx + '.".')  // `\.` 保留 + 补转义的引号
+})
+
+test('repairStrayQuoteInStringList：健康的双元素列表不动', () => {
+  const ok = '{\n\tdescription: ["first", "second"]\n}'
+  const r = repairStrayQuoteInStringList(ok)
+  assert.equal(r.repaired.length, 0)
+  assert.equal(r.text, ok)
+})
+
+// ---------- snbt-repair：字符串值忘了收尾引号 ----------
+
+test('repairUnclosedStringValue：行末补右引号，下一行不被吞', () => {
+  const bad = [
+    '{',
+    '\tgroup: "0F9BFF21DB6FDC1E',
+    '\ticon: "dustydecorations:bookstack"',
+    '\tid: "41C80F49D58EB175"',
+    '}',
+  ].join('\n')
+  const { text, repaired } = repairUnclosedStringValue(bad)
+  assert.equal(repaired.length, 1)
+  assert.equal(repaired[0].key, 'group')
+  const root = parse(text).value
+  const byKey = Object.fromEntries(root.entries.map((e) => [e.key.value, e.value.value]))
+  assert.equal(byKey['group'], '0F9BFF21DB6FDC1E')
+  assert.equal(byKey['icon'], 'dustydecorations:bookstack')
+})
+
+test('repairUnclosedStringValue：正常跨行长文本不动', () => {
+  const ok = '{\n\tnote: "第一行\n第二行还在字符串里"\n\tid: "X"\n}'
+  const r = repairUnclosedStringValue(ok)
+  assert.equal(r.repaired.length, 0)
+  assert.equal(r.text, ok)
+})
+
+// ---------- quest-files：纯 NUL 文件在抽取层跳过 ----------
+
+test('extractPack：纯 NUL 文件跳过，不影响其余文件解析', async () => {
+  const { extractPack } = await import('./lib/quest-files.mjs')
+  const files = [
+    { name: 'chapters/a.snbt', text: '{ title: "Hello" }' },
+    { name: 'chapters/b.snbt', text: '\u0000\u0000\u0000'.repeat(10) },
+    { name: 'chapters/c.snbt', text: '{ title: "World" }' },
+  ]
+  const pack = extractPack({ files, layout: LAYOUT.EMBEDDED })
+  assert.equal(pack.files.length, 2, 'NUL 文件不进 pack.files')
+  assert.ok(pack.units.every((u) => !u.file.includes('b.snbt')))
 })

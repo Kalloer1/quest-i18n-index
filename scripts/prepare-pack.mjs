@@ -51,7 +51,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, rmdirSync, rmSync, st
 import { fileURLToPath } from 'node:url'
 import { dirname, join, relative } from 'node:path'
 import { extractFromBuffer, isQuestFile, toOutputPath } from './extract-pack.mjs'
-import { repairUnclosedStringLists, repairKeyInsideList, repairEmptyKeyEntries, repairNestedSingleQuotes } from './lib/snbt-repair.mjs'
+import { repairUnclosedStringLists, repairKeyInsideList, repairEmptyKeyEntries, repairNestedSingleQuotes, repairSlashComments, repairEmptyValueEntries, repairMissingCloseBrace, repairStrayQuoteInStringList } from './lib/snbt-repair.mjs'
 import { classifyLayout } from './lib/candidates.mjs'
 import { resolveLatestMrpack } from './lib/modrinth.mjs'
 import { fetchZipTexts, listZip } from './lib/zip-range.mjs'
@@ -328,6 +328,10 @@ function writeQuestTexts(files, outDir) {
  *   ② 列表里混进键值对（`quest_desc: [` 后紧跟 `quest.X.title: …`）
  *   ③ compound 条目丢了键名（空键，`: 0`）—— 丢弃该条目
  *   ④ 单引号串里的内嵌单引号没转义（`nbt: '{…Name:'{"text":…}'…}'`）—— 按 `\'` 转义
+ *   ⑤ `//` 注释（SNBT 只认 `#`）—— 换成 `#`
+ *   ⑥ 条目只有键没有值（`dependencies:`）—— 补空列表 `[]`
+ *   ⑦ compound 少一个收尾 `}` —— 在解析撞车的 `]` 处补 `}`
+ *   ⑧ 单行字符串列表里混进没转义的 `"` —— 补 `\` 转义
  *
  * 为什么在落盘后统一修、而不是在两条写盘路各写一遍：Range 路（`writeQuestTexts`）
  * 与整包路（`extractFromBuffer`）写的是同一批文件，修一处覆盖两条路。
@@ -346,14 +350,18 @@ function repairSources(slug, outDir, written, log) {
     const dest = join(outDir, rel)
     if (!existsSync(dest)) continue
     const before = readFileSync(dest, 'utf8')
-    // 四种损坏可能并存，依次修。
+    // 八种损坏可能并存，依次修。
     const a = repairUnclosedStringLists(before)
     const b = repairKeyInsideList(a.text)
     const c = repairEmptyKeyEntries(b.text)
     const d = repairNestedSingleQuotes(c.text)
-    const repaired = [...a.repaired, ...b.repaired, ...c.repaired, ...d.repaired]
+    const e2 = repairEmptyValueEntries(d.text)
+    const f2 = repairMissingCloseBrace(e2.text)
+    const g2 = repairStrayQuoteInStringList(f2.text)
+    const h2 = repairSlashComments(g2.text)
+    const repaired = [...a.repaired, ...b.repaired, ...c.repaired, ...d.repaired, ...e2.repaired, ...f2.repaired, ...g2.repaired, ...h2.repaired]
     if (!repaired.length) continue
-    writeFileSync(dest, d.text)
+    writeFileSync(dest, h2.text)
     files++
     for (const r of repaired.slice(0, 3)) keys.push(`${rel}::${r.key}`)
   }
