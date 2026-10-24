@@ -29,6 +29,11 @@
  *   node scripts/publish-local.mjs --dry-run        # 只算计划，不落盘不提交
  *   node scripts/publish-local.mjs --skip-tests     # 跳过 npm test（赶时间时用，风险自负）
  *
+ * 主机清单（step 1 的 farm/<h>）不是常量数组，而是从 `git ls-remote --heads origin
+ * refs/heads/farm/*` 动态发现：farm/ci（CI request-translate 工作流的产物分支）
+ * 一旦出现就自动被当第 6 台收割，无增量/分支不存在时 diff 为空、静默跳过
+ * （farm-merge 对空 plan 天然容忍，实测 exit 0）。
+ *
  * 退出码：0 成功（含「无增量」）；1 失败；2 参数错误。
  */
 import { execFileSync } from 'node:child_process'
@@ -241,7 +246,9 @@ if (plan.skipped?.length) console.log(`跳过 ${plan.skipped.length} 个（候�
       if (p.startsWith('downloads/') && (p.includes(`/${slug}_v`) || p.includes(`/${slug}.zip`))) return true
     }
     return ['research/index-dataset.json', 'site/data.json', 'research/source-versions.json',
-      'research/quark-mirrors.json', 'glossary.json', 'dist/index.html', 'dist/request.html'].includes(p)
+      'research/quark-mirrors.json', 'glossary.json', 'dist/index.html', 'dist/request.html',
+      'worker/library-lookup.mjs', 'research/pack-identity.json',
+      'research/pack-identity-needs-review.json'].includes(p)
   }
   const stray = baseDirty.filter((p) => !allowed(p))
   if (stray.length) {
@@ -411,6 +418,9 @@ run('node', ['scripts/release.mjs', '--ids', keep.join(','), '--package-only'])
 // ---------- 8. 版本汇总 + 交付趟 ----------
 step(8, '汇总版本、重建索引与站点数据')
 run('node', ['scripts/source-versions.mjs'])
+// 身份归并 + Worker 查表快照：提交页「已在库，当前版本 X」的数据源，随版本汇总一起刷新。
+// 三个产物内容没变时脚本自己不重写，不会制造假 diff。
+run('node', ['scripts/build-identity.mjs'])
 run('node', ['scripts/build-index.mjs'])
 run('node', ['scripts/build-site-data.mjs'])
 run('node', ['scripts/build-site-html.mjs'])
@@ -433,7 +443,9 @@ step(9, '暂存产物（显式路径，不用 -A）')
     }
   }
   for (const p of ['research/index-dataset.json', 'site/data.json',
-    'research/quark-mirrors.json', 'research/source-versions.json', 'glossary.json']) {
+    'research/quark-mirrors.json', 'research/source-versions.json', 'glossary.json',
+    'worker/library-lookup.mjs', 'research/pack-identity.json',
+    'research/pack-identity-needs-review.json']) {
     addIf(p)
   }
   const staged = git(['diff', '--cached', '--name-only'], { quiet: true }).split('\n').filter(Boolean).length
