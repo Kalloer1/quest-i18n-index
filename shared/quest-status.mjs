@@ -16,6 +16,8 @@ export const STATUS = {
   DONE: '已完成',
   DONE_UNMIRRORED: '镜像缺失',
   FAILED: '失败',
+  /** 消费器判定「库内已有同版本」：不需要翻，玩家可安心（方案 §3.2 决策 #5）。 */
+  SKIPPED_SAME_VERSION: '已在库',
 }
 
 /** 状态枚举的合法取值列表（POST /status 校验用）。 */
@@ -38,6 +40,7 @@ export function toStatusValue(kind) {
     case 'done': return STATUS.DONE
     case 'failed': return STATUS.FAILED
     case 'skipped': return STATUS.FAILED
+    case 'skipped-same-version': return STATUS.SKIPPED_SAME_VERSION
     default: throw new Error(`未知状态 kind：${kind}`)
   }
 }

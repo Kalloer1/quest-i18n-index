@@ -1,13 +1,17 @@
 /**
  * Cloudflare Worker：整合包任务书汉化提交入口 + 翻译队列。
  *
- * 职责（本工单只做前三个端点）：
+ * 职责：
  * 1. POST /        玩家提交整合包链接（CurseForge / Modrinth）→ 解析并校验 → 写 KV（权威）
+ *                  响应带 groupId 与库内当前版本；IP+groupId 24h 去重（防滥用）
  * 2. GET  /queue   返回全部队列条目（公开字段），供站点轮询
- * 3. POST /status  流水线回写单条状态（内部 token）→ 更新 KV
+ * 3. POST /status  流水线回写单条状态（内部 token）→ 更新 KV；接受中文枚举值与英文 kind
+ *                  （含 skipped-same-version →「已在库」）
  * 4. POST /translate 维护者口令门禁 → 取「待翻译」（可选含「失败」）→ GitHub workflow_dispatch → 置「翻译中」
  * 5. POST /verify-passphrase 仅校验口令，供管理区门禁渲染模型多选
  * 6. GET  /models  代理网关 /models，返回实时模型 id 列表（公开；不含任何秘密）
+ * 7. POST /admin/clear-records       管理区清除队列记录（口令；ids 数组或 all:true）
+ * 8. GET/POST /admin/llm-settings    管理区翻译设置：供应商地址 / Key（打码）/ 模型（口令）
  *
  * 状态权威源是 KV；腾讯文档类镜像由后续工单接入，任何失败都不阻断主流程。
  *
@@ -25,7 +29,7 @@
  *
  * KV binding: TRANSLATION_QUEUE
  */
-import { STATUS, STATUS_VALUES, SOURCE } from '../shared/quest-status.mjs'
+import { STATUS, STATUS_VALUES, SOURCE, toStatusValue } from '../shared/quest-status.mjs'
 import {
   parseCurseforgeModpackSlug,
   parseModrinthModpackSlug,
@@ -40,6 +44,13 @@ import {
   clientIp,
 } from '../shared/submit-limit.mjs'
 import { verifyPassphrase, parseModelsInput } from '../shared/gate.mjs'
+import {
+  SUBMIT_DEDUP_TTL_SECONDS,
+  submitDedupKey,
+} from '../shared/submit-limit.mjs'
+// build-identity.mjs 生成的查表快照（slug→groupId、slug→库内当前版本 fileName）。
+// 随仓库提交、部署时打进 Worker；publish-local 第 8 步会重建，见脚本头注释。
+import { LOOKUP } from './library-lookup.mjs'
 
 const MODRINTH_API = 'https://api.modrinth.com/v2'
 const UA = 'quest-i18n-index/0.1.0 (submit worker)'
@@ -184,6 +195,38 @@ async function handleSubmit(request, env, origin) {
   const now = new Date().toISOString()
   const existing = await readEntry(env, target.id)
 
+  // 身份与库内版本（build-identity 快照）：不在任何归并组 → slug 自成一组；
+  // 库里没有该 slug → currentVersion 为 null。
+  const groupId = LOOKUP.groupBySlug[target.id] ?? target.id
+  const currentVersion = LOOKUP.versionBySlug[target.id] ?? null
+  const inLibrary = currentVersion !== null
+
+  // 防滥用（方案 §3.6）：同 IP + 同 groupId 24 小时内只记一次新提交。
+  // 只拦「新增提交」——重复提交已入队的 id 本来就不登记，不必双重惩罚。
+  // 与限流同款口径：只存 IP 哈希；无 IP / 缺盐时降级为不去重。
+  let dedupKey = null
+  if (shouldCountSubmit(existing)) {
+    const { ip } = clientIp(request)
+    const salt = env.INTERNAL_STATUS_TOKEN
+    if (ip && salt) {
+      const hash = await sha256Hex(`${salt}|${ip}`)
+      dedupKey = submitDedupKey(hash, groupId)
+      if (await env.TRANSLATION_QUEUE.get(dedupKey)) {
+        return json(
+          {
+            error: '你（该网络）最近已提交过这个整合包，24 小时内无需重复提交。',
+            id: target.id,
+            groupId,
+            currentVersion,
+            inLibrary,
+          },
+          429,
+          origin,
+        )
+      }
+    }
+  }
+
   // 每 IP 每天「新增提交」限流：只统计新增（同一 id 已入队 → 重复提交不计数）。
   // 只存 IP 哈希（sha256(INTERNAL_STATUS_TOKEN + '|' + ip)），绝不存原始 IP；
   // 无 IP / 缺盐时降级为不限流。上限见 SUBMIT_LIMIT_PER_DAY，缺失/解析失败回退 3。
@@ -248,12 +291,27 @@ async function handleSubmit(request, env, origin) {
     remainingToday = Math.max(0, limitPerDay - nextUsed)
   }
 
+  // 防滥用去重标记：写在成功入队之后，24h TTL 到期自动清理
+  if (dedupKey) {
+    await env.TRANSLATION_QUEUE.put(dedupKey, '1', { expirationTtl: SUBMIT_DEDUP_TTL_SECONDS })
+  }
+
+  // 已在库（有补丁但不在当前队列）时玩家立刻能看到版本，不用等消费端判定
+  const message = existing
+    ? '该整合包已在翻译队列中，我们已更新你的请求。'
+    : inLibrary
+      ? `该包已在库，当前版本 ${currentVersion}；若源站有更新版本，会在下一轮消费时自动判定重翻。`
+      : '提交成功！我们会尽快处理你的请求。'
+
   return json(
     {
       success: true,
-      message: existing ? '该整合包已在翻译队列中，我们已更新你的请求。' : '提交成功！我们会尽快处理你的请求。',
+      message,
       id: entry.id,
       status: entry.status,
+      groupId,
+      currentVersion,
+      inLibrary,
       remainingToday,
     },
     200,
@@ -440,8 +498,15 @@ async function handleStatus(request, env, origin) {
     return json({ error: 'id 与 status 为必填' }, 400, origin)
   }
 
-  if (!STATUS_VALUES.includes(body.status)) {
-    return json({ error: `status 必须是 ${STATUS_VALUES.join(' / ')} 之一` }, 400, origin)
+  // 兼容两种写法：中文枚举值（站点文案）与流水线英文 kind（如 skipped-same-version）。
+  // 两者都打不中才 400，避免把无效状态静默吞掉。
+  let status = body.status
+  if (!STATUS_VALUES.includes(status)) {
+    try {
+      status = toStatusValue(status)
+    } catch {
+      return json({ error: `status 必须是 ${STATUS_VALUES.join(' / ')} 之一（或流水线英文 kind）` }, 400, origin)
+    }
   }
 
   const existing = await readEntry(env, body.id)
@@ -451,7 +516,7 @@ async function handleStatus(request, env, origin) {
 
   const entry = {
     ...existing,
-    status: body.status,
+    status,
     updatedAt: new Date().toISOString(),
     attempts: Number.isFinite(body.attempts) ? body.attempts : existing.attempts,
     error: typeof body.error === 'string' ? body.error.slice(0, 500) : existing.error,
@@ -463,6 +528,120 @@ async function handleStatus(request, env, origin) {
   await writeEntry(env, entry)
 
   return json({ success: true, id: entry.id, status: entry.status }, 200, origin)
+}
+
+// ---------- 管理区端点（口令鉴权，方案 §3.6） ----------
+
+/** Key 打码：只留后 4 位，前面用 •••• 占位；空值原样返回空串。 */
+export function maskKey(key) {
+  if (typeof key !== 'string' || !key) return ''
+  return `••••${key.slice(-4)}`
+}
+
+function requirePassphrase(request, env, origin) {
+  const verdict = verifyPassphrase(request.headers.get('X-Passphrase') || '', env.TRANSLATE_PASSPHRASE)
+  if (verdict === 'missing-config') {
+    return json({ error: '服务配置错误：缺少 TRANSLATE_PASSPHRASE' }, 500, origin)
+  }
+  if (verdict !== 'ok') return json({ error: '口令不正确' }, 401, origin)
+  return null
+}
+
+/**
+ * POST /admin/clear-records —— 清除队列记录（管理区「记录清除」，决策 #16）。
+ * body: { ids: [...] } 单选/多选，或 { all: true } 全选；二次确认由页面负责。
+ * 正在翻译的包不受影响是页面语义：翻译中的条目照常可勾选删除，但 CI 那边的产物
+ * 会照常推 farm/ci、publish 照常收割 —— 清除的只是队列里的登记。
+ */
+async function handleAdminClearRecords(request, env, origin) {
+  const denied = requirePassphrase(request, env, origin)
+  if (denied) return denied
+
+  const body = await request.json().catch(() => null)
+  if (!body || typeof body !== 'object') {
+    return json({ error: '请求体不是合法 JSON' }, 400, origin)
+  }
+
+  const index = await readIndex(env)
+  let targetIds
+  if (body.all === true) {
+    targetIds = [...index]
+  } else if (Array.isArray(body.ids)) {
+    targetIds = body.ids.filter((id) => typeof id === 'string' && id)
+    if (body.ids.length && !targetIds.length) {
+      return json({ error: 'ids 里没有合法的条目 id' }, 400, origin)
+    }
+  } else {
+    return json({ error: '需要 ids 数组或 all: true' }, 400, origin)
+  }
+
+  const inIndex = new Set(index)
+  const removed = targetIds.filter((id) => inIndex.has(id))
+  await Promise.all(removed.map((id) => env.TRANSLATION_QUEUE.delete(QUEUE_PREFIX + id)))
+  if (removed.length) {
+    await writeIndex(env, index.filter((id) => !removed.includes(id)))
+  }
+
+  return json({ success: true, removed, count: removed.length }, 200, origin)
+}
+
+const LLM_SETTINGS_KEY = 'llm-settings'
+
+/**
+ * GET/POST /admin/llm-settings —— 管理区「翻译设置」（决策 #15）。
+ * 存 KV（llm-settings）；GET 只回 baseUrl / model / 打码 Key，绝不回明文。
+ * 翻译侧从这里取用是后续工单的事；本端点只负责存取与打码。
+ */
+async function handleAdminLlmSettings(request, env, origin) {
+  const denied = requirePassphrase(request, env, origin)
+  if (denied) return denied
+
+  if (request.method === 'GET') {
+    const saved = await env.TRANSLATION_QUEUE.get(LLM_SETTINGS_KEY, 'json')
+    return json(
+      {
+        success: true,
+        settings: {
+          baseUrl: saved?.baseUrl ?? env.LLM_BASE_URL ?? DEFAULT_LLM_BASE_URL,
+          model: saved?.model ?? '',
+          keyMasked: maskKey(saved?.key),
+          updatedAt: saved?.updatedAt ?? null,
+        },
+      },
+      200,
+      origin,
+    )
+  }
+
+  const body = await request.json().catch(() => null)
+  if (!body || typeof body !== 'object') {
+    return json({ error: '请求体不是合法 JSON' }, 400, origin)
+  }
+  const baseUrl = typeof body.baseUrl === 'string' ? body.baseUrl.trim() : ''
+  const model = typeof body.model === 'string' ? body.model.trim() : ''
+  const key = typeof body.key === 'string' ? body.key.trim() : ''
+  if (!baseUrl && !model && !key) {
+    return json({ error: '至少填写一项（供应商地址 / Key / 模型名）' }, 400, origin)
+  }
+
+  const saved = (await env.TRANSLATION_QUEUE.get(LLM_SETTINGS_KEY, 'json')) ?? {}
+  const next = {
+    baseUrl: baseUrl || saved.baseUrl || '',
+    model: model || saved.model || '',
+    // 留空 = 沿用旧 Key（页面上 Key 显示打码值，误提交打码串不会覆盖真 Key）
+    key: key && !key.startsWith('••••') ? key : (saved.key ?? ''),
+    updatedAt: new Date().toISOString(),
+  }
+  await env.TRANSLATION_QUEUE.put(LLM_SETTINGS_KEY, JSON.stringify(next))
+
+  return json(
+    {
+      success: true,
+      settings: { baseUrl: next.baseUrl, model: next.model, keyMasked: maskKey(next.key), updatedAt: next.updatedAt },
+    },
+    200,
+    origin,
+  )
 }
 
 // ---------- 入口 ----------
@@ -518,6 +697,16 @@ export default {
       if (pathname === '/translate') {
         if (request.method !== 'POST') return json({ error: 'Method not allowed' }, 405, origin)
         return await handleTranslate(request, env, origin)
+      }
+
+      if (pathname === '/admin/clear-records') {
+        if (request.method !== 'POST') return json({ error: 'Method not allowed' }, 405, origin)
+        return await handleAdminClearRecords(request, env, origin)
+      }
+
+      if (pathname === '/admin/llm-settings') {
+        if (request.method !== 'GET' && request.method !== 'POST') return json({ error: 'Method not allowed' }, 405, origin)
+        return await handleAdminLlmSettings(request, env, origin)
       }
 
       return json({ error: 'Not found' }, 404, origin)

@@ -13,6 +13,20 @@
 export const DEFAULT_SUBMIT_LIMIT_PER_DAY = 3
 export const SUBMIT_LIMIT_TTL_SECONDS = 172800 // 2 天，覆盖跨天窗口，到期自动清理
 
+/** 同 IP + 同 groupId 24 小时内只记一次新提交（防滥用，方案 §3.6）。 */
+export const SUBMIT_DEDUP_TTL_SECONDS = 86400
+
+/**
+ * 防滥用去重键：submit:dedup:<ip哈希>:<groupId>，带 24h TTL 到期自动清理。
+ * @param {string} hash IP 哈希（sha256(盐|ip)，绝不存原始 IP）
+ * @param {string} groupId 身份组 id（无组时即 slug）
+ * @returns {string}
+ */
+export function submitDedupKey(hash, groupId) {
+  if (!hash || !groupId) throw new TypeError('submitDedupKey: hash 与 groupId 均为必填')
+  return `submit:dedup:${hash}:${groupId}`
+}
+
 /**
  * 解析 SUBMIT_LIMIT_PER_DAY 配置。
  * 缺失 / 空串 / 非正整数（含 NaN、小数、负数、0）→ 回退默认 3。
