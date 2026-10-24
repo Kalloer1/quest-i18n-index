@@ -1,0 +1,397 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "how_to_create"
+	group: ""
+	icon: "create:mechanical_mixer"
+	id: "0FDF65BE122C0FA8"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			id: "01CAED0A03EE09BA"
+			rewards: [
+				{
+					count: 64
+					id: "35FF652B599EE2E9"
+					item: "create:andesite_alloy"
+					type: "item"
+				}
+				{
+					command: "/say Tip: Look Andesite Alloy up in JEI for more efficient ways to craft it."
+					exclude_from_claim_all: true
+					id: "43FF79C556AEB34B"
+					team_reward: false
+					type: "command"
+				}
+			]
+			subtitle: "安山合金是大多数机器所必需的。制作点东西吧"
+			tasks: [{
+				id: "072272F2434B7BC7"
+				item: "create:andesite_alloy"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["01CAED0A03EE09BA"]
+			id: "544E14518F1E6193"
+			rewards: [
+				{
+					count: 32
+					id: "170027A01DC48E3B"
+					item: "create:shaft"
+					type: "item"
+				}
+				{
+					command: "/say Shafts can also be produced more efficiently."
+					id: "763B8D7AA7C1F1F2"
+					type: "command"
+				}
+			]
+			subtitle: "Shafts 用于传递旋转能量（RPM）。"
+			tasks: [{
+				id: "12E89FF7F47E709C"
+				item: "create:shaft"
+				type: "item"
+			}]
+			x: 1.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["544E14518F1E6193"]
+			id: "322C05C587C13369"
+			rewards: [{
+				count: 32
+				id: "3435985BF8EB3B10"
+				item: "create:cogwheel"
+				type: "item"
+			}]
+			tasks: [{
+				id: "176F0288D289779E"
+				item: "create:cogwheel"
+				type: "item"
+			}]
+			x: 3.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["322C05C587C13369"]
+			id: "31B6D7367B458ED5"
+			rewards: [{
+				count: 64
+				id: "7C1FFF13FACAD897"
+				item: "minecraft:spruce_log"
+				type: "item"
+			}]
+			subtitle: "手摇发电机是最基本的能量生成方式。"
+			tasks: [{
+				id: "6E1134E05AEBB1A1"
+				item: "create:hand_crank"
+				type: "item"
+			}]
+			x: 3.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["31B6D7367B458ED5"]
+			id: "592D56393B8B9C79"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "653769FB3ED4C39F"
+				table_id: 3352417909378155382L
+				type: "choice"
+			}]
+			subtitle: "水轮将是你在很长一段时间内获取应力单位（SU）的主要来源。较大的水轮能产生更多能量，所以请使用较大的。"
+			tasks: [{
+				id: "503E0080FA4C7ABC"
+				item: "create:water_wheel"
+				type: "item"
+			}]
+			title: "自动化电力！"
+			x: 4.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["592D56393B8B9C79"]
+			id: "6298F3B7B229B057"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "36E9322E76F93423"
+				table_id: 3352417909378155382L
+				type: "choice"
+			}]
+			subtitle: "如果你没听懂：用。大。的。那。些。"
+			tasks: [{
+				id: "4E0261009789421A"
+				item: "create:large_water_wheel"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["6298F3B7B229B057"]
+			dependency_requirement: "one_completed"
+			id: "53C2695D1466EA79"
+			rewards: [{
+				count: 16
+				id: "6F31F41485D77040"
+				item: "minecraft:white_wool"
+				type: "item"
+			}]
+			subtitle: "风车能产生更多的SU，但价格更贵。"
+			tasks: [
+				{
+					id: "54209DE7D9DAC47E"
+					item: "create:windmill_bearing"
+					type: "item"
+				}
+				{
+					id: "4C366B2773E2EE3E"
+					item: "create:white_sail"
+					type: "item"
+				}
+			]
+			title: "风车"
+			x: 7.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["6298F3B7B229B057"]
+			icon: "create:steam_engine"
+			id: "1BF14C0A9C5945B0"
+			rewards: [{
+				count: 64
+				id: "2FED28248BFBDAF6"
+				item: "minecraft:copper_ingot"
+				random_bonus: 32
+				type: "item"
+			}]
+			subtitle: "蒸汽动力是创造模式获取SU的最佳方式，不过石油要优于它很多。"
+			tasks: [
+				{
+					count: 2L
+					id: "2C85FECA692578AF"
+					item: "create:steam_engine"
+					type: "item"
+				}
+				{
+					count: 16L
+					id: "6664FD945CDA6424"
+					item: "create:fluid_tank"
+					type: "item"
+				}
+				{
+					id: "0D52902902CB7B39"
+					item: "create:blaze_burner"
+					type: "item"
+				}
+				{
+					amount: 1000L
+					fluid: "minecraft:water"
+					id: "4EC138DDDDC0DFB2"
+					type: "fluid"
+				}
+			]
+			title: "蒸汽动力"
+			x: 7.5d
+			y: 5.5d
+		}
+		{
+			dependencies: ["6298F3B7B229B057"]
+			icon: "tfmg:crude_oil_bucket"
+			id: "27B34C555E40AAB6"
+			rewards: [{
+				id: "1B7B9C2456FF3FB6"
+				type: "xp"
+				xp: 10
+			}]
+			subtitle: "虽然石油是获取SU的最佳途径，但这需要一套运转良好的石油生产系统。请在“创造：工厂必须成长”系列任务中学习如何做到这一点。"
+			tasks: [{
+				id: "7E907EDEAE7D8B93"
+				type: "checkmark"
+			}]
+			title: "石油"
+			x: 7.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["322C05C587C13369"]
+			id: "67CACAA37E8C285B"
+			rewards: [{
+				count: 16
+				id: "0A63F802694ED394"
+				item: "minecraft:dried_kelp"
+				type: "item"
+			}]
+			subtitle: "传送带可用于物品运输，也可用于传递旋转能量。"
+			tasks: [{
+				id: "6F6847C353437564"
+				item: "create:belt_connector"
+				type: "item"
+			}]
+			x: 4.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["592D56393B8B9C79"]
+			icon: "create:cogwheel"
+			id: "4A939C6E39F39DBC"
+			rewards: [
+				{
+					id: "1995B29557D51678"
+					item: "create:andesite_casing"
+					type: "item"
+				}
+				{
+					count: 8
+					id: "725B7779BF86550B"
+					item: "create:large_cogwheel"
+					type: "item"
+				}
+				{
+					count: 8
+					id: "203F204C41AC0C20"
+					item: "create:cogwheel"
+					type: "item"
+				}
+			]
+			subtitle: "使用齿轮比可以让机器运行得更快，但这需要更多的SU。要建造一个，请在Youtube上搜索或在服务器上询问他人。"
+			tasks: [
+				{
+					advancement: "create:shifting_gears"
+					criterion: ""
+					id: "3E7F46DDF894256A"
+					type: "advancement"
+				}
+				{
+					id: "4811B11E900684AE"
+					item: "create:large_cogwheel"
+					type: "item"
+				}
+				{
+					id: "6397D0D00508178E"
+					item: "create:cogwheel"
+					type: "item"
+				}
+			]
+			title: "再快点！"
+			x: 4.5d
+			y: 5.5d
+		}
+		{
+			dependencies: ["4A939C6E39F39DBC"]
+			id: "6932FD1D4633DCFA"
+			subtitle: "价格便宜多了，而且工作量也小得多。"
+			tasks: [{
+				advancement: "create:speed_controller"
+				criterion: ""
+				id: "22C4C6BC79294787"
+				type: "advancement"
+			}]
+			title: "这算是作弊了吧，不是吗？"
+			x: 4.5d
+			y: 7.0d
+		}
+		{
+			dependencies: ["67CACAA37E8C285B"]
+			icon: "tfmg:steel_encased_large_aluminum_cogwheel"
+			id: "4932A239670C2A4B"
+			rewards: [{
+				count: 4
+				id: "6B010A58CB97D574"
+				item: "create:andesite_casing"
+				type: "item"
+			}]
+			subtitle: "有许多不同类型的机器。一起来看看吧！"
+			tasks: [{
+				id: "5FA73D31909F120D"
+				title: "机器种类"
+				type: "checkmark"
+			}]
+			x: 6.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["4932A239670C2A4B"]
+			icon: "createcasing:brass_press"
+			id: "650FE56BB07D1A04"
+			rewards: [{
+				count: 4
+				id: "65B537088A1BA52B"
+				item: "create:andesite_casing"
+				type: "item"
+			}]
+			subtitle: "学习所有关于制造物品的机器知识。不包括流体处理。"
+			tasks: [{
+				id: "6BD8F98D8169B903"
+				type: "checkmark"
+			}]
+			title: "合成过程"
+			x: 7.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["4932A239670C2A4B"]
+			icon: "create:fluid_tank"
+			id: "628CBAC525104E4B"
+			rewards: [{
+				count: 8
+				id: "382A28282CF14168"
+				item: "create:copper_casing"
+				type: "item"
+			}]
+			subtitle: "流体可能很难操作。在这里学习如何操作它们。"
+			tasks: [{
+				id: "69D37048F931DBF4"
+				title: "与液体打交道的工作坊任务书"
+				type: "checkmark"
+			}]
+			title: "与流体打交道"
+			x: 7.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["4932A239670C2A4B"]
+			icon: "minecraft:minecart"
+			id: "332D7062C1610D7B"
+			rewards: [{
+				count: 8
+				id: "061B67830E38F655"
+				item: "minecraft:iron_ingot"
+				type: "item"
+			}]
+			subtitle: "Create 提供了许多以非常规方式移动玩家、机器或物品的选项。这里将全部进行说明。"
+			tasks: [{
+				id: "39D771B1F1C8BBCA"
+				title: "会移动的物体 (Moving Objects)"
+				type: "checkmark"
+			}]
+			title: "移动物品"
+			x: 7.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["67CACAA37E8C285B"]
+			icon: "create:item_vault"
+			id: "54656E20A5379F32"
+			rewards: [{
+				id: "7313D83CCA2285A6"
+				type: "xp"
+				xp: 10
+			}]
+			subtitle: "物品增多，储物需求也随之产生。从背包到巨型桶，一切都会在这里得到解释。"
+			tasks: [{
+				id: "4AAC685BF166C819"
+				title: "储物空间"
+				type: "checkmark"
+			}]
+			x: 6.0d
+			y: -3.0d
+		}
+	]
+	title: "方法：如何创建"
+}
