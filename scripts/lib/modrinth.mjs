@@ -44,7 +44,7 @@ export function modrinthProjectUrl(slugOrId) {
  *
  * @param {string} slug
  * @param {{fetchImpl?: typeof fetch, userAgent?: string}} [options]
- * @returns {Promise<{url: string, fileName: string, fileLength: number|null, versionNumber: string|null, fileId: null, fileDate: string|null}>}
+ * @returns {Promise<{url: string, fileName: string, fileLength: number|null, versionNumber: string|null, fileId: null, fileDate: string|null, sha1: string|null}>}
  */
 export async function resolveLatestMrpack(slug, { fetchImpl = fetch, userAgent = MR_USER_AGENT } = {}) {
   const res = await fetchImpl(modrinthProjectUrl(slug), {
@@ -79,6 +79,11 @@ export async function resolveLatestMrpack(slug, { fetchImpl = fetch, userAgent =
     fileId: null,
     fileDate: typeof latest?.date_published === 'string' && latest.date_published.trim()
       ? latest.date_published.trim()
+      : null,
+    // 文件哈希（下载侧校验用）：只透传 sha1（40 位十六进制），大小写归一。
+    // 拿不到就 null，调用方据此跳过校验 —— 不猜替代字段。
+    sha1: typeof mrpack.hashes?.sha1 === 'string' && /^[0-9a-f]{40}$/i.test(mrpack.hashes.sha1)
+      ? mrpack.hashes.sha1.toLowerCase()
       : null,
   }
 }

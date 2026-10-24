@@ -25,6 +25,7 @@ import { mkdtempSync, rmSync, existsSync, readFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { deflateRawSync } from 'node:zlib'
+import { createHash } from 'node:crypto'
 import {
   resolveLatestMrpack, modrinthProjectUrl, MR_USER_AGENT, MR_API_BASE,
 } from './lib/modrinth.mjs'
@@ -84,12 +85,12 @@ const VERSION_URL = 'https://cdn.modrinth.com/data/shFhR8Vx/versions/abc/bmc2.mr
 /** Modrinth 版本列表的真实响应形状（只保留本模块用到的字段）。 */
 function versionBody({
   fileName = 'bmc2.mrpack', size = 65536000, versionNumber = '2.1.0',
-  url = VERSION_URL, versions = 1,
+  url = VERSION_URL, versions = 1, sha1,
 } = {}) {
   const one = {
     id: 'abc',
     version_number: versionNumber,
-    files: [{ url, filename: fileName, size, primary: true }],
+    files: [{ url, filename: fileName, size, primary: true, ...(sha1 ? { hashes: { sha1 } } : {}) }],
   }
   return Array.from({ length: versions }, (_, i) => (i === 0 ? one : { ...one, id: `v${i}`, version_number: `0.${i}` }))
 }
@@ -174,6 +175,57 @@ test('resolveLatestMrpack：版本里没有 .mrpack 文件时明确报错（不�
     () => resolveLatestMrpack('zip-only', { fetchImpl: stubFetch({ body }) }),
     /没有 \.mrpack/,
   )
+})
+
+test('resolveLatestMrpack：文件 hashes 里的 sha1 原样带回；没有则为 null', async () => {
+  const file = await resolveLatestMrpack('x', {
+    fetchImpl: stubFetch({ body: versionBody({ sha1: 'aabb'.repeat(10) }) }),
+  })
+  assert.equal(file.sha1, 'aabb'.repeat(10))
+  const none = await resolveLatestMrpack('x', { fetchImpl: stubFetch({}) })
+  assert.equal(none.sha1, null)
+})
+
+// ---------- 下载侧 sha1 校验 ----------
+// 2026-10-25 实测：fresh-adventures-2 官方包损坏（zip 中央目录错位），但下载路
+// 没有任何校验，静默把坏字节当成功 —— 靠人工比对 sha1 才发现。元数据带 sha1
+//（Modrinth 的版本文件带）就必须校验，不匹配拒收；CF 元数据不带 sha1，保持原行为。
+
+const MRPACK_SHA1 = createHash('sha1').update(MRPACK).digest('hex')
+
+test('preparePack(mr)：下载字节与元数据 sha1 不匹配 → 报错拒收，不落盘', async () => {
+  const dirs = tempDirs()
+  try {
+    await assert.rejects(
+      () => preparePack({
+        slug: 'sha-bad', platform: 'mr', keepZip: false,
+        packsDir: dirs.packsDir, tmpDir: dirs.tmpDir,
+        fetchImpl: stubFetch({ body: versionBody({ sha1: 'dead'.repeat(10) }) }),
+      }),
+      /sha1.*不匹配|不匹配.*sha1/,
+    )
+    assert.ok(!existsSync(join(dirs.packsDir, 'sha-bad')), '拒收就不该落盘任何文件')
+  } finally { dirs.cleanup() }
+})
+
+test('preparePack(mr)：sha1 匹配时正常解包；元数据不带 sha1 时保持原行为', async () => {
+  const dirs = tempDirs()
+  try {
+    const r1 = await preparePack({
+      slug: 'sha-ok', platform: 'mr', keepZip: false,
+      packsDir: dirs.packsDir, tmpDir: dirs.tmpDir,
+      fetchImpl: stubFetch({ body: versionBody({ sha1: MRPACK_SHA1 }) }),
+    })
+    assert.equal(r1.status, 'prepared')
+    assert.ok(existsSync(join(dirs.packsDir, 'sha-ok', 'config/ftbquests/quests/lang/en_us.snbt')))
+    // 不带 sha1（CF 元数据、或老版本 Modrinth 响应）：不校验，行为与从前一致。
+    const r2 = await preparePack({
+      slug: 'sha-none', platform: 'mr', keepZip: false,
+      packsDir: dirs.packsDir, tmpDir: dirs.tmpDir,
+      fetchImpl: stubFetch({}),
+    })
+    assert.equal(r2.status, 'prepared')
+  } finally { dirs.cleanup() }
 })
 
 // ---------- preparePack 走 Modrinth ----------

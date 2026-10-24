@@ -48,6 +48,7 @@
  *   CF_KEY   CurseForge API key（仅 cf 来源需要；缺失时明确失败，不静默跳过）
  */
 import { existsSync, mkdirSync, readFileSync, readdirSync, rmdirSync, rmSync, statSync, writeFileSync } from 'node:fs'
+import { createHash } from 'node:crypto'
 import { fileURLToPath } from 'node:url'
 import { dirname, join, relative } from 'node:path'
 import { extractFromBuffer, isQuestFile, toOutputPath } from './extract-pack.mjs'
@@ -512,6 +513,18 @@ export async function preparePack({
   const res = await fetchImpl(file.url)
   if (!res.ok) throw new Error(`下载整合包 HTTP ${res.status}`)
   const buf = Buffer.from(await res.arrayBuffer())
+
+  // 下载侧校验：元数据带 sha1（Modrinth 的版本文件带）就必须匹配，不匹配拒收。
+  // 为什么：2026-10-25 实测 fresh-adventures-2 官方包本身损坏（zip 中央目录错位），
+  // 但下载路没有任何校验，静默把坏字节当成功 —— 靠人工比对 sha1 才发现。
+  // CF 元数据不带 sha1（file.sha1 为 null）时保持原行为，不校验。
+  if (file.sha1) {
+    const actual = createHash('sha1').update(buf).digest('hex')
+    if (actual !== file.sha1) {
+      throw new Error(`下载校验失败：sha1 不匹配（期望 ${file.sha1}，实际 ${actual}），拒收：${file.fileName}`)
+    }
+    log(`[${slug}] sha1 校验通过：${file.fileName}`)
+  }
 
   // 留一份 zip 在 research/tmp/（已 gitignore），便于复现；不参与提交。
   //
