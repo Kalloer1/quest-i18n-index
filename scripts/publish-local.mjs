@@ -35,6 +35,7 @@ import { execFileSync } from 'node:child_process'
 import { existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { checkPublishCounts } from './lib/publish-check.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const DIR = join(ROOT, 'research/tmp/publish')
@@ -305,6 +306,36 @@ for (const [h, items] of Object.entries(perBranch)) {
   }
 }
 console.log(`已检出 ${checkedOut} 个包（补丁 + 基准源）${lost.length ? `，失败 ${lost.length} 个` : ''}`)
+
+// ---------- 3.5 发布自检：计划文件数 vs 分支树文件数 ----------
+// 上次发布 166 个 .snbt 被 rename 检测静默吃掉，checkout 只还原一部分，闸门报
+// 「缺 N 个键」却看不出是计划漏捞。这里从另一个方向兜底：对计划里每个包，分支
+// diff 给出的 .snbt 数必须 ≥ 分支树上实际存在的 .snbt 数 —— 树上更多就是计划
+// 漏了文件，收集齐一次报错（每 slug 一次 git 太慢，按分支一次 ls-tree 拉全量再本地过滤）。
+// 树上不多于计划不算错：patchPaths 只含有差异的文件，没变的自然少。
+step('3.5', '发布自检（计划 vs 分支树）')
+{
+  const branches = [...new Set(Object.values(plan.bySlug).map((it) => it.branch))]
+  const treeByBranch = {}
+  for (const h of branches) {
+    const out = git(['-c', 'core.quotePath=false', 'ls-tree', '-r', '--name-only',
+      `origin/farm/${h}`, '--', 'patches/'], { quiet: true })
+    treeByBranch[h] = out.split('\n').filter(Boolean)
+  }
+  const bad = checkPublishCounts(plan.bySlug, treeByBranch)
+  if (bad.length) {
+    console.error(`\n✘ 发布自检失败：${bad.length} 个包分支树上的 .snbt 比计划多 —— 计划漏捞了文件，合并会静默丢它们：`)
+    for (const { slug, branch, expected, actual } of bad) {
+      const planned = new Set(plan.bySlug[slug].patchPaths)
+      const extra = treeByBranch[branch]
+        .filter((p) => p.startsWith(`patches/${slug}/`) && p.endsWith('.snbt') && !planned.has(p))
+      console.error(`  ${slug}（farm/${branch}）：计划 ${expected} / 树上 ${actual}，未入计划：${extra.slice(0, 5).join(', ')}${extra.length > 5 ? ` …共 ${extra.length} 个` : ''}`)
+    }
+    console.error('多为 rename 检测又把新增文件配成 R：确认 diff 取数带 --no-renames 后重跑。')
+    process.exit(1)
+  }
+  console.log(`自检通过：${Object.keys(plan.bySlug).length} 个包文件数一致`)
+}
 
 // ---------- 4. 布局趟 ----------
 step(4, 'build-index（布局趟）')

@@ -130,7 +130,9 @@ export const PACK_STATES = Object.freeze([
   'native-zh',     // 自带中文：整合包自身已带中文译文
   'gap-uncovered', // 待翻译·无人覆盖：有英文源，本站未翻，社区也没有
   'gap-covered',   // 待翻译·社区已覆盖：有英文源，本站未翻，VM 或 CFPA 已有
-  'embedded',      // 内嵌不可做：文本混在 chapters/*.snbt，该版本 FTB Quests 无翻译系统
+  'embedded',      // 内嵌未交付：该包布局为内嵌且尚未交付。未交付的真实原因各异（多数是
+                   // 翻译时判定「没有可译文本」——任务书只有 tasks/rewards/icon 等机械字段），
+                   // **不是**内嵌布局本身不可翻：内嵌包已用覆盖式补丁交付了 1121 个
   'no-quests',     // 无任务书：不含 FTB Quests
 ])
 
