@@ -1,0 +1,511 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "abysall_chasm"
+	group: "4AC86061670BBAF5"
+	icon: "alexscaves:gazing_pearl"
+	id: "5AF8200FA2DE9D9B"
+	images: [
+		{
+			height: 3.0d
+			image: "alexscaves:textures/gui/book/abyssal_chapter.png"
+			rotation: 0.0d
+			width: 3.0d
+			x: -4.5d
+			y: 2.5d
+		}
+		{
+			height: 4.0d
+			image: "alexscaves:textures/misc/advancement/abyssal_midground.png"
+			rotation: 0.0d
+			width: 4.0d
+			x: 4.0d
+			y: 8.0d
+		}
+		{
+			height: 1.0d
+			image: "alexscaves:textures/mob_effect/bubbled.png"
+			rotation: 0.0d
+			width: 1.0d
+			x: 3.5d
+			y: -0.5d
+		}
+		{
+			height: 1.0d
+			image: "alexscaves:block/twilight_anemone_tentacles"
+			rotation: 0.0d
+			width: 1.0d
+			x: -3.5d
+			y: 7.0d
+		}
+		{
+			height: 1.0d
+			image: "alexscaves:block/abyssmarine"
+			rotation: 0.0d
+			width: 1.0d
+			x: -3.5d
+			y: 7.5d
+		}
+	]
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["一本记载着深渊奇境奥秘的古老书籍。你需要它。"]
+			id: "1C3017B688101DD1"
+			shape: "hexagon"
+			size: 2.0d
+			tasks: [{
+				id: "1019042763A3988F"
+				item: {
+					Count: 1
+					id: "alexscaves:cave_codex"
+					tag: {
+						CaveBiome: "alexscaves:abyssal_chasm"
+					}
+				}
+				type: "item"
+			}]
+			x: -3.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["1C3017B688101DD1"]
+			description: ["一张详细的海底地图，显示着沉没的诡异区域。能帮你避免永远迷失方向。"]
+			id: "5655A87F7CB82347"
+			tasks: [{
+				id: "45204E99AA6F09E6"
+				item: {
+					Count: 1
+					id: "alexscaves:cave_map"
+					tag: {
+						BiomeTargetResourceKey: "alexscaves:abyssal_chasm"
+					}
+				}
+				type: "item"
+			}]
+			x: 0.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["5655A87F7CB82347"]
+			description: [
+				"&1击败深渊裂谷的传奇守护者&f。一个不会轻易倒下的巨型敌人。"
+				""
+				"可在深渊的任何地方生成。"
+			]
+			id: "7A6AEB79DFEBFB0C"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "21DF3D15DCDED7A8"
+				table_id: 1476461785094045752L
+				type: "random"
+			}]
+			shape: "hexagon"
+			size: 2.0d
+			tasks: [{
+				entity: "alexscaves:hullbreaker"
+				id: "0BCFD5E93E53BDC1"
+				type: "kill"
+				value: 1L
+			}]
+			x: -1.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["7A6AEB79DFEBFB0C"]
+			description: ["来自深海的奇怪机器核心。用于为潜艇提供动力。"]
+			id: "6BDC15B42228D6F3"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "11959A5284C07BAD"
+				table_id: 1476461785094045752L
+				type: "random"
+			}]
+			size: 1.0d
+			tasks: [{
+				id: "114359488A2DB27F"
+				item: "alexscaves:enigmatic_engine"
+				type: "item"
+			}]
+			x: -1.0d
+			y: 5.0d
+		}
+		{
+			dependencies: ["7A6AEB79DFEBFB0C"]
+			description: ["在深渊中由&1Hullbreaker&f掉落的一种脉动着的、来自异世界的生物。"]
+			id: "22E5DE9A70BFDFE4"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "3DDE79BE1DCBDDDC"
+				table_id: 1476461785094045752L
+				type: "random"
+			}]
+			tasks: [{
+				id: "1C2488C80C558F7D"
+				item: "alexscaves:immortal_embryo"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["6C1F5E9FB8F83DA7"]
+			description: ["穿戴全套潜水服即可获得。欢迎来到深海，船长。"]
+			id: "330990D91B2BE66D"
+			optional: true
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "571547F1ADC0523D"
+				table_id: 1476461785094045752L
+				type: "random"
+			}]
+			tasks: [{
+				advancement: "alexscaves:alexscaves/diving_armor"
+				criterion: ""
+				id: "1EFBE055F04B9C2C"
+				type: "advancement"
+			}]
+			x: 4.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["5655A87F7CB82347"]
+			id: "081AC727C8CB2190"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "0485AA13A87A3812"
+				table_id: 1476461785094045752L
+				type: "random"
+			}]
+			tasks: [{
+				advancement: "alexscaves:alexscaves/pearl_on_abyssal_altar"
+				criterion: ""
+				id: "65188FAF442490F9"
+				type: "advancement"
+			}]
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["081AC727C8CB2190"]
+			id: "7F1FAF643209DD4D"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "62A673D9B0649E02"
+				table_id: 1476461785094045752L
+				type: "random"
+			}]
+			tasks: [{
+				advancement: "alexscaves:alexscaves/trade_with_deep_one"
+				criterion: ""
+				id: "5C71CE26A8B36722"
+				type: "advancement"
+			}]
+			x: 1.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["7F1FAF643209DD4D"]
+			id: "439F1A21D078AFF6"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "39FCE1FD0BBBE932"
+				table_id: 1476461785094045752L
+				type: "random"
+			}]
+			tasks: [{
+				advancement: "alexscaves:alexscaves/deep_ones_become_neutral"
+				criterion: ""
+				id: "5E3A5F5CAE614962"
+				type: "advancement"
+			}]
+			x: 3.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["439F1A21D078AFF6"]
+			id: "516CFBEB8CD9A0B6"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7CDCD7901D809043"
+				table_id: 1476461785094045752L
+				type: "random"
+			}]
+			shape: "hexagon"
+			size: 2.0d
+			tasks: [{
+				advancement: "alexscaves:alexscaves/deep_ones_become_helpful"
+				criterion: ""
+				id: "4906432076C30BEE"
+				type: "advancement"
+			}]
+			x: 3.0d
+			y: 5.0d
+		}
+		{
+			dependencies: ["5655A87F7CB82347"]
+			description: ["一根充满海洋能量的神秘法杖。可发射追踪目标生物的水弹。"]
+			id: "01612DA4BB9479CE"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "084A1D376568D9D5"
+				table_id: 1476461785094045752L
+				type: "random"
+			}]
+			tasks: [{
+				id: "0EB805BCE299074B"
+				item: {
+					Count: 1
+					id: "alexscaves:sea_staff"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 2.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["5655A87F7CB82347"]
+			description: [
+				"一种远程水下标枪发射器。锋利、安静、精准——深海猎人的理想之选。"
+				""
+				"给予玩家一个类似冲刺的攻击。"
+			]
+			id: "65313123CE8C18AB"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "0134F83C25639392"
+				table_id: 1476461785094045752L
+				type: "random"
+			}]
+			tasks: [{
+				id: "31F95CA0D60A8538"
+				item: {
+					Count: 1
+					id: "alexscaves:ortholance"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 1.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["5655A87F7CB82347"]
+			description: [
+				"如果海螺在充满能量的状态下被释放，附近将有三只深海怪、两只深海骑士和一只深海法师伴随着巨大的水花从地面升起。"
+				""
+				"这些被召唤的盟友将永远帮助召唤者，即使召唤者在深海者中的声望不佳。它们会跟随召唤者，保持在30至12格内，可以通过直接攻击来命令它们攻击其他玩家或生物，并且会反击任何伤害召唤者的敌人（驯养的动物除外）。"
+			]
+			id: "64B856D26E1B0289"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "5157BAE21D2DC9B0"
+				table_id: 1476461785094045752L
+				type: "random"
+			}]
+			tasks: [{
+				id: "6EA7543097F74A7F"
+				item: {
+					Count: 1
+					id: "alexscaves:magic_conch"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: -1.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["5655A87F7CB82347"]
+			description: ["凝视珍珠会根据深海者与持有珍珠的玩家之间的声望，改变其颜色并在物品提示中显示神秘信息。如果凝视珍珠从未被玩家持有过，它将持续在彩虹的颜色中变化和转换。"]
+			id: "11DE17E8D9768C0C"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "5DF559C9B7FC8648"
+				table_id: 1476461785094045752L
+				type: "random"
+			}]
+			tasks: [{
+				id: "0F51D1887BEA03F3"
+				item: "alexscaves:gazing_pearl"
+				type: "item"
+			}]
+			x: -2.0d
+			y: -0.5d
+		}
+		{
+			dependencies: [
+				"65313123CE8C18AB"
+				"01612DA4BB9479CE"
+				"64B856D26E1B0289"
+				"11DE17E8D9768C0C"
+			]
+			description: ["因挥舞4件海洋物品而获得。你现在能号令远古的力量了。"]
+			id: "5A2623428A1AF80D"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "33159D238077020D"
+				table_id: 1476461785094045752L
+				type: "random"
+			}]
+			tasks: [{
+				advancement: "alexscaves:alexscaves/deep_one_items"
+				criterion: ""
+				id: "030FE6B1395C29ED"
+				type: "advancement"
+			}]
+			x: 0.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["1BE9A97A67D61EA6"]
+			description: ["一种基础的水下投射物——速度快、声音大，能有效对付敌对海洋生物。"]
+			id: "35FA0C8B112204CB"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "3AE5E430DE68589C"
+				table_id: 1476461785094045752L
+				type: "random"
+			}]
+			tasks: [{
+				id: "5515F95F04BD7965"
+				item: "alexscaves_torpedoes:torpedo"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 5.5d
+		}
+		{
+			dependencies: ["1BE9A97A67D61EA6"]
+			description: ["一枚由核能驱动的毁灭性鱼雷。仅在万不得已时使用。"]
+			id: "03F0EE67C025FA40"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "6407C265137CCD6B"
+				table_id: 1476461785094045752L
+				type: "random"
+			}]
+			tasks: [{
+				id: "6B263441618358E1"
+				item: "alexscaves_torpedoes:torpedo_nuclear"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 7.0d
+		}
+		{
+			dependencies: ["1BE9A97A67D61EA6"]
+			description: ["一种能发出能量脉冲的高科技鱼雷。以炫酷的方式干扰并瘫痪敌人。"]
+			id: "4BC8AAC54A7CC1DD"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7690BC9F6C0CE606"
+				table_id: 1476461785094045752L
+				type: "random"
+			}]
+			tasks: [{
+				id: "3D40D7D16F6CFCA3"
+				item: "alexscaves_torpedoes:torpedo_pulsar"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 8.5d
+		}
+		{
+			dependencies: ["6BDC15B42228D6F3"]
+			description: ["是时候当探险家了。建造自己的潜水艇，探索得更深、更安全、更酷。"]
+			id: "1BE9A97A67D61EA6"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "325A3501307C9A0C"
+				table_id: 1476461785094045752L
+				type: "random"
+			}]
+			shape: "hexagon"
+			size: 2.0d
+			tasks: [{
+				advancement: "alexscaves:alexscaves/ride_submarine"
+				criterion: ""
+				id: "3B8D942E26FCB50A"
+				type: "advancement"
+			}]
+			x: -1.0d
+			y: 7.0d
+		}
+		{
+			dependencies: ["5655A87F7CB82347"]
+			description: [
+				"深渊裂隙中偶尔会生成深渊遗迹，其中的宝箱有2.2%的几率包含潜水头盔、潜水胸甲、潜水护腿或潜水靴。"
+				""
+				"在深渊裂缝中生成的溺尸有一定概率携带任何潜水装备部件。被玩家杀死时，它们有小概率掉落这些护甲。掉落的潜水装备部件耐久度从0到满不等。"
+			]
+			id: "6C1F5E9FB8F83DA7"
+			optional: true
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "497EBFD593934E04"
+				table_id: 1476461785094045752L
+				type: "random"
+			}]
+			tasks: [
+				{
+					id: "44AF74D0CB53BDD0"
+					item: {
+						Count: 1
+						id: "alexscaves:diving_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "644C924ABBD3F8DB"
+					item: {
+						Count: 1
+						id: "alexscaves:diving_chestplate"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "3DF7B832159035D2"
+					item: {
+						Count: 1
+						id: "alexscaves:diving_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "290E49CA445F5591"
+					item: {
+						Count: 1
+						id: "alexscaves:diving_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "潜水套装"
+			x: 2.5d
+			y: 1.0d
+		}
+	]
+	title: "&1深渊裂谷"
+}

@@ -1,0 +1,1453 @@
+# AI 初翻，未人工校对
+{
+	id: "0000000000000002"
+	group: "72A9465344128AF9"
+	order_index: 1
+	filename: "immersive_engineering"
+	title: "Immersive Engineering"
+	icon: "immersiveengineering:heavy_engineering"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			icon: "immersiveengineering:manual"
+			x: -1.5d
+			y: -6.0d
+			shape: "gear"
+			description: ["Immersive Engineering 是一款专注于大型多方块结构的通用科技模组。你可以在工程师手册中找到关于该模组中任何内容的更多信息。"]
+			size: 1.25d
+			optional: true
+			id: "0000000000000004"
+			tasks: [{
+				id: "4C4EC117244A21C7"
+				type: "item"
+				item: {
+					id: "immersiveengineering:hammer"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "7B54B7BEEA99667F"
+				type: "item"
+				title: "铜矿块"
+				item: "minecraft:raw_copper"
+				count: 3
+				random_bonus: 5
+			}]
+		}
+		{
+			title: "贸易的工具"
+			x: -1.5d
+			y: -4.5d
+			description: [
+				"可靠的工程师锤主要用于建造多方块结构和旋转特定方块。紧急情况下，你也可以用它来制作板件。"
+				""
+				"线钳是早期制作电线和快速安全地断开带电悬挂电线的好工具。"
+				""
+				"螺丝刀很适合用来对红石连接器等进行精确调整。"
+			]
+			dependencies: ["0000000000000004"]
+			id: "0000000000000007"
+			tasks: [
+				{
+					id: "20930556EBD4C23B"
+					type: "item"
+					item: {
+						id: "immersiveengineering:wirecutter"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "49501ECA376AF301"
+					type: "item"
+					item: "immersiveengineering:screwdriver"
+				}
+			]
+			rewards: [{
+				id: "14FA4A24C7409F77"
+				type: "command"
+				title: "稀有沉浸式工程物资箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_immersive_engineering_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			title: "焦炭炉 Coke Oven"
+			icon: "immersiveengineering:coke_oven"
+			x: -3.5d
+			y: -3.0d
+			description: ["焦炭炉是IE中首个重要的多方块结构，由3x3x3的焦炭砖立方体构成。该结构能将煤炭炼成焦炭，将木材炼成木炭；两种操作都会产生焦油，一种用于制造经处理木材的重要副产品。"]
+			dependencies: ["0000000000000007"]
+			id: "0000000000000009"
+			tasks: [
+				{
+					id: "000000000000000B"
+					type: "item"
+					item: "immersiveengineering:cokebrick"
+					count: 27L
+				}
+				{
+					id: "000000000000000C"
+					type: "item"
+					title: "任意煤炭或焦炭"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "forge:coal_coke"
+						}
+					}
+					count: 8L
+				}
+			]
+			rewards: [{
+				id: "000000000000060A"
+				type: "item"
+				title: "煤炭焦炭"
+				item: "immersiveengineering:coal_coke"
+				count: 8
+			}]
+		}
+		{
+			icon: "immersiveengineering:windmill"
+			x: -6.5d
+			y: -4.5d
+			description: ["风车可以作为早期的电源。必须将其连接到动能发电机，并放置在视野开阔的高处。"]
+			dependencies: ["000000000000000F"]
+			id: "000000000000000D"
+			tasks: [
+				{
+					id: "000000000000000E"
+					type: "item"
+					item: "immersiveengineering:windmill"
+				}
+				{
+					id: "0000000000000016"
+					type: "item"
+					item: "immersiveengineering:dynamo"
+				}
+			]
+			rewards: [{
+				id: "0000000000000615"
+				type: "item"
+				title: "绝缘低压线圈 (Insulated LV Wire Coil)"
+				item: "immersiveengineering:wirecoil_copper_ins"
+				count: 2
+			}]
+		}
+		{
+			title: "基础布线教程"
+			icon: "immersiveengineering:wirecoil_copper"
+			x: -5.0d
+			y: -6.0d
+			description: ["IE 电线可用于传输三种不同电压（不同 RF/t 速率）的 RF。需要两个设备上有连接器，并且两者之间有电线连接。"]
+			dependencies: ["0000000000000004"]
+			id: "000000000000000F"
+			tasks: [
+				{
+					id: "0000000000000010"
+					type: "item"
+					item: "immersiveengineering:wirecoil_copper"
+				}
+				{
+					id: "0000000000000011"
+					type: "item"
+					item: "immersiveengineering:connector_lv"
+				}
+			]
+			rewards: [{
+				id: "000000000000060B"
+				type: "item"
+				title: "LV 电线连接器"
+				item: "immersiveengineering:connector_lv"
+				count: 4
+			}]
+		}
+		{
+			title: "高炉 Blast Furnace"
+			icon: "immersiveengineering:blast_furnace"
+			x: -3.5d
+			y: -1.0d
+			description: ["高炉用于将铁加工成钢，需要使用焦炭或木炭。除非你有其他方式获得钢，否则这是一个至关重要的建筑……"]
+			dependencies: ["0000000000000009"]
+			id: "0000000000000012"
+			tasks: [{
+				id: "0000000000000013"
+				type: "item"
+				item: "immersiveengineering:blastbrick"
+				count: 27L
+			}]
+			rewards: [{
+				id: "0000000000000613"
+				type: "item"
+				title: "钢锭"
+				item: "immersiveengineering:ingot_steel"
+				count: 8
+			}]
+		}
+		{
+			title: "绝缘电线 Insulated Wiring"
+			x: -8.5d
+			y: -6.0d
+			description: ["用大麻布包裹电线是防止触电的绝佳方法。"]
+			dependencies: ["000000000000000F"]
+			id: "0000000000000014"
+			tasks: [{
+				id: "0000000000000015"
+				type: "item"
+				item: "immersiveengineering:wirecoil_copper_ins"
+			}]
+			rewards: [
+				{
+					id: "000000000000060C"
+					type: "item"
+					title: "工业大麻纤维"
+					item: "immersiveengineering:hemp_fiber"
+					count: 16
+				}
+				{
+					id: "000000000000060D"
+					type: "command"
+					title: "稀有沉浸式工程物资箱"
+					icon: "kubejs:rare_lootbox"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_immersive_engineering_loot_rare"
+					player_command: false
+				}
+			]
+		}
+		{
+			x: -3.5d
+			y: -4.5d
+			description: ["电容器可用于储存RF。用锤子右键单击侧面，可在输入（蓝色）、输出（橙色）和未使用之间切换。也存在MV/HV电容器。"]
+			dependencies: [
+				"0000000000000009"
+				"000000000000000F"
+			]
+			id: "0000000000000017"
+			tasks: [{
+				id: "0000000000000018"
+				type: "item"
+				item: "immersiveengineering:capacitor_lv"
+			}]
+			rewards: [{
+				id: "0000000000000614"
+				type: "command"
+				title: "稀有沉浸式工程物资箱"
+				icon: "kubejs:rare_lootbox"
+				auto: "disabled"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_immersive_engineering_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: -5.5d
+			y: -3.0d
+			description: ["工程师工作台需要用蓝图来制作某些部件。你也可以用它来修改某些工具。"]
+			dependencies: ["0000000000000009"]
+			id: "0000000000000019"
+			tasks: [
+				{
+					id: "000000000000001A"
+					type: "item"
+					item: "immersiveengineering:workbench"
+				}
+				{
+					id: "16E5DF7E27BAB713"
+					type: "item"
+					item: {
+						id: "immersiveengineering:blueprint"
+						Count: 1b
+						tag: {
+							blueprint: "components"
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "0911E6C5BB0AF5E5"
+				type: "item"
+				item: "immersiveengineering:component_iron"
+				count: 8
+			}]
+		}
+		{
+			icon: "immersiveengineering:watermill"
+			x: -4.5d
+			y: -2.0d
+			description: ["水轮需要水流流过。最多可放置三个在动能发电机旁以产生电力。"]
+			dependencies: ["0000000000000012"]
+			id: "000000000000001B"
+			tasks: [
+				{
+					id: "000000000000001C"
+					type: "item"
+					item: "immersiveengineering:watermill"
+				}
+				{
+					id: "000000000000001D"
+					type: "item"
+					item: "immersiveengineering:dynamo"
+				}
+			]
+			rewards: [{
+				id: "0000000000000617"
+				type: "item"
+				title: "绝缘低压线圈 (Insulated LV Wire Coil)"
+				item: "immersiveengineering:wirecoil_copper_ins"
+				count: 2
+			}]
+		}
+		{
+			x: 0.0d
+			y: -6.0d
+			description: ["传送带可用于自动化物品运输。传送带上的物品会自动放入接收端的物品栏中。你也可以制作提取式或垂直传送带。"]
+			dependencies: ["0000000000000004"]
+			id: "000000000000001E"
+			tasks: [{
+				id: "000000000000001F"
+				type: "item"
+				item: "immersiveengineering:conveyor_basic"
+			}]
+			rewards: [{
+				id: "000000000000060E"
+				type: "command"
+				title: "稀有沉浸式工程物资箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_immersive_engineering_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			title: "破碎机"
+			icon: "immersiveengineering:crusher"
+			x: -5.5d
+			y: 0.0d
+			description: [
+				"破碎机可将矿石粉碎成粉尘，然后熔炼，每种矿石总共可得到两个锭。某些其他物品也可以用这种方式研磨——参见JEI。"
+				""
+				"注意：Enigmatica 8 实例文件夹中提供 Building Gadgets Patterns 和 Create Schematics 以帮助您搭建此多方块结构。"
+			]
+			dependencies: ["0000000000000012"]
+			id: "0000000000000020"
+			tasks: [
+				{
+					id: "0000000000000021"
+					type: "item"
+					item: "immersiveengineering:light_engineering"
+					count: 10L
+				}
+				{
+					id: "000000000000002D"
+					type: "item"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					count: 10L
+				}
+				{
+					id: "000000000000002E"
+					type: "item"
+					item: "immersiveengineering:rs_engineering"
+				}
+				{
+					id: "000000000000002F"
+					type: "item"
+					item: "immersiveengineering:steel_fence"
+					count: 8L
+				}
+				{
+					id: "0000000000000030"
+					type: "item"
+					item: "minecraft:hopper"
+					count: 9L
+				}
+			]
+			rewards: [{
+				id: "0000000000000621"
+				type: "command"
+				title: "史诗沉浸式工程物资箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_immersive_engineering_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			title: "金属压制机"
+			icon: "immersiveengineering:metal_press"
+			x: -1.5d
+			y: -1.0d
+			description: [
+				"金属压模机在提供模具和动力后，能以更节省材料的方式制作板、线等物品。"
+				""
+				"注意：Enigmatica 8 实例文件夹中提供 Building Gadgets Patterns 和 Create Schematics 以帮助您搭建此多方块结构。"
+			]
+			dependencies: ["0000000000000012"]
+			id: "0000000000000022"
+			tasks: [
+				{
+					id: "0000000000000028"
+					type: "item"
+					item: "minecraft:piston"
+				}
+				{
+					id: "0000000000000029"
+					type: "item"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					count: 2L
+				}
+				{
+					id: "000000000000002A"
+					type: "item"
+					item: "immersiveengineering:heavy_engineering"
+				}
+				{
+					id: "000000000000002B"
+					type: "item"
+					item: "immersiveengineering:rs_engineering"
+				}
+				{
+					id: "000000000000002C"
+					type: "item"
+					item: "immersiveengineering:conveyor_basic"
+					count: 2L
+				}
+			]
+			rewards: [
+				{
+					id: "000000000000061E"
+					type: "item"
+					title: "铁板"
+					item: "ftbic:iron_plate"
+					count: 8
+				}
+				{
+					id: "000000000000061F"
+					type: "item"
+					title: "钢板"
+					auto: "enabled"
+					item: "immersiveengineering:plate_steel"
+					count: 4
+				}
+			]
+		}
+		{
+			title: "改良型高炉 (Improved Blast Furnace)"
+			icon: "immersiveengineering:advanced_blast_furnace"
+			x: -5.5d
+			y: -1.0d
+			description: [
+				"改良型高炉让输入/输出自动化变得更简单。你也可以在两侧各连接一两个带电高炉预热炉，让它运行得更快。"
+				""
+				"注意：Enigmatica 8 实例文件夹中提供 Building Gadgets Patterns 和 Create Schematics 以帮助您搭建此多方块结构。"
+			]
+			dependencies: ["0000000000000012"]
+			id: "0000000000000024"
+			tasks: [
+				{
+					id: "0000000000000025"
+					type: "item"
+					item: "immersiveengineering:blastbrick_reinforced"
+					count: 27L
+				}
+				{
+					id: "0000000000000031"
+					type: "item"
+					item: "minecraft:hopper"
+				}
+			]
+			rewards: [{
+				id: "0000000000000620"
+				type: "command"
+				title: "史诗沉浸式工程物资箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_immersive_engineering_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			title: "合金熔炉"
+			icon: "immersiveengineering:alloy_smelter"
+			x: 0.5d
+			y: -3.0d
+			description: ["合金熔炉是一个简单的2x2x2结构，可以将不同类型的金属熔合在一起形成合金。"]
+			dependencies: ["0000000000000007"]
+			id: "0000000000000026"
+			tasks: [{
+				id: "0000000000000027"
+				type: "item"
+				item: "immersiveengineering:alloybrick"
+				count: 8L
+			}]
+			rewards: [{
+				id: "0000000000000608"
+				type: "item"
+				title: "铜制锭块"
+				item: "minecraft:copper_ingot"
+				count: 8
+			}]
+		}
+		{
+			title: "电弧熔炉"
+			icon: "immersiveengineering:arc_furnace"
+			x: -0.5d
+			y: 0.5d
+			description: [
+				"电弧炉是一种大型高耗能机器，能以1:2的比例将矿石熔炼成锭，也可用于快速制作合金。"
+				""
+				"注意：Enigmatica 8 实例文件夹中有 Building Gadgets Patterns 和 Create Schematics 可用于搭建此多方块结构。"
+			]
+			dependencies: [
+				"3B3D37BAC8E40971"
+				"0000000000000013"
+			]
+			dependency_requirement: "one_completed"
+			id: "0000000000000032"
+			tasks: [
+				{
+					id: "0000000000000033"
+					type: "item"
+					item: {
+						id: "immersiveengineering:graphite_electrode"
+						Count: 1b
+						tag: {
+							graphDmg: 0
+						}
+					}
+					count: 3L
+				}
+				{
+					id: "000000000000006D"
+					type: "item"
+					item: "immersiveengineering:sheetmetal_steel"
+					count: 8L
+				}
+				{
+					id: "000000000000006E"
+					type: "item"
+					title: "6x 钢块"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "forge:storage_blocks/steel"
+						}
+					}
+					count: 6L
+				}
+				{
+					id: "000000000000006F"
+					type: "item"
+					item: "immersiveengineering:slab_sheetmetal_steel"
+					count: 14L
+				}
+				{
+					id: "0000000000000070"
+					type: "item"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					count: 5L
+				}
+				{
+					id: "0000000000000071"
+					type: "item"
+					item: "immersiveengineering:heavy_engineering"
+					count: 5L
+				}
+				{
+					id: "0000000000000072"
+					type: "item"
+					item: "immersiveengineering:rs_engineering"
+				}
+				{
+					id: "0000000000000073"
+					type: "item"
+					item: "minecraft:cauldron"
+				}
+				{
+					id: "0000000000000074"
+					type: "item"
+					item: "immersiveengineering:light_engineering"
+					count: 10L
+				}
+				{
+					id: "0000000000000075"
+					type: "item"
+					item: "immersiveengineering:blastbrick_reinforced"
+					count: 27L
+				}
+			]
+			rewards: [
+				{
+					id: "0000000000000622"
+					type: "command"
+					title: "史诗沉浸式工程物资箱"
+					icon: "kubejs:epic_lootbox"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_immersive_engineering_loot_epic"
+					player_command: false
+				}
+				{
+					id: "0000000000000623"
+					type: "command"
+					title: "史诗沉浸式工程物资箱"
+					icon: "kubejs:epic_lootbox"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_immersive_engineering_loot_epic"
+					player_command: false
+				}
+			]
+		}
+		{
+			x: -5.0d
+			y: -4.5d
+			description: ["外部加热器是一种简单的机器，通电后能为相邻的熔炉供暖。这样熔炉就能更快地冶炼，而无需消耗燃料。"]
+			dependencies: ["000000000000000F"]
+			id: "0000000000000034"
+			tasks: [{
+				id: "0000000000000035"
+				type: "item"
+				item: "immersiveengineering:furnace_heater"
+			}]
+			rewards: [{
+				id: "0000000000000616"
+				type: "command"
+				title: "稀有沉浸式工程物资箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_immersive_engineering_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: -2.5d
+			y: -2.0d
+			description: ["热电发电机是另一种简单的电源选项。当被冷热方块包围时，该方块会根据温差产生电力（参见手册）。"]
+			dependencies: ["0000000000000012"]
+			id: "0000000000000036"
+			tasks: [{
+				id: "0000000000000037"
+				type: "item"
+				item: "immersiveengineering:thermoelectric_generator"
+			}]
+			rewards: [
+				{
+					id: "0000000000000618"
+					type: "item"
+					title: "蓝色冰块"
+					item: "minecraft:blue_ice"
+					count: 4
+				}
+				{
+					id: "09E2626C1188341A"
+					type: "item"
+					auto: "enabled"
+					item: "immersiveengineering:storage_uranium"
+					count: 4
+				}
+			]
+		}
+		{
+			title: "锯木厂"
+			icon: "immersiveengineering:sawmill"
+			x: -6.5d
+			y: 0.5d
+			description: [
+				"锯木机分两阶段工作。没有锯片时，它会剥树皮；有锯片时，会将去皮的原木切成每根六个木板。更多信息请参阅工程师手册。"
+				""
+				"注意：Enigmatica 8 实例文件夹中提供 Building Gadgets Patterns 和 Create Schematics 以帮助您搭建此多方块结构。"
+			]
+			dependencies: [
+				"0000000000000020"
+				"0000000000000013"
+			]
+			dependency_requirement: "one_completed"
+			id: "0000000000000038"
+			tasks: [
+				{
+					id: "0000000000000039"
+					type: "item"
+					item: {
+						id: "immersiveengineering:sawblade"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "000000000000005B"
+					type: "item"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					count: 8L
+				}
+				{
+					id: "000000000000005C"
+					type: "item"
+					item: "immersiveengineering:light_engineering"
+					count: 6L
+				}
+				{
+					id: "000000000000005D"
+					type: "item"
+					item: "immersiveengineering:sheetmetal_iron"
+					count: 4L
+				}
+				{
+					id: "000000000000005E"
+					type: "item"
+					item: "immersiveengineering:heavy_engineering"
+					count: 2L
+				}
+				{
+					id: "000000000000005F"
+					type: "item"
+					item: "immersiveengineering:rs_engineering"
+				}
+				{
+					id: "0000000000000060"
+					type: "item"
+					item: "immersiveengineering:conveyor_basic"
+					count: 4L
+				}
+			]
+			rewards: [{
+				id: "000000000000061D"
+				type: "command"
+				title: "史诗沉浸式工程物资箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_immersive_engineering_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			title: "工业榨汁机和发酵器"
+			icon: "immersiveengineering:fermenter"
+			x: -2.5d
+			y: 1.0d
+			description: [
+				"压榨机可将种子（最好是大麻）制成植物油，也是制作电弧炉所需HOP石墨的必要设备。发酵器可生产乙醇，与植物油混合可制成生物柴油。"
+				""
+				"注意：Enigmatica 8 实例文件夹中提供 Building Gadgets Patterns 和 Create Schematics 以帮助您搭建此多方块结构。"
+			]
+			dependencies: ["0000000000000012"]
+			id: "000000000000003A"
+			tasks: [
+				{
+					id: "000000000000003B"
+					type: "item"
+					item: "immersiveengineering:plantoil_bucket"
+				}
+				{
+					id: "000000000000006C"
+					type: "item"
+					item: "immersiveengineering:ethanol_bucket"
+				}
+				{
+					id: "70D08B4C82FB5C6B"
+					type: "item"
+					item: "immersiveengineering:fluid_pipe"
+					count: 4L
+				}
+				{
+					id: "4441E2386DEA216C"
+					type: "item"
+					item: "immersiveengineering:light_engineering"
+					count: 4L
+				}
+				{
+					id: "5ED3D91D2AD0971A"
+					type: "item"
+					item: "minecraft:piston"
+				}
+				{
+					id: "464B4E72E3BC8AED"
+					type: "item"
+					item: "immersiveengineering:rs_engineering"
+					count: 2L
+				}
+				{
+					id: "7666B18B85178129"
+					type: "item"
+					item: "immersiveengineering:steel_fence"
+					count: 3L
+				}
+				{
+					id: "052258FF50F1F0B4"
+					type: "item"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					count: 12L
+				}
+				{
+					id: "01D48BF4891BC4B4"
+					type: "item"
+					item: "immersiveengineering:wooden_barrel"
+					count: 4L
+				}
+				{
+					id: "1DFE9615C079A317"
+					type: "item"
+					item: "minecraft:cauldron"
+					count: 4L
+				}
+				{
+					id: "0070E8EF982C0C6B"
+					type: "item"
+					item: "immersiveengineering:sheetmetal_iron"
+					count: 4L
+				}
+			]
+			rewards: [
+				{
+					id: "0000000000000619"
+					type: "item"
+					title: "工业大麻种子"
+					item: "immersiveengineering:seed"
+					count: 24
+				}
+				{
+					id: "7FF68906D9C40250"
+					type: "command"
+					title: "史诗沉浸式工程物资箱"
+					icon: "kubejs:epic_lootbox"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_immersive_engineering_loot_epic"
+					player_command: false
+				}
+			]
+		}
+		{
+			title: "柴油发电机"
+			icon: "immersiveengineering:diesel_generator"
+			x: -4.0d
+			y: 2.0d
+			shape: "circle"
+			description: [
+				"获得生物柴油或柴油后，可用于为强大（但嘈杂）的柴油发电机提供燃料，产生可观的FE/秒。"
+				""
+				"注意：Enigmatica 8 实例文件夹中提供 Building Gadgets Patterns 和 Create Schematics 以帮助您搭建此多方块结构。"
+			]
+			dependencies: ["09AEE48CED288DD1"]
+			dependency_requirement: "one_completed"
+			id: "000000000000003C"
+			tasks: [
+				{
+					id: "37AAA90BDAB5CD72"
+					type: "item"
+					item: "immersiveengineering:fluid_pipe"
+					count: 5L
+				}
+				{
+					id: "284769224493A777"
+					type: "item"
+					item: "immersiveengineering:generator"
+					count: 4L
+				}
+				{
+					id: "459D17A377D44D7F"
+					type: "item"
+					item: "immersiveengineering:heavy_engineering"
+					count: 13L
+				}
+				{
+					id: "63E9727F7E04EBDA"
+					type: "item"
+					item: "immersiveengineering:radiator"
+					count: 9L
+				}
+				{
+					id: "06375C08B6AE1B06"
+					type: "item"
+					item: "immersiveengineering:rs_engineering"
+				}
+				{
+					id: "3D8DA60F68FB5A23"
+					type: "item"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					count: 6L
+				}
+			]
+			rewards: [{
+				id: "0000000000000624"
+				type: "command"
+				title: "史诗沉浸式工程物资箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_immersive_engineering_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			title: "挖掘机"
+			icon: "immersiveengineering:bucket_wheel"
+			x: -6.5d
+			y: 1.5d
+			description: [
+				"确定好挖掘地点后，你就可以在那里建造这台机器了。注意，挖掘机运行需要消耗相当多的能量。"
+				""
+				"有许多不同类型的矿物脉，请务必在工程师手册的“概述与资源”中查看完整的矿物矿床列表及寻找方法！"
+				""
+				"注意：Enigmatica 8 实例文件夹中提供 Building Gadgets Patterns 和 Create Schematics 以帮助您搭建此多方块结构。"
+			]
+			dependencies: ["0000000000000061"]
+			id: "0000000000000040"
+			tasks: [
+				{
+					id: "5B9AAE9A66CF1A1F"
+					type: "item"
+					item: "immersiveengineering:heavy_engineering"
+					count: 4L
+				}
+				{
+					id: "14152385FF2C7F94"
+					type: "item"
+					item: "immersiveengineering:light_engineering"
+					count: 9L
+				}
+				{
+					id: "715D9FF0DF871042"
+					type: "item"
+					item: "immersiveengineering:rs_engineering"
+				}
+				{
+					id: "0DC27129321B844B"
+					type: "item"
+					item: "immersiveengineering:radiator"
+					count: 3L
+				}
+				{
+					id: "486083D949A6EB82"
+					type: "item"
+					item: "immersiveengineering:sheetmetal_steel"
+					count: 16L
+				}
+				{
+					id: "14349203FE43E315"
+					type: "item"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					count: 26L
+				}
+				{
+					id: "1CA9D0AFE77C2611"
+					type: "item"
+					title: "9x 钢块"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "forge:storage_blocks/steel"
+						}
+					}
+					count: 9L
+				}
+			]
+			rewards: [{
+				id: "000000000000061C"
+				type: "command"
+				title: "史诗沉浸式工程物资箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_immersive_engineering_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			title: "矿物脉层"
+			icon: "immersiveengineering:sample_drill"
+			x: -5.5d
+			y: 1.0d
+			description: ["如手册“矿物”部分所述，某些IE机器可以探测并开采到其他方法无法获得的巨大矿脉。第一步是使用勘测工具和岩心钻探机来查找区块内的矿脉。"]
+			dependencies: ["0000000000000012"]
+			id: "0000000000000061"
+			tasks: [{
+				id: "0000000000000062"
+				type: "item"
+				item: "immersiveengineering:sample_drill"
+			}]
+			rewards: [
+				{
+					id: "63F8CD5DAAB0252B"
+					type: "item"
+					title: "矿物勘探工具"
+					item: {
+						id: "immersiveengineering:survey_tools"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "35731B5937BBF8EB"
+					type: "command"
+					title: "矿工的喜悦"
+					icon: "kubejs:miners_delight"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_miners_delight"
+					player_command: false
+				}
+			]
+		}
+		{
+			title: "获取钟楼 (Getting Clocher)"
+			x: -8.5d
+			y: -3.0d
+			description: ["花园钟罩需要能量、水和可选的肥料来加速植物生长。"]
+			dependencies: ["0000000000000019"]
+			id: "0000000000000241"
+			tasks: [{
+				id: "0000000000000242"
+				type: "item"
+				item: "immersiveengineering:cloche"
+			}]
+			rewards: [{
+				id: "0000000000000611"
+				type: "command"
+				title: "稀有沉浸式工程物资箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_immersive_engineering_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			title: "工程化照明系统"
+			icon: "immersiveengineering:electric_lantern"
+			x: -8.5d
+			y: -4.5d
+			description: [
+				"通电灯笼，通过电线接入少量电力后，会在32格半径内抑制生物生成（除此之外，还能提供光亮）。"
+				""
+				"探照灯可用于照亮其前方的一大片锥形区域。"
+			]
+			dependencies: ["0000000000000019"]
+			id: "0000000000000243"
+			tasks: [
+				{
+					id: "0000000000000244"
+					type: "item"
+					item: "immersiveengineering:electric_lantern"
+				}
+				{
+					id: "0000000000000245"
+					type: "item"
+					item: "immersiveengineering:floodlight"
+				}
+			]
+			rewards: [{
+				id: "0000000000000610"
+				type: "item"
+				title: "Glowstone"
+				item: "minecraft:glowstone"
+				count: 4
+			}]
+		}
+		{
+			title: "工作台自动化"
+			icon: "immersiveengineering:auto_workbench"
+			x: -8.5d
+			y: -1.5d
+			description: [
+				"自动化工作台是一个需要能量的多方块结构，提供蓝图后能自动处理指定类型的工程师工作台配方。很方便！"
+				""
+				"注意：Enigmatica 8 实例文件夹中提供 Building Gadgets Patterns 和 Create Schematics 以帮助您搭建此多方块结构。"
+			]
+			dependencies: ["0000000000000019"]
+			id: "0000000000000246"
+			tasks: [
+				{
+					id: "0000000000000247"
+					type: "item"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					count: 5L
+				}
+				{
+					id: "0000000000000248"
+					type: "item"
+					item: "immersiveengineering:light_engineering"
+					count: 4L
+				}
+				{
+					id: "0000000000000249"
+					type: "item"
+					item: "immersiveengineering:rs_engineering"
+				}
+				{
+					id: "000000000000024A"
+					type: "item"
+					item: "immersiveengineering:heavy_engineering"
+					count: 2L
+				}
+				{
+					id: "000000000000024B"
+					type: "item"
+					item: "immersiveengineering:slab_treated_wood_horizontal"
+					count: 2L
+				}
+				{
+					id: "000000000000024C"
+					type: "item"
+					item: "immersiveengineering:conveyor_basic"
+					count: 4L
+				}
+			]
+			rewards: [{
+				id: "0000000000000612"
+				type: "command"
+				title: "稀有沉浸式工程物资箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_immersive_engineering_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			title: "精炼厂"
+			icon: "immersiveengineering:refinery"
+			x: -3.0d
+			y: 2.0d
+			description: [
+				"生产生物柴油的最后一步，炼油厂将乙醇和植物油结合，制成这种液态黄金。"
+				""
+				"注意：Enigmatica 8 实例文件夹中提供 Building Gadgets Patterns 和 Create Schematics 以帮助您搭建此多方块结构。"
+			]
+			dependencies: ["000000000000003A"]
+			id: "09AEE48CED288DD1"
+			tasks: [
+				{
+					id: "54C23E962353498A"
+					type: "item"
+					item: "immersiveengineering:biodiesel_bucket"
+				}
+				{
+					id: "1A67249D2C25F193"
+					type: "item"
+					item: "immersiveengineering:fluid_pipe"
+					count: 5L
+				}
+				{
+					id: "5F4622889A0ABCD6"
+					type: "item"
+					item: "immersiveengineering:heavy_engineering"
+					count: 2L
+				}
+				{
+					id: "574214EAB054A87C"
+					type: "item"
+					item: "immersiveengineering:light_engineering"
+					count: 2L
+				}
+				{
+					id: "24F2731428E8E04E"
+					type: "item"
+					item: "immersiveengineering:rs_engineering"
+				}
+				{
+					id: "470D34BD4B7D2F05"
+					type: "item"
+					item: "immersiveengineering:sheetmetal_iron"
+					count: 16L
+				}
+				{
+					id: "1B5140A06836C865"
+					type: "item"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					count: 8L
+				}
+			]
+			rewards: [{
+				id: "7B4485A51E367C74"
+				type: "command"
+				title: "史诗沉浸式工程物资箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_immersive_engineering_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			title: "此部分仍在制作中 (W.I.P)"
+			icon: "laserio:laser_wrench"
+			x: -4.5d
+			y: 1.0d
+			subtitle: "沉浸式石油模组 (Immersive Petroleum)"
+			description: [
+				"这里本应有几个关于Immersive petroleum的 quest，但1.18.2的端口尚未发布，不过已经官宣了，所以等它一出来，quest就会回归！"
+				""
+				"先养只猫，开心点吧 :D 有很多不同的任务等着你呢，还在等什么？！"
+			]
+			dependencies: [
+				"0000000000000013"
+				"0000000000000012"
+			]
+			id: "710BE1B415841A75"
+			tasks: [{
+				id: "792A69CE3AC430E7"
+				type: "checkmark"
+			}]
+			rewards: [
+				{
+					id: "4E27E2225BB94FEB"
+					type: "command"
+					title: "猫！"
+					icon: {
+						id: "ftbquests:custom_icon"
+						Count: 1b
+						tag: {
+							Icon: "minecraft:textures/entity_icon/cat/calico.png"
+						}
+					}
+					command: "/execute at @p run summon cat ~ ~ ~"
+					player_command: false
+				}
+				{
+					id: "3C38990F9AB879C5"
+					type: "item"
+					item: "minecraft:cod"
+					count: 16
+					random_bonus: 48
+				}
+			]
+		}
+		{
+			title: "装配器"
+			icon: "immersiveengineering:assembler"
+			x: -1.5d
+			y: 0.0d
+			description: [
+				"Assembler 用于合成物品，就像玩家在合成台里操作一样。它有 3 个可设置的配方槽，一个配方组的输出可以作为另一个配方组的输入。它还有 3 个流体储罐，可用于将桶替换为原始流体。"
+				""
+				"要组装它，右键点击其中一个传送带。这将是输入端，第二个则是输出端。"
+				""
+				"注意：Enigmatica 8 实例文件夹中提供 Building Gadgets Patterns 和 Create Schematics 以帮助您搭建此多方块结构。"
+			]
+			dependencies: ["0000000000000012"]
+			id: "3B3D37BAC8E40971"
+			tasks: [
+				{
+					id: "5C7E4D973B4E6C78"
+					type: "item"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					count: 6L
+				}
+				{
+					id: "6C82DE3CE0391FCA"
+					type: "item"
+					item: "immersiveengineering:rs_engineering"
+					count: 2L
+				}
+				{
+					id: "07F493E28546E2CF"
+					type: "item"
+					item: "immersiveengineering:light_engineering"
+					count: 2L
+				}
+				{
+					id: "7B47167972CC334F"
+					type: "item"
+					item: "immersiveengineering:sheetmetal_iron"
+					count: 9L
+				}
+				{
+					id: "176E4CA870A5F96C"
+					type: "item"
+					item: "immersiveengineering:slab_sheetmetal_iron"
+					count: 6L
+				}
+				{
+					id: "2DF03D27CB05F19E"
+					type: "item"
+					item: "immersiveengineering:conveyor_basic"
+					count: 2L
+				}
+			]
+			rewards: [{
+				id: "7C2DDDC233064BCB"
+				type: "command"
+				title: "史诗沉浸式工程物资箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_immersive_engineering_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			title: "搅拌机"
+			icon: "immersiveengineering:mixer"
+			x: -1.5d
+			y: 1.0d
+			description: [
+				"搅拌机能将固体溶解为流体并混合在一起。主要用于制作液体混凝土，但也能制作药水。"
+				""
+				"注意：Enigmatica 8 实例文件夹中提供 Building Gadgets Patterns 和 Create Schematics 以帮助您搭建此多方块结构。"
+			]
+			dependencies: ["0000000000000012"]
+			id: "37F3086A687795FB"
+			tasks: [
+				{
+					id: "43E2D1D670D6F36D"
+					type: "item"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					count: 5L
+				}
+				{
+					id: "07E11BC0B13A5278"
+					type: "item"
+					item: "immersiveengineering:light_engineering"
+					count: 4L
+				}
+				{
+					id: "63AC96CA8CC15B40"
+					type: "item"
+					item: "immersiveengineering:sheetmetal_iron"
+					count: 4L
+				}
+				{
+					id: "175D7EB329BA5EFF"
+					type: "item"
+					item: "immersiveengineering:rs_engineering"
+				}
+				{
+					id: "0BA7DBD1756686F1"
+					type: "item"
+					item: "immersiveengineering:steel_fence"
+				}
+				{
+					id: "53DC889733619C39"
+					type: "item"
+					item: "immersiveengineering:fluid_pipe"
+					count: 3L
+				}
+			]
+			rewards: [{
+				id: "5D70006C425BF1CE"
+				type: "command"
+				title: "史诗沉浸式工程物资箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_immersive_engineering_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			title: "瓶装机"
+			icon: "immersiveengineering:bottling_machine"
+			x: -0.5d
+			y: 1.5d
+			description: [
+				"装瓶机用提供的液体填充容器。任何能装液体的容器都行！Mekanism 储罐、玻璃瓶、水桶。"
+				""
+				"注意：Enigmatica 8 实例文件夹中提供 Building Gadgets Patterns 和 Create Schematics 以帮助您搭建此多方块结构。"
+			]
+			dependencies: [
+				"37F3086A687795FB"
+				"0000000000000013"
+			]
+			dependency_requirement: "one_completed"
+			min_width: 250
+			id: "6AC625E4D6F5AAFB"
+			tasks: [
+				{
+					id: "15443074610B3C89"
+					type: "item"
+					item: "immersiveengineering:sheetmetal_iron"
+					count: 2L
+				}
+				{
+					id: "3D3C09BF70DF2233"
+					type: "item"
+					item: "immersiveengineering:steel_scaffolding_standard"
+					count: 3L
+				}
+				{
+					id: "50F208ABA1C3C145"
+					type: "item"
+					item: "immersiveengineering:rs_engineering"
+				}
+				{
+					id: "410EF7D6801D0082"
+					type: "item"
+					item: "immersiveengineering:light_engineering"
+					count: 2L
+				}
+				{
+					id: "2BF1A58F3F702279"
+					type: "item"
+					item: "immersiveengineering:conveyor_basic"
+					count: 3L
+				}
+				{
+					id: "4F682B0D30545D87"
+					type: "item"
+					item: "immersiveengineering:fluid_pump"
+					count: 2L
+				}
+			]
+			rewards: [{
+				id: "19DF31EC00072D95"
+				type: "command"
+				title: "稀有沉浸式工程物资箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_immersive_engineering_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: 0.5d
+			y: -4.5d
+			description: [
+				"物品批量器是一种高级过滤方块，专为与传送带配合使用并为机器创建物品批次而设计。"
+				""
+				"它有很多筛选选项和几种输出模式："
+				""
+				"● 单一 - 像普通过滤器一样工作，如果物品匹配，它将被重定向到输出"
+				""
+				"● 批量模式 - 所有物品的重定向都需要满足所有过滤器的条件"
+				""
+				"它还会根据过滤器的状态发出红石信号。更多信息请查阅工程师手册。"
+			]
+			dependencies: ["000000000000001E"]
+			min_width: 325
+			id: "215AD1198A1BF8D0"
+			tasks: [{
+				id: "003B96D16776DCBA"
+				type: "item"
+				item: "immersiveengineering:item_batcher"
+			}]
+			rewards: [{
+				id: "70A61D684AF8B5FF"
+				type: "command"
+				title: "稀有沉浸式工程物资箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_immersive_engineering_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: 1.5d
+			y: -6.0d
+			description: [
+				"物品路由器是一种专为传送带设计的先进物品分拣器。"
+				""
+				"它可以在每个方向输入和输出物品。但是，物品不能从输入的方向输出。如果物品不匹配任何过滤器，它将被重定向到一个未过滤的方向。"
+				""
+				"还有另一种流体替代方案，效果类似！更多信息请参阅工程师手册。"
+			]
+			dependencies: ["000000000000001E"]
+			min_width: 250
+			id: "0EBE89982E3C95BB"
+			tasks: [{
+				id: "49A0F91EA799410B"
+				type: "item"
+				item: "immersiveengineering:sorter"
+			}]
+			rewards: [
+				{
+					id: "68122104D91373C0"
+					type: "item"
+					item: "immersiveengineering:conveyor_basic"
+					count: 8
+					random_bonus: 8
+				}
+				{
+					id: "0638125734E46ED2"
+					type: "item"
+					item: "immersiveengineering:conveyor_vertical"
+					count: 4
+					random_bonus: 4
+				}
+			]
+		}
+	]
+}

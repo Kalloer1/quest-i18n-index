@@ -1,0 +1,1765 @@
+# AI 初翻，未人工校对
+{
+	id: "00000000000000AE"
+	group: "72A9465344128AF9"
+	order_index: 4
+	filename: "pneumaticcraft_repressurized"
+	title: "PneumaticCraft: 再增压版"
+	icon: "pneumaticcraft:pressure_gauge_module"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			icon: "pneumaticcraft:ingot_iron_compressed"
+			x: -8.5d
+			y: -16.0d
+			shape: "gear"
+			description: [
+				"PneumaticCraft: Repressurized 是一款以物流、自动化和爆破赚钱为核心的模组。掌握压缩空气和热能将是你旅程的开端。"
+				""
+				"这些任务将引导你了解模组，但请务必经常查阅手册以获取更多信息。完成这些任务及其相关成就后，章节将会解锁。"
+				""
+				"&e~哑巴的魅魔（MuteTiefling）"
+			]
+			id: "00000000000000AF"
+			tasks: [{
+				id: "7B56DD5D9F4BBB68"
+				type: "item"
+				item: "pneumaticcraft:ingot_iron_compressed"
+			}]
+			rewards: [{
+				id: "00000000000000B1"
+				type: "item"
+				title: "气动扳手"
+				item: {
+					id: "pneumaticcraft:pneumatic_wrench"
+					Count: 1b
+					tag: {
+						"pneumaticcraft:air": 30000
+					}
+				}
+			}]
+		}
+		{
+			title: "符合伦理的采购方式"
+			icon: "pneumaticcraft:pressure_chamber_wall"
+			x: -16.5d
+			y: -14.5d
+			shape: "rsquare"
+			description: [
+				"要开始 PNC:R 的旅程，你需要获得一些压缩铁。没有压力舱的话，制作过程相当危险。请务必站远一点！"
+				""
+				"准备好材料后，建造一个 3x3x3 的压力室。PNC:R 手册会教你怎么做。"
+				""
+				"注意：建造压力舱时请小心，尽量将结构保持在单个区块内。F3+G 会显示区块边界。"
+			]
+			dependencies: ["00000000000000AF"]
+			id: "00000000000000B3"
+			tasks: [
+				{
+					id: "00000000000000B4"
+					type: "item"
+					item: "pneumaticcraft:pressure_chamber_wall"
+					count: 23L
+				}
+				{
+					id: "00000000000000BA"
+					type: "item"
+					item: "pneumaticcraft:pressure_chamber_interface"
+					count: 2L
+				}
+				{
+					id: "00000000000000BB"
+					type: "item"
+					item: "pneumaticcraft:pressure_chamber_valve"
+				}
+			]
+			rewards: [
+				{
+					id: "00000000000000C6"
+					type: "command"
+					title: "稀有PNC:R战利品箱"
+					icon: "kubejs:rare_lootbox"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_rare"
+					player_command: false
+				}
+				{
+					id: "0000000000000A78"
+					type: "command"
+					title: "拾荒者之乐"
+					icon: "kubejs:scavengers_delight"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_scavengers_delight"
+					player_command: false
+				}
+			]
+		}
+		{
+			title: "空气压缩机"
+			icon: "pneumaticcraft:air_compressor"
+			x: -16.5d
+			y: -13.0d
+			subtitle: "在压力下"
+			description: [
+				"虽然它不会让你被来自太空的危险面条拜访，也不会辐射乡村一千年，但高压空气本身也可能很危险，压力过大可能导致该方块破裂并丢失。"
+				""
+				"用一点红石和一个中继器，就能为你的新空气压缩机建造一个简单的红石切断电路。"
+			]
+			dependencies: ["00000000000000B3"]
+			id: "00000000000000BD"
+			tasks: [
+				{
+					id: "00000000000000BE"
+					type: "item"
+					item: "pneumaticcraft:pressure_gauge_module"
+				}
+				{
+					id: "00000000000000BF"
+					type: "item"
+					title: "空气压缩机"
+					icon: "pneumaticcraft:air_compressor"
+					item: {
+						id: "itemfilters:or"
+						Count: 1b
+						tag: {
+							items: [
+								{
+									id: "pneumaticcraft:air_compressor"
+									Count: 1b
+								}
+								{
+									id: "pneumaticcraft:liquid_compressor"
+									Count: 1b
+								}
+							]
+						}
+					}
+				}
+				{
+					id: "00000000000000C0"
+					type: "item"
+					item: "pneumaticcraft:pressure_tube"
+					count: 8L
+				}
+			]
+			rewards: [
+				{
+					id: "00000000000000C1"
+					type: "item"
+					title: "红石粉"
+					item: "minecraft:redstone"
+					count: 9
+				}
+				{
+					id: "00000000000000C2"
+					type: "item"
+					title: "红石中继器"
+					item: "minecraft:repeater"
+				}
+			]
+		}
+		{
+			title: "安全升级"
+			x: -17.5d
+			y: -12.5d
+			subtitle: "谨慎乐观的冒险家"
+			description: ["再周密的计划也可能因意外而失败。请在压缩机和压力舱安装安全升级，以防止意外快速解体。"]
+			dependencies: ["00000000000000B3"]
+			id: "00000000000000C3"
+			tasks: [{
+				id: "00000000000000C4"
+				type: "item"
+				item: "pneumaticcraft:security_upgrade"
+				count: 2L
+			}]
+			rewards: [{
+				id: "00000000000000C5"
+				type: "command"
+				title: "稀有PNC:R战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			icon: "pneumaticcraft:liquid_compressor"
+			x: -15.5d
+			y: -12.5d
+			subtitle: "更干净的燃烧方式"
+			description: [
+				"固体燃料虽然强劲，但缺乏精细控制，因为整个燃料块燃烧完毕前都会持续产生压力，即使红石已禁用压缩机。建议升级到更安全的燃料来源。"
+				""
+				"注意：液体压缩机可以燃烧多种燃料，均在GUI中列出，但一些值得注意的可再生燃料包括生物柴油、液氢和液态乙烯。"
+			]
+			dependencies: ["00000000000000B3"]
+			id: "00000000000000C7"
+			tasks: [
+				{
+					id: "07969B05E7B03A24"
+					type: "item"
+					item: "pneumaticcraft:pressure_gauge_module"
+				}
+				{
+					id: "707B2893DDB5687C"
+					type: "item"
+					item: "pneumaticcraft:liquid_compressor"
+				}
+				{
+					id: "0A35E0FC9BF0D4C2"
+					type: "item"
+					item: "pneumaticcraft:pressure_tube"
+					count: 8L
+				}
+			]
+			rewards: [{
+				id: "00000000000000C9"
+				type: "command"
+				title: "史诗PNC：R战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			x: -4.0d
+			y: -10.0d
+			subtitle: "夜晚是黑暗的..."
+			description: ["尽管名字如此，煤油灯可以使用与液体压缩机相同的所有燃料，并能照亮半径30格内的区域。非常适合用来驱赶恐怖生物。试着用几个来安全地照亮你的基地吧。"]
+			dependencies: ["00000000000000EA"]
+			id: "00000000000000CA"
+			tasks: [{
+				id: "00000000000000CB"
+				type: "item"
+				item: "pneumaticcraft:kerosene_lamp"
+			}]
+			rewards: [{
+				id: "000000000000022D"
+				type: "item"
+				title: "中型流体储罐"
+				item: {
+					id: "pneumaticcraft:medium_tank"
+					Count: 1b
+					tag: {
+						BlockEntityTag: {
+							SavedTanks: {
+								Tank: {
+									FluidName: "pneumaticcraft:kerosene"
+									Amount: 64000
+								}
+							}
+						}
+					}
+				}
+			}]
+		}
+		{
+			title: "华氏-173度还是摄氏-173度？"
+			icon: "minecraft:packed_ice"
+			x: -12.5d
+			y: -13.5d
+			shape: "rsquare"
+			subtitle: "先第一个，再第二个"
+			description: ["在高压空气是主要能源的情况下，热量是一个次要但同样重要的机制。高级压缩机和其他机器需要加热或冷却才能正常运行。"]
+			dependencies: ["00000000000000AF"]
+			id: "00000000000000CC"
+			tasks: [{
+				id: "00000000000000CD"
+				type: "checkmark"
+				title: "华氏-173度还是摄氏-173度？"
+			}]
+			rewards: [
+				{
+					id: "00000000000000CE"
+					type: "item"
+					title: "伪装涂抹器"
+					item: {
+						id: "pneumaticcraft:camo_applicator"
+						Count: 1b
+						tag: {
+							"pneumaticcraft:air": 30000
+						}
+					}
+				}
+				{
+					id: "0000000000000A79"
+					type: "command"
+					title: "农夫的欢乐时光"
+					icon: "kubejs:farmers_delight"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_farmers_delight"
+					player_command: false
+				}
+			]
+		}
+		{
+			x: -12.5d
+			y: -12.0d
+			subtitle: "旋转的德耳维什舞者"
+			description: [
+				"Vortex Tube 基于在特殊腔室中使高压空气旋转以产生温差，通过控制压力来精细调节加热或制冷的程度。"
+				""
+				"不过，涡管并非产生热量的唯一方式。在JEI中查找热管的用途，会发现许多可用于加热和冷却的方块和液体。"
+				""
+				"最后，PneumaticCraft 内置了对 Mekanism 热量系统的支持，并与 Integrated Dynamics 兼容。一些主要的热源包括："
+				""
+				"● 外部加热器 (External Heater)"
+				"● 电阻加热器 (Resistive Heater)"
+				"● 燃木取暖器"
+			]
+			dependencies: ["00000000000000CC"]
+			id: "00000000000000CF"
+			tasks: [{
+				id: "00000000000000D0"
+				type: "item"
+				item: "pneumaticcraft:vortex_tube"
+			}]
+			rewards: [{
+				id: "00000000000000D1"
+				type: "item"
+				title: "散热片"
+				item: "pneumaticcraft:heat_sink"
+				random_bonus: 7
+			}]
+		}
+		{
+			title: "热传导管"
+			x: -13.0d
+			y: -11.0d
+			subtitle: "反正寒冷从来都困扰不到我，不是吗"
+			description: [
+				"热管可用于在方块间快速无损地传输热量。用它将热量从涡流管输送到一台或多台机器。热量也可直接用于为熔炉供电。"
+				""
+				"注意：能产热的机器之间会共享热量，因此只需为同一排机器中的任意一台连接热管即可。"
+			]
+			dependencies: ["00000000000000CF"]
+			id: "00000000000000D2"
+			tasks: [{
+				id: "00000000000000D3"
+				type: "item"
+				item: "pneumaticcraft:heat_pipe"
+				count: 6L
+			}]
+			rewards: [{
+				id: "00099FEE4C17C4F0"
+				type: "command"
+				title: "史诗PNC：R战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			x: -13.5d
+			y: -12.5d
+			description: [
+				"你可能已经注意到，Vortex Tube消耗大量空气且不响应红石。要关闭它，必须切断空气供应。Regulator Tube Module正是为此而设。"
+				""
+				"将其放置在压力管线上，并向其施加红石信号。15 的信号将完全阻止气流，关闭下游所有机器。"
+			]
+			dependencies: ["00000000000000CF"]
+			id: "00000000000000D5"
+			tasks: [{
+				id: "00000000000000D6"
+				type: "item"
+				item: "pneumaticcraft:regulator_tube_module"
+			}]
+			rewards: [{
+				id: "00000000000000D8"
+				type: "command"
+				title: "稀有PNC:R战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: -14.0d
+			y: -10.0d
+			subtitle: "定格动画"
+			description: [
+				"热框架可放置在任何物品栏上，使其能利用热量或冷量进行合成。加热时，它能像熔炉一样熔炼物品。冷却时，它能制作出各种实用物品。"
+				""
+				"要冷却液体，请将 PneumaticCraft 储罐或水桶装满并放入物品栏。只要有空间，冷却后的物品就会出现在箱子里。"
+			]
+			dependencies: ["00000000000000D2"]
+			id: "00000000000000D9"
+			tasks: [{
+				id: "00000000000000DA"
+				type: "item"
+				item: "pneumaticcraft:heat_frame"
+			}]
+			rewards: [{
+				id: "00000000000000DB"
+				type: "item"
+				title: "加固的箱子 Reinforced Chest"
+				item: "pneumaticcraft:reinforced_chest"
+			}]
+		}
+		{
+			x: -13.0d
+			y: -10.0d
+			subtitle: "雷达之下"
+			description: [
+				"通用传感器是一种强大的方块，它能根据各种条件输出红石信号，例如检测附近是否有玩家、玩家右键点击方块、方块是否存在、光照强度，甚至是方块当前的温度。"
+				""
+				"读取热量时，尽量对准热管或 PNC:R 机器，而不是带有热量框架的背包。"
+			]
+			dependencies: ["00000000000000D2"]
+			id: "00000000000000DC"
+			tasks: [{
+				id: "00000000000000DD"
+				type: "item"
+				item: "pneumaticcraft:universal_sensor"
+			}]
+			rewards: [
+				{
+					id: "00000000000000DE"
+					type: "item"
+					title: "区块追踪器升级"
+					item: "pneumaticcraft:block_tracker_upgrade"
+				}
+				{
+					id: "00000000000000DF"
+					type: "item"
+					title: "GPS 工具"
+					item: "pneumaticcraft:gps_tool"
+				}
+			]
+		}
+		{
+			title: "粗俗与未开化 (Crude and Un-Cultured)"
+			x: -4.0d
+			y: -13.5d
+			shape: "rsquare"
+			description: ["去舀一桶油，就像个肮脏的混血儿。通常在地下就能找到，看小地图就能轻松发现。"]
+			dependencies: ["00000000000000AF"]
+			id: "00000000000000E0"
+			tasks: [{
+				id: "00000000000000E1"
+				type: "item"
+				item: "pneumaticcraft:oil_bucket"
+			}]
+			rewards: [
+				{
+					id: "00000000000000E6"
+					type: "command"
+					title: "稀有PNC:R战利品箱"
+					icon: "kubejs:rare_lootbox"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_rare"
+					player_command: false
+				}
+				{
+					id: "0000000000000A7B"
+					type: "command"
+					title: "拾荒者之乐"
+					icon: "kubejs:scavengers_delight"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_scavengers_delight"
+					player_command: false
+				}
+			]
+		}
+		{
+			icon: "pneumaticcraft:gas_lift"
+			x: -5.5d
+			y: -12.5d
+			subtitle: "别碰我！"
+			description: [
+				"Gas Lift 可用于将流体从世界中抽出。将其放置在任意流体的源方块上方，插入钻探管并提供空气。管道将向下延伸至源方块，提升器会尝试抽取所有附近相连的源方块。"
+				""
+				"注意：使用气动扳手潜行+右键点击任何PNC:R方块，即可立即拾取并保留存储的空气和升级。此方法也适用于压力室阀门。"
+			]
+			dependencies: ["00000000000000E0"]
+			id: "00000000000000E2"
+			tasks: [
+				{
+					id: "00000000000000E3"
+					type: "item"
+					item: "pneumaticcraft:gas_lift"
+				}
+				{
+					id: "00000000000000E4"
+					type: "item"
+					item: "pneumaticcraft:drill_pipe"
+					count: 12L
+				}
+			]
+			rewards: [{
+				id: "00000000000000E5"
+				type: "item"
+				title: "地震传感器"
+				item: "pneumaticcraft:seismic_sensor"
+			}]
+		}
+		{
+			title: "石油精炼厂"
+			icon: "pneumaticcraft:refinery_output"
+			x: -4.0d
+			y: -12.0d
+			subtitle: "精炼公司"
+			description: [
+				"炼油厂由控制器和堆叠在其上方的2-4个输出装置组成。务必将所有侧面隔热！建议使用物流网络提取输出物以作进一步处理。提供热量和油即可开始流程。"
+				""
+				"注意：使用控制器读取比较器的信号，是控制涡流管、防止燃料浪费的绝佳方法。"
+			]
+			dependencies: ["00000000000000E0"]
+			id: "00000000000000E7"
+			tasks: [
+				{
+					id: "00000000000000E8"
+					type: "item"
+					item: "pneumaticcraft:refinery"
+				}
+				{
+					id: "00000000000000E9"
+					type: "item"
+					item: "pneumaticcraft:refinery_output"
+					count: 4L
+				}
+			]
+			rewards: [{
+				id: "000000000000022C"
+				type: "command"
+				title: "稀有PNC:R战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			title: "热气动加工"
+			x: -4.0d
+			y: -11.0d
+			subtitle: "热-新-什么-来着？"
+			description: [
+				"简称TPP，这台机器利用热量和压力的结合来改变固体和液体的状态。近年来，它甚至被用于厨房。"
+				""
+				"将机器排成一行，可以让它们通过侧面共享热量和压力。"
+			]
+			dependencies: ["00000000000000E7"]
+			id: "00000000000000EA"
+			tasks: [{
+				id: "00000000000000EB"
+				type: "item"
+				item: "pneumaticcraft:thermopneumatic_processing_plant"
+				count: 4L
+			}]
+			rewards: [
+				{
+					id: "00000000000000EC"
+					type: "item"
+					title: "鱼和薯片"
+					item: "pneumaticcraft:cod_n_chips"
+					count: 16
+				}
+				{
+					id: "00000000000000ED"
+					type: "item"
+					title: "分配器升级"
+					item: "pneumaticcraft:dispenser_upgrade"
+					count: 4
+				}
+			]
+		}
+		{
+			title: "润滑剂"
+			x: -5.0d
+			y: -9.5d
+			subtitle: "滑溜溜的斜坡"
+			description: ["用于制作速度升级的绝佳材料。"]
+			dependencies: ["00000000000000F8"]
+			id: "00000000000000EE"
+			tasks: [{
+				id: "00000000000000EF"
+				type: "item"
+				item: "pneumaticcraft:lubricant_bucket"
+			}]
+			rewards: [{
+				id: "00000000000000F0"
+				type: "item"
+				title: "速度升级"
+				item: "pneumaticcraft:speed_upgrade"
+				count: 2
+			}]
+		}
+		{
+			title: "LPG"
+			x: -3.0d
+			y: -10.5d
+			subtitle: "相位偏移"
+			description: ["需要更多吗？考虑将其他燃料转换一下吧。"]
+			dependencies: ["00000000000000EA"]
+			id: "00000000000000F1"
+			tasks: [{
+				id: "00000000000000F2"
+				type: "item"
+				item: "pneumaticcraft:lpg_bucket"
+			}]
+			rewards: [{
+				id: "00000000000000F3"
+				type: "command"
+				title: "稀有PNC:R战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			title: "熔融塑料"
+			x: -3.0d
+			y: -9.5d
+			subtitle: "白金（White Gold）"
+			description: ["即将到来的海中的一次掉落。"]
+			dependencies: ["00000000000000F1"]
+			id: "00000000000000F4"
+			tasks: [{
+				id: "00000000000000F5"
+				type: "item"
+				item: "pneumaticcraft:plastic_bucket"
+			}]
+			rewards: [{
+				id: "00000000000000F7"
+				type: "command"
+				title: "史诗PNC：R战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			title: "柴油发动机"
+			x: -5.0d
+			y: -10.5d
+			subtitle: "要燃烧，还是不要燃烧"
+			description: ["这燃料还不错……不过或许需要进行一点改造。"]
+			dependencies: ["00000000000000EA"]
+			id: "00000000000000F8"
+			tasks: [{
+				id: "00000000000000F9"
+				type: "item"
+				item: "pneumaticcraft:diesel_bucket"
+			}]
+			rewards: [{
+				id: "00000000000000FA"
+				type: "command"
+				title: "稀有PNC:R战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: -4.0d
+			y: -9.0d
+			subtitle: "混合搭配，乐趣无穷"
+			description: ["流体混合器主要用于生物柴油加工链的最后一步。它还能产生一种非常有用的副产品——甘油。"]
+			dependencies: [
+				"00000000000000F4"
+				"00000000000000EE"
+			]
+			id: "00000000000000FB"
+			tasks: [{
+				id: "00000000000000FC"
+				type: "item"
+				item: "pneumaticcraft:fluid_mixer"
+			}]
+			rewards: [
+				{
+					id: "0000000000000105"
+					type: "item"
+					title: "红色蘑菇"
+					item: "minecraft:red_mushroom"
+					count: 16
+				}
+				{
+					id: "0000000000000106"
+					type: "item"
+					title: "Podzol"
+					item: "minecraft:podzol"
+					count: 4
+				}
+			]
+		}
+		{
+			title: "酵母培养物"
+			icon: "minecraft:red_mushroom_block"
+			x: -4.0d
+			y: -7.5d
+			subtitle: "文化大革命"
+			description: [
+				"生产可再生塑料和润滑剂的第一步，使用TPP创造酵母培养液需要精确的温度控制。"
+				""
+				"尝试使用低功率热源，如火把、不同隔热等级，甚至不同生物群系或维度，以找到可靠的生产文化的方法。"
+			]
+			dependencies: ["00000000000000FB"]
+			id: "00000000000000FD"
+			tasks: [{
+				id: "00000000000000FE"
+				type: "item"
+				item: "pneumaticcraft:yeast_culture_bucket"
+			}]
+			rewards: [{
+				id: "00000000000000FF"
+				type: "command"
+				title: "史诗PNC：R战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			title: "乙醇"
+			x: -5.0d
+			y: -7.0d
+			subtitle: "真是个老掉牙的笑话"
+			description: ["乙醇可以单独燃烧，但它也可以被精炼，这绝对值得一做！"]
+			dependencies: ["00000000000000FD"]
+			id: "0000000000000100"
+			tasks: [{
+				id: "0000000000000101"
+				type: "item"
+				item: "pneumaticcraft:ethanol_bucket"
+			}]
+			rewards: [{
+				id: "0000000000000102"
+				type: "command"
+				title: "史诗PNC：R战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			title: "植物油"
+			x: -3.0d
+			y: -7.0d
+			subtitle: "给豌豆一个机会"
+			description: ["或者，随便哪个种子都可以，反正都一样。"]
+			dependencies: ["00000000000000FD"]
+			id: "0000000000000103"
+			tasks: [{
+				id: "0000000000000104"
+				type: "item"
+				item: "pneumaticcraft:vegetable_oil_bucket"
+			}]
+			rewards: [{
+				id: "000000000000022A"
+				type: "command"
+				title: "史诗PNC：R战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			title: "生物柴油"
+			x: -4.0d
+			y: -6.5d
+			subtitle: "缓慢燃烧"
+			description: ["一条可持续的前进道路。"]
+			dependencies: [
+				"0000000000000103"
+				"0000000000000100"
+			]
+			id: "0000000000000107"
+			tasks: [{
+				id: "0000000000000108"
+				type: "item"
+				item: "pneumaticcraft:biodiesel_bucket"
+			}]
+			rewards: [{
+				id: "0000000000000379"
+				type: "command"
+				title: "传奇PNC：R战利品箱"
+				icon: "kubejs:legendary_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_legendary"
+				player_command: false
+			}]
+		}
+		{
+			x: -4.0d
+			y: -5.0d
+			shape: "octagon"
+			description: ["仅用 PNC:R 和原版机制，找到完全自动化生产塑料板和生物柴油速度升级的方法。可以考虑使用无人机进行采集和物流。"]
+			dependencies: ["0000000000000107"]
+			id: "0000000000000109"
+			tasks: [{
+				id: "000000000000010A"
+				type: "checkmark"
+				title: "可持续发展挑战"
+				icon: {
+					id: "pneumaticcraft:logistics_drone"
+					Count: 1b
+					tag: {
+						"pneumaticcraft:air": 120000
+					}
+				}
+			}]
+		}
+		{
+			title: "物流系统"
+			x: -8.5d
+			y: -12.0d
+			subtitle: "正在处理您的请求"
+			description: [
+				"物流框架和模块是物流网络的核心。框架可以安装在任何物品栏上，并使用物流配置器进行配置。"
+				""
+				"对于更复杂的设置，可能需要使用其他物品栏来“扩展”机器。"
+				""
+				"例如，你可以在熔炉上使用请求器框架将物品拉入其中，然后用漏斗将产物取出。漏斗上的提供者框架可以将物品送回网络。"
+			]
+			dependencies: ["000000000000011D"]
+			id: "000000000000010B"
+			tasks: [{
+				id: "000000000000010C"
+				type: "item"
+				item: "pneumaticcraft:logistics_module"
+				count: 8L
+			}]
+			rewards: [
+				{
+					id: "000000000000010D"
+					type: "item"
+					title: "物流请求器框架"
+					item: "pneumaticcraft:logistics_frame_requester"
+					count: 8
+				}
+				{
+					id: "000000000000010E"
+					type: "item"
+					title: "物流被动供应框架"
+					item: "pneumaticcraft:logistics_frame_passive_provider"
+					count: 8
+				}
+				{
+					id: "000000000000010F"
+					type: "item"
+					title: "物流存储框架"
+					item: "pneumaticcraft:logistics_frame_storage"
+					count: 8
+				}
+				{
+					id: "00000000000006FF"
+					type: "item"
+					title: "物流活动提供框架"
+					item: "pneumaticcraft:logistics_frame_active_provider"
+					count: 8
+				}
+			]
+		}
+		{
+			x: -10.0d
+			y: -12.0d
+			subtitle: "谁说你不能把它带在身边？"
+			description: ["一个抗爆炸的箱子，被破坏时仍能保留其内容物。"]
+			dependencies: ["000000000000010B"]
+			id: "0000000000000110"
+			tasks: [{
+				id: "0000000000000111"
+				type: "item"
+				item: "pneumaticcraft:reinforced_chest"
+			}]
+			rewards: [{
+				id: "0000000000000113"
+				type: "command"
+				title: "稀有PNC:R战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: -10.0d
+			y: -11.0d
+			subtitle: "更聪明地工作，而非更费力地工作"
+			description: ["强化箱的进阶版，拥有更大的物品栏、单个物品类型的数量筛选、远程物品收集，以及向附近物品栏推拉物品的能力。"]
+			dependencies: ["0000000000000110"]
+			id: "0000000000000114"
+			tasks: [{
+				id: "0000000000000115"
+				type: "item"
+				item: "pneumaticcraft:smart_chest"
+			}]
+			rewards: [
+				{
+					id: "0000000000000117"
+					type: "command"
+					title: "史诗PNC：R战利品箱"
+					icon: "kubejs:epic_lootbox"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_epic"
+					player_command: false
+				}
+				{
+					id: "0000000000000118"
+					type: "item"
+					title: "磁石升级"
+					item: "pneumaticcraft:magnet_upgrade"
+				}
+			]
+		}
+		{
+			title: "漏斗（Hoppers）"
+			icon: "pneumaticcraft:omnidirectional_hopper"
+			x: -11.0d
+			y: -11.0d
+			subtitle: "奇怪的炫耀，兄弟"
+			description: ["PNC漏斗过滤快，方向随心，支持多种实用升级。更多信息请查看其GUI。"]
+			dependencies: ["0000000000000110"]
+			id: "0000000000000119"
+			tasks: [
+				{
+					id: "000000000000011A"
+					type: "item"
+					item: "pneumaticcraft:omnidirectional_hopper"
+				}
+				{
+					id: "000000000000011B"
+					type: "item"
+					item: "pneumaticcraft:liquid_hopper"
+				}
+			]
+			rewards: [{
+				id: "000000000000011C"
+				type: "item"
+				title: "速度升级"
+				item: "pneumaticcraft:speed_upgrade"
+				count: 2
+			}]
+		}
+		{
+			title: "合乎逻辑的前进道路"
+			x: -8.5d
+			y: -13.5d
+			shape: "rsquare"
+			description: [
+				"PNC:R 的物流系统相当强大，但实施前需要深思熟虑，并且移动物品和流体需要消耗空中运力。"
+				""
+				"当用于压力管网络时，它允许大量物品和流体通过同一条线路同时瞬时移动。"
+			]
+			dependencies: ["00000000000000AF"]
+			id: "000000000000011D"
+			tasks: [{
+				id: "000000000000011E"
+				type: "checkmark"
+				title: "合乎逻辑的前进道路"
+				icon: "pneumaticcraft:logistics_core"
+			}]
+			rewards: [
+				{
+					id: "000000000000011F"
+					type: "item"
+					item: {
+						id: "pneumaticcraft:logistics_configurator"
+						Count: 1b
+						tag: {
+							"pneumaticcraft:air": 30000
+						}
+					}
+				}
+				{
+					id: "0000000000000A7A"
+					type: "command"
+					title: "农夫的欢乐时光"
+					icon: "kubejs:farmers_delight"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_farmers_delight"
+					player_command: false
+				}
+			]
+		}
+		{
+			title: "红石模块"
+			x: -10.0d
+			y: -10.0d
+			subtitle: "红石进化（Redstone Evolution）"
+			description: [
+				"红石模块用于通过管道网络传输红石信号，从而实现信号的读取和输出。使用时不需要空气。"
+				""
+				"将模块扩展卡安装到模块中，使其能执行更复杂的操作，如充当时钟、信号计数器或切换器。"
+			]
+			dependencies: ["000000000000010B"]
+			id: "0000000000000120"
+			tasks: [{
+				id: "0000000000000121"
+				type: "item"
+				item: "pneumaticcraft:redstone_module"
+				count: 2L
+			}]
+			rewards: [{
+				id: "0000000000000122"
+				type: "command"
+				title: "稀有PNC:R战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: -11.0d
+			y: -10.0d
+			subtitle: "树莓派"
+			description: [
+				"模块扩展卡可插入各种管道模块以增强其功能。调节器管道模块、压力表管道模块、红石模块和通风口模块都能从中获益匪浅。"
+				""
+				"考虑使用高级压力计模块和一些红石模块来升级压缩机的红石控制。"
+			]
+			dependencies: ["0000000000000120"]
+			id: "0000000000000123"
+			tasks: [{
+				id: "0000000000000124"
+				type: "item"
+				item: "pneumaticcraft:module_expansion_card"
+			}]
+			rewards: [{
+				id: "0000000000000125"
+				type: "command"
+				title: "传奇PNC：R战利品箱"
+				icon: "kubejs:legendary_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_legendary"
+				player_command: false
+			}]
+		}
+		{
+			x: -8.5d
+			y: -10.5d
+			subtitle: "飞行马戏团"
+			description: ["物流无人机是在不想搭建完整空中基础设施时的得力助手。尝试使用物流框架，部署物流无人机来帮你搬运物品。"]
+			dependencies: ["000000000000010B"]
+			id: "0000000000000126"
+			tasks: [{
+				id: "0000000000000127"
+				type: "item"
+				item: "pneumaticcraft:logistics_drone"
+			}]
+			rewards: [{
+				id: "0000000000000128"
+				type: "command"
+				title: "史诗PNC：R战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			x: -8.5d
+			y: -9.0d
+			subtitle: "自动化山谷"
+			description: [
+				"制作并部署一个Harvest Drone来自动化作物农场或树木农场。使用Collector Drone来保持整洁。"
+				""
+				"请参阅 PNC 手册或物品提示，了解其运作说明。"
+			]
+			dependencies: ["0000000000000126"]
+			id: "0000000000000129"
+			tasks: [{
+				id: "000000000000012A"
+				type: "item"
+				item: "pneumaticcraft:harvesting_drone"
+			}]
+			rewards: [
+				{
+					id: "000000000000012B"
+					type: "item"
+					title: "收集者无人机"
+					item: "pneumaticcraft:collector_drone"
+				}
+				{
+					id: "0000000000000701"
+					type: "item"
+					title: "精炼黑曜石锄头"
+					item: {
+						id: "mekanismtools:refined_obsidian_hoe"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			x: -8.5d
+			y: -7.5d
+			subtitle: "空中加油"
+			description: [
+				"充电站对于自动为无人机充电至关重要。放置一个充电站，并向其中插入分配器升级，即可使其为上方的实体充电。附近的无人机在需要时会自动寻找可用的充电站。"
+				""
+				"站在这样的充电站上，你背包里的物品也会被充能。"
+				""
+				"注意：充电站是压力机制的POI。或许去交个朋友，看看他们能提供什么吧。"
+			]
+			dependencies: ["0000000000000129"]
+			id: "000000000000012C"
+			tasks: [{
+				id: "000000000000012D"
+				type: "item"
+				item: "pneumaticcraft:charging_station"
+			}]
+			rewards: [
+				{
+					id: "000000000000012E"
+					type: "item"
+					title: "分配器升级"
+					item: "pneumaticcraft:dispenser_upgrade"
+				}
+				{
+					id: "0000000000000700"
+					type: "item"
+					title: "音量升级"
+					item: "pneumaticcraft:volume_upgrade"
+					count: 4
+				}
+			]
+		}
+		{
+			x: -7.5d
+			y: -7.0d
+			subtitle: "在她需要的时候提供帮助"
+			description: ["在无人机中安装一个或多个物品生命升级，以帮助它们保持正常工作。它们偶尔会受到环境危害的损害，而这些升级将使其能够自我修复。"]
+			dependencies: ["000000000000012C"]
+			id: "000000000000012F"
+			tasks: [{
+				id: "0000000000000130"
+				type: "item"
+				item: "pneumaticcraft:item_life_upgrade"
+			}]
+			rewards: [{
+				id: "0000000000000131"
+				type: "command"
+				title: "史诗PNC：R战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			x: -8.5d
+			y: -6.5d
+			subtitle: "She's All Alone, All Alone"
+			description: ["在无人机中安装待机升级，以节省一些空气。"]
+			dependencies: ["000000000000012C"]
+			id: "0000000000000132"
+			tasks: [{
+				id: "0000000000000133"
+				type: "item"
+				item: "pneumaticcraft:standby_upgrade"
+			}]
+			rewards: [{
+				id: "0000000000000134"
+				type: "command"
+				title: "稀有PNC:R战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			title: "物品栏升级"
+			x: -7.5d
+			y: -8.0d
+			subtitle: "这个坏小子能装下好多好多方块呢！"
+			description: ["在您的采集无人机中安装一些物品栏升级组件。"]
+			dependencies: ["000000000000012C"]
+			id: "0000000000000135"
+			tasks: [{
+				id: "0000000000000136"
+				type: "item"
+				item: "pneumaticcraft:inventory_upgrade"
+				count: 4L
+			}]
+			rewards: [{
+				id: "0000000000000137"
+				type: "item"
+				title: "物品栏升级"
+				item: "pneumaticcraft:inventory_upgrade"
+				count: 8
+			}]
+		}
+		{
+			x: -9.5d
+			y: -8.0d
+			subtitle: "他正在走向远方"
+			description: ["在收集无人机中安装几个范围升级模块。"]
+			dependencies: ["000000000000012C"]
+			id: "0000000000000138"
+			tasks: [{
+				id: "0000000000000139"
+				type: "item"
+				item: "pneumaticcraft:range_upgrade"
+			}]
+			rewards: [{
+				id: "000000000000013A"
+				type: "item"
+				title: "射程升级"
+				item: "pneumaticcraft:range_upgrade"
+				count: 2
+			}]
+		}
+		{
+			x: -9.5d
+			y: -7.0d
+			subtitle: "他追求的是速度"
+			description: ["在无人机或其他方块中放置几个，可以加快进程。"]
+			dependencies: ["000000000000012C"]
+			id: "000000000000013B"
+			tasks: [{
+				id: "000000000000013C"
+				type: "item"
+				item: "pneumaticcraft:speed_upgrade"
+			}]
+			rewards: [{
+				id: "000000000000013D"
+				type: "item"
+				title: "速度升级"
+				item: "pneumaticcraft:speed_upgrade"
+				count: 2
+			}]
+		}
+		{
+			title: "可编程无人机"
+			icon: "pneumaticcraft:programmer"
+			x: -10.0d
+			y: -9.0d
+			subtitle: "按照我的方式来干这件事"
+			description: [
+				"可编程无人机是PNC:R自动化能力的巅峰，它们能与方块和实体互动，使用武器和工具，并根据复杂条件执行动作，可能性近乎无限。"
+				""
+				"来探索一下这门可视化编程语言，看看你能创造出什么吧！如果想不到主意，可以试试这些："
+				""
+				"● 自动化 Powah’s Energizing Orb"
+				"● 自动化 Botania 的符文祭坛"
+				"● 自动化PNC:R的生物柴油生产"
+				"● 使用牛奶桶和绿色染料建造一个史莱姆农场"
+				"● 使用无人机建立运输网络，让它们来接你并进行传送"
+			]
+			dependencies: ["0000000000000129"]
+			id: "000000000000013E"
+			tasks: [
+				{
+					id: "000000000000013F"
+					type: "item"
+					item: "pneumaticcraft:drone"
+				}
+				{
+					id: "0000000000000141"
+					type: "item"
+					item: "pneumaticcraft:programmer"
+				}
+			]
+			rewards: [{
+				id: "0000000000000140"
+				type: "item"
+				title: "编程谜题碎片"
+				item: "pneumaticcraft:programming_puzzle"
+				count: 64
+			}]
+		}
+		{
+			x: -11.0d
+			y: -9.0d
+			subtitle: "Always At Arms Reach"
+			description: ["远程控制器是可编程接口设备，通过操作全局变量来工作。结合通用传感器使用时，可用于远程红石，也可用于控制可编程无人机。"]
+			dependencies: ["000000000000013E"]
+			id: "0000000000000142"
+			tasks: [{
+				id: "0000000000000143"
+				type: "item"
+				item: "pneumaticcraft:remote"
+			}]
+			rewards: [{
+				id: "0000000000000144"
+				type: "command"
+				title: "传奇PNC：R战利品箱"
+				icon: "kubejs:legendary_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_legendary"
+				player_command: false
+			}]
+		}
+		{
+			title: "塑料薄片"
+			x: 0.0d
+			y: -14.5d
+			shape: "rsquare"
+			subtitle: "你可以触摸，你可以玩耍"
+			description: ["把桶倒进世界来冷却塑料是个开始，但肯定有更好的方法吧？"]
+			dependencies: [
+				"00000000000000BF"
+				"00000000000000F5"
+				"00000000000000AF"
+			]
+			id: "0000000000000145"
+			tasks: [{
+				id: "0000000000000146"
+				type: "item"
+				item: "pneumaticcraft:plastic"
+				count: 4L
+			}]
+			rewards: [{
+				id: "0000000000000147"
+				type: "item"
+				title: "塑料片"
+				item: "pneumaticcraft:plastic"
+				count: 8
+			}]
+		}
+		{
+			title: "优先派送任务书文本"
+			x: 0.0d
+			y: -13.0d
+			description: ["居家购物的终极体验。只需点击按钮，订单便会瞬间送达。"]
+			dependencies: ["0000000000000145"]
+			id: "0000000000000148"
+			tasks: [{
+				id: "0000000000000149"
+				type: "item"
+				item: "pneumaticcraft:amadron_tablet"
+			}]
+			rewards: [{
+				id: "705F9A21C798611B"
+				type: "item"
+				item: "minecraft:emerald"
+				count: 8
+				random_bonus: 8
+			}]
+		}
+		{
+			x: 0.0d
+			y: -12.0d
+			subtitle: "将其燃烧殆尽"
+			description: ["随时可以从阿马德龙处获得。不过当地的压力机械师通常也会作为初始交易提供它们……"]
+			dependencies: ["0000000000000148"]
+			id: "000000000000014B"
+			tasks: [{
+				id: "000000000000014C"
+				type: "item"
+				item: "pneumaticcraft:pcb_blueprint"
+			}]
+			rewards: [{
+				id: "000000000000014D"
+				type: "command"
+				title: "史诗PNC：R战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			x: -0.5d
+			y: -11.0d
+			subtitle: "比太阳更明亮"
+			description: [
+				"用于为蚀刻准备空PCB。没有速度升级的话，这个过程会很慢……建议将阈值设为60-70%左右，这样在等待的同时也有不错的蚀刻几率。强烈建议自动化此过程。"
+				""
+				"失败的PCB可以被回收利用。"
+			]
+			dependencies: ["000000000000014B"]
+			id: "000000000000014E"
+			tasks: [{
+				id: "000000000000014F"
+				type: "item"
+				item: "pneumaticcraft:uv_light_box"
+			}]
+			rewards: [{
+				id: "0000000000000150"
+				type: "command"
+				title: "史诗PNC：R战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			title: "蚀刻槽"
+			icon: "pneumaticcraft:etching_tank"
+			x: -1.0d
+			y: -10.0d
+			subtitle: "一种腐蚀性溶液"
+			description: [
+				"制作电路板的下一步是在此储罐中进行蚀刻，该储罐可同时容纳和处理多达25个空PCB。"
+				""
+				"仅在蚀刻木板时施加热量，酸才会被消耗。"
+				""
+				"这样做能显著加快蚀刻过程，一桶材料可制作多个PCB。"
+			]
+			dependencies: ["000000000000014E"]
+			id: "0000000000000151"
+			tasks: [
+				{
+					id: "0000000000000152"
+					type: "item"
+					item: "pneumaticcraft:etching_tank"
+				}
+				{
+					id: "0000000000000153"
+					type: "item"
+					item: "pneumaticcraft:etching_acid_bucket"
+				}
+			]
+			rewards: [{
+				id: "0000000000000154"
+				type: "command"
+				title: "史诗PNC：R战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			title: "装配台"
+			icon: "pneumaticcraft:assembly_platform"
+			x: 0.5d
+			y: -7.5d
+			subtitle: "需要一定组装技巧才能完成"
+			description: [
+				"装配台提供了更简单的电路板制作方式，并能访问其他高级配方。"
+				""
+				"每个部件都有其放置限制。具体放置规则请参阅 PNC:R 手册。"
+				""
+				"一个简单的布局可以在 2x3 的空间内完成，不过："
+				""
+				"IO, 控制器, IO"
+				"钻头，工作台，激光切割机"
+			]
+			dependencies: ["0000000000000165"]
+			id: "0000000000000155"
+			tasks: [
+				{
+					id: "0000000000000157"
+					type: "item"
+					item: "pneumaticcraft:assembly_io_unit_import"
+				}
+				{
+					id: "0000000000000158"
+					type: "item"
+					item: "pneumaticcraft:assembly_controller"
+				}
+				{
+					id: "0000000000000159"
+					type: "item"
+					item: "pneumaticcraft:assembly_io_unit_export"
+				}
+				{
+					id: "000000000000015A"
+					type: "item"
+					item: "pneumaticcraft:assembly_drill"
+				}
+				{
+					id: "000000000000015B"
+					type: "item"
+					item: "pneumaticcraft:assembly_platform"
+				}
+				{
+					id: "000000000000015C"
+					type: "item"
+					item: "pneumaticcraft:assembly_laser"
+				}
+			]
+			rewards: [{
+				id: "000000000000015D"
+				type: "command"
+				title: "传奇PNC：R战利品箱"
+				icon: "kubejs:legendary_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_legendary"
+				player_command: false
+			}]
+		}
+		{
+			x: -1.5d
+			y: -9.0d
+			subtitle: "坏掉的电路能用来做什么呢？"
+			description: ["把它接地点。"]
+			dependencies: ["0000000000000151"]
+			id: "000000000000015E"
+			tasks: [{
+				id: "000000000000015F"
+				type: "item"
+				item: "pneumaticcraft:empty_pcb"
+			}]
+			rewards: [{
+				id: "0000000000000164"
+				type: "command"
+				title: "史诗PNC：R战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			x: -1.5d
+			y: -8.0d
+			subtitle: "短路 (Short Circuit)"
+			description: ["你试着把它拉伸一下了吗？"]
+			dependencies: ["000000000000015E"]
+			id: "0000000000000160"
+			tasks: [{
+				id: "0000000000000161"
+				type: "item"
+				item: "pneumaticcraft:unassembled_pcb"
+			}]
+			rewards: [
+				{
+					id: "0000000000000162"
+					type: "item"
+					title: "晶体管"
+					item: "pneumaticcraft:transistor"
+					count: 2
+				}
+				{
+					id: "0000000000000163"
+					type: "item"
+					title: "电容器"
+					item: "pneumaticcraft:capacitor"
+					count: 2
+				}
+			]
+		}
+		{
+			x: -0.5d
+			y: -7.5d
+			subtitle: "电子犯罪由谁来调查？"
+			description: ["夏洛克·欧姆斯"]
+			dependencies: ["0000000000000160"]
+			id: "0000000000000165"
+			tasks: [{
+				id: "0000000000000166"
+				type: "item"
+				item: "pneumaticcraft:printed_circuit_board"
+			}]
+			rewards: [{
+				id: "0000000000000167"
+				type: "command"
+				title: "史诗PNC：R战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			title: "装配程序"
+			x: 1.0d
+			y: -8.5d
+			subtitle: "一石二鸟，一举两得"
+			description: [
+				"将其放入装配控制器并提供空气以启动。强烈建议升级速度。"
+				""
+				"注意：钻孔和激光程序允许装配台制作仅需钻孔机或激光器的配方。大多数情况下，没有理由使用单独的程序。"
+			]
+			dependencies: ["0000000000000155"]
+			id: "0000000000000168"
+			tasks: [{
+				id: "0000000000000169"
+				type: "item"
+				item: "pneumaticcraft:assembly_program_drill_laser"
+			}]
+			rewards: [{
+				id: "000000000000016A"
+				type: "command"
+				title: "传奇PNC：R战利品箱"
+				icon: "kubejs:legendary_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_legendary"
+				player_command: false
+			}]
+		}
+		{
+			title: "流体储罐"
+			x: -11.0d
+			y: -12.0d
+			subtitle: "堆叠几率 (Stacking the Odds)"
+			description: [
+				"便携式流体存储。还能填充水桶和其他储罐，用于自动化。"
+				""
+				"将它们垂直堆叠，并用气动扳手右键点击以形成一个多方块储罐。"
+			]
+			dependencies: ["0000000000000110"]
+			id: "000000000000016B"
+			tasks: [{
+				id: "000000000000016C"
+				type: "item"
+				item: "pneumaticcraft:small_tank"
+				count: 2L
+			}]
+			rewards: [{
+				id: "000000000000016D"
+				type: "item"
+				title: "中型流体储罐"
+				item: "pneumaticcraft:medium_tank"
+			}]
+		}
+		{
+			x: 0.5d
+			y: -9.5d
+			subtitle: "超层流（Super Laminar Flow）"
+			description: ["采用先进的加工方法，可以制造出更坚固的压力管，从而达到更高的压力。高级压缩机必须保持冷却，因此并非总是特定任务的最佳选择。然而，有些机器只有在高级压缩机产生的压力下才能开始工作。"]
+			dependencies: ["0000000000000168"]
+			id: "0000000000000415"
+			tasks: [{
+				id: "0000000000000416"
+				type: "item"
+				item: "pneumaticcraft:advanced_liquid_compressor"
+			}]
+			rewards: [{
+				id: "000000000000063D"
+				type: "command"
+				title: "传奇PNC：R战利品箱"
+				icon: "kubejs:legendary_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_legendary"
+				player_command: false
+			}]
+		}
+		{
+			x: -16.5d
+			y: -11.5d
+			subtitle: "完全逆转！"
+			description: [
+				"保持压力只是硬币的一面。创造真空同样可以带来很大好处。"
+				""
+				"提示：真空中的压力室可用于从物品中提取附魔。"
+			]
+			dependencies: [
+				"00000000000000BD"
+				"00000000000000C7"
+				"00000000000000C3"
+			]
+			dependency_requirement: "one_completed"
+			id: "0000000000000417"
+			tasks: [{
+				id: "0000000000000418"
+				type: "item"
+				item: "pneumaticcraft:vacuum_pump"
+			}]
+			rewards: [{
+				id: "0000000000000423"
+				type: "item"
+				title: "记忆存储棒"
+				item: "pneumaticcraft:memory_stick"
+			}]
+		}
+		{
+			x: -17.5d
+			y: -10.5d
+			subtitle: "疯狂过山车"
+			description: [
+				"最近的气动技术突破，现已能强制移除遍布世界的刷怪器中的魔法核心。提取后，将其放入改良型刷怪器并用空气驱动，即可使其运行得更快。"
+				""
+				"开始前，请在刷怪器周围准备好战斗区域。建议使用火把或黑客工具将其禁用。"
+				""
+				"将 Spawner Extractor 放在刷怪器上，将 Vacuum Pump 连接到 Extractor，然后开始抽气。当 Extractor 达到所需的负压时，事情就会开始发生。"
+				""
+				"提取器只有在玩家附近时才能工作，所以请保持靠近。"
+				""
+				"按照这个机制，怪物会被强制生成在该区域。你带上盔甲了，对吧？"
+				""
+				"随着区域内怪物增多，提取器会减速。请迅速将它们消灭。"
+				""
+				"准备好迎接大量的怪物潮。情况可能会变得很混乱。"
+				""
+				"注意：流程结束后，用气动扳手潜行+右键提取器，下次即可免去从零充能的麻烦。经过体积升级的提取器，在需要再次充能前，应该能提取好几个生成器里的核心。"
+			]
+			dependencies: ["0000000000000417"]
+			min_width: 300
+			id: "0000000000000419"
+			tasks: [{
+				id: "000000000000041A"
+				type: "item"
+				item: "pneumaticcraft:spawner_extractor"
+			}]
+			rewards: [{
+				id: "0000000000000433"
+				type: "command"
+				title: "史诗PNC：R战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			icon: "pneumaticcraft:vacuum_trap"
+			x: -15.5d
+			y: -10.5d
+			subtitle: "你打算叫谁来帮忙呢？"
+			description: [
+				"通往自定义刷怪的大门，就在眼前。"
+				""
+				"并非所有生物都能从自然生成器中获得。幸运的是，有一种方法可以重现生成器核心的魔力：真空陷阱。"
+				""
+				"过程与 Spawner Extractor 类似，将 Vacuum Trap 连接到 Vacuum Pump 并抽真空。建议升级容量，并准备一个 Spawner Core。潜行+右键点击已充能的陷阱，并使用 Pneumatic Wrench 拾起。将其放置在任意生物附近，潜行+空手右键点击即可打开。附近的生物会被吸入并添加到 Core 中。"
+				""
+				"多种生物类型可以储存在一个核心中，从而实现混合生成器。"
+				""
+				"只包含一种生物的生成器核心在增压生成器中仍然有效，非常适合捕捉困难或稀有的生物。"
+				""
+				"陷阱在内部储罐中有记忆精华时效率更高，也就是说，需要更少的生物就能将其完全填满。"
+				""
+				"在地面上潜行+右键核心，可释放随机生物，这样在高压刷怪器可用前也能轻松运输生物。"
+			]
+			dependencies: ["000000000000041F"]
+			min_width: 250
+			id: "000000000000041B"
+			tasks: [
+				{
+					id: "000000000000041C"
+					type: "item"
+					item: "pneumaticcraft:vacuum_trap"
+				}
+				{
+					id: "0000000000000422"
+					type: "item"
+					item: "pneumaticcraft:spawner_core"
+				}
+			]
+			rewards: [{
+				id: "0000000000000434"
+				type: "command"
+				title: "传奇PNC：R战利品箱"
+				icon: "kubejs:legendary_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_legendary"
+				player_command: false
+			}]
+		}
+		{
+			x: -16.5d
+			y: -9.5d
+			subtitle: "在坟墓里翻滚着死去的人的灵魂"
+			description: [
+				"提取过程结束后，请务必打破空的刷怪器（任何镐都可以）并带上它。这是制作增压刷怪器所必需的。"
+				""
+				"注意：建议在基地准备一个空的备用刷怪器。可将 Spawner Extractor 放置在其上，以便为未来项目简化充能过程。"
+			]
+			dependencies: ["0000000000000419"]
+			id: "000000000000041F"
+			tasks: [{
+				id: "0000000000000420"
+				type: "item"
+				item: "pneumaticcraft:pressurized_spawner"
+			}]
+			rewards: [{
+				id: "0000000000000432"
+				type: "command"
+				title: "史诗PNC：R战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			title: "Thermal Lagging"
+			x: -12.0d
+			y: -10.0d
+			subtitle: "囚禁热量的监狱"
+			description: ["Thermal Laggings 是机器的隔热罩，有助于保持热量。它们能大幅减少热量损失，你还可以通过它们与机器互动！"]
+			dependencies: ["00000000000000D2"]
+			min_width: 225
+			id: "11D71F1F1AB7FBE2"
+			tasks: [{
+				id: "135A07E2CE99ACF8"
+				type: "item"
+				item: "pneumaticcraft:thermal_lagging"
+				count: 6L
+			}]
+			rewards: [{
+				id: "47D3331CF00A35CB"
+				type: "command"
+				title: "史诗PNC：R战利品箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_pneumaticcraft_loot_epic"
+				player_command: false
+			}]
+		}
+	]
+}
