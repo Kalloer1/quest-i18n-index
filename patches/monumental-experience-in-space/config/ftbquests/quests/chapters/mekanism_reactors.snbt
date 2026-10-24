@@ -1,0 +1,1893 @@
+# AI 初翻，未人工校对
+{
+	autofocus_id: "22C5D2CD84E6E9EF"
+	default_hide_dependency_lines: false
+	default_min_width: 200
+	default_quest_shape: ""
+	filename: "mekanism_reactors"
+	group: "69B9F7247002FE35"
+	icon: "mekanism:modification_station"
+	id: "0A093D8C4429B627"
+	images: [
+		{
+			height: 1.0d
+			image: "securitycraft:block/ani_laser"
+			rotation: 0.0d
+			width: 0.021739130434782608d
+			x: 12.0d
+			y: -4.5d
+		}
+		{
+			height: 1.0d
+			image: "securitycraft:block/ani_laser"
+			rotation: 0.0d
+			width: 0.021739130434782608d
+			x: 13.0d
+			y: -4.0d
+		}
+		{
+			height: 1.0d
+			image: "kubejs:textures/item/quest.png"
+			rotation: 0.0d
+			width: 0.3d
+			x: -0.6607142857142847d
+			y: -3.5892857142857153d
+		}
+	]
+	order_index: 9
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["24174700F7FB771C"]
+			description: [
+				"要开始我们的Mekanism Reactors之旅，我们首先要制作一个&a裂变反应堆&r。这是一种多方块结构，通过燃烧&3裂变燃料&r产生大量热量。该反应堆本身不发电，但其产生的热量可用于加热&b冷却剂&r，从而在&a工业涡轮机&r中发电。"
+				""
+				"&a裂变反应堆&r可能非常危险，熔毁会导致&c爆炸&r，并产生&2辐射&r，在&o&b5个区块半径&r内持续数&n游戏周&r。"
+				""
+				"但我们得做好准备。以防万一，来做一套&6防护服&r吧。"
+			]
+			id: "36B1995B495AA674"
+			min_width: 350
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "49FE4FD579934237"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			tasks: [
+				{
+					id: "14BF9ADCB8F43ADC"
+					item: "mekanism:hazmat_mask"
+					type: "item"
+				}
+				{
+					id: "0B06DCC5BA15895E"
+					item: "mekanism:hazmat_gown"
+					type: "item"
+				}
+				{
+					id: "1F43C3AE8239B716"
+					item: "mekanism:hazmat_pants"
+					type: "item"
+				}
+				{
+					id: "68B050A8CDCDCD10"
+					item: "mekanism:hazmat_boots"
+					type: "item"
+				}
+			]
+			title: "Hazmat Suit"
+			x: 0.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["36B1995B495AA674"]
+			description: [
+				"和大多数 &dMekanism&r 的多方块一样，反应堆可以根据需要定制大小。它们必须是长方体，最小外部尺寸为 &b&o3 宽&r、&b&o4 高&r 和 &o&b3 深&r。最大尺寸为 &b&o18x18x18&r。"
+				""
+				"外壳的边缘&b必须&r由&a裂变反应堆外壳&r制成，而面板可以是外壳，也可以是&b反应堆玻璃&r、&7反应堆端口&r或&3反应堆逻辑适配器&r。这些我们稍后会讲到。"
+				""
+				"现在，先来建造一个基础的 &b&o5x5x5&r &6裂变反应堆&r吧！"
+			]
+			hide_until_deps_visible: false
+			id: "1482F2D45E8F761D"
+			min_width: 300
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "175EE43C5893E47E"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			shape: "square"
+			tasks: [
+				{
+					count: 53L
+					id: "19447D5D621A8D89"
+					item: "mekanismgenerators:fission_reactor_casing"
+					type: "item"
+				}
+				{
+					count: 41L
+					id: "0765AB709CC3C6E2"
+					item: "mekanismgenerators:reactor_glass"
+					type: "item"
+				}
+			]
+			title: "&3裂变反应堆"
+			x: 0.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["1482F2D45E8F761D"]
+			description: [
+				"要将物品放入或取出&6裂变反应堆&r，我们需要&a裂变反应堆端口&r。使用&d配置器&r可将它们配置为&9输入&r或&c输出&r。"
+				""
+				"每个&6裂变反应堆&r都需要&n至少&r&o&b4个端口&r："
+				""
+				"&o&b1 冷却剂&r &9输入&r"
+				"&o&b1 冷却剂&r &c输出&r"
+				"&o&b1 裂变燃料&r &9输入&r"
+				"&o&b1 废料&r &c输出&r"
+				""
+				"对于这个初始建造，让我们在每边都加一个端口。确保配置它们与&9inputs&r和&coutputs&r的列表相匹配！"
+			]
+			id: "0696B725E840B996"
+			min_width: 400
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "41B04ECC66FF4663"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			tasks: [{
+				count: 4L
+				id: "057CDA5BC0C5F774"
+				item: "mekanismgenerators:fission_reactor_port"
+				type: "item"
+			}]
+			title: "与裂变反应堆进行交互"
+			x: 1.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["1482F2D45E8F761D"]
+			description: [
+				"担心引爆你的&6裂变反应堆&r，引发严重的&4辐射&r泄漏？"
+				""
+				"那么，我们该如何避免这种灾难性的事故呢？使用&dFission Reactor Logic Adapters&r来制作一个红石&aCircuit Breaker&r。当然，这些并不能&b&o100%&r保证能阻止爆炸，但它们绝对是好东西。"
+				""
+				"本质上，这些适配器让我们能用&c红石&r来控制&6反应堆&r。只用一个，你就能用拉杆来&9开启&r和&c关闭&r&6反应堆&r。不过，我们要用它们来进行损害控制。"
+				""
+				"你也可以设置这些，使其在&6Reactor&r内的特定条件下发出&cRedstone Signal&r，例如&cDamage Critical&r或&8Insufficient Fuel&r。这有助于设置断路器，在这些情况发生时&coff&r &6Reactor&r。"
+			]
+			id: "5FDB48511EC1C580"
+			min_width: 300
+			optional: true
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "68D084496A4D0BDE"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			shape: "hexagon"
+			tasks: [{
+				id: "16B10EA105CCC1D3"
+				item: "mekanismgenerators:fission_reactor_logic_adapter"
+				type: "item"
+			}]
+			title: "&e安全第一！"
+			x: 0.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["1482F2D45E8F761D"]
+			description: [
+				"反应堆内部由多个&9裂变燃料组件&r构成的柱体组成，每根柱体顶部都放置着一个&e控制棒组件&r。柱体的高度因反应堆大小而异，从&b&o1&r到&b&o15&r格不等。"
+				""
+				"这次建造，我们将把 &b&o2&r 个 &9Fission Fuel Assemblies&r 放在多区块的 &n中心&r，然后在正上方放置 &eControl Rod Assembly&r。"
+			]
+			id: "3F5010269469EBE0"
+			min_width: 400
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "39AAB387F4776D2A"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			tasks: [
+				{
+					count: 2L
+					id: "032045BB026F44B3"
+					item: "mekanismgenerators:fission_fuel_assembly"
+					type: "item"
+				}
+				{
+					id: "0875D821930A348A"
+					item: "mekanismgenerators:control_rod_assembly"
+					type: "item"
+				}
+			]
+			title: "燃料控制"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5FDB48511EC1C580"]
+			description: [
+				"使用一些原版机制和 &o&b2&r &aFission Reactor Logic Adapters&r，我们可以创建一个简单的断路器，在情况失控时触发并关闭反应堆 &c&r&o&e&r。"
+				""
+				"为此，我们需要一个红石块、一个活塞、一块沙子或砾石，以及一个侦测器。"
+				""
+				"在其中一个面上，我们要放置一个&a逻辑适配器&r，然后向上空一格再放置另一个适配器。将顶部的适配器设为&9\"激活\"&r，底部的适配器设为&c\"暴击伤害\"&r。"
+				""
+				"接下来，在底部适配器的前方和下方放置任意方块，并在上面放置红石，从适配器延伸出来。然后，在红石前方放置一个朝上的活塞，再将沙子或砾石放在活塞上。"
+				""
+				"在破坏者最后一部分，将观察者朝向&7活塞&r装置的外侧放置。这很&n重要&r！"
+				""
+				"{image:kubejs:textures/item/example_circuit.png width:100 height:150 align:1}"
+				""
+				"每当反应堆受到致命伤害时，底部的适配器就会激活，向红石发送信号，从而激活活塞并向上推碎石/沙子。这会激活观察者，进而关闭反应堆。"
+			]
+			icon: "minecraft:observer"
+			id: "7B0764DDE94E73D0"
+			min_width: 500
+			optional: true
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "6D3D94B7492D3BF8"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			shape: "hexagon"
+			tasks: [
+				{
+					count: 2L
+					id: "25FB07BDEC8EE4EF"
+					item: "mekanismgenerators:fission_reactor_logic_adapter"
+					type: "item"
+				}
+				{
+					id: "6F57410F914C4D07"
+					item: "minecraft:redstone"
+					type: "item"
+				}
+				{
+					id: "5BC88AE46F95774D"
+					item: {
+						Count: 1
+						id: "itemfilters:or"
+						tag: {
+							items: [
+								{
+									Count: 1b
+									id: "minecraft:gravel"
+								}
+								{
+									Count: 1b
+									id: "minecraft:sand"
+								}
+							]
+						}
+					}
+					title: "砾石或沙子"
+					type: "item"
+				}
+				{
+					id: "584B8A392FBCD199"
+					item: "minecraft:piston"
+					type: "item"
+				}
+				{
+					id: "139EDEDEA3DAD312"
+					item: "minecraft:observer"
+					type: "item"
+				}
+			]
+			title: "电路断路器 (The Circuit Breaker)"
+			x: 0.0d
+			y: 5.0d
+		}
+		{
+			dependencies: ["1DE8B0C9A7195720"]
+			description: [
+				"燃烧燃料时，&3裂变反应堆&r会产生大量热量。为防止&6反应堆&r转化为&4TNT&r，必须确保其充分冷却。"
+				""
+				"最简单的方法是用&aSink&r给&6Reactor&r提供&9Water&r。这个&aSink&r是无限水源，在&b&o这种情况下非常实用&r。"
+				""
+				"将&9水&r泵入设置为&9输入&r的&7反应堆端口&r之一，以填充&6反应堆&r的&9水&r。当&6反应堆&r运行时，水会被加热并转化为&b蒸汽&r，你可以用它在&2工业涡轮机&r中发电。"
+				""
+				"&eSodium&r 也可以用作效率更高的冷却剂。这使得燃烧率更高，核心温度更低。"
+			]
+			id: "2B76B2F18C2C47D2"
+			min_width: 300
+			progression_mode: "linear"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "2616404C9DA31BAC"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "7E8281C007094843"
+				item: "cookingforblockheads:sink"
+				type: "item"
+			}]
+			title: "冷却核裂变反应堆"
+			x: 3.0d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"0696B725E840B996"
+				"3F5010269469EBE0"
+			]
+			description: [
+				"放置完建造&6反应堆&r所需的所有方块后，它应该会发出&c红色&r粒子，表示已&n完成&r。"
+				""
+				"在反应堆的任何地方&e右键单击&r都会打开&a界面&r。其中包含了正常运行&6反应堆&r所需的所有信息，以及用于&9开启&r和&c关闭&r&6反应堆&r的两个按钮。"
+				""
+				"左侧有&o&b2个储罐&r：一个用于&b冷却剂&r，一个用于&3裂变燃料&r。右侧有一个用于&8核废料&r，还有一个用于&b加热冷却剂&r，这很可能是&b蒸汽&r。"
+				""
+				"&c温度&r条会显示反应堆有多热。温度超过一定数值后，反应堆会开始受到&4伤害&r，并最终导致爆炸。"
+				""
+				"要调整&3裂变燃料&r的&c燃烧速率&r并查看更多统计数据，请点击左侧的 (I) 标签页。在这里，你可以调整速率限制，它控制着反应堆每刻燃烧的燃料量。"
+				""
+				"{image:kubejs:textures/item/reactor_interface.png width:280 height:120 align:1}"
+			]
+			icon: "mekanismgenerators:fusion_reactor_controller"
+			id: "1DE8B0C9A7195720"
+			min_width: 500
+			progression_mode: "linear"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "07D0DB0FAFB94677"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			shape: "hexagon"
+			size: 1.5d
+			tasks: [{
+				id: "0FA01A6872FD3B10"
+				type: "checkmark"
+			}]
+			title: "&3裂变反应堆已完成"
+			x: 3.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["3B81800EE6E77EF2"]
+			description: [
+				"每个反应堆都需要用&a铀&r作为燃料，对吧？"
+				""
+				"首先，我们来收集一些&a铀锭&r。我们需要在&9浓缩室&r中处理它们，将其转化为&e黄饼铀&r。"
+			]
+			icon: "mekanism:yellow_cake_uranium"
+			id: "7E17AB5A4492929E"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "683C146BCD53CABC"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			subtitle: "当然要用铀来发电了（Of Course It Uses Uranium）"
+			tasks: [{
+				count: 2L
+				id: "1C72C0C59D65B1D0"
+				item: "mekanism:yellow_cake_uranium"
+				type: "item"
+			}]
+			title: "&a铀矿"
+			x: 6.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["7E17AB5A4492929E"]
+			description: ["一旦我们获得了 &e黄饼铀&r，就可以将其送入 &a化学氧化器&r 中生成气体，即 &2氧化铀&r。"]
+			id: "3AF4E5D4839CEF8B"
+			progression_mode: "linear"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "27E83E3ABE29562B"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			tasks: [{
+				id: "772EA844FE7C1B74"
+				item: "mekanism:chemical_oxidizer"
+				type: "item"
+			}]
+			title: "&e氧化铀"
+			x: 7.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["7E4A95B6443F23BC"]
+			description: [
+				"回顾一下，我们已经搭建了一个使用多种气体、机器等的先进矿石加工厂。"
+				""
+				"在本章中，我们将使用更多组件来建造强大的多方块&a反应堆&r，以及学习高级的电力生成与储存方法。"
+			]
+			icon: {
+				Count: 1
+				id: "ftbquests:custom_icon"
+				tag: {
+					Icon: "kubejs:textures/item/meka.png"
+				}
+			}
+			id: "24174700F7FB771C"
+			min_width: 300
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "1A314BAD123DBB3F"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			shape: "gear"
+			size: 1.5d
+			subtitle: "*完成&b&n&oMekanism: 第一阶段&r任务后解锁*"
+			tasks: [{
+				id: "3153288DCE1C4FEF"
+				type: "checkmark"
+			}]
+			title: "欢迎来到&r &dMekanism:&r 第二阶段"
+			x: 0.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["1DE8B0C9A7195720"]
+			description: [
+				"&6裂变反应堆&r需要&3裂变燃料&r才能运行。如果你在&bJEI&r里搜索&3裂变燃料&r，我敢打赌你会被一大堆制作材料搞得头昏眼花。别担心，你行的。我们一步一步来。"
+				""
+				"归根结底，就是要制造&e六氟化铀&r。为此，我们先来制造这两种气体：&b氢氟酸&r和&e氧化铀&r。"
+			]
+			icon: "mekanism:reprocessed_fissile_fragment"
+			id: "3B81800EE6E77EF2"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "047A520C791123E4"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			tasks: [{
+				id: "382818E289EC83A6"
+				title: "&3裂变燃料生产&r"
+				type: "checkmark"
+			}]
+			x: 4.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["3B81800EE6E77EF2"]
+			description: [
+				"你应该已经为&b&oTier 4&r &6Ore Processing Factory&r制作了&2Sulfuric Acid&r，但这里提醒你如何获取。"
+				""
+				"首先，通过粉碎 &9Thermal&r 中的硫磺，或在 &dChemical Dissolution Chamber&r 中混合 &bHydrogen Chloride&r 和 &3Gunpowder&r 来获取 &eSulfur Dust&r。"
+				""
+				"将 &e硫磺粉&r 放入 &9化学氧化器&r 中得到 &e二氧化硫&r。再将其与 &b氧气&r 在 &c化学注入器&r 中结合，得到 &e三氧化硫&r。"
+				""
+				"接下来，我们将 &b水蒸气&r 与 &6三氧化硫&r 结合，制成 &2硫酸&r。"
+			]
+			icon: "thermal:sulfur_dust"
+			id: "31EEE2875595F315"
+			min_width: 300
+			progression_mode: "linear"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "5C9AF7F57C844EA6"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			subtitle: "快速回顾一下"
+			tasks: [{
+				id: "4A814B13C8A44960"
+				item: {
+					Count: 1
+					id: "ftbfiltersystem:smart_filter"
+					tag: {
+						"ftbfiltersystem:filter": "ftbfiltersystem:item_tag(forge:dusts/sulfur)"
+					}
+				}
+				title: "硫磺粉尘"
+				type: "item"
+			}]
+			title: "&2硫酸"
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["31EEE2875595F315"]
+			description: ["将我们的 &2硫酸&r 和 &b萤石&r 在 &9化学溶解室&r 中结合，以制造 &b氢氟酸&r。"]
+			id: "187A3F5B41D1C923"
+			progression_mode: "linear"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "197C7B6AB0A89700"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			tasks: [{
+				id: "4F5A28143EFF4944"
+				item: "mekanism:chemical_dissolution_chamber"
+				type: "item"
+			}]
+			title: "&b氢氟酸"
+			x: 7.5d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"187A3F5B41D1C923"
+				"3AF4E5D4839CEF8B"
+			]
+			description: ["使用另一个&9化学注入器&r，将我们的&b氢氟酸&r与&e氧化铀&r结合，以制造&2六氟化铀&r。"]
+			id: "3663E93E169EF8E3"
+			progression_mode: "linear"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "1A57D31492A204CC"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			tasks: [{
+				id: "73C5F4AC41EE5123"
+				item: "mekanism:chemical_infuser"
+				type: "item"
+			}]
+			title: "&2六氟化铀"
+			x: 9.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["3663E93E169EF8E3"]
+			description: [
+				"一旦有了&9同位素离心机&r，我们就可以把&2六氟化铀&r放进去，制造出&3裂变燃料&r了！"
+				""
+				"其实也没那么糟糕，不是吗？"
+			]
+			icon: "mekanism:isotopic_centrifuge"
+			id: "16A6C47E35F3B9D0"
+			progression_mode: "linear"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "1708BB317DA80520"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			shape: "hexagon"
+			tasks: [{
+				id: "3F2371FD486D4F0E"
+				item: "mekanism:isotopic_centrifuge"
+				type: "item"
+			}]
+			title: "&3裂变燃料&r"
+			x: 11.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["3FFF9018DA2A2763"]
+			description: [
+				"在启动之前，让我们再检查一遍清单&b&o一遍&r，确保一切准备就绪："
+				""
+				"1. &6防护服&r 开启（安全第一！）"
+				"2. 将&9水/冷却液&r泵入输入端口。"
+				"3. 将&3裂变燃料&r泵入输入端口。"
+				"4. 一个端口，用于将加热冷却液输出到垃圾桶或&2工业涡轮机&r。"
+				"5. 一个设置为输出 &0核废料&r 的端口，连接到 &e放射性废料桶&r 或处理机器，或者两者都有！"
+				""
+				"准备好了的话，就点击那个&e激活&r按钮吧！"
+				""
+				"你也可以调整&3燃烧速率&r来产生更多&0核废料&r，但请从慢速开始。"
+			]
+			icon: {
+				Count: 1
+				id: "ftbquests:custom_icon"
+				tag: {
+					Icon: "kubejs:textures/item/radiation.png"
+				}
+			}
+			id: "3591EAA8E397F992"
+			min_width: 500
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "5473DDC4416F9342"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			shape: "square"
+			tasks: [{
+				id: "27709080B4B77B09"
+				title: "准备就绪，出发吧！"
+				type: "checkmark"
+			}]
+			title: "启动反应堆 (Booting Up The Reactor)"
+			x: 13.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["16A6C47E35F3B9D0"]
+			description: [
+				"一旦我们在&6反应堆&r中开始燃烧&3裂变燃料&r，就会得到高温&b冷却剂&r和&8核废料&r。"
+				""
+				"This is where the &4Radiation&r kicks in. As long as it stays &b&osafely in some container or machine&r, you won't have any spills... right?"
+				""
+				"储存任何&4放射性&r物质的最佳方式是使用&2放射性废料桶&r。它能安全储存废料，同时缓慢衰变气体，而不会造成&4辐射&r泄漏。不要让&8核废料&r留在你的&6反应堆&r中，因为它会产生更多热量，所以设置端口输出&8废料&r并将其运送到废料桶中！"
+				""
+				"&cImportant Note&r: Breaking &nany&r machine, barrel, pipe, or &nanything&r that has a &4Radioactive&r gas inside of it &nwill cause a Radiation leak&r. That includes the products of &8Nuclear Waste&r, like &5Polonium&r or &ePlutonium&r."
+			]
+			id: "3FFF9018DA2A2763"
+			min_width: 300
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7966C3705F1E9B0A"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			tasks: [{
+				count: 3L
+				id: "45EC7D8BA0CCFB07"
+				item: "mekanism:radioactive_waste_barrel"
+				type: "item"
+			}]
+			title: "&8核废料"
+			x: 13.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["3591EAA8E397F992"]
+			description: [
+				"&8核废料&r可以送入&d同位素离心机&r来制造&9钚&r。"
+				""
+				"将 &9Plutonium&r 与一些 &1Water&r 和 &7Fluorite Dust&r 放入 &2Pressurized Reaction Chamber&r 中，即可得到 &9Plutonium Pellets&r。"
+				""
+				"这还会产生副产品 &7Spent Nuclear Waste&r，需要将其泵入 &6Waste Barrel&r 中储存。"
+			]
+			id: "2E9FC7DC2AC6FD8E"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "151461285D4DBD33"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			tasks: [{
+				id: "6B40312EE7C8875D"
+				item: "mekanism:pellet_plutonium"
+				type: "item"
+			}]
+			x: 13.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["1E1EF430810D08BF"]
+			description: [
+				"将&0核废料&r泵入&9太阳能中子活化器&r中，会获得&d钋&r。"
+				""
+				"将 &dPolonium&r 和一些 &bFluorite Dust&r 放入 &2Pressurized Reaction Chamber&r 中，你就能得到 &9Polonium Pellets&r。"
+				""
+				"这还会产生副产品 &7Spent Nuclear Waste&r，需要将其泵入 &6Waste Barrel&r 中储存。"
+			]
+			id: "1FAAF8216CDC3AC6"
+			min_width: 250
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "0C825CD1E1D01F05"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			tasks: [{
+				id: "38A344B697C93B3B"
+				item: "mekanism:pellet_polonium"
+				type: "item"
+			}]
+			x: 9.0d
+			y: 2.5d
+		}
+		{
+			dependencies: [
+				"2E9FC7DC2AC6FD8E"
+				"1FAAF8216CDC3AC6"
+			]
+			description: [
+				"&a超临界相移器&r (SPS) 是另一种多方块结构，用于将大量能量注入&3钋&r以生成&d反物质&r气体，该气体可被结晶成颗粒。"
+				""
+				"建造 &aSPS&r 需要总共 &o&b72&r 个 &9SPS 外壳&r（&o&b60&r 个用于建造，&o&b12&r 个用于制作端口）、&o&b3&r 个 &eSPS 端口&r、&o&b122&r 块 &3反应堆玻璃&r，以及下一任务会提到的另一物品。"
+			]
+			id: "068728DE3B9B13C3"
+			progression_mode: "linear"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "148E138265591861"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			shape: "hexagon"
+			tasks: [
+				{
+					count: 60L
+					id: "63C9D54A0F55BA9B"
+					item: "mekanism:sps_casing"
+					type: "item"
+				}
+				{
+					count: 122L
+					id: "6236D6215419A2EF"
+					item: "mekanismgenerators:reactor_glass"
+					type: "item"
+				}
+				{
+					count: 3L
+					id: "769C396EE20CD89D"
+					item: "mekanism:sps_port"
+					type: "item"
+				}
+			]
+			title: "&d超临界相移器"
+			x: 11.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["1FAAF8216CDC3AC6"]
+			description: [
+				"你可能听说过，&6Fusion Reactor&r 是这个整合包里最好的电源。&b没错&r！"
+				""
+				"激活后，&6Reactor&r在正确配置下可输出高达&o&b200MRF/t&r的功率。它也可以用&9Water&r冷却以产生&7Steam&r，送入&dIndustrial Turbine&r以获取更多电力。"
+				""
+				"要建造&6聚变反应堆&r，我们需要遵循一个简单的模式。每个面都会像这样："
+				""
+				"{image:kubejs:textures/item/fusion_pattern.png width:400 height:100 align:1}"
+				""
+				"顶部，我们要将中间的方块替换为 &aFusion Reactor Controller&r。"
+				""
+				"端口方面，你可以替换侧面的任意 &bReactor Glass&r。此设置需要两个端口输入 &cDeuterium&r 和 &eTritium&r，然后一个端口输出电力。"
+				""
+				"{image:kubejs:textures/item/completed_fusion_reactor.png width:110 height:100 align:1}"
+			]
+			id: "0152C49AB74B9D32"
+			min_width: 500
+			progression_mode: "linear"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "408F522D972D12F5"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			shape: "rsquare"
+			subtitle: "你能得到的最佳电源来源"
+			tasks: [
+				{
+					id: "4005EDF7A97FD97D"
+					item: "mekanismgenerators:fusion_reactor_controller"
+					type: "item"
+				}
+				{
+					count: 36L
+					id: "6E680D259F45AF80"
+					item: "mekanismgenerators:fusion_reactor_frame"
+					type: "item"
+				}
+				{
+					count: 3L
+					id: "2369D4585A3BDCCC"
+					item: "mekanismgenerators:fusion_reactor_port"
+					type: "item"
+				}
+				{
+					count: 25L
+					id: "554C67BA24832AB4"
+					item: "mekanismgenerators:reactor_glass"
+					type: "item"
+				}
+			]
+			title: "&6聚变反应堆"
+			x: 9.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["068728DE3B9B13C3"]
+			description: [
+				"将&9超充线圈&r放置在两个面中心的&3SPS端口&r上，如下方图片所示。通电后，它们会将&d钋&r超充为&5反物质&r。只需要&o&b1个&r，但也可以用&o&b2个&r。"
+				""
+				"要生产 &o&b1mb&r 的 &5Antimatter&r，你需要 &o&b400MRF&r 的能量。如果你还没开始建造 &6Fusion Reactor&r，现在正是个好时机！"
+				""
+				"{image:kubejs:textures/item/sps_coils.png width:200 height:125 align:1}"
+			]
+			id: "2331FCDD2F2B709A"
+			min_width: 300
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "75FAB660E4A59B4E"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			tasks: [{
+				id: "48A70F1D73DE5E37"
+				item: "mekanism:supercharged_coil"
+				type: "item"
+			}]
+			title: "超充能线圈 (The Supercharged Coils)"
+			x: 11.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["2331FCDD2F2B709A"]
+			description: [
+				"收集完所有方块，就该建造了。下面是文字指南，或者你也可以观看 Ponder！"
+				""
+				"SPS 建成后是 7x7 的，但不是立方体。它遵循一个简单的模式，你可以参考下面的图片作为建造指南。模式如下："
+				""
+				"{image:kubejs:textures/item/basic_sps_shape.png width:100 height:95 align:1}"
+				""
+				"每个面，包括底部和顶部，都遵循此模式。超充线圈应放置在各自面部的中心相对位置，其余两个端口将用于泵入钋和泵出反物质气体。"
+				""
+				"以下是已完成的结构展示："
+				""
+				"{image:kubejs:textures/item/sps_complete.png width:110 height:100 align:1}"
+			]
+			icon: {
+				Count: 1
+				id: "ftbquests:custom_icon"
+				tag: {
+					Icon: "kubejs:textures/item/sps.png"
+				}
+			}
+			id: "2B3F2F470E06BC40"
+			min_width: 350
+			progression_mode: "linear"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "223FF76E73126016"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			shape: "hexagon"
+			size: 1.5d
+			tasks: [{
+				id: "1C782A942C445CEF"
+				type: "checkmark"
+			}]
+			title: "&d已完成SPS"
+			x: 13.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["2B3F2F470E06BC40"]
+			description: [
+				"在 &dSPS&r 中消耗了数万亿能量后，我们终于可以制造出 &5反物质颗粒&r了。"
+				""
+				"将 &dSPS&r 获得的 &3Antimatter Gas&r 倒入 &2Chemical Crystallizer&r，每消耗 &o&b1,000mb&r 可得到 &o&b1&r 个 &5Antimatter Pellet&r。"
+			]
+			id: "00EFC7B327E79076"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "5B9CB1B464834E00"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			shape: "octagon"
+			size: 1.5d
+			tasks: [{
+				id: "3B83170BC4E75158"
+				item: "mekanism:pellet_antimatter"
+				type: "item"
+			}]
+			x: 16.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["79757F66DF263FA0"]
+			description: [
+				"目标是将每个&9激光&r对准一个&2激光放大器&r。用单个的会很慢，所以我们要制作几个。"
+				""
+				"将&9激光&r直接安装在像&a能量立方&r这样的电源上即可，也可以安装在管道或电缆上。在&9激光&r和&2激光放大器&r之间需要留出一格空位。"
+				""
+				"&2激光放大器&r的一个面上有一个红点。你需要将其对准&3激光聚焦矩阵&r。"
+				""
+				"确保将&2Laser Amplifier&r &n关闭&r（或激活&cRedstone&r控制），并等待其存储&n至少&r &o&b400MRF&r，之后即可使用。"
+				""
+				"{image:kubejs:textures/item/laser_example.png width:120 height:120 align:1}"
+			]
+			id: "320CC038A64A3195"
+			min_width: 400
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "4A805D9B162DD36E"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			tasks: [
+				{
+					id: "1F82E1E037CBDC34"
+					item: "mekanism:laser_amplifier"
+					type: "item"
+				}
+				{
+					count: 3L
+					id: "64C66199BBFDF908"
+					item: "mekanism:laser"
+					type: "item"
+				}
+			]
+			title: "启动方法：&d激光聚焦阵列&r"
+			x: 6.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["12D271359D48210E"]
+			description: [
+				"为了给我们的 &6聚变反应堆&r 提供燃料，我们需要制造两种不同的气体，其中一种是 &c氘&r。"
+				""
+				"要制作这个，我们需要制作一些&e电动泵&r，并为它们安装&3过滤升级&r。将它们放置在水源方块上，给予它们能量，它们就会泵出&1重水&r。"
+				""
+				"将&1重水&r泵入&d电解分离器&r以获得&c氘&r。"
+			]
+			icon: {
+				Count: 1
+				id: "mekanism:creative_fluid_tank"
+				tag: {
+					mekData: {
+						FluidTanks: [{
+							Tank: 0b
+							stored: {
+								Amount: 2147483647
+								FluidName: "mekanismgenerators:deuterium"
+							}
+						}]
+					}
+				}
+			}
+			id: "4ABF0727AA569DD9"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "2B52625C70E8A2E9"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			tasks: [
+				{
+					id: "34228001011C4524"
+					item: "mekanism:electric_pump"
+					type: "item"
+				}
+				{
+					id: "1C627F3894C50E4E"
+					item: "mekanism:upgrade_filter"
+					type: "item"
+				}
+			]
+			title: "&c氘&r"
+			x: 5.5d
+			y: 5.0d
+		}
+		{
+			dependencies: [
+				"4ABF0727AA569DD9"
+				"04B3B99637C7E275"
+			]
+			description: [
+				"要启动&6聚变反应堆&r，我们需要一些&dD-T燃料&r。它是在&e化学注入器&r中结合&c氘&r和&e氚&r制成的。"
+				""
+				"先制作一个 &4Hohlraum&r，然后把它放入 Infuser（加号的位置）里，用 &dD-T Fuel&r 填满。现在我们准备好 &b&n启动&r &6Reactor&r 了！"
+			]
+			id: "3593D955361B0C6D"
+			min_width: 300
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "2FADC2121714F542"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			tasks: [{
+				id: "789B4C8031BCDBDA"
+				item: "mekanismgenerators:hohlraum"
+				type: "item"
+			}]
+			title: "燃料喷射器"
+			x: 4.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["0152C49AB74B9D32"]
+			description: [
+				"要让&6反应堆&r启动，我们需要给它注入大量的能量。&o&b我说的可是大量的能量&r。"
+				""
+				"这需要你设置多个&9激光&r，全部需要供电，然后将&o&b400MFE&r直接射入&a激光聚焦矩阵&r。"
+				""
+				"将&a激光聚焦矩阵&r放置在&6聚变反应堆&r的一个面的中心。我们接下来会建造&9激光器&r。"
+			]
+			id: "79757F66DF263FA0"
+			min_width: 300
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "0ADC9D5A1814A25B"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			tasks: [{
+				id: "5799CEC4031D454E"
+				item: "mekanismgenerators:laser_focus_matrix"
+				type: "item"
+			}]
+			x: 9.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["0152C49AB74B9D32"]
+			description: [
+				"&6聚变反应堆&r需要一种非常特殊的燃料：&dD-T燃料&r。"
+				""
+				"为&6Reactor&r供能有两种方式：直接以&b&o1,000mb/t&r向&6Reactor&r注入&dD-T Fuel&r，或以受控速率分别注入两种燃料。"
+				""
+				"首先，我们让它们单独运行起来吧。"
+			]
+			icon: {
+				Count: 1
+				id: "mekanism:creative_fluid_tank"
+				tag: {
+					mekData: {
+						FluidTanks: [{
+							Tank: 0b
+							stored: {
+								Amount: 2147483647
+								FluidName: "mekanismgenerators:fusion_fuel"
+							}
+						}]
+					}
+				}
+			}
+			id: "12D271359D48210E"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7ECF2CF6654F8034"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			tasks: [{
+				id: "71D4910C5A3CA6C4"
+				item: "mekanismgenerators:fusion_fuel_bucket"
+				type: "item"
+			}]
+			title: "&dD-T 燃料&r"
+			x: 6.5d
+			y: 4.5d
+		}
+		{
+			dependencies: [
+				"320CC038A64A3195"
+				"3593D955361B0C6D"
+			]
+			description: [
+				"中子氘燃料已填充？&o确认！&r"
+				""
+				"氘和氚已准备好注入反应堆？&o已确认！&r"
+				""
+				"至少有400MRF的激光放大器，准备好射入激光聚焦矩阵了吗？&o已确认！&r"
+				""
+				"准备好后，将 &5Hohlraum&r 放入 &aFusion Reactor Controller&r，注入燃料，然后激活你的 Laser Amplifier。"
+				""
+				"操作正确的话，&n你会看到反应堆启动！&r"
+				""
+				""
+				"{image:kubejs:textures/item/fusion_activated.png width:180 height:150 align:1}"
+			]
+			icon: {
+				Count: 1
+				id: "ftbquests:custom_icon"
+				tag: {
+					Icon: "kubejs:textures/item/fusion_reactor.png"
+				}
+			}
+			id: "54D8B9CB3F98040F"
+			min_width: 300
+			progression_mode: "linear"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "78D1E0F9198588C5"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			shape: "hexagon"
+			size: 1.5d
+			tasks: [{
+				id: "4B63979C49A34565"
+				item: {
+					Count: 1
+					id: "mekanismgenerators:hohlraum"
+					tag: {
+						mekData: {
+							GasTanks: [{
+								Tank: 0b
+								stored: {
+									amount: 10L
+									gasName: "mekanismgenerators:fusion_fuel"
+								}
+							}]
+						}
+					}
+				}
+				type: "item"
+			}]
+			title: "&6已完成聚变反应堆建造"
+			x: 4.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["3FFF9018DA2A2763"]
+			description: [
+				"&9工业涡轮机&r是一种用于将&c加热冷却液&r转化为能量的巨型多方块结构。最小尺寸为5x5x5，最大尺寸为17x17x18。"
+				""
+				"和大多数 &dMekanism&r 的多方块一样，框架必须由 &aTurbine Casings&r 制成。不过，除了 &eReactor Glass&r，你也可以在每个面上使用 &bStructural Glass&r 或 Casings。"
+				""
+				"我们要建造这个&9工业涡轮机&r，任务需要精确的材料。"
+				""
+				"{image:kubejs:textures/item/industrial_turbine.png width:100 height:105 align:1}"
+			]
+			id: "6313B18820445882"
+			min_width: 300
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "211482AB1DFC08C2"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			shape: "square"
+			subtitle: "建造框架"
+			tasks: [
+				{
+					count: 52L
+					id: "0C8EF4390F02EBC4"
+					item: "mekanismgenerators:turbine_casing"
+					type: "item"
+				}
+				{
+					count: 52L
+					id: "3CD4768A3FCA49FF"
+					item: "mekanism:structural_glass"
+					type: "item"
+				}
+			]
+			title: "&9工业涡轮机</c1>"
+			x: 10.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["6313B18820445882"]
+			description: [
+				"&9涡轮阀门&r用于泵入&b蒸汽&r，并输出由&9涡轮&r产生的电力。"
+				""
+				"&8Turbine Vents&r 用于在使用 &aSaturating Condensers&r 时排出多余的水。否则，它们有助于增加 &9Turbine&r 内部的蒸汽总流量。通风口的总数也限制了蒸汽的总流量。通风口也可以用于 &9Turbine&r 的顶面，但对于此建造，我们只会在外侧面使用它们。"
+				""
+				"&aSaturating Condensers&r 用于将 &bSteam&r 转换回水。它们应放置在含有 &6Electromagnetic Coils&r 的层级上或其上方。"
+			]
+			id: "233E438357CD89F6"
+			min_width: 300
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "47D29FA4D0A84B25"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			tasks: [
+				{
+					count: 2L
+					id: "3E72FC25B884DFFC"
+					item: "mekanismgenerators:turbine_valve"
+					type: "item"
+				}
+				{
+					count: 24L
+					id: "4D32BE4920464ED0"
+					item: "mekanismgenerators:turbine_vent"
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "2C56599158C13CDF"
+					item: "mekanismgenerators:saturating_condenser"
+					type: "item"
+				}
+			]
+			title: "港口 (The Ports)"
+			x: 8.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["6313B18820445882"]
+			description: [
+				"将&9涡轮转子&r放置在&6涡轮&r的中央。每个&9涡轮转子&r需要&b&o2&r个&a涡轮叶片&r。本涡轮将使用&b&o3&r个&9涡轮转子&r。"
+				""
+				"查看 &9Rotor&r 时，使用 &aTurbine Blades&r 进行 &e右键点击&r，即可将其直接放置在 &9Rotor&r 上。 &9Rotor&r 越高，&aBlades&r 就会越长。本结构中，我们共使用 &o&b6&r 个 &aBlades&r。如果你打算建造更大的 &6Turbine&r，则需要根据计划使用的 &aBlades&r 数量来增加 &6Turbine&r 的宽度。"
+				""
+				"&d旋转复合体&r必须放置在&9涡轮转子&r的顶部。然后用&e压力分散器&r将其包围。"
+				""
+				"&eDispersers&r 必须填满 &dRotational Complex&r 所在的那一整层。"
+			]
+			id: "05D20B506213A449"
+			min_width: 300
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "59B4E439A675DA6A"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			shape: "circle"
+			tasks: [
+				{
+					count: 3L
+					id: "69CE83F6561383E5"
+					item: "mekanismgenerators:turbine_rotor"
+					type: "item"
+				}
+				{
+					id: "2902E36FD3AC8E68"
+					item: "mekanismgenerators:rotational_complex"
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "1E9FDE2560C1AB7C"
+					item: "mekanism:pressure_disperser"
+					type: "item"
+				}
+				{
+					count: 6L
+					id: "526F17523CE9BDF5"
+					item: "mekanismgenerators:turbine_blade"
+					type: "item"
+				}
+			]
+			title: "&a转子&r"
+			x: 8.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["6313B18820445882"]
+			description: [
+				"将&9电磁线圈&r直接放置在&a旋转装置&r的顶部，以将动能转化为电能。"
+				""
+				"You can use multiple, with &o&b5&r &nbeing the max&r. These must either touch another &9Coil&r, or the &aRotational Complex&r."
+			]
+			id: "7C61906C6C87C97D"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "13F1A12696C3A2EA"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			tasks: [{
+				id: "4C0CC372A8597375"
+				item: "mekanismgenerators:electromagnetic_coil"
+				type: "item"
+			}]
+			x: 8.5d
+			y: -1.0d
+		}
+		{
+			dependencies: [
+				"233E438357CD89F6"
+				"7C61906C6C87C97D"
+				"05D20B506213A449"
+			]
+			description: [
+				"如果你正确建造了&9工业涡轮机&r，你会看到结构周围有&c红色&r粒子。在&9涡轮机&r上&e右键单击&r会打开&a界面&r。"
+				""
+				"这将告诉你所有需要知道的&b信息&r，包括总&7蒸汽流量&r，以及&9涡轮机&r内的总&b蒸汽&r量。"
+				""
+				"右侧的条会显示 &9涡轮机&r 中储存的 &c能量&r。如果充满，&9涡轮机&r 会 &c关闭&r，除非你将其设置为 &3溢流排放&r。"
+				""
+				"让我们开始运行它吧！"
+				""
+				"一旦你拥有一个完全运转的 &6Fission Reactor&r，就将 &bSteam&r 直接泵入你 &9Turbine&r 上的 &dTurbine Valve&r。由于此配置使用 &2Saturating Condensers&r，你可以根据需要将 &1Water&r 从 &3Turbine Vent&r 泵回你的 &6Reactor&r。"
+				""
+				"{image:kubejs:textures/item/turbine_gui.png width:280 height:120 align:1}"
+			]
+			icon: {
+				Count: 1
+				id: "ftbquests:custom_icon"
+				tag: {
+					Icon: "kubejs:textures/item/industrial_turbine.png"
+				}
+			}
+			id: "4189BC3DFB551F4C"
+			min_width: 400
+			progression_mode: "linear"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "25A084EFA9C54DCD"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			shape: "hexagon"
+			size: 1.5d
+			tasks: [{
+				id: "3301B13304A98C3D"
+				type: "checkmark"
+			}]
+			title: "&9工业涡轮机已完成建造"
+			x: 7.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["24174700F7FB771C"]
+			description: [
+				"如果我们想制造巨量的&4能量&r，就需要一种方法来储存所有能量，而这些&a能量立方&r显然不够用。"
+				""
+				"我们将创建一个可定制的巨型方块来储存大量能量，但首先，我们需要制作一些&3锂尘&r！"
+				""
+				"你应该已经用之前的任务通过 &cThermal Evaporation Plants&r 制作了一些 &eBrine&r。"
+				""
+				"将 &eBrine&r 通过另一个 &cThermal Evaporation Plant&r 获得 &7Lithium&r，再通过 &9Chemical Crystallizer&r 获得 &aLithium Dust&r。"
+			]
+			icon: "mekanism:dust_lithium"
+			id: "0FF852DE33E41C90"
+			min_width: 250
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "4EB797037D76045F"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			shape: "square"
+			tasks: [{
+				count: 4L
+				id: "31A1425AA09C33F8"
+				item: "mekanism:dust_lithium"
+				type: "item"
+			}]
+			title: "高级电力存储系统"
+			x: 2.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["0FF852DE33E41C90"]
+			description: [
+				"&b感应矩阵&r是一种高度可配置的多方块储能结构。"
+				""
+				"你需要建造一个长方体结构。边缘必须用&8Induction Casings&r制作。面可以用Casings、&aStructural Glass&r或&eInduction Ports&r。最好设置&b&o2个端口&r：一个用于&9输入&r，一个用于&c输出&r。这些可以通过&dConfigurator&r更改。"
+				""
+				"本次建造需要 5x5x5 的材料。此任务要求提供建造所需的精确材料数量。"
+				""
+				"{image:kubejs:textures/item/induction.png width:100 height:100 align:1}"
+			]
+			hide_until_deps_visible: false
+			id: "673FCBF8685D0EEE"
+			min_width: 300
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "27719C9EACBA2BB7"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			tasks: [
+				{
+					count: 44L
+					id: "6D0EB8C587E34699"
+					item: "mekanism:induction_casing"
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "6468D6A69F683E6D"
+					item: "mekanism:induction_port"
+					type: "item"
+				}
+				{
+					count: 55L
+					id: "5586FBB0561715AD"
+					item: "mekanism:structural_glass"
+					type: "item"
+				}
+			]
+			title: "&b感应矩阵 (The Induction Matrix)</c1>"
+			x: 3.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["0FF852DE33E41C90"]
+			description: [
+				"The &9Induction Matrix&r allows you to customize how much power you can store and transfer by adding &aCells&r and &eProviders&r inside of the multiblock structure."
+				""
+				"&a感应线圈&r可以增加可储存的总电量。"
+				""
+				"&e感应器&r能提高进出&9矩阵&r的总传输速度。"
+				""
+				"You can customize how many you want of each &b&oinside&r of the multiblock, but you will need &b&oat least&r one of each."
+				""
+				"这些还有更高等级，可以提升你的整体存储和传输容量。"
+				""
+				"{image:kubejs:textures/item/induction_inside.png width:200 height:100 align:1}"
+			]
+			hide_until_deps_visible: false
+			id: "14D772808D1BEAE2"
+			min_width: 350
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "306F8DE493DB0606"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			tasks: [
+				{
+					id: "4063C1B5F935A026"
+					item: {
+						Count: 1
+						id: "itemfilters:or"
+						tag: {
+							items: [
+								{
+									Count: 1b
+									id: "mekanism:basic_induction_cell"
+								}
+								{
+									Count: 1b
+									id: "mekanism:advanced_induction_cell"
+								}
+								{
+									Count: 1b
+									id: "mekanism:elite_induction_cell"
+								}
+								{
+									Count: 1b
+									id: "mekanism:ultimate_induction_cell"
+								}
+							]
+						}
+					}
+					title: "感应线圈 (Induction Cells)"
+					type: "item"
+				}
+				{
+					id: "2E3FF129C3668DD8"
+					item: {
+						Count: 1
+						id: "itemfilters:or"
+						tag: {
+							items: [
+								{
+									Count: 1b
+									id: "mekanism:basic_induction_provider"
+								}
+								{
+									Count: 1b
+									id: "mekanism:advanced_induction_provider"
+								}
+								{
+									Count: 1b
+									id: "mekanism:elite_induction_provider"
+								}
+								{
+									Count: 1b
+									id: "mekanism:ultimate_induction_provider"
+								}
+							]
+						}
+					}
+					title: "感应式能量供应器"
+					type: "item"
+				}
+			]
+			title: "自定义功率限制"
+			x: 3.0d
+			y: -2.0d
+		}
+		{
+			dependencies: [
+				"673FCBF8685D0EEE"
+				"14D772808D1BEAE2"
+			]
+			description: [
+				"正确放置的&9感应矩阵&r在放置完最后一个方块时会发出&c红石粒子&r，并且&e右键&r该方块时会显示接口。"
+				""
+				"要让 &9Induction Matrix&r 正常工作，你需要使用 &dConfigurator&r 将其中一个 &2Induction Port&r 配置为 &9input&r，另一个配置为 &2Induction Port&r 的 &coutput&r。"
+				""
+				"别怕用更高级的 &aCells&r 和 &eProviders&r 来升级！&9Induction Matrix&r 结构的最大尺寸可以是 &o&b18x18x18&r。"
+			]
+			icon: {
+				Count: 1
+				id: "ftbquests:custom_icon"
+				tag: {
+					Icon: "kubejs:textures/item/induction.png"
+				}
+			}
+			id: "07ECC87DFF2D3991"
+			progression_mode: "linear"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "719D43C9B673D6C7"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			shape: "hexagon"
+			size: 1.5d
+			tasks: [{
+				id: "38A0D09CC7E6EBC8"
+				type: "checkmark"
+			}]
+			title: "&b已完成入门矩阵任务"
+			x: 4.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["1FAAF8216CDC3AC6"]
+			description: [
+				"&d改造台&r用于消耗能量，为&3Meka-Suit&r和&aMeka-Tool&r应用模块化升级。"
+				""
+				"与升级兼容的&3Meka-Suit&r的一部分连同&a升级&r一起被插入到空间站中，从而将升级应用到&3Meka-Suit&r上。"
+				""
+				"它的功能与&0Anvil&r或&9Modular Powersuits&r模组的&6Power Armor Tinker Table&r类似。"
+			]
+			hide_dependency_lines: true
+			id: "22C5D2CD84E6E9EF"
+			min_width: 300
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "0EFC568C2CE06CF8"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			shape: "hexagon"
+			size: 1.5d
+			tasks: [{
+				id: "49F6EB53E31342B9"
+				item: "mekanism:modification_station"
+				type: "item"
+			}]
+			title: "&e修改工作站"
+			x: 16.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["22C5D2CD84E6E9EF"]
+			description: [
+				"The &eMeka-Tool&r is a &o&bmulti-use&r tool item in &dMekanism&r."
+				""
+				"默认情况下几乎没什么用，但可以安装 &9Modules&r 来赋予其多种功能。虽然制作 &eMeka-Tool&r 需要 &aConfigurator&r，但它本身并不具备该功能。"
+			]
+			id: "738FF04BEE2342A0"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "4AB50C8B3D1E75D1"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			shape: "circle"
+			tasks: [{
+				id: "7C8248C053A33578"
+				item: {
+					Count: 1
+					id: "mekanism:meka_tool"
+					tag: {
+						HideFlags: 2
+					}
+				}
+				type: "item"
+			}]
+			x: 15.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["3591EAA8E397F992"]
+			description: [
+				"&6太阳能中子活化器&r是一种将太阳的中子辐射导入内部储存库的机器，从而缓慢地制造出各种同位素。"
+				""
+				"&9输入&r在&o&b底部&r，&c输出&r在&o&b正面&r。"
+				""
+				"除了&n直射阳光&r外，它不需要&n能量&r，而阳光会被玻璃、线缆、管道等透明方块拦截。"
+			]
+			id: "1E1EF430810D08BF"
+			min_width: 300
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "091989C7A81E8A31"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			tasks: [{
+				id: "2F361F1CADFDE83D"
+				item: "mekanism:solar_neutron_activator"
+				type: "item"
+			}]
+			x: 11.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["12D271359D48210E"]
+			description: ["现在，你已经能制作&a锂&r了。将其注入&d太阳能中子活化器&r以创造&e氚&r。"]
+			icon: {
+				Count: 1
+				id: "mekanism:creative_fluid_tank"
+				tag: {
+					mekData: {
+						FluidTanks: [{
+							Tank: 0b
+							stored: {
+								Amount: 2147483647
+								FluidName: "mekanismgenerators:tritium"
+							}
+						}]
+					}
+				}
+			}
+			id: "04B3B99637C7E275"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "2A9AC7A94D0D782E"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			tasks: [{
+				id: "1402F3ACDEA3D5CA"
+				item: "mekanismgenerators:tritium_bucket"
+				type: "item"
+			}]
+			title: "&e氚元素"
+			x: 5.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["22C5D2CD84E6E9EF"]
+			description: [
+				"&3MekaSuit&r 是一套高度可定制的后期模块化盔甲，由 &dMekanism&r 添加。"
+				""
+				"&3MekaSuit &r分为&o&b4&r个部分：头盔、胸甲、护腿和靴子。"
+				""
+				"&3MekaSuit&r的每个部件都可以通过&6Modification Station&r安装&eModules&r进行升级，并按“&b\&r”(反斜杠)键进行配置。"
+				""
+				"它被认为是&dMekanism&r中最强的盔甲，制作和&o&b完全升级&r的成本极高，即使是后期玩家也需要大量将&9Polonium&r加工成锭。"
+				""
+				"不过，穿戴完全升级的套装后，穿戴者将变得&n近乎&r &6无敌&r。"
+			]
+			id: "75C0ED308F5D7417"
+			min_width: 300
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "01EF76322EE3FE6F"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			shape: "rsquare"
+			tasks: [
+				{
+					id: "71E897B0F462061B"
+					item: "mekanism:mekasuit_helmet"
+					type: "item"
+				}
+				{
+					id: "73D161D7768408E9"
+					item: "mekanism:mekasuit_bodyarmor"
+					type: "item"
+				}
+				{
+					id: "7D7E0CD9F495548A"
+					item: "mekanism:mekasuit_pants"
+					type: "item"
+				}
+				{
+					id: "77086D288AF7F635"
+					item: "mekanism:mekasuit_boots"
+					type: "item"
+				}
+			]
+			title: "&bMekaSuit 盔甲"
+			x: 16.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["22C5D2CD84E6E9EF"]
+			description: [
+				"&e便携式传送器&r是一种可随身携带的传送装置。"
+				""
+				"它能储存能量，并且像所有 &dMekanism&r 的传送器一样，能量消耗会随着玩家传送的距离而增加。手持此设备时，&a右键单击&r会打开一个与 &9Teleporter Portal&r 类似的 &o&bGUI&r&b，允许玩家即时前往自己设置的任何 &3Teleporter Portals&r。该 &ePortable Teleporter&r 能够进行跨维度旅行。"
+				""
+				"注意，要让&e便携式传送器&r正常工作，无需建造完整的&9传送器传送门&r结构；只需存在&o&b传送器方块&r（并提供&n能量&r）即可。"
+			]
+			id: "43FBFDBCDB69E7EE"
+			min_width: 300
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "2058775236928201"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			tasks: [{
+				id: "0B7C60B8CBA824A4"
+				item: "mekanism:portable_teleporter"
+				type: "item"
+			}]
+			x: 17.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["00EFC7B327E79076"]
+			id: "2CC2D2C475F8E758"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "537ECC702F832B27"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			shape: "hexagon"
+			tasks: [{
+				id: "5CE2ACFC789B27C0"
+				item: "mekanism:antiprotonic_nucleosynthesizer"
+				type: "item"
+			}]
+			x: 15.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["00EFC7B327E79076"]
+			description: [
+				"&6QIO&r 是一种在后期可以远程存储、搜索和访问大量物品的存储方式。"
+				""
+				"它至少包含一个 &aQIO 驱动器&r（用于存储物品）、一个 &9QIO 驱动器阵列&r（用于容纳 &aQIO 驱动器&r）以及至少一个 &3QIO 仪表盘&r（用于访问 &2QIO 驱动器阵列&r 中的物品）。"
+				""
+				"驱动器和驱动阵列必须设置为&o&b相同的频率&r才能协同工作。"
+				"{image:kubejs:textures/item/qio_setup.png width:300 height:120 align:1}"
+			]
+			id: "3AB541A2323AF3B3"
+			min_width: 300
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "797C6AE0F2D4BC94"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			shape: "hexagon"
+			tasks: [{
+				id: "765C572EBC0FB0E7"
+				item: "mekanism:qio_drive_array"
+				type: "item"
+			}]
+			x: 16.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["3AB541A2323AF3B3"]
+			description: [
+				"&aQIO 驱动器&r被插入到&9驱动阵列&r中，使其能够存储更多物品。"
+				""
+				"每个驱动器都有一定数量的物品和物品类型。一个&a基础QIO驱动器&r可以容纳&o&b16,000&r个&n物品&r和&o&b128&r种&n物品类型&r。"
+			]
+			id: "3AE2172B95B58B99"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "2B9BB448DFAEC144"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			shape: "diamond"
+			tasks: [{
+				id: "659585F57F4A3AB1"
+				item: "mekanism:qio_drive_base"
+				type: "item"
+			}]
+			x: 17.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["3AE2172B95B58B99"]
+			description: ["一个&cHyper-Dens QIO Drive&r可以容纳&o&b128,000&r个&n物品&r和&o&b256&r种&n物品类型&r。"]
+			id: "2A55024C0BA2F4EA"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "30AAA6709B9779CB"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			shape: "diamond"
+			tasks: [{
+				id: "3899C752F8C33217"
+				item: "mekanism:qio_drive_hyper_dense"
+				type: "item"
+			}]
+			x: 18.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["2A55024C0BA2F4EA"]
+			description: ["一个&9时间膨胀QIO驱动器&r可以容纳&o&b1,048,000&r &n物品&r和&o&b1,024&r &n物品类型&r。"]
+			id: "51844489E649C85A"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "2673CD6EA2F2B012"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			shape: "diamond"
+			tasks: [{
+				id: "5522D97DB59F27AE"
+				item: "mekanism:qio_drive_time_dilating"
+				type: "item"
+			}]
+			x: 18.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["51844489E649C85A"]
+			description: ["一个 &dSupermasiv QIO Drive&r 可以容纳 &o&b16,000,000,000&r 个 &n物品&r 和 &o&b8,192&r 种 &n物品类型&r。"]
+			id: "3658B862EEE320BD"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "26B3B22AA2DA131E"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			shape: "diamond"
+			tasks: [{
+				id: "2127BF73BDE6CB48"
+				item: "mekanism:qio_drive_supermassive"
+				type: "item"
+			}]
+			x: 18.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["3AB541A2323AF3B3"]
+			id: "4CCA40FAB3230C75"
+			optional: true
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "67A577DFC1D93C90"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			tasks: [{
+				id: "67F2988ACBB5DB51"
+				item: "mekanism:portable_qio_dashboard"
+				type: "item"
+			}]
+			x: 15.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["3AB541A2323AF3B3"]
+			description: [
+				"&2QIO 仪表盘&r允许用户与&9QIO 驱动阵列&r的内容进行交互。"
+				""
+				"它看起来和&e物品栏箱子&r很像，但可以搜索、排序、滚动浏览，并且会将同一种物品显示为一个单独的堆叠，即使有成千上万个。"
+				""
+				"要访问&9驱动阵列&r，&2仪表盘&r必须与&9驱动阵列&r设置相同的&o&b频率&r。"
+			]
+			id: "06CA244E47D9C097"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "1C9124EA2F1E496B"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			tasks: [{
+				id: "2E47C572F5037FD4"
+				item: "mekanism:qio_dashboard"
+				type: "item"
+			}]
+			x: 16.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["22C5D2CD84E6E9EF"]
+			description: [
+				"&9模块&r是可以在&d改装台&r上应用于&3Mekasuit&r和&7Meka-Tool&r的&e升级&r。"
+				""
+				"每个&o&b模块的效果都可以通过绑定到你想要的&a按键的&r配置界面进行调整&r。"
+			]
+			hide_dependency_lines: true
+			hide_until_deps_visible: true
+			id: "08BE431ACC886F18"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "195EEFDDBCAAC082"
+				table_id: 5236874501558129216L
+				type: "random"
+			}]
+			shape: "gear"
+			tasks: [{
+				id: "219454D4E0D5B3B2"
+				item: "mekanism:module_base"
+				type: "item"
+			}]
+			x: 16.5d
+			y: -2.0d
+		}
+	]
+	title: "&3&oMekanism:&r &o&f第二阶段"
+}
