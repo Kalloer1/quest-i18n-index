@@ -1,0 +1,965 @@
+# AI 初翻，未人工校对
+{
+	id: "000000000000011B"
+	group: "516104C773A3B46A"
+	order_index: 5
+	filename: "advanced_storage"
+	title: "高级存储系统 (Advanced Storage)"
+	icon: "refinedstorage:controller"
+	default_quest_shape: "square"
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			disable_toast: true
+			x: 4.0d
+			y: -1.0d
+			shape: "gear"
+			description: ["（来自《成为一名工程师》章节的连接）"]
+			size: 2.0d
+			id: "0000000000000279"
+			tasks: [{
+				id: "000000000000027A"
+				type: "item"
+				item: "refinedstorage:quartz_enriched_iron"
+			}]
+		}
+		{
+			disable_toast: true
+			x: 7.0d
+			y: -1.0d
+			shape: "gear"
+			description: ["（来自《勇敢前进！》章节的连接）"]
+			size: 1.5d
+			id: "000000000000027B"
+			tasks: [{
+				id: "000000000000027C"
+				type: "item"
+				item: "refinedstorage:silicon"
+			}]
+		}
+		{
+			x: 5.5d
+			y: 1.0d
+			description: [
+				"控制器是精炼存储系统的功能核心。每个网络只需要一个控制器，RF 会通过它来为系统供电。"
+				"可以用染料右键着色，或在合成台里用染料放置控制器。本模组的许多机器都支持此操作（所有变体请在JEI中查看）。"
+			]
+			dependencies: [
+				"000000000000027B"
+				"0000000000000279"
+				"0000000000000289"
+			]
+			id: "000000000000027D"
+			tasks: [{
+				id: "000000000000027E"
+				type: "item"
+				item: "refinedstorage:controller"
+			}]
+			rewards: [
+				{
+					id: "00000000000004A5"
+					type: "item"
+					item: "spareparts:coins/iron_coin"
+				}
+				{
+					id: "000000000000056A"
+					type: "random"
+					table_id: 1355L
+				}
+			]
+		}
+		{
+			x: 5.5d
+			y: 4.0d
+			description: [
+				"The Grid 将允许你访问网络的存储物品栏。在这里你可以看到系统中存储的物品和流体。"
+				"搜索功能与JEI中的操作相同。"
+			]
+			dependencies: ["000000000000027D"]
+			id: "000000000000027F"
+			tasks: [{
+				id: "0000000000000280"
+				type: "item"
+				item: "refinedstorage:grid"
+			}]
+			rewards: [{
+				id: "0000000000000552"
+				type: "choice"
+				table_id: 1332L
+			}]
+		}
+		{
+			x: 4.0d
+			y: 2.5d
+			description: ["合成网格与标准网格相同，但允许直接从网络中合成。配方所需的材料会直接从网络中获取。可与 JEI 配合使用。"]
+			dependencies: ["000000000000027F"]
+			id: "0000000000000281"
+			tasks: [{
+				id: "0000000000000282"
+				type: "item"
+				item: "refinedstorage:crafting_grid"
+			}]
+			rewards: [
+				{
+					id: "0000000000000551"
+					type: "random"
+					table_id: 1332L
+				}
+				{
+					id: "0000000000000573"
+					type: "item"
+					item: "minecraft:iron_ingot"
+					count: 2
+				}
+			]
+		}
+		{
+			x: 1.0d
+			y: 1.0d
+			shape: "gear"
+			description: ["处理器绑定是所有 Refined Storage 处理器芯片的粘合剂。"]
+			size: 1.5d
+			id: "0000000000000283"
+			tasks: [{
+				id: "0000000000000284"
+				type: "item"
+				item: "refinedstorage:processor_binding"
+			}]
+			rewards: [{
+				id: "0000000000000535"
+				type: "random"
+				table_id: 1332L
+			}]
+		}
+		{
+			x: 2.5d
+			y: -0.5d
+			description: ["最基础的处理器芯片。"]
+			dependencies: ["0000000000000283"]
+			id: "0000000000000285"
+			tasks: [{
+				id: "0000000000000286"
+				type: "item"
+				item: "refinedstorage:basic_processor"
+			}]
+			rewards: [{
+				id: "00000000000004AD"
+				type: "item"
+				item: "spareparts:coins/copper_coin"
+			}]
+		}
+		{
+			x: 2.5d
+			y: 2.5d
+			description: ["一款中端处理器芯片。"]
+			dependencies: ["0000000000000283"]
+			id: "0000000000000287"
+			tasks: [{
+				id: "0000000000000288"
+				type: "item"
+				item: "refinedstorage:improved_processor"
+			}]
+			rewards: [{
+				id: "00000000000004AF"
+				type: "item"
+				item: "spareparts:coins/golden_coin"
+			}]
+		}
+		{
+			x: 2.5d
+			y: 1.0d
+			description: ["要制作的最高端处理器芯片。"]
+			dependencies: ["0000000000000283"]
+			id: "0000000000000289"
+			tasks: [{
+				id: "000000000000028A"
+				type: "item"
+				item: "refinedstorage:advanced_processor"
+			}]
+			rewards: [{
+				id: "00000000000004B0"
+				type: "item"
+				item: "spareparts:coins/diamond_coin"
+			}]
+		}
+		{
+			x: 4.0d
+			y: -3.0d
+			description: ["可容纳 4,000 个物品的存储磁盘。"]
+			dependencies: ["00000000000002C4"]
+			id: "000000000000028B"
+			tasks: [{
+				id: "000000000000028C"
+				type: "item"
+				item: "refinedstorage:4k_storage_disk"
+			}]
+			rewards: [
+				{
+					id: "000000000000053A"
+					type: "item"
+					item: "minecraft:iron_ingot"
+					count: 2
+					random_bonus: 3
+				}
+				{
+					id: "000000000000053B"
+					type: "item"
+					item: "randomite:randomite_ore"
+					random_bonus: 1
+				}
+			]
+		}
+		{
+			x: 3.5d
+			y: -4.0d
+			description: ["可容纳 16,000 个物品的存储磁盘。"]
+			dependencies: ["00000000000002C4"]
+			id: "000000000000028F"
+			tasks: [{
+				id: "0000000000000290"
+				type: "item"
+				item: "refinedstorage:16k_storage_disk"
+			}]
+			rewards: [
+				{
+					id: "000000000000053D"
+					type: "item"
+					item: "minecraft:gold_ingot"
+					count: 2
+					random_bonus: 4
+				}
+				{
+					id: "000000000000053E"
+					type: "item"
+					item: "minecraft:redstone"
+					count: 2
+					random_bonus: 6
+				}
+			]
+		}
+		{
+			x: 6.990476190476194d
+			y: -3.0d
+			description: ["可存储 256,000 mB（256 桶）液体的存储盘。"]
+			dependencies: ["00000000000002C4"]
+			id: "0000000000000291"
+			tasks: [{
+				id: "0000000000000292"
+				type: "item"
+				item: "refinedstorage:256k_fluid_storage_disk"
+			}]
+			rewards: [{
+				id: "0000000000000539"
+				type: "item"
+				item: "minecraft:iron_ingot"
+				count: 2
+				random_bonus: 2
+			}]
+		}
+		{
+			x: 7.490476190476194d
+			y: -4.0d
+			description: ["可存储 1,024,000 mB（1,024 桶）液体的存储盘。"]
+			dependencies: ["00000000000002C4"]
+			id: "0000000000000293"
+			tasks: [{
+				id: "0000000000000294"
+				type: "item"
+				item: "refinedstorage:1024k_fluid_storage_disk"
+			}]
+			rewards: [
+				{
+					id: "000000000000053C"
+					type: "item"
+					item: "minecraft:gold_ingot"
+					count: 2
+					random_bonus: 3
+				}
+				{
+					id: "000000000000053F"
+					type: "item"
+					item: "minecraft:redstone"
+					count: 2
+					random_bonus: 4
+				}
+			]
+		}
+		{
+			x: 6.990476190476194d
+			y: -5.0d
+			description: ["可存储 4,096,000 mB（4,096 桶）液体的存储盘。目前最大的液体存储设备。"]
+			dependencies: ["00000000000002C4"]
+			id: "0000000000000295"
+			tasks: [{
+				id: "0000000000000296"
+				type: "item"
+				item: "refinedstorage:4096k_fluid_storage_disk"
+			}]
+			rewards: [
+				{
+					id: "0000000000000536"
+					type: "item"
+					item: "spareparts:valuable_shard"
+				}
+				{
+					id: "2DC52FD406B3CE45"
+					type: "random"
+					table_id: 2014L
+				}
+			]
+		}
+		{
+			x: 4.0d
+			y: -5.0d
+			description: ["可存储 64,000 个物品的存储盘。目前最大的物品存储盘。"]
+			dependencies: ["00000000000002C4"]
+			id: "0000000000000297"
+			tasks: [{
+				id: "0000000000000298"
+				type: "item"
+				item: "refinedstorage:64k_storage_disk"
+			}]
+			rewards: [
+				{
+					id: "0000000000000533"
+					type: "item"
+					item: "spareparts:valuable_shard"
+				}
+				{
+					id: "3D6E17E80240C9BF"
+					type: "random"
+					table_id: 2014L
+				}
+			]
+		}
+		{
+			x: 10.0d
+			y: 1.0d
+			description: ["电缆能让你远距离连接网络。它们并非必需，相邻放置的网络机器会自然连接。"]
+			dependencies: ["000000000000027D"]
+			id: "0000000000000299"
+			tasks: [{
+				id: "000000000000029A"
+				type: "item"
+				item: "refinedstorage:cable"
+			}]
+			rewards: [
+				{
+					id: "0000000000000561"
+					type: "item"
+					item: "minecraft:redstone"
+				}
+				{
+					id: "0000000000000562"
+					type: "item"
+					item: "minecraft:gold_ingot"
+				}
+			]
+		}
+		{
+			x: 8.5d
+			y: -0.5d
+			description: ["Exporter 会将物品或流体从你的网络中导出，并插入到与之相连的机器或物品栏中。"]
+			dependencies: ["0000000000000299"]
+			id: "000000000000029B"
+			tasks: [{
+				id: "000000000000029C"
+				type: "item"
+				item: "refinedstorage:exporter"
+			}]
+			rewards: [
+				{
+					id: "0000000000000563"
+					type: "item"
+					item: "minecraft:redstone"
+				}
+				{
+					id: "0000000000000564"
+					type: "item"
+					item: "minecraft:gold_ingot"
+				}
+			]
+		}
+		{
+			x: 10.0d
+			y: -0.5d
+			description: ["导入器会将物品或流体从物品栏或机器中导入到你的网络中。"]
+			dependencies: ["0000000000000299"]
+			id: "000000000000029D"
+			tasks: [{
+				id: "000000000000029E"
+				type: "item"
+				item: "refinedstorage:importer"
+			}]
+			rewards: [{
+				id: "7FCE7A94EDC13CA7"
+				type: "random"
+				table_id: 1982L
+			}]
+		}
+		{
+			x: 10.0d
+			y: 2.5d
+			description: [
+				"外部存储可以将外部存储设备连接到网络。"
+				""
+				"例如一个箱子或者一个流体储罐。"
+			]
+			dependencies: ["0000000000000299"]
+			id: "000000000000029F"
+			tasks: [{
+				id: "00000000000002A0"
+				type: "item"
+				item: "refinedstorage:external_storage"
+			}]
+			rewards: [{
+				id: "7AA9BBB207641359"
+				type: "random"
+				table_id: 1520L
+			}]
+		}
+		{
+			x: 12.5d
+			y: 1.0d
+			description: ["存储监视器显示网络中流体或物品的当前数量。物品可通过右键单击方块并设置来设定。"]
+			dependencies: ["0000000000000299"]
+			id: "00000000000002A1"
+			tasks: [{
+				id: "00000000000002A2"
+				type: "item"
+				item: "refinedstorage:storage_monitor"
+			}]
+			rewards: [{
+				id: "00000000000005F8"
+				type: "random"
+				table_id: 1396L
+			}]
+		}
+		{
+			x: 4.0d
+			y: 4.0d
+			description: [
+				"便携式网格，可在网络外使用存储磁盘。可放置使用（潜行右键放置）或直接从物品栏中使用。"
+				"必须在充能方块中进行充能。"
+			]
+			dependencies: ["000000000000027F"]
+			id: "00000000000002A3"
+			tasks: [{
+				id: "00000000000002A4"
+				type: "item"
+				item: {
+					id: "refinedstorage:portable_grid"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [
+				{
+					id: "0000000000000572"
+					type: "item"
+					item: "minecraft:redstone"
+					random_bonus: 5
+				}
+				{
+					id: "1386EBA2B2DBB4B1"
+					type: "random"
+					table_id: 1983L
+				}
+			]
+		}
+		{
+			x: 4.0d
+			y: 5.5d
+			description: ["流体网格可以让你查看、添加和移除存储网络中的流体。点击流体时，若背包中有桶，桶将被填充；否则，网络会搜索一个桶。"]
+			dependencies: ["000000000000027F"]
+			id: "00000000000002A5"
+			tasks: [{
+				id: "00000000000002A6"
+				type: "item"
+				item: "refinedstorage:fluid_grid"
+			}]
+			rewards: [{
+				id: "2FBA23145B07433D"
+				type: "random"
+				table_id: 1982L
+			}]
+		}
+		{
+			x: 7.0d
+			y: 4.0d
+			description: [
+				"图案网格可用于在合成台创建图案。使用前需要加载空白图案。"
+				"将配方所需的物品放入合成网格，并按右侧箭头，即可将上方的模式应用于该配方。"
+			]
+			dependencies: ["000000000000027F"]
+			id: "00000000000002A7"
+			tasks: [{
+				id: "00000000000002A8"
+				type: "item"
+				item: "refinedstorage:pattern_grid"
+			}]
+			rewards: [{
+				id: "133ADD0AAAA40DA2"
+				type: "random"
+				table_id: 1982L
+			}]
+		}
+		{
+			x: 8.5d
+			y: 4.0d
+			description: ["合成管理器显示了加载到网络中的所有合成配方。"]
+			dependencies: ["00000000000002AB"]
+			id: "00000000000002A9"
+			tasks: [{
+				id: "00000000000002AA"
+				type: "item"
+				item: "refinedstorage:crafter_manager"
+			}]
+			rewards: [{
+				id: "0000000000000555"
+				type: "choice"
+				table_id: 1332L
+			}]
+		}
+		{
+			x: 7.0d
+			y: 5.5d
+			description: ["合成台可以使用配方进行合成。加载配方后，物品将出现在网格中可供请求。"]
+			dependencies: ["00000000000002A7"]
+			id: "00000000000002AB"
+			tasks: [{
+				id: "00000000000002AC"
+				type: "item"
+				item: "refinedstorage:crafter"
+			}]
+			rewards: [{
+				id: "7C2AB79790C6E9FB"
+				type: "random"
+				table_id: 1983L
+			}]
+		}
+		{
+			x: 7.0d
+			y: 2.5d
+			description: ["用于模式网格的空模式模板。"]
+			dependencies: ["00000000000002A7"]
+			id: "00000000000002AD"
+			tasks: [{
+				id: "00000000000002AE"
+				type: "item"
+				item: "refinedstorage:pattern"
+			}]
+			rewards: [{
+				id: "000000000000054A"
+				type: "random"
+				table_id: 1332L
+			}]
+		}
+		{
+			x: 5.5d
+			y: -6.0d
+			description: ["手持安全卡时，右键点击即可将卡片与玩家绑定。"]
+			dependencies: ["00000000000002C4"]
+			id: "00000000000002AF"
+			tasks: [{
+				id: "00000000000002B0"
+				type: "item"
+				item: "refinedstorage:security_card"
+			}]
+			rewards: [{
+				id: "0000000000000537"
+				type: "item"
+				item: "randomite:randomite_ore"
+				random_bonus: 3
+			}]
+		}
+		{
+			x: 5.5d
+			y: -7.5d
+			description: ["将安全卡插入安全管理器，即可为关联网络设置玩家的权限。未关联的安全卡将为所有未设置权限的玩家设置权限。"]
+			dependencies: ["00000000000002AF"]
+			id: "00000000000002B1"
+			tasks: [{
+				id: "00000000000002B2"
+				type: "item"
+				item: "refinedstorage:security_manager"
+			}]
+			rewards: [{
+				id: "0000000000000538"
+				type: "item"
+				item: "minecraft:gold_ingot"
+				count: 2
+				random_bonus: 1
+			}]
+		}
+		{
+			x: 15.0d
+			y: 1.0d
+			description: ["这个基础物品是所有升级卡的基础。每张升级卡都会增加设备的功耗。"]
+			dependencies: ["00000000000002A1"]
+			id: "00000000000002B3"
+			tasks: [{
+				id: "00000000000002B4"
+				type: "item"
+				item: "refinedstorage:upgrade"
+			}]
+			rewards: [
+				{
+					id: "0000000000000540"
+					type: "item"
+					item: "minecraft:iron_ingot"
+					count: 2
+					random_bonus: 4
+				}
+				{
+					id: "0000000000000541"
+					type: "item"
+					item: "minecraft:gold_ingot"
+					count: 2
+				}
+			]
+		}
+		{
+			x: 15.0d
+			y: 2.5d
+			description: ["堆叠升级将允许物品以堆叠为单位移动，而非单个移动。"]
+			dependencies: ["00000000000002B3"]
+			id: "00000000000002B5"
+			tasks: [{
+				id: "00000000000002B6"
+				type: "item"
+				item: "refinedstorage:stack_upgrade"
+			}]
+			rewards: [{
+				id: "0000000000000543"
+				type: "item"
+				item: "minecraft:gold_ingot"
+				count: 2
+				random_bonus: 2
+			}]
+		}
+		{
+			x: 15.0d
+			y: -0.5d
+			description: ["速度升级将提升所插入网络设备的速度。"]
+			dependencies: ["00000000000002B3"]
+			id: "00000000000002B7"
+			tasks: [{
+				id: "00000000000002B8"
+				type: "item"
+				item: "refinedstorage:speed_upgrade"
+			}]
+			rewards: [{
+				id: "0000000000000542"
+				type: "item"
+				item: "minecraft:redstone"
+				count: 2
+				random_bonus: 4
+			}]
+		}
+		{
+			x: 5.5d
+			y: 7.0d
+			description: ["无线发射器用于在网络上无线连接物品。它可以通过无线网格无线访问网络，并通过发射器无线连接网络的不同部分。标准范围为16格，但可通过范围升级进行扩展。"]
+			dependencies: ["000000000000027F"]
+			id: "00000000000002B9"
+			tasks: [{
+				id: "00000000000002BA"
+				type: "item"
+				item: "refinedstorage:wireless_transmitter"
+			}]
+			rewards: [
+				{
+					id: "0000000000000566"
+					type: "item"
+					item: "minecraft:redstone"
+				}
+				{
+					id: "0000000000000567"
+					type: "item"
+					item: "minecraft:gold_ingot"
+				}
+				{
+					id: "3F76678E8F208083"
+					type: "random"
+					table_id: 2014L
+				}
+			]
+		}
+		{
+			x: 4.0d
+			y: 7.0d
+			description: ["无线发射器的范围升级。会增加功耗。"]
+			dependencies: ["00000000000002B9"]
+			id: "00000000000002BB"
+			tasks: [{
+				id: "00000000000002BC"
+				type: "item"
+				item: "refinedstorage:range_upgrade"
+			}]
+			rewards: [
+				{
+					id: "0000000000000565"
+					type: "item"
+					item: "minecraft:gold_ingot"
+				}
+				{
+					id: "0000000000000568"
+					type: "item"
+					item: "minecraft:redstone"
+				}
+			]
+		}
+		{
+			x: 4.5d
+			y: 8.5d
+			description: ["无线流体网格的移动版，让你随时随地访问网络。必须充电才能使用，且必须在无线发射器的范围内。"]
+			dependencies: ["00000000000002B9"]
+			id: "00000000000002BD"
+			tasks: [{
+				id: "00000000000002BE"
+				type: "item"
+				item: "refinedstorage:wireless_fluid_grid"
+			}]
+			rewards: [
+				{
+					id: "0000000000000545"
+					type: "item"
+					item: "spareparts:coins/iron_coin"
+				}
+				{
+					id: "0000000000000549"
+					type: "item"
+					item: "minecraft:gold_ingot"
+					count: 2
+				}
+			]
+		}
+		{
+			x: 6.5d
+			y: 8.5d
+			description: ["便携式无线合成台。需充电并在无线发射器范围内才能使用。"]
+			dependencies: ["00000000000002B9"]
+			id: "00000000000002BF"
+			tasks: [{
+				id: "2A784E8BF39D0ED1"
+				type: "item"
+				item: "refinedstorageaddons:wireless_crafting_grid"
+			}]
+			rewards: [
+				{
+					id: "0000000000000546"
+					type: "item"
+					item: "spareparts:coins/golden_coin"
+				}
+				{
+					id: "0000000000000547"
+					type: "item"
+					item: "minecraft:diamond"
+					random_bonus: 1
+				}
+			]
+		}
+		{
+			title: "网络发射器和接收器"
+			x: 7.0d
+			y: 7.0d
+			description: ["允许网络无线连接。系统控制器必须保持在加载区块中才能工作。"]
+			dependencies: ["00000000000002B9"]
+			id: "00000000000002C1"
+			tasks: [
+				{
+					id: "00000000000002C2"
+					type: "item"
+					item: "refinedstorage:network_transmitter"
+				}
+				{
+					id: "00000000000002C3"
+					type: "item"
+					item: "refinedstorage:network_receiver"
+				}
+			]
+			rewards: [
+				{
+					id: "0000000000000544"
+					type: "item"
+					item: "spareparts:coins/golden_coin"
+				}
+				{
+					id: "0000000000000548"
+					type: "item"
+					item: "spareparts:valuable_shard"
+				}
+			]
+		}
+		{
+			x: 5.5d
+			y: -4.0d
+			description: [
+				"磁盘驱动器用于连接存储磁盘，以便在网络中数字化存储物品。"
+				""
+				"或者，存储方块也可以使用标准方块大小，但采用相应的存储尺寸。"
+			]
+			dependencies: ["000000000000027D"]
+			id: "00000000000002C4"
+			tasks: [{
+				id: "00000000000002C5"
+				type: "item"
+				item: "refinedstorage:disk_drive"
+			}]
+			rewards: [
+				{
+					id: "0000000000000570"
+					type: "item"
+					item: "minecraft:gold_ingot"
+					random_bonus: 3
+				}
+				{
+					id: "0000000000000571"
+					type: "item"
+					item: "minecraft:redstone"
+					random_bonus: 3
+				}
+			]
+		}
+		{
+			x: 8.5d
+			y: 2.5d
+			description: ["当网络中的物品或流体达到一定数量时，探测器会发出红石信号。液体数量以 mB 为单位。"]
+			dependencies: ["0000000000000299"]
+			id: "0000000000001156"
+			tasks: [{
+				id: "0000000000001157"
+				type: "item"
+				item: "refinedstorage:detector"
+			}]
+			rewards: [{
+				id: "191A2171D7A51354"
+				type: "random"
+				table_id: 1483L
+			}]
+		}
+		{
+			x: 11.5d
+			y: -0.5d
+			description: [
+				"建造者可以从网络向世界中放置方块。它也可以向世界中掉落物品。"
+				"堆叠升级会掉落物品的堆叠。"
+			]
+			dependencies: ["0000000000000299"]
+			id: "0000000000001158"
+			tasks: [{
+				id: "0000000000001159"
+				type: "item"
+				item: "refinedstorage:constructor"
+			}]
+			rewards: [
+				{
+					id: "00000000000012BE"
+					type: "item"
+					item: "minecraft:gold_ingot"
+				}
+				{
+					id: "00000000000012BF"
+					type: "item"
+					item: "minecraft:diamond"
+				}
+			]
+		}
+		{
+			x: 11.5d
+			y: 2.5d
+			description: ["破坏者会破坏世界中的物品并将其放入网络。它还可以拾取正前方的世界物品。"]
+			dependencies: ["0000000000000299"]
+			id: "000000000000115A"
+			tasks: [{
+				id: "000000000000115B"
+				type: "item"
+				item: "refinedstorage:destructor"
+			}]
+			rewards: [
+				{
+					id: "00000000000012C0"
+					type: "item"
+					item: "minecraft:gold_ingot"
+				}
+				{
+					id: "00000000000012C1"
+					type: "item"
+					item: "minecraft:iron_ingot"
+				}
+			]
+		}
+		{
+			x: 16.5d
+			y: 2.5d
+			description: ["工艺升级将允许在机器忙碌时安排一个工艺任务。"]
+			dependencies: ["00000000000002B3"]
+			id: "000000000000115E"
+			tasks: [{
+				id: "000000000000115F"
+				type: "item"
+				item: "refinedstorage:crafting_upgrade"
+			}]
+			rewards: [{
+				id: "3B119FDF1786F522"
+				type: "random"
+				table_id: 1520L
+			}]
+		}
+		{
+			x: 16.5d
+			y: -0.5d
+			description: ["将调节器升级插入导出器，可使其在网络中保留物品库存。"]
+			dependencies: ["00000000000002B3"]
+			id: "0000000000001160"
+			tasks: [{
+				id: "0000000000001161"
+				type: "item"
+				item: "refinedstorage:regulator_upgrade"
+			}]
+			rewards: [{
+				id: "4B88550490C4D5E8"
+				type: "random"
+				table_id: 1982L
+			}]
+		}
+		{
+			x: 13.5d
+			y: -0.5d
+			description: ["财富升级（分为1、2、3级）可为破坏者任务提供不同等级的财富效果。"]
+			dependencies: ["00000000000002B3"]
+			id: "0000000000001162"
+			tasks: [{
+				id: "0000000000001163"
+				type: "item"
+				item: "refinedstorage:fortune_1_upgrade"
+			}]
+			rewards: [{
+				id: "00000000000012C4"
+				type: "item"
+				item: "minecraft:gold_ingot"
+				count: 2
+				random_bonus: 2
+			}]
+		}
+		{
+			x: 13.5d
+			y: 2.5d
+			description: ["丝绸之触升级将为破坏者任务赋予丝绸之触。"]
+			dependencies: ["00000000000002B3"]
+			id: "0000000000001164"
+			tasks: [{
+				id: "0000000000001165"
+				type: "item"
+				item: "refinedstorage:silk_touch_upgrade"
+			}]
+			rewards: [{
+				id: "00000000000012C3"
+				type: "item"
+				item: "minecraft:iron_ingot"
+				random_bonus: 3
+			}]
+		}
+	]
+}

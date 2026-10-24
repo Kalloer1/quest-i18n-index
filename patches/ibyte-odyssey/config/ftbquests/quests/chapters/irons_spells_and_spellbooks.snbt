@@ -1,0 +1,725 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "irons_spells_and_spellbooks"
+	group: "123D864C8F537310"
+	id: "2ABA828E6EE38858"
+	order_index: 3
+	quest_links: [
+		{
+			id: "7FAD4DE549C896D7"
+			linked_quest: "000DB2D038113AEF"
+			x: 2.0d
+			y: 3.5d
+		}
+		{
+			id: "1504F495511A39D8"
+			linked_quest: "127014A35F76C205"
+			x: 5.0d
+			y: 1.0d
+		}
+		{
+			id: "6CC81AB2DD65A9AC"
+			linked_quest: "4AE57C27450BB16B"
+			x: 5.0d
+			y: 5.0d
+		}
+		{
+			id: "7FEF71C321CB437E"
+			linked_quest: "00D4D5CF235CEA2C"
+			shape: "rsquare"
+			x: 0.0d
+			y: 3.5d
+		}
+	]
+	quests: [
+		{
+			id: "119AC282EC795580"
+			subtitle: "装备一本魔法书 (Equip a Spell Book)"
+			tasks: [{
+				advancement: "irons_spellbooks:irons_spellbooks/spell_book_equip"
+				criterion: ""
+				icon: {
+					Count: 1
+					id: "irons_spellbooks:copper_spell_book"
+					tag: {
+						ISB_Spells: {
+							data: [ ]
+							maxSpells: 5
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				id: "08C3DDFB3CF91548"
+				title: "魔法的开端"
+				type: "advancement"
+			}]
+			x: 0.0d
+			y: 1.5d
+		}
+		{
+			id: "1CEB091FB0989539"
+			subtitle: "获得一个铭文台 Inscription Table"
+			tasks: [{
+				id: "64936FD451E1ECF8"
+				item: "irons_spellbooks:inscription_table"
+				type: "item"
+			}]
+			x: 0.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["1CEB091FB0989539"]
+			id: "4F7CC9EC77A8993A"
+			subtitle: "获取一个卷轴锻造台"
+			tasks: [{
+				id: "2948CC808AC32B1B"
+				item: "irons_spellbooks:scroll_forge"
+				type: "item"
+			}]
+			x: 2.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["4F7CC9EC77A8993A"]
+			id: "76EDE822927534C5"
+			subtitle: "获得一个神秘铁砧 Arcane Anvil"
+			tasks: [{
+				id: "6719F4F9B7987FCB"
+				item: "irons_spellbooks:arcane_anvil"
+				type: "item"
+			}]
+			x: 4.0d
+			y: -0.5d
+		}
+		{
+			id: "246FF18AF8F82383"
+			subtitle: "制作一个迷途罗盘，寻找神秘的魔法奥秘"
+			tasks: [{
+				id: "630F7832ECCBD80A"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:wayward_compass"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -4.0d
+			y: -1.5d
+		}
+		{
+			id: "68396F592461F3EF"
+			subtitle: "获得一根法杖 Staff"
+			tasks: [{
+				advancement: "irons_spellbooks:irons_spellbooks/staff_root"
+				criterion: ""
+				id: "5EB6220E31B93344"
+				title: "法杖"
+				type: "advancement"
+			}]
+			x: -7.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["246FF18AF8F82383"]
+			id: "7BFBDC49505C0D3C"
+			subtitle: "进入地下墓穴"
+			tasks: [{
+				icon: "minecraft:skeleton_skull"
+				id: "3E9199C55A127CF4"
+				structure: "irons_spellbooks:catacombs"
+				title: "地下墓穴"
+				type: "structure"
+			}]
+			x: -4.0d
+			y: -3.0d
+		}
+		{
+			id: "0279FB1B400341EE"
+			subtitle: "获取任意类型的墨水！"
+			tasks: [{
+				advancement: "irons_spellbooks:irons_spellbooks/ink_root"
+				criterion: ""
+				icon: "irons_spellbooks:common_ink"
+				id: "1B23FD9D1A9CA59A"
+				title: "墨水！"
+				type: "advancement"
+			}]
+			x: 0.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["0279FB1B400341EE"]
+			id: "261450F5E4534385"
+			subtitle: "获取传说墨水"
+			tasks: [{
+				id: "12EBC5D98839E106"
+				item: "irons_spellbooks:legendary_ink"
+				title: "传奇墨水 LeGEnDaRy iNk"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["119AC282EC795580"]
+			id: "0ABD784427F06EED"
+			subtitle: "从远古城市中获得一本残破的书"
+			tasks: [{
+				id: "397543FDD276D4F8"
+				item: "irons_spellbooks:ruined_book"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7BFBDC49505C0D3C"]
+			icon: "irons_spellbooks:blood_staff"
+			id: "3A809ACB49A5BDE0"
+			tasks: [{
+				entity: "irons_spellbooks:dead_king"
+				id: "4411B50B7AC56EA3"
+				title: "击败死去的国王"
+				type: "kill"
+				value: 1L
+			}]
+			x: -4.0d
+			y: -4.5d
+		}
+		{
+			id: "56D32874C32D6395"
+			subtitle: "在远古城市中找到一本邪典手稿"
+			tasks: [{
+				id: "22F73B02087DD69E"
+				item: "irons_spellbooks:eldritch_manuscript"
+				type: "item"
+			}]
+			title: "黑暗魔法"
+			x: -7.0d
+			y: 0.5d
+		}
+		{
+			icon: "irons_spellbooks:armor_pile"
+			id: "320B33E738FD7FCA"
+			tasks: [{
+				id: "3677D74AB84C5058"
+				structure: "irons_spellbooks:ancient_battleground"
+				type: "structure"
+			}]
+			title: "在末地中找到远古战场"
+			x: -3.0d
+			y: -1.5d
+		}
+		{
+			id: "1FE9D4F1B610B8F7"
+			tasks: [{
+				icon: {
+					Count: 1
+					id: "butcher:evokerdisguise_helmet"
+					tag: {
+						Damage: 0
+					}
+				}
+				id: "7FB3372B8C3E6D20"
+				structure: "irons_spellbooks:evoker_fort"
+				title: "找到唤魔者堡垒"
+				type: "structure"
+			}]
+			x: -1.0d
+			y: -1.5d
+		}
+		{
+			id: "008E234170287F7D"
+			tasks: [{
+				icon: "minecraft:mangrove_door"
+				id: "46FFC94A607F1F84"
+				structure: "irons_spellbooks:mangrove_hut"
+				title: "找到红树林小屋"
+				type: "structure"
+			}]
+			x: -2.0d
+			y: -1.5d
+		}
+		{
+			id: "4CDEB73358DAC153"
+			tasks: [{
+				icon: "irons_spellbooks:frostward_ring"
+				id: "157629A72E9DF388"
+				structure: "irons_spellbooks:mountain_tower"
+				title: "找到那座高山上的塔楼"
+				type: "structure"
+			}]
+			x: -5.0d
+			y: -1.5d
+		}
+		{
+			id: "7B301C99F7DBF1CE"
+			tasks: [{
+				icon: {
+					Count: 1
+					id: "irons_spellbooks:pyromancer_helmet"
+					tag: {
+						Damage: 0
+					}
+				}
+				id: "1BFB15225C0C8E67"
+				structure: "irons_spellbooks:pyromancer_tower"
+				title: "找到火魔法师之塔 (Pyromancer's Tower)"
+				type: "structure"
+			}]
+			x: -6.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["320B33E738FD7FCA"]
+			id: "3CC8E9763A72326C"
+			tasks: [{
+				entity: "irons_spellbooks:citadel_keeper"
+				icon: "irons_spellbooks:ancient_knowledge_fragment"
+				id: "6192B9E360D2374B"
+				title: "杀死一名远古骑士"
+				type: "kill"
+				value: 1L
+			}]
+			x: -3.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["7B301C99F7DBF1CE"]
+			id: "2DEF09880FB08222"
+			tasks: [{
+				entity: "irons_spellbooks:pyromancer"
+				icon: {
+					Count: 1
+					id: "irons_spellbooks:pyromancer_chestplate"
+					tag: {
+						Damage: 0
+						ISB_Spells: {
+							data: [ ]
+							maxSpells: 1
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				id: "60AFBA0FA5703D45"
+				title: "杀死一个火魔法师"
+				type: "kill"
+				value: 1L
+			}]
+			x: -6.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["000DB2D038113AEF"]
+			id: "41908644F3B68FA9"
+			min_required_tasks: 1
+			size: 1.0d
+			subtitle: "锻造于昔日伟大巨兽的熔炉之中"
+			tasks: [
+				{
+					id: "71379E256D31E1D7"
+					item: "ice_and_fire_spellbooks:crimson_dragon_priest_staff"
+					type: "item"
+				}
+				{
+					id: "2E395CEC81DEC9B8"
+					item: "ice_and_fire_spellbooks:silver_dragon_priest_staff"
+					type: "item"
+				}
+				{
+					id: "3D4988533D5CC398"
+					item: "ice_and_fire_spellbooks:thunderous_dragon_priest_staff"
+					type: "item"
+				}
+			]
+			title: "获得更强的龙之祭司法杖"
+			x: 4.0d
+			y: 3.5d
+		}
+		{
+			id: "6FF230C2AB0A1071"
+			min_required_tasks: 1
+			size: 1.0d
+			tasks: [
+				{
+					id: "2A589BA204C52193"
+					item: {
+						Count: 1
+						id: "ice_and_fire_spellbooks:toornahkriin"
+						tag: {
+							Damage: 0
+							ISB_Spells: {
+								data: [ ]
+								maxSpells: 2
+								mustEquip: 1b
+								spellWheel: 1b
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "413B7E0987B6E20C"
+					item: {
+						Count: 1
+						id: "ice_and_fire_spellbooks:fodaan"
+						tag: {
+							Damage: 0
+							ISB_Spells: {
+								data: [ ]
+								maxSpells: 2
+								mustEquip: 1b
+								spellWheel: 1b
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "19B8262F28440F79"
+					item: {
+						Count: 1
+						id: "ice_and_fire_spellbooks:vulonqo"
+						tag: {
+							Damage: 0
+							ISB_Spells: {
+								data: [ ]
+								maxSpells: 2
+								mustEquip: 1b
+								spellWheel: 1b
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "5540CCA58770ED87"
+					item: {
+						Count: 1
+						id: "ice_and_fire_spellbooks:vulnilviir"
+						tag: {
+							Damage: 0
+							ISB_Spells: {
+								data: [ ]
+								maxSpells: 2
+								mustEquip: 1b
+								spellWheel: 1b
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "0474FBD0303450EE"
+					item: {
+						Count: 1
+						id: "ice_and_fire_spellbooks:vulsilah"
+						tag: {
+							Damage: 0
+							ISB_Spells: {
+								data: [ ]
+								maxSpells: 2
+								mustEquip: 1b
+								spellWheel: 1b
+							}
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "获得一个龙祭司面具"
+			x: 6.0d
+			y: 5.0d
+		}
+		{
+			dependencies: ["000DB2D038113AEF"]
+			id: "14B5C8BB463FC9BA"
+			min_required_tasks: 4
+			tasks: [
+				{
+					id: "03AFA2B11D6A0145"
+					item: {
+						Count: 1
+						id: "ice_and_fire_spellbooks:fire_dragon_priest_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "21386569B70340EA"
+					item: {
+						Count: 1
+						id: "ice_and_fire_spellbooks:fire_dragon_priest_chestplate"
+						tag: {
+							Damage: 0
+							ISB_Spells: {
+								data: [ ]
+								maxSpells: 1
+								mustEquip: 1b
+								spellWheel: 1b
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "035DF8448DBF9FD6"
+					item: {
+						Count: 1
+						id: "ice_and_fire_spellbooks:fire_dragon_priest_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "5BFBAA2F1EFE3E4D"
+					item: {
+						Count: 1
+						id: "ice_and_fire_spellbooks:fire_dragon_priest_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "16E9041E9529E72E"
+					item: {
+						Count: 1
+						id: "ice_and_fire_spellbooks:ice_dragon_priest_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "2F60C2A0C179A681"
+					item: {
+						Count: 1
+						id: "ice_and_fire_spellbooks:ice_dragon_priest_chestplate"
+						tag: {
+							Damage: 0
+							ISB_Spells: {
+								data: [ ]
+								maxSpells: 1
+								mustEquip: 1b
+								spellWheel: 1b
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "44FCCA1842706168"
+					item: {
+						Count: 1
+						id: "ice_and_fire_spellbooks:ice_dragon_priest_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "66D7BE72F4D14860"
+					item: {
+						Count: 1
+						id: "ice_and_fire_spellbooks:ice_dragon_priest_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "44ABB0BD39A281E1"
+					item: {
+						Count: 1
+						id: "ice_and_fire_spellbooks:lightning_dragon_priest_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "38B0E520473CDCB8"
+					item: {
+						Count: 1
+						id: "ice_and_fire_spellbooks:lightning_dragon_priest_chestplate"
+						tag: {
+							Damage: 0
+							ISB_Spells: {
+								data: [ ]
+								maxSpells: 1
+								mustEquip: 1b
+								spellWheel: 1b
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "22C0070141A7AB6B"
+					item: {
+						Count: 1
+						id: "ice_and_fire_spellbooks:lightning_dragon_priest_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "77C368867B41E9AA"
+					item: {
+						Count: 1
+						id: "ice_and_fire_spellbooks:lightning_dragon_priest_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "获得一套龙祭司盔甲套装"
+			x: 4.0d
+			y: 2.5d
+		}
+		{
+			dependencies: [
+				"127014A35F76C205"
+				"4AE57C27450BB16B"
+				"202BFF0BDE6E3A29"
+				"33BF6C563B267A95"
+				"6FF230C2AB0A1071"
+				"41908644F3B68FA9"
+				"14B5C8BB463FC9BA"
+				"7B35228A433CB808"
+			]
+			icon: "dragonseeker:godly_dragonseeker"
+			id: "381E9ACAEBD5E4C8"
+			rewards: [{
+				id: "2E039E0F85C94FDB"
+				item: "dragonseeker:godly_dragonseeker"
+				type: "item"
+			}]
+			subtitle: "完成所有龙之祭司任务以解锁神圣的寻龙者"
+			tasks: [{
+				id: "30A3D1A4BA2AE493"
+				title: "成为龙之祭司"
+				type: "checkmark"
+			}]
+			title: "成为龙之祭司"
+			x: 6.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["0ABD784427F06EED"]
+			id: "7B35228A433CB808"
+			tasks: [{
+				id: "7B7CFC7C57FD14D1"
+				item: {
+					Count: 1
+					id: "ice_and_fire_spellbooks:dragonmancers_oathbook"
+					tag: {
+						ISB_Spells: {
+							data: [ ]
+							maxSpells: 12
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				type: "item"
+			}]
+			title: "获得一本《龙之法师的誓约之书》"
+			x: 4.0d
+			y: 1.5d
+		}
+		{
+			id: "6D182139A64B614B"
+			tasks: [{
+				entity: "irons_spellbooks:necromancer"
+				icon: {
+					Count: 1
+					id: "irons_spellbooks:tarnished_helmet"
+					tag: {
+						Damage: 0
+						ISB_Spells: {
+							data: [ ]
+							maxSpells: 1
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				id: "1360AE899B645020"
+				title: "杀死一个亡灵法师（Necromancer）"
+				type: "kill"
+				value: 1L
+			}]
+			x: -7.0d
+			y: -0.5d
+		}
+		{
+			id: "33BF6C563B267A95"
+			min_required_tasks: 3
+			subtitle: "击杀一只火、冰和闪电巨龙"
+			tasks: [
+				{
+					entity: "iceandfire:fire_dragon"
+					icon: "iceandfire:dragon_skull_fire"
+					id: "3C1FCF211397FF51"
+					type: "kill"
+					value: 1L
+				}
+				{
+					entity: "iceandfire:ice_dragon"
+					icon: "iceandfire:dragon_skull_ice"
+					id: "76AD51A6766483C7"
+					type: "kill"
+					value: 1L
+				}
+				{
+					entity: "iceandfire:lightning_dragon"
+					icon: "iceandfire:dragon_skull_lightning"
+					id: "5B0347CC5E1F1683"
+					type: "kill"
+					value: 1L
+				}
+			]
+			title: "屠龙者"
+			x: 6.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["000DB2D038113AEF"]
+			id: "202BFF0BDE6E3A29"
+			tasks: [{
+				id: "050CC28E42C67BE2"
+				item: {
+					Count: 1
+					id: "dragonseeker:legendary_dragonseeker"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "获得一只传说级龙猎手"
+			x: 4.0d
+			y: 4.5d
+		}
+	]
+	title: "Iron's Spells and Spellbooks"
+}

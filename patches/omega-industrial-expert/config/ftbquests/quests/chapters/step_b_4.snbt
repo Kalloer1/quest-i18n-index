@@ -1,0 +1,305 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "step_b_4"
+	group: "060D40568CD5BCD6"
+	id: "713D199B7CFC3294"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["6B97B35DCD820B44"]
+			description: ["你的 Powah 反应堆很稳定，但它有个缺陷：不产生废料。而没有废料，就没有反物质。是时候运用所学，建造一个真正的多区块裂变反应堆了。"]
+			id: "0C7668E9F93C3B57"
+			rewards: [{
+				count: 4
+				id: "7BAA6B2C3B9626F8"
+				item: "mekanism:steel_casing"
+				type: "item"
+			}]
+			size: 1.5d
+			subtitle: "合成 1x 基础感应单元"
+			tasks: [{
+				id: "310CA734518C63E5"
+				item: "mekanism:basic_induction_cell"
+				type: "item"
+			}]
+			title: "告别 Powah 模组"
+			x: -1.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["0C7668E9F93C3B57"]
+			description: ["Mekanism 核心会产生数千度的高温。外壳必须由强化钢和铅制成。"]
+			id: "5B6B7CDE2B544CFB"
+			subtitle: "制作 64 个裂变反应堆外壳"
+			tasks: [{
+				count: 64L
+				id: "3E0DAD1C19338888"
+				item: "mekanismgenerators:fission_reactor_casing"
+				type: "item"
+			}]
+			title: "反应装甲"
+			x: -2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5B6B7CDE2B544CFB"]
+			description: ["这就是你的裂变燃料发挥作用的地方。每个燃料组件方块都会增加反应堆的燃料容量。请在外壳内部将它们垂直堆叠起来。"]
+			id: "1054B8F4B671B6C5"
+			subtitle: "合成 16x 裂变燃料组件"
+			tasks: [{
+				count: 16L
+				id: "59BDA61E3152A2CD"
+				item: "mekanismgenerators:fission_fuel_assembly"
+				type: "item"
+			}]
+			title: "燃料柱"
+			x: -2.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["1054B8F4B671B6C5"]
+			description: ["每个燃料柱都必须用此方块封顶。它控制控制棒的伸出，从而决定燃烧速率。"]
+			id: "779F5997255B44E3"
+			subtitle: "制作4个控制杆组件 (Control Rod Assembly)"
+			tasks: [{
+				count: 4L
+				id: "43AA02B9D1AFE3F9"
+				item: "mekanismgenerators:control_rod_assembly"
+				type: "item"
+			}]
+			title: "控制峰值"
+			x: -2.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["779F5997255B44E3"]
+			description: ["想看过程吗？用反应堆玻璃。它能抵抗伽马辐射，让你在不损害健康的情况下窥探内部。"]
+			id: "3D7ACA1829D413F8"
+			subtitle: "合成 8x 反应堆玻璃"
+			tasks: [{
+				count: 8L
+				id: "472A003ECAAB1FA1"
+				item: { Count: 8, id: "mekanismgenerators:reactor_glass" }
+				type: "item"
+			}]
+			title: "工业玻璃化工艺"
+			x: -2.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["3D7ACA1829D413F8"]
+			description: ["你需要至少四个端口：燃料输入 (Fissile Fuel)、冷却剂输入 (Water)、废料输出 (Nuclear Waste) 和蒸汽输出 (Steam)。"]
+			id: "64D401EC88382A77"
+			subtitle: "制作4个裂变反应堆端口"
+			tasks: [{
+				count: 4L
+				id: "67FE23EC6BB503EE"
+				item: "mekanismgenerators:fission_reactor_port"
+				type: "item"
+			}]
+			title: "反应堆端口"
+			x: -2.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["64D401EC88382A77"]
+			description: ["现在，你已经有建造裂变反应堆的材料了。它能产生大量能量。"]
+			id: "511A7DADAE44F0B7"
+			tasks: [{
+				id: "24467DDD9544C210"
+				title: "组装反应堆"
+				type: "checkmark"
+			}]
+			x: -1.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["511A7DADAE44F0B7"]
+			description: ["将增压管连接到设置为“输入”的端口。你的裂变燃料（由浓缩黄饼制成）已准备好进行分裂。"]
+			id: "44D09B8CF7475E3F"
+			tasks: [{
+				id: "3F7AC521A80E17A3"
+				title: "为巨兽注入燃料"
+				type: "checkmark"
+			}]
+			x: -1.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["44D09B8CF7475E3F"]
+			description: ["这个反应堆极度缺水。若冷却剂在燃烧中降至零，反应堆会连同半个基地一同蒸发。请使用最快的泵进行连接。"]
+			icon: "minecraft:water_bucket"
+			id: "70D50E995F16B8E2"
+			subtitle: "确保冷却端口有持续的水源供应"
+			tasks: [{
+				id: "06F22160E226B6C0"
+				title: "水冷剂"
+				type: "checkmark"
+			}]
+			x: -0.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["70D50E995F16B8E2"]
+			description: ["打开反应堆界面。看到“燃烧率”了吗？将其设为最低（0.1 mb/t）。看看温度上升的速度。别弄过头了！"]
+			id: "019BF6F1BB493049"
+			subtitle: "启动反应堆，并维持在400°K左右"
+			tasks: [{
+				id: "4F48A1BD060B228F"
+				title: "图形用户界面 (GUI)"
+				type: "checkmark"
+			}]
+			x: 1.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["019BF6F1BB493049"]
+			description: ["安装 Reactor Logic Adapter。将其设置为“高温”模式。用红石线缆将其连接到控制器的“激活”输入端，以便在发生故障时自动关闭反应堆。"]
+			id: "685B513C0431A335"
+			subtitle: "设置一个紧急停机系统"
+			tasks: [{
+				id: "72C920DD692CEA9A"
+				item: "mekanismgenerators:fission_reactor_logic_adapter"
+				type: "item"
+			}]
+			title: "自动切换器"
+			x: 2.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["70D50E995F16B8E2"]
+			description: ["真正的力量不来自电缆，而是蒸汽。配置输出端口以接收核心冷却产生的水蒸气。"]
+			icon: "mekanism:steam_bucket"
+			id: "0E8C08975A2602B5"
+			subtitle: "将蒸汽导出到管道中（我推荐使用 mod pipez 的管道）"
+			tasks: [{
+				id: "145EE230FC12B1F8"
+				title: "蒸汽发动机"
+				type: "checkmark"
+			}]
+			x: 0.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["0E8C08975A2602B5"]
+			description: ["建造Mekanism涡轮机是一项全球性工程。你需要外壳、转子和叶片。该涡轮机将把蒸汽转化为FE。"]
+			id: "66A6A65B072FAB1B"
+			tasks: [{
+				count: 32L
+				id: "4D133EACD75BA356"
+				item: { Count: 32, id: "mekanismgenerators:turbine_casing" }
+				type: "item"
+			}]
+			title: "工业涡轮机"
+			x: 1.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["66A6A65B072FAB1B"]
+			description: ["没有线圈，涡轮机就只是个风车。将它们放置在涡轮机结构的顶部以生成磁场。"]
+			id: "6D3A56CADBB93BDD"
+			subtitle: "制作电磁线圈 Electromagnetic Coil"
+			tasks: [{
+				id: "68CFE144671A99CA"
+				item: "mekanismgenerators:electromagnetic_coil"
+				type: "item"
+			}]
+			title: "电磁线圈"
+			x: 1.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["6D3A56CADBB93BDD"]
+			description: ["不要浪费水！冷凝器会将用过的蒸汽转化为水。用泵将其从涡轮机送回反应堆——这是一个封闭回路。"]
+			id: "7F1A0F8DF1BBD34A"
+			subtitle: "在涡轮机中安装至少4个饱和冷凝器"
+			tasks: [{
+				count: 4L
+				id: "72F930DA08E875A9"
+				item: "mekanismgenerators:saturating_condenser"
+				type: "item"
+			}]
+			title: "饱和冷凝器"
+			x: 2.5d
+			y: 5.0d
+		}
+		{
+			dependencies: ["019BF6F1BB493049"]
+			description: ["核废料是气体。必须将其泵入放射性废料桶。如果端口堵塞，反应堆将立即关闭。"]
+			id: "46D6FCA7B3924782"
+			subtitle: "在桶中获得你的第一批 1000 mB 核废料"
+			tasks: [{
+				id: "733937B981627A40"
+				item: "mekanism:radioactive_waste_barrel"
+				type: "item"
+			}]
+			title: "核废料"
+			x: 3.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["46D6FCA7B3924782"]
+			description: ["将废料通过同位素离心机。这是你获得钚的唯一途径。"]
+			id: "69E9EAD44C1032BC"
+			subtitle: "获得 100 mB 的钚（气体）"
+			tasks: [
+				{
+					id: "499637A66773F1F3"
+					type: "checkmark"
+				}
+				{
+					id: "69EC7EABFAC9C5A8"
+					item: "mekanism:isotopic_centrifuge"
+					type: "item"
+				}
+			]
+			title: "钚元素之路"
+			x: 3.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["46D6FCA7B3924782"]
+			description: ["部分废料需要阳光。太阳能中子活化器能将核废料转化为钋。把它放在屋顶上吧！"]
+			id: "2D16FFD11C8C7D5E"
+			subtitle: "利用太阳能生产钋元素"
+			tasks: [
+				{
+					id: "184EA30A1A17B4C7"
+					item: "mekanism:pellet_polonium"
+					type: "item"
+				}
+				{
+					id: "3ADA426B525D888E"
+					title: "波洛尼ウム之路"
+					type: "checkmark"
+				}
+			]
+			title: "波洛尼ウム之路"
+			x: 4.5d
+			y: 1.0d
+		}
+		{
+			dependencies: [
+				"2D16FFD11C8C7D5E"
+				"69E9EAD44C1032BC"
+				"7F1A0F8DF1BBD34A"
+			]
+			description: ["你之后会经常需要用到这个。"]
+			id: "6CA2B7E1DB5388D7"
+			size: 1.5d
+			subtitle: "合成钚燃料棒"
+			tasks: [{
+				id: "4215E6EE989B8ABE"
+				item: "mekanism:pellet_plutonium"
+				type: "item"
+			}]
+			title: "颗粒饲料"
+			x: 4.5d
+			y: 4.0d
+		}
+	]
+	title: "步骤 B"
+}

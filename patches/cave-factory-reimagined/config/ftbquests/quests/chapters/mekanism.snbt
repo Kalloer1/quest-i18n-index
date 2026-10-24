@@ -1,0 +1,164 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "mekanism"
+	group: "1DFB5E5473BA3E09"
+	icon: "mekanism:metallurgic_infuser"
+	id: "7000000000000000"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["锇是Mekanism中几乎所有事物的核心金属基础。在继续深入模组前，先确保稳定的锇供应。"]
+			id: "7100000000000001"
+			shape: "gear"
+			size: 1.5d
+			tasks: [{
+				id: "0D550860EEBD68A8"
+				item: "mekanism:ingot_osmium"
+				type: "item"
+			}]
+			title: "机械动力模组的基础知识"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7100000000000001"]
+			description: ["冶金注入器是你的第一台加工机器。它将红石、煤炭或钻石等原材料注入其他物品，以创造高级合金和电路。"]
+			id: "7100000000000002"
+			tasks: [{
+				id: "156B9735A53A4194"
+				item: "mekanism:metallurgic_infuser"
+				type: "item"
+			}]
+			title: "冶金学灌注 (Metallurgic Infusion)"
+			x: 0.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["7100000000000002"]
+			description: ["要为新的 Infuser 供电，请建造一个 Heat Generator。用岩浆包围它来产生被动能量，或者直接在内部燃烧燃料以获得快速爆发。"]
+			id: "7100000000000003"
+			tasks: [{
+				id: "4F39AC7591D0CE15"
+				item: "mekanismgenerators:heat_generator"
+				type: "item"
+			}]
+			title: "地下力量"
+			x: -2.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["7100000000000002"]
+			description: ["将红石注入铁中，即可创造注入合金。这是Mekanism合金系统的基础层级，几乎所有基础机器都需要它。"]
+			id: "7100000000000004"
+			tasks: [{
+				id: "3189C1EAECE99D1C"
+				item: "mekanism:alloy_infused"
+				type: "item"
+			}]
+			title: "Infused Alloy"
+			x: 2.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["7100000000000004"]
+			description: ["将你的新 Infused Alloy 与一块 Osmium 结合，创建一个 Basic Control Circuit。随着处理设施的扩展，你需要数百个这样的电路。"]
+			id: "7100000000000005"
+			tasks: [{
+				id: "79F2B77BAB5E4E3F"
+				item: "mekanism:basic_control_circuit"
+				type: "item"
+			}]
+			title: "基础电路 (Basic Circuits)"
+			x: 2.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["7100000000000005"]
+			description: ["钢制外壳是所有高级机械动力机器结构的基础。你需要一种可靠的方法来大量生产钢材，以维持工厂的发展。"]
+			id: "7100000000000006"
+			tasks: [{
+				id: "1B334B6DBDB1E81E"
+				item: "mekanism:steel_casing"
+				type: "item"
+			}]
+			title: "机器底盘"
+			x: 3.5d
+			y: -3.5d
+		}
+		{
+			dependencies: [
+				"7100000000000003"
+				"7100000000000005"
+			]
+			description: ["破碎机是前期有机物处理的关键。用它将树苗、种子、作物或其他植物材料研磨成生物燃料。"]
+			id: "7100000000000007"
+			tasks: [{
+				id: "06380B93514DC7FB"
+				item: "mekanism:crusher"
+				type: "item"
+			}]
+			title: "有机粉碎 (Organic Crushing)"
+			x: -2.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["7100000000000007"]
+			description: ["直接燃烧原煤效率极低。将压缩生物燃料输入此发电机，可为你的中端机器提供可持续的能源流。"]
+			id: "7100000000000008"
+			tasks: [{
+				id: "2EB59E7A77B35EED"
+				item: "mekanismgenerators:bio_generator"
+				type: "item"
+			}]
+			title: "生物燃烧（Biological Combustion）"
+			x: -3.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["7100000000000006"]
+			description: ["将电流通过水，可以将其分解为氢气和氧气。这是你通往高级化学处理的门户。"]
+			id: "7100000000000009"
+			tasks: [{
+				id: "3B4254806AAE285F"
+				item: "mekanism:electrolytic_separator"
+				type: "item"
+			}]
+			title: "电解作用"
+			x: 3.5d
+			y: -5.0d
+		}
+		{
+			dependencies: [
+				"7100000000000009"
+				"7100000000000007"
+			]
+			description: ["增压反应室（PRC）是一种复杂的合成器。通过结合液态水、氢气和固态生物燃料，你可以制造出一种威力惊人的可燃气体——乙烯。"]
+			id: "7100000000000010"
+			tasks: [{
+				id: "62FC807A357E2F1A"
+				item: "mekanism:pressurized_reaction_chamber"
+				type: "item"
+			}]
+			title: "正在合成乙烯（Ethylene）"
+			x: -2.0d
+			y: -5.0d
+		}
+		{
+			dependencies: ["7100000000000010"]
+			description: ["中后期发电当之无愧的王者。向此发电机输入乙烯气体，即可轻松产生足够的能量来驱动整个工厂网络，直到你准备好建造核裂变反应堆为止。"]
+			id: "7100000000000011"
+			tasks: [{
+				id: "61310384F0D46345"
+				item: "mekanismgenerators:gas_burning_generator"
+				type: "item"
+			}]
+			title: "燃气燃烧动力"
+			x: -3.5d
+			y: -5.0d
+		}
+	]
+	title: "Mekanism"
+}

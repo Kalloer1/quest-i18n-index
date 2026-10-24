@@ -1,0 +1,996 @@
+# AI 初翻，未人工校对
+{
+	id: "00000000000003A1"
+	group: "72A9465344128AF9"
+	order_index: 7
+	filename: "thermal_series"
+	title: "Thermal 系列"
+	icon: "thermal:wrench"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: 2.0d
+			y: 0.5d
+			shape: "gear"
+			description: [
+				"Thermal Series 是一套多年来一直是 Modded Minecraft 主流的模组。虽然历经变迁，但其整体主题始终围绕着略带魔幻色彩的科技展开。"
+				""
+				"Thermalpedia 提供了关于热力系列中许多工具和机器的更详细信息。经常查阅它以了解更多内容。"
+				""
+				"&e~哑巴的魅魔（MuteTiefling）"
+			]
+			id: "00000000000003A2"
+			tasks: [{
+				id: "6F8140DE19FABFDA"
+				type: "item"
+				item: "thermal:wrench"
+			}]
+			rewards: [{
+				id: "4623F41B74F1829E"
+				type: "item"
+				title: "铁块碎片"
+				item: "minecraft:raw_iron"
+				count: 4
+				random_bonus: 8
+			}]
+		}
+		{
+			icon: "thermal:dynamo_stirling"
+			x: 0.0d
+			y: 1.0d
+			subtitle: "力量，源自顶端"
+			description: [
+				"无功不受禄，工作意味着消耗能量，而能量的寻找驱动着万物。因此，我们的第一步是生成一些电力，以便开始使用热力机械。"
+				""
+				"斯特林发电机燃烧燃料产生温差，从而驱动引擎旋转，以易于存储和传输的形式产生能量。"
+				""
+				"请在 Thermalpedia 中查找相关升级的信息。"
+			]
+			dependencies: ["00000000000003A2"]
+			id: "00000000000004A3"
+			tasks: [
+				{
+					id: "00000000000004A4"
+					type: "item"
+					item: "thermal:dynamo_stirling"
+				}
+				{
+					id: "00000000000004B8"
+					type: "item"
+					title: "任意煤炭"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "minecraft:coals"
+						}
+					}
+					count: 16L
+				}
+			]
+			rewards: [
+				{
+					id: "00000000000004EC"
+					type: "item"
+					title: "能量电缆（基础版）"
+					item: "mekanism:basic_universal_cable"
+					count: 8
+				}
+				{
+					id: "000000000000063A"
+					type: "item"
+					title: "能量电池（基础版）"
+					item: "powah:energy_cell_basic"
+				}
+				{
+					id: "0000000000000A7E"
+					type: "command"
+					title: "农夫的欢乐时光"
+					icon: "kubejs:farmers_delight"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_farmers_delight"
+					player_command: false
+				}
+			]
+		}
+		{
+			x: -2.0d
+			y: 1.5d
+			subtitle: "涓滴经济学"
+			description: [
+				"万物皆有代价，但能源的来源并不总是显而易见。树木提取器利用重力和树木自身的毛细作用相结合，来收集树中可用的液体。"
+				""
+				"这是一个非破坏性过程，但需要一棵活树。提供一些骨粉或其他肥料可以帮助更快地补充树木的储备，从而提高产量。"
+				""
+				"查看 Thermalpedia 了解相关升级信息，以及每种树木可提取的流体列表。"
+			]
+			dependencies: ["00000000000004A3"]
+			id: "00000000000004A5"
+			tasks: [{
+				id: "00000000000004A6"
+				type: "item"
+				item: "thermal:device_tree_extractor"
+			}]
+			rewards: [
+				{
+					id: "00000000000004BA"
+					type: "item"
+					title: "丛林树苗"
+					auto: "disabled"
+					item: "minecraft:jungle_sapling"
+					count: 4
+				}
+				{
+					id: "00000000000004F0"
+					type: "command"
+					title: "稀有热力系列战利品箱"
+					icon: "kubejs:rare_lootbox"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_rare"
+					player_command: false
+				}
+				{
+					id: "0000000000000F87"
+					type: "item"
+					title: "金合欢树苗"
+					item: "minecraft:acacia_sapling"
+					count: 4
+				}
+			]
+		}
+		{
+			icon: "thermal:machine_refinery"
+			x: -1.5d
+			y: 3.5d
+			subtitle: "非同寻常的月亮酒（Not Your Ordinary Moonshine）"
+			description: [
+				"只需输入少量能量，分馏塔就能将树脂提炼成树油，一种比煤炭燃烧效率更高的优质可再生燃料。"
+				""
+				"请在 Thermalpedia 中查找相关升级的信息。"
+			]
+			dependencies: ["00000000000004BB"]
+			id: "00000000000004A7"
+			tasks: [
+				{
+					id: "00000000000004A8"
+					type: "item"
+					item: "thermal:machine_refinery"
+				}
+				{
+					id: "00000000000004C1"
+					type: "item"
+					item: "thermal:tree_oil_bucket"
+				}
+			]
+			rewards: [
+				{
+					id: "00000000000004EF"
+					type: "command"
+					title: "史诗级热力系列宝箱"
+					icon: "kubejs:epic_lootbox"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_epic"
+					player_command: false
+				}
+				{
+					id: "0000000000000639"
+					type: "item"
+					title: "基础机械管道"
+					item: "mekanism:basic_mechanical_pipe"
+					count: 8
+				}
+			]
+		}
+		{
+			x: 6.0d
+			y: 1.5d
+			subtitle: "进退两难，骑虎难下"
+			description: [
+				"有些材料比乍看之下更为丰富，它们只是以不同形式被锁住，需要多花些功夫才能释放出来。"
+				""
+				"研磨机有助于提取这些额外物质，例如从铁矿石中提取镍，或从铅矿石中提取银。"
+				""
+				"请在 Thermalpedia 中查找相关升级的信息。"
+			]
+			dependencies: ["00000000000004C2"]
+			id: "00000000000004AB"
+			tasks: [{
+				id: "00000000000004AC"
+				type: "item"
+				item: "thermal:machine_pulverizer"
+			}]
+			rewards: [{
+				id: "00000000000004F2"
+				type: "command"
+				title: "稀有热力系列战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			title: "Invar"
+			x: 6.0d
+			y: 2.5d
+			subtitle: "技术启动系统 (Bootstrapping Technology)"
+			description: [
+				"普通的熔炉需要帮手才能生产出高级合金。"
+				""
+				"Invar 有许多实用特性，其中最突出的就是能承受更先进熔炉产生的高温。"
+				""
+				"将一些铁和镍磨成粉，用手合成，然后冶炼产物以继续前进。"
+			]
+			dependencies: ["00000000000004AB"]
+			id: "00000000000004AD"
+			tasks: [{
+				id: "00000000000004AE"
+				type: "item"
+				item: "thermal:invar_dust"
+			}]
+			rewards: [{
+				id: "00000000000004F3"
+				type: "command"
+				title: "稀有热力系列战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: 6.0d
+			y: 3.5d
+			subtitle: "支持抵抗运动！"
+			description: [
+				"一种用于直接制作合金以及其他许多实用材料（如硬化玻璃）的先进熔炉。"
+				""
+				"请在 Thermalpedia 中查找相关升级的信息。"
+			]
+			dependencies: ["00000000000004AD"]
+			id: "00000000000004AF"
+			tasks: [{
+				id: "00000000000004B0"
+				type: "item"
+				item: "thermal:machine_smelter"
+			}]
+			rewards: [{
+				id: "00000000000004F4"
+				type: "command"
+				title: "史诗级热力系列宝箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			x: -1.5d
+			y: 2.5d
+			subtitle: "一团黏糊糊的乱糟糟"
+			description: [
+				"尽管有些人仍在追求最甜美的滋味，而另一些人则只是为了维持生计。"
+				""
+				"树脂可以从许多不同的树木中提取，经过一番加工，可以制成一种极佳的燃料来源。"
+			]
+			dependencies: ["00000000000004A5"]
+			id: "00000000000004BB"
+			tasks: [{
+				id: "00000000000004BC"
+				type: "item"
+				item: "thermal:resin_bucket"
+			}]
+			rewards: [
+				{
+					id: "00000000000004ED"
+					type: "item"
+					title: "甜美的浆果"
+					item: "minecraft:sweet_berries"
+					count: 16
+				}
+				{
+					id: "000000000000063B"
+					type: "command"
+					title: "稀有热力系列战利品箱"
+					icon: "kubejs:rare_lootbox"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_rare"
+					player_command: false
+				}
+			]
+		}
+		{
+			x: -1.5d
+			y: 4.5d
+			subtitle: "冰，冰，宝贝"
+			description: [
+				"有了更好的燃料，启动压缩发电机来获取简单的可再生能源。"
+				""
+				"从这里开始，自行探索其他一些发电机，为你的情况找到合适的电源。"
+				""
+				"请在 Thermalpedia 中查找相关升级的信息。"
+			]
+			dependencies: ["00000000000004A7"]
+			id: "00000000000004BF"
+			tasks: [{
+				id: "00000000000004C0"
+				type: "item"
+				item: "thermal:dynamo_compression"
+			}]
+			rewards: [{
+				id: "00000000000004EE"
+				type: "command"
+				title: "史诗级热力系列宝箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			x: 4.0d
+			y: 1.0d
+			subtitle: "卡皮森38马克2型"
+			description: [
+				"一个简单的熔炉，就像标准的燃煤熔炉，但速度更快，效率更高。"
+				""
+				"请在 Thermalpedia 中查找相关升级的信息。"
+			]
+			dependencies: ["00000000000003A2"]
+			id: "00000000000004C2"
+			tasks: [{
+				id: "00000000000004C3"
+				type: "item"
+				item: "thermal:machine_furnace"
+			}]
+			rewards: [
+				{
+					id: "00000000000004F1"
+					type: "command"
+					title: "稀有热力系列战利品箱"
+					icon: "kubejs:rare_lootbox"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_rare"
+					player_command: false
+				}
+				{
+					id: "0000000000000A7F"
+					type: "command"
+					title: "拾荒者之乐"
+					icon: "kubejs:scavengers_delight"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_scavengers_delight"
+					player_command: false
+				}
+			]
+		}
+		{
+			x: 4.5d
+			y: 4.0d
+			subtitle: "Bop It, Pull It, Twist It"
+			description: [
+				"精密加工通常意味着更高的效率，无论是任务时间还是材料消耗。MultiServo Press 就是这样一种机器，它能加快压板速度、降低齿轮成本，并为其他加工技术开辟了道路。"
+				""
+				"请在 Thermalpedia 中查找相关升级的信息。"
+			]
+			dependencies: ["00000000000004AF"]
+			id: "00000000000004C4"
+			tasks: [{
+				id: "00000000000004C5"
+				type: "item"
+				item: "thermal:machine_press"
+			}]
+			rewards: [
+				{
+					id: "00000000000004F6"
+					type: "item"
+					title: "金属压制模具：齿轮"
+					item: "immersiveengineering:mold_gear"
+				}
+				{
+					id: "000000000000068B"
+					type: "command"
+					title: "史诗级热力系列宝箱"
+					icon: "kubejs:epic_lootbox"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_epic"
+					player_command: false
+				}
+			]
+		}
+		{
+			x: 7.5d
+			y: 4.0d
+			subtitle: "在废土与天空之间..."
+			description: [
+				"大自然在植物生长方面做得非常出色。毕竟，它已经这么做了很久了。但当空间有限时，Phytogenic Insolator 是自然方法的绝佳替代方案。"
+				""
+				"需要水和能量。建议使用肥料，但并非必需。"
+				""
+				"请在 Thermalpedia 中查找相关升级的信息。"
+			]
+			dependencies: ["00000000000004AF"]
+			id: "00000000000004C6"
+			tasks: [{
+				id: "00000000000004C7"
+				type: "item"
+				item: "thermal:machine_insolator"
+			}]
+			rewards: [{
+				id: "00000000000004F5"
+				type: "command"
+				title: "史诗级热力系列宝箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			x: 6.5d
+			y: 4.5d
+			subtitle: "将选项 A 插入插槽 B 中"
+			description: [
+				"一台能快速组装组件的精密机器，简化自动化流程。它还带有内部流体储罐，可为需要液体的配方自动提供液体。"
+				""
+				"设置配方，按绿色对勾验证，然后提供材料。"
+				""
+				"请在 Thermalpedia 中查找相关升级的信息。"
+			]
+			dependencies: ["00000000000004AF"]
+			id: "00000000000004C8"
+			tasks: [{
+				id: "00000000000004C9"
+				type: "item"
+				item: "thermal:machine_crafter"
+			}]
+			rewards: [{
+				id: "000000000000064E"
+				type: "command"
+				title: "稀有热力系列战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: 3.0d
+			y: -0.5d
+			description: ["一种手持的“爆炸物”，能释放元素闪电的蓄积能量，引发自发的闪电袭击。"]
+			dependencies: ["00000000000004DD"]
+			dependency_requirement: "one_started"
+			id: "00000000000004CA"
+			tasks: [{
+				id: "00000000000004DC"
+				type: "item"
+				item: "thermal:lightning_grenade"
+			}]
+			rewards: [{
+				id: "00000000000004FD"
+				type: "command"
+				title: "史诗级热力系列宝箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			x: 1.0d
+			y: -0.5d
+			description: ["一种手持的“爆炸物”，能释放元素暴雪的寒气，冻结水面并为周围覆盖白雪。"]
+			dependencies: ["00000000000004DD"]
+			dependency_requirement: "one_started"
+			id: "00000000000004CC"
+			tasks: [{
+				id: "00000000000004DB"
+				type: "item"
+				item: "thermal:ice_grenade"
+			}]
+			rewards: [{
+				id: "00000000000004FE"
+				type: "command"
+				title: "史诗级热力系列宝箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			x: 4.0d
+			y: 0.0d
+			description: ["一种手持的“爆炸物”，能释放元素Basalz的潜在力量，使大地发生位移和龟裂。"]
+			dependencies: ["00000000000004DD"]
+			dependency_requirement: "one_started"
+			id: "00000000000004CE"
+			tasks: [{
+				id: "00000000000004DA"
+				type: "item"
+				item: "thermal:earth_grenade"
+			}]
+			rewards: [{
+				id: "00000000000004FC"
+				type: "command"
+				title: "史诗级热力系列宝箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			x: 0.0d
+			y: 0.0d
+			description: ["一种手持的“爆炸物”，能释放出烈焰元素的灼热能量，点燃周围的环境。"]
+			dependencies: ["00000000000004DD"]
+			id: "00000000000004D7"
+			tasks: [{
+				id: "00000000000004D9"
+				type: "item"
+				item: "thermal:fire_grenade"
+			}]
+			rewards: [{
+				id: "00000000000004FF"
+				type: "command"
+				title: "史诗级热力系列宝箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			title: "异域元素模组 (Exotic Elements)"
+			x: 2.0d
+			y: -1.0d
+			subtitle: "当火元素生物来袭时，一切都改变了"
+			description: ["简单的冶金学有其局限性。在某个阶段，需要更奇特的材料。去寻找栖息于世界最极端环境中的元素生物吧。"]
+			dependencies: ["00000000000003A2"]
+			id: "00000000000004DD"
+			tasks: [
+				{
+					id: "00000000000004DE"
+					type: "item"
+					item: "minecraft:blaze_rod"
+				}
+				{
+					id: "00000000000004DF"
+					type: "item"
+					item: "thermal:blitz_rod"
+				}
+				{
+					id: "00000000000004E0"
+					type: "item"
+					item: "thermal:blizz_rod"
+				}
+				{
+					id: "00000000000004E1"
+					type: "item"
+					item: "thermal:basalz_rod"
+				}
+			]
+			rewards: [{
+				id: "00000000000004FB"
+				type: "command"
+				title: "史诗级热力系列宝箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_epic"
+				player_command: false
+			}]
+		}
+		{
+			title: "RF容量与传输增强组件"
+			x: 3.0d
+			y: 2.5d
+			description: [
+				"更好的存储还是更快的放电？"
+				""
+				"在选择这些增强模块时，请仔细考虑其用途。"
+			]
+			dependencies: ["00000000000003A2"]
+			id: "00000000000004E2"
+			tasks: [{
+				id: "0000000000000F56"
+				type: "item"
+				title: "RF容量/升级增强组件"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "thermal:rf_coil_augment"
+								Count: 1b
+							}
+							{
+								id: "thermal:rf_coil_storage_augment"
+								Count: 1b
+							}
+							{
+								id: "thermal:rf_coil_xfer_augment"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "00000000000004FA"
+				type: "command"
+				title: "稀有热力系列战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			title: "核心组件"
+			x: 2.0d
+			y: 3.0d
+			description: [
+				"核心组件通常能升级所安装机器或工具的所有属性。"
+				""
+				"只有最高等级有效，所以一次只能安装一个。"
+				""
+				"更高级的版本将需要更奇特的材料。"
+			]
+			dependencies: ["00000000000003A2"]
+			id: "00000000000004E6"
+			tasks: [{
+				id: "0000000000000F8D"
+				type: "item"
+				item: "thermal:upgrade_augment_1"
+			}]
+			rewards: [{
+				id: "00000000000004F8"
+				type: "command"
+				title: "稀有热力系列战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			title: "Dynamo 增强组件"
+			x: 1.0d
+			y: 2.5d
+			description: [
+				"工业工程师在设计系统时常面临速度与效率的权衡。在选择时需考虑应用的需求。"
+				""
+				"当能量可以被储存以备将来使用时，效率会派上用场，但有时为了跟上稳定的需求，需要一定的损耗。"
+			]
+			dependencies: ["00000000000003A2"]
+			id: "0000000000000F52"
+			tasks: [{
+				id: "0000000000000F59"
+				type: "item"
+				title: "Dynamo 增强组件"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "thermal:dynamo_output_augment"
+								Count: 1b
+							}
+							{
+								id: "thermal:dynamo_fuel_augment"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "0000000000000F9F"
+				type: "command"
+				title: "稀有热力系列战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: -2.5d
+			y: 2.5d
+			subtitle: "这就是大自然的女主人要告诉你的事"
+			description: [
+				"自然界通常会自行修正问题，除非有真正主导的因素出现。要不要我们改变一下现状？看看它能被塑造成什么样？"
+				""
+				"敲击丛林树木，开始提取原始乳胶。这里没有硬性限制。"
+			]
+			dependencies: ["00000000000004A5"]
+			id: "0000000000000F67"
+			tasks: [{
+				id: "0000000000000F68"
+				type: "item"
+				item: "industrialforegoing:latex_bucket"
+			}]
+			rewards: [{
+				id: "0000000000000F8A"
+				type: "command"
+				title: "稀有热力系列战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: -2.5d
+			y: 3.5d
+			subtitle: "Vulcanizing Bond"
+			description: ["乳胶最初光滑柔韧，经硫化处理后变得坚韧，适合用于更多工业用途。"]
+			dependencies: ["0000000000000F67"]
+			id: "0000000000000F69"
+			tasks: [{
+				id: "0000000000000F6A"
+				type: "item"
+				item: "thermal:cured_rubber"
+				count: 8L
+			}]
+			rewards: [{
+				id: "0000000000000F8B"
+				type: "command"
+				title: "稀有热力系列战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: -0.5d
+			y: 4.0d
+			description: [
+				"主要分布于浅水池和基岩深处。"
+				""
+				"收集一些，然后用分馏塔开始处理。经过一番提炼，就能把它变成绝佳的燃料来源。"
+			]
+			dependencies: [
+				"00000000000004A8"
+				"00000000000004A7"
+			]
+			id: "0000000000000F6B"
+			tasks: [{
+				id: "0000000000000F6C"
+				type: "item"
+				title: "原油"
+				item: "pneumaticcraft:oil_bucket"
+			}]
+			rewards: [{
+				id: "124C10AC728F1A8C"
+				type: "command"
+				title: "稀有热力系列战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: 5.5d
+			y: 4.5d
+			subtitle: "被逼入绝境"
+			description: [
+				"基于将物体高速旋转直至其飞散的古老技艺，离心机是工业中分离材料的重要设备。"
+				""
+				"用途广泛，也是制造多功能高能量密度液体燃料的第一步。"
+			]
+			hide_dependency_lines: false
+			dependencies: ["00000000000004AF"]
+			id: "0000000000000F78"
+			tasks: [{
+				id: "0000000000000F79"
+				type: "item"
+				item: "thermal:machine_centrifuge"
+			}]
+			rewards: [{
+				id: "5839B6FFB471A35B"
+				type: "command"
+				title: "稀有热力系列战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: -3.5d
+			y: 4.0d
+			subtitle: "忍不住感觉自己有点喝醉了的感觉"
+			description: ["可扩展、可升级、可便携。野外采集液体的绝佳首选。"]
+			dependencies: ["0000000000000F69"]
+			id: "0000000000000F83"
+			tasks: [{
+				id: "0000000000000F84"
+				type: "item"
+				item: {
+					id: "thermal:fluid_cell"
+					Count: 1b
+					tag: {
+						BlockEntityTag: {
+							TankInv: [{
+								FluidName: "minecraft:empty"
+								Capacity: 32000
+								Tank: 0b
+								Amount: 0
+							}]
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "0000000000000F9C"
+				type: "item"
+				title: "扩建储罐工程说明"
+				item: "thermal:fluid_tank_augment"
+			}]
+		}
+		{
+			x: -2.5d
+			y: 4.5d
+			subtitle: "感觉精力充沛，心情相当乐观"
+			description: [
+				""
+				"可扩展、可升级、可便携。随时随地快速充电的理想选择。"
+			]
+			dependencies: ["0000000000000F69"]
+			id: "0000000000000F85"
+			tasks: [{
+				id: "0000000000000F86"
+				type: "item"
+				item: {
+					id: "thermal:energy_cell"
+					Count: 1b
+					tag: {
+						BlockEntityTag: {
+							EnergyMax: 1000000
+							EnergySend: 1000
+							Energy: 0
+							EnergyRecv: 1000
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "0000000000000F88"
+				type: "item"
+				title: "手持 IV"
+				item: {
+					id: "minecraft:enchanted_book"
+					Count: 1b
+					tag: {
+						StoredEnchantments: [{
+							lvl: 4s
+							id: "cofh_core:holding"
+						}]
+					}
+				}
+			}]
+		}
+		{
+			x: 0.0d
+			y: 2.0d
+			description: [
+				"在原本可以通过减速再次检查来回收的系统中，可能会损失大量材料。"
+				""
+				"辅助工艺筛在适用机器中以速度换取额外材料。"
+			]
+			dependencies: ["00000000000003A2"]
+			id: "0000000000000F90"
+			tasks: [{
+				id: "0000000000000F91"
+				type: "item"
+				item: "thermal:machine_output_augment"
+			}]
+			rewards: [{
+				id: "0000000000000FA0"
+				type: "command"
+				title: "稀有热力系列战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: 4.0d
+			y: 2.0d
+			description: [
+				"有时候，工作就是得立刻完成，管他成本几何。"
+				""
+				"Flux Linkage Amplifiers 能大幅提升机器的速度，但会相应降低能源效率。"
+			]
+			dependencies: ["00000000000003A2"]
+			id: "0000000000000F9D"
+			tasks: [{
+				id: "0000000000000F9E"
+				type: "item"
+				item: "thermal:machine_speed_augment"
+			}]
+			rewards: [{
+				id: "0000000000000FA1"
+				type: "command"
+				title: "稀有热力系列战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: 2.0d
+			y: 4.5d
+			subtitle: "厌倦了喝茶？那就像厌倦了呼吸一样。"
+			description: [
+				"肚子有点饿了吗？来一杯刚从龙头里接的冰镇饮料怎么样？"
+				""
+				"在两侧放置水源，即可产生可被任何流体管道提取的无限水源。非常适合自动化！"
+			]
+			dependencies: ["00000000000003A2"]
+			id: "3D23E5D7FA0F0A3E"
+			tasks: [{
+				id: "6EC90AFC954E42C8"
+				type: "item"
+				item: "thermal:device_water_gen"
+			}]
+			rewards: [{
+				id: "052C23B5160E5C9A"
+				type: "command"
+				title: "稀有热力系列战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: 2.0d
+			y: 6.0d
+			subtitle: "火焰人，热男！"
+			description: [
+				"一点岩浆，一点水。砰，一箱石头。"
+				""
+				"岩浆岩挤出机输出的石头类型由放置在它下方的方块决定。"
+			]
+			dependencies: ["00000000000003A2"]
+			id: "724E414250F20D9C"
+			tasks: [{
+				id: "2395D1B3DDEB3FB6"
+				type: "item"
+				item: "thermal:device_rock_gen"
+			}]
+			rewards: [{
+				id: "5FF0D0F905311B5F"
+				type: "command"
+				title: "稀有热力系列战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: 1.0d
+			y: 5.5d
+			subtitle: "我成天都在嘲笑重力。哈哈哈，重力！"
+			description: ["收拾僵尸留下的烂摊子，这玩意儿可方便。真是不知礼数的客人。"]
+			dependencies: ["00000000000003A2"]
+			id: "505A3C679D3EDD3B"
+			tasks: [{
+				id: "66FA40C40EA10DE7"
+				type: "item"
+				item: "thermal:device_collector"
+			}]
+			rewards: [{
+				id: "7AE5586CD4CAE2A9"
+				type: "command"
+				title: "稀有热力系列战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: 3.0d
+			y: 5.5d
+			subtitle: "为什么每次你用魔法水的时候，我都被淋湿了？"
+			description: ["多功能冷却室，既适合制作高球杯，也适合制作完整锭。"]
+			dependencies: ["00000000000003A2"]
+			id: "47B80FE2B94D5548"
+			tasks: [{
+				id: "7DFFBA48694F1143"
+				type: "item"
+				item: "thermal:machine_chiller"
+			}]
+			rewards: [{
+				id: "111267C52D39C197"
+				type: "command"
+				title: "史诗级热力系列宝箱"
+				icon: "kubejs:epic_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_thermal_series_loot_epic"
+				player_command: false
+			}]
+		}
+	]
+}

@@ -1,0 +1,642 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_min_width: 300
+	default_quest_shape: "hexagon"
+	filename: "intro"
+	group: "3483E4EBAD9C4714"
+	icon: "gtceu:rubber_log"
+	id: "5FA6F711B0CF7446"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"本整合包旨在尽快进入格雷科技，同时尽可能简化资源生成，实现无限资源的格雷科技。"
+				""
+				"你的新手岛屿和物品栏里包含了开始冒险所需的一切。"
+				""
+				"拿起你的下界合金锤，开始工作吧！你甚至还有带完整 ME 驱动器和创意能量细胞的 ME 合成终端！"
+				""
+				"几乎所有“困难模式”配方都已在配置文件中启用，除此之外，GregTech配方未作修改。部分其他模组已稍作调整，以更符合GregTech配方风格和整合包的整体风格。"
+				""
+				"GregTechCEu Modern 在 1.20.1 中还很新，所以预计会有一些 bug，我正在尽力解决它们。"
+				""
+				"注意，下界和末地也是虚空世界，但它们仍然会生成结构和末影龙，尽管你可能永远不需要去这两个维度。"
+			]
+			id: "4462E9F7062D4E87"
+			rewards: [{
+				id: "0FC8D8804E5C003E"
+				item: "minecraft:oak_sapling"
+				type: "item"
+			}]
+			shape: "gear"
+			size: 2.0d
+			subtitle: "冲冲冲，格雷科技！"
+			tasks: [{
+				id: "3F47ED63BF13E098"
+				item: "gtceu:rubber_log"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			description: [
+				"在其上方生成1个随机矿石。"
+				""
+				"开采矿石以生成另一种随机矿石。"
+				""
+				"一旦获得了大量需要的原矿，就把它投入原始转换机，可以无限生产该矿石。"
+				""
+				"注意，当 REI 物品高亮（或 AE2 终端）开启时，你可以通过元素名称搜索物品，例如 Cu 代表铜。"
+				""
+				"你的平台上已经有一个了。你需要捡起它再放下，这样它才能重新开始工作。"
+			]
+			id: "0DBCE651A4F464F7"
+			shape: "hexagon"
+			subtitle: "无限随机原始矿石！"
+			tasks: [{
+				id: "70F2B92D6A00DB3D"
+				item: "simple_resource_generators:random_ore_block_generator_placement"
+				type: "item"
+			}]
+			x: -0.5d
+			y: 5.0d
+		}
+		{
+			description: [
+				"在GUI中放入任意原矿，对应的矿石就会在原始转换生成器上方生成。"
+				""
+				"生成矿石时，原矿石是&n不会被消耗&r的。"
+				""
+				"你的平台上已经有一个了。你需要捡起它再放下，这样它才能重新开始工作。"
+				""
+				"请记得要始终至少储存1份原矿备用。"
+			]
+			id: "482C15EC43DAAFBA"
+			rewards: [{
+				id: "4426D0E703D0C53C"
+				item: "itemcollectors:advanced_collector"
+				type: "item"
+			}]
+			shape: "hexagon"
+			subtitle: "未消耗的原始矿石！"
+			tasks: [{
+				id: "43231CAF17BAD975"
+				item: "simple_resource_generators:raw_conversion_generator"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 5.0d
+		}
+		{
+			description: [
+				"实际上不储存水，但可以装满水桶并转换某些物品。"
+				""
+				"一开始会需要大量的黏土。"
+				""
+				"转换："
+				""
+				"- 泥土 -> 泥浆"
+				"- 粉尘 -> 粘土"
+				"- 石粉（变种） -> 陶土球"
+				""
+				"你的平台上已经有一个这样的东西了。"
+				""
+				"之后还有其他方块可以帮助生成水源。"
+			]
+			id: "0AD0B4EAC2AA5209"
+			shape: "hexagon"
+			subtitle: "简易粘土！"
+			tasks: [{
+				icon: "simple_resource_generators:simple_water_condenser"
+				id: "677132354ED49F77"
+				observe_type: 0
+				timer: 0L
+				title: "原始水冷凝器"
+				to_observe: "simple_resource_generators:simple_water_condenser"
+				type: "observation"
+			}]
+			x: 0.0d
+			y: 4.0d
+		}
+		{
+			dependencies: [
+				"0DBCE651A4F464F7"
+				"67A71A946653F866"
+			]
+			description: ["此方块不会在世界中放置原矿，而是会在其物品栏的 1 号位生成原矿。你需要用漏斗或物品管道等方式来提取物品。"]
+			id: "492FE38D3B2C2F20"
+			shape: "hexagon"
+			subtitle: "自动化了！"
+			tasks: [{
+				id: "1B6C77D9E5C72ACA"
+				item: "simple_resource_generators:random_ore_generator"
+				type: "item"
+			}]
+			x: -1.0d
+			y: 6.0d
+		}
+		{
+			dependencies: [
+				"482C15EC43DAAFBA"
+				"67A71A946653F866"
+			]
+			description: [
+				"放置在矿石方块下方，可将该矿石方块生成为一项物品。"
+				""
+				"此方块不会在世界中放置原矿，而是会在其物品栏的 1 号位生成原矿。你需要用漏斗或物品管道等方式来提取物品。"
+				""
+				"你应该养成习惯，用其中一个来为工厂生产线供料，以实现完全自动化。"
+			]
+			id: "761E0D41EA3A4564"
+			shape: "hexagon"
+			subtitle: "自动化了！"
+			tasks: [{
+				id: "1FB12E50A933BFCF"
+				item: "simple_resource_generators:simple_ore_generator"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 6.0d
+		}
+		{
+			description: [
+				"碎石锤可将石头/鹅卵石压成砾石，砾石压成沙子，沙子压成沙粉，泥土压成树苗和植物纤维。"
+				""
+				"收集世界中的方块以将其转换。"
+				""
+				"FTB Ultimine 适合大型团队同时使用。"
+				""
+				"它们也是多功能工具，能采集镐、铲子和斧头能采集的东西。"
+				""
+				"GregTech 锤子也能像 Forge 锤子一样处理世界中采集的方块，从而获得砾石、沙子和粉尘。"
+			]
+			id: "7F5745C91297CB3B"
+			rewards: [{
+				id: "2937F9159ADCE670"
+				item: {
+					Count: 1
+					id: "enderchests:ender_pouch"
+					tag: {
+						open: 0b
+					}
+				}
+				type: "item"
+			}]
+			shape: "hexagon"
+			subtitle: "粉碎、挖掘、开采，样样精通！"
+			tasks: [{
+				id: "1AA0896878FD6ACD"
+				item: {
+					Count: 1
+					id: "ex_hammers:netherite_hammer"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "粉碎锤 Crushing Hammers"
+			x: 0.0d
+			y: 2.0d
+		}
+		{
+			description: [
+				"实际上不装岩浆，但可以装满水桶。"
+				""
+				"你的平台上已经有一个这样的东西了。"
+				""
+				"之后还有其他方块可以帮助生成熔岩。"
+			]
+			id: "39D99BD0ACC2EEC1"
+			shape: "hexagon"
+			subtitle: "岩浆桶！"
+			tasks: [{
+				icon: "simple_resource_generators:simple_lava_condenser"
+				id: "765BE631063173B9"
+				observe_type: 0
+				timer: 0L
+				title: "原始熔岩冷凝器"
+				to_observe: "simple_resource_generators:simple_lava_condenser"
+				type: "observation"
+			}]
+			x: 0.0d
+			y: 8.0d
+		}
+		{
+			description: [
+				"当你在足够远的地方时，被动生物可以在光照充足的草方块上生成。"
+				""
+				"你也可以制作金蛋，用它来创造欢乐泥土，只要生物群系允许，它就会频繁生成被动生物。"
+				""
+				"市场方块也出售（几乎）所有生物蛋，并且刷怪器可以合成。你可以用生物蛋将刷怪器设置为该生物类型。"
+			]
+			icon: "mob_grinding_utils:golden_egg"
+			id: "39A9C44A376EE7DE"
+			shape: "gear"
+			subtitle: "我的鸡都去哪儿了？它们全都不见了！"
+			tasks: [{
+				id: "0BC51AF25C1008D0"
+				title: "被动生物"
+				type: "checkmark"
+			}]
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			description: [
+				"本整合包旨在跳过Skyblocks中通常繁琐的前期刷怪过程。"
+				""
+				"话虽如此，你将从带有独特变化的无限矿物生成器开始。"
+				""
+				"左边是随机矿石生成器，如果上方有空间，它会不断生成随机矿石，挖掉后又会生成新的。一开始可能感觉很混乱，但一旦你得到了想要的材料，就把它放在右边的原始转换生成器上。"
+				""
+				"原始转换生成器会接受任意类型的1个原始矿石，并在上方有空间时生成该类型的矿石块。&n原始矿石不会被消耗。&r"
+				""
+				"&6注意，你必须捡起它们再放置才能生效，它们只是作为展示品设置的。&r"
+				""
+				"由于成本很低，建议为每种所需材料都设置一套，后期可考虑自动化选项或使用 Block Breaker。"
+				""
+				"你可以使用整合包中的所有原始矿石，并能无限生成任何你想要的矿石。"
+				""
+				"出于显而易见的原因，矿石加工不像普通整合包那么重要，但有些材料只能通过副产品获得。"
+			]
+			icon: "gtceu:endstone_diamond_ore"
+			id: "14A6545CEE50C10F"
+			shape: "gear"
+			subtitle: "这有点像筛东西一样……"
+			tasks: [{
+				id: "63BAA184B3B5F5C4"
+				title: "这是什么东西？"
+				type: "checkmark"
+			}]
+			x: -1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["4462E9F7062D4E87"]
+			description: [
+				"堆肥桶的骨粉机制为原版。你可以用随机树苗生成器和几个漏斗轻松实现自动化。"
+				""
+				"-随机树苗生成器-"
+				"-漏斗-"
+				"-堆肥桶-"
+				"-漏斗-"
+				"-箱子-"
+			]
+			hide_dependency_lines: true
+			id: "54585C31FF2226A2"
+			shape: "hexagon"
+			subtitle: "在找骨粉吗？"
+			tasks: [{
+				id: "5240727B9A9A849C"
+				item: "minecraft:composter"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 6.0d
+		}
+		{
+			description: [
+				"家园指令 - 输入 /sethome 设置家园。输入 /home 可传送到该家园。"
+				""
+				"Twerking - 按住潜行键来扭动，加快植物/树苗的生长速度。"
+				""
+				"FTB Ultimine - 按住 grave 键 [`] 并挖掘相连的方块，最多可收集 64 个相同方块。注意不要挖掉你的整个基地！"
+				""
+				"虚空垃圾 - 你的物品栏中实际上有两种垃圾桶，按 [T] 可在物品栏底部启用一个垃圾槽，或在屏幕左上角查找垃圾桶，又或者按住投掷键 [Q] 将物品尽可能远地扔进虚空。所有选项各有优势。此外，你还可以在世界中放置一个物品垃圾桶方块来引导物品进入。"
+				""
+				"区块宣称 - 打开物品栏时，屏幕左上角有一个像网格地图的小按钮。这就是 FTB 区块，左键点击方块即可“宣称”该区块，以防止爆炸伤害等。Shift 键点击方块可“强制加载”区块，即在你不在附近时，该区块也会保持加载和运行。"
+				""
+				"任务奖励 - 任务有时会提供当前阶段非常有用的物品，但不要总是期待奖励。任务主要是为了展示进度。"
+				""
+				"幻影 - 幻影存在，要么建造屋顶，要么建造床。"
+				""
+				"Extreme Sound Muffler - GregTech 里有很多声音，尤其是在蒸汽时代。你可以点击物品栏中玩家模型右侧的音量图标来静音任何声音。注意，你也可以用锤子敲打机器，只静音单个机器。"
+				""
+				"和平模式 - 这是一个可行的选择，你可能需要一堆末影珍珠，末影珍珠粉可以在LV时代用矿石材料制作。 &n末影珍珠粉可以在高压釜中与水一起转化为末影珍珠&r。虽然和平模式可能需要额外的工作，但它是一个可行的选择。"
+				""
+				"AE2 - Applied Energistics 2 旨在尽可能易于上手，配方基本未改，且可在 LV 时代获取。配方仅为适配 skyblock 整合包而添加，并且&n已禁用频道&r，以便更轻松地自动化大量机器。"
+			]
+			icon: "minecraft:writable_book"
+			id: "40436BC7CC08D144"
+			shape: "gear"
+			subtitle: "请阅读我！"
+			tasks: [{
+				id: "14524C8A4704DB86"
+				title: "实用物品"
+				type: "checkmark"
+			}]
+			x: -1.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["4462E9F7062D4E87"]
+			description: [
+				"下界也是一个虚空维度，但它仍然有结构。"
+				""
+				"用黑曜石正常建造传送门，或用末地传送画。如果用传送画旅行，记得带一张主世界传送画回来，因为它们不提供返程。"
+				""
+				"你来这里唯一需要的理由大概就是下界空气了。"
+				""
+				"你必须&n跳&r进这幅画中才行。"
+			]
+			hide_dependency_lines: true
+			icon: "dimpaintings:nether_painting"
+			id: "3DD7D6329124737E"
+			rewards: [{
+				id: "72F98A8495E4BD35"
+				item: "dimpaintings:overworld_painting"
+				type: "item"
+			}]
+			shape: "hexagon"
+			subtitle: "带有结构的虚空！"
+			tasks: [
+				{
+					dimension: "minecraft:the_nether"
+					id: "0056CF14E6B5231B"
+					title: "下界"
+					type: "dimension"
+				}
+				{
+					id: "21F4298B0F0612A9"
+					item: "dimpaintings:nether_painting"
+					type: "item"
+				}
+			]
+			x: -0.5d
+			y: 7.0d
+		}
+		{
+			dependencies: ["560C7763B0AA9B02"]
+			description: [
+				"末地也是一个虚空维度，但它仍然有末地岛屿和末影龙。"
+				""
+				"没有要塞。合成一幅末地画作。如果用画作旅行，记得带一幅主世界画作回来，因为它们不提供返程。"
+				""
+				"你来这里的原因可能只是为了末地空气。不过，建一个末影人农场也不是坏事。"
+				""
+				"你必须&n跳&r进这幅画中才行。"
+			]
+			icon: "dimpaintings:end_painting"
+			id: "4E97250754AE3B2B"
+			rewards: [{
+				id: "7509C01FD7531A98"
+				item: "dimpaintings:overworld_painting"
+				type: "item"
+			}]
+			shape: "hexagon"
+			subtitle: "虚空世界，内含末影龙！"
+			tasks: [
+				{
+					dimension: "minecraft:the_end"
+					id: "2B4B7896B2A13CC0"
+					title: "The End"
+					type: "dimension"
+				}
+				{
+					id: "4917ED8D8FAB891A"
+					item: "dimpaintings:end_painting"
+					type: "item"
+				}
+			]
+			x: 0.5d
+			y: 7.0d
+		}
+		{
+			description: [
+				"GregTech 的物品管道和流体管道可能存在 bug，因此添加了 Modular Routers、LaserIO 和 EnderIO 的 Conduits 以提供更多传输选项。"
+				""
+				"在某些情况下它们似乎能正常工作，但在另一些情况下它们会停止工作，而且我受够了机器爆炸了。"
+			]
+			icon: "enderio:ender_fluid_conduit"
+			id: "36140838F3343E92"
+			shape: "gear"
+			subtitle: "输入/输出！"
+			tasks: [{
+				id: "4FD65DAE8F7E832C"
+				title: "管道匠模组"
+				type: "checkmark"
+			}]
+			title: "传输选项"
+			x: 1.0d
+			y: -1.0d
+		}
+		{
+			description: [
+				"任务正在持续开发中，任务和任务章节将会被添加、更新或删除。"
+				""
+				"目前有些任务还没有文本，但一切都会很快完成。"
+				""
+				"预计会有很多任务更新。"
+			]
+			icon: "ftbquests:book"
+			id: "1B5738B5D13B5A64"
+			shape: "gear"
+			subtitle: "制作中！"
+			tasks: [{
+				id: "1D3DBB0EDA750461"
+				title: "任务列表"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7F5745C91297CB3B"]
+			description: [
+				"用粉碎锤采集鹅卵石。"
+				""
+				"再次采集以创造沙子。"
+				""
+				"如果你还没找到，你的平台上已经有一个活跃的 Cobble Gen 了。"
+			]
+			id: "3EA129DF35925916"
+			subtitle: "Cobblestone -> 砾石！"
+			tasks: [{
+				id: "061BD8FFC13F0A08"
+				item: "minecraft:gravel"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["3EA129DF35925916"]
+			description: [
+				"用粉碎锤采集砾石。"
+				""
+				"再次采集以生成粉尘。"
+			]
+			id: "24E853EAA8010B8F"
+			subtitle: "砾石 -> 沙子！"
+			tasks: [{
+				id: "41D9DBB8FA804633"
+				item: "minecraft:sand"
+				type: "item"
+			}]
+			x: -0.5d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"0AD0B4EAC2AA5209"
+				"5A979C11538C1E29"
+			]
+			description: [
+				"在原始水冷凝器上使用粉尘来创造黏土。在原始水冷凝器上使用采矿获得的矿石粉尘变种来创造黏土球。"
+				""
+				"你也可以用 GT Hammer 将粘土分解成 Clay Balls。"
+			]
+			icon: "minecraft:clay"
+			id: "1BC846356EB47249"
+			subtitle: "尘土 -> 黏土！"
+			tasks: [
+				{
+					id: "0177C4ABDE5290EE"
+					item: "minecraft:clay"
+					type: "item"
+				}
+				{
+					id: "21C7D906B47F1729"
+					item: "minecraft:clay_ball"
+					type: "item"
+				}
+			]
+			x: -1.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["24E853EAA8010B8F"]
+			description: [
+				"用粉碎锤采集沙子。"
+				""
+				"在原始水冷凝器上使用以创造粘土。"
+			]
+			id: "5A979C11538C1E29"
+			subtitle: "沙子 -> 灰尘！"
+			tasks: [{
+				id: "10BD2411EF227AD0"
+				item: "ex_hammers:dust"
+				type: "item"
+			}]
+			x: -1.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["7F5745C91297CB3B"]
+			description: [
+				"用粉碎锤采集泥土。"
+				""
+				"你有机会获得随机树苗或植物纤维，它们既可以作为燃料，也可以被制成线。"
+				""
+				"如果你还没找到，你的平台上已经有一个活跃的泥土生成器了。"
+			]
+			id: "1FA571770C50B683"
+			subtitle: "泥土 -> 植物纤维！"
+			tasks: [{
+				id: "417E7C485D572F33"
+				item: "ex_hammers:plant_fiber"
+				type: "item"
+			}]
+			x: -1.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["4462E9F7062D4E87"]
+			description: [
+				"幻影很烦人，睡觉可以赶走它们几天。你也可以直接建个屋顶，它们就不会来烦你了。只有当你的头部能看到天空时，它们才会生成。"
+				""
+				"普通床需要羊毛，但用皮革可以制作家具台，再用粘土球、木板和鹅卵石，用幻想家具制作一张床。"
+			]
+			hide_dependency_lines: true
+			id: "29961CF6E960A4AB"
+			subtitle: "远离幻影！Stay away Phantoms!"
+			tasks: [{
+				icon: "minecraft:white_bed"
+				id: "7ACE8F902222A6D9"
+				item: {
+					Count: 1
+					id: "itemfilters:tag"
+					tag: {
+						value: "minecraft:beds"
+					}
+				}
+				title: "床"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["3EA129DF35925916"]
+			description: [
+				"用手采集砾石，有机会获得燧石。"
+				""
+				"使用 FTB Ultimine 一次性采集一叠物品。"
+				""
+				"一旦能用熔炉制作石头，你就可以制作研钵，这样获取燧石就容易多了。"
+			]
+			id: "053BC0E8213BE28A"
+			subtitle: "原版游戏机制！"
+			tasks: [{
+				id: "2D46DD4D0A96211F"
+				item: "minecraft:flint"
+				type: "item"
+			}]
+			x: 1.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["4462E9F7062D4E87"]
+			description: [
+				"很简单的方块，每秒生成1个随机树苗或种子并存入内部物品栏。用漏斗或其他方法自动化它们。"
+				""
+				"需要种子就去堆肥器任务里找骨粉，然后用骨粉在草方块上使用，或者从市场方块购买。"
+			]
+			hide_dependency_lines: true
+			icon: "simple_resource_generators:random_sapling_generator"
+			id: "4FBBE2E8A65A1AA9"
+			subtitle: "Saplings \\& seeds!"
+			tasks: [
+				{
+					id: "738098CB445D4E6A"
+					item: "simple_resource_generators:random_sapling_generator"
+					type: "item"
+				}
+				{
+					id: "6A1292E3C67EB9A5"
+					item: "simple_resource_generators:random_seed_generator"
+					type: "item"
+				}
+			]
+			title: "更多随机生成器模组 (More Random Generators)"
+			x: 1.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["4E97250754AE3B2B"]
+			description: [
+				"好吧，第641天了，我终于杀了那条该死的末影龙，为了杀它，我还是头一回造了把剑。"
+				""
+				"末地空气现在是我的了。"
+			]
+			hide_details_until_startable: true
+			hide_until_deps_visible: true
+			id: "4ADEC0C6E2B60151"
+			shape: "gear"
+			subtitle: "第641天..."
+			tasks: [{
+				id: "336F22CF8058A162"
+				title: "船长日志"
+				type: "checkmark"
+			}]
+			x: 1.0d
+			y: 8.0d
+		}
+	]
+	subtitle: ["与众不同的开端！"]
+	title: "基础知识"
+}

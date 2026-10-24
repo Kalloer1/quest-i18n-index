@@ -1,0 +1,375 @@
+# AI 初翻，未人工校对
+{
+	autofocus_id: "21556E747EA8845A"
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "storm_chasers"
+	group: "65F3883DB3B6368B"
+	icon: {
+		Count: 1
+		id: "ftbquests:custom_icon"
+		tag: {
+			Icon: "cataclysm:textures/particle/lightning_storm_3.png"
+		}
+	}
+	id: "41FAC7208B9D296F"
+	order_index: 5
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"这个世界的能量非常强大……"
+				""
+				"你有勇气去追逐它那纯粹的疯狂吗？"
+			]
+			icon: {
+				Count: 1
+				id: "ftbquests:custom_icon"
+				tag: {
+					Icon: "ftblibrary:icons/info"
+				}
+			}
+			id: "21556E747EA8845A"
+			rewards: [{
+				id: "1FEA16EC57636D99"
+				item: "irons_spellbooks:lightning_rune"
+				type: "item"
+			}]
+			size: 1.25d
+			tasks: [{
+				id: "7A138EFA07DAE3DD"
+				title: "信息"
+				type: "checkmark"
+			}]
+			x: 2.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["21556E747EA8845A"]
+			id: "36795C3F70B57253"
+			rewards: [{
+				id: "5DFCC0E88467E997"
+				item: "irons_spellbooks:lightning_bottle"
+				type: "item"
+			}]
+			tasks: [{
+				id: "753FA14D12E43A9D"
+				item: "minecraft:lightning_rod"
+				type: "item"
+			}]
+			x: 1.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["36795C3F70B57253"]
+			description: ["你能否驾驭如此强大的力量？"]
+			id: "76C4BC58131A495A"
+			rewards: [{
+				id: "68F07557F3C8136F"
+				item: "artifacts:shock_pendant"
+				type: "item"
+			}]
+			tasks: [{
+				id: "599AF9644DDAEB38"
+				item: "irons_spellbooks:lightning_rod"
+				type: "item"
+			}]
+			x: 2.5d
+			y: -6.5d
+		}
+		{
+			dependencies: ["76C4BC58131A495A"]
+			description: [
+				"Allay 是由纯粹的能量锻造而成的。"
+				""
+				"试着找出它们存在的原因……"
+			]
+			id: "6D4B3E164E1B20FD"
+			rewards: [{
+				id: "26219D80C611DD1B"
+				item: "uniqueaccessories:soul_gem"
+				type: "item"
+			}]
+			tasks: [{
+				entity: "minecraft:allay"
+				id: "0DEC15DDD1577E21"
+				type: "kill"
+				value: 20L
+			}]
+			x: 1.0d
+			y: -9.0d
+		}
+		{
+			dependencies: ["6D4B3E164E1B20FD"]
+			id: "2E971252502F294D"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "26F0A5F53D196B0F"
+				table_id: 2653160836041846820L
+				type: "random"
+			}]
+			tasks: [{
+				id: "44807AAB0A5AC637"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:lightning_upgrade_orb"
+					tag: {
+						"irons_spellbooks:upgrade_orb_type": "irons_spellbooks:lightning_power"
+					}
+				}
+				type: "item"
+			}]
+			x: 2.5d
+			y: -11.5d
+		}
+		{
+			dependencies: ["2E971252502F294D"]
+			id: "683938DD715913FA"
+			rewards: [{
+				id: "69A04BE0F91FDF03"
+				item: {
+					Count: 1
+					id: "legendary_monsters:axe_of_lightning"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "74A3390DDFBDE1AD"
+				item: "cataclysm:essence_of_the_storm"
+				type: "item"
+			}]
+			x: 4.5d
+			y: -13.0d
+		}
+		{
+			dependencies: ["2E971252502F294D"]
+			id: "30C09DC796CA01CB"
+			rewards: [{
+				id: "380DC4C8CEB6F4E3"
+				item: "alshanex_familiars:pet_soul"
+				type: "item"
+			}]
+			tasks: [{
+				icon: "legendary_monsters:cloud_rod"
+				id: "77FE92E731FF116E"
+				structure: "legendary_monsters:cloudy_temple"
+				title: "找到多云神殿 (Cloudy Temple)"
+				type: "structure"
+			}]
+			x: 0.5d
+			y: -13.0d
+		}
+		{
+			dependencies: ["30C09DC796CA01CB"]
+			id: "3CCE1BFA76BF96EB"
+			rewards: [{
+				id: "64FAEE1790C2C142"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				id: "5B33C97707C4FC86"
+				item: "alshanex_familiars:lightning_mage_shard"
+				type: "item"
+			}]
+			x: -1.0d
+			y: -15.0d
+		}
+		{
+			dependencies: [
+				"30C09DC796CA01CB"
+				"683938DD715913FA"
+			]
+			description: ["你想要找的生物是一位牧师，他以渊博的知识而闻名。"]
+			id: "5A973B42033462AA"
+			rewards: [{
+				id: "46C715768BCB900C"
+				item: "artifacts:cloud_in_a_bottle"
+				type: "item"
+			}]
+			tasks: [{
+				advancement: "threateningly_mobs:moonpriest_defeat"
+				criterion: ""
+				id: "60714987C1777B48"
+				type: "advancement"
+			}]
+			x: 2.5d
+			y: -15.0d
+		}
+		{
+			dependencies: ["683938DD715913FA"]
+			id: "43376FA3B50A355B"
+			rewards: [{
+				id: "0B50715108D83DEF"
+				item: {
+					Count: 1
+					id: "traveloptics:lightning_echo"
+					tag: { }
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "160AF95385DDBBB5"
+				item: "artifacts:cloud_in_a_bottle"
+				type: "item"
+			}]
+			x: 6.0d
+			y: -15.0d
+		}
+		{
+			dependencies: ["3CCE1BFA76BF96EB"]
+			id: "274B5C013A0D0B34"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "65FD06B39897D9D7"
+				table_id: 2653160836041846820L
+				type: "random"
+			}]
+			tasks: [{
+				id: "3F102245F540EC11"
+				item: "legendary_monsters:air_rune"
+				type: "item"
+			}]
+			x: -2.5d
+			y: -17.0d
+		}
+		{
+			dependencies: [
+				"3CCE1BFA76BF96EB"
+				"5A973B42033462AA"
+			]
+			id: "3642BF94B6E32016"
+			rewards: [{
+				id: "1C48CE7CAB9B3640"
+				item: {
+					Count: 1
+					id: "simplyswords:mjolnir"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "0B68B74A8E979CC7"
+				item: {
+					Count: 1
+					id: "legendary_monsters:wand_of_clouds"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 0.5d
+			y: -17.0d
+		}
+		{
+			dependencies: [
+				"5A973B42033462AA"
+				"43376FA3B50A355B"
+			]
+			id: "09AC837141F92B00"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "184C96799EE688B8"
+				table_id: 2653160836041846820L
+				type: "random"
+			}]
+			tasks: [{
+				id: "08D37A14F810CF5C"
+				item: "hazennstuff:starkissed_zenalite"
+				type: "item"
+			}]
+			x: 4.5d
+			y: -17.0d
+		}
+		{
+			dependencies: [
+				"274B5C013A0D0B34"
+				"3642BF94B6E32016"
+				"09AC837141F92B00"
+				"01089805D3EDF412"
+			]
+			id: "69F37682ECF5F203"
+			rewards: [
+				{
+					id: "08B65CAAF78298B3"
+					item: {
+						Count: 1
+						id: "dungeons_and_combat:lightning_dragonsteel_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "0D20C40C0F6921F7"
+					item: {
+						Count: 1
+						id: "dungeons_and_combat:lightning_dragonsteel_chestplate"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "7BB69896D7D4D36D"
+					item: {
+						Count: 1
+						id: "dungeons_and_combat:lightning_dragonsteel_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "2D4962E6F76A33DC"
+					item: {
+						Count: 1
+						id: "dungeons_and_combat:lightning_dragonsteel_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			size: 1.25d
+			tasks: [{
+				id: "6BD014471AB93B3C"
+				item: "too_many_bows:rift_shard"
+				type: "item"
+			}]
+			x: 2.5d
+			y: -19.0d
+		}
+		{
+			dependencies: ["43376FA3B50A355B"]
+			id: "01089805D3EDF412"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "670F153972275F13"
+				table_id: 7104241184559073384L
+				type: "random"
+			}]
+			tasks: [{
+				entity: "legendary_monsters:cloud_golem"
+				icon: "legendary_monsters:cloud_golem_spawn_egg"
+				id: "0E7A15EB34C6D6A7"
+				title: "击败风暴守护者，卷积云（Cumulonimbus）"
+				type: "kill"
+				value: 1L
+			}]
+			x: 7.5d
+			y: -17.0d
+		}
+	]
+	title: "风暴追逐者"
+}

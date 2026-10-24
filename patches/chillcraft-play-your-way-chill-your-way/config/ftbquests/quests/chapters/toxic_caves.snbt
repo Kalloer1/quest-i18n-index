@@ -1,0 +1,471 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "toxic_caves"
+	group: "4AC86061670BBAF5"
+	icon: "alexscaves:fissile_core"
+	id: "05A3365646096E9C"
+	images: [
+		{
+			height: 4.0d
+			image: "alexscaves:textures/misc/advancement/toxic_midground.png"
+			rotation: 0.0d
+			width: 4.0d
+			x: -4.0d
+			y: 5.0d
+		}
+		{
+			height: 1.0d
+			image: "alexscaves:block/block_of_uranium"
+			rotation: 0.0d
+			width: 1.0d
+			x: 5.0d
+			y: 4.5d
+		}
+		{
+			height: 1.0d
+			image: "alexscaves:block/hazmat_skull_block"
+			rotation: 0.0d
+			width: 1.0d
+			x: 0.5d
+			y: -3.5d
+		}
+		{
+			height: 1.0d
+			image: "alexscaves:block/nuclear_bomb_side_0"
+			rotation: 0.0d
+			width: 1.0d
+			x: 7.5d
+			y: 1.0d
+		}
+		{
+			height: 1.0d
+			image: "alexscaves:block/waste_drum"
+			rotation: 0.0d
+			width: 1.0d
+			x: 0.0d
+			y: 4.0d
+		}
+		{
+			height: 4.0d
+			image: "enlightened_end:textures/particle/nuclear_explosion_8.png"
+			rotation: 0.0d
+			width: 4.0d
+			x: 7.5d
+			y: -1.2d
+		}
+		{
+			height: 3.0d
+			image: "alexscaves:textures/gui/book/toxic_chapter.png"
+			rotation: 0.0d
+			width: 3.0d
+			x: -5.5d
+			y: 1.0d
+		}
+	]
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["一本记载着危险有毒洞穴的古老神秘笔记。开启地下之旅的绝佳起点。"]
+			id: "6E537B08FCD57418"
+			shape: "hexagon"
+			size: 2.0d
+			tasks: [{
+				id: "4058C02C72E43BF8"
+				item: {
+					Count: 1
+					id: "alexscaves:cave_codex"
+					tag: {
+						CaveBiome: "alexscaves:toxic_caves"
+					}
+				}
+				type: "item"
+			}]
+			x: -4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["6E537B08FCD57418"]
+			description: ["一张能显示有毒洞穴位置的实用地图。这样你就不会迷路了。"]
+			id: "696B1817DDBA4509"
+			tasks: [{
+				id: "235DB373D7A0286D"
+				item: {
+					Count: 1
+					id: "alexscaves:cave_map"
+					tag: {
+						BiomeTargetResourceKey: "alexscaves:toxic_caves"
+					}
+				}
+				type: "item"
+			}]
+			x: -1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["696B1817DDBA4509"]
+			description: ["一块发出嗡嗡声的幽绿岩石。强大的燃料来源——请小心处理。"]
+			id: "27F1BFDA949F8005"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "28B07C9139B55723"
+				table_id: 8506390936464324187L
+				type: "random"
+			}]
+			tasks: [{
+				id: "77B0F42C78036F8C"
+				item: "alexscaves:uranium"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["696B1817DDBA4509"]
+			description: ["在&2有毒洞穴&f中发现的一种刺鼻粉末。可用于制作爆炸物和化学成分。"]
+			id: "58DBD29376F49B22"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "1DC6E985D1CD8968"
+				table_id: 8506390936464324187L
+				type: "random"
+			}]
+			tasks: [{
+				id: "02DC500F0461938B"
+				item: "alexscaves:sulfur_dust"
+				type: "item"
+			}]
+			x: 0.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["696B1817DDBA4509"]
+			description: [
+				"杀死 &0Brainiac&f 后留下的东西。黑暗、焦黑，而且韧性惊人。"
+				""
+				"请勿与DC漫画的Brainiac混淆。"
+			]
+			id: "2A2D5DC9B5474841"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "2E0E83D7A6EF00E4"
+				table_id: 8506390936464324187L
+				type: "random"
+			}]
+			tasks: [{
+				id: "4F460C489EDC07C0"
+				item: "alexscaves:charred_remnant"
+				type: "item"
+			}]
+			x: -1.5d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"696B1817DDBA4509"
+				"4B492F4CA6EBC3E8"
+			]
+			description: ["一个极度不稳定的能量核心。用于一些最强大的科技中。"]
+			id: "783CE8C9E866F86C"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "097F2BD34D96F35D"
+				table_id: 8506390936464324187L
+				type: "random"
+			}]
+			tasks: [{
+				id: "7E7033F89F4999FE"
+				item: "alexscaves:fissile_core"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"27F1BFDA949F8005"
+				"2A2D5DC9B5474841"
+			]
+			description: [
+				"核熔炉需要铀棒作为燃料，每根铀棒可冶炼60个物品。但每根铀棒都会产生有毒废料，在核熔炉内逐渐积累。必须将金属桶放入核熔炉才能清除这些废料。"
+				""
+				"如果玩家不清理核熔炉的废料，它将会开始过热。随着核熔炉经历过热三阶段，它会逐渐变黄、剧烈震动，并在周围引发火灾。过热时，冶炼速度加快，但每根铀棒冶炼的物品数量不会增加。"
+				""
+				"如果玩家不清理核熔炉的废料，它将会像核潜者一样爆炸，向四面八方散射未精炼废料。该爆炸还会孵化附近的震地巨蜥蛋。"
+			]
+			id: "737570259C5A4052"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "1BC63ACCD5475030"
+				table_id: 8506390936464324187L
+				type: "random"
+			}]
+			tasks: [{
+				id: "4F38D85314ACD8E6"
+				item: "alexscaves:nuclear_furnace_component"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["696B1817DDBA4509"]
+			description: ["密封在瓶子里的高度放射性气体。 &2请勿饮用！&f用于高级合成。"]
+			id: "1E7401AD76624DEB"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "647CB3CAC42203D8"
+				table_id: 8506390936464324187L
+				type: "random"
+			}]
+			tasks: [{
+				id: "231A257F08D7E663"
+				item: "alexscaves:radon_bottle"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["696B1817DDBA4509"]
+			description: ["恶心的发光黏液。意外地可以用来制作聚合物板。"]
+			id: "6DAA1F51CA09BA72"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "2439A8F1722E7563"
+				table_id: 8506390936464324187L
+				type: "random"
+			}]
+			tasks: [{
+				id: "4228ACA2C331A7B1"
+				item: "alexscaves:toxic_paste"
+				type: "item"
+			}]
+			x: 2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"1E7401AD76624DEB"
+				"6DAA1F51CA09BA72"
+				"58DBD29376F49B22"
+			]
+			description: ["一种由合成材料制成的工业级板材。坚固、柔韧，且非常&6耐毒&f。"]
+			id: "17D6CF535F3B71F5"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "1C63EDF3C36D0B4F"
+				table_id: 8506390936464324187L
+				type: "random"
+			}]
+			tasks: [{
+				id: "0EB585F0E6071188"
+				item: "alexscaves:polymer_plate"
+				type: "item"
+			}]
+			x: 2.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["07FBE11761DFA85D"]
+			description: ["一种由有毒能量驱动的高科技武器。能以放射性精度电击生物。"]
+			id: "096767E4292E6892"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "5E0A21F42BDBCACF"
+				table_id: 8506390936464324187L
+				type: "random"
+			}]
+			shape: "hexagon"
+			size: 2.0d
+			tasks: [{
+				id: "240C53D7CBFD20B1"
+				item: "alexscaves:raygun"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 5.0d
+		}
+		{
+			dependencies: ["27F1BFDA949F8005"]
+			description: ["浓缩成棒的铀。为高级&6核机器&f提供动力所必需。"]
+			id: "07FBE11761DFA85D"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "497F9CD649822BD4"
+				table_id: 8506390936464324187L
+				type: "random"
+			}]
+			tasks: [{
+				id: "225F9EE69F29B156"
+				item: "alexscaves:uranium_rod"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"17D6CF535F3B71F5"
+				"783CE8C9E866F86C"
+			]
+			description: ["用于安全地（或不安全地）远程触发核装置。别太早按下按钮。"]
+			id: "2C603F39F80D3267"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "5953EB188C487CB9"
+				table_id: 8506390936464324187L
+				type: "random"
+			}]
+			tasks: [{
+				id: "41A62986FF9AC6B1"
+				item: "alexscaves:remote_detonator"
+				type: "item"
+			}]
+			x: 5.0d
+			y: -2.0d
+		}
+		{
+			dependencies: [
+				"783CE8C9E866F86C"
+				"07FBE11761DFA85D"
+			]
+			description: ["&4The ultimate explosive. Clears everything in its path — and then some more with the irradiated effect. Use wisely."]
+			id: "05157ADC0E37127D"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "1F294458F419FBF6"
+				table_id: 8506390936464324187L
+				type: "random"
+			}]
+			size: 2.0d
+			tasks: [{
+				id: "2FC1CB16D523D430"
+				item: "alexscaves:nuclear_bomb"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"7B4EB796D5230871"
+				"22E5DE9A70BFDFE4"
+				"1694601100476AF7"
+			]
+			description: ["你收集齐了所有奇怪的、不稳定的组件……现在是时候唤醒某个大家伙了。"]
+			id: "73708157A391E412"
+			rewards: [
+				{
+					id: "6A9942DD2EFF4A33"
+					item: "alexscaves:nuclear_bomb"
+					type: "item"
+				}
+				{
+					id: "7A20F8560D84D4AA"
+					item: {
+						Count: 1
+						id: "minecraft:flint_and_steel"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			shape: "hexagon"
+			size: 2.0d
+			subtitle: "孵化一只震颤巨兽（tremorzilla）"
+			tasks: [{
+				advancement: "alexscaves:alexscaves/hatch_tremorzilla_egg"
+				criterion: ""
+				id: "562C8D8BF52D61DA"
+				type: "advancement"
+			}]
+			x: 7.0d
+			y: 3.0d
+		}
+		{
+			id: "4B492F4CA6EBC3E8"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "06800FBADDA4865E"
+				table_id: 8506390936464324187L
+				type: "random"
+			}]
+			shape: "hexagon"
+			size: 2.0d
+			tasks: [{
+				entity: "alexscaves:nucleeper"
+				id: "61AAA7C923FBE273"
+				type: "kill"
+				value: 1L
+			}]
+			x: 3.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["17D6CF535F3B71F5"]
+			description: ["Hazmat Armor Set 是一套主要用于防止被施加 &aIrradiated&f 或安全穿越 A&ecid&f 的盔甲套装。"]
+			id: "2408BDBEDC0C2AD6"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "732755C4C1343096"
+				table_id: 8506390936464324187L
+				type: "random"
+			}]
+			tasks: [
+				{
+					id: "0505606B2472F2E2"
+					item: {
+						Count: 1
+						id: "alexscaves:hazmat_mask"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "59E129FAF36A76C5"
+					item: {
+						Count: 1
+						id: "alexscaves:hazmat_chestplate"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "4127990376CE448D"
+					item: {
+						Count: 1
+						id: "alexscaves:hazmat_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "3CAFFB7A5D9485D5"
+					item: {
+						Count: 1
+						id: "alexscaves:hazmat_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "Hazmat 套装"
+			x: 2.5d
+			y: -3.5d
+		}
+	]
+	title: "&a有毒洞穴"
+}

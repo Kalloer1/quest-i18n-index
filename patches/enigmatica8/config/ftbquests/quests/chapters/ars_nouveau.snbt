@@ -1,0 +1,1750 @@
+# AI 初翻，未人工校对
+{
+	id: "00000000000003AB"
+	group: "5A8B89F87F77CF4C"
+	order_index: 0
+	filename: "ars_nouveau"
+	title: "Ars Nouveau"
+	icon: "ars_nouveau:source_gem"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "Ars Nouveau"
+			icon: "ars_nouveau:creative_spell_book"
+			x: -2.0d
+			y: -6.0d
+			shape: "hexagon"
+			description: [
+				"借助 Ars Nouveau，你将学会驾驭万物中蕴含的潜在能量，施放强力法术，驱动神秘机械，甚至还能在途中为一些可爱的伙伴赋能。"
+				""
+				"这些任务会引导你了解模组，但请务必经常查阅手册以获取更多信息。"
+				""
+				"&e~哑巴的魅魔（MuteTiefling）"
+			]
+			id: "00000000000003AC"
+			tasks: [{
+				id: "0771CE9EBF17ADE2"
+				type: "item"
+				item: "ars_nouveau:novice_spell_book"
+			}]
+			rewards: [{
+				id: "03F44B1EF1267DE4"
+				type: "command"
+				title: "魔导师的喜悦"
+				icon: "kubejs:sorcerers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_sorcerers_delight"
+				player_command: false
+			}]
+		}
+		{
+			title: "法术炮台"
+			x: 3.0d
+			y: -4.0d
+			subtitle: "T-U-R-R-E-T, 炮台"
+			description: [
+				"法术炮台是一种增强型装置，可在红石脉冲上施放法术。法术来源将自动由附近的源罐提供。"
+				""
+				"要设置法术，请刻写一张法术羊皮纸，并在炮塔上右键点击。该法术可使用接触或投射物形式。"
+			]
+			dependencies: ["00000000000003D0"]
+			id: "00000000000003B2"
+			tasks: [{
+				id: "00000000000003F6"
+				type: "item"
+				item: "ars_nouveau:basic_spell_turret"
+			}]
+			rewards: [{
+				id: "00000000000005F5"
+				type: "item"
+				title: "符文：范围伤害（AOE）"
+				item: "ars_nouveau:glyph_aoe"
+			}]
+		}
+		{
+			icon: "ars_nouveau:source_gem"
+			x: -5.5d
+			y: -6.0d
+			subtitle: "源文件保留"
+			description: [
+				"源物质存在于任何生物中，因此从大多数生物物质中提炼出它并不奇怪。在自然循环中，生物体内的源物质会在植物和动物之间传递。然而，附近的源物质连接器可将这种易逝的露水重新导向特制的源物质瓶，以便日后使用。"
+				""
+				"每个 Sourcelink 都有自己的要求，详细信息见《Worn Notebook》。它们各有用处，通常最佳选择取决于该区域已有的其他活动。"
+				""
+				"● Agronomic 会从生长的植物中吸收源。每当附近的植物完成一个生长阶段，都会产生一些源。某些魔法植物产生的源会更多。"
+				""
+				"● Alchemical 会重新吸收药水中的浓缩源。相邻的药水罐中存储的任何有益法术都将被吸收，产生源。更强的药水能产生更多源。"
+				""
+				"● Mycelial会消耗放置在相邻基座上的食物。所有食物都富含源，但由源浆果制成的食物通常含有最多。"
+				""
+				"● Vitalic会吸收附近死亡生物的生命力。"
+				""
+				"● 火山会消耗相邻基座上的大部分可燃物。煤炭和远古化石树木会产生少量，而烈焰拱木原木产生的量则更多。"
+			]
+			dependencies: ["4D0CB5D53030494C"]
+			min_width: 300
+			id: "00000000000003B6"
+			tasks: [{
+				id: "5440D53DC1A4FC1C"
+				type: "item"
+				title: "来源链接"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "ars_nouveau:alchemical_sourcelink"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:agronomic_sourcelink"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:mycelial_sourcelink"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:vitalic_sourcelink"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:volcanic_sourcelink"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "37E9B1F2599F872E"
+					type: "item"
+					item: "ars_nouveau:source_jar"
+				}
+				{
+					id: "0F9F1DDF26525F9B"
+					type: "command"
+					title: "稀有的新艺术风格战利品箱"
+					icon: "kubejs:rare_lootbox"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_ars_nouveau_loot_rare"
+					player_command: false
+				}
+			]
+		}
+		{
+			x: 2.0d
+			y: -3.5d
+			subtitle: "把这一切归功于经验值吧"
+			description: [
+				"如果我们不能让魔法为我们所用，那它还有什么用？"
+				""
+				"省点力气，把法术刻在符文上。任何实体碰到它，法术就会触发。法术所需的能量会自动由附近的源晶瓶提供。"
+				""
+				"要使用符文粉，先右键点击地面绘制符文。然后用准备好的法术羊皮纸右键点击该符文。有效的法术羊皮纸必须以触摸形式开头。"
+			]
+			dependencies: ["00000000000003D0"]
+			id: "00000000000003CE"
+			tasks: [{
+				id: "00000000000003CF"
+				type: "item"
+				item: {
+					id: "ars_nouveau:runic_chalk"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "00000000000005FB"
+				type: "command"
+				title: "稀有的新艺术风格战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_ars_nouveau_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			title: "法术羊皮纸"
+			x: 2.0d
+			y: -5.0d
+			subtitle: "角斗士蜗牛"
+			description: [
+				"经过一番加工，普通纸张可以被注入魔力，成为更佳的魔法容器。注入后，这些写就的咒语便能以多种方式使用。"
+				""
+				"要准备一张带有咒语的羊皮纸，请先在咒语书中设计咒语。然后将羊皮纸放在抄写台上，用咒语书右键单击桌子即可将所选咒语转移到羊皮纸上。"
+				""
+				"羊皮纸可以重复使用，但最好保留一些已刻写的羊皮纸，以便快速重新施放法术。"
+			]
+			dependencies: ["00000000000003D5"]
+			id: "00000000000003D0"
+			tasks: [{
+				id: "00000000000003D3"
+				type: "item"
+				item: "ars_nouveau:spell_parchment"
+			}]
+		}
+		{
+			icon: "ars_nouveau:magebloom"
+			x: 1.5d
+			y: -6.0d
+			subtitle: "扎根于此，安顿下来"
+			description: [
+				"魔花生长在凡俗与神秘之间的边界。它像普通植物一样生长，但根系能穿透帷幕，吸收更多充盈大地的源力。"
+				""
+				"种植这些作物对初学者来说有两个用途："
+				""
+				"首先，它们生长时产生的源物质比普通植物要多得多。"
+				""
+				"其次，它们可以织成布料，贴身穿戴时可作为源能的个人电池。"
+			]
+			dependencies: ["5D01DE4C7D24440C"]
+			id: "00000000000003D5"
+			tasks: [
+				{
+					id: "00000000000003D6"
+					type: "item"
+					item: "ars_nouveau:magebloom_crop"
+				}
+				{
+					id: "138A7CF8826F30CD"
+					type: "item"
+					item: "ars_nouveau:magebloom_fiber"
+				}
+			]
+			rewards: [{
+				id: "00000000000005F4"
+				type: "item"
+				title: "符文：丰收"
+				item: "ars_nouveau:glyph_harvest"
+			}]
+		}
+		{
+			title: "附魔装置 Enchanting Apparatus"
+			icon: "ars_nouveau:enchanting_apparatus"
+			x: -6.5d
+			y: -6.0d
+			subtitle: "精神可嘉，肉体却松软易碎"
+			description: [
+				"自身的源储备是有限的：肉体只能容纳有限的量。某些魔法材料可以辅助，但它们本身也需要接触更大的储备才能制造。"
+				""
+				"因此，需要外部装置来盛放用于此类创造性活动的试剂，并协助将源安全地导入其中。"
+				""
+				"要建造附魔装置，请将神秘核心放置好，并在其上方放置附魔装置。基座必须放置在核心三格以内。如果配方指定了源材料成本，则还必须放置一个装满源材料的源罐在附近。"
+				""
+				"要使用Apparatus，请先将试剂放在基座上，并将焦点放入Enchanting Apparatus本身。所有物品在合成过程中都将被消耗。"
+				""
+				"附魔装置也可用于为工具和盔甲施加特定附魔，简化了完善装备所需的特定附魔流程。这些配方仅在磨损的笔记本中列出。"
+			]
+			dependencies: ["00000000000003B6"]
+			min_width: 250
+			id: "00000000000003D7"
+			tasks: [
+				{
+					id: "00000000000003DB"
+					type: "item"
+					item: "ars_nouveau:arcane_core"
+				}
+				{
+					id: "00000000000003DC"
+					type: "item"
+					item: "ars_nouveau:enchanting_apparatus"
+				}
+				{
+					id: "00000000000003DD"
+					type: "item"
+					item: "ars_nouveau:arcane_pedestal"
+					count: 8L
+				}
+			]
+			rewards: [{
+				id: "00000000000005FC"
+				type: "command"
+				title: "稀有的新艺术风格战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_ars_nouveau_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			title: "好奇的小玩意儿"
+			icon: "ars_nouveau:amulet_of_mana_regen"
+			x: -2.5d
+			y: -3.0d
+			subtitle: "像法国女孩一样画我，就像你画的那样"
+			description: [
+				"源是一种善变的东西，要将其长时间地保存在一处以供使用，即便是在最好的情况下，也是一项挑战。有志于此的修行者可能发现自己很难长时间地引导源。除了由法力纤维编织而成的魔法配件外，某些其他材料也可以被塑造成有用的饰品，用作自身储备的延伸。"
+				""
+				"请参阅《磨损的笔记本》中关于魔法装备的章节，了解配方并发现更多有用的奇物。"
+			]
+			dependencies: [
+				"00000000000003DC"
+				"00000000000003DB"
+			]
+			id: "00000000000003DE"
+			tasks: [
+				{
+					id: "00000000000003DF"
+					type: "item"
+					item: "ars_nouveau:amulet_of_mana_regen"
+				}
+				{
+					id: "00000000000003E2"
+					type: "item"
+					item: "ars_nouveau:ring_of_lesser_discount"
+				}
+			]
+			rewards: [{
+				id: "00000000000009FA"
+				type: "item"
+				title: "虚空之瓶 (Jar of Voiding)"
+				item: "ars_nouveau:void_jar"
+			}]
+		}
+		{
+			x: -6.0d
+			y: -5.0d
+			subtitle: "女巫之旅 (Witches Abroad)"
+			description: [
+				"源能渗透万物。若任其自由，它会扩散和浸染，却极少聚集。将其封入瓶中是储存源能以备后用的好方法，但要将其从一个地方移到另一个地方却可能有些棘手。"
+				""
+				"源中继器正是为此而生。它们为源提供受控的流动通道，防止其消散回世界。源中继器可与其他中继器及罐子相连，实现安全传输。"
+				""
+				"使用Dominion Wand来设置链接。"
+			]
+			dependencies: ["00000000000003D7"]
+			id: "00000000000003EB"
+			tasks: [{
+				id: "00000000000003EC"
+				type: "item"
+				item: "ars_nouveau:relay"
+			}]
+			rewards: [{
+				id: "00000000000003EF"
+				type: "item"
+				title: "Dominion Wand"
+				item: "ars_nouveau:dominion_wand"
+			}]
+		}
+		{
+			x: -7.0d
+			y: -4.0d
+			subtitle: "平等仪式"
+			description: [
+				"Splitter Relays 既能向多个 Source Relays 发送信号，也能从多个 Source Relays 接收信号。"
+				""
+				"例如，多个源农场可以汇集到一条中继器线上，或者分出支路为不同位置的炮塔或合成台提供源。"
+				""
+				"它们与普通中继器有相同的范围限制，但通过结合两者，可以轻松地在整个区域布设源网络，使其在需要时随时可用。"
+			]
+			dependencies: ["00000000000003EB"]
+			id: "00000000000003ED"
+			tasks: [{
+				id: "00000000000003EE"
+				type: "item"
+				item: "ars_nouveau:relay_splitter"
+			}]
+			rewards: [{
+				id: "00000000000005FE"
+				type: "command"
+				title: "稀有的新艺术风格战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_ars_nouveau_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: -5.0d
+			y: -0.5d
+			subtitle: "戳一戳这只长着大鼻子的生物"
+			description: [
+				"与源深度共鸣的友好生物，可通过在讲台上右键点击它们的护身符来召唤。被召唤后，它们会反复对周围方块施放所赋予的任何法术。"
+				""
+				"请参阅《磨损的笔记本》以获取有关使用幼龙的详细指南。"
+			]
+			dependencies: ["00000000000009ED"]
+			id: "00000000000003F0"
+			tasks: [{
+				id: "00000000000003F1"
+				type: "item"
+				item: "ars_nouveau:bookwyrm_charm"
+			}]
+			rewards: [{
+				id: "00000000000009EC"
+				type: "command"
+				title: "稀有的新艺术风格战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_ars_nouveau_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: -7.5d
+			y: -1.5d
+			subtitle: "寻找金色橡果的旅程"
+			description: [
+				"卡邦克尔是一种好奇的森林小生物，喜欢所有闪亮的事物，尤其是黄金。投掷少量黄金即可与它们交朋友。一旦成为朋友，它们就会帮忙收集物品并移动到背包中。"
+				""
+				"它们可以通过支配魔杖来被指示该做什么。也可以通过给予它们一些星瞳眼镜或威克西帽来进一步修改其行为。"
+				""
+				"请参阅《磨损的笔记本》以获取有关使用卡邦克尔的详细说明。"
+				""
+				"即使在远古森林中，这些小生物也不常见。如果找不到，可以考虑用诞生祭坛召唤它们。"
+			]
+			dependencies: ["00000000000009ED"]
+			id: "00000000000003F2"
+			tasks: [{
+				id: "00000000000003F3"
+				type: "item"
+				item: {
+					id: "ars_nouveau:starbuncle_charm"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "495069A420D248C5"
+				type: "command"
+				title: "稀有的新艺术风格战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_ars_nouveau_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: -7.0d
+			y: -0.5d
+			subtitle: "低语之风"
+			description: [
+				"风之精灵是森林的守护者，帮助新芽茁壮成长。如果你在它们的地方种一棵树以示敬意，它们会自愿跟随你。一旦成为朋友，风之精灵会照料一小片区域，并赠予你它们的收获。种植树木、作物、花朵和其他自然物品，随着时间的推移，风之精灵会种植出更多，并送给你。"
+				""
+				"请参阅《磨损的笔记本》以获取使用 Sylphs 的详细说明。"
+				""
+				"近来野生的 Sylph 数量锐减。若找不到，可用 Altar of Birthing 召唤它们。"
+			]
+			dependencies: ["00000000000009ED"]
+			id: "00000000000003F4"
+			tasks: [{
+				id: "00000000000003F5"
+				type: "item"
+				item: "ars_nouveau:whirlisprig_charm"
+			}]
+			rewards: [
+				{
+					id: "0000000000000602"
+					type: "command"
+					title: "稀有的新艺术风格战利品箱"
+					icon: "kubejs:rare_lootbox"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_ars_nouveau_loot_rare"
+					player_command: false
+				}
+				{
+					id: "0AC24D43ED187EBE"
+					type: "item"
+					title: "竹子"
+					item: "minecraft:bamboo"
+					count: 4
+				}
+				{
+					id: "4A7B725DE75256E3"
+					type: "item"
+					title: "南瓜种子"
+					item: "minecraft:pumpkin_seeds"
+					count: 4
+				}
+				{
+					id: "307E04AA8AC5B992"
+					type: "item"
+					title: "深色橡木树苗"
+					item: "minecraft:dark_oak_sapling"
+					count: 4
+				}
+			]
+		}
+		{
+			title: "熟悉的朋友"
+			x: -6.0d
+			y: -1.0d
+			subtitle: "自动地，神奇地完成了所有事情"
+			description: ["并非所有任务都适合由炮塔或符文等简单的自动装置来完成。这个世界上存在着某些魔法生物，只要你礼貌地请求，它们会很乐意帮助有抱负的修行者。"]
+			dependencies: ["0771CE9EBF17ADE2"]
+			id: "00000000000009ED"
+			tasks: [{
+				id: "678A401205BCA8C5"
+				type: "item"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "ars_nouveau:drygmy_shard"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:whirlisprig_shards"
+								Count: 1b
+							}
+							{
+								id: "ars_elemental:siren_shards"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:starbuncle_shards"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:wixie_shards"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "0000000000000CAD"
+					type: "command"
+					title: "农夫的欢乐时光"
+					icon: "kubejs:farmers_delight"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_farmers_delight"
+					player_command: false
+				}
+				{
+					id: "25A7B73646586F3B"
+					type: "item"
+					item: "ars_nouveau:allow_scroll"
+				}
+				{
+					id: "7113FACE4C7A9D2F"
+					type: "item"
+					item: "ars_nouveau:deny_scroll"
+				}
+			]
+		}
+		{
+			icon: "ars_nouveau:wixie_charm"
+			x: -6.0d
+			y: 0.0d
+			subtitle: "怪异三姐妹"
+			description: [
+				"有个帮手在合成台旁岂不是很方便？帮你递这个，取那个？或者干脆在你研究奥术的时候，替你把活都干了？"
+				""
+				"Wixie 就是你寻找的朋友。通过向低血量的女巫施放 Dispel 来束缚，使用它们的 Charm 作用于普通炼药锅即可召唤 Wixie，将其变为 Wixie 炼药锅。"
+				""
+				"要指定 Wixie 制作什么物品，只需将其中一个物品放在她的坩埚上右键。她会从附近的物品栏中收集所需材料。不过，她需要附近有罐 Source 才能保持高效工作。"
+			]
+			dependencies: ["00000000000009ED"]
+			id: "0BC6D824A7A10356"
+			tasks: [
+				{
+					id: "5A68031815311494"
+					type: "item"
+					item: "ars_nouveau:wixie_charm"
+				}
+				{
+					id: "67D65A1F1B80B28B"
+					type: "item"
+					item: "minecraft:cauldron"
+				}
+			]
+			rewards: [{
+				id: "7C201B55C9F00AD3"
+				type: "command"
+				title: "稀有的新艺术风格战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_ars_nouveau_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: -6.0d
+			y: 1.5d
+			subtitle: "奥格保姆的食谱"
+			description: [
+				"这些心灵手巧的女士们不仅会制作物品，她们还是酿酒高手，能酿造各种药水。"
+				""
+				"和普通合成一样，Wixies 需要一些额外的材料。一个 Source Jar、一个 Potion Jar 和一些原料库存。"
+				""
+				"每个威克茜一次只能制作一种药水。类型由先以传统方式酿造，然后手持药水右键她的坩埚来设置配方决定。一旦所有材料齐备，她就会开始工作。与传统酿造一样，药水必须分步骤制作。一个威克茜会用下界疣制作粗制药水，下一个会加入金胡萝卜制作夜视药水，第三个则可能加入红石来延长效果。"
+				""
+				"建议立即将药水倒入瓶中，以便锁定瓶子的类型。用Dominion Wand潜行+右键瓶子即可锁定。当多个Wixies在同一区域工作时，这会很方便。"
+			]
+			dependencies: ["0BC6D824A7A10356"]
+			min_width: 250
+			id: "4DC7DC466B1F2D0B"
+			tasks: [{
+				id: "38EA6B9C79DD69C5"
+				type: "item"
+				item: "ars_nouveau:potion_jar"
+			}]
+			rewards: [{
+				id: "3B92D3705AEB3AA2"
+				type: "command"
+				title: "稀有的新艺术风格战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_ars_nouveau_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			icon: "ars_nouveau:potion_melder"
+			x: -7.0d
+			y: 2.5d
+			subtitle: "微妙地注入能量"
+			description: [
+				"聪明的秘术师总能找到省时方法，毕竟在战斗前喝五种不同的药水可太浪费时间了。为什么不把它们混合起来，一次性喝完呢？"
+				""
+				"这正是药水熔合器所做的事情。"
+				""
+				"Potion Melder 需要两个 Potion Jar 作为输入，一个作为输出。"
+				""
+				"使用Dominion Wand将两个Potion Jar连接到Melder上。它们将作为输入。然后将Melder连接到最后一个Potion Jar以接收混合后的药水。"
+				""
+				"该过程会消耗附近源瓶中的部分源，并生成融合两种输入全部效果的药水。此过程可连锁进行，以制作具有多种效果的药水。"
+			]
+			dependencies: ["4DC7DC466B1F2D0B"]
+			min_width: 250
+			id: "22CD0875E6AFD43E"
+			tasks: [
+				{
+					id: "094638F810C5F8C4"
+					type: "item"
+					item: "ars_nouveau:potion_melder"
+				}
+				{
+					id: "4D548D5C01D56188"
+					type: "item"
+					item: "ars_nouveau:potion_jar"
+					count: 3L
+				}
+			]
+			rewards: [
+				{
+					id: "3775F901374943C8"
+					type: "item"
+					title: "吸收药水 (Potion of Absorption)"
+					item: {
+						id: "minecraft:potion"
+						Count: 1b
+						tag: {
+							Potion: "apotheosis:long_absorption"
+						}
+					}
+				}
+				{
+					id: "77257BF40CBAC438"
+					type: "item"
+					title: "火焰抗性药水"
+					item: {
+						id: "minecraft:potion"
+						Count: 1b
+						tag: {
+							Potion: "minecraft:long_fire_resistance"
+						}
+					}
+				}
+			]
+		}
+		{
+			x: -5.0d
+			y: 2.5d
+			description: [
+				"多剂量瓶装，环保可重复使用包装，随时待命。"
+				""
+				"每个瓶子最多可容纳八剂药水，甚至可以附魔以提高瓶内药水的效力或持续时间。"
+			]
+			dependencies: ["4DC7DC466B1F2D0B"]
+			id: "4B150C43E143F401"
+			tasks: [{
+				id: "0AD6FC05A8659F5D"
+				type: "item"
+				item: {
+					id: "ars_nouveau:potion_flask"
+					Count: 1b
+					tag: {
+						Damage: 8
+					}
+				}
+			}]
+			rewards: [{
+				id: "13A4D5D0FB6AAF30"
+				type: "command"
+				title: "稀有的新艺术风格战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_ars_nouveau_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: 1.0d
+			y: -4.0d
+			subtitle: "张开你的渔网，撒向更远的地方"
+			description: [
+				"这是一种相当传统的奥术焦点，施法杖可以像卷轴一样刻上单个法术。"
+				""
+				"然而，与其他施法方式不同，在法术书设计的法术上不需要任何形态。所有通过施法杖施放的法术都会自动获得投射体形态和一级加速。"
+				""
+				"这意味着可以添加更多效果或增强组件，非常适合制作专用工具。"
+				""
+				"其他神秘焦点也存在，可提供类似益处，例如 Enchanter’s Mirror 和 Enchanter’s Sword。Worn Notebook 涵盖了这些以及更多内容。"
+			]
+			dependencies: ["00000000000003D0"]
+			min_width: 250
+			id: "6EE073C749AE697F"
+			tasks: [{
+				id: "04C35BF0605E9EA6"
+				type: "item"
+				item: "ars_nouveau:wand"
+			}]
+			rewards: [{
+				id: "185995ACE655011B"
+				type: "command"
+				title: "稀有的新艺术风格战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_ars_nouveau_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: 2.0d
+			y: 2.0d
+			subtitle: "我喜欢清晨那扑鼻而来的凝固汽油弹的气味"
+			description: [
+				"在火堆上燃烧试剂，最能体现“魔法”的精髓！"
+				""
+				"借助特制的仪式台来引导过程，并使用可选的试剂来增强效果，仪式熔炉能够产生多种多样的效果。"
+				""
+				"要启动仪式，右键点击熔炉并手持任意石板。如果需要额外材料，请将它们投入火焰中消耗。一切就绪后，再次空手右键以完成仪式。"
+			]
+			dependencies: ["0771CE9EBF17ADE2"]
+			id: "5ED080DAA2A7E19A"
+			tasks: [{
+				id: "729AECF6F582CCBA"
+				type: "item"
+				item: "ars_nouveau:ritual_brazier"
+			}]
+			rewards: [{
+				id: "37237F9CB81E3546"
+				type: "item"
+				item: "ars_nouveau:ritual_burrowing"
+			}]
+		}
+		{
+			icon: "ars_nouveau:ritual_disintegration"
+			x: 3.5d
+			y: 2.5d
+			subtitle: "经验值 = MC Squared"
+			description: [
+				"杀死怪物可能……挺麻烦的。何不省去麻烦，直接将其提炼成精华呢？"
+				""
+				"用此仪式击杀的怪物会掉落经验宝石，价值约为正常掉落经验值的两倍。但所有掉落物都会在此过程中丢失。"
+			]
+			dependencies: ["5ED080DAA2A7E19A"]
+			id: "1DF20BDED102423B"
+			tasks: [
+				{
+					id: "688576970974E9C1"
+					type: "item"
+					item: "ars_nouveau:ritual_disintegration"
+				}
+				{
+					id: "219D304E19730D2B"
+					type: "item"
+					item: "ars_nouveau:experience_gem"
+				}
+			]
+			rewards: [{
+				id: "0E0F5F21781358A3"
+				type: "command"
+				title: "稀有的新艺术风格战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_ars_nouveau_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: 0.5d
+			y: 2.5d
+			subtitle: "雨又来了，像回忆一样落在我头上"
+			description: [
+				"有时感觉雨似乎永不停歇。雨水浸透了你的盔甲，淹没了你的洞穴，腐蚀了那些本应解决你问题的华丽电路。"
+				""
+				"但他们解决下雨的问题了吗？没有。现在用魔法把雨变没吧。"
+			]
+			dependencies: ["5ED080DAA2A7E19A"]
+			id: "5225FAAF4623B6D0"
+			tasks: [{
+				id: "67AB5005F89FC564"
+				type: "item"
+				item: "ars_nouveau:ritual_cloudshaping"
+			}]
+			rewards: [{
+				id: "55CCE0392547A82F"
+				type: "command"
+				title: "稀有的新艺术风格战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_ars_nouveau_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			title: "天体操控术"
+			x: 1.0d
+			y: 1.5d
+			subtitle: "没工夫搭理你那套破事！"
+			description: [
+				"你的日子太短了吗？夜间的活动不够时间进行？"
+				""
+				"考虑弯曲时空，让太阳或月亮重现，以获得额外的能量，或是完成那些令你着迷的星座图。"
+				""
+				"这应该不会带来什么坏处，对吧？"
+			]
+			dependencies: ["5ED080DAA2A7E19A"]
+			id: "5DDAEAD762E63EAB"
+			tasks: [
+				{
+					id: "741FD9A5813C870E"
+					type: "item"
+					item: "ars_nouveau:ritual_sunrise"
+				}
+				{
+					id: "3FFE686263CB82B2"
+					type: "item"
+					item: "ars_nouveau:ritual_moonfall"
+				}
+			]
+			rewards: [{
+				id: "658E6A4D80FA8301"
+				type: "command"
+				title: "稀有的新艺术风格战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_ars_nouveau_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: 3.0d
+			y: 1.5d
+			subtitle: "全体注意，全体注意"
+			description: [
+				"所有卑微的掠夺者、肆虐的卫道士和可疑功绩的召唤者，现正式召集参加即将到来的锦标赛！"
+				""
+				"在关键时刻，在你的后门召唤了掠夺者袭击！"
+			]
+			dependencies: ["5ED080DAA2A7E19A"]
+			id: "392EA2D4DE9EAFAB"
+			tasks: [{
+				id: "776E3AC22361BA3E"
+				type: "item"
+				item: "ars_nouveau:ritual_challenge"
+			}]
+			rewards: [{
+				id: "203CECCC321A0C3D"
+				type: "item"
+				item: "minecraft:emerald_block"
+			}]
+		}
+		{
+			title: "丰饶与生长"
+			x: 2.0d
+			y: 1.0d
+			subtitle: "魔法维持的孕育过程"
+			description: [
+				"生活不顺心？用MSG。生活顺心？用MSG。什么都加MSG，效果会更好。刚生宝宝？给宝宝用MSG，让宝宝更聪明。"
+				""
+				"魔法在种植作物和繁殖动物方面能创造奇迹。结合这两个仪式，让你的牲畜保持忙碌并快速生长。"
+			]
+			dependencies: ["5ED080DAA2A7E19A"]
+			id: "54B7E584C433DC5B"
+			tasks: [
+				{
+					id: "28404A71FAAED79D"
+					type: "item"
+					item: "ars_nouveau:ritual_fertility"
+				}
+				{
+					id: "7B8A119F2B3E0B6A"
+					type: "item"
+					item: "ars_nouveau:ritual_overgrowth"
+				}
+			]
+			rewards: [{
+				id: "37131D5E140365A2"
+				type: "command"
+				title: "稀有的新艺术风格战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_ars_nouveau_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			title: "传送门 (Warp Portals)"
+			x: 2.5d
+			y: -6.0d
+			subtitle: "是一位巫师干的！"
+			description: [
+				"要去哪儿吗？"
+				""
+				"出发前带上一些补给品，这样能快速往返，会非常方便。"
+				""
+				"使用任意类型的源石以矩形形状建造传送门。在附近放置一个装满的源石罐，并将绑定卷轴投入框架中点燃，即可将其与卷轴上的坐标连接。物品、生物甚至法术都可以穿过这些传送门，但它们无法在不同维度之间穿行。"
+			]
+			dependencies: ["00000000000003D5"]
+			id: "19C9AC76B4E2B19D"
+			tasks: [{
+				id: "59AD7879702E702B"
+				type: "item"
+				title: "神秘之石"
+				icon: "ars_nouveau:arcane_stone"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "ars_nouveau:arcane_bricks"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:ab_alternating"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:ab_basket"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:ab_herring"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:ab_mosaic"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:arcane_stone"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:sas_ashlar"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:sas_alternating"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:sas_mosaic"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:sas_clover"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:ab_smooth_slab"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:ab_smooth"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:ab_clover"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:sas_basket"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:sas_herring"
+								Count: 1b
+							}
+						]
+					}
+				}
+				count: 14L
+			}]
+			rewards: [{
+				id: "530B702E2689DE28"
+				type: "item"
+				item: "ars_nouveau:warp_scroll"
+				count: 8
+			}]
+		}
+		{
+			x: -6.5d
+			y: -2.0d
+			subtitle: "非常令人惊叹的鹿（A-moose-ing）。"
+			description: [
+				"Drygmies 是栖息于野兽出没之地的地缚灵，负责照料它们的羊群。借助魔法，它们能从各种野兽身上收集物品，而不会造成任何伤害。若想招募它们，可以展示其天敌 Wilden Defenders 的令牌来引诱它们。"
+				""
+				"请参阅《磨损的笔记本》以获取使用 Drygmies 的详细说明。"
+				""
+				"近来野生的Drygmies数量锐减。若找不到，可用Altar of Birthing召唤它们。"
+			]
+			dependencies: ["00000000000009ED"]
+			id: "4599C1B5F2048691"
+			tasks: [{
+				id: "2DE5518E628456D5"
+				type: "item"
+				item: "ars_nouveau:drygmy_charm"
+			}]
+			rewards: [
+				{
+					id: "096125B9A6DA61DE"
+					type: "command"
+					title: "稀有的新艺术风格战利品箱"
+					icon: "kubejs:rare_lootbox"
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_ars_nouveau_loot_rare"
+					player_command: false
+				}
+				{
+					id: "6F26AB1474F756FC"
+					type: "command"
+					title: "召唤小鸡"
+					icon: "minecraft:egg"
+					command: "/execute at @p run summon minecraft:chicken ~ ~2 ~"
+					player_command: false
+				}
+			]
+		}
+		{
+			icon: "ars_nouveau:ritual_wilden_summon"
+			x: 1.5d
+			y: 3.0d
+			subtitle: "卡埃班诺格的野兽"
+			description: [
+				"首先，你必须取出圣钉。然后，你必须数到三，不多不少，正好三数…"
+				""
+				"可用于召唤各种大小的野人。若用各小野人的身体部位进行强化，野人奇美拉将现身为其族人复仇。"
+			]
+			dependencies: ["5ED080DAA2A7E19A"]
+			id: "6AB291FBD63076A3"
+			tasks: [
+				{
+					id: "31F14D278A887427"
+					type: "item"
+					item: "ars_nouveau:ritual_wilden_summon"
+				}
+				{
+					id: "50C9BE6CE1193935"
+					type: "item"
+					item: "ars_nouveau:wilden_tribute"
+				}
+			]
+			rewards: [{
+				id: "4C18E35BD71FC9C6"
+				type: "command"
+				title: "魔导师的喜悦"
+				icon: "kubejs:sorcerers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_sorcerers_delight"
+				player_command: false
+			}]
+		}
+		{
+			x: -5.0d
+			y: -4.0d
+			subtitle: "涨潮与退潮"
+			description: [
+				"普通中继器通常只能从一个或向一个已连接的源罐传输，但这些特殊中继器会自动传输到附近任何未连接的罐子。"
+				""
+				"因此，存物器是保持罐子装满以用于其他用途（如建造传送门）的绝佳工具。同时使用收集器和存物器，也是一种方便且适合自动化的源物质传输方式。在一个地方装满罐子，然后将其拾起并在别处倒出。"
+			]
+			dependencies: ["00000000000003EB"]
+			id: "35575BA75AA92E49"
+			tasks: [{
+				id: "0294A1F8CCC0D906"
+				type: "item"
+				title: "源中继器：收集器和存放器"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "ars_nouveau:relay_collector"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:relay_deposit"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "32BD6621BA65DF4F"
+				type: "command"
+				title: "稀有的新艺术风格战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_ars_nouveau_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: -6.0d
+			y: -3.5d
+			description: [
+				"Warp Relays 用作远程 Source 传输装置。通过连接两个装置，Source 可以在同一维度内传输任意距离。"
+				""
+				"在远距离稳定此连接时，会用到少量的源。"
+			]
+			dependencies: ["00000000000003EB"]
+			id: "7A20D43F4D535200"
+			tasks: [{
+				id: "650E082BF111565C"
+				type: "item"
+				item: { id: "ars_nouveau:relay_warp", Count: 2b }
+			}]
+			rewards: [{
+				id: "3C644C0B2495BC36"
+				type: "command"
+				title: "稀有的新艺术风格战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_ars_nouveau_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: 0.5d
+			y: -1.5d
+			subtitle: "别拿我当小怪物对待！"
+			description: ["唯一能阻止这些可爱小家伙被大型掠食者当成脆口零食的，就是它们那双飞快的小脚。只要交个朋友，它们很乐意借给你这份力量。"]
+			dependencies: ["33F9C7DCBA952F1E"]
+			id: "3E84BCD316870360"
+			tasks: [{
+				id: "0529231F83AA9DF1"
+				type: "item"
+				item: "ars_nouveau:familiar_starbuncle"
+			}]
+			rewards: [{
+				id: "5A6342EB078DF159"
+				type: "command"
+				title: "矿工的喜悦"
+				icon: "kubejs:miners_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_miners_delight"
+				player_command: false
+			}]
+		}
+		{
+			x: 2.0d
+			y: 0.0d
+			subtitle: "一勺糖能让药更容易下咽……"
+			description: ["虽然维克斯在居家环境中相当讨喜，但它们打起架来却十分机灵，会四处投掷危险的药水来抵御来犯者。"]
+			dependencies: ["33F9C7DCBA952F1E"]
+			id: "07E7E9443C4FD9EF"
+			tasks: [{
+				id: "43F1E038F8424697"
+				type: "item"
+				item: "ars_nouveau:familiar_wixie"
+			}]
+			rewards: [{
+				id: "5C7AAD35F5713448"
+				type: "command"
+				title: "炼金术师的喜悦"
+				icon: "kubejs:alchemists_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_alchemists_delight"
+				player_command: false
+			}]
+		}
+		{
+			x: 1.5d
+			y: -2.0d
+			subtitle: "正如好运所青睐的那样，事情发生了"
+			description: ["擅长寻找物品的强大地之精灵，Drygmies会向朋友传授知识，增强魔法并带来额外的战利品。"]
+			dependencies: ["33F9C7DCBA952F1E"]
+			id: "7BD59789808E69D2"
+			tasks: [{
+				id: "19106E3C1E5AEBD0"
+				type: "item"
+				item: "ars_nouveau:familiar_drygmy"
+			}]
+			rewards: [{
+				id: "32B10294788455A9"
+				type: "command"
+				title: "拾荒者之乐"
+				icon: "kubejs:scavengers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_scavengers_delight"
+				player_command: false
+			}]
+		}
+		{
+			x: 3.0d
+			y: -0.5d
+			subtitle: "我将用露水压倒你，将你彻底击败"
+			description: ["与源有着深厚联系的 Bookwyrms 是出色的盟友，能为伙伴的每一次施法提供力量。"]
+			dependencies: ["33F9C7DCBA952F1E"]
+			id: "699DD621303B1301"
+			tasks: [{
+				id: "10D37175AB7E066E"
+				type: "item"
+				item: "ars_nouveau:familiar_bookwyrm"
+			}]
+			rewards: [{
+				id: "3F826BECBAC65089"
+				type: "command"
+				title: "魔导师的喜悦"
+				icon: "kubejs:sorcerers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_sorcerers_delight"
+				player_command: false
+			}]
+		}
+		{
+			x: 1.0d
+			y: -0.5d
+			subtitle: "酱汁女王"
+			description: ["多样性是生活的调味剂，而没有人比森林居民更懂这一点。有他们在，一切都会更美味。"]
+			dependencies: ["33F9C7DCBA952F1E"]
+			id: "5D0E0E5116239033"
+			tasks: [{
+				id: "02FA381E42107A74"
+				type: "item"
+				item: "ars_nouveau:familiar_whirlisprig"
+			}]
+			rewards: [{
+				id: "5DD6D62E0C457716"
+				type: "command"
+				title: "农夫的欢乐时光"
+				icon: "kubejs:farmers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_farmers_delight"
+				player_command: false
+			}]
+		}
+		{
+			x: 2.0d
+			y: -1.0d
+			subtitle: "友谊就是魔法"
+			description: [
+				"自古以来，巫师们就与各种生物结为朋友，以协助他们的工作。这种友谊深厚，形成了一种共生伙伴关系，使生物获得惊人的长寿，巫师获得强大的能力。"
+				""
+				"在温顺的生物附近举行束缚仪式，以表达与它缔结契约的意愿。若它同意，便会赐予一枚信物，可将其加入法术书，随时召唤该生物。"
+				""
+				"每种伙伴都提供独特的加成，详情见《磨损的笔记本》。探索每种伙伴，找到最适合你的朋友。"
+			]
+			dependencies: ["729AECF6F582CCBA"]
+			id: "33F9C7DCBA952F1E"
+			tasks: [{
+				id: "3AA728ECE363A96A"
+				type: "item"
+				item: "ars_nouveau:ritual_binding"
+			}]
+			rewards: [{
+				id: "6DB8DF770C37C6FF"
+				type: "command"
+				title: "Ars Nouveau 稀有战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_ars_nouveau_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			title: "入门指南：源宝石获取方法"
+			icon: "ars_nouveau:imbuement_chamber"
+			x: -6.0d
+			y: -7.0d
+			subtitle: "如清晨甘露般甜美"
+			description: [
+				"源是Ars Nouveau中所有法术和神秘装置背后的驱动力，但必须将其从世界中凝聚出来，才能用于更复杂的用途。为此，我们将从一个灌注室开始。"
+				""
+				"Imbuement Chamber本身需要Source才能运行，但可以通过简单工艺从环境中缓慢吸收一些Source，最简单的就是Source Gem。一旦可以，在旁边放置一个装满Source的Jar可以大幅提升制作速度。"
+				""
+				"配方中央的物品需放入熔炉本身，周围物品则放置在附近的基座上。基座上的物品作为钥匙，不会被消耗，而中央物品将转化为最终产物。"
+			]
+			dependencies: ["0771CE9EBF17ADE2"]
+			id: "4D0CB5D53030494C"
+			tasks: [
+				{
+					id: "7DF90F119B616AF2"
+					type: "item"
+					item: "ars_nouveau:imbuement_chamber"
+				}
+				{
+					id: "7278A14A3C304E2C"
+					type: "item"
+					title: "源宝石 Source Gem"
+					icon: "ars_nouveau:source_gem"
+					item: {
+						id: "itemfilters:tag"
+						Count: 1b
+						tag: {
+							value: "forge:gems/source"
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "2CFB7DD91ABA7530"
+				type: "item"
+				item: {
+					id: "ars_nouveau:dowsing_rod"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			title: "施放法术"
+			icon: "ars_nouveau:scribes_table"
+			x: 2.0d
+			y: -7.0d
+			description: [
+				"从新手到大师，投入大量时间钻研咒语工艺，无论是准备和学习新符文，附魔个人秘法焦点，还是制作咒语符文或炮塔。"
+				""
+				"所有这些活动都围绕着抄写员之桌展开。"
+				""
+				"右键点击刻写台并选择咒语书，即可打开已知和未知的所有刻符的百科全书。"
+				""
+				"要刻写一个符文，只需在法典中找到并选中它。然后将所需材料投掷到桌子上以完成制作。最后，在空中右键点击该符文即可学习。"
+				""
+				"注意：符文存储在玩家身上，而非法术书。因此，丢失法术书并不意味着会丢失已学习的符文。"
+			]
+			dependencies: ["0771CE9EBF17ADE2"]
+			min_width: 250
+			id: "5D01DE4C7D24440C"
+			tasks: [
+				{
+					id: "6B416F69ADB0ABF8"
+					type: "item"
+					item: "ars_nouveau:scribes_table"
+				}
+				{
+					id: "6E8C0C0D126E4C78"
+					type: "item"
+					item: "ars_nouveau:glyph_conjure_dirt"
+				}
+			]
+			rewards: [{
+				id: "2D833FFD1219F1B2"
+				type: "item"
+				item: "ars_nouveau:glyph_light"
+			}]
+		}
+		{
+			x: -4.5d
+			y: -1.5d
+			subtitle: "宝贝，潮湿的地方会更好，更湿润的地方更好"
+			description: [
+				"虽然它们常被视作食人野兽（只是一次意外，行吗？），海妖其实只对收集闪亮物品感兴趣。一旦成为朋友，海妖会慢慢从水中家园收集宝藏，妥善保存起来。环境越漂亮，它们就越愿意与朋友分享宝藏。"
+				""
+				"请参阅《磨损的笔记本》以获取有关使用海妖的详细说明。"
+				""
+				"近来野生的塞壬数量锐减。若找不到，可用诞生祭坛召唤它们。"
+			]
+			dependencies: ["00000000000009ED"]
+			id: "14E70FC0AA2BCE75"
+			tasks: [{
+				id: "6F4E5A968BB51BFF"
+				type: "item"
+				item: "ars_elemental:siren_charm"
+			}]
+			rewards: [{
+				id: "10635CFA99A607DE"
+				type: "command"
+				title: "稀有的新艺术风格战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_ars_nouveau_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: 3.5d
+			y: -1.5d
+			subtitle: "翻腾你的鱼鳍，真的能带你走得很远"
+			description: ["探索深海时不可或缺的伙伴，塞壬能为友方提供水系法术加成，并在游泳时赋予海豚之恩。"]
+			dependencies: ["33F9C7DCBA952F1E"]
+			id: "49AB7D1579EB428D"
+			tasks: [{
+				id: "3A36EE387B1CF4B9"
+				type: "item"
+				item: "ars_nouveau:familiar_siren"
+			}]
+			rewards: [{
+				id: "49268BE6F3E1218B"
+				type: "command"
+				title: "稀有的新艺术风格战利品箱"
+				icon: "kubejs:rare_lootbox"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_ars_nouveau_loot_rare"
+				player_command: false
+			}]
+		}
+		{
+			x: 2.5d
+			y: -2.0d
+			subtitle: "将这片土地焚烧殆尽"
+			description: ["作为近身伙伴，Flarecannon 会将部分力量赋予同伴，增强火焰魔法并提供暂时的火焰抗性。"]
+			dependencies: ["33F9C7DCBA952F1E"]
+			id: "3CD361FECB4375DE"
+			tasks: [{
+				id: "75E50048B128DE1D"
+				type: "item"
+				item: "ars_nouveau:familiar_firenando"
+			}]
+			rewards: [{
+				id: "708695DC518FA6AA"
+				type: "command"
+				title: "农夫的欢乐时光"
+				icon: "kubejs:farmers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_farmers_delight"
+				player_command: false
+			}]
+		}
+		{
+			x: -5.5d
+			y: -2.0d
+			subtitle: "五级警报火灾"
+			description: [
+				"强大的奥术构造体，被称为“烈焰加农”的哥布林能保护领地，灼烧任何进入其范围的敌对生物。"
+				""
+				"请参阅《磨损的笔记本》以获取有关使用 Flarecannon 的详细说明。"
+			]
+			dependencies: ["00000000000009ED"]
+			id: "44D58981DC694690"
+			tasks: [{
+				id: "487DF54B7E3B5CF1"
+				type: "item"
+				item: "ars_elemental:firenando_charm"
+			}]
+			rewards: [{
+				id: "20587DF83A9CDEE2"
+				type: "command"
+				title: "拾荒者之乐"
+				icon: {
+					id: "ftbquests:custom_icon"
+					Count: 1b
+					tag: {
+						Icon: "kubejs:textures/item/scavengers_delight.png"
+					}
+				}
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_scavengers_delight"
+				player_command: false
+			}]
+		}
+		{
+			title: "魔法的祭服 (Magical Vestments)"
+			icon: {
+				id: "ars_nouveau:apprentice_hood"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: -1.5d
+			y: -3.0d
+			subtitle: "我将披上午夜的颜色，如同星辰般闪耀"
+			description: [
+				"专为专注的巫师打造的理想装备，这套魔法强化的法袍提供的不仅仅是简单的防护。"
+				""
+				"主要作用是作为源能的个人电池，为施法者提供更多战斗中可使用的能量。"
+				""
+				"每套盔甲都可以通过附魔装置升级至三个不同的等级。升级等级的配方显示在磨损的笔记本中。"
+			]
+			dependencies: ["138A7CF8826F30CD"]
+			id: "2614A201594A632C"
+			tasks: [
+				{
+					id: "43F2181E17E92B5D"
+					type: "item"
+					title: "魔法的头饰套装"
+					item: {
+						id: "itemfilters:or"
+						Count: 1b
+						tag: {
+							items: [
+								{
+									id: "ars_nouveau:novice_hood"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+								{
+									id: "ars_nouveau:apprentice_hood"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+								{
+									id: "ars_nouveau:archmage_hood"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+							]
+						}
+					}
+				}
+				{
+					id: "1A1B4607B350FBE9"
+					type: "item"
+					title: "魔法长袍"
+					item: {
+						id: "itemfilters:or"
+						Count: 1b
+						tag: {
+							items: [
+								{
+									id: "ars_nouveau:novice_robes"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+								{
+									id: "ars_nouveau:apprentice_robes"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+								{
+									id: "ars_nouveau:archmage_robes"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+							]
+						}
+					}
+				}
+				{
+					id: "77522A6DC5108548"
+					type: "item"
+					title: "魔法裤子"
+					item: {
+						id: "itemfilters:or"
+						Count: 1b
+						tag: {
+							items: [
+								{
+									id: "ars_nouveau:novice_leggings"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+								{
+									id: "ars_nouveau:apprentice_leggings"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+								{
+									id: "ars_nouveau:archmage_leggings"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+							]
+						}
+					}
+				}
+				{
+					id: "289D357A8157C9AE"
+					type: "item"
+					title: "魔法靴子"
+					item: {
+						id: "itemfilters:or"
+						Count: 1b
+						tag: {
+							items: [
+								{
+									id: "ars_nouveau:novice_boots"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+								{
+									id: "ars_nouveau:apprentice_boots"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+								{
+									id: "ars_nouveau:archmage_boots"
+									Count: 1b
+									tag: {
+										Damage: 0
+									}
+								}
+							]
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "054C8C6E78EF9712"
+				type: "command"
+				title: "拾荒者之乐"
+				icon: "kubejs:scavengers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_scavengers_delight"
+				player_command: false
+			}]
+		}
+		{
+			icon: "ars_nouveau:ritual_awakening"
+			x: 2.5d
+			y: 3.0d
+			description: [
+				"古来，拥有魔法能力的人们便利用哥布林来协助工作。经验丰富的法师可用觉醒石板赋予拱形木树和萌芽紫水晶以感知能力。由此诞生的生物分别被称为林地行者与紫水晶哥布林。"
+				""
+				"Weald Walkers 是守护者，用它们蛮横的力量将敌对生物拒之门外。"
+				""
+				"紫水晶傀儡则更为挑剔，会轻柔地照料附近的紫水晶芽并采集它们。它们甚至可以促使普通的紫水晶块发芽生长。"
+			]
+			dependencies: ["5ED080DAA2A7E19A"]
+			id: "22969E8FB09F66D1"
+			tasks: [
+				{
+					id: "0E7FDC5948AB7296"
+					type: "item"
+					item: "ars_nouveau:ritual_awakening"
+				}
+				{
+					id: "68A25EFE4671BDAC"
+					type: "item"
+					item: "ars_nouveau:amethyst_golem_charm"
+				}
+			]
+			rewards: [{
+				id: "597B10860B9F7082"
+				type: "command"
+				title: "魔导师的喜悦"
+				icon: "kubejs:sorcerers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_sorcerers_delight"
+				player_command: false
+			}]
+		}
+		{
+			icon: "ars_nouveau:summon_focus"
+			x: -1.5d
+			y: -2.0d
+			subtitle: "聚精会神，心无旁骛"
+			description: [
+				"当巫师选择专精某一魔法学派时，通常会投入焦点来增强所选学派。"
+				""
+				"装备在专用的奇物槽中，每个焦点都会为其所属学派提供独特的增益，详细信息见《磨损的笔记本》。"
+			]
+			dependencies: [
+				"00000000000003DC"
+				"00000000000003DB"
+			]
+			id: "6A8D28FEED0CB148"
+			tasks: [{
+				id: "5913EA80944F3A87"
+				type: "item"
+				title: "法术专精"
+				item: {
+					id: "itemfilters:or"
+					Count: 1b
+					tag: {
+						items: [
+							{
+								id: "ars_elemental:lesser_fire_focus"
+								Count: 1b
+							}
+							{
+								id: "ars_elemental:lesser_water_focus"
+								Count: 1b
+							}
+							{
+								id: "ars_elemental:lesser_air_focus"
+								Count: 1b
+							}
+							{
+								id: "ars_elemental:lesser_earth_focus"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:shapers_focus"
+								Count: 1b
+							}
+							{
+								id: "ars_elemental:fire_focus"
+								Count: 1b
+							}
+							{
+								id: "ars_elemental:water_focus"
+								Count: 1b
+							}
+							{
+								id: "ars_elemental:air_focus"
+								Count: 1b
+							}
+							{
+								id: "ars_elemental:earth_focus"
+								Count: 1b
+							}
+							{
+								id: "ars_elemental:necrotic_focus"
+								Count: 1b
+							}
+							{
+								id: "ars_nouveau:summon_focus"
+								Count: 1b
+							}
+						]
+					}
+				}
+			}]
+			rewards: [{
+				id: "5FBCFC8E2A3A9F7F"
+				type: "command"
+				title: "魔导师的喜悦"
+				icon: "kubejs:sorcerers_delight"
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/quest_sorcerers_delight"
+				player_command: false
+			}]
+		}
+		{
+			icon: "ars_nouveau:scryers_oculus"
+			x: -2.5d
+			y: -2.0d
+			subtitle: "你看着我，我看着你，彼此相望"
+			description: [
+				"有时，能够看到某个区域的情况而无需亲临现场会很有帮助。尤其是在可能存在危险的环境中。"
+				""
+				"窥视之眼能让巫师进行正如其名般的远程监视。"
+				""
+				"在被监测的位置放置一个Scry Crystal，用Blank Parchment右键点击以记录位置，然后将生成的Scryer’s Scroll放置在Oculus附近的基座上。靠近时，Oculus允许巫师从附近的卷轴中选择任意一个来查看该位置。"
+			]
+			dependencies: [
+				"00000000000003DC"
+				"00000000000003DB"
+			]
+			id: "4D5B41D89738D3EE"
+			tasks: [
+				{
+					id: "230D1D953C4803DD"
+					type: "item"
+					item: "ars_nouveau:scryers_oculus"
+				}
+				{
+					id: "568C6F40B6FE17D0"
+					type: "item"
+					item: "ars_nouveau:scryers_crystal"
+				}
+			]
+			rewards: [{
+				id: "522970FC21CE5DC5"
+				type: "item"
+				item: "ars_nouveau:blank_parchment"
+				count: 8
+			}]
+		}
+	]
+}

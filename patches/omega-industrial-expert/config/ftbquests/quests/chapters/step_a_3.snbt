@@ -1,0 +1,426 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "step_a_3"
+	group: "4157D2A2FAA6505A"
+	id: "7E337AAFCD200795"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: [
+				"6CA2B7E1DB5388D7"
+				"014FE1DD4A5E93BE"
+			]
+			description: ["普通钢会气化。你需要用钢铁厂（TFMG）的重钢板来控制等离子体。"]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			id: "32DE70D9E6E500CE"
+			size: 1.5d
+			subtitle: "50x 聚变反应堆框架"
+			tasks: [{
+				count: 58L
+				id: "612738FCA31C1B56"
+				item: "mekanismgenerators:fusion_reactor_frame"
+				type: "item"
+			}]
+			title: "太阳的基础知识 (Foundations of the Sun)"
+			x: 0.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["32DE70D9E6E500CE"]
+			description: ["魔法在此发生。此方块控制氘原子和氚原子的聚变过程。"]
+			id: "210A5DC251E86F2E"
+			subtitle: "聚变反应堆控制器"
+			tasks: [
+				{
+					id: "75148FF3DAF1C586"
+					item: "mekanismgenerators:fusion_reactor_controller"
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "492B0D9A4D9FF9AC"
+					item: { Count: 2, id: "mekanismgenerators:fusion_reactor_port" }
+					type: "item"
+				}
+			]
+			title: "反应堆核心"
+			x: -2.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["210A5DC251E86F2E"]
+			description: ["可监测等离子体健康。能抵抗伽马辐射和数百万摄氏度的高温。"]
+			id: "42015F30CE38FD79"
+			tasks: [{
+				count: 8L
+				id: "7983888B3751C83A"
+				item: { Count: 8, id: "mekanismgenerators:reactor_glass" }
+				type: "item"
+			}]
+			title: "深渊一瞥"
+			x: -3.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["42015F30CE38FD79"]
+			description: ["燃料的第一步：分解水以获得氘，氢的一种重同位素。"]
+			id: "5ADD5505658967E3"
+			tasks: [{
+				id: "5C247D2617A3B2BE"
+				item: "mekanism:electrolytic_separator"
+				type: "item"
+			}]
+			title: "重水（Heavy Water）"
+			x: -3.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["5ADD5505658967E3"]
+			description: ["不要关闭旧反应堆！它会用锂辐照产生氚——聚变燃料的第二种成分。"]
+			id: "6A535C1B5A0C9D5F"
+			tasks: [{
+				id: "6C008B1C238A1B4F"
+				item: "mekanism:rotary_condensentrator"
+				type: "item"
+			}]
+			title: "裂变遗产 (Legacy of Fission)"
+			x: -3.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["6A535C1B5A0C9D5F"]
+			description: ["反应堆的氚需要提纯。在进入混合器前，请清除所有污染物。"]
+			id: "1CB1382BABC77618"
+			subtitle: "化学清洗器"
+			tasks: [{
+				id: "7E0BA2061CF60D19"
+				item: "mekanism:chemical_washer"
+				type: "item"
+			}]
+			title: "酸浴 (Acid Bath)"
+			x: -3.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["1CB1382BABC77618"]
+			description: ["将氘和氚混合成完美的燃料，随时可以点燃。"]
+			id: "4C4E21FBCCF691DC"
+			subtitle: "化学注入器"
+			tasks: [{
+				id: "6262C7DA47B7FD0C"
+				item: "mekanism:chemical_infuser"
+				type: "item"
+			}]
+			title: "DT-Fuel"
+			x: -3.0d
+			y: 5.0d
+		}
+		{
+			dependencies: ["4C4E21FBCCF691DC"]
+			description: ["融合不会自动开始。你需要在这里积累巨大的能量电荷才能点燃它。"]
+			id: "3FD426FF8AD4BCB7"
+			tasks: [{
+				id: "603E086CD7B5EEB0"
+				item: "mekanism:laser_amplifier"
+				type: "item"
+			}]
+			title: "加载中 成功了"
+			x: -1.5d
+			y: 5.5d
+		}
+		{
+			dependencies: ["3FD426FF8AD4BCB7"]
+			description: ["建造能将能量泵入放大器的激光器。将它们定位以瞄准单个点。"]
+			id: "439F0C4874D62393"
+			tasks: [{
+				count: 4L
+				id: "27A9462B950CEB8E"
+				item: { Count: 4, id: "mekanism:laser" }
+				type: "item"
+			}]
+			title: "精准射击"
+			x: -1.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["439F0C4874D62393"]
+			description: ["用满能量缓冲器向反应堆发射激光。如果等离子体被点燃，你就创造了一颗恒星。"]
+			id: "605C3432FAEC4769"
+			subtitle: "触发器：聚变反应堆控制器"
+			tasks: [{
+				id: "461FBD0ABA9AB9AA"
+				title: "The Big Bang"
+				type: "checkmark"
+			}]
+			x: -0.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["32DE70D9E6E500CE"]
+			description: ["这么大的生产规模，需要一个大脑来掌控全局。"]
+			id: "164F0F5969FB7DEE"
+			tasks: [{
+				id: "4E6C3781F0562DB7"
+				item: "ae2:controller"
+				type: "item"
+			}]
+			title: "量子控制器"
+			x: 2.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["164F0F5969FB7DEE"]
+			description: ["你的发电厂可能很远。通过虫洞无线连接到主基地。"]
+			id: "4EE80C84374A135A"
+			subtitle: "2x ME 量子环"
+			tasks: [{
+				id: "5F51CF546DDD96C3"
+				item: "ae2:quantum_ring"
+				type: "item"
+			}]
+			title: "空间跳跃"
+			x: 3.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["4EE80C84374A135A"]
+			description: ["你跨维度连接的枢纽。需要纯净的石英晶体。"]
+			id: "38C09F979C127877"
+			subtitle: "ME量子链接室"
+			tasks: [{
+				id: "16E96F2259DBE190"
+				item: "ae2:quantum_link"
+				type: "item"
+			}]
+			title: "量子连接器"
+			x: 4.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["38C09F979C127877"]
+			description: ["反物质每毫米包含数十亿条信息。你需要巨大的存储容量。"]
+			id: "30738F1EE253F27B"
+			tasks: [{
+				id: "48B0BCAD9EBA1321"
+				item: "ae2:cell_component_256k"
+				type: "item"
+			}]
+			title: "数据存储 (Data Storage)"
+			x: 4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["30738F1EE253F27B"]
+			description: ["一台吞噬物体并将其转化为纯粹数据块的机器。"]
+			id: "0D457D3870EDD36C"
+			tasks: [{
+				id: "5489189BE9E790BF"
+				item: "ae2:condenser"
+				type: "item"
+			}]
+			x: 3.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["0D457D3870EDD36C"]
+			description: ["将数十万个方块投入电容器。这是对自动化能力的考验。你现在只需要一个奇点。"]
+			id: "4CCD529AA4259901"
+			tasks: [{
+				id: "6E8340734F0FC6FC"
+				item: "ae2:singularity"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 2.0d
+		}
+		{
+			dependencies: [
+				"56E052300B80A385"
+				"4CCD529AA4259901"
+			]
+			description: ["自动化处理器生产。你需要数百个来控制加速器。"]
+			id: "3056A6FBA853A916"
+			tasks: [
+				{
+					count: 16L
+					id: "3B826FA06EB8F558"
+					item: "ae2:calculation_processor"
+					type: "item"
+				}
+				{
+					count: 16L
+					id: "63097AD73E495C41"
+					item: "ae2:engineering_processor"
+					type: "item"
+				}
+			]
+			title: "更高逻辑模组"
+			x: 2.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["3056A6FBA853A916"]
+			description: ["多亏了聚变能源，你可以在世界任何角落访问网络。"]
+			id: "2ADCBDE772D5E32F"
+			tasks: [{
+				id: "7F0AB31C3841631B"
+				item: "ae2:wireless_terminal"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["2ADCBDE772D5E32F"]
+			description: ["你的进出口需要以光速运行。"]
+			id: "47653F83FD981C1E"
+			tasks: [{
+				count: 16L
+				id: "424B3754E7F367F9"
+				item: "ae2:speed_card"
+				type: "item"
+			}]
+			title: "加速卡"
+			x: 0.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["47653F83FD981C1E"]
+			description: ["准备好操控物理吧。电线杆能让你移动整个世界的一部分。"]
+			id: "7A5B6CBE5897BE73"
+			tasks: [{
+				id: "6053582CA000C8BA"
+				item: "ae2:spatial_pylon"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 1.0d
+		}
+		{
+			dependencies: [
+				"605C3432FAEC4769"
+				"7A5B6CBE5897BE73"
+			]
+			id: "77794F17198B6D0A"
+			size: 1.5d
+			tasks: [{
+				id: "4248B410A03C2E0B"
+				item: "mekanism:ultimate_energy_cube"
+				type: "item"
+			}]
+			x: 0.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["44731824941098C1"]
+			description: ["你需要大量的这种球体，数量会非常多"]
+			id: "56E052300B80A385"
+			subtitle: "制造并自动化颜料球的生产和制作"
+			tasks: [
+				{
+					id: "0D6E408B6F918F6B"
+					item: "ae2:white_paint_ball"
+					type: "item"
+				}
+				{
+					id: "6DBC405149478AB2"
+					item: "ae2:orange_paint_ball"
+					type: "item"
+				}
+				{
+					id: "7516A04F36272787"
+					item: "ae2:magenta_paint_ball"
+					type: "item"
+				}
+				{
+					id: "35EECC80C625B006"
+					item: "ae2:light_blue_paint_ball"
+					type: "item"
+				}
+				{
+					id: "1332B3DF0FFD93CC"
+					item: "ae2:yellow_paint_ball"
+					type: "item"
+				}
+				{
+					id: "0DCAE75D3398443D"
+					item: "ae2:lime_paint_ball"
+					type: "item"
+				}
+				{
+					id: "07F5D95BCC3BCDFF"
+					item: "ae2:pink_paint_ball"
+					type: "item"
+				}
+				{
+					id: "489C1FE8AABDA0D4"
+					item: "ae2:gray_paint_ball"
+					type: "item"
+				}
+				{
+					id: "43CAE25CA8962D72"
+					item: "ae2:light_gray_paint_ball"
+					type: "item"
+				}
+				{
+					id: "1EEB4AD0B048E625"
+					item: "ae2:cyan_paint_ball"
+					type: "item"
+				}
+				{
+					id: "0CE3C14C171F413C"
+					item: "ae2:purple_paint_ball"
+					type: "item"
+				}
+				{
+					id: "5BE6F3A707509CAD"
+					item: "ae2:blue_paint_ball"
+					type: "item"
+				}
+				{
+					id: "68D2EC05DAB8FB19"
+					item: "ae2:brown_paint_ball"
+					type: "item"
+				}
+				{
+					id: "6BA47DF369800C72"
+					item: "ae2:green_paint_ball"
+					type: "item"
+				}
+				{
+					id: "1934078AF67BD708"
+					item: "ae2:red_paint_ball"
+					type: "item"
+				}
+				{
+					id: "76B133CB30A3787B"
+					item: "ae2:black_paint_ball"
+					type: "item"
+				}
+			]
+			title: "彩虹球"
+			x: 3.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["0D457D3870EDD36C"]
+			icon: "ae2:matter_ball"
+			id: "44731824941098C1"
+			subtitle: "制作 32 个 mattery 球"
+			tasks: [{
+				count: 32L
+				id: "1089CF6D2E42560E"
+				item: "ae2:matter_ball"
+				type: "item"
+			}]
+			title: "球体内的物质"
+			x: 4.0d
+			y: 2.0d
+		}
+	]
+	title: "步骤 A"
+}

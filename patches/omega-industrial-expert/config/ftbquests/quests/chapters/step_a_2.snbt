@@ -1,0 +1,303 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "step_a_2"
+	group: "060D40568CD5BCD6"
+	id: "49BFA7051970EA41"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: [
+				"0B3D8D93D8F5488D"
+				"26197114397C91F7"
+			]
+			description: ["听好了，工程师。铀不是煤——就算你不盯着它，它也会咬人。在碰任何机器前，你必须先制作一套完整的防护服。它能保护你免受即将充满基地的辐射伤害。"]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			id: "4EE84FEE3DECA2EA"
+			size: 1.5d
+			subtitle: "使用 Mekanism 制作一套完整的防护盔甲"
+			tasks: [
+				{
+					id: "72BA806C4220A761"
+					item: "mekanism:hazmat_mask"
+					type: "item"
+				}
+				{
+					id: "6204BD7A14E20A11"
+					item: "mekanism:hazmat_gown"
+					type: "item"
+				}
+				{
+					id: "530CA9D20602E685"
+					item: "mekanism:hazmat_pants"
+					type: "item"
+				}
+				{
+					id: "7A830C772C5055EB"
+					item: "mekanism:hazmat_boots"
+					type: "item"
+				}
+			]
+			title: "最后一道防线"
+			x: 0.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["4EE84FEE3DECA2EA"]
+			description: ["刚从矿里挖出来的铀矿石毫无用处。你必须溶解它。使用化学溶解室将原始金属变成浓稠的放射性浆料。"]
+			id: "4A71D4C51CA28D83"
+			subtitle: "获取你的第一份铀浆料"
+			tasks: [
+				{
+					id: "49478BB568CF82E5"
+					item: "mekanism:chemical_dissolution_chamber"
+					type: "item"
+				}
+				{
+					count: 16L
+					id: "45730100627DF4AD"
+					item: { Count: 16, id: "createnuclear:raw_uranium" }
+					type: "item"
+				}
+			]
+			title: "黄热病 (Yellow Fever)"
+			x: -1.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["4A71D4C51CA28D83"]
+			description: ["你的泥浆里充满了污染物。用大量清水通过化学清洗机处理。只有晶莹剔透的铀才适合进一步加工。"]
+			id: "2D366482F5E09071"
+			subtitle: "制作纯净铀浆料"
+			tasks: [{
+				id: "30E6C37C0F08D4B5"
+				title: "死亡冲刷"
+				type: "checkmark"
+			}]
+			x: -2.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["2D366482F5E09071"]
+			description: ["是时候用世界上最强的酸了。在电解分离器中分解水成氢，分解萤石成氟。在化学注入器中将其结合。"]
+			icon: "minecraft:skeleton_skull"
+			id: "661F895F7AB29154"
+			subtitle: "小心泄漏的管道——这种气体非常危险"
+			tasks: [{
+				id: "6244BD8F7C0FAD5E"
+				item: "mekanism:hydrofluoric_acid_bucket"
+				type: "item"
+			}]
+			title: "龙之息（Dragon's Breath）"
+			x: -3.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["661F895F7AB29154"]
+			description: ["我们将一切整合。在化学结晶器/注入器中，干净的泥浆与酸相遇。产物是六氟化铀——一种能让我们分离燃料同位素的气体。"]
+			id: "114E98182331CF6C"
+			subtitle: "获取你的第一罐六氟化氢气体"
+			tasks: [{
+				id: "63DFE2E11A9DC8A1"
+				item: "mekanism:uranium_hexafluoride_bucket"
+				type: "item"
+			}]
+			title: "气体形态转变"
+			x: -3.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["114E98182331CF6C"]
+			description: ["经过复杂的化学过程，你终于获得了裂变燃料。这是反应堆的气体基础。请务必将其存放在密封容器中——你最不希望基地里发生的就是裂变气体泄漏。"]
+			id: "4621F0393BA5E9C6"
+			subtitle: "你的第一份燃料气体"
+			tasks: [{
+				id: "0F16E216657881BD"
+				title: "可裂变燃料"
+				type: "checkmark"
+			}]
+			x: -3.5d
+			y: 5.5d
+		}
+		{
+			dependencies: ["4A71D4C51CA28D83"]
+			description: ["普通的石墨不足以支撑你的设计。你需要能承受核心内部压力的材料。制作钢筋（reinforcing bars）作为浓缩燃料的框架。"]
+			id: "0692241EC5B63CF8"
+			subtitle: "生产钢筋（Produce rebars）"
+			tasks: [{
+				count: 16L
+				id: "7571803A5502DFCF"
+				item: { Count: 16, id: "tfmg:rebar" }
+				type: "item"
+			}]
+			title: "工业强化模组 (Industrial Reinforcement)"
+			x: -2.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["4621F0393BA5E9C6"]
+			description: ["将铀燃料送入化学结晶器，以制造核燃料的第一部分——铀镉"]
+			id: "699551FDC88792ED"
+			tasks: [{
+				id: "4828AD5DAA6A0CFF"
+				item: "createnuclear:enriched_yellowcake"
+				type: "item"
+			}]
+			x: -2.5d
+			y: 6.5d
+		}
+		{
+			dependencies: [
+				"5AB5CA39C7F70E66"
+				"0692241EC5B63CF8"
+				"699551FDC88792ED"
+			]
+			dependency_requirement: "one_completed"
+			description: ["是时候施展 PneumaticCraft 的魔法了。将浓缩铀黄饼、钢筋和钢管放入腔室。在 4.5 巴的压力下，这些材料将被压缩成一根密度极高的铀燃料棒。小心不要超过气管的强度极限！"]
+			id: "79FB8C50F81BB70B"
+			subtitle: "获取你的第一根铀燃料棒"
+			tasks: [{
+				count: 16L
+				id: "4288574308E68FE9"
+				item: "createnuclear:uranium_rod"
+				type: "item"
+			}]
+			title: "压力塑形"
+			x: -1.5d
+			y: 5.0d
+		}
+		{
+			dependencies: ["4EE84FEE3DECA2EA"]
+			description: ["反应堆不仅是一台机器，更是一个多区块的庇护所。反应堆外壳必须由厚实的铅和钢制成，才能将伽马辐射限制在结构内部。"]
+			id: "020FF8754D63E98F"
+			subtitle: "制作 120x 反应堆外壳"
+			tasks: [{
+				count: 120L
+				id: "0CE97F2E78891595"
+				item: { Count: 100, id: "createnuclear:reactor_casing" }
+				type: "item"
+			}]
+			title: "反应堆外壳"
+			x: 0.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["020FF8754D63E98F"]
+			description: ["魔法由此诞生。核心方块有特殊的插槽用于放置加固燃料棒。你必须用机械合成台以极高的精度来制作它。"]
+			id: "5AA71FA5B85F3051"
+			subtitle: "合成 4x 反应堆核心"
+			tasks: [{
+				count: 4L
+				id: "6A93345A4F992AA7"
+				item: { Count: 4, id: "createnuclear:reactor_core" }
+				type: "item"
+			}]
+			title: "机器的心脏 (The Heart of the Machine)"
+			x: 1.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["4A71D4C51CA28D83"]
+			description: ["核燃料不得与冷却剂直接接触。你必须使用TFMG将浓缩黄饼密封在工业级钢制管道中。这是你的第一道安全屏障。"]
+			id: "5AB5CA39C7F70E66"
+			rewards: [{
+				id: "566D30601B95E078"
+				item: "tfmg:lubrication_oil_bucket"
+				type: "item"
+			}]
+			subtitle: "合成 16x 钢制管道 (TFMG)"
+			tasks: [{
+				count: 16L
+				id: "5D79B9F8FC48C497"
+				item: { Count: 16, id: "tfmg:steel_pipe" }
+				type: "item"
+			}]
+			title: "钢铁衬衫"
+			x: -0.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["5AA71FA5B85F3051"]
+			description: ["反应堆需要“呼吸”。你将把大量冷水泵入输入端口，并从输出端口抽出过热蒸汽。别搞错方向——这可能是你犯的最后错误。"]
+			id: "09D1D8F2FEEF67BE"
+			subtitle: "制作 1x 反应堆输入端口和 1x 反应堆输出端口"
+			tasks: [
+				{
+					id: "6C25A719A0436981"
+					item: "createnuclear:reactor_input"
+					type: "item"
+				}
+				{
+					id: "0875D5A0A5A856B3"
+					item: "createnuclear:reactor_output"
+					type: "item"
+				}
+			]
+			x: 1.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["09D1D8F2FEEF67BE"]
+			description: ["谜题的最后一块。控制器管理着栏杆的伸缩和温度监测。你必须为其提供旋转能量（ROE）来启动抬起加固栏杆的装置。"]
+			id: "38D3DBD07AAE3727"
+			subtitle: "制作一个 Reactor Controller"
+			tasks: [{
+				id: "7E5F1ECC3C40FBCD"
+				item: "createnuclear:reactor_controller"
+				type: "item"
+			}]
+			title: "运作的大脑"
+			x: 1.5d
+			y: 4.0d
+		}
+		{
+			dependencies: [
+				"79FB8C50F81BB70B"
+				"38D3DBD07AAE3727"
+			]
+			description: ["将强化铀燃料棒放入反应堆模板中。别忘了带上防护服——你正接近活跃辐射源。反应堆已就绪，只需将模板放入控制器即可！"]
+			id: "24701FDE10CDE8C5"
+			subtitle: "制作一个反应堆模式图样"
+			tasks: [{
+				id: "7B285764BE87CA50"
+				item: "createnuclear:reactor_blueprint_item"
+				type: "item"
+			}]
+			title: "为核心注入燃料"
+			x: 0.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["24701FDE10CDE8C5"]
+			description: ["该干正事了。激活反应堆控制器。缓慢伸出控制棒，直到温度开始上升。目标为 700Q——水开始迅速转化为蒸汽的临界点。"]
+			icon: "minecraft:lever"
+			id: "6F61FA3B238E8945"
+			tasks: [{
+				id: "17167F7BCB215D5A"
+				title: "最初的开始"
+				type: "checkmark"
+			}]
+			x: -0.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["6F61FA3B238E8945"]
+			description: ["涡轮疯狂旋转，产生大量SU。连接一台发电机将其转化为干净的FE能源。你已成为能源自给者。"]
+			id: "6B97B35DCD820B44"
+			size: 1.5d
+			subtitle: "制作Alternator并将其连接到涡轮轴上"
+			tasks: [{
+				id: "2A4FB3BA95B70067"
+				item: "createaddition:alternator"
+				type: "item"
+			}]
+			title: "Alternator: 来自SU的电力"
+			x: 1.5d
+			y: 6.0d
+		}
+	]
+	title: "步骤 A"
+}

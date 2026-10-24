@@ -1,0 +1,352 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "step_b_3"
+	group: "61115D80150B8792"
+	icon: "mekanism:elite_control_circuit"
+	id: "51ED43096785BA6A"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["0F78230BFFACCC10"]
+			description: ["TFMG 塔产生的气体（如乙烯或氮气）需要转化为 Mekanism 可接受的化学形式。建造一个 Rotary Condenser。它能将液体（桶）转化为气体（mB/气体）反之亦然。现在你终于可以“泵”乙烯到 Mekanism 的机器里了。"]
+			id: "4471117EC5DBD1BA"
+			tasks: [{
+				id: "522217426F765472"
+				item: "mekanism:ethene_bucket"
+				type: "item"
+			}]
+			title: "乙烯分离 (Ethylene Separation)"
+			x: -1.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["4471117EC5DBD1BA"]
+			description: ["将乙烯气体（来自冷凝器）、水和氢气（来自电解）连接到PRC机器。"]
+			id: "13C2E01A4DFE183D"
+			subtitle: "生产基质和液态乙烯"
+			tasks: [{
+				id: "76EE24E26BB141F2"
+				item: "mekanism:pressurized_reaction_chamber"
+				type: "item"
+			}]
+			title: "PRC 反应堆"
+			x: -2.5d
+			y: 1.0d
+		}
+		{
+			dependencies: [
+				"13C2E01A4DFE183D"
+				"194D5B9B6CEEE811"
+			]
+			description: ["将 PRC（底物）的副产品与乙烯和氧气结合。这是你制造盔甲和反应堆的通行证。"]
+			id: "69F93EF06AC3FED1"
+			subtitle: "生产高密度聚乙烯颗粒"
+			tasks: [{
+				id: "7E049247A3C6B202"
+				item: "mekanism:hdpe_pellet"
+				type: "item"
+			}]
+			title: "HDPE 生产"
+			x: -0.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["45D5A74365698E11"]
+			description: ["别管Create的机械工匠了。这台机器用激光和压力来组装Mekanism的电路。"]
+			id: "29B24A0CC3A40F8B"
+			subtitle: "使用 PneumaticCraft 建造一个装配控制器"
+			tasks: [{
+				id: "36A6FB93486284C4"
+				item: "pneumaticcraft:assembly_controller"
+				type: "item"
+			}]
+			title: "精密组装"
+			x: -3.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["194D5B9B6CEEE811"]
+			dependency_requirement: "one_completed"
+			description: ["使用柴油生产产生的废料来制造消化铀矿石所需的酸。"]
+			id: "5792B85B738AE298"
+			subtitle: "在 Mekanism 中合成硫酸，但使用 TFMG 的硫磺"
+			tasks: [{
+				id: "3BDC73F1226FABAD"
+				item: "mekanism:sulfuric_acid_bucket"
+				type: "item"
+			}]
+			title: "铀净化仪式"
+			x: 0.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["0F78230BFFACCC10"]
+			id: "194D5B9B6CEEE811"
+			tasks: [{
+				id: "3AB15C453CCED249"
+				item: "mekanism:chemical_oxidizer"
+				type: "item"
+			}]
+			x: 0.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["4471117EC5DBD1BA"]
+			description: ["液化氮气（来自TFMG），并用它冷却PneumaticCraft的机器，使其能在高于15巴的压力下运行。"]
+			id: "341474B7798F3A55"
+			optional: true
+			tasks: [{
+				id: "4A6853A028FDB716"
+				item: "pneumaticcraft:lubricant_bucket"
+				type: "item"
+			}]
+			title: "低温学（可选）"
+			x: -5.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["4471117EC5DBD1BA"]
+			description: ["使用数字矿工寻找铅。你需要它来在创造核能中制作盾牌。"]
+			id: "5D3545405A0455E5"
+			subtitle: "生产铅板"
+			tasks: [{
+				count: 128L
+				id: "2A40E841BB0E8310"
+				item: { Count: 16, id: "thermal:lead_plate" }
+				type: "item"
+			}]
+			title: "原子学相关准备工作（Preparation for Atomistics）"
+			x: -1.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["29B24A0CC3A40F8B"]
+			description: ["你旧版沉浸式工程的线缆无法承受第4章中产生的电力。"]
+			id: "4F62B717226F43DF"
+			subtitle: "制作精英通用电缆 (Craft Elite Universal Cables)"
+			tasks: [{
+				count: 32L
+				id: "1442EA72D1794F14"
+				item: { Count: 32, id: "mekanism:elite_universal_cable" }
+				type: "item"
+			}]
+			title: "通用电缆模组 (Universal Cables)"
+			x: -5.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["0F78230BFFACCC10"]
+			description: ["这是一个高级合成台。它需要精英控制电路来记忆配方。无需使用AE2网络即可自动合成，速度至关重要。"]
+			id: "6DFA1828732868E8"
+			subtitle: "建造一个配方组装器 (Mekanism)"
+			tasks: [{
+				id: "6B9DFF5AE9A5909B"
+				item: "mekanism:formulaic_assemblicator"
+				type: "item"
+			}]
+			x: -3.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["7B43EA0C8D1D5443"]
+			description: ["这是本章最重要的机器。它能将 TFMG 炼油塔产生的乙烯转化为梅卡尼克的纳米机器所能识别的气体。"]
+			id: "0F78230BFFACCC10"
+			size: 1.5d
+			subtitle: "建造一个旋转冷凝器"
+			tasks: [{
+				id: "1B417680870CE776"
+				item: "mekanism:rotary_condensentrator"
+				type: "item"
+			}]
+			title: "气体翻译器"
+			x: -1.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["0F78230BFFACCC10"]
+			description: ["使用精英控制电路来制造能够以电弧形式传输能量的棒子。"]
+			id: "3E774ED7ECEBB802"
+			subtitle: "制作2根 Energizing Rod (Powah)"
+			tasks: [{
+				count: 2L
+				id: "6D3A35E29BDD5129"
+				item: "powah:energizing_rod_starter"
+				type: "item"
+			}]
+			title: "Powah 能量化魔杖"
+			x: -4.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["3E774ED7ECEBB802"]
+			description: ["将物品放入球体中，并用导电棒对其放电。这是创造能量钢和烈焰晶体的唯一方法。"]
+			id: "22F4039C8888532E"
+			tasks: [{
+				id: "05D125B6D15F2127"
+				item: "powah:energizing_orb"
+				type: "item"
+			}]
+			x: -7.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["3AA39E92495C778D"]
+			id: "45D5A74365698E11"
+			tasks: [{
+				id: "2CCA90F12E490D27"
+				item: "pneumaticcraft:unassembled_pcb"
+				type: "item"
+			}]
+			x: -5.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["0F78230BFFACCC10"]
+			id: "3AA39E92495C778D"
+			tasks: [{
+				id: "74A300507CFC712C"
+				item: "pneumaticcraft:etching_tank"
+				type: "item"
+			}]
+			x: -3.5d
+			y: -0.5d
+		}
+		{
+			dependencies: [
+				"5E02C441FC34657A"
+				"22F4039C8888532E"
+			]
+			description: ["你的PNC无人机需要更好的算法。这个电路能让它们执行复杂任务，比如为行驶的TFMG列车加油。"]
+			id: "2C26F070E6CE2555"
+			tasks: [{
+				id: "740E680B574D535E"
+				item: "pneumaticcraft:collector_drone"
+				type: "item"
+			}]
+			title: "PNC 无人机升级"
+			x: -6.0d
+			y: -1.5d
+		}
+		{
+			dependencies: [
+				"3AA39E92495C778D"
+				"45D5A74365698E11"
+			]
+			id: "5E02C441FC34657A"
+			tasks: [{
+				id: "2389D1CF543A9F77"
+				item: "pneumaticcraft:printed_circuit_board"
+				type: "item"
+			}]
+			x: -5.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["69F93EF06AC3FED1"]
+			description: ["无需管道即可将TFMG的乙烯、Powah的能量和PNC的压力传输到任何距离！"]
+			id: "31ABA2DE6C6428FB"
+			subtitle: "建造量子纠缠传送器 (Quantum Entangloporter)"
+			tasks: [{
+				id: "6020943C7CF36607"
+				item: "mekanism:quantum_entangloporter"
+				type: "item"
+			}]
+			x: -3.0d
+			y: 2.5d
+		}
+		{
+			dependencies: [
+				"31ABA2DE6C6428FB"
+				"4F62B717226F43DF"
+			]
+			description: ["巨型Mekanism（感应矩阵）电池的组件。允许每刻传输数百万FE。"]
+			id: "4F61656D4422BCF6"
+			subtitle: "创建精英感应器提供者 (Create Elite Induction Provider)"
+			tasks: [{
+				id: "0441895C1E126310"
+				item: "mekanism:elite_induction_provider"
+				type: "item"
+			}]
+			title: "能量存储装置"
+			x: -4.5d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"22F4039C8888532E"
+				"4F61656D4422BCF6"
+			]
+			dependency_requirement: "one_completed"
+			description: ["需要全自动冷却（干冰/液氮）。这是你第一个稳定的50k+ FE/t能源。"]
+			id: "58AC7ED3216749F1"
+			subtitle: "在Spirited难度下建造一座反应堆（Powah）"
+			tasks: [{
+				count: 35L
+				id: "2ECBB0F03ED959B4"
+				item: "powah:reactor_spirited"
+				type: "item"
+			}]
+			title: "Reactor Powah"
+			x: -6.5d
+			y: 3.5d
+		}
+		{
+			dependencies: [
+				"58AC7ED3216749F1"
+				"5792B85B738AE298"
+			]
+			description: ["用于制备铀-235裂变的Mekanism机器。这是通往Create Nuclear的入口。"]
+			id: "51CBCC0CC3DBAFA0"
+			subtitle: "建造一台同位素离心机"
+			tasks: [{
+				id: "42338DD1278BB7AF"
+				item: "mekanism:isotopic_centrifuge"
+				type: "item"
+			}]
+			x: -4.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["58AC7ED3216749F1"]
+			description: ["检查新核电站泄漏情况所必需的设备。"]
+			id: "051A2D98D5C74F83"
+			subtitle: "制作一个盖革计数器"
+			tasks: [{
+				id: "2E32CCCEFE088574"
+				item: "mekanism:geiger_counter"
+				type: "item"
+			}]
+			title: "污染监测 Contamination Monitoring"
+			x: -5.0d
+			y: 6.0d
+		}
+		{
+			dependencies: [
+				"051A2D98D5C74F83"
+				"51CBCC0CC3DBAFA0"
+				"5D3545405A0455E5"
+			]
+			id: "0B3D8D93D8F5488D"
+			rewards: [{
+				id: "127B4134E3A7E79F"
+				item: "createnuclear:reactor_blueprint_item"
+				type: "item"
+			}]
+			size: 1.5d
+			subtitle: "在您的AE2网络中拥有100个精英控制电路"
+			tasks: [{
+				count: 100L
+				id: "0FB3ED84A2B7F5F5"
+				item: { Count: 100, id: "mekanism:elite_control_circuit" }
+				type: "item"
+			}]
+			title: "量子工程师证书"
+			x: -2.25d
+			y: 6.0d
+		}
+	]
+	title: "步骤 B"
+}

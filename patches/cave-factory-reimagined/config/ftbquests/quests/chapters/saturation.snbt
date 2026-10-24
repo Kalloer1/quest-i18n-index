@@ -1,0 +1,158 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "saturation"
+	group: "1370D31CA0B1DFEB"
+	icon: "minecraft:cooked_beef"
+	id: "1629BE02941DFDAB"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["在黑暗中，万物皆是资源。收集你能找到的所有洞穴植物，以建立最初的营养基础。"]
+			id: "60EFA41805456E36"
+			shape: "circle"
+			tasks: [{
+				id: "79188A4BE7876F6F"
+				item: {
+					Count: 1
+					id: "ftbfiltersystem:smart_filter"
+					tag: {
+						"ftbfiltersystem:filter": "ftbfiltersystem:item_tag(createaddition:plants)"
+					}
+				}
+				title: "任何 #createaddition:plants 植物"
+				type: "item"
+			}]
+			title: "原始搜寻任务"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["60EFA41805456E36"]
+			description: ["工厂工人的水平取决于他们的工具。制作砧板和刀具，将原材料高效地加工成可用的烹饪组件。"]
+			id: "65D77EE98EA2FCF9"
+			shape: "square"
+			tasks: [
+				{
+					id: "70B8E6D68158667A"
+					item: "farmersdelight:cutting_board"
+					type: "item"
+				}
+				{
+					id: "2B4D960F5138F6E9"
+					item: {
+						Count: 1
+						id: "ftbfiltersystem:smart_filter"
+						tag: {
+							"ftbfiltersystem:filter": "ftbfiltersystem:item_tag(farmersdelight:tools/knives)"
+						}
+					}
+					title: "任意 #farmersdelight:tools/knives"
+					type: "item"
+				}
+			]
+			title: "精准准备"
+			x: 1.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["60EFA41805456E36"]
+			description: ["基础烹饪效率低下。搭建一个合适的烹饪工作站，解锁将原材料组合成更优质菜肴的能力。"]
+			id: "1C5E600415885230"
+			shape: "gear"
+			tasks: [{
+				id: "3D9CD6ABE57157A7"
+				item: "farmersdelight:cooking_pot"
+				type: "item"
+			}]
+			title: "工业厨房"
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["1C5E600415885230"]
+			description: ["想要快速补充高能量食物，煎锅必不可少。在热源上使用它，无需整锅即可快速煎制蛋白质和蔬菜。"]
+			id: "69CAEF064CF62B9F"
+			tasks: [{
+				id: "1C6518A846397A39"
+				item: {
+					Count: 1
+					id: "farmersdelight:skillet"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "闪电煎制"
+			x: 3.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["1C5E600415885230"]
+			description: ["手动耕作是人力资本的浪费。部署机械收割机横扫你的作物行，为厨房确保稳定、自动化的蔬菜供应。"]
+			id: "567F4640F4779C6C"
+			shape: "diamond"
+			tasks: [
+				{
+					id: "2707A202D84044EC"
+					item: "create:mechanical_harvester"
+					type: "item"
+				}
+				{
+					id: "4B9E5E312D433368"
+					item: "farmersdelight:cabbage_seeds"
+					type: "item"
+				}
+			]
+			title: "水培收割机"
+			x: 3.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["1C5E600415885230"]
+			description: ["工厂需要高饱食度的口粮。将蛋白质、蔬菜和调味品组合，制作出能提供持久饱腹感的“复合餐食”。"]
+			id: "7E71E3BEE4DE780B"
+			tasks: [{
+				id: "0662380F05CEDB0C"
+				item: "farmersdelight:steak_and_potatoes"
+				type: "item"
+			}]
+			title: "高热量口粮"
+			x: 4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7E71E3BEE4DE780B"]
+			description: ["利用机械系统自动混合并为烹饪台供应材料。生产线永不停歇。"]
+			id: "4EF95B85DE46F033"
+			shape: "diamond"
+			tasks: [{
+				id: "39B6460B215F1768"
+				item: "create:mechanical_mixer"
+				type: "item"
+			}]
+			title: "自动化食堂"
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["4EF95B85DE46F033"]
+			description: ["工业营养的巅峰。制作一份可供多人享用的巨型盛宴，足以让你的所有工人在数日内保持最高效率运转。"]
+			id: "7B08E537D0AAA278"
+			shape: "hexagon"
+			size: 1.5d
+			tasks: [{
+				id: "1519E3156D846CD5"
+				item: "farmersdelight:roast_chicken_block"
+				type: "item"
+			}]
+			title: "工厂盛宴"
+			x: 8.0d
+			y: 0.0d
+		}
+	]
+	title: "工业营养学"
+}

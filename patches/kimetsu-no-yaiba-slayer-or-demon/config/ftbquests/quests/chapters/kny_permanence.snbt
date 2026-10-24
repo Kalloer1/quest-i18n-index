@@ -1,0 +1,986 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "kny_permanence"
+	group: "748FF0D01D9E0F1C"
+	id: "79AF96C2D7BE67CC"
+	images: [
+		{
+			height: 8.9667d
+			image: "kizukimod:textures/ftbquests/kny_permanence.png"
+			order: -4
+			rotation: 0.0d
+			width: 45.6333d
+			x: 18.8714d
+			y: 0.0d
+		}
+		{
+			height: 2.8d
+			image: "kizukimod:textures/ftbquests/kny_permanence_story.png"
+			order: -2
+			rotation: 0.0d
+			width: 45.1666d
+			x: 18.8714d
+			y: 5.9d
+		}
+	]
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"本模组中无人会给你一个按钮。有三种进入方式，军团希望你一个都不选。"
+				"该模组明确表示，成为恶魔是一种选择，而非奖励：&#c0392b&lMuzan&r 是一个垂死之人，他依然接受了血液，之后每个恶魔都做了同样的交易。"
+				"以下所有路线都通向同一个成就 - kimetsunoyaiba:become_demon - 和同一个变身。只有代价不同。"
+				"只能取一个。印记并非任何一项的先决条件。"
+			]
+			id: "4DC413A6CEDEE0A9"
+			rewards: [{
+				id: "14A0DEE76DFB42DA"
+				type: "xp_levels"
+				xp_levels: 2
+			}]
+			size: 1.6d
+			tags: ["demon-path"]
+			tasks: [{
+				id: "0A1E04FC49F69F09"
+				type: "checkmark"
+			}]
+			title: "通往恶魔之路的三岔口"
+			x: 0.0d
+			y: -0.8d
+		}
+		{
+			dependencies: ["4DC413A6CEDEE0A9"]
+			description: [
+				"这是没人想到的配方。你&#ff6b6b&l不会&r找到它的配方——恶魔会在战斗中把它交给你。"
+				"十二 &#e0a92c&lKizuki&r 中只有一个能做到。手持 &#c0392b&lNichirin Sword&r 时，若遇到 &#e0a92c&lKizuki&r 恶魔，战斗会停止：你被冻结，攻击者被定住，屏幕上会显示有 &#e0a92c&lKizuki&r 在向你提供恶魔的身份。"
+				"你有一个选择。接受，转化便已开始。拒绝，&#e0a92c&lKizuki&r 便会杀死你——killRejectedPlayer 并非威胁，而是拒绝时的代码路径。"
+				"这个提议有时间限制，某些遭遇战中可强制使用一次。如果你不确定想要什么，&#ff6b6b&l不要&r捡起这把剑。"
+				"在 DemonPropositionHandler 中验证：攻击者必须同时满足 Damager.isDemon 和 EntityTagHelper.isTwelveKizuki，且你必须手持一把 &#c0392b&lNichirin Sword&r。服务器配置：custom_demon_initiation，默认 true。"
+			]
+			id: "36AF7A189FC22CCB"
+			rewards: [
+				{
+					id: "28021D1D65E8B4EB"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+				{
+					count: 8
+					id: "68CF188A361B69A1"
+					item: "minecraft:emerald"
+					type: "item"
+				}
+			]
+			size: 1.5d
+			tags: ["demon-path"]
+			tasks: [
+				{
+					id: "57AF233CC3A05EC1"
+					item: {
+						Count: 1
+						id: "kimetsunoyaiba:nichirinsword"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					advancement: "kimetsunoyaiba:become_demon"
+					criterion: ""
+					id: "2E24688079CBBBE9"
+					type: "advancement"
+				}
+			]
+			title: "路线一 — 一位&#e0a92c&lKizuki&r向你提供恶魔的身份"
+			x: 2.0d
+			y: 1.6d
+		}
+		{
+			dependencies: ["4DC413A6CEDEE0A9"]
+			description: [
+				"缓慢而审慎的路线。 &#e8e2d4&l炼金术台&r，而非合成台。"
+				"将&#e8e2d4&lDemonic Genesis Culture&r和&#e8e2d4&lCruel Vial&r放入&#e8e2d4&lAlchemy Table&r中。顺序无关。产物是&#e8e2d4&lDemon Genesis Medicine&r，饮用即可开始转化。"
+				"配方是该模组的 alchemy_table 类型，而非成型或无成型配方，所以普通配方书不会显示。你必须亲自去制作。"
+				"文化是昂贵的部分。基础试剂是&#e8e2d4&l血石粉尘&r，军团不提供，补给站售价320日元。"
+				"在 data/kimetsunoyaibamultiplayer/recipes/alchemy_table_machine/demon_genesis_medicine.json 中验证。"
+			]
+			id: "2BCCD696043F27D9"
+			rewards: [
+				{
+					id: "6A4BCCD0271A829D"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+				{
+					count: 4
+					id: "68667A1829722BF4"
+					item: "kimetsunoyaibamultiplayer:hemolith_dust"
+					type: "item"
+				}
+			]
+			size: 1.5d
+			tags: ["demon-path"]
+			tasks: [
+				{
+					id: "760277B6FC53EA41"
+					item: "kimetsunoyaibamultiplayer:demon_genesis_medicine"
+					type: "item"
+				}
+				{
+					advancement: "kimetsunoyaiba:become_demon"
+					criterion: ""
+					id: "0A00F919485550C1"
+					type: "advancement"
+				}
+			]
+			title: "路线二 — &#e8e2d4&l恶魔创世药剂&r"
+			x: 2.0d
+			y: -3.2d
+		}
+		{
+			dependencies: ["4DC413A6CEDEE0A9"]
+			description: [
+				"最短的路线，也是该模组最初围绕其设计的路线：喝下它。"
+				"使用该物品会立即开始恶魔变身。无需合成，无需许可，也无需与任何人协商。"
+				"代价是时间。你的Slayer等级越高，变身持续时间越长，因为更强的Slayer能抵抗更久。模组将此存储为MuzanBloodConsumed和HumansConsumed在玩家身上。"
+				"&#6fd3e0&lNote&r that the multiplayer mod actively rewrites the base game's &#e8e2d4&lBlood of Muzan&r into its own - BloodOfMuzanReplacer swaps kimetsunoyaiba:blood_of_muzan for kimetsunoyaibamultiplayer:blood_of_muzan in your inventory. If you are holding the wrong one it will change under you."
+			]
+			id: "609380EE92736287"
+			rewards: [
+				{
+					id: "2A30B6D161B2A66F"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+				{
+					count: 4
+					id: "6D3D0104A1B7856A"
+					item: "minecraft:netherite_ingot"
+					type: "item"
+				}
+			]
+			size: 1.5d
+			tags: ["demon-path"]
+			tasks: [
+				{
+					id: "390D790EC43708CD"
+					item: "kimetsunoyaibamultiplayer:blood_of_muzan"
+					type: "item"
+				}
+				{
+					advancement: "kimetsunoyaiba:become_demon"
+					criterion: ""
+					id: "75DEE57B1F69FC85"
+					type: "advancement"
+				}
+			]
+			title: "路线三 — &#e8e2d4&l血鬼术·血鬼斑&r"
+			x: 2.0d
+			y: 3.2d
+		}
+		{
+			description: [
+				"无论你走哪条路，这一刻都会生效。三种情况的进度都一样。"
+				"该模组追踪两种形态。一种在阳光下燃烧、靠恶魔饱和度驱动的临时形态，以及——如果服务器启用了 persistent_demonhood——具有&#c0392b&l阳光免疫&r的永久形态。"
+				"逆转需要完成第16章和诅咒任务，并非免费获得的。"
+				"这是书中唯一奖励&#e8e2d4&lBlood of Muzan&r的任务。它在世界中有且仅有一个，无法通过其他方式获取。"
+			]
+			id: "33967A9D4EF71D16"
+			optional: true
+			rewards: [
+				{
+					id: "4A6EBB71573C0E11"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "0BF3358CEC035633"
+					item: "kimetsunoyaiba:blood_of_muzan"
+					type: "item"
+				}
+			]
+			size: 1.5d
+			tags: ["demon-path"]
+			tasks: [{
+				advancement: "kimetsunoyaiba:become_demon"
+				criterion: ""
+				id: "7A41E028B0ECBB21"
+				type: "advancement"
+			}]
+			title: "成为一只恶魔 (Become a Demon)"
+			x: 0.0d
+			y: 0.8d
+		}
+		{
+			dependencies: ["33967A9D4EF71D16"]
+			description: [
+				"太阳会杀死你。这就是日落机制的全部意义，模组对此没有任何软化。"
+				"此模组中的阳光灼烧并非原版动画，而是一个带有计时器的追踪伤害过程，存储为KnYMpDemonSunlightBurnTicks。被附魔后站在阳光下会启动计时器，该计时器不关心你的强度。"
+				"所以，恶魔提出的第一个真正的问题不是如何战斗，而是如何走出去。"
+				"好消息：该模组提供了三个真实答案，接下来的三个任务分别是其中之一。它们都不是秘密或作弊码。"
+			]
+			id: "2EA7E5FBDD3DB49B"
+			rewards: [{
+				id: "17FCC947B66EA9DD"
+				type: "xp_levels"
+				xp_levels: 2
+			}]
+			size: 1.4d
+			tags: ["demon-path"]
+			tasks: [{
+				id: "4D63C55742BE6076"
+				type: "checkmark"
+			}]
+			title: "身为恶魔的第一个问题所在"
+			x: 2.0d
+			y: -1.6d
+		}
+		{
+			dependencies: ["2EA7E5FBDD3DB49B"]
+			description: [
+				"&#e8e2d4&l炼金术台&r，三种不同方式。所有方式均为临时性，且都通过同一个处理器处理。"
+				"&#e8e2d4&l太阳飞升治愈剂&r - &#e8e2d4&l太阳创世文化&r 外加一个 &#e8e2d4&l残酷小瓶&r。"
+				"&#e8e2d4&l太阳神罚血清&r - &#e8e2d4&l太阳神罚培养液&r 加一个 &#e8e2d4&l植物瓶&r。"
+				"&#e8e2d4&lOrochi Elixir&r - &#e8e2d4&lOrochi Scales&r 加一瓶 &#e8e2d4&lFamiliar Tonic&r。这是昂贵路线，商店有售，如果你不想自己收集材料的话。"
+				"这三种都产生相同的效果——模组称之为&#c0392b&l阳光抗性&r，而&#e8e2d4&l蓝色蜘蛛莲花茶&r也能提供较弱的每日版本。喝上一杯，阳光就不再是问题了，直到效果消退。"
+				"已在 recipes/alchemy_table_machine/ 和 AlchemyMedicineHandler 中验证，该文件列出了所有五种药物。"
+			]
+			id: "0D5F6619F6CD460B"
+			rewards: [
+				{
+					id: "297BF8E330751865"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+				{
+					count: 8
+					id: "2AC9D9AD8680E221"
+					item: "minecraft:emerald"
+					type: "item"
+				}
+			]
+			size: 1.5d
+			tags: ["demon-path"]
+			tasks: [{
+				id: "54C83FCAA6192426"
+				item: "kimetsunoyaibamultiplayer:solar_ascension_cure"
+				type: "item"
+			}]
+			title: "答案一——能多活几天的药物"
+			x: 4.0d
+			y: -3.2d
+		}
+		{
+			dependencies: ["0BC83C46191EDBB3"]
+			description: [
+				"大家都知道&#e8e2d4&lTamayo&r会喝它。但并非所有人都知道，这也是恶魔在白天行走的最便宜方法。"
+				"补给站里四个要340日元。这是游戏中最便宜的阳光保险，也是值得优先囤货的原因。"
+				"制作配方：蓝色蜘蛛莲花瓣加一个碗，无需特定顺序，可制作一杯。三个蓝色蜘蛛莲花瓣来自一个蓝色蜘蛛莲花块，同样无需特定顺序。花朵本身是炼金术产物——未知蓝色蜘蛛莲花培养物，然后在桌子上上蜡和去蜡。"
+				"真正能获得成就的那部分——而且这在任何提示框里都没有显示："
+				"该模组在 KnYMpBlueSpiderLilyTeaDays 标签上记录天数，每游戏日仅计数一次。每天喝一杯，第一百天时，处理器会调用 AlchemyMedicineHandler.grantSunlightImmunity，设置永久 KnYMpSolarAscension 标志。"
+				"这就是“征服太阳”成就的全部内容。一百个Minecraft天，每天一杯——相当于十个现实小时，或者如果你睡过夜晚，会短得多。"
+				"每个杯子还能提供与天数相等的放大器值的&#c0392b&l日光抗性&r，所以在第100天之前，这茶作为部分防护就已非常实用。"
+			]
+			id: "120CBA70E66545DD"
+			rewards: [
+				{
+					id: "61AA78322C0C5D15"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+				{
+					count: 120
+					id: "47C59B3563CA2C36"
+					item: "kimetsunoyaibamultiplayer:yen"
+					type: "item"
+				}
+			]
+			size: 1.4d
+			tags: ["demon-path"]
+			tasks: [{
+				count: 4L
+				id: "0550ADC9EE21CFF1"
+				item: { Count: 4, id: "kimetsunoyaibamultiplayer:blue_spider_lily_tea" }
+				type: "item"
+			}]
+			title: "廉价的答案 — &#e8e2d4&l蓝色蜘蛛莲花茶&r"
+			x: 5.990447619047622d
+			y: -0.8297702380952359d
+		}
+		{
+			dependencies: ["2EA7E5FBDD3DB49B"]
+			description: [
+				"你的角色有一个名为 KnYMpSolarAscension 的布尔值，这才是正确答案。设置它后，SunlightImmunityHelper 会直接授予免疫，无需计时器或药水。"
+				"当服务器开启持久化恶魔形态时，该旗帜与恶魔路径使用的相同——转换会写入 KnYMpPersistentDemonhoodSunlightImmunity 条目。"
+				"成就名为 conquering the sun，并且是可以通过正常途径获得的。以下是代码中验证过的确切路线："
+				"1. 先成为恶魔。授予函数会检查 Damager.isDemon，如果你仍是人类，会直接拒绝。这是一个恶魔之路的成就，而非屠夫成就。"
+				"2. 游戏内每天饮用一杯 &#e8e2d4&l蓝色蜘蛛莲花茶&r，连续一百天。计数器上限为100，每天只计算一杯。"
+				"3. 第100天会调用grantSunlightImmunity，设置KnYMpSolarAscension，播放授予效果，并奖励征服太阳。"
+				"4. 还有第二条更快的路线：&#e8e2d4&lSolar Ascension Cure&r，在 &#e8e2d4&lAlchemy Table&r 上用 &#e8e2d4&lSolar Genesis Culture&r 和 &#e8e2d4&lCruel Vial&r 制作。它能调用相同的函数。请咨询管理员哪种路线可用——两种都行，但喝茶是官方设计的慢速流程。"
+				"该成就被隐藏在一个不可能触发的条件之后，所以再多的探索也无法获得。它由代码授予，这意味着它属于一个任务，而非运气。"
+				"一个&#ff6b6b&l警告&r：此效果生效期间，基础模组的阳光抗性仍会每刻被移除。此服务器上这两个进阶目标因配置而非偶然互斥。"
+			]
+			id: "637BE703CC8592D2"
+			rewards: [
+				{
+					id: "4907525D72C9D832"
+					type: "xp_levels"
+					xp_levels: 4
+				}
+				{
+					count: 8
+					id: "071603B3A32DDB12"
+					item: "minecraft:netherite_ingot"
+					type: "item"
+				}
+			]
+			size: 1.5d
+			tags: ["demon-path"]
+			tasks: [{
+				advancement: "kimetsunoyaibamultiplayer:conquering_the_sun"
+				criterion: ""
+				id: "47499C6378924731"
+				type: "advancement"
+			}]
+			title: "答案二 — &#c0392b&lSolar Ascension&r，永久旗帜"
+			x: 4.0d
+			y: 1.6d
+		}
+		{
+			dependencies: ["2EA7E5FBDD3DB49B"]
+			description: [
+				"这个任务是陷阱，它之所以存在，是因为每个玩家都会问这个问题。花上一周时间之前，请先阅读&#ff6b6b&l警告&r。"
+				"在基础模组中，机制如下：成就名为“克服阳光”，使用任意一种十三种太阳形态即可立即获得，而“阳光免疫辅助”会将持有形态视为完全&#c0392b&l免疫阳光&r。掌握&#e0a92c&l太阳呼吸法&r的人类可以在阳光下行走。简洁、爽快，答案显而易见。"
+				"此服务器上该路线已被关闭，而且是有意为之。"
+				"多人模式模组有一个名为 disable_sun_breathing_sunlight_immunity 的配置项，默认为 TRUE。开启后会发生三件事："
+				"&#8b7ac8&l»&r 混合器拦截了奖励并直接拒绝，因此&#e0a92c&l太阳呼吸法&r和&#c0392b&l神乐舞&r会&#ff6b6b&l永远&r无法给予你此成就。"
+				"&#8b7ac8&l»&r 免疫检查会完全忽略进度，所以即使你拥有它，也无法保护你。"
+				"&#8b7ac8&l»&r 如果你有，玩家tick处理程序会不断从存档中撤销它。用管理员命令授予，一秒钟内又会失去。"
+				"所以这不是一个“肝”出来的任务。根据设计，它在正常游戏中是无法达成的，因为模组作者不希望&#e0a92c&lSun Breathing&r成为绕过恶魔阳光进阶的捷径。请使用Conquering the Sun，那才是真正的任务。"
+				"如果你的服务器管理员已将 disable_sun_breathing_sunlight_immunity 明确设为 false，那么 &#e0a92c&lSun Breathing&r 将完全按照上述描述工作，并且在你首次使用任何 Sun 形态时，该任务将自动完成。"
+			]
+			id: "5638BC3A69EE5896"
+			rewards: [
+				{
+					id: "12CF3BFA2004FED9"
+					type: "xp_levels"
+					xp_levels: 4
+				}
+				{
+					id: "61A58DC0F81CA255"
+					item: "minecraft:totem_of_undying"
+					type: "item"
+				}
+			]
+			size: 1.5d
+			tags: ["demon-path"]
+			tasks: [{
+				advancement: "kimetsunoyaiba:overcome_sunlight"
+				criterion: ""
+				id: "5C4297CE4B3E0843"
+				type: "advancement"
+			}]
+			title: "克服阳光 (Overcome Sunlight)"
+			x: 4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["2EA7E5FBDD3DB49B"]
+			description: [
+				"之所以这一切可逆，是因为&#c0392b&lMuzan&r找不到回去的方法，这不是设定问题，而是故事前提。"
+				"&#e8e2d4&lTamayo&r是故事中唯一一个从恶魔倒推治愈方法的人。模组为她提供了一种药物，该成就名为“打破诅咒”。</c2></c1>"
+				"如果你在本章顶部选择了三条路之一，那么问题就在这里得到解答。否则，此模组中的恶魔化是单向的——没有可饮用的物品，也没有可用的祭坛。"
+				"基础模组还注册了一种名为“变回人药水”的药水，是同一理念的具体化。如果逆转此效果对他们重要，那么&#e8e2d4&l炼金术台&r就是恶魔玩家该花时间的地方。"
+				"这原本属于 Slayer Path 技能集，但这是错误的：它是模组对恶魔形态的诠释，而非屠魔者的技巧。"
+			]
+			id: "0BC83C46191EDBB3"
+			rewards: [
+				{
+					id: "15F75C068B558C55"
+					type: "xp_levels"
+					xp_levels: 4
+				}
+				{
+					count: 16
+					id: "40E56C9F1AA9BAF5"
+					item: "minecraft:emerald"
+					type: "item"
+				}
+			]
+			size: 1.4d
+			tags: ["demon-path"]
+			tasks: [{
+				advancement: "kimetsunoyaiba:break_curse"
+				criterion: ""
+				id: "20DB8741DE4E9EF2"
+				type: "advancement"
+			}]
+			title: "打破诅咒"
+			x: 3.9904476190476217d
+			y: -1.591674999999995d
+		}
+		{
+			dependencies: ["33967A9D4EF71D16"]
+			description: [
+				"&#c0392b&lMuzan&r为了逃避死亡而变成了鬼。他没想到自己会变成一个需要进食的怪物。"
+				"恶魔靠&#c0392b&l人肉&r生存。模组本身使用数字十——它会用KnYMpHumansConsumed标签记录你消耗的每个人，这个计数器驱动着转化过程。"
+				"吃掉十块&#c0392b&l人肉&r。带上&#c0392b&l人肉糜&r x10，此阶段即完成。"
+				"为什么是肉末而不是生肉？因为这个模组有十一种不同的肉，每一种都会加工成&#c0392b&l肉末人肉&r。可以剁成肉末的完整列表：村民、&#c0392b&l鬼灭之刃&r、三种等级的&#c0392b&l人肉&r，以及&#c0392b&l魔王&r身体的六个部位——头部各变体、身体、一条手臂和一条腿。"
+				"所以猎杀哪种恶魔并不重要。从尸体上取下的任何东西都会经过相同的配方。一张&#e8e2d4&l炼金术台&r，十具尸体，无需特定目标。"
+				"关于措辞的&#6fd3e0&l说明&r，因为这很重要：任务要求你持有血肉，而模组要求你已吃掉它。变身会自行消耗饥饿度，所以正确的流程是先携带十块血肉，再让恶魔之路将其吞噬。"
+			]
+			id: "33A68255E39B6542"
+			rewards: [
+				{
+					id: "1D849BBEC12E27E8"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+				{
+					count: 8
+					id: "15457F5F179C542C"
+					item: "minecraft:emerald"
+					type: "item"
+				}
+			]
+			size: 1.4d
+			tags: ["demon-path"]
+			tasks: [
+				{
+					count: 10L
+					id: "7A0EE4BFCE06F3EF"
+					item: { Count: 10, id: "kimetsunoyaiba:human_flesh" }
+					optional_task: true
+					type: "item"
+				}
+				{
+					count: 10L
+					id: "4F81AFD8CE76868A"
+					item: { Count: 10, id: "kimetsunoyaibamultiplayer:human_flesh_3" }
+					optional_task: true
+					type: "item"
+				}
+				{
+					count: 10L
+					id: "2F6080C06CC9AE0B"
+					item: { Count: 10, id: "kimetsunoyaibamultiplayer:human_flesh_4" }
+					optional_task: true
+					type: "item"
+				}
+			]
+			title: "第一阶段 — 初尝鲜血的味道"
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["33A68255E39B6542"]
+			description: [
+				"夜间的村庄。十名村民在睡梦中悄无声息地被人带走。"
+				"军团会统计失踪人口。 &#ff6b6b&l不要&r让他们统计你的。"
+			]
+			id: "5E88B1A83109CF78"
+			rewards: [
+				{
+					id: "7F8F9A2EA9384428"
+					type: "xp"
+					xp: 50
+				}
+				{
+					count: 2
+					id: "029A150664403674"
+					item: "minecraft:emerald"
+					type: "item"
+				}
+			]
+			tasks: [{
+				entity: "minecraft:villager"
+				id: "3BE0A6B1BE456D26"
+				type: "kill"
+				value: 10L
+			}]
+			title: "第2阶段 — 无尽的饥饿"
+			x: 4.0d
+			y: 3.2d
+		}
+		{
+			dependencies: ["5E88B1A83109CF78"]
+			description: [
+				"在山脉深处，一个过于隐蔽而显得不自然的洞穴里，某样东西一直在等待着。"
+				"十二 &#e0a92c&lKizuki&r 之一的 &#c0392b&lLower Moon&r。他一直在研究如何杀死你。"
+			]
+			id: "1CC0D54B72E323D2"
+			rewards: [{
+				id: "0F5F838F3BA0545F"
+				type: "xp"
+				xp: 75
+			}]
+			tasks: [{
+				id: "05FB177C3F5EBC85"
+				type: "checkmark"
+			}]
+			title: "第3阶段 — 找到&#c0392b&l下月&r的巢穴"
+			x: 6.0d
+			y: 0.8d
+		}
+		{
+			dependencies: ["1CC0D54B72E323D2"]
+			description: [
+				"他是十二人中最弱的一个，也是那个洞穴里最危险的东西。"
+				"和他交谈。他想教你一些东西。"
+			]
+			id: "76182E68472C5187"
+			rewards: [{
+				id: "114CF3DDACB9D4D6"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				entity: "kimetsunoyaiba:demon"
+				id: "6D5D9395FA3DAD74"
+				type: "kill"
+				value: 1L
+			}]
+			title: "第3阶段 — &#c0392b&l卡马努埃&r"
+			x: 8.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["76182E68472C5187"]
+			description: [
+				"大声点。在开阔地烧毁一个村庄，让军团们跑过来。"
+				"&#c0392b&lKamanue&r想要一具尸体来解剖。一具&#c0392b&lDemon Slayer&r的尸体比黄金更值钱。"
+			]
+			id: "1C5D6675627C53F9"
+			rewards: [{
+				id: "5B82DCDE8C4F4DDE"
+				type: "xp"
+				xp: 150
+			}]
+			tasks: [{
+				entity: "kimetsunoyaiba:demon_slayer"
+				id: "207B6139F9F96FDB"
+				type: "kill"
+				value: 1L
+			}]
+			title: "第3阶段 — 恐吓村庄"
+			x: 10.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["1C5D6675627C53F9"]
+			description: ["把尸体带回来。 &#ff6b6b&l不要&r让他们先派清理小队来。"]
+			id: "0D5CB6993BB8CEFF"
+			rewards: [{
+				id: "01F9120D38F5E9F9"
+				type: "xp"
+				xp: 150
+			}]
+			tasks: [{
+				id: "79812BC340FF7EC7"
+				type: "checkmark"
+			}]
+			title: "第3阶段 — 归还屠夫的遗骸"
+			x: 12.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0D5CB6993BB8CEFF"]
+			description: [
+				"&#c0392b&lKamanue&r 用血肉建造了某物。它具有屠夫的技巧和恶魔的身体。"
+				"杀死它。保留技巧。"
+			]
+			id: "009855FC3A0E5320"
+			rewards: [
+				{
+					id: "4C11EF4E482A6D40"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+				{
+					count: 4
+					id: "03EE69A78E8FF257"
+					item: "kimetsunoyaiba:scarlet_ore"
+					type: "item"
+				}
+			]
+			size: 1.3d
+			tasks: [{
+				entity: "kimetsunoyaiba:demon"
+				id: "56242C916C65CC29"
+				type: "kill"
+				value: 1L
+			}]
+			title: "第3阶段 — 击败被恶魔化的屠夫"
+			x: 14.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["009855FC3A0E5320"]
+			description: [
+				"蜘蛛使魔找到你，提出一个提议：在废墟中，一个被猎人围困的恶魔之子。"
+				"她的名字是 Ryoko。对蜘蛛家族来说，活着的她比死去的她对军团更有价值。"
+			]
+			id: "2FA7C4BC1F2D6A3D"
+			rewards: [{
+				id: "14300376D1836F26"
+				type: "xp"
+				xp: 200
+			}]
+			tasks: [{
+				id: "5C6998A948F776E9"
+				type: "checkmark"
+			}]
+			title: "第4阶段 — 找到恶魔之子"
+			x: 16.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["2FA7C4BC1F2D6A3D"]
+			description: ["在他们杀死孩子之前，先杀死那些屠夫。如果她死了，协议就作废了。"]
+			id: "743BBD31AF717A22"
+			rewards: [{
+				id: "7B68296E15662CCE"
+				type: "xp"
+				xp: 250
+			}]
+			tasks: [{
+				entity: "kimetsunoyaiba:demon_slayer"
+				id: "520575CA533DA116"
+				type: "kill"
+				value: 3L
+			}]
+			title: "第4阶段 — 保护良子"
+			x: 18.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["743BBD31AF717A22"]
+			description: ["把她带回家，送到她母亲那里。如果她在路上死了，就什么都带不回来了。"]
+			id: "68B8899BB2E07AD3"
+			rewards: [
+				{
+					id: "1167E1C7C58E24D5"
+					type: "xp"
+					xp: 250
+				}
+				{
+					count: 12
+					id: "02F7AE06CA859D64"
+					item: "minecraft:experience_bottle"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "7F484CFA7963AF36"
+				type: "checkmark"
+			}]
+			title: "第4阶段 — 护送良子前往蜘蛛山"
+			x: 20.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["68B8899BB2E07AD3"]
+			description: [
+				"这个家族收留了你。 &#c0392b&lRui&r 无偿地为你提供蜘蛛恶魔血，没有任何附加义务。"
+				"最后那部分是&#ff6b6b&l警告&r。"
+			]
+			id: "17F3E364077AFF06"
+			rewards: [
+				{
+					id: "2A41B130D54630A7"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+				{
+					count: 4
+					id: "49429484D159EE3E"
+					item: "kimetsunoyaiba:scarlet_ore"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "5846B8CE5A6C3252"
+				type: "checkmark"
+			}]
+			title: "第4阶段 — 加入蜘蛛家族"
+			x: 22.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["17F3E364077AFF06"]
+			description: [
+				"一家人聚集在庭院里。 &#c0392b&lRui&r 将执行惩罚。"
+				"接下来会发生什么，正是故事分叉的地方。"
+			]
+			id: "2B3348CC7A35F5B6"
+			rewards: [{
+				id: "7251E79E2FCFF5E4"
+				type: "xp"
+				xp: 300
+			}]
+			tasks: [{
+				id: "601F9303BD9069DD"
+				type: "checkmark"
+			}]
+			title: "第5阶段 — 见证惩罚"
+			x: 24.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["2B3348CC7A35F5B6"]
+			description: ["她想私下里和你谈谈。 &#c0392b&lRui&r 并不喜欢这样。"]
+			id: "1661401226B31F4F"
+			rewards: [{
+				id: "6C7BE530BBD06CDE"
+				type: "xp"
+				xp: 300
+			}]
+			tasks: [{
+				id: "7E53C54CF7F52978"
+				type: "checkmark"
+			}]
+			title: "第5阶段 — 与女儿交谈"
+			x: 26.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["1661401226B31F4F"]
+			description: [
+				"&#c0392b&lRui&r要求当着所有人的面，公开处死她。"
+				"攻击&#c0392b&lRui&r，即与Daughter结盟。攻击Daughter，即选择了&#c0392b&lRui&r。"
+				"两个分支都会在下方的位置完成。选择你需要的一个即可。"
+			]
+			id: "5FCBD99854E85C5C"
+			rewards: [{
+				id: "21EC0BD3B8CE7307"
+				type: "xp_levels"
+				xp_levels: 2
+			}]
+			size: 1.5d
+			tasks: [{
+				id: "4570BC9C615A3641"
+				type: "checkmark"
+			}]
+			title: "第5阶段 — 选择一条道路"
+			x: 28.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5FCBD99854E85C5C"]
+			description: ["穿戴蜘蛛形态，烧毁村庄，消灭前来讨伐的猎人。"]
+			id: "1632953D60B881FD"
+			rewards: [{
+				id: "3B45E7A608D3DCFB"
+				type: "xp"
+				xp: 400
+			}]
+			subtitle: "站在女儿这一边"
+			tasks: [{
+				entity: "kimetsunoyaiba:demon_slayer"
+				id: "6BFFA3CD52D253BF"
+				type: "kill"
+				value: 5L
+			}]
+			title: "分支：女儿 — 恐吓一个村庄"
+			x: 30.0d
+			y: 0.8d
+		}
+		{
+			dependencies: ["1632953D60B881FD"]
+			description: ["快跑。找到母亲。在山体崩塌时向她求助。"]
+			id: "1632923D60B87CE4"
+			rewards: [{
+				id: "605C2C1013AB83CC"
+				type: "xp"
+				xp: 400
+			}]
+			tasks: [{
+				id: "2D95B23F71F2DB99"
+				type: "checkmark"
+			}]
+			title: "分支：女儿 — 在&#c0392b&lRui&r的怒火中生存下来"
+			x: 32.0d
+			y: 0.8d
+		}
+		{
+			dependencies: ["1632923D60B87CE4"]
+			description: ["摧毁所有降落到房子上面的十个&#c0392b&l鬼灭之刃&r傀儡。"]
+			id: "1632933D60B87E97"
+			rewards: [
+				{
+					id: "56B027F8D2D27F55"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+				{
+					count: 8
+					id: "616C90B1DBBA017A"
+					item: "kimetsunoyaiba:scarlet_ore"
+					type: "item"
+				}
+			]
+			tasks: [{
+				entity: "kimetsunoyaiba:demon_slayer"
+				id: "4503A8200C6282F8"
+				type: "kill"
+				value: 10L
+			}]
+			title: "分支：女儿 — 恐怖的马戏团"
+			x: 34.0d
+			y: 0.8d
+		}
+		{
+			dependencies: ["1632933D60B87E97"]
+			description: ["活着离开这座山。家族里剩下的人已经不是你的问题了。"]
+			id: "1632903D60B8797E"
+			rewards: [
+				{
+					id: "612832E3BDAF815F"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+				{
+					count: 60
+					id: "39EFDF659FF0BCA1"
+					item: "kimetsunoyaibamultiplayer:yen"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "643213AB410DE9F6"
+				type: "checkmark"
+			}]
+			title: "分支：女儿 — 逃离纳塔古莫山"
+			x: 36.0d
+			y: 0.8d
+		}
+		{
+			dependencies: ["5FCBD99854E85C5C"]
+			description: [
+				"她被一位欠着这个家族人情债的医生治好了。"
+				"她很清楚你在那个庭院里到底做了什么。"
+			]
+			id: "162F8D3D60B63E8E"
+			rewards: [{
+				id: "6763562903C0883C"
+				type: "xp"
+				xp: 400
+			}]
+			subtitle: "与 &#c0392b&lRui&r 站在一边"
+			tasks: [{
+				id: "0F16B99A1421EF4E"
+				type: "checkmark"
+			}]
+			title: "分支：&#c0392b&lRui&r — 与女儿对峙"
+			x: 30.0d
+			y: -0.8d
+		}
+		{
+			dependencies: ["162F8D3D60B63E8E"]
+			description: [
+				"引诱十五名恶魔猎手进入隐藏的蜘蛛显现处。"
+				"它们&#ff6b6b&l不必&r在同一位置。相隔五格就足够了。"
+			]
+			id: "162F8C3D60B63CDB"
+			rewards: [
+				{
+					id: "40E7D52F275F449D"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+				{
+					count: 12
+					id: "6B7D421377FF40D2"
+					item: "kimetsunoyaiba:scarlet_ore"
+					type: "item"
+				}
+			]
+			tasks: [{
+				entity: "kimetsunoyaiba:demon_slayer"
+				id: "1D9498E6ABCB3C93"
+				type: "kill"
+				value: 15L
+			}]
+			title: "分支：&#c0392b&lRui&r — 建造傀儡军团"
+			x: 32.0d
+			y: -0.8d
+		}
+		{
+			dependencies: ["162F8C3D60B63CDB"]
+			description: ["&#c0392b&lRui&r 已经抵达。他很不高兴，并要求一个解释。"]
+			id: "162F8B3D60B63B28"
+			rewards: [{
+				id: "3842AF8BBEA48A3D"
+				type: "xp"
+				xp: 600
+			}]
+			tasks: [{
+				id: "0735B819A6104A80"
+				type: "checkmark"
+			}]
+			title: "分支：&#c0392b&lRui&r — 向&#c0392b&lRui&r汇报"
+			x: 34.0d
+			y: -0.8d
+		}
+		{
+			dependencies: ["162F8B3D60B63B28"]
+			description: [
+				"她被&#e8e2d4&lZenitsu&r和一整队猎人守卫着。"
+				"这场战斗将决定整个故事的发展走向。"
+			]
+			id: "162F923D60B6470D"
+			rewards: [
+				{
+					id: "2BAE0B568B766E56"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+				{
+					count: 4
+					id: "26F7A9628FACA8F7"
+					item: "minecraft:netherite_ingot"
+					type: "item"
+				}
+			]
+			size: 1.3d
+			tasks: [{
+				id: "1CADD6C8FE3F8B45"
+				type: "checkmark"
+			}]
+			title: "分支：&#c0392b&lRui&r — 杀死女儿"
+			x: 36.0d
+			y: -0.8d
+		}
+		{
+			dependencies: ["162F923D60B6470D"]
+			description: ["如果能绕过&#e8e2d4&lZenitsu&r，就向&#c0392b&lRui&r汇报。"]
+			id: "162F913D60B6455A"
+			rewards: [
+				{
+					id: "7C8340489E845B65"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+				{
+					count: 60
+					id: "3ED4E8553CE3A994"
+					item: "kimetsunoyaibamultiplayer:yen"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "4962D9F0C299DBC3"
+				type: "checkmark"
+			}]
+			title: "分支：&#c0392b&lRui&r — 逃离纳塔古莫蜘蛛"
+			x: 38.0d
+			y: 0.0d
+		}
+	]
+	subtitle: ["另一条路。进食、隐藏，变得足够强大，让任何人都无法将你击倒。"]
+	title: "&#c0392b&l&n第一幕&r&#c0392b&l— 永恒 (恶魔之路)&r"
+}

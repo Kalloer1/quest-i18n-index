@@ -1,0 +1,399 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "step_a"
+	group: "61115D80150B8792"
+	icon: {
+		Count: 1
+		id: "ftbquests:custom_icon"
+		tag: {
+			Icon: "mekanism:item/alloy_atomic"
+		}
+	}
+	id: "7B1C80209494D375"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: [
+				"68D26967C5C78394"
+				"1C7EE2521D7371F5"
+			]
+			description: ["你需要在铁块旁边引爆TNT来制造第一批锭。在玄武岩洞里操作，以免破坏基地。在建成压力室之前，这是唯一的方法。"]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			id: "133271CF41705ADD"
+			size: 1.5d
+			tasks: [{
+				count: 32L
+				id: "568B60F2F02C06C0"
+				item: { Count: 32, id: "pneumaticcraft:ingot_iron_compressed" }
+				type: "item"
+			}]
+			title: "压缩铁块 (Compressed Iron)"
+			x: 4.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["133271CF41705ADD"]
+			id: "3C91CF733D99D116"
+			subtitle: "第一个压力的来源"
+			tasks: [{
+				id: "46512DEFE570E5BE"
+				item: "pneumaticcraft:air_compressor"
+				type: "item"
+			}]
+			x: 1.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["3ED017B64AC1D0BB"]
+			description: ["右键阀门以设置限制（例如，4.8 巴）。如果压力过高，阀门会释放多余空气（会听到嘶嘶声）。这将保护你的基地免于爆炸。"]
+			id: "3FE954280EB36B8C"
+			subtitle: "将安全泄压阀安装在管道上"
+			tasks: [{
+				id: "170EFEEC5DFA5B15"
+				item: "pneumaticcraft:pressure_tube"
+				type: "item"
+			}]
+			title: "压力管道 (Pressure Tubes)"
+			x: 0.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["3FE954280EB36B8C"]
+			description: ["不想让你的基地被炸毁，就必须拥有这个。"]
+			id: "10918EFD33F16144"
+			subtitle: "安全阀"
+			tasks: [{
+				id: "40DB41ADA57416B6"
+				item: "pneumaticcraft:safety_tube_module"
+				type: "item"
+			}]
+			title: "安全泄压阀"
+			x: -0.5d
+			y: 5.5d
+		}
+		{
+			dependencies: ["10918EFD33F16144"]
+			id: "29D0324DA97E174A"
+			subtitle: "使用空气为工具充电"
+			tasks: [{
+				id: "71D042717E6C8D25"
+				item: "pneumaticcraft:charging_station"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 7.0d
+		}
+		{
+			dependencies: ["133271CF41705ADD"]
+			description: ["这些是多区块机器的基本组件。在专家模式下，它们需要压缩铁和第三章的方块。"]
+			id: "741E8C82F6E0CB05"
+			subtitle: "制作20x压力舱室墙壁"
+			tasks: [{
+				count: 27L
+				id: "2E9323F28CDBF08E"
+				item: { Count: 27, id: "pneumaticcraft:pressure_chamber_wall" }
+				type: "item"
+			}]
+			title: "压力舱室墙壁"
+			x: 2.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["3C91CF733D99D116"]
+			description: ["该装置可将燃料（如TFMG的煤炭或石油）转化为压力。"]
+			id: "3ED017B64AC1D0BB"
+			tasks: [{
+				id: "03FD22134342FC2E"
+				item: "pneumaticcraft:liquid_compressor"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["741E8C82F6E0CB05"]
+			description: ["可以让你看到密室内部的情况。这样你就能知道物品是否已经被处理过了。"]
+			id: "6AE527484D9FAF15"
+			subtitle: "至少制作 2x 压力室玻璃"
+			tasks: [{
+				count: 2L
+				id: "5115AD82F27C2B55"
+				item: "pneumaticcraft:pressure_chamber_glass"
+				type: "item"
+			}]
+			title: "虚空之窗"
+			x: 2.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["0EB89F7BA960D1A9"]
+			id: "7E12B62BEB1EE952"
+			tasks: [{
+				advancement: "pneumaticcraft:pressure_chamber"
+				criterion: ""
+				icon: "pneumaticcraft:pressure_chamber_wall"
+				id: "53FE62D12D20A4FE"
+				type: "advancement"
+			}]
+			x: 3.0d
+			y: 7.0d
+		}
+		{
+			dependencies: [
+				"133271CF41705ADD"
+				"52F2E6BFAEB676A9"
+			]
+			description: ["将原料投入接口（In）。腔室必须加压（例如，2.0 巴）。物品将结合成新产物并从接口（Out）排出。"]
+			id: "11933024A1BFF7EA"
+			subtitle: "在腔室内制作一个气动缸体"
+			tasks: [{
+				id: "0F52AAFE6A0EC4F6"
+				item: "pneumaticcraft:pneumatic_cylinder"
+				type: "item"
+			}]
+			title: "首次合成任务书文本"
+			x: 0.5d
+			y: 9.0d
+		}
+		{
+			dependencies: ["7E12B62BEB1EE952"]
+			description: [
+				"使用精炼厂的液态塑料，将其泵入压力室以制造PNC塑料片。这是高级电子元件的基础。"
+				"如何制作它？"
+				"首先，你需要从炼油厂供应LPG。然后，你需要建造一个热气动加工厂，它会供应LPG和煤炭。"
+			]
+			id: "52F2E6BFAEB676A9"
+			subtitle: "用PNC合成塑料"
+			tasks: [{
+				count: 32L
+				id: "262027E9903A6B37"
+				item: "pneumaticcraft:plastic"
+				type: "item"
+			}]
+			title: "又一个塑料块儿"
+			x: 2.5d
+			y: 8.0d
+		}
+		{
+			dependencies: [
+				"68D26967C5C78394"
+				"1C7EE2521D7371F5"
+			]
+			description: ["锇是Mekanism的核心。没有巨大的损耗，普通熔炉无法处理它。你需要机器。"]
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			id: "65A87B191833C23F"
+			size: 1.5d
+			subtitle: "开采锇矿石 Mine Osmium"
+			tasks: [{
+				count: 16L
+				id: "01247DC615E02628"
+				item: { Count: 16, id: "mekanism:ingot_osmium" }
+				type: "item"
+			}]
+			title: "蓝色金属"
+			x: 6.0d
+			y: 4.5d
+		}
+		{
+			dependencies: [
+				"133271CF41705ADD"
+				"65A87B191833C23F"
+				"3FE954280EB36B8C"
+			]
+			id: "09ABDE0D579B1BCF"
+			subtitle: "制作一个冶金学注入器"
+			tasks: [{
+				id: "5218698518383D80"
+				item: "mekanism:metallurgic_infuser"
+				type: "item"
+			}]
+			title: "第一台机器"
+			x: 4.5d
+			y: 6.5d
+		}
+		{
+			dependencies: ["09ABDE0D579B1BCF"]
+			description: ["将铁放入主槽，红石放入侧槽（作为燃料/充能物）。这将制造出Mekanism的基本电子元件。"]
+			id: "2299EAE2765B472B"
+			subtitle: "合成附魔合金 Infused Alloy"
+			tasks: [{
+				count: 16L
+				id: "75278B52537490C6"
+				item: "mekanism:alloy_infused"
+				type: "item"
+			}]
+			title: "金属浸渍工艺"
+			x: 4.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["7A8E8EE523D7C1E0"]
+			description: ["一份富碳提供的灌注点数是普通碳的8倍。这是提高效率的关键。"]
+			id: "64DA6B7AB112E798"
+			optional: true
+			subtitle: "在富集室中合成富集碳"
+			tasks: [{
+				count: 16L
+				id: "7D1A30379BEFC8E1"
+				item: "mekanism:enriched_carbon"
+				type: "item"
+			}]
+			title: "洁净煤炭"
+			x: 2.5d
+			y: 9.0d
+		}
+		{
+			dependencies: [
+				"09ABDE0D579B1BCF"
+				"2299EAE2765B472B"
+			]
+			description: ["它可以将锇气注入到其他材料中。"]
+			id: "7F299FBA8BEF81CB"
+			subtitle: "建造锇压缩机"
+			tasks: [{
+				id: "154D3EC61FF607CB"
+				item: "mekanism:osmium_compressor"
+				type: "item"
+			}]
+			x: 7.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["09ABDE0D579B1BCF"]
+			description: ["将坚硬的玄武岩磨成粉。你需要用它来制作最坚硬的合金：精炼玄武岩。"]
+			id: "0C397AE3CFC3A100"
+			subtitle: "建造一台破碎机 (Mekanism)"
+			tasks: [{
+				id: "153EDEA2C861FE55"
+				item: "mekanism:crusher"
+				type: "item"
+			}]
+			title: "正在粉碎中"
+			x: 8.5d
+			y: 7.5d
+		}
+		{
+			dependencies: [
+				"2299EAE2765B472B"
+				"7F299FBA8BEF81CB"
+				"0E02D27C4889FBF9"
+			]
+			description: ["将富集钻石注入强化合金。这是精英级处理器的基础。"]
+			id: "410AABB4B7D83375"
+			subtitle: "合成强化合金 Reinforced Alloy"
+			tasks: [{
+				count: 16L
+				id: "719B1522AD88A25E"
+				item: { Count: 16, id: "mekanism:alloy_reinforced" }
+				type: "item"
+			}]
+			title: "钻石灌注"
+			x: 5.5d
+			y: 10.0d
+		}
+		{
+			dependencies: [
+				"1A0E2774CD9C72F7"
+				"11933024A1BFF7EA"
+				"42E228BC690CD9C0"
+				"64DA6B7AB112E798"
+			]
+			description: ["这台机器能将矿石直接从地面传送到你的基地。它需要所有前序步骤：钢、锇、钻石合金，以及你的AE2处理器。"]
+			id: "7B43EA0C8D1D5443"
+			size: 1.5d
+			subtitle: "建造一台数字矿工"
+			tasks: [{
+				id: "45ACF552FB35D200"
+				item: "mekanism:digital_miner"
+				type: "item"
+			}]
+			title: "数字矿工"
+			x: 1.5d
+			y: 10.5d
+		}
+		{
+			dependencies: ["6AE527484D9FAF15"]
+			id: "0EB89F7BA960D1A9"
+			tasks: [{
+				count: 2L
+				id: "6261167FC55501A8"
+				item: { Count: 2, id: "pneumaticcraft:pressure_chamber_interface" }
+				type: "item"
+			}]
+			x: 3.5d
+			y: 5.5d
+		}
+		{
+			dependencies: [
+				"65A87B191833C23F"
+				"09ABDE0D579B1BCF"
+			]
+			id: "7A8E8EE523D7C1E0"
+			tasks: [{
+				id: "5E48280E5FA8E207"
+				item: "mekanism:enrichment_chamber"
+				type: "item"
+			}]
+			x: 5.5d
+			y: 8.5d
+		}
+		{
+			dependencies: ["0C397AE3CFC3A100"]
+			id: "0E02D27C4889FBF9"
+			tasks: [{
+				id: "19AD0EFC1153B594"
+				item: "mekanism:dust_diamond"
+				type: "item"
+			}]
+			x: 6.5d
+			y: 9.5d
+		}
+		{
+			dependencies: [
+				"08E39CA40D55E1B3"
+				"410AABB4B7D83375"
+			]
+			id: "1A0E2774CD9C72F7"
+			tasks: [{
+				count: 16L
+				id: "1EB56033296E3FEB"
+				item: { Count: 16, id: "mekanism:alloy_atomic" }
+				type: "item"
+			}]
+			x: 7.0d
+			y: 11.0d
+		}
+		{
+			dependencies: ["7A8E8EE523D7C1E0"]
+			id: "08E39CA40D55E1B3"
+			tasks: [{
+				id: "522D6AC380193D8F"
+				item: "mekanism:dust_refined_obsidian"
+				type: "item"
+			}]
+			x: 8.0d
+			y: 9.5d
+		}
+		{
+			dependencies: [
+				"410AABB4B7D83375"
+				"2299EAE2765B472B"
+			]
+			id: "42E228BC690CD9C0"
+			subtitle: "制作一个精英控制电路"
+			tasks: [{
+				id: "33D45164B3AFC6DA"
+				item: "mekanism:elite_control_circuit"
+				type: "item"
+			}]
+			x: 3.0d
+			y: 10.0d
+		}
+	]
+	title: "步骤 A"
+}
