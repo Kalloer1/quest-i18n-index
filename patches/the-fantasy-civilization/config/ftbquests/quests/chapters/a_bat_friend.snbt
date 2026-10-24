@@ -1,0 +1,626 @@
+# AI 初翻，未人工校对
+{
+	id: "70FD66E1A15E982A"
+	group: "683CC179AA0FD2E7"
+	order_index: 6
+	filename: "a_bat_friend"
+	title: "蝙蝠伙伴 (A Bat Friend)"
+	icon: {
+		id: "companion_bats:bat_item"
+		Count: 1b
+		tag: {
+			Damage: 0
+		}
+	}
+	subtitle: ["伙伴蝙蝠"]
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "NaNaNaNaNa 蝙蝠伙伴"
+			x: 0.3d
+			y: -0.8999999999999999d
+			subtitle: "黎明前，黑夜最为深沉。"
+			description: ["给蝙蝠一点南瓜派，让它成为你的朋友。"]
+			dependencies: ["7690573F4B4DD145"]
+			id: "6A0589362D4C2E3A"
+			tasks: [{
+				id: "7614065C5C21FC3A"
+				type: "item"
+				item: {
+					id: "companion_bats:bat_item"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "1B5FE282AAF30D94"
+				type: "item"
+				item: {
+					id: "companion_bats:experience_pie"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+					}
+				}
+				count: 2
+			}]
+		}
+		{
+			title: "首先我们得烘焙一下？？？"
+			x: 0.3d
+			y: 3.0d
+			description: ["烤一个南瓜派来认识你的新伙伴吧"]
+			id: "7690573F4B4DD145"
+			tasks: [{
+				id: "5B52E762C937FDBB"
+				type: "item"
+				item: {
+					id: "minecraft:pumpkin_pie"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "55CA82AA89A157D1"
+				type: "item"
+				item: {
+					id: "minecraft:pumpkin_pie"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+					}
+				}
+				count: 3
+			}]
+		}
+		{
+			title: "请帮我拿着我的东西，拜托了"
+			x: 0.3d
+			y: -3.5999999999999996d
+			subtitle: "制作一个蝙蝠袋 (Bat Pouch)"
+			description: ["要将新伙伴装备上袋子，你必须先将其放入物品栏，然后在爬行时按下右键。这样蝙蝠的菜单就会打开。"]
+			dependencies: ["6A0589362D4C2E3A"]
+			id: "381AE539B7A472B8"
+			tasks: [{
+				id: "6DA7DE1E923E578C"
+				type: "item"
+				item: {
+					id: "companion_bats:bat_pouch"
+					Count: 1b
+					tag: { }
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "76D53CDFBCB763F8"
+				type: "item"
+				item: {
+					id: "companion_bats:experience_pie"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+					}
+				}
+			}]
+		}
+		{
+			title: "升级了！LVL up!"
+			x: 2.4d
+			y: -1.7999999999999998d
+			subtitle: "提升你的蝙蝠等级"
+			description: ["你可以通过喂食派、附魔或让他为你战斗来提升同伴的等级"]
+			dependencies: ["6A0589362D4C2E3A"]
+			id: "5DEDCC0303EFDA48"
+			tasks: [{
+				id: "7ADC75B8C93BEA98"
+				type: "questsadditions:interaction"
+				entity: "companion_bats:bat"
+				nbt: { }
+				value: 1L
+				checkItem: true
+			}]
+			rewards: [{
+				id: "49AE5D1FA66F40B3"
+				type: "item"
+				item: {
+					id: "companion_bats:experience_pie"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+					}
+				}
+			}]
+		}
+		{
+			title: "更多关卡！"
+			x: 5.1d
+			y: -3.0d
+			subtitle: "把你的伙伴升到5级左右怎么样？"
+			dependencies: ["5DEDCC0303EFDA48"]
+			id: "557FF389D070C735"
+			tasks: [{
+				id: "2051035B5DADBF97"
+				type: "questsadditions:interaction"
+				entity: "companion_bats:bat"
+				nbt: { }
+				value: 5L
+				checkItem: false
+			}]
+			rewards: [{
+				id: "231511BED77434D2"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+		}
+		{
+			title: "靠的是运气而非技巧"
+			x: 7.8d
+			y: -3.9d
+			subtitle: "将你的蝙蝠伙伴升级到10级。"
+			description: ["无法通过真实的等级提升来实现，所以改用交互方式。很抱歉。"]
+			dependencies: ["557FF389D070C735"]
+			id: "27C908E9954F4BB6"
+			tasks: [{
+				id: "56B1C9118C2CFE57"
+				type: "questsadditions:interaction"
+				entity: "companion_bats:bat"
+				nbt: { }
+				value: 20L
+				checkItem: false
+			}]
+			rewards: [{
+				id: "047D0A37E918BCD8"
+				type: "item"
+				item: {
+					id: "companion_bats:experience_pie"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+					}
+				}
+				count: 3
+			}]
+		}
+		{
+			title: "我的运气就是我的技巧了，现在"
+			x: 10.799999999999999d
+			y: -4.5d
+			subtitle: "将你的迷你蝙蝠侠升级到15级"
+			dependencies: ["27C908E9954F4BB6"]
+			id: "2F0B33E7B0B842B0"
+			tasks: [{
+				id: "655844992F9B242F"
+				type: "questsadditions:interaction"
+				entity: "companion_bats:bat"
+				nbt: { }
+				value: 50L
+				checkItem: false
+			}]
+			rewards: [
+				{
+					id: "5D8964FF2470D276"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "1AEC78C69B0FED7E"
+					type: "random"
+					table_id: 4734148794142699034L
+				}
+			]
+		}
+		{
+			title: "不可能再获得更多了"
+			x: 14.1d
+			y: -5.1d
+			subtitle: "将你的朋友升级到20级"
+			dependencies: ["2F0B33E7B0B842B0"]
+			id: "6A18B1779DA3A610"
+			tasks: [{
+				id: "53E2C6BD2C986018"
+				type: "questsadditions:interaction"
+				entity: "companion_bats:bat"
+				nbt: { }
+				value: 100L
+				checkItem: false
+			}]
+			rewards: [
+				{
+					id: "00BBFAEEAABD65FF"
+					type: "item"
+					item: {
+						id: "vanillafoodpantry:snocone_chorusfruit"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+				{
+					id: "1FC675C2D7D067D9"
+					type: "random"
+					table_id: 2742965285575870096L
+				}
+				{
+					id: "132CA29E62A7BE35"
+					type: "xp_levels"
+					xp_levels: 7
+				}
+			]
+		}
+		{
+			x: -1.5d
+			y: -1.2d
+			subtitle: "制作你的第一件伙伴盔甲"
+			dependencies: ["6A0589362D4C2E3A"]
+			id: "2EB8DF7EE7996885"
+			tasks: [{
+				id: "121EC24A7BBBD4B8"
+				type: "item"
+				item: {
+					id: "companion_bats:knight_plate"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "48253B760BEC69C4"
+					type: "item"
+					item: {
+						id: "companion_bats:bunny_ears"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+				{
+					id: "45050381383CC553"
+					type: "ftbmoney:money"
+					ftb_money: 10L
+				}
+			]
+		}
+		{
+			x: -5.7d
+			y: -4.8d
+			dependencies: ["295991FF2A710B5E"]
+			id: "300F4345BF082268"
+			tasks: [{
+				id: "2C539D4953581376"
+				type: "item"
+				item: {
+					id: "companion_bats:looter_jacket"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "5BF536598429265A"
+					type: "item"
+					item: {
+						id: "companion_bats:alchemist_robe"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+				{
+					id: "3D96EAA03641D759"
+					type: "ftbmoney:money"
+					ftb_money: 10L
+				}
+			]
+		}
+		{
+			x: -11.1d
+			y: -5.3999999999999995d
+			dependencies: ["79024B643A3B2567"]
+			id: "4B011E418068614A"
+			tasks: [{
+				id: "7A8C087C147B9F9C"
+				type: "item"
+				item: {
+					id: "companion_bats:duelist_costume"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "62349830D5080360"
+					type: "item"
+					item: {
+						id: "companion_bats:ninja_garb"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+				{
+					id: "590B0F1926996F72"
+					type: "ftbmoney:money"
+					ftb_money: 100L
+				}
+			]
+		}
+		{
+			x: -3.5999999999999996d
+			y: -1.7999999999999998d
+			subtitle: "制作你的第一个蝙蝠配饰"
+			dependencies: ["2EB8DF7EE7996885"]
+			id: "1568A6FCFC70A5C1"
+			tasks: [{
+				id: "38ED743182C89933"
+				type: "item"
+				item: {
+					id: "companion_bats:decorative_flower"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "243EDC32F0946611"
+					type: "item"
+					item: {
+						id: "companion_bats:plated_boots"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+				{
+					id: "4AC7779B35882035"
+					type: "ftbmoney:money"
+					ftb_money: 10L
+				}
+			]
+		}
+		{
+			x: -5.7d
+			y: -2.4d
+			dependencies: ["1568A6FCFC70A5C1"]
+			id: "295991FF2A710B5E"
+			tasks: [{
+				id: "0DDDFA3EB0348777"
+				type: "item"
+				item: {
+					id: "companion_bats:pumpkin_bandana"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "7DE05E96715C440E"
+					type: "item"
+					item: {
+						id: "companion_bats:spirit_shard"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+				{
+					id: "6FE13BBAFBCA4F05"
+					type: "ftbmoney:money"
+					ftb_money: 10L
+				}
+			]
+		}
+		{
+			x: -8.1d
+			y: -5.1d
+			dependencies: ["300F4345BF082268"]
+			id: "79024B643A3B2567"
+			tasks: [{
+				id: "03A96BC30C20DA29"
+				type: "item"
+				item: {
+					id: "companion_bats:inferno_suit"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "596C284A1689BA9E"
+				type: "item"
+				item: {
+					id: "companion_bats:alchemist_robe"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+					}
+				}
+			}]
+		}
+		{
+			x: -14.1d
+			y: -5.3999999999999995d
+			dependencies: ["4B011E418068614A"]
+			id: "1A381822DBE408CD"
+			tasks: [{
+				id: "14191185A0BB37AA"
+				type: "item"
+				item: {
+					id: "companion_bats:destroyer_gear"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "5D03A8B5C2AF113C"
+					type: "ftbmoney:money"
+					ftb_money: 500L
+				}
+				{
+					id: "410FC1C2842BB124"
+					type: "item"
+					item: {
+						id: "companion_bats:vampiric_attire"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			x: -9.0d
+			y: 0.0d
+			dependencies: ["295991FF2A710B5E"]
+			id: "2FCD35BE866602E5"
+			tasks: [{
+				id: "128E715FB2209F32"
+				type: "item"
+				item: {
+					id: "companion_bats:mummy_bandages"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "75AC450648691A04"
+					type: "item"
+					item: {
+						id: "companion_bats:wither_mask"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+				{
+					id: "0B2A186D6AAAEBDB"
+					type: "ftbmoney:money"
+					ftb_money: 50L
+				}
+			]
+		}
+		{
+			x: -2.1d
+			y: 0.8999999999999999d
+			dependencies: ["2EB8DF7EE7996885"]
+			id: "4E2DDB248B32613D"
+			tasks: [{
+				id: "275EE2492EE4D496"
+				type: "item"
+				item: {
+					id: "companion_bats:wolf_pelt"
+					Count: 1b
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "1122E05B1275862E"
+					type: "item"
+					item: {
+						id: "companion_bats:spirit_shard"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+				{
+					id: "6AA51A0A1403E65E"
+					type: "ftbmoney:money"
+					ftb_money: 10L
+				}
+			]
+		}
+	]
+}
