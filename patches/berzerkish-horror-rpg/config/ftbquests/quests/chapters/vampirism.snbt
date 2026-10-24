@@ -1,0 +1,329 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "vampirism"
+	group: "31D4B6F3C6A48621"
+	icon: {
+		Count: 1
+		ForgeCaps: {
+			"celestisynth:celestisynthitemstackcapabilities": {
+				cs.aquaSkin: 0
+			}
+		}
+		id: "vampirism:vampire_blood_bottle"
+	}
+	id: "2526481F6B9F1F2B"
+	images: [
+		{
+			height: 1.0d
+			image: "minecraft:item/vampirism"
+			rotation: 0.0d
+			width: 7.0519480519480515d
+			x: 2.0d
+			y: -2.5d
+		}
+		{
+			height: 9.0d
+			image: "minecraft:item/bat"
+			rotation: 0.0d
+			width: 10.0d
+			x: 2.0d
+			y: 2.0d
+		}
+	]
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["使用一些吸血鬼獠牙，等待中毒效果消失即可变成吸血鬼。不要死！"]
+			icon: {
+				Count: 1
+				ForgeCaps: {
+					"celestisynth:celestisynthitemstackcapabilities": {
+						cs.aquaSkin: 0
+					}
+				}
+				id: "vampirism:vampire_fang"
+			}
+			id: "7450E03CDAAE13E2"
+			rewards: [{
+				id: "35A0E5B01092676C"
+				item: "vampirism:vampire_fang"
+				type: "item"
+			}]
+			shape: "diamond"
+			size: 1.5d
+			tasks: [{
+				id: "7ECD7F6CAB5FE87F"
+				title: "成为一名吸血鬼 (Become a Vampire)"
+				type: "checkmark"
+			}]
+			x: 0.75d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7450E03CDAAE13E2"]
+			hide_dependency_lines: false
+			icon: {
+				Count: 1
+				ForgeCaps: {
+					"celestisynth:celestisynthitemstackcapabilities": {
+						cs.aquaSkin: 0
+					}
+				}
+				id: "vampirism:vampire_blood_bottle"
+			}
+			id: "168995DFEE534DB0"
+			rewards: [{
+				count: 10
+				id: "4395DEA0CAA1CC65"
+				item: "vampirism:human_heart"
+				type: "item"
+			}]
+			shape: "diamond"
+			tasks: [{
+				advancement: "vampirism:vampire/become_vampire"
+				criterion: ""
+				id: "59586EB8841972D5"
+				type: "advancement"
+			}]
+			title: "超越人类的界限 (Moving Beyond Humanity)"
+			x: -0.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["168995DFEE534DB0"]
+			description: ["制作灵感祭坛并用血填满它以升级"]
+			hide_dependency_lines: false
+			id: "6F1D88B5700EE8C2"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "71D025B2AEDFFE25"
+				table_id: 9207323530576631513L
+				type: "choice"
+			}]
+			shape: "diamond"
+			tasks: [{
+				id: "52E8D4E3CC1612CC"
+				item: "vampirism:altar_inspiration"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["6F1D88B5700EE8C2"]
+			description: ["放置灌注祭坛，并用6根x3祭坛柱环绕，然后在每根柱子上放置祭坛顶，最后用金块填满所有祭坛柱"]
+			hide_dependency_lines: false
+			id: "40885BD4B47360D6"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "237A64452607055A"
+				table_id: 8678207702469939034L
+				type: "choice"
+			}]
+			shape: "diamond"
+			subtitle: "制作用于吸血鬼等级5-14的灌注祭坛"
+			tasks: [{
+				id: "13AF50DB22A707CD"
+				item: "vampirism:altar_infusion"
+				type: "item"
+			}]
+			title: "制作灌注祭坛 (Craft the Altar of Infusion)"
+			x: 2.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["40885BD4B47360D6"]
+			description: ["杀死20个吸血鬼男爵，获取升级所需的纯净血液"]
+			hide_dependency_lines: false
+			icon: {
+				Count: 1
+				ForgeCaps: {
+					"celestisynth:celestisynthitemstackcapabilities": {
+						cs.aquaSkin: 0
+					}
+				}
+				id: "vampirism:impure_blood_bucket"
+			}
+			id: "44B66C501013E9BD"
+			rewards: [{
+				count: 10
+				id: "738E5028EE752B9A"
+				item: "vampirism:pure_blood_4"
+				type: "item"
+			}]
+			shape: "diamond"
+			tasks: [{
+				entity: "vampirism:vampire_baron"
+				id: "0CCD3AA660366AF4"
+				type: "kill"
+				value: 20L
+			}]
+			x: 4.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["44B66C501013E9BD"]
+			description: ["用图腾顶部和图腾底座建造一个吸血鬼村庄"]
+			hide_dependency_lines: false
+			icon: {
+				Count: 1
+				ForgeCaps: {
+					"celestisynth:celestisynthitemstackcapabilities": {
+						cs.aquaSkin: 0
+					}
+				}
+				id: "vampirism:vampire_clothing_hat"
+				tag: {
+					Damage: 0
+					affix_data: {
+						sockets: 1
+					}
+				}
+			}
+			id: "26447421BEC27859"
+			rewards: [
+				{
+					id: "532E8588A9503426"
+					item: "vampirism:totem_top_crafted"
+					type: "item"
+				}
+				{
+					id: "3696A794AD6BF207"
+					item: "vampirism:totem_base"
+					type: "item"
+				}
+			]
+			shape: "diamond"
+			tasks: [{
+				advancement: "vampirism:vampire/max_level"
+				criterion: ""
+				id: "6D6941A83AC0E506"
+				type: "advancement"
+			}]
+			title: "将吸血鬼等级提升至14级"
+			x: 2.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["26447421BEC27859"]
+			description: ["与吸血鬼代表交谈，并达到吸血鬼领主5级"]
+			id: "7F9126A078D5F7A8"
+			rewards: [
+				{
+					exclude_from_claim_all: true
+					id: "732B5F9BFB5DC64A"
+					table_id: 1885278903676804009L
+					type: "choice"
+				}
+				{
+					count: 5
+					id: "4C70D132D282FF8C"
+					item: "vampirism:vampire_minion_binding"
+					type: "item"
+				}
+			]
+			shape: "diamond"
+			tasks: [{
+				advancement: "vampirism:vampire/max_lord"
+				criterion: ""
+				id: "16991EF9FD3767E1"
+				type: "advancement"
+			}]
+			title: "达到最终的吸血鬼领主等级"
+			x: 3.0d
+			y: 5.5d
+		}
+		{
+			description: ["使用这枚牙齿，然后睡觉，就能变成狼人"]
+			icon: {
+				Count: 1
+				ForgeCaps: {
+					"celestisynth:celestisynthitemstackcapabilities": {
+						cs.aquaSkin: 0
+					}
+				}
+				id: "werewolves:werewolf_tooth"
+			}
+			id: "304C3B71743AA217"
+			rewards: [{
+				id: "74FB65606D9FDC27"
+				item: "werewolves:werewolf_tooth"
+				type: "item"
+			}]
+			shape: "diamond"
+			tasks: [{
+				id: "0D90515F169C4EBE"
+				title: "狼人牙齿"
+				type: "checkmark"
+			}]
+			title: "成为狼人 (Become a Werewolf)"
+			x: 2.5d
+			y: -1.5d
+		}
+		{
+			description: ["将大蒜注射剂用于注射椅上"]
+			icon: {
+				Count: 1
+				ForgeCaps: {
+					"celestisynth:celestisynthitemstackcapabilities": {
+						cs.aquaSkin: 0
+					}
+				}
+				id: "vampirism:injection_garlic"
+			}
+			id: "64F53937B80CBDBD"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "2541E092D1AF7853"
+				table_id: 7383173659011587756L
+				type: "choice"
+			}]
+			shape: "hexagon"
+			tasks: [{
+				id: "6EA3F89D821C7929"
+				title: "成为一名吸血鬼猎人"
+				type: "checkmark"
+			}]
+			x: 5.5d
+			y: -1.5d
+		}
+		{
+			icon: {
+				Count: 1
+				ForgeCaps: {
+					"celestisynth:celestisynthitemstackcapabilities": {
+						cs.aquaSkin: 0
+					}
+				}
+				id: "vampiresneedumbrellas:lapis_blue_gold_umbrella"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "2CC2C6087EC3CFEC"
+			rewards: [{
+				id: "4F7E305B18EE4F8D"
+				item: {
+					Count: 1
+					id: "vampiresneedumbrellas:lapis_blue_gold_umbrella"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "302EAD17244BCE8A"
+				title: "雨伞"
+				type: "checkmark"
+			}]
+			x: 4.0d
+			y: -1.5d
+		}
+	]
+	title: "吸血鬼主义（Vampirism）"
+}

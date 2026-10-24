@@ -1,0 +1,1437 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "immersive_engineering_expert"
+	group: "72A9465344128AF9"
+	icon: "immersiveengineering:heavy_engineering"
+	id: "035BFB6931C638D0"
+	order_index: 5
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["2CCCDD05AED3153F"]
+			description: [
+				"Immersive Engineering 是一款多功能科技模组，专注于大型多方块结构和物流系统，整体风格宛如出自19世纪的工厂。"
+				""
+				"《工程师手册》涵盖的内容非常全面，记得时常查阅哦。"
+			]
+			hide: true
+			icon: "immersiveengineering:manual"
+			id: "24EB456683513CA7"
+			rewards: [{
+				id: "68535F8D076AD10B"
+				item: {
+					Count: 1b
+					id: "immersiveengineering:hammer"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			shape: "gear"
+			tasks: [{
+				icon: "immersiveengineering:electron_tube"
+				id: "064FC2BF0229F351"
+				item: {
+					Count: 1b
+					id: "itemfilters:tag"
+					tag: {
+						value: "forge:raw_materials"
+					}
+				}
+				title: "Immersive Engineering"
+				type: "item"
+			}]
+			title: "Immersive Engineering"
+			x: -3.5d
+			y: -7.5d
+		}
+		{
+			dependencies: ["24EB456683513CA7"]
+			description: [
+				"没有完善的物流系统为机器输送物品、流体和电力，工厂建筑就不算完整。因此，Immersive Engineering 提供了一套强大的工具来协助这项工作。"
+				""
+				"不过，在深入探索之前，需要先介绍一些工具，因为后续会用到它们。"
+				""
+				"可靠的工程师锤主要用于建造多方块机器和旋转适用方块。紧急情况下，它们也适合用来敲打金属板。"
+				""
+				"工程师的线钳是多种制作的必需品，但最实用的用途或许是快速安全地切断带电的悬挂电线。"
+				""
+				"工程师螺丝刀很适合用来对红石连接器等进行精确调整。"
+				""
+				"所有这些工具及其他物品都可以存放在工程师工具箱中，方便取用。"
+			]
+			hide_dependency_lines: true
+			icon: "immersiveengineering:toolbox"
+			id: "49C19EB5AD09505C"
+			min_width: 300
+			rewards: [
+				{
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/rare"
+					icon: "kubejs:rare_lootbox"
+					id: "7CF96DD04549C88E"
+					title: "稀有沉浸式工程物资箱"
+					type: "command"
+				}
+				{
+					id: "52054E2227B1F750"
+					item: {
+						Count: 1b
+						ForgeCaps: {
+							Parent: {
+								Items: [ ]
+								Size: 23
+							}
+						}
+						id: "immersiveengineering:toolbox"
+					}
+					type: "item"
+				}
+				{
+					id: "121F99E8D1B506B8"
+					item: "immersiveengineering:screwdriver"
+					type: "item"
+				}
+			]
+			shape: "hexagon"
+			tasks: [{
+				id: "0C1389A70E2497E7"
+				item: {
+					Count: 1b
+					id: "immersiveengineering:hammer"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "入门指南：物流与存储系统"
+			x: -3.5d
+			y: -6.0d
+		}
+		{
+			dependencies: ["2BE93580D70ADF20"]
+			description: [
+				"工程师们会花大量时间在制图台上，摆弄工具并精心制作精密零件。"
+				""
+				"工程师工作台提供了一个修改模组工具的空间。"
+			]
+			hide_dependency_lines: true
+			icon: "immersiveengineering:workbench"
+			id: "6E5C3A7C6F30FF95"
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/rare"
+				icon: "kubejs:rare_lootbox"
+				id: "398CDC6CF25157E2"
+				title: "稀有沉浸式工程物资箱"
+				type: "command"
+			}]
+			tasks: [{
+				id: "2867C5992DCE39E0"
+				item: "immersiveengineering:workbench"
+				type: "item"
+			}]
+			x: -0.5d
+			y: -5.0d
+		}
+		{
+			dependencies: ["49C19EB5AD09505C"]
+			description: [
+				"将物品从加工处运送到存储处无需手动操作，传送带就能很好地完成这项任务。"
+				""
+				"和铁轨一样，传送带可以向上或向下倾斜。必要时甚至可以浸水，用染料右键点击它们会改变墙壁的颜色。"
+				""
+				"它们有多种类型，例如装饰性的“覆盖”腰带，但也有更实用的款式："
+				""
+				"放置的传送带会将物品放入其下方的物品栏，或直接掉落至地面。它们可通过红石信号禁用。"
+				""
+				"垂直传送带能让物品紧凑地垂直移动，无需爬满倾斜的普通传送带。"
+				""
+				"分拣传送带只会将收到的物品堆叠轮流发送到两侧，而不会将皮带上的物品堆叠进行分拣。"
+				""
+				"提取传送带会从连接的容器中取物。可用螺丝刀调整提取速率，用锤子调整提取点，使输入位于传送带侧面而非正前方。它们也对红石敏感，高信号会使其完全禁用。"
+			]
+			icon: "immersiveengineering:conveyor_basic"
+			id: "14039F7C90D023AB"
+			min_width: 300
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/rare"
+				icon: "kubejs:rare_lootbox"
+				id: "46FD7B2580341B5A"
+				title: "稀有沉浸式工程物资箱"
+				type: "command"
+			}]
+			tasks: [
+				{
+					id: "526005D7814BCDD1"
+					item: "immersiveengineering:conveyor_basic"
+					type: "item"
+				}
+				{
+					id: "19CD707664CAB05C"
+					item: "immersiveengineering:conveyor_extract"
+					type: "item"
+				}
+			]
+			x: -4.5d
+			y: -5.0d
+		}
+		{
+			dependencies: ["2BE93580D70ADF20"]
+			description: [
+				"一种常用于加工矿石和其他散装物品的多功能破碎机。"
+				""
+				"物品可以投入顶部开口，它们会按接收顺序被吸收和处理。也可以通过管道接入顶部，避免物品在世界上短暂掉落。"
+				""
+				"完成后，物品将自动输出到机器前方的传送带或背包中。"
+				""
+				"小心，研磨刀片会造成大量伤害，能轻易杀死生物，并快速摧毁落入其中的任何没有配方对应的物品。"
+			]
+			hide_dependency_lines: true
+			icon: "immersiveengineering:crusher"
+			id: "7CD8E2C4F323C73B"
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/epic"
+				icon: "kubejs:epic_lootbox"
+				id: "426A2E4DA6AFF591"
+				title: "史诗沉浸式工程物资箱"
+				type: "command"
+			}]
+			tasks: [{
+				advancement: "immersiveengineering:multiblocks/mb_crusher"
+				criterion: ""
+				id: "651C4FDE25F87CB6"
+				type: "advancement"
+			}]
+			title: "破碎机"
+			x: -0.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["2BE93580D70ADF20"]
+			description: [
+				"作为任何机器房的标配，金属压机可用于高效生产金属板、齿轮、电线和其他冲压制品。"
+				""
+				"右键点击合适的模具，将其放置到中央活塞上以设置机器。模具可随时更换，但通常更便捷的建造方式是建造多个分别用于特定类型的压机。"
+				""
+				"物品通过内置的传送带送入磨坊，成品会继续沿传送带输送。"
+			]
+			hide_dependency_lines: true
+			icon: "immersiveengineering:metal_press"
+			id: "5B9822A74466148B"
+			rewards: [
+				{
+					count: 8
+					id: "1490CC5E595F40EF"
+					item: "emendatusenigmatica:iron_plate"
+					title: "铁板"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "55893B8A47AC8275"
+					item: "emendatusenigmatica:steel_plate"
+					title: "钢板"
+					type: "item"
+				}
+				{
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/rare"
+					icon: "kubejs:rare_lootbox"
+					id: "4154AF97AF351A81"
+					title: "稀有沉浸式工程物资箱"
+					type: "command"
+				}
+			]
+			tasks: [{
+				advancement: "immersiveengineering:multiblocks/mb_metalpress"
+				criterion: ""
+				id: "6CFF7F99D30ADDB9"
+				type: "advancement"
+			}]
+			title: "金属压制机"
+			x: 0.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["2BE93580D70ADF20"]
+			description: [
+				"一种强大的熔炉，有助于维持熔炼特定材料所需的特定热量。"
+				""
+				"燃料和输入物品都从顶部加入，结果从前后输出。在两侧添加并启动 Blast Furnace Preheaters 可以显著加快速度。"
+				""
+				"产物将自动放入相邻的背包或相邻的传送带上。"
+				""
+				"注意：Enigmatica 9 中，原始高炉已被禁用。"
+			]
+			hide_dependency_lines: true
+			icon: "immersiveengineering:advanced_blast_furnace"
+			id: "65B1D9B610A11074"
+			rewards: [
+				{
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/epic"
+					icon: "kubejs:epic_lootbox"
+					id: "31244E3A165692D7"
+					title: "史诗沉浸式工程物资箱"
+					type: "command"
+				}
+				{
+					id: "640DDB8B296D6A12"
+					item: "emendatusenigmatica:steel_ingot"
+					type: "item"
+				}
+			]
+			tasks: [{
+				advancement: "immersiveengineering:multiblocks/mb_improvedblastfurnace"
+				criterion: ""
+				id: "1AA7EB0A384887B5"
+				type: "advancement"
+			}]
+			title: "改良型高炉 (Improved Blast Furnace)"
+			x: 1.5d
+			y: -5.0d
+		}
+		{
+			dependencies: ["133A278BE0697460"]
+			description: ["外部加热器是一种简单的机器，通电后能为相邻的熔炉供暖。这样熔炉就能更快地冶炼，而无需消耗燃料。"]
+			hide_dependency_lines: true
+			id: "413BD93C7A51D3B0"
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/rare"
+				icon: "kubejs:rare_lootbox"
+				id: "40925150E26EAE3B"
+				title: "稀有沉浸式工程物资箱"
+				type: "command"
+			}]
+			tasks: [{
+				id: "0BF6A1FDE474580F"
+				item: "immersiveengineering:furnace_heater"
+				type: "item"
+			}]
+			x: -3.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["2BE93580D70ADF20"]
+			dependency_requirement: "one_completed"
+			description: [
+				"用于高效将原木加工成木板的大型磨坊。未安装刀片时，它只会剥去原木的树皮。但安装刀片后，它还能将剥了皮的原木切割成木板。"
+				""
+				"物品通过内置传送带送入磨坊，生成的方块会继续沿传送带移动，而锯末等副产品则会被送入前方的传送带或物品栏中。"
+			]
+			hide_dependency_lines: true
+			icon: "immersiveengineering:sawmill"
+			id: "2082A8C3FF0CC996"
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/epic"
+				icon: "kubejs:epic_lootbox"
+				id: "1066F6DE27800461"
+				title: "史诗沉浸式工程物资箱"
+				type: "command"
+			}]
+			tasks: [
+				{
+					id: "6F389DC5125000A5"
+					item: {
+						Count: 1b
+						id: "immersiveengineering:sawblade"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					advancement: "immersiveengineering:multiblocks/mb_sawmill"
+					criterion: ""
+					id: "0D36DDC9143BC13D"
+					type: "advancement"
+				}
+			]
+			title: "锯木厂"
+			x: 1.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["3F9F4B331D696ED3"]
+			description: ["像这样的大型挤压器被广泛用于从材料中提取流体，或将干货压缩成更固体的形态。这对任何工程师来说都是无价的工具。"]
+			hide_dependency_lines: true
+			icon: "immersiveengineering:squeezer"
+			id: "7E80A889357D36BC"
+			rewards: [
+				{
+					count: 24
+					id: "5BB46B34AA2E27C5"
+					item: "immersiveengineering:seed"
+					title: "工业大麻种子"
+					type: "item"
+				}
+				{
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/epic"
+					icon: "kubejs:epic_lootbox"
+					id: "7911BAC7D49A5DDE"
+					title: "史诗沉浸式工程物资箱"
+					type: "command"
+				}
+			]
+			tasks: [{
+				advancement: "immersiveengineering:multiblocks/mb_squeezer"
+				criterion: ""
+				id: "55161FAC8F935405"
+				type: "advancement"
+			}]
+			title: "工业榨汁机"
+			x: -8.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["3F9F4B331D696ED3"]
+			description: ["通过管理热量并巧妙利用密度差，精炼炉能将流体分解为其他有用材料。这些精炼炉能处理几种不同的转化。"]
+			hide_dependency_lines: true
+			icon: "immersiveengineering:refinery"
+			id: "1F5634F9CA3D2D10"
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/epic"
+				icon: "kubejs:epic_lootbox"
+				id: "539F9DA723B28F8D"
+				title: "史诗沉浸式工程物资箱"
+				type: "command"
+			}]
+			tasks: [{
+				advancement: "immersiveengineering:multiblocks/mb_refinery"
+				criterion: ""
+				id: "0B5F8C9759AD2030"
+				type: "advancement"
+			}]
+			title: "精炼厂"
+			x: -6.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["3F9F4B331D696ED3"]
+			description: ["大型合成机器Assembler能依次处理最多三种配方。它还拥有三个内部流体储罐，可用于替代配方中所需的装满液体的桶。"]
+			hide_dependency_lines: true
+			icon: "immersiveengineering:assembler"
+			id: "4F676F65E493205D"
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/epic"
+				icon: "kubejs:epic_lootbox"
+				id: "4052FF9F57585C7E"
+				title: "史诗沉浸式工程物资箱"
+				type: "command"
+			}]
+			tasks: [{
+				advancement: "immersiveengineering:multiblocks/mb_assembler"
+				criterion: ""
+				id: "6767B021FA04F5BB"
+				type: "advancement"
+			}]
+			title: "装配器"
+			x: -7.5d
+			y: -4.5d
+		}
+		{
+			dependencies: ["3F9F4B331D696ED3"]
+			description: ["通过剧烈搅拌，搅拌器能将固体溶解为液体。虽然常用于搅拌混凝土等日常任务，但它们调制药水也相当出色。"]
+			hide_dependency_lines: true
+			icon: "immersiveengineering:mixer"
+			id: "233D1CB2325D9C48"
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/epic"
+				icon: "kubejs:epic_lootbox"
+				id: "608E51DBB573ED51"
+				title: "史诗沉浸式工程物资箱"
+				type: "command"
+			}]
+			tasks: [{
+				advancement: "immersiveengineering:multiblocks/mb_mixer"
+				criterion: ""
+				id: "569CC41AEAAE373A"
+				type: "advancement"
+			}]
+			title: "搅拌机"
+			x: -7.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["3F9F4B331D696ED3"]
+			dependency_requirement: "one_completed"
+			description: ["装瓶机不仅能装桶，还能用多种流体进行合成，例如蚀刻铜或制造杜罗塑料。"]
+			hide_dependency_lines: true
+			icon: "immersiveengineering:bottling_machine"
+			id: "0F9D505BAF29FEFB"
+			min_width: 250
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/rare"
+				icon: "kubejs:rare_lootbox"
+				id: "3FFFB287BFADE2C3"
+				title: "稀有沉浸式工程物资箱"
+				type: "command"
+			}]
+			tasks: [{
+				advancement: "immersiveengineering:multiblocks/mb_bottling_machine"
+				criterion: ""
+				id: "7FB11D78FFF676E6"
+				type: "advancement"
+			}]
+			title: "装瓶机"
+			x: -6.5d
+			y: -5.0d
+		}
+		{
+			dependencies: ["14039F7C90D023AB"]
+			description: [
+				"物品批处理器是一个高级过滤方块，专为与传送带配合使用并为机器创建物品批次而设计。"
+				""
+				"例如，如果想尽可能高效地利用燃料，可以将物品批量器配置为：每有八个生牛肉时才产出一个煤炭，从而确保煤炭能完全用于烹饪全部八个牛排。"
+				""
+				"在合成中也有应用，可确保机器获得完成合成所需的精确物品比例。不多不少，刚刚好。"
+				""
+				"将红石接口连接器连接到侧面，可以让批量器将过滤器的状态传输给红石电路网络。"
+				""
+				"更多信息和其他用法请参阅工程师手册。"
+			]
+			hide_dependency_lines: true
+			id: "164FE2584474D812"
+			min_width: 325
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/rare"
+				icon: "kubejs:rare_lootbox"
+				id: "2C35D352E74590B4"
+				title: "稀有沉浸式工程物资箱"
+				type: "command"
+			}]
+			tasks: [{
+				id: "14130BCFB4FEBB76"
+				item: "immersiveengineering:item_batcher"
+				type: "item"
+			}]
+			x: -4.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["14039F7C90D023AB"]
+			description: [
+				"物品路由器是一种专为传送带设计的先进物品分拣器。"
+				""
+				"从一侧放入的物品将输出到与该过滤器匹配的侧面的任何库存或传送带中。如果物品不匹配任何过滤器，它将被重定向到未过滤的侧面。"
+				""
+				"物品路由器支持按物品类型、NBT、损坏值和标签进行过滤。"
+			]
+			hide_dependency_lines: true
+			id: "496827CD87FB52CE"
+			min_width: 250
+			rewards: [
+				{
+					count: 8
+					id: "30783270906323D3"
+					item: "immersiveengineering:conveyor_basic"
+					random_bonus: 8
+					type: "item"
+				}
+				{
+					count: 4
+					id: "3815899228753367"
+					item: "immersiveengineering:conveyor_vertical"
+					random_bonus: 4
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "7714BC287F80EBB9"
+				item: "immersiveengineering:sorter"
+				type: "item"
+			}]
+			x: -4.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["14039F7C90D023AB"]
+			description: [
+				"简易批量物品存储。物品从顶部输入，底部输出。"
+				""
+				"向底部方块施加红石信号，即可使其自动输出。"
+			]
+			hide_dependency_lines: true
+			icon: "immersiveengineering:silo"
+			id: "797D4BF61A505A14"
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/rare"
+				icon: "kubejs:rare_lootbox"
+				id: "2CD8CE867708CD0B"
+				title: "稀有沉浸式工程物资箱"
+				type: "command"
+			}]
+			tasks: [{
+				advancement: "immersiveengineering:multiblocks/mb_silo"
+				criterion: ""
+				id: "605A702B72CF012E"
+				type: "advancement"
+			}]
+			title: "物品筒仓"
+			x: -4.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["479A5350BDCB8AA0"]
+			description: [
+				"简易批量流体存储。流体从顶部输入，底部抽出。"
+				""
+				"向底部方块施加红石信号，即可使其自动输出。"
+			]
+			hide_dependency_lines: true
+			icon: "immersiveengineering:tank"
+			id: "455612A73D5FE24D"
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/rare"
+				icon: "kubejs:rare_lootbox"
+				id: "5CE05E3DA7229475"
+				title: "稀有沉浸式工程物资箱"
+				type: "command"
+			}]
+			tasks: [{
+				advancement: "immersiveengineering:multiblocks/mb_tank"
+				criterion: ""
+				id: "59D000E4664C3DC3"
+				type: "advancement"
+			}]
+			title: "流体储罐"
+			x: -2.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["3F9F4B331D696ED3"]
+			description: ["发酵以某种形式存在了数千年。过去水果可能需要数日自然发酵，而现在借助工业魔法，这一过程要快得多。"]
+			hide_dependency_lines: true
+			id: "35DED7016E460908"
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/epic"
+				icon: "kubejs:epic_lootbox"
+				id: "5CCC54117C042EE1"
+				title: "史诗沉浸式工程物资箱"
+				type: "command"
+			}]
+			tasks: [{
+				advancement: "immersiveengineering:multiblocks/mb_fermenter"
+				criterion: ""
+				id: "59DC0A3CD9D7B743"
+				type: "advancement"
+			}]
+			title: "发酵器"
+			x: -8.5d
+			y: -5.0d
+		}
+		{
+			dependencies: ["49C19EB5AD09505C"]
+			description: [
+				"简易流体管道，用于在工厂内输送流体。这些管道不会自动从连接的容器中吸取流体。对于无法自动推送流体输出的设备，需要使用流体泵。"
+				""
+				"即使不需要泵，使用泵也能大幅提高流体管道的流速。需要动力，并用工程师之锤将一侧设为输入（蓝色）或输出（橙色）。还需要红石信号才能开启。"
+				""
+				"管道本身可以用钢制脚手架或经处理的木制脚手架覆盖，也可以用染料右键染色。染色的管道无法连接到其他颜色的管道。"
+			]
+			icon: "immersiveengineering:fluid_pipe"
+			id: "479A5350BDCB8AA0"
+			min_width: 300
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/rare"
+				icon: "kubejs:rare_lootbox"
+				id: "298946A9B451517E"
+				title: "稀有沉浸式工程物资箱"
+				type: "command"
+			}]
+			tasks: [
+				{
+					id: "2CB5EE40D717FBF6"
+					item: "immersiveengineering:fluid_pipe"
+					type: "item"
+				}
+				{
+					id: "13EC40BEA756282E"
+					item: "immersiveengineering:fluid_pump"
+					type: "item"
+				}
+			]
+			x: -2.5d
+			y: -5.0d
+		}
+		{
+			dependencies: ["479A5350BDCB8AA0"]
+			description: ["当需要淹没一片区域时，无论大小，流体出口都是理想工具。只需放置它，并通过任何方式将流体导入其中，它就会从下往上填充下方的区域。"]
+			hide_dependency_lines: true
+			id: "0FBB42C35C632D6E"
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/rare"
+				icon: "kubejs:rare_lootbox"
+				id: "25E0E92F5231037D"
+				title: "稀有沉浸式工程物资箱"
+				type: "command"
+			}]
+			tasks: [{
+				id: "3F821E6D4ECAD9B1"
+				item: "immersiveengineering:fluid_placer"
+				type: "item"
+			}]
+			x: -2.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["479A5350BDCB8AA0"]
+			description: [
+				"流体路由器是一种专为流体管道设计的先进物品分拣器。"
+				""
+				"从一侧输入的流体将输出到与该过滤器匹配一侧的任何储罐或流体管道中。如果流体不匹配任何过滤器，它将被重定向到未过滤的一侧。"
+			]
+			hide_dependency_lines: true
+			id: "4000EB49F6267A26"
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/rare"
+				icon: "kubejs:rare_lootbox"
+				id: "4EEB280105923301"
+				title: "稀有沉浸式工程物资箱"
+				type: "command"
+			}]
+			tasks: [{
+				id: "40EFA9FBD3043B54"
+				item: "immersiveengineering:fluid_sorter"
+				type: "item"
+			}]
+			x: -2.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["133A278BE0697460"]
+			description: [
+				"一款手持式锯子，非常适合砍树或劈砍僵尸。"
+				""
+				"该工具使用生物柴油，但内部油箱较小。建议携带备用油箱以便野外加油。只需将其放入油箱的输入槽即可填充。"
+				""
+				"将其放置在工程师工作台以添加或移除增强组件。"
+			]
+			hide_dependency_lines: true
+			id: "16EC372C27238D3F"
+			rewards: [
+				{
+					id: "2ED8178439A16546"
+					item: {
+						Count: 1b
+						id: "mekanism:basic_fluid_tank"
+						tag: {
+							mekData: {
+								FluidTanks: [{
+									Tank: 0b
+									stored: {
+										Amount: 16000
+										FluidName: "immersiveengineering:biodiesel"
+									}
+								}]
+							}
+						}
+					}
+					title: "高级流体储罐"
+					type: "item"
+				}
+				{
+					id: "59F5D756932C4969"
+					item: {
+						Count: 1b
+						id: "thermal:fluid_reservoir"
+						tag: { }
+					}
+					type: "item"
+				}
+			]
+			subtitle: "冷飕飕的，冻得发抖"
+			tasks: [{
+				id: "77B2CE6AE97C44D8"
+				item: {
+					Count: 1b
+					ForgeCaps: {
+						Parent: {
+							Items: [ ]
+							Size: 5
+						}
+					}
+					id: "immersiveengineering:buzzsaw"
+				}
+				type: "item"
+			}]
+			x: -4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["133A278BE0697460"]
+			description: [
+				"一把适合任何枪手使用的可靠副武器。"
+				""
+				"将其放置在工程师工作台以添加或移除增强组件。"
+			]
+			hide_dependency_lines: true
+			id: "230E559B86C56A0D"
+			rewards: [
+				{
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/rare"
+					icon: "kubejs:rare_lootbox"
+					id: "7D5842BA0E299AD8"
+					title: "稀有沉浸式工程物资箱"
+					type: "command"
+				}
+				{
+					count: 64
+					id: "69B649DB9E6D5964"
+					item: "immersiveengineering:casull"
+					title: "Casull 弹药盒"
+					type: "item"
+				}
+			]
+			subtitle: "先是微笑，接着是谎言。最后是枪声。"
+			tasks: [{
+				id: "0E585C2527A5AAFE"
+				item: {
+					Count: 1b
+					ForgeCaps: {
+						Parent: {
+							Items: [ ]
+							Size: 21
+						}
+					}
+					id: "immersiveengineering:revolver"
+				}
+				type: "item"
+			}]
+			x: -2.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["133A278BE0697460"]
+			description: [
+				"一种手持式隧道掘进机，能快速挖掘最坚硬的岩石。"
+				""
+				"该工具使用生物柴油，但内部油箱较小。建议携带备用油箱以便野外加油。只需将其放入油箱的输入槽即可填充。"
+				""
+				"将其放置在工程师工作台以添加或移除增强组件。"
+			]
+			hide_dependency_lines: true
+			id: "377AAE2494B83CCF"
+			rewards: [
+				{
+					id: "48369F60F9DFF5C9"
+					item: {
+						Count: 1b
+						id: "mekanism:advanced_fluid_tank"
+						tag: {
+							mekData: {
+								FluidTanks: [{
+									Tank: 0b
+									stored: {
+										Amount: 16000
+										FluidName: "immersiveengineering:biodiesel"
+									}
+								}]
+							}
+						}
+					}
+					title: "高级流体储罐"
+					type: "item"
+				}
+				{
+					id: "258F2505776D8A0B"
+					item: {
+						Count: 1b
+						id: "thermal:fluid_reservoir"
+						tag: { }
+					}
+					type: "item"
+				}
+			]
+			subtitle: "正在煤矿里工作。糟糕，快要滑下去了。"
+			tasks: [{
+				id: "69714853E4C23B11"
+				item: {
+					Count: 1b
+					ForgeCaps: {
+						Parent: {
+							Items: [ ]
+							Size: 5
+						}
+					}
+					id: "immersiveengineering:drill"
+				}
+				type: "item"
+			}]
+			x: -2.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["133A278BE0697460"]
+			description: [
+				"能够以极高的速度发射炮弹，毫无阻碍地撕裂目标，轨道炮是一种凶猛的武器。"
+				""
+				"合适的弹药包括铁和钢棒，以及石墨电极和许多其他材料。"
+				""
+				"将其放置在工程师工作台以添加或移除增强组件。"
+			]
+			hide_dependency_lines: true
+			id: "1787B3CDAC005F1E"
+			rewards: [
+				{
+					command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/rare"
+					icon: "kubejs:rare_lootbox"
+					id: "3669742F4DB4E3E8"
+					title: "稀有沉浸式工程物资箱"
+					type: "command"
+				}
+				{
+					count: 16
+					id: "6F7228CA2B868DFC"
+					item: "emendatusenigmatica:iron_rod"
+					title: "铁质长杆"
+					type: "item"
+				}
+			]
+			subtitle: "快看那只海龟，是不是很酷？"
+			tasks: [{
+				id: "21EBFD2EFF83C494"
+				item: {
+					Count: 1b
+					ForgeCaps: {
+						Parent: {
+							Items: [ ]
+							Size: 3
+						}
+					}
+					id: "immersiveengineering:railgun"
+				}
+				type: "item"
+			}]
+			x: -4.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["230E559B86C56A0D"]
+			description: [
+				"当弹药耗尽时，速装器会自动为转轮手枪重新装填，是继续战斗的绝佳方式。"
+				""
+				"要随时补充，只需右键并将弹匣放入其中。不过，也可以用3x3的合成网格，用弹药将其包围来填充。"
+				""
+				"可以使用沉浸式工程装配器来自动化填充速度装载机。只要稍加巧思，就能自动从背包中取出空的速度装载机，填充后再送回去。"
+			]
+			id: "5D5D2E8C9EABBB69"
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/rare"
+				icon: "kubejs:rare_lootbox"
+				id: "7D784913D9E8D959"
+				title: "稀有沉浸式工程物资箱"
+				type: "command"
+			}]
+			shape: "diamond"
+			subtitle: "射击开始时，我们消灭一切会动的东西。"
+			tasks: [{
+				id: "7F69EA81B5E996DC"
+				item: {
+					Count: 1b
+					ForgeCaps: {
+						Parent: {
+							Items: [ ]
+							Size: 8
+						}
+					}
+					id: "immersiveengineering:speedloader"
+				}
+				type: "item"
+			}]
+			x: -1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["230E559B86C56A0D"]
+			description: ["当野兽靠得太近，或者弹药耗尽的时候。"]
+			id: "6F5C01A60646D61A"
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/rare"
+				icon: "kubejs:rare_lootbox"
+				id: "3DD0A53CCD932C32"
+				title: "稀有沉浸式工程物资箱"
+				type: "command"
+			}]
+			shape: "diamond"
+			subtitle: "那个穿黑衣服的人逃过沙漠去了……"
+			tasks: [{
+				id: "32A57A5AE9CFD3B2"
+				item: "immersiveengineering:toolupgrade_revolver_bayonet"
+				type: "item"
+			}]
+			x: -1.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["1787B3CDAC005F1E"]
+			description: ["散热器能让轨道炮更快充能，实现更猛烈的连射破坏。"]
+			id: "069B655AE0E4B1E2"
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/rare"
+				icon: "kubejs:rare_lootbox"
+				id: "6D5DCD5F5DC44E15"
+				title: "稀有沉浸式工程物资箱"
+				type: "command"
+			}]
+			shape: "diamond"
+			subtitle: "车轮转动，世界随之前行。"
+			tasks: [{
+				id: "61AAAA2E434CACED"
+				item: "immersiveengineering:toolupgrade_railgun_capacitors"
+				type: "item"
+			}]
+			x: -6.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["1787B3CDAC005F1E"]
+			description: ["安装后，按下中间鼠标按钮可启用瞄准镜，滚动鼠标可调整放大倍数。非常适合远距离狙杀目标。"]
+			id: "0378DCB050B7679C"
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/rare"
+				icon: "kubejs:rare_lootbox"
+				id: "4254ABCD3D800570"
+				title: "稀有沉浸式工程物资箱"
+				type: "command"
+			}]
+			shape: "diamond"
+			subtitle: "万物皆服务于光束。"
+			tasks: [{
+				id: "0748647BEE65D7C4"
+				item: "immersiveengineering:toolupgrade_railgun_scope"
+				type: "item"
+			}]
+			x: -5.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["230E559B86C56A0D"]
+			description: [
+				"Casull 子弹是最便宜、最基础的弹药，但威力依然不俗。"
+				""
+				"穿甲弹能快速击败重甲敌人，而银弹对不死生物很有效。"
+				""
+				"要对付大群敌人，可以考虑更强大的霰弹或龙息弹，它们能发射短距离的锥形弹束。如果你的准头很差，不妨试试狼群弹，它在撞击时会爆炸，向四面八方发射追踪弹片，迅速消灭遇到的所有目标。"
+				""
+				"探索你的选择，并在工程师手册中阅读更多内容。"
+			]
+			id: "4DD148DA6CA8C295"
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/rare"
+				icon: "kubejs:rare_lootbox"
+				id: "4699D3CFC067C539"
+				title: "稀有沉浸式工程物资箱"
+				type: "command"
+			}]
+			shape: "diamond"
+			subtitle: "……枪手也跟了上来。"
+			tasks: [{
+				count: 24L
+				id: "61AE2889CFAB6E9E"
+				item: {
+					Count: 1b
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "immersiveengineering:casull"
+							}
+							{
+								Count: 1b
+								id: "immersiveengineering:armor_piercing"
+							}
+							{
+								Count: 1b
+								id: "immersiveengineering:buckshot"
+							}
+							{
+								Count: 1b
+								id: "immersiveengineering:he"
+							}
+							{
+								Count: 1b
+								id: "immersiveengineering:silver"
+							}
+							{
+								Count: 1b
+								id: "immersiveengineering:dragons_breath"
+							}
+							{
+								Count: 1b
+								id: "immersiveengineering:potion"
+							}
+							{
+								Count: 1b
+								id: "immersiveengineering:flare"
+							}
+							{
+								Count: 1b
+								id: "immersiveengineering:firework"
+							}
+							{
+								Count: 1b
+								id: "immersiveengineering:homing"
+							}
+							{
+								Count: 1b
+								id: "immersiveengineering:wolfpack"
+							}
+						]
+					}
+				}
+				title: "弹药弹匣"
+				type: "item"
+			}]
+			title: "弹药弹匣"
+			x: -1.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["16EC372C27238D3F"]
+			description: ["一种卓越的切割工具，能干净利落地开采石头、冰块或玻璃块，效果等同于带有丝绸之触的工具。"]
+			id: "157407C0FB372FD9"
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/rare"
+				icon: "kubejs:rare_lootbox"
+				id: "23B55FB82DC91FAD"
+				title: "稀有沉浸式工程物资箱"
+				type: "command"
+			}]
+			shape: "diamond"
+			subtitle: "一份干净的工作"
+			tasks: [{
+				id: "40591D033F727807"
+				item: {
+					Count: 1b
+					id: "immersiveengineering:rockcutter"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: -5.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["377AAE2494B83CCF"]
+			description: ["采矿钻的引擎通常无法在水下运行。不过，加上一个增压空气罐，就能让它保持全速运转。"]
+			id: "23075A2FBEEA0C6B"
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/rare"
+				icon: "kubejs:rare_lootbox"
+				id: "006A3342779F3BF5"
+				title: "稀有沉浸式工程物资箱"
+				type: "command"
+			}]
+			shape: "diamond"
+			subtitle: "不要让它爆炸"
+			tasks: [{
+				id: "4A9773FA67662CE6"
+				item: "immersiveengineering:toolupgrade_drill_waterproof"
+				type: "item"
+			}]
+			x: -2.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["377AAE2494B83CCF"]
+			description: [
+				"钻头会随时间磨损，不过可以从钻机上取下，用铁砧进行修理。"
+				""
+				"升级到钢制钻头不仅能提高耐用性，还能在不浪费宝贵蓝色岩石的情况下开采黑曜石。"
+				""
+				"最多可添加三个附加钻头，每个都能加快挖掘速度，甚至提高对不幸站在前方的任何事物的伤害。"
+			]
+			icon: "immersiveengineering:drillhead_steel"
+			id: "3C143602825AC132"
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/rare"
+				icon: "kubejs:rare_lootbox"
+				id: "2A1CB70A6FBC5D1C"
+				title: "稀有沉浸式工程物资箱"
+				type: "command"
+			}]
+			shape: "diamond"
+			subtitle: "Diggy Diggy Hole"
+			tasks: [
+				{
+					id: "57997CD29EEA7A62"
+					item: "immersiveengineering:drillhead_steel"
+					type: "item"
+				}
+				{
+					id: "2CDCFD399D0A61A4"
+					item: "immersiveengineering:toolupgrade_drill_damage"
+					type: "item"
+				}
+			]
+			x: -2.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["16EC372C27238D3F"]
+			description: ["刀片箭筒可安装在工程师工作台上的链锯上，可携带额外刀片，并允许你在野外即时切换。按住潜行 + 滚轮即可更换刀片。"]
+			id: "1EE0A3D7073E1E9C"
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/rare"
+				icon: "kubejs:rare_lootbox"
+				id: "618B24D59812DB2E"
+				title: "稀有沉浸式工程物资箱"
+				type: "command"
+			}]
+			shape: "diamond"
+			subtitle: "等等，所以不是用箭矢而是用这个吗..."
+			tasks: [{
+				id: "0FAB5782F8F94AB9"
+				item: "immersiveengineering:toolupgrade_buzzsaw_spareblades"
+				type: "item"
+			}]
+			x: -4.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["24EB456683513CA7"]
+			description: ["砖块、处理木材和钢铁，这些都是沉浸式工厂的建造材料，也是模组早期发展的重点。"]
+			hide_dependency_lines: true
+			id: "2BE93580D70ADF20"
+			shape: "hexagon"
+			tasks: [{
+				icon: "minecraft:raw_iron"
+				id: "1D02949AB87F570D"
+				item: {
+					Count: 1b
+					id: "itemfilters:tag"
+					tag: {
+						value: "forge:raw_materials/iron"
+					}
+				}
+				title: "原矿铁"
+				type: "item"
+			}]
+			title: "入门指南：材料加工"
+			x: 0.5d
+			y: -6.0d
+		}
+		{
+			dependencies: ["24EB456683513CA7"]
+			description: ["从大功率照明和挖掘工具到左轮手枪和轨道炮，Immersive Engineering 几乎能满足任何工作的需求。"]
+			hide_dependency_lines: true
+			id: "133A278BE0697460"
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/rare"
+				icon: "kubejs:rare_lootbox"
+				id: "2A30182F30E91A11"
+				title: "稀有沉浸式工程物资箱"
+				type: "command"
+			}]
+			shape: "hexagon"
+			tasks: [{
+				id: "610492ACE6272701"
+				item: {
+					Count: 1b
+					id: "immersiveengineering:hammer"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "工具和实用工具"
+			x: -3.5d
+			y: -0.5d
+		}
+		{
+			dependencies: [
+				"377AAE2494B83CCF"
+				"16EC372C27238D3F"
+			]
+			description: ["适用于采矿钻头和圆锯的扩展燃料箱。物超所值。"]
+			hide_dependency_lines: true
+			id: "7402400A005D191C"
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/rare"
+				icon: "kubejs:rare_lootbox"
+				id: "448576DF1369C86E"
+				title: "稀有沉浸式工程物资箱"
+				type: "command"
+			}]
+			shape: "diamond"
+			tasks: [{
+				id: "4FD070D1057A1E4C"
+				item: "immersiveengineering:toolupgrade_drill_capacity"
+				type: "item"
+			}]
+			x: -3.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["24EB456683513CA7"]
+			description: ["更好的材料带来了更庞大、更强大的机器。准备好弄脏自己吧！"]
+			hide_dependency_lines: true
+			icon: "immersiveengineering:storage_steel"
+			id: "3F9F4B331D696ED3"
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/epic"
+				icon: "kubejs:epic_lootbox"
+				id: "46E0B3AB7FBFB885"
+				title: "史诗沉浸式工程物资箱"
+				type: "command"
+			}]
+			shape: "hexagon"
+			tasks: [{
+				icon: "immersiveengineering:heavy_engineering"
+				id: "27B54CB739B18ABA"
+				item: {
+					Count: 1b
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "immersiveengineering:rs_engineering"
+							}
+							{
+								Count: 1b
+								id: "immersiveengineering:heavy_engineering"
+							}
+							{
+								Count: 1b
+								id: "immersiveengineering:light_engineering"
+							}
+						]
+					}
+				}
+				title: "重型机械"
+				type: "item"
+			}]
+			title: "重型机械"
+			x: -7.5d
+			y: -6.0d
+		}
+		{
+			dependencies: ["49C19EB5AD09505C"]
+			description: [
+				"红石布线代表了红石技术的进步，让专业的工程师能够构建复杂的逻辑电路，这些电路比传统的红石粉更不容易出错。颜色编码的通道系统也使得单个小型网络能够与多个独立机器进行交互。"
+				""
+				"红石线可以连接在红石线连接器、探测器连接器或接口连接器之间。它们能传输红石信号而不会衰减。"
+				""
+				"红石线连接器可作为信号的输入和输出点，可直接放置在方块上。必须使用螺丝刀来设置其模式和颜色通道。"
+				""
+				"红石探测器连接器与比较器非常相似，但内置了更多功能。大多数沉浸式工程机器会输出特殊的比较器信号，本连接器也能读取。具体细节请参阅工程师手册。"
+				""
+				"红石接口连接器需与物品批量器、逻辑单元等特殊方块配合使用，以便读取这些方块使用的信号。"
+			]
+			icon: "immersiveengineering:wirecoil_redstone"
+			id: "1A60F4B67CFE76AC"
+			min_width: 300
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/rare"
+				icon: "kubejs:rare_lootbox"
+				id: "42D13B8C156E8F61"
+				title: "稀有沉浸式工程物资箱"
+				type: "command"
+			}]
+			tasks: [
+				{
+					id: "6931858B544E7D77"
+					item: "immersiveengineering:wirecoil_redstone"
+					type: "item"
+				}
+				{
+					id: "033DE98D3AAE0000"
+					item: "immersiveengineering:connector_redstone"
+					type: "item"
+				}
+				{
+					id: "3EEDF03A7B5B9341"
+					item: "immersiveengineering:connector_probe"
+					type: "item"
+				}
+				{
+					id: "4DE83979FE78EE61"
+					item: "immersiveengineering:connector_bundled"
+					type: "item"
+				}
+			]
+			title: "红石电路布线"
+			x: -3.5d
+			y: -5.0d
+		}
+		{
+			dependencies: ["1A60F4B67CFE76AC"]
+			description: [
+				"逻辑电路本身是在工程师电路表中制作的。"
+				""
+				"此工作台需要电力（从背面输入），还需要一定数量的 Runic Proto-Boards、Lead Wire 和 Vacuum Tubes。不同的逻辑运算需要不同的数量。"
+				""
+				"电路由操作符以及输入和输出颜色共同编程。"
+				""
+				"准备就绪后，完成的电路会从GUI的右侧抽出。"
+				""
+				"电路的输入和输出可以通过放回顶部槽位来重新编程，但操作员在首次创建时就被锁定。"
+			]
+			icon: "immersiveengineering:logic_circuit"
+			id: "4A717117EFEDB4CD"
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/epic"
+				icon: "kubejs:epic_lootbox"
+				id: "7AB92C9D40AE07DD"
+				title: "史诗沉浸式工程物资箱"
+				type: "command"
+			}]
+			tasks: [
+				{
+					id: "72C8A3BC45A0C163"
+					item: "immersiveengineering:circuit_table"
+					type: "item"
+				}
+				{
+					id: "15987861273FFC03"
+					item: "immersiveengineering:circuit_board"
+					type: "item"
+				}
+				{
+					id: "0B5C834806FAB2FE"
+					item: "immersiveengineering:wire_lead"
+					type: "item"
+				}
+				{
+					id: "5B2078E41414D91B"
+					item: "immersiveengineering:electron_tube"
+					type: "item"
+				}
+			]
+			x: -3.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["1A60F4B67CFE76AC"]
+			description: [
+				"逻辑单元代表一台紧凑且可能非常复杂的红石逻辑计算机。最多十个逻辑电路必须被编程并放置于内部，并在外部连接一个红石接口连接器。"
+				""
+				"每当输入信号变化时，单元会依次循环执行每个已安装的电路操作，从而允许将多个逻辑门应用于一个信号，甚至使用多个颜色代码作为输入和输出信号。"
+			]
+			id: "4E0820864EDAC42E"
+			rewards: [{
+				command: "/execute at @p run loot spawn ~ ~1 ~ loot enigmatica:loot_boxes/immersive_engineering/epic"
+				icon: "kubejs:epic_lootbox"
+				id: "0D5AB91F6CD6CDC5"
+				title: "史诗沉浸式工程物资箱"
+				type: "command"
+			}]
+			tasks: [{
+				id: "78B9100B4FF5D14C"
+				item: "immersiveengineering:logic_unit"
+				type: "item"
+			}]
+			x: -3.5d
+			y: -4.0d
+		}
+	]
+	title: "Immersive Engineering"
+}

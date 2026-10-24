@@ -1,0 +1,1729 @@
+# AI 初翻，未人工校对
+{
+	id: "537C170433C25745"
+	group: "11592D5C828EEDBF"
+	order_index: 2
+	filename: "storage_3"
+	title: "储物空间 - 3"
+	icon: "appliedenergistics2:controller"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "基础物质-能量系统"
+			x: 0.0d
+			y: -5.5d
+			shape: "gear"
+			subtitle: "这些是建造ME系统的一些关键组件。左键点击查看更多信息"
+			description: [
+				"物质能量网络是应用能源学2模组的主要功能，能让你将大部分资源储存在一个地方。ME系统需要电力才能将资源存储在磁盘驱动器上。这玩意儿基本上就是个巨大的服务器机房，不过是放物品和液体的。ME系统还能让你执行高级自动化合成操作，不过这个我们以后再讲。"
+				""
+				"现在，让我们来看看如何设置最基本的ME系统。"
+				""
+				"ME 系统需要能量接收器来提供电力。能量接收器将外部系统的能量转换为 AE 并储存在网络中。向系统中添加能量单元或高密度能量单元可以创建能量存储，用作系统的备份。"
+				""
+				"接下来是ME驱动。这是一种专门用于存储存储单元的原石。它能容纳10个存储单元，让你能将物品紧凑地存放在极小的空间里。ME驱动会在正面显示其内部物品和存储单元的状态。"
+				""
+				"红色 - 表示存储单元已满。"
+				""
+				"橙色 - 表示该存储单元无法再容纳更多类型，但可以存储更多物品。"
+				""
+				"绿色 - 表示该单元格可以容纳更多类型或更多物品。"
+				""
+				"黑色 - 表示没有频道，或者电源已关闭。"
+				""
+				"需要注意的是，没有ME网络，此方块无法工作。它只有在结合物品输入输出方式时才有效，需要2 AE/t的功率，内部每个存储单元还需要额外功率。ME驱动器需要一个频道才能工作。"
+				""
+				"现在，你需要一种方式来查看和管理物品。这就是终端的用武之地。ME终端是一种HID，能让你访问存储在ME网络中的物品。这包括通过ME存储总线可访问的物品。它支持排序、搜索，以及使用视图单元进行筛选。它需要一个频道才能运行。"
+				""
+				"说到这些 ChEnNeLs o_0... 它们究竟是什么？让我们来聊聊它们吧。"
+				""
+				"Applied Energistics 2 的 ME 网络需要通道来支持使用网络存储或其他网络服务的设备。大多数设备，如标准电缆和机器，最多只能支持 8 个通道。然而，ME 密集电缆最多可支持 32 个通道，其他能传输 32 通道的设备只有 P2P 隧道和量子网络桥。"
+				""
+				"没有ME控制器的网络被视为Ad-Hoc网络，最多支持8个使用通道的设备。一旦超过8个设备，网络中的通道使用设备将关闭。你可以移除设备，或者添加一个ME控制器，它被视为系统的心脏，而且也非常酷炫 <3"
+				""
+				"使用 Ad-Hoc 网络时，每个设备将占用整个网络 1 个频道，这与 ME 控制器根据最短路径分配频道的做法截然不同。"
+				""
+				"通道每经过一个节点会消耗 1/128 RF/t，这意味着在拥有 8 个设备和超过 96 个节点的 네트워크 中添加 ME 控制器，你的功耗实际上可能会降低，因为它改变了通道的分配方式。"
+				""
+				"使用ME控制器时，通道必须从控制器到设备走最短路径。如果路径已满，部分设备可能无法获得所需通道，请善用彩色线缆、线缆锚点和隧道，确保通道走你期望的路径。"
+			]
+			hide_dependency_lines: true
+			dependencies: [
+				"02FD2E2781CA26DB"
+				"0D7DBCD095AA1D88"
+				"5C299C68318424BC"
+			]
+			size: 1.5d
+			id: "667CBD6FED09CA55"
+			tasks: [
+				{
+					id: "66E521B78242913C"
+					type: "item"
+					item: "appliedenergistics2:drive"
+				}
+				{
+					id: "0C83F6A2AB7F611D"
+					type: "item"
+					item: "appliedenergistics2:terminal"
+				}
+				{
+					id: "2BB91018A2501F8A"
+					type: "item"
+					item: "appliedenergistics2:energy_acceptor"
+				}
+			]
+			rewards: [
+				{
+					id: "46AAC5E77F6D7EC0"
+					type: "item"
+					item: {
+						id: "appliedenergistics2:1k_storage_cell"
+						Count: 1b
+						tag: { }
+					}
+				}
+				{
+					id: "09E819D9C889DF67"
+					type: "item"
+					item: "appliedenergistics2:network_tool"
+				}
+			]
+		}
+		{
+			title: "ME控制器"
+			x: 5.0d
+			y: -5.5d
+			shape: "gear"
+			subtitle: "系统的核心，就在你的掌中。左键点击获取更多信息"
+			description: [
+				"能走到这一步，我们很佩服你。ME控制器真是一道靓丽的风景线。仿佛宇宙就存在于其中……"
+				""
+				"闲话少说，让我们来学习一下这件杰作的工作原理。"
+				""
+				"ME控制器是ME网络的路由中心。没有它，最多只能有8个设备交互，再多一切都会停止工作。一个ME网络中不能有两个ME控制器。与大多数ME网络设备不同，ME控制器不需要频道，而是根据设备支持的数量，在每侧发出8或32个频道。"
+				""
+				"ME控制器需要每个控制器方块每秒消耗6AE才能运行。每个ME控制器方块可存储8000AE，因此较大的网络可能需要额外的能量存储。"
+				""
+				"多区块控制器可以以相当自由的形式建造，但有几个规则必须遵守："
+				""
+				"ME 网络中的所有 ME 控制器方块都必须连接，否则方块会变红。"
+				""
+				"2. ME 控制器的尺寸必须在 7x7x7 以内，否则它会变红。"
+				""
+				"3. 一个ME控制器最多只能在一个轴向上有2个相邻方块；如果某个方块违反此规则，它将禁用并变为白色。"
+				""
+				"只要遵守所有规则并提供能量，控制器就会发光并循环变色，成为有史以来最漂亮的方块之一。"
+			]
+			dependencies: ["667CBD6FED09CA55"]
+			size: 1.5d
+			id: "5B4679EF52E8F2E8"
+			tasks: [{
+				id: "3C6A6552FA1A0FAB"
+				type: "item"
+				item: "appliedenergistics2:controller"
+			}]
+		}
+		{
+			title: "无线管理！"
+			icon: {
+				id: "ae2wtlib:wireless_crafting_terminal"
+				Count: 1b
+				tag: { }
+			}
+			x: 1.5d
+			y: 7.5d
+			shape: "gear"
+			subtitle: "将默认无线终端改为可立即获取的无线合成终端。左键点击查看更多信息"
+			description: [
+				"无线终端是一种能让你远程访问ME系统的设备。该终端必须通过ME安全终端与你的系统相连。"
+				""
+				"在ME安全终端中连接无线终端后，即可便携访问ME网络。访问系统需要RF。电池可存储1.6m AE，每远离最近的ME无线接入点一个方块，每秒消耗1 AE。"
+				""
+				"要完成此任务，你必须上交无线终端。作为回报，你将获得一个无线合成终端，它本质上是一个无线终端，但增加了一个合成网格。"
+			]
+			dependencies: ["2254E4908C5F62EC"]
+			id: "5D7CE22FCD18F716"
+			tasks: [{
+				id: "28310F396AEA89B3"
+				type: "item"
+				item: {
+					id: "appliedenergistics2:wireless_terminal"
+					Count: 1b
+					tag: { }
+				}
+				consume_items: true
+			}]
+			rewards: [{
+				id: "04314FB68A0CD9E6"
+				type: "item"
+				item: {
+					id: "ae2wtlib:wireless_crafting_terminal"
+					Count: 1b
+					tag: { }
+				}
+			}]
+		}
+		{
+			x: 2.5d
+			y: 7.5d
+			shape: "gear"
+			subtitle: "这是无线版模式终端。它将允许你随时随地设计配方模式"
+			dependencies: ["2254E4908C5F62EC"]
+			id: "72352DB66F92947E"
+			tasks: [{
+				id: "78A77AF6D821A50F"
+				type: "item"
+				item: {
+					id: "ae2wtlib:wireless_pattern_terminal"
+					Count: 1b
+					tag: { }
+				}
+			}]
+		}
+		{
+			icon: {
+				id: "appliedenergistics2:1k_storage_cell"
+				Count: 1b
+				tag: { }
+			}
+			x: -1.5d
+			y: -1.0d
+			subtitle: "1024 字节，63 种类型"
+			hide_dependency_lines: true
+			dependencies: [
+				"5C299C68318424BC"
+				"5356432BFBD260EC"
+			]
+			id: "76C8ADD18F1BC57D"
+			tasks: [{
+				id: "48DAFF9171917F71"
+				type: "item"
+				item: "appliedenergistics2:1k_cell_component"
+			}]
+		}
+		{
+			icon: {
+				id: "appliedenergistics2:4k_storage_cell"
+				Count: 1b
+				tag: { }
+			}
+			x: -0.5d
+			y: -1.0d
+			subtitle: "4096 bytes, 63 types"
+			hide_dependency_lines: true
+			dependencies: ["76C8ADD18F1BC57D"]
+			id: "58FECCAD4A6649B4"
+			tasks: [{
+				id: "3DCB2A17CAD2C7DE"
+				type: "item"
+				item: "appliedenergistics2:4k_cell_component"
+			}]
+		}
+		{
+			icon: {
+				id: "appliedenergistics2:16k_storage_cell"
+				Count: 1b
+				tag: { }
+			}
+			x: 0.5d
+			y: -1.0d
+			subtitle: "16384 字节，63 种类型"
+			hide_dependency_lines: true
+			dependencies: ["58FECCAD4A6649B4"]
+			id: "055F95363620C6AC"
+			tasks: [{
+				id: "2F299A5FB7B58B4B"
+				type: "item"
+				item: "appliedenergistics2:16k_cell_component"
+			}]
+		}
+		{
+			icon: {
+				id: "appliedenergistics2:64k_storage_cell"
+				Count: 1b
+				tag: { }
+			}
+			x: 1.5d
+			y: -1.0d
+			subtitle: "65536 字节，63 种类型"
+			hide_dependency_lines: true
+			dependencies: ["055F95363620C6AC"]
+			id: "507073E406B6567C"
+			tasks: [{
+				id: "5BBD27E63FE3BD6E"
+				type: "item"
+				item: "appliedenergistics2:64k_cell_component"
+			}]
+		}
+		{
+			icon: {
+				id: "appliedenergistics2:1k_fluid_storage_cell"
+				Count: 1b
+				tag: { }
+			}
+			x: -1.5d
+			y: 1.0d
+			subtitle: "1024字节，5种类型"
+			hide_dependency_lines: true
+			dependencies: [
+				"7085ED71734DBE6C"
+				"5356432BFBD260EC"
+			]
+			id: "33ADFBAB2DD592A3"
+			tasks: [{
+				id: "446BE2D8E0B205F8"
+				type: "item"
+				item: "appliedenergistics2:1k_fluid_cell_component"
+			}]
+		}
+		{
+			icon: {
+				id: "appliedenergistics2:4k_fluid_storage_cell"
+				Count: 1b
+				tag: { }
+			}
+			x: -0.5d
+			y: 1.0d
+			subtitle: "4096 字节，5 种类型"
+			hide_dependency_lines: true
+			dependencies: ["33ADFBAB2DD592A3"]
+			id: "192D610740549635"
+			tasks: [{
+				id: "1D0C5EA3BD712CFB"
+				type: "item"
+				item: "appliedenergistics2:4k_fluid_cell_component"
+			}]
+		}
+		{
+			icon: {
+				id: "appliedenergistics2:16k_fluid_storage_cell"
+				Count: 1b
+				tag: { }
+			}
+			x: 0.5d
+			y: 1.0d
+			subtitle: "16384 字节，5 种类型"
+			hide_dependency_lines: true
+			dependencies: ["192D610740549635"]
+			id: "005127241B02F28F"
+			tasks: [{
+				id: "173AE5A6C53E51AC"
+				type: "item"
+				item: "appliedenergistics2:16k_fluid_cell_component"
+			}]
+		}
+		{
+			icon: {
+				id: "appliedenergistics2:64k_fluid_storage_cell"
+				Count: 1b
+				tag: { }
+			}
+			x: 1.5d
+			y: 1.0d
+			subtitle: "65536 字节，5 种类型"
+			hide_dependency_lines: true
+			dependencies: ["005127241B02F28F"]
+			id: "31CA74FB8BDC8548"
+			tasks: [{
+				id: "5E4FE246E3180DA7"
+				type: "item"
+				item: "appliedenergistics2:64k_fluid_cell_component"
+			}]
+		}
+		{
+			x: -1.5d
+			y: 0.0d
+			subtitle: "容量为 2x2x2"
+			hide_dependency_lines: true
+			dependencies: [
+				"7085ED71734DBE6C"
+				"5356432BFBD260EC"
+			]
+			id: "3EE593E366B80860"
+			tasks: [{
+				id: "7E4563AAFA7AE2BF"
+				type: "item"
+				item: "appliedenergistics2:2_cubed_spatial_storage_cell"
+			}]
+		}
+		{
+			x: 0.0d
+			y: 0.0d
+			subtitle: "容量为 16x16x16"
+			hide_dependency_lines: true
+			dependencies: [
+				"3EE593E366B80860"
+				"5356432BFBD260EC"
+			]
+			id: "26A6205823A689D3"
+			tasks: [{
+				id: "2A1CD78D7EA76945"
+				type: "item"
+				item: "appliedenergistics2:16_cubed_spatial_storage_cell"
+			}]
+		}
+		{
+			x: 1.5d
+			y: 0.0d
+			subtitle: "容量为 128x128x128"
+			hide_dependency_lines: true
+			dependencies: [
+				"26A6205823A689D3"
+				"5356432BFBD260EC"
+			]
+			id: "64FCE38F09B0BFF7"
+			tasks: [{
+				id: "0618EFB578355311"
+				type: "item"
+				item: "appliedenergistics2:128_cubed_spatial_storage_cell"
+			}]
+		}
+		{
+			title: "“多人游戏实用”终端机"
+			x: 2.5d
+			y: 6.5d
+			subtitle: "我的服务器，我的规则。左键点击查看更多信息"
+			description: [
+				"安全终端将解锁使用无线终端访问ME系统的功能。这将允许你远程访问该系统。"
+				""
+				"您还可以配置哪些用户可以使用ME系统，以及他们拥有的权限。通过这种方式，可以强制规定系统的使用权限。"
+				""
+				"默认情况下，安全终端不会阻止系统被篡改。破坏、移除线缆/机器或损坏驱动器并非终端直接提供的功能。如需保护系统免受物理破坏，您需要其他物理安全措施。此方块提供网络级别的安全保护。"
+				""
+				"放置ME安全终端的玩家拥有网络的全部控制权，不能剥夺自己的任何权利。通过添加空白生物识别卡，您可以为没有注册自己生物识别卡的每个玩家定义默认行为。"
+				""
+				"{image:kubejs:textures/ae2/security_terminal_example.png width:110 height:100 align:1 fit:true}"
+			]
+			hide_dependency_lines: false
+			dependencies: ["041F7FE086B9E43D"]
+			id: "2254E4908C5F62EC"
+			tasks: [{
+				id: "7EF553D0B2FEAD89"
+				type: "item"
+				item: "appliedenergistics2:security_station"
+			}]
+			rewards: [{
+				id: "305D7506F3E63564"
+				type: "item"
+				item: {
+					id: "appliedenergistics2:biometric_card"
+					Count: 1b
+					tag: { }
+				}
+			}]
+		}
+		{
+			x: 0.0d
+			y: -7.0d
+			shape: "gear"
+			subtitle: "可存放9种不同类型的物品，堆叠上限为256。左键点击查看更多信息"
+			description: [
+				"如果你需要一个巨大的便携式储物方案，Dank Storage 可能正是你所寻找的。"
+				""
+				"这个好东西有 7 个等级，但目前只有 6 个可用。每个等级都能让你存放越来越多的物品。现在，我们来看看这东西怎么用。"
+				""
+				"由于是第一级，它将提供9种物品类型和256的堆叠限制。这意味着如果你想的话，可以存放9堆256个的Cobblestone，当然，你也可以存放除Cobblestone以外的其他东西。"
+				""
+				"每个Dank Storage有两种模式：建造模式和背包模式。背包模式可以让你像普通背包一样访问Dank的库存。建造模式则允许你放置Dank Storage中的方块。在建造模式下，按住Shift并滚动鼠标来切换Dank Storage中的物品。右键点击即可在世界中放置方块。"
+				""
+				"升级到下一级之前，务必清空 Dank Storage 中的所有物品。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["06F6D673E86907A6"]
+			id: "6E9456D989D686B7"
+			tasks: [{
+				id: "0AF8037774C03673"
+				type: "item"
+				item: {
+					id: "dankstorage:dank_1"
+					Count: 1b
+					tag: {
+						inv: { }
+					}
+				}
+			}]
+		}
+		{
+			x: 1.0d
+			y: -7.0d
+			shape: "gear"
+			subtitle: "可存放18种不同类型的物品，每堆叠上限为1024。升级到下一级前，务必清空Dank Storage内的所有物品"
+			dependencies: ["6E9456D989D686B7"]
+			id: "54ADDC60A61C0451"
+			tasks: [{
+				id: "5590D14AEEA4FF6A"
+				type: "item"
+				item: {
+					id: "dankstorage:dank_2"
+					Count: 1b
+					tag: {
+						inv: { }
+					}
+				}
+			}]
+		}
+		{
+			x: 2.0d
+			y: -7.0d
+			shape: "gear"
+			subtitle: "可存放27种不同类型的物品，堆叠上限为4,096。升级到下一级前，务必清空Dank Storage内的所有物品"
+			dependencies: ["54ADDC60A61C0451"]
+			id: "51E0CC778E98B1B7"
+			tasks: [{
+				id: "71F4BA064DA1EB62"
+				type: "item"
+				item: "dankstorage:dank_3"
+			}]
+		}
+		{
+			x: 3.0d
+			y: -7.0d
+			shape: "gear"
+			subtitle: "可存放36种不同类型的物品，堆叠上限为16,384。升级到下一级前，务必清空Dank Storage内的物品"
+			dependencies: ["51E0CC778E98B1B7"]
+			id: "6BF6A32DE72D1E08"
+			tasks: [{
+				id: "2D5F9AA3846D1840"
+				type: "item"
+				item: "dankstorage:dank_4"
+			}]
+		}
+		{
+			x: 4.0d
+			y: -7.0d
+			shape: "gear"
+			subtitle: "可存放45种不同类型的物品，堆叠上限为65,536。升级到下一级前，务必清空Dank Storage内的所有物品"
+			dependencies: ["6BF6A32DE72D1E08"]
+			id: "4537389794C4D548"
+			tasks: [{
+				id: "66FD39CBECDBA864"
+				type: "item"
+				item: {
+					id: "dankstorage:dank_5"
+					Count: 1b
+					tag: {
+						inv: { }
+					}
+				}
+			}]
+		}
+		{
+			x: 5.0d
+			y: -7.0d
+			shape: "gear"
+			subtitle: "可存放54种不同类型的物品，堆叠上限为262,144。升级到下一级前，务必清空Dank Storage内的所有物品"
+			dependencies: ["4537389794C4D548"]
+			id: "49B7C450D75604AD"
+			tasks: [{
+				id: "47414B7EE4F695FE"
+				type: "item"
+				item: {
+					id: "dankstorage:dank_6"
+					Count: 1b
+					tag: {
+						inv: { }
+					}
+				}
+			}]
+		}
+		{
+			x: 2.5d
+			y: -11.5d
+			shape: "gear"
+			subtitle: "Shulker+ 左键点击查看更多信息"
+			description: [
+				"个人储物箱是Mekanism添加的一种存储方式。获得后，你需要手持它并右键点击以将其分配给自己。"
+				""
+				"之后，你只需右键空气即可访问其物品栏（大小与一个原版双箱相同）。要放置它，只需按住 Shift 右键点击方块。你可以配置其安全设置，以允许或禁止特定玩家访问。"
+			]
+			dependencies: ["776A12466E8A6EFA"]
+			id: "1F1385686C54AC2E"
+			tasks: [{
+				id: "58443CB07B2B28F9"
+				type: "item"
+				item: "mekanism:personal_chest"
+			}]
+		}
+		{
+			x: 1.5d
+			y: 3.5d
+			subtitle: "石英纤维，胜利！左键点击了解更多"
+			description: [
+				"ME玻璃线缆是最简单的线缆，可传输电力和多达8个频道。它有17种不同颜色，默认是Fluix色，并且可以用16种染料中的任意一种染成任何颜色。"
+				""
+				"要制作彩色线缆，用8根同类型线缆包围任意染料即可（线缆颜色不影响）。你也可以在生存模式中使用任何Forge兼容的画笔来给线缆上色。"
+				""
+				"你可以用羊毛覆盖电缆来制作 ME 覆盖电缆，并制作 ME 智能电缆，更好地了解你的通道情况。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["631FBD2CC11F4972"]
+			id: "28FDE6645072876F"
+			tasks: [{
+				id: "3E57DBEFD0AF2A18"
+				type: "item"
+				item: "appliedenergistics2:fluix_glass_cable"
+			}]
+			rewards: [{
+				id: "7E2DC373248854D5"
+				type: "item"
+				item: "appliedenergistics2:fluix_glass_cable"
+				count: 29
+			}]
+		}
+		{
+			x: 2.5d
+			y: 3.5d
+			subtitle: "视觉帮助 101。左键点击查看更多信息"
+			description: [
+				"这些电缆通过可视化电缆上的通道使用情况来提供诊断功能，通道表现为沿电缆黑色条纹运行的彩色发光线条，让你了解网络中各通道的使用情况。"
+				""
+				"这些电缆通过可视化电缆上的通道使用情况来提供诊断功能，通道会以亮起的彩色线条形式沿电缆的黑色条纹显示，让你了解网络中各通道的使用情况。"
+			]
+			dependencies: ["28FDE6645072876F"]
+			id: "6A1D5E5A7EB1F570"
+			tasks: [{
+				id: "08E9B8CF7935A878"
+				type: "item"
+				item: "appliedenergistics2:fluix_smart_cable"
+			}]
+			rewards: [{
+				id: "07C5DC93867C3782"
+				type: "item"
+				item: "appliedenergistics2:fluix_smart_cable"
+				count: 29
+			}]
+		}
+		{
+			x: 3.5d
+			y: 3.5d
+			subtitle: "最优质的玻璃纤维。左键点击查看更多信息"
+			description: [
+				"密集智能电缆可传输32个频道，而标准电缆只能传输8个。但它不支持总线，因此在使用总线或面板前，必须先降级到较小的电缆（如Fluix ME玻璃电缆或Fluix ME智能电缆）。"
+				""
+				"与Fluix ME智能电缆类似，每条亮起的线代表四个正在使用的通道。"
+			]
+			dependencies: ["6A1D5E5A7EB1F570"]
+			id: "3D919F1F9FA991F7"
+			tasks: [{
+				id: "65208C6318BB1AA5"
+				type: "item"
+				item: "appliedenergistics2:fluix_smart_dense_cable"
+			}]
+			rewards: [{
+				id: "63406857DD021FBF"
+				type: "item"
+				item: "appliedenergistics2:fluix_smart_dense_cable"
+				count: 13
+			}]
+		}
+		{
+			x: 0.0d
+			y: -14.0d
+			subtitle: "流体储罐默认可容纳32桶液体。若配备相应升级，可容纳512桶。它也是一个便携式储罐，拾起时会倒出所有内容物"
+			dependencies: ["559CB0401212A28C"]
+			id: "6659BEB6D3AFA0F7"
+			tasks: [{
+				id: "7FDFAC4759B000E1"
+				type: "item"
+				item: {
+					id: "thermal:fluid_cell"
+					Count: 1b
+					tag: {
+						BlockEntityTag: {
+							TankInv: [{
+								FluidName: "minecraft:empty"
+								Capacity: 32000
+								Tank: 0b
+								Amount: 0
+							}]
+						}
+					}
+				}
+			}]
+		}
+		{
+			x: 1.0d
+			y: -13.0d
+			shape: "gear"
+			subtitle: "基础流体储罐是一个便携式流体容器，最多可容纳64桶液体"
+			dependencies: ["09812AE1E82D15C5"]
+			id: "395BFE1DD5729FE7"
+			tasks: [{
+				id: "0BEA50227FF068B8"
+				type: "item"
+				item: "mekanism:basic_fluid_tank"
+			}]
+		}
+		{
+			x: 1.0d
+			y: -12.0d
+			shape: "gear"
+			subtitle: "高级流体储罐最多可容纳 128 桶液体"
+			dependencies: [
+				"395BFE1DD5729FE7"
+				"41B717C98381E7DC"
+			]
+			id: "001E9E06A8A75BB0"
+			tasks: [{
+				id: "5DD551CA17554EAC"
+				type: "item"
+				item: "mekanism:advanced_fluid_tank"
+			}]
+		}
+		{
+			x: 1.0d
+			y: -11.0d
+			shape: "gear"
+			subtitle: "精英流体储罐最多可容纳 512 桶液体"
+			dependencies: ["001E9E06A8A75BB0"]
+			id: "3ADF8F136ECABB72"
+			tasks: [{
+				id: "1B52E18959366010"
+				type: "item"
+				item: "mekanism:elite_fluid_tank"
+			}]
+		}
+		{
+			x: 1.0d
+			y: -10.0d
+			shape: "gear"
+			subtitle: "高级流体储罐最多可容纳 1024 桶液体"
+			dependencies: ["3ADF8F136ECABB72"]
+			id: "39E77051089F65A3"
+			tasks: [{
+				id: "105B40260D2A252E"
+				type: "item"
+				item: "mekanism:ultimate_fluid_tank"
+			}]
+		}
+		{
+			x: 0.0d
+			y: -13.0d
+			shape: "gear"
+			subtitle: "基础能量立方体是一种可储存1.60 MFE的电池。最大输出功率为1.60kFE/刻，可用于在没有专用充电器时为物品充电"
+			dependencies: ["09812AE1E82D15C5"]
+			id: "7A24E7289D1743B1"
+			tasks: [{
+				id: "4B29AE84ACFFC902"
+				type: "item"
+				item: "mekanism:basic_energy_cube"
+			}]
+		}
+		{
+			x: 0.0d
+			y: -12.0d
+			shape: "gear"
+			subtitle: "高级能量立方体可储存 6.40 MFE。最大输出为 6.40kFE/刻"
+			dependencies: ["7A24E7289D1743B1"]
+			id: "41DDC482353F2375"
+			tasks: [{
+				id: "323A3AD7DFC196F8"
+				type: "item"
+				item: "mekanism:advanced_energy_cube"
+			}]
+		}
+		{
+			x: 0.0d
+			y: -11.0d
+			shape: "gear"
+			subtitle: "精英能量立方可储存 25.60 MFE。最大输出为 25.60kFE/刻"
+			dependencies: ["41DDC482353F2375"]
+			id: "4264CA3940704EC1"
+			tasks: [{
+				id: "0DEA0CB107505296"
+				type: "item"
+				item: "mekanism:elite_energy_cube"
+			}]
+		}
+		{
+			x: 0.0d
+			y: -10.0d
+			shape: "gear"
+			subtitle: "高级能量立方体可容纳 102.40 MFE。最大输出为 102.40kFE/刻"
+			dependencies: ["4264CA3940704EC1"]
+			id: "4887E201974AC700"
+			tasks: [{
+				id: "32B64913FC91ADA8"
+				type: "item"
+				item: "mekanism:ultimate_energy_cube"
+			}]
+		}
+		{
+			title: "ME 稳定化组件"
+			icon: "decursiomod:charging_pylon"
+			x: 3.0d
+			y: -5.5d
+			subtitle: "控制器装配线。左键点击查看更多信息"
+			description: [
+				"如果你在读这个，你多半想知道ME控制器是怎么做的，毕竟JEI里没配方。我们本可以浪费你的时间，说这功能被禁了，我们疯了、很坏、巴拉巴拉，但我们不会这么做，至少，不是现在，不是在这里。"
+				""
+				"那么，如何获得你心爱的控制器呢？很简单。你需要完成此任务的稳定化支柱和一个不稳定ME核心。支柱将用于稳定核心以获得ME控制器。"
+				""
+				"来看看怎么用这些金字塔。首先，它们必须一起工作才能正常运行，所以如果缺少一个，所有金字塔都会失效。必须按这种方式放置才能生效："
+				""
+				"{image:kubejs:textures/ae2/stabilization_pylons_example.png width:400 height:100 align:1 fit:true}"
+				""
+				"它们都需要 RF 才能工作。前 4 个还需要 AE2 处理器。最后一个只需要大量的 RF。物品和 RF 可以从所有方向输入。"
+				""
+				"现在开始核心稳定化进程，将ME不稳定核心放入逻辑金字塔，然后放入逻辑处理器。处理器加入后，核心会移动到下一个金字塔，需要计算处理器。之后需要工程处理器，最后需要主处理器。当核心到达最后一个金字塔时，将消耗总计1M RF。进程结束后，附近会掉落一个ME控制器。"
+				""
+				"最后一点：当每个Pylon开始修改Unstable Core时，Charging Coil上方会出现紫色粒子，表示进程正在进行中。"
+			]
+			dependencies: [
+				"02FD2E2781CA26DB"
+				"243A3D2C8DDAED57"
+				"5C299C68318424BC"
+				"0D7DBCD095AA1D88"
+				"40BDAF21862D3FCA"
+			]
+			id: "3CBC6E89F79A0DF5"
+			tasks: [
+				{
+					id: "38C157B9A07FBA22"
+					type: "item"
+					item: "decursiomod:logic_pylon"
+				}
+				{
+					id: "4415288B689E388C"
+					type: "item"
+					item: "decursiomod:calculation_pylon"
+				}
+				{
+					id: "37E1C90F2F99BE6B"
+					type: "item"
+					item: "decursiomod:engineering_pylon"
+				}
+				{
+					id: "06E53E9BE12D5EE8"
+					type: "item"
+					item: "decursiomod:master_pylon"
+				}
+				{
+					id: "1D6B3F9F2DB7A0D0"
+					type: "item"
+					item: "decursiomod:charging_pylon"
+				}
+				{
+					id: "432FBEC8AE218AC7"
+					type: "item"
+					item: "decursiomod:me_unstable_core"
+				}
+			]
+		}
+		{
+			x: 0.5d
+			y: 5.0d
+			shape: "gear"
+			subtitle: "格式正确。左键点击查看更多信息"
+			description: ["Cell 工作台可配置 View Cell、1k ME 物品存储单元及其他类似物品和存储单元的物品存储方式，允许你将 Inverter Card 和 Fuzzy Card 等升级卡插入设备，并根据升级设置选择接受或拒绝哪些物品。"]
+			dependencies: [
+				"46B7A05259CC0513"
+				"5984E05C451F1AF2"
+				"06F6D673E86907A6"
+			]
+			id: "1732EF40FE9C2AC6"
+			tasks: [{
+				id: "1D46EC88DE295CE5"
+				type: "item"
+				item: "appliedenergistics2:cell_workbench"
+			}]
+		}
+		{
+			title: "多维ME系统！"
+			x: 4.5d
+			y: 5.0d
+			shape: "gear"
+			subtitle: "量子环能让你将系统扩展到存在的任何角落。左键点击了解更多"
+			description: [
+				"想不想从另一个维度访问你美丽的ME系统？太棒了！今天就是你的幸运日。在ME量子链接室周围放置八个这样的方块，就能创建一个量子网络桥。"
+				""
+				"{image:kubejs:textures/ae2/quantum_network_bridge.png width:100 height:100 align:1}"
+				""
+				"右键点击结构中央的量子链接室，即可访问桥梁的内部物品栏，该物品栏仅能接受量子纠缠奇点。"
+				""
+				"当奇点与末影粉一同放置在小规模爆炸中时，会生成两个量子纠缠奇点。请注意，这两个奇点是相互连接的，必须用于两个不同的量子网络桥中，以建立连接。"
+				""
+				"还有一些事情需要注意。只有与ME量子链接室相邻的4个ME量子环块可以接受网络连接，4个角块无法连接电缆。此外，你必须为第二个量子网络桥提供外部电源（需要能量接收器），以便其开始运行并与主ME系统建立正确连接。"
+				""
+				"最后，这些结构还可以用来与同一维度中相距甚远的ME系统建立连接。"
+				""
+				"提示：你可能需要加载放置ME系统的区域区块。"
+			]
+			hide_dependency_lines: true
+			dependencies: [
+				"7DA6847CD760EB34"
+				"3D919F1F9FA991F7"
+				"398B882BA973C054"
+				"05CEE4626B22EF16"
+			]
+			id: "61A55CDECD837D29"
+			tasks: [
+				{
+					id: "68C08C281018B64D"
+					type: "item"
+					item: "appliedenergistics2:quantum_ring"
+					count: 16L
+				}
+				{
+					id: "14C74A31E15EE50C"
+					type: "item"
+					item: "appliedenergistics2:quantum_link"
+					count: 2L
+				}
+				{
+					id: "700E74CC13997295"
+					type: "item"
+					item: "appliedenergistics2:quantum_entangled_singularity"
+				}
+			]
+		}
+		{
+			x: 2.5d
+			y: 5.0d
+			shape: "gear"
+			subtitle: "无线路由器，现已登陆方块人世界！左键点击了解更多"
+			description: [
+				"ME无线接入点可将ME网络数据远程传输至同步的无线终端（需使用安全终端进行连接），从而实现远程访问网络存储。"
+				""
+				"无线信号默认范围为16格，使用无线增强器可增加2格。接入点最多可安装64个增强器。"
+			]
+			hide_dependency_lines: true
+			dependencies: [
+				"40BDAF21862D3FCA"
+				"659D2B02958C2781"
+				"28FDE6645072876F"
+			]
+			id: "041F7FE086B9E43D"
+			tasks: [{
+				id: "4F5A3FE2CB72A8A2"
+				type: "item"
+				item: "appliedenergistics2:wireless_access_point"
+			}]
+			rewards: [{
+				id: "55054C0E86AEFCC1"
+				type: "item"
+				item: "appliedenergistics2:wireless_booster"
+				count: 8
+			}]
+		}
+		{
+			x: 3.5d
+			y: 7.5d
+			shape: "gear"
+			subtitle: "这是接口终端的无线版本。它将允许你在移动中访问所有接口和接口模式槽位"
+			dependencies: ["2254E4908C5F62EC"]
+			id: "24F01756CD7DE841"
+			tasks: [{
+				id: "7A78D08BE6BEAE6D"
+				type: "item"
+				item: {
+					id: "ae2wtlib:wireless_interface_terminal"
+					Count: 1b
+					tag: { }
+				}
+			}]
+		}
+		{
+			x: 1.5d
+			y: -3.0d
+			subtitle: "制作模式 - 制作配方。左键点击查看更多信息"
+			description: [
+				"宠物终端是ME合成终端的专用版本，用于将空白模式编码为合成模式或处理模式。"
+				""
+				"让你像用其他终端一样浏览网络内容，同时还包含一个用于设计模式的区域。模式编码有两种：合成模式和加工模式。加工模式专为非标准合成配方机器而设计，例如熔炉或其他机器。要切换模式，请点击界面右侧的按钮；当显示为标准合成台时，会创建合成模式，当显示为熔炉时，会创建加工模式。"
+				""
+				"合成配方中，您在标准的 3x3 合成网格上指定输入材料，输出材料将自动确定。"
+				""
+				"在处理配方中，通过在界面放置物品堆叠来指定输入和输出材料及其数量。如果处理操作无法保证成功（如某些机器的副产品），则无法作为处理配方正常工作。"
+				""
+				"设计配方时，只要你有材料，可以点击产物来提取已合成的物品。"
+			]
+			dependencies: ["0C83F6A2AB7F611D"]
+			id: "0899501249AFA7E5"
+			tasks: [{
+				id: "370B20466003DC7D"
+				type: "item"
+				item: "appliedenergistics2:pattern_terminal"
+			}]
+		}
+		{
+			x: 1.5d
+			y: -4.0d
+			subtitle: "ME Crafting Terminal 是 ME Terminal 的升级版，集成了制作网格，并能访问 ME Network 的 Networked Storage。与 ME Terminal 一样，它也需要一个频道才能运行。"
+			dependencies: ["0C83F6A2AB7F611D"]
+			id: "074E1AA8666A0B22"
+			tasks: [{
+				id: "620D8F5C375C076A"
+				type: "item"
+				item: "appliedenergistics2:crafting_terminal"
+			}]
+		}
+		{
+			x: 3.5d
+			y: -3.0d
+			subtitle: "ME接口终端可以让你远程访问网络上所有接口模式槽位，并按机器类型分开显示。终端会显示机器类型，但你可以通过刻印器或铁砧重命名ME接口，以更改ME模式访问终端中显示的名称。结合接口显示与否的切换功能，你就能完全控制接口终端的显示内容。"
+			dependencies: ["0C83F6A2AB7F611D"]
+			id: "03124013500C12DC"
+			tasks: [{
+				id: "3FA882E36E57CA96"
+				type: "item"
+				item: "appliedenergistics2:interface_terminal"
+			}]
+		}
+		{
+			x: 3.5d
+			y: -4.0d
+			subtitle: "ME流体终端是普通ME终端的液体版本。它能让你看到储存在流体存储单元中的所有液体"
+			dependencies: ["0C83F6A2AB7F611D"]
+			id: "73EEEC78A116DF68"
+			tasks: [{
+				id: "04BD5BF62A322AC6"
+				type: "item"
+				item: "appliedenergistics2:fluid_terminal"
+			}]
+		}
+		{
+			title: "交互监视器"
+			x: 2.5d
+			y: -3.5d
+			shape: "gear"
+			subtitle: "存储和转换监视器是ME系统的两个非常有用的组件。左键点击查看更多信息"
+			description: [
+				"ME 存储监视器是查看系统中指定物品当前数量的简单方法。有几种交互方式可以修改它："
+				""
+				"- 右键点击物品，即可选择该物品的显示数量。要清空显示器，只需空手右键点击即可"
+				""
+				"- 用石英扳手右键点击显示器即可锁定物品，防止意外更改。要解锁显示器，只需再次用石英扳手右键点击即可"
+				""
+				"ME 转换监视器是 ME 存储监视器的升级版。它有几个很棒的新增功能："
+				""
+				"- 添加了像抽屉一样，可以直接从ME网络中提取或存入物品的功能"
+				""
+				"- 使用扳手或网络工具右键点击ME转换监视器即可锁定（或解锁）"
+				""
+				"- 解锁后，它会显示右键点击的任何物品。Shift+右键尝试将物品插入网络。Shift+双击右键尝试将显示类型的所有物品插入网络"
+				""
+				"- 如果监视器已锁定，右键会尝试取出所显示物品的一个堆叠。不能放入扳手或网络工具，因为 Shift+右键会拾取监视器"
+			]
+			dependencies: ["7085ED71734DBE6C"]
+			id: "351FC4904F5A162F"
+			tasks: [
+				{
+					id: "669AE0F5E3180E71"
+					type: "item"
+					item: "appliedenergistics2:storage_monitor"
+				}
+				{
+					id: "55B573CC0C85F9F9"
+					type: "item"
+					item: "appliedenergistics2:conversion_monitor"
+				}
+			]
+		}
+		{
+			title: "1k 合成 CPU"
+			x: 3.5d
+			y: -1.0d
+			shape: "gear"
+			subtitle: "提供1024字节的合成存储。完成此任务将奖励你一个Crafting Monitor，可集成到Crafting CPU中，以便清楚地查看CPU正在处理的合成过程。"
+			hide_dependency_lines: true
+			dependencies: [
+				"76C8ADD18F1BC57D"
+				"3C7E35709686AEF3"
+			]
+			id: "5ED8145D15E3C01E"
+			tasks: [{
+				id: "29F68F32F3DB714F"
+				type: "item"
+				item: "appliedenergistics2:1k_crafting_storage"
+			}]
+			rewards: [{
+				id: "56B393242BF957D0"
+				type: "item"
+				item: "appliedenergistics2:crafting_monitor"
+			}]
+		}
+		{
+			title: "4k 合成 CPU"
+			x: 4.5d
+			y: -1.0d
+			shape: "gear"
+			subtitle: "提供 4,096 字节的合成存储空间"
+			hide_dependency_lines: true
+			dependencies: ["58FECCAD4A6649B4"]
+			id: "4F6610BB559EBBF0"
+			tasks: [{
+				id: "50B4490F485EF5C9"
+				type: "item"
+				item: "appliedenergistics2:4k_crafting_storage"
+			}]
+		}
+		{
+			title: "16k 合成 CPU"
+			x: 5.5d
+			y: -1.0d
+			shape: "gear"
+			subtitle: "提供 16,384 字节的合成存储空间"
+			hide_dependency_lines: true
+			dependencies: ["055F95363620C6AC"]
+			id: "0F886AC267BBDADE"
+			tasks: [{
+				id: "77B41F29662F9E94"
+				type: "item"
+				item: "appliedenergistics2:16k_crafting_storage"
+			}]
+		}
+		{
+			title: "64k 合成 CPU"
+			x: 6.5d
+			y: -1.0d
+			shape: "gear"
+			subtitle: "提供 65,536 字节的合成存储空间"
+			hide_dependency_lines: true
+			dependencies: ["507073E406B6567C"]
+			id: "3EB380ECA5C5ADFF"
+			tasks: [{
+				id: "0167270931CAB6F7"
+				type: "item"
+				item: "appliedenergistics2:64k_crafting_storage"
+			}]
+		}
+		{
+			title: "装配器与模式图 The Assembler and The Pattern"
+			x: 4.5d
+			y: 1.0d
+			subtitle: "机器与说明。左键点击查看更多信息"
+			description: [
+				"分子合成器是一种需要能量的机器，可以通过插入加速卡来升级。升级后速度会非常快。"
+				""
+				"有两种模式：单图案模式或自动合成模式。"
+				""
+				"在单配方模式下，它使用单个配方插入组装器来制作物品，无需配方网络。这使得它在独立设置中或在可由其他模组提供原料、甚至可连锁制作最终产物的配置中非常有用。物品可从任何一侧输入，并输出到任何可用的物品栏中。"
+				""
+				"在自动合成模式下，当合成CPU请求物品时，它会使用附带的ME接口中的合成配方来合成物品。此模式要求装配器的配方槽为空。"
+				""
+				"现在来说说模式。这种小狗可以编码为合成模式或处理模式。合成模式用于通过直接将其放入分子组装器（有专属任务可了解更多信息）或连接到分子组装器的ME接口（最多可添加9种模式至一个组装器）来控制合成。处理模式则用于将其放入连接到改装机器、熔炉或其他“设备”的ME接口来控制合成。"
+			]
+			hide_dependency_lines: true
+			dependencies: [
+				"5C299C68318424BC"
+				"3C7E35709686AEF3"
+			]
+			id: "4F34B0DFD9BDF4AF"
+			tasks: [
+				{
+					id: "6C7F1E6D74AD7BA9"
+					type: "item"
+					item: "appliedenergistics2:molecular_assembler"
+				}
+				{
+					id: "0A158899FF356DA0"
+					type: "item"
+					item: "appliedenergistics2:blank_pattern"
+				}
+			]
+		}
+		{
+			x: 3.5d
+			y: 1.0d
+			subtitle: "管理配方和通用物品栏。左键点击查看更多信息"
+			description: [
+				"ME接口是唯一可以用作组件或方块的组件。单独制作任一形式的ME接口都会生成另一种形式。薄型接口适合在单个物理空间中放置多个不同接口，但每个接口都需要自己的通道。块状接口则允许多个其他方块连接到单个ME接口，且接口本身只使用一个通道。"
+				""
+				"ME接口在与其他模组的管道、管子、网络或机器打交道时起到中介作用。"
+				""
+				"你可以配置某些物品，使其从ME网络导出到ME接口，供其他模组使用。或使用其他模组将物品插入任何ME接口。只要接口没有装满已导出的材料，它就会将新增物品添加到ME网络中。"
+				""
+				"接口通常像箱子一样工作，但有一个例外：如果你在接口上放置存储总线，实际上会包含整个网络，这使得网络可以共享大量内容并以非常有效的方式串联起来。此外，如果你将接口配置为明确提供特定材料，存储总线会表现得像接口是一个普通箱子，从而禁用此高级功能。"
+				""
+				"ME 接口需要一个频道才能正常工作。"
+			]
+			hide_dependency_lines: true
+			dependencies: ["5C299C68318424BC"]
+			id: "2B6B57AC28CC7943"
+			tasks: [{
+				id: "7B462D05B4832DF9"
+				type: "item"
+				item: "appliedenergistics2:interface"
+			}]
+		}
+		{
+			x: 6.5d
+			y: 1.0d
+			subtitle: "ME流体接口将连接ME网络和流体存储及运输系统。每侧可独立配置为不同的流体。要导出的流体可通过将一桶该流体放入接口提供的空槽中设置。"
+			hide_dependency_lines: true
+			dependencies: ["5C299C68318424BC"]
+			id: "7DAF6389FBFD48A3"
+			tasks: [{
+				id: "52D1C435E7C0AA82"
+				type: "item"
+				item: "appliedenergistics2:fluid_interface"
+			}]
+		}
+		{
+			x: 5.5d
+			y: 1.0d
+			subtitle: "协处理器单元为CPU向ME接口提供额外的物品，用于合成。这可以让更多装配器并行工作，从而提升整体合成速度。前提是您的设置已将步骤正确分离，以便系统能并行运行多个任务，或将同一模式分配到多个接口。"
+			hide_dependency_lines: true
+			dependencies: [
+				"0D7DBCD095AA1D88"
+				"3C7E35709686AEF3"
+			]
+			id: "5ADFE76F2B44C4D7"
+			tasks: [{
+				id: "38355A074BA51115"
+				type: "item"
+				item: "appliedenergistics2:crafting_accelerator"
+			}]
+		}
+		{
+			title: "存储磁盘 101"
+			icon: {
+				id: "botania:cosmetic_questgiver_mark"
+				Count: 1b
+				tag: { }
+			}
+			x: 0.0d
+			y: -2.0d
+			shape: "gear"
+			subtitle: "分区和字节。它们是如何工作的？左键点击查看更多信息"
+			description: [
+				"来学习一下字节和类型。存储单元是应用能源2的核心存储机制之一，共有三种：物品、流体和空间区域。"
+				""
+				"物品存储单元最多可容纳63种不同类型的物品；其存储数量部分取决于所容纳的类型数量和存储容量。"
+				""
+				"存储单元有大小和类型的限制，你还需要考虑单元的资源消耗，来决定最佳选择。每个存储单元可以存储固定量的数据。每种类型消耗一定字节（随单元大小而异），每个物品消耗1位存储，因此8个物品消耗1字节，而64个物品的完整堆叠消耗8字节，无论该物品在ME网络外如何堆叠。例如，64个相同的马鞍所占空间不超过64个石头。"
+				""
+				"直接追求顶级存储单元通常不是最佳选择，因为会消耗更多资源，却得不到额外的存储类型。"
+			]
+			dependencies: ["7085ED71734DBE6C"]
+			id: "5356432BFBD260EC"
+			tasks: [{
+				id: "3724735D8630BAA2"
+				type: "checkmark"
+				title: "明白了！"
+			}]
+		}
+		{
+			title: "自动合成入门教程 101"
+			icon: {
+				id: "botania:cosmetic_questgiver_mark"
+				Count: 1b
+				tag: { }
+			}
+			x: 5.0d
+			y: -2.0d
+			shape: "gear"
+			subtitle: "核心和线程？你已经有了，快点击“导出”吧！左键点击查看更多信息"
+			description: [
+				"欢迎来到，可能是AE2最强大的功能：自动合成。ME系统能执行非常复杂的合成操作，但前提是必须满足特定条件。"
+				""
+				"自动合成需要一个合成CPU。它可以是一个单独方块，也可以是多方块结构。它能从头到尾管理单个自动合成任务，并且可以由各种合成单元建造而成。"
+				""
+				"要成为有效的合成 CPU，必须满足两条规则："
+				""
+				"1. CPU 必须是一个长方体，完全由上述部件组成；空气或其他方块无效。"
+				""
+				"2. CPU 必须包含至少 1 个存储组件。如果你不做多方块结构，只用一个 Crafting Storage Component 即可，但请注意，这会导致处理能力有限。"
+				""
+				"作为多区块的制造CPU，整个结构只需要单个通道。"
+				""
+				"除了制作存储方块，你还可以在多层结构中增加制作协处理器，以提高制作CPU一次能执行的任务数量。没有协处理器时，制作CPU一次只能执行单个任务。存储需求相当复杂，不遵循常规的ME存储计算方式，但粗略估算，每个输入物品、输出物品或操作都需要略多于一字节的空间。换句话说，制作存储方块越多、越大越好。"
+				""
+				"你可以用铁砧命名构成它的任意一个合成单元，以此来命名你的合成CPU。"
+				""
+				"好的，你有了CPU，现在需要一种方法来告诉你的系统你想要自动合成的配方。这就是模式和模式终端的用武之地。"
+				""
+				"宠物终端有专属任务，你可以在其中找到更多信息。分子合成器和模式也是如此。"
+				""
+				"向ME接口提供模式后，编码配方产物会显示在终端上。点击产物图标即可开始自动合成。请求的合成状态可在终端/合成终端右上角的按钮中查看。"
+			]
+			dependencies: ["7085ED71734DBE6C"]
+			id: "3C7E35709686AEF3"
+			tasks: [{
+				id: "632C1BE5DA576BD3"
+				type: "checkmark"
+				title: "明白了！"
+			}]
+		}
+		{
+			title: "5x5 自动合成：第 2 部分"
+			x: 6.5d
+			y: 0.0d
+			shape: "heart"
+			subtitle: "高级自动合成。左键点击查看更多信息"
+			description: [
+				"我们来讲解自动合成中大于 3x3 的网格部分。"
+				""
+				"处理需要5x5或更大合成网格的配方时，你需要使用Package Crafter而非Molecular Assembler。注意，每个Autocrafting Table等级都有其专属的Package Crafter。此外，Crafting Core也有自己的Package Crafter，可与ME System配合，轻松自动化组合配方。"
+				""
+				"另外，普通模式需要换成包装配方持有者。这是一种高级模式，最多可保存19个配方。要正确使用它们，你总需要两个（上面列出相同的配方）。一个要放在包装器中，另一个要放在拆包器中。"
+				""
+				"配方持有物也可以存放多种类型的配方。例如，一个配方持有物可以包含3个合成配方、5个组合配方等。"
+			]
+			hide_dependency_lines: true
+			dependencies: [
+				"3C7E35709686AEF3"
+				"4CF1DAD5B1DD93B0"
+			]
+			id: "365DB5E9684F8489"
+			tasks: [
+				{
+					id: "4B4EAD71B69452E0"
+					type: "item"
+					item: "packagedexcrafting:advanced_crafter"
+				}
+				{
+					id: "2160195A35FE7E88"
+					type: "item"
+					item: "packagedauto:recipe_holder"
+					count: 2L
+				}
+			]
+		}
+		{
+			title: "5x5 自动合成：第 1 部分"
+			x: 3.5d
+			y: 0.0d
+			shape: "heart"
+			subtitle: "管理大型配方。左键点击查看更多信息"
+			description: [
+				"ME 系统虽然强大且用途广泛，但管理大于 3x3 的配方时存在问题。PackagedAuto 模组应运而生。它将提供三种机器，让你能使用大于 3x3 的网格进行自动化合成。"
+				""
+				"来说说 Package Recipe Encoder。把它看作一个 Pattern Terminal 就行。它能读取 Package Recipe Holder 并写入配方。它支持 JEI，所以你不必手动制作每个配方。"
+				""
+				"要将配方添加到 Package Recipe Holders，请按以下步骤操作。同时向 Encoder 提供两个 Holder，并从 19 个槽位中选择一个。然后，为您的配方选择 Crafting Station。例如，如果您想自动制作 Multiservo Press，则必须选择 Advanced Auto Crafting Table。之后，您只需从 JEI 中选择配方即可。任何 5x5 配方旁边都应该有一个“加号”按钮。点击“保存”按钮即可完成。"
+				""
+				"现在，我们来谈谈 Unpackager 和 Packager。"
+				""
+				"第一个必须连接到ME系统，并且紧邻你要使用的合成台。旁边也可以有多个合成台。两个包装配方持有器中，有一个必须放置在解包器中。这会添加一个用于管理最终产品的配方。"
+				""
+				"第二个必须连接到你的ME系统，并且里面要有另一个配方持有器。这会将配方添加到ME系统中以实现自动化合成。"
+				""
+				"满足上述条件后，终端中最多应有 19 个配方（取决于你已制作的数量）可供自动合成。"
+			]
+			hide_dependency_lines: true
+			dependencies: [
+				"3C7E35709686AEF3"
+				"365DB5E9684F8489"
+			]
+			id: "00A391C5D42E4144"
+			tasks: [
+				{
+					id: "42E820A3B3FA2F40"
+					type: "item"
+					item: "packagedauto:encoder"
+				}
+				{
+					id: "6F4F99DE2289D79E"
+					type: "item"
+					item: "packagedauto:packager"
+				}
+				{
+					id: "711A6F4F5014E64B"
+					type: "item"
+					item: "packagedauto:unpackager"
+				}
+			]
+		}
+		{
+			title: "感应矩阵 (The Induction Matrix)"
+			x: 5.0d
+			y: -14.0d
+			subtitle: "感应矩阵本质上是一个巨型电池，能储存数万亿FE。左键点击查看更多信息"
+			description: [
+				"感应矩阵是一种高度可配置的多方块储能结构。它使用感应外壳和感应端口作为外壳，以及空气、感应提供器和感应单元的任何组合来建造。"
+				""
+				"正确搭建的感应矩阵在放置最后一个方块时会闪烁红石粒子，右键方块还会出现接口。注意：要让感应矩阵正常工作，需要使用配置器设置一个感应端口为输入，另一个为输出。"
+				""
+				"感应矩阵仅在单元格结构为16x16x16或更小的长方体，且外壳结构为18x18x18或更小的长方体时才会形成。"
+				""
+				"方块的所有边缘都必须使用感应外壳。你可以使用结构玻璃来制作表面。"
+				""
+				"所有面（边缘除外）都可以通过 Induction Casing 或 Induction Port 以任何配置填充（无论内部如何设置）。"
+				""
+				"立方体内部可以填充感应器、感应单元或空气方块。但你需要至少1个感应单元和1个感应器。没有至少1个感应器，感应矩阵就无法发送或接收电力。"
+				""
+				"立方体组件的内部不需要有匹配的等级。"
+			]
+			dependencies: ["02502B52A16346C0"]
+			id: "193203BEECAB4478"
+			tasks: [
+				{
+					id: "03320163CB512BA9"
+					type: "item"
+					item: "mekanism:induction_casing"
+				}
+				{
+					id: "3C42964ABF46D47C"
+					type: "item"
+					item: "mekanism:induction_port"
+				}
+			]
+		}
+		{
+			title: "i9"
+			x: 2.0d
+			y: -5.5d
+			subtitle: "请勿弯曲针脚。左键点击查看更多信息"
+			description: [
+				"与你之前一直在研究的其他处理器不同，这个处理器相当独特。"
+				""
+				"其主要用途是稳定一个 Me Core。最终，该 Core 将被制成 ME Controller，从而完全释放你 ME System 的潜力。"
+			]
+			dependencies: [
+				"221ECEF99F9C4AA8"
+				"7085ED71734DBE6C"
+			]
+			id: "243A3D2C8DDAED57"
+			tasks: [{
+				id: "7885C1EFB7D5D8B4"
+				type: "item"
+				item: "decursiomod:master_processor"
+			}]
+		}
+		{
+			title: "ME 输入/输出总线"
+			x: 4.5d
+			y: 0.0d
+			subtitle: "永远的细节。左键点击查看更多信息"
+			description: [
+				"ME导入总线会从它所指向的背包中拉取物品，并将其放入ME网络的联网存储中。你可以通过UI指定要拉取哪些物品，否则它会尝试拉取相邻背包中的任何物品。ME导入总线会尝试导入所有可能的选项，即使其中1个或多个配置的物品无法被存储。ME导入总线需要频道才能运行。"
+				""
+				"ME 导出总线会从 ME 网络的联网存储中提取物品，并放入其面对的背包中。你必须配置要插入的物品，否则将一无所获。ME 导出总线会尝试导出列表中的任何物品，跳过无法放入目标的那些。ME 导出总线需要频道才能运行。"
+			]
+			dependencies: ["5C299C68318424BC"]
+			id: "14640BF1CD88E692"
+			tasks: [
+				{
+					id: "764709A240166A56"
+					type: "item"
+					item: "appliedenergistics2:import_bus"
+				}
+				{
+					id: "3860004AD292D3F0"
+					type: "item"
+					item: "appliedenergistics2:export_bus"
+				}
+			]
+		}
+		{
+			title: "ME流体输入/输出总线"
+			x: 5.5d
+			y: 0.0d
+			subtitle: "流体版 ME 导入和导出总线。它们会与流体而非物品进行交互"
+			dependencies: ["5C299C68318424BC"]
+			id: "1668AEFC7D48DB42"
+			tasks: [
+				{
+					id: "669F2B0007FE5582"
+					type: "item"
+					item: "appliedenergistics2:fluid_import_bus"
+				}
+				{
+					id: "5D45BFCC0F1535D5"
+					type: "item"
+					item: "appliedenergistics2:fluid_export_bus"
+				}
+			]
+		}
+		{
+			x: 4.0d
+			y: -13.0d
+			shape: "gear"
+			subtitle: "基础化学储罐是一个便携式气体容器，最多可容纳64桶气体。但请注意，此储罐及其他所有化学储罐都无法储存放射性气体/浆料"
+			dependencies: ["1A870097D55C3137"]
+			id: "77407B54D3696E59"
+			tasks: [{
+				id: "724895E01B81CD8E"
+				type: "item"
+				item: "mekanism:basic_chemical_tank"
+			}]
+		}
+		{
+			x: 4.0d
+			y: -12.0d
+			shape: "gear"
+			subtitle: "高级化学储罐最多可容纳128桶气体/浆料"
+			dependencies: [
+				"77407B54D3696E59"
+				"41B717C98381E7DC"
+			]
+			id: "0A295CAC03787171"
+			tasks: [{
+				id: "4E9E996940C71DC2"
+				type: "item"
+				item: "mekanism:advanced_chemical_tank"
+			}]
+		}
+		{
+			x: 4.0d
+			y: -11.0d
+			shape: "gear"
+			subtitle: "高级化学储罐最多可容纳256桶气体/浆料"
+			dependencies: ["0A295CAC03787171"]
+			id: "67EAA638B97D1DA9"
+			tasks: [{
+				id: "542E2A11C846ABC5"
+				type: "item"
+				item: "mekanism:elite_chemical_tank"
+			}]
+		}
+		{
+			x: 4.0d
+			y: -10.0d
+			shape: "gear"
+			subtitle: "高级化学储罐最多可容纳512桶气体/浆料"
+			dependencies: ["67EAA638B97D1DA9"]
+			id: "4370B7822D3AB927"
+			tasks: [{
+				id: "3B0628BE6442EFED"
+				type: "item"
+				item: "mekanism:ultimate_chemical_tank"
+			}]
+		}
+		{
+			title: "基础入门教程"
+			x: 5.0d
+			y: -13.0d
+			shape: "gear"
+			subtitle: "可容纳 3.20 GFE，输入/输出速率为 102.40 kFE"
+			dependencies: ["193203BEECAB4478"]
+			id: "24FC57150EA5EC64"
+			tasks: [
+				{
+					id: "1F0A2146EA5F99EB"
+					type: "item"
+					item: "mekanism:basic_induction_cell"
+				}
+				{
+					id: "2B3CFF2D3A12E69E"
+					type: "item"
+					item: "mekanism:basic_induction_provider"
+				}
+			]
+		}
+		{
+			title: "高级感应炉 (Advanced Induction)"
+			x: 5.0d
+			y: -12.0d
+			shape: "gear"
+			subtitle: "可容纳 25.60 GFE，输入/输出速率为 819.20 kFE"
+			dependencies: ["24FC57150EA5EC64"]
+			id: "3F7EBB82B508164D"
+			tasks: [
+				{
+					id: "5CFD8FDDB13B0320"
+					type: "item"
+					item: "mekanism:advanced_induction_cell"
+				}
+				{
+					id: "64E5CA431DF1D113"
+					type: "item"
+					item: "mekanism:advanced_induction_provider"
+				}
+			]
+		}
+		{
+			title: "精英感应器"
+			x: 5.0d
+			y: -11.0d
+			shape: "gear"
+			subtitle: "可容纳 204.80 GFE，输入/输出速率为 6.55 MFE"
+			dependencies: ["3F7EBB82B508164D"]
+			id: "5EAB9EBC5F18C9A7"
+			tasks: [
+				{
+					id: "3B7AAB4F1608C5B0"
+					type: "item"
+					item: "mekanism:elite_induction_cell"
+				}
+				{
+					id: "5BF4E5B9346ABB59"
+					type: "item"
+					item: "mekanism:elite_induction_provider"
+				}
+			]
+		}
+		{
+			title: "终极感应器"
+			x: 5.0d
+			y: -10.0d
+			shape: "gear"
+			subtitle: "可容纳 1.60 TFE，输入/输出速率为 52.42 MFE"
+			dependencies: ["5EAB9EBC5F18C9A7"]
+			id: "7AC325294C461C23"
+			tasks: [
+				{
+					id: "27AB12203AD11C5C"
+					type: "item"
+					item: "mekanism:ultimate_induction_cell"
+				}
+				{
+					id: "621FC5D17B6D40D0"
+					type: "item"
+					item: "mekanism:ultimate_induction_provider"
+				}
+			]
+		}
+		{
+			x: 3.0d
+			y: -8.5d
+			shape: "gear"
+			subtitle: "随身携带更多RF！左键点击查看更多信息"
+			description: [
+				"纹波电容器将作为你背包中所有电气物品的便携式电池。"
+				""
+				"默认情况下，它能最多储存 500k RF，但可以通过在 Tinker's Workbench 使用特定增幅器进行升级。此外，Flux Capacitor 还可以附魔 Holding 系列附魔，使其最大储存量提升至 36M RF。"
+			]
+			dependencies: ["7EF155944458998F"]
+			id: "0ECD6345576469F9"
+			tasks: [{
+				id: "04887E90D3B162B4"
+				type: "item"
+				item: {
+					id: "thermal:flux_capacitor"
+					Count: 1b
+					tag: { }
+				}
+			}]
+		}
+		{
+			x: 2.0d
+			y: -8.5d
+			shape: "gear"
+			subtitle: "随时随地储存经验！左键点击查看更多信息"
+			description: [
+				"洞察水晶将用于存储你当前的经验值，这样死亡时就不会完全损失。此外，该水晶还可将经验值转移到装有知识浓缩增强器的流体单元中。"
+				""
+				"默认情况下，水晶可以储存约63级经验。但可以通过附魔“储存”将其提升至最多129级经验。"
+				""
+				"最后，它有一个“自动收集”模式，可以让水晶将所有经验值收入其物品栏中。"
+			]
+			dependencies: [
+				"1FED40C0BDD7E015"
+				"3FEB394895131E7C"
+			]
+			id: "6ACF30B2CE835291"
+			tasks: [{
+				id: "18250D5300CCCF2C"
+				type: "item"
+				item: {
+					id: "thermal:xp_crystal"
+					Count: 1b
+					tag: { }
+				}
+			}]
+		}
+		{
+			x: 2.5d
+			y: 9.0d
+			shape: "gear"
+			subtitle: "便携式法力电池 MkIII - 该电池将存储 4,000,000 单位法力"
+			dependencies: ["01C35754A9AEF761"]
+			id: "2DF54E8165664C5C"
+			tasks: [{
+				id: "6C1584F684BF8998"
+				type: "item"
+				item: {
+					id: "mythicbotany:mana_ring_greatest"
+					Count: 1b
+					tag: {
+						mana: 4000000
+					}
+				}
+			}]
+		}
+		{
+			x: 2.5d
+			y: -2.0d
+			subtitle: "View Cell 是一种配置终端以仅显示指定物品的工具。假设你有一个连接到网络的烹饪区终端，并且只想在该终端上显示烹饪食材，那么 View Cell 就是你需要的。将其放置在 Cell Workbench 中时，会提供 63 个槽位。可以通过向这些槽位中添加物品来配置该 Cell。当放置在终端中时，View Cell 将只允许终端显示其上列出的物品。"
+			dependencies: ["06F6D673E86907A6"]
+			id: "1B3EBD313F042672"
+			tasks: [{
+				id: "5AB678032229B701"
+				type: "item"
+				item: "appliedenergistics2:view_cell"
+			}]
+		}
+		{
+			title: "空间输入输出管理 (Spatial IO Management)"
+			x: 3.0d
+			y: 2.0d
+			shape: "gear"
+			subtitle: "复制/粘贴我的领地。左键点击查看更多信息"
+			description: [
+				"空间IO端口用于捕获和部署由空间信标所定义的空间区域。"
+				""
+				"要捕获/部署一片空间，你必须先建造一个空间约束结构。建造完成后，你的空间IO端口会显示所需功率和当前功率。下一步是调整你的SCS设计，或建造并为其提供能量，以满足空间IO端口的要求。"
+				""
+				"一旦有可用电力且SCS有效，您需要插入2³、16³或128³的空间存储单元，具体取决于所需大小。当一切就绪并将存储单元放入空间IO端口后，向该端口施加红石信号即可触发单元向SCS的捕获/部署。"
+				""
+				"需要频道才能正常工作。"
+				""
+				"空间柱是建造空间收容结构的主要方块，必须用直线建造，长度至少为2。通电并接入网络后，它们会发出浅紫色或浅红色的光。若为浅红色，则表示设计存在问题，需要调整。通电时会发出微光。"
+				""
+				"ME网络中的所有空间柱都属于同一个SCS。"
+			]
+			dependencies: ["658A7224D988CF2E"]
+			id: "242A83794C5BCB10"
+			tasks: [
+				{
+					id: "0BE470E0508C56E1"
+					type: "item"
+					item: "appliedenergistics2:spatial_io_port"
+				}
+				{
+					id: "46DEA52B4B997CE6"
+					type: "item"
+					item: "appliedenergistics2:spatial_pylon"
+					count: 16L
+				}
+			]
+		}
+		{
+			x: 2.0d
+			y: 2.0d
+			shape: "gear"
+			subtitle: "想把物品移到另一个单元格怎么办？左键点击了解更多"
+			description: [
+				"ME IO Port 允许你在 ME 网络和存储单元之间传输物品。与其他自动化方式不同，ME IO Port 无需配置要发送的物品即可发送物品。"
+				""
+				"UI顶部显示了你希望将数据移动的方向，即进入单元格还是进入网络。"
+				""
+				"ME IO Port 需要通道才能工作。自动化使用时，输入为顶部或底部，输出为任意侧面。将数据存储在单元中时，最好预先格式化，这样你只得到想要的物品，而不会得到大量额外物品。"
+			]
+			dependencies: ["66E521B78242913C"]
+			id: "658A7224D988CF2E"
+			tasks: [{
+				id: "525CD253F586CDA4"
+				type: "item"
+				item: "appliedenergistics2:io_port"
+			}]
+		}
+		{
+			x: 2.5d
+			y: -13.5d
+			shape: "gear"
+			subtitle: "Mark V - 不，它不是装在行李箱里的。第五级背包由1个下界合金锭制成，可提供96个物品栏。它还将有4个升级槽位"
+			dependencies: [
+				"61640A55E9877F54"
+				"6AA23A5FB3C37C90"
+				"7EF155944458998F"
+				"02396D546396B926"
+			]
+			id: "74DDB8C6F6995D3C"
+			tasks: [{
+				id: "05BCDBA1F4B066D7"
+				type: "item"
+				item: "sophisticatedbackpacks:netherite_backpack"
+			}]
+			rewards: [{
+				id: "64548D3A6413D2AC"
+				type: "loot"
+				table_id: 5206766833681472091L
+			}]
+		}
+	]
+}
