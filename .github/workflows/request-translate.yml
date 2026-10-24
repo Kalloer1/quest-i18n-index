@@ -1,0 +1,174 @@
+name: request-translate
+
+# 玩家提交的翻译主力（方案 §3.3 / 决策 #4：CI 96 路，本机 requests.mjs 兜底）。
+#
+# 触发：
+# - workflow_dispatch：手动 / Worker POST /translate（GITHUB_WORKFLOW_FILE 指向本文件）
+# - repository_dispatch(player-request)：预留程序化触发
+#
+# inputs.ids / client_payload.ids：逗号分隔的整合包 slug。
+#
+# 与旧 translate.yml 的差异（为什么）：
+# - 不打包 zip、不镜像夸克、不碰 main —— 产物（patches/<slug>/ + research/packs/<slug>.tar.gz）
+#   推到 farm/ci 分支，publish-local 把它当一台主机收割，闸门/打包/站点重建统一在那边做。
+#   这样 CI 翻译失败不会污染 main，也能复用发布自检（决策 #13）。
+# - 翻译尾部自动跑 translate-fill 补漏译（决策 #14）。
+# - translate-local 用 --push-every 0（绝不顺手推 main），产物留在工作区由最后的
+#   farm/ci 推送步骤统一处理。
+
+on:
+  workflow_dispatch:
+    inputs:
+      ids:
+        description: '逗号分隔的整合包 slug 列表'
+        required: true
+        type: string
+  repository_dispatch:
+    types: [player-request]
+
+permissions:
+  contents: write
+  actions: write
+
+# 与 deploy / 其他写仓库的工作流共用一组：同一时刻只允许一个 run。
+concurrency:
+  group: repo-write
+  cancel-in-progress: false
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm ci || npm install
+
+      - name: Resolve ids
+        id: ids
+        env:
+          DISPATCH_IDS: ${{ github.event.client_payload.ids }}
+        run: |
+          IDS="${{ inputs.ids }}"
+          if [ -z "$IDS" ]; then IDS="$DISPATCH_IDS"; fi
+          if [ -z "$(echo "$IDS" | tr -d ' ,')" ]; then
+            echo "::error::ids 为空（workflow_dispatch inputs.ids 或 client_payload.ids）"
+            exit 1
+          fi
+          echo "ids=$IDS" >> "$GITHUB_OUTPUT"
+          echo "本次翻译：$IDS"
+
+      # 闸门（写入之前）：带着历史问题继续产出只会烧翻译额度。
+      - name: Run tests
+        run: npm test
+
+      - name: Prepare packs
+        run: node scripts/prepare-pack.mjs --ids "${{ steps.ids.outputs.ids }}"
+        env:
+          CF_KEY: ${{ secrets.CF_KEY }}
+
+      # 96 路（决策 #4：实测拐点）；--redo-done：显式指定的 slug 无视已完成状态；
+      # --push-every 0：绝不从这里推 main。
+      - name: Translate (96 lanes)
+        run: node scripts/translate-local.mjs --slug "${{ steps.ids.outputs.ids }}" --lanes 96 --redo-done --push-every 0
+        env:
+          CF_KEY: ${{ secrets.CF_KEY }}
+          LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          LLM_MODELS: ${{ secrets.LLM_MODELS || '' }}
+          FREE_TIER_ENABLED: ${{ secrets.FREE_TIER_ENABLED || '1' }}
+          FREE_TIER_BASE_URL: ${{ secrets.FREE_TIER_BASE_URL }}
+          FREE_TIER_MODEL: ${{ secrets.FREE_TIER_MODEL }}
+
+      # 补漏译（决策 #14）：并发翻译偶发漏 0.5%，整包重翻太贵，只补疑似漏译。
+      - name: Fill missed translations
+        run: node scripts/translate-fill.mjs --slug "${{ steps.ids.outputs.ids }}" --lanes 96
+        env:
+          LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          LLM_MODELS: ${{ secrets.LLM_MODELS || '' }}
+          FREE_TIER_ENABLED: ${{ secrets.FREE_TIER_ENABLED || '1' }}
+          FREE_TIER_BASE_URL: ${{ secrets.FREE_TIER_BASE_URL }}
+          FREE_TIER_MODEL: ${{ secrets.FREE_TIER_MODEL }}
+
+      # publish 的质量闸门需要英文源做基准键集：farm 主机的口径是「基准源打成
+      # research/packs/<slug>.tar.gz 随包一起推」，这里保持同一契约。
+      - name: Pack baselines
+        run: |
+          node --input-type=module -e '
+            import { packBaseline } from "./scripts/lib/baseline.mjs"
+            import { existsSync } from "node:fs"
+            const ids = process.env.IDS.split(",").map(s => s.trim()).filter(Boolean)
+            for (const slug of ids) {
+              const dir = `research/packs/${slug}`
+              if (!existsSync(dir)) { console.log(`跳过 ${slug}（无英文源目录）`); continue }
+              const out = `research/packs/${slug}.tar.gz`
+              const r = packBaseline(dir, out)
+              console.log(`${slug}: ${r.files} 个文件 → ${out} (${(r.bytes / 1048576).toFixed(1)}MB)`)
+            }
+          '
+        env:
+          IDS: ${{ steps.ids.outputs.ids }}
+
+      # 产物推 farm/ci（若无则建；publish-local 动态发现 farm/* 分支，空 diff 静默跳过）。
+      # 只推显式路径；farm/ci 只由本工作流写入（concurrency 串行），不会与主机分支互踩。
+      - name: Push to farm/ci
+        env:
+          IDS: ${{ steps.ids.outputs.ids }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # 1) 把工作区产物固化成一个 commit（commit-tree 不挪 HEAD，main 分支保持不动）
+          for slug in $(echo "$IDS" | tr ',' '\n' | tr -d ' '); do
+            git add -- "patches/$slug" || true
+            git add -- "research/packs/$slug.tar.gz" || true
+          done
+          if git diff --cached --quiet; then
+            echo "::error::没有可推的产物（翻译可能全失败或 slug 不存在），farm/ci 不动"
+            exit 1
+          fi
+          TREE=$(git write-tree)
+          OUR=$(git commit-tree "$TREE" -p HEAD -m "request-translate: $(echo "$IDS" | cut -c1-200)")
+          echo "产物提交 $OUR（含 $IDS）"
+
+          # 2) farm/ci 不存在：直接把它建出来（基于 main + 本次产物的普通分支）
+          if ! git fetch --no-tags origin farm/ci; then
+            git push origin "$OUR:refs/heads/farm/ci"
+            echo "已创建 farm/ci（$OUR）"
+            exit 0
+          fi
+
+          # 3) farm/ci 已存在：临时 worktree 里叠加本批产物。逐 slug 先删后 restore
+          #    （全量替换，不给 publish 自检留下「树里比计划多文件」的惊喜）；
+          #    git add 带显式路径 —— 仓库口径禁的是裸 -A，限定路径的删/增是安全的。
+          git worktree add wt-farm-ci origin/farm/ci
+          cd wt-farm-ci
+          for slug in $(echo "$IDS" | tr ',' '\n' | tr -d ' '); do
+            rm -rf "patches/$slug"
+            git add -A -- "patches/$slug" || true
+            git restore --source="$OUR" --staged --worktree -- "patches/$slug" || true
+            git add -A -- "patches/$slug" || true
+            git add -- "research/packs/$slug.tar.gz" || true
+          done
+          if git diff --cached --quiet; then
+            echo "farm/ci 与本次产物一致，无新提交"
+            cd ..
+            git worktree remove wt-farm-ci --force
+            exit 0
+          fi
+          git commit -m "request-translate: $(echo "$IDS" | cut -c1-200)"
+          git push origin "HEAD:refs/heads/farm/ci"
+          cd ..
+          git worktree remove wt-farm-ci --force
+          echo "已推送 farm/ci"
+
+      # 收批不在 CI：本机 npm run publish 会把 farm/ci 当一台主机收割（过闸门、打包、上站）。
+      - name: Summary
+        run: echo "翻译完成并已推 farm/ci。收批由本机 npm run publish 统一执行。"
