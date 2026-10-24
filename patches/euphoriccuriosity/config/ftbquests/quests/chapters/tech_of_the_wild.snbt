@@ -1,0 +1,762 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "tech_of_the_wild"
+	group: "25EAE7DEB054CC24"
+	icon: "indrev:modular_core_activated"
+	id: "7484D9D4E12225B0"
+	order_index: 11
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["&bVarious Blocks&r 在旋转时会产生旋转能量。"]
+			id: "780478A445BFC6A6"
+			tasks: [{
+				icon: "create:hand_crank"
+				id: "3DF91E32BF846EF7"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "create:water_wheel"
+							}
+							{
+								Count: 1b
+								id: "create:hand_crank"
+							}
+							{
+								Count: 1b
+								id: "create:windmill_bearing"
+							}
+						]
+					}
+				}
+				title: "创造一些旋转动力"
+				type: "item"
+			}]
+			x: -3.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["780478A445BFC6A6"]
+			description: ["&b机械压机&r会处理放置在储料箱或传送带上方的物品。"]
+			id: "47662A5FD2B65944"
+			subtitle: "制作一个机械压力机"
+			tasks: [{
+				id: "1663F2E24DE55813"
+				item: "create:mechanical_press"
+				type: "item"
+			}]
+			x: -4.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["780478A445BFC6A6"]
+			description: ["&bMillstone&r 是最早的用于粉碎物品的工具之一。"]
+			id: "2853DAD18A6B635A"
+			subtitle: "制作一个磨石 (Millstone)"
+			tasks: [{
+				id: "1D9E2110206760F7"
+				item: "create:millstone"
+				type: "item"
+			}]
+			x: -3.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["0C205210C90BFBBC"]
+			description: ["&bMechanical Crafters&r可以自动合成配方，包括一些大于3x3的配方。"]
+			id: "210381D97A11720F"
+			tasks: [{
+				id: "2EE0EDA57AA5B7A8"
+				item: "create:mechanical_crafter"
+				type: "item"
+			}]
+			title: "制作机械工匠（Mechanical Crafters）"
+			x: -14.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["0C205210C90BFBBC"]
+			description: ["&b部署器&r会将手持的任何物品应用到其下方的物品上。"]
+			id: "14C683AEA3239745"
+			subtitle: "制作一个部署器 (Deployer)"
+			tasks: [{
+				id: "1E25C908C48B1D17"
+				item: "create:deployer"
+				type: "item"
+			}]
+			x: -14.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["47662A5FD2B65944"]
+			description: ["&b扳手&r可以配置机器。"]
+			id: "14619E4E135931E1"
+			subtitle: "制作一把扳手 (Wrench)"
+			tasks: [{
+				id: "5101EF261D9B0D67"
+				item: "create:wrench"
+				type: "item"
+			}]
+			x: -4.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["47662A5FD2B65944"]
+			description: ["佩戴&b工程师护目镜&r时，会显示各种机器的详细信息。"]
+			id: "3646901C6EB95CCC"
+			subtitle: "制作一副工程师护目镜"
+			tasks: [{
+				id: "518E9AE4D78477E0"
+				item: "create:goggles"
+				type: "item"
+			}]
+			x: -4.5d
+			y: -3.5d
+		}
+		{
+			description: ["&ePowah!&r 是一款专注于为其他模组&6生成电力&r的科技模组。"]
+			id: "589862D0F1C1A0FC"
+			rewards: [
+				{
+					id: "29C23CDE3FFDC19D"
+					item: "powah:book"
+					type: "item"
+				}
+				{
+					id: "09288321060B31C8"
+					item: {
+						Count: 1
+						id: "powah:wrench"
+						tag: {
+							PowahWrenchNBT: { }
+						}
+					}
+					type: "item"
+				}
+			]
+			subtitle: "获取一些介电浆料 Dielectric Paste"
+			tasks: [{
+				id: "2185DE2DF5F9D0B6"
+				item: "powah:dielectric_paste"
+				type: "item"
+			}]
+			title: "我们需要更多的能量！"
+			x: -0.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["589862D0F1C1A0FC"]
+			description: [
+				"&bReactor&r 是一个 3x4x3 的多方块结构，通过燃烧 &6Uranite&r 来产生能量。"
+				""
+				"燃烧的越旺，效果越差。你必须提供&6冷却剂&r，形式为雪、冰等。"
+			]
+			id: "72062C5C7689CE37"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "7BC483A4DD2826D4"
+				type: "loot"
+			}]
+			subtitle: "建造一个反应堆 (Construct a Reactor)"
+			tasks: [{
+				count: 36L
+				icon: "powah:reactor_starter"
+				id: "0D1722FF7CE015BC"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "powah:reactor_starter"
+							}
+							{
+								Count: 1b
+								id: "powah:reactor_basic"
+							}
+							{
+								Count: 1b
+								id: "powah:reactor_hardened"
+							}
+							{
+								Count: 1b
+								id: "powah:reactor_blazing"
+							}
+							{
+								Count: 1b
+								id: "powah:reactor_niotic"
+							}
+							{
+								Count: 1b
+								id: "powah:reactor_spirited"
+							}
+							{
+								Count: 1b
+								id: "powah:reactor_nitro"
+							}
+						]
+					}
+				}
+				title: "反应堆"
+				type: "item"
+			}]
+			title: "反应堆"
+			x: 2.5d
+			y: -4.5d
+		}
+		{
+			dependencies: ["70CC1D9AF24B242B"]
+			description: [
+				"&bEnergizing Orb&r 能为物品充能，为其注入能量或将它们合成成其他物品。"
+				""
+				"球体本身无法供电；它周围9x9的范围内必须有&b能量棒&r。电力会供应给能量棒。"
+			]
+			icon: "powah:energizing_rod_starter"
+			id: "6B919D27578F6571"
+			min_width: 225
+			subtitle: "制作一个 Energizing Orb 装置"
+			tasks: [
+				{
+					id: "7EFD4FC2EA04D7F4"
+					item: {
+						Count: 1
+						id: "itemfilters:or"
+						tag: {
+							items: [
+								{
+									Count: 1b
+									id: "powah:energizing_rod_starter"
+								}
+								{
+									Count: 1b
+									id: "powah:energizing_rod_basic"
+								}
+								{
+									Count: 1b
+									id: "powah:energizing_rod_hardened"
+								}
+								{
+									Count: 1b
+									id: "powah:energizing_rod_blazing"
+								}
+								{
+									Count: 1b
+									id: "powah:energizing_rod_niotic"
+								}
+								{
+									Count: 1b
+									id: "powah:energizing_rod_spirited"
+								}
+								{
+									Count: 1b
+									id: "powah:energizing_rod_nitro"
+								}
+							]
+						}
+					}
+					title: "能量化棒 (Energizing Rods)"
+					type: "item"
+				}
+				{
+					id: "79454AAF2FA5F5DA"
+					item: "powah:energizing_orb"
+					type: "item"
+				}
+			]
+			title: "凝视着球体，陷入沉思"
+			x: -0.5d
+			y: -8.5d
+		}
+		{
+			dependencies: [
+				"0082BCA1462B1B44"
+				"096D3713C407CEEB"
+				"72062C5C7689CE37"
+				"65D34684A4055375"
+				"21590DFA47742405"
+			]
+			dependency_requirement: "one_completed"
+			description: ["&b能量电缆&r用于传输能量，从"]
+			icon: "powah:energy_cable_starter"
+			id: "70CC1D9AF24B242B"
+			min_required_dependencies: 1
+			subtitle: "制作一根能量电缆"
+			tasks: [{
+				id: "5BEB6F306D79C231"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "powah:energy_cable_starter"
+							}
+							{
+								Count: 1b
+								id: "powah:energy_cable_basic"
+							}
+							{
+								Count: 1b
+								id: "powah:energy_cable_hardened"
+							}
+							{
+								Count: 1b
+								id: "powah:energy_cable_blazing"
+							}
+							{
+								Count: 1b
+								id: "powah:energy_cable_niotic"
+							}
+							{
+								Count: 1b
+								id: "powah:energy_cable_spirited"
+							}
+							{
+								Count: 1b
+								id: "powah:energy_cable_nitro"
+							}
+						]
+					}
+				}
+				title: "能量电缆"
+				type: "item"
+			}]
+			title: "能量电缆"
+			x: -0.5d
+			y: -7.0d
+		}
+		{
+			dependencies: ["589862D0F1C1A0FC"]
+			description: ["&bFurnators&r通过燃烧熔炉燃料来产生能量。"]
+			id: "096D3713C407CEEB"
+			rewards: [{
+				count: 32
+				id: "5856204C08FF2EB9"
+				item: "minecraft:deepslate_coal_ore"
+				random_bonus: 16
+				type: "item"
+			}]
+			subtitle: "制作一个熔炉器 (Furnator)"
+			tasks: [{
+				icon: "powah:furnator_starter"
+				id: "41C047F046CFF769"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "powah:furnator_starter"
+							}
+							{
+								Count: 1b
+								id: "powah:furnator_basic"
+							}
+							{
+								Count: 1b
+								id: "powah:furnator_hardened"
+							}
+							{
+								Count: 1b
+								id: "powah:furnator_blazing"
+							}
+							{
+								Count: 1b
+								id: "powah:furnator_niotic"
+							}
+							{
+								Count: 1b
+								id: "powah:furnator_spirited"
+							}
+							{
+								Count: 1b
+								id: "powah:furnator_nitro"
+							}
+						]
+					}
+				}
+				title: "熔炉制造机"
+				type: "item"
+			}]
+			title: "焚化炉"
+			x: -3.5d
+			y: -4.5d
+		}
+		{
+			dependencies: ["589862D0F1C1A0FC"]
+			description: ["&bMagmators&r 通过燃烧 &6Lava&r 来产生能量。"]
+			id: "65D34684A4055375"
+			subtitle: "制作一个 Magmator"
+			tasks: [{
+				icon: "powah:magmator_starter"
+				id: "2BC51F71D6425961"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "powah:magmator_starter"
+							}
+							{
+								Count: 1b
+								id: "powah:magmator_basic"
+							}
+							{
+								Count: 1b
+								id: "powah:magmator_hardened"
+							}
+							{
+								Count: 1b
+								id: "powah:magmator_blazing"
+							}
+							{
+								Count: 1b
+								id: "powah:magmator_niotic"
+							}
+							{
+								Count: 1b
+								id: "powah:magmator_spirited"
+							}
+							{
+								Count: 1b
+								id: "powah:magmator_nitro"
+							}
+						]
+					}
+				}
+				title: "岩浆怪（Magmators）"
+				type: "item"
+			}]
+			title: "岩浆怪（Magmator）"
+			x: -2.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["589862D0F1C1A0FC"]
+			description: [
+				"&bThermo Generators&r 在&6置于热源&r（如熔岩或岩浆块）上方时会产生能量。"
+				""
+				"还需要内部有 &6水&r 来充当冷却剂。"
+			]
+			id: "0082BCA1462B1B44"
+			rewards: [{
+				count: 4
+				id: "1320B145CE34E2B3"
+				item: "minecraft:magma_block"
+				random_bonus: 2
+				type: "item"
+			}]
+			subtitle: "制作一个热发电机 (Thermo Generator)"
+			tasks: [{
+				icon: "powah:thermo_generator_starter"
+				id: "6C385A15B0746545"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "powah:thermo_generator_starter"
+							}
+							{
+								Count: 1b
+								id: "powah:thermo_generator_basic"
+							}
+							{
+								Count: 1b
+								id: "powah:thermo_generator_hardened"
+							}
+							{
+								Count: 1b
+								id: "powah:thermo_generator_blazing"
+							}
+							{
+								Count: 1b
+								id: "powah:thermo_generator_niotic"
+							}
+							{
+								Count: 1b
+								id: "powah:thermo_generator_spirited"
+							}
+							{
+								Count: 1b
+								id: "powah:thermo_generator_nitro"
+							}
+						]
+					}
+				}
+				title: "热能发电机"
+				type: "item"
+			}]
+			title: "不生成保温杯（Thermos）的区块"
+			x: -0.5d
+			y: -4.5d
+		}
+		{
+			dependencies: ["589862D0F1C1A0FC"]
+			description: ["&b太阳能电池板&r在能看见太阳时&6会生成FE&r。"]
+			id: "21590DFA47742405"
+			subtitle: "制作一个太阳能电池板"
+			tasks: [{
+				icon: "powah:solar_panel_starter"
+				id: "1E9B9450B29643D5"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "powah:solar_panel_starter"
+							}
+							{
+								Count: 1b
+								id: "powah:solar_panel_basic"
+							}
+							{
+								Count: 1b
+								id: "powah:solar_panel_hardened"
+							}
+							{
+								Count: 1b
+								id: "powah:solar_panel_blazing"
+							}
+							{
+								Count: 1b
+								id: "powah:solar_panel_niotic"
+							}
+							{
+								Count: 1b
+								id: "powah:solar_panel_spirited"
+							}
+							{
+								Count: 1b
+								id: "powah:solar_panel_nitro"
+							}
+						]
+					}
+				}
+				title: "太阳能电池板"
+				type: "item"
+			}]
+			x: 1.0d
+			y: -4.5d
+		}
+		{
+			icon: "powah:ender_core"
+			id: "4DAA689E364AD11A"
+			shape: "rsquare"
+			size: 2.5d
+			tasks: [{
+				id: "1065B3A37D95F94E"
+				title: "野性科技"
+				type: "checkmark"
+			}]
+			x: -0.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["210381D97A11720F"]
+			description: ["当两个&bCrushing Wheels&r相互旋转时，它们会&6碾碎经过其中的东西&r。"]
+			id: "6122E1B69DFD2040"
+			subtitle: "制作一个 Crushing Wheel"
+			tasks: [{
+				id: "387462AB145EDDD9"
+				item: "create:crushing_wheel"
+				type: "item"
+			}]
+			x: -15.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["052EB60636DFEEF3"]
+			description: ["&bMixer&r 会处理下方 Basin 中的物品。"]
+			icon: "create:mechanical_mixer"
+			id: "31174FC5E689CBB4"
+			subtitle: "制作一个搅拌机"
+			tasks: [
+				{
+					id: "4A79219532358FC0"
+					item: "create:mechanical_mixer"
+					type: "item"
+				}
+				{
+					id: "60BAC1C16FC4E893"
+					item: "create:basin"
+					type: "item"
+				}
+			]
+			x: -10.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["052EB60636DFEEF3"]
+			description: [
+				"&bEncased Fan&r利用旋转力来产生气流。"
+				""
+				"如果气流经过某些方块（如水和水），气流就可以被用作合成机制。"
+				""
+				"具体来说，水会&6冲走物品&r，从而创造其他物品。岩浆会&6爆破物品&r，就像在高炉中烹饪一样。"
+			]
+			id: "1902D6EFED005FB3"
+			subtitle: "制作一个封闭式风扇 (Encased Fan)"
+			tasks: [{
+				id: "1F968E8D41C1DCDC"
+				item: "create:encased_fan"
+				type: "item"
+			}]
+			x: -8.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["47662A5FD2B65944"]
+			description: ["使用你新制作的&6机械压机&r来制作一些&b金属板&r。"]
+			id: "052EB60636DFEEF3"
+			tasks: [
+				{
+					id: "27C396452F10AD97"
+					item: "create:iron_sheet"
+					type: "item"
+				}
+				{
+					id: "528F9F3916D4F5DD"
+					item: "create:golden_sheet"
+					type: "item"
+				}
+			]
+			title: "制作一些Sheets（羊皮纸）"
+			x: -8.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["052EB60636DFEEF3"]
+			description: ["某些&6Mixer&r配方需要&bBlaze Burner&r。虽然它能使用任何熔炉燃料，但&bBlaze Cake&r的效果最强。"]
+			id: "7273AE170C983520"
+			rewards: [{
+				id: "14FE969185E3A558"
+				item: "create:blaze_cake"
+				type: "item"
+			}]
+			subtitle: "在燃烧器中捕获一只烈焰人"
+			tasks: [{
+				id: "3B12F4982520C2BE"
+				item: "create:blaze_burner"
+				type: "item"
+			}]
+			x: -10.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["31174FC5E689CBB4"]
+			description: ["将&b黄铜锭&r与之前制作的&6混合器&r混合，下方放置&6烈焰燃烧器&r。"]
+			id: "0C205210C90BFBBC"
+			rewards: [{
+				id: "74BC6D14540D99B9"
+				item: "create:blaze_cake"
+				type: "item"
+			}]
+			tasks: [{
+				id: "2FF739B923C238BA"
+				item: "create:brass_ingot"
+				type: "item"
+			}]
+			title: "混合一些黄铜（Brass）"
+			x: -12.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["052EB60636DFEEF3"]
+			id: "0F6D6F77CF5D72C5"
+			tasks: [{
+				id: "774202AE1E9B1401"
+				item: "create:mechanical_saw"
+				type: "item"
+			}]
+			x: -10.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["052EB60636DFEEF3"]
+			description: ["作为移动装置的一部分，&bMechanical Harvester&r 会收割并重新种植作物。"]
+			id: "759EC942186E88D7"
+			subtitle: "制作一个机械收割机"
+			tasks: [{
+				id: "49B60C95EFD10886"
+				item: "create:mechanical_harvester"
+				type: "item"
+			}]
+			x: -8.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["0C205210C90BFBBC"]
+			description: ["&b机械臂&r比机械传送带能更精确地移动物品。"]
+			id: "5413681D56FD95D8"
+			tasks: [{
+				id: "64A9A0A9BC674A39"
+				item: "create:mechanical_arm"
+				type: "item"
+			}]
+			title: "制作一个机械臂"
+			x: -14.0d
+			y: -2.0d
+		}
+		{
+			description: [
+				"&eDark Utilities&r 提供了多种自动击杀生物的方式！"
+				""
+				"用它来建造一个刷怪塔吧！"
+			]
+			hide: true
+			id: "0AA47455EB28F4F0"
+			optional: true
+			rewards: [{
+				count: 32
+				id: "1439EDBE65253200"
+				item: "darkutils:vector_plate"
+				type: "item"
+			}]
+			tasks: [{
+				id: "3B18A4FDCC0336C2"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "darkutils:damage_plate"
+							}
+							{
+								Count: 1b
+								id: "darkutils:damage_plate_player"
+							}
+							{
+								Count: 1b
+								id: "darkutils:flame_plate"
+							}
+						]
+					}
+				}
+				title: "任意伤害防护板"
+				type: "item"
+			}]
+			title: "干掉那些可恶的小生物们"
+			x: -3.5d
+			y: 1.0d
+		}
+	]
+	title: "&4野性科技 (Tech of the Wild)</c1>"
+}
