@@ -1,0 +1,250 @@
+# AI 初翻，未人工校对
+{
+  filename: "chaos_02"
+  group: "1000000000000001"
+  icon: "minecraft:netherite_sword"
+  id: "2000000000000002"
+  order_index: 2
+  title: "英雄之路"
+  quests: [
+    {
+      id: "3002000000000001"
+      title: "Escolha o seu destino para seguir em frente."
+      description: ["Conheça as possibilidades da sua classe. Objetivo: possuir 1x minecraft:crafting_table no inventário; o item não será consumido."]
+      icon: "minecraft:book"
+      x: 0.0d
+      y: 0.0d
+      tasks: [
+        { id: "4002000000000001", type: "item", item: "minecraft:crafting_table", count: 1L, consume_items: false }
+      ]
+      rewards: [
+        { id: "5002000000000001", type: "item", item: "minecraft:experience_bottle", count: 4 }
+      ]
+    }
+    {
+      id: "3002000000000002"
+      title: "战士的力量"
+      description: ["Experimente o combate corpo a corpo. Objetivo: possuir 1x minecraft:iron_sword no inventário; o item não será consumido."]
+      icon: "minecraft:iron_sword"
+      x: 3.0d
+      y: 0.0d
+      dependencies: ["3002000000000001"]
+      tasks: [
+        { id: "4002000000000002", type: "item", item: "minecraft:iron_sword", count: 1L, consume_items: false }
+      ]
+      rewards: [
+        { id: "5002000000000002", type: "item", item: "minecraft:iron_ingot", count: 8 }
+      ]
+    }
+    {
+      id: "3002000000000003"
+      title: "Defesa do guardião"
+      description: ["Aprenda a se proteger dos golpes inimigos. Objetivo: possuir 1x minecraft:shield no inventário; o item não será consumido."]
+      icon: "minecraft:shield"
+      x: 6.0d
+      y: -3.0d
+      dependencies: ["3002000000000002"]
+      tasks: [
+        { id: "4002000000000003", type: "item", item: "minecraft:shield", count: 1L, consume_items: false }
+      ]
+      rewards: [
+        { id: "5002000000000003", type: "item", item: "minecraft:golden_apple" }
+      ]
+    }
+    {
+      id: "3002000000000004"
+      title: "射手的精准度"
+      description: ["Treine ataques à distância. Objetivo: possuir 1x minecraft:bow no inventário; o item não será consumido."]
+      icon: "minecraft:bow"
+      x: 6.0d
+      y: 3.0d
+      dependencies: ["3002000000000002"]
+      tasks: [
+        { id: "4002000000000004", type: "item", item: "minecraft:bow", count: 1L, consume_items: false }
+      ]
+      rewards: [
+        { id: "5002000000000004", type: "item", item: "minecraft:arrow", count: 32 }
+      ]
+    }
+    {
+      id: "3002000000000005"
+      title: "捕猎者的本能"
+      description: ["提升你的追踪和战斗技巧。目标：击败 8x minecraft:zombie。"]
+      icon: "minecraft:crossbow"
+      x: 9.0d
+      y: -3.0d
+      dependencies: ["3002000000000003"]
+      tasks: [
+        { id: "4002000000000005", type: "kill", entity: "minecraft:zombie", value: 8L }
+      ]
+      rewards: [
+        { id: "5002000000000005", type: "item", item: "minecraft:arrow", count: 32 }
+      ]
+    }
+    {
+      id: "3002000000000006"
+      title: "探险家的眼睛"
+      description: ["Investigue o terreno antes de avançar. Objetivo: possuir 1x minecraft:spyglass no inventário; o item não será consumido."]
+      icon: "minecraft:spyglass"
+      x: 9.0d
+      y: 0.0d
+      dependencies: ["3002000000000004"]
+      tasks: [
+        { id: "4002000000000006", type: "item", item: "minecraft:spyglass", count: 1L, consume_items: false }
+      ]
+      rewards: [
+        { id: "5002000000000006", type: "item", item: "minecraft:compass" }
+      ]
+    }
+    {
+      id: "3002000000000007"
+      title: "魔法师的思想"
+      description: ["Descubra o valor do conhecimento arcano. Objetivo: possuir 1x minecraft:enchanting_table no inventário; o item não será consumido."]
+      icon: "minecraft:enchanting_table"
+      x: 9.0d
+      y: 4.0d
+      dependencies: ["3002000000000004"]
+      tasks: [
+        { id: "4002000000000007", type: "item", item: "minecraft:enchanting_table", count: 1L, consume_items: false }
+      ]
+      rewards: [
+        { id: "5002000000000007", type: "item", item: "minecraft:lapis_lazuli", count: 24 }
+      ]
+    }
+    {
+      id: "3002000000000008"
+      title: "準備戰鬥"
+      description: ["Repare e organize seu equipamento. Objetivo: possuir 1x minecraft:anvil no inventário; o item não será consumido."]
+      icon: "minecraft:anvil"
+      x: 12.0d
+      y: -1.0d
+      dependencies: ["3002000000000005" "3002000000000006"]
+      tasks: [
+        { id: "4002000000000008", type: "item", item: "minecraft:anvil", count: 1L, consume_items: false }
+      ]
+      rewards: [
+        { id: "5002000000000008", type: "item", item: "minecraft:iron_ingot", count: 12 }
+      ]
+    }
+    {
+      id: "3002000000000009"
+      title: "属性与选择"
+      description: ["Explore as opções da Passive Skill Tree. Objetivo: derrotar 8x minecraft:skeleton."]
+      icon: "minecraft:nether_star"
+      x: 12.0d
+      y: 4.0d
+      dependencies: ["3002000000000007"]
+      tasks: [
+        { id: "4002000000000009", type: "kill", entity: "minecraft:skeleton", value: 8L }
+      ]
+      rewards: [
+        { id: "5002000000000009", type: "item", item: "minecraft:experience_bottle", count: 12 }
+      ]
+    }
+    {
+      id: "300200000000000A"
+      title: "一个完整的武器库"
+      description: ["Monte um conjunto de armas para diferentes situações. Objetivo: derrotar 8x minecraft:skeleton."]
+      icon: "minecraft:diamond_sword"
+      x: 15.0d
+      y: -1.0d
+      dependencies: ["3002000000000008"]
+      tasks: [
+        { id: "400200000000000A", type: "kill", entity: "minecraft:skeleton", value: 8L }
+      ]
+      rewards: [
+        { id: "500200000000000A", type: "item", item: "minecraft:diamond", count: 3 }
+      ]
+    }
+    {
+      id: "300200000000000B"
+      title: "Veterano'nun meydan okuması"
+      description: ["Sobreviva a uma expedição de alto risco. Objetivo: derrotar 6x minecraft:creeper."]
+      icon: "minecraft:totem_of_undying"
+      x: 15.0d
+      y: 4.0d
+      dependencies: ["3002000000000009"]
+      tasks: [
+        { id: "400200000000000B", type: "kill", entity: "minecraft:creeper", value: 6L }
+      ]
+      rewards: [
+        { id: "500200000000000B", type: "item", item: "minecraft:golden_apple", count: 3 }
+      ]
+    }
+    {
+      id: "300200000000000C"
+      title: "传说由此开始"
+      description: ["Demonstre domínio de sua estratégia. Objetivo: possuir 1x minecraft:netherite_chestplate no inventário; o item não será consumido."]
+      icon: "minecraft:netherite_chestplate"
+      x: 24.0d
+      y: 0.0d
+      dependencies: ["300200000000000A" "300200000000000B" "300200000000000D" "300200000000000E" "300200000000000F" "3002000000000010"]
+      tasks: [
+        { id: "400200000000000C", type: "item", item: "minecraft:netherite_chestplate", count: 1L, consume_items: false }
+      ]
+      rewards: [
+        { id: "500200000000000C", type: "item", item: "minecraft:experience_bottle", count: 24 }
+      ]
+    }
+    {
+      id: "300200000000000D"
+      title: "决斗者的训练课程"
+      description: ["用你自己的技能消灭僵尸。目标：击败 12x minecraft:zombie。"]
+      icon: "minecraft:iron_sword"
+      x: 12.0d
+      y: -7.0d
+      dependencies: ["3002000000000002"]
+      tasks: [
+        { id: "400200000000000D", type: "kill", entity: "minecraft:zombie", value: 12L }
+      ]
+      rewards: [
+        { id: "500200000000000D", type: "item", item: "minecraft:experience_bottle", count: 8 }
+      ]
+    }
+    {
+      id: "300200000000000E"
+      title: "一条侍从的路线"
+      description: ["Obtenha uma armadura de ferro. Objetivo: ter 1x minecraft:iron_chestplate no inventário; o item não será consumido."]
+      icon: "minecraft:iron_chestplate"
+      x: 15.0d
+      y: -5.0d
+      dependencies: ["3002000000000003"]
+      tasks: [
+        { id: "400200000000000E", type: "item", item: "minecraft:iron_chestplate", count: 1L, consume_items: false }
+      ]
+      rewards: [
+        { id: "500200000000000E", type: "item", item: "minecraft:emerald", count: 4 }
+      ]
+    }
+    {
+      id: "300200000000000F"
+      title: "精準狩獵"
+      description: ["在探险中击败骷髅。目标：击败 10x minecraft:skeleton。"]
+      icon: "minecraft:arrow"
+      x: 18.0d
+      y: 7.0d
+      dependencies: ["3002000000000004"]
+      tasks: [
+        { id: "400200000000000F", type: "kill", entity: "minecraft:skeleton", value: 10L }
+      ]
+      rewards: [
+        { id: "500200000000000F", type: "item", item: "minecraft:experience_bottle", count: 8 }
+      ]
+    }
+    {
+      id: "3002000000000010"
+      title: "战斗中的炼金术"
+      description: ["Prepare uma bancada de poções. Objetivo: possuir 1x minecraft:brewing_stand no inventário; o item não será consumido."]
+      icon: "minecraft:brewing_stand"
+      x: 21.0d
+      y: 5.0d
+      dependencies: ["3002000000000007"]
+      tasks: [
+        { id: "4002000000000010", type: "item", item: "minecraft:brewing_stand", count: 1L, consume_items: false }
+      ]
+      rewards: [
+        { id: "5002000000000010", type: "item", item: "minecraft:emerald", count: 4 }
+      ]
+    }
+  ]
+}

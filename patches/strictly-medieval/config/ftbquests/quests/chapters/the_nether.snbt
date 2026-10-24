@@ -1,0 +1,1397 @@
+# AI 初翻，未人工校对
+{
+	id: "430ADA390E9B7095"
+	group: "63BC73F831F7A250"
+	order_index: 4
+	filename: "the_nether"
+	title: "下界"
+	icon: "minecraft:magma_block"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	images: [
+		{
+			x: 7.0d
+			y: -6.0d
+			width: 2.0d
+			height: 2.0d
+			rotation: 0.0d
+			image: "betternether:textures/minimap/entities/hydrogen_jellyfish.png"
+			hover: [ ]
+			click: ""
+			dev: false
+			corner: false
+		}
+		{
+			x: -7.5d
+			y: -1.5d
+			width: 2.0d
+			height: 2.0d
+			rotation: 0.0d
+			image: "betternether:textures/minimap/entities/flying_pig.png"
+			hover: [ ]
+			click: ""
+			dev: false
+			corner: false
+		}
+	]
+	quests: [
+		{
+			title: "去下界看看吧！"
+			x: 0.0d
+			y: 0.0d
+			shape: "gear"
+			subtitle: "可别晒伤了！或者…被任何东西烧伤了，我的意思是…"
+			size: 1.75d
+			id: "490E8618A78072F2"
+			tasks: [{
+				id: "55CF66FF86F4FD9B"
+				type: "dimension"
+				dimension: "minecraft:the_nether"
+			}]
+			rewards: [
+				{
+					id: "3F370DC15B7F0C58"
+					type: "xp"
+					xp: 25
+				}
+				{
+					id: "39190B8262307C45"
+					type: "command"
+					auto: "invisible"
+					command: "/tell @p Well.. this place seems fun. Are you ready ?"
+					player_command: false
+				}
+			]
+		}
+		{
+			title: "下界岩……到处都是下界岩……"
+			x: 1.0d
+			y: 2.0d
+			dependencies: ["490E8618A78072F2"]
+			id: "7BCCD1145A7F7A84"
+			tasks: [{
+				id: "35BD5715FFDF6E96"
+				type: "item"
+				item: "minecraft:netherrack"
+				count: 64L
+			}]
+			rewards: [{
+				id: "113A38E980CFB48B"
+				type: "pmmo:xpreward"
+				skill: "mining"
+				amount: 83.0d
+				ignoreBonuses: false
+			}]
+		}
+		{
+			title: "是时候熔炼了。"
+			x: -1.0d
+			y: 4.0d
+			dependencies: ["7BCCD1145A7F7A84"]
+			id: "59DFBCD4865DB477"
+			tasks: [{
+				id: "2A0D74A5B1AA32FB"
+				type: "item"
+				item: "minecraft:nether_brick"
+				count: 64L
+			}]
+			rewards: [
+				{
+					id: "4F13624417A4BF01"
+					type: "pmmo:xpreward"
+					skill: "smithing"
+					amount: 83.0d
+					ignoreBonuses: false
+				}
+				{
+					id: "1A47BBE0990120DE"
+					type: "loot"
+					table_id: 162941360134059119L
+				}
+			]
+		}
+		{
+			x: -3.0d
+			y: 4.0d
+			dependencies: ["59DFBCD4865DB477"]
+			id: "610DD694BB0C1B83"
+			tasks: [{
+				id: "225903F76E7841C4"
+				type: "item"
+				title: "合成下界砖块"
+				item: "minecraft:nether_bricks"
+				count: 8L
+				only_from_crafting: true
+			}]
+			rewards: [
+				{
+					id: "0315E229FAF576AB"
+					type: "pmmo:xpreward"
+					skill: "crafting"
+					amount: 83.0d
+					ignoreBonuses: false
+				}
+				{
+					id: "43B66308F769FEF5"
+					type: "loot"
+					table_id: 4541931633169242376L
+				}
+			]
+		}
+		{
+			x: -4.5d
+			y: 4.0d
+			description: ["我的意思是，这只是一个普通的箱子……不过我觉得它看起来挺酷的！"]
+			dependencies: ["610DD694BB0C1B83"]
+			id: "17A5764437812318"
+			tasks: [{
+				id: "0BDD01115C268D59"
+				type: "item"
+				item: "quark:nether_brick_chest"
+				only_from_crafting: true
+			}]
+			rewards: [
+				{
+					id: "79EA08CE3E8C22E6"
+					type: "pmmo:xpreward"
+					skill: "crafting"
+					amount: 83.0d
+					ignoreBonuses: false
+				}
+				{
+					id: "3E3ED292F795BB1C"
+					type: "xp"
+					xp: 50
+				}
+			]
+		}
+		{
+			x: 3.0d
+			y: 2.0d
+			description: ["这是一个熔炉……"]
+			dependencies: ["7BCCD1145A7F7A84"]
+			id: "25470A80764D77D7"
+			tasks: [{
+				id: "45C407F0B2B57246"
+				type: "item"
+				item: "betternether:netherrack_furnace"
+				only_from_crafting: true
+			}]
+			rewards: [
+				{
+					id: "34E2521E33447850"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "5E6FF3B8D812D385"
+					type: "pmmo:xpreward"
+					skill: "crafting"
+					amount: 83.0d
+					ignoreBonuses: false
+				}
+			]
+		}
+		{
+			title: "滴落的下界物品"
+			x: 2.0d
+			y: 4.0d
+			subtitle: "我的意思是……"
+			description: ["其实就是个装饰物而已……如果你喜欢的话？我的意思是，免费的经验值，不是吗？"]
+			dependencies: ["7BCCD1145A7F7A84"]
+			id: "7E1341C725723118"
+			tasks: [{
+				id: "4D8FC7CBC941ADFA"
+				type: "item"
+				item: "betternether:netherrack_stalactite"
+				count: 24L
+				only_from_crafting: true
+			}]
+			rewards: [
+				{
+					id: "0D8990812A082EBE"
+					type: "pmmo:xpreward"
+					skill: "crafting"
+					amount: 83.0d
+					ignoreBonuses: false
+				}
+				{
+					id: "323BA91FD9243225"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			title: "辛辛纳石……拼写好难……"
+			x: 2.0d
+			y: -2.5d
+			description: ["挖点材料。做些盔甲！"]
+			dependencies: ["490E8618A78072F2"]
+			id: "56694B12F7C5EA44"
+			tasks: [
+				{
+					id: "4EEAB7B0D2D200AF"
+					type: "item"
+					item: "betternether:cincinnasite"
+					count: 24L
+				}
+				{
+					id: "567D4B1011295F49"
+					type: "questsadditions:break"
+					block_type: 0
+					block: "betternether:cincinnasite_ore"
+					value: 24L
+					checkItem: false
+				}
+			]
+			rewards: [{
+				id: "3EE4F084417458B9"
+				type: "pmmo:xpreward"
+				skill: "mining"
+				amount: 83.0d
+				ignoreBonuses: false
+			}]
+		}
+		{
+			title: "去弄点红宝石吧！"
+			x: 0.0d
+			y: -2.5d
+			dependencies: ["490E8618A78072F2"]
+			id: "256F77BD40D8D89D"
+			tasks: [
+				{
+					id: "0CEA1D0FB7BD11A6"
+					type: "item"
+					item: "betternether:nether_ruby"
+					count: 24L
+				}
+				{
+					id: "54A4BCA5206BB8E8"
+					type: "questsadditions:break"
+					block_type: 0
+					block: "betternether:nether_ruby_ore"
+					value: 24L
+					checkItem: false
+				}
+			]
+			rewards: [
+				{
+					id: "3E16D4D0F493871F"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "13EE1F8C89BD7CC0"
+					type: "pmmo:xpreward"
+					skill: "mining"
+					amount: 83.0d
+					ignoreBonuses: false
+				}
+			]
+		}
+		{
+			x: 4.5d
+			y: -2.5d
+			dependencies: ["56694B12F7C5EA44"]
+			id: "69351A7165DA5E8C"
+			tasks: [{
+				id: "40FBA785A60B6B40"
+				type: "item"
+				item: {
+					id: "betternether:cincinnasite_chestplate"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				only_from_crafting: true
+			}]
+			rewards: [{
+				id: "1E5351348946F6DA"
+				type: "pmmo:xpreward"
+				skill: "crafting"
+				amount: 125.0d
+				ignoreBonuses: false
+			}]
+		}
+		{
+			x: 4.5d
+			y: -4.0d
+			dependencies: ["69351A7165DA5E8C"]
+			id: "12ED85F14A9CC926"
+			tasks: [{
+				id: "113056EB1A50343A"
+				type: "item"
+				item: {
+					id: "betternether:cincinnasite_helmet"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				only_from_crafting: true
+			}]
+			rewards: [{
+				id: "1A3D3D3A98A8EB5D"
+				type: "pmmo:xpreward"
+				skill: "crafting"
+				amount: 83.0d
+				ignoreBonuses: false
+			}]
+		}
+		{
+			x: 4.5d
+			y: -1.0d
+			dependencies: ["69351A7165DA5E8C"]
+			id: "030FFF91748CA7DC"
+			tasks: [{
+				id: "69A7783B54D54F79"
+				type: "item"
+				item: {
+					id: "betternether:cincinnasite_leggings"
+					Count: 1b
+					tag: {
+						Damage: 0
+						AS_Amulet_Holder: [I;
+							-1231029144
+							-797096386
+							-1713006417
+							1694522578
+						]
+					}
+				}
+				only_from_crafting: true
+			}]
+			rewards: [
+				{
+					id: "499C58653318FCED"
+					type: "loot"
+					table_id: 4541931633169242376L
+				}
+				{
+					id: "1106DCB763E49D6F"
+					type: "pmmo:xpreward"
+					skill: "crafting"
+					amount: 100.0d
+					ignoreBonuses: false
+				}
+			]
+		}
+		{
+			x: 6.5d
+			y: -1.0d
+			dependencies: ["030FFF91748CA7DC"]
+			id: "35998A8F7DC36B3B"
+			tasks: [{
+				id: "5CCCA252F82303F4"
+				type: "item"
+				item: {
+					id: "betternether:cincinnasite_boots"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				only_from_crafting: true
+			}]
+			rewards: [
+				{
+					id: "7007A4EAFB370B2C"
+					type: "loot"
+					table_id: 478022322404688101L
+				}
+				{
+					id: "575DDAFC1D610588"
+					type: "pmmo:xpreward"
+					skill: "crafting"
+					amount: 83.0d
+					ignoreBonuses: false
+				}
+				{
+					id: "781D7FC3190E9D14"
+					type: "loot"
+					table_id: 2614350496967698251L
+				}
+			]
+		}
+		{
+			x: 0.0d
+			y: -4.0d
+			dependencies: ["256F77BD40D8D89D"]
+			id: "05B450B423065CE2"
+			tasks: [{
+				id: "65960E3A76D92858"
+				type: "item"
+				item: {
+					id: "betternether:nether_ruby_chestplate"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				only_from_crafting: true
+			}]
+			rewards: [
+				{
+					id: "1340CBD2272C00A9"
+					type: "pmmo:xpreward"
+					skill: "crafting"
+					amount: 100.0d
+					ignoreBonuses: false
+				}
+				{
+					id: "03F3A445272C43D1"
+					type: "loot"
+					table_id: 5576410721870332972L
+				}
+			]
+		}
+		{
+			x: -1.5d
+			y: -4.0d
+			dependencies: ["05B450B423065CE2"]
+			id: "144A5CB34980F4C0"
+			tasks: [{
+				id: "46A516A07617BB69"
+				type: "item"
+				item: {
+					id: "betternether:nether_ruby_helmet"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				only_from_crafting: true
+			}]
+			rewards: [
+				{
+					id: "072FB7CA66499326"
+					type: "pmmo:xpreward"
+					skill: "crafting"
+					amount: 100.0d
+					ignoreBonuses: false
+				}
+				{
+					id: "5DA76D53F3DE273D"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			x: 1.5d
+			y: -4.0d
+			dependencies: ["05B450B423065CE2"]
+			id: "77E8F71233E05125"
+			tasks: [{
+				id: "3CC0432283284883"
+				type: "item"
+				item: {
+					id: "betternether:nether_ruby_leggings"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				only_from_crafting: true
+			}]
+			rewards: [{
+				id: "6E2FDAA9C51CD585"
+				type: "pmmo:xpreward"
+				skill: "crafting"
+				amount: 100.0d
+				ignoreBonuses: false
+			}]
+		}
+		{
+			x: 3.0d
+			y: -4.0d
+			dependencies: ["77E8F71233E05125"]
+			id: "76278BC96E4A6AD3"
+			tasks: [{
+				id: "04D03C547F47E04D"
+				type: "item"
+				item: {
+					id: "betternether:nether_ruby_boots"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+				only_from_crafting: true
+			}]
+			rewards: [
+				{
+					id: "4BA0E0462B83C3A1"
+					type: "pmmo:xpreward"
+					skill: "crafting"
+					amount: 120.0d
+					ignoreBonuses: false
+				}
+				{
+					id: "4D069D9AB402721A"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "7A1EE395EE9D804C"
+					type: "loot"
+					table_id: 2614350496967698251L
+				}
+			]
+		}
+		{
+			x: 4.0d
+			y: 3.5d
+			shape: "gear"
+			description: ["进入一个堡垒遗迹 (Bastion Remnant)"]
+			id: "6EF5222320EDCEF8"
+			tasks: [{
+				id: "0A8C48174B25B576"
+				type: "advancement"
+				title: "那些日子真美好……"
+				advancement: "minecraft:nether/find_bastion"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "53AF0820509F9638"
+					type: "loot"
+					table_id: 478022322404688101L
+				}
+				{
+					id: "764BD0C3BC627437"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "432DDE495576C178"
+					type: "item"
+					item: "minecraft:diamond"
+					count: 2
+				}
+			]
+		}
+		{
+			x: -2.5d
+			y: 2.5d
+			shape: "gear"
+			description: ["这可是一项了不起的成就。"]
+			id: "5A977808FFB8D221"
+			tasks: [{
+				id: "7B8788011AF6783C"
+				type: "advancement"
+				title: "使用下界传送 7000 格距离"
+				advancement: "minecraft:nether/fast_travel"
+				criterion: ""
+			}]
+			rewards: [{
+				id: "061CE17B57D988A3"
+				type: "pmmo:xpreward"
+				skill: "endurance"
+				amount: 150.0d
+				ignoreBonuses: false
+			}]
+		}
+		{
+			x: -4.5d
+			y: 0.0d
+			shape: "gear"
+			description: ["获得进阶成就，并且亲手制作它 ;)"]
+			dependencies: ["6D57BCAB775B56E7"]
+			id: "5E625CE22DF89C35"
+			tasks: [
+				{
+					id: "36D96E7105912573"
+					type: "advancement"
+					title: "猪灵法杖"
+					advancement: "piglin_expansion:divinity_staff"
+					criterion: ""
+				}
+				{
+					id: "05BC4CC36664994A"
+					type: "item"
+					item: {
+						id: "piglin_expansion:piglin_divinity_staff"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+					only_from_crafting: true
+				}
+			]
+			rewards: [
+				{
+					id: "750689F1FD003A29"
+					type: "pmmo:xpreward"
+					skill: "crafting"
+					amount: 190.0d
+					ignoreBonuses: false
+				}
+				{
+					id: "762278CE0D016F0C"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+				{
+					id: "42D56DD02428C67C"
+					type: "loot"
+					table_id: 4541931633169242376L
+				}
+			]
+		}
+		{
+			x: 6.5d
+			y: 1.5d
+			shape: "gear"
+			description: ["从下界救出一只恶魂，把它安全带回主世界... 等你和它建立了信任，并经过数年相处建立了深厚的友谊之后，再把它杀掉。"]
+			id: "122C81E852EC08A1"
+			tasks: [{
+				id: "40A83DB00DD27AF5"
+				type: "advancement"
+				title: "你怎么能做出这种事……"
+				advancement: "minecraft:nether/uneasy_alliance"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "5BED0401FE9FD4F7"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "61DC2E9FCA79E4A1"
+					type: "loot"
+					table_id: 2878545973601917989L
+				}
+				{
+					id: "5A3B3E5C519AA573"
+					type: "pmmo:xpreward"
+					skill: "slayer"
+					amount: 150.0d
+					ignoreBonuses: false
+				}
+			]
+		}
+		{
+			x: -6.0d
+			y: -2.0d
+			shape: "gear"
+			description: ["获得头盔 (Obtain the Helmet)"]
+			id: "0689D5C68379A74D"
+			tasks: [{
+				id: "4687078DD15E02BD"
+				type: "advancement"
+				title: "不错的头盔。"
+				advancement: "outvoted:obtain_wildfire_helmet"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "11A54E50050179BD"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "15E296373599F2CA"
+					type: "loot"
+					table_id: 5576410721870332972L
+				}
+				{
+					id: "11CEA33CE4AAC613"
+					type: "pmmo:xpreward"
+					skill: "slayer"
+					amount: 100.0d
+					ignoreBonuses: false
+				}
+			]
+		}
+		{
+			title: "找到它。名正言顺的。"
+			x: -1.875d
+			y: -2.5d
+			shape: "gear"
+			dependencies: ["490E8618A78072F2"]
+			size: 1.25d
+			id: "7D9CAE589014CB2B"
+			tasks: [{
+				id: "13882B46643A35E3"
+				type: "item"
+				item: "minecraft:ancient_debris"
+			}]
+			rewards: [
+				{
+					id: "305A43F5273304AB"
+					type: "loot"
+					table_id: 5576410721870332972L
+				}
+				{
+					id: "20A54F917E1AD5FA"
+					type: "item"
+					item: "minecraft:crying_obsidian"
+				}
+			]
+		}
+		{
+			x: -4.5d
+			y: -5.5d
+			shape: "gear"
+			dependencies: ["7D9CAE589014CB2B"]
+			id: "1D0602BFDB506880"
+			tasks: [{
+				id: "6E2C60DC30A79FCF"
+				type: "item"
+				item: {
+					id: "minecraft:netherite_helmet"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "302762BF2D26DB8A"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "7A2DDC533517A170"
+					type: "loot"
+					table_id: 5576410721870332972L
+				}
+				{
+					id: "1D296F308072020E"
+					type: "pmmo:xpreward"
+					skill: "alchemy"
+					amount: 83.0d
+					ignoreBonuses: false
+				}
+				{
+					id: "061B420F40ABA6E6"
+					type: "pmmo:xpreward"
+					skill: "smithing"
+					amount: 100.0d
+					ignoreBonuses: false
+				}
+			]
+		}
+		{
+			x: -3.0d
+			y: -5.5d
+			shape: "gear"
+			dependencies: ["1D0602BFDB506880"]
+			id: "2A144861487774BB"
+			tasks: [{
+				id: "1449DFFE9E74FB29"
+				type: "item"
+				item: {
+					id: "minecraft:netherite_chestplate"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "32C92F0E9EC1F93F"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "26F04F0FED1A5D55"
+					type: "loot"
+					table_id: 4541931633169242376L
+				}
+				{
+					id: "00B72165D726382A"
+					type: "pmmo:xpreward"
+					skill: "endurance"
+					amount: 83.0d
+					ignoreBonuses: false
+				}
+				{
+					id: "2A110BE852AD2597"
+					type: "pmmo:xpreward"
+					skill: "smithing"
+					amount: 100.0d
+					ignoreBonuses: false
+				}
+			]
+		}
+		{
+			x: -1.5d
+			y: -5.5d
+			shape: "gear"
+			dependencies: ["2A144861487774BB"]
+			id: "7E835D78F49BD90A"
+			tasks: [{
+				id: "6924D3D7A8BFD2E4"
+				type: "item"
+				item: {
+					id: "minecraft:netherite_leggings"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "12DC46200CB17ED5"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "250FF7E3987122C5"
+					type: "loot"
+					table_id: 6368590923468895226L
+				}
+				{
+					id: "0DCFE711343C52C8"
+					type: "pmmo:xpreward"
+					skill: "mining"
+					amount: 83.0d
+					ignoreBonuses: false
+				}
+				{
+					id: "415AAAA3AEB5A4BD"
+					type: "pmmo:xpreward"
+					skill: "smithing"
+					amount: 100.0d
+					ignoreBonuses: false
+				}
+			]
+		}
+		{
+			x: 0.0d
+			y: -5.5d
+			shape: "gear"
+			dependencies: ["7E835D78F49BD90A"]
+			id: "4138404D12E93A6F"
+			tasks: [{
+				id: "212E599B07A97967"
+				type: "item"
+				item: {
+					id: "minecraft:netherite_boots"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "5B4E74258AE47B46"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "1F0927903853987B"
+					type: "loot"
+					table_id: 478022322404688101L
+				}
+				{
+					id: "1423841C1625FE5B"
+					type: "pmmo:xpreward"
+					skill: "slayer"
+					amount: 83.0d
+					ignoreBonuses: false
+				}
+				{
+					id: "0D3438FDFB6C19DE"
+					type: "pmmo:xpreward"
+					skill: "smithing"
+					amount: 100.0d
+					ignoreBonuses: false
+				}
+			]
+		}
+		{
+			x: -2.5d
+			y: 0.0d
+			description: ["猪叫一声"]
+			dependencies: ["490E8618A78072F2"]
+			id: "6D57BCAB775B56E7"
+			tasks: [{
+				id: "26FEA6A77DE28F09"
+				type: "kill"
+				title: "带上黄金快跑！"
+				entity: "minecraft:piglin_brute"
+				value: 25L
+			}]
+			rewards: [
+				{
+					id: "63725F8180A5396B"
+					type: "item"
+					item: "piglin_expansion:piglin_divinity_gem"
+				}
+				{
+					id: "2FFCF57EFD865E04"
+					type: "item"
+					item: "minecraft:gold_ingot"
+					count: 12
+				}
+				{
+					id: "6814989DD75A0737"
+					type: "pmmo:xpreward"
+					skill: "slayer"
+					amount: 83.0d
+					ignoreBonuses: false
+				}
+			]
+		}
+		{
+			title: "是啊，他是个很有趣的家伙……"
+			x: -3.5d
+			y: 1.5d
+			shape: "pentagon"
+			description: ["把蘑菇交给我，我会给你奖励……你正在读的这段随机文本说道。"]
+			dependencies: ["490E8618A78072F2"]
+			id: "34B0227BC884881C"
+			tasks: [{
+				id: "1A0B8065E9DFD282"
+				type: "item"
+				item: "minecraft:crimson_fungus"
+				count: 24L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "2214191B16A041BC"
+					type: "item"
+					item: "minecraft:gold_ingot"
+					count: 5
+				}
+				{
+					id: "645A17570DA8778A"
+					type: "loot"
+					table_id: 478022322404688101L
+				}
+			]
+		}
+		{
+			title: "不像另一个家伙那么好玩……"
+			x: -3.5d
+			y: -1.5d
+			shape: "pentagon"
+			description: ["你也应该去看看另一个有趣的人。"]
+			dependencies: ["490E8618A78072F2"]
+			id: "4BB59E7789C840BB"
+			tasks: [{
+				id: "53C86F70C64FEB52"
+				type: "item"
+				item: "minecraft:warped_fungus"
+				count: 24L
+				consume_items: true
+			}]
+			rewards: [
+				{
+					id: "0311E13E25B24FB1"
+					type: "loot"
+					table_id: 478022322404688101L
+				}
+				{
+					id: "555BD4BE9C993F90"
+					type: "item"
+					item: "minecraft:gold_ingot"
+					count: 5
+				}
+				{
+					id: "02B236C857F6DC9E"
+					type: "item"
+					item: "tconstruct:pig_iron_ingot"
+				}
+			]
+		}
+		{
+			title: "鬼灭之刃"
+			x: 2.0d
+			y: 1.0d
+			description: ["击杀5个熔岩怪物！"]
+			dependencies: ["490E8618A78072F2"]
+			id: "71A4A5581AF4C9AA"
+			tasks: [{
+				id: "329199097CD72C42"
+				type: "kill"
+				entity: "alexsmobs:bone_serpent"
+				value: 10L
+			}]
+			rewards: [{
+				id: "1D11BBC8EEAB2C5F"
+				type: "pmmo:xpreward"
+				skill: "slayer"
+				amount: 800.0d
+				ignoreBonuses: false
+			}]
+		}
+		{
+			x: -4.5d
+			y: -3.5d
+			shape: "heart"
+			dependencies: ["490E8618A78072F2"]
+			id: "3B50B78A165B0D3B"
+			tasks: [{
+				id: "2191F5CD366EB8B7"
+				type: "advancement"
+				title: "嗜血狂徒们"
+				advancement: "alexsmobs:alexsmobs/crimson_mosquito"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "5179CFCAC118BF0F"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "66CD36D6FDFA0948"
+					type: "pmmo:xpreward"
+					skill: "combat"
+					amount: 83.0d
+					ignoreBonuses: false
+				}
+				{
+					id: "7C271FBD27B26ADD"
+					type: "item"
+					item: "tconstruct:blood_bucket"
+				}
+			]
+		}
+		{
+			x: -7.5d
+			y: 0.0d
+			shape: "gear"
+			description: [
+				"仅在 BetterNetherReforged 生成的下界生物群系中生成"
+				""
+				"它们会掉落大量的下界砖块！"
+			]
+			id: "45FCC452CD010220"
+			tasks: [{
+				id: "083FB655D22E519A"
+				type: "kill"
+				title: "击杀会飞的猪（Flying Pig）"
+				entity: "betternether:flying_pig"
+				value: 10L
+			}]
+			rewards: [{
+				id: "6EC2F319A58A7112"
+				type: "pmmo:xpreward"
+				skill: "agility"
+				amount: 500.0d
+				ignoreBonuses: false
+			}]
+		}
+		{
+			x: 7.0d
+			y: -4.5d
+			shape: "gear"
+			id: "13CEC6BF927768D5"
+			tasks: [{
+				id: "437B524DDC3A385F"
+				type: "kill"
+				entity: "betternether:hydrogen_jellyfish"
+				value: 10L
+			}]
+			rewards: [{
+				id: "2CA37D655BC8A8A0"
+				type: "pmmo:xpreward"
+				skill: "agility"
+				amount: 500.0d
+				ignoreBonuses: false
+			}]
+		}
+		{
+			x: 7.0d
+			y: -3.0d
+			shape: "gear"
+			description: [
+				"不要与主世界或暮色森林的纳迦混淆。"
+				""
+				"这些可怕的凋零蛇会出现在下界中！"
+			]
+			id: "5CB3DEC459EDAD76"
+			tasks: [{
+				id: "6235A5DEC573F4B6"
+				type: "kill"
+				title: "下界巨蛇的"
+				entity: "betternether:naga"
+				value: 10L
+			}]
+			rewards: [{
+				id: "18BB234CED4447C4"
+				type: "pmmo:xpreward"
+				skill: "combat"
+				amount: 3000.0d
+				ignoreBonuses: false
+			}]
+		}
+		{
+			x: 4.0d
+			y: 0.0d
+			dependencies: ["490E8618A78072F2"]
+			id: "3FCFD5ACF3BE25BA"
+			tasks: [{
+				id: "178025095FF6C01B"
+				type: "kill"
+				title: "干掉这个，休闲模式！"
+				entity: "minecraft:wither_skeleton"
+				value: 10L
+			}]
+			rewards: [
+				{
+					id: "6BC95ADBCD01C231"
+					type: "item"
+					item: {
+						id: "minecraft:wither_rose"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+					count: 2
+				}
+				{
+					id: "3F52E04631DBC931"
+					type: "item"
+					item: {
+						id: "immersive_armors:wither_chestplate"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 2.5d
+			y: -1.0d
+			dependencies: ["490E8618A78072F2"]
+			id: "2DF6758E508341D2"
+			tasks: [{
+				id: "6FAAC1ED878E1915"
+				type: "kill"
+				title: "该死的东西就像苍蝇一样！"
+				entity: "betternether:skull"
+				value: 100L
+			}]
+			rewards: [
+				{
+					id: "0CB476AD1BD3732E"
+					type: "item"
+					item: {
+						id: "dungeons_gear:wither_helmet"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [{
+									data: [{
+										lvl: 1s
+										id: "dungeons_gear:life_steal_aura"
+									}]
+									source: "dungeons_libraries:gear_config"
+								}]
+							}
+						}
+					}
+				}
+				{
+					id: "3517B1BFAC59DD9A"
+					type: "item"
+					item: {
+						id: "dungeons_gear:wither_chestplate"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [{
+									data: [{
+										lvl: 1s
+										id: "dungeons_gear:life_steal_aura"
+									}]
+									source: "dungeons_libraries:gear_config"
+								}]
+							}
+						}
+					}
+				}
+				{
+					id: "56F996E20B7CA1C5"
+					type: "item"
+					item: {
+						id: "upgradednetherite:wither_upgraded_netherite_ingot"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+				{
+					id: "6F0C5AFCAD773570"
+					type: "item"
+					item: {
+						id: "dungeons_gear:wither_leggings"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [{
+									data: [{
+										lvl: 1s
+										id: "dungeons_gear:life_steal_aura"
+									}]
+									source: "dungeons_libraries:gear_config"
+								}]
+							}
+						}
+					}
+				}
+				{
+					id: "5D5AE506927A8213"
+					type: "item"
+					item: {
+						id: "dungeons_gear:wither_boots"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [{
+									data: [ ]
+									source: "dungeons_libraries:gear_config"
+								}]
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			x: 5.0d
+			y: 1.0d
+			description: ["好好发挥你的手艺，制作一下吧"]
+			dependencies: ["71A4A5581AF4C9AA"]
+			id: "2258374B95588104"
+			tasks: [{
+				id: "5BD26D91B916F6B2"
+				type: "item"
+				item: {
+					id: "enigmaticlegacy:forbidden_axe"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+					}
+				}
+				only_from_crafting: true
+			}]
+			rewards: [
+				{
+					id: "3301F7B20BE474CB"
+					type: "item"
+					item: {
+						id: "minecraft:dragon_head"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+				}
+				{
+					id: "253725740AB24275"
+					type: "loot"
+					table_id: 2614350496967698251L
+				}
+				{
+					id: "005C8B9907E0CAAD"
+					type: "pmmo:levelreward"
+					skill: "crafting"
+					amount: 1.0d
+				}
+			]
+		}
+		{
+			x: -1.0d
+			y: 2.0d
+			description: ["囤积症犯了？.. 你不需要那么多东西，对吧？"]
+			dependencies: ["490E8618A78072F2"]
+			id: "7605DF2F1BE71CEE"
+			tasks: [
+				{
+					id: "115F580F486013A8"
+					type: "item"
+					item: {
+						id: "wstweaks:fragment"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+					count: 64L
+					consume_items: true
+				}
+				{
+					id: "166F3536B0790636"
+					type: "item"
+					item: {
+						id: "minecraft:wither_skeleton_skull"
+						Count: 1b
+						ForgeCaps: {
+							"dungeons_libraries:built_in_enchantments": {
+								BuiltInEnchantments: [ ]
+							}
+						}
+					}
+					count: 24L
+					consume_items: true
+				}
+			]
+			rewards: [{
+				id: "6892C2EE258198ED"
+				type: "item"
+				item: {
+					id: "ob_core:patreon_yy_katana"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+					ForgeCaps: {
+						"dungeons_libraries:built_in_enchantments": {
+							BuiltInEnchantments: [ ]
+						}
+					}
+				}
+			}]
+		}
+	]
+}

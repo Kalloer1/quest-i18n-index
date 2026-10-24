@@ -1,0 +1,574 @@
+# AI 初翻，未人工校对
+{
+	id: "7E2ED4C79DB1636D"
+	group: "63BC73F831F7A250"
+	order_index: 1
+	filename: "deep_caverns"
+	title: "黑暗洞穴"
+	icon: "dark_caverns:carfstone_luminite_ore"
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "踏入未知领域。"
+			icon: "nefdecomod:map"
+			x: 2.0d
+			y: 1.5d
+			shape: "gear"
+			description: [
+				"前往黑暗洞穴的过程比单纯建造一个矩形并点燃要复杂得多。要进入该维度，你首先需要与制图师交易，购买通往被遗忘塔楼的地图，这应该是大师级交易的最后一个选项。"
+				""
+			]
+			id: "65FDF59EE713185F"
+			tasks: [{
+				id: "5FA666B45D2A7002"
+				type: "checkmark"
+			}]
+			rewards: [{
+				id: "1FE30EF25FC56179"
+				type: "xp"
+				xp: 100
+			}]
+		}
+		{
+			x: 2.0d
+			y: -0.5d
+			subtitle: "把你的战利品交出来！"
+			description: ["要创建传送门，请将钥匙用于一块裂纹基岩上。注意：裂纹基岩仍然是基岩，放置后无法破坏。如果想将传送门建在基地内部，请仔细规划方块的位置！！"]
+			dependencies: ["65FDF59EE713185F"]
+			id: "142CB2E8D40DAE88"
+			tasks: [{
+				id: "41C3513B8172426E"
+				type: "advancement"
+				icon: "twilightforest:lich_tower_miniature_structure"
+				advancement: "dark_caverns:find_forgotten_tower"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "6E1ABD29204FCEF6"
+					type: "item"
+					item: "dark_caverns:key_to_the_caverns"
+				}
+				{
+					id: "3115F98924D431AF"
+					type: "item"
+					item: "dark_caverns:cracked_bedrock"
+				}
+				{
+					id: "3D3C2881616E5866"
+					type: "pmmo:xpreward"
+					auto: "invisible"
+					skill: "combat"
+					amount: 300.0d
+					ignoreBonuses: false
+				}
+			]
+		}
+		{
+			title: "进入黑暗洞穴！"
+			x: 2.0d
+			y: -2.0d
+			shape: "gear"
+			description: ["在这些黑暗的洞穴中，你不仅能找到常见的地表矿石（数量更多），还能找到铂和地狱岩。虽然这里的采矿回报丰厚，但也可能被不友好的居民屠杀，所以小心！"]
+			dependencies: ["142CB2E8D40DAE88"]
+			id: "4EF6080A9F8FFFAE"
+			tasks: [{
+				id: "3BDA962F210EB377"
+				type: "dimension"
+				dimension: "dark_caverns:dark_caverns"
+			}]
+			rewards: [
+				{
+					id: "58B28F69B99C68B6"
+					type: "item"
+					item: "minecraft:gold_ingot"
+					count: 5
+				}
+				{
+					id: "69FF48491AD93687"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "693E4A1B2F7CFAA9"
+					type: "pmmo:xpreward"
+					auto: "invisible"
+					skill: "endurance"
+					amount: 250.0d
+					ignoreBonuses: false
+				}
+			]
+		}
+		{
+			x: 3.5d
+			y: -3.5d
+			dependencies: ["4EF6080A9F8FFFAE"]
+			id: "6168B0D0C9F83514"
+			tasks: [{
+				id: "0DBD5E7D357D7803"
+				type: "item"
+				item: "dark_caverns:luminite_dust"
+				count: 64L
+			}]
+			rewards: [{
+				id: "0529A365B21E0C15"
+				type: "pmmo:xpreward"
+				skill: "mining"
+				amount: 200.0d
+				ignoreBonuses: false
+			}]
+		}
+		{
+			x: 3.5d
+			y: -0.5d
+			dependencies: ["4EF6080A9F8FFFAE"]
+			id: "0B6FC4CFD4EF55F1"
+			tasks: [{
+				id: "22FBB2E986CD5718"
+				type: "item"
+				item: "dark_caverns:hellstone"
+				count: 36L
+			}]
+			rewards: [
+				{
+					id: "206044EA60EE2AD9"
+					type: "pmmo:xpreward"
+					skill: "mining"
+					amount: 200.0d
+					ignoreBonuses: false
+				}
+				{
+					id: "1DEC327AC50104A2"
+					type: "pmmo:xpreward"
+					skill: "crafting"
+					amount: 250.0d
+					ignoreBonuses: false
+				}
+				{
+					id: "62AB3A5212BF4E98"
+					type: "loot"
+					table_id: 5576410721870332972L
+				}
+			]
+		}
+		{
+			title: "击杀一只焦灼幼体"
+			x: 0.5d
+			y: -3.5d
+			description: ["这些小家伙...掉落率极低...所以如果你能拿到1个，这里还有5个能帮你制作第一个锭。"]
+			dependencies: ["4EF6080A9F8FFFAE"]
+			id: "0D5D30F1561CC716"
+			tasks: [{
+				id: "59E95BD4B4DD54BF"
+				type: "item"
+				item: "dark_caverns:scorchling_tail"
+			}]
+			rewards: [{
+				id: "41EC7717DCC8EE9A"
+				type: "item"
+				item: "dark_caverns:scorchling_tail"
+				count: 5
+			}]
+		}
+		{
+			x: 0.5d
+			y: -5.0d
+			description: ["用这个锭给史密斯打造一套铂金盔甲，获得超酷的装备！"]
+			dependencies: ["0D5D30F1561CC716"]
+			id: "06B5571C06C18A1F"
+			tasks: [{
+				id: "3704B2AE44B68A32"
+				type: "item"
+				item: "dark_caverns:scorchsteel_ingot"
+				only_from_crafting: true
+			}]
+			rewards: [
+				{
+					id: "56F742D5D7007FFA"
+					type: "pmmo:xpreward"
+					skill: "smithing"
+					amount: 250.0d
+					ignoreBonuses: false
+				}
+				{
+					id: "62602CDF29BBA950"
+					type: "item"
+					item: "dark_caverns:scorched_berries"
+				}
+				{
+					id: "7371B94637287389"
+					type: "loot"
+					table_id: 2614350496967698251L
+				}
+			]
+		}
+		{
+			x: 0.5d
+			y: -6.5d
+			shape: "gear"
+			description: ["Smith an Entire Armor Set"]
+			dependencies: ["06B5571C06C18A1F"]
+			id: "097C455297C1A9ED"
+			tasks: [
+				{
+					id: "0118876E891B49DC"
+					type: "item"
+					item: {
+						id: "dark_caverns:scorchsteel_helmet"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "413585A25981DF28"
+					type: "item"
+					item: {
+						id: "dark_caverns:scorchsteel_chestplate"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "0EE97419D16E11B5"
+					type: "item"
+					item: {
+						id: "dark_caverns:scorchsteel_leggings"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "0DAB706865711313"
+					type: "item"
+					item: {
+						id: "dark_caverns:scorchsteel_boots"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [
+				{
+					id: "7DCCC9168E951704"
+					type: "pmmo:xpreward"
+					skill: "smithing"
+					amount: 500.0d
+					ignoreBonuses: false
+				}
+				{
+					id: "28141C6D9F4E5054"
+					type: "item"
+					item: "minecraft:diamond"
+					count: 12
+				}
+				{
+					id: "72F9F44D32B2D564"
+					type: "item"
+					item: "dark_caverns:scorchling_spawn_egg"
+				}
+				{
+					id: "72EF8D51DF290173"
+					type: "item"
+					item: "minecraft:villager_spawn_egg"
+				}
+			]
+		}
+		{
+			x: 2.0d
+			y: -3.5d
+			description: [
+				"开采一些铂金吧！"
+				""
+				"来自深层洞穴的铂金是通过锻造获取所有盔甲类型的主要来源。"
+			]
+			dependencies: ["4EF6080A9F8FFFAE"]
+			id: "5C77B7EB02A5AB51"
+			tasks: [{
+				id: "0509A595569C1BC0"
+				type: "item"
+				item: "dark_caverns:platinum_piece"
+				count: 36L
+			}]
+			rewards: [
+				{
+					id: "50DCA2122D078E15"
+					type: "pmmo:xpreward"
+					skill: "mining"
+					amount: 200.0d
+					ignoreBonuses: false
+				}
+				{
+					id: "54E84A32EB406E4D"
+					type: "item"
+					item: "dark_caverns:shroombomb"
+					count: 2
+				}
+				{
+					id: "217C9AAC4EE13885"
+					type: "pmmo:xpreward"
+					auto: "invisible"
+					skill: "cooking"
+					amount: 150.0d
+					ignoreBonuses: false
+				}
+			]
+		}
+		{
+			x: 5.5d
+			y: -0.5d
+			subtitle: "将地狱点燃，熊熊燃烧。"
+			description: [
+				""
+				"地狱岩剑能让敌人着火。"
+			]
+			dependencies: ["0B6FC4CFD4EF55F1"]
+			id: "2C9A994920495F06"
+			tasks: [{
+				id: "7837F6E92344A6CF"
+				type: "item"
+				item: {
+					id: "dark_caverns:hellstone_sword"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "372BFC06E36D631A"
+					type: "pmmo:xpreward"
+					skill: "smithing"
+					amount: 125.0d
+					ignoreBonuses: false
+				}
+				{
+					id: "7184299CC65FDF0A"
+					type: "xp"
+					xp: 100
+				}
+			]
+		}
+		{
+			x: 3.5d
+			y: -5.0d
+			dependencies: ["6168B0D0C9F83514"]
+			id: "12A3683A263C38A3"
+			tasks: [{
+				id: "35FCE53ECF5BDE82"
+				type: "item"
+				item: "dark_caverns:luminite_torch"
+				count: 12L
+			}]
+			rewards: [
+				{
+					id: "61F4B6508ECF6CEA"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "46F255B2AF3D516D"
+					type: "loot"
+					table_id: 4324331771948795312L
+				}
+			]
+		}
+		{
+			x: 3.5d
+			y: -6.5d
+			dependencies: ["12A3683A263C38A3"]
+			id: "104E8D8FD1CB0C96"
+			tasks: [{
+				id: "5C982B45D1B53161"
+				type: "item"
+				item: "dark_caverns:throwable_luminite_torch"
+				count: 4L
+			}]
+			rewards: [
+				{
+					id: "19D52D8E4A752F51"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "18AC97099CE572C5"
+					type: "loot"
+					table_id: 2878545973601917989L
+				}
+				{
+					id: "5220C75E144633E9"
+					type: "item"
+					item: "dark_caverns:hellstone_rock"
+					count: 2
+				}
+			]
+		}
+		{
+			x: 5.5d
+			y: -3.5d
+			shape: "pentagon"
+			subtitle: "照明。"
+			description: ["该材料仅适用于头盔，它会在你周围提供光源！非常适合探索深洞或采矿。"]
+			dependencies: ["6168B0D0C9F83514"]
+			id: "568F2BA4B85ADEDC"
+			tasks: [{
+				id: "429F05FF36D318DF"
+				type: "item"
+				item: {
+					id: "dark_caverns:luminite_helmet"
+					Count: 1b
+					tag: {
+						Damage: 0
+						AS_Amulet_Holder: [I;
+							-1231029144
+							-797096386
+							-1713006417
+							1694522578
+						]
+					}
+				}
+				only_from_crafting: true
+			}]
+			rewards: [
+				{
+					id: "22DD3D4F03D5BEA9"
+					type: "item"
+					item: "minecraft:emerald"
+					count: 14
+				}
+				{
+					id: "5D5A3D8B8837B3E2"
+					type: "item"
+					item: "minecraft:diamond"
+					count: 2
+				}
+			]
+		}
+		{
+			x: 5.5d
+			y: -2.0d
+			subtitle: "哔！"
+			description: ["击中敌人时将其击向空中！"]
+			dependencies: ["4EF6080A9F8FFFAE"]
+			id: "34A7959AC4F37F3C"
+			tasks: [{
+				id: "6A0336DE1DBC0717"
+				type: "item"
+				item: {
+					id: "dark_caverns:shroomstone_sword"
+					Count: 1b
+					tag: {
+						Damage: 0
+						AS_Amulet_Holder: [I;
+							-1231029144
+							-797096386
+							-1713006417
+							1694522578
+						]
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "38722B0A5322F10B"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "743D2F0C983051C6"
+					type: "pmmo:xpreward"
+					skill: "combat"
+					amount: 5000.0d
+					ignoreBonuses: false
+				}
+			]
+		}
+		{
+			x: 3.5d
+			y: -2.0d
+			dependencies: ["4EF6080A9F8FFFAE"]
+			id: "4E220706ECA05284"
+			tasks: [{
+				id: "4171B34C9EF8375E"
+				type: "item"
+				item: "dark_caverns:shroomstone_piece"
+				count: 36L
+			}]
+		}
+		{
+			x: 2.0d
+			y: -5.0d
+			dependencies: ["5C77B7EB02A5AB51"]
+			id: "07A43799FF2CF4D4"
+			tasks: [{
+				id: "7F76108E31D439E8"
+				type: "item"
+				item: "dark_caverns:platinum_ingot"
+			}]
+			rewards: [{
+				id: "5BA11C29FE0940F0"
+				type: "pmmo:xpreward"
+				auto: "invisible"
+				skill: "crafting"
+				amount: 150.0d
+				ignoreBonuses: false
+			}]
+		}
+		{
+			x: 2.0d
+			y: -6.5d
+			description: ["用钻石盔甲和武器与铂金锭锻造而成，这套铂金装备是地狱岩、菌菇石和焦钢装备的通用基础！"]
+			dependencies: ["07A43799FF2CF4D4"]
+			id: "181EAA53548E9F7B"
+			tasks: [{
+				id: "22CB5CF05BC7962C"
+				type: "item"
+				item: {
+					id: "dark_caverns:platinum_sword"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "30D55760DAAE407F"
+				type: "pmmo:xpreward"
+				auto: "invisible"
+				skill: "smithing"
+				amount: 100.0d
+				ignoreBonuses: false
+			}]
+		}
+		{
+			x: 0.5d
+			y: -1.5d
+			shape: "gear"
+			id: "63B27D215F4321D3"
+			tasks: [{
+				id: "0C6E5E6AEFC82CEF"
+				type: "questsadditions:break"
+				title: "开始剥皮吧！Let's Go Stripping!"
+				block_type: 0
+				block: "dark_caverns:carfstone"
+				value: 10000L
+				checkItem: false
+			}]
+			rewards: [{
+				id: "6549AAEDD0927CE0"
+				type: "pmmo:levelreward"
+				skill: "mining"
+				amount: 3.5d
+			}]
+		}
+	]
+}

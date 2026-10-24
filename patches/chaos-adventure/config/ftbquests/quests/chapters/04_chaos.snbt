@@ -1,0 +1,250 @@
+# AI 初翻，未人工校对
+{
+  filename: "chaos_04"
+  group: "1000000000000001"
+  icon: "minecraft:enchanted_book"
+  id: "2000000000000004"
+  order_index: 4
+  title: "神秘的艺术 (Artes Arcanas)"
+  quests: [
+    {
+      id: "3004000000000001"
+      title: "一种名为 centelha arcana 的神秘植物"
+      description: ["Conheça os primeiros elementos mágicos. Objetivo: possuir 4x irons_spellbooks:arcane_essence no inventário; o item não será consumido."]
+      icon: "minecraft:amethyst_shard"
+      x: 0.0d
+      y: 0.0d
+      tasks: [
+        { id: "4004000000000001", type: "item", item: "irons_spellbooks:arcane_essence", count: 4L, consume_items: false }
+      ]
+      rewards: [
+        { id: "5004000000000001", type: "item", item: "minecraft:amethyst_shard", count: 16 }
+      ]
+    }
+    {
+      id: "3004000000000002"
+      title: "魔法师的书库"
+      description: ["Reserve um espaço para estudar feitiços. Objetivo: possuir 1x minecraft:bookshelf no inventário; o item não será consumido."]
+      icon: "minecraft:bookshelf"
+      x: 3.0d
+      y: 0.0d
+      dependencies: ["3004000000000001"]
+      tasks: [
+        { id: "4004000000000002", type: "item", item: "minecraft:bookshelf", count: 1L, consume_items: false }
+      ]
+      rewards: [
+        { id: "5004000000000002", type: "item", item: "minecraft:book", count: 12 }
+      ]
+    }
+    {
+      id: "3004000000000003"
+      title: "力量水晶"
+      description: ["收集用于仪式和附魔的资源。目标：在背包中拥有 2x irons_spellbooks:common_ink；该物品不会被消耗。"]
+      icon: "minecraft:lapis_lazuli"
+      x: 6.0d
+      y: -3.0d
+      dependencies: ["3004000000000002"]
+      tasks: [
+        { id: "4004000000000003", type: "item", item: "irons_spellbooks:common_ink", count: 2L, consume_items: false }
+      ]
+      rewards: [
+        { id: "5004000000000003", type: "item", item: "minecraft:lapis_lazuli", count: 24 }
+      ]
+    }
+    {
+      id: "3004000000000004"
+      title: "A primeira runa"
+      description: ["探索魔法的基础。目标：在背包中拥有 1x minecraft:enchanting_table；该物品不会被消耗。"]
+      icon: "minecraft:enchanting_table"
+      x: 6.0d
+      y: 3.0d
+      dependencies: ["3004000000000002"]
+      tasks: [
+        { id: "4004000000000004", type: "item", item: "minecraft:enchanting_table", count: 1L, consume_items: false }
+      ]
+      rewards: [
+        { id: "5004000000000004", type: "item", item: "minecraft:experience_bottle", count: 8 }
+      ]
+    }
+    {
+      id: "3004000000000005"
+      title: "药水与炼金术"
+      description: ["Prepare seu laboratório. Objetivo: possuir 1x minecraft:brewing_stand no inventário; o item não será consumido."]
+      icon: "minecraft:brewing_stand"
+      x: 9.0d
+      y: -3.0d
+      dependencies: ["3004000000000003"]
+      tasks: [
+        { id: "4004000000000005", type: "item", item: "minecraft:brewing_stand", count: 1L, consume_items: false }
+      ]
+      rewards: [
+        { id: "5004000000000005", type: "item", item: "minecraft:blaze_powder", count: 8 }
+      ]
+    }
+    {
+      id: "3004000000000006"
+      title: "草药和配料"
+      description: ["Procure materiais raros para experimentos. Objetivo: ter 8x minecraft:nether_wart no inventário; o item não será consumido."]
+      icon: "minecraft:nether_wart"
+      x: 9.0d
+      y: 0.0d
+      dependencies: ["3004000000000004"]
+      tasks: [
+        { id: "4004000000000006", type: "item", item: "minecraft:nether_wart", count: 8L, consume_items: false }
+      ]
+      rewards: [
+        { id: "5004000000000006", type: "item", item: "minecraft:nether_wart", count: 16 }
+      ]
+    }
+    {
+      id: "3004000000000007"
+      title: "Proteção mística"
+      description: ["Prepare-se para resistir a ataques mágicos. Objetivo: ter 1x minecraft:golden_apple no inventário; o item não será consumido."]
+      icon: "minecraft:golden_apple"
+      x: 9.0d
+      y: 4.0d
+      dependencies: ["3004000000000004"]
+      tasks: [
+        { id: "4004000000000007", type: "item", item: "minecraft:golden_apple", count: 1L, consume_items: false }
+      ]
+      rewards: [
+        { id: "5004000000000007", type: "item", item: "minecraft:golden_apple", count: 2 }
+      ]
+    }
+    {
+      id: "3004000000000008"
+      title: "攻击性魔法"
+      description: ["Experimente técnicas arcanas de ataque. Objetivo: derrotar 4x minecraft:blaze."]
+      icon: "minecraft:fire_charge"
+      x: 12.0d
+      y: -1.0d
+      dependencies: ["3004000000000005" "3004000000000006"]
+      tasks: [
+        { id: "4004000000000008", type: "kill", entity: "minecraft:blaze", value: 4L }
+      ]
+      rewards: [
+        { id: "5004000000000008", type: "item", item: "minecraft:blaze_powder", count: 12 }
+      ]
+    }
+    {
+      id: "3004000000000009"
+      title: "辅助魔法"
+      description: ["Estude recursos de cura e proteção. Objetivo: possuir 1x minecraft:glistering_melon_slice no inventário; o item não será consumido."]
+      icon: "minecraft:glistering_melon_slice"
+      x: 12.0d
+      y: 4.0d
+      dependencies: ["3004000000000007"]
+      tasks: [
+        { id: "4004000000000009", type: "item", item: "minecraft:glistering_melon_slice", count: 1L, consume_items: false }
+      ]
+      rewards: [
+        { id: "5004000000000009", type: "item", item: "minecraft:glistering_melon_slice", count: 8 }
+      ]
+    }
+    {
+      id: "300400000000000A"
+      title: "高级魔导书"
+      description: ["Aprofunde seus conhecimentos. Objetivo: possuir 1x irons_spellbooks:rare_ink no inventário; o item não será consumido."]
+      icon: "minecraft:written_book"
+      x: 15.0d
+      y: -1.0d
+      dependencies: ["3004000000000008"]
+      tasks: [
+        { id: "400400000000000A", type: "item", item: "irons_spellbooks:rare_ink", count: 1L, consume_items: false }
+      ]
+      rewards: [
+        { id: "500400000000000A", type: "item", item: "minecraft:experience_bottle", count: 16 }
+      ]
+    }
+    {
+      id: "300400000000000B"
+      title: "神秘学家的圆圈"
+      description: ["Prepare-se para desafios mágicos. Objetivo: ter 1x minecraft:ender_eye no inventário; o item não será consumido."]
+      icon: "minecraft:ender_eye"
+      x: 15.0d
+      y: 4.0d
+      dependencies: ["3004000000000009"]
+      tasks: [
+        { id: "400400000000000B", type: "item", item: "minecraft:ender_eye", count: 1L, consume_items: false }
+      ]
+      rewards: [
+        { id: "500400000000000B", type: "item", item: "minecraft:ender_pearl", count: 8 }
+      ]
+    }
+    {
+      id: "300400000000000C"
+      title: "Mestre dos segredos"
+      description: ["Conclua sua iniciação nas artes arcanas. Objetivo: possuir 1x minecraft:beacon no inventário; o item não será consumido."]
+      icon: "minecraft:beacon"
+      x: 24.0d
+      y: 0.0d
+      dependencies: ["300400000000000A" "300400000000000B" "300400000000000D" "300400000000000E" "300400000000000F" "3004000000000010"]
+      tasks: [
+        { id: "400400000000000C", type: "item", item: "minecraft:beacon", count: 1L, consume_items: false }
+      ]
+      rewards: [
+        { id: "500400000000000C", type: "item", item: "minecraft:diamond", count: 5 }
+      ]
+    }
+    {
+      id: "300400000000000D"
+      title: "学徒的精髓 (Essência do aprendiz)"
+      description: ["Obtenha mais essência arcana para seus estudos. Objetivo: possuir 12x irons_spellbooks:arcane_essence no inventário; o item não será consumido."]
+      icon: "irons_spellbooks:arcane_essence"
+      x: 12.0d
+      y: -7.0d
+      dependencies: ["3004000000000001"]
+      tasks: [
+        { id: "400400000000000D", type: "item", item: "irons_spellbooks:arcane_essence", count: 12L, consume_items: false }
+      ]
+      rewards: [
+        { id: "500400000000000D", type: "item", item: "minecraft:experience_bottle", count: 8 }
+      ]
+    }
+    {
+      id: "300400000000000E"
+      title: "用于魔典的墨水"
+      description: ["Separe tinta para seus primeiros feitiços. Objetivo: possuir 4x irons_spellbooks:common_ink no inventário; o item não será consumido."]
+      icon: "irons_spellbooks:common_ink"
+      x: 15.0d
+      y: -5.0d
+      dependencies: ["3004000000000003"]
+      tasks: [
+        { id: "400400000000000E", type: "item", item: "irons_spellbooks:common_ink", count: 4L, consume_items: false }
+      ]
+      rewards: [
+        { id: "500400000000000E", type: "item", item: "minecraft:emerald", count: 4 }
+      ]
+    }
+    {
+      id: "300400000000000F"
+      title: "一座熔岩堡垒"
+      description: ["Derrote blazes para obter suas varas. Objetivo: derrotar 8x minecraft:blaze."]
+      icon: "minecraft:blaze_rod"
+      x: 18.0d
+      y: 7.0d
+      dependencies: ["3004000000000008"]
+      tasks: [
+        { id: "400400000000000F", type: "kill", entity: "minecraft:blaze", value: 8L }
+      ]
+      rewards: [
+        { id: "500400000000000F", type: "item", item: "minecraft:experience_bottle", count: 8 }
+      ]
+    }
+    {
+      id: "3004000000000010"
+      title: "奇怪的铭文"
+      description: ["Obtenha tinta rara para magia avançada. Objetivo: ter 2x irons_spellbooks:rare_ink no inventário; o item não será consumido."]
+      icon: "irons_spellbooks:rare_ink"
+      x: 21.0d
+      y: 5.0d
+      dependencies: ["300400000000000A"]
+      tasks: [
+        { id: "4004000000000010", type: "item", item: "irons_spellbooks:rare_ink", count: 2L, consume_items: false }
+      ]
+      rewards: [
+        { id: "5004000000000010", type: "item", item: "minecraft:emerald", count: 4 }
+      ]
+    }
+  ]
+}
