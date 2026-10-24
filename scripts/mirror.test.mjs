@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { mkdtempSync, writeFileSync, rmSync, existsSync, readFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { runMirror, readMirrors, writeMirrors, makeUploader, resolveZipPath } from './mirror.mjs'
+import { runMirror, readMirrors, writeMirrors, makeUploader, makeBatchUploader, resolveZipPath } from './mirror.mjs'
 import { STATUS } from '../shared/quest-status.mjs'
 import { defaultReportStatus } from './lib/report-status.mjs'
 
@@ -393,4 +393,88 @@ test('runMirror：upload 返回对象时 results 带元数据（供 writeMirrors
     })
     assert.deepEqual(results.demo, { shareUrl: 'https://pan.quark.cn/s/demo', fileFid: 'F1', fileName: 'demo.zip' })
   } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+// ---------- makeBatchUploader：一次 CLI 传一批，逐包建链 ----------
+
+test('批量上传：一次 CLI 调用传完整批，按 list 行的 fileName 映射 fileId，逐包建链', () => {
+  const calls = []
+  const batches = []
+  const callLines = (cli, args) => {
+    batches.push(args.filter((a) => a.endsWith('.zip')))
+    return {
+      data: {},
+      lines: args
+        .filter((a) => a.endsWith('.zip'))
+        .map((p) => {
+          const name = p.split(/[\\/]/).pop()
+          return { type: 'list', code: 0, data: { fileId: `fid-${name}`, fileName: name } }
+        }),
+    }
+  }
+  const call = (cli, args) => {
+    calls.push(args)
+    if (args[0] === 'create-folder') return { fid: 'dir-fid' }
+    if (args[0] === 'share') return { share_url: `https://pan.quark.cn/s/${args[1]}` }
+    throw new Error(`不该走到 ${args[0]}`)
+  }
+  const upload = makeBatchUploader('cli.js', '整合包汉化', '/tmp', { call, callLines })
+  const items = [
+    { slug: 'a', zipPath: '/tmp/a.zip' },
+    { slug: 'b', zipPath: '/tmp/b.zip' },
+  ]
+  const out = upload(items)
+
+  assert.equal(batches.length, 1, '两个文件必须只调一次 upload')
+  assert.equal(batches[0].length, 2)
+  assert.equal(out.length, 2)
+  assert.equal(out[0].shareUrl, 'https://pan.quark.cn/s/fid-a.zip')
+  assert.equal(out[1].fileFid, 'fid-b.zip')
+  // 建链仍逐包（每包一条专属链接）
+  assert.equal(calls.filter((a) => a[0] === 'share').length, 2)
+})
+
+test('批量上传：某包没有 list 行 → 退回单文件上传，不影响同批其它包', () => {
+  const callLines = () => ({ data: {}, lines: [{ type: 'list', code: 0, data: { fileId: 'fid-a.zip', fileName: 'a.zip' } }] })
+  const call = (cli, args) => {
+    if (args[0] === 'create-folder') return { fid: 'dir-fid' }
+    if (args[0] === 'upload') return { fids: ['fid-fallback'] }
+    if (args[0] === 'share') return { share_url: `https://pan.quark.cn/s/${args[1]}` }
+    throw new Error('unexpected')
+  }
+  const upload = makeBatchUploader('cli.js', 'd', '/tmp', { call, callLines })
+  const out = upload([{ slug: 'a', zipPath: '/tmp/a.zip' }, { slug: 'b', zipPath: '/tmp/b.zip' }])
+  assert.equal(out[0].fileFid, 'fid-a.zip')
+  assert.equal(out[1].fileFid, 'fid-fallback')
+  assert.ok(out.every((o) => o.shareUrl))
+})
+
+test('批量上传：整批抛错时逐包退回单传；单包仍失败只记该包', () => {
+  const callLines = () => { throw new Error('登录态过期') }
+  const call = (cli, args) => {
+    if (args[0] === 'create-folder') return { fid: 'dir-fid' }
+    if (args[0] === 'upload') {
+      if (args[1].endsWith('b.zip')) throw new Error('upload 挂了')
+      return { fids: ['fid-a'] }
+    }
+    if (args[0] === 'share') return { share_url: 'https://pan.quark.cn/s/x' }
+    throw new Error('unexpected')
+  }
+  const upload = makeBatchUploader('cli.js', 'd', '/tmp', { call, callLines })
+  const out = upload([{ slug: 'a', zipPath: '/tmp/a.zip' }, { slug: 'b', zipPath: '/tmp/b.zip' }])
+  assert.ok(out[0].shareUrl)
+  assert.match(out[1].error, /upload 挂了/)
+})
+
+test('批量上传：share 未返回 share_url 视为该包失败，绝不写假链接', () => {
+  const callLines = () => ({ data: {}, lines: [{ type: 'list', code: 0, data: { fileId: 'f1', fileName: 'a.zip' } }] })
+  const call = (cli, args) => {
+    if (args[0] === 'create-folder') return { fid: 'dir-fid' }
+    if (args[0] === 'share') return {}
+    throw new Error('unexpected')
+  }
+  const upload = makeBatchUploader('cli.js', 'd', '/tmp', { call, callLines })
+  const out = upload([{ slug: 'a', zipPath: '/tmp/a.zip' }])
+  assert.equal(out[0].shareUrl, undefined)
+  assert.match(out[0].error, /share_url/)
 })

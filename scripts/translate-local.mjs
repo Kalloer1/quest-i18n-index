@@ -98,11 +98,22 @@ export function pickTranslatable(text, { platform, layout } = {}) {
     if (platform && plat !== platform) continue
     if (layout === 'separate' && !/^separate-/.test(fmt)) continue
     if (layout === 'embedded' && fmt !== LAYOUT.EMBEDDED) continue
-    rows.push({ slug: f[idx.slug], platform: plat, layout: fmt, bytes: Number(f[idx.bytes]) || 0 })
+    rows.push({ slug: f[idx.slug], platform: plat, layout: fmt, bytes: Number(f[idx.bytes]) || 0, newEn: Number(f[idx.newEn ?? -1]) || 0 })
   }
-  return rows
+  // 不指定平台时同一个 slug 可能出现两行（cf / mr）。cf 侧 format=none 的包
+  // （当初扫描没探到英文源）在 mr 侧往往是 embedded —— 只认 cf 会让这些包永远
+  // 进不了队列：2026-10-24 实测 homestead / beyondberk / etbw 等 19 个就是这么漏的。
+  // 按 newEn（探到的英文文件数）取更全的一行，平手时取体积大的。
+  if (!platform) {
+    const best = new Map()
+    for (const r of rows) {
+      const prev = best.get(r.slug)
+      if (!prev || r.newEn > prev.newEn || (r.newEn === prev.newEn && r.bytes > prev.bytes)) best.set(r.slug, r)
+    }
+    return [...best.values()].map(({ newEn, ...rest }) => rest)
+  }
+  return rows.map(({ newEn, ...rest }) => rest)
 }
-
 /**
  * 算出一轮入库该暂存的显式路径（仓库相对，目录带尾斜杠）。
  *
@@ -496,7 +507,9 @@ async function writePatch(slug, layout, runId) {
 async function main() {
   const limit = arg('limit', 0)
   const lanes = arg('lanes', DEFAULT_LANES)
-  const platform = arg('platform', 'cf')
+  // 默认不限定平台：同一批里有 cf 包也有 mr 独有包，写死 cf 会把 mr 侧可见的
+  // embedded 包（cf 行 format=none）永远排除在外。pickTranslatable 会按 slug 去重。
+  const platform = arg('platform', '')
   const layout = arg('layout', '')
   const slugArg = arg('slug', '')
   const dryRun = Boolean(arg('dry-run', false))

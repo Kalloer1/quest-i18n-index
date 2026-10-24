@@ -6,11 +6,11 @@
  *   1. 镜像记录里已有**非空 shareUrl** 且不在死链清单 → skip（不重传不重建）；
  *   2. 记录缺失或链接为空，但网盘目录里有该 slug 的 zip → 只补建分享链接（不重传）；
  *      同 slug 网盘有多个条目 → 判 ambiguous，记失败清单，绝不猜哪一个；
- *   3. 都没有 → 上传 + 建链（复用 mirror.mjs 的 makeUploader）。
+ *   3. 都没有 → 上传 + 建链（mirror.mjs 的 makeBatchUploader：一次 CLI 传一批，逐包建链）。
  *
  * 建链分批限速：补建链（rel­ink）按 --batch（默认 200）分批，批间 sleep --delay（默认 30s）。
- * 上传路径沿用 mirror.mjs 的逐条节奏（每条之间 RATE_LIMIT_MS）——历史上 882 条
- * 「上传后立即建链」按这个节奏跑没触发风控，不额外拆两阶段。
+ * 上传按 --upload-batch（默认 40）分组：一组一次 CLI 调用传完，组与组之间 RATE_LIMIT_MS。
+ * 建链仍逐包（CLI 支持多 FID 一次分享，但那是「一条链接覆盖一批文件」，站点要每包一条）。
  *
  * 单包失败：重试 1 次，仍失败记入 research/quark-sync-failures.json 继续跑，
  * 不让一个坏包断全局；只有「有活但全军覆没」（典型：登录态过期）才退出码 1。
@@ -19,7 +19,7 @@
  *   node scripts/quark-sync.mjs --dry-run            只打印计划，不调 CLI、不写文件
  *   node scripts/quark-sync.mjs --limit 50           试点：只处理前 50 个工作项
  *   node scripts/quark-sync.mjs --links-only         只补链接，不上传
- *   node scripts/quark-sync.mjs --batch 200 --delay 30000
+ *   node scripts/quark-sync.mjs --batch 200 --delay 30000 --upload-batch 40
  *   node scripts/quark-sync.mjs --dead-file research/quark-dead-urls.json
  *                                    死链清单（["https://pan.quark.cn/s/…"]），命中的记录强制重传/重建
  *
@@ -46,7 +46,7 @@ import { tmpdir } from 'node:os'
 import {
   DEFAULT_RATE_LIMIT_MS,
   DOWNLOADS_DIR,
-  makeUploader,
+  makeBatchUploader,
   quarkCall,
   readMirrorRecords,
   resolveZipPath,
@@ -184,6 +184,7 @@ async function main() {
   const linksOnly = args.includes('--links-only')
   const LIMIT = argValue(args, '--limit')
   const BATCH = Number(argValue(args, '--batch') || 200)
+  const UPLOAD_BATCH = Math.max(1, Number(argValue(args, '--upload-batch') || 40))
   const DELAY = Number(argValue(args, '--delay') || 30000)
   const deadFile = argValue(args, '--dead-file')
 
@@ -256,7 +257,11 @@ async function main() {
   }
 
   const cwd = mkdtempSync(join(tmpdir(), 'quark-sync-run-'))
-  const uploadOp = makeUploader(QUARK_CLI, DIR_NAME, cwd, { parentFid: PARENT_FID })
+  // 批量上传：一次 CLI 调用传 N 个文件（--upload-batch，默认 40），再逐包建链。
+  // 逐包跑一次的固定开销是两次 node 启动 + 鉴权（实测 15s/包），批量能把这段省掉；
+  // 链接仍逐包建 —— CLI 支持多 FID 一次分享，但那是「一条链接覆盖一批文件」，
+  // 站点要求每包一条专属链接。
+  const uploadBatch = makeBatchUploader(QUARK_CLI, DIR_NAME, cwd, { parentFid: PARENT_FID })
 
   const results = {} // slug → {shareUrl, fileFid, fileName}（writeMirrors 的输入）
   const failures = []
@@ -283,15 +288,34 @@ async function main() {
     return null
   }
 
-  // 上传 + 建链（makeUploader 每条上传后立即分享，逐条节奏沿用 mirror.mjs）。
+  // 上传 + 建链：按 --upload-batch 分组，每组一次 CLI 上传、逐包建链。
   let done = 0
-  for (const w of picked.filter((x) => !x.fid)) {
-    done++
-    const out = await attempt(w.slug, () => uploadOp(w.slug, w.zipPath))
-    if (out?.shareUrl) {
-      succeeded++
-      results[w.slug] = { shareUrl: out.shareUrl, fileFid: out.fileFid ?? '', fileName: out.fileName ?? basename(w.zipPath) }
-      console.log(`[${w.slug}] 上传+建链 ✓ ${out.shareUrl}（${done}/${picked.length}）`)
+  const uploadItems = picked.filter((x) => !x.fid)
+  for (const group of chunk(uploadItems, UPLOAD_BATCH)) {
+    let outs = []
+    try {
+      outs = uploadBatch(group)
+    } catch (err) {
+      // 整批连目录都建不出来（多半是登录态过期）—— 记失败继续，别炸掉整轮
+      const msg = String(err?.message ?? err).slice(0, 300)
+      console.log(`[批上传] 整批失败：${msg}`)
+      for (const w of group) {
+        attempted++
+        failures.push({ slug: w.slug, phase: 'upload', error: msg, attempts: 1 })
+      }
+      continue
+    }
+    for (const o of outs) {
+      done++
+      attempted++
+      if (o.shareUrl) {
+        succeeded++
+        results[o.slug] = { shareUrl: o.shareUrl, fileFid: o.fileFid ?? '', fileName: o.fileName ?? '' }
+        console.log(`[${o.slug}] 上传+建链 ✓ ${o.shareUrl}（${done}/${uploadItems.length}）`)
+      } else {
+        failures.push({ slug: o.slug, phase: 'upload', error: o.error ?? '未知错误', attempts: 1 })
+        console.log(`[${o.slug}] 失败 ✗：${o.error ?? '未知错误'}（${done}/${uploadItems.length}）`)
+      }
     }
     await sleep(DEFAULT_RATE_LIMIT_MS)
   }

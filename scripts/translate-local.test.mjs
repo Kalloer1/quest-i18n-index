@@ -18,7 +18,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import {
   stagedPathsForBatch, prepareArgsForBatch, isAlreadyTranslated, pendingWorklist, describeWorklist,
-  farmDiskGuard, freeBytesFromStatfs, MIN_FREE_BYTES,
+  farmDiskGuard, freeBytesFromStatfs, MIN_FREE_BYTES, pickTranslatable,
 } from './translate-local.mjs'
 
 // 断言函数不存在时会 ImportError，正是我们要的红。
@@ -286,4 +286,41 @@ test('farmDiskGuard：空间充足时不动任何文件', () => {
   assert.equal(code, 0)
   assert.equal(existsSync(join(root, 'research/par-out/p1/f.txt')), true)
   rmSync(root, { recursive: true, force: true })
+})
+
+// ---------- pickTranslatable：跨平台去重 ----------
+// 2026-10-24 实测：cf 行 format=none 的包在 mr 侧是 embedded，只认 cf 会让这些包
+// 永远进不了队列（homestead / beyondberk / etbw 等 19 个就是这么漏的）。
+
+const HEADER = 'platform\tid\tslug\tbytes\tformat\tnewEn\tnewZh\toldCh\tcdKB\tscannedAt'
+
+test('pickTranslatable：不指定平台时按 slug 去重，取 newEn 更多的那行', () => {
+  const tsv = [
+    HEADER,
+    'cf\t1\thomestead\t63053\tnone\t0\t0\t0\t9\tx',
+    'mr\t2\thomestead\t112965569\tembedded\t24\t0\t24\t389\tx',
+  ].join('\n')
+  const rows = pickTranslatable(tsv)
+  assert.equal(rows.length, 1, '同一 slug 只能出现一次')
+  assert.equal(rows[0].platform, 'mr')
+  assert.equal(rows[0].layout, 'embedded')
+})
+
+test('pickTranslatable：指定平台时仍按平台过滤，不做跨平台合并', () => {
+  const tsv = [
+    HEADER,
+    'cf\t1\tp1\t100\tseparate-dir\t3\t0\t3\t10\tx',
+    'mr\t2\tp1\t200\tembedded\t1\t0\t1\t10\tx',
+  ].join('\n')
+  assert.equal(pickTranslatable(tsv, { platform: 'cf' }).length, 1)
+  assert.equal(pickTranslatable(tsv, { platform: 'cf' })[0].layout, 'separate-dir')
+})
+
+test('pickTranslatable：自带中文（newZh>0）与不可产出 format 依然被排除', () => {
+  const tsv = [
+    HEADER,
+    'cf\t1\ta\t100\tembedded\t3\t5\t3\t10\tx',
+    'mr\t2\tb\t100\tnone\t3\t0\t3\t10\tx',
+  ].join('\n')
+  assert.deepEqual(pickTranslatable(tsv), [])
 })

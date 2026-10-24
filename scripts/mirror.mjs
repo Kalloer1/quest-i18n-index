@@ -287,6 +287,116 @@ export function quarkCall(cli, args, cwd) {
 }
 
 /**
+ * 同 `quarkCall`，但把**每一行 JSONL** 都返回，不只看最后那行 `type:"result"`。
+ *
+ * 为什么需要它：批量上传时，每个文件到达终态各自输出一行 `type:"list"`
+ * （含 `data.fileId` / `data.fileName`），最后那行 `type:"result"` 只有汇总 ——
+ * 只看 result 就拿不到「哪个文件对应哪个 fid」。
+ *
+ * @returns {{data: object, lines: Array<object>}}
+ */
+export function quarkCallLines(cli, args, cwd) {
+  let stdout
+  try {
+    stdout = execFileSync(process.execPath, [cli, ...args], {
+      cwd,
+      encoding: 'utf8',
+      maxBuffer: 64 * 1024 * 1024,
+      stdio: ['ignore', 'pipe', 'pipe'],
+    })
+  } catch (err) {
+    const parsed = parseResultLine(err.stdout)
+    const detail = parsed
+      ? `code ${parsed.code}: ${parsed.msg ?? ''}`
+      : String(err.stdout ?? '').trim().slice(-300) || '（无 stdout）'
+    const errOut = String(err.stderr ?? '').trim().slice(-300)
+    throw new Error(`quark-drive ${args[0]} 失败（${detail}）${errOut ? ` | stderr: ${errOut}` : ''}`)
+  }
+  const lines = []
+  for (const line of String(stdout ?? '').split('\n')) {
+    const t = line.trim()
+    if (!t.startsWith('{')) continue
+    try {
+      lines.push(JSON.parse(t))
+    } catch { /* 非 JSON 行忽略 */ }
+  }
+  const result = [...lines].reverse().find((o) => o && o.type === 'result')
+  if (!result) throw new Error(`CLI 未输出 result 行：${String(stdout).slice(-300)}`)
+  if (result.code !== 0) throw new Error(`CLI 返回 code ${result.code}: ${result.msg ?? ''}`)
+  return { data: result.data ?? {}, lines }
+}
+
+/**
+ * 批量上传器：**一次 CLI 调用传 N 个文件**，然后逐个建分享链接。
+ *
+ * 为什么上传能批、建链不能批：CLI 的 `share` 支持一次传多个 FID，但「一次分享 = 一条链接」，
+ * 而站点要求**每个包一条专属链接**（产品决定，2026-10-24）。所以这里省的是一次次
+ * 进程启动 + 鉴权的固定开销（实测逐个跑约 15s/包，其中 6~8s 是两次 node 启动）。
+ *
+ * 失败隔离：某个文件在 list 行里没有 fid 时，退回单文件上传一次；仍失败只记这一个包。
+ *
+ * @param {string} cli quark-drive.cjs 路径
+ * @param {string} dirName 网盘目标目录名
+ * @param {string} cwd 子进程工作目录
+ * @param {{parentFid?: string, call?: Function, callLines?: Function}} [opts]
+ * @returns {(items: Array<{slug: string, zipPath: string}>) => Array<{slug: string, shareUrl?: string, fileFid?: string, fileName?: string, error?: string}>}
+ */
+export function makeBatchUploader(cli, dirName, cwd, { parentFid = '', call = quarkCall, callLines = quarkCallLines } = {}) {
+  let dirFid = null
+  const ensureDir = () => {
+    if (dirFid) return dirFid
+    const args = ['create-folder', '--dir-path', dirName]
+    if (parentFid) args.push('--parent-fid', parentFid)
+    const d = call(cli, args, cwd)
+    if (!d.fid) throw new Error('create-folder 未返回 fid')
+    dirFid = d.fid
+    return dirFid
+  }
+
+  return (items) => {
+    const list = items ?? []
+    if (!list.length) return []
+    const dfid = ensureDir()
+    const out = []
+
+    // 1) 一次调用传完整批
+    const fidByName = new Map()
+    let batchErr = null
+    try {
+      const { lines } = callLines(cli, ['upload', ...list.map((x) => x.zipPath), '--parent-fid', dfid], cwd)
+      for (const o of lines) {
+        if (o?.type === 'list' && o.code === 0 && o.data?.fileId && o.data?.fileName) {
+          fidByName.set(o.data.fileName, o.data.fileId)
+        }
+      }
+    } catch (err) {
+      batchErr = String(err?.message ?? err).slice(0, 300)
+    }
+
+    // 2) 逐个建链；批量里没拿到 fid 的退回单文件上传（失败只影响这一个包）
+    for (const item of list) {
+      const name = basename(item.zipPath)
+      try {
+        let fid = fidByName.get(name)
+        if (!fid) {
+          // 批量里没拿到这个文件的 fid：可能是整批调用失败，也可能只是这个文件没回 list 行。
+          // 两种情况都退回单文件上传 —— 单传成功就不该因为「同批别的文件失败」而放弃它。
+          const up = call(cli, ['upload', item.zipPath, '--parent-fid', dfid], cwd)
+          fid = (up.fids ?? [])[0]
+          if (!fid) throw new Error(`upload 未返回 fids${batchErr ? `（批量阶段：${batchErr}）` : ''}`)
+        }
+        const sh = call(cli, ['share', fid, '--title', `${item.slug} 任务书汉化补丁`, '--url-type', '1', '--expired-type', '1'], cwd)
+        if (!sh.share_url) throw new Error('share 未返回 share_url')
+        out.push({ slug: item.slug, shareUrl: sh.share_url, fileFid: fid, fileName: name })
+      } catch (err) {
+        out.push({ slug: item.slug, error: String(err?.message ?? err).slice(0, 300) })
+      }
+    }
+    return out
+  }
+}
+
+/**
  * 业务桩注入点：测试替换 makeUploader 而不触碰 quark CLI。
  *
  * @param {string} cli quark-drive.cjs 路径

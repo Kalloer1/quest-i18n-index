@@ -30,6 +30,11 @@ on:
         required: false
         default: '30000'
         type: string
+      upload-batch:
+        description: '一次 CLI 调用上传多少个文件（默认 40）'
+        required: false
+        default: '40'
+        type: string
 
 permissions:
   contents: write
@@ -86,7 +91,7 @@ jobs:
           export QUARK_CLI="$CLI"
           FLAGS=""
           if [ "${{ inputs.limit }}" != "0" ]; then FLAGS="$FLAGS --limit ${{ inputs.limit }}"; fi
-          node scripts/quark-sync.mjs $FLAGS --batch "${{ inputs.batch }}" --delay "${{ inputs.delay }}"
+          node scripts/quark-sync.mjs $FLAGS --batch "${{ inputs.batch }}" --delay "${{ inputs.delay }}" --upload-batch "${{ inputs['upload-batch'] || '40' }}"
         env:
           QUARK_DIR_NAME: 整合包汉化
           QUARK_PARENT_FID: ${{ secrets.QUARK_PARENT_FID }}
@@ -104,7 +109,19 @@ jobs:
             exit 0
           fi
           git commit -m "quark-sync: 回填分享链接（run ${{ github.run_id }}，limit=${{ inputs.limit || '0' }}）"
-          git push origin HEAD:main
+          # 本工作流要跑 40~100 分钟，期间 main 一定被别人推过（本机 publish、deploy 回填）。
+          # 2026-10-24 实测：run 40082237640 上传+建链全部成功，最后 push 被
+          # `! [rejected] (fetch first)` 打回，整批 1777 行镜像记录随 runner 一起丢弃 ——
+          # 网盘上的链接是真的，记录没了，等于白跑。所以 push 前必须先 rebase 再推，并重试。
+          for i in 1 2 3 4 5; do
+            git pull --rebase --autostash origin main || { echo "rebase 失败（第 $i 次）"; sleep 10; continue; }
+            if git push origin HEAD:main; then
+              echo "已推送（第 $i 次尝试）"
+              break
+            fi
+            echo "push 被拒（第 $i 次），10 秒后重试"
+            sleep 10
+          done
 
       # 失败清单传 artifact（不进仓库）：失败项下轮自动重试（记录缺失 → 重新规划）。
       - name: Upload failures artifact
