@@ -26,6 +26,7 @@
  *   node scripts/publish-local.mjs                  # 全量合并（默认不设上限）
  *   node scripts/publish-local.mjs --max 80         # 按 slug 字典序只合前 80 个
  *   node scripts/publish-local.mjs --hosts work,farm1
+ *   node scripts/publish-local.mjs --skip-slugs a,b        # 这批包 main 上已有本地修好的版本，别用分支产物覆盖
  *   node scripts/publish-local.mjs --dry-run        # 只算计划，不落盘不提交
  *   node scripts/publish-local.mjs --skip-tests     # 跳过 npm test（赶时间时用，风险自负）
  *
@@ -55,6 +56,7 @@ const DRY = has('--dry-run')
 const SKIP_TESTS = has('--skip-tests')
 const HOSTS = val('--hosts').split(',').map((s) => s.trim()).filter(Boolean)
 const MAX = Number(val('--max', '0')) || 0
+const SKIP_SLUGS = val('--skip-slugs').split(',').map((s) => s.trim()).filter(Boolean)
 
 const step = (n, msg) => console.log(`\n\x1b[1m[${n}]\x1b[0m ${msg}`)
 
@@ -228,6 +230,21 @@ if (MAX > 0 && slugs.length > MAX) {
   plan = { ...plan, bySlug, conflicts: plan.conflicts.filter((c) => keep.has(c.slug)) }
   writeFileSync(join(DIR, 'plan.json'), `${JSON.stringify(plan)}\n`)
   console.log(`按 --max ${MAX} 截断到 ${slugs.length} 个`)
+}
+
+// `--skip-slugs a,b,c`：这批包 main 上已经有本地修好的版本（比分支上的新），
+// 不要拿分支上的旧产物覆盖。典型场景是 Phase 5 的坏源包：主机侧从来翻不出来，
+// 本地修源重翻后先入了库，分支上留着的仍是半成品。
+// 不跳过时，自检会把「plan 只有差异文件、树上有全量文件」判成漏捞 —— main 已含该包后
+// 这个不等式本就不再成立，属于假阳性，故在计划层显式剔除。
+if (SKIP_SLUGS.length) {
+  const skip = new Set(SKIP_SLUGS)
+  const bySlug = {}
+  for (const [s, it] of Object.entries(plan.bySlug)) if (!skip.has(s)) bySlug[s] = it
+  const dropped = slugs.filter((s) => skip.has(s))
+  plan = { ...plan, bySlug, conflicts: (plan.conflicts ?? []).filter((c) => !skip.has(c.slug)) }
+  writeFileSync(join(DIR, 'plan.json'), `${JSON.stringify(plan)}\n`)
+  console.log(`按 --skip-slugs 剔除 ${dropped.length} 个（main 已有本地修好的版本）：${dropped.join(', ')}`)
 }
 
 const byHost = {}
