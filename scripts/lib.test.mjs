@@ -16,7 +16,7 @@ import {
 import { parse } from './snbt.mjs'
 import { readFileSync } from 'node:fs'
 import { fetchRetry } from './lib/fetch-retry.mjs'
-import { repairUnclosedStringLists, repairKeyInsideList, repairEmptyKeyEntries, repairNestedSingleQuotes, repairSlashComments, repairEmptyValueEntries, repairMissingCloseBrace, repairStrayQuoteInStringList, repairUnclosedStringValue } from './lib/snbt-repair.mjs'
+import { repairUnclosedStringLists, repairKeyInsideList, repairEmptyKeyEntries, repairNestedSingleQuotes, repairSlashComments, repairEmptyValueEntries, repairMissingCloseBrace, repairStrayQuoteInStringList, repairUnclosedStringValue, repairMissingOpenQuote, repairUnclosedListElement } from './lib/snbt-repair.mjs'
 
 // ---------- format-codes ----------
 
@@ -544,6 +544,76 @@ test('repairUnclosedStringValue：行末补右引号，下一行不被吞', () =
 test('repairUnclosedStringValue：正常跨行长文本不动', () => {
   const ok = '{\n\tnote: "第一行\n第二行还在字符串里"\n\tid: "X"\n}'
   const r = repairUnclosedStringValue(ok)
+  assert.equal(r.repaired.length, 0)
+  assert.equal(r.text, ok)
+})
+
+// ---------- snbt-repair：值是裸 {quest.N.title} 缺左引号 ----------
+// 2026-10-25 实测：crafting-craft-2 的 chapters/7858BB56C9DEDD06.snbt L252，
+// 报「compound 条目缺少 ":"」—— 值以 { 开头被当 compound 读。同文件其他同类键都有引号。
+
+test('repairMissingOpenQuote：`key: {quest.N.title}"` 补左引号后能 parse', () => {
+  const bad = [
+    '{',
+    '\tid: "ABC"',
+    '\ticon: "book"',
+    '\ttitle: {quest.156.title}"',
+    '}',
+  ].join('\n')
+  const { text, repaired } = repairMissingOpenQuote(bad)
+  assert.equal(repaired.length, 1)
+  assert.equal(repaired[0].key, 'title')
+  const root = parse(text).value
+  const byKey = Object.fromEntries(root.entries.map((e) => [e.key.value, e.value.value]))
+  assert.equal(byKey.title, '{quest.156.title}', '值内容只能多一对引号，不能丢字节')
+})
+
+test('repairMissingOpenQuote：健康的带引号模板值不动', () => {
+  const ok = '{\n\ttitle: "{quest.151.title}"\n}'
+  const r = repairMissingOpenQuote(ok)
+  assert.equal(r.repaired.length, 0)
+  assert.equal(r.text, ok)
+})
+
+test('repairMissingOpenQuote：非 quest 模板形态的裸花括号不碰（规则要窄）', () => {
+  // 值不是 {quest.N.<字段>} 形态（比如真 compound），补引号只会把结构改坏 —— 不在窄规则命中面内。
+  const bad = '{\n\tx: {a: 1}"\n}'
+  const r = repairMissingOpenQuote(bad)
+  assert.equal(r.repaired.length, 0)
+})
+
+// ---------- snbt-repair：多行字符串列表的元素行缺右引号 ----------
+// 2026-10-25 实测：etbw 的 chapters/707C89F17A4596E5.snbt L82，报「无法解析的值：\"如\"」。
+// 规则⑨只认 `key: "` 键值形态，元素行（行首就是 "）匹配不上。
+
+test('repairUnclosedListElement：元素行行尾补 \'"\'，下一元素不再被吞', () => {
+  const bad = [
+    '{',
+    '\tdescription: [',
+    '\t\t"BOSS技能："',
+    '\t\t"它会偶尔短暂停止移动，可以破坏任何方块。；',
+    '\t\t"如果玩家在很高的地方时，方块；"',
+    '\t]',
+    '\tid: "X"',
+    '}',
+  ].join('\n')
+  const { text, repaired } = repairUnclosedListElement(bad)
+  assert.equal(repaired.length, 1)
+  assert.equal(repaired[0].line, 4, '修的是缺右引号的那一行')
+  const root = parse(text).value
+  const d = root.entries.find((e) => e.key.value === 'description').value
+  assert.equal(d.type, 'list')
+  assert.deepEqual(d.items.map((it) => it.value.value), [
+    'BOSS技能：',
+    '它会偶尔短暂停止移动，可以破坏任何方块。；',
+    '如果玩家在很高的地方时，方块；',
+  ], '三个元素都在，内容一字不丢')
+})
+
+test('repairUnclosedListElement：正常跨行字符串（下一行不以 " 开头）不动', () => {
+  // 本解析器允许字符串跨行：下一行是纯文本延续时，那是合法文件，不能当坏行补引号。
+  const ok = '{\n\tdescription: [\n\t\t"第一行\n第二行还在字符串里"\n\t]\n}'
+  const r = repairUnclosedListElement(ok)
   assert.equal(r.repaired.length, 0)
   assert.equal(r.text, ok)
 })

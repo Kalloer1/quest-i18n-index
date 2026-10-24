@@ -16,6 +16,7 @@ import {
   authoritativeQuestNames, compareWithAuthoritative, pruneStaleFiles, rewriteCdnHost,
 } from './prepare-pack.mjs'
 import { classifyLayout, LAYOUT } from './lib/candidates.mjs'
+import { parse } from './snbt.mjs'
 
 /** 与 prepare-pack.mjs 的 listSnbt 同口径：递归列 .snbt（相对路径）——测试里要看「目录实况」。 */
 function snbtNames(dir, base = dir) {
@@ -523,5 +524,43 @@ test('preparePack：判定为不一致后下载失败 —— 原样留着旧英�
     assert.deepEqual(snbtNames(join(dirs.packsDir, 'demo')), before)
     assert.equal(readFileSync(join(questsDir, 'lang/en_us.snbt'), 'utf8'), 'quest.a.title: "Hi"\n')
     assert.equal(readFileSync(join(questsDir, 'chapters/old.snbt'), 'utf8'), 'title: "上一次来源"\n')
+  } finally { dirs.cleanup() }
+})
+
+// ---------- 修复链接线：⑨⑩⑪ ----------
+// 2026-10-25 诊断（research/tmp/diag-bad6/task-5.md）：规则⑨写好后一直没接进
+// repairSources（Phase 5 已知缺陷）；⑩（crafting-craft-2 的裸 {quest.N.title} 缺左引号）
+// 与⑪（etbw 的列表元素缺右引号）是新规则。端到端验证：坏文件落盘后必须已被修好。
+
+test('preparePack 修复链：⑨缺右引号/⑩裸模板缺左引号/⑪列表元素缺右引号 —— 落盘后都能 parse', async () => {
+  const badZip = buildZip([
+    // ⑨ lindenfeld 形态：字符串值缺右引号（此前规则没接线，文件落盘仍是坏的）
+    { name: 'Demo-1.0/overrides/config/ftbquests/quests/chapters/r9.snbt', data: '{\n\tgroup: "0F9BFF21DB6FDC1E\n\ticon: "dustydecorations:bookstack"\n}\n' },
+    // ⑩ crafting-craft-2 形态：`title: {quest.156.title}"` 缺左引号
+    { name: 'Demo-1.0/overrides/config/ftbquests/quests/chapters/r10.snbt', data: '{\n\tid: "ABC"\n\ticon: "book"\n\ttitle: {quest.156.title}"\n}\n' },
+    // ⑪ etbw 形态：多行字符串列表的元素行缺右引号
+    { name: 'Demo-1.0/overrides/config/ftbquests/quests/chapters/r11.snbt', data: '{\n\tdescription: [\n\t\t"BOSS技能："\n\t\t"它会偶尔短暂停止移动，可以破坏任何方块。；\n\t\t"如果玩家在很高的地方时，方块；"\n\t]\n\tid: "X"\n}\n' },
+  ])
+  const dirs = tempDirs()
+  try {
+    const logs = []
+    const r = await preparePack({
+      slug: 'demo', cfId: '1514778', apiKey: 'k', packsDir: dirs.packsDir, tmpDir: dirs.tmpDir,
+      force: true, fetchImpl: stubFetch({ zip: badZip }), log: (m) => logs.push(m),
+    })
+    assert.equal(r.status, 'prepared')
+    assert.equal(r.written, 3)
+    assert.match(logs.join('\n'), /修正上游源文件的结构损坏：3 个文件/)
+    // 落盘后三个文件必须都能被下游 loadPack/validate-quests 解析
+    const chapters = join(dirs.packsDir, 'demo', 'config/ftbquests/quests/chapters')
+    for (const f of ['r9.snbt', 'r10.snbt', 'r11.snbt']) {
+      const text = readFileSync(join(chapters, f), 'utf8')
+      assert.doesNotThrow(() => parse(text), `${f} 修复后必须能 parse`)
+    }
+    // 值内容只能多引号，不能丢字节
+    const r10 = readFileSync(join(chapters, 'r10.snbt'), 'utf8')
+    assert.ok(r10.includes('title: "{quest.156.title}"'), '⑩的修法是补左引号')
+    const r9 = readFileSync(join(chapters, 'r9.snbt'), 'utf8')
+    assert.ok(r9.includes('group: "0F9BFF21DB6FDC1E"'), '⑨的修法是行尾补右引号')
   } finally { dirs.cleanup() }
 })

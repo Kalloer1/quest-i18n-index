@@ -52,7 +52,7 @@ import { fileURLToPath } from 'node:url'
 import { dirname, join, relative } from 'node:path'
 import { extractFromBuffer, isQuestFile, toOutputPath } from './extract-pack.mjs'
 import { parse } from './snbt.mjs'
-import { repairUnclosedStringLists, repairKeyInsideList, repairEmptyKeyEntries, repairNestedSingleQuotes, repairSlashComments, repairEmptyValueEntries, repairMissingCloseBrace, repairStrayQuoteInStringList } from './lib/snbt-repair.mjs'
+import { repairUnclosedStringLists, repairKeyInsideList, repairEmptyKeyEntries, repairNestedSingleQuotes, repairSlashComments, repairEmptyValueEntries, repairMissingCloseBrace, repairStrayQuoteInStringList, repairUnclosedStringValue, repairMissingOpenQuote, repairUnclosedListElement } from './lib/snbt-repair.mjs'
 import { classifyLayout } from './lib/candidates.mjs'
 import { resolveLatestMrpack } from './lib/modrinth.mjs'
 import { fetchZipTexts, listZip } from './lib/zip-range.mjs'
@@ -333,6 +333,9 @@ function writeQuestTexts(files, outDir) {
  *   ⑥ 条目只有键没有值（`dependencies:`）—— 补空列表 `[]`
  *   ⑦ compound 少一个收尾 `}` —— 在解析撞车的 `]` 处补 `}`
  *   ⑧ 单行字符串列表里混进没转义的 `"` —— 补 `\` 转义
+ *   ⑨ 字符串值缺右引号 —— 行尾补 `"`（写好至今没接线，2026-10-25 补接）
+ *   ⑩ `key: {quest.N.title}"` 缺左引号 —— 补左引号（crafting-craft-2）
+ *   ⑪ 多行字符串列表的元素行缺右引号 —— 行尾补 `"`（etbw）
  *
  * 为什么在落盘后统一修、而不是在两条写盘路各写一遍：Range 路（`writeQuestTexts`）
  * 与整包路（`extractFromBuffer`）写的是同一批文件，修一处覆盖两条路。
@@ -360,7 +363,7 @@ function repairSources(slug, outDir, written, log) {
     } catch {
       // 解析失败才进入修复链
     }
-    // 八种损坏可能并存，依次修。
+    // 十一种损坏可能并存，依次修。
     const a = repairUnclosedStringLists(before)
     const b = repairKeyInsideList(a.text)
     const c = repairEmptyKeyEntries(b.text)
@@ -369,17 +372,20 @@ function repairSources(slug, outDir, written, log) {
     const f2 = repairMissingCloseBrace(e2.text)
     const g2 = repairStrayQuoteInStringList(f2.text)
     const h2 = repairSlashComments(g2.text)
-    const repaired = [...a.repaired, ...b.repaired, ...c.repaired, ...d.repaired, ...e2.repaired, ...f2.repaired, ...g2.repaired, ...h2.repaired]
+    const i2 = repairUnclosedStringValue(h2.text)
+    const j2 = repairMissingOpenQuote(i2.text)
+    const k2 = repairUnclosedListElement(j2.text)
+    const repaired = [...a.repaired, ...b.repaired, ...c.repaired, ...d.repaired, ...e2.repaired, ...f2.repaired, ...g2.repaired, ...h2.repaired, ...i2.repaired, ...j2.repaired, ...k2.repaired]
     if (!repaired.length) continue
     // 修完必须真的能解析，否则整文件回滚（一个字节不动）。
     // 「改不活就当没改」是这套规则唯一的验收口径 —— 不能靠「看起来更像了」。
     try {
-      parse(h2.text)
+      parse(k2.text)
     } catch (err) {
       log(`[${slug}] 修复未生效，已回滚：${rel}（${String(err?.message ?? err).slice(0, 80)}）`)
       continue
     }
-    writeFileSync(dest, h2.text)
+    writeFileSync(dest, k2.text)
     files++
     for (const r of repaired.slice(0, 3)) keys.push(`${rel}::${r.key}`)
   }

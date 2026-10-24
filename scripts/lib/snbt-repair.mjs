@@ -572,3 +572,110 @@ export function repairUnclosedStringValue(text) {
   if (!repaired.length) return { text: src, repaired: [] }
   return { text: out.join(eol), repaired }
 }
+
+/**
+ * 修复第十种上游损坏：**字符串值丢了开头的左引号**（值是裸 `{quest.N.title}` 模板变量）。
+ *
+ * 实测（2026-10-25，`crafting-craft-2` 的 `chapters/7858BB56C9DEDD06.snbt` L252，
+ * 诊断报告 research/tmp/diag-bad6/task-5.md）：
+ *
+ * ```
+ * 	title: {quest.156.title}"          ← 少左引号，行尾孤 "
+ * ```
+ *
+ * 同文件 L55/115/165/175 同类键全部是 `title: "{quest.15x.title}"`。值以 `{` 开头被
+ * 解析器当 compound 读，报「compound 条目缺少 ":"」。内存里补回左引号后整文件 parse 通过。
+ * 规则⑨是缺**右**引号，此形态（缺左引号）它管不到。
+ *
+ * 判据收窄到三条：
+ *   1. 全局守卫：整份文件当前解析失败；
+ *   2. 行形如 `key: {quest.<数字>.<标识符>}"`（行尾恰一个孤立闭引号）；
+ *   3. 补左引号后的整行能独立 parse（健康行不碰）。
+ *
+ * @param {string} text
+ * @returns {{text: string, repaired: Array<{line: number, key: string}>}}
+ */
+export function repairMissingOpenQuote(text) {
+  const src = String(text ?? '')
+  // 全局守卫：文件能解析就绝不修改。
+  try { parse(src); return { text: src, repaired: [] } } catch { /* 坏文件才继续 */ }
+  const eol = src.includes('\r\n') ? '\r\n' : '\n'
+  const lines = src.split(/\r?\n/)
+  const out = []
+  const repaired = []
+  // 只认 quest.<数字>.<标识符> 模板变量（ftbquests 的 title/subtitle 引用形态），
+  // 不泛化到任意 {…}（真 compound 值补引号只会改坏结构）。
+  const BARE_TEMPLATE = /^(\s*)([A-Za-z0-9_.+\-]+):\s*(\{quest\.[A-Za-z0-9_]+\.[A-Za-z_][A-Za-z0-9_]*\})"\s*$/
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i]
+    const m = BARE_TEMPLATE.exec(line)
+    if (!m) { out.push(line); continue }
+    const fixed = `${m[1]}${m[2]}: "${m[3]}"`
+    // 判据 3：修后整行必须能独立 parse（包一层 compound 测）。
+    try { parse(`{ ${fixed.trim()} }`) } catch { out.push(line); continue }
+    out.push(fixed)
+    repaired.push({ line: i + 1, key: m[2] })
+  }
+  if (!repaired.length) return { text: src, repaired: [] }
+  return { text: out.join(eol), repaired }
+}
+
+/**
+ * 修复第十一种上游损坏：**多行字符串列表的元素行缺右引号**（规则⑨的列表元素版）。
+ *
+ * 实测（2026-10-25，`etbw` 的 `chapters/707C89F17A4596E5.snbt` L82）：
+ *
+ * ```
+ * description: [
+ *     "BOSS技能："
+ *     "它会偶尔短暂停止移动…可以破坏任何方块。；        ← 这行缺右引号
+ *     "如果玩家在很高的地方时…"
+ * ]
+ * ```
+ *
+ * 未闭合的字符串跨行吞掉下一行的开引号，解析器在再下一行报「无法解析的值：\"如\"」。
+ * 规则⑨只认 `key: "` 键值形态（OPENS 要求行首 `key:`），元素行（行首就是 `"`）匹配不上。
+ *
+ * 判据收窄到四条：
+ *   1. 全局守卫：整份文件当前解析失败；
+ *   2. 行（去缩进）以 `"` 开头，开引号之后行内再无未转义的 `"`；
+ *   3. 下一非空行仍以 `"` 开头（下一行是纯文本延续的合法跨行字符串不碰）；
+ *   4. 只在行尾补 `"`，不动行内任何字节。
+ *
+ * @param {string} text
+ * @returns {{text: string, repaired: Array<{line: number, key: string}>}}
+ */
+export function repairUnclosedListElement(text) {
+  const src = String(text ?? '')
+  // 全局守卫：文件能解析就绝不修改。
+  try { parse(src); return { text: src, repaired: [] } } catch { /* 坏文件才继续 */ }
+  const eol = src.includes('\r\n') ? '\r\n' : '\n'
+  const lines = src.split(/\r?\n/)
+  const out = []
+  const repaired = []
+  const ELEMENT = /^\s*"/
+
+  // 开引号之后行内是否还有未转义的闭引号（有 = 该行字符串已闭合，不是本规则的病）。
+  const selfClosed = (rest) => {
+    for (let k = 0; k < rest.length; k++) {
+      if (rest[k] === BS) { k++; continue }
+      if (rest[k] === DQ) return true
+    }
+    return false
+  }
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i]
+    if (!ELEMENT.test(line)) { out.push(line); continue }
+    if (selfClosed(line.slice(line.indexOf(DQ) + 1))) { out.push(line); continue }
+    // 判据 3：下一非空行仍以 " 开头才修 —— 否则这是合法的跨行字符串延续。
+    let j = i + 1
+    while (j < lines.length && !lines[j].trim()) j++
+    if (j >= lines.length || !ELEMENT.test(lines[j])) { out.push(line); continue }
+    out.push(line + DQ)
+    repaired.push({ line: i + 1, key: '(列表元素)' })
+  }
+  if (!repaired.length) return { text: src, repaired: [] }
+  return { text: out.join(eol), repaired }
+}
