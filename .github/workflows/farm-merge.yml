@@ -2,7 +2,7 @@ name: farm-merge
 
 # 每台主机（serv00 / instabox，名字由 origin/farm/* 自动发现）各自把产物推到自己分支 farm/<host>，
 # 永不 push main。本工作流负责把这些分支的增量合进 main：取 delta → 补布局（build-index）
-# → 过闸门 → 打包 → 镜像 → 补交付状态并重算站点数据 → 显式提交 → 触发部署。
+# → 过闸门 → 打包 → 补交付状态并重算站点数据 → 显式提交 → 触发部署。
 #
 # 为什么 build-index 要跑两次：layout 来自 research/scan-full.tsv 的 format 列，产物是
 # research/index-dataset.json；而 release.mjs 与 validate-quests.mjs 都从它取 layout。
@@ -17,6 +17,10 @@ name: farm-merge
 # 却仍然按旧版报错」。schedule 与 workflow_dispatch 永远读默认分支的 workflow，不受这个影响。
 # 代价是合并最多滞后一个调度周期（15 分钟），而主机本身也是每 20 包 / 20 分钟才推一次，
 # 这个滞后相对整批耗时可忽略。
+#
+# 夸克网盘镜像已剪出（2026-10-24）：同一条流水线里的镜像旁路失败（登录态过期、报告文件
+# 不存在、840s 超时）把整条 run 判成红的，日志里看不出到底谁坏了。Phase 4 会以独立
+# 工作流 quark-sync.yml 重生（增量上传 + 分批建链），本工作流只管合并与发布。
 on:
   # 定时合并已于 2026-10-23 19:45 停用，改由本机 `npm run publish` 一次性合并发布。
   # 要开回来就把下面三行取消注释（`schedule:` 不能只留注释：GitHub 会把空的 schedule
@@ -36,32 +40,7 @@ on:
         default: '80'
         type: string
       dryRun:
-        description: '只计算增量并输出摘要，不落盘、不镜像、不提交'
-        required: false
-        default: false
-        type: boolean
-      mirrorOnly:
-        description: '只补夸克镜像：给「已有 zip 但分享链接为空」的历史包回填链接，不合并、不打包'
-        required: false
-        default: false
-        type: boolean
-      mirrorLimit:
-        description: 'mirrorOnly 时最多处理多少个包（默认 50，防止一次几千次上传触发风控）'
-        required: false
-        default: '50'
-        type: string
-      quarkRename:
-        description: '只做夸克网盘重命名（把已上传的文件改成带版本号的本地名），不合并、不镜像'
-        required: false
-        default: false
-        type: boolean
-      quarkRenameLimit:
-        description: 'quarkRename 时最多改多少条（0 = 全部；第一次请填 1 做试点）'
-        required: false
-        default: '0'
-        type: string
-      quarkVerifyOnly:
-        description: '只复查改名后分享链接是否还能打开（不改名），含重试与间隔'
+        description: '只计算增量并输出摘要，不落盘、不提交'
         required: false
         default: false
         type: boolean
@@ -71,19 +50,15 @@ permissions:
   # workflow_dispatch 需要 actions: write（否则 dispatch 端点 403）
   actions: write
 
-# 与 deploy.yml / translate.yml 共用 concurrency 组：三者都会写仓库。
+# 与 deploy.yml 共用 concurrency 组：两者都会写仓库。
 concurrency:
   group: repo-write
   cancel-in-progress: false
 
 jobs:
   merge:
-    # quarkRename 是独立任务（只动网盘文件名，不碰仓库），由下面的 quark-rename job 承担。
-    # 这里一个 job 级条件挡掉，比给 11 个 step 各加一条 `inputs.quarkRename != true` 可靠。
-    if: inputs.quarkRename != true && inputs.quarkVerifyOnly != true
     runs-on: ubuntu-latest
-    # 主要成本是拉 blob + 夸克上传；给足余量，避免慢网被误杀。
-    # 8 台主机、单轮最多 80 个包（含逐个上传）后 120 分钟不够用，350 覆盖「80 包 + 20 个回填」的最坏组合。
+    # 主要成本是拉 blob；给足余量，避免慢网被误杀。
     timeout-minutes: 350
     steps:
       - name: Checkout main
@@ -183,10 +158,10 @@ jobs:
             --hosts "$(printf '%s' "$HOSTS" | tr ' ' ',')" \
             --out "$FARM_DIR/plan.json" --github-output "$GITHUB_OUTPUT"
 
-      # 单轮上限：8 台主机同时产出时 delta 可能是几百个包，一轮全吃会把 job 拖过超时、
-      # 夸克上传也更容易撞风控。截断而不是「随机取一部分」：
-      # 按 slug 字典序取前 N 个 —— 顺序稳定、可重放，同一个 plan 每次都截出同一批；
-      # 而且被截掉的包下一轮仍在 diff 里（main 还没合它们），所以不会饿死，只是排后面。
+      # 单轮上限：8 台主机同时产出时 delta 可能是几百个包，一轮全吃会把 job 拖过超时。
+      # 截断而不是「随机取一部分」：按 slug 字典序取前 N 个 —— 顺序稳定、可重放，
+      # 同一个 plan 每次都截出同一批；而且被截掉的包下一轮仍在 diff 里（main 还没合它们），
+      # 所以不会饿死，只是排后面。
       # 为什么不按主机轮流取：那需要跨轮记住游标，计划就不再是纯函数，重跑结果会漂。
       - name: Cap packs per run
         id: cap
@@ -244,7 +219,7 @@ jobs:
           '
 
       - name: Check out only the delta
-        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true) && inputs.mirrorOnly != true
+        if: inputs.dryRun != true && steps.plan.outputs.count != '0'
         run: |
           set -euo pipefail
           # 逐文件 checkout，不整目录覆盖：main 的 patches/<slug>/ 里可能已经有别台合进来的
@@ -269,23 +244,23 @@ jobs:
       # 结果不是假绿就是误红。所以必须在闸门和打包之前先补一趟布局。
       # 此刻 downloads/<slug>.zip 还没生成（delivered=false），下一轮再补交付状态。
       - name: Build index (layout pass)
-        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
+        if: inputs.dryRun != true && steps.plan.outputs.count != '0'
         run: node scripts/build-index.mjs
 
       # 闸门：增量落盘之后、打包之前。npm test 里已经含 build/site 的数据契约测试。
       - name: Run tests
-        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
+        if: inputs.dryRun != true && steps.plan.outputs.count != '0'
         run: npm test
 
       - name: Validate quest files
-        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true)
+        if: inputs.dryRun != true && steps.plan.outputs.count != '0'
         run: |
           set -uo pipefail
           # 闸门判红时先「踢掉坏包再校验一次」，而不是整批停摆。
           # 为什么：坏包绝大多数是主机在上一次运行被中断时写出的残包（缺几百到上万个键），
           # 属于个例；为了它把 1,600 个包的合并全部堵住，代价远大于收益 —— 2026-10-23 实测
           # 连续三次合并都因为 2~4 个残包整批变红。踢掉后它们在工作区消失，本轮不打包、
-          # 不镜像、不入库；主机侧因为分支上那份也已被删，下一轮会重新翻译。
+          # 不入库；主机侧因为分支上那份也已被删，下一轮会重新翻译。
           # 注意：这里必须真的把文件从工作区删掉，只加变量不动文件的话，后面的
           # release --package-only 依然会把坏包打成 zip。
           set +e
@@ -309,10 +284,10 @@ jobs:
             node scripts/validate-quests.mjs
           fi
 
-      # 先打包：镜像上传的是 downloads/<slug>.zip，它由 release.mjs 产出（幂等，重跑字节相同）。
+      # 先打包再重算索引：zip 由 release.mjs 产出（幂等，重跑字节相同）。
       # 必须在 layout pass 之后：release.mjs 用 index-dataset 里的 layout 决定 zip 的目录形态。
       - name: Package patches
-        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true) && inputs.mirrorOnly != true
+        if: inputs.dryRun != true && steps.plan.outputs.count != '0'
         run: |
           set -euo pipefail
           # 闸门那步会把坏包从工作区删掉，这里必须按「目录还在」过滤一遍：
@@ -331,146 +306,26 @@ jobs:
           echo "PACKAGE_SLUGS=$KEEP" >> "$GITHUB_ENV"
           node scripts/release.mjs --ids "$KEEP" --package-only
 
-      # 夸克登录态：CI 里没有浏览器，只能把本机已验证的存根写到 CLI 真正读取的位置。
-      # 路径必须是 <技能根>/qoder/config.json；旧写法的 openclaw/config.json 不生效（实测），
-      # 会让 CLI 表现为未登录：绿色通过但零链接。写入后只报字节数，绝不打印内容。
-      #
-      # 注意末尾 `|| (github.event_name == 'schedule' && steps.plan.outputs.count == '0')`：
-      # 定时轮次没有 delta 时也要走「自愈回填」（见 Resolve mirror targets 的第 3 个来源），
-      # 而回填同样需要登录态与 CLI。不加这个分支，自愈就是死代码 —— 步骤根本不会被执行。
-      # 这一句只放宽「什么时候跑」，dryRun / mirrorOnly 的语义一个字没动。
-      # 这里用粗条件（不判断是否真有缺口）是有意的：本步只是写一个小文件、下一步下 620KB，
-      # 都是幂等小动作；为了省它再插一个探测步骤，反而多一处要维护的判断。
-      - name: Restore quark config
-        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true || (github.event_name == 'schedule' && steps.plan.outputs.count == '0'))
-        env:
-          QUARK_CONFIG_JSON: ${{ secrets.QUARK_CONFIG_JSON }}
-        run: |
-          if [ -z "$QUARK_CONFIG_JSON" ]; then
-            echo "未提供 QUARK_CONFIG_JSON，跳过"
-            exit 0
-          fi
-          SKILL_DIR="$HOME/.pi/agent/skills/quarkclouddrive"
-          mkdir -p "$SKILL_DIR/qoder"
-          printf '%s' "$QUARK_CONFIG_JSON" > "$SKILL_DIR/qoder/config.json"
-          chmod 600 "$SKILL_DIR/qoder/config.json"
-          echo "登录态已写入（$(wc -c < "$SKILL_DIR/qoder/config.json" | tr -d ' ') 字节，内容不打印）"
-
-      # CLI 是 620KB 自包含单文件，超 secret 48KB 上限，也不入库，只能每次下载。
-      # 安装脚本本身容错（失败只警告、exit 0）；本轮「必须」镜像由 QUARK_REQUIRED=1 保证。
-      - name: Install quark CLI
-        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true || (github.event_name == 'schedule' && steps.plan.outputs.count == '0'))
-        run: bash scripts/install-quark-cli.sh
-
-      - name: Resolve mirror targets
-        id: mirrorTargets
-        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true || (github.event_name == 'schedule' && steps.plan.outputs.count == '0'))
-        run: |
-          set -euo pipefail
-          # 三个来源：
-          #  1) 本轮合进来的包（PACKAGE_SLUGS）；
-          #  2) mirrorOnly 回填模式：有 zip 但 research/quark-mirrors.json 里 shareUrl 为空的历史包；
-          #  3) schedule 自愈：定时轮次没有 delta 时，自动补最多 20 个同样状态的历史包。
-          # 为什么要有 (2)(3)：镜像失败只留空不阻断（mirror.mjs 的设计如此），于是「uploaded 但
-          # 没拿到分享链接」会安静地停在空字符串上 —— 站点上按钮不渲染、页面也不报错，没人会发现。
-          # 2026-10-23 就有 11 个包是这个状态。手动回填 (2) 靠人想起来，(3) 让定时任务自己慢慢补完。
-          LIST=""
-          if [ -n "${PACKAGE_SLUGS:-}" ]; then
-            LIST="$PACKAGE_SLUGS"
-          fi
-          if [ "${{ inputs.mirrorOnly }}" = "true" ]; then
-            LIMIT="${{ inputs.mirrorLimit }}"
-            case "$LIMIT" in ''|*[!0-9]*) LIMIT=50 ;; esac
-            BACKFILL=$(node --input-type=module -e '
-              import { readFileSync, readdirSync } from "node:fs"
-              const mirrors = JSON.parse(readFileSync("research/quark-mirrors.json", "utf8")).mirrors || {}
-              const zips = readdirSync("downloads").filter((f) => f.endsWith(".zip")).map((f) => f.slice(0, -4))
-              const missing = zips.filter((s) => !(mirrors[s] && mirrors[s].shareUrl)).sort()
-              console.log(missing.join(","))
-            ')
-            LIST="${LIST:+$LIST,}$BACKFILL"
-          fi
-          # (3) 只认 schedule 且本轮 delta 为空：有 delta 的轮次已经在跑打包/上传，
-          # 再叠 20 个回填会把单轮耗时推高；空转的轮次才是补历史欠账的窗口。
-          # 数量固定 20，**不读 mirrorLimit** —— 那个额度是手动回填的一次性配额，
-          # 混用会让每晚的定时任务一次吃掉整轮配额，人工回填时反而没得跑。
-          if [ "${{ github.event_name }}" = "schedule" ] && [ "${{ steps.plan.outputs.count }}" = "0" ]; then
-            HEAL=$(node --input-type=module -e '
-              import { readFileSync, readdirSync } from "node:fs"
-              const mirrors = JSON.parse(readFileSync("research/quark-mirrors.json", "utf8")).mirrors || {}
-              const zips = readdirSync("downloads").filter((f) => f.endsWith(".zip")).map((f) => f.slice(0, -4))
-              const missing = zips.filter((s) => !(mirrors[s] && mirrors[s].shareUrl)).sort()
-              console.log(missing.slice(0, 20).join(","))
-            ')
-            LIST="${LIST:+$LIST,}$HEAL"
-          fi
-          # 去重且保序
-          LIST=$(printf '%s' "$LIST" | tr ',' '\n' | awk 'NF' | awk '!seen[$0]++' | paste -sd, -)
-          if [ "${{ inputs.mirrorOnly }}" = "true" ] && [ -n "$LIST" ]; then
-            LIMIT="${{ inputs.mirrorLimit }}"
-            case "$LIMIT" in ''|*[!0-9]*) LIMIT=50 ;; esac
-            LIST=$(printf '%s' "$LIST" | tr ',' '\n' | head -n "$LIMIT" | paste -sd, -)
-          fi
-          echo "MIRROR_SLUGS=$LIST" >> "$GITHUB_ENV"
-          # 计数同时落在 output 上：后面的步骤要靠它判断「本轮到底有没有活要干」。
-          # `|| true` 是因为 grep -c 无匹配时退出码为 1，在 set -e 下会直接掐掉这一步。
-          N=$(printf '%s' "$LIST" | tr ',' '\n' | grep -c . || true)
-          echo "count=$N" >> "$GITHUB_OUTPUT"
-          echo "镜像目标：$N 个"
-
-      - name: Mirror to Quark
-        id: mirror
-        # 镜像失败不阻断入库：译文是主要价值，先把 main 推进去；
-        # 但「零链接却绿灯」不可接受，由末尾独立一步统一判红。
-        # 第三个分支是自愈回填：只有 Resolve 真的枚举出待补链接时才跑（count 来自那一步），
-        # 否则每个 15 分钟的定时轮次都会白跑一次 mirror.mjs 并刷一条「没有需要镜像的包」警告。
-        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true || (github.event_name == 'schedule' && steps.mirrorTargets.outputs.count != '0'))
-        continue-on-error: true
-        run: |
-          CLI="$HOME/.pi/agent/skills/quarkclouddrive/scripts/quark-drive.cjs"
-          if [ -f "$CLI" ]; then
-            export QUARK_CLI="$CLI"
-            echo "夸克 CLI：$CLI（$(wc -c < "$CLI" | tr -d ' ') 字节）"
-          else
-            echo "::warning::夸克 CLI 不存在（Install quark CLI 未成功），本轮跳过镜像。"
-          fi
-          # 空值必须显式跳过：mirror.mjs 的 --ids 传空串等于「不限定」，会把全部历史 zip
-          # 重新走一遍上传流程（幂等能挡住重复分享，但没必要每周烧几百次调用）。
-          if [ -z "${MIRROR_SLUGS:-}" ]; then
-            echo "::warning::本轮没有需要镜像的包，跳过"
-            exit 0
-          fi
-          node scripts/mirror.mjs --ids "$MIRROR_SLUGS"
-        env:
-          QODER_PRODUCT_ID: qoder
-          QODER_AGENT: 'true'
-          QUARK_DIR_NAME: 整合包汉化
-          QUARK_PARENT_FID: ${{ secrets.QUARK_PARENT_FID }}
-          # 本轮「必须」完成夸克镜像：有目标待镜像而 CLI 缺失时 mirror.mjs 置退出码 1。
-          QUARK_REQUIRED: '1'
-
       # 汇总各补丁目录下的 `.source.json`（补丁基于哪个上游文件翻译的）。
       # 单写入者：只在 CI 跑，worker 只推自己那个补丁目录，故不会出现并发合并冲突。
       # 必须在 build-site-data 之前完成 —— 站点数据要读这份汇总。
       - name: Collect source versions
-        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true || (github.event_name == 'schedule' && steps.mirrorTargets.outputs.count != '0'))
+        if: inputs.dryRun != true && steps.plan.outputs.count != '0'
         run: node scripts/source-versions.mjs
 
       # 第二轮 build-index（只补交付状态）：此时 downloads/<slug>.zip 已存在 → delivered=true。
       # 两次 build-index 是「先补布局、后补交付状态」，代价只多生成一次 13MB 的 JSON，
       # 换来打包与闸门拿到正确 layout——比在 release/validate 里各自猜布局便宜得多。
-      # 索引与站点数据仍须在本轮 zip / 镜像链接落盘之后重算，否则新条目在站点上是「未交付」。
-      # 自愈回填那一轮没有新包，但 quark-mirrors.json 变了，站点上按钮要不要渲染取决于这份数据，
-      # 所以这条链必须跟着重算并提交，否则链接补好了也没人看得见。
+      # 索引与站点数据仍须在本轮 zip 落盘之后重算，否则新条目在站点上是「未交付」。
       - name: Rebuild index (delivered pass) and site data
-        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true || (github.event_name == 'schedule' && steps.mirrorTargets.outputs.count != '0'))
+        if: inputs.dryRun != true && steps.plan.outputs.count != '0'
         run: |
           node scripts/build-index.mjs
           node scripts/build-site-data.mjs
           node scripts/build-site-html.mjs
 
       - name: Stage artifacts
-        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true || (github.event_name == 'schedule' && steps.mirrorTargets.outputs.count != '0'))
+        if: inputs.dryRun != true && steps.plan.outputs.count != '0'
         run: |
           set -euo pipefail
           node --input-type=module -e '
@@ -490,15 +345,13 @@ jobs:
               if [ -e "$f" ]; then git add -- "$f"; fi
             done
           done < "$FARM_DIR/slugs.txt"
-          for p in research/index-dataset.json site/data.json research/quark-mirrors.json research/source-versions.json glossary.json; do
+          for p in research/index-dataset.json site/data.json research/source-versions.json glossary.json; do
             if [ -e "$p" ]; then git add -- "$p"; fi
           done
 
       - name: Commit and push
         id: commit
-        if: inputs.dryRun != true && (steps.plan.outputs.count != '0' || inputs.mirrorOnly == true || (github.event_name == 'schedule' && steps.mirrorTargets.outputs.count != '0'))
-        env:
-          MIRROR_ONLY: ${{ inputs.mirrorOnly }}
+        if: inputs.dryRun != true && steps.plan.outputs.count != '0'
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
@@ -511,20 +364,10 @@ jobs:
           node --input-type=module -e '
             import { readFileSync } from "node:fs"
             const { bySlug } = JSON.parse(readFileSync(process.env.FARM_DIR + "/plan.json", "utf8"))
-            const mirrorOnly = process.env.MIRROR_ONLY === "true"
-            // mirrorOnly 跑的是「补镜像」，**不合并任何产物**（checkout 那步被跳过）。
-            // 但 plan 里依然有全部待合并包，若照样按 plan 计数写 commit message，
-            // 就会出现「farm: 合并 80 个整合包」而 patches/downloads 零变更的假记录 ——
-            // 2026-10-23 连续四轮都这样，让人误判合并正常、实际 backlog 一直没动。
-            if (mirrorOnly) {
-              const n = (process.env.MIRROR_SLUGS || "").split(",").filter(Boolean).length
-              console.log(`farm: 夸克镜像回填 ${n} 个补丁包（未合并产物）`)
-            } else {
-              const byHost = {}
-              for (const item of Object.values(bySlug)) byHost[item.branch] = (byHost[item.branch] ?? 0) + 1
-              const parts = Object.entries(byHost).sort().map(([h, n]) => `${h}×${n}`).join(", ")
-              console.log(`farm: 合并 ${Object.keys(bySlug).length} 个整合包（${parts}）`)
-            }
+            const byHost = {}
+            for (const item of Object.values(bySlug)) byHost[item.branch] = (byHost[item.branch] ?? 0) + 1
+            const parts = Object.entries(byHost).sort().map(([h, n]) => `${h} × ${n}`).join(", ")
+            console.log(`farm: 合并 ${Object.keys(bySlug).length} 个整合包（${parts}）`)
           ' > "$FARM_DIR/commit-msg.txt"
           git commit -m "$(cat "$FARM_DIR/commit-msg.txt")"
           # 合并期间别的代理/工作流可能也推了 main：rebase 上来再推，别用 force。
@@ -563,148 +406,8 @@ jobs:
             if [ -s "$FARM_DIR/trunc-note.txt" ]; then
               cat "$FARM_DIR/trunc-note.txt"
             fi
-            # 覆盖率放在最后统一算：它看的是整个仓库的存量（downloads 与 mirrors），
-            # 与本轮合并了什么都无关 —— 所以即使本轮无事可做，也要让人一眼看出还差多少个。
-            node --input-type=module -e '
-              import { existsSync, readFileSync, readdirSync } from "node:fs"
-              const zips = existsSync("downloads")
-                ? readdirSync("downloads").filter((f) => f.endsWith(".zip")).length
-                : 0
-              let links = 0
-              try {
-                const mirrors = JSON.parse(readFileSync("research/quark-mirrors.json", "utf8")).mirrors || {}
-                links = Object.values(mirrors).filter((m) => m && m.shareUrl).length
-              } catch {}
-              // 差额可能为负：mirrors.json 是只增不减的，包被删掉后旧链接还在里面。
-              // 负数是「有链接没包」的信号，不抹平 —— 抹成 0 就等于把异常藏起来。
-              console.log(`- 镜像覆盖：zip ${zips} / 有链接 ${links} / 缺口 ${zips - links}`)
-            '
             echo ""
             if [ "${{ inputs.dryRun }}" = "true" ]; then
-              echo "> dryRun：未落盘、未镜像、未提交。"
+              echo "> dryRun：未落盘、未提交。"
             fi
-            echo "> 镜像步骤结果：${{ steps.mirror.outcome || 'skipped' }}"
           } >> "$GITHUB_STEP_SUMMARY"
-
-      # 判红标准从「mirror 步骤失败」收紧为「本轮确有目标且一个都没拿到链接」。
-      # 为什么：没有目标时 mirror.mjs 会因 CLI 缺失 / 登录态过期而失败，但那不是本轮的账 ——
-      # 按旧条件，每个 15 分钟的定时轮次都会因此变红，真正的故障反而淹没在噪音里。
-      # MIRROR_SLUGS 由 Resolve mirror targets 写进 $GITHUB_ENV，跨步骤仍然可读，
-      # 所以这里不需要再猜一次「本轮想镜像什么」。
-      - name: Fail if quark mirror totally failed
-        if: steps.mirror.outcome == 'failure'
-        run: |
-          set -uo pipefail
-          if [ -z "${MIRROR_SLUGS:-}" ]; then
-            echo "本轮无镜像目标，跳过判红"
-            exit 0
-          fi
-          # 部分成功不算全挂：mirror.mjs 失败只留空不阻断，链接有没有真拿到要看落盘结果，
-          # 不能只信退出码 —— 退出码 1 也可能是「80 个里挂了 3 个」。
-          OK=$(MIRROR_SLUGS="$MIRROR_SLUGS" node --input-type=module -e '
-            import { readFileSync } from "node:fs"
-            const want = process.env.MIRROR_SLUGS.split(",").map((s) => s.trim()).filter(Boolean)
-            let mirrors = {}
-            try {
-              mirrors = JSON.parse(readFileSync("research/quark-mirrors.json", "utf8")).mirrors || {}
-            } catch {}
-            const ok = want.filter((s) => mirrors[s] && mirrors[s].shareUrl).length
-            console.log(`${ok}/${want.length}`)
-          ')
-          case "$OK" in
-            0/*)
-              echo "::error::夸克镜像全军覆没（$OK 拿到链接）：多为登录态过期，或 CLI 下载/安装失败。产物已入库；网盘字段为空，修好后用 mirrorOnly 补跑。"
-              exit 1
-              ;;
-          esac
-          echo "::warning::夸克镜像部分失败（$OK 拿到链接），不判红：链接为空不阻断是本项目的既有设计，下一轮定时自愈会继续补。"
-
-  # 夸克网盘里的存量文件改成带版本号的名字。
-  #
-  # 为什么要单独一个 job：它只动网盘文件名，不写仓库。塞进 merge job 就得给十几个
-  # 合并/镜像步骤各加一条 `quarkRename != true` 的排除条件，改错一处就会在试点时
-  # 顺带合并+打包+提交。job 级隔离只有一行。
-  #
-  # 为什么先试点 1 条：分享链接是绑 FID 生成的，改名理论上不影响，但官方没有明文保证，
-  # `rename` 虽有 30 天 `rename-revert` 可回滚，先拿一条验证 `share-detail` 仍可访问更稳。
-  quark-rename:
-    if: github.event_name == 'workflow_dispatch' && (inputs.quarkRename == true || inputs.quarkVerifyOnly == true)
-    runs-on: ubuntu-latest
-    timeout-minutes: 60
-    steps:
-      - name: Checkout main
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-
-      - name: Run npm ci || npm install
-        run: npm ci || npm install
-
-      - name: Restore quark config
-        env:
-          QUARK_CONFIG_JSON: ${{ secrets.QUARK_CONFIG_JSON }}
-        run: |
-          if [ -z "$QUARK_CONFIG_JSON" ]; then
-            echo "::error::未提供 QUARK_CONFIG_JSON，无法登录夸克"
-            exit 1
-          fi
-          SKILL_DIR="$HOME/.pi/agent/skills/quarkclouddrive"
-          mkdir -p "$SKILL_DIR/qoder"
-          printf '%s' "$QUARK_CONFIG_JSON" > "$SKILL_DIR/qoder/config.json"
-          chmod 600 "$SKILL_DIR/qoder/config.json"
-          echo "登录态已写入（$(wc -c < "$SKILL_DIR/qoder/config.json" | tr -d ' ') 字节，内容不打印）"
-
-      - name: Install quark CLI
-        run: bash scripts/install-quark-cli.sh
-
-      - name: Rename quark files
-        if: inputs.quarkRename == true
-        env:
-          QODER_PRODUCT_ID: qoder
-          QODER_AGENT: 'true'
-          QUARK_DIR_NAME: 整合包汉化
-          QUARK_PARENT_FID: ${{ secrets.QUARK_PARENT_FID }}
-        run: |
-          set -euo pipefail
-          CLI="$HOME/.pi/agent/skills/quarkclouddrive/scripts/quark-drive.cjs"
-          if [ ! -f "$CLI" ]; then
-            echo "::error::夸克 CLI 不存在（Install quark CLI 未成功）"
-            exit 1
-          fi
-          export QUARK_CLI="$CLI"
-          LIMIT='${{ inputs.quarkRenameLimit }}'
-          case "$LIMIT" in ''|*[!0-9]*) LIMIT=0 ;; esac
-          echo "重命名上限：$LIMIT（0 = 全部）"
-          node scripts/quark-rename.mjs --limit "$LIMIT" --verify
-      - name: Verify quark shares
-        if: inputs.quarkVerifyOnly == true
-        env:
-          QODER_PRODUCT_ID: qoder
-          QODER_AGENT: 'true'
-          QUARK_DIR_NAME: 整合包汉化
-          QUARK_PARENT_FID: ${{ secrets.QUARK_PARENT_FID }}
-        run: |
-          set -euo pipefail
-          CLI="$HOME/.pi/agent/skills/quarkclouddrive/scripts/quark-drive.cjs"
-          if [ ! -f "$CLI" ]; then
-            echo "::error::夸克 CLI 不存在（Install quark CLI 未成功）"
-            exit 1
-          fi
-          export QUARK_CLI="$CLI"
-          node scripts/quark-rename.mjs --verify-only
-
-      # 复查结论是「哪些链接要重传」的唯一依据，而报告写在 research/tmp（gitignore），
-      # 任务一结束就随沙箱消失。日志里的清单会被 ::error:: 行数限制截断，所以必须存构件。
-      - name: Upload quark verify report
-        if: always() && inputs.quarkVerifyOnly == true
-        uses: actions/upload-artifact@v4
-        with:
-          name: quark-verify
-          path: research/tmp/quark-verify.json
-          if-no-files-found: warn
-          retention-days: 30
