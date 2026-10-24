@@ -1,0 +1,1403 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "chapter_2_the_aether"
+	group: ""
+	id: "624978327DE06615"
+	images: [
+		{
+			dependency: "0F255A9DCE5FC166"
+			height: 2.0d
+			image: "twilightforest:block/pedestal/hydra"
+			rotation: 0.0d
+			width: 2.0d
+			x: -3.5d
+			y: 17.5d
+		}
+		{
+			dependency: "0F255A9DCE5FC166"
+			height: 2.0d
+			image: "twilightforest:block/pedestal/hydra"
+			rotation: 0.0d
+			width: 2.0d
+			x: -6.5d
+			y: 17.5d
+		}
+	]
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["61C3C12D441099B7"]
+			id: "256F0C1C05A6CD77"
+			size: 1.0d
+			subtitle: "你已进入以太维度 (Aether)"
+			tasks: [{
+				dimension: "aether:the_aether"
+				id: "61C0C98B9A245D75"
+				title: "以太世界在等待着你"
+				type: "dimension"
+			}]
+			x: 0.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["256F0C1C05A6CD77"]
+			id: "5708DA9E5298BE52"
+			subtitle: "收集神圣之石"
+			tasks: [{
+				count: 16L
+				id: "725988653120CC18"
+				item: { Count: 16, id: "aether:holystone" }
+				type: "item"
+			}]
+			title: "约旦河之石"
+			x: 1.25d
+			y: -0.75d
+		}
+		{
+			dependencies: ["256F0C1C05A6CD77"]
+			id: "0ADF62D038064B67"
+			subtitle: "收集安布罗西乌姆矿石"
+			tasks: [{
+				count: 8L
+				id: "21686774AC2B64B0"
+				item: { Count: 8, id: "aether:ambrosium_shard" }
+				type: "item"
+			}]
+			title: "琥珀与硫磺的表亲"
+			x: 0.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["256F0C1C05A6CD77"]
+			icon: "aether:blue_gummy_swet"
+			id: "62641626ADCE5680"
+			subtitle: "在Aether周围击杀Swets生物"
+			tasks: [
+				{
+					entity: "aether:golden_swet"
+					id: "589D5E92A6C91B43"
+					type: "kill"
+					value: 3L
+				}
+				{
+					entity: "aether:blue_swet"
+					id: "745BF2B61343BEA0"
+					type: "kill"
+					value: 3L
+				}
+				{
+					entity: "aether_redux:vanilla_swet"
+					id: "2B95AB08FB6C7186"
+					type: "kill"
+					value: 3L
+				}
+			]
+			title: "3 汗水淋漓的冒险家"
+			x: -1.25d
+			y: -0.75d
+		}
+		{
+			dependencies: [
+				"0ADF62D038064B67"
+				"62641626ADCE5680"
+				"5708DA9E5298BE52"
+			]
+			icon: {
+				Count: 1
+				id: "deep_aether:stormforged_helmet"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "546D0CB85EF74ECB"
+			subtitle: "找到一个青铜地牢"
+			tasks: [{
+				id: "441F61FF034F26D4"
+				structure: "aether:bronze_dungeon"
+				type: "structure"
+			}]
+			title: "那么我们现在在铜矿里了"
+			x: 0.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["546D0CB85EF74ECB"]
+			icon: {
+				Count: 1
+				id: "lost_aether_content:sentry_shield"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "118B77F797EA691F"
+			subtitle: "击杀青铜地牢中的哨兵守卫"
+			tasks: [{
+				entity: "aether:sentry"
+				id: "55CC1249F2E6F058"
+				type: "kill"
+				value: 5L
+			}]
+			title: "武器已被解除"
+			x: -3.0d
+			y: -4.5d
+		}
+		{
+			dependencies: ["546D0CB85EF74ECB"]
+			icon: "minecraft:trapped_chest"
+			id: "60712E4DD68F3C1F"
+			subtitle: "解开一个伪装者（Mimic）的伪装"
+			tasks: [{
+				id: "6CA405A4333C6EB4"
+				observe_type: 5
+				timer: 0L
+				to_observe: "aether:mimic"
+				type: "observation"
+			}]
+			title: "那不是箱子！"
+			x: 3.0d
+			y: -4.5d
+		}
+		{
+			dependencies: [
+				"118B77F797EA691F"
+				"60712E4DD68F3C1F"
+			]
+			icon: "aether:bronze_dungeon_key"
+			id: "29BB7D53BBEF74FE"
+			subtitle: "击杀滑行者 (Kill The Slider)"
+			tasks: [{
+				entity: "aether:slider"
+				id: "2EE1B566CF3C569A"
+				type: "kill"
+				value: 1L
+			}]
+			title: "岩石"
+			x: 0.0d
+			y: -6.0d
+		}
+		{
+			dependencies: ["29BB7D53BBEF74FE"]
+			id: "056438580C835E83"
+			subtitle: "从滑块那里获取一把强大的武器"
+			tasks: [{
+				id: "73DCC3D50F820B4D"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "aether:valkyrie_lance"
+								tag: {
+									Damage: 0
+								}
+							}
+							{
+								Count: 1b
+								id: "aether:flaming_sword"
+								tag: {
+									Damage: 0
+								}
+							}
+							{
+								Count: 1b
+								id: "aether:phoenix_bow"
+								tag: {
+									Damage: 0
+								}
+							}
+							{
+								Count: 1b
+								id: "aether:hammer_of_kingbdogz"
+								tag: {
+									Damage: 0
+								}
+							}
+							{
+								Count: 1b
+								id: "aether:cloud_staff"
+								tag: {
+									Damage: 0
+								}
+							}
+							{
+								Count: 1b
+								id: "aether:shield_of_repulsion"
+								tag: {
+									Damage: 0
+								}
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "从岩石中偷窃武器"
+			x: 0.0d
+			y: -7.0d
+		}
+		{
+			dependencies: ["056438580C835E83"]
+			icon: "aether:cold_aercloud"
+			id: "12A83363B23852FF"
+			shape: "diamond"
+			subtitle: "达到海拔高度 160"
+			tasks: [{
+				dimension: "aether:the_aether"
+				id: "51BD9DE87EA44F99"
+				ignore_dimension: false
+				position: [I;
+					-20000000
+					160
+					-20000000
+				]
+				size: [I;
+					999999999
+					1
+					999999999
+				]
+				type: "location"
+			}]
+			title: "上面的天气怎么样了？How's The Weather Up There?"
+			x: 0.0d
+			y: -8.5d
+		}
+		{
+			dependencies: ["12A83363B23852FF"]
+			icon: {
+				Count: 1
+				id: "aether:cloud_staff"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "7CD26C51B7B94208"
+			shape: "hexagon"
+			subtitle: "寻找黄铜地牢"
+			tasks: [{
+				id: "2AA273A19E921D8E"
+				structure: "deep_aether:brass_dungeon"
+				type: "structure"
+			}]
+			title: "黄铜联盟"
+			x: 0.0d
+			y: -10.0d
+		}
+		{
+			dependencies: ["7CD26C51B7B94208"]
+			id: "5420D01CCF646415"
+			shape: "diamond"
+			subtitle: "击杀风暴之眼（Eye of the Storm）"
+			tasks: [{
+				advancement: "deep_aether:brass_dungeon"
+				criterion: ""
+				id: "036B9C2D97E2DF02"
+				type: "advancement"
+			}]
+			title: "风暴之王"
+			x: 0.0d
+			y: -11.5d
+		}
+		{
+			dependencies: ["5420D01CCF646415"]
+			icon: {
+				Count: 1
+				id: "aether:valkyrie_gloves"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "5FF884C8402A214A"
+			subtitle: "找到一个银色地牢"
+			tasks: [{
+				id: "64A1C68B46F68292"
+				structure: "aether:silver_dungeon"
+				type: "structure"
+			}]
+			title: "白银联盟"
+			x: 0.0d
+			y: -13.0d
+		}
+		{
+			dependencies: ["5FF884C8402A214A"]
+			icon: {
+				Count: 1
+				id: "aether:valkyrie_lance"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "464D4AD41EEF9B6A"
+			subtitle: "击杀 5 只女武神"
+			tasks: [{
+				entity: "aether:valkyrie"
+				id: "1AE54321DE9749BB"
+				type: "kill"
+				value: 5L
+			}]
+			title: "现在可没那么难了，不是吗？"
+			x: -2.5d
+			y: -18.5d
+		}
+		{
+			dependencies: [
+				"464D4AD41EEF9B6A"
+				"32971997619629CA"
+			]
+			icon: {
+				Count: 1
+				id: "aether:valkyrie_helmet"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "6EB0C7AEE8121C30"
+			subtitle: "击杀瓦尔基里女王"
+			tasks: [{
+				entity: "aether:valkyrie_queen"
+				id: "0F7243D9DF5AA57B"
+				type: "kill"
+				value: 1L
+			}]
+			title: "女王们的国王"
+			x: 0.0d
+			y: -18.0d
+		}
+		{
+			dependencies: ["6EB0C7AEE8121C30"]
+			icon: "piglinproliferation:netherrack_fire_ring"
+			id: "41F57389C529F17F"
+			subtitle: "找到一个黄金地牢"
+			tasks: [{
+				id: "7581D435941995D9"
+				structure: "aether:gold_dungeon"
+				type: "structure"
+			}]
+			title: "一个还算闪亮的地下城"
+			x: 0.0d
+			y: -20.0d
+		}
+		{
+			dependencies: ["41F57389C529F17F"]
+			icon: "deep_aether:sun_core"
+			icon_scale: 1.3d
+			id: "21F260F59E0464B8"
+			size: 3.0d
+			subtitle: "杀死太阳之灵"
+			tasks: [{
+				entity: "aether:sun_spirit"
+				id: "01B0FF137B2ED87F"
+				type: "kill"
+				value: 1L
+			}]
+			title: "你是我的阳光，温暖我的心房"
+			x: 0.0d
+			y: -23.25d
+		}
+		{
+			dependencies: ["21F260F59E0464B8"]
+			id: "1018C204A06E30D7"
+			subtitle: "从太阳之灵处获取一件传说级战利品"
+			tasks: [{
+				id: "20B7CBE9235574C1"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "aether:vampire_blade"
+								tag: {
+									Damage: 0
+								}
+							}
+							{
+								Count: 1b
+								id: "aether:life_shard"
+							}
+							{
+								Count: 1b
+								id: "aether:iron_bubble"
+							}
+							{
+								Count: 1b
+								id: "aether_redux:subzero_crossbow"
+								tag: {
+									Damage: 0
+								}
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "太阳的核心"
+			x: 0.0d
+			y: -26.5d
+		}
+		{
+			dependencies: ["1018C204A06E30D7"]
+			icon: "minecraft:snowball"
+			id: "6E1E8E1B3901E6EE"
+			subtitle: "找到铂金地下城 (Platinum Dungeon)"
+			tasks: [{
+				id: "7C3492EC359CB389"
+				structure: "lost_aether_content:platinum_dungeon"
+				type: "structure"
+			}]
+			title: "这里的天气相当不错，不是吗？"
+			x: 0.0d
+			y: -28.0d
+		}
+		{
+			dependencies: ["6E1E8E1B3901E6EE"]
+			id: "4C1FA8C2CA6FD806"
+			rewards: [{
+				command: "/decstages add @s Twilight_Forest"
+				elevate_perms: true
+				icon: "twilightforest:twilight_portal_miniature_structure"
+				id: "6F485AA8AC220CF6"
+				title: "暮色森林"
+				type: "command"
+			}]
+			subtitle: "击杀空中鲸鱼之王"
+			tasks: [{
+				advancement: "lost_aether_content:platinum_dungeon"
+				criterion: ""
+				id: "46CD091C07D3D5FA"
+				type: "advancement"
+			}]
+			title: "天空的征服者！"
+			x: 0.0d
+			y: -33.5d
+		}
+		{
+			dependencies: [
+				"0410BC75BD02B108"
+				"30EE9194509463FA"
+				"4C1FA8C2CA6FD806"
+			]
+			id: "0AC5FF8D4A078478"
+			subtitle: "进入暮色森林 (Twilight Forest)"
+			tasks: [{
+				dimension: "twilightforest:twilight_forest"
+				id: "6BAB20CC86CE4314"
+				title: "奇妙森林 The Forest Of Wonder"
+				type: "dimension"
+			}]
+			x: 0.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["0AC5FF8D4A078478"]
+			icon: "twilightforest:naga_scale"
+			id: "51882B15EFAFFE93"
+			subtitle: "找到一个纳迦庭院"
+			tasks: [{
+				id: "2E9624C726C0FB7A"
+				structure: "twilightforest:naga_courtyard"
+				type: "structure"
+			}]
+			title: "蛇的后院"
+			x: -0.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["51882B15EFAFFE93"]
+			icon: {
+				Count: 1
+				id: "twilightforest:naga_chestplate"
+				tag: {
+					Damage: 0
+					Enchantments: [{
+						id: "minecraft:fire_protection"
+						lvl: 3s
+					}]
+				}
+			}
+			id: "620BCFFFE962E2F2"
+			subtitle: "杀死纳迦（Naga）"
+			tasks: [{
+				entity: "twilightforest:naga"
+				id: "070482592C22DDA7"
+				type: "kill"
+				value: 1L
+			}]
+			title: "泰坦巨蟒就是这样灭绝的，就是这么回事"
+			x: 0.5d
+			y: 5.0d
+		}
+		{
+			dependencies: ["620BCFFFE962E2F2"]
+			icon: "twilightforest:lich_tower_miniature_structure"
+			id: "22B4FDE539B3A895"
+			subtitle: "找到一个巫妖塔 (Lich Tower)"
+			tasks: [{
+				id: "070472AEB0D7684E"
+				structure: "twilightforest:lich_tower"
+				type: "structure"
+			}]
+			title: "霍格沃茨魔法学校"
+			x: 0.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["22B4FDE539B3A895"]
+			id: "5C1105DFBCD2E738"
+			subtitle: "击杀巫妖塔中的多个敌人"
+			tasks: [
+				{
+					entity: "minecraft:zombie"
+					id: "2F528A70F0689A96"
+					type: "kill"
+					value: 7L
+				}
+				{
+					entity: "minecraft:skeleton"
+					id: "6804B51B6EFE92BF"
+					type: "kill"
+					value: 7L
+				}
+				{
+					entity: "twilightforest:death_tome"
+					icon: "minecraft:writable_book"
+					id: "04D76DAF20BBDFAC"
+					type: "kill"
+					value: 4L
+				}
+			]
+			title: "图书馆大扫除"
+			x: 0.0d
+			y: 7.5d
+		}
+		{
+			dependencies: ["5C1105DFBCD2E738"]
+			icon: {
+				Count: 1
+				id: "twilightforest:zombie_scepter"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "573CCFD4E027C961"
+			subtitle: "杀死巫妖（Lich）"
+			tasks: [{
+				entity: "twilightforest:lich"
+				id: "1A72B801A3373E1D"
+				type: "kill"
+				value: 1L
+			}]
+			title: "被铸造而出"
+			x: 0.0d
+			y: 9.5d
+		}
+		{
+			dependencies: ["573CCFD4E027C961"]
+			icon: "divinerpg:snow_globe"
+			id: "0EF102EAF820EE26"
+			subtitle: "找到一个苔原，在那里杀死一只狼"
+			tasks: [{
+				entity: "twilightforest:winter_wolf"
+				id: "25C9C2F04339A867"
+				type: "kill"
+				value: 1L
+			}]
+			title: "狼的冬日之弧任务集"
+			x: 5.0d
+			y: 9.0d
+		}
+		{
+			dependencies: ["0EF102EAF820EE26"]
+			icon: {
+				Count: 1
+				id: "twilightaether:yeti_gloves"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "05EB4594F46D7121"
+			subtitle: "击杀雪怪 Yeti's"
+			tasks: [{
+				entity: "twilightforest:yeti"
+				id: "4E2E116C5890BD34"
+				type: "kill"
+				value: 3L
+			}]
+			title: "大脚怪！"
+			x: 5.0d
+			y: 10.0d
+		}
+		{
+			dependencies: ["05EB4594F46D7121"]
+			icon: "divinerpg:iceika_fire"
+			id: "4CFB1CEABF1D44C0"
+			subtitle: "找到一个雪怪洞穴"
+			tasks: [{
+				id: "0324507DAAC3B269"
+				structure: "twilightforest:yeti_cave"
+				type: "structure"
+			}]
+			title: "大脚怪家族"
+			x: 7.5d
+			y: 13.0d
+		}
+		{
+			dependencies: ["05EB4594F46D7121"]
+			icon: {
+				Count: 1
+				id: "divinerpg:snowstorm_bow"
+				tag: {
+					Unbreakable: 1b
+				}
+			}
+			id: "09DB2DA8FACDE22F"
+			subtitle: "杀死多个雪怪（Yeti）"
+			tasks: [{
+				entity: "twilightforest:yeti"
+				id: "5AA2ECD71341C987"
+				type: "kill"
+				value: 7L
+			}]
+			title: "冬季犁头"
+			x: 2.5d
+			y: 13.0d
+		}
+		{
+			dependencies: [
+				"4CFB1CEABF1D44C0"
+				"09DB2DA8FACDE22F"
+			]
+			icon: {
+				Count: 1
+				id: "twilightforest:yeti_helmet"
+				tag: {
+					Damage: 0
+					Enchantments: [{
+						id: "minecraft:protection"
+						lvl: 2s
+					}]
+				}
+			}
+			id: "0EBA11F32D6DC9D2"
+			subtitle: "杀死一只阿尔法雪怪"
+			tasks: [{
+				entity: "twilightforest:alpha_yeti"
+				id: "40D5DDC962512531"
+				type: "kill"
+				value: 1L
+			}]
+			title: "相信我，我真的见过大脚怪"
+			x: 5.0d
+			y: 12.0d
+		}
+		{
+			dependencies: ["0EBA11F32D6DC9D2"]
+			icon: "minecraft:packed_ice"
+			id: "5549FB516353A88A"
+			subtitle: "找到一个冰川。注意：如果游戏因天空光照而卡顿，你可以在暮色森林的配置设置中将其关闭"
+			tasks: [{
+				biome: "twilightforest:glacier"
+				id: "59E90D1D67B79006"
+				type: "biome"
+			}]
+			title: "冰河时代"
+			x: 5.0d
+			y: 14.0d
+		}
+		{
+			dependencies: ["5549FB516353A88A"]
+			icon: "divinerpg:blue_fire"
+			id: "29189B3CCD75A481"
+			subtitle: "找到一个极光宫殿 (Aurorian Palace)"
+			tasks: [{
+				id: "3A669BDAEF32C1B0"
+				structure: "twilightforest:aurora_palace"
+				type: "structure"
+			}]
+			title: "极光之末的终结"
+			x: 3.0d
+			y: 16.0d
+		}
+		{
+			dependencies: [
+				"29189B3CCD75A481"
+				"2BB73515975552C7"
+			]
+			icon: "divinerpg:snow_cones"
+			id: "45E796A22323F0F5"
+			subtitle: "在宫殿中达到一个高海拔位置"
+			tasks: [{
+				dimension: "twilightforest:twilight_forest"
+				id: "46156A24D34FC8AC"
+				ignore_dimension: false
+				position: [I;
+					-99999999
+					100
+					-99999999
+				]
+				size: [I;
+					999999999
+					9999999
+					999999999
+				]
+				type: "location"
+			}]
+			title: "这里越来越冷了，得赶紧找个暖和的地方"
+			x: 5.0d
+			y: 18.0d
+		}
+		{
+			dependencies: ["5549FB516353A88A"]
+			icon: {
+				Count: 1
+				id: "divinerpg:frost_sword"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "2BB73515975552C7"
+			subtitle: "杀死一个不稳定的冰核"
+			tasks: [{
+				entity: "twilightforest:unstable_ice_core"
+				id: "469318B651CB8015"
+				type: "kill"
+				value: 1L
+			}]
+			title: "那是什么东西发出的声音？"
+			x: 7.0d
+			y: 16.0d
+		}
+		{
+			dependencies: ["45E796A22323F0F5"]
+			icon: "twilightforest:snow_queen_trophy"
+			id: "532CB8279C041E3D"
+			subtitle: "杀死雪后（Snow Queen）"
+			tasks: [{
+				entity: "twilightforest:snow_queen"
+				id: "006C9A2C4A13DA51"
+				type: "kill"
+				value: 1L
+			}]
+			title: "随它去吧"
+			x: 5.0d
+			y: 16.0d
+		}
+		{
+			dependencies: ["573CCFD4E027C961"]
+			id: "0249FB77F48EED53"
+			subtitle: "找到一个暮色沼泽"
+			tasks: [{
+				biome: "twilightforest:swamp"
+				id: "1225222BCB46D0C4"
+				title: "有人曾告诉我，世界将把我碾碎，将我吞噬"
+				type: "biome"
+			}]
+			x: -5.0d
+			y: 9.0d
+		}
+		{
+			dependencies: ["0249FB77F48EED53"]
+			icon: {
+				Count: 1
+				id: "twilightforest:diamond_minotaur_axe"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "116BB057E99329F0"
+			subtitle: "找到一个迷宫 (Labyrinth)"
+			tasks: [{
+				id: "30A595B26BCF0BD0"
+				structure: "twilightforest:labyrinth"
+				type: "structure"
+			}]
+			title: "一个奶牛谜题"
+			x: -7.5d
+			y: 13.0d
+		}
+		{
+			dependencies: ["0249FB77F48EED53"]
+			icon: "minecraft:beef"
+			id: "3EA2B2D584EC57C6"
+			subtitle: "击杀多个牛头怪（Minotaurs）"
+			tasks: [{
+				entity: "twilightforest:minotaur"
+				id: "7E27D63D1676DCEF"
+				type: "kill"
+				value: 10L
+			}]
+			title: "中等稀有度"
+			x: -2.5d
+			y: 13.0d
+		}
+		{
+			dependencies: [
+				"3EA2B2D584EC57C6"
+				"116BB057E99329F0"
+			]
+			icon: "minecraft:cooked_beef"
+			id: "0EA60539115654BA"
+			subtitle: "杀死牛蘑菇（Minoshroom）"
+			tasks: [{
+				entity: "twilightforest:minoshroom"
+				id: "5BBA9422068096F9"
+				type: "kill"
+				value: 1L
+			}]
+			title: "干得不错"
+			x: -5.0d
+			y: 13.0d
+		}
+		{
+			dependencies: ["0EA60539115654BA"]
+			icon: "piglinproliferation:deepslate_fire_ring"
+			id: "4609C6FCFAF18F50"
+			subtitle: "进入火焰沼泽"
+			tasks: [{
+				biome: "twilightforest:fire_swamp"
+				id: "4938A0FCF20EE24C"
+				type: "biome"
+			}]
+			title: "我想要回我的沼泽地！"
+			x: -5.0d
+			y: 16.0d
+		}
+		{
+			dependencies: ["4609C6FCFAF18F50"]
+			icon: "twilightforest:hydra_trophy"
+			id: "0F255A9DCE5FC166"
+			subtitle: "杀死九头蛇（Hydra）"
+			tasks: [{
+				entity: "twilightforest:hydra"
+				id: "7EEC8C506AB50DF8"
+				type: "kill"
+				value: 1L
+			}]
+			title: "先取下它的第一个、第二个和第三个"
+			x: -5.0d
+			y: 18.0d
+		}
+		{
+			dependencies: ["277607F5A9301741"]
+			icon_scale: 1.3d
+			id: "5DB910F3DC0BF6DE"
+			subtitle: "找到一个黑暗森林"
+			tasks: [{
+				biome: "twilightforest:dark_forest"
+				icon: {
+					Count: 1
+					id: "twilightforest:phantom_helmet"
+					tag: {
+						Damage: 0
+					}
+				}
+				id: "233757D93151A6F8"
+				type: "biome"
+			}]
+			title: "黑暗时代"
+			x: 0.0d
+			y: 24.0d
+		}
+		{
+			dependencies: ["5DB910F3DC0BF6DE"]
+			icon: "alexscaves:dark_tatters"
+			id: "0AB14CBD848E195E"
+			shape: "rsquare"
+			subtitle: "找到一个骑士堡垒"
+			tasks: [{
+				id: "6550F80305FF45F7"
+				structure: "twilightforest:knight_stronghold"
+				type: "structure"
+			}]
+			title: "黑暗森林中的黑暗堡垒"
+			x: 0.0d
+			y: 25.5d
+		}
+		{
+			dependencies: ["0AB14CBD848E195E"]
+			icon: "twilightforest:knight_phantom_trophy"
+			id: "52425ABDBDFBDFFD"
+			shape: "diamond"
+			size: 1.5d
+			subtitle: "击杀骑士幻影生物（Knight Phantom）"
+			tasks: [{
+				id: "1E8004B5BB1DB3DA"
+				item: "twilightforest:knight_phantom_trophy"
+				type: "item"
+			}]
+			title: "一个幻影的威胁"
+			x: 0.0d
+			y: 27.0d
+		}
+		{
+			dependencies: ["52425ABDBDFBDFFD"]
+			icon: "twilightforest:carminite_builder"
+			id: "12806CA81878FC3E"
+			subtitle: "找到一个黑暗塔 (Dark Tower)"
+			tasks: [{
+				id: "02474BDE9B983325"
+				structure: "twilightforest:dark_tower"
+				type: "structure"
+			}]
+			title: "暮色森林的终点"
+			x: 0.0d
+			y: 28.5d
+		}
+		{
+			dependencies: ["12806CA81878FC3E"]
+			icon: "twilightforest:carminite"
+			id: "332467E45F513E3A"
+			subtitle: "击杀卡米尼特生物"
+			tasks: [
+				{
+					entity: "twilightforest:carminite_ghastling"
+					id: "5284FD437656661B"
+					type: "kill"
+					value: 5L
+				}
+				{
+					entity: "twilightforest:carminite_broodling"
+					id: "650035A83032BDB6"
+					type: "kill"
+					value: 5L
+				}
+				{
+					entity: "twilightforest:carminite_golem"
+					id: "65DC6413A1BF0C54"
+					type: "kill"
+					value: 3L
+				}
+			]
+			title: "击杀一只卡米尼特生物"
+			x: 0.0d
+			y: 30.0d
+		}
+		{
+			dependencies: ["332467E45F513E3A"]
+			icon: "minecraft:ghast_tear"
+			id: "08956F5A0C99EE3E"
+			subtitle: "击杀远古守卫者 (Ur-Ghast)"
+			tasks: [{
+				entity: "twilightforest:ur_ghast"
+				id: "383B5BDF4325CA52"
+				type: "kill"
+				value: 1L
+			}]
+			title: "No, Your Ghast!"
+			x: 0.0d
+			y: 32.0d
+		}
+		{
+			dependencies: ["08956F5A0C99EE3E"]
+			id: "689CA39E275FEE70"
+			rewards: [{
+				auto: "disabled"
+				command: "/decstages add @s Nether"
+				elevate_perms: true
+				icon: "piglinproliferation:netherrack_fire_ring"
+				id: "35BAFF35B23E2B44"
+				title: "下界"
+				type: "command"
+			}]
+			size: 4.0d
+			subtitle: "向世人展示你证明配得上下界的奖杯吧"
+			tasks: [{
+				id: "18F2D8E99DDE0724"
+				item: "twilightforest:ur_ghast_trophy"
+				type: "item"
+			}]
+			title: "第二章的终结 The End Of Chapter II"
+			x: 0.0d
+			y: 35.5d
+		}
+		{
+			dependencies: ["5FF884C8402A214A"]
+			icon: "divinerpg:frosted_chest"
+			id: "32971997619629CA"
+			subtitle: "击败 3 个拟态怪"
+			tasks: [{
+				entity: "aether:mimic"
+				id: "040C0F97C36CFC84"
+				type: "kill"
+				value: 3L
+			}]
+			title: "Chest Demolitionist"
+			x: 2.5d
+			y: -18.5d
+		}
+		{
+			dependencies: ["4C1FA8C2CA6FD806"]
+			id: "30EE9194509463FA"
+			tasks: [{
+				dimension: "aether:the_aether"
+				id: "000D34885D526898"
+				type: "dimension"
+			}]
+			title: "被腐化的灵魂在哭泣"
+			x: 10.0d
+			y: -15.5d
+		}
+		{
+			dependencies: ["4C1FA8C2CA6FD806"]
+			id: "0410BC75BD02B108"
+			tasks: [{
+				dimension: "aether:the_aether"
+				id: "0F51480E2A0776B5"
+				type: "dimension"
+			}]
+			title: "一个新的领域已经开启"
+			x: -10.0d
+			y: -15.5d
+		}
+		{
+			dependencies: [
+				"0F255A9DCE5FC166"
+				"532CB8279C041E3D"
+			]
+			disable_toast: true
+			hide_until_deps_complete: true
+			icon_scale: 2.0d
+			id: "277607F5A9301741"
+			rewards: [{
+				auto: "enabled"
+				command: "/title @a actionbar {\"text\":\"You Disturbed Something...\",\"color\":\"dark_red\",\"italic\":false}"
+				elevate_perms: true
+				id: "48F73F22FA318359"
+				silent: true
+				title: " "
+				type: "command"
+			}]
+			shape: "diamond"
+			size: 2.0d
+			tasks: [{
+				dimension: "twilightforest:twilight_forest"
+				icon: "cataclysm:abyss_eye"
+				id: "3DFDB2635254D381"
+				title: " "
+				type: "dimension"
+			}]
+			x: 0.0d
+			y: 21.5d
+		}
+		{
+			dependencies: ["689CA39E275FEE70"]
+			id: "2430A74BBE6F518B"
+			tasks: [{
+				dimension: "twilightforest:twilight_forest"
+				id: "638974F7CB5124F6"
+				title: "最后被腐化的灵魂不复存在"
+				type: "dimension"
+			}]
+			x: -11.0d
+			y: 11.0d
+		}
+		{
+			dependencies: ["689CA39E275FEE70"]
+			id: "10D8B2CA3B9323A5"
+			tasks: [{
+				dimension: "twilightforest:twilight_forest"
+				id: "45B538FFB6266ECE"
+				title: "火焰的国度现已发布"
+				type: "dimension"
+			}]
+			x: 11.0d
+			y: 11.0d
+		}
+		{
+			dependencies: [
+				"2430A74BBE6F518B"
+				"10D8B2CA3B9323A5"
+			]
+			hide_until_deps_complete: true
+			id: "5435BC7B8FE56FBF"
+			rewards: [{
+				auto: "enabled"
+				command: "/title @a actionbar {\"text\":\"You Feel A Rush Of Pain And Adrenaline...\",\"color\":\"dark_red\",\"italic\":false}"
+				id: "3E055026E01E1FA9"
+				silent: true
+				type: "command"
+			}]
+			tasks: [{
+				dimension: "twilightforest:twilight_forest"
+				icon: "cataclysm:monstrous_eye"
+				id: "56D9CA77CE2FC929"
+				title: "醒来 醒来 我苏醒了"
+				type: "dimension"
+			}]
+			x: 0.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["4C1FA8C2CA6FD806"]
+			id: "0633DA0F51FB117C"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "0D05BF16578BBE9E"
+				table_id: 4498235771837341647L
+				type: "loot"
+			}]
+			shape: "none"
+			tasks: [{
+				id: "30390E4F11A3EE5E"
+				item: "deep_aether:aerwhale_saddle"
+				type: "item"
+			}]
+			x: 0.0d
+			y: -36.0d
+		}
+		{
+			dependencies: ["21F260F59E0464B8"]
+			id: "6A88BC2062000C92"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "0527958A4437481D"
+				table_id: 7194063643138519793L
+				type: "loot"
+			}]
+			shape: "none"
+			tasks: [{
+				id: "22022F1C0B8CB82D"
+				item: "deep_aether:sun_core"
+				type: "item"
+			}]
+			x: -3.0d
+			y: -24.5d
+		}
+		{
+			dependencies: ["6EB0C7AEE8121C30"]
+			id: "5C845BAE1C60411B"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "68ABA1A62D57F74A"
+				table_id: 7194063643138519793L
+				type: "loot"
+			}]
+			shape: "none"
+			tasks: [{
+				id: "71B1C6916C1068B9"
+				item: "deep_aether:medal_of_honor"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -19.5d
+		}
+		{
+			dependencies: ["5420D01CCF646415"]
+			id: "638D360D94311DE2"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "1CA97A5E40F49AEE"
+				table_id: 4498235771837341647L
+				type: "loot"
+			}]
+			shape: "none"
+			tasks: [{
+				id: "440AD6A44AD2D2C6"
+				item: {
+					Count: 1
+					id: "deep_aether:floaty_scarf"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -2.0d
+			y: -12.0d
+		}
+		{
+			dependencies: ["29BB7D53BBEF74FE"]
+			id: "416CDA60827F2728"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "5416BC819782A898"
+				table_id: 4498235771837341647L
+				type: "loot"
+			}]
+			shape: "none"
+			tasks: [{
+				id: "57AB856D549E1813"
+				item: {
+					Count: 1
+					id: "deep_aether:slider_eye"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: -2.0d
+			y: -6.5d
+		}
+		{
+			dependencies: ["4C1FA8C2CA6FD806"]
+			id: "1CF6D21A35F58EDC"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "3860645054C8E402"
+				table_id: 4498235771837341647L
+				type: "loot"
+			}]
+			shape: "none"
+			tasks: [
+				{
+					id: "425308EC445CD724"
+					item: "aether:altar"
+					type: "item"
+				}
+				{
+					id: "65E8F242FC9563F7"
+					item: "aether:sun_altar"
+					type: "item"
+				}
+				{
+					id: "42EACB136EFCE47F"
+					item: "deep_aether:combiner"
+					type: "item"
+				}
+				{
+					id: "652C261872796A71"
+					item: "aether:freezer"
+					type: "item"
+				}
+				{
+					id: "6240178D399203CF"
+					item: "aether:incubator"
+					type: "item"
+				}
+			]
+			title: "已获得工作站"
+			x: 1.5d
+			y: -35.0d
+		}
+		{
+			dependencies: ["689CA39E275FEE70"]
+			id: "5FB8E78F1969777C"
+			shape: "none"
+			tasks: [{
+				biome: "twilightforest:highlands"
+				id: "1EBB9F15092915DE"
+				type: "biome"
+			}]
+			x: 0.0d
+			y: 39.5d
+		}
+		{
+			dependencies: ["5FB8E78F1969777C"]
+			id: "24AB9EB643325535"
+			shape: "none"
+			tasks: [{
+				id: "19065DC262C7C8BF"
+				item: "twilightforest:magic_beans"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 42.5d
+		}
+		{
+			dependencies: ["24AB9EB643325535"]
+			id: "2EC227ED15805E8D"
+			shape: "none"
+			tasks: [
+				{
+					entity: "twilightforest:giant_miner"
+					id: "293E4CCCA80C8F3E"
+					type: "kill"
+					value: 3L
+				}
+				{
+					entity: "twilightforest:armored_giant"
+					id: "198D66830F037CF5"
+					type: "kill"
+					value: 3L
+				}
+			]
+			x: 0.0d
+			y: 46.0d
+		}
+		{
+			dependencies: ["3EA2B2D584EC57C6"]
+			id: "6EE1EE925EB85BE9"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "674591404AC89D8C"
+				table_id: 4498235771837341647L
+				type: "loot"
+			}]
+			shape: "none"
+			tasks: [{
+				id: "59C4DA84AB98DAF0"
+				stat: "minecraft:mob_kills"
+				type: "stat"
+				value: 500
+			}]
+			title: "杀手"
+			x: -2.5d
+			y: 14.0d
+		}
+		{
+			dependencies: ["6EE1EE925EB85BE9"]
+			id: "231BCE271FBAF1E8"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "4EA2D471BB0689C8"
+				table_id: 4498235771837341647L
+				type: "loot"
+			}]
+			shape: "none"
+			tasks: [{
+				id: "0DBF2AA120DAA6BE"
+				stat: "minecraft:mob_kills"
+				type: "stat"
+				value: 1250
+			}]
+			title: "大规模屠杀者"
+			x: -2.5d
+			y: 15.5d
+		}
+		{
+			dependencies: ["231BCE271FBAF1E8"]
+			id: "7F5646562F0E6860"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "6A4F097464ED7E83"
+				table_id: 7194063643138519793L
+				type: "loot"
+			}]
+			shape: "none"
+			tasks: [{
+				id: "3AA7DE2492E7FC6A"
+				stat: "minecraft:mob_kills"
+				type: "stat"
+				value: 2500
+			}]
+			title: "执行者"
+			x: -2.0d
+			y: 17.0d
+		}
+		{
+			dependencies: ["7F5646562F0E6860"]
+			id: "043529B76D25BFC5"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "68A42F06D0DDA3DD"
+				table_id: 8575270744596580629L
+				type: "loot"
+			}]
+			shape: "none"
+			tasks: [{
+				id: "306B4AA4D6FE5EF5"
+				stat: "minecraft:mob_kills"
+				type: "stat"
+				value: 10000
+			}]
+			title: "检察官"
+			x: -0.5d
+			y: 16.0d
+		}
+	]
+	title: "第二章（神圣领域）"
+}
