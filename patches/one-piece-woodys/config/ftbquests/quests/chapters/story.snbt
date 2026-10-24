@@ -1,0 +1,190 @@
+# AI 初翻，未人工校对
+{
+	id: "0143E59D6EDF413A"
+	group: "7DC0278E4855B45B"
+	order_index: 2
+	filename: "story"
+	title: "故事"
+	icon: {
+		id: "pirate_hat:pirate_helmet"
+		Count: 1b
+		tag: {
+			BlackBladeData: { }
+		}
+	}
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "海盗船员已组建成功！！！"
+			icon: {
+				id: "lfpirates:pirate_tier_3_helmet"
+				Count: 1b
+				tag: {
+					Damage: 0
+					BlackBladeData: { }
+				}
+			}
+			x: 0.0d
+			y: 0.0d
+			id: "3F756EF9073B5598"
+			tasks: [{
+				id: "0F683AC8FF0DACE2"
+				type: "item"
+				item: {
+					id: "mineminenomi:sake_bottle"
+					Count: 1b
+					tag: {
+						Damage: 0
+						BlackBladeData: { }
+					}
+				}
+			}]
+			rewards: [{
+				id: "611533C15CAAB798"
+				type: "choice"
+				table_id: 3515466388100842916L
+			}]
+		}
+		{
+			title: "总得从某个地方开始不是吗"
+			icon: {
+				id: "mineminenomi:marine_hat"
+				Count: 1b
+				tag: {
+					Damage: 0
+					BlackBladeData: { }
+				}
+			}
+			x: 0.0d
+			y: -1.0d
+			dependencies: ["3F756EF9073B5598"]
+			id: "731FCBDF206FAB60"
+			tasks: [{
+				id: "1B7A0D5AD4B3C208"
+				type: "kill"
+				entity: "mineminenomi:marine_grunt"
+				value: 25L
+			}]
+			rewards: [{
+				id: "0B9F30F19BC346C0"
+				type: "ftbmoney:money"
+				ftb_money: 50L
+			}]
+		}
+		{
+			x: -0.5d
+			y: -2.0d
+			dependencies: ["731FCBDF206FAB60"]
+			id: "5B63E1A6B04DE29A"
+			tasks: [{
+				id: "503B0CECA2A03B9B"
+				type: "kill"
+				entity: "cartaddon:marine_rifleman"
+				value: 15L
+			}]
+			rewards: [{
+				id: "0DA648A6D9093AAA"
+				type: "ftbmoney:money"
+				ftb_money: 100L
+			}]
+		}
+		{
+			x: 0.5d
+			y: -2.0d
+			dependencies: ["731FCBDF206FAB60"]
+			id: "4154C48796342AC8"
+			tasks: [{
+				id: "44484429E1B3A06A"
+				type: "kill"
+				entity: "mineminenomi:marine_brute"
+				value: 5L
+			}]
+			rewards: [{
+				id: "38C86F8CC46605D5"
+				type: "ftbmoney:money"
+				ftb_money: 100L
+			}]
+		}
+		{
+			icon: {
+				id: "mineminenomi:arlongs_hat"
+				Count: 1b
+				tag: {
+					Damage: 0
+					BlackBladeData: { }
+				}
+			}
+			x: 0.0d
+			y: -3.0d
+			dependencies: [
+				"5B63E1A6B04DE29A"
+				"4154C48796342AC8"
+			]
+			id: "672E8DDB33AC63DC"
+			tasks: [{
+				id: "76E36ED8E86F091C"
+				type: "kill"
+				entity: "mineminenomi:bandit_grunt"
+				value: 50L
+			}]
+			rewards: [{
+				id: "230A0AB52D1D1DAA"
+				type: "ftbmoney:money"
+				ftb_money: 250L
+			}]
+		}
+		{
+			title: "去散个步吧"
+			icon: {
+				id: "minecraft:leather_boots"
+				Count: 1b
+				tag: {
+					Damage: 0
+					BlackBladeData: { }
+				}
+			}
+			x: -1.0d
+			y: -3.0d
+			dependencies: ["672E8DDB33AC63DC"]
+			id: "35CFA64BE730137F"
+			tasks: [{
+				id: "75F3597A84F9051B"
+				type: "stat"
+				stat: "minecraft:walk_one_cm"
+				value: 10000
+			}]
+			rewards: [{
+				id: "573B2D713FD3E93C"
+				type: "ftbmoney:money"
+				ftb_money: 500L
+			}]
+		}
+		{
+			title: "谋杀 谋杀 谋杀"
+			icon: {
+				id: "swiaf:scythe_fire_dragonsteel"
+				Count: 1b
+				tag: {
+					Damage: 0
+					BlackBladeData: { }
+				}
+			}
+			x: 1.0d
+			y: -3.0d
+			dependencies: ["672E8DDB33AC63DC"]
+			id: "3A8065602C308C06"
+			tasks: [{
+				id: "09AAD9D11996A5FC"
+				type: "stat"
+				stat: "minecraft:mob_kills"
+				value: 200
+			}]
+			rewards: [{
+				id: "5A7A50BA3893E84E"
+				type: "ftbmoney:money"
+				ftb_money: 500L
+			}]
+		}
+	]
+}
