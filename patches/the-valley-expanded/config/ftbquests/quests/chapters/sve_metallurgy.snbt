@@ -1,0 +1,227 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "sve_metallurgy"
+	group: "0211E02D983754CA"
+	icon: "createmetallurgy:foundry_basin"
+	id: "17BDA09ED3DB68E6"
+	order_index: 3
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"冶炼很方便。加工线能提供更多选择：从矿石到实用金属，你可以粉碎、研磨、清洗、熔炼和铸造。"
+				""
+				"Metallurgy 为熔炉带来了更高级的合金。在 JEI 中查看当前的机器布局、热量和配方输入。"
+			]
+			icon: "createmetallurgy:foundry_basin"
+			id: "0EB3A2F442EEA337"
+			subtitle: "一个奖励你多花一步的工坊。"
+			tasks: [{
+				id: "50AB027FB67197B6"
+				title: "已阅读并理解。"
+				type: "checkmark"
+			}]
+			title: "让每种矿石都物尽其用"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0EB3A2F442EEA337"]
+			description: [
+				"获取一个熔炉盆和熔炉盖。使用冶金学的沉思场景来正确组装并加热装置。"
+				""
+				"在开始填充储罐前，规划好流体处理和铸造的空间。不同配方可能需要不同的温度。"
+			]
+			icon: "createmetallurgy:foundry_basin"
+			id: "076DA55E4D6852F9"
+			subtitle: "先找个地方开始熔炼吧。"
+			tasks: [
+				{
+					consume_items: false
+					id: "523BD5A75CA19ECD"
+					item: "createmetallurgy:foundry_basin"
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "0E4B5D65942AEFE3"
+					item: "createmetallurgy:foundry_lid"
+					type: "item"
+				}
+			]
+			title: "工坊之心 The Heart of the Workshop"
+			x: 2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["076DA55E4D6852F9"]
+			description: [
+				"用石墨锭模具设置一个铸造台。查看你要使用的流体对应的铸造配方。"
+				""
+				"大多数熔融金属和材料的铸造量是&6每个金粒10 mB，每个锭90 mB，每个方块810 mB&r。清空储罐时请记住这些数量。"
+			]
+			icon: "createmetallurgy:casting_table"
+			id: "22F3B418D5AE10E8"
+			subtitle: "有用的金属需要一条出路。"
+			tasks: [
+				{
+					consume_items: false
+					id: "3905892C2F2F914E"
+					item: "createmetallurgy:casting_table"
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "6714F734FAF3F630"
+					item: "createmetallurgy:graphite_ingot_mold"
+					type: "item"
+				}
+			]
+			title: "赋予它形状"
+			x: 5.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0EB3A2F442EEA337"]
+			description: [
+				"和许多矿石一样，多步骤处理能提高产量。尝试从原矿到粉碎再到脏粉，然后选择更看重更高的产量还是副产品。将粉碎的铋研磨成脏铋粉，有几率获得额外的粉末。"
+				""
+				"清洗可以回收次要资源，如&6白银或下界石英&r。干净的粉尘可进入熔炼链；在引导流体前请检查配方。"
+			]
+			icon: "sve:bismuth_dust"
+			id: "167B0F71A3A3225B"
+			subtitle: "在那种被压碎的矿石里还有更多内容。"
+			tasks: [
+				{
+					consume_items: false
+					id: "12EE17B1A63F212D"
+					item: "sve:dirty_bismuth_dust"
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "3D35FD4247332869"
+					item: "sve:bismuth_dust"
+					type: "item"
+				}
+			]
+			title: "铋，清洗干净"
+			x: 2.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["167B0F71A3A3225B"]
+			description: [
+				"铅的配方也一样：铅矿石、脏铅粉、清洗，最后是干净的铅粉。研磨有 &625% 的几率&r 产出额外的脏铅粉；清洗有 &620% 的几率&r 产出银锭。"
+				""
+				"SVE 在整个加工链中都使用冶金学的熔融铅。如果你更喜欢熔渣而不是洗出的副产品，脏粉尘也可以直接熔化。"
+			]
+			icon: "sve:lead_dust"
+			id: "5B36D7697FD1CC34"
+			subtitle: "铅还有一些额外的东西可以提供。"
+			tasks: [
+				{
+					consume_items: false
+					id: "792C605979A673FD"
+					item: "sve:dirty_lead_dust"
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "25A01EBDD8F5E5DB"
+					item: "sve:lead_dust"
+					type: "item"
+				}
+			]
+			title: "一线希望 (A Silver Lining)"
+			x: 5.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["22F3B418D5AE10E8"]
+			description: [
+				"SVE的冶金合金比例为&6三份银、一份金、一份电金&r。这优于基础混合器每锭所需的五份银和三份金。"
+				""
+				"使用 JEI 中的熔炼配方来规划批次。任何受支持的来源制成的成品锭都可以满足此里程碑。"
+			]
+			icon: "oreganized:electrum_ingot"
+			id: "1FB2A44C3D4D4660"
+			subtitle: "铸造厂证明了它的价值。"
+			tasks: [{
+				consume_items: false
+				id: "2AE54095F5C97F50"
+				item: "oreganized:electrum_ingot"
+				type: "item"
+			}]
+			title: "更好的合金模组 (A Better Alloy)"
+			x: 7.5d
+			y: -2.0d
+		}
+		{
+			dependencies: [
+				"22F3B418D5AE10E8"
+				"167B0F71A3A3225B"
+			]
+			description: [
+				"冶金学能最大限度地利用你的资源。超高温熔炉路线可将&6价值三废料和三锭的铋&r熔炼成&6两锭铱锭&r。"
+				""
+				"原来的黄金混合器快捷方式已移除。在投入一批原料前，请先规划好铋和过热燃料的供应。"
+			]
+			icon: "minecraft:netherite_ingot"
+			id: "70F267392E1642D4"
+			subtitle: "铋在游戏的后期阶段有其用途。"
+			tasks: [{
+				consume_items: false
+				id: "1AB5B3F424E6F392"
+				item: "minecraft:netherite_ingot"
+				type: "item"
+			}]
+			title: "紫色的热量"
+			x: 7.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["1FB2A44C3D4D4660"]
+			description: [
+				"熔化的虚空钢可以铸成锭和板。虚空外壳路线是在铸造盆中将熔融金属与黑曜石结合。"
+				""
+				"获取一个虚空钢锭，查看其铸造选项。选择你下一个建筑实际需要的形态。"
+			]
+			icon: "createutilities:void_steel_ingot"
+			id: "6AE51637EAAE210D"
+			subtitle: "超越普通的金属锭的界限。"
+			tasks: [{
+				consume_items: false
+				id: "38458D102B9FB55B"
+				item: "createutilities:void_steel_ingot"
+				type: "item"
+			}]
+			title: "投入虚空之中"
+			x: 10.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["70F267392E1642D4"]
+			description: [
+				"超高温合金化将价值一个锭的熔融铱与&6三个回声碎片&r结合，制成价值一个锭的熔融回声。"
+				""
+				"一些铁魔法配方和顶级装备需要回声锭。"
+			]
+			icon: "create_deep_dark:echo_ingot"
+			id: "21406130A979FD8A"
+			subtitle: "一个深入探索的理由。"
+			tasks: [{
+				consume_items: false
+				id: "718845B6C3BC95EC"
+				item: "create_deep_dark:echo_ingot"
+				type: "item"
+			}]
+			title: "铸造厂中的回响"
+			x: 10.0d
+			y: 1.0d
+		}
+	]
+	title: "冶金术（Metallurgy）"
+}
