@@ -16,7 +16,7 @@ import {
 import { parse } from './snbt.mjs'
 import { readFileSync } from 'node:fs'
 import { fetchRetry } from './lib/fetch-retry.mjs'
-import { repairUnclosedStringLists, repairKeyInsideList } from './lib/snbt-repair.mjs'
+import { repairUnclosedStringLists, repairKeyInsideList, repairEmptyKeyEntries, repairNestedSingleQuotes } from './lib/snbt-repair.mjs'
 
 // ---------- format-codes ----------
 
@@ -313,4 +313,96 @@ test('repairKeyInsideList：列表里只有正常字符串时不误判', () => {
   const ok = '{\n\tquest.A.quest_desc: ["a: b", "c: d"]\n}'
   const { repaired } = repairKeyInsideList(ok)
   assert.equal(repaired.length, 0)
+})
+
+// ---------- snbt-repair：空键条目 ----------
+// 实测（2026-10-24，bloom-beyond 的 reward_tables/boite_homunculus.snbt、
+// furnace-to-singularity 的 chapters/45C34EAF227433AE.snbt）：
+// compound 条目丢了键名，只剩 `: 0` / `: "BOOLEAN"`。
+// 修法选丢弃：键名不可恢复，补占位键等于向游戏 NBT 编造结构。
+
+test('repairEmptyKeyEntries：空键条目整行丢弃，其余条目保留', () => {
+  const bad = [
+    '{',
+    '\titem: {',
+    '\t\tCount: 1',
+    '\t\tid: "minecraft:stone"',
+    '\t\ttag: {',
+    '\t\t\t: 0',
+    '\t\t\tAccelerator: 0',
+    '\t\t\tAmount: 0',
+    '\t\t}',
+    '\t}',
+    '}',
+  ].join('\n')
+  const { text, repaired } = repairEmptyKeyEntries(bad)
+  assert.equal(repaired.length, 1)
+  assert.match(repaired[0].key, /^\(空键\)0$/)
+  const root = parse(text).value
+  const item = root.entries.find((e) => e.key.value === 'item').value
+  const tag = item.entries.find((e) => e.key.value === 'tag').value
+  const tagKeys = tag.entries.map((e) => e.key.value)
+  assert.deepEqual(tagKeys, ['Accelerator', 'Amount'], '空键条目没了，其余保留')
+  assert.doesNotThrow(() => parse(text))
+})
+
+test('repairEmptyKeyEntries：整个 compound 只剩空键条目 → 丢弃后成为空 compound', () => {
+  const bad = '{\n\tprops: [\n\t\t[\n\t\t\t{\n\t\t\t\t: "BOOLEAN"\n\t\t\t}\n\t\t\t{\n\t\t\t\tname: "x"\n\t\t\t}\n\t\t]\n\t]\n}'
+  const { text, repaired } = repairEmptyKeyEntries(bad)
+  assert.equal(repaired.length, 1)
+  assert.doesNotThrow(() => parse(text))
+})
+
+test('repairEmptyKeyEntries：文件本来能解析、或上一行不以 { 结尾时不误伤', () => {
+  // 能解析的文件 → 全局守卫，一个字节不动
+  const ok = '{\n\ttag: {\n\t\t: 0\n\t}\n}'.replace('\t\t: 0\n', '') // 本来就没有空键
+  assert.equal(repairEmptyKeyEntries(ok).repaired.length, 0)
+  // 不能解析、但空键行不在 compound 首条目位置 → 放弃不动
+  const ambiguous = '{\n\ttag: {\n\t\tA: 1\n\t\t: 0\n\t}\n}'
+  const { repaired } = repairEmptyKeyEntries(ambiguous)
+  assert.equal(repaired.length, 0, '非首条目的空键行形态未实测，宁可不动')
+})
+
+// ---------- snbt-repair：单引号串内嵌单引号 ----------
+// 实测（2026-10-24，forge-and-fortify 的 reward_tables/bathhouse.snbt）：
+// `nbt: '{display:{Name:'{"text":"Absinthe"}'…}'` —— 内嵌 JSON 文本组件的
+// 单引号没转义，外层串提前闭合。同文件 `Kayra\'s Curse` 是上游自己的正确先例。
+// 按 `\'` 转义而非 `''`：本仓解析器把引号字符一律当终止符，不支持 doubling。
+
+// 坏行（SNBT 文件内容，与 forge-and-fortify 实测同构）：内嵌单引号裸着。
+// JS 字面量里 `\'` = 裸 `'`，`\\\'` = `\'`（文件里已转义的引号）。
+const NESTED_BAD = [
+  '[',
+  "  { item: \"minecraft:potion\", nbt: '{display:{Name:'{\"text\":\"Absinthe\",\"italic\":false}'},CustomPotionColor:13762483}', weight: 2.0f }",
+  "  { item: \"minecraft:iron\", weight: 1.0f }",
+  ']',
+].join('\n')
+
+test('repairNestedSingleQuotes：内嵌单引号按 \\\' 转义，值内容逐字节保留', () => {
+  const { text, repaired } = repairNestedSingleQuotes(NESTED_BAD)
+  assert.equal(repaired.length, 1)
+  const root = parse(text).value
+  const item = root.items[0].value
+  const nbt = item.entries.find((e) => e.key.value === 'nbt').value
+  assert.equal(nbt.value, '{display:{Name:\'{"text":"Absinthe","italic":false}\'},CustomPotionColor:13762483}', '解析值 = 上游本意')
+  assert.equal(item.entries.find((e) => e.key.value === 'weight').value.raw, '2.0f', '后续字段不被吞')
+})
+
+test('repairNestedSingleQuotes：已有 \\\' 转义（Kayra\\\'s 形态）不双重转义', () => {
+  const bad = "{ item: \"minecraft:potion\", nbt: '{display:{Name:'{\"text\":\"Kayra\\\'s Curse\",\"italic\":false}'}},CustomPotionColor:6519211}', weight: 2.0f }"
+  const { text, repaired } = repairNestedSingleQuotes(bad)
+  assert.equal(repaired.length, 1)
+  const nbt = parse(text).value.entries.find((e) => e.key.value === 'nbt').value
+  assert.equal(nbt.value, '{display:{Name:\'{"text":"Kayra\'s Curse","italic":false}\'}},CustomPotionColor:6519211}')
+  assert.ok(!nbt.raw.includes("\\\\'"), '不得把已有 \\\' 变成 \\\\\'')
+})
+
+test('repairNestedSingleQuotes：合法多引号行与含混行不动', () => {
+  // 能解析的文件 → 全局守卫不动
+  const ok = '{ nbt: \'{Potion:"minecraft:water"}\', weight: 1.0f }'
+  assert.equal(repairNestedSingleQuotes(ok).repaired.length, 0)
+  // 中间引号不贴嵌套结构（含混归属）→ 整行放弃
+  const ambiguous = '{ x: \'a\', nbt: \'{Name:\\\'{"t":1}\'} }'.replace(/\\\\'/g, "'")
+  const { repaired } = repairNestedSingleQuotes(ambiguous + '\n}')
+  assert.equal(repaired.length, 0, 'x 的闭合引号不贴 {}，太含混不动')
 })
