@@ -1,0 +1,2799 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "apotheosis"
+	group: "37A1080736831E36"
+	icon: "apotheosis:ender_library"
+	id: "0E35B788CDF14CAA"
+	images: [
+		{
+			height: 15.0d
+			image: "ftb:textures/apotheosis_title.png"
+			rotation: 0.0d
+			width: 15.0d
+			x: -1.0d
+			y: -10.5d
+		}
+		{
+			dev: true
+			height: 10.0d
+			image: "ftb:textures/cognitium_title.png"
+			rotation: 0.0d
+			width: 15.0d
+			x: -1.0d
+			y: 8.5d
+		}
+	]
+	order_index: 3
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"在&6创造：Forge Frontier&r中，模组&5Apotheosis&r重做了原版附魔系统。它通过为附魔台引入新属性，并用新书架来改变这些属性来实现。"
+				""
+				"这些统计数据如下所示："
+				"&n&aEterna&r&r"
+				"&n&4量子&r&r"
+				"&5&n秘术&r&r"
+				""
+				"可以添加的其他修饰符包括："
+				"&e纠正&r"
+				"&3附魔线索&r"
+				"&6宝藏附魔&r"
+			]
+			id: "6965F4ABCAB88875"
+			rewards: [{
+				id: "48F1F245E472FD1F"
+				type: "xp"
+				xp: 150
+			}]
+			shape: "gear"
+			size: 2.3d
+			subtitle: "Apotheosis 附魔台"
+			tasks: [{
+				id: "2D29A403707CC3C6"
+				item: "minecraft:book"
+				type: "item"
+			}]
+			title: "附魔入门指南"
+			x: 5.0d
+			y: -7.0d
+		}
+		{
+			dependencies: ["6965F4ABCAB88875"]
+			description: [
+				"&n&5Apotheosis&r&r 对 Minecraft 的附魔系统进行了重大改动，但一些核心机制仍然很熟悉。"
+				""
+				"附魔台只会检测与其属性修改器方块距离恰好为一个方块远的方块。这些属性会直接影响附魔的行为。"
+				""
+				"{@pagebreak}"
+				"&a&nEterna&r&r，也称为附魔之力，决定了你附魔的等级。不同等级和类型的书架会添加不同的数值。每种书架都有一个最大值上限，超过该上限，同类型的书架将不再增加数值。"
+				""
+				"你的附魔等级是你的 Eterna 值的 2 倍。如果你达到最大值 50 &n&aEterna&r&r，你的附魔等级将达到 100。"
+				""
+				"{@pagebreak}"
+				"&n&4Quanta&r&r represents the instability of your enchantments. It can be both beneficial and detrimental, as it may increase or decrease the true level applied. "
+				""
+				"增减的幅度取决于附魔台的 Quanta 值。如果附魔台的 Quanta 值为 50，实际的附魔值可能是 -50 或 +50。"
+				""
+				"{@pagebreak}"
+				"&n&5Arcana&r&r 是决定稀有附魔可用性的属性。数值越高，越容易获得稀有附魔。"
+				""
+				"然而，过高的&5&nArcana&r&r等级也会使普通附魔更难获得。"
+			]
+			id: "2172A6251E7C57A8"
+			rewards: [
+				{
+					exclude_from_claim_all: true
+					id: "299E61F0BA970F83"
+					table_id: 8678092705658131358L
+					type: "choice"
+				}
+				{
+					id: "6931E7D726999DAB"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+				{
+					count: 10
+					id: "08F6E0B772C8A4BA"
+					item: "minecraft:bookshelf"
+					type: "item"
+				}
+			]
+			subtitle: "附魔属性"
+			tasks: [{
+				id: "62E466E5012D5CCC"
+				item: "minecraft:enchanting_table"
+				type: "item"
+			}]
+			title: "Apotheosis 附魔台"
+			x: 5.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["2172A6251E7C57A8"]
+			description: [
+				"&n&eRectification&r&r 是一个与 &4&nQuanta&r&r 相互作用的修饰器。"
+				""
+				"It interacts by stripping away the negative side of the random modifier. &4&nQuanta&r&r can both increase and decrease the applied enchantment level, but the higher the Rectification, the smaller the possible decrease. "
+				""
+				"在100% &n&eRectification&r&r下，附魔等级永远不会低于基础值。相反，&4&nQuanta&r&r只能提升强度，甚至可与50 &a&nEterna&r&r配合，使等级超过100。"
+			]
+			icon: "apotheosis:rectifier"
+			id: "722D72A914A3A75B"
+			rewards: [
+				{
+					count: 8
+					id: "436B22DE5D260776"
+					item: "minecraft:amethyst_block"
+					type: "item"
+				}
+				{
+					id: "04DFAB1B68659170"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			tasks: [{
+				id: "213971F0000E7433"
+				item: "apotheosis:rectifier"
+				type: "item"
+			}]
+			title: "量子反击 (Countering Quanta)"
+			x: 3.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["2172A6251E7C57A8"]
+			description: ["&3&n附魔线索&r&r能让附魔师在附魔前，部分或完全预览附魔结果。在附魔之旅中，这能让你在消耗宝贵经验前就看到任何不想要的结果，是一项强大的助力。"]
+			icon: "apotheosis:sightshelf"
+			id: "728C71D5D6F62E43"
+			rewards: [
+				{
+					id: "658DEB60692E2B06"
+					item: {
+						Count: 1
+						id: "minecraft:potion"
+						tag: {
+							Potion: "minecraft:long_night_vision"
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "2334DE97FF933021"
+					item: "minecraft:spyglass"
+					type: "item"
+				}
+				{
+					id: "6D3FA9B9A1C20877"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+				{
+					count: 4
+					id: "109B9E927368BE40"
+					item: "minecraft:ender_eye"
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "3AA4ED523ABC2666"
+				item: "apotheosis:sightshelf"
+				type: "item"
+			}]
+			title: "神秘幻象（Visions of Arcana）"
+			x: 6.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["2172A6251E7C57A8"]
+			description: ["&e&n神秘宝藏深架&r&r扩展了你的附魔配置，让你能为物品获得宝藏附魔。这些通常是战利品箱中的稀有增益，例如修补或冰霜行者。当然，也可能包括&c诅咒&r。"]
+			icon: "apotheosis:treasure_shelf"
+			id: "37EF4656BB766E72"
+			rewards: [
+				{
+					id: "3B2615C1DC49D356"
+					item: {
+						Count: 1
+						id: "minecraft:enchanted_book"
+						tag: {
+							StoredEnchantments: [{
+								id: "minecraft:mending"
+								lvl: 1s
+							}]
+						}
+					}
+					title: "修补（Mending）"
+					type: "item"
+				}
+				{
+					id: "6E1559B1DFBF0C1C"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+			tasks: [{
+				id: "1887CBBC3BAED81C"
+				item: "apotheosis:treasure_shelf"
+				type: "item"
+			}]
+			title: "神秘宝藏 (Arcane Treasures)"
+			x: 5.0d
+			y: -2.5d
+		}
+		{
+			description: ["&nBookshelves&r are the start to your enchanting journey. Since they were introduced in vanilla minecraft, these shelves only contribute &n&aEterna&r&r to your enchanting table."]
+			icon: {
+				Count: 1
+				id: "minecraft:bookshelf"
+				tag: { }
+			}
+			id: "05F2E49CD742486D"
+			rewards: [
+				{
+					count: 8
+					id: "41C7D124290EEFD6"
+					item: {
+						Count: 1
+						id: "minecraft:candle"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					count: 8
+					id: "632AB63C6674F27D"
+					item: {
+						Count: 1
+						id: "minecraft:book"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "70EC5A97BA83B0D7"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+			]
+			tasks: [{
+				id: "344F1A5D31D3743C"
+				item: {
+					Count: 1
+					id: "itemfilters:tag"
+					tag: {
+						value: "forge:bookshelves"
+					}
+				}
+				title: "任意书架"
+				type: "item"
+			}]
+			title: "神秘起源 (Arcane Beginnings)"
+			x: -1.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["05F2E49CD742486D"]
+			description: ["&nHellshelf&r 提供更多 &a&nEterna&r&r，但地狱之火也带来了 &n&cQuanta&r&r。魔法之旅不仅仅是合成，或许可以尝试 &oinfusing&r 它？"]
+			id: "52E26768C164CA9D"
+			rewards: [
+				{
+					count: 2
+					id: "304C1ABEBEC423EB"
+					item: "minecraft:blaze_powder"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "31B81E31B559D63D"
+					item: "minecraft:ghast_tear"
+					type: "item"
+				}
+				{
+					id: "5C6A40A693CDCC8F"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			tasks: [{
+				id: "489C768FE09104BF"
+				item: "apotheosis:hellshelf"
+				type: "item"
+			}]
+			title: "地狱的力量"
+			x: 0.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["05F2E49CD742486D"]
+			description: ["&nSeashelf&r比普通版本提供更多的&a&nEterna&r&r和&5&nArcana&r&r。要是你尝试&oinfusing&r它，会发生什么呢？"]
+			id: "439EB3C5F595DCFC"
+			rewards: [
+				{
+					count: 2
+					id: "36AC4BA27E8D1216"
+					item: "minecraft:pufferfish"
+					type: "item"
+				}
+				{
+					id: "6680795EA6FF21B3"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			tasks: [{
+				id: "4EC49DD5EAADEAEA"
+				item: "apotheosis:seashelf"
+				type: "item"
+			}]
+			title: "海洋的力量"
+			x: 0.5d
+			y: 2.0d
+		}
+		{
+			description: ["&n深海书架&r的沉睡形态，要是能唤醒它的力量就好了。或许可以尝试注入能量？"]
+			id: "708E8D7979E8C8FE"
+			rewards: [
+				{
+					id: "1534CED6859291E5"
+					item: "silentsdelight:warden_ear"
+					type: "item"
+				}
+				{
+					id: "408E5E9DCD393C3B"
+					item: {
+						Count: 1
+						id: "alexsmobs:echolocator"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "1073B727F021625E"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+			]
+			tasks: [{
+				id: "3853E139FF676444"
+				item: "apotheosis:dormant_deepshelf"
+				type: "item"
+			}]
+			title: "沉睡的深处"
+			x: 5.0d
+			y: 1.0d
+		}
+		{
+			description: [
+				"&6&n附魔图书馆&r&r可以让你存储附魔书，并从中提取特定的附魔。"
+				""
+				"无法提取满级附魔，最多只能提取你已在图书馆中存储的等级数。"
+				""
+				"插入工具、武器或盔甲部件会筛选图书馆，仅显示与所插入物品兼容的附魔。"
+			]
+			id: "4C2A6292B32562A3"
+			rewards: [
+				{
+					id: "4B78AD44D4DABE08"
+					item: "sophisticatedbackpacks:anvil_upgrade"
+					type: "item"
+				}
+				{
+					id: "54DCA7824F9363FF"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			tasks: [{
+				id: "649DCDE8DCDFC657"
+				item: "apotheosis:library"
+				type: "item"
+			}]
+			title: "附魔师工作台"
+			x: 6.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["4C2A6292B32562A3"]
+			description: ["终极的知识方块，&5&n亚历山大图书馆&r&r。它的运作方式与前代物品附魔图书馆完全相同。但它能存储更多的附魔书及其魔法能量。"]
+			id: "526375684367F60A"
+			rewards: [
+				{
+					count: 5
+					id: "521C027A2B95199F"
+					item: {
+						Count: 1
+						id: "minecraft:enchanted_golden_apple"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					count: 64
+					id: "117370334283131C"
+					item: {
+						Count: 1
+						id: "minecraft:book"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "72424EC152CE71A0"
+					type: "xp_levels"
+					xp_levels: 15
+				}
+			]
+			tasks: [{
+				id: "0F6D4C3281247B9C"
+				item: "apotheosis:ender_library"
+				type: "item"
+			}]
+			title: "神秘能量的导管"
+			x: 9.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["2382E5C444E4A12F"]
+			description: ["这本魔典能让你从物品上剥离附魔。注意！这本书只会提取工具中一半的魔法能量，并在过程中将其摧毁。"]
+			id: "16DE76B6F434C16C"
+			rewards: [
+				{
+					id: "4D2A823950A762BD"
+					item: "minecraft:anvil"
+					type: "item"
+				}
+				{
+					id: "3CF815933EFCA59E"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			tasks: [{
+				count: 8L
+				id: "098BEF700EF75B54"
+				item: "apotheosis:scrap_tome"
+				type: "item"
+			}]
+			title: "神秘学残篇 (Scraps of Arcana)"
+			x: -7.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["16DE76B6F434C16C"]
+			description: ["比劣质的《废料之书》有明显改进。这本书能让你将附魔从物品上剥离。它会提取所有附魔，但工具会在过程中丢失。"]
+			id: "5BFEDB10AB754632"
+			rewards: [
+				{
+					count: 3
+					id: "34C8164916F226F1"
+					item: {
+						Count: 1
+						id: "minecraft:netherite_scrap"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "5FCF5AF52729752A"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+			]
+			tasks: [{
+				count: 4L
+				id: "052173D353677C8A"
+				item: "apotheosis:improved_scrap_tome"
+				type: "item"
+			}]
+			title: "高级拆解术 Superior Scrapping"
+			x: -5.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["5BFEDB10AB754632"]
+			description: ["提取和保存附魔的终极工具。这本魔典能让你提取物品上的所有附魔，而不会损坏物品。"]
+			id: "0781CC49C7E615F8"
+			rewards: [
+				{
+					id: "243DE1F22A3865C5"
+					item: {
+						Count: 1
+						id: "quark:ancient_tome"
+						tag: {
+							StoredEnchantments: [{
+								id: "minecraft:fortune"
+								lvl: 7s
+							}]
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "54CD18F35A3E2BF1"
+					item: {
+						Count: 1
+						id: "quark:ancient_tome"
+						tag: {
+							StoredEnchantments: [{
+								id: "minecraft:unbreaking"
+								lvl: 8s
+							}]
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "13E94C9765760F85"
+					item: {
+						Count: 1
+						id: "quark:ancient_tome"
+						tag: {
+							StoredEnchantments: [{
+								id: "minecraft:looting"
+								lvl: 11s
+							}]
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "5A2B6166AE8850FC"
+					item: "create_enchantment_industry:super_experience_nugget"
+					type: "item"
+				}
+				{
+					id: "4DEAE188615A8EC6"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+			]
+			tasks: [{
+				consume_items: false
+				count: 4L
+				id: "62149F888B188CA5"
+				item: "apotheosis:extraction_tome"
+				type: "item"
+			}]
+			title: "神秘能量提取器"
+			x: -3.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["52E26768C164CA9D"]
+			description: ["Infusion 唤醒了 Hellshelf 中锁定的力量，这个新的 &nInfused Hellshelf&r 与前代相比，提供了更多的 &n&aEterna&r&r 和更少的 &n&4Quanta&r&r。"]
+			id: "27516AC94B996057"
+			rewards: [
+				{
+					count: 6
+					id: "0E035E39ADC3A1CE"
+					item: "minecraft:fire_charge"
+					type: "item"
+				}
+				{
+					count: 6
+					id: "07F7E93F052C8BBE"
+					item: "minecraft:glowstone"
+					type: "item"
+				}
+				{
+					id: "3396DA9FD236936C"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			tasks: [{
+				id: "4C23023D5CAA438D"
+				item: "apotheosis:infused_hellshelf"
+				type: "item"
+			}]
+			title: "地狱般的注入 (Hellish Infusion)"
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["439EB3C5F595DCFC"]
+			description: ["灌注唤醒了贝壳中锁定的力量。这个新的&n灌注贝壳&r提供的&5&n秘术&r&r较少，但&n&a永恒&r&r的含量有所增加。"]
+			id: "708FC6105FC75C24"
+			rewards: [
+				{
+					id: "7FFE8DBF6BA5E7C5"
+					item: "minecraft:conduit"
+					type: "item"
+				}
+				{
+					count: 6
+					id: "2BE558CDBE1543C5"
+					item: "minecraft:sea_lantern"
+					type: "item"
+				}
+				{
+					id: "336556700291FFDA"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			tasks: [{
+				id: "6B1AA9214A766C98"
+				item: "apotheosis:infused_seashelf"
+				type: "item"
+			}]
+			title: "海洋注入 (Oceanic Infusion)"
+			x: 2.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["708E8D7979E8C8FE"]
+			description: ["你新获得的&nInfused Deepshelf&r是迈向更强大附魔力量的下一步。"]
+			id: "2239B52ECD40D1A3"
+			rewards: [
+				{
+					count: 4
+					id: "692E228F9F59CA4E"
+					item: "minecraft:echo_shard"
+					type: "item"
+				}
+				{
+					id: "234E63A572AB6C42"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+			]
+			tasks: [{
+				id: "698F5E63386C4B63"
+				item: "apotheosis:deepshelf"
+				type: "item"
+			}]
+			title: "唤醒深海"
+			x: 6.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["366BFABED1D79BF0"]
+			description: ["&nEndshelf&r 是你附魔之旅的倒数第二层。一瞥终极力量……远古生物的头颅，漂浮在虚空边缘。"]
+			id: "2BB609061B5F6578"
+			rewards: [
+				{
+					count: 4
+					id: "1F877B309111EDF4"
+					item: "minecraft:end_crystal"
+					type: "item"
+				}
+				{
+					count: 8
+					id: "0A4281D3034D8953"
+					item: "minecraft:ender_pearl"
+					type: "item"
+				}
+				{
+					id: "42DE4F97E6D47635"
+					item: "ends_delight:shulker_omelette"
+					type: "item"
+				}
+				{
+					id: "7C10ABA90F5E41A0"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+			tasks: [{
+				id: "2BCCD5AEB042F1FB"
+				item: "apotheosis:endshelf"
+				type: "item"
+			}]
+			title: "末地的幻象"
+			x: 11.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["2BB609061B5F6578"]
+			description: [
+				"原始力量，通过这 &n龙之末架&r 从虚空本身中引导而出。"
+				""
+				"赋予大量永恒能量，此书架不含任何&5&n奥术&r&r或&n&c量子&r&r。"
+			]
+			id: "1ECDC56233E230D9"
+			rewards: [
+				{
+					id: "485CC68CDEEA7108"
+					item: "minecraft:dragon_egg"
+					type: "item"
+				}
+				{
+					id: "5744EC9A1BA7325C"
+					item: {
+						Count: 1
+						id: "relics:elytra_booster"
+						tag: {
+							abilities: {
+								boost: {
+									points: 0
+									stats: {
+										capacity: 88.60177d
+										speed: 1.29979d
+									}
+								}
+							}
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "3824A7EC1E4457D9"
+					type: "xp_levels"
+					xp_levels: 6
+				}
+			]
+			tasks: [{
+				id: "7D9584BAEDE8DB79"
+				item: "apotheosis:draconic_endshelf"
+				type: "item"
+			}]
+			title: "虚空的力量"
+			x: 12.5d
+			y: 1.0d
+		}
+		{
+			description: [
+				"&b&n海洋过滤架&r&r 是你附魔配置中的强大工具。将附魔书放入此架中，可以阻止这些附魔出现，相当于一个附魔黑名单。"
+				""
+				"如果你想要获得与其他附魔不兼容的附魔，这个就特别有用。"
+			]
+			hide_dependency_lines: true
+			id: "3FC57BA3BB8BFDF9"
+			rewards: [
+				{
+					id: "7890A8BC1402A4AA"
+					item: "minecraft:heart_of_the_sea"
+					type: "item"
+				}
+				{
+					id: "4F02F140BD3DCA28"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+			]
+			tasks: [{
+				id: "7CEA02EA48B12F23"
+				item: "apotheosis:filtering_shelf"
+				type: "item"
+			}]
+			title: "神秘过滤系统"
+			x: 9.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["728C71D5D6F62E43"]
+			description: ["更多的&3&n附魔线索&r&r能减少附魔过程中的意外。你的&n&a永恒&r&r越高，工具能附魔的魔法越多，建造更多视野能让附魔者预见结果。"]
+			id: "31988C061862DB85"
+			rewards: [
+				{
+					id: "340446C4E24B218E"
+					item: "integrated_stronghold:music_disc_sight"
+					type: "item"
+				}
+				{
+					count: 2
+					id: "34FE2F42C7A76F9C"
+					item: {
+						Count: 1
+						id: "minecraft:potion"
+						tag: {
+							Potion: "alexscaves:long_deepsight"
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "0760ABFDA25FC925"
+					item: {
+						Count: 1
+						id: "minecraft:potion"
+						tag: {
+							Potion: "minecraft:long_night_vision"
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "495C6552BBC814F8"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+			tasks: [{
+				id: "4A501AB7CA35496A"
+				item: "apotheosis:sightshelf_t2"
+				type: "item"
+			}]
+			title: "掌握视觉能力（Mastering Vision）"
+			x: 8.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["722D72A914A3A75B"]
+			description: ["追求更高水平的&n&eRectification&r&r以对抗&n&4Quanta&r&r的负面影响，将带来更稳定的附魔体验。此地狱束缚Rectification书架是Rectification之旅中倒数第二架书架。"]
+			id: "462FC6D28C5985F4"
+			rewards: [
+				{
+					count: 8
+					id: "54F32A067C0DD122"
+					item: "minecraft:amethyst_block"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "209910E2A0B08B7E"
+					item: "minecraft:chorus_fruit"
+					type: "item"
+				}
+				{
+					id: "1AD1328F0C364CE1"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+			]
+			tasks: [{
+				id: "32015009AC4DF03F"
+				item: "apotheosis:rectifier_t2"
+				type: "item"
+			}]
+			title: "整流纹石 (Rectifying Flux)"
+			x: 2.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["462FC6D28C5985F4"]
+			description: [
+				"&n&eRectification&r&r 书架的最终层级是 &nShelf of End-Fused Rectification&r。使用足够的书架将完全抵消 &4&nQuanta&r&r 的负面不稳定影响，只剩下提升的空间。"
+				""
+				"要实现此效果，你必须放置4个此书架，或通过较低层级的书架达到总计100%的&n&eRectification&r&r。"
+			]
+			id: "34A4B27F08B6CD92"
+			rewards: [
+				{
+					id: "1F9662F05054D73D"
+					item: {
+						Count: 1
+						id: "unusualend:void_totem"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "7647CD392A57205C"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+			tasks: [{
+				id: "12957EF26A9510AA"
+				item: "apotheosis:rectifier_t3"
+				type: "item"
+			}]
+			title: "正向强化机制"
+			x: 0.5d
+			y: -2.5d
+		}
+		{
+			description: [
+				"海王星失落宝藏的忠实再现……只是没有融入海洋的能量。"
+				""
+				"在20到30个&n&aEterna&r&r之间，它会变成一把可完全使用并进一步强化的三叉戟。"
+			]
+			id: "5DE43688F40E7D1C"
+			rewards: [
+				{
+					id: "675B8BF3EE866742"
+					item: "minecraft:heart_of_the_sea"
+					type: "item"
+				}
+				{
+					id: "27D3E921820FE712"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+			]
+			tasks: [{
+				id: "354F3912FDE727EE"
+				item: "apotheosis:inert_trident"
+				type: "item"
+			}]
+			title: "沉睡的宝藏"
+			x: -1.0d
+			y: 5.5d
+		}
+		{
+			description: ["一本与奥术共鸣的魔法书。放置在附魔台时，会限制附魔选项为其他魔法书未涵盖的附魔。"]
+			id: "732F94C8B308F1DC"
+			rewards: [{
+				id: "007B7BFBF8CB8797"
+				type: "xp_levels"
+				xp_levels: 2
+			}]
+			tasks: [{
+				id: "719105D1E15F5D74"
+				item: "apotheosis:other_tome"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 5.5d
+		}
+		{
+			description: ["一本与头盔共鸣的魔法书。放置在附魔台时，会将附魔选项限制为可应用于头盔的附魔。"]
+			id: "5541F6A0AE10197F"
+			rewards: [{
+				id: "0C82897F6667B000"
+				type: "xp_levels"
+				xp_levels: 2
+			}]
+			tasks: [{
+				id: "5F6FAE2DEE7FE78E"
+				item: "apotheosis:helmet_tome"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 4.0d
+		}
+		{
+			description: ["一本与胸甲共鸣的魔法书。放置在附魔台时，会将附魔选项限制在可应用于胸甲的附魔上。"]
+			id: "3D23A06C73584F8C"
+			rewards: [{
+				id: "604266CC7A735046"
+				type: "xp_levels"
+				xp_levels: 2
+			}]
+			tasks: [{
+				id: "0B8FDFA8766A9D7A"
+				item: "apotheosis:chestplate_tome"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 4.0d
+		}
+		{
+			description: ["一本与护腿共鸣的魔法书。放置在附魔台时，会将附魔选项限制在可应用于护腿的附魔上。"]
+			id: "5B6E354029702ED7"
+			rewards: [{
+				id: "3FB4A5D2486614B8"
+				type: "xp_levels"
+				xp_levels: 2
+			}]
+			tasks: [{
+				id: "086E980E659A7828"
+				item: "apotheosis:leggings_tome"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 5.5d
+		}
+		{
+			description: ["一本与靴子共鸣的魔法书。放置在附魔台时，会将附魔选项限制为可应用于靴子的附魔。"]
+			id: "51F73AA184B3C006"
+			rewards: [{
+				id: "42298B316CC98EBE"
+				type: "xp_levels"
+				xp_levels: 2
+			}]
+			tasks: [{
+				id: "2B4F10726B43C7E9"
+				item: "apotheosis:boots_tome"
+				type: "item"
+			}]
+			x: 2.0d
+			y: 5.5d
+		}
+		{
+			description: ["一本与武器共鸣的魔法书。放置在附魔台时，会将附魔选项限制在仅适用于近战武器的附魔上。"]
+			id: "2141A34B4C964860"
+			rewards: [{
+				id: "530F1665121C3528"
+				type: "xp_levels"
+				xp_levels: 2
+			}]
+			tasks: [{
+				id: "0977DAE9189A82E0"
+				item: "apotheosis:weapon_tome"
+				type: "item"
+			}]
+			x: 3.5d
+			y: 4.0d
+		}
+		{
+			description: ["一本与弓共鸣的魔法书。放置在附魔台时，会将附魔选项限制为可应用于弓的附魔。"]
+			id: "02B15F5815DF3A04"
+			rewards: [{
+				id: "27B9859CB55BD89D"
+				type: "xp_levels"
+				xp_levels: 2
+			}]
+			tasks: [{
+				id: "6E2B9E9C5C6F7CF4"
+				item: "apotheosis:bow_tome"
+				type: "item"
+			}]
+			x: 3.5d
+			y: 5.5d
+		}
+		{
+			description: ["一本与采矿相关的魔法书。放置在附魔台时，会将附魔选项限制在仅适用于镐的附魔上。"]
+			id: "6E7AECFD28C0708D"
+			rewards: [{
+				id: "6399A286EA9E7F44"
+				type: "xp_levels"
+				xp_levels: 2
+			}]
+			tasks: [{
+				id: "68343FDEF87B3E57"
+				item: "apotheosis:pickaxe_tome"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["34EDC1353A972CAC"]
+			description: ["这个&n回响的潜行菌床&r与经验的互动比任何菌床都更强大。尚未发挥最大潜力，最后一步在虚空等着你。"]
+			id: "366BFABED1D79BF0"
+			rewards: [
+				{
+					id: "40073689042002FD"
+					item: "endrem:undead_soul"
+					type: "item"
+				}
+				{
+					count: 12
+					id: "4DAA5DF24C83B950"
+					item: "minecraft:end_stone"
+					type: "item"
+				}
+				{
+					id: "4FC2875177F3285F"
+					type: "xp_levels"
+					xp_levels: 4
+				}
+			]
+			tasks: [{
+				id: "10EE139BABBB7C87"
+				item: "apotheosis:echoing_sculkshelf"
+				type: "item"
+			}]
+			title: "魔法的低语"
+			x: 9.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["2239B52ECD40D1A3"]
+			description: ["深海苏醒，其力量回荡在这片架子上，聆听便能感受到空气中的魔力。这只是你解锁更多神秘能量的旅程中的一小步。"]
+			id: "34EDC1353A972CAC"
+			rewards: [
+				{
+					id: "43363326362D6182"
+					item: "minecraft:recovery_compass"
+					type: "item"
+				}
+				{
+					id: "46030205B12F1A40"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+			]
+			tasks: [{
+				id: "2A9D30836D83D4D4"
+				item: "apotheosis:echoing_deepshelf"
+				type: "item"
+			}]
+			title: "深海之声 (Sounds of the Deep)"
+			x: 8.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["708FC6105FC75C24"]
+			description: ["Seahelf 的晶体升级版。这个 &nCrystalline Seashelf&r 拥有更高的 &a&nEterna&r&r 值和上限，同时提供更多 &n&5Arcana&r&r，但也带来了大幅增加的 &n&cQuanta&r&r。"]
+			id: "6BC6B680D4677E3F"
+			rewards: [
+				{
+					count: 32
+					id: "0867FEECF8568310"
+					item: "minecraft:sea_lantern"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "7DFBDB85F04863A0"
+					item: "minecraft:end_crystal"
+					type: "item"
+				}
+				{
+					id: "2C6D20ADB95BAD99"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			tasks: [{
+				id: "33515AA94F3EEBDD"
+				item: "apotheosis:crystal_seashelf"
+				type: "item"
+			}]
+			title: "深海中的灯光"
+			x: 3.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["708FC6105FC75C24"]
+			description: ["The Heart of the Sea 可以锻造为 &nHeart-Forged Seashelf&r。这个强大的架子能大幅提升你的 &5&nArcana&r&r，并且能达到比前代更高的 &a&nEterna&r&r 等级。然而，这也有代价，因为它会降低 &e&nRectification&r&r。"]
+			id: "7405774A91010E60"
+			rewards: [
+				{
+					id: "369FEC75614FEEE1"
+					item: "minecraft:heart_of_the_sea"
+					type: "item"
+				}
+				{
+					count: 6
+					id: "685964203138744B"
+					item: "aquaculture:neptunium_nugget"
+					type: "item"
+				}
+				{
+					id: "5ACE20BA5EC4B2BA"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+			]
+			tasks: [{
+				id: "325CA7D9AA7011B5"
+				item: "apotheosis:heart_seashelf"
+				type: "item"
+			}]
+			title: "海洋之心"
+			x: 3.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["27516AC94B996057"]
+			description: ["&nBlazing Hellshelf&r在&a&nEterna,&r&r获得了提升，但代价是消耗一个&3&nEnchanting Clue&r&r。"]
+			id: "28B7FDAF3F929DB5"
+			rewards: [
+				{
+					count: 4
+					id: "1A8C64F2DDFEF433"
+					item: "minecraft:blaze_rod"
+					type: "item"
+				}
+				{
+					count: 2
+					id: "24BA13C85322CB2B"
+					item: "create:empty_blaze_burner"
+					type: "item"
+				}
+				{
+					id: "72C689E201D53D10"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			tasks: [{
+				id: "0F017ECD255F48C4"
+				item: "apotheosis:blazing_hellshelf"
+				type: "item"
+			}]
+			title: "锻造于火焰之中"
+			x: 3.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["27516AC94B996057"]
+			description: ["将下界的神秘能量引导至附魔台的下一步。 &nGlowing Hellshelf&r 能为你带来更高的 &n&aEterna&r&r 和 &n&5Arcana&r&r。"]
+			id: "51B89E1C5AED8AD9"
+			rewards: [
+				{
+					count: 32
+					id: "0039F645CB82DC7A"
+					item: "minecraft:glowstone"
+					type: "item"
+				}
+				{
+					count: 8
+					id: "79057DA2D0070DD0"
+					item: "create_better_motors:lava_quartz"
+					type: "item"
+				}
+				{
+					id: "27D9C3BF3CFC8B6D"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			tasks: [{
+				id: "5A346713D4D1827A"
+				item: "apotheosis:glowing_hellshelf"
+				type: "item"
+			}]
+			title: "地狱中的灯光"
+			x: 3.5d
+			y: 0.5d
+		}
+		{
+			description: ["附魔了分裂之力的铁砧能将附魔书分解成不同的附魔。可用于将任何想要的附魔从不想要的附魔中分离出来。"]
+			id: "2382E5C444E4A12F"
+			rewards: [
+				{
+					id: "33B942C5DFD9DFBF"
+					item: {
+						Count: 1
+						id: "minecraft:enchanted_book"
+						tag: {
+							StoredEnchantments: [{
+								id: "minecraft:unbreaking"
+								lvl: 4s
+							}]
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "0816042DDFBB72E4"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+			]
+			tasks: [{
+				id: "2F4AB74792E6FCC8"
+				item: "minecraft:anvil"
+				type: "item"
+			}]
+			title: "回收你的附魔效果"
+			x: -9.0d
+			y: 4.0d
+		}
+		{
+			description: [
+				"&n&5Apotheosis&r&r 为 boss 掉落物或宝箱中的物品添加了随机生成的词缀及其修饰符。"
+				""
+				"你的工具、武器和盔甲可以使用特定工作台和资源进行升级和改造，例如宝石、符文以及通过拆解附魔物品收集的材料。"
+				""
+				"{@pagebreak}"
+				"这些前缀有不同的稀有度，遍布前往锻造炉的旅途之中。"
+				""
+				"主世界： &7&n普通&r&r"
+				""
+				"下界：&a&n不常见&r&r"
+				""
+				"月亮、水星、火星和金星：&b&n稀有&r&r"
+				""
+				"Glacio: &1&n传家宝&r&r"
+				""
+				"The Otherside: &5&n史诗&r&r"
+				""
+				"末地： &6&n神话&r&r"
+				""
+				"Forlown Hollows、Abyssal Chasm 和 Primordial Caves：&n&eArtifact&r&r"
+				""
+				"磁性洞穴、有毒洞穴和糖果空洞：&n&0神秘&r&r"
+			]
+			icon: {
+				Count: 1
+				id: "minecraft:iron_sword"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "2D7E97EBB2A3FBD7"
+			rewards: [
+				{
+					count: 8
+					id: "714FDD5E40FBBE64"
+					item: {
+						Count: 1
+						id: "minecraft:leather"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "75C20FA8D5EC0337"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+			]
+			shape: "gear"
+			size: 2.3d
+			tasks: [
+				{
+					disable_toast: true
+					id: "0BDABC9D69606D69"
+					item: {
+						Count: 1
+						id: "itemfilters:tag"
+						tag: {
+							value: "forge:armor"
+						}
+					}
+					title: "任意护甲"
+					type: "item"
+				}
+				{
+					id: "00B429FC84121A6F"
+					item: {
+						Count: 1
+						id: "itemfilters:tag"
+						tag: {
+							value: "forge:tools"
+						}
+					}
+					title: "任何工具或武器"
+					type: "item"
+				}
+			]
+			title: "前缀与后缀简介"
+			x: -9.0d
+			y: -7.0d
+		}
+		{
+			description: [
+				"宝石是特殊物品，可以镶嵌在盔甲、武器和工具上以获得额外加成。根据其品质，所提供的修饰符也会有所提升。宝石共有六个不同的品质等级："
+				""
+				"&7裂纹的&r"
+				"&aChipped&r"
+				"&9有缺陷的&r"
+				"&5宝石&r"
+				"&6无瑕&r"
+				"&4完美&r"
+				""
+				"并非所有宝石都提供所有种类。它们提供的加成也因镶嵌的物品类型而异。"
+			]
+			icon: {
+				Count: 1
+				id: "apotheosis:gem"
+				tag: {
+					affix_data: {
+						rarity: "apotheosis:mythic"
+					}
+					gem: "apotheosis:the_end/endersurge"
+				}
+			}
+			id: "14006BE61AF7FE2E"
+			rewards: [
+				{
+					count: 3
+					id: "53CC88C1D7BCB545"
+					item: {
+						Count: 1
+						id: "minecraft:iron_block"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "7D82090F9745328F"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			shape: "gear"
+			size: 2.3d
+			tasks: [{
+				id: "3B9413281C306DFE"
+				item: {
+					Count: 1
+					id: "itemfilters:tag"
+					tag: {
+						value: "forge_frontier:apotheosis/gem"
+					}
+				}
+				title: "任意一种阿波西奇宝石"
+				type: "item"
+			}]
+			title: "宝石入门指南"
+			x: -3.0d
+			y: -7.0d
+		}
+		{
+			dependencies: ["7F7CA69ECC488DFA"]
+			description: [
+				"&n宝石切割台&r能让玩家提升宝石的品质。为此，你需要废料、宝石的复制品和宝石粉尘。将这些放入工作台即可升级所选宝石。"
+				""
+				"在较高的升级等级中，使用低质量材料需要更多的数量才能完成过程。"
+			]
+			id: "2E73C7366B3C135A"
+			rewards: [
+				{
+					id: "37C2CACB340B9D08"
+					item: {
+						Count: 1
+						id: "farmersdelight:diamond_knife"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "75041AEC68B93691"
+					item: {
+						Count: 1
+						id: "sophisticatedbackpacks:stonecutter_upgrade"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "22BF6A6536CB7D4F"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			tasks: [{
+				id: "2DDBA99D61D18B42"
+				item: {
+					Count: 1
+					id: "apotheosis:gem_cutting_table"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -3.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["13BB5C56D561E820"]
+			description: ["拆解台能让你将附魔物品分解成材料。获得的材料与分解的掉落物等级相对应。此方块的一个替代方案是 Create 的压碎轮，尤其适合自动化。"]
+			id: "1FCAEF8ADAE2386D"
+			rewards: [
+				{
+					id: "6356BA33D7413F33"
+					item: {
+						Count: 1
+						id: "minecraft:enchanted_book"
+						tag: {
+							StoredEnchantments: [{
+								id: "apotheosis:splitting"
+								lvl: 1s
+							}]
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "55179574EE1D26AE"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			tasks: [{
+				id: "62D67DCDC5F7AD4D"
+				item: {
+					Count: 1
+					id: "apotheosis:salvaging_table"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -6.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["14006BE61AF7FE2E"]
+			description: [
+				"&nGem Dust&r 是 &5&nApotheosis&r&r 中至关重要的资源，是合成和操控的核心。制作符文以及建造重铸台和宝石切割台等关键工作站都需要它。"
+				""
+				"宝石粉尘可以通过拆解台或创造模组的粉碎轮来生产。"
+			]
+			id: "7F7CA69ECC488DFA"
+			rewards: [
+				{
+					count: 12
+					id: "6AA62C7019F89660"
+					item: {
+						Count: 1
+						id: "apotheosis:gem_dust"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "43E7DFB977B5C983"
+					type: "xp"
+					xp: 2
+				}
+			]
+			tasks: [{
+				count: 3L
+				id: "6EF8F8371D18D85B"
+				item: {
+					Count: 1
+					id: "apotheosis:gem_dust"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "宝石粉尘"
+			x: -3.0d
+			y: -4.0d
+		}
+		{
+			description: ["锻造台是用来将宝石镶嵌到插槽中并应用符文的桌子。各种符文及其效果在各自的任务中有说明。"]
+			id: "13BB5C56D561E820"
+			rewards: [
+				{
+					count: 2
+					id: "0261AFFC7E7CCC2E"
+					item: {
+						Count: 1
+						id: "neapolitan:primal_armor_trim_smithing_template"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "17489B0EFD40EA83"
+					item: {
+						Count: 1
+						id: "creategoggles:goggle_armor_trim_smithing_template"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "1D5F84209754C9BB"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			tasks: [{
+				id: "47DDAE99E2D4B57C"
+				item: {
+					Count: 1
+					id: "minecraft:smithing_table"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -6.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["7B68DD6E1D05B160"]
+			description: ["&nSigil of Socketing&r 可以让你在物品上添加一个插槽。此操作最多只能进行两次，更多插槽需要通过重铸台获取，或者可能已经存在。"]
+			id: "3FEA4945131E08A8"
+			rewards: [
+				{
+					count: 8
+					id: "1F4D25DC004BAF5D"
+					item: {
+						Count: 1
+						id: "alexsmobs:warped_muscle"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "7E7C26FFC55E5AAF"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			tasks: [{
+				id: "00D666FF1E63746D"
+				item: {
+					Count: 1
+					id: "apotheosis:sigil_of_socketing"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -5.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["7B68DD6E1D05B160"]
+			description: ["&n撤回印记&r会移除与你组合的物品中的所有宝石。此过程不会损坏该物品。"]
+			id: "23BEC2CA74E49A66"
+			rewards: [
+				{
+					count: 4
+					id: "4CA796AD6658BCFF"
+					item: {
+						Count: 1
+						id: "minecraft:ender_pearl"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "29B286448F21C368"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+			]
+			tasks: [{
+				id: "204479960AE2F747"
+				item: {
+					Count: 1
+					id: "apotheosis:sigil_of_withdrawal"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -6.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["7B68DD6E1D05B160"]
+			description: ["&n重生印记&r为重塑台提供动力，是重掷物品属性或将其药剂等级提升至更高等级所必需的。"]
+			id: "4933612D89910EE2"
+			rewards: [
+				{
+					id: "097ADA61790722E6"
+					item: {
+						Count: 1
+						id: "sophisticatedbackpacks:refill_upgrade"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "0E2D3D9CAC747552"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+			]
+			tasks: [{
+				id: "042292AA6289577C"
+				item: {
+					Count: 1
+					id: "apotheosis:sigil_of_rebirth"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -7.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["7B68DD6E1D05B160"]
+			description: ["&n强化印记&r为增强台提供动力，让你可以重掷或升级物品的特定属性。"]
+			id: "5E6EA2E978BB67C0"
+			rewards: [
+				{
+					count: 6
+					id: "346CF22BC1F29FAC"
+					item: "apotheosis:rare_material"
+					type: "item"
+				}
+				{
+					id: "6AE23BF8A5AEB8DD"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+			tasks: [{
+				id: "2C7354AE625A5813"
+				item: {
+					Count: 1
+					id: "apotheosis:sigil_of_enhancement"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -5.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["7B68DD6E1D05B160"]
+			description: ["&nSigil of Unnaming&r会移除Apotheosis生成的名称，并恢复物品的原始名称。"]
+			id: "0EA040F73F92F987"
+			rewards: [
+				{
+					count: 3
+					id: "475047CB2DFBDFA1"
+					item: {
+						Count: 1
+						id: "minecraft:name_tag"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "5B4E818330E18C3A"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			tasks: [{
+				id: "067497F6BAE20C68"
+				item: {
+					Count: 1
+					id: "apotheosis:sigil_of_unnaming"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -7.0d
+			y: 1.0d
+		}
+		{
+			description: ["这块&n宝石熔合石板&r是你创造符文的空白画布。它本身并无作用，但用它能创造的符文可以操控附魔加成、宝石、插槽，甚至物品的药剂学等级。"]
+			id: "7B68DD6E1D05B160"
+			rewards: [
+				{
+					count: 12
+					id: "18407FF56DAFA04F"
+					item: {
+						Count: 1
+						id: "minecraft:pointed_dripstone"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					count: 24
+					id: "76C1D6F8C5CCE339"
+					item: {
+						Count: 1
+						id: "minecraft:polished_deepslate"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "77CF5591AB14F503"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			tasks: [{
+				id: "53F28CE6AA3DEF7B"
+				item: {
+					Count: 1
+					id: "apotheosis:gem_fused_slate"
+					tag: { }
+				}
+				type: "item"
+			}]
+			title: "空白画布"
+			x: -6.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["578A33A5A5FA8841"]
+			description: ["&nAugmenting Table&r 允许玩家重掷并升级物品上的特定 &eaffix modifiers&r。但每次使用都会消耗 Sigils of Enhancement。"]
+			id: "077F0BE0B3085A3B"
+			rewards: [
+				{
+					count: 3
+					id: "5A554FE7711464F5"
+					item: {
+						Count: 1
+						id: "minecraft:enchanted_golden_apple"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "5B7BA3872846A61F"
+					item: "apotheosis:mythic_material"
+					type: "item"
+				}
+				{
+					count: 3
+					id: "3A5FB0753E9C2178"
+					item: {
+						Count: 1
+						id: "apotheosis:sigil_of_enhancement"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "7A16290A761A1CE0"
+					type: "xp_levels"
+					xp_levels: 6
+				}
+			]
+			tasks: [{
+				id: "3E941A5E2ABBC485"
+				item: {
+					Count: 1
+					id: "apotheosis:augmenting_table"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -9.0d
+			y: 2.0d
+		}
+		{
+			dependencies: [
+				"7F7CA69ECC488DFA"
+				"2D7E97EBB2A3FBD7"
+			]
+			description: [
+				"&n简易重铸台&r是入门级重铸台，可将物品升级到&5&n稀有&r&r等级。它以重铸符文和所需稀有度的材料为燃料。"
+				""
+				"每次重铸都会提供 3 个选项，所需经验和成本各不相同，请仔细阅读，因为最贵的并不一定最强。"
+			]
+			id: "687957A3D915C6D3"
+			rewards: [
+				{
+					count: 4
+					id: "6B7890975898734B"
+					item: "apotheosis:common_material"
+					type: "item"
+				}
+				{
+					id: "107D5756593CCBDC"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+			]
+			tasks: [{
+				id: "63B203115F8EF35E"
+				item: {
+					Count: 1
+					id: "apotheosis:simple_reforging_table"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -9.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["687957A3D915C6D3"]
+			description: ["&n重铸台&r是其简化版的上限，能将物品重铸至&6&n神话&r&r等级。"]
+			id: "578A33A5A5FA8841"
+			rewards: [
+				{
+					count: 4
+					id: "2AF7B30AAEE2E6B0"
+					item: "apotheosis:epic_material"
+					type: "item"
+				}
+				{
+					id: "15057375B83C2BF3"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+			]
+			tasks: [{
+				id: "6AFB5AA738E0BD8B"
+				item: {
+					Count: 1
+					id: "apotheosis:reforging_table"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -9.0d
+			y: -1.0d
+		}
+		{
+			description: ["&n蜂巢书架&r是提高量子效率的绝佳方法，也是前期随机获得强力附魔的好途径。"]
+			id: "51195D4772866826"
+			rewards: [
+				{
+					id: "497941A5910053B7"
+					item: {
+						Count: 1
+						id: "create:honeyed_apple"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					count: 4
+					id: "7F962ADB74DD13AC"
+					item: {
+						Count: 1
+						id: "minecraft:honeycomb_block"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "35A4C37CA9518B2C"
+					item: {
+						Count: 1
+						id: "minecraft:gold_block"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "54A7558A3995AE59"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			tasks: [{
+				id: "13D763CFE578AAA8"
+				item: {
+					Count: 1
+					id: "apotheosis:beeshelf"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -3.0d
+			y: 1.0d
+		}
+		{
+			description: ["&nPrismatic Cobweb&r 可以移除物品上的诅咒。"]
+			id: "2512C3C20CF310B0"
+			rewards: [
+				{
+					count: 16
+					id: "42EC553E50F8F7A0"
+					item: {
+						Count: 1
+						id: "minecraft:string"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					count: 8
+					id: "1A57627C26CE5F23"
+					item: {
+						Count: 1
+						id: "minecraft:prismarine_crystals"
+						tag: { }
+					}
+					type: "item"
+				}
+				{
+					id: "032DDB3145143664"
+					type: "xp_levels"
+					xp_levels: 1
+				}
+			]
+			tasks: [{
+				id: "0144FB79BFCE022C"
+				item: {
+					Count: 1
+					id: "apotheosis:prismatic_web"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -1.0d
+			y: 4.0d
+		}
+		{
+			description: ["认知尘埃是探索经验操控科学的最初资源。这种尘埃能引导玩家制造机器，从而储存、生产和使用经验来制作实用物品。"]
+			id: "6141BAD50E3492BE"
+			optional: true
+			rewards: [{
+				id: "2F40576576BFC1CF"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			shape: "gear"
+			size: 3.0d
+			tasks: [{
+				id: "320A7171A6444E9E"
+				item: "experienceobelisk:cognitive_flux"
+				type: "item"
+			}]
+			x: -1.0d
+			y: 11.5d
+		}
+		{
+			dependencies: ["6141BAD50E3492BE"]
+			description: ["Cognitive Amalgam 是资源技术的下一步，可解锁 Cognition 中的物品，从而获得更高级的物品来操控经验。"]
+			id: "41BEE2ACD8F4F254"
+			rewards: [
+				{
+					count: 16
+					id: "178F903FB9D82553"
+					item: "experienceobelisk:cognitive_flux"
+					type: "item"
+				}
+				{
+					id: "2E69B5478AEBD5AD"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			tasks: [{
+				count: 4L
+				id: "509FAA985266D4CD"
+				item: { Count: 4, id: "experienceobelisk:cognitive_amalgam" }
+				type: "item"
+			}]
+			x: -1.0d
+			y: 13.5d
+		}
+		{
+			dependencies: ["41BEE2ACD8F4F254"]
+			description: ["Cognition资源库中最后也是最强大的资源，可用于升级工具，并为部分工具提供结构以操控经验。"]
+			id: "7B3FB85A0A34D883"
+			rewards: [
+				{
+					id: "00814E3CB3384367"
+					item: {
+						Count: 1
+						id: "experienceobelisk:cognitive_shears"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "5F91822AEAD78080"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			tasks: [{
+				id: "2B70CDD3F9ACCF83"
+				item: "experienceobelisk:cognitive_alloy"
+				type: "item"
+			}]
+			x: -1.0d
+			y: 15.0d
+		}
+		{
+			description: ["认知水晶是认知模组中大多数合成物品的关键元素之一。"]
+			id: "513CEDA19D71F82C"
+			rewards: [
+				{
+					count: 4
+					id: "0AFA507A987CFAF1"
+					item: "experienceobelisk:cognitive_crystal"
+					type: "item"
+				}
+				{
+					id: "5E35205F59EF11F3"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "5C07CE9B34841EAD"
+				item: "experienceobelisk:cognitive_crystal"
+				type: "item"
+			}]
+			x: -1.0d
+			y: 17.5d
+		}
+		{
+			dependencies: ["513CEDA19D71F82C"]
+			description: [
+				"Cognition 的主要经验存储装置。可用于提取、存入和储存经验。它还会在较小范围内被动吸引并吸收附近的自由经验球。"
+				""
+				"可通过调谐杖链接，为其他认知机器提供动力。"
+			]
+			id: "24B26A59FD9E5CD6"
+			rewards: [
+				{
+					count: 24
+					id: "51CBA5525DFFFA50"
+					item: "experienceobelisk:cognitive_amalgam"
+					type: "item"
+				}
+				{
+					id: "7D0D534C420B99F0"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+			]
+			tasks: [{
+				id: "2FBF0F0C026A37D2"
+				item: {
+					Count: 1
+					id: "experienceobelisk:experience_obelisk"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -1.0d
+			y: 19.0d
+		}
+		{
+			dependencies: ["513CEDA19D71F82C"]
+			description: ["就像科技模组中的扳手一样，这根法杖用于在 Cognition 中校准和交互许多方块，包括将 &n经验方尖碑&r 连接到各种机器上。可以通过右键单击方尖碑，再右键单击需要连接的机器来完成。"]
+			id: "5311BBD54A367C2D"
+			rewards: [
+				{
+					count: 16
+					id: "56768F4D34BDC2FA"
+					item: "experienceobelisk:cognitive_amalgam"
+					type: "item"
+				}
+				{
+					id: "6D86B38DA148DB44"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "2DB30C0059811B3D"
+				item: "experienceobelisk:attunement_staff"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 19.0d
+		}
+		{
+			dependencies: ["513CEDA19D71F82C"]
+			description: ["喷泉可以释放与其绑定的经验方尖碑中储存的经验。速率可调节，装置可用红石控制。"]
+			id: "392878964F02EBF1"
+			rewards: [
+				{
+					count: 4
+					id: "722E17EDED94E595"
+					item: "experienceobelisk:cognitive_alloy"
+					type: "item"
+				}
+				{
+					id: "63ABFE8E9B1B51DB"
+					type: "xp"
+					xp: 50
+				}
+			]
+			tasks: [{
+				id: "72A8F9CBDEEE4AC1"
+				item: "experienceobelisk:experience_fountain"
+				type: "item"
+			}]
+			x: -2.5d
+			y: 17.5d
+		}
+		{
+			dependencies: ["513CEDA19D71F82C"]
+			description: ["这是磨石的一种高级版本。允许选择性移除附魔，也允许用户移除诅咒。"]
+			id: "4AD660E6F370A7B5"
+			rewards: [
+				{
+					count: 2
+					id: "2BA268298EB76D73"
+					item: "experienceobelisk:cognitive_crystal"
+					type: "item"
+				}
+				{
+					id: "28CE3BCCD1FDD8D6"
+					type: "xp"
+					xp: 50
+				}
+			]
+			tasks: [{
+				id: "2FD2E31C76D62201"
+				item: "experienceobelisk:precision_dispeller"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 16.0d
+		}
+		{
+			dependencies: ["513CEDA19D71F82C"]
+			description: [
+				"分子变形器允许经验将现有材料转化为更高级的材料。利用经验的力量来操纵物质本身。"
+				""
+				"需要使用&nStaff of Attunement&r链接到一个&nExperience Obelisk&r。"
+			]
+			id: "556893DFE1DA18EC"
+			rewards: [
+				{
+					count: 4
+					id: "3F9B6CB620046AE6"
+					item: "experienceobelisk:cognitive_crystal"
+					type: "item"
+				}
+				{
+					id: "36E339AF27B30BE1"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+			tasks: [{
+				id: "73724EFA1808C112"
+				item: {
+					Count: 1
+					id: "experienceobelisk:molecular_metamorpher"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: 2.0d
+			y: 19.0d
+		}
+		{
+			dependencies: ["513CEDA19D71F82C"]
+			description: ["此护身符可将附近的经验球传送到使用者处，使其能更快、更远距离地吸收经验值。"]
+			id: "26F3021264050933"
+			rewards: [
+				{
+					id: "44F31CCE7523D820"
+					item: "experienceobelisk:cognitive_crystal"
+					type: "item"
+				}
+				{
+					id: "6FF3CA9BD9B19470"
+					type: "xp"
+					xp: 200
+				}
+			]
+			tasks: [{
+				id: "2790DFA5488A9173"
+				item: {
+					Count: 1
+					id: "experienceobelisk:enlightened_amulet"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: 0.5d
+			y: 17.5d
+		}
+		{
+			dependencies: ["513CEDA19D71F82C"]
+			description: ["此方块会加速朝向其方向的实体，可改为线性版本，朝所指方向发射。"]
+			id: "7A8237626C81EDA1"
+			rewards: [
+				{
+					count: 4
+					id: "122B560D14642ECB"
+					item: "experienceobelisk:cognitive_amalgam"
+					type: "item"
+				}
+				{
+					id: "7AD5D1A8C3E353C7"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "42AD383EDCE021FD"
+				item: "experienceobelisk:accelerator"
+				type: "item"
+			}]
+			x: -2.0d
+			y: 16.0d
+		}
+		{
+			dependencies: ["513CEDA19D71F82C"]
+			description: ["&nBibliophage&r以书架为食。某些来自Cognition的书架类型可以被这些噬菌体消化成更多经验值。"]
+			id: "0592C54DF2B57D18"
+			rewards: [
+				{
+					count: 8
+					id: "68A101FEE8EDCCE0"
+					item: "experienceobelisk:cognitive_alloy"
+					type: "item"
+				}
+				{
+					id: "5380C8C787677DE6"
+					type: "xp"
+					xp: 100
+				}
+			]
+			tasks: [{
+				id: "6591EA04EB435048"
+				item: "experienceobelisk:bibliophage"
+				type: "item"
+			}]
+			x: -2.5d
+			y: 19.0d
+		}
+		{
+			description: ["一本装满知识的书架，书虫们又有更多东西可以享用。"]
+			id: "7D724F27275BF5C6"
+			rewards: [
+				{
+					count: 4
+					id: "2BBC5CD0317E6E46"
+					item: "experienceobelisk:archivers_bookshelf"
+					type: "item"
+				}
+				{
+					id: "46C4251BCB35BB29"
+					type: "xp"
+					xp: 50
+				}
+			]
+			tasks: [{
+				id: "452822117D9CE519"
+				item: "experienceobelisk:archivers_bookshelf"
+				type: "item"
+			}]
+			x: -7.0d
+			y: 21.0d
+		}
+		{
+			dependencies: ["0592C54DF2B57D18"]
+			description: ["用Bibliophage感染书架，书架会逐渐被消耗，并被动地以经验球的形式释放储存的知识。"]
+			id: "043A69B7115AB7FE"
+			rewards: [{
+				count: 4
+				id: "41B3A2E452570906"
+				item: "minecraft:bookshelf"
+				type: "item"
+			}]
+			tasks: [{
+				block: "minecraft:bookshelf"
+				block_type: 0
+				checkItem: true
+				id: "48BDFE285615C2A1"
+				isItemInteraction: true
+				item: "experienceobelisk:bibliophage"
+				type: "questsadditions:use"
+				value: 1L
+			}]
+			x: -4.0d
+			y: 19.0d
+		}
+		{
+			dependencies: ["043A69B7115AB7FE"]
+			description: [
+				"书架被书虫完全吞噬后，有50%的几率掉落，如果是手动破坏被感染的书架，则为100%。"
+				""
+				"一种重要资源，用于制作营养琼脂，供书虫被动繁殖，以及强大的石灰华基质。"
+			]
+			id: "6E6F387D05330965"
+			rewards: [
+				{
+					count: 16
+					id: "6BBC5CF63E13D9A4"
+					item: "minecraft:amethyst_shard"
+					type: "item"
+				}
+				{
+					id: "5DF7BC44F77A937A"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+			]
+			tasks: [{
+				id: "3056E23D75780229"
+				item: "experienceobelisk:forgotten_dust"
+				type: "item"
+			}]
+			x: -5.5d
+			y: 19.0d
+		}
+		{
+			description: ["这种水果果冻可以立即食用，是玩家非常快捷的食物来源。它也是制作营养琼脂的基础材料，能让玩家永久拥有一群噬菌体。"]
+			id: "0FB45A4B4F2BDCAC"
+			rewards: [
+				{
+					count: 4
+					id: "67BCC1B248CA2B1F"
+					item: "minecraft:sugar"
+					type: "item"
+				}
+				{
+					id: "725346B584C3D9B9"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			tasks: [{
+				id: "494746DD6D2580FD"
+				item: "experienceobelisk:experience_jelly"
+				type: "item"
+			}]
+			x: -1.0d
+			y: 20.5d
+		}
+		{
+			dependencies: ["0FB45A4B4F2BDCAC"]
+			description: ["这种琼脂基质可通过被动扩散或使用噬书虫手动感染。一个被感染的琼脂会永久地感染附近的所有琼脂或书架。"]
+			id: "2271EF8E4463B2D6"
+			rewards: [
+				{
+					count: 2
+					id: "156A319748716468"
+					item: "experienceobelisk:bibliophage"
+					type: "item"
+				}
+				{
+					id: "0DFAC5412A6FBA38"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			tasks: [{
+				id: "78F1DF3382D0EB94"
+				item: "experienceobelisk:fluorescent_agar"
+				type: "item"
+			}]
+			x: -2.5d
+			y: 20.5d
+		}
+		{
+			dependencies: ["2271EF8E4463B2D6"]
+			description: [
+				"Cognition 中的所有凝块都需要被感染 8 次，才能建立起永久性的 Bibliophage 种群。"
+				""
+				"噬菌体可以通过消化书架被动传播，也可以通过手动引入噬菌体来获得最快效果。"
+			]
+			id: "0CB61435B17B7A76"
+			rewards: [
+				{
+					count: 6
+					id: "2991A177CA0859C0"
+					item: "experienceobelisk:cognitive_alloy"
+					type: "item"
+				}
+				{
+					id: "2EDAF628B579A8CA"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			tasks: [{
+				block: "experienceobelisk:fluorescent_agar"
+				block_type: 0
+				checkItem: true
+				id: "3A990BF68E9747D6"
+				isItemInteraction: true
+				item: "experienceobelisk:bibliophage"
+				type: "questsadditions:use"
+				value: 8L
+			}]
+			x: -4.0d
+			y: 20.5d
+		}
+		{
+			description: [
+				"这种更高级的洞察琼脂就像营养琼脂一样，能为&nBibliophage&r的群落提供家园。"
+				""
+				"但这种琼脂的传染性更高，且从中生成的嗜书怪的出现延迟更短。"
+			]
+			id: "6A6F0540F85969B3"
+			rewards: [
+				{
+					count: 6
+					id: "521A31EBF3AD34DD"
+					item: "create:experience_block"
+					type: "item"
+				}
+				{
+					id: "29828F4E038BCAE5"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			tasks: [{
+				id: "7FCE108AC40DB9CE"
+				item: "experienceobelisk:insightful_agar"
+				type: "item"
+			}]
+			x: -5.0d
+			y: 22.0d
+		}
+		{
+			dependencies: ["6A6F0540F85969B3"]
+			description: [
+				"最适合你的&nBibliophages&r的、最先进最奢华的Agar之家。"
+				""
+				"它具有最高的被动感染率，可感染附近的书架，并能提高由该琼脂感染的书架所产出的经验球的价值。"
+			]
+			id: "3B156CF051A5DFC0"
+			rewards: [
+				{
+					count: 16
+					id: "6722205922675373"
+					item: "create_enchantment_industry:super_experience_nugget"
+					type: "item"
+				}
+				{
+					id: "5DF71658EFCB310D"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+			]
+			tasks: [{
+				id: "0516C99CC546F781"
+				item: "experienceobelisk:extravagant_agar"
+				type: "item"
+			}]
+			x: -6.0d
+			y: 23.5d
+		}
+		{
+			description: ["波塞冬之瓶允许使用者以每块7点经验值为代价放置一块水。也可用于炼药锅或可被水浸没的方块上。"]
+			id: "1631C67EA4EB1220"
+			rewards: [
+				{
+					count: 8
+					id: "432FC679AF2E0C27"
+					item: "experienceobelisk:cognitive_amalgam"
+					type: "item"
+				}
+				{
+					id: "7DC9A76BE737519D"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+			]
+			tasks: [{
+				id: "7677DE9BC437056C"
+				item: "experienceobelisk:flask_of_poseidon"
+				type: "item"
+			}]
+			x: 4.0d
+			y: 19.0d
+		}
+		{
+			description: ["哈迪斯之瓶能让玩家在任意位置放置一个岩浆源方块。它对炼药锅或流体容器也同样有效。但与波塞冬之瓶相比，它要昂贵得多，每次使用消耗160经验值。"]
+			id: "2BE3879C42F7AB0C"
+			rewards: [
+				{
+					count: 8
+					id: "71491521C2DB6E53"
+					item: "experienceobelisk:cognitive_amalgam"
+					type: "item"
+				}
+				{
+					id: "026E106504FBBC1C"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+			]
+			tasks: [{
+				id: "3C3AE4A5E091E75B"
+				item: "experienceobelisk:flask_of_hades"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 21.0d
+		}
+		{
+			description: ["混沌瓶与其他瓶子相反。它能删除任何流体源，小心昂贵的资源出口！每次使用仅消耗1经验值。"]
+			id: "333F5A02D64B504A"
+			rewards: [
+				{
+					count: 8
+					id: "37EAC771649535D9"
+					item: "experienceobelisk:cognitive_amalgam"
+					type: "item"
+				}
+				{
+					id: "5532BB23D58C4604"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+			]
+			tasks: [{
+				id: "4B73E86E983BBF64"
+				item: "experienceobelisk:flask_of_chaos"
+				type: "item"
+			}]
+			x: 6.5d
+			y: 23.5d
+		}
+		{
+			dependencies: [
+				"462B6229E87FAA19"
+				"0FB45A4B4F2BDCAC"
+			]
+			description: [
+				"此修复凝胶可恢复物品耐久度的320点或25%（取较高者）。使用时请手持神经凝胶，将鼠标悬停在受损物品上并左键点击。"
+				""
+				"也可以将其分割成神经凝胶块，将恢复能力分成4份。"
+			]
+			id: "45D7E9014C5A7D52"
+			rewards: [
+				{
+					count: 8
+					id: "11F5580837F04319"
+					item: "experienceobelisk:forgotten_dust"
+					type: "item"
+				}
+				{
+					id: "346CCF85EA289438"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+			]
+			tasks: [{
+				id: "43C1C61EC6831E2D"
+				item: "experienceobelisk:mending_neurogel"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 20.5d
+		}
+		{
+			description: ["此瓶会将你的内部休息计数器重置为0，意味着幻影不会在玩家身上生成。就像真正睡了一觉一样。"]
+			id: "281B17D57747E4A4"
+			rewards: [
+				{
+					count: 4
+					id: "68AD49D90FE8AB86"
+					item: "minecraft:experience_bottle"
+					type: "item"
+				}
+				{
+					id: "2C4791DEF2B5D64C"
+					type: "xp"
+					xp: 50
+				}
+			]
+			tasks: [{
+				id: "50CE3290967440EB"
+				item: "experienceobelisk:daydream_bottle"
+				type: "item"
+			}]
+			x: 3.0d
+			y: 22.0d
+		}
+		{
+			description: ["白日梦之瓶的对应物。这瓶强大的药水会将你的休息时间设置到遥远的未来，导致接下来几晚有99.6%的几率生成幻影。"]
+			id: "05AED35DDD1D2EED"
+			rewards: [
+				{
+					count: 4
+					id: "3BF53DBFE555DB30"
+					item: "minecraft:experience_bottle"
+					type: "item"
+				}
+				{
+					id: "60BE89596FF38F47"
+					type: "xp"
+					xp: 50
+				}
+			]
+			tasks: [{
+				id: "7DE1284B3D1300EE"
+				item: "experienceobelisk:nightmare_bottle"
+				type: "item"
+			}]
+			x: 4.0d
+			y: 23.5d
+		}
+		{
+			description: ["用于制作认知中最先进物品的强大矩阵。"]
+			id: "462B6229E87FAA19"
+			rewards: [
+				{
+					id: "6CDD4E615685BC6C"
+					item: "minecraft:enchanted_book"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "21A8F8FA1C6DB350"
+					item: "minecraft:amethyst_shard"
+					type: "item"
+				}
+				{
+					id: "7CB3FCE9931FF86E"
+					type: "xp_levels"
+					xp_levels: 2
+				}
+			]
+			tasks: [{
+				id: "3EAE522D72AA4773"
+				item: "experienceobelisk:calcarine_matrix"
+				type: "item"
+			}]
+			x: -1.0d
+			y: 22.0d
+		}
+		{
+			dependencies: ["556893DFE1DA18EC"]
+			description: ["此焦点用于在分子变形器中制作多种物品。可将经验能量聚焦到所需结果的特定材料上。"]
+			id: "596888C6F9193534"
+			rewards: [
+				{
+					count: 8
+					id: "1D17CFA4EB8B7C98"
+					item: "minecraft:amethyst_shard"
+					type: "item"
+				}
+				{
+					id: "6F700A7179E7CBE2"
+					type: "xp"
+					xp: 50
+				}
+			]
+			tasks: [{
+				id: "69D63DC8245EF449"
+				item: {
+					Count: 1
+					id: "experienceobelisk:transforming_focus"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 2.0d
+			y: 20.5d
+		}
+		{
+			dependencies: ["462B6229E87FAA19"]
+			description: ["此护身符为玩家提供强大增益：永久幸运2效果、提升怪物经验值，并拥有“启迪护身符”的远程经验球收集能力。"]
+			id: "54B058AC61F7D9B6"
+			rewards: [
+				{
+					count: 2
+					id: "7066D7F8F53596F9"
+					item: "experienceobelisk:calcarine_matrix"
+					type: "item"
+				}
+				{
+					id: "547E625F2008D78A"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+			]
+			tasks: [{
+				id: "49E86419132B9085"
+				item: {
+					Count: 1
+					id: "experienceobelisk:fortuitous_amulet"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -2.0d
+			y: 23.5d
+		}
+		{
+			dependencies: ["462B6229E87FAA19"]
+			description: ["记忆石板能让你访问最远48格内的任意方尖碑。Shift+右键可将石板与方尖碑绑定。此外，记忆石板还能在死亡时将经验存入绑定的方尖碑中，这样死亡就不会损失经验了。"]
+			id: "1A158727695A13A5"
+			rewards: [
+				{
+					count: 8
+					id: "5D2ADAAFD3164816"
+					item: "experienceobelisk:forgotten_dust"
+					type: "item"
+				}
+				{
+					id: "6250EF44E3487D71"
+					type: "xp_levels"
+					xp_levels: 3
+				}
+			]
+			tasks: [{
+				id: "6B83EF73968DEE4A"
+				item: "experienceobelisk:memory_tablet"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 23.5d
+		}
+		{
+			dependencies: ["7D724F27275BF5C6"]
+			description: ["档案管理员书架的进化。其中蕴含的附魔知识，能为嗜书者带来更多内容以供汲取。"]
+			id: "0AD8EF8AA3F1B4F3"
+			rewards: [
+				{
+					count: 2
+					id: "09C2C47F4E60CE8F"
+					item: "experienceobelisk:enchanted_bookshelf"
+					type: "item"
+				}
+				{
+					id: "6C22B503F2D6BA4D"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+			tasks: [{
+				id: "40A17AAB091708B9"
+				item: "experienceobelisk:enchanted_bookshelf"
+				type: "item"
+			}]
+			x: -8.5d
+			y: 23.0d
+		}
+	]
+	title: "附魔台 Enchanting"
+}
