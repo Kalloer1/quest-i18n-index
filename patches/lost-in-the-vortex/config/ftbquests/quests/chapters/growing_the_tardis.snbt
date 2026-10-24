@@ -1,0 +1,142 @@
+# AI 初翻，未人工校对
+{
+	consume_items: false
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "growing_the_tardis"
+	group: "334FE21D30E89519"
+	hide_quest_until_deps_complete: true
+	icon: "ait:coral_plant"
+	id: "3B705D746BF1B1E0"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["7D1C661E3A32F51E"]
+			description: ["手持索尼克螺丝刀，蹲下并右键点击时空裂缝，即可获得“珊瑚碎片”，你需要几个这样的碎片 &l&o提示：&l裂缝在末地生成的更频繁&o"]
+			id: "22BC4E1FC64206BC"
+			rewards: [{
+				count: 2
+				id: "6463472C0F63C71E"
+				item: "ait:coral_fragment"
+				type: "item"
+			}]
+			tasks: [{
+				id: "5097C84D85EC2402"
+				item: "ait:coral_fragment"
+				type: "item"
+			}]
+			title: "1 塔迪斯的九分之一"
+			x: 0.0d
+			y: -7.5d
+		}
+		{
+			dependencies: ["22BC4E1FC64206BC"]
+			id: "0718E443EA57545D"
+			rewards: [{
+				id: "5AB127A0BD696CB8"
+				type: "xp_levels"
+				xp_levels: 5
+			}]
+			shape: "hexagon"
+			size: 1.5d
+			tasks: [{
+				id: "6514C70A4FCC01AC"
+				item: "ait:coral_plant"
+				type: "item"
+			}]
+			x: 0.0d
+			y: -9.0d
+		}
+		{
+			dependencies: ["0718E443EA57545D"]
+			description: [
+				"等离子材料... 这是TARDIS外壳的精髓。要获得它，你需要一些超热的Zeiton，去拿一些，然后投入高炉，或者用Create的方式，用批量爆破器。"
+				"  "
+			]
+			hide_until_deps_complete: true
+			id: "5727B14E8D636DB2"
+			rewards: [{
+				id: "0F05B9C388A35C45"
+				item: "ait:plasmic_material"
+				type: "item"
+			}]
+			tasks: [{
+				count: 4L
+				id: "6BC39F56CE77D1CF"
+				item: { Count: 4, id: "ait:plasmic_material" }
+				type: "item"
+			}]
+			title: "等离子材料"
+			x: 3.5d
+			y: -10.0d
+		}
+		{
+			dependencies: ["0718E443EA57545D"]
+			description: ["裂隙扫描仪能让你找到“裂隙区块”，而裂隙区块是唯一能种植TARDIS的地方"]
+			hide_until_deps_complete: true
+			id: "057F0A293502B99E"
+			rewards: [{
+				id: "029780FFF20BA4D8"
+				type: "xp_levels"
+				xp_levels: 3
+			}]
+			tasks: [{
+				id: "306BCB215712A6AC"
+				item: "ait:rift_scanner"
+				type: "item"
+			}]
+			x: -4.0d
+			y: -11.5d
+		}
+		{
+			dependencies: ["5727B14E8D636DB2"]
+			description: ["啊啊，珊瑚笼，唯一能装下TARDIS的东西，这肯定很重要"]
+			id: "504766E3A7009B40"
+			tasks: [{
+				id: "0B3B08014687071B"
+				item: "ait:coral_cage"
+				type: "item"
+			}]
+			x: 3.5d
+			y: -11.5d
+		}
+		{
+			dependencies: [
+				"504766E3A7009B40"
+				"0718E443EA57545D"
+				"057F0A293502B99E"
+			]
+			description: ["现在你有了珊瑚生长器和珊瑚笼。用裂隙扫描仪找到一个裂隙区块，铺上一些灵魂沙，然后种下珊瑚生长器。等它长好后，把珊瑚笼放在新长成的TARDIS上，再给它涂上一些等离子材料。"]
+			id: "3652C39A5D13A0A1"
+			rewards: [{
+				id: "04A0F64D252D5BDB"
+				type: "xp_levels"
+				xp_levels: 10
+			}]
+			shape: "octagon"
+			size: 2.0d
+			tasks: [{
+				advancement: "minecraft:ait/place_coral"
+				criterion: ""
+				id: "2078593B626F3519"
+				type: "advancement"
+			}]
+			x: 0.0d
+			y: -11.5d
+		}
+		{
+			dependencies: ["1EC5B75223E174E1"]
+			description: ["手持索尼克螺丝刀，是时候开始收集你未来TARDIS的碎片了。你可能在空气中看到紫色条纹，那是时空裂缝..."]
+			id: "7D1C661E3A32F51E"
+			tasks: [{
+				id: "2EF028A92A5E8DE0"
+				title: "学习成长之道"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: -6.0d
+		}
+	]
+	title: "种植TARDIS时光机"
+}
