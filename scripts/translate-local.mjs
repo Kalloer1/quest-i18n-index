@@ -504,6 +504,36 @@ async function writePatch(slug, layout, runId) {
   return { files: outputs.length, translated: translations.size, total: pack.units.length }
 }
 
+/**
+ * farm 模式的退出收尾：分片跑完时若还有未推送的已入库包（sincePush>0），
+ * 强制补一次 commit+push 到 farm/<host> 再退出。
+ *
+ * 为什么必须有：入库闸是「攒满 pushEvery 个 或 到 pushMinutes 分钟」（先到者），
+ * 一轮分片处理到最后不满 20 个、且没到时间点就跑完时，主循环不会触发入库 ——
+ * 2026-10-24 实测：work 主机 19 个成果就这样全部滞留在本地 HEAD，直到人工上机比对才发现。
+ *
+ * 不推的三种情况：
+ *   - 非 farm（推 main 的路径口径不变）；
+ *   - 中途推送失败已 break（那时产物已在本地 HEAD，重跑同一条命令即续推，
+ *     这里再推一次只会把同一错误重复报一遍）；
+ *   - sincePush=0（没有剩余，无事可做）。
+ *
+ * push 可注入，单测不碰真 git。
+ *
+ * @param {{farm?: boolean, pushFailed?: boolean, sincePush?: number, slugs?: string[], root: string, branch: string, push?: typeof import('./lib/farm-git.mjs').commitAndPush, log?: (line: string) => void}} opts
+ * @returns {{flushed: boolean, ok?: boolean, error?: string}}
+ */
+export function farmExitFlush({
+  farm, pushFailed = false, sincePush = 0, slugs = [], root, branch,
+  push = commitAndPush, log = console.log,
+} = {}) {
+  if (!farm || pushFailed || !(sincePush > 0)) return { flushed: false }
+  log(`--- 收尾入库：剩余 ${sincePush} 个包 → origin/${branch}（farm）---`)
+  const res = push({ root, branch, slugs, pushAttempts: 3 })
+  if (res.ok) return { flushed: true, ok: true }
+  return { flushed: true, ok: false, error: res.error }
+}
+
 async function main() {
   const limit = arg('limit', 0)
   const lanes = arg('lanes', DEFAULT_LANES)
@@ -580,6 +610,8 @@ async function main() {
   let sincePushSlugs = []
   // 上一次成功入库的时刻（farm 模式的 `--push-minutes` 用它算间隔）。
   let lastPushAt = Date.now()
+  // farm 中途推送失败已 break：退出收尾（farmExitFlush）不再重试，避免重复报同一错。
+  let pushFailed = false
 
   for (let i = 0; i < worklist.length; i++) {
     const p = worklist[i]
@@ -688,6 +720,7 @@ async function main() {
         console.error(`!!! 最后一次错误：${String(res.error ?? '').trim().split('\n').slice(-3).join(' / ').slice(0, 400)}`)
         console.error(`!!! 处理完远端问题后重跑同一条命令即可续推（不会重翻已完成的包）`)
         process.exitCode = 3
+        pushFailed = true
         break
       }
     } else if (!farm && dueByCount) {
@@ -713,6 +746,18 @@ async function main() {
         console.log(`入库失败（不中断整批）：${String(res.error ?? '').slice(0, 200)}`)
       }
     }
+  }
+
+  // farm 收尾：分片跑完但剩余成果既没攒满 pushEvery 也没到时间闸时，必须补推再退出
+  //（2026-10-24 work 主机 19 个成果滞留本地的坑）。非 farm 与中途推送失败的不推。
+  const flush = farmExitFlush({ farm, pushFailed, sincePush, slugs: sincePushSlugs, root: ROOT, branch })
+  if (flush.flushed && !flush.ok) {
+    console.error('')
+    console.error(`!!! 收尾入库失败（不是翻译失败）：origin/${branch}`)
+    console.error(`!!! 产物都已提交在本地 HEAD，未推上去；本次已成功 ${ok} 个包`)
+    console.error(`!!! 最后一次错误：${String(flush.error ?? '').trim().split('\n').slice(-3).join(' / ').slice(0, 400)}`)
+    console.error(`!!! 处理完远端问题后重跑同一条命令即可续推（不会重翻已完成的包）`)
+    process.exitCode = 3
   }
 
   console.log(`\n=== 完成：ok ${ok} / 无可译文本 ${noText} / failed ${fail} / 共 ${worklist.length} ===`)

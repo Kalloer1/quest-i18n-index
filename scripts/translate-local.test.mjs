@@ -18,7 +18,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import {
   stagedPathsForBatch, prepareArgsForBatch, isAlreadyTranslated, pendingWorklist, describeWorklist,
-  farmDiskGuard, freeBytesFromStatfs, MIN_FREE_BYTES, pickTranslatable,
+  farmDiskGuard, freeBytesFromStatfs, MIN_FREE_BYTES, pickTranslatable, farmExitFlush,
 } from './translate-local.mjs'
 
 // 断言函数不存在时会 ImportError，正是我们要的红。
@@ -323,4 +323,43 @@ test('pickTranslatable：自带中文（newZh>0）与不可产出 format 依然�
     'mr\t2\tb\t100\tnone\t3\t0\t3\t10\tx',
   ].join('\n')
   assert.deepEqual(pickTranslatable(tsv), [])
+})
+
+// ---------- farmExitFlush：分片收尾强制推剩余成果 ----------
+// 2026-10-24 实测踩坑：work 主机一轮只剩 19 个包（< pushEvery=20），分片处理完直接退出，
+// 19 个成果全部滞留在本地 HEAD，直到人工上机比对才发现。退出前必须补一次 commit+push。
+
+test('farmExitFlush：分片跑完还有未推包（sincePush>0）→ 强制 commit+push 后再退出', () => {
+  const calls = []
+  const logs = []
+  const res = farmExitFlush({
+    farm: true, pushFailed: false, sincePush: 19, slugs: ['pack-a', 'pack-b'],
+    root: '/repo', branch: 'farm/work',
+    push: (args) => { calls.push(args); return { ok: true, committed: 19, attempts: 1 } },
+    log: (l) => logs.push(l),
+  })
+  assert.equal(res.flushed, true)
+  assert.equal(res.ok, true)
+  assert.equal(calls.length, 1, '退出前必须补推一次')
+  assert.equal(calls[0].branch, 'farm/work', '只推 farm/<host> 分支')
+  assert.deepEqual(calls[0].slugs, ['pack-a', 'pack-b'])
+  assert.ok(logs.some((l) => l.includes('19') && l.includes('farm/work')), '日志要如实记这次收尾入库')
+})
+
+test('farmExitFlush：非 farm / 中途推送已失败退出 / 没有剩余 → 不再推', () => {
+  const push = () => { throw new Error('不该调 push') }
+  assert.equal(farmExitFlush({ farm: false, sincePush: 19, slugs: ['a'], root: '/r', branch: 'main', push }).flushed, false, '非 farm 不推')
+  assert.equal(farmExitFlush({ farm: true, pushFailed: true, sincePush: 19, slugs: ['a'], root: '/r', branch: 'farm/work', push }).flushed, false, '中途推送失败已 break：产物在本地 HEAD，重跑即续推，不再重复报错')
+  assert.equal(farmExitFlush({ farm: true, sincePush: 0, slugs: [], root: '/r', branch: 'farm/work', push }).flushed, false, '没有剩余不推')
+})
+
+test('farmExitFlush：收尾推送失败 → 带回错误让上层标 exit 3，不吞', () => {
+  const res = farmExitFlush({
+    farm: true, sincePush: 3, slugs: ['x'], root: '/r', branch: 'farm/work',
+    push: () => ({ ok: false, committed: 3, attempts: 3, error: 'remote rejected' }),
+    log: () => {},
+  })
+  assert.equal(res.flushed, true)
+  assert.equal(res.ok, false)
+  assert.equal(res.error, 'remote rejected')
 })
