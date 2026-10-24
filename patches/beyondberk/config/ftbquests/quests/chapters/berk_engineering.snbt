@@ -1,0 +1,863 @@
+# AI 初翻，未人工校对
+{
+	id: "4000000000000000"
+	group: "0000000000000004"
+	order_index: 0
+	filename: "berk_engineering"
+	title: "伯克工程"
+	icon: "create:mechanical_mixer"
+	default_quest_shape: "gear"
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "希卡普的安山合金"
+			x: 0.0d
+			y: 0.0d
+			description: [
+				"在齿轮和活塞之前，你需要安山合金——创造最基础的材料。"
+				"混合铁粒和锌粒，或将组件一同熔炼。伯克的工业革命由此开始。"
+			]
+			id: "0000000000004001"
+			tasks: [{
+				id: "20171490B41A85FD"
+				type: "item"
+				item: "create:andesite_alloy"
+				count: 16L
+			}]
+			rewards: [
+				{
+					id: "77FC0D6B5F79AEA9"
+					type: "item"
+					item: "create:andesite_alloy"
+					count: 16
+				}
+				{
+					id: "70E190840F4E954E"
+					type: "item"
+					item: "create:zinc_ingot"
+					count: 8
+				}
+			]
+		}
+		{
+			title: "希卡普的工作坊"
+			x: 2.0d
+			y: 0.0d
+			description: [
+				"机械搅拌机利用旋转力混合物品——可以熔炼金属、生产食物和混合化合物。"
+				"安装水轮或风车以提供旋转应力，然后开始混合。"
+			]
+			dependencies: ["0000000000004001"]
+			id: "0000000000004002"
+			tasks: [{
+				id: "25D1CA409CA7AEC8"
+				type: "item"
+				item: "create:mechanical_mixer"
+			}]
+			rewards: [
+				{
+					id: "318B988C2E5E1D2B"
+					type: "item"
+					item: "create:andesite_alloy"
+					count: 16
+				}
+				{
+					id: "206334B7F678D818"
+					type: "item"
+					item: "create:whisk"
+				}
+			]
+		}
+		{
+			title: "水轮动力"
+			x: 4.0d
+			y: 0.0d
+			description: [
+				"水车是Create最简单的早期动力来源。"
+				"把它放在流动的河流里——只要水流过桨叶，就能免费产生旋转应力。"
+			]
+			dependencies: ["0000000000004001"]
+			id: "0000000000004003"
+			tasks: [{
+				id: "0B2E400D096B8FCB"
+				type: "item"
+				item: "create:water_wheel"
+				count: 2L
+			}]
+			rewards: [{
+				id: "1783FC477E3D6D37"
+				type: "item"
+				item: "create:shaft"
+				count: 8
+			}]
+		}
+		{
+			title: "风车轴承"
+			x: 6.0d
+			y: 0.0d
+			description: [
+				"带风帆的磨坊轴承比水车产生的旋转应力更大——非常适合为整个工坊提供动力。"
+				"制作它，装上8个船帆框架，看着伯克的第一座风车转动。"
+			]
+			dependencies: ["0000000000004003"]
+			id: "0000000000004004"
+			tasks: [{
+				id: "35565F9879696BED"
+				type: "item"
+				item: "create:windmill_bearing"
+			}]
+			rewards: [{
+				id: "230CEC3759A5A7B8"
+				type: "item"
+				item: "create:sail_frame"
+				count: 8
+			}]
+		}
+		{
+			title: "压碎车轮"
+			x: 8.0d
+			y: 0.0d
+			description: [
+				"一对 Crushing Wheels 能将矿石产量翻倍——将原矿压成两个碎块，熔炼成完整的锭。"
+				"这就是伯克资助一支驯龙骑士军队的方式。"
+			]
+			dependencies: ["0000000000004002"]
+			id: "0000000000004005"
+			tasks: [{
+				id: "6318E566D963BDEB"
+				type: "item"
+				item: "create:crushing_wheel"
+				count: 2L
+			}]
+			rewards: [
+				{
+					id: "014A75A88F77DCBF"
+					type: "item"
+					item: "minecraft:iron_ore"
+					count: 16
+				}
+				{
+					id: "6A675CF4D2BBF698"
+					type: "item"
+					item: "create:crushed_iron_ore"
+					count: 16
+				}
+			]
+		}
+		{
+			title: "伯克岛的青铜时代"
+			x: 10.0d
+			y: 0.0d
+			description: [
+				"黄铜是通往高级创造机械的门户。"
+				"用烈焰燃烧器加热你的盆，然后在机械搅拌机中混合铜锭和锌锭。"
+			]
+			dependencies: ["0000000000004002"]
+			id: "0000000000004006"
+			tasks: [{
+				id: "7CC2ADE03A94C1D1"
+				type: "item"
+				item: "create:brass_ingot"
+				count: 16L
+			}]
+			rewards: [
+				{
+					id: "7D12D97AED795DA3"
+					type: "item"
+					item: "create:zinc_ingot"
+					count: 8
+				}
+				{
+					id: "63C879D493C4E731"
+					type: "item"
+					item: "create:brass_sheet"
+					count: 8
+				}
+			]
+		}
+		{
+			title: "电子管组件"
+			x: 12.0d
+			y: 0.0d
+			description: [
+				"电子管是创造机械的逻辑电路——它们能实现过滤、检测和智能自动化。"
+				"合成4个以开始建造智能装置。"
+			]
+			dependencies: ["0000000000004006"]
+			id: "0000000000004007"
+			tasks: [{
+				id: "72E6F885CE8CAF4B"
+				type: "item"
+				item: "create:electron_tube"
+				count: 4L
+			}]
+			rewards: [{
+				id: "13AAA706075722DC"
+				type: "item"
+				item: "minecraft:redstone"
+				count: 32
+			}]
+		}
+		{
+			title: "精密机械装置"
+			x: 14.0d
+			y: 0.0d
+			description: [
+				"精密机制是Create最复杂的可合成组件——需要黄铜、电子管和机械合成器阵列。"
+				"火车、高级自动化和时钟都需要它。"
+			]
+			dependencies: ["0000000000004007"]
+			id: "0000000000004008"
+			tasks: [{
+				id: "455EE6BBA46F60A8"
+				type: "item"
+				item: "create:precision_mechanism"
+				count: 2L
+			}]
+			rewards: [
+				{
+					id: "1F419F0FBF0129ED"
+					type: "item"
+					item: "create:brass_ingot"
+					count: 8
+				}
+				{
+					id: "499BBEBE585494A0"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+		{
+			title: "工程师护目镜"
+			x: 16.0d
+			y: 0.0d
+			description: [
+				"工程师护目镜能让你看到所注视的任何创造组件的确切应力值和转速。"
+				"再也不要因过载而炸毁竖井了。Hiccup 会随时佩戴他的。"
+			]
+			dependencies: ["0000000000004001"]
+			id: "0000000000004009"
+			tasks: [{
+				id: "50574F0A6E2C41EA"
+				type: "item"
+				item: "create:goggles"
+			}]
+			rewards: [{
+				id: "1A0BA62A5743EEAA"
+				type: "item"
+				item: "create:andesite_alloy"
+				count: 8
+			}]
+		}
+		{
+			title: "熔岩管道"
+			x: 0.0d
+			y: 2.0d
+			description: [
+				"流体管道可将岩浆从储液池自动输送到您的熔炉、高炉或烈焰人燃烧器。"
+				"制作一个流体管道网络，并将其连接到你的第一个熔岩储罐。"
+			]
+			id: "0000000000004010"
+			tasks: [{
+				id: "2F7FF88AB10DB19C"
+				type: "item"
+				item: "create:fluid_pipe"
+				count: 16L
+			}]
+			rewards: [{
+				id: "0BADC90026A72BEA"
+				type: "item"
+				item: "create:copper_casing"
+				count: 4
+			}]
+		}
+		{
+			title: "机械水泵"
+			x: 2.0d
+			y: 2.0d
+			description: [
+				"机械泵能将流体加压输送到你的管道网络中。"
+				"用附近的岩浆源建造一个岩浆泵，让你的所有熔炉和烈焰燃烧器都有源源不断的燃料。"
+			]
+			dependencies: ["0000000000004010"]
+			id: "0000000000004011"
+			tasks: [{
+				id: "72C9F567EF7EC1FA"
+				type: "item"
+				item: "create:mechanical_pump"
+			}]
+			rewards: [{
+				id: "34A50BBFA5FA7DB0"
+				type: "item"
+				item: "minecraft:lava_bucket"
+				count: 3
+			}]
+		}
+		{
+			title: "烈焰人燃烧器"
+			x: 4.0d
+			y: 2.0d
+			description: [
+				"烈焰燃烧器使用烈焰粉或岩浆作为燃料，可为熔炉提供高温，用于混合黄铜、合金和高级材料。"
+				"在末地用笼子捕捉一只烈焰人。"
+			]
+			dependencies: ["0000000000004011"]
+			id: "0000000000004012"
+			tasks: [{
+				id: "067C391311FF3A47"
+				type: "item"
+				item: "create:blaze_burner"
+			}]
+			rewards: [{
+				id: "0962A0197530B849"
+				type: "item"
+				item: "create:blaze_cake"
+				count: 4
+			}]
+		}
+		{
+			title: "蒸汽引擎"
+			x: 6.0d
+			y: 2.0d
+			description: [
+				"蒸汽机产生巨大的旋转应力——非常适合为整个工厂提供动力。"
+				"将水注入由烈焰燃烧器加热的锅炉，在其上建造蒸汽机，并将其连接到你的竖井网络中。"
+			]
+			dependencies: ["0000000000004012"]
+			id: "0000000000004013"
+			tasks: [{
+				id: "076CD6C91F527C8A"
+				type: "item"
+				item: "create:steam_engine"
+			}]
+			rewards: [
+				{
+					id: "3F08CE8CFF5E17C9"
+					type: "item"
+					item: "create:blaze_cake"
+					count: 8
+				}
+				{
+					id: "305F2D7E705D8595"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+		{
+			title: "流体储罐农场"
+			x: 8.0d
+			y: 2.0d
+			description: [
+				"流体储罐可以储存大量液体——岩浆、水、蜂蜜、巧克力，甚至是液态金属。"
+				"建造一个水箱阵列来缓冲你的蒸汽发动机的供水。"
+			]
+			dependencies: ["0000000000004011"]
+			id: "0000000000004014"
+			tasks: [{
+				id: "31A025332CA50463"
+				type: "item"
+				item: "create:fluid_tank"
+				count: 4L
+			}]
+			rewards: [{
+				id: "5CC890AAB15565B4"
+				type: "item"
+				item: "create:fluid_pipe"
+				count: 16
+			}]
+		}
+		{
+			title: "阀门手柄"
+			x: 10.0d
+			y: 2.0d
+			description: [
+				"阀门手柄可手动控制流体流动——管道堵塞时，是紧急关断的理想选择。"
+				"将其放置在任何流体管道上，右键即可切换流动方向。"
+			]
+			id: "0000000000004015"
+			tasks: [{
+				id: "2672D44318DBD9CE"
+				type: "item"
+				item: "create:copper_valve_handle"
+				count: 4L
+			}]
+			rewards: [{
+				id: "50EA62ADEE5F8ED2"
+				type: "item"
+				item: "create:fluid_pipe"
+				count: 8
+			}]
+		}
+		{
+			title: "机械合成阵列 (Mechanical Crafter Array)"
+			x: 12.0d
+			y: 2.0d
+			description: [
+				"机械工匠可以自动化需要特定网格模式的复杂合成配方。"
+				"建造一个阵列，用它来自动合成精密机制、高级组件和模组材料。"
+			]
+			dependencies: ["0000000000004007"]
+			id: "0000000000004016"
+			tasks: [{
+				id: "0300F8B9897C1C96"
+				type: "item"
+				item: "create:mechanical_crafter"
+				count: 9L
+			}]
+			rewards: [
+				{
+					id: "2D0E30952081B877"
+					type: "item"
+					item: "create:precision_mechanism"
+				}
+				{
+					id: "62CD34E553991239"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+		{
+			title: "机械部署器"
+			x: 0.0d
+			y: 4.0d
+			description: [
+				"放置器就像机械手一样，能模拟右键和左键，让你完全自动化地放置、采集和合成。"
+				"希卡普用这个来自动给喂龙器喂鱼。"
+			]
+			id: "0000000000004020"
+			tasks: [{
+				id: "009D708F55A4F3E9"
+				type: "item"
+				item: "create:deployer"
+			}]
+			rewards: [{
+				id: "6E8E0EA3C85FBFCD"
+				type: "item"
+				item: "create:brass_hand"
+			}]
+		}
+		{
+			title: "机械化的丰收"
+			x: 2.0d
+			y: 4.0d
+			description: [
+				"将机械收割机连接到机械轴承装置上，它就会在旋转时自动收割作物。"
+				"再也不用手动刷怪了——交给机器来做。"
+			]
+			dependencies: ["0000000000004020"]
+			id: "0000000000004021"
+			tasks: [{
+				id: "58B123DF15E95D6D"
+				type: "item"
+				item: "create:mechanical_harvester"
+			}]
+			rewards: [{
+				id: "0FB931F31B4D214D"
+				type: "item"
+				item: "minecraft:wheat"
+				count: 32
+			}]
+		}
+		{
+			title: "机械装置轴承 (Contraption Bearing)"
+			x: 4.0d
+			y: 4.0d
+			description: [
+				"机械轴承能让整个装置旋转——风车、旋转门、轨道平台、旋转收割机。"
+				"放置方块、机器和部署器来建造复杂的自动化结构。"
+			]
+			dependencies: ["0000000000004020"]
+			id: "0000000000004022"
+			tasks: [{
+				id: "274E7AA9934F7D5B"
+				type: "item"
+				item: "create:mechanical_bearing"
+			}]
+			rewards: [{
+				id: "5401208D179DCBFE"
+				type: "item"
+				item: "create:sail_frame"
+				count: 8
+			}]
+		}
+		{
+			title: "绳索滑轮"
+			x: 6.0d
+			y: 4.0d
+			description: [
+				"绳索滑轮可将整个装置垂直升降——可用于制作电梯、矿井提升机和龙巢平台。"
+				"用旋转力驱动它，看着平台平稳地降落到你的基地里。"
+			]
+			id: "0000000000004023"
+			tasks: [{
+				id: "0091C311F21E99B1"
+				type: "item"
+				item: "create:rope_pulley"
+				count: 2L
+			}]
+			rewards: [{
+				id: "292469E8380D669E"
+				type: "item"
+				item: "minecraft:chain"
+				count: 16
+			}]
+		}
+		{
+			title: "伯克的第一座火车站"
+			x: 8.0d
+			y: 4.0d
+			description: [
+				"Create 的火车系统让你能建造完全定制的火车，在群岛各处铺设的轨道上运行。"
+				"建造一个火车站并铺设至少10节轨道以开始游戏。"
+			]
+			dependencies: ["0000000000004008"]
+			id: "0000000000004024"
+			tasks: [
+				{
+					id: "68EBD3DE3EFE5AA6"
+					type: "item"
+					item: "create:track"
+					count: 10L
+				}
+				{
+					id: "66D8E703D0F5F4B0"
+					type: "item"
+					item: "create:track_station"
+				}
+			]
+			rewards: [{
+				id: "17A4C42DA0A868B8"
+				type: "item"
+				item: "create:track"
+				count: 32
+			}]
+		}
+		{
+			title: "火车车厢"
+			x: 10.0d
+			y: 4.0d
+			description: [
+				"火车车厢轮组是创造火车车厢的轮子组件。"
+				"制作一个，作为伯克首个跨岛铁路快线的基石。"
+			]
+			dependencies: ["0000000000004024"]
+			id: "0000000000004025"
+			tasks: [{
+				id: "08FF04472A66A177"
+				type: "item"
+				item: "create:railway_casing"
+				count: 4L
+			}]
+			rewards: [
+				{
+					id: "784BFBDBEA5B2C20"
+					type: "item"
+					item: "create:schedule"
+				}
+				{
+					id: "74D9193B851E5175"
+					type: "item"
+					item: "create:track"
+					count: 64
+				}
+			]
+		}
+		{
+			title: "列车长的时刻表"
+			x: 12.0d
+			y: 4.0d
+			description: [
+				"自动化列车时刻表会告诉你的机车该去哪里、何时停车以及该做什么。"
+				"希卡普设计了一个时间表，让伯克快线在每次日出时运行。向他学习。"
+			]
+			dependencies: ["0000000000004025"]
+			id: "0000000000004026"
+			tasks: [{
+				id: "04B967A204CA695A"
+				type: "item"
+				item: "create:schedule"
+				count: 2L
+			}]
+			rewards: [
+				{
+					id: "107165A58203104A"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "575833CC43BBB519"
+					type: "item"
+					item: "create:linked_controller"
+				}
+			]
+		}
+		{
+			title: "智能物品分类器 (Smart Item Sorting)"
+			x: 0.0d
+			y: 6.0d
+			description: [
+				"智能滑道使用黄铜逻辑过滤物品——自动将龙鳞、铁块和食物分别送入不同的箱子。"
+				"设置过滤器，让机器处理你的劫掠后战利品。"
+			]
+			id: "0000000000004030"
+			tasks: [{
+				id: "477FCC0BE208C991"
+				type: "item"
+				item: "create:smart_chute"
+			}]
+			rewards: [{
+				id: "2067371298B0D029"
+				type: "item"
+				item: "create:electron_tube"
+				count: 2
+			}]
+		}
+		{
+			title: "机械臂"
+			x: 2.0d
+			y: 6.0d
+			description: [
+				"机械臂是Create中最灵活的自动化工具——它可以在机器、箱子、传送带和漏斗之间拾取和放置物品。"
+				"用单个机械臂完全自动化熔炼炉的进料和出料。"
+			]
+			id: "0000000000004031"
+			tasks: [{
+				id: "689D6FC615E11765"
+				type: "item"
+				item: "create:mechanical_arm"
+			}]
+			rewards: [{
+				id: "3D5F796504FC4592"
+				type: "item"
+				item: "create:brass_ingot"
+				count: 8
+			}]
+		}
+		{
+			title: "传动带 (Drive Belts)"
+			x: 4.0d
+			y: 6.0d
+			description: [
+				"机械传送带既能传递旋转动力，又能输送物品——它们是任何工厂的支柱。"
+				"用传送带将破碎机出口连接到熔炉入口。"
+			]
+			dependencies: ["0000000000004030"]
+			id: "0000000000004032"
+			tasks: [{
+				id: "0816A0AF81C2DF31"
+				type: "item"
+				item: "create:belt_connector"
+				count: 8L
+			}]
+			rewards: [{
+				id: "23C14E17A7F0FA66"
+				type: "item"
+				item: "minecraft:dried_kelp"
+				count: 32
+			}]
+		}
+		{
+			title: "蓝图与羽毛笔"
+			x: 6.0d
+			y: 6.0d
+			description: [
+				"Schematic & Quill 可以让你扫描并保存任何建筑——装置、机器，甚至整个工厂——为一个文件。"
+				"保存你最棒的设计，以便能立即在整个群岛中重新部署它们。"
+			]
+			id: "0000000000004033"
+			tasks: [{
+				id: "5E1CB2C30791ACF9"
+				type: "item"
+				item: "create:schematic_and_quill"
+			}]
+			rewards: [{
+				id: "6AEBB9064D779432"
+				type: "item"
+				item: "create:empty_schematic"
+				count: 4
+			}]
+		}
+		{
+			title: "齿轮箱网络"
+			x: 8.0d
+			y: 6.0d
+			description: [
+				"齿轮箱可将旋转动力分配到多个轴并重新定向。"
+				"建造一个完善的电网，将蒸汽机连接到破碎机、锯子和搅拌机。"
+			]
+			id: "0000000000004034"
+			tasks: [{
+				id: "52B1F5CA921896BC"
+				type: "item"
+				item: "create:gearbox"
+				count: 4L
+			}]
+			rewards: [{
+				id: "08E9CA0D96753C4F"
+				type: "item"
+				item: "create:shaft"
+				count: 8
+			}]
+		}
+		{
+			title: "封闭式风扇熔炼法"
+			x: 10.0d
+			y: 6.0d
+			description: [
+				"封闭风扇将空气吹过火柱，可批量熔炼或烹饪任何经过的物品。"
+				"在壁炉上方设置一个，用传送带输入物品。这能同时取代10个熔炉。"
+			]
+			id: "0000000000004035"
+			tasks: [{
+				id: "267745DDE7BC135F"
+				type: "item"
+				item: "create:encased_fan"
+				count: 2L
+			}]
+			rewards: [
+				{
+					id: "426D698599C9BC83"
+					type: "item"
+					item: "minecraft:iron_ingot"
+					count: 32
+				}
+				{
+					id: "23393EEF26FA615B"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+		{
+			title: "龙之骑手的黄金包"
+			x: 0.0d
+			y: 8.0d
+			description: [
+				"黄金背包是便携存储的巅峰——超大容量，精英升级槽位。"
+				"斯诺特劳特拒绝承认它的存在，因为他尝试制作它时失败了三次。"
+			]
+			id: "0000000000004040"
+			tasks: [{
+				id: "6EA4B52101EEAC70"
+				type: "item"
+				item: "sophisticatedbackpacks:gold_backpack"
+			}]
+			rewards: [{
+				id: "101FCF6B793072A5"
+				type: "item"
+				item: "sophisticatedbackpacks:upgrade_base"
+				count: 4
+			}]
+		}
+		{
+			title: "移动中自动熔炼开启"
+			x: 2.0d
+			y: 8.0d
+			description: [
+				"背包上的熔炼升级功能会在你收集矿石时自动将其熔炼。"
+				"再也不用担心背包塞满生铁了——它会直接就地转换成铁锭。"
+			]
+			dependencies: ["0000000000004040"]
+			id: "0000000000004041"
+			tasks: [{
+				id: "43DF51B5E460DB6D"
+				type: "item"
+				item: "sophisticatedbackpacks:smelting_upgrade"
+			}]
+			rewards: [{
+				id: "01D2CFF07BD16FBB"
+				type: "item"
+				item: "minecraft:iron_ingot"
+				count: 16
+			}]
+		}
+		{
+			title: "虚空废料"
+			x: 4.0d
+			y: 8.0d
+			description: [
+				"虚空升级会删除进入背包的不需要物品——砾石、泥土、腐肉。"
+				"保持物品栏整洁，无需停下脚步丢弃物品。"
+			]
+			dependencies: ["0000000000004040"]
+			id: "0000000000004042"
+			tasks: [{
+				id: "4701F5834FC2A3BB"
+				type: "item"
+				item: "sophisticatedbackpacks:void_upgrade"
+			}]
+			rewards: [{
+				id: "3986DACAF0C7DF70"
+				type: "item"
+				item: "minecraft:obsidian"
+				count: 8
+			}]
+		}
+		{
+			title: "自动补货"
+			x: 6.0d
+			y: 8.0d
+			description: [
+				"补给升级会将物品直接从背包拉到快捷栏，供你随时使用。"
+				"建造塔楼时切勿中途停下手动补充物品。"
+			]
+			dependencies: ["0000000000004040"]
+			id: "0000000000004043"
+			tasks: [{
+				id: "49F0503D5A98DE85"
+				type: "item"
+				item: "sophisticatedbackpacks:restock_upgrade"
+			}]
+			rewards: [{
+				id: "661E9F382DBDFF78"
+				type: "item"
+				item: "minecraft:chest"
+				count: 3
+			}]
+		}
+		{
+			title: "伯克工厂 — 在线版"
+			x: 8.0d
+			y: 8.0d
+			description: [
+				"伯克的工业革命已经完成了。"
+				"你的工厂现在能自动挖矿、双倍出矿石、整理战利品，还能喂养你的飞龙。"
+				"将一摞黄铜锭作为贡品献给希卡普的遗产——群岛的工程学天才。"
+			]
+			dependencies: [
+				"0000000000004016"
+				"0000000000004035"
+				"0000000000004026"
+			]
+			id: "0000000000004050"
+			tasks: [{
+				id: "4B7137CE718BCBB6"
+				type: "item"
+				item: "create:brass_ingot"
+				count: 64L
+			}]
+			rewards: [
+				{
+					id: "786B53A85B28664D"
+					type: "xp_levels"
+					xp_levels: 20
+				}
+				{
+					id: "2DDC04DC94139274"
+					type: "item"
+					item: "create:precision_mechanism"
+					count: 4
+				}
+				{
+					id: "52A56FF0EC406239"
+					type: "item"
+					item: "minecraft:netherite_ingot"
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+}
