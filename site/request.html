@@ -303,14 +303,15 @@ input::placeholder, textarea::placeholder { color: var(--ink-faint); }
 #admin-section h2::before { background: var(--unmirror); }
 #admin-gate { margin-top: 18px; padding-top: 18px; border-top: 4px dashed var(--sh); }
 .gate-label { display: block; font-size: 12px; color: var(--ink-dim); margin-bottom: 8px; letter-spacing: .04em; }
-#admin-models { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
-#admin-models label {
+#admin-models, #admin-records { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+#admin-models label, #admin-records label {
   display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
   font-size: 12.5px; padding: 8px 11px; color: var(--ink); background: var(--slot);
   box-shadow: inset 3px 3px 0 0 var(--sh), inset -3px -3px 0 0 var(--hl);
 }
-#admin-models label:has(input:checked) { background: var(--gold); color: #14120e; }
-#admin-models input { width: 15px; height: 15px; accent-color: var(--gold); }
+#admin-models label:has(input:checked), #admin-records label:has(input:checked) { background: var(--gold); color: #14120e; }
+#admin-models input, #admin-records input { width: 15px; height: 15px; accent-color: var(--gold); }
+.admin-block { margin-top: 18px; padding-top: 18px; border-top: 4px dashed var(--sh); }
 .check-row { display: flex; align-items: center; gap: 9px; font-size: 13px; margin-bottom: 16px; color: var(--ink-dim); }
 .check-row input { width: 16px; height: 16px; accent-color: var(--gold); }
 .muted { color: var(--ink-dim); font-size: 12.5px; }
@@ -447,6 +448,36 @@ input::placeholder, textarea::placeholder { color: var(--ink-faint); }
           一键触发翻译
         </button>
       </div>
+
+      <div class="admin-block">
+        <span class="gate-label">翻译设置（LLM 供应商）</span>
+        <div class="field">
+          <label for="llm-base-url">供应商地址</label>
+          <span class="slot"><input id="llm-base-url" type="text" autocomplete="off" spellcheck="false" placeholder="https://api.example.com/v1"></span>
+        </div>
+        <div class="field">
+          <label for="llm-key">LLM Key</label>
+          <span class="slot"><input id="llm-key" type="password" autocomplete="off" placeholder="留空沿用已保存的 Key"></span>
+        </div>
+        <div class="field">
+          <label for="llm-model">模型名</label>
+          <span class="slot"><input id="llm-model" type="text" autocomplete="off" spellcheck="false" placeholder="模型 id"></span>
+        </div>
+        <div class="row-actions">
+          <button class="btn ghost" type="button" id="llm-save">保存翻译设置</button>
+        </div>
+        <p class="hint" id="llm-hint">翻译机器翻译时从这里取用；主机侧需重启才生效。</p>
+      </div>
+
+      <div class="admin-block">
+        <span class="gate-label">清除队列记录</span>
+        <div id="admin-records" role="group" aria-label="选择要清除的队列记录"></div>
+        <label class="check-row"><input type="checkbox" id="records-all"> 全选</label>
+        <div class="row-actions">
+          <button class="btn ghost" type="button" id="records-clear">清除所选</button>
+        </div>
+        <p class="hint">清除只删队列登记，不影响正在翻译的包与已入库产物。</p>
+      </div>
     </div>
   </section>
 
@@ -528,7 +559,8 @@ const WORKER_URL = 'https://quest-i18n-api.wqclo.workers.dev';
     "翻译中": { state: "translating", label: "翻译中" },
     "已完成": { state: "done", label: "已完成" },
     "镜像缺失": { state: "unmirrored", label: "镜像缺失" },
-    "失败": { state: "failed", label: "失败" }
+    "失败": { state: "failed", label: "失败" },
+    "已在库": { state: "done", label: "已在库" }
   };
 
   function statusBadge(status) {
@@ -564,12 +596,15 @@ const WORKER_URL = 'https://quest-i18n-api.wqclo.workers.dev';
 
   function renderQueue(data) {
     var list = (data && data.entries) || [];
+    lastQueue = list;
     $("#queue-meta").textContent = list.length ? "共 " + list.length + " 条" : "";
     if (!list.length) {
       $("#queue-list").innerHTML = '<div class="empty">队列还是空的，来提交第一个吧。</div>';
-      return;
+    } else {
+      $("#queue-list").innerHTML = list.map(itemHTML).join("");
     }
-    $("#queue-list").innerHTML = list.map(itemHTML).join("");
+    // 管理区已解锁时同步刷新「清除记录」清单
+    if (adminPass && !$("#admin-gate").hidden) renderAdminRecords();
   }
 
   function loadQueue() {
@@ -641,8 +676,9 @@ const WORKER_URL = 'https://quest-i18n-api.wqclo.workers.dev';
       });
   });
 
-  // ---------- 管理区（维护者门禁 + 一键触发） ----------
+  // ---------- 管理区（维护者门禁 + 一键触发 + 翻译设置 + 记录清除） ----------
   var adminPass = "";
+  var lastQueue = [];
 
   function showAdmin(kind, message, extra) {
     var el = $("#admin-result");
@@ -682,9 +718,11 @@ const WORKER_URL = 'https://quest-i18n-api.wqclo.workers.dev';
       .then(function (res) {
         if (res.ok && res.data.success) {
           adminPass = pass;
-          $("#admin-gate").hidden = false; // 口令通过后才渲染模型多选
+          $("#admin-gate").hidden = false; // 口令通过后才渲染模型多选与管理面板
           $("#admin-result").hidden = true;
           loadModels();
+          loadLlmSettings();
+          renderAdminRecords();
         } else {
           showAdmin("err", (res.data && res.data.error) || "口令不正确。");
         }
@@ -722,6 +760,110 @@ const WORKER_URL = 'https://quest-i18n-api.wqclo.workers.dev';
         }
       })
       .catch(function () { showAdmin("err", "网络错误，触发失败，请稍后重试。"); })
+      .finally(function () { btn.disabled = false; });
+  });
+
+  // ---------- 翻译设置（KV：llm-settings，Key 打码） ----------
+  function loadLlmSettings() {
+    fetch(WORKER_URL + "/admin/llm-settings", { headers: { "X-Passphrase": adminPass } })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (!data || !data.success) {
+          showAdmin("err", (data && data.error) || "无法读取翻译设置。");
+          return;
+        }
+        var s = data.settings || {};
+        $("#llm-base-url").value = s.baseUrl || "";
+        $("#llm-model").value = s.model || "";
+        $("#llm-key").value = "";
+        $("#llm-key").placeholder = s.keyMasked
+          ? "已保存 " + s.keyMasked + "（留空沿用）"
+          : "留空沿用已保存的 Key";
+        $("#llm-hint").textContent = "翻译机器翻译时从这里取用；主机侧需重启才生效。"
+          + (s.updatedAt ? "（上次保存：" + fmtTime(s.updatedAt) + "）" : "");
+      })
+      .catch(function () { showAdmin("err", "网络错误，无法读取翻译设置。"); });
+  }
+
+  $("#llm-save").addEventListener("click", function () {
+    var btn = $("#llm-save");
+    btn.disabled = true;
+    fetch(WORKER_URL + "/admin/llm-settings", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Passphrase": adminPass },
+      body: JSON.stringify({
+        baseUrl: $("#llm-base-url").value.trim(),
+        key: $("#llm-key").value.trim(),
+        model: $("#llm-model").value.trim()
+      })
+    })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
+      .then(function (res) {
+        if (res.ok && res.data.success) {
+          var s = res.data.settings || {};
+          $("#llm-key").value = "";
+          $("#llm-key").placeholder = s.keyMasked ? "已保存 " + s.keyMasked + "（留空沿用）" : "留空沿用已保存的 Key";
+          showAdmin("ok", "翻译设置已保存。", s.model ? "模型：" + s.model : "");
+        } else {
+          showAdmin("err", (res.data && res.data.error) || "保存失败，请稍后重试。");
+        }
+      })
+      .catch(function () { showAdmin("err", "网络错误，保存失败。"); })
+      .finally(function () { btn.disabled = false; });
+  });
+
+  // ---------- 清除队列记录（可多选 / 全选，二次确认） ----------
+  function renderAdminRecords() {
+    var box = $("#admin-records");
+    if (!lastQueue.length) {
+      box.innerHTML = '<span class="muted">队列当前为空。</span>';
+      $("#records-all").checked = false;
+      return;
+    }
+    box.innerHTML = lastQueue.map(function (e) {
+      var name = e.name || e.id || "未知";
+      var st = STATUS_META[e.status] ? STATUS_META[e.status].label : (e.status || "未知");
+      return '<label><input type="checkbox" class="record-check" value="' + esc(e.id) + '">'
+        + esc(name) + "（" + esc(st) + "）</label>";
+    }).join("");
+    $("#records-all").checked = false;
+  }
+
+  $("#records-all").addEventListener("change", function () {
+    var on = $("#records-all").checked;
+    Array.prototype.forEach.call(document.querySelectorAll("#admin-records .record-check"), function (el) {
+      el.checked = on;
+    });
+  });
+
+  $("#records-clear").addEventListener("click", function () {
+    var ids = Array.prototype.map.call(
+      document.querySelectorAll("#admin-records .record-check:checked"),
+      function (el) { return el.value; }
+    );
+    if (!ids.length) {
+      showAdmin("err", "先勾选要清除的记录。");
+      return;
+    }
+    // 二次确认（决策 #16）：不可恢复，必须确认
+    if (!window.confirm("确定清除所选 " + ids.length + " 条队列记录吗？此操作不可恢复。")) return;
+    var btn = $("#records-clear");
+    btn.disabled = true;
+    fetch(WORKER_URL + "/admin/clear-records", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Passphrase": adminPass },
+      body: JSON.stringify({ ids: ids })
+    })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
+      .then(function (res) {
+        if (res.ok && res.data.success) {
+          showAdmin("ok", "已清除 " + res.data.count + " 条记录。");
+          loadQueue();
+        } else {
+          showAdmin("err", (res.data && res.data.error) || "清除失败，请稍后重试。");
+        }
+      })
+      .catch(function () { showAdmin("err", "网络错误，清除失败。"); })
       .finally(function () { btn.disabled = false; });
   });
 
