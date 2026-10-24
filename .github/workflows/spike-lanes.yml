@@ -1,0 +1,76 @@
+name: spike-lanes
+
+# 一次性实验：测「CI 上跑 translate-local（N 路并发）」的可行性与速度。
+#
+# 为什么需要它：线上 translate.yml 走的是 `scripts/pipeline.mjs`（串行），
+# 它**没有 lanes 参数**，一个包翻完再翻下一个 —— 所以「840s 超时」是结构性必然，
+# 跟机器快慢无关。主机侧用的是 `translate-local.mjs --lanes N`（同一包内并发请求）。
+# 本工作流就是为了拿到 CI 上这条路径的真实数字，再决定 CI 到底还该不该承担翻译。
+#
+# 不推送、不写回状态：只产出 patches/ 并在日志里打时间，纯测量。
+on:
+  workflow_dispatch:
+    inputs:
+      ids:
+        description: '一个或多个 slug，逗号分隔（建议挑中小包，别用几百 MB 的）'
+        required: true
+        type: string
+      lanes:
+        description: '并发路数（1 = 完全串行，用来做对照）'
+        required: false
+        default: '96'
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  spike:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci || npm install
+
+      - name: 记录环境
+        run: |
+          echo "runner: $(nproc) vCPU / $(free -g | awk '/^Mem:/{print $2}') GB RAM"
+          df -h / | tail -1
+          node -v
+
+      - name: Prepare packs
+        run: |
+          /usr/bin/time -f "prepare 耗时 %E" \
+            node scripts/prepare-pack.mjs --ids "${{ inputs.ids }}"
+        env:
+          CF_KEY: ${{ secrets.CF_KEY }}
+
+      - name: Translate (lanes=${{ inputs.lanes }})
+        run: |
+          START=$(date +%s)
+          /usr/bin/time -f "translate 耗时 %E / 峰值内存 %M KB" \
+            node scripts/translate-local.mjs \
+              --slug "${{ inputs.ids }}" \
+              --lanes "${{ inputs.lanes }}" \
+              --limit 99
+          echo "TOTAL_SECONDS=$(( $(date +%s) - START ))" | tee -a "$GITHUB_STEP_SUMMARY"
+        env:
+          CF_KEY: ${{ secrets.CF_KEY }}
+          LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          LLM_MODELS: ${{ secrets.LLM_MODELS || '' }}
+          FREE_TIER_ENABLED: ${{ secrets.FREE_TIER_ENABLED || '1' }}
+          FREE_TIER_BASE_URL: ${{ secrets.FREE_TIER_BASE_URL }}
+          FREE_TIER_MODEL: ${{ secrets.FREE_TIER_MODEL }}
+
+      - name: 结果摘要
+        if: always()
+        run: |
+          echo '### lanes=${{ inputs.lanes }} · ids=${{ inputs.ids }}' >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          ls -d patches/*/ 2>/dev/null | wc -l | xargs -I{} echo "产出包数: {}" >> "$GITHUB_STEP_SUMMARY"
+          du -sh patches 2>/dev/null >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
