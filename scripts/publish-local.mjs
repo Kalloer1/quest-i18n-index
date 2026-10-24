@@ -312,7 +312,14 @@ const lost = []
 // 残留只可能来自同一分支的同名文件，restore 会覆盖；真缺文件的包由闸门拦下。
 const perBranch = {}
 for (const [slug, item] of Object.entries(plan.bySlug)) {
-  const paths = [...item.patchPaths, item.baselinePath].filter(Boolean)
+  // 基准源：main 上已经有这个归档时**不要**用分支的覆盖。
+  // 2026-10-24 实测：Phase 5 修好的 8 个源（空键/引号/缺花括号）被本机重新打过档并入库，
+  // 而 farm 分支上留着的还是修复前的坏档 —— 收批时按 baselinePath 无条件 restore，
+  // 三个包（bloom-beyond / forge-and-fortify / furnace-to-singularity）的坏档又盖了回去，
+  // 下一轮 Deploy 的 `validate-quests` 直接红（3/1718 不可解析）。
+  // 闸门的基准键集本来就以 main 为准（CI 只读 main），所以这里保留 main 的版本。
+  const keepBranchBaseline = item.baselinePath && !gitTry(['cat-file', '-e', `origin/main:${item.baselinePath}`])
+  const paths = [...item.patchPaths, keepBranchBaseline ? item.baselinePath : null].filter(Boolean)
   ;(perBranch[item.branch] ??= []).push({ slug, paths })
 }
 for (const [h, items] of Object.entries(perBranch)) {
