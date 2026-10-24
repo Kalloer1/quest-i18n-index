@@ -478,6 +478,15 @@ input::placeholder, textarea::placeholder { color: var(--ink-faint); }
         </div>
         <p class="hint">清除只删队列登记，不影响正在翻译的包与已入库产物。</p>
       </div>
+
+      <div class="admin-block">
+        <span class="gate-label">下载开关（GitHub 直链）</span>
+        <label class="check-row"><input type="checkbox" id="dl-github-enabled"> 启用 GitHub 直链下载</label>
+        <div class="row-actions">
+          <button class="btn ghost" type="button" id="dl-save">保存下载开关</button>
+        </div>
+        <p class="hint" id="dl-hint">关闭后站点隐藏 GitHub 直链按钮、只显示夸克镜像，立即生效、无需重新部署。Worker 不可达时站点默认显示 GitHub 直链（fail-open）。</p>
+      </div>
     </div>
   </section>
 
@@ -723,6 +732,7 @@ const WORKER_URL = 'https://quest-i18n-api.wqclo.workers.dev';
           loadModels();
           loadLlmSettings();
           renderAdminRecords();
+          loadDownloadSettings();
         } else {
           showAdmin("err", (res.data && res.data.error) || "口令不正确。");
         }
@@ -804,6 +814,42 @@ const WORKER_URL = 'https://quest-i18n-api.wqclo.workers.dev';
           $("#llm-key").value = "";
           $("#llm-key").placeholder = s.keyMasked ? "已保存 " + s.keyMasked + "（留空沿用）" : "留空沿用已保存的 Key";
           showAdmin("ok", "翻译设置已保存。", s.model ? "模型：" + s.model : "");
+        } else {
+          showAdmin("err", (res.data && res.data.error) || "保存失败，请稍后重试。");
+        }
+      })
+      .catch(function () { showAdmin("err", "网络错误，保存失败。"); })
+      .finally(function () { btn.disabled = false; });
+  });
+
+  // ---------- 下载开关（KV：download-settings，GitHub 直链全局开关） ----------
+  function loadDownloadSettings() {
+    fetch(WORKER_URL + "/admin/download-settings", { headers: { "X-Passphrase": adminPass } })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (!data || !data.success) {
+          showAdmin("err", (data && data.error) || "无法读取下载开关。");
+          return;
+        }
+        $("#dl-github-enabled").checked = data.settings.githubDownloads !== false;
+        $("#dl-hint").textContent = "关闭后站点隐藏 GitHub 直链按钮、只显示夸克镜像，立即生效、无需重新部署。"
+          + (data.settings.updatedAt ? "（上次修改：" + fmtTime(data.settings.updatedAt) + "）" : "");
+      })
+      .catch(function () { showAdmin("err", "网络错误，无法读取下载开关。"); });
+  }
+
+  $("#dl-save").addEventListener("click", function () {
+    var btn = $("#dl-save");
+    btn.disabled = true;
+    fetch(WORKER_URL + "/admin/download-settings", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Passphrase": adminPass },
+      body: JSON.stringify({ githubDownloads: $("#dl-github-enabled").checked })
+    })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
+      .then(function (res) {
+        if (res.ok && res.data.success) {
+          showAdmin("ok", "下载开关已保存：" + (res.data.settings.githubDownloads ? "GitHub 直链已启用。" : "GitHub 直链已关闭，站点只显示夸克镜像。"));
         } else {
           showAdmin("err", (res.data && res.data.error) || "保存失败，请稍后重试。");
         }

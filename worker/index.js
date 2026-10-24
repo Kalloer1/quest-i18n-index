@@ -12,6 +12,8 @@
  * 6. GET  /models  代理网关 /models，返回实时模型 id 列表（公开；不含任何秘密）
  * 7. POST /admin/clear-records       管理区清除队列记录（口令；ids 数组或 all:true）
  * 8. GET/POST /admin/llm-settings    管理区翻译设置：供应商地址 / Key（打码）/ 模型（口令）
+ * 9. GET  /settings                  公开返回下载开关 { githubDownloads }（KV download-settings，默认 true）
+ * 10. GET/POST /admin/download-settings 管理区下载开关读写（口令）
  *
  * 状态权威源是 KV；腾讯文档类镜像由后续工单接入，任何失败都不阻断主流程。
  *
@@ -44,6 +46,11 @@ import {
   clientIp,
 } from '../shared/submit-limit.mjs'
 import { verifyPassphrase, parseModelsInput } from '../shared/gate.mjs'
+import {
+  DOWNLOAD_SETTINGS_KEY,
+  DEFAULT_DOWNLOAD_SETTINGS,
+  normalizeDownloadSettings,
+} from '../shared/download-settings.mjs'
 import {
   SUBMIT_DEDUP_TTL_SECONDS,
   submitDedupKey,
@@ -644,6 +651,41 @@ async function handleAdminLlmSettings(request, env, origin) {
   )
 }
 
+/**
+ * GET /settings —— 公开返回下载开关（决策 #8）。站点运行时 fetch 它决定是否渲染 GitHub 直链。
+ * 无需鉴权：值本身无敏感性；读不到/非法时 fail-open（默认开）。
+ */
+async function handleSettings(env, origin) {
+  const saved = await env.TRANSLATION_QUEUE.get(DOWNLOAD_SETTINGS_KEY, 'json').catch(() => null)
+  return json(normalizeDownloadSettings(saved), 200, origin)
+}
+
+/**
+ * GET/POST /admin/download-settings —— 管理区「下载开关」面板（决策 #8）。
+ * GET 返回当前值；POST body `{ githubDownloads: boolean }` 全量写 KV。
+ */
+async function handleAdminDownloadSettings(request, env, origin) {
+  const denied = requirePassphrase(request, env, origin)
+  if (denied) return denied
+
+  if (request.method === 'GET') {
+    const saved = await env.TRANSLATION_QUEUE.get(DOWNLOAD_SETTINGS_KEY, 'json').catch(() => null)
+    return json(
+      { success: true, settings: normalizeDownloadSettings(saved), defaults: DEFAULT_DOWNLOAD_SETTINGS },
+      200,
+      origin,
+    )
+  }
+
+  const body = await request.json().catch(() => null)
+  if (!body || typeof body !== 'object' || typeof body.githubDownloads !== 'boolean') {
+    return json({ error: '需要 { githubDownloads: boolean }' }, 400, origin)
+  }
+  const next = { githubDownloads: body.githubDownloads, updatedAt: new Date().toISOString() }
+  await env.TRANSLATION_QUEUE.put(DOWNLOAD_SETTINGS_KEY, JSON.stringify(next))
+  return json({ success: true, settings: normalizeDownloadSettings(next) }, 200, origin)
+}
+
 // ---------- 入口 ----------
 
 export default {
@@ -707,6 +749,16 @@ export default {
       if (pathname === '/admin/llm-settings') {
         if (request.method !== 'GET' && request.method !== 'POST') return json({ error: 'Method not allowed' }, 405, origin)
         return await handleAdminLlmSettings(request, env, origin)
+      }
+
+      if (pathname === '/settings') {
+        if (request.method !== 'GET') return json({ error: 'Method not allowed' }, 405, origin)
+        return await handleSettings(env, origin)
+      }
+
+      if (pathname === '/admin/download-settings') {
+        if (request.method !== 'GET' && request.method !== 'POST') return json({ error: 'Method not allowed' }, 405, origin)
+        return await handleAdminDownloadSettings(request, env, origin)
       }
 
       return json({ error: 'Not found' }, 404, origin)

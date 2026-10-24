@@ -703,6 +703,29 @@ code { background: var(--slot); padding: 1px 5px; font-size: .94em; box-shadow: 
   var M = D.meta;
   var PACKS = D.packs;
 
+  // Worker API 地址（与 request.html 的 WORKER_URL 同源）：运行时 fetch 下载开关用。
+  var WORKER_URL = "https://quest-i18n-api.wqclo.workers.dev";
+
+  // GitHub 直链全局开关（决策 #8）：KV download-settings，默认开。
+  // 运行时 fetch Worker 是让开关「立即生效」的唯一方式（站点是静态页，改 KV 不用重新部署）；
+  // fetch 失败 fail-open（什么都不做 = GitHub 直链照常显示），绝不因 Worker 抖动藏掉下载入口。
+  var settingsPromise = null;
+  function fetchSettings() {
+    if (!settingsPromise) {
+      settingsPromise = fetch(WORKER_URL + "/settings")
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .catch(function () { return null; });
+    }
+    return settingsPromise;
+  }
+  function applyGithubSwitch(root) {
+    fetchSettings().then(function (s) {
+      // 关闭且明确是布尔 false 才隐藏；null / 缺字段（读失败）一律保持显示。
+      if (!s || s.githubDownloads !== false) return;
+      root.querySelectorAll("#dl-zip").forEach(function (el) { el.remove(); });
+    });
+  }
+
   var $ = function (s) { return document.querySelector(s); };
   var esc = function (s) {
     return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
@@ -1178,6 +1201,8 @@ code { background: var(--slot); padding: 1px 5px; font-size: .94em; box-shadow: 
     }
 
     $("#view-detail").innerHTML = h;
+    // GitHub 直链开关（决策 #8）：异步读全局设置，关闭时移除 GitHub 直链按钮（fail-open）。
+    applyGithubSwitch($("#view-detail"));
   }
 
   // ---------- 关于 ----------
