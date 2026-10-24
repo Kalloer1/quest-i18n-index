@@ -1,0 +1,657 @@
+# AI 初翻，未人工校对
+{
+	autofocus_id: "0E206952DB226B11"
+	default_hide_dependency_lines: false
+	default_quest_shape: "circle"
+	filename: "create_chapter_ii"
+	group: "02AD8609A8FE6EE4"
+	icon: {
+		Count: 1
+		id: "create:brass_casing"
+		tag: { }
+	}
+	id: "4D68873C4929A08D"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["3F7988BC5FEC3080"]
+			description: [
+				"欢迎来到第二章：黄铜、加工与自动化。"
+				""
+				"从这里开始，Create 就不再是“酷炫的旋转方块”，而变成了一个工厂。"
+				""
+				"&7提示：遇到不明白的东西就用Ponder。Create的说明比大多数模组都清晰易懂。"
+			]
+			disable_toast: true
+			icon: {
+				Count: 1
+				id: "create:brass_casing"
+				tag: { }
+			}
+			id: "0E206952DB226B11"
+			rewards: [
+				{
+					id: "1E6471DD571670ED"
+					type: "xp"
+					xp: 150
+				}
+				{
+					count: 4
+					id: "5F95401F25965486"
+					item: "create:brass_ingot"
+					type: "item"
+				}
+			]
+			shape: "pentagon"
+			size: 1.5d
+			subtitle: "从旋转……到生产。"
+			tasks: [{
+				id: "6118C84F530A567E"
+				item: "create:brass_ingot"
+				type: "item"
+			}]
+			title: "&6创建：&e第二章 — 黄铜与自动化"
+			x: -6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0E206952DB226B11"]
+			description: [
+				"黄铜弹壳可以解锁创造模组的一大堆“更智能”的组件。"
+				""
+				"如果能稳定制作黄铜，其他一切都能随之扩展。"
+			]
+			id: "702CB3DE8D07A911"
+			rewards: [
+				{
+					id: "0DD5FE65130BD4C7"
+					type: "xp"
+					xp: 75
+				}
+				{
+					count: 2
+					id: "25C610E0DCF46042"
+					item: "create:brass_sheet"
+					type: "item"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "6A87F023C0C03C79"
+					table_id: 4935671014145890216L
+					type: "loot"
+				}
+			]
+			subtitle: "升级路径由此开始"
+			tasks: [{
+				id: "3D85B0AB20F36E20"
+				item: "create:brass_casing"
+				type: "item"
+			}]
+			title: "黄铜外壳"
+			x: -4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["702CB3DE8D07A911"]
+			description: [
+				"盆是Create中用于混合和压制的主要合成/工作台容器。"
+				""
+				"大多数处理链都从这里开始。"
+			]
+			id: "05C2582933CC4183"
+			rewards: [
+				{
+					id: "4DF106F6FC5C5DDF"
+					type: "xp"
+					xp: 75
+				}
+				{
+					exclude_from_claim_all: true
+					id: "28778120ECE7708C"
+					table_id: 4935671014145890216L
+					type: "loot"
+				}
+			]
+			subtitle: "配方生成的地方"
+			tasks: [{
+				id: "7E8E84A69DE48638"
+				item: "create:basin"
+				type: "item"
+			}]
+			title: "盆地"
+			x: -2.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["05C2582933CC4183"]
+			description: [
+				"机械压机负责处理压缩和压制配方。"
+				""
+				"搭配 Basin 和 Depot 实现早期自动化。"
+			]
+			id: "4B31732E1891CE2F"
+			rewards: [
+				{
+					id: "56020BD75C929D5E"
+					type: "xp"
+					xp: 100
+				}
+				{
+					count: 4
+					id: "67150F1A30D1DD47"
+					item: "create:iron_sheet"
+					type: "item"
+				}
+			]
+			subtitle: "粉碎，踩踏，压缩"
+			tasks: [{
+				id: "7EA796A6EA60E1FF"
+				item: "create:mechanical_press"
+				type: "item"
+			}]
+			title: "机械压榨机"
+			x: 0.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["05C2582933CC4183"]
+			description: [
+				"机械搅拌机在盆中进行混合配方。"
+				""
+				"加入物品传输装置（漏斗/滑槽）后，你就可以批量生产组件了。"
+			]
+			id: "2FE0D1FA5A5B11F0"
+			rewards: [
+				{
+					id: "7FD2057F5C409B3C"
+					type: "xp"
+					xp: 100
+				}
+				{
+					exclude_from_claim_all: true
+					id: "1E5C69D9E47D7491"
+					table_id: 4935671014145890216L
+					type: "loot"
+				}
+			]
+			subtitle: "批量合成的核心所在"
+			tasks: [{
+				id: "3C2DFC5577AB930C"
+				item: "create:mechanical_mixer"
+				type: "item"
+			}]
+			title: "机械搅拌机"
+			x: 0.0d
+			y: 1.0d
+		}
+		{
+			dependencies: [
+				"4B31732E1891CE2F"
+				"2FE0D1FA5A5B11F0"
+			]
+			dependency_requirement: "one_completed"
+			description: [
+				"Depot 是一种用于压机、部署器等的“单物品工作站”。"
+				""
+				"这样早期的自动化比把物品扔在地上要干净得多。"
+			]
+			id: "7A7D9B83B6A5EDD3"
+			rewards: [
+				{
+					id: "0E39786CA9934978"
+					type: "xp"
+					xp: 75
+				}
+				{
+					exclude_from_claim_all: true
+					id: "07B87F6CE42365BF"
+					table_id: 3283448521356161865L
+					type: "loot"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "2C8DEF3C3173E912"
+					table_id: 3964824304375825551L
+					type: "loot"
+				}
+			]
+			subtitle: "一个整洁的加工站"
+			tasks: [{
+				id: "0CF9FA4E1CF51A3D"
+				item: "create:depot"
+				type: "item"
+			}]
+			title: "Depot"
+			x: 2.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["7A7D9B83B6A5EDD3"]
+			description: [
+				"黄铜漏斗比安山岩漏斗更聪明。"
+				""
+				"它们可以用红石切换，并支持更精确的线路规划。"
+			]
+			id: "3C211EA28702DB17"
+			rewards: [
+				{
+					id: "7A780A920AED7481"
+					type: "xp"
+					xp: 75
+				}
+				{
+					exclude_from_claim_all: true
+					id: "054AF30DC50E7B07"
+					table_id: 3283448521356161865L
+					type: "loot"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "291B3B4BCA81C5D1"
+					table_id: 3964824304375825551L
+					type: "loot"
+				}
+			]
+			subtitle: "更智能的物品路由系统"
+			tasks: [{
+				id: "3EB095D4DBD5EAFB"
+				item: "create:brass_funnel"
+				type: "item"
+			}]
+			title: "黄铜漏斗"
+			x: 2.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["3C211EA28702DB17"]
+			description: [
+				"过滤器可以让你控制物品的移动方向。"
+				""
+				"用漏斗、滑槽，以及后来的机械臂来使用它们。"
+			]
+			id: "36E057C5BF62980B"
+			rewards: [
+				{
+					id: "48DF6EDDB9D4643B"
+					type: "xp"
+					xp: 75
+				}
+				{
+					exclude_from_claim_all: true
+					id: "1F024203509C28DD"
+					table_id: 3283448521356161865L
+					type: "loot"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "6EB27144008CD098"
+					table_id: 3964824304375825551L
+					type: "loot"
+				}
+			]
+			subtitle: "别再让混乱得逞了"
+			tasks: [{
+				id: "50A81D324AEE2F50"
+				item: "create:filter"
+				type: "item"
+			}]
+			title: "过滤器"
+			x: 4.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["36E057C5BF62980B"]
+			description: [
+				"滑道是最简单的“垂直”物品运输方式。"
+				""
+				"非常适合从上方喂食 Basin 或将物品投入传送带/储物箱装置中。"
+			]
+			id: "6A6A879E540155A1"
+			rewards: [
+				{
+					id: "6B1A71EE25D87DB1"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "11830A59B25AB2D5"
+					table_id: 3283448521356161865L
+					type: "loot"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "734479679DAB2B89"
+					table_id: 3964824304375825551L
+					type: "loot"
+				}
+			]
+			subtitle: "重力物流系统"
+			tasks: [{
+				id: "575528C259A36693"
+				item: "create:chute"
+				type: "item"
+			}]
+			title: "滑索入口"
+			x: 6.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["6A6A879E540155A1"]
+			description: [
+				"智能漏斗可以从物品栏中取物，并尊重过滤器。"
+				""
+				"这是实现自动化清洁生产最简单的升级之一。"
+			]
+			id: "076D4FDDF75FF928"
+			rewards: [
+				{
+					id: "09A1E5855BB39E5F"
+					type: "xp"
+					xp: 75
+				}
+				{
+					exclude_from_claim_all: true
+					id: "0998D001BBD0B00C"
+					table_id: 3283448521356161865L
+					type: "loot"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "2D625E647253F9BC"
+					table_id: 3964824304375825551L
+					type: "loot"
+				}
+			]
+			subtitle: "过滤重力"
+			tasks: [{
+				id: "1D888E4E0FDBA189"
+				item: "create:smart_chute"
+				type: "item"
+			}]
+			title: "智能滑道"
+			x: 8.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["702CB3DE8D07A911"]
+			description: [
+				"Encased Fans 支持多种 Create 处理模式。"
+				""
+				"一旦搭配正确的方块（以及后来的流体），它们就会变得荒谬可笑。"
+			]
+			id: "5EDA494F34443CC8"
+			rewards: [{
+				id: "752EF2634F939D58"
+				type: "xp"
+				xp: 75
+			}]
+			subtitle: "处理过程由此开始"
+			tasks: [{
+				id: "641E3DC2987108BA"
+				item: "create:encased_fan"
+				type: "item"
+			}]
+			title: "Encased Fan"
+			x: -2.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["702CB3DE8D07A911"]
+			description: [
+				"Clutch 可以用红石来开启/关闭旋转功能。"
+				""
+				"这就是阻止机器无限运行（或耗尽你的压力配额）的方法。"
+			]
+			id: "360905A059AE376A"
+			rewards: [
+				{
+					id: "43FF6348D6AA5FF1"
+					type: "xp"
+					xp: 75
+				}
+				{
+					exclude_from_claim_all: true
+					id: "2903D26B8437AF76"
+					table_id: 4935671014145890216L
+					type: "loot"
+				}
+			]
+			subtitle: "红石控制"
+			tasks: [{
+				id: "1A013D0FB386D38B"
+				item: "create:clutch"
+				type: "item"
+			}]
+			title: "抓紧了"
+			x: -4.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["702CB3DE8D07A911"]
+			description: [
+				"齿轮换挡器用红石来反转旋转方向。"
+				""
+				"这比听起来更重要——尤其是对装置和某些机器而言。"
+			]
+			id: "59851DB4318448D3"
+			rewards: [{
+				id: "59BC8D3C764AA54C"
+				type: "xp"
+				xp: 75
+			}]
+			subtitle: "通过命令进行反向操作"
+			tasks: [{
+				id: "27617AC8B1668C5C"
+				item: "create:gearshift"
+				type: "item"
+			}]
+			title: "齿轮换挡器"
+			x: -6.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["36E057C5BF62980B"]
+			description: [
+				"机械臂是Create的“真正”物流大脑。"
+				""
+				"它会根据过滤器在物品栏、传送带、仓库等之间移动物品。"
+			]
+			id: "385A80BD27B524C7"
+			rewards: [
+				{
+					id: "5869D48B4E2A564D"
+					type: "xp"
+					xp: 125
+				}
+				{
+					exclude_from_claim_all: true
+					id: "31E4703913380183"
+					table_id: 3283448521356161865L
+					type: "loot"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "71FCCFEF51FD8EC3"
+					table_id: 3964824304375825551L
+					type: "loot"
+				}
+			]
+			subtitle: "现在你自动化起来简直像个怪物一样"
+			tasks: [{
+				id: "09B60C8B6D2F3CD0"
+				item: "create:mechanical_arm"
+				type: "item"
+			}]
+			title: "机械臂"
+			x: 4.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["385A80BD27B524C7"]
+			description: [
+				"精密机械是创造模组最重要的进阶组件之一。"
+				""
+				"如果能自动化这些，你基本上就“成功”了，在创造模式中。"
+			]
+			id: "49168519EA66E77F"
+			rewards: [
+				{
+					id: "2A41587867723A8D"
+					type: "xp"
+					xp: 200
+				}
+				{
+					count: 2
+					id: "178F12A69F51503F"
+					item: "minecraft:gold_ingot"
+					random_bonus: 2
+					type: "item"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "5A3FC8103A7853AB"
+					table_id: 3283448521356161865L
+					type: "loot"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "2EC48F003CC191F2"
+					table_id: 3964824304375825551L
+					type: "loot"
+				}
+			]
+			shape: "gear"
+			size: 1.25d
+			subtitle: "“工厂已解锁”物品"
+			tasks: [{
+				id: "63085F828C5A06D9"
+				item: "create:precision_mechanism"
+				type: "item"
+			}]
+			title: "精密机械装置"
+			x: 6.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["49168519EA66E77F"]
+			description: [
+				"你已进入创造模式的中期循环："
+				""
+				"黄铜 → 加工 → 过滤 → 自动化控制。"
+				""
+				"从这里开始，缩放主要是布局加上压力管理的问题。"
+			]
+			id: "0B2BB277C3B0EA75"
+			rewards: [
+				{
+					id: "1600D28E21700D01"
+					type: "xp"
+					xp: 300
+				}
+				{
+					exclude_from_claim_all: true
+					id: "03FAEA13901602E5"
+					table_id: 3283448521356161865L
+					type: "loot"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "10F83FC8F356EB65"
+					table_id: 3964824304375825551L
+					type: "loot"
+				}
+			]
+			shape: "gear"
+			size: 1.35d
+			subtitle: "你正式运营一家工厂了。"
+			tasks: [{
+				id: "024E23F457E0B021"
+				title: "第二章里程碑已完成"
+				type: "checkmark"
+			}]
+			title: "工厂在线"
+			x: 8.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["49168519EA66E77F"]
+			description: [
+				"压碎轮是批量矿石加工的入口。"
+				""
+				"并非每次游玩都必须，但若围绕它建造，回报将非常丰厚。"
+			]
+			id: "6442E0A842AAF6FF"
+			optional: true
+			rewards: [
+				{
+					id: "32B2EC0BFB9625BC"
+					type: "xp"
+					xp: 150
+				}
+				{
+					exclude_from_claim_all: true
+					id: "1798AFBAA9741B0B"
+					table_id: 3283448521356161865L
+					type: "loot"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "6A8ABDB9FB5F5675"
+					table_id: 3964824304375825551L
+					type: "loot"
+				}
+			]
+			subtitle: "批量处理的能力"
+			tasks: [{
+				id: "45879C2F6050B273"
+				item: "create:crushing_wheel"
+				type: "item"
+			}]
+			title: "碾压轮（Crushing Wheel）"
+			x: 2.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["702CB3DE8D07A911"]
+			description: [
+				"砂纸是Create的抛光工具。"
+				""
+				"如果你的整合包使用抛光配方，那么这就是你的入口。"
+			]
+			id: "0BE32213BAB89710"
+			optional: true
+			rewards: [
+				{
+					id: "3DBAEB50C310B8AD"
+					type: "xp"
+					xp: 75
+				}
+				{
+					exclude_from_claim_all: true
+					id: "67D3BB80308BBFA1"
+					table_id: 4935671014145890216L
+					type: "loot"
+				}
+			]
+			subtitle: "打磨至尽善尽美"
+			tasks: [{
+				id: "179D30D9C8240DE1"
+				item: {
+					Count: 1
+					id: "create:sand_paper"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "砂纸 Sand Paper"
+			x: -2.0d
+			y: 4.0d
+		}
+	]
+	subtitle: ["中后期 Create 进度：黄铜、加工、过滤和自动化。"]
+	title: "&6创建&7—&e第二章"
+}
