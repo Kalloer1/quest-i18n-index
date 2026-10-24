@@ -51,6 +51,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, rmdirSync, rmSync, st
 import { fileURLToPath } from 'node:url'
 import { dirname, join, relative } from 'node:path'
 import { extractFromBuffer, isQuestFile, toOutputPath } from './extract-pack.mjs'
+import { parse } from './snbt.mjs'
 import { repairUnclosedStringLists, repairKeyInsideList, repairEmptyKeyEntries, repairNestedSingleQuotes, repairSlashComments, repairEmptyValueEntries, repairMissingCloseBrace, repairStrayQuoteInStringList } from './lib/snbt-repair.mjs'
 import { classifyLayout } from './lib/candidates.mjs'
 import { resolveLatestMrpack } from './lib/modrinth.mjs'
@@ -350,6 +351,15 @@ function repairSources(slug, outDir, written, log) {
     const dest = join(outDir, rel)
     if (!existsSync(dest)) continue
     const before = readFileSync(dest, 'utf8')
+    // 能 parse 的文件一律不碰 —— 修复规则是为「解析不过」准备的，不是改写器。
+    // 2026-10-24 审核实测：规则①/② 对合法多行字符串会误判，② 甚至能产出
+    // 「可 parse 但字符串内容被重排」的静默损坏。这一条守卫把整类风险挡在写盘之前。
+    try {
+      parse(before)
+      continue
+    } catch {
+      // 解析失败才进入修复链
+    }
     // 八种损坏可能并存，依次修。
     const a = repairUnclosedStringLists(before)
     const b = repairKeyInsideList(a.text)
@@ -361,6 +371,14 @@ function repairSources(slug, outDir, written, log) {
     const h2 = repairSlashComments(g2.text)
     const repaired = [...a.repaired, ...b.repaired, ...c.repaired, ...d.repaired, ...e2.repaired, ...f2.repaired, ...g2.repaired, ...h2.repaired]
     if (!repaired.length) continue
+    // 修完必须真的能解析，否则整文件回滚（一个字节不动）。
+    // 「改不活就当没改」是这套规则唯一的验收口径 —— 不能靠「看起来更像了」。
+    try {
+      parse(h2.text)
+    } catch (err) {
+      log(`[${slug}] 修复未生效，已回滚：${rel}（${String(err?.message ?? err).slice(0, 80)}）`)
+      continue
+    }
     writeFileSync(dest, h2.text)
     files++
     for (const r of repaired.slice(0, 3)) keys.push(`${rel}::${r.key}`)

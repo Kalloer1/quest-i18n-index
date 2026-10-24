@@ -243,6 +243,9 @@ if (SKIP_SLUGS.length) {
   for (const [s, it] of Object.entries(plan.bySlug)) if (!skip.has(s)) bySlug[s] = it
   const dropped = slugs.filter((s) => skip.has(s))
   plan = { ...plan, bySlug, conflicts: (plan.conflicts ?? []).filter((c) => !skip.has(c.slug)) }
+  // 必须同步重算 slugs：后面 step 3/4 的 keep、release、暂存都用它，
+  // 只改 bySlug 会出现「日志说跳过、实际照样打包暂存」的假跳过。
+  slugs = Object.keys(plan.bySlug)
   writeFileSync(join(DIR, 'plan.json'), `${JSON.stringify(plan)}\n`)
   console.log(`按 --skip-slugs 剔除 ${dropped.length} 个（main 已有本地修好的版本）：${dropped.join(', ')}`)
 }
