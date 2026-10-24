@@ -191,7 +191,7 @@ export function classifyPack(pack, vmEntries) {
   if (layout === 'embedded') {
     return {
       state: 'embedded', probeIncomplete: false, match: m,
-      why: '任务书文本内嵌在 chapters/*.snbt，该版本 FTB Quests 无翻译系统',
+      why: '内嵌布局未交付：多数在翻译时判定「没有可译文本」（任务书只有 tasks/rewards/icon 等机械字段），内嵌本身可以翻（已交付 1121 个）',
     }
   }
 
