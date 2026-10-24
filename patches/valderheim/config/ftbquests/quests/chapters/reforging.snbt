@@ -1,0 +1,311 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "reforging"
+	group: "6F540E7EA246F67A"
+	icon: "minecraft:anvil"
+	id: "5A14FDC24A01B92D"
+	order_index: 3
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"You may have noticed that the gear you've crafted or looted has a rarity, either &8Common,&r &aUncommon,&r &9Rare,&r &5Epic,&r &eLegendary,&r or &4Mythic&r"
+				""
+				"&4重铸&r是一种&5工艺&r，能让你&a强化装备&r，使用3种&e重铸材料&r中的一种，以及装备对应的锭或材料。它有几率获得任一&9稀有度&r，具体取决于每种&d材料&r，但等级越高，稀有度也越高"
+			]
+			id: "5CA1081EA84A37FD"
+			rewards: [{
+				count: 3
+				id: "493AE94B94D17F17"
+				item: "minecraft:iron_ingot"
+				type: "item"
+			}]
+			subtitle: "增强型装备 Empowering Equipment"
+			tasks: [{
+				id: "70653BBFBA890434"
+				item: "minecraft:anvil"
+				type: "item"
+			}]
+			x: 0.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["5CA1081EA84A37FD"]
+			description: [
+				"石灰岩是基础重铸材料，它能提供："
+				"&7-通用&r"
+				"&a-不常见&r"
+				"&9-稀有&r"
+			]
+			id: "0523F35A31833106"
+			tasks: [{
+				id: "12B29F2993076AA1"
+				item: "tiered:limestone_chunk"
+				type: "item"
+			}]
+			x: -1.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["5CA1081EA84A37FD"]
+			description: [
+				"黄铁矿是中间层级，它提供："
+				"&a-不常见&r"
+				"&9-稀有&r"
+				"&5-史诗&r"
+				"&e-传说级&r"
+			]
+			id: "69F639199F86D61E"
+			tasks: [{
+				id: "269B4BFA6A32B3DB"
+				item: "tiered:pyrite_chunk"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["5CA1081EA84A37FD"]
+			description: [
+				"Galena 是最好的重铸材料，它能提供："
+				"&9-稀有&r"
+				"&5-史诗&r"
+				"&e-传说级&r"
+				"&4-神话&r"
+			]
+			id: "602CD3D5916DEE41"
+			tasks: [{
+				id: "11FE42D9A3D860E3"
+				item: "tiered:galena_chunk"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -3.0d
+		}
+		{
+			id: "5900B701131475AD"
+			tasks: [{
+				id: "281ACAF485402DF8"
+				item: "minecraft:smithing_table"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 1.0d
+		}
+		{
+			dependencies: [
+				"5A146D609349A580"
+				"5900B701131475AD"
+			]
+			description: ["制作&5Magical Tinkering&r所需的首个工作台，可将宝石转化为&9magical dust&r"]
+			hide_until_deps_complete: true
+			id: "4A9D899C52C90667"
+			tasks: [{
+				id: "32C4E2363A072458"
+				item: "zenith:salvaging_table"
+				type: "item"
+			}]
+			x: 4.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["4A9D899C52C90667"]
+			description: ["&5Magical Tinkering&r中最最重要的物品"]
+			id: "5BF7140ABA9E5445"
+			tasks: [{
+				count: 5L
+				id: "70986C7ECDC8007C"
+				item: { Count: 5, id: "zenith:gem_dust" }
+				type: "item"
+			}]
+			title: "宝石粉尘"
+			x: 4.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["5BF7140ABA9E5445"]
+			description: ["将其与一件&4装备&r一同放入&8锻造台&r中，即可为其镶嵌一颗&d宝石&r。 &d宝石&r能提升&4装备的能力&r，但需谨慎选择，因为它们&0移除成本高昂&r"]
+			id: "45949E19BE86A03B"
+			tasks: [{
+				id: "1C50B7DF82B1A777"
+				item: "zenith:sigil_of_socketing"
+				type: "item"
+			}]
+			x: 3.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["5BF7140ABA9E5445"]
+			description: ["移除物品中镶嵌的所有&d宝石&r"]
+			id: "455890E83CC562A8"
+			tasks: [{
+				id: "6D9C176642F45D71"
+				item: "zenith:sigil_of_withdrawal"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["5900B701131475AD"]
+			id: "1384D0883DCD75DA"
+			tasks: [{
+				id: "4AC8C47CE97AC185"
+				item: "minecraft:netherite_upgrade_smithing_template"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["1384D0883DCD75DA"]
+			id: "67B9F0F8C7062912"
+			tasks: [{
+				id: "339E093BDD504251"
+				item: "deeperdarker:warden_upgrade_smithing_template"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["5BF7140ABA9E5445"]
+			id: "7150A7E71BD14BDF"
+			tasks: [{
+				id: "216BEA819C577343"
+				item: "zenith:gem_cutting_table"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"5BF7140ABA9E5445"
+				"015AC94013B58144"
+			]
+			description: ["所有&5魔法重铸&r的基础，一个可与常规重铸结合以制造更&4强大物品&r的独立过程"]
+			hide_until_deps_complete: true
+			id: "5F5D476A234D4223"
+			tasks: [{
+				id: "359FA3259928AFFF"
+				item: "zenith:simple_reforging_table"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["5F5D476A234D4223"]
+			id: "2ECFB65ABF2E15B5"
+			tasks: [{
+				id: "0C3AEE5E366CB21A"
+				item: "zenith:reforging_table"
+				type: "item"
+			}]
+			x: 8.0d
+			y: 2.0d
+		}
+		{
+			dependencies: [
+				"5F5D476A234D4223"
+				"7150A7E71BD14BDF"
+			]
+			dependency_requirement: "one_completed"
+			hide_dependency_lines: true
+			id: "65610672EF0A8F0B"
+			tasks: [{
+				id: "7BA156DC22F8E402"
+				item: "zenith:common_material"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 0.5d
+		}
+		{
+			dependencies: [
+				"5F5D476A234D4223"
+				"7150A7E71BD14BDF"
+			]
+			dependency_requirement: "one_completed"
+			hide_dependency_lines: true
+			id: "5CE1A95679BCF4F6"
+			tasks: [{
+				id: "5F8A2A10FF7AA46D"
+				item: "zenith:uncommon_material"
+				type: "item"
+			}]
+			x: 7.0d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"7150A7E71BD14BDF"
+				"5F5D476A234D4223"
+			]
+			dependency_requirement: "one_completed"
+			hide_dependency_lines: true
+			id: "0762C2F2EB4B2A50"
+			tasks: [{
+				id: "44A4ABC6BA3968B9"
+				item: "zenith:rare_material"
+				type: "item"
+			}]
+			x: 6.0d
+			y: -0.5d
+		}
+		{
+			dependencies: [
+				"7150A7E71BD14BDF"
+				"5F5D476A234D4223"
+			]
+			dependency_requirement: "one_completed"
+			hide_dependency_lines: true
+			id: "428E9684378FD938"
+			tasks: [{
+				id: "13DB9154CAFE576E"
+				item: "zenith:epic_material"
+				type: "item"
+			}]
+			x: 7.0d
+			y: -1.0d
+		}
+		{
+			dependencies: [
+				"7150A7E71BD14BDF"
+				"5F5D476A234D4223"
+			]
+			dependency_requirement: "one_completed"
+			hide_dependency_lines: true
+			id: "38F141D516539630"
+			tasks: [{
+				id: "490A84EBF6CAB868"
+				item: "zenith:mythic_material"
+				type: "item"
+			}]
+			x: 6.0d
+			y: -1.5d
+		}
+		{
+			dependencies: [
+				"6AB64B7536CDADDC"
+				"09BF006F911A8057"
+				"7A86EB2C9EEF94F0"
+			]
+			dependency_requirement: "one_completed"
+			description: ["下一章讨论的是&5魔法炼金术，&r一个能制造出更&4强大物品&r的过程"]
+			hide_until_deps_complete: true
+			id: "5A146D609349A580"
+			tasks: [{
+				id: "59DB9E9742585E92"
+				title: "魔法的巧思工坊"
+				type: "checkmark"
+			}]
+			x: 2.5d
+			y: 0.0d
+		}
+	]
+	title: "锻造工艺模组"
+}
