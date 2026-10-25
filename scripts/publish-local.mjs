@@ -41,7 +41,7 @@ import { execFileSync } from 'node:child_process'
 import { existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { checkPublishCounts, shouldQuarantineBaseline } from './lib/publish-check.mjs'
+import { checkPublishCounts, findStaleSlugs, shouldQuarantineBaseline } from './lib/publish-check.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const DIR = join(ROOT, 'research/tmp/publish')
@@ -124,12 +124,14 @@ function netGit(args, tries = 3) {
  * log 是「新 → 旧」，所以每个 slug 第一次出现的时间戳就是最新，直接记下即可。
  *
  * 失败就返回空对象：farm-merge 会退回自己逐 slug 的慢路径，结果一样，只是慢。
+ *
+ * @param {string} ref 完整 ref（origin/main 或 origin/farm/<host>）
  */
-function bulkTimes(host) {
+function bulkTimes(ref) {
   try {
     const out = execFileSync('git', [
       '-c', 'core.quotePath=false', 'log', '--format=@@%ct', '--name-only',
-      `origin/farm/${host}`, '--', 'patches', 'research/packs',
+      ref, '--', 'patches', 'research/packs',
     ], { cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], maxBuffer: 512 * 1024 * 1024 })
     const times = {}
     let ts = 0
@@ -211,7 +213,7 @@ for (const h of allHosts) {
   // `git log -1 -- path`，Windows 上一次进程 0.6s，700 个 slug 就是 8 分钟纯等待
   // （上一轮发布就是卡在这一步被中断的）。这里用**一次** git log 扫完整个分支历史，
   // 只读树不读 blob，blobless 克隆下也很快。
-  writeFileSync(join(DIR, `times-${h}.json`), JSON.stringify(bulkTimes(h), null, 0))
+  writeFileSync(join(DIR, `times-${h}.json`), JSON.stringify(bulkTimes(`origin/farm/${h}`), null, 0))
 }
 
 // ---------- 2. 合并计划 ----------
@@ -232,13 +234,25 @@ if (MAX > 0 && slugs.length > MAX) {
   console.log(`按 --max ${MAX} 截断到 ${slugs.length} 个`)
 }
 
-// `--skip-slugs a,b,c`：这批包 main 上已经有本地修好的版本（比分支上的新），
-// 不要拿分支上的旧产物覆盖。典型场景是 Phase 5 的坏源包：主机侧从来翻不出来，
-// 本地修源重翻后先入了库，分支上留着的仍是半成品。
+// 新鲜度检查（自动判定 + 手动覆盖，共用一套剔除）。自动版（交接 §2.4）：
+// farm/ci 与旧 farmN 分支上的陈旧副本会被 two-dot diff 当成增量，一旦取数就会
+// 把 main 上更新的版本盖回旧版（2026-10-25 的 21 包重影险情，当轮靠 --hosts 白名单
+// 绕开）。main 上该 slug 最后一次提交比获选分支上的还新 → 分支那份是陈旧副本，跳过。
+// 手动 --skip-slugs 保留：坏源本地重翻后先入库，但分支上残留产物时间戳反而更新的
+// 场景，机器判不了，仍由人指定。
 // 不跳过时，自检会把「plan 只有差异文件、树上有全量文件」判成漏捞 —— main 已含该包后
 // 这个不等式本就不再成立，属于假阳性，故在计划层显式剔除。
-if (SKIP_SLUGS.length) {
-  const skip = new Set(SKIP_SLUGS)
+const skip = new Set(SKIP_SLUGS)
+{
+  const mainTimes = bulkTimes('origin/main')
+  const farmTimesOf = (branch) => {
+    try { return JSON.parse(readFileSync(join(DIR, `times-${branch}.json`), 'utf8')) } catch { return {} }
+  }
+  const autoStale = findStaleSlugs(plan.bySlug, mainTimes, farmTimesOf)
+  for (const s of autoStale) skip.add(s)
+  if (autoStale.length) console.log(`新鲜度检查：${autoStale.length} 个包 main 已有更新版本，自动跳过：${autoStale.join(', ')}`)
+}
+if (skip.size) {
   const bySlug = {}
   for (const [s, it] of Object.entries(plan.bySlug)) if (!skip.has(s)) bySlug[s] = it
   const dropped = slugs.filter((s) => skip.has(s))
@@ -247,7 +261,8 @@ if (SKIP_SLUGS.length) {
   // 只改 bySlug 会出现「日志说跳过、实际照样打包暂存」的假跳过。
   slugs = Object.keys(plan.bySlug)
   writeFileSync(join(DIR, 'plan.json'), `${JSON.stringify(plan)}\n`)
-  console.log(`按 --skip-slugs 剔除 ${dropped.length} 个（main 已有本地修好的版本）：${dropped.join(', ')}`)
+  if (SKIP_SLUGS.length) console.log(`按 --skip-slugs 剔除（main 已有本地修好的版本）`)
+  console.log(`计划剔除 ${dropped.length} 个：${dropped.join(', ')}`)
 }
 
 const byHost = {}

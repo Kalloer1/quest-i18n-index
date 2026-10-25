@@ -19,6 +19,35 @@ export function checkPublishCounts(bySlug, treeByBranch) {
 }
 
 /**
+ * 新鲜度判定（publish-local.mjs 的 --skip-slugs 自动版）。
+ *
+ * 背景（2026-10-25 的 21 包重影险情）：farm/ci 与旧 farmN 分支上的陈旧副本会被
+ * two-dot diff 当成增量 —— 分支不再推进时，那份旧产物每轮都躺在 diff 里，一旦
+ * 取数就会把 main 上更新的版本盖回旧版。判定：main 上该 slug 最后一次提交比
+ * 获选分支上的还新 → 分支那份是陈旧副本，跳过（手动 --skip-slugs 保留，用于
+ * 「分支时间戳更新但内容更旧」这类机器判不了的场景）。
+ *
+ * 判不了的都不跳（fail-open）：main 没记时（新包）、两边时间相等、分支侧时间
+ * 读不到（times-<host>.json 加载失败），一律放行走正常合并。理由：times 文件
+ * 与 plan 同一轮进程内刚生成，读不到属罕见故障；那种轮次里静默跳过会把好包
+ * 无限饿死，而误合并下一轮仍会被本判定拦下。
+ *
+ * @param {Record<string, {branch: string}>} bySlug 合并计划
+ * @param {Record<string, number>} mainTimes slug → main 上最后提交时间（秒）
+ * @param {(branch: string) => Record<string, number>} farmTimesOf 分支 → slug → 时间
+ * @returns {string[]} 陈旧 slug，字典序
+ */
+export function findStaleSlugs(bySlug, mainTimes, farmTimesOf) {
+  const stale = []
+  for (const [slug, item] of Object.entries(bySlug ?? {})) {
+    const mainAt = Number(mainTimes?.[slug] ?? 0)
+    const farmAt = Number(farmTimesOf?.(item?.branch ?? '')?.[slug])
+    if (Number.isFinite(farmAt) && mainAt > farmAt) stale.push(slug)
+  }
+  return stale.sort()
+}
+
+/**
  * 闸门踢包时，基准 tar.gz 是否该随残包进隔离区。
  *
  * 规则：main 树上已有的归档**永远留在工作区**（trackedInMain=true → false）。
