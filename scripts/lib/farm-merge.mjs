@@ -293,8 +293,11 @@ export function main(argv = process.argv.slice(2)) {
   const mainBaselines = new Set(
     (() => {
       try {
-        const out = execFileSync('git', ['ls-tree', '-r', '--name-only', 'origin/main', '--', 'research/packs/'],
-          { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] })
+        // 不能加 -r：research/packs/ 下还压着几个解包目录（几千个 .snbt），
+        // 递归列出超过 execFileSync 默认 1MB buffer（ENOBUFS），而目录项
+        // 本来就不是基准源。非递归只看顶层：tar.gz + 目录名，输出 ~60KB。
+        const out = execFileSync('git', ['ls-tree', '--name-only', 'origin/main', '--', 'research/packs/'],
+          { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], maxBuffer: 16 * 1024 * 1024 })
         return out.split('\n').map((p) => /^research\/packs\/(.+)\.tar\.gz$/.exec(p.trim())?.[1] ?? '').filter(Boolean)
       } catch { return [] }
     })(),
