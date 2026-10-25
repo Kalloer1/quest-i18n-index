@@ -1,0 +1,296 @@
+# AI 初翻，未人工校对
+{
+	id: "7D036A2C10292A37"
+	group: "5F8504E0E3CCB826"
+	order_index: 1
+	filename: "aircrafts"
+	title: "飞行器"
+	icon: {
+		id: "simpleplanes:plane"
+		Count: 1b
+		tag: {
+			EntityTag: {
+				material: "minecraft:oak_planks"
+			}
+		}
+	}
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "制作一个飞机工作台"
+			x: -1.0d
+			y: -0.5d
+			subtitle: "要制作飞机，你需要这个物品"
+			dependencies: ["0B91D3E835FF6BF5"]
+			id: "5FCA8C3258BF429F"
+			tasks: [{
+				id: "5FA7E5FF4EF29792"
+				type: "item"
+				item: "simpleplanes:plane_workbench"
+			}]
+			rewards: [{
+				id: "37643AC00A95B767"
+				type: "item"
+				item: "minecraft:diamond_block"
+			}]
+		}
+		{
+			title: "制作一个螺旋桨"
+			x: -4.0d
+			y: -0.5d
+			subtitle: "飞机需要螺旋桨才能飞行！你应该知道的。"
+			id: "048F9E9C7699129C"
+			tasks: [{
+				id: "7B482704539AAD2D"
+				type: "item"
+				item: "simpleplanes:propeller"
+			}]
+			rewards: [{
+				id: "643694F988224884"
+				type: "item"
+				item: "minecraft:iron_block"
+			}]
+		}
+		{
+			title: "收集木材"
+			x: -2.5d
+			y: -0.5d
+			subtitle: "你可以使用任何木材！"
+			description: ["（但是这个任务只允许我放置一种木材）"]
+			dependencies: ["048F9E9C7699129C"]
+			id: "0B91D3E835FF6BF5"
+			tasks: [{
+				id: "5C51515EA35C44CC"
+				type: "item"
+				item: "minecraft:oak_log"
+				count: 10L
+			}]
+			rewards: [{
+				id: "0033EFB108ACEBB1"
+				type: "choice"
+				icon: "minecraft:oak_wood"
+				exclude_from_claim_all: true
+				table_id: 9057817436818625742L
+			}]
+		}
+		{
+			title: "你的第一次飞行体验"
+			x: 0.5d
+			y: -0.5d
+			subtitle: "制作一架小型飞机"
+			dependencies: ["5FCA8C3258BF429F"]
+			id: "7EBF333E30BEBE8F"
+			tasks: [{
+				id: "4D5D88DE40F5F92B"
+				type: "item"
+				item: {
+					id: "simpleplanes:plane"
+					Count: 1b
+					tag: {
+						EntityTag: {
+							material: "minecraft:oak_planks"
+						}
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "6071B38E6B1D57C4"
+					type: "item"
+					item: {
+						id: "apocalypsenow:jet_pilot_helmet"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "3267EA25362A7D9D"
+					type: "item"
+					item: {
+						id: "apocalypsenow:jet_pilot_chestplate"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "12196FF4A10ECF5D"
+					type: "item"
+					item: {
+						id: "apocalypsenow:jet_pilot_leggings"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "0F332D2035E8FAC4"
+					type: "item"
+					item: {
+						id: "apocalypsenow:jet_pilot_boots"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "！请务必阅读！"
+			icon: {
+				id: "simpleplanes:plane"
+				Count: 1b
+				tag: {
+					EntityTag: {
+						material: "minecraft:oak_planks"
+					}
+				}
+			}
+			x: 0.5d
+			y: 1.0d
+			subtitle: "飞机控制"
+			description: [
+				"确保你面朝前方，因为飞行时无法环顾四周。"
+				""
+				"按住上箭头可加速引擎。按住下箭头可减速。按住左或右箭头可转向飞机。"
+				""
+				"按住 WASD 可以控制飞机上下左右倾斜。"
+			]
+			dependencies: ["7EBF333E30BEBE8F"]
+			id: "2DA6BD8DEA7D7CEC"
+			tasks: [{
+				id: "196BCFA7D5969783"
+				type: "checkmark"
+				title: "飞机控制"
+			}]
+			rewards: [{
+				id: "31545711A8303173"
+				type: "command"
+				title: "$100"
+				icon: "apocalypsenow:money"
+				command: "/econ add @p 100"
+			}]
+		}
+		{
+			title: "直升机很酷"
+			x: 2.0d
+			y: -0.5d
+			subtitle: "现在来试试直升机吧"
+			dependencies: ["7EBF333E30BEBE8F"]
+			id: "34A6A9C65F1ACE61"
+			tasks: [{
+				id: "094E20077FC1CC04"
+				type: "item"
+				item: {
+					id: "simpleplanes:helicopter"
+					Count: 1b
+					tag: {
+						EntityTag: {
+							material: "minecraft:oak_planks"
+						}
+					}
+				}
+			}]
+			rewards: [{
+				id: "0CA23AB87E94B555"
+				type: "item"
+				item: {
+					id: "apocalypsenow:helicopter_helmet"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			icon: {
+				id: "simpleplanes:helicopter"
+				Count: 1b
+				tag: {
+					EntityTag: {
+						material: "minecraft:oak_planks"
+					}
+				}
+			}
+			x: 2.0d
+			y: 1.0d
+			subtitle: "直升机的操控装置"
+			description: [
+				"按住上箭头可加速直升机引擎。按住下箭头可降低高度。"
+				""
+				"按住空格键可以升高直升机。（需要先加速引擎）"
+				"要下去，按住 S 键"
+				""
+				"按住 W 会使直升机前倾，让你向前移动。按住 A 和 D 会使直升机左右倾斜，让你可以转向"
+			]
+			dependencies: ["34A6A9C65F1ACE61"]
+			id: "68A4A5F8E5CC8829"
+			tasks: [{
+				id: "4EAB7646137E1E4A"
+				type: "checkmark"
+				title: "！请务必阅读！"
+			}]
+			rewards: [{
+				id: "0ABFC5DB8B0CF9FE"
+				type: "command"
+				title: "$100"
+				icon: "apocalypsenow:money"
+				command: "/econ add @p 100"
+			}]
+		}
+		{
+			title: "升级内容"
+			x: 3.5d
+			y: -0.5d
+			subtitle: "升级人们！升级！UPGRADES！"
+			description: ["用飞机/直升机升级左键点击，会让你的飞机做出酷炫的动作"]
+			dependencies: ["34A6A9C65F1ACE61"]
+			id: "3B0BC74E01C72770"
+			tasks: [{
+				id: "10DE84A413F289D8"
+				type: "item"
+				item: "simpleplanes:booster"
+			}]
+			rewards: [{
+				id: "32ABE38AC5EEC6DD"
+				type: "item"
+				item: "simpleplanes:armor"
+			}]
+		}
+		{
+			x: 5.0d
+			y: -0.5d
+			subtitle: "扳手用于从你的飞行器上移除升级组件"
+			dependencies: ["3B0BC74E01C72770"]
+			id: "6D1098A93945DD66"
+			tasks: [{
+				id: "58A0F5557D7C7C84"
+				type: "item"
+				item: "simpleplanes:wrench"
+			}]
+			rewards: [
+				{
+					id: "5DA29D4898A38805"
+					type: "item"
+					item: "minecraft:iron_block"
+					count: 3
+				}
+				{
+					id: "2D358EE7157F2D83"
+					type: "command"
+					title: "1000个金币"
+					icon: "apocalypsenow:money"
+					command: "/econ add @p 1000"
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+}

@@ -1,0 +1,999 @@
+# AI 初翻，未人工校对
+{
+	id: "1269ABF1B71CD50E"
+	group: ""
+	order_index: 0
+	filename: "getting_started"
+	title: "入门指南"
+	icon: {
+		id: "apocalypsenow:wooden_fire_axe"
+		Count: 1b
+		tag: {
+			Damage: 0
+		}
+	}
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	hide_quest_details_until_startable: true
+	quests: [
+		{
+			title: "欢迎来到末日世界"
+			x: -5.5d
+			y: -1.0d
+			subtitle: "主要功能"
+			description: [
+				"Parkool - 按住奔跑键可以跑得更快（耐力有限）"
+				"按住奔跑键可以翻越一格方块。按下 ALT 键可以闪避。下落时按住 ALT 键可防止坠落伤害。（在一定高度内）"
+				""
+				"饥饿机制重做了。吃东西会填满你的胃计量表。胃计量表会慢慢消耗你的饥饿值，让你能更久不吃东西！(相当于第二个饥饿条) 但注意不要吃太多。"
+				""
+				"你找到的所有东西都有用。按 U 键查看物品的用途！"
+				""
+				"僵尸群会在夜间生成，小心别在外面待太久。睡觉只会重置你的出生点。无法跳过夜晚。"
+				""
+				"手持近战武器左键点击将自动挥舞武器"
+				""
+				"当你的生命值全部耗尽时，你就会被击倒。要扶起某人，只需在他们附近蹲下！"
+			]
+			size: 2.0d
+			id: "317B46DC758523A8"
+			tasks: [{
+				id: "1F3A11FA6C5ED17E"
+				type: "checkmark"
+				title: "欢迎来到末日世界"
+			}]
+			rewards: [{
+				id: "509C3584874B9609"
+				type: "item"
+				item: {
+					id: "apocalypsenow:campingbackpack"
+					Count: 1b
+					tag: {
+						Inventory: {
+							Size: 54
+							Items: [ ]
+						}
+					}
+					ForgeCaps: {
+						Parent: {
+							Size: 54
+							Items: [ ]
+						}
+					}
+				}
+			}]
+		}
+		{
+			title: "杀死村民"
+			icon: {
+				id: "apocalypsenow:jasonmask_helmet"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			x: -8.0d
+			y: 1.0d
+			subtitle: "你这个怪物！"
+			dependencies: ["715BD8DF1977ED2B"]
+			hide: true
+			id: "477388E72DD5CFF1"
+			tasks: [
+				{
+					id: "603FB8A39C5AC308"
+					type: "kill"
+					entity: "mca:male_villager"
+					value: 3L
+				}
+				{
+					id: "30F683410CA75097"
+					type: "kill"
+					entity: "mca:female_villager"
+					value: 3L
+				}
+			]
+			rewards: [
+				{
+					id: "6D3101CD5946D300"
+					type: "item"
+					item: {
+						id: "apocalypsenow:jasonmask_helmet"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "460891E8E2A5EAE7"
+					type: "item"
+					item: {
+						id: "apocalypsenow:rusty_machete"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "6175622A6ED48A43"
+					type: "item"
+					item: "apocalypsenow:coke"
+				}
+			]
+		}
+		{
+			icon: "easy_npc:zombie_spawn_egg"
+			x: -3.0d
+			y: -1.0d
+			subtitle: "想活下去就得学会杀僵尸。小心别被感染了"
+			description: ["主世界只会生成僵尸。这意味着僵尸变得更强大、更聪明了。它们能更容易地感知到你，并追踪你。"]
+			dependencies: ["317B46DC758523A8"]
+			hide: true
+			id: "678F397704F76CDE"
+			tasks: [{
+				id: "798D069AE7E2D0F3"
+				type: "kill"
+				entity: "minecraft:zombie"
+				value: 10L
+			}]
+			rewards: [
+				{
+					id: "3D59FD0A84B5829E"
+					type: "item"
+					item: "apocalypsenow:homemadeantibiotics"
+				}
+				{
+					id: "281AF79B0CED72B6"
+					type: "item"
+					item: "apocalypsenow:large_soda"
+				}
+				{
+					id: "06B481D9B53A9BEF"
+					type: "item"
+					item: "apocalypsenow:saline"
+				}
+			]
+		}
+		{
+			title: "获取 1x 塑料"
+			x: -1.5d
+			y: -1.0d
+			subtitle: "还记得我说过所有东西都有用吗？"
+			description: ["喝掉那瓶大汽水，然后用熔炉熔化空瓶子"]
+			dependencies: ["678F397704F76CDE"]
+			hide: true
+			id: "4EE5134BD4E9C335"
+			tasks: [{
+				id: "5C185CEEDDC54FCA"
+				type: "item"
+				item: "apocalypsenow:plastic"
+			}]
+			rewards: [
+				{
+					id: "54A761CE76483CDC"
+					type: "item"
+					item: "apocalypsenow:canned_pork"
+				}
+				{
+					id: "135B32738F7DAD6F"
+					type: "item"
+					item: "apocalypsenow:apple_juice"
+				}
+			]
+		}
+		{
+			title: "制作一个开罐器"
+			x: 0.0d
+			y: -1.0d
+			subtitle: "每当你找到食物罐头时，你不能直接吃掉它"
+			description: ["用塑料和铁制作开罐器，这样你就能打开罐子了"]
+			dependencies: ["4EE5134BD4E9C335"]
+			hide: true
+			id: "7B2DAE3897DA6725"
+			tasks: [{
+				id: "2B20EEAB475FEC8E"
+				type: "item"
+				item: {
+					id: "apocalypsenow:can_opener"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "5E979FF67E146CE0"
+					type: "item"
+					item: "apocalypsenow:open_canned_fish"
+				}
+				{
+					id: "20B6254BFC50EB9D"
+					type: "item"
+					item: "apocalypsenow:porpsi"
+				}
+			]
+		}
+		{
+			title: "用一把砍刀武装自己"
+			x: 1.5d
+			y: -1.0d
+			subtitle: "万物皆有其用，一切皆有用处"
+			description: ["吃掉空罐子，将其炼成废金属，用来制作一把砍刀"]
+			dependencies: ["7B2DAE3897DA6725"]
+			hide: true
+			id: "7BF53E69C69BFA84"
+			tasks: [{
+				id: "551090CE309C08A3"
+				type: "item"
+				item: {
+					id: "apocalypsenow:makeshift_machete"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "691A087D2B32FABF"
+				type: "item"
+				item: "apocalypsenow:large_soda"
+			}]
+		}
+		{
+			title: "开始存储物品"
+			x: -4.0d
+			y: 0.5d
+			subtitle: "开始制作架子来存放你的物品吧"
+			description: ["您需要控制器才能使用架子"]
+			dependencies: ["317B46DC758523A8"]
+			hide: true
+			id: "1A4CDB0AE847B73C"
+			tasks: [{
+				id: "456943201CC81179"
+				type: "item"
+				item: "storageracks:stone_controller"
+			}]
+			rewards: [
+				{
+					id: "3B292341250A69D1"
+					type: "item"
+					item: "apocalypsenow:cheese"
+				}
+				{
+					id: "0D870E5D0480F6C9"
+					type: "item"
+					item: {
+						id: "apocalypsenow:combat_knife"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "制作架子"
+			x: -3.0d
+			y: 1.5d
+			subtitle: "架子基本上就是箱子的一种形式"
+			description: ["将机架连接到控制器以使用它们"]
+			dependencies: ["1A4CDB0AE847B73C"]
+			hide: true
+			id: "09309EA52E86FF1F"
+			tasks: [{
+				id: "1F56F56A1A141281"
+				type: "item"
+				item: "storageracks:oak_wood_rack"
+			}]
+			rewards: [{
+				id: "39431D4643930C60"
+				type: "item"
+				item: {
+					id: "apocalypsenow:survival_axe"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			x: -2.0d
+			y: 2.5d
+			subtitle: "右键点击控制器"
+			description: [
+				"将物品放入架子上后，前往控制器并点击“?”"
+				""
+				"查看你的货架，你点击的物品应该在高亮的货架中"
+			]
+			dependencies: ["09309EA52E86FF1F"]
+			hide: true
+			id: "57195D402557D34C"
+			tasks: [{
+				id: "7F96EE4A83091BED"
+				type: "checkmark"
+				title: "使用架子"
+			}]
+			rewards: [
+				{
+					id: "5DB36884C583E47B"
+					type: "item"
+					item: "apocalypsenow:bandage"
+				}
+				{
+					id: "1D0CE561832C1316"
+					type: "item"
+					item: "apocalypsenow:antibiotics"
+				}
+				{
+					id: "7BD73B5CA3BDD78A"
+					type: "item"
+					item: "apocalypsenow:slipt"
+				}
+			]
+		}
+		{
+			x: 3.0d
+			y: 0.5d
+			subtitle: "制作其他武器"
+			description: ["握柄用于更复杂/更精良的武器"]
+			dependencies: ["7BF53E69C69BFA84"]
+			hide: true
+			id: "05660AFA6FB9C5CF"
+			tasks: [{
+				id: "69A1FD7FD7AD8A9C"
+				type: "item"
+				item: "apocalypsenow:handlegripp"
+			}]
+			rewards: [
+				{
+					id: "3037A0F32B4A8924"
+					type: "item"
+					item: "apocalypsenow:bandage"
+				}
+				{
+					id: "301AD01B7E74F168"
+					type: "item"
+					item: "apocalypsenow:canned_food"
+				}
+			]
+		}
+		{
+			x: 3.0d
+			y: 2.0d
+			subtitle: "铁制手柄用于制作一些顶级的近战武器"
+			dependencies: ["05660AFA6FB9C5CF"]
+			hide: true
+			id: "0B964B4B27D28BC9"
+			tasks: [{
+				id: "1541533905F63F86"
+				type: "item"
+				item: "apocalypsenow:ironhandlegripp"
+			}]
+			rewards: [
+				{
+					id: "097691073C1A0365"
+					type: "item"
+					item: "minecraft:iron_ingot"
+					count: 5
+				}
+				{
+					id: "2ECF9048EB4291A8"
+					type: "item"
+					item: "apocalypsenow:canned_food"
+					count: 2
+				}
+			]
+		}
+		{
+			x: 3.0d
+			y: -1.0d
+			subtitle: "你知道在末日里，强力胶带是最有用的物品之一"
+			description: ["使用 1 个海带可以制作史莱姆！"]
+			dependencies: ["7BF53E69C69BFA84"]
+			hide: true
+			id: "3BE4A9ED9FA5FAC3"
+			tasks: [{
+				id: "3E702C7F49AC03A1"
+				type: "item"
+				item: "apocalypsenow:ducttape"
+			}]
+			rewards: [{
+				id: "65C0015ECC7E28D3"
+				type: "item"
+				item: "apocalypsenow:canned_food"
+			}]
+		}
+		{
+			x: 4.5d
+			y: -1.0d
+			subtitle: "长矛很厉害"
+			description: ["你需要尽可能远离僵尸，长矛是保持距离的好帮手"]
+			dependencies: [
+				"05660AFA6FB9C5CF"
+				"3BE4A9ED9FA5FAC3"
+				"2E746F36061A9998"
+			]
+			hide: true
+			id: "2F46477924B7236B"
+			tasks: [{
+				id: "752CCC00DC237F29"
+				type: "item"
+				item: {
+					id: "apocalypsenow:knife_spear"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "3C9452AC3CA24A71"
+				type: "item"
+				item: "apocalypsenow:pack_of_canned_food"
+				count: 3
+			}]
+		}
+		{
+			x: 3.0d
+			y: -2.5d
+			subtitle: "某些武器可以用作其他武器的材料"
+			dependencies: ["3BE4A9ED9FA5FAC3"]
+			hide: true
+			id: "2E746F36061A9998"
+			tasks: [{
+				id: "00BD746C4612AD52"
+				type: "item"
+				item: {
+					id: "apocalypsenow:makeshift_knife"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "32A1F6AB57E5AF41"
+				type: "item"
+				item: "apocalypsenow:pack_of_canned_food"
+			}]
+		}
+		{
+			x: 4.5d
+			y: 0.5d
+			subtitle: "合成材料"
+			description: ["你可以用螺丝刀来制作其他武器所需的材料"]
+			dependencies: ["05660AFA6FB9C5CF"]
+			hide: true
+			id: "10EA31D5195D78F6"
+			tasks: [{
+				id: "4006DC083FEDCB66"
+				type: "item"
+				item: {
+					id: "apocalypsenow:screwdriver"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "4B624555BA6B2C4B"
+				type: "item"
+				item: "apocalypsenow:pack_of_canned_food"
+			}]
+		}
+		{
+			x: 4.5d
+			y: 2.0d
+			subtitle: "砍树和砍僵尸（Cutting trees and cutting zombies）"
+			dependencies: [
+				"10EA31D5195D78F6"
+				"0B964B4B27D28BC9"
+			]
+			hide: true
+			id: "67E30E3C08059502"
+			tasks: [{
+				id: "2D7C8987CE08ACC3"
+				type: "item"
+				item: {
+					id: "apocalypsenow:chainsaw"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "12E46E14DE472763"
+				type: "item"
+				item: "apocalypsenow:pack_of_canned_food"
+				count: 3
+			}]
+		}
+		{
+			x: -1.5d
+			y: -2.5d
+			subtitle: "保护好那个头颅"
+			description: ["既然你已经知道怎么制作塑料了，就可以用它来制作盔甲了！"]
+			dependencies: ["4EE5134BD4E9C335"]
+			hide: true
+			id: "5F32EE5EBF9F2E53"
+			tasks: [{
+				id: "58F5AFD03065C053"
+				type: "item"
+				item: {
+					id: "apocalypsenow:construction_helmet"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "51491EC457FAC33A"
+				type: "item"
+				item: "apocalypsenow:canned_food"
+			}]
+		}
+		{
+			x: 0.0d
+			y: -2.5d
+			subtitle: "实用工具"
+			description: ["你可以用剪刀将羊毛和其他实用物品制作成线"]
+			dependencies: ["7B2DAE3897DA6725"]
+			hide: true
+			id: "2EEEE0F3F3E6A74A"
+			tasks: [{
+				id: "4B398284BB957BD9"
+				type: "item"
+				item: {
+					id: "apocalypsenow:scissors"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "4A0F74B0E4627DF6"
+				type: "item"
+				item: "apocalypsenow:canned_food"
+				count: 2
+			}]
+		}
+		{
+			x: -1.5d
+			y: 0.5d
+			subtitle: "篝火这东西是真的好用"
+			description: [
+				"篝火在附近时能治愈你，阻止僵尸生成，并且能伤害附近的僵尸"
+				""
+				"篝火需要燃料才能保持燃烧。将燃料（木材、煤炭或木棍）扔在篝火上，并用打火石和钢点燃。篝火最多可燃烧4分钟。如果熄灭了，你需要用打火石和钢重新点燃。你可以用火拨检查燃烧时间。"
+				""
+				"你可以在火焰上撒烈焰粉，让火焰永远燃烧下去"
+			]
+			dependencies: ["678F397704F76CDE"]
+			hide: true
+			id: "25259267286B3F3D"
+			tasks: [{
+				id: "641C4492E433860E"
+				type: "item"
+				item: "minecraft:campfire"
+			}]
+			rewards: [
+				{
+					id: "2371BCB850525526"
+					type: "item"
+					item: "apocalypsenow:canned_food"
+					count: 3
+				}
+				{
+					id: "2494A8DF39D76D5F"
+					type: "item"
+					item: "jemscampfires:fire_poker"
+				}
+			]
+		}
+		{
+			title: "烹饪一个婴儿"
+			x: -9.0d
+			y: 2.5d
+			subtitle: "……什么？？？"
+			description: ["你到底是怎么了？！出什么问题了？！"]
+			dependencies: ["477388E72DD5CFF1"]
+			hide: true
+			id: "7B754D799F3F9899"
+			tasks: [{
+				id: "6853A0518305C0CC"
+				type: "advancement"
+				title: "烹饪一个婴儿"
+				icon: "minecraft:cooked_beef"
+				advancement: "mca:baby_smelted"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "4F37958533B51023"
+					type: "item"
+					item: "fantasyfurniture:bone/skeleton/skull"
+				}
+				{
+					id: "6414EBBBE00E432C"
+					type: "item"
+					item: "apocalypsenow:human_flesh"
+				}
+				{
+					id: "3A4B1F7E43526029"
+					type: "item"
+					item: {
+						id: "apocalypsenow:kitchen_knife"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "找到一个村庄！"
+			x: -8.0d
+			y: -1.0d
+			subtitle: "友好的幸存者？"
+			description: ["末日世界很可怕，所以能发现一个友好的社区总是令人欣喜的！"]
+			dependencies: ["317B46DC758523A8"]
+			hide: true
+			id: "715BD8DF1977ED2B"
+			tasks: [{
+				id: "46EA678C480ED9F5"
+				type: "advancement"
+				icon: "minecraft:sunflower"
+				advancement: "mca:root"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "5BFE16A71FE1BF2E"
+					type: "item"
+					title: "欢迎这份食物礼物！"
+					item: "minecraft:bread"
+					count: 25
+				}
+				{
+					id: "32879263F71A994F"
+					type: "item"
+					title: "欢迎这份食物礼物！"
+					item: "minecraft:baked_potato"
+					count: 25
+				}
+			]
+		}
+		{
+			x: -12.0d
+			y: -1.0d
+			subtitle: "真是一笔好买卖！"
+			description: ["交易提议... 与村民交易，你将从此任务中获得奖励。"]
+			dependencies: ["534C30F0AA4600A4"]
+			hide: true
+			id: "4FD138DC674D161E"
+			tasks: [{
+				id: "0D63A9B96538E9DC"
+				type: "advancement"
+				title: "来做个交易吧！"
+				advancement: "minecraft:adventure/trade"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "74C7D50EC470E153"
+					type: "item"
+					item: "minecraft:compass"
+				}
+				{
+					id: "01B646BB1A43634A"
+					type: "item"
+					item: "minecraft:clock"
+				}
+			]
+		}
+		{
+			title: "偷一张（白色）床"
+			x: -10.0d
+			y: -1.0d
+			subtitle: "是给我的吗？"
+			description: ["他们应该不会介意你拿走一张床，对吧？"]
+			dependencies: ["715BD8DF1977ED2B"]
+			hide: true
+			id: "534C30F0AA4600A4"
+			tasks: [{
+				id: "77108E8E6576FBB1"
+				type: "item"
+				item: "minecraft:white_bed"
+				consume_items: true
+				only_from_crafting: false
+				match_nbt: false
+			}]
+		}
+		{
+			title: "帮助小动物们！"
+			icon: "minecraft:egg"
+			x: -8.0d
+			y: -3.0d
+			subtitle: "没有动物的世界算什么世界呢？"
+			description: ["在这样的世界里，保护多种动物的生存非常重要！先繁殖两种动物（任何种类）吧。"]
+			dependencies: ["715BD8DF1977ED2B"]
+			hide: true
+			id: "327897A3ECDD6F0E"
+			tasks: [{
+				id: "76C0C8F7ACEE7A2F"
+				type: "advancement"
+				advancement: "minecraft:husbandry/breed_an_animal"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "523A727525C0DA81"
+					type: "item"
+					item: "minecraft:cod"
+					count: 10
+				}
+				{
+					id: "2DBC5146B4136397"
+					type: "item"
+					item: "minecraft:bone"
+					count: 10
+				}
+				{
+					id: "6519AFC056C03FCC"
+					type: "item"
+					item: "minecraft:apple"
+					count: 5
+				}
+			]
+		}
+		{
+			title: "交一个新朋友吧"
+			icon: "minecraft:name_tag"
+			x: -9.5d
+			y: -4.5d
+			subtitle: "人类最好的朋友"
+			description: ["在这样的世界里，你需要一个朋友。还有什么比宠物更好的伙伴呢？驯服一只动物（任何动物），让它成为你可靠的伙伴，一起探索末日世界！"]
+			dependencies: ["327897A3ECDD6F0E"]
+			hide: true
+			id: "6E26E02805058638"
+			tasks: [{
+				id: "40D45ECECC338832"
+				type: "advancement"
+				advancement: "minecraft:husbandry/tame_an_animal"
+				criterion: ""
+			}]
+			rewards: [
+				{
+					id: "6E7661A922BE0AF3"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "2F90DBBFE85D44E5"
+					type: "item"
+					item: "minecraft:lead"
+				}
+			]
+		}
+		{
+			x: 7.0d
+			y: 0.5d
+			dependencies: [
+				"67E30E3C08059502"
+				"2F46477924B7236B"
+			]
+			hide: true
+			size: 3.0d
+			can_repeat: true
+			id: "4D61AE48BFCA6B0E"
+			tasks: [{
+				id: "5E01A2C64A1E30C2"
+				type: "item"
+				item: "minecraft:rotten_flesh"
+				count: 100L
+				consume_items: true
+			}]
+			rewards: [{
+				id: "12E484C62B17F0DD"
+				type: "command"
+				title: "$10"
+				icon: "apocalypsenow:money"
+				command: "/econ add @p 10"
+			}]
+		}
+		{
+			x: -3.0d
+			y: -2.5d
+			subtitle: "变得更加强大吧"
+			description: ["按下 \"-\" 会打开技能树。杀死生物并获得经验会给予你技能点"]
+			dependencies: ["678F397704F76CDE"]
+			hide: true
+			hide_text_until_complete: true
+			id: "1D1149212C3F9058"
+			tasks: [{
+				id: "7634D1C59ECA8179"
+				type: "checkmark"
+				title: "技能"
+			}]
+		}
+		{
+			title: "寻找其他幸存者"
+			x: -4.5d
+			y: -2.5d
+			description: ["对讲机用于远距离与其他玩家交谈。要使其正常工作，需将其保持在快捷栏中。按住 Shift+R 可开启/关闭。右键点击对讲机可更改频道，以便同频道的玩家能听到你。"]
+			dependencies: ["317B46DC758523A8"]
+			hide: true
+			id: "38068997B3C2EE9E"
+			tasks: [{
+				id: "08B5649763234BCB"
+				type: "item"
+				item: "walkietalkie:wooden_walkietalkie"
+			}]
+			rewards: [{
+				id: "1ACBF4670A2AA9D9"
+				type: "item"
+				item: "minecraft:iron_ingot"
+				count: 20
+			}]
+		}
+		{
+			title: "完成工作的工具包"
+			x: -5.5d
+			y: 1.0d
+			subtitle: "你需要这个来充分利用动物们的潜力"
+			dependencies: ["317B46DC758523A8"]
+			hide: true
+			id: "41672DC14CCCAD00"
+			tasks: [{
+				id: "475F6A8D170BA0F3"
+				type: "item"
+				item: {
+					id: "butchersdelight:cleaver"
+					Count: 1b
+					tag: {
+						EA_ENABLED: 1b
+						Damage: 0
+						RARITY: 1
+					}
+				}
+			}]
+			rewards: [{
+				id: "733273476A0060F1"
+				type: "item"
+				item: "minecraft:iron_block"
+			}]
+		}
+		{
+			title: "烤制动物们"
+			x: -5.5d
+			y: 2.5d
+			subtitle: "你可以烤制动物了"
+			description: ["把它放在篝火上，你就可以烹饪这具尸体了"]
+			dependencies: ["41672DC14CCCAD00"]
+			hide: true
+			id: "099DDB9A4CD9BFDF"
+			tasks: [{
+				id: "5AEC8824DF6046D7"
+				type: "item"
+				item: "butchersdelight:roaster"
+			}]
+			rewards: [{
+				id: "5829351C9ED6C39E"
+				type: "choice"
+				exclude_from_claim_all: true
+				table_id: 9057817436818625742L
+			}]
+		}
+		{
+			title: "把自己连接起来，准备就绪"
+			x: -5.5d
+			y: 4.0d
+			description: ["你可以在方块底部放置挂钩。将动物尸体挂在挂钩上，用砍刀能获得更多产物"]
+			dependencies: ["099DDB9A4CD9BFDF"]
+			hide: true
+			id: "15E88DFB1A38B4BB"
+			tasks: [{
+				id: "40C0235C6D76C8DA"
+				type: "item"
+				item: "butchersdelight:hook"
+			}]
+			rewards: [{
+				id: "53A7A87FB383F0DF"
+				type: "item"
+				item: "butchersdelight:hook"
+				count: 3
+			}]
+		}
+		{
+			title: "物超所值，花小钱办大事"
+			x: -5.5d
+			y: 5.5d
+			subtitle: "你可以获得更多皮革！"
+			description: [
+				"把从收割动物尸体得到的皮革/羊毛放在鞣皮匠上，你就能获得更多！"
+				""
+				"用剪刀从皮革匠那里采集它"
+			]
+			dependencies: ["15E88DFB1A38B4BB"]
+			hide: true
+			id: "179B1CD7E3BA8114"
+			tasks: [{
+				id: "3A917818F8BD7AFB"
+				type: "item"
+				item: "butchersdelight:rack"
+			}]
+			rewards: [
+				{
+					id: "53DF87C823E17CD0"
+					type: "item"
+					item: "butchersdelight:cow_hide"
+					count: 3
+				}
+				{
+					id: "1E15CEA9F90DDCC7"
+					type: "item"
+					item: {
+						id: "minecraft:shears"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "轻松种植作物，让它们茁壮成长"
+			icon: "botanypots:terracotta_botany_pot"
+			x: -5.5d
+			y: -3.5d
+			subtitle: "植物学花盆是种地的绝佳工具"
+			dependencies: ["317B46DC758523A8"]
+			hide: true
+			id: "26602981CB1A8C11"
+			tasks: [
+				{
+					id: "210EFFD2DDB59285"
+					type: "item"
+					item: "botanypots:terracotta_botany_pot"
+				}
+				{
+					id: "3D615D1A9C974734"
+					type: "item"
+					item: "minecraft:dirt"
+				}
+			]
+			rewards: [{
+				id: "1E2BA7113C732442"
+				type: "item"
+				item: "minecraft:carrot"
+			}]
+		}
+		{
+			title: "升级陶罐"
+			icon: "minecraft:hopper"
+			x: -5.5d
+			y: -5.0d
+			subtitle: "使用漏斗来升级一个锅"
+			description: ["在箱子顶部放置漏斗桶即可自动收集作物！"]
+			dependencies: ["26602981CB1A8C11"]
+			hide: true
+			id: "60F0FBE4386C3FF1"
+			tasks: [{
+				id: "7E06CC29FB369E6B"
+				type: "item"
+				item: "botanypots:terracotta_hopper_botany_pot"
+			}]
+		}
+	]
+	quest_links: [ ]
+}
