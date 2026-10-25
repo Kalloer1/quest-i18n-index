@@ -154,7 +154,7 @@ const rangeGets = (calls) => calls.filter((c) => c.method === 'GET' && c.range)
 
 // ---------- 夹具 ----------
 
-const EN_TEXT = 'quest.a.title: "你好，世界"\nquest.b.desc: "emoji 🙂 / tab\\tend"\n'
+const EN_TEXT = '{\nquest.a.title: "你好，世界"\nquest.b.desc: "emoji 🙂 / tab\\tend"\n}'
 const EN_PATH = 'Demo-1.0/overrides/config/ftbquests/quests/lang/en_us.snbt'
 
 /** 分离·单文件：1 个英文源 + 1 个内嵌 data.snbt + 一个 200KB 的假 jar。 */
@@ -166,10 +166,10 @@ const SINGLE_ZIP = buildZip([
 
 /** 分离·目录：`lang/en_us/` 下 4 个 .snbt（craftoria 那种新版格式）。 */
 const DIR_FILES = [
-  { name: 'Demo-1.0/overrides/config/ftbquests/quests/lang/en_us/file.snbt', data: 'a: "1"\n' },
-  { name: 'Demo-1.0/overrides/config/ftbquests/quests/lang/en_us/chapters/apotheosis.snbt', data: 'b: "2"\n' },
-  { name: 'Demo-1.0/overrides/config/ftbquests/quests/lang/en_us/chapters/thermal.snbt', data: 'c: "3"\n' },
-  { name: 'Demo-1.0/overrides/config/ftbquests/quests/lang/en_us/chapters/create.snbt', data: 'd: "4"\n' },
+  { name: 'Demo-1.0/overrides/config/ftbquests/quests/lang/en_us/file.snbt', data: '{ a: "1" }' },
+  { name: 'Demo-1.0/overrides/config/ftbquests/quests/lang/en_us/chapters/apotheosis.snbt', data: '{ b: "2" }' },
+  { name: 'Demo-1.0/overrides/config/ftbquests/quests/lang/en_us/chapters/thermal.snbt', data: '{ c: "3" }' },
+  { name: 'Demo-1.0/overrides/config/ftbquests/quests/lang/en_us/chapters/create.snbt', data: '{ d: "4" }' },
 ]
 const DIR_ZIP = buildZip([...DIR_FILES, { name: 'Demo-1.0/overrides/mods/big.jar', data: BIG_JAR, method: 0 }])
 
@@ -238,13 +238,13 @@ test('fetchQuestFilesOnly：分离·目录布局的 4 个章节文件全部取�
 
 test('fetchQuestFilesOnly：stored（method 0）与 deflate（method 8）都能解', async () => {
   const zip = buildZip([
-    { name: 'p/config/ftbquests/quests/lang/en_us.snbt', data: 'deflated: "8"\n', method: 8 },
-    { name: 'p/config/ftbquests/quests/lang/zh_cn.snbt', data: 'stored: "0"\n', method: 0 },
+    { name: 'p/config/ftbquests/quests/lang/en_us.snbt', data: '{ deflated: "8" }', method: 8 },
+    { name: 'p/config/ftbquests/quests/lang/zh_cn.snbt', data: '{ stored: "0" }', method: 0 },
   ])
   const files = await fetchQuestFilesOnly('https://cdn.example/demo.zip', { fetchImpl: makeCdn(zip) })
   const byName = Object.fromEntries(files.map((f) => [f.name, f.text]))
-  assert.equal(byName['p/config/ftbquests/quests/lang/en_us.snbt'], 'deflated: "8"\n')
-  assert.equal(byName['p/config/ftbquests/quests/lang/zh_cn.snbt'], 'stored: "0"\n')
+  assert.equal(byName['p/config/ftbquests/quests/lang/en_us.snbt'], '{ deflated: "8" }')
+  assert.equal(byName['p/config/ftbquests/quests/lang/zh_cn.snbt'], '{ stored: "0" }')
 })
 
 test('fetchQuestFilesOnly：zip64 尾部（EOCD 字段全 0xff）也能读出中央目录', async () => {

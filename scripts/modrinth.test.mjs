@@ -75,8 +75,8 @@ function buildZip(files) {
 /** 仿真实 .mrpack 结构：modrinth.index.json + overrides/ 下的任务书。 */
 const MRPACK = buildZip([
   { name: 'modrinth.index.json', data: '{"formatVersion":1,"files":[]}\n' },
-  { name: 'overrides/config/ftbquests/quests/lang/en_us.snbt', data: 'quest.a.title: "Hi"\n' },
-  { name: 'overrides/defaultconfigs/ftbquests/quests/chapters/demo.snbt', data: 'id: "demo"\n' },
+  { name: 'overrides/config/ftbquests/quests/lang/en_us.snbt', data: '{ quest.a.title: "Hi" }' },
+  { name: 'overrides/defaultconfigs/ftbquests/quests/chapters/demo.snbt', data: '{ id: "demo" }' },
   { name: 'overrides/mods/example.jar', data: 'not-a-quest-file' },
 ])
 
@@ -248,7 +248,7 @@ test('preparePack(platform:mr)：端到端解包，overrides/ 被剥掉', async 
     // 关键断言：落盘路径不含 overrides/
     const langPath = join(dirs.packsDir, 'better-mc-fabric-bmc2', 'config/ftbquests/quests/lang/en_us.snbt')
     assert.ok(existsSync(langPath), `应解出 ${langPath}`)
-    assert.equal(readFileSync(langPath, 'utf8'), 'quest.a.title: "Hi"\n')
+    assert.equal(readFileSync(langPath, 'utf8'), '{ quest.a.title: "Hi" }')
     assert.ok(!existsSync(join(dirs.packsDir, 'better-mc-fabric-bmc2', 'overrides')), 'overrides/ 必须被剥掉')
     // 非任务书文件（mods/*.jar）与 index 都不解出
     assert.ok(!existsSync(join(dirs.packsDir, 'better-mc-fabric-bmc2', 'mods')))

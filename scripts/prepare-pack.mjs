@@ -47,7 +47,7 @@
  * 环境变量：
  *   CF_KEY   CurseForge API key（仅 cf 来源需要；缺失时明确失败，不静默跳过）
  */
-import { existsSync, mkdirSync, readFileSync, readdirSync, rmdirSync, rmSync, statSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmdirSync, rmSync, statSync, writeFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 import { fileURLToPath } from 'node:url'
 import { dirname, join, relative } from 'node:path'
@@ -361,6 +361,7 @@ function writeQuestTexts(files, outDir) {
 function repairSources(slug, outDir, written, log) {
   let files = 0
   const keys = []
+  const skipped = []
   for (const rel of written) {
     const dest = join(outDir, rel)
     if (!existsSync(dest)) continue
@@ -387,23 +388,52 @@ function repairSources(slug, outDir, written, log) {
     const j2 = repairMissingOpenQuote(i2.text)
     const k2 = repairUnclosedListElement(j2.text)
     const repaired = [...a.repaired, ...b.repaired, ...c.repaired, ...d.repaired, ...e2.repaired, ...f2.repaired, ...g2.repaired, ...h2.repaired, ...i2.repaired, ...j2.repaired, ...k2.repaired]
-    if (!repaired.length) continue
-    // 修完必须真的能解析，否则整文件回滚（一个字节不动）。
-    // 「改不活就当没改」是这套规则唯一的验收口径 —— 不能靠「看起来更像了」。
-    try {
-      parse(k2.text)
-    } catch (err) {
-      log(`[${slug}] 修复未生效，已回滚：${rel}（${String(err?.message ?? err).slice(0, 80)}）`)
+    // 修完必须真的能解析；修不活（或没有任何规则命中）→ 单文件跳过（方案①）。
+    // 「改不活就当没改」升级为「改不活就摘出去」：保留原文（改名 .skipped）+
+    // 记账清单，整包其余文件照常翻译。2026-10-25 拍板，linggango 是首个受益包。
+    let fixed = null
+    if (repaired.length) {
+      try { parse(k2.text); fixed = k2.text } catch { /* 落入跳过 */ }
+    }
+    if (fixed === null) {
+      const firstErr = (() => { try { parse(before) } catch (e) { return String(e.message).slice(0, 80) } return '' })()
+      renameSync(dest, dest + '.skipped')
+      skipped.push({ file: rel, error: firstErr })
+      log(`[${slug}] 修复链修不活，单文件跳过：${rel}（${firstErr}）`)
       continue
     }
-    writeFileSync(dest, k2.text)
+    writeFileSync(dest, fixed)
     files++
     for (const r of repaired.slice(0, 3)) keys.push(`${rel}::${r.key}`)
   }
   if (files) {
     log(`[${slug}] 修正上游源文件的结构损坏：${files} 个文件（${keys.slice(0, 3).join('、')}${keys.length > 3 ? ' …' : ''}）`)
   }
+  if (skipped.length) {
+    writeSkippedManifest(outDir, skipped)
+    log(`[${slug}] 单文件跳过 ${skipped.length} 个（记账 .skipped-files.json）：${skipped.map((x) => x.file).slice(0, 3).join('、')}${skipped.length > 3 ? ' …' : ''}`)
+  }
   return files
+}
+
+/**
+ * 无可译/不可修复文件的记账清单：`research/packs/<slug>/.skipped-files.json`。
+ *
+ * 为什么记账：跳过是「知情的放弃」——下游（闸门、站点、复盘）必须能看出
+ * 这份基准少了哪些文件、为什么。同名文件重复跳过时合并去重（保留最早记录）。
+ * 文件本体改名 `<原路径>.skipped` 保留在包内：不参与任何 .snbt 解析/匹配，
+ * 但人能直接看到原文，复盘零成本。
+ */
+function writeSkippedManifest(outDir, entries) {
+  const manifest = join(outDir, '.skipped-files.json')
+  let prev = { skipped: [] }
+  if (existsSync(manifest)) {
+    try { prev = JSON.parse(readFileSync(manifest, 'utf8')); if (!Array.isArray(prev.skipped)) prev.skipped = [] } catch { prev = { skipped: [] } }
+  }
+  const byFile = new Map(prev.skipped.map((x) => [x.file, x]))
+  const at = new Date().toISOString()
+  for (const e of entries) if (!byFile.has(e.file)) byFile.set(e.file, { ...e, at })
+  writeFileSync(manifest, JSON.stringify({ skipped: [...byFile.values()] }, null, 2) + '\n')
 }
 
 /**

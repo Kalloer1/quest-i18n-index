@@ -64,7 +64,7 @@ function buildZip(files) {
 
 const ZIP = buildZip([{
   name: 'overrides/config/ftbquests/quests/lang/en_us.snbt',
-  data: 'quest.a.title: "Hi"\n',
+  data: '{ quest.a.title: "Hi" }',
 }])
 
 /** fetch 桩：先回文件列表，再回 zip 本体。`onBody` 只在真拉走字节时调用。 */
@@ -140,7 +140,7 @@ test('keepZip: false 且已有 .snbt —— 仍跳过下载，完全不碰 tmp',
   try {
     const outDir = join(dirs.packsDir, 'demo', 'config/ftbquests/quests/lang')
     mkdirSync(outDir, { recursive: true })
-    writeFileSync(join(outDir, 'en_us.snbt'), 'quest.a.title: "Hi"\n')
+    writeFileSync(join(outDir, 'en_us.snbt'), '{ quest.a.title: "Hi" }')
 
     // 幂等跳过前会先取一次权威文件地址 + 一次清单（拿不到就退回本地副本），
     // 但绝不下载 zip 字节、绝不碰 tmp。桩只对「拉字节的请求」计数。
@@ -155,6 +155,6 @@ test('keepZip: false 且已有 .snbt —— 仍跳过下载，完全不碰 tmp',
     assert.equal(bodies, 0, '跳过时不该拉走任何 zip 字节')
     assert.equal(existsSync(join(dirs.tmpDir, 'demo.zip')), false)
     // 本地英文源一个字节都不能动（它是 validate-quests 的基准键集）
-    assert.equal(readFileSync(join(outDir, 'en_us.snbt'), 'utf8'), 'quest.a.title: "Hi"\n')
+    assert.equal(readFileSync(join(outDir, 'en_us.snbt'), 'utf8'), '{ quest.a.title: "Hi" }')
   } finally { dirs.cleanup() }
 })

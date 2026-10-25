@@ -75,7 +75,7 @@ function buildZip(files) {
 
 /** 一个带分离·单文件布局任务书的假整合包。 */
 const PACK_ZIP = buildZip([
-  { name: 'Demo-1.0/overrides/config/ftbquests/quests/lang/en_us.snbt', data: 'quest.a.title: "Hi"\n' },
+  { name: 'Demo-1.0/overrides/config/ftbquests/quests/lang/en_us.snbt', data: '{\n\tquest_a_title: "Hi"\n}' },
   { name: 'Demo-1.0/overrides/config/ftbquests/quests/data.snbt', data: '{ }\n' },
   { name: 'Demo-1.0/overrides/mods/example.jar', data: 'not-a-quest-file' },
 ])
@@ -253,11 +253,63 @@ test('preparePack：只解任务书文件到 research/packs/<slug>/，布局可�
 
     const langPath = join(dirs.packsDir, 'demo', 'config/ftbquests/quests/lang/en_us.snbt')
     assert.ok(existsSync(langPath), '应解出 lang/en_us.snbt')
-    assert.equal(readFileSync(langPath, 'utf8'), 'quest.a.title: "Hi"\n')
+    assert.equal(readFileSync(langPath, 'utf8'), '{\n\tquest_a_title: "Hi"\n}')
     // 非任务书文件（mods/*.jar）不解出
     assert.ok(!existsSync(join(dirs.packsDir, 'demo', 'mods')))
     // zip 留在 research/tmp/ 便于复现
     assert.ok(existsSync(join(dirs.tmpDir, 'demo.zip')))
+  } finally { dirs.cleanup() }
+})
+
+test('preparePack：修复链修不活的文件单文件跳过（改名 .skipped + 记账清单）', async () => {
+  const dirs = tempDirs()
+  try {
+    // garbage.snbt 是 linggango 形态：整文件一行 `LGQ1:<blob>` 垃圾，11 规则零命中；
+    // fixable.snbt 是 lindenfeld 形态：规则⑥可修的空值条目。
+    const zip = buildZip([
+      { name: 'Demo-1.0/overrides/config/ftbquests/quests/lang/en_us.snbt', data: '{\n\tquest_a_title: "Hi"\n}' },
+      { name: 'Demo-1.0/overrides/config/ftbquests/quests/chapters/garbage.snbt', data: 'LGQ1:' + 'A'.repeat(300) + '\n' },
+      { name: 'Demo-1.0/overrides/config/ftbquests/quests/chapters/fixable.snbt', data: '{\n\tdependencies: \n\tquest_links: [ ]\n}\n' },
+    ])
+    const logs = []
+    const result = await preparePack({
+      slug: 'demo', cfId: '1514778', apiKey: 'k', packsDir: dirs.packsDir, tmpDir: dirs.tmpDir,
+      fetchImpl: stubFetch({ zip }), log: (m) => logs.push(m),
+    })
+    assert.equal(result.status, 'prepared')
+    const base = join(dirs.packsDir, 'demo', 'config/ftbquests/quests/chapters')
+    // 不可修复：改名保留原文，原路径不再有 .snbt
+    assert.ok(existsSync(join(base, 'garbage.snbt.skipped')), '垃圾文件应改名 .skipped 保留')
+    assert.match(readFileSync(join(base, 'garbage.snbt.skipped'), 'utf8'), /^LGQ1:/)
+    assert.ok(!existsSync(join(base, 'garbage.snbt')), '原路径不应残留可解析失败的 .snbt')
+    // 可修复：规则⑥修活，正常保留
+    assert.ok(existsSync(join(base, 'fixable.snbt')), '可修复文件应留在原地')
+    // 记账清单
+    const manifest = JSON.parse(readFileSync(join(dirs.packsDir, 'demo', '.skipped-files.json'), 'utf8'))
+    assert.equal(manifest.skipped.length, 1)
+    assert.equal(manifest.skipped[0].file, 'config/ftbquests/quests/chapters/garbage.snbt')
+    assert.match(manifest.skipped[0].error, /无法解析|LGQ1|末尾|多余/)
+    assert.ok(manifest.skipped[0].at)
+    assert.match(logs.join('\n'), /单文件跳过/)
+  } finally { dirs.cleanup() }
+})
+
+test('preparePack：跳过记账幂等——重跑合并清单且不丢早先记录', async () => {
+  const dirs = tempDirs()
+  try {
+    const zip = buildZip([
+      { name: 'Demo-1.0/overrides/config/ftbquests/quests/lang/en_us.snbt', data: '{\n\tquest_a_title: "Hi"\n}' },
+      { name: 'Demo-1.0/overrides/config/ftbquests/quests/chapters/garbage.snbt', data: 'LGQ1:' + 'B'.repeat(50) + '\n' },
+    ])
+    const common = {
+      slug: 'demo', cfId: '1514778', apiKey: 'k', packsDir: dirs.packsDir, tmpDir: dirs.tmpDir,
+      fetchImpl: stubFetch({ zip }),
+    }
+    await preparePack({ ...common, log: () => {} })
+    // 第二次 --force 重解包：垃圾文件重新出现、重新跳过，清单去重不翻倍
+    await preparePack({ ...common, force: true, log: () => {} })
+    const manifest = JSON.parse(readFileSync(join(dirs.packsDir, 'demo', '.skipped-files.json'), 'utf8'))
+    assert.equal(manifest.skipped.length, 1, '同文件重复跳过只记一笔')
   } finally { dirs.cleanup() }
 })
 
@@ -284,7 +336,7 @@ test('preparePack：已有任务书文件时跳过下载（幂等），不下载
   try {
     const outDir = join(dirs.packsDir, 'demo', 'config/ftbquests/quests/lang')
     mkdirSync(outDir, { recursive: true })
-    writeFileSync(join(outDir, 'en_us.snbt'), 'quest.a.title: "Hi"\n')
+    writeFileSync(join(outDir, 'en_us.snbt'), '{\n\tquest_a_title: "Hi"\n}')
 
     const calls = []
     const bodies = []
@@ -301,7 +353,7 @@ test('preparePack：已有任务书文件时跳过下载（幂等），不下载
     assert.deepEqual(bodies, [], '跳过时不该拉走任何 zip 字节')
     assert.match(logs.join('\n'), /权威清单取不到/, '清单拿不到要明说，不能静默当成一致')
     // 本地副本一个字节都不能动
-    assert.equal(readFileSync(join(outDir, 'en_us.snbt'), 'utf8'), 'quest.a.title: "Hi"\n')
+    assert.equal(readFileSync(join(outDir, 'en_us.snbt'), 'utf8'), '{\n\tquest_a_title: "Hi"\n}')
   } finally { dirs.cleanup() }
 })
 
@@ -311,7 +363,7 @@ test('preparePack：跳过下载时也写 .source.json（失败重试 / 中断�
     // 目录里已有产物（farm 打包后才删目录，重试时目录还在）→ 走幂等跳过分支
     const langDir = join(dirs.packsDir, 'demo', 'config/ftbquests/quests/lang')
     mkdirSync(langDir, { recursive: true })
-    writeFileSync(join(langDir, 'en_us.snbt'), 'quest.a.title: "Hi"\n')
+    writeFileSync(join(langDir, 'en_us.snbt'), '{\n\tquest_a_title: "Hi"\n}')
 
     const calls = []
     const bodies = []
@@ -335,7 +387,7 @@ test('preparePack：跳过下载时也写 .source.json（失败重试 / 中断�
     assert.equal(calls.filter((c) => String(c.url).includes('/files?pageSize=1')).length, 1)
     assert.deepEqual(bodies, [], '跳过时不该拉走任何 zip 字节')
     // 本地副本一个字节都不能动，也不能凭空多出 zip
-    assert.equal(readFileSync(join(langDir, 'en_us.snbt'), 'utf8'), 'quest.a.title: "Hi"\n')
+    assert.equal(readFileSync(join(langDir, 'en_us.snbt'), 'utf8'), '{\n\tquest_a_title: "Hi"\n}')
     assert.ok(!existsSync(join(dirs.tmpDir, 'demo.zip')))
   } finally { dirs.cleanup() }
 })
@@ -346,7 +398,7 @@ test('preparePack：目录实况与权威清单一致时跳过下载，一个 zi
     // 整包路解出的完整形态：lang/en_us.snbt + data.snbt（与 PACK_ZIP 的权威清单一致）
     const questsDir = join(dirs.packsDir, 'demo', 'config/ftbquests/quests')
     mkdirSync(join(questsDir, 'lang'), { recursive: true })
-    writeFileSync(join(questsDir, 'lang/en_us.snbt'), 'quest.a.title: "Hi"\n')
+    writeFileSync(join(questsDir, 'lang/en_us.snbt'), '{\n\tquest_a_title: "Hi"\n}')
     writeFileSync(join(questsDir, 'data.snbt'), '{ }\n')
 
     const calls = []
@@ -380,7 +432,7 @@ test('preparePack：--force 忽略已有文件，重新下载解包', async () =
     })
     assert.equal(result.status, 'prepared')
     assert.ok(calls.length >= 2, '应重新请求文件列表并下载')
-    assert.equal(readFileSync(join(outDir, 'en_us.snbt'), 'utf8'), 'quest.a.title: "Hi"\n')
+    assert.equal(readFileSync(join(outDir, 'en_us.snbt'), 'utf8'), '{\n\tquest_a_title: "Hi"\n}')
   } finally { dirs.cleanup() }
 })
 
@@ -487,7 +539,7 @@ test('preparePack --force：权威源里没有任务书文件时不动目录（�
     // 已发布包的英文源（validate-quests 的基准键集）
     const langDir = join(dirs.packsDir, 'demo', 'config/ftbquests/quests/lang')
     mkdirSync(langDir, { recursive: true })
-    writeFileSync(join(langDir, 'en_us.snbt'), 'quest.a.title: "Hi"\n')
+    writeFileSync(join(langDir, 'en_us.snbt'), '{\n\tquest_a_title: "Hi"\n}')
 
     const noQuestZip = buildZip([{ name: 'Demo-1.0/overrides/mods/example.jar', data: 'not-a-quest-file' }])
     const r = await preparePack({
@@ -496,7 +548,7 @@ test('preparePack --force：权威源里没有任务书文件时不动目录（�
     })
     assert.equal(r.status, 'prepared')
     assert.equal(r.written, 0)
-    assert.equal(readFileSync(join(langDir, 'en_us.snbt'), 'utf8'), 'quest.a.title: "Hi"\n')
+    assert.equal(readFileSync(join(langDir, 'en_us.snbt'), 'utf8'), '{\n\tquest_a_title: "Hi"\n}')
     // 门禁：提前 return 的「没有任务书文件」分支也要写版本，否则这类包永远缺 .source.json。
     // `.source.json` 不是 .snbt，不影响目录实况判定。
     assert.ok(existsSync(join(dirs.packsDir, 'demo', '.source.json')))
@@ -511,7 +563,7 @@ test('preparePack：判定为不一致后下载失败 —— 原样留着旧英�
     mkdirSync(join(questsDir, 'chapters'), { recursive: true })
     mkdirSync(join(questsDir, 'lang'), { recursive: true })
     writeFileSync(join(questsDir, 'chapters/old.snbt'), 'title: "上一次来源"\n')
-    writeFileSync(join(questsDir, 'lang/en_us.snbt'), 'quest.a.title: "Hi"\n')
+    writeFileSync(join(questsDir, 'lang/en_us.snbt'), '{\n\tquest_a_title: "Hi"\n}')
     const before = snbtNames(join(dirs.packsDir, 'demo'))
 
     // 清单能拿到（不一致 → 决定重取），但拉 zip 本体时挂掉
@@ -535,7 +587,7 @@ test('preparePack：判定为不一致后下载失败 —— 原样留着旧英�
     )
     // 关键：目录一个字节都没动 —— 闸门的基准键集还在
     assert.deepEqual(snbtNames(join(dirs.packsDir, 'demo')), before)
-    assert.equal(readFileSync(join(questsDir, 'lang/en_us.snbt'), 'utf8'), 'quest.a.title: "Hi"\n')
+    assert.equal(readFileSync(join(questsDir, 'lang/en_us.snbt'), 'utf8'), '{\n\tquest_a_title: "Hi"\n}')
     assert.equal(readFileSync(join(questsDir, 'chapters/old.snbt'), 'utf8'), 'title: "上一次来源"\n')
   } finally { dirs.cleanup() }
 })
