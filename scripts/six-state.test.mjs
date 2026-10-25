@@ -35,9 +35,9 @@ const pack = (layout, extra = {}) => {
   }
 }
 
-test('词表是六个，且顺序稳定', () => {
+test('词表是七个，且顺序稳定', () => {
   assert.deepEqual([...PACK_STATES], [
-    'downloadable', 'native-zh', 'gap-uncovered', 'gap-covered', 'embedded', 'no-quests',
+    'downloadable', 'native-zh', 'gap-uncovered', 'gap-covered', 'embedded', 'no-text', 'no-quests',
   ])
 })
 
@@ -46,13 +46,13 @@ test('500 条扫描记录全部进产出', () => {
   assert.equal(dataset.stat.total, 500)
 })
 
-test('500 条 = 六态计数之和 + 探测未完成计数', () => {
-  const sixSum = PACK_STATES.reduce((n, s) => n + dataset.stat.stateCounts[s], 0)
-  assert.equal(sixSum + dataset.stat.probeIncomplete, 500)
-  assert.equal(dataset.stat.classified, sixSum)
+test('500 条 = 各态计数之和 + 探测未完成计数', () => {
+  const stateSum = PACK_STATES.reduce((n, s) => n + dataset.stat.stateCounts[s], 0)
+  assert.equal(stateSum + dataset.stat.probeIncomplete, 500)
+  assert.equal(dataset.stat.classified, stateSum)
 })
 
-test('每条记录要么有六态之一，要么标探测未完成，二者互斥', () => {
+test('每条记录要么有各态之一，要么标探测未完成，二者互斥', () => {
   for (const d of dataset.dataset) {
     if (d.state === null) {
       assert.equal(d.probeIncomplete, true, `${d.slug} 无状态却不是探测未完成`)
@@ -137,6 +137,50 @@ test('有英文源且 VM 覆盖 ⇒ gap-covered', () => {
   )
   assert.equal(r.state, 'gap-covered')
   assert.equal(r.match.vm.originalName, 'Craftoria')
+})
+
+test('no-text 台账：embedded 未交付的台账包摘出为 no-text 态', () => {
+  // 台账 slug 通过 buildDataset 的 noTextSlugs 传入，classifyPack 读 pack.noText
+  const input = {
+    packs: [pack('embedded', { slug: 'mech-lab' })],
+    vmEntries: baseInput.vmEntries,
+    noTextSlugs: ['mech-lab'],
+  }
+  const d = buildDataset(input, { now: 'T' })
+  const row = d.dataset.find((x) => x.slug === 'mech-lab')
+  assert.equal(row.state, 'no-text')
+  assert.match(row.stateWhy, /无可译文本/)
+  assert.equal(d.stat.stateCounts['no-text'], 1)
+  assert.equal(d.stat.stateCounts['embedded'], 0)
+})
+
+test('no-text 台账：自带中文形态（zhFiles>0）归 native-zh 而不是 no-text', () => {
+  const input = {
+    packs: [pack('embedded', { slug: 'create-train-like', zhFiles: 1 })],
+    vmEntries: baseInput.vmEntries,
+    noTextSlugs: ['create-train-like'],
+  }
+  const d = buildDataset(input, { now: 'T' })
+  const row = d.dataset.find((x) => x.slug === 'create-train-like')
+  assert.equal(row.state, 'native-zh')
+  assert.equal(d.stat.stateCounts['no-text'], 0)
+})
+
+test('no-text 台账：已交付包不受台账影响（delivered 分支先返回）', () => {
+  const input = {
+    packs: [pack('embedded', { slug: 'mech-lab' })],
+    vmEntries: baseInput.vmEntries,
+    deliveredSlugs: ['mech-lab'],
+    zipNames: { 'mech-lab': 'mech-lab.zip' },
+    noTextSlugs: ['mech-lab'],
+  }
+  const d = buildDataset(input, { now: 'T' })
+  assert.equal(d.dataset.find((x) => x.slug === 'mech-lab').state, 'downloadable')
+})
+
+test('no-text 台账：不传台账时行为与旧版完全一致', () => {
+  const r = classifyPack(pack('embedded'), baseInput.vmEntries)
+  assert.equal(r.state, 'embedded')
 })
 
 test('embedded / none 的判定与 zhFiles 无关', () => {

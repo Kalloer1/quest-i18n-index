@@ -130,9 +130,12 @@ export const PACK_STATES = Object.freeze([
   'native-zh',     // 自带中文：整合包自身已带中文译文
   'gap-uncovered', // 待翻译·无人覆盖：有英文源，本站未翻，社区也没有
   'gap-covered',   // 待翻译·社区已覆盖：有英文源，本站未翻，VM 或 CFPA 已有
-  'embedded',      // 内嵌未交付：该包布局为内嵌且尚未交付。未交付的真实原因各异（多数是
-                   // 翻译时判定「没有可译文本」——任务书只有 tasks/rewards/icon 等机械字段），
+  'embedded',      // 内嵌未交付：该包布局为内嵌且尚未交付，且**不在**无可译文本台账里。
+                   // 未交付的真实原因各异（多数是翻译时判定「没有可译文本」），
                    // **不是**内嵌布局本身不可翻：内嵌包已用覆盖式补丁交付了 1121 个
+  'no-text',       // 无可译文本：五机翻译台账（research/no-text-slugs.txt）实测任务书
+                   // 只有 tasks/rewards/icon 等机械字段，无从汉化 —— 从 embedded 挂账
+                   // 正式摘出，不再是「待办」
   'no-quests',     // 无任务书：不含 FTB Quests
 ])
 
@@ -189,6 +192,21 @@ export function classifyPack(pack, vmEntries) {
   }
 
   if (layout === 'embedded') {
+    // 无可译文本台账：五机翻译实测判定「没有可译文本」的包（research/no-text-slugs.txt）。
+    // 从 embedded 挂账里正经摘出去：自带中文形态的归 native-zh，其余标 no-text。
+    // 只对未交付生效 —— 已交付的包 delivered 分支先返回，台账残留不产生任何影响。
+    if (pack.noText) {
+      if (Number(pack.zhFiles) > 0) {
+        return {
+          state: 'native-zh', probeIncomplete: false, match: m,
+          why: `自带中文：${pack.zhFiles} 个中文任务书文件（翻译台账：无可译英文文本）`,
+        }
+      }
+      return {
+        state: 'no-text', probeIncomplete: false, match: m,
+        why: '翻译台账判定无可译文本：任务书只有 tasks/rewards/icon 等机械字段，无从汉化',
+      }
+    }
     return {
       state: 'embedded', probeIncomplete: false, match: m,
       why: '内嵌布局未交付：多数在翻译时判定「没有可译文本」（任务书只有 tasks/rewards/icon 等机械字段），内嵌本身可以翻（已交付 1121 个）',
@@ -234,11 +252,13 @@ export function buildDataset(input, { now = new Date().toISOString() } = {}) {
   // 已产出补丁包的 slug（downloads/<slug>.zip 或 downloads/<slug>_v<version>.zip）。
   // 不传时为空，delivered 全为 false，六态计数与旧行为一致。
   const deliveredSlugs = input.deliveredSlugs ?? []
+  // 无可译文本台账（research/no-text-slugs.txt）。不传时为空集，分类行为与旧版完全一致。
+  const noTextSlugs = input.noTextSlugs ?? []
   // slug → zip 文件名（含扩展名）。站点/镜像要的就是这个真源，不再自己拼 `<slug>.zip`。
   const zipNames = input.zipNames ?? {}
   const packs = input.packs.map(p => {
     const delivered = deliveredSlugs.includes(p.slug)
-    const c = classifyPack({ ...p, delivered }, input.vmEntries)
+    const c = classifyPack({ ...p, delivered, noText: noTextSlugs.includes(p.slug) }, input.vmEntries)
     const m = c.match || null
     return {
       slug: p.slug,
@@ -402,11 +422,12 @@ export function collectDelivered(zipFiles, knownSlugs = null) {
  * vmEntries 由 build-input.json 提供（VM 官网 58 条）。
  * deliveredSlugs 是 downloads/ 下已有 zip 的 slug 列表，透传给 buildDataset 置 delivered；
  * zipNames 是 slug → zip 文件名，用于产出 `zipName` 字段（见 collectDelivered）。
+ * noTextSlugs 是「无可译文本」台账（research/no-text-slugs.txt），embedded 挂账摘除用。
  *
  * @param {string} scanText  research/scan-cf500.tsv 的内容
- * @param {{titles?: Record<string,string|null>, vmEntries?: Array, deliveredSlugs?: string[], zipNames?: Record<string,string>}} sources
+ * @param {{titles?: Record<string,string|null>, vmEntries?: Array, deliveredSlugs?: string[], zipNames?: Record<string,string>, noTextSlugs?: string[]}} sources
  */
-export function composeScanInput(scanText, { titles = {}, vmEntries = [], deliveredSlugs = [], zipNames = {} } = {}) {
+export function composeScanInput(scanText, { titles = {}, vmEntries = [], deliveredSlugs = [], zipNames = {}, noTextSlugs = [] } = {}) {
   return {
     packs: parseScanTsv(scanText).map(row => {
       const title = titles[row.slug] ?? null
@@ -415,6 +436,7 @@ export function composeScanInput(scanText, { titles = {}, vmEntries = [], delive
     vmEntries,
     deliveredSlugs,
     zipNames,
+    noTextSlugs,
   }
 }
 
@@ -451,11 +473,18 @@ if (isMain) {
   const knownSlugs = new Set(parseScanTsv(scanText).map(row => row.slug))
   const zipFiles = existsSync('downloads') ? readdirSync('downloads') : []
   const { deliveredSlugs, zipNames } = collectDelivered(zipFiles, knownSlugs)
+  // 无可译文本台账：文件不存在时为空集（不破坏现有行为；老环境/夹具目录里没有它）。
+  let noTextSlugs = []
+  try {
+    noTextSlugs = readFileSync('research/no-text-slugs.txt', 'utf8').split(/\r?\n/)
+      .map((s) => s.trim()).filter((s) => s && !s.startsWith('#'))
+  } catch { /* 台账缺失时按无台账处理 */ }
   const input = composeScanInput(scanText, {
     titles,
     vmEntries: baseInput.vmEntries,
     deliveredSlugs,
     zipNames,
+    noTextSlugs,
   })
   const out = buildDataset(input)
   writeFileSync(outPath, JSON.stringify(out, null, 2) + '\n')

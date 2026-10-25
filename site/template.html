@@ -60,6 +60,7 @@
   --s-uncovered:    #8a6a12;
   --s-embedded:     #a04a1e;
   --s-none:         #5c5952;
+  --s-notext:       #7a6a8f;
   --toast-bg:  rgba(24, 22, 20, .93);
   --toast-ink: #f2efe8;
 }
@@ -92,6 +93,8 @@
     --s-uncovered:    #ffc83d;
     --s-embedded:     #ff9a5c;
     --s-none:         #9a9a9a;
+  --s-notext:       #b3a6c9;
+    --s-notext:       #b3a6c9;
     --toast-bg:  rgba(8, 9, 12, .95);
     --toast-ink: #f2efe8;
   }
@@ -365,6 +368,7 @@ input::placeholder, textarea::placeholder { color: var(--ink-faint); }
 .tab[data-state="zh"]     { background: var(--s-downloadable); }
 .tab[data-state="unzh"]   { background: var(--s-uncovered); color: #1a1508; }
 .tab[data-state="no-ftb"] { background: var(--s-none); }
+.tab[data-state="no-text"] { background: var(--s-notext); }
 
 /* 行内徽章：说清这条为什么落在当前主分类里 */
 .tab-badge {
@@ -897,9 +901,10 @@ code { background: var(--slot); padding: 1px 5px; font-size: .94em; box-shadow: 
     "gap-uncovered": "unzh",
     "gap-covered": "unzh",
     "embedded": "unzh",
-    "no-quests": "no-ftb"
+    "no-quests": "no-ftb",
+    "no-text": "no-text"
   };
-  var CAT_LABEL = { zh: "已汉化", unzh: "未汉化", "no-ftb": "没有 FTB 任务" };
+  var CAT_LABEL = { zh: "已汉化", unzh: "未汉化", "no-ftb": "没有 FTB 任务", "no-text": "无可译文本" };
 
   // 返回 { cat, label, badge, why }：cat 是筛选用的主分类，badge 是可选的徽章
   function classify(p) {
@@ -952,7 +957,7 @@ code { background: var(--slot); padding: 1px 5px; font-size: .94em; box-shadow: 
   function renderFilters() {
     // D1：「全部」直接取 PACKS.length，不靠循环累加。
     // 旧实现按状态累加，探测未完成的条目提前 return，于是 counts.all 少算（395 ≠ 500）。
-    var counts = { all: PACKS.length, zh: 0, unzh: 0, "no-ftb": 0 };
+    var counts = { all: PACKS.length, zh: 0, unzh: 0, "no-ftb": 0, "no-text": 0 };
     PACKS.forEach(function (p) {
       var cat = classify(p).cat;
       if (cat) counts[cat]++;
@@ -961,7 +966,8 @@ code { background: var(--slot); padding: 1px 5px; font-size: .94em; box-shadow: 
       ["all", "全部", "var(--ink-faint)"],
       ["zh", "已汉化", "var(--s-downloadable)"],
       ["unzh", "未汉化", "var(--s-uncovered)"],
-      ["no-ftb", "没有 FTB 任务", "var(--s-none)"]
+      ["no-ftb", "没有 FTB 任务", "var(--s-none)"],
+      ["no-text", "无可译文本", "var(--s-notext)"]
     ];
     var html = "";
     order.forEach(function (o) {
