@@ -148,12 +148,35 @@ test('packBaseline：长路径用 prefix 拆分（90~120 字节）且往返一�
   assert.ok(back.every((f) => !f.name.includes('\\')), '包内路径必须用正斜杠')
 })
 
-test('packBaseline：路径超出 ustar 容量（>255 字节）时抛明确错误', (t) => {
+test('packBaseline：路径超 ustar 容量时走 GNU LongLink，往返无损', (t) => {
   const dir = tempDir(t)
   const src = join(dir, 'pack')
-  writeTree(src, { [`${'q'.repeat(240)}.snbt`]: 'x' })
-  const out = join(dir, 'bad.tar.gz')
-  assert.throws(() => packBaseline(src, out), /路径过长/)
+  // name>100 且 prefix>155（无中间 '/' 可拆）：旧实现直接抛错，ustar 三件套（实测
+  // 2026-10-25）就死在这；现在改走 @LongLink 扩展条目。
+  const longName = `${'q'.repeat(240)}.snbt`
+  writeTree(src, { [longName]: '{ a: 1 }', 'b.snbt': '{ b: 2 }' })
+  const out = join(dir, 'long.tar.gz')
+  const r1 = packBaseline(src, out)
+  assert.equal(r1.files, 2)
+  const names = listBaseline(out)
+  assert.ok(names.includes(longName), 'LongLink 后完整路径必须可读回')
+  assert.deepEqual(readBaseline(out).find((e) => e.name === longName), { name: longName, text: '{ a: 1 }' })
+  // 可复现：同内容两次打包字节一致
+  const out2 = join(dir, 'long2.tar.gz')
+  packBaseline(src, out2)
+  assert.deepEqual(readFileSync(out), readFileSync(out2))
+})
+
+test('packBaseline：可拆分路径仍走 prefix，不产生 LongLink（存量归档字节不变）', (t) => {
+  const dir = tempDir(t)
+  const src = join(dir, 'pack')
+  const splittable = `${'d'.repeat(120)}/${'e'.repeat(90)}.snbt` // prefix 120+1, name 95：可拆
+  writeTree(src, { [splittable]: 'x' })
+  const out = join(dir, 'split.tar.gz')
+  packBaseline(src, out)
+  const raw = gunzipSync(readFileSync(out))
+  assert.ok(!raw.includes('@LongLink'), '可拆分路径不得引入 LongLink 条目')
+  assert.equal(listBaseline(out)[0], splittable)
 })
 
 test('readBaseline：损坏的 gzip 抛明确错误，不静默返回空', (t) => {

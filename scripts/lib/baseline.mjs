@@ -63,7 +63,8 @@ function readString(buf, offset, length) {
 
 /**
  * 长路径拆分：name 字段 100 字节，超出则用 prefix(155) + name 拆分。
- * 两者都放不下时抛错（当前仓库最长包内路径 ~138 字节，能拆开）。
+ * 两者都放不下时返回 null，调用方改走 GNU LongLink（@LongLink 扩展条目）。
+ * 当前仓库最长包内路径 ~138 字节，能拆开；ustar 三件套（实测 2026-10-25）超限。
  */
 function splitName(name) {
   if (Buffer.byteLength(name) <= NAME_MAX) return { name, prefix: '' }
@@ -75,20 +76,19 @@ function splitName(name) {
       return { name: rest, prefix }
     }
   }
-  throw new Error(`包内路径过长，ustar 无法表示（name>100 且 prefix>155 字节）：${name}`)
+  return null
 }
 
-function buildHeader({ name, size }) {
-  const { name: shortName, prefix } = splitName(name)
+function buildHeader({ name, size, typeflag = '0', prefix = '' }) {
   const header = Buffer.alloc(BLOCK, 0)
 
-  header.write(shortName, 0, 'utf8')
+  header.write(name, 0, 'utf8')
   writeOctal(header, 100, 8, 0o644) // mode
   writeOctal(header, 108, 8, 0) // uid
   writeOctal(header, 116, 8, 0) // gid
   writeOctal(header, 124, 12, size)
   writeOctal(header, 136, 12, 0) // mtime = 0（ephemeral → 可复现）
-  header.write('0', 156, 'ascii') // typeflag：普通文件
+  header.write(typeflag, 156, 'ascii')
   // linkname(157..256) 留空
   header.write('ustar', 257, 'ascii')
   header.write('00', 263, 'ascii')
@@ -107,6 +107,32 @@ function buildHeader({ name, size }) {
 }
 
 /**
+ * name 写不进 name+prefix 时改用 GNU LongLink：先写一个 typeflag='L' 的
+ * `././@LongLink` 条目（内容 = 完整路径 + NUL），紧跟的真实头 name 字段
+ * 截断到 100 字节（GNU tar 同款做法，读取方以 L 条目为准）。
+ * 读侧 parseTar 认 'L'；系统 tar/bsdtar 均支持，提取不受影响。
+ */
+function entryChunks(name, data) {
+  const chunks = []
+  const split = splitName(name)
+  if (split) {
+    chunks.push(buildHeader({ name: split.name, size: data.length, prefix: split.prefix }), data)
+  } else {
+    const nameBuf = Buffer.from(name + '\0', 'utf8')
+    chunks.push(buildHeader({ name: '././@LongLink', size: nameBuf.length, typeflag: 'L' }), nameBuf)
+    const pad = (BLOCK - (nameBuf.length % BLOCK)) % BLOCK
+    if (pad) chunks.push(Buffer.alloc(pad, 0))
+    // 真实头的 name 写截断版（UTF-8 按字节截，不破多字节字符）；读取方不用它。
+    let trunc = name
+    while (Buffer.byteLength(trunc) > NAME_MAX) trunc = trunc.slice(0, -1)
+    chunks.push(buildHeader({ name: trunc, size: data.length }), data)
+  }
+  const pad = (BLOCK - (data.length % BLOCK)) % BLOCK
+  if (pad) chunks.push(Buffer.alloc(pad, 0))
+  return chunks
+}
+
+/**
  * 把一个目录打成可复现的 tar.gz。
  *
  * @param {string} dir 源目录（其下所有文件，相对路径入包）
@@ -118,9 +144,7 @@ export function packBaseline(dir, outFile) {
   const chunks = []
   for (const entry of entries) {
     const data = readFileSync(entry.full)
-    chunks.push(buildHeader({ name: entry.name, size: data.length }), data)
-    const pad = (BLOCK - (data.length % BLOCK)) % BLOCK
-    if (pad) chunks.push(Buffer.alloc(pad, 0))
+    chunks.push(...entryChunks(entry.name, data))
   }
   // 结尾两个全零块标记归档结束。
   chunks.push(Buffer.alloc(BLOCK * 2, 0))
@@ -142,6 +166,7 @@ function parseTar(buf, file) {
   }
   const out = []
   let off = 0
+  let pendingLongName = null
   while (off + BLOCK <= buf.length) {
     const header = buf.subarray(off, off + BLOCK)
     if (isZeroBlock(header)) break
@@ -168,10 +193,19 @@ function parseTar(buf, file) {
     if (end > buf.length) {
       throw new Error(`基准源 ${file} 损坏：${prefix ? `${prefix}/${name}` : name} 声明 ${size} 字节，实际数据被截断`)
     }
+    if (type === 'L') {
+      // GNU LongLink：本条内容是下一个条目的完整路径（NUL 结尾）。真实头的
+      // name 字段是截断版，必须丢弃，否则超长路径的包提取后名字不对。
+      off = start + Math.ceil(size / BLOCK) * BLOCK
+      pendingLongName = buf.toString('utf8', start, end).replace(/\0+$/, '')
+      continue
+    }
     // 只收普通文件；目录/软链等记账条目跳过。
     if (type === '0' || type === '\0') {
-      out.push({ name: prefix ? `${prefix}/${name}` : name, buffer: buf.subarray(start, end) })
+      const full = pendingLongName ?? (prefix ? `${prefix}/${name}` : name)
+      out.push({ name: full, buffer: buf.subarray(start, end) })
     }
+    pendingLongName = null
     off = start + Math.ceil(size / BLOCK) * BLOCK
   }
   return out
