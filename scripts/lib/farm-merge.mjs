@@ -118,9 +118,10 @@ function toTime(value) {
 /**
  * 合并计划。
  * @param {Array<{host: string, diff?: string, times?: Record<string,string>}>} branches
+ * @param {{mainBaselines?: Set<string>|null}} [opts] main 树上已有基准源的 slug 集合（资格补判，见调用处注释）
  * @returns {{bySlug: Map<string,{branch:string,patchPaths:string[],baselinePath:string|null}>, conflicts:Array, skipped:Array}}
  */
-export function mergeFarm(branches = []) {
+export function mergeFarm(branches = [], { mainBaselines = null } = {}) {
   // 同一台主机出现两次（重试、两批输入拼接）时以最后一份为准，避免自己跟自己冲突。
   const byHost = new Map()
   for (const b of Array.isArray(branches) ? branches : []) {
@@ -153,6 +154,19 @@ export function mergeFarm(branches = []) {
       .slice()
       // 时间新的在前；同刻按主机名字典序，保证任何机器上跑出来的计划完全一致。
       .sort((a, b) => (b.at - a.at) || cmp(a.branch, b.branch))
+
+    // 基准源补判：分支 diff 里没有 tar.gz，但 **main 树上已有**同名归档时，视为有基准源。
+    // 为什么：two-dot diff 只列「与 main 有差异」的文件。主机重推了一个补丁、而基准源
+    // 与 main 逐字节相同时，diff 里只有 patch —— 按旧口径会被误判「缺基准源」踢出计划，
+    // 但 publish-local 检出步骤本来就会保留 main 的同名归档（keepBranchBaseline），
+    // release 也从工作区（main 内容）读基准 —— 资格判定没跟上这个设计意图。
+    // 2026-10-25 实测：本轮 30 个滞留包里 25 个被这条误判挡在计划外。
+    // baselinePath 回填成 main 上的同路径，检出/打包逻辑零改动。
+    if (mainBaselines?.size) {
+      for (const c of candidates) {
+        if (!c.baselinePath && mainBaselines.has(slug)) c.baselinePath = `research/packs/${slug}.tar.gz`
+      }
+    }
 
     // 先在「合格候选」里取最新，而不是「所有候选里取最新再判合格」：
     // 否则 B 台更新但没推基准源时，A 台其实合格的产物会被整轮白等（下一轮还得重来）。
@@ -274,7 +288,18 @@ export function main(argv = process.argv.slice(2)) {
     return 2
   }
   const hostFilter = args.hosts ? args.hosts.split(',').map((s) => s.trim()).filter(Boolean) : null
-  const plan = serializePlan(mergeFarm(readInputs(args.dir, hostFilter)))
+  // main 树上已有的基准源 slug 集合：diff 里看不到「与 main 相同」的 tar.gz，
+  // 但 release 可以直接用 main 的那份（检出步骤本就保留 main 版本）。取不到时当空集。
+  const mainBaselines = new Set(
+    (() => {
+      try {
+        const out = execFileSync('git', ['ls-tree', '-r', '--name-only', 'origin/main', '--', 'research/packs/'],
+          { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] })
+        return out.split('\n').map((p) => /^research\/packs\/(.+)\.tar\.gz$/.exec(p.trim())?.[1] ?? '').filter(Boolean)
+      } catch { return [] }
+    })(),
+  )
+  const plan = serializePlan(mergeFarm(readInputs(args.dir, hostFilter), { mainBaselines }))
   const json = JSON.stringify(plan, null, 2)
 
   if (args.out) writeFileSync(args.out, `${JSON.stringify(plan)}\n`)

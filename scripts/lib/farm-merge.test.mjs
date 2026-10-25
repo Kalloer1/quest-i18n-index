@@ -88,6 +88,33 @@ test('只有基准源没有译文（patchPaths 为空）：同样进 skipped', (
   assert.match(plan.skipped[0].reason, /缺补丁文件/)
 })
 
+test('mainBaselines 补判：diff 里没有基准源但 main 树上有 → 视为合格，baselinePath 指向 main 同路径', () => {
+  const plan = mergeFarm([{
+    host: 'work',
+    diff: diffOf('patches/beyond-fantasy/config/ftbquests/quests/lang/zh_cn.snbt'),
+    times: { 'beyond-fantasy': '2026-10-24T00:00:00Z' },
+  }], { mainBaselines: new Set(['beyond-fantasy']) })
+
+  assert.equal(plan.skipped.length, 0)
+  assert.equal(plan.bySlug.size, 1)
+  const item = plan.bySlug.get('beyond-fantasy')
+  assert.equal(item.branch, 'work')
+  assert.equal(item.baselinePath, 'research/packs/beyond-fantasy.tar.gz')
+  assert.ok(item.patchPaths.length > 0)
+})
+
+test('mainBaselines 不含该 slug 时维持旧口径：照旧 skipped', () => {
+  const plan = mergeFarm([{
+    host: 'work',
+    diff: diffOf('patches/orphan/lang/zh_cn.snbt'),
+    times: { orphan: '2026-10-24T00:00:00Z' },
+  }], { mainBaselines: new Set(['beyond-fantasy']) })
+
+  assert.equal(plan.bySlug.size, 0)
+  assert.equal(plan.skipped.length, 1)
+  assert.match(plan.skipped[0].reason, /基准源/)
+})
+
 test('路径里带子目录（多级 / 大写 / 数字）仍归属同一个 slug', () => {
   const plan = mergeFarm([{
     host: 'gfdrgfd',
