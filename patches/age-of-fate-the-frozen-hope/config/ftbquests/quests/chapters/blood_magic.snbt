@@ -1,0 +1,2034 @@
+# AI 初翻，未人工校对
+{
+	id: "76AF1165F0C0D583"
+	group: "15F5BAC0BCC22DEF"
+	order_index: 2
+	filename: "blood_magic"
+	title: "血液魔法 (Blood Magic)"
+	icon: {
+		id: "bloodmagic:basemonstersoul"
+		Count: 1b
+		tag: {
+			souls: 5.0d
+		}
+	}
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	images: [{
+		x: -7.785714285714292d
+		y: -17.589285714285715d
+		width: 0.3d
+		height: 1.0d
+		rotation: 0.0d
+		image: "kubejs:textures/item/quest.png"
+		hover: [ ]
+		click: ""
+		dev: false
+		corner: false
+	}]
+	quests: [
+		{
+			icon: {
+				id: "patchouli:guide_book"
+				Count: 1b
+				tag: {
+					"patchouli:book": "bloodmagic:guide"
+				}
+			}
+			x: -8.5d
+			y: -17.0d
+			shape: "gear"
+			subtitle: "*完成&b&l&oLivingrock&r任务后解锁*"
+			description: [
+				"它添加了一个庞大的生命魔法系统，涵盖仪式、献祭、召唤、炼金和法术创造。在血魔法中，玩家通过献祭自身或生物的健康来收集生命精华，以在成为大魔导师的征途中驱动他们的血魔法创造。"
+				""
+				"&4&l我需要些什么才能开始呢？"
+				"嗯，只要有红石、铁、金、青金石和几颗钻石，你就能很快上手了。但要深入研究这个模组，可能会相当……昂贵。"
+			]
+			dependencies: ["7D46CE06435339F7"]
+			size: 1.5d
+			id: "0BE6A1E27945355D"
+			tasks: [{
+				id: "557E43F31224FC23"
+				type: "checkmark"
+				title: "&4&l欢迎来到血魔法世界"
+			}]
+			rewards: [{
+				id: "3AD255DF0CBEED59"
+				type: "xp"
+				xp: 10
+			}]
+		}
+		{
+			title: "血祭坛等级：I"
+			x: -7.5d
+			y: -13.5d
+			subtitle: "血祭坛用于使用生命精华（LP）来转换各种物品"
+			description: ["血祭坛内部有一个1000 LP的存储缓冲区，必须先填满才能进行合成。祭坛可以扩展为多方块结构，以解锁更强大的转换等级。目前共有六个等级的血祭坛，但由于最后一个等级所需的晶簇无法（默认情况下）合成，因此生存模式下只能制作前五个等级。部分整合包允许通过启用配置选项，使用自定义配方来合成晶簇。"]
+			dependencies: ["1396075A817751B1"]
+			id: "296959D7CE4A2116"
+			tasks: [{
+				id: "4D936652A0C0E0B0"
+				type: "item"
+				item: "bloodmagic:altar"
+			}]
+			rewards: [
+				{
+					id: "2E69B9D72D4BFD8A"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "61BA8566276EE6D3"
+					type: "loot"
+					table_id: 6813199617749196115L
+				}
+			]
+		}
+		{
+			icon: "bloodmagic:incensealtar"
+			x: -4.0d
+			y: -14.5d
+			subtitle: "香炉用于在自我牺牲时获得额外的LP增益"
+			description: [
+				"当玩家距离香炉祭坛6格内时，祭品刀会变为祭品匕首。匕首必须在血祭坛2格内才能使用。它会消耗当前生命值的90%，并根据香炉祭坛提供的加成应用额外的LP；在香炉祭坛上使用占卜符文可查看其当前宁静度和当前加成。"
+				""
+				"对于下文描述的祭坛层级，使用间向方向放置宁静方块，每个层级都需要额外空间。路径方块可以放置在与前一层垂直差异1格以内，但所有基本方向都需要相同的模式。宁静空间最多可以放置在各自路径方块之上两格。"
+			]
+			dependencies: ["5F0744310207644A"]
+			id: "55D072C8944A52D8"
+			tasks: [
+				{
+					id: "3E4BA87D696A928B"
+					type: "item"
+					item: "bloodmagic:incensealtar"
+				}
+				{
+					id: "1E415FE642014580"
+					type: "item"
+					item: "bloodmagic:woodbrickpath"
+					count: 12L
+				}
+			]
+			rewards: [
+				{
+					id: "7BBBA6A3FFB1A25F"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "3F18CF32526AE85A"
+					type: "loot"
+					table_id: 4248343337893973070L
+				}
+				{
+					id: "309FF94BDAD1ADC7"
+					type: "loot"
+					table_id: 6468877635738169977L
+				}
+			]
+		}
+		{
+			x: -8.5d
+			y: -15.0d
+			subtitle: "祭品之刃是在血祭坛上生成LP的两种方式之一"
+			description: [
+				"祭品匕首是一种自我献祭的方法，能将使用者的生命值转化为可用的生命精华。若要牺牲其他生物来换取生命点，则必须使用祭品匕首等献祭方法。"
+				""
+				"右键点击祭坛旁的祭品刀，使用者将损失一个完整的心并投入200点生命。在祭坛周围放置自我牺牲符文可进一步提升此数值。"
+				""
+				"如果使用刀的人是吸血鬼，那么被吸取的将是他们的血液而非生命值。"
+			]
+			dependencies: ["0BE6A1E27945355D"]
+			id: "1396075A817751B1"
+			tasks: [{
+				id: "71F7D27D407FBE8A"
+				type: "item"
+				item: {
+					id: "bloodmagic:sacrificialdagger"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [
+				{
+					id: "2DA83C796EE86744"
+					type: "xp"
+					xp: 10
+				}
+				{
+					id: "6B4C6308C9088C91"
+					type: "item"
+					item: "bloodmagic:life_essence_bucket"
+				}
+			]
+		}
+		{
+			x: -13.0d
+			y: -15.0d
+			subtitle: "基础陷阱是一种收集恶魔意志的工具"
+			description: ["右键可将其投掷给生物。若陷阱命中，该生物将被魅惑数秒（显示为白色粒子）。在此状态下击杀生物，会使其掉落恶魔意志。"]
+			dependencies: ["0BE6A1E27945355D"]
+			id: "594B87D2944A272E"
+			tasks: [{
+				id: "3CFC40225CD35A07"
+				type: "item"
+				item: "bloodmagic:soulsnare"
+			}]
+			rewards: [
+				{
+					id: "208F00DF40402FA9"
+					type: "xp"
+					xp: 10
+				}
+				{
+					id: "665764004B2F4203"
+					type: "item"
+					item: "bloodmagic:soulsnare"
+					count: 4
+				}
+			]
+		}
+		{
+			x: -14.5d
+			y: -14.0d
+			subtitle: "有志者，事竟成，破釜沉舟，百二秦关终属楚。"
+			description: ["恶魔意志是一种物品，可通过基础陷阱或感知之剑从怪物处收集。每种怪物只能掉落一个恶魔意志，其中包含随机生成的意志力量值，会显示在物品栏中。地狱熔炉的某些配方需要恶魔意志。玩家也可以将意志力量值存入宝石中以便运输，因为恶魔意志无法堆叠且不可重新充能。"]
+			dependencies: ["594B87D2944A272E"]
+			id: "7D39E4297B320E93"
+			tasks: [{
+				id: "1BD40CC46BCB58AC"
+				type: "item"
+				item: {
+					id: "bloodmagic:basemonstersoul"
+					Count: 1b
+					tag: {
+						souls: 5.0d
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "4A18E3C21C293906"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "7C1573E6E72E5918"
+					type: "random"
+					table_id: 5351675120932028234L
+				}
+			]
+		}
+		{
+			x: -10.5d
+			y: -14.0d
+			subtitle: "空白石板是主要用于制作符文和印记的一种合成材料"
+			description: ["空白石板用于制作符文印记。"]
+			dependencies: ["296959D7CE4A2116"]
+			id: "00EB0057303D8E81"
+			tasks: [{
+				id: "54BBABF8C7F7B0C6"
+				type: "item"
+				item: "bloodmagic:blankslate"
+			}]
+			rewards: [
+				{
+					id: "05B442AA21174939"
+					type: "xp"
+					xp: 10
+				}
+				{
+					id: "1AA0FC8000F053D3"
+					type: "item"
+					item: "bloodmagic:doubt_bucket"
+				}
+			]
+		}
+		{
+			title: "血祭坛等级：II"
+			icon: "bloodmagic:altar"
+			x: -7.5d
+			y: -12.0d
+			dependencies: ["296959D7CE4A2116"]
+			id: "5A5A1B0DB0034D93"
+			tasks: [{
+				id: "414A43E5250821D1"
+				type: "item"
+				item: "bloodmagic:blankrune"
+				count: 6L
+			}]
+			rewards: [
+				{
+					id: "6C72A20A3BF85D86"
+					type: "xp"
+					xp: 200
+				}
+				{
+					id: "79921A0E1673B735"
+					type: "loot"
+					table_id: 687554054301909623L
+				}
+			]
+		}
+		{
+			title: "血祭坛等级：III"
+			icon: "bloodmagic:altar"
+			x: -7.5d
+			y: -10.5d
+			dependencies: ["5A5A1B0DB0034D93"]
+			id: "76242AD890FC311C"
+			tasks: [
+				{
+					id: "65805C7979D0F432"
+					type: "item"
+					item: "bloodmagic:blankrune"
+					count: 16L
+				}
+				{
+					id: "11FD65ED4777186C"
+					type: "item"
+					item: "minecraft:glowstone"
+					count: 4L
+				}
+			]
+			rewards: [
+				{
+					id: "76B8C59D65472084"
+					type: "xp"
+					xp: 300
+				}
+				{
+					id: "344E695D667CB008"
+					type: "loot"
+					table_id: 6363515282471183984L
+				}
+			]
+		}
+		{
+			title: "血祭坛等级：IV"
+			icon: "bloodmagic:altar"
+			x: -7.5d
+			y: -9.0d
+			dependencies: ["76242AD890FC311C"]
+			id: "7C20B789A07D4161"
+			tasks: [
+				{
+					id: "34C10A5176A3F7DE"
+					type: "item"
+					item: "bloodmagic:blankrune"
+					count: 28L
+				}
+				{
+					id: "016BEC357195155F"
+					type: "item"
+					item: "bloodmagic:bloodstonebrick"
+					count: 4L
+				}
+			]
+			rewards: [
+				{
+					id: "54AA087F779AD10C"
+					type: "xp"
+					xp: 400
+				}
+				{
+					id: "0B686494C87535C7"
+					type: "loot"
+					table_id: 7842739214414806319L
+				}
+			]
+		}
+		{
+			x: -6.0d
+			y: -13.5d
+			subtitle: "虚弱血球是血魔法中储存生命精华（LP）的一种方式"
+			description: [
+				"弱血球将祭坛内的生命精华转化为能量，储存在熔岩水晶和各种仪式中。这种储存的精华无法变回液体，会储存在所有者网络中。此等级的球体最多可储存5000生命点。该数值只能通过更高等级的球体，或将球体符文放置在血祭坛周围来提高。"
+				""
+				"要使用弱血球，必须先将其与所有者绑定。为此，请手持该球体并右键单击。绑定后，它将把所有者的网络存储提升至总计 5,000 LP。同时，用户手持该球体时右键单击，会消耗一个完整的心，并为所有者的网络增加 200 LP。如果玩家是吸血鬼，消耗的是他们的血液而非生命值。"
+			]
+			dependencies: ["296959D7CE4A2116"]
+			id: "5F0744310207644A"
+			tasks: [{
+				id: "12E296D21218FBAD"
+				type: "item"
+				item: "bloodmagic:weakbloodorb"
+			}]
+			rewards: [
+				{
+					id: "0670B1C47D7F055C"
+					type: "xp"
+					xp: 30
+				}
+				{
+					id: "67678EF6E1BCB608"
+					type: "item"
+					item: "bloodmagic:fireritualstone"
+					count: 4
+				}
+				{
+					id: "7B093714D227F73A"
+					type: "random"
+					table_id: 5351675120932028234L
+				}
+			]
+		}
+		{
+			x: -11.5d
+			y: -12.5d
+			dependencies: ["00EB0057303D8E81"]
+			id: "0E8D50B473A2FD14"
+			tasks: [{
+				id: "01EDC805BEEFD33A"
+				type: "item"
+				item: "bloodmagic:alchemytable"
+			}]
+			rewards: [
+				{
+					id: "72DCE267D0A4C919"
+					type: "xp"
+					xp: 10
+				}
+				{
+					id: "2A4C9027C39F6747"
+					type: "loot"
+					table_id: 6468877635738169977L
+				}
+			]
+		}
+		{
+			x: -6.0d
+			y: -12.0d
+			subtitle: "学徒血球是血液魔法中血球的第二级"
+			description: ["此等级的血球允许所有者在网络中存储高达 25,000 的 LP。"]
+			dependencies: [
+				"5A5A1B0DB0034D93"
+				"5F0744310207644A"
+			]
+			id: "769C06623C168FF6"
+			tasks: [{
+				id: "286AD6A45747AEC9"
+				type: "item"
+				item: "bloodmagic:apprenticebloodorb"
+			}]
+			rewards: [
+				{
+					id: "4CF3B0B3283D54E3"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "4312048F02A60CD9"
+					type: "item"
+					item: "bloodmagic:earthritualstone"
+					count: 4
+				}
+				{
+					id: "500BDB57160ABBEA"
+					type: "random"
+					table_id: 5351675120932028234L
+				}
+			]
+		}
+		{
+			x: -6.0d
+			y: -10.5d
+			subtitle: "魔导士血球是血液魔法中第三级的血球"
+			description: ["此等级的血球允许所有者在网络中存储高达 150,000 的 LP。"]
+			dependencies: [
+				"76242AD890FC311C"
+				"769C06623C168FF6"
+			]
+			id: "7418119CAEDC7A3C"
+			tasks: [{
+				id: "23953E8C1D3FC141"
+				type: "item"
+				item: "bloodmagic:magicianbloodorb"
+			}]
+			rewards: [
+				{
+					id: "03A782C6775656A2"
+					type: "xp"
+					xp: 70
+				}
+				{
+					id: "7ABF55B50AA1F501"
+					type: "item"
+					item: "bloodmagic:lightritualstone"
+					count: 4
+				}
+				{
+					id: "114C5F126AD03ED2"
+					type: "random"
+					table_id: 5351675120932028234L
+				}
+			]
+		}
+		{
+			x: -6.0d
+			y: -9.0d
+			subtitle: "大师血球是血液魔法中第四级的血球"
+			description: ["此等级的血球允许所有者在网络中存储高达 1,000,000 LP。"]
+			dependencies: [
+				"7C20B789A07D4161"
+				"7418119CAEDC7A3C"
+			]
+			id: "2C8C331EED6235F5"
+			tasks: [{
+				id: "6CDCE7B367BCEAC2"
+				type: "item"
+				item: "bloodmagic:masterbloodorb"
+			}]
+			rewards: [
+				{
+					id: "2F658969998679D5"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "68703AAE50F54351"
+					type: "item"
+					item: "bloodmagic:duskritualstone"
+					count: 4
+				}
+				{
+					id: "5B88DBDCDA97FF3C"
+					type: "random"
+					table_id: 5351675120932028234L
+				}
+			]
+		}
+		{
+			x: -12.5d
+			y: -10.0d
+			dependencies: ["1C08DE988497D799"]
+			id: "281B3FB3D0FAF9FF"
+			tasks: [
+				{
+					id: "0731ABA5D03ECCEE"
+					type: "item"
+					item: {
+						id: "bloodmagic:growthsigil"
+						Count: 1b
+						tag: { }
+					}
+				}
+				{
+					id: "0A1EE6B1A627B25B"
+					type: "item"
+					item: {
+						id: "bloodmagic:miningsigil"
+						Count: 1b
+						tag: { }
+					}
+				}
+				{
+					id: "17F7E7467772301D"
+					type: "item"
+					item: {
+						id: "bloodmagic:sigilofmagnetism"
+						Count: 1b
+						tag: { }
+					}
+				}
+			]
+			rewards: [
+				{
+					id: "1881EE88D96B46F7"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "4374C81B0790ABED"
+					type: "loot"
+					table_id: 6813199617749196115L
+				}
+			]
+		}
+		{
+			x: -11.5d
+			y: -11.0d
+			subtitle: "Arcane Ashes 用于创建 Alchemy Array，这是创造新符印方法所必需的"
+			description: ["在炼狱熔炉中，用1个红石、骨粉、火药和煤炭可以合成奥数灰烬。此过程需要恶魔意志或其中一种宝石。"]
+			dependencies: ["0E8D50B473A2FD14"]
+			id: "1C08DE988497D799"
+			tasks: [{
+				id: "53B8C228A1E0ECEE"
+				type: "item"
+				item: {
+					id: "bloodmagic:arcaneashes"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "35D90E09E5143310"
+					type: "xp"
+					xp: 10
+				}
+				{
+					id: "5BBC51449FB3C547"
+					type: "choice"
+					table_id: 4056905653150789257L
+				}
+			]
+		}
+		{
+			x: -11.5d
+			y: -9.5d
+			dependencies: ["1C08DE988497D799"]
+			id: "4EE1AEAC56B86487"
+			tasks: [
+				{
+					id: "0D196A96413A1C23"
+					type: "item"
+					item: "bloodmagic:divinationsigil"
+				}
+				{
+					id: "0328E8215B0FA0CC"
+					type: "item"
+					item: "bloodmagic:seersigil"
+				}
+				{
+					id: "11A731B566E70DC7"
+					type: "item"
+					item: "bloodmagic:watersigil"
+				}
+				{
+					id: "6B51162308B1182A"
+					type: "item"
+					item: "bloodmagic:voidsigil"
+				}
+			]
+			rewards: [
+				{
+					id: "230E21DFDFD16C5F"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "0365B1B570C5752C"
+					type: "loot"
+					table_id: 6813199617749196115L
+				}
+			]
+		}
+		{
+			x: -10.5d
+			y: -10.0d
+			dependencies: ["1C08DE988497D799"]
+			id: "1AD0AD71F30423E3"
+			tasks: [
+				{
+					id: "729F46BACF3C597A"
+					type: "item"
+					item: "bloodmagic:lavasigil"
+				}
+				{
+					id: "307141D9CEC8C241"
+					type: "item"
+					item: "bloodmagic:airsigil"
+				}
+				{
+					id: "341B0CE5278B079A"
+					type: "item"
+					item: "bloodmagic:bloodlightsigil"
+				}
+				{
+					id: "35B8330542F3B567"
+					type: "item"
+					item: "bloodmagic:sigilofholding"
+				}
+			]
+			rewards: [
+				{
+					id: "55EA95C5AE51E4E1"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "3CAE9E38D8A62ACE"
+					type: "loot"
+					table_id: 6813199617749196115L
+				}
+			]
+		}
+		{
+			x: -7.5d
+			y: -15.5d
+			subtitle: "献祭匕首是一种用于献祭生物以获取生命精粹的武器"
+			description: [
+				"数量因生物而异，并且可以通过使用献祭符文进一步增加。"
+				""
+				"祭品匕首必须在血祭坛附近三格范围内使用。对有效目标使用时，目标会立即被杀死，其生命精华会被祭坛吸取。被视为幼体的生物不能被献祭。精华的吸取量因生物而异："
+				"- 动物（牛、羊等）= 250 LP"
+				"- 敌对生物（苦力怕、僵尸等）= 500 LP"
+				"- 村民 = 2,000 LP"
+				""
+				"请注意，匕首只有在祭坛的范围内才能作为武器使用。否则，它对生物的伤害将无效，其生命精华也不会被转移到祭坛上。"
+			]
+			dependencies: ["1396075A817751B1"]
+			id: "4F921B3CB7738522"
+			tasks: [{
+				id: "5ED1823775C37D46"
+				type: "item"
+				item: "bloodmagic:daggerofsacrifice"
+			}]
+			rewards: [
+				{
+					id: "09C2D68D47F08419"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "1A5DC12385B25D5D"
+					type: "item"
+					item: "bloodmagic:altarcapacityrune"
+					count: 8
+				}
+			]
+		}
+		{
+			x: -16.5d
+			y: -14.0d
+			subtitle: "用于制作需要 Will 的配方所必需"
+			description: [
+				"地狱熔炉是一种装置，需要在右侧插槽放置足够的恶魔意志或足够默认意志的塔尔塔洛斯宝石。所有配方均为无形状配方，材料可放置在任何插槽中。"
+				""
+				"消耗量将从储存的意志中扣除。恶魔意志/塔耳塔洛斯宝石不会丢失。最小值和消耗量均可在将鼠标悬停在箭头上时于JEI中查看。"
+				""
+				"地狱熔炉的第二个用途是填充塔塔里宝石。放置在正确槽位的塔塔里宝石会从所在区块的灵气中吸取能量。例如，在恶魔坩埚中熔炼腐蚀性意志水晶，会使该区块充满腐蚀性意志，从而填充熔炉内的腐蚀性塔塔里宝石。"
+			]
+			dependencies: ["7D39E4297B320E93"]
+			id: "0C0C337EB929FCEE"
+			tasks: [{
+				id: "57E3AE9E3234D011"
+				type: "item"
+				item: "bloodmagic:soulforge"
+			}]
+			rewards: [
+				{
+					id: "56CE4F23A2F0E971"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "0FE6CFD27693201A"
+					type: "loot"
+					table_id: 4432288867142743846L
+				}
+			]
+		}
+		{
+			x: -16.0d
+			y: -12.5d
+			subtitle: "小塔塔里宝石最多可储存64单位的恶魔意志"
+			description: ["这种恶魔意志可以用基础陷阱或感知之剑收集，当玩家拾起恶魔意志时，会自动储存在宝石中。小塔塔洛斯宝石是地狱火锻造台部分配方所需的材料，也可用作感知之剑特殊攻击的恶魔意志来源。"]
+			dependencies: ["0C0C337EB929FCEE"]
+			id: "048A5CCAFBC80966"
+			tasks: [{
+				id: "1C34AA7BF7007104"
+				type: "item"
+				item: {
+					id: "bloodmagic:soulgempetty"
+					Count: 1b
+					tag: {
+						souls: 64.0d
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "58B5B6FA5E4C3438"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "571C33692D7AF705"
+					type: "random"
+					table_id: 5351675120932028234L
+				}
+			]
+		}
+		{
+			x: -17.5d
+			y: -12.5d
+			shape: "hexagon"
+			subtitle: "Sentient Sword 是一种用于收集 Raw Will 的武器"
+			description: ["此原始意志会自动添加到玩家背包中最左上角的原始意志酒石酸宝石中。如果所有可用的原始意志宝石都满了，怪物会掉落恶魔意志。它可以被附魔，也可以用铁砧和恶魔意志水晶进行修复。"]
+			dependencies: [
+				"0C0C337EB929FCEE"
+				"048A5CCAFBC80966"
+			]
+			id: "07458507E1AC9EE8"
+			tasks: [{
+				id: "21D31422E4FE7DBA"
+				type: "item"
+				item: {
+					id: "bloodmagic:soulsword"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "6B70EFCDA99E21D8"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "0B0BDF056E672B28"
+					type: "loot"
+					table_id: 1375643567800692047L
+				}
+				{
+					id: "51C93D097216D0C1"
+					type: "choice"
+					table_id: 4056905653150789257L
+				}
+			]
+		}
+		{
+			x: -17.5d
+			y: -11.5d
+			shape: "hexagon"
+			dependencies: ["07458507E1AC9EE8"]
+			id: "3F36CD6EDB0D1D57"
+			tasks: [{
+				id: "4E1348D7D05ED6F3"
+				type: "item"
+				item: {
+					id: "bloodmagic:soulpickaxe"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "60C809B1DB376D5A"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "718B7F8F3338F442"
+					type: "loot"
+					table_id: 4248343337893973070L
+				}
+				{
+					id: "1E4647BF14093A85"
+					type: "choice"
+					table_id: 4056905653150789257L
+				}
+			]
+		}
+		{
+			x: -17.5d
+			y: -10.5d
+			shape: "hexagon"
+			dependencies: ["3F36CD6EDB0D1D57"]
+			id: "6329EE112F76194E"
+			tasks: [{
+				id: "4233ECDD08205ED2"
+				type: "item"
+				item: {
+					id: "bloodmagic:soulaxe"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "783F2C2D465D4188"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "127DBAB0AA90C1BD"
+					type: "loot"
+					table_id: 2136994266140185172L
+				}
+				{
+					id: "4B8091582CDACE36"
+					type: "choice"
+					table_id: 4056905653150789257L
+				}
+			]
+		}
+		{
+			x: -17.5d
+			y: -9.5d
+			shape: "hexagon"
+			dependencies: ["6329EE112F76194E"]
+			id: "42F95A584751AE57"
+			tasks: [{
+				id: "609043B12716726B"
+				type: "item"
+				item: {
+					id: "bloodmagic:soulshovel"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "214DD6131CA36FF7"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "016E9B1D0CE6FCF5"
+					type: "loot"
+					table_id: 3256304039117744465L
+				}
+				{
+					id: "634FEBA7E2BE8D26"
+					type: "choice"
+					table_id: 4056905653150789257L
+				}
+			]
+		}
+		{
+			x: -17.5d
+			y: -8.5d
+			shape: "hexagon"
+			dependencies: ["42F95A584751AE57"]
+			id: "4F53154479D89E73"
+			tasks: [{
+				id: "1DF9AFF40A8F0FEF"
+				type: "item"
+				item: {
+					id: "bloodmagic:soulscythe"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "537F4E4DD8364132"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "737E4DABFF790CD2"
+					type: "loot"
+					table_id: 8533451183250182354L
+				}
+				{
+					id: "5806755CEFE6A9AB"
+					type: "choice"
+					table_id: 4056905653150789257L
+				}
+			]
+		}
+		{
+			x: -16.0d
+			y: -11.0d
+			subtitle: "恶魔熔炉是一种用于创造区块光晕的装置"
+			description: [
+				"右键点击 Tartaric Gem 或 Demonic Will Crystal 会将其插入 Demon Crucible，并将来源的意志转移到区块中存储的灵气内。每个区块最多可容纳 100 点意志，且意志类型会保留。"
+				""
+				"光环中的意志可用于在恶魔结晶器中生长意志水晶或意志水晶簇。使用原始意志，有90%的几率生长出新的恶魔意志水晶，10%的几率在恶魔结晶器中生长出不同类型的晶体。使用特定类型的意志将只生长该类型的簇。水晶簇会生长出额外的水晶，可以通过右键点击水晶簇来收获，需手持塔塔里克宝石，宝石中总共持有超过1024点原始意志，即可获得相应类型的意志水晶。"
+			]
+			dependencies: ["048A5CCAFBC80966"]
+			id: "7F4BDC56E9B9569F"
+			tasks: [{
+				id: "35128867B9D529A4"
+				type: "item"
+				item: "bloodmagic:demoncrucible"
+			}]
+			rewards: [
+				{
+					id: "422C9B99FCC8145C"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "50EEA6E7E90F02BB"
+					type: "loot"
+					table_id: 6813199617749196115L
+				}
+			]
+		}
+		{
+			x: -15.5d
+			y: -9.5d
+			subtitle: "恶魔结晶器是一种通过抽取区块的灵气来生长意志水晶簇的装置，在恶魔熔炉中制造"
+			description: [
+				"每个晶簇最多可包含7个晶体。默认的原始意志光环有90%的几率生成恶魔意志晶簇，以及各2.5%的几率生成腐蚀性意志晶簇、破坏性意志晶簇、坚定意志晶簇或复仇意志晶簇。所有其他类型的光环只会生成自身类型的新晶簇。一旦形成晶簇，只有原始意志或其对应类型的光环才能用来生长额外的晶体。原始光环生长不同类型的晶簇要慢得多。"
+				""
+				"意志水晶簇可用镐破坏，每个水晶产出一颗意志水晶。若手持总原始意志超过1024的塔塔里宝石，空手右键也可采集单个水晶。右键不会移除簇中最后一个水晶。"
+			]
+			dependencies: ["7F4BDC56E9B9569F"]
+			id: "2F31AF352F116419"
+			tasks: [{
+				id: "3E8A2670A27847FC"
+				type: "item"
+				item: "bloodmagic:demoncrystallizer"
+			}]
+			rewards: [
+				{
+					id: "6A3FC2D4F48EBDE5"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "70E03DC3DE3ECDDA"
+					type: "choice"
+					table_id: 4056905653150789257L
+				}
+			]
+		}
+		{
+			title: "多面晶体的共鸣 (Resonance of the Faceted Crystal)"
+			icon: "bloodmagic:rawdemoncrystal"
+			x: -14.5d
+			y: -8.0d
+			description: [
+				"手持恶魔意志水晶，便可开始分离其基础本质的细致过程。"
+				""
+				"准备另一个恶魔结晶器，并构建棱镜晶体的共鸣仪式。将结晶器置于主仪式石之上，并通过坩埚向该区块注入意志。"
+				""
+				"最终，仪式范围内会形成另一颗水晶。待其完全生长后，仪式会将其分解为元素精华，并在周围生成四种新型水晶，可用与之前恶魔意志水晶相同的方式采集。"
+			]
+			dependencies: ["2F31AF352F116419"]
+			id: "2733979D7CF25C46"
+			tasks: [
+				{
+					id: "00F01D293B956B42"
+					type: "item"
+					item: "bloodmagic:masterritualstone"
+				}
+				{
+					id: "17FC790622217649"
+					type: "item"
+					item: "bloodmagic:ritualstone"
+					count: 20L
+				}
+				{
+					id: "65DA313EAC533C10"
+					type: "item"
+					item: "bloodmagic:defaultcrystal"
+				}
+			]
+			rewards: [
+				{
+					id: "1C71F4BE2B3DA0E1"
+					type: "xp"
+					xp: 300
+				}
+				{
+					id: "0EC3F2FC5E2CCD98"
+					type: "item"
+					item: "bloodmagic:defaultcrystal"
+					count: 12
+				}
+				{
+					id: "4589068CD34AF8F4"
+					type: "loot"
+					table_id: 6813199617749196115L
+				}
+			]
+		}
+		{
+			title: "Will Crystals"
+			icon: "bloodmagic:defaultcrystal"
+			x: -12.5d
+			y: -7.5d
+			dependencies: ["2733979D7CF25C46"]
+			id: "00FDA5883BEB80FF"
+			tasks: [
+				{
+					id: "23ACCFEAB63E52F8"
+					type: "item"
+					item: "bloodmagic:corrosivecrystal"
+				}
+				{
+					id: "1CFC757D903BE260"
+					type: "item"
+					item: "bloodmagic:vengefulcrystal"
+				}
+				{
+					id: "5B6A04DD0AB99496"
+					type: "item"
+					item: "bloodmagic:destructivecrystal"
+				}
+				{
+					id: "5BB50C42692167EA"
+					type: "item"
+					item: "bloodmagic:steadfastcrystal"
+				}
+			]
+			rewards: [
+				{
+					id: "712693B3C40895D8"
+					type: "xp"
+					xp: 200
+				}
+				{
+					id: "5CDAA1CFB45E83CF"
+					type: "loot"
+					table_id: 4915960327715244389L
+				}
+				{
+					id: "700FF557B3373AF5"
+					type: "random"
+					table_id: 5351675120932028234L
+				}
+				{
+					id: "1FDD4E24ABD1A65F"
+					type: "loot"
+					table_id: 687554054301909623L
+				}
+			]
+		}
+		{
+			x: -10.5d
+			y: -7.5d
+			dependencies: ["00FDA5883BEB80FF"]
+			id: "224C0DD37C9E05C4"
+			tasks: [{
+				id: "7B449D2D8DFDFE72"
+				type: "item"
+				item: "bloodmagic:ritualtinkerer"
+			}]
+			rewards: [
+				{
+					id: "2FBB9E9C37955BC5"
+					type: "xp"
+					xp: 10
+				}
+				{
+					id: "66FBEF574F335841"
+					type: "loot"
+					table_id: 6468877635738169977L
+				}
+			]
+		}
+		{
+			x: -2.5d
+			y: -15.0d
+			dependencies: ["55D072C8944A52D8"]
+			dependency_requirement: "one_completed"
+			id: "6B94F782E431F80E"
+			tasks: [{
+				id: "2C6B8417E71EA774"
+				type: "item"
+				item: "bloodmagic:alchemicalreactionchamber"
+			}]
+			rewards: [
+				{
+					id: "424FFB30D1115443"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "4154F7DA662E2989"
+					type: "choice"
+					table_id: 4056905653150789257L
+				}
+			]
+		}
+		{
+			x: -2.5d
+			y: -13.5d
+			dependencies: ["6B94F782E431F80E"]
+			id: "29F304F563554621"
+			tasks: [{
+				id: "69D6F233C11535D5"
+				type: "item"
+				item: "bloodmagic:weakbloodshard"
+			}]
+			rewards: [
+				{
+					id: "5AC30883CAFEA2E9"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "58C1B0D55D3B78C7"
+					type: "loot"
+					table_id: 8533451183250182354L
+				}
+				{
+					id: "151041CD20216405"
+					type: "random"
+					table_id: 5351675120932028234L
+				}
+			]
+		}
+		{
+			x: -13.0d
+			y: -13.0d
+			dependencies: ["0E8D50B473A2FD14"]
+			id: "6EE19E46103B3B89"
+			tasks: [{
+				id: "3DC2A90A7FD39848"
+				type: "item"
+				item: "bloodmagic:reagentbinding"
+			}]
+			rewards: [
+				{
+					id: "4E508665AC8A5A69"
+					type: "xp"
+					xp: 20
+				}
+				{
+					id: "24B9642EA7718101"
+					type: "item"
+					item: "minecraft:diamond"
+				}
+				{
+					id: "0D62889E16ED7BDF"
+					type: "choice"
+					table_id: 4056905653150789257L
+				}
+			]
+		}
+		{
+			x: -14.0d
+			y: -12.0d
+			dependencies: ["6EE19E46103B3B89"]
+			id: "503A4AC98F41B835"
+			tasks: [
+				{
+					id: "581362D4410BC9E0"
+					type: "item"
+					item: "bloodmagic:reagentwater"
+				}
+				{
+					id: "4AD7695B951BE41B"
+					type: "item"
+					item: "bloodmagic:reagentlava"
+				}
+				{
+					id: "6908B6771B0D9549"
+					type: "item"
+					item: "bloodmagic:reagentgrowth"
+				}
+				{
+					id: "6F613626BAC9FC50"
+					type: "item"
+					item: "bloodmagic:reagentvoid"
+				}
+				{
+					id: "56E6F693F5E2D5DA"
+					type: "item"
+					item: "bloodmagic:reagentfastminer"
+				}
+			]
+			rewards: [
+				{
+					id: "2948D5A8E4E7D82F"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "01D5033881962C3A"
+					type: "loot"
+					table_id: 6813199617749196115L
+				}
+			]
+		}
+		{
+			x: -13.0d
+			y: -11.5d
+			dependencies: ["6EE19E46103B3B89"]
+			id: "35BA82F074EB9218"
+			tasks: [
+				{
+					id: "19F736F5F1626D3F"
+					type: "item"
+					item: "bloodmagic:reagentmagnetism"
+				}
+				{
+					id: "638A2EBEC1F8886E"
+					type: "item"
+					item: "bloodmagic:reagentair"
+				}
+				{
+					id: "300BCD417B6FE681"
+					type: "item"
+					item: "bloodmagic:reagentbloodlight"
+				}
+				{
+					id: "750DC81A64CC9B85"
+					type: "item"
+					item: "bloodmagic:reagentsight"
+				}
+				{
+					id: "3CCE1BA003C7CB97"
+					type: "item"
+					item: "bloodmagic:reagentholding"
+				}
+			]
+			rewards: [
+				{
+					id: "6FFBC969A033196C"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "1BBD2EC059E7CED4"
+					type: "loot"
+					table_id: 6813199617749196115L
+				}
+			]
+		}
+		{
+			x: -9.0d
+			y: -12.0d
+			dependencies: ["5A5A1B0DB0034D93"]
+			id: "62616CA04E8831B7"
+			tasks: [{
+				id: "3EB38EE4B07A9381"
+				type: "item"
+				item: "bloodmagic:reinforcedslate"
+			}]
+			rewards: [
+				{
+					id: "0AD43929778D901B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "3DB6E499BFFDC144"
+					type: "loot"
+					table_id: 4915960327715244389L
+				}
+				{
+					id: "0DEAFAB3B5235890"
+					type: "random"
+					table_id: 5351675120932028234L
+				}
+			]
+		}
+		{
+			x: -9.0d
+			y: -10.5d
+			dependencies: ["76242AD890FC311C"]
+			id: "5E1E3AD2A3662486"
+			tasks: [{
+				id: "36CFC467125DCB1B"
+				type: "item"
+				item: "bloodmagic:infusedslate"
+			}]
+			rewards: [
+				{
+					id: "58B69D4525F704B7"
+					type: "xp"
+					xp: 70
+				}
+				{
+					id: "293687627EC25DF9"
+					type: "loot"
+					table_id: 3168213399534062586L
+				}
+				{
+					id: "7998DFA31D1F78DE"
+					type: "random"
+					table_id: 5351675120932028234L
+				}
+			]
+		}
+		{
+			x: -9.0d
+			y: -9.0d
+			dependencies: ["7C20B789A07D4161"]
+			id: "060C27B32E686601"
+			tasks: [{
+				id: "738206A6DB0013FB"
+				type: "item"
+				item: "bloodmagic:demonslate"
+			}]
+			rewards: [
+				{
+					id: "0535A95945E337ED"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "33F0307BF0BB8F11"
+					type: "loot"
+					table_id: 3256304039117744465L
+				}
+				{
+					id: "27F5A8FFE2B4ADDE"
+					type: "random"
+					table_id: 5351675120932028234L
+				}
+			]
+		}
+		{
+			x: -2.5d
+			y: -12.0d
+			dependencies: ["29F304F563554621"]
+			id: "443E852D63E4134F"
+			tasks: [{
+				id: "04B1555ABB76107A"
+				type: "item"
+				item: "bloodmagic:lavacrystal"
+			}]
+			rewards: [
+				{
+					id: "72AEBB7D6AF5D180"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "2E6694AB6EEC46B9"
+					type: "loot"
+					table_id: 4915960327715244389L
+				}
+				{
+					id: "478E2B206C7A1601"
+					type: "random"
+					table_id: 5351675120932028234L
+				}
+			]
+		}
+		{
+			x: -2.5d
+			y: -10.5d
+			dependencies: ["443E852D63E4134F"]
+			dependency_requirement: "one_completed"
+			id: "5E01C8C19600EAB6"
+			tasks: [{
+				id: "1CB36BB2314CAF22"
+				type: "item"
+				item: "bloodmagic:experiencebook"
+			}]
+			rewards: [
+				{
+					id: "4E9D6BE545C19131"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+				{
+					id: "605CF9A108334BD5"
+					type: "loot"
+					table_id: 2136994266140185172L
+				}
+				{
+					id: "47B3497A260C104A"
+					type: "random"
+					table_id: 5351675120932028234L
+				}
+			]
+		}
+		{
+			x: -4.0d
+			y: -12.5d
+			dependencies: ["55D072C8944A52D8"]
+			id: "6563A2CE12D862D2"
+			tasks: [{
+				id: "53D66F31622EB0A8"
+				type: "item"
+				item: {
+					id: "bloodmagic:livinghelmet"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "23B540A5E737969A"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "04F02C562AF853FD"
+					type: "item"
+					item: {
+						id: "bloodmagic:upgradetome"
+						Count: 1b
+						tag: {
+							livingStats: {
+								maxPoints: 0
+								upgrades: [{
+									exp: 1000.0d
+									key: "bloodmagic:experienced"
+								}]
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			x: -4.0d
+			y: -11.5d
+			dependencies: ["6563A2CE12D862D2"]
+			id: "6E142163522E4B40"
+			tasks: [{
+				id: "4A6F8F4A40115766"
+				type: "item"
+				item: {
+					id: "bloodmagic:livingplate"
+					Count: 1b
+					tag: {
+						Damage: 0
+						livingStats: {
+							maxPoints: 100
+							upgrades: [ ]
+						}
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "57923F1B70E9A3C1"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "52D35D7A4149F004"
+					type: "item"
+					item: {
+						id: "bloodmagic:upgradetome"
+						Count: 1b
+						tag: {
+							livingStats: {
+								maxPoints: 0
+								upgrades: [{
+									exp: 1024.0d
+									key: "bloodmagic:digging"
+								}]
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			x: -4.0d
+			y: -10.5d
+			dependencies: ["6E142163522E4B40"]
+			id: "68D9C880BB988413"
+			tasks: [{
+				id: "182E821D898E3BC9"
+				type: "item"
+				item: {
+					id: "bloodmagic:livingleggings"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "166FD8E26B8DB5E9"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "67879C7FC266292E"
+					type: "item"
+					item: {
+						id: "bloodmagic:upgradetome"
+						Count: 1b
+						tag: {
+							livingStats: {
+								maxPoints: 0
+								upgrades: [{
+									exp: 400.0d
+									key: "bloodmagic:jump"
+								}]
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			x: -4.0d
+			y: -9.5d
+			dependencies: ["68D9C880BB988413"]
+			id: "020F9AA178E378BB"
+			tasks: [{
+				id: "157E71C1BBDE2850"
+				type: "item"
+				item: {
+					id: "bloodmagic:livingboots"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "42B5327C4B3EA959"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "70381D821A102F92"
+					type: "item"
+					item: {
+						id: "bloodmagic:upgradetome"
+						Count: 1b
+						tag: {
+							livingStats: {
+								maxPoints: 0
+								upgrades: [{
+									exp: 400.0d
+									key: "bloodmagic:fall_protect"
+								}]
+							}
+						}
+					}
+				}
+			]
+		}
+		{
+			x: -7.5d
+			y: -7.5d
+			subtitle: "仪式占卜者是一种工具"
+			description: [
+				"右键点击大师仪式石时，仪式占卜者会将背包中的仪式石放置出来，以形成当前选定的仪式。按住 Shift 右键可更改当前的仪式蓝图。"
+				""
+				"仪式占卜者有两种形态：一种可以放置暮色符文，另一种则不能。"
+			]
+			dependencies: ["7C20B789A07D4161"]
+			id: "6FA36B62183E8203"
+			tasks: [{
+				id: "1C7D910626742601"
+				type: "item"
+				item: "bloodmagic:ritualdiviner"
+			}]
+			rewards: [
+				{
+					id: "61F7AA40F9A99E26"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "1392199979559444"
+					type: "random"
+					table_id: 5351675120932028234L
+				}
+			]
+		}
+		{
+			x: -6.5d
+			y: -7.0d
+			subtitle: "Dusk 是一种与仪式石配合使用的物品，用于创建一些标准仪式"
+			description: [
+				"将铭文工具用于仪式石上，会将其涂色，变成暮色石。"
+				""
+				"使用元素铭文工具：暮色，需先右键绑定至玩家。绑定后，可右键点击任意仪式石，将其转化为暮色石，消耗1点耐久度。耐久度耗尽后，右键会消耗10LP恢复1点耐久度。"
+			]
+			dependencies: ["6FA36B62183E8203"]
+			id: "7EAB8AB0264992C0"
+			tasks: [{
+				id: "0083497BA02FD8D7"
+				type: "item"
+				item: "bloodmagic:ritualdivinerdusk"
+			}]
+			rewards: [
+				{
+					id: "78C5C36C03C1EF50"
+					type: "xp"
+					xp: 150
+				}
+				{
+					id: "55C8C5AF58FD0336"
+					type: "item"
+					item: "bloodmagic:ritualdiviner"
+				}
+				{
+					id: "327A68FF68A0995D"
+					type: "choice"
+					table_id: 4056905653150789257L
+				}
+			]
+		}
+		{
+			x: -6.5d
+			y: -14.5d
+			hide_dependency_lines: true
+			dependencies: ["76242AD890FC311C"]
+			id: "24DE5373A61B693E"
+			tasks: [{
+				id: "4733014769B3C44D"
+				type: "item"
+				item: {
+					id: "bloodmagic:airscribetool"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "65033E3C482400DA"
+					type: "xp"
+					xp: 10
+				}
+				{
+					id: "7C553F8D22AFE817"
+					type: "item"
+					item: {
+						id: "bloodmagic:airscribetool"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			x: -5.75d
+			y: -15.285714285714285d
+			dependencies: ["24DE5373A61B693E"]
+			id: "58538978E0C994E1"
+			tasks: [{
+				id: "67680DD6504F228F"
+				type: "item"
+				item: {
+					id: "bloodmagic:firescribetool"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "66DE0125A3B09CEA"
+					type: "xp"
+					xp: 20
+				}
+				{
+					id: "249DAF5D210566F5"
+					type: "item"
+					item: {
+						id: "bloodmagic:firescribetool"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			x: -5.0d
+			y: -16.0d
+			dependencies: ["58538978E0C994E1"]
+			id: "3250BBE11D339455"
+			tasks: [{
+				id: "41E2240C72E69C4B"
+				type: "item"
+				item: {
+					id: "bloodmagic:waterscribetool"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "217DD0721E75D62C"
+					type: "xp"
+					xp: 30
+				}
+				{
+					id: "1336F7DAB160B5BC"
+					type: "item"
+					item: {
+						id: "bloodmagic:waterscribetool"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			x: -4.0d
+			y: -16.5d
+			dependencies: ["3250BBE11D339455"]
+			id: "66445A82FB66D981"
+			tasks: [{
+				id: "702A97B408A694AB"
+				type: "item"
+				item: {
+					id: "bloodmagic:earthscribetool"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "7EDCC0E7A6287901"
+					type: "xp"
+					xp: 40
+				}
+				{
+					id: "0D286F58E612E310"
+					type: "item"
+					item: {
+						id: "bloodmagic:earthscribetool"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			x: -3.0d
+			y: -16.5d
+			hide_dependency_lines: true
+			dependencies: [
+				"66445A82FB66D981"
+				"7C20B789A07D4161"
+			]
+			hide: true
+			id: "1BDA175E658FB26F"
+			tasks: [{
+				id: "6654D7C7DE15553C"
+				type: "item"
+				item: {
+					id: "bloodmagic:duskscribetool"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "42D2D059344F1A16"
+					type: "xp"
+					xp: 50
+				}
+				{
+					id: "34BFBD79A059C1E8"
+					type: "item"
+					item: {
+						id: "bloodmagic:duskscribetool"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			x: -1.0d
+			y: -11.5d
+			dependencies: ["6B5D1536C4ED9C16"]
+			id: "3ED56B0BDE8849F0"
+			tasks: [{
+				id: "16FD7B191A178439"
+				type: "item"
+				item: {
+					id: "bloodmagic:sanguinereverter"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "44FFA38F494DDA5A"
+					type: "xp"
+					xp: 20
+				}
+				{
+					id: "20A7D1ED78B9A451"
+					type: "loot"
+					table_id: 687554054301909623L
+				}
+			]
+		}
+		{
+			x: -1.0d
+			y: -10.0d
+			dependencies: ["3ED56B0BDE8849F0"]
+			id: "35E935F179B2D9EE"
+			tasks: [{
+				id: "27F924A3F79A1A40"
+				type: "item"
+				item: {
+					id: "bloodmagic:primitive_crystalline_resonator"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "649CF85AE1BE117D"
+					type: "xp"
+					xp: 20
+				}
+				{
+					id: "4F11ADBCF6AA3E77"
+					type: "loot"
+					table_id: 6363515282471183984L
+				}
+			]
+		}
+		{
+			x: -1.0d
+			y: -14.5d
+			dependencies: ["6B94F782E431F80E"]
+			id: "0E0D800309F3CE35"
+			tasks: [{
+				id: "78DBFCF646489959"
+				type: "item"
+				item: {
+					id: "bloodmagic:primitive_hydration_cell"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "1381FB4427FB8222"
+					type: "xp"
+					xp: 20
+				}
+				{
+					id: "3600CC1BB9327690"
+					type: "loot"
+					table_id: 8533451183250182354L
+				}
+			]
+		}
+		{
+			x: -1.0d
+			y: -13.0d
+			dependencies: ["0E0D800309F3CE35"]
+			id: "6B5D1536C4ED9C16"
+			tasks: [{
+				id: "03601DE2E673921F"
+				type: "item"
+				item: {
+					id: "bloodmagic:furnacecell_primitive"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+			rewards: [
+				{
+					id: "50103EDAEC1A83F8"
+					type: "xp"
+					xp: 20
+				}
+				{
+					id: "69D6263B6CF708FE"
+					type: "loot"
+					table_id: 4915960327715244389L
+				}
+			]
+		}
+		{
+			x: -2.0d
+			y: -9.0d
+			shape: "diamond"
+			dependencies: ["35E935F179B2D9EE"]
+			id: "05B5737A226A6745"
+			tasks: [{
+				id: "399E7C46369B82C9"
+				type: "item"
+				item: "bloodmagic:ironfragment"
+			}]
+			rewards: [
+				{
+					id: "1B7D63D886FC934B"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "19E10FF415269BC2"
+					type: "loot"
+					table_id: 4432288867142743846L
+				}
+			]
+		}
+		{
+			x: -2.7142857142857153d
+			y: -8.285714285714285d
+			shape: "diamond"
+			dependencies: ["05B5737A226A6745"]
+			id: "008D19CB3859F3B8"
+			tasks: [{
+				id: "073EB2648BBC1DD9"
+				type: "item"
+				item: "bloodmagic:goldfragment"
+			}]
+			rewards: [
+				{
+					id: "5B49E9D88E26825D"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "50CD934A8CCC6156"
+					type: "loot"
+					table_id: 6813199617749196115L
+				}
+			]
+		}
+		{
+			x: -3.4642857142857153d
+			y: -7.535714285714292d
+			shape: "diamond"
+			dependencies: ["008D19CB3859F3B8"]
+			id: "4B92CC264E158E7C"
+			tasks: [{
+				id: "6BF7D9F252835D5A"
+				type: "item"
+				item: "bloodmagic:fragment_netherite_scrap"
+			}]
+			rewards: [
+				{
+					id: "6846D46D6354945A"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "1CD331D80E84EA8E"
+					type: "loot"
+					table_id: 687554054301909623L
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+}

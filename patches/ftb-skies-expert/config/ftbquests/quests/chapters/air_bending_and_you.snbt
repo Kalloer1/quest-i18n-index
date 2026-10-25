@@ -1,0 +1,704 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "air_bending_and_you"
+	group: "43731E7F4BACB580"
+	icon: {
+		Count: 1b
+		id: "pneumaticcraft:pneumatic_wrench"
+		tag: {
+			"pneumaticcraft:air": 30000
+		}
+	}
+	id: "7A6DB947D45E4920"
+	images: [{
+		click: ""
+		corner: false
+		dev: false
+		height: 1.0d
+		hover: [ ]
+		image: "ftbskies:textures/quests/pnc.png"
+		rotation: 0.0d
+		width: 9.55421686746988d
+		x: -2.5d
+		y: -4.5d
+	}]
+	order_index: 4
+	quest_links: [{
+		id: "68DEB018927F833D"
+		linked_quest: "19E85C8A02ACF973"
+		x: -4.5d
+		y: -1.0d
+	}]
+	quests: [
+		{
+			dependencies: ["5C08259CFF4E6E3E"]
+			description: ["一切始于此处。通过制作加固石，你可以创造出足以承受高压的材料。"]
+			id: "7D3EFC22802A8265"
+			rewards: [
+				{
+					count: 8
+					id: "2897F9AC161A5803"
+					item: "pneumaticcraft:reinforced_stone"
+					type: "item"
+				}
+				{
+					id: "4E89C85646242301"
+					item: {
+						Count: 1b
+						id: "patchouli:guide_book"
+						tag: {
+							"patchouli:book": "pneumaticcraft:book"
+						}
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "7949764ACB8CA4AE"
+				item: "pneumaticcraft:reinforced_stone"
+				type: "item"
+			}]
+			x: -4.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["7D3EFC22802A8265"]
+			description: [
+				"&b压力管&r输送&6压缩空气&r。如果内部压力达到5.0巴，它就会爆炸。"
+				""
+				"气压也需要时间来积聚和变化，不会瞬间传递。气压还&6依赖于封闭系统&r，它会从开放的管道接口泄漏，从而降低系统中的压力。右键点击接口并使用&6气动扳手&r可以关闭该部分。"
+			]
+			id: "3FB51F0568B0896C"
+			rewards: [{
+				id: "16A464A64C0707C2"
+				item: {
+					Count: 1b
+					id: "pneumaticcraft:pneumatic_wrench"
+					tag: {
+						"pneumaticcraft:air": 30000
+					}
+				}
+				type: "item"
+			}]
+			tasks: [{
+				count: 8L
+				id: "0890961C71FF720C"
+				item: "pneumaticcraft:pressure_tube"
+				type: "item"
+			}]
+			title: "施加压力"
+			x: -3.0d
+			y: -1.0d
+		}
+		{
+			dependencies: [
+				"3FB51F0568B0896C"
+				"19E85C8A02ACF973"
+			]
+			description: [
+				"要生成压缩空气，你首先需要使用一个&6旋转压缩机&r。它将来自创造产线的应力单位（SU）转换为气压。旋转压缩机最高可产生5.0巴的压力，非常适合你目前所需的大多数用途。"
+				""
+				"之后你将能制作Flux Compressor来生产更多。"
+				""
+				"{@pagebreak}"
+				"注意不要过度加压系统。在旋转压缩机附近的压力管上安装安全阀可以防止这种情况，但更好的方法可能是使用压力表，在不需要时关闭压缩机。"
+			]
+			id: "431FE9AD828F9901"
+			rewards: [{
+				id: "30D7447B361D47F2"
+				item: "pneumaticcraft:safety_tube_module"
+				type: "item"
+			}]
+			tasks: [{
+				id: "3AB7C93834120784"
+				item: "compressedcreativity:rotational_compressor"
+				type: "item"
+			}]
+			x: -4.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["19E85C8A02ACF973"]
+			description: [
+				"&b气压&r是大多数 Pneumaticcraft 机器的动力来源。它以&6巴&r为单位进行测量。巴数越高，气压越大。"
+				""
+				"空气从高压区流向低压区，并试图在整个系统中达到平衡。"
+				""
+				"如果机器或管道内的气压超过了其承受范围，&c机器就会爆炸&r！"
+				""
+				"{@pagebreak}"
+				"PneumaticCraft 的机器和工具都有一个特定的 &6体积&r（单位：ML），表示它们在 0 巴压力下能容纳的空气量。这可以通过体积升级来增加。"
+				""
+				"机器使用压缩空气来运行，消耗时会不断降低系统中的压力。"
+				"更多信息请确保&6阅读 PNC:R 手册&r。"
+			]
+			icon: "ars_nouveau:air_essence"
+			id: "670A52F1036507BB"
+			rewards: [{
+				id: "3C327348BEA491B2"
+				item: "pneumaticcraft:security_upgrade"
+				type: "item"
+			}]
+			tasks: [{
+				id: "3D09A59994D73C21"
+				title: "气压 (Air Pressure)"
+				type: "checkmark"
+			}]
+			x: -6.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["3FB51F0568B0896C"]
+			description: [
+				"&b热量&r是 Pneumaticcraft 独有的另一种机制。&6热量会向相邻方块&r扩散，包括空气。"
+				"如果某些热源的热量完全散失，它们会&6转化为另一种方块&r。例如，用岩浆加热机器，最终冷却成黑曜石。"
+				""
+				"确保方块被非空气方块覆盖，即可防止热量向空气中散失。使用&6Thermal Lagging&r效果很好。"
+				""
+				"{@pagebreak}"
+				"有些操作是吸热的（消耗热量），而另一些可能是放热的（产生热量）。具体取决于机器和配方，请务必查看配方并相应规划你的热量管理。"
+				""
+				"需要注意的是，由于这些机器共享热量，将需要相似温度的机器紧密放置在一起通常有助于简化热量管理。你可以通过 &6dispenser upgrades&r 在它们之间连接管道。"
+				""
+				"{@pagebreak}"
+				"由于PNC与其他模组兼容，很好的热源是烈焰燃烧器或液态烈焰燃烧器。给烈焰燃烧器一个吸管，就可以接入柴油或其他可燃液体，低成本地产生高热。"
+				""
+				"游戏后期，当你能产生Mekanism热量时，它也能正常工作！"
+			]
+			icon: "ars_nouveau:fire_essence"
+			id: "6428F17B7E4873A6"
+			rewards: [
+				{
+					count: 2
+					id: "08677698FDC5790D"
+					item: "pneumaticcraft:dispenser_upgrade"
+					team_reward: true
+					type: "item"
+				}
+				{
+					count: 8
+					id: "134B05F9CBBC8FD2"
+					item: "pneumaticcraft:heat_pipe"
+					team_reward: true
+					type: "item"
+				}
+			]
+			tasks: [{
+				count: 6L
+				id: "3D6556543AFE3118"
+				item: "pneumaticcraft:thermal_lagging"
+				type: "item"
+			}]
+			title: "热力学定律 Thermodynamics"
+			x: -1.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["3FB51F0568B0896C"]
+			description: [
+				"&bVortex Tube&r利用压缩空气来&6使一侧变冷，另一侧变热&r。"
+				""
+				"气流越大，温差就会越极端。"
+			]
+			id: "40B00524384110B9"
+			rewards: [{
+				id: "77C1665861D6F3BE"
+				item: "pneumaticcraft:heat_frame"
+				team_reward: true
+				type: "item"
+			}]
+			tasks: [{
+				id: "2DF34B3D6F884191"
+				item: "pneumaticcraft:vortex_tube"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["431FE9AD828F9901"]
+			description: [
+				"&b热气动加工厂&r用于将液体加工成其他液体。"
+				"LPG和煤炭一起放入这台机器中，可以生产出&6液态塑料&r。"
+				""
+				"它也可以用于燃料裂解。"
+				"重燃料可以裂解成轻燃料。也就是说，&6柴油&r可以变成&6煤油&r，煤油又可以变成汽油，再进一步变成液化石油气。"
+			]
+			id: "6CD6367FB419EA35"
+			rewards: [{
+				id: "09A7A9263B26A810"
+				item: "pneumaticcraft:security_upgrade"
+				team_reward: true
+				type: "item"
+			}]
+			tasks: [{
+				id: "17485231CED3D0BE"
+				item: "pneumaticcraft:thermopneumatic_processing_plant"
+				type: "item"
+			}]
+			x: -4.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["431FE9AD828F9901"]
+			description: [
+				"&b流体混合器&r顾名思义，可以混合两种流体。它能生成物品或另一种流体。"
+				""
+				"一个重要的用途是生产&6生物柴油&r，这是增强型电力生产的基石。"
+			]
+			id: "15F655AA668D6541"
+			rewards: [{
+				count: 4
+				id: "7DAF90E29F7D9743"
+				item: "pneumaticcraft:bandage"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0D585DA17B8A0CE1"
+				item: "pneumaticcraft:fluid_mixer"
+				type: "item"
+			}]
+			x: -3.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["431FE9AD828F9901"]
+			description: [
+				"&b充电站&r能让你&6用压缩空气填充物品&r，让它们能正常工作。"
+				""
+				"它只会将物品填充到与充电站本身具有的压力相等。"
+				""
+				"如果物品的压力高于充电站，它将&6将自身清空回网络中&r。"
+			]
+			id: "26B6680DCE14A228"
+			rewards: [{
+				id: "264EF65F82ACE5F0"
+				item: "pneumaticcraft:pressure_gauge_module"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0C7ABCA95FF00709"
+				item: "pneumaticcraft:charging_station"
+				type: "item"
+			}]
+			x: -6.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["26B6680DCE14A228"]
+			description: [
+				"&b充电模块&r可以放置在压力管上，它会为所面对的物品栏中的所有物品充电。"
+				""
+				"如果压力超过管道，它还能释放。把它们装在两个相连的末地箱上，就能有效&6传送气压&r！"
+			]
+			id: "34169D76520A5D85"
+			optional: true
+			rewards: [{
+				count: 4
+				id: "441E123E98D94BC9"
+				item: "pneumaticcraft:aphorism_tile"
+				team_reward: true
+				type: "item"
+			}]
+			tasks: [{
+				id: "2117BB00435BE17A"
+				item: "pneumaticcraft:charging_module"
+				type: "item"
+			}]
+			x: -7.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["26B6680DCE14A228"]
+			description: [
+				"迷彩应用器可以将管道和热管等可迷彩方块伪装成其他方块。"
+				""
+				"潜行+右键点击涂抹器（如草地或钻石），然后点击任何可伪装的方块以设置其外观。"
+			]
+			id: "3CAA89E621ED5B6E"
+			optional: true
+			rewards: [
+				{
+					id: "7063739F3EFFADEE"
+					item: "productivebees:spawn_egg_dye_bee"
+					type: "item"
+				}
+				{
+					id: "430079C73EB479B6"
+					type: "xp"
+					xp: 10
+				}
+			]
+			tasks: [{
+				id: "14491BCA763B7F9B"
+				item: "pneumaticcraft:camo_applicator"
+				type: "item"
+			}]
+			x: -6.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["26B6680DCE14A228"]
+			description: [
+				"按住右键，迷你枪将使用压缩空气来发射迷你枪弹药。"
+				""
+				"潜行点击迷你枪可插入最多4个迷你枪弹药箱。迷你枪弹药可与药水结合，使击中时施加其效果。"
+				""
+				"你可以在充电站里安装几个实用的迷你枪升级组件，以增强其功能。"
+			]
+			id: "73E91712D4D9A762"
+			optional: true
+			rewards: [{
+				id: "04DA19295B558A4F"
+				item: {
+					Count: 1b
+					id: "pneumaticcraft:gun_ammo"
+					tag: {
+						Damage: 0
+						potion: {
+							Count: 1b
+							id: "minecraft:potion"
+							tag: {
+								Potion: "minecraft:strong_harming"
+							}
+						}
+					}
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "61D2D36076B28267"
+				item: "pneumaticcraft:minigun"
+				type: "item"
+			}]
+			x: -7.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["6CD6367FB419EA35"]
+			description: ["速度升级可用于大多数PNC机器，使其运行更快，但消耗更多气压。"]
+			id: "6252AF176FC134E9"
+			optional: true
+			rewards: [{
+				count: 4
+				id: "565E27C0242863CD"
+				item: "pneumaticcraft:speed_upgrade"
+				team_reward: true
+				type: "item"
+			}]
+			tasks: [{
+				id: "0218505A510FDE6F"
+				item: "pneumaticcraft:speed_upgrade"
+				type: "item"
+			}]
+			x: -4.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["3FB51F0568B0896C"]
+			description: ["你需要PCB蓝图来制作UV灯箱和PCB。要获得蓝图，你需要找到一位精通处理器的专家。去天空村庄找一个村民，给他们一个充电站，让他们成为工程师。"]
+			id: "5E48187389318DA0"
+			rewards: [
+				{
+					count: 4
+					id: "1C3F4A390E8E462F"
+					item: "minecraft:emerald"
+					team_reward: true
+					type: "item"
+				}
+				{
+					id: "648DDE2F535B80B9"
+					type: "xp"
+					xp: 10
+				}
+			]
+			tasks: [{
+				id: "6FBC4DA3DBACEA97"
+				item: "pneumaticcraft:pcb_blueprint"
+				type: "item"
+			}]
+			x: -3.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["5E48187389318DA0"]
+			description: [
+				"需要 &6{block.pneumaticcraft.uv_light_box}&r 来将 &b{item.pneumaticcraft.empty_pcb}&r 准备好放入蚀刻槽。"
+				""
+				"将&b{item.pneumaticcraft.empty_pcb}&r放在&6{block.pneumaticcraft.uv_light_box}&r中的时间越长，成功率就越高。"
+			]
+			id: "0A9C222E09A4021D"
+			rewards: [{
+				count: 4
+				id: "195F028F4853F537"
+				item: "immersiveengineering:circuit_board"
+				team_reward: true
+				type: "item"
+			}]
+			tasks: [{
+				id: "70BA5F1C3A9A69CB"
+				item: "pneumaticcraft:uv_light_box"
+				type: "item"
+			}]
+			x: -1.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["0A9C222E09A4021D"]
+			description: [
+				"用 &6Etching&r Acid 填充，并放入已在 &6UV Light Box&r 中曝光过的 &bEmpty PCB&r。"
+				""
+				"可以选择性地将其加热至高于"
+				"50C° 可逐步加快蚀刻速度（但加热时会缓慢消耗蚀刻酸）"
+				"{@pagebreak}"
+				"如果你想自动化，可以从侧面提取未组装的PCB和失败的PCB"
+				"从顶部/底部进入。"
+			]
+			id: "35FFAC447F36F05C"
+			rewards: [{
+				id: "3EA790C09A35C2CB"
+				item: "thermal:machine_frame"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0660C86F1E4C81E7"
+				item: "pneumaticcraft:etching_tank"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["35FFAC447F36F05C"]
+			description: ["将一些 &3{item.pneumaticcraft.transistor}s&r 和 &3{item.pneumaticcraft.capacitor}s&r 安装在 &6{item.pneumaticcraft.unassembled_pcb}&r 上，最终会产出 &b{item.pneumaticcraft.printed_circuit_board}&r"]
+			id: "7C2617969808F086"
+			rewards: [{
+				count: 4
+				id: "44B5600FC668F73D"
+				item: "pneumaticcraft:printed_circuit_board"
+				team_reward: true
+				type: "item"
+			}]
+			tasks: [{
+				id: "338C2758640ED390"
+				item: "pneumaticcraft:printed_circuit_board"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["7C2617969808F086"]
+			description: [
+				"&b装配线&r是一种多方块机器，可用于制作精密配方。装配线的各部分必须相互接触，并且需要向控制器提供压力。此外，还必须将&b程序插入&r装配控制器中。大多数配方会使用激光程序，但某些配方还需要钻头以及钻头与激光的组合程序。"
+				""
+				"&bAssembly IO Units&r 控制配方输入和输出。它们必须能接触到物品栏（如箱子）和组装平台。它们能触及3x3范围内的任何物体。"
+			]
+			icon: "pneumaticcraft:assembly_controller"
+			id: "0B9781072E9E935C"
+			rewards: [
+				{
+					count: 2
+					id: "462C7A1DD2A4E0A9"
+					item: "pneumaticcraft:volume_upgrade"
+					team_reward: true
+					type: "item"
+				}
+				{
+					count: 2
+					id: "6C6E8BF4E8935722"
+					item: "pneumaticcraft:speed_upgrade"
+					team_reward: true
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "16871FDE8ADF42CA"
+					item: "pneumaticcraft:assembly_controller"
+					type: "item"
+				}
+				{
+					id: "49109DE544060DA8"
+					item: "pneumaticcraft:assembly_io_unit_import"
+					type: "item"
+				}
+				{
+					id: "0F4D0410A6DAC662"
+					item: "pneumaticcraft:assembly_io_unit_export"
+					type: "item"
+				}
+				{
+					id: "135D4DEF46BD8194"
+					item: "pneumaticcraft:assembly_laser"
+					type: "item"
+				}
+				{
+					id: "27DA8ED70535430F"
+					item: "pneumaticcraft:assembly_platform"
+					type: "item"
+				}
+				{
+					id: "4820B3F6F0FDA407"
+					item: "pneumaticcraft:assembly_program_laser"
+					type: "item"
+				}
+			]
+			title: "装配生产线"
+			x: 0.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["7C2617969808F086"]
+			description: [
+				"气动盔甲初始防御较低，但可以大幅升级。升级后可增加护甲、韧性、速度、飞行、夜视等功能！胸甲还可升级，为所有气动装置充能。"
+				""
+				"这套盔甲不像其他科技盔甲那样有无限耐久度，但可以升级以在受压时自动修复。"
+			]
+			id: "3A5A665B1F76BE26"
+			rewards: [{
+				id: "42D8314171399B21"
+				item: "pneumaticcraft:jet_boots_upgrade_1"
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "2ADC78820BCCA82F"
+					item: {
+						Count: 1b
+						id: "pneumaticcraft:pneumatic_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "393A7C5292D8C815"
+					item: {
+						Count: 1b
+						id: "pneumaticcraft:pneumatic_chestplate"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "17E8D1C938F492D8"
+					item: {
+						Count: 1b
+						id: "pneumaticcraft:pneumatic_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "0AE4E20E68DA640A"
+					item: {
+						Count: 1b
+						id: "pneumaticcraft:pneumatic_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "我就是（压缩）钢铁侠！"
+			x: 1.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["0B9781072E9E935C"]
+			description: ["高级压力管可承受高达25巴的压力，容量是普通管子的4倍。注意连接的机器能否承受压力，或使用调节器。"]
+			id: "0EC122E853F2083C"
+			rewards: [{
+				id: "1EE21DED41192860"
+				item: "pneumaticcraft:regulator_tube_module"
+				type: "item"
+			}]
+			tasks: [{
+				count: 4L
+				id: "3C96189CE1B5BDDC"
+				item: "pneumaticcraft:advanced_pressure_tube"
+				type: "item"
+			}]
+			title: "高级压力管系统 (Advanced Pressure Tubes)"
+			x: -1.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["0B9781072E9E935C"]
+			description: [
+				"&bAerial Interface&r在加压后，会&n将你的物品栏显示为宝箱样式&r。放入接口中的物品会直接进入你的物品栏。主物品栏可通过任意水平面访问，而盔甲则位于顶面。这可以在UI中更改。"
+				""
+				"此装置还提供&6水肺&r，但会额外消耗气压。若提供FE，还能&6无线为所有物品充电&r！升级后的分配器会&6自动为你进食&r，并支持经验值管道输入输出。"
+				""
+				"这可以用来保持胸甲的充能状态，你的胸甲还可以被升级，为所有其他PNC护甲和物品充能。"
+			]
+			id: "2F91C4B265C670BE"
+			rewards: [
+				{
+					id: "7E74B67AB5478F1A"
+					item: "enderstorage:ender_chest"
+					team_reward: true
+					type: "item"
+				}
+				{
+					id: "47FAED5C7DE2CC50"
+					type: "xp"
+					xp: 10
+				}
+			]
+			tasks: [{
+				id: "4F3AC86614B7D154"
+				item: "pneumaticcraft:aerial_interface"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["3FB51F0568B0896C"]
+			description: ["&b散热片&r有助于更快地散发所接触方块的热量。温度高于60°C或低于-60°C的散热片会灼伤你。使用通风栅在鳍片上排风可大幅提升其效率。与涡管配合使用时，应能有效满足你的所有加热和冷却需求。"]
+			id: "299CD86325D3D74B"
+			rewards: [
+				{
+					id: "753D28324DE68118"
+					item: "pneumaticcraft:air_grate_module"
+					team_reward: true
+					type: "item"
+				}
+				{
+					id: "7D322E7683978CFF"
+					type: "xp"
+					xp: 10
+				}
+			]
+			tasks: [{
+				id: "08861EA4BA83BEA5"
+				item: "pneumaticcraft:heat_sink"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["7C2617969808F086"]
+			id: "633FA983B63A65DD"
+			tasks: [{
+				id: "6A02836D61A7C2C1"
+				item: "pneumaticcraft:module_expansion_card"
+				type: "item"
+			}]
+			x: -1.5d
+			y: 2.5d
+		}
+	]
+	title: "空气操控术入门！"
+}

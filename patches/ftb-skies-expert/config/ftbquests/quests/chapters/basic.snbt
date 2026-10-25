@@ -1,0 +1,414 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "basic"
+	group: "5A42857CD4E60814"
+	icon: "ironchest:diamond_chest"
+	id: "3DA4B4386B953C43"
+	images: [{
+		click: ""
+		corner: false
+		dev: false
+		height: 1.0d
+		hover: [ ]
+		image: "ftbskies:textures/quests/basic.png"
+		rotation: 0.0d
+		width: 3.2048192771084336d
+		x: -3.0d
+		y: -5.5d
+	}]
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["&eIron Chests&r 添加了多个等级的 &bChests&r，每个等级的容量都比前一个更大。"]
+			icon: "ironchest:iron_chest"
+			id: "37FC7216C7912F45"
+			rewards: [{
+				count: 2
+				id: "200C29ED9B6FCE60"
+				item: "ironchest:wood_to_iron_chest_upgrade"
+				team_reward: true
+				type: "item"
+			}]
+			subtitle: "内部比外部大得多"
+			tasks: [{
+				id: "0723D12D3E358858"
+				item: {
+					Count: 1b
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "ironchest:copper_chest"
+							}
+							{
+								Count: 1b
+								id: "ironchest:iron_chest"
+							}
+							{
+								Count: 1b
+								id: "ironchest:gold_chest"
+							}
+							{
+								Count: 1b
+								id: "ironchest:diamond_chest"
+							}
+							{
+								Count: 1b
+								id: "ironchest:crystal_chest"
+							}
+							{
+								Count: 1b
+								id: "ironchest:obsidian_chest"
+							}
+						]
+					}
+				}
+				title: "铁质箱子"
+				type: "item"
+			}]
+			x: -4.0d
+			y: -2.5d
+		}
+		{
+			description: [
+				"&eFunctional Drawers&r 添加了各种各样的 &b抽屉&r，每个抽屉槽位可存放大量单一物品。"
+				""
+				"未升级的抽屉，每个槽位均等存放 32 个物品堆叠。"
+			]
+			icon: "functionalstorage:oak_1"
+			id: "448C62F81B3D0F32"
+			rewards: [
+				{
+					count: 4
+					id: "119D72A2699C85BE"
+					item: "functionalstorage:copper_upgrade"
+					team_reward: true
+					type: "item"
+				}
+				{
+					id: "45CEEF5037822867"
+					item: {
+						Count: 1b
+						id: "functionalstorage:configuration_tool"
+						tag: {
+							Mode: "LOCKING"
+						}
+					}
+					type: "item"
+				}
+			]
+			subtitle: "为了丰厚的收获（For the Fat Stacks）"
+			tasks: [{
+				id: "6B6273B0BBF584BE"
+				item: {
+					Count: 1b
+					id: "itemfilters:tag"
+					tag: {
+						value: "functionalstorage:drawer"
+					}
+				}
+				title: "抽屉"
+				type: "item"
+			}]
+			title: "功能性抽屉模组 (Functional Drawers)"
+			x: -7.0d
+			y: -1.0d
+		}
+		{
+			description: [
+				"&b流体抽屉&r的每个槽位都储存一种流体。"
+				""
+				"它们的升级方式和抽屉是一样的。"
+			]
+			icon: "functionalstorage:fluid_1"
+			id: "4063F0E2A671ADE7"
+			subtitle: "The Big Splash"
+			tasks: [{
+				id: "15C802767392E5CA"
+				item: {
+					Count: 1b
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "functionalstorage:fluid_1"
+							}
+							{
+								Count: 1b
+								id: "functionalstorage:fluid_2"
+							}
+							{
+								Count: 1b
+								id: "functionalstorage:fluid_4"
+							}
+						]
+					}
+				}
+				title: "流体抽屉"
+				type: "item"
+			}]
+			x: -7.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["448C62F81B3D0F32"]
+			description: [
+				"&bCompacting Drawers&r 可以让你输入和输出内部物品的&6Nugget、Ingot 和 Block 形态&r。"
+				""
+				"注意：这与 &6Storage Bus&r、&6External Storage&r 等模组存在奇怪的兼容性问题。"
+			]
+			icon: "functionalstorage:compacting_drawer"
+			id: "242EFF7E2DE9A613"
+			rewards: [{
+				id: "68F03A81C6F1BB29"
+				item: "functionalstorage:copper_upgrade"
+				team_reward: true
+				type: "item"
+			}]
+			subtitle: "&lDrawer&r"
+			tasks: [{
+				id: "444061162CF6D7CD"
+				item: {
+					Count: 1b
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "functionalstorage:compacting_drawer"
+							}
+							{
+								Count: 1b
+								id: "functionalstorage:simple_compacting_drawer"
+							}
+						]
+					}
+				}
+				title: "抽屉压缩器 (Compacting Drawers)"
+				type: "item"
+			}]
+			x: -6.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["448C62F81B3D0F32"]
+			description: [
+				"&bStorage Controller&r的库存由&6所有已连接的抽屉的库存&r组成。这使得它非常适合自动化等用途。"
+				""
+				"使用&b链接工具&r在存储控制器上设置，然后点击半径为&612格&r内的其他抽屉即可连接。它们不必相邻。"
+				""
+				"&6控制器扩展&r可用于将物品传输到远离控制器的抽屉系统中。"
+			]
+			id: "69EF9592D7348DC1"
+			min_width: 250
+			rewards: [{
+				id: "33AB3BB6262B86E8"
+				item: {
+					Count: 1b
+					id: "functionalstorage:linking_tool"
+					tag: {
+						Action: "ADD"
+						Mode: "SINGLE"
+					}
+				}
+				type: "item"
+			}]
+			subtitle: "大规模存储系统"
+			tasks: [{
+				id: "478B96E6F0AFEC13"
+				item: "functionalstorage:storage_controller"
+				type: "item"
+			}]
+			x: -6.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["448C62F81B3D0F32"]
+			description: ["&bStorage Upgrades&r 可以安装在抽屉上以&6增加其容量&r。"]
+			icon: "functionalstorage:gold_upgrade"
+			id: "372B404B0DA2BA73"
+			rewards: [{
+				id: "15277A185F400142"
+				item: "functionalstorage:copper_upgrade"
+				team_reward: true
+				type: "item"
+			}]
+			subtitle: "数字在不断增加中"
+			tasks: [{
+				id: "3A5D891E5286A13D"
+				item: {
+					Count: 1b
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "functionalstorage:copper_upgrade"
+							}
+							{
+								Count: 1b
+								id: "functionalstorage:gold_upgrade"
+							}
+							{
+								Count: 1b
+								id: "functionalstorage:diamond_upgrade"
+							}
+							{
+								Count: 1b
+								id: "functionalstorage:netherite_upgrade"
+							}
+						]
+					}
+				}
+				title: "存储升级"
+				type: "item"
+			}]
+			x: -8.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["448C62F81B3D0F32"]
+			description: ["这些&b功能性升级&r会以某种方式改变抽屉的运作方式，而不仅仅是存储量。"]
+			icon: "functionalstorage:void_upgrade"
+			id: "091C50470E8E7F6D"
+			rewards: [{
+				count: 4
+				id: "2CEDF2C4799762DE"
+				item: "functionalstorage:void_upgrade"
+				type: "item"
+			}]
+			tasks: [{
+				id: "1750A37E0ED2B26B"
+				item: {
+					Count: 1b
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "functionalstorage:collector_upgrade"
+								tag: {
+									Direction: "down"
+								}
+							}
+							{
+								Count: 1b
+								id: "functionalstorage:puller_upgrade"
+								tag: {
+									Direction: "down"
+								}
+							}
+							{
+								Count: 1b
+								id: "functionalstorage:pusher_upgrade"
+								tag: {
+									Direction: "down"
+								}
+							}
+							{
+								Count: 1b
+								id: "functionalstorage:void_upgrade"
+							}
+							{
+								Count: 1b
+								id: "functionalstorage:redstone_upgrade"
+								tag: {
+									Slot: 0
+								}
+							}
+						]
+					}
+				}
+				title: "功能性升级"
+				type: "item"
+			}]
+			x: -8.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["37FC7216C7912F45"]
+			description: ["这些&b转换升级&r可用于&6升级箱子的等级&r。"]
+			icon: "ironchest:wood_to_iron_chest_upgrade"
+			id: "06D50A7ECF5CF824"
+			tasks: [{
+				id: "48F7DA3CBDBCBF40"
+				item: {
+					Count: 1b
+					id: "itemfilters:id_regex"
+					tag: {
+						value: "ironchest.*upgrade"
+					}
+				}
+				title: "铁质箱子转换升级组件"
+				type: "item"
+			}]
+			x: -2.0d
+			y: -2.5d
+		}
+		{
+			description: ["&b垃圾桶&r会删除掉所有进入其中的物品。"]
+			id: "3F6DF7BDB60898D8"
+			subtitle: "物极必反，适可而止"
+			tasks: [{
+				id: "62646A4893B4FFC2"
+				item: "trashcans:item_trash_can"
+				type: "item"
+			}]
+			x: -4.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["448C62F81B3D0F32"]
+			id: "2B5354F410F2EF34"
+			tasks: [{
+				id: "53D2B333A845F34D"
+				item: "functionalstorage:ender_drawer"
+				type: "item"
+			}]
+			x: -7.0d
+			y: 0.5d
+		}
+		{
+			id: "7610C61331AB090B"
+			tasks: [{
+				id: "4EB8380F04604CE8"
+				item: "trashcans:liquid_trash_can"
+				type: "item"
+			}]
+			x: -3.0d
+			y: -1.0d
+		}
+		{
+			id: "2431CFD4563CF358"
+			tasks: [{
+				id: "36DD7B878A157DE0"
+				item: "trashcans:energy_trash_can"
+				type: "item"
+			}]
+			x: -2.0d
+			y: -1.0d
+		}
+		{
+			dependencies: [
+				"2431CFD4563CF358"
+				"7610C61331AB090B"
+				"3F6DF7BDB60898D8"
+			]
+			id: "0ACB63B04A6F452C"
+			tasks: [{
+				id: "4021FB81E1603507"
+				item: "trashcans:ultimate_trash_can"
+				type: "item"
+			}]
+			x: -3.0d
+			y: 0.5d
+		}
+	]
+	subtitle: ["从宝箱到宝库"]
+	title: "基础版"
+}

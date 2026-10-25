@@ -1,0 +1,773 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "irons_spellbooks"
+	group: "04105935708A79CF"
+	icon: {
+		Count: 1
+		id: "irons_spellbooks:legendary_spell_book"
+		tag: {
+			"irons_spellbooks:spell_container": {
+				data: [ ]
+				maxSpells: 12
+				mustEquip: 1b
+				spellWheel: 1b
+			}
+		}
+	}
+	id: "5E29C2578590DDDD"
+	order_index: 7
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"欢迎来到原始魔法的世界！"
+				""
+				"要开始施放法术，你需要奥术精华。你可以在宝箱里找到它，也可以通过杀死生物获得。"
+				""
+				"这是制作卷轴和升级装备所需的燃料。"
+			]
+			id: "0000000000000C01"
+			rewards: [{
+				count: 16
+				id: "0000000000000C02"
+				item: "irons_spellbooks:arcane_essence"
+				type: "item"
+			}]
+			shape: "rsquare"
+			size: 1.5d
+			tasks: [{
+				count: 8L
+				id: "0000000000000C03"
+				item: "irons_spellbooks:arcane_essence"
+				type: "item"
+			}]
+			title: "原始魔法"
+			x: 0.0d
+			y: -5.25d
+		}
+		{
+			dependencies: ["0000000000000C01"]
+			description: [
+				"巫师的工作台。"
+				""
+				"&5铭文台&r用于制作法术（卷轴）并将其绑定到你的法术书。"
+				""
+				"要制作卷轴，你需要将卷轴放入槽位，并准备所需的材料（墨水、纸张和焦点）。"
+			]
+			id: "0000000000000C11"
+			rewards: [{
+				id: "0000000000000C12"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				id: "0000000000000C13"
+				item: "irons_spellbooks:inscription_table"
+				type: "item"
+			}]
+			title: "铭文台 Inscription Table"
+			x: 0.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["0000000000000C11"]
+			description: [
+				"没有墨水就无法书写咒语。"
+				""
+				"墨水有5个等级：普通、不常见、稀有、史诗和传说。更好的墨水能让你制作更高级的魔法。"
+			]
+			id: "0000000000000C21"
+			rewards: [{
+				count: 4
+				id: "0000000000000C22"
+				item: "irons_spellbooks:common_ink"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0000000000000C23"
+				item: "irons_spellbooks:common_ink"
+				type: "item"
+			}]
+			title: "基础墨水"
+			x: -2.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["0000000000000C21"]
+			description: ["更强大的法术需要更好的墨水。将普通墨水与铁/铜混合以获得不常见墨水。"]
+			id: "0000000000000C31"
+			rewards: [{
+				count: 2
+				id: "0000000000000C32"
+				item: "irons_spellbooks:uncommon_ink"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0000000000000C33"
+				item: "irons_spellbooks:uncommon_ink"
+				type: "item"
+			}]
+			title: "不常见的墨水"
+			x: -3.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["0000000000000C31"]
+			description: ["稀有墨水用于……嗯，稀有法术。将普通墨水和黄金混合。"]
+			id: "0000000000000C41"
+			rewards: [{
+				count: 2
+				id: "0000000000000C42"
+				item: "irons_spellbooks:rare_ink"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0000000000000C43"
+				item: "irons_spellbooks:rare_ink"
+				type: "item"
+			}]
+			title: "稀有墨水"
+			x: -3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000000C41"]
+			description: ["现在开始变贵了。将稀有墨水与钻石或绿宝石混合。"]
+			id: "0000000000000C51"
+			rewards: [{
+				id: "0000000000000C52"
+				item: "irons_spellbooks:epic_ink"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0000000000000C53"
+				item: "irons_spellbooks:epic_ink"
+				type: "item"
+			}]
+			title: "史诗墨水"
+			x: -3.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["0000000000000C51"]
+			description: [
+				"书法艺术的巅峰之作。"
+				""
+				"传奇墨水用于现存最强大的法术（9-10级）。使用下界合金。"
+			]
+			id: "0000000000000C61"
+			rewards: [{
+				id: "0000000000000C62"
+				item: "irons_spellbooks:legendary_ink"
+				type: "item"
+			}]
+			shape: "diamond"
+			tasks: [{
+				id: "0000000000000C63"
+				item: "irons_spellbooks:legendary_ink"
+				type: "item"
+			}]
+			title: "传奇墨水"
+			x: -2.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["0000000000000C11"]
+			description: [
+				"你的第一本魔法书。"
+				""
+				"这东西很单薄，只能装几个法术，但总比没有强。"
+				"将其装备在 Curios 栏位中或手持以施放法术。"
+			]
+			id: "0000000000000C71"
+			rewards: [{
+				id: "0000000000000C72"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				id: "0000000000000C73"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:copper_spell_book"
+					tag: {
+						ISB_Spells: {
+							data: [ ]
+							maxSpells: 5
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				type: "item"
+			}]
+			title: "铜制魔法书"
+			x: 2.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["0000000000000C71"]
+			description: ["升级了！更多的法术位，更好的法力再生。"]
+			id: "0000000000000C81"
+			rewards: [{
+				id: "0000000000000C82"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				id: "0000000000000C83"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:iron_spell_book"
+					tag: {
+						ISB_Spells: {
+							data: [ ]
+							maxSpells: 6
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				type: "item"
+			}]
+			title: "铁质魔法书"
+			x: 3.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["0000000000000C81"]
+			description: ["闪闪发光，充满魔力。现在要进入正题了。"]
+			id: "0000000000000C91"
+			rewards: [{
+				id: "0000000000000C92"
+				type: "xp"
+				xp: 150
+			}]
+			tasks: [{
+				id: "0000000000000C93"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:gold_spell_book"
+					tag: {
+						ISB_Spells: {
+							data: [ ]
+							maxSpells: 8
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				type: "item"
+			}]
+			title: "黄金魔法书"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000000C91"]
+			description: ["大容量高耐用。大师级巫师必备。"]
+			id: "0000000000000CA1"
+			rewards: [{
+				id: "0000000000000CA2"
+				type: "xp"
+				xp: 200
+			}]
+			tasks: [{
+				id: "0000000000000CA3"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:diamond_spell_book"
+					tag: {
+						ISB_Spells: {
+							data: [ ]
+							maxSpells: 10
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				type: "item"
+			}]
+			title: "钻石魔法书"
+			x: 3.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["0000000000000CA1"]
+			description: [
+				"终极的魔法书。"
+				""
+				"用下界合金锻造而成，这本书能承载人类已知最强大的法术。"
+			]
+			id: "0000000000000CB1"
+			rewards: [{
+				id: "0000000000000CB2"
+				type: "xp_levels"
+				xp_levels: 10
+			}]
+			shape: "diamond"
+			tasks: [{
+				id: "0000000000000CB3"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:netherite_spell_book"
+					tag: {
+						ISB_Spells: {
+							data: [ ]
+							maxSpells: 12
+							mustEquip: 1b
+							spellWheel: 1b
+						}
+					}
+				}
+				type: "item"
+			}]
+			title: "下界合金魔法书"
+			x: 2.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["0000000000000C11"]
+			description: [
+				"有时光靠法术还不够。你需要升级卷轴或装备。"
+				""
+				"神秘铁砧可以让你升级卷轴（提升法术等级）和将升级球体应用到盔甲上。"
+			]
+			id: "0000000000000CC1"
+			rewards: [{
+				count: 4
+				id: "0000000000000CC2"
+				item: "irons_spellbooks:arcane_essence"
+				type: "item"
+			}]
+			tasks: [{
+				id: "0000000000000CC3"
+				item: "irons_spellbooks:arcane_anvil"
+				type: "item"
+			}]
+			title: "神秘锻造台"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000000CC1"]
+			description: [
+				"想做什么工作，就穿什么样的衣服。"
+				""
+				"法师护甲提供法力值和法术强度加成。先使用游荡法师套装，然后专精元素（火系、冰系、电系等）。"
+			]
+			id: "0000000000000CD1"
+			rewards: [{
+				id: "0000000000000CD2"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:wandering_magician_helmet"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			shape: "hexagon"
+			size: 1.25d
+			tasks: [
+				{
+					id: "0000000000000CD3"
+					item: {
+						Count: 1
+						id: "irons_spellbooks:wandering_magician_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "0000000000000CD4"
+					item: {
+						Count: 1
+						id: "irons_spellbooks:wandering_magician_chestplate"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "学徒装备"
+			x: 0.0d
+			y: 2.0d
+		}
+		{
+			dependencies: [
+				"0000000000000CB1"
+				"0000000000000CD1"
+				"0000000000000C61"
+			]
+			description: [
+				"不死生物们的统治者。"
+				""
+				"死去的国王是位于地下墓穴的强大首领。击败他可获得强力战利品，包括血之法杖。"
+				""
+				"做好准备。他可不会公平战斗。"
+			]
+			id: "0000000000000CE1"
+			rewards: [
+				{
+					id: "0000000000000CE2"
+					item: "irons_spellbooks:blood_staff"
+					type: "item"
+				}
+				{
+					id: "0000000000000CE3"
+					type: "xp_levels"
+					xp_levels: 20
+				}
+			]
+			shape: "gear"
+			size: 2.5d
+			tasks: [{
+				entity: "irons_spellbooks:dead_king"
+				icon: "irons_spellbooks:blood_staff"
+				id: "0000000000000CE4"
+				type: "kill"
+				value: 1L
+			}]
+			title: "死去的国王"
+			x: 0.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["0000000000000CD1"]
+			description: [
+				"阿彻沃克套装由……唤魔者掉落。非常适合用于召唤魔法。"
+				""
+				"或者，去各自的地下城寻找火系法师或冰系法师套装。"
+			]
+			id: "0000000000000CF1"
+			rewards: [{
+				id: "0000000000000CF2"
+				type: "xp"
+				xp: 250
+			}]
+			tasks: [
+				{
+					id: "0000000000000CF3"
+					item: {
+						Count: 1
+						id: "irons_spellbooks:archevoker_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "0000000000000CF4"
+					item: {
+						Count: 1
+						id: "irons_spellbooks:archevoker_chestplate"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "大师齿轮"
+			x: 0.0d
+			y: 6.5d
+		}
+		{
+			dependencies: ["0000000000000C11"]
+			description: [
+				"火焰学派（火魔法）。"
+				""
+				"经典的火球，撞击后会爆炸。简单、有效，而且极易燃烧。"
+			]
+			id: "0000000000000D01"
+			rewards: [{
+				id: "0000000000000D02"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				id: "0000000000000D03"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:scroll"
+					tag: {
+						ISB_Spells: {
+							data: [{
+								id: "irons_spellbooks:fireball"
+								level: 1
+							}]
+							maxSpells: 1
+							mustEquip: 0b
+							spellWheel: 0b
+						}
+					}
+				}
+				type: "item"
+			}]
+			title: "卷轴：火球术"
+			x: 3.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["0000000000000C11"]
+			description: [
+				"冰雪学派。"
+				""
+				"向敌人投掷锋利的冰锥，让他们彻骨生寒。"
+			]
+			id: "0000000000000D11"
+			rewards: [{
+				id: "0000000000000D12"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				id: "0000000000000D13"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:scroll"
+					tag: {
+						ISB_Spells: {
+							data: [{
+								id: "irons_spellbooks:icicle"
+								level: 1
+							}]
+							maxSpells: 1
+							mustEquip: 0b
+							spellWheel: 0b
+						}
+					}
+				}
+				type: "item"
+			}]
+			title: "卷轴：冰柱（Icicle）"
+			x: 2.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["0000000000000C11"]
+			description: [
+				"雷电学派。"
+				""
+				"召唤一道从天而降的闪电。需要视野开阔的天空才能发挥最佳效果。"
+			]
+			id: "0000000000000D21"
+			rewards: [{
+				id: "0000000000000D22"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				id: "0000000000000D23"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:scroll"
+					tag: {
+						ISB_Spells: {
+							data: [{
+								id: "irons_spellbooks:lightning_bolt"
+								level: 1
+							}]
+							maxSpells: 1
+							mustEquip: 0b
+							spellWheel: 0b
+						}
+					}
+				}
+				type: "item"
+			}]
+			title: "卷轴：闪电术（Lightning Bolt）"
+			x: -3.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["0000000000000C11"]
+			description: [
+				"神圣的学校。"
+				""
+				"恢复自身或盟友的生命值。生存必备。"
+			]
+			id: "0000000000000D31"
+			rewards: [{
+				id: "0000000000000D32"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				id: "0000000000000D33"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:scroll"
+					tag: {
+						ISB_Spells: {
+							data: [{
+								id: "irons_spellbooks:heal"
+								level: 1
+							}]
+							maxSpells: 1
+							mustEquip: 0b
+							spellWheel: 0b
+						}
+					}
+				}
+				type: "item"
+			}]
+			title: "卷轴：治愈卷轴"
+			x: -3.0d
+			y: -5.0d
+		}
+		{
+			dependencies: ["0000000000000C11"]
+			description: [
+				"末影学派。"
+				""
+				"能瞬间将你向前传送。非常适合探索或逃离危险。"
+			]
+			id: "0000000000000D41"
+			rewards: [{
+				id: "0000000000000D42"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				id: "0000000000000D43"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:scroll"
+					tag: {
+						ISB_Spells: {
+							data: [{
+								id: "irons_spellbooks:teleport"
+								level: 1
+							}]
+							maxSpells: 1
+							mustEquip: 0b
+							spellWheel: 0b
+						}
+					}
+				}
+				type: "item"
+			}]
+			title: "卷轴：传送卷轴 (Scroll: Teleport)"
+			x: -1.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["0000000000000C11"]
+			description: [
+				"血魔法学派。"
+				""
+				"用血刃劈砍敌人。既能造成伤害，又看起来十分恐怖。"
+			]
+			id: "0000000000000D51"
+			rewards: [{
+				id: "0000000000000D52"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				id: "0000000000000D53"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:scroll"
+					tag: {
+						ISB_Spells: {
+							data: [{
+								id: "irons_spellbooks:blood_slash"
+								level: 1
+							}]
+							maxSpells: 1
+							mustEquip: 0b
+							spellWheel: 0b
+						}
+					}
+				}
+				type: "item"
+			}]
+			title: "卷轴：血刃斩击"
+			x: -2.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["0000000000000C11"]
+			description: [
+				"召唤学派。"
+				""
+				"从地面召唤獠牙来咬你的目标。经典的Evoker招式。"
+			]
+			id: "0000000000000D61"
+			rewards: [{
+				id: "0000000000000D62"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				id: "0000000000000D63"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:scroll"
+					tag: {
+						ISB_Spells: {
+							data: [{
+								id: "irons_spellbooks:fang_strike"
+								level: 1
+							}]
+							maxSpells: 1
+							mustEquip: 0b
+							spellWheel: 0b
+						}
+					}
+				}
+				type: "item"
+			}]
+			title: "卷轴：獠牙突袭"
+			x: 1.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["0000000000000C11"]
+			description: [
+				"自然学派。"
+				""
+				"会喷射有毒酸液，随时间对敌人造成伤害。"
+			]
+			id: "0000000000000D71"
+			rewards: [{
+				id: "0000000000000D72"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [{
+				id: "0000000000000D73"
+				item: {
+					Count: 1
+					id: "irons_spellbooks:scroll"
+					tag: {
+						ISB_Spells: {
+							data: [{
+								id: "irons_spellbooks:poison_splash"
+								level: 1
+							}]
+							maxSpells: 1
+							mustEquip: 0b
+							spellWheel: 0b
+						}
+					}
+				}
+				type: "item"
+			}]
+			title: "卷轴：毒液飞溅药水"
+			x: 3.0d
+			y: -5.0d
+		}
+	]
+	title: "&b&lIron's Spells 'n Spellbooks"
+}

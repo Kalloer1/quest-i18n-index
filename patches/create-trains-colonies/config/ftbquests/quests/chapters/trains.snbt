@@ -1,0 +1,381 @@
+# AI 初翻，未人工校对
+{
+	autofocus_id: "42F8D535BE37622E"
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "trains"
+	group: "24FDE012A8271409"
+	id: "18D4674F33A1703E"
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["你的铁路网络需要的可不止1个！你可能得自动化这个过程。"]
+			hide_dependency_lines: false
+			id: "42F8D535BE37622E"
+			require_sequential_tasks: true
+			rewards: [{
+				count: 16
+				id: "6ADA722D3D963EDD"
+				item: "create:track"
+				type: "item"
+			}]
+			tasks: [{
+				id: "6A3E34625CFEF266"
+				item: {
+					Count: 1
+					id: "create:track"
+					tag: { }
+				}
+				type: "item"
+				weak_nbt_match: true
+			}]
+			title: "正在铺设轨道"
+			x: -1.5d
+			y: -7.5d
+		}
+		{
+			dependencies: ["42F8D535BE37622E"]
+			description: ["对于较小的火车来说"]
+			id: "17DDF2A93B806150"
+			tasks: [{
+				id: "1A84C9FEE4020C7A"
+				item: "railways:track_create_andesite_narrow"
+				type: "item"
+			}]
+			x: 0.0d
+			y: -8.5d
+		}
+		{
+			dependencies: ["42F8D535BE37622E"]
+			description: ["空中列车！？！"]
+			id: "3DB6CE4A8AFE44D5"
+			tasks: [{
+				id: "5DBC43F82CD40A81"
+				item: "railways:track_monorail"
+				type: "item"
+			}]
+			x: 1.0d
+			y: -7.5d
+		}
+		{
+			dependencies: ["42F8D535BE37622E"]
+			description: ["要么干大事，要么干脆别干。"]
+			id: "3EBC2CB81EE27782"
+			progression_mode: "linear"
+			tasks: [{
+				id: "5536C9D120FD2C41"
+				item: "railways:track_create_andesite_wide"
+				type: "item"
+			}]
+			x: 0.0d
+			y: -6.5d
+		}
+		{
+			dependencies: ["42F8D535BE37622E"]
+			description: ["你可能想建个岩浆农场来批量生产这些。"]
+			id: "210EFA2A5EEDD15B"
+			tasks: [{
+				id: "3FEAFE5CFC6F68FE"
+				item: "create:sturdy_sheet"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -6.0d
+		}
+		{
+			dependencies: ["210EFA2A5EEDD15B"]
+			description: ["大部分火车组件都是由这个材料制成的。"]
+			id: "58CADA849FFF1807"
+			tasks: [{
+				id: "772C9A19C9BE33F8"
+				item: "create:railway_casing"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -4.5d
+		}
+		{
+			dependencies: ["58CADA849FFF1807"]
+			description: ["这些可以设置为在车站开启，方便玩家进出。"]
+			id: "185624AAE09443DF"
+			optional: true
+			tasks: [{
+				id: "48B57042A9E72F8B"
+				item: "create:train_door"
+				type: "item"
+			}]
+			x: 0.0d
+			y: -5.0d
+		}
+		{
+			dependencies: ["58CADA849FFF1807"]
+			description: ["放在蒸汽朋克火车上看起来挺不错的"]
+			id: "4453550C572786C8"
+			optional: true
+			tasks: [{
+				id: "70532E1C79C4C277"
+				item: "create_deco_casing:train_casing_trap_door"
+				type: "item"
+			}]
+			x: 0.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["58CADA849FFF1807"]
+			description: ["这个方块对于建造火车以及在网络上显示各车站的位置非常重要。"]
+			id: "6757B32F8BDE37F6"
+			tasks: [{
+				id: "6D025592F4BABD1C"
+				item: "create:track_station"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["6757B32F8BDE37F6"]
+			description: ["是时候开始建造火车了！"]
+			id: "6982E445BC0F47A6"
+			tasks: [{
+				id: "57D45A8FFA11AB6B"
+				title: "火车时间到"
+				type: "checkmark"
+			}]
+			x: -1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["6757B32F8BDE37F6"]
+			description: ["这些可以配置来显示很多东西，但在此情况下，它们可用于追踪各站的列车并提供每列车的预计到达时间"]
+			id: "34F3A15A88C2B923"
+			tasks: [{
+				count: 9L
+				id: "138E6870B5542D08"
+				item: "create:display_board"
+				type: "item"
+			}]
+			x: 0.0d
+			y: -2.5d
+		}
+		{
+			dependencies: ["34F3A15A88C2B923"]
+			description: ["在便携设备上告诉玩家每列火车的位置。"]
+			id: "46C42627AD5440EA"
+			tasks: [{
+				id: "10A1ED4A121BCAC1"
+				item: "createrailwaysnavigator:navigator"
+				type: "item"
+			}]
+			x: 1.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["6982E445BC0F47A6"]
+			id: "35023D5DF77E1374"
+			tasks: [{
+				id: "78D1D15F6EF72777"
+				item: "create:controls"
+				type: "item"
+			}]
+			x: -1.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["35023D5DF77E1374"]
+			id: "05548322B44F6897"
+			tasks: [{
+				id: "4BD50F8CC9453C88"
+				item: "create:schedule"
+				type: "item"
+			}]
+			x: -1.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["05548322B44F6897"]
+			id: "038CB76A1A26CF12"
+			tasks: [{
+				id: "49DEC4FD0318EA1B"
+				title: "驾驶员类型"
+				type: "checkmark"
+			}]
+			x: -3.0d
+			y: 4.0d
+		}
+		{
+			dependencies: ["6982E445BC0F47A6"]
+			id: "31639B3C2AA6D3CB"
+			tasks: [{
+				id: "020D4672134F9F2B"
+				title: "货运列车"
+				type: "checkmark"
+			}]
+			x: 1.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["6982E445BC0F47A6"]
+			id: "78586AF85144F2A2"
+			tasks: [{
+				count: 9L
+				id: "38E143D90F49B0BF"
+				item: "create:mechanical_drill"
+				type: "item"
+			}]
+			title: "隧道掘进机"
+			x: 1.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["6982E445BC0F47A6"]
+			id: "2CFD6612C268E406"
+			tasks: [{
+				id: "6882ED63DB2772D1"
+				item: "create:mechanical_roller"
+				type: "item"
+			}]
+			title: "压载列车"
+			x: 1.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["6982E445BC0F47A6"]
+			id: "27E451BFA8948979"
+			tasks: [{
+				id: "3AA3674653056DB1"
+				title: "客运列车"
+				type: "checkmark"
+			}]
+			x: 1.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["6982E445BC0F47A6"]
+			description: ["不仅用于火车，还要确保将所有部分用分段方式粘合，这样火车才能有机地绕过弯道和爬上坡道。"]
+			id: "1F46ECA66E8F11AE"
+			tasks: [{
+				id: "2BAE7E75DF532335"
+				item: {
+					Count: 1
+					id: "create:super_glue"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: -3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"31639B3C2AA6D3CB"
+				"2CFD6612C268E406"
+				"78586AF85144F2A2"
+			]
+			dependency_requirement: "one_completed"
+			id: "21178113B220C705"
+			tasks: [{
+				id: "57D1E14C893D5467"
+				item: "create:item_vault"
+				type: "item"
+			}]
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["27E451BFA8948979"]
+			id: "73F0E7CCA4ADC3DD"
+			tasks: [{
+				id: "4D18517994282539"
+				item: "create:red_seat"
+				type: "item"
+				weak_nbt_match: true
+			}]
+			x: 3.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["21178113B220C705"]
+			id: "0B988AFCB8EA72E3"
+			tasks: [{
+				id: "66B0E495D247AFB3"
+				item: "create:portable_storage_interface"
+				type: "item"
+			}]
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0B988AFCB8EA72E3"]
+			id: "17E4CC14FF00ABCD"
+			optional: true
+			tasks: [{
+				id: "24F1537E43CDD39C"
+				item: "railways:portable_fuel_interface"
+				type: "item"
+			}]
+			x: 6.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["0B988AFCB8EA72E3"]
+			id: "2BDCF1775525E99F"
+			optional: true
+			tasks: [{
+				id: "686C80905821DA2B"
+				item: "create:portable_fluid_interface"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0B988AFCB8EA72E3"]
+			id: "13E581380F7D9D39"
+			optional: true
+			tasks: [{
+				id: "545589B7CA2B65AD"
+				item: "createaddition:portable_energy_interface"
+				type: "item"
+			}]
+			x: 6.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["6757B32F8BDE37F6"]
+			description: ["如果你要在一条轨道上运行多列火车，这些就非常重要了。"]
+			id: "4E9731696CA4DF9D"
+			tasks: [{
+				id: "7DAFD0F582CA1287"
+				item: "create:track_signal"
+				type: "item"
+			}]
+			x: -3.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["6757B32F8BDE37F6"]
+			description: ["在大型铁路网络中非常实用。"]
+			id: "51249A2DF82F4630"
+			optional: true
+			tasks: [
+				{
+					id: "56C4868B853906C7"
+					item: "railways:track_switch_andesite"
+					type: "item"
+				}
+				{
+					id: "471C2D3A92931C2F"
+					item: "railways:track_switch_brass"
+					optional_task: true
+					type: "item"
+				}
+			]
+			x: -3.5d
+			y: -2.0d
+		}
+	]
+	title: "火车！"
+}

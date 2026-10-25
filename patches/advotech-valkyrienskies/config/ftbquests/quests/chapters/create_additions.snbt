@@ -1,0 +1,294 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "create_additions"
+	group: "48470846A78BFF53"
+	icon: "createaddition:electric_motor"
+	id: "4C7FA26C58AC8411"
+	images: [{
+		height: 5.0d
+		image: "createaddition:item/overcharged_alloy"
+		rotation: 0.0d
+		width: 5.0d
+		x: -3.5d
+		y: -1.5d
+	}]
+	order_index: 8
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"欢迎来到创造（Create）的电气时代！"
+				""
+				"&6Rolling Mill&r 是你的起点。"
+				"它使用动能应力将锭加工成棒材和线材。"
+				""
+				"&e&l用法："
+				"&7- 输入：锭（铜、金、铁）"
+				"&7- 输出：电线和金属棒"
+			]
+			id: "142082E770152222"
+			rewards: [
+				{
+					count: 8
+					id: "6C23BE2D20BD2222"
+					item: "minecraft:copper_ingot"
+					type: "item"
+				}
+				{
+					id: "39D754B1A0CDB222"
+					type: "xp"
+					xp: 100
+				}
+			]
+			shape: "gear"
+			size: 2.0d
+			subtitle: "电线和金属棒"
+			tasks: [{
+				id: "47FF2F5C473BBA5A"
+				item: "createaddition:rolling_mill"
+				type: "item"
+			}]
+			title: "&6&l轧钢厂 (The Rolling Mill)</c2></c1>"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["142082E770152222"]
+			description: [
+				"要传输能量，你需要 &e连接器&r 和 &e电线&r。"
+				""
+				"&6&l机制："
+				"&71. 在机器上放置连接器。"
+				"&72. 使用 Wire Bobbin 将它们连接起来。"
+				"&73. 不要超过最大电线长度！"
+			]
+			id: "41631F055A58FC33"
+			rewards: [
+				{
+					count: 16
+					id: "735F483F3B543333"
+					item: "createaddition:copper_wire"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "50D5C3B3C1738333"
+					item: "createaddition:connector"
+					type: "item"
+				}
+				{
+					id: "27412A736DF96555"
+					type: "xp"
+					xp: 50
+				}
+			]
+			shape: "hexagon"
+			size: 1.5d
+			subtitle: "能源物流系统"
+			tasks: [
+				{
+					count: 4L
+					id: "17BEADC9161E7D33"
+					item: "createaddition:connector"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "0C7F7FFD13E864E3"
+					item: "createaddition:copper_wire"
+					type: "item"
+				}
+			]
+			title: "&e&l电路入门 101"
+			x: 0.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["41631F055A58FC33"]
+			description: [
+				"&cAlternator&r 将动能 (SU) 转化为电能 (FE)。"
+				""
+				"&b&l提示："
+				"&7将其连接到高速旋转源，以获得最大发电量！"
+			]
+			id: "72FD8EF56B4C3444"
+			rewards: [
+				{
+					count: 2
+					id: "5A14EB54DE9CE844"
+					item: "createaddition:capacitor"
+					type: "item"
+				}
+				{
+					id: "152709FBBE4DBC44"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+			shape: "hexagon"
+			size: 1.5d
+			subtitle: "动能转化为电能"
+			tasks: [{
+				id: "3319ADCC0960A544"
+				item: "createaddition:alternator"
+				type: "item"
+			}]
+			title: "&c&l交流发电机 (The Alternator)</c2></c1>"
+			x: -2.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["41631F055A58FC33"]
+			description: [
+				"&9电动机&r的作用与发电机相反。"
+				"它将电能（FE）转换回动能（SU）。"
+				""
+				"&b&l实用工具："
+				"&7非常适合在没有长传动轴的情况下为孤立装置供电。"
+			]
+			id: "3E5D1490B89F1C55"
+			rewards: [
+				{
+					count: 4
+					id: "128F686708024755"
+					item: "create:shaft"
+					type: "item"
+				}
+				{
+					id: "683EC4E2284BC0C3"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+			shape: "hexagon"
+			size: 1.5d
+			subtitle: "电能转化为动能"
+			tasks: [{
+				id: "3FE0710F475AE977"
+				item: "createaddition:electric_motor"
+				type: "item"
+			}]
+			title: "&9&l电动机"
+			x: 2.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["72FD8EF56B4C3444"]
+			description: [
+				"需要储存这种能量吗？"
+				"&a蓄电器&r的作用就像电池一样。"
+				""
+				"&a&l功能："
+				"&7这是一个多方块结构。堆叠它们以增加容量！"
+			]
+			id: "19BFA508652C0E66"
+			rewards: [
+				{
+					count: 2
+					id: "6611074C63C1BC66"
+					item: "createaddition:modular_accumulator"
+					type: "item"
+				}
+				{
+					id: "556B2B92B9BD7A66"
+					type: "xp"
+					xp: 300
+				}
+			]
+			shape: "rsquare"
+			subtitle: "能量存储装置"
+			tasks: [{
+				count: 2L
+				id: "24C4AF57FA9E4A66"
+				item: "createaddition:modular_accumulator"
+				type: "item"
+			}]
+			title: "&a&l蓄能器 (The Accumulator)</c2></c1>"
+			x: -4.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["3E5D1490B89F1C55"]
+			description: [
+				"&dTesla Coil&r 可以无线为你背包中的物品充电。"
+				""
+				"&c&l警告："
+				"&7用红石信号供电后，它会电击附近的实体！"
+			]
+			id: "5D5414EA2DD2DE77"
+			rewards: [
+				{
+					count: 2
+					id: "1855794CC42AD977"
+					item: "createaddition:gold_wire"
+					type: "item"
+				}
+				{
+					id: "4C928B1DB4C49177"
+					type: "xp_levels"
+					xp_levels: 10
+				}
+			]
+			shape: "diamond"
+			subtitle: "无线电力传输模组"
+			tasks: [{
+				id: "07A19CA4E7C21177"
+				item: "createaddition:tesla_coil"
+				type: "item"
+			}]
+			title: "&d&l特斯拉线圈"
+			x: 4.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["142082E770152222"]
+			description: [
+				"电容器是制作高级电气元件的必备组件。"
+				"一定要记得自动化它们！"
+			]
+			id: "6A8A44103182C388"
+			rewards: [{
+				count: 2
+				id: "599771EEB8DBEC88"
+				item: "create:zinc_ingot"
+				type: "item"
+			}]
+			shape: "circle"
+			subtitle: "组件"
+			tasks: [{
+				count: 2L
+				id: "28C665C7B3C1ED0D"
+				item: "createaddition:capacitor"
+				type: "item"
+			}]
+			title: "电容器"
+			x: 0.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["6A8A44103182C388"]
+			description: [
+				"用于在不同能量单位或特定红石信号之间进行转换。"
+				"用于复杂工程的一种便捷工具。"
+			]
+			id: "39AFE96EAF3E3E99"
+			rewards: [{
+				id: "705B3BCF5FE49F77"
+				type: "xp"
+				xp: 200
+			}]
+			shape: "circle"
+			tasks: [{
+				id: "01B66E5AACC72388"
+				item: "createaddition:digital_adapter"
+				type: "item"
+			}]
+			title: "数字适配器"
+			x: 0.0d
+			y: -3.5d
+		}
+	]
+	title: "&6&l创建：附加内容 (Additions)</c2></c1>"
+}
