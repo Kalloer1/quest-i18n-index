@@ -212,15 +212,25 @@ export function rewriteCdnHost(url) {
 }
 
 /**
- * 取该文件条目的下载地址。CurseForge 对作者关闭 API 分发的项目返回 null——
- * 明确报错，不猜替代地址（猜出来的地址一旦变了就是静默下错包）。
+ * 取该文件条目的下载地址。
+ *
+ * 首选 downloadUrl；没有时走**窄规则兜底**：作者关闭 API 分发（扫描侧 nodl）的条目，
+ * 只要文件元数据仍带 id + fileName，就能按 CF CDN 的固定路径规则拼出直链
+ * `files/{floor(id/1000)}/{id%1000}/{fileName}`，后续的 mediafiles 改写与 Range 机制原样复用。
+ * 2026-10-25 拍板：这是「按需通道」的入口，玩家提交 nodl 包时才走得通；
+ * 缺任一字段（真没元数据）才报错——明确报错，不猜别的地址。
  * @param {object|null} file
  * @returns {string}
  */
 export function downloadUrlOf(file) {
   const url = typeof file?.downloadUrl === 'string' ? file.downloadUrl.trim() : ''
-  if (!url) throw new Error('CurseForge 未返回 downloadUrl（作者可能关闭了 API 分发）')
-  return rewriteCdnHost(url)
+  if (url) return rewriteCdnHost(url)
+  const id = file?.id
+  const name = typeof file?.fileName === 'string' ? file.fileName.trim() : ''
+  if (Number.isFinite(id) && id > 0 && name) {
+    return rewriteCdnHost(`https://edge.forgecdn.net/files/${Math.floor(id / 1000)}/${id % 1000}/${encodeURIComponent(name)}`)
+  }
+  throw new Error('CurseForge 未返回 downloadUrl，且缺 id/fileName 无法拼 CDN 兜底地址')
 }
 
 /**

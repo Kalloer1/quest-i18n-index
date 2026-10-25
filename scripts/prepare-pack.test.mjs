@@ -178,6 +178,19 @@ test('downloadUrlOf：没有 downloadUrl 时明确报错，不猜替代地址', 
   assert.throws(() => downloadUrlOf(null), /downloadUrl/)
 })
 
+test('downloadUrlOf：nodl 兜底 —— id+fileName 按 CF CDN 路径规则拼直链，主机改写到 mediafiles', () => {
+  // CF 官方 CDN 路径规则：files/{floor(id/1000)}/{id%1000}/{fileName}
+  const url = downloadUrlOf({ id: 1234567, fileName: 'Some Pack 1.0.0.zip' })
+  assert.equal(url, 'https://mediafiles.forgecdn.net/files/1234/567/Some%20Pack%201.0.0.zip')
+})
+
+test('downloadUrlOf：nodl 兜底 —— 边界不猜（id 非法或 fileName 缺失时仍报错）', () => {
+  assert.throws(() => downloadUrlOf({ id: 0, fileName: 'a.zip' }), /downloadUrl/)
+  assert.throws(() => downloadUrlOf({ id: 1234567, fileName: '  ' }), /downloadUrl/)
+  assert.throws(() => downloadUrlOf({ fileName: 'a.zip' }), /downloadUrl/)
+  assert.throws(() => downloadUrlOf({ id: 1234567 }), /downloadUrl/)
+})
+
 test('rewriteCdnHost：把 forgecdn 系主机统一改写成可达的 mediafiles.forgecdn.net', () => {
   // 2026-10-24 实测：mediafilez 直连超时、经代理 CONNECT 失败；mediafiles（同一份对象、
   // 支持 Range）可达。任何 forgecdn 主机名（edge / mediafilez）都统一改写到 mediafiles。
