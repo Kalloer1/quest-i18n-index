@@ -11,6 +11,7 @@
  */
 
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
+import { extractVersionToken } from './release.mjs'
 
 const STATE_LABEL = {
   'downloadable': '可下载',
@@ -130,11 +131,37 @@ export function buildSiteData({ index, vmStatus, packMeta, quarkMirrors }, { now
         if (row.state !== 'downloadable') return null
         const v = versionsBySlug[row.slug]
         if (!v || !v.fileName) return null
+        // 上游整合包文件自己的版本号（补丁是按哪个整合包版本翻的）。
+        // versionSource 说明这个号怎么来的：displayName / manifest / modrinth-version
+        // 是文件里带的；fileName 是从文件名抠的；fileDate 是没版本号时用发布日期兜底。
+        //
+        // enrich 阶段没核实出版本的 915 条（多为只回捞到文件名的旧记录）在这里回头
+        // 从文件名抠一次：先剥 .zip/.mrpack（release.mjs 的 TRAILING_EXT 只认 ≤5 字符
+        // 的扩展名，.mrpack 会残留成 "1.1.0.mrpack"），再交给 extractVersionToken。
+        // 抠出来的值如果正好是 Minecraft 版本（"1.20.1"），宁可只给日期 —— 那是错的字段。
+        // 有元数据时 mcVersions.has 能拦；但 1764/2057 的包没有元数据（集合为空），
+        // 恰恰是最只能靠文件名回捞的一批，所以再用 MC 形状兜一道 ——
+        // 与 release.mjs MC_PREFIX 的版本区间一致。误伤「包版本真是 1.8」的极少数：
+        // 丢掉后页面退回发布日期，符合宁缺勿错。
+        const MC_SHAPE = /^1\.(?:[7-9]|1\d|2[0-9])(?:\.\d+)?$/
+        let version = v.version ?? null
+        let versionSource = v.versionSource ?? null
+        if (!version) {
+          const stem = String(v.fileName).replace(/\.(zip|mrpack|jar)$/i, '')
+          const guess = extractVersionToken(stem)
+          const mcVersions = new Set(meta?.gameVersions || [])
+          if (guess && !mcVersions.has(guess) && !MC_SHAPE.test(guess)) {
+            version = guess
+            versionSource = 'fileName'
+          }
+        }
         return {
           fileName: v.fileName,
           fileDate: v.fileDate ?? null,
           fetchedAt: v.fetchedAt ?? null,
           recovered: v.recovered === true,
+          version,
+          versionSource: version ? versionSource : null,
         }
       })(),
 

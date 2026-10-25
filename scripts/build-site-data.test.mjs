@@ -240,11 +240,63 @@ test('有版本记录：sourceVersion 字段正确（fileName/fileDate/fetchedAt
     fileDate: '2026-09-01T00:00:00Z',
     fetchedAt: '2026-10-23T01:20:00Z',
     recovered: true,
+    // enrich 没核实出版本时，从上游文件名兜底抠一个（"Demo-1.0.zip" → 1.0）
+    version: '1.0',
+    versionSource: 'fileName',
   })
-  // 只带约定的四个字段，不把 platform/fileId 泄进站点数据
-  assert.deepEqual(Object.keys(p.sourceVersion).sort(), ['fetchedAt', 'fileDate', 'fileName', 'recovered'])
+  // 只带约定字段，不把 platform/fileId 泄进站点数据
+  assert.deepEqual(Object.keys(p.sourceVersion).sort(),
+    ['fetchedAt', 'fileDate', 'fileName', 'recovered', 'version', 'versionSource'])
   // download 结构不变（工单 04 契约）
   assert.deepEqual(Object.keys(p.download).sort(), ['github', 'quark', 'zip'])
+})
+
+// 版本号是给玩家对账用的（「我的整合包是 5.11，补丁是 5.10 → 对不上」），
+// 所以宁可空着也不能给错：核实值 > 文件名猜测；猜出来恰好是 MC 版本就丢掉。
+test('sourceVersion.version：enrich 核实值优先，不被文件名覆盖', () => {
+  const p = synthetic({
+    githubRepo: GITHUB,
+    sourceVersions: { generatedAt: 'T', versions: { 'demo-pack': {
+      slug: 'demo-pack', platform: 'cf', fileId: 7,
+      fileName: 'Demo-1.0-1.20.1.zip', fileDate: '2026-09-01T00:00:00Z',
+      version: '1.0', versionSource: 'manifest',
+    } } },
+  }).packs[0]
+  assert.equal(p.sourceVersion.version, '1.0')
+  assert.equal(p.sourceVersion.versionSource, 'manifest')
+})
+
+test('sourceVersion.version：文件名解出的值恰好是 Minecraft 版本时丢弃（那是错字段）', () => {
+  const inp = SYNTH()
+  inp.packMeta = { generatedAt: 'T', incomplete: false, packs: [{ slug: 'demo-pack', gameVersions: ['1.20.1'] }] }
+  const p = buildSiteData(inp, {
+    now: 'T',
+    githubRepo: GITHUB,
+    sourceVersions: { generatedAt: 'T', versions: { 'demo-pack': {
+      slug: 'demo-pack', platform: 'cf', fileId: 7,
+      fileName: 'Adventures 1.20.1.zip', fileDate: '2026-09-01T00:00:00Z',
+    } } },
+  }).packs[0]
+  assert.equal(p.sourceVersion.version, null, '1.20.1 是 MC 版本，不能当整合包版本展示')
+  assert.equal(p.sourceVersion.versionSource, null)
+  // 页面会退回到发布日期，而不是显示一个错的版本号
+  assert.equal(p.sourceVersion.fileDate, '2026-09-01T00:00:00Z')
+})
+
+test('sourceVersion.version：无元数据包的文件名猜出 MC 版本形状时也丢弃（防线不能空转）', () => {
+  // SYNTH 默认 packMeta.packs = []：demo-pack 查不到 gameVersions，集合为空。
+  // 实锤案例：better-mc-forge-bmc3（"Better MC [FORGE] 1.19.2 v20.zip"）真版本是 v20，
+  // 1.19.2 是 MC 版本；防线只靠 mcVersions.has 时这类包全部漏过。
+  const p = synthetic({
+    githubRepo: GITHUB,
+    sourceVersions: { generatedAt: 'T', versions: { 'demo-pack': {
+      slug: 'demo-pack', platform: 'cf', fileId: 7,
+      fileName: 'Better MC [FORGE] 1.19.2 v20.zip', fileDate: '2026-09-01T00:00:00Z',
+    } } },
+  }).packs[0]
+  assert.equal(p.sourceVersion.version, null, '1.19.2 呈 MC 版本形状，无元数据也不能当包版本')
+  assert.equal(p.sourceVersion.versionSource, null)
+  assert.equal(p.sourceVersion.fileDate, '2026-09-01T00:00:00Z')
 })
 
 // ---------- 详情页下载区块的渲染契约（site/template.html） ----------
@@ -252,14 +304,14 @@ test('有版本记录：sourceVersion 字段正确（fileName/fileDate/fetchedAt
 // 防止有人删掉 quark 空值守卫或把警告塞进可折叠容器。
 const template = readFileSync(new URL('../site/template.html', import.meta.url), 'utf8')
 
-test('模板：夸克按钮必须在 quark 非空守卫内（空字符串绝不渲染假链接）', () => {
-  // 守卫：`if (p.download.quark)` 包住 dl-quark 按钮的拼接
-  assert.match(template, /if \(p\.download\.quark\) \{[\s\S]*?dl-quark/)
+test('模板：镜像按钮必须在 quark 非空守卫内（空字符串绝不渲染假链接）', () => {
+  // 守卫：`if (p.download.quark) {...} else {...}` 包住镜像按钮的拼接
+  assert.match(template, /if \(p\.download\.quark\) \{[\s\S]{0,300}?esc\(p\.download\.quark\)/)
 })
 
 test('模板：下载区只有两个按钮——国内镜像 + GitHub 下载', () => {
-  assert.match(template, /国内镜像/, '镜像按钮文案应为「国内镜像」')
-  assert.match(template, /GitHub 下载/, 'zip 直链按钮文案应为「GitHub 下载」')
+  assert.match(template, /国内镜像/, '镜像按钮文案应含「国内镜像」')
+  assert.match(template, /GitHub (直链)?下载/, 'zip 直链按钮文案应含「GitHub 下载」')
   // 旧文案必须彻底消失，防止改一半留下僵尸按钮
   assert.doesNotMatch(template, /夸克网盘镜像/, '旧文案「夸克网盘镜像」应已删除')
   assert.doesNotMatch(template, /GitHub 仓库/, '第三个按钮（仓库链接）应已删除')
@@ -268,9 +320,9 @@ test('模板：下载区只有两个按钮——国内镜像 + GitHub 下载', (
 test('模板：quark 为空时按钮置灰（else 分支 is-disabled），不是隐藏', () => {
   // 置灰态必须落在 `if (p.download.quark) { ... } else { ... }` 的 else 里：
   // 隐藏会让还没镜像的包看起来「没有下载入口」
-  assert.match(template, /if \(p\.download\.quark\) \{[\s\S]*?\} else \{[\s\S]*?is-disabled/)
+  assert.match(template, /if \(p\.download\.quark\) \{[\s\S]*?\} else \{[\s\S]{0,300}?is-disabled/)
   // 置灰用 span + aria-disabled，绝不能用 <a disabled> 或留下 href
-  assert.match(template, /<span class="cta dl-quark is-disabled" aria-disabled="true"/)
+  assert.match(template, /<span class="btn is-disabled" aria-disabled="true"[^>]*>\s*' \+ ICON\.cloud/)
 })
 
 test('模板：zip 直链按钮仍是 id="dl-zip" 且指向 p.download.zip', () => {
@@ -280,16 +332,31 @@ test('模板：zip 直链按钮仍是 id="dl-zip" 且指向 p.download.zip', () 
 test('模板：不能混装警告是普通可见块，不在 <details> 等可折叠容器里', () => {
   // 去掉 CSS/HTML 注释后再检查，避免注释里的举例文字（「不得放进 <details>」）误报
   const code = template.replace(/\/\*[\s\S]*?\*\//g, '').replace(/<!--[\s\S]*?-->/g, '')
-  assert.doesNotMatch(code, /<details/i)
-  assert.match(template, /不同来源的汉化不能同时安装/)
-  assert.match(template, /class="warn" role="note"/)
+  // 允许「技术细节」用 <details>，但**不能混装警告不许进去**：
+  // 把每个 <details>…</details> 整段抹掉后，警告必须仍然在模板里。
+  const withoutDetails = code.replace(/<details[\s\S]*?<\/details>/gi, '')
+  // 警告文案本身在 data.json 的 meta.noMixWarning 里（站点只做渲染，不复制一份硬编码，
+  // 否则两处迟早写成不一样的话）。
+  assert.match(withoutDetails, /esc\(M\.noMixWarning\)/, '不能混装警告被折叠进 <details> 或删掉了')
+  assert.match(template, /class="alert" role="note"/)
+  const dataJson = JSON.parse(readFileSync(new URL('../site/data.json', import.meta.url), 'utf8'))
+  assert.ok(String(dataJson.meta.noMixWarning || '').includes('不能同时安装'),
+    '数据里必须带着不能混装的完整提醒')
 })
 
 // 详情页「基于 xxx · 汉化于 xxx」那行已按用户要求整行下线：
 // sourceVersion 字段仍在（build-site-data 生产、上面的用例断言），只是页面不再渲染。
-test('模板：详情页不再渲染「基于 … · 汉化于 …」版本行', () => {
-  assert.doesNotMatch(template, /基于 /, '「基于 」那行应已删除')
-  assert.doesNotMatch(template, /汉化于 /, '「汉化于 」那行应已删除')
+// 2026-10-26 用户要求：要把「这份汉化对应的整合包版本」显示出来。
+// 旧的「基于 xxx · 汉化于 xxx」小字不再回来，改成有标签的 kv（适配版本 / 该版本发布 / 版本依据 / 上游文件）。
+test('模板：详情页用 kv 显示「适配版本」，不再回到旧的「基于 … · 汉化于 …」小字', () => {
+  assert.doesNotMatch(template, /汉化于 /, '旧的「汉化于 」那行不应复活')
+  assert.match(template, /<dt>适配版本<\/dt>/, '缺少适配版本这一行')
+  assert.match(template, /<dt>版本依据<\/dt>/, '缺少版本依据（这个版本号是凭什么是可信的）')
+  assert.match(template, /<dt>上游文件<\/dt>/, '缺少上游文件名')
+  // 版本必须走统一解析函数，不能各渲染点自己拍
+  assert.match(template, /function packVersion\(p\)/)
+  // 卡片/列表也要带上「适配 X」，否则玩家得点进详情才知道对不对得上
+  assert.match(template, /out\.push\("适配 " \+ v\.text\)/)
 })
 
 test('模板：未汉化（cat=unzh）且无下载块时，才渲染「提交这个整合包」按钮', () => {
@@ -301,7 +368,8 @@ test('模板：未汉化（cat=unzh）且无下载块时，才渲染「提交这
   assert.doesNotMatch(template, /href="\/request\?url=|href="request\.html\?url=/)
   // 两个参数都要 encode，标题缺失回退 slug
   assert.match(template, /encodeURIComponent\(packUrl\)/)
-  assert.match(template, /encodeURIComponent\(p\.title \|\| p\.slug\)/)
+  // 标题统一走 p._title（无 title 的记录用 slug 生成可读名），但仍必须 encode
+  assert.match(template, /encodeURIComponent\(p\._title\)/)
 })
 
 // ---- 站点只显示「有 FTB 任务书」的包（2026-10-22 用户裁决） ----
