@@ -1,0 +1,46 @@
+# AI 初翻，未人工校对
+{
+	title: "改进的熔炼提示",
+	icon: "furnaceoverhaul:iron_furnace",
+	x: -5.5d,
+	y: 1.0d,
+	text: [
+		"我需要某种金属来改进现有的熔炉。铁是理所当然的起点，但或许我也可以研究一下某种钢？",
+		"",
+		"不管怎样，它既要隔热，又要将多余的热量回引到冶炼过程中。我还需要基础工具来建造它……也值得研究一下。"
+	],
+	dependencies: [
+		"404fb8cb",
+		"01f37480"
+	],
+	hide: true,
+	hide_text_until_complete: true,
+	optional: true,
+	tasks: [{
+		uid: "79a98afd",
+		type: "item",
+		title: "任意熔炉组件",
+		items: [{
+			item: "minecraft:furnace"
+		},
+		{
+			item: "minecraft:iron_ingot"
+		},
+		{
+			id: "itemfilters:filter",
+			tag: {
+				display: {
+					Name: "Any artisansCutters"
+				}
+			},
+			ForgeCaps: {
+				Parent: {
+					id: "ore",
+					data: "artisansCutters"
+				}
+			}
+		}],
+		count: 2L,
+		consume_items: true
+	}]
+}

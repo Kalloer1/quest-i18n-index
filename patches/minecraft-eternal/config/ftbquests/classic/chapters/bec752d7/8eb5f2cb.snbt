@@ -1,0 +1,57 @@
+# AI 初翻，未人工校对
+{
+	title: "&5时空面条 (The Space-Time Noodle)</c1>",
+	x: 19.5d,
+	y: 0.0d,
+	description: "&o恭喜，你成功Flux了！*阅读描述*",
+	text: [
+		"&5Flux Rifts&7 are... bad, to say the least...",
+		"",
+		"&7They form when the level of Flux in a Chunk is greater than 75% of the chunk's maximum &dVis&7 capacity.",
+		"一个裂隙周围的大半径内（64格外）不能存在其他裂隙。",
+		"",
+		"&7裂隙会随着时间的推移消耗所在区块的纹流，并逐渐变大。",
+		"当它没有Flux可供消耗时，会逐渐变得不稳定。",
+		"更大的裂隙会更快变得不稳定。",
+		"",
+		"&7很不幸，裂隙最终会因不稳定而爆发出一个&5Taint Seed&7，这是一种会污染周围土地的恶心实体，用&dTaint&7给大地带来大量破坏，只需击杀种子即可阻止。",
+		"&7如果遇到&5Taint Seed&7，就用&5Thaumometer&7扫描它！当需要&5Primordial Pearl&7时，这样做会非常有用。",
+		"&7你还需要扫描一个裂隙来进行研究。",
+		"",
+		"&7不过裂隙也并非一无是处，使用&5因果坍缩器&7可以将其关闭，并会获得一些&5虚空种子&7。你需要关闭至少一个才能进入泰姆工艺后期内容。"
+	],
+	dependencies: [
+		"98bea19e"
+	],
+	tasks: [{
+		uid: "49f5089a",
+		type: "observation",
+		title: "看到一个 &5Giant Taint Seed",
+		icon: {
+			ForgeCaps: {
+				"astralsorcery:cap_item_amulet_holder": {}
+			},
+			id: "thaumicaugmentation:rift_seed",
+			tag: {
+				flux: 1000,
+				grown: 1b
+			},
+			Damage: 1s
+		},
+		match_type: "entity_id",
+		match: "thaumcraft:taintseedprime",
+		timer: 0L
+	}],
+	rewards: [{
+		uid: "71e218c2",
+		type: "command",
+		title: "嘿，读一下这段文字！",
+		icon: {
+			id: "lodsofemone:coin_big",
+			tag: {
+				value: 100L
+			}
+		},
+		command: "/tellraw @p {\"text\":\"§5§lBet you didn't read the description before clicking that! Go and read it dammit!\"}"
+	}]
+}

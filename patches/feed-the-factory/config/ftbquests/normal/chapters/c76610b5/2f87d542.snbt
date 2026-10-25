@@ -1,0 +1,68 @@
+# AI 初翻，未人工校对
+{
+	title: "感应式熔炉 (Induction Smelter)",
+	icon: {
+		id: "thermalexpansion:machine",
+		tag: {
+			RSControl: 0b,
+			Facing: 3b,
+			Energy: 0,
+			SideCache: [B;
+				3b,
+				1b,
+				2b,
+				2b,
+				2b,
+				2b
+			],
+			Level: 0b
+		},
+		Damage: 3s
+	},
+	x: -7.5d,
+	y: 1.0d,
+	text: [
+		"这台 Thermal Expansion 机器会消耗两种金属，并产出它们的合金。",
+		"",
+		"里面还有很多其他可能很有用的配方。特别是等我解锁相关研究后，可以用来复制矿石。"
+	],
+	dependencies: [
+		"f5468b47"
+	],
+	tasks: [{
+		uid: "01eef73c",
+		type: "item",
+		items: [{
+			item: "contenttweaker:researchlogistics8"
+		}],
+		count: 12L
+	},
+	{
+		uid: "2081b19d",
+		type: "item",
+		items: [{
+			item: "contenttweaker:researchmechanics1"
+		}],
+		count: 32L
+	},
+	{
+		uid: "4c9ebcf2",
+		type: "item",
+		items: [{
+			item: "contenttweaker:researchproduction1"
+		}],
+		count: 16L
+	}],
+	rewards: [{
+		uid: "fd577b71",
+		type: "gamestage",
+		auto: "no_toast",
+		stage: "PROC_MAT_INDUCTION"
+	},
+	{
+		uid: "97cf8427",
+		type: "gamestage",
+		auto: "no_toast",
+		stage: "PROC_ORE_SLAG"
+	}]
+}

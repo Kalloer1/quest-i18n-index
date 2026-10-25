@@ -1,0 +1,57 @@
+# AI 初翻，未人工校对
+{
+	icon: {
+		ForgeCaps: {
+			"customnpcs:itemscripteddata": {}
+		},
+		id: "minecraft:ghast_tear"
+	},
+	x: -2.0d,
+	y: 0.0d,
+	shape: "octagon",
+	description: "杀死100个僵尸猪人，获得一个恶魂之泪！",
+	can_repeat: true,
+	dependencies: [
+		"6ee483eb"
+	],
+	tasks: [{
+		uid: "48a32d2e",
+		type: "kill",
+		icon: {
+			ForgeCaps: {
+				"customnpcs:itemscripteddata": {}
+			},
+			id: "minecraft:spawn_egg",
+			tag: {
+				EntityTag: {
+					id: "minecraft:zombie_pigman"
+				}
+			}
+		},
+		entity: "minecraft:zombie_pigman",
+		value: 100L
+	}],
+	rewards: [{
+		uid: "0dc4e194",
+		type: "item",
+		item: {
+			ForgeCaps: {
+				"customnpcs:itemscripteddata": {}
+			},
+			id: "minecraft:ghast_tear"
+		}
+	},
+	{
+		uid: "4be39ee9",
+		type: "command",
+		title: "黄金",
+		icon: {
+			ForgeCaps: {
+				"customnpcs:itemscripteddata": {}
+			},
+			id: "thermalfoundation:coin",
+			Damage: 1s
+		},
+		command: "/oxygenop core -currency -add @s 0 20"
+	}]
+}

@@ -1,0 +1,72 @@
+# AI 初翻，未人工校对
+{
+	title: "远程攻击",
+	icon: "minecraft:bow",
+	x: 0.0d,
+	y: 0.0d,
+	text: [
+		"如果能和敌人拉开距离，我应该能更高效地杀死它们。"
+	],
+	dependencies: [
+		"a089639e"
+	],
+	tasks: [{
+		uid: "0d78cc27",
+		type: "item",
+		items: [{
+			item: "minecraft:bow"
+		}],
+		ignore_damage: true,
+		ignore_nbt: 1b
+	},
+	{
+		uid: "ac95e8ff",
+		type: "item",
+		items: [{
+			id: "itemfilters:filter",
+			tag: {
+				display: {
+					Name: "Any arrow"
+				}
+			},
+			ForgeCaps: {
+				Parent: {
+					id: "ore",
+					data: "arrow"
+				}
+			}
+		}],
+		count: 8L,
+		consume_items: true
+	}],
+	rewards: [{
+		uid: "40b2c981",
+		type: "item",
+		team_reward: false,
+		auto: "invisible",
+		item: {
+			id: "minecraft:arrow",
+			tag: {
+				ench: [{
+					lvl: 3s,
+					id: 16
+				}]
+			}
+		},
+		count: 8,
+		random_bonus: 4
+	},
+	{
+		uid: "6615f25b",
+		type: "command",
+		auto: "invisible",
+		command: "/tellraw @p {\"text\":\"Hmmm... think I made my first batch of arrows a bit too sharp.\", \"color\":\"white\"}"
+	},
+	{
+		uid: "1c8f4000",
+		type: "xp",
+		team_reward: false,
+		auto: "enabled",
+		xp: 10
+	}]
+}

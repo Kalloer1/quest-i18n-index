@@ -1,0 +1,105 @@
+# AI 初翻，未人工校对
+{
+	title: "&4使用血魔法进行布道",
+	x: -5.0d,
+	y: 21.5d,
+	description: "&o科技模组？！？",
+	text: [
+		"&7没错，&cBlood Magic&7 可以实现自动化的 &c物品传输&7。",
+		"",
+		"&4节点路由器&7就是你的连接扳手，用它将节点连接起来，形成一个&c路由网络&7。",
+		"",
+		"&4主路由节点&7是&c路由网络&7的心脏，没有它就无法存在！",
+		"普通的&4路由节点&7只是路由网络的一个中继器，没什么特别的。",
+		"",
+		"&4输入&7和&4输出路由节点&7的功能应该很直观，但它们的配置菜单可能不是。",
+		"",
+		"左侧有一个&c过滤槽&7，其右侧有&c9个过滤槽&7。",
+		"&c库存数量&7可为每个筛选的物品单独设置。对于输入，输入容器中会始终保持至少该数量的物品；对于输出，会尽量在输出容器中保持该数量的物品。",
+		"还有&c优先级&7，不过，&c优先级是反的！&7数字越小优先级越高！",
+		"",
+		"你还可以更改节点每个单独侧面的设置！",
+		"",
+		"输入/输出路由节点也需要一个&4过滤器&7才能工作。",
+		"共有 &45 种过滤器&7，每种的效果都略有不同。",
+		"",
+		"&4Precise&7 过滤器只会允许完全相同的过滤物品通过，这意味着附魔方式略有不同的剑将无法通过。",
+		"&4NBT&7 Filters will ignore NBT Data of items, so a slightly differently enchanted Sword will be allowed through.",
+		"&4Mod&7 Filters 将允许与过滤物品来自同一 Mod 的所有物品通过。",
+		"&4Ore Dictionary&7 过滤器将允许所有与已过滤物品共享 Ore Dictionary 条目的物品通过。",
+		"&4流体&7过滤器能让路由节点传输流体，并过滤允许通过的流体类型。"
+	],
+	dependencies: [
+		"393c6058"
+	],
+	tasks: [{
+		uid: "99758b40",
+		type: "item",
+		items: [{
+			ForgeCaps: {
+				"astralsorcery:cap_item_amulet_holder": {}
+			},
+			id: "bloodmagic:node_router"
+		}],
+		ignore_damage: true,
+		ignore_nbt: 1b
+	},
+	{
+		uid: "2fcc9756",
+		type: "item",
+		items: [{
+			item: "bloodmagic:master_routing_node"
+		}]
+	},
+	{
+		uid: "752309b5",
+		type: "item",
+		items: [{
+			item: "bloodmagic:item_routing_node"
+		}]
+	},
+	{
+		uid: "84305927",
+		type: "item",
+		items: [{
+			item: "bloodmagic:input_routing_node"
+		}]
+	},
+	{
+		uid: "8da9a755",
+		type: "item",
+		items: [{
+			item: "bloodmagic:output_routing_node"
+		}]
+	},
+	{
+		uid: "e9f6ff2e",
+		type: "item",
+		title: "任意 &4路由节点过滤器",
+		items: [{
+			item: "bloodmagic:base_item_filter"
+		},
+		{
+			item: "bloodmagic:base_item_filter 1 1"
+		},
+		{
+			item: "bloodmagic:base_item_filter 1 2"
+		},
+		{
+			item: "bloodmagic:base_item_filter 1 3"
+		},
+		{
+			item: "bloodmagic:base_fluid_filter"
+		}]
+	}],
+	rewards: [{
+		uid: "1f664422",
+		type: "ftbmoney:money",
+		ftb_money: 100L
+	},
+	{
+		uid: "0b0a875f",
+		type: "loot",
+		table: 1
+	}]
+}

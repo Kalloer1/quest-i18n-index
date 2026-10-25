@@ -1,0 +1,61 @@
+# AI 初翻，未人工校对
+{
+	title: "Plasteel 拳套：1,000 信用点",
+	icon: "rewired:hand",
+	x: -4.5d,
+	y: -0.5d,
+	text: [
+		"行啦，跑腿的，听好了：我有个超赞的拳头增强器，能帮你挖得又快又好——而且你是我最好的客户，所以打折卖给你，只要一千块",
+		"",
+		"你愿意加入吗？''",
+		"",
+		"- 经销商"
+	],
+	hide_dependency_lines: true,
+	dependencies: [
+		"8ae2c46a",
+		"bb6be075"
+	],
+	hide: true,
+	optional: true,
+	tasks: [{
+		uid: "02abc707",
+		type: "item",
+		title: "报酬：1,000 信用点",
+		items: [{
+			item: "contenttweaker:chip100"
+		}],
+		count: 10L,
+		consume_items: true
+	}],
+	rewards: [{
+		uid: "9afe0a36",
+		type: "random",
+		auto: "no_toast",
+		table: 6
+	},
+	{
+		uid: "e98f682f",
+		type: "command",
+		auto: "invisible",
+		command: "/tellraw @p {\"text\":\"Sorry, mate - you're my best customer, but I can't just pawn off premium stock like that!\", \"color\":\"gray\"}"
+	},
+	{
+		uid: "3a777bbb",
+		type: "command",
+		auto: "invisible",
+		command: "/tellraw @p {\"text\":\"I got some spare HUDLenses though, you can take 'em.\", \"color\":\"gray\"}"
+	},
+	{
+		uid: "52666f81",
+		type: "item",
+		auto: "invisible",
+		item: {
+			id: "cyberware:eye_upgrades",
+			tag: {
+				cyberwareQuality: "cyberware.quality.scavenged"
+			}
+		},
+		random_bonus: 2
+	}]
+}

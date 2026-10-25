@@ -1,0 +1,59 @@
+# AI 初翻，未人工校对
+{
+	title: "旧式灯笼",
+	icon: "hbm:lantern",
+	x: -3.0d,
+	y: 12.0d,
+	text: [
+		"旧灯笼会随机出现在世界各地，发出独特的间歇性红光，从远处也能看到。",
+		"",
+		"所有灯笼都有一本多余的指南书，只会让你更加困惑。",
+		"",
+		"要使用灯笼，需要用2个钢板、1个集成电路和一个焊接工具进行焊接。",
+		"",
+		"修复后，附近会掉落一个装有 Supplies 的火箭，注意生成大约需要 10 秒。"
+	],
+	size: 1.25d,
+	or_tasks: true,
+	tasks: [{
+		uid: "2c1d9209",
+		type: "observation",
+		match_type: "block_id",
+		match: "hbm:lantern_behemoth",
+		timer: 10L
+	},
+	{
+		uid: "cb751a90",
+		type: "item",
+		title: "任意焊接工具",
+		items: [{
+			id: "hbm:blowtorch",
+			tag: {
+				GAS: 4000
+			}
+		},
+		{
+			id: "hbm:acetylene_torch",
+			tag: {
+				UNSATURATEDS: 8000,
+				OXYGEN: 16000
+			}
+		}],
+		ignore_damage: true,
+		ignore_nbt: 1b
+	},
+	{
+		uid: "c2bc1e82",
+		type: "item",
+		items: [{
+			item: "hbm:plate_steel"
+		}]
+	},
+	{
+		uid: "2d965ca7",
+		type: "item",
+		items: [{
+			item: "hbm:circuit 1 8"
+		}]
+	}]
+}
