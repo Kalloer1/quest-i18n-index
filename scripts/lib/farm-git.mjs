@@ -150,11 +150,18 @@ export function countCommittedPacks(stagedText) {
  * 暂存 + 提交 + 推送（farm 模式的主路径）。
  *
  * 推送逻辑：
- *   - 最多 `pushAttempts` 轮；每轮先 `fetch --depth=1`，落后就 rebase，再 push。
+ *   - 最多 `pushAttempts` 轮；每轮先 `fetch --depth=1`，然后分两路：
+ *     · 远端 tip 已包含在本机 HEAD 里（merge-base --is-ancestor 判定）→ 安全强推。
+ *       远端有的本机全有，强推不可能覆盖任何未收割内容；健康路径（主机在自己
+ *       farm 分支上连续推进，上次推送的 tip 就是本次提交的祖先）本就走这里，
+ *       -f 只是兕底浅仓库下 git 把快进误判成非快进的情况（交接 §2.5 三连败的
+ *       根因之一）。用 --force-with-lease 钉住刚 fetch 到的 tip：fetch 与 push
+ *       之间远端若又前进（多写者的 farm/ci 才可能），推送失败而不是静默覆盖。
+ *     · 不是祖先 → 绝不强推（远端可能有未收割内容），落后就 rebase，然后普通推。
+ *       rebase 失败立即 `--abort`：留下一个半完成的 rebase 会让后续每个 git 命令
+ *       都报「already a rebase in progress」，比推送失败本身更难收拾。
  *   - fetch 失败**不**中止：远端还没有这条分支时 fetch 必然失败（首次推送），
  *     这种情况本来就该直接 push。
- *   - rebase 失败立即 `--abort`：留下一个半完成的 rebase 会让后续每个 git 命令
- *     都报「already a rebase in progress」，比推送失败本身更难收拾。
  *   - 全轮失败返回 `{ok:false, error}`（完整 stderr），**不抛**。
  *
  * `paths` / `message` / `fetch` / `log` 都是给非 farm 路径复用同一实现的逃生口；
@@ -170,7 +177,8 @@ export function countCommittedPacks(stagedText) {
  * @param {string} [opts.message] 提交信息（覆盖 farm 默认格式）
  * @param {boolean} [opts.fetch] 是否先 fetch+rebase（非 farm 保持旧的「直接 push」）
  * @param {number} [opts.retryDelayMs] 重试基数，仅测试用
- * @returns {{ok: boolean, committed: number, attempts: number, error?: string}}
+ * @returns {{ok: boolean, committed: number, attempts: number, forced?: boolean, error?: string}}
+ *   forced=true 表示走了「远端 ⊆ 本机 HEAD → 安全强推」路径
  */
 export function commitAndPush({
   root,
@@ -213,28 +221,52 @@ export function commitAndPush({
 
   for (let attempt = 1; attempt <= rounds; attempt++) {
     let failure = ''
+    let force = false
 
     if (fetch) {
       // fetch 失败当作「远端没有这条分支」：首次推送就是这种，fetch 必然报
       // "couldn't find remote ref"。
       const f = git(root, ['fetch', '--depth=1', 'origin', branch])
       if (f.ok) {
-        const behind = git(root, ['rev-list', '--count', 'HEAD..FETCH_HEAD'])
-        if (behind.ok && isBehind(behind.stdout)) {
-          log(`远端 ${branch} 有新提交（${behind.stdout.trim()} 个），rebase 后再推`)
-          const rb = git(root, ['-c', 'rebase.autoStash=true', 'rebase', 'FETCH_HEAD'])
-          if (!rb.ok) {
-            git(root, ['rebase', '--abort'])
-            failure = rb.stderr
+        // 远端 tip 是否已包含在本机 HEAD 里。merge-base --is-ancestor 只看
+        // FETCH_HEAD 这个提交本身可不可达，--depth=1 的浅 graft 截的是它的
+        // 祖先链，不影响该判定。不是祖先（远端有本机没有的提交）时绝不强推，
+        // 交回 rebase/普通推 —— 那种强推就是交接 §2.5 里「静默覆盖未收割内容」。
+        const anc = git(root, ['merge-base', '--is-ancestor', 'FETCH_HEAD', 'HEAD'])
+        if (anc.ok) {
+          force = true
+        } else {
+          const behind = git(root, ['rev-list', '--count', 'HEAD..FETCH_HEAD'])
+          if (behind.ok && isBehind(behind.stdout)) {
+            log(`远端 ${branch} 有新提交（${behind.stdout.trim()} 个），rebase 后再推`)
+            const rb = git(root, ['-c', 'rebase.autoStash=true', 'rebase', 'FETCH_HEAD'])
+            if (!rb.ok) {
+              git(root, ['rebase', '--abort'])
+              failure = rb.stderr
+            }
           }
         }
       }
     }
 
     if (!failure) {
-      const p = git(root, ['push', 'origin', `HEAD:refs/heads/${branch}`])
-      if (p.ok) return { ok: true, committed, attempts: attempt }
-      failure = p.stderr
+      let pushArgs = ['push', 'origin', `HEAD:refs/heads/${branch}`]
+      if (force) {
+        const tip = git(root, ['rev-parse', 'FETCH_HEAD'])
+        if (!tip.ok) {
+          failure = tip.stderr
+        } else {
+          pushArgs = ['push', `--force-with-lease=refs/heads/${branch}:${tip.stdout.trim()}`,
+            'origin', `HEAD:refs/heads/${branch}`]
+        }
+      }
+      if (!failure) {
+        const p = git(root, pushArgs)
+        if (p.ok) return force
+          ? { ok: true, committed, attempts: attempt, forced: true }
+          : { ok: true, committed, attempts: attempt }
+        failure = p.stderr
+      }
     }
 
     lastError = failure

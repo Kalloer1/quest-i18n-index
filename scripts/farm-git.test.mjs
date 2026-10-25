@@ -216,6 +216,61 @@ test('commitAndPush：远端被别的主机抢先推 → fetch + rebase 后仍�
   rmSync(base, { recursive: true, force: true })
 })
 
+test('commitAndPush：远端 tip 是本机 HEAD 祖先 → 安全强推（交接 §2.5）', { skip: SKIP_NO_GIT }, () => {
+  const { base, bare, work } = setup()
+  seedPack(work, 'p1')
+  // 首推：远端无分支，fetch 必败，走普通 push。
+  const first = commitAndPush({ root: work, branch: 'farm/test', slugs: ['p1'], pushAttempts: 1, log: quiet })
+  assert.equal(first.ok, true, `首推应成功：${first.error}`)
+  assert.equal(first.forced, undefined, '首推不是强推路径')
+
+  // 续推：上次推送的 tip 就是本次 HEAD 的祖先（健康路径，也是浅仓库下 git
+  // 可能把快进误判成非快进的场景）→ 走「远端 ⊆ 本机 HEAD → 安全强推」。
+  seedPack(work, 'p2')
+  const res = commitAndPush({ root: work, branch: 'farm/test', slugs: ['p2'], pushAttempts: 1, log: quiet })
+  assert.equal(res.ok, true, `续推应成功：${res.error}`)
+  assert.equal(res.forced, true, '应走安全强推路径')
+  assert.equal(g(bare, ['rev-parse', 'farm/test']), g(work, ['rev-parse', 'HEAD']))
+  // 强推不能丢先前已入库的内容。
+  const files = g(bare, ['ls-tree', '-r', '--name-only', 'farm/test']).split('\n').filter(Boolean)
+  assert.ok(files.includes('patches/p1/config/ftbquests/quests/lang/zh_cn.snbt'))
+  assert.ok(files.includes('patches/p2/config/ftbquests/quests/lang/zh_cn.snbt'))
+  rmSync(base, { recursive: true, force: true })
+})
+
+test('commitAndPush：远端与本机分叉且 rebase 冲突 → 如实报败，绝不强推覆盖（交接 §2.5）', { skip: SKIP_NO_GIT }, () => {
+  const { base, bare, work } = setup()
+  seedPack(work, 'p1')
+  assert.equal(commitAndPush({ root: work, branch: 'farm/test', slugs: ['p1'], pushAttempts: 1, log: quiet }).ok, true)
+
+  // 另一台主机改了同一个包的同一份文件并推上远端。
+  const other = join(base, 'other')
+  g(base, ['clone', '-q', '-b', 'farm/test', bare.replace(/\\/g, '/'), other])
+  g(other, ['config', 'user.email', 'other@test.local'])
+  g(other, ['config', 'user.name', 'other'])
+  g(other, ['config', 'commit.gpgsign', 'false'])
+  const p1Path = join(other, 'patches/p1/config/ftbquests/quests/lang/zh_cn.snbt')
+  writeFileSync(p1Path, '{ "other-version" }\n')
+  g(other, ['add', '--', 'patches/p1'])
+  g(other, ['commit', '-q', '-m', 'other: 改 p1'])
+  g(other, ['push', '-q', 'origin', 'HEAD:refs/heads/farm/test'])
+  const remoteTipAfterOther = g(bare, ['rev-parse', 'farm/test'])
+
+  // 本机改同一文件（不预提交，由 commitAndPush 自己暂存提交）：rebase 必然冲突。
+  // 此时远端可能有未收割内容，正确行为是报败停机，而不是像 §2.5 事故里那样靠 push -f 绕过。
+  writeFileSync(join(work, 'patches/p1/config/ftbquests/quests/lang/zh_cn.snbt'), '{ "local-version" }\n')
+
+  const res = commitAndPush({ root: work, branch: 'farm/test', slugs: ['p1'], pushAttempts: 2, retryDelayMs: 0, log: quiet })
+  assert.equal(res.ok, false, 'rebase 冲突必须报败而不是覆盖远端')
+  assert.equal(g(bare, ['rev-parse', 'farm/test']), remoteTipAfterOther, '远端分支不能被动过')
+  assert.match(
+    g(bare, ['show', 'farm/test:patches/p1/config/ftbquests/quests/lang/zh_cn.snbt']),
+    /other-version/,
+    '别台主机的未收割内容必须原样保留',
+  )
+  rmSync(base, { recursive: true, force: true })
+})
+
 test('commitAndPush：推不上去时返回 ok=false 并带上 stderr（不抛）', { skip: SKIP_NO_GIT }, () => {
   const { base, work } = setup()
   seedPack(work, 'p1')
