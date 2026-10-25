@@ -29,6 +29,7 @@ import { parse, serialize, SnbtParseError } from './snbt.mjs'
 import { countColorCodes, countMalformedCodes } from './lib/format-codes.mjs'
 import { readBaseline } from './lib/baseline.mjs'
 import { LAYOUT, LAYOUT_PATTERNS } from './lib/candidates.mjs'
+import { dedupeConfigTree } from './lib/quest-files.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const PATCHES_DIR = join(ROOT, 'patches')
@@ -71,6 +72,12 @@ export function enSourceName(outName, layout) {
  * @returns {{problems: string[], warnings: string[], keyCount: number}}
  */
 export function validatePair(enFiles, zhFiles, { layout = LAYOUT.EMBEDDED, label = '' } = {}) {
+  // 内嵌布局：与 sourceFileNames 同一套双树去重（config/ftbquests 优先）。
+  // 不同步的话，基准会包含根级副本的键而产出没有 → 「缺少 N 个键」假失败。
+  if (layout === LAYOUT.EMBEDDED) {
+    enFiles = dedupeConfigTree(enFiles)
+    zhFiles = dedupeConfigTree(zhFiles)
+  }
   const problems = []
   const warnings = []
   const prefix = label ? `${label}: ` : ''

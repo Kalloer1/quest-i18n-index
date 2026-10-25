@@ -11,7 +11,7 @@ import {
 } from './lib/glossary.mjs'
 import { classifyLayout, skipReason, screenCandidates, LAYOUT, SKIP } from './lib/candidates.mjs'
 import {
-  isTranslatablePath, sourceFileNames, outputName, extractPack, buildOutputs,
+  isTranslatablePath, sourceFileNames, outputName, extractPack, buildOutputs, dedupeConfigTree,
 } from './lib/quest-files.mjs'
 import { parse } from './snbt.mjs'
 import { readFileSync } from 'node:fs'
@@ -630,4 +630,50 @@ test('extractPack：纯 NUL 文件跳过，不影响其余文件解析', async (
   const pack = extractPack({ files, layout: LAYOUT.EMBEDDED })
   assert.equal(pack.files.length, 2, 'NUL 文件不进 pack.files')
   assert.ok(pack.units.every((u) => !u.file.includes('b.snbt')))
+})
+
+// ---------- quest-files：内嵌双树去重（dawncraft-russian-lang 实测 2026-10-25） ----------
+// 包里同时有 config/ftbquests/quests 与根级 ftbquests/quests 两棵树（overrides 打包失误），
+// 根级副本含上游坏 SNBT 会让整包解析失败；游戏运行时只读 config 侧。
+
+test('dedupeConfigTree：同路径双树只留 config 侧', () => {
+  const out = dedupeConfigTree([
+    'ftbquests/quests/chapters/a.snbt',
+    'config/ftbquests/quests/chapters/a.snbt',
+  ])
+  assert.deepEqual(out, ['config/ftbquests/quests/chapters/a.snbt'])
+})
+
+test('dedupeConfigTree：根级独有文件保留，config 独有保留，overrides 前缀归一', () => {
+  const out = dedupeConfigTree([
+    'ftbquests/quests/chapters/brewing.snbt',
+    'config/ftbquests/quests/chapters/create.snbt',
+    'overrides/ftbquests/quests/chapters/dup.snbt',
+    'overrides/config/ftbquests/quests/chapters/dup.snbt',
+  ])
+  assert.deepEqual(out, [
+    'ftbquests/quests/chapters/brewing.snbt',
+    'config/ftbquests/quests/chapters/create.snbt',
+    'overrides/config/ftbquests/quests/chapters/dup.snbt',
+  ])
+})
+
+test('dedupeConfigTree：非 ftbquests 路径原样透传，大小写不敏感配键', () => {
+  const out = dedupeConfigTree([
+    'config/ftbquests/quests/data.snbt',
+    'config/ftbquests/quests/chapters/X.snbt',
+    'FTBQUESTS/quests/chapters/x.snbt',
+  ])
+  assert.deepEqual(out, [
+    'config/ftbquests/quests/data.snbt',
+    'config/ftbquests/quests/chapters/X.snbt',
+  ])
+})
+
+test('sourceFileNames：embedded 分支套用双树去重', () => {
+  const out = sourceFileNames([
+    'ftbquests/quests/chapters/bad.snbt',
+    'config/ftbquests/quests/chapters/bad.snbt',
+  ], LAYOUT.EMBEDDED)
+  assert.deepEqual(out, ['config/ftbquests/quests/chapters/bad.snbt'])
 })

@@ -34,6 +34,36 @@ export function isTranslatablePath(path, layout) {
 }
 
 /**
+ * 内嵌布局的双树去重：同一章节文件同时出现在 `config/ftbquests/quests/` 与
+ * 根级 `ftbquests/quests/`（zip 里 overrides 打包失误的产物）时，只保留 config 侧。
+ *
+ * 为什么：游戏运行时只读 `config/ftbquests`，根级副本是过期导出；
+ * 实测 dawncraft-russian-lang 根级副本含上游坏 SNBT（`\«…»\.`"." 序列），
+ * 字符串提前闭合让整包解析失败，而 config 副本完好 —— 保 config 既符合
+ * 游戏语义又绕开坏源，无需逐文件内容修复。
+ * 键 = 去掉可选 `overrides/` 与可选 `config/` 前缀后的相对路径（大小写不敏感）。
+ * 同键都是 config（或都不是）时保留先出现的，顺序稳定。
+ * @param {string[]} names
+ * @returns {string[]}
+ */
+export function dedupeConfigTree(names) {
+  const list = Array.isArray(names) ? names : []
+  const groups = new Map()
+  const plain = []
+  for (const n of list) {
+    const norm = String(n).replace(/^overrides\//i, '')
+    const m = /^(config\/)?ftbquests\/quests\/(.+)$/i.exec(norm)
+    if (!m) { plain.push(n); continue }
+    const key = m[2].toLowerCase()
+    const cur = { name: n, isConfig: Boolean(m[1]) }
+    const prev = groups.get(key)
+    if (!prev) groups.set(key, cur)
+    else if (cur.isConfig && !prev.isConfig) groups.set(key, cur)
+  }
+  return [...plain, ...[...groups.values()].map((g) => g.name)]
+}
+
+/**
  * 从整合包文件路径列表里选出英文源文件。
  * @param {string[]} names
  * @param {string} layout
@@ -43,7 +73,7 @@ export function sourceFileNames(names, layout) {
   const list = Array.isArray(names) ? names : []
   if (layout === LAYOUT.SEPARATE_DIR) return list.filter((n) => LAYOUT_PATTERNS.sepDirEn.test(n))
   if (layout === LAYOUT.SEPARATE_SINGLE) return list.filter((n) => LAYOUT_PATTERNS.sepFileEn.test(n))
-  if (layout === LAYOUT.EMBEDDED) return list.filter((n) => LAYOUT_PATTERNS.embedded.test(n))
+  if (layout === LAYOUT.EMBEDDED) return dedupeConfigTree(list.filter((n) => LAYOUT_PATTERNS.embedded.test(n)))
   return []
 }
 
