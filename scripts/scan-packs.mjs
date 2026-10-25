@@ -103,6 +103,26 @@ function classify(names) {
   }
 }
 
+/**
+ * 从 Modrinth 版本列表里选出要探测的文件：优先 .mrpack，退而取第一个文件。
+ *
+ * 抽成纯函数是因为这里出过「截断脏键」事故：项目一个版本都没有（刚建/已清空）
+ * 时 `vs[0]` 是 undefined，`v.files` 抛 TypeError，错误文案被
+ * `'error:' + e.message.slice(0, 40)` 截成
+ * 「error:Cannot read properties of undefined (rea」——probeLayoutCounts 里
+ * 就多出这种无法归类的脏键（research/scan-full.tsv 两行）。现在空列表/无文件
+ * 一律返回 null，调用方按 nodl 记账（与 CurseForge 侧「无下载地址」同口径）。
+ *
+ * @param {Array<{files?: Array<{filename?: string, url?: string, size?: number}>}>} versions
+ * @returns {object|null}
+ */
+export function pickMrpackFile(versions) {
+  const vs = Array.isArray(versions) ? versions : []
+  const v = vs.find((x) => x?.files?.some((f) => f?.filename?.endsWith('.mrpack'))) || vs[0]
+  if (!v) return null
+  return v.files?.find((f) => f?.filename?.endsWith('.mrpack')) || v.files?.[0] || null
+}
+
 // ---------- CurseForge ----------
 /**
  * 扫 CurseForge。支持按 index 区间切分，便于多进程并行。
@@ -167,8 +187,8 @@ async function scanMR(limit, { start = 0, end = null } = {}) {
     try {
       const vr = await fetchRetry(`https://api.modrinth.com/v2/project/${h.project_id}/version`, { headers: H })
       const vs = await vr.json()
-      const v = vs.find(v => v.files.some(f => f.filename.endsWith('.mrpack'))) || vs[0]
-      const f = v.files.find(f => f.filename.endsWith('.mrpack')) || v.files[0]
+      const f = pickMrpackFile(vs)
+      if (!f?.url) { console.log(`${tag} - 无可探测文件`); write(tag, 'mr', h.project_id, h.slug, 0, 'nodl', '', '', '', ''); continue }
       const mb = f.size / 1048576
       if (mb > 400) { console.log(`${tag} - ${mb.toFixed(0)}MB 跳过`); write(tag, 'mr', h.project_id, h.slug, f.size, 'toobig', '', '', '', ''); continue }
       const { totalBytes, cdBytes, names } = await listZip(f.url, H)
@@ -184,8 +204,6 @@ function write(tag, platform, id, slug, bytes, format, newEn, newZh, oldCh, cdKB
   appendFileSync(OUT, [platform, id, slug, bytes, format, newEn, newZh, oldCh, cdKB, new Date().toISOString()].join('\t') + '\n')
 }
 
-if (!existsSync(OUT)) writeFileSync(OUT, ['platform', 'id', 'slug', 'bytes', 'format', 'newEn', 'newZh', 'oldCh', 'cdKB', 'scannedAt'].join('\t') + '\n')
-
 // 区间参数：多进程并行时每个进程扫一段。
 // 不传则从 0 开始（保持旧行为）。
 const rangeOf = (prefix) => ({
@@ -193,6 +211,12 @@ const rangeOf = (prefix) => ({
   end: process.argv.includes(`--${prefix}-end`) ? arg(`${prefix}-end`, null) : null,
 })
 
-await scanCF(arg('cf', 100), rangeOf('cf'))
-await scanMR(arg('mr', 100), rangeOf('mr'))
-console.log('\n完成 → ' + OUT)
+// 与 build-index.mjs 同款主入口守卫：被测试 import 时（argv[1] 不是本文件）
+// 不跑扫描，只暴露 pickMrpackFile 这类纯函数。
+const isMain = process.argv[1] && import.meta.url.endsWith(process.argv[1].replace(/\\/g, '/').split('/').pop())
+if (isMain) {
+  if (!existsSync(OUT)) writeFileSync(OUT, ['platform', 'id', 'slug', 'bytes', 'format', 'newEn', 'newZh', 'oldCh', 'cdKB', 'scannedAt'].join('\t') + '\n')
+  await scanCF(arg('cf', 100), rangeOf('cf'))
+  await scanMR(arg('mr', 100), rangeOf('mr'))
+  console.log('\n完成 → ' + OUT)
+}
