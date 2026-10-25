@@ -41,7 +41,7 @@ import { execFileSync } from 'node:child_process'
 import { existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { checkPublishCounts } from './lib/publish-check.mjs'
+import { checkPublishCounts, shouldQuarantineBaseline } from './lib/publish-check.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const DIR = join(ROOT, 'research/tmp/publish')
@@ -435,8 +435,15 @@ let blocked = []
       git(['rm', '-q', '-r', '--cached', `patches/${s}`], { allowFail: true })
       const src = join(ROOT, 'patches', s)
       if (existsSync(src)) renameSync(src, join(vault, s))
+      // 基准 tar.gz 只在 main 树上没有这份归档时才随残包入隔离区：main 已有的是
+      // 权威英文源，闸门失败只说明补丁坏 —— 把它一起踢走，工作区就缺了源，下一轮
+      // keepBranchBaseline 看到 main 有又不再检出，闸门报「找不到英文源」把可能是
+      // 好的补丁也判死（aeronautics-ikaria 就这么被反复误杀）。
       const base = join(ROOT, 'research/packs', `${s}.tar.gz`)
-      if (existsSync(base)) renameSync(base, join(vault, `${s}.tar.gz`))
+      if (shouldQuarantineBaseline({
+        existsOnDisk: existsSync(base),
+        trackedInMain: gitTry(['cat-file', '-e', `origin/main:research/packs/${s}.tar.gz`]),
+      })) renameSync(base, join(vault, `${s}.tar.gz`))
     }
     console.log(`已移入隔离区：research/tmp/quarantine（${bad.length} 个）`)
     blocked = bad

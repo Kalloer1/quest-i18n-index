@@ -17,3 +17,19 @@ export function checkPublishCounts(bySlug, treeByBranch) {
   }
   return bad
 }
+
+/**
+ * 闸门踢包时，基准 tar.gz 是否该随残包进隔离区。
+ *
+ * 规则：main 树上已有的归档**永远留在工作区**（trackedInMain=true → false）。
+ * 它是权威英文源，闸门失败只说明补丁坏；把它一起踢走会造出「工作区缺源、
+ * main 有、检出步骤又因 main 已有而跳过」的三不管状态 —— 下一轮闸门报
+ * 「找不到英文源」，把可能是好的补丁也判死（aeronautics-ikaria 被反复误杀
+ * 的根因）。随包新检出的归档（main 上没有）仍是未验证的交付物，照旧隔离。
+ *
+ * @param {{existsOnDisk: boolean, trackedInMain: boolean}} state
+ * @returns {boolean}
+ */
+export function shouldQuarantineBaseline({ existsOnDisk, trackedInMain }) {
+  return existsOnDisk && !trackedInMain
+}
