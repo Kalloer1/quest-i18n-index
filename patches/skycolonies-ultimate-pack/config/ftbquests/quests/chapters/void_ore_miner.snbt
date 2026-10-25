@@ -1,0 +1,207 @@
+# AI 初翻，未人工校对
+{
+	id: "64876E4B51152ABE"
+	group: "50CF29F3198E0511"
+	order_index: 0
+	filename: "void_ore_miner"
+	title: "虚空矿工基础知识"
+	icon: "envirotech:kyronite_void_miner_ccu"
+	subtitle: ["用虚空的力量获取Minecraft里的所有方块。"]
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			x: -8.0d
+			y: 0.0d
+			description: [
+				"这是一台机器，通电后它将“编程”闪存，从而定义你所建造的结构的“采矿”方式。"
+				"你可以在这里编程，让它成为：矿石、植物或资源采集器，"
+				"你也可以点击“multi miner”来查看“Crystal Miner”选项。这是获取许多必要方块所需“crystals”的唯一途径。"
+			]
+			dependencies: ["371477252EAB71B7"]
+			id: "2A92953976ED88B6"
+			tasks: [{
+				id: "48A3CCB6751F1FED"
+				type: "item"
+				item: "envirocore:memory_programmer"
+			}]
+			rewards: [{
+				id: "2D454ADE583EBF68"
+				type: "item"
+				item: "minecraft:leather"
+				count: 16
+			}]
+		}
+		{
+			x: -10.0d
+			y: 0.0d
+			description: [
+				"这个模块非常重要，因为它决定了你所建造的结构的用途。"
+				"你可以随时根据需要重新编程。每个“虚空矿工”结构只需要一个。所以除非你建造多个“虚空矿工”结构，否则你只需将同一个矿工重新编程为不同类型的“虚空矿工”即可。"
+			]
+			id: "371477252EAB71B7"
+			tasks: [{
+				id: "553BE37779BAAB03"
+				type: "item"
+				item: "envirocore:flash_memory"
+			}]
+			rewards: [{
+				id: "7F385B2767C724C8"
+				type: "item"
+				item: "pamhc2foodextended:carrotjuiceitem"
+				count: 4
+			}]
+		}
+		{
+			x: -6.0d
+			y: 0.0d
+			description: [
+				"这是虚空采矿机的控制方块。你可以在这里看到它的电量，以及存储着定义其类型的程序化闪存。"
+				"你可以将控制器朝任意方向放置。向上、向下、向北、向南、向东或向西，它都会相应地建造结构。"
+				"在JEI中悬停在控制器上并按住Shift，即可查看建造该等级所需的方块数量和类型。将所需方块全部放入背包后，只需放置控制器（方向不限），然后右键点击控制器，你将会看到一个自动建造的GUI界面。"
+				"给它足够的电力，插入编程好的闪存，就快完成了。"
+			]
+			dependencies: ["2A92953976ED88B6"]
+			id: "10FE8D320728C545"
+			tasks: [{
+				id: "606708FBA09DFB2D"
+				type: "item"
+				item: "envirotech:litherite_void_miner_ccu"
+			}]
+			rewards: [{
+				id: "025D1BD36A3A1D40"
+				type: "item"
+				item: "minecraft:diamond_block"
+			}]
+		}
+		{
+			x: -4.0d
+			y: 0.0d
+			description: [
+				"你需要至少放置一个每种类型的方块：FE 输入和物品输出方块。"
+				"这些方块要放在虚空矿工结构最里层的建造完成后。你会看到有4个空的方块位置。你可以用FE输入、物品输出方块或同类型的框架方块来填充它们。"
+				"FE输入用于为虚空矿工结构供电，最多可放置3个输入和1个物品输出方块。"
+				"物品输出端口用于提取虚空矿工采集的方块。你可以使用漏斗或其他合适的物品传输线缆或管道，将物品从虚空矿工处转移到箱子或你的存储系统中。如果你愿意，最多可以放置3个物品输出端口（和1个FE输入端口）。"
+			]
+			dependencies: ["10FE8D320728C545"]
+			id: "42CB74C3AB56F2E1"
+			tasks: [
+				{
+					id: "2DF3B9EBC55B62C1"
+					type: "item"
+					item: {
+						id: "envirocore:fe_input"
+						Count: 1b
+						tag: { }
+					}
+				}
+				{
+					id: "2D7ABE15C3BFDFAB"
+					type: "item"
+					item: {
+						id: "envirocore:item_output"
+						Count: 1b
+						tag: { }
+					}
+				}
+			]
+			rewards: [{
+				id: "74DF40B361616325"
+				type: "item"
+				item: "minecraft:emerald_block"
+			}]
+		}
+		{
+			x: -6.0d
+			y: 2.0d
+			description: ["需要组装器才能制作任何修饰器方块"]
+			dependencies: ["10FE8D320728C545"]
+			id: "671C3B97505FEC1D"
+			tasks: [{
+				id: "1FC07BCB3B8DA0A1"
+				type: "item"
+				item: "envirocore:assembler"
+			}]
+			rewards: [{
+				id: "6DAC1E48D7CF9540"
+				type: "xp_levels"
+				xp_levels: 20
+			}]
+		}
+		{
+			x: -7.5d
+			y: 3.0d
+			description: [
+				"也被称为“准确率”修饰符，能更具体地提高与虚空矿工提供的透镜颜色相关的掉落率。"
+				"它们也可以使用 interconnect、mica 和其他方块进行升级。在 JEI 中左键点击它们以查看每个配方。"
+				"将修饰器放入带有对应等级互连的装配器中即可降级。它将被降级至该互连等级的水平。"
+			]
+			dependencies: ["671C3B97505FEC1D"]
+			id: "60A6F508B63C8D13"
+			tasks: [{
+				id: "32A2E6CD85DE3263"
+				type: "item"
+				item: {
+					id: "envirocore:amplification_modifier"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "34776C78C64BA61F"
+				type: "random"
+				table_id: 169L
+			}]
+		}
+		{
+			x: -6.0d
+			y: 4.0d
+			description: [
+				"也被称为“幸运”修饰符，会增加该层级虚空矿工的最大掉落数量。"
+				"它们也可以使用 interconnect、mica 和其他方块进行升级。在 JEI 中左键点击它们以查看每个配方。"
+				"将修饰器放入带有对应等级互连的装配器中即可降级。它将被降级至该互连等级的水平。"
+			]
+			dependencies: ["671C3B97505FEC1D"]
+			id: "1F038BE23204C018"
+			tasks: [{
+				id: "4425D0CA0BDA8F81"
+				type: "item"
+				item: {
+					id: "envirocore:bandwidth_modifier"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "549259B8317F7604"
+				type: "random"
+				table_id: 169L
+			}]
+		}
+		{
+			x: -4.5d
+			y: 3.0d
+			description: [
+				"也被称为“速度”修饰符。当然，代价是消耗更多电力，但它能提升每秒生成的方块数量。"
+				"它们也可以使用 interconnect、mica 和其他方块进行升级。在 JEI 中左键点击它们以查看每个配方。"
+				"将修饰器放入带有对应等级互连的装配器中即可降级。它将被降级至该互连等级的水平。"
+			]
+			dependencies: ["671C3B97505FEC1D"]
+			id: "3343BB1CCCD7519A"
+			tasks: [{
+				id: "103F8708945DDDB0"
+				type: "item"
+				item: {
+					id: "envirocore:frequency_modifier"
+					Count: 1b
+					tag: { }
+				}
+			}]
+			rewards: [{
+				id: "0BD56AED1ADA42CE"
+				type: "loot"
+				table_id: 169L
+			}]
+		}
+	]
+}

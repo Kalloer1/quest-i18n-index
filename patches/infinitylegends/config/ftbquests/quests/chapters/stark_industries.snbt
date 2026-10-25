@@ -1,0 +1,760 @@
+# AI 初翻，未人工校对
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "none"
+	filename: "stark_industries"
+	group: "7297DABEA23F6D64"
+	icon: "satsu_iron_man_addon:arc_reactor"
+	id: "3F49E4619C431834"
+	images: [{
+		height: 3.0d
+		image: "kubejs:textures/custom_textures/iron_man.png"
+		rotation: 0.0d
+		width: 5.0d
+		x: 0.0d
+		y: -1.5d
+	}]
+	order_index: 12
+	parent: "48F706E96A0D9932"
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"普通铁块在斥力冲击下会瞬间粉碎。在合成台上将折叠煤与生铁结合，你就能得到生钢，这是斯塔克锻造的所有钢板的基础。"
+				""
+				"配方：最上一行是煤炭/粗铁/煤炭，中间是粗铁，最下面是煤炭。每次合成可获得两个粗钢。"
+			]
+			icon: "satsu_iron_man_addon:raw_steel"
+			id: "010ED6AEEEA9A96E"
+			rewards: [{
+				count: 8
+				id: "3B37E97018EA715E"
+				item: "minecraft:coal"
+				type: "item"
+			}]
+			shape: "none"
+			subtitle: "铁和煤炭，被压制在了一起"
+			tasks: [{
+				count: 4L
+				id: "2BB1A24BD33B09BE"
+				item: "satsu_iron_man_addon:raw_steel"
+				type: "item"
+			}]
+			title: "<grad from=#8A8A93 to=#A1A1AA f=0 sp=16 uni>原始钢"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["010ED6AEEEA9A96E"]
+			description: [
+				"原钢放入熔炉或高炉中，会炼成钢锭。本工坊中的一切都离不开它。"
+				""
+				"钢是斯塔克空间站、斯塔克锤、反重力器和所有早期护板的框架。随时保持一组的钢在手。"
+			]
+			icon: "mekanism:ingot_steel"
+			id: "6F06FCB01EC51E7B"
+			rewards: [
+				{
+					count: 4
+					id: "749FA35827C27D61"
+					item: "minecraft:iron_ingot"
+					type: "item"
+				}
+				{
+					id: "2F114A2364F318DB"
+					type: "xp"
+					xp: 20
+				}
+			]
+			shape: "none"
+			subtitle: "将其熔炼，然后将其倒出"
+			tasks: [{
+				id: "5F27EEB1EAC734E6"
+				item: "mekanism:ingot_steel"
+				type: "item"
+			}]
+			title: "<grad from=#AAB5C1 to=#C7D2DD f=0 sp=16 uni>钢锭"
+			x: 0.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["6F06FCB01EC51E7B"]
+			description: [
+				"将钢锭和金锭放在一起，将其炼成钢金合金，然后再熔炼该合金，以获得精炼钢金合金。"
+				""
+				"精炼合金是 Mark 3 及以后所有盔甲的镀层。每件盔甲需要 32 个，所以在接触 Stark Station 前请先囤好。"
+			]
+			icon: "satsu_iron_man_addon:steel_gold_refined_alloy"
+			id: "1D252547306314C9"
+			rewards: [{
+				count: 6
+				id: "49B98C0AA59CE894"
+				item: "minecraft:gold_ingot"
+				type: "item"
+			}]
+			shape: "none"
+			subtitle: "红色油漆下的黄金"
+			tasks: [{
+				count: 8L
+				id: "3F99410E10A16A82"
+				item: "satsu_iron_man_addon:steel_gold_refined_alloy"
+				type: "item"
+			}]
+			title: "<grad from=#7A5A16 to=#F0CC63 f=0 sp=16 uni>钢金合金"
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["6F06FCB01EC51E7B"]
+			description: [
+				"每套盔甲都由电路板驱动，电路板的等级决定了你能在Mark列表中爬多高。"
+				""
+				"基础电路：铜锭围绕两个煤炭。中级电路：铁锭围绕两个铁粒。高级电路：金锭围绕两个铅锭。纳米电路要晚得多，等你能制造纳米粒子时才会出现。"
+			]
+			icon: "satsu_iron_man_addon:basic_circuit"
+			id: "328BC9A2288844C3"
+			rewards: [{
+				count: 8
+				id: "101685681E18511A"
+				item: "minecraft:copper_ingot"
+				type: "item"
+			}]
+			shape: "woodtier"
+			subtitle: "铜、铁，还有一双稳定的手"
+			tasks: [
+				{
+					count: 10L
+					id: "733215D3727D6FCF"
+					item: "satsu_iron_man_addon:basic_circuit"
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "6FE8FE220BD24F76"
+					item: "satsu_iron_man_addon:medium_circuit"
+					type: "item"
+				}
+			]
+			title: "<grad from=#4EC281 to=#5FE39A f=0 sp=16 uni>印刷电路"
+			x: -1.5d
+			y: 1.5d
+		}
+		{
+			description: [
+				"铜线需要钯布：顶角绿色，底角蓝色，中间红色，铜锭填充十字部分。"
+				""
+				"每个合成需要四根线，而盔甲一套就要一叠。光是模型 NIL 就需要六十四根。"
+			]
+			icon: "satsu_iron_man_addon:wires/copper"
+			id: "62EBDB3D163D8E07"
+			rewards: [
+				{
+					count: 6
+					id: "4B5622E44EAF7EC5"
+					item: "minecraft:copper_ingot"
+					type: "item"
+				}
+				{
+					exclude_from_claim_all: true
+					id: "791A4676364232AF"
+					table_id: 7188263605435281481L
+					type: "random"
+				}
+			]
+			shape: "woodtier"
+			subtitle: "Fabric、铜，还有大量的耐心"
+			tasks: [{
+				count: 8L
+				id: "6C861D3202479900"
+				item: "satsu_iron_man_addon:wires/copper"
+				type: "item"
+			}]
+			title: "<grad from=#CF844A to=#E89A5B f=0 sp=16 uni>铜质电线"
+			x: -1.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["6F06FCB01EC51E7B"]
+			description: [
+				"角落放钢，上下放铜线，两侧放红石，中间放玻璃板。每个合成需要两个排斥器。"
+				""
+				"推进器能让飞行服飞行和射击。原型飞行服需要四个才能做到这两点。"
+			]
+			icon: "satsu_iron_man_addon:repulsor"
+			id: "0743997E646B7979"
+			rewards: [{
+				count: 16
+				id: "4B4E5616C699B201"
+				item: "minecraft:redstone"
+				type: "item"
+			}]
+			shape: "irontier"
+			subtitle: "每套盔甲的掌心部分"
+			tasks: [{
+				count: 4L
+				id: "03C5235461D8E5C9"
+				item: "satsu_iron_man_addon:repulsor"
+				type: "item"
+			}]
+			title: "<grad from=#71C5DD to=#8FE9FF f=0 sp=16 uni>Repulsor"
+			x: 0.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["0743997E646B7979"]
+			description: [
+				"角上是铁，侧面是铜，顶部是铜块，中间是红石，下面是红石块。这就是整个模组的核心。"
+				""
+				"从 Mark 2 开始，没有它就无法定制任何盔甲。在旁边制作一个 Ark 电池（顶部是铜，下面是红石和铁）来保持盔甲的电量。"
+			]
+			icon: "satsu_iron_man_addon:arc_reactor"
+			id: "112129C131CBEAB5"
+			rewards: [{
+				id: "3A8242F5906988A6"
+				type: "xp"
+				xp: 60
+			}]
+			shape: "none"
+			subtitle: "你背包里的一个微型反应堆"
+			tasks: [{
+				id: "18FB6BD17C81A71D"
+				item: "satsu_iron_man_addon:arc_reactor"
+				type: "item"
+			}]
+			title: "<grad from=#0AACAC to=#B8FDFF f=0.8 sp=16 uni>弧形反应堆"
+			x: 0.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["6F06FCB01EC51E7B"]
+			description: [
+				"三根铁锭排成两行，中间夹着一根木棍。简单，而且完全强制。"
+				""
+				"斯塔克锤是斯塔克站所有裁缝配方中的工具栏位。若未携带，则无法制作任何盔甲。"
+			]
+			icon: "satsu_iron_man_addon:stark_hammer"
+			id: "5DA8D65E4AF9BEDE"
+			rewards: [{
+				count: 6
+				id: "4F6443EA9E6396FE"
+				item: "minecraft:iron_ingot"
+				type: "item"
+			}]
+			shape: "none"
+			subtitle: "六个铁锭和一个木棍"
+			tasks: [{
+				id: "2301851FF2B2F7F0"
+				item: "satsu_iron_man_addon:stark_hammer"
+				type: "item"
+			}]
+			title: "<grad from=#57534E to=#D6CFC7 f=0 sp=16 uni>斯塔克之锤"
+			x: 1.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["112129C131CBEAB5"]
+			description: [
+				"将八个纸环绕在一个蓝色染料周围。"
+				""
+				"将蓝图持有器放在主手，然后打开你的能力界面："
+				""
+				"模组里的每个标记都位于一棵技能树上。"
+				""
+				"{@pagebreak}"
+				""
+				"Mark 1 是免费的。"
+				""
+				"Mark 2 需要消耗 10 经验等级，"
+				""
+				"Mark 3 需要 13 个，到树底价格会升到 40 以上。"
+				""
+				"购买节点会获得配方，而不是套装。"
+				""
+				"{@pagebreak}"
+				""
+				"还有另外两个容器存在："
+				""
+				"将蓝色染料换成红色可获得铁之心蓝图，换成黑色可获得战争机器蓝图。"
+			]
+			icon: "satsu_iron_man_addon:recipe_table"
+			id: "37A8E81AEAE66862"
+			rewards: [
+				{
+					count: 16
+					id: "152D9FC58748CB21"
+					item: "minecraft:paper"
+					type: "item"
+				}
+				{
+					id: "77BE26A6021343E8"
+					type: "xp"
+					xp: 80
+				}
+			]
+			shape: "none"
+			subtitle: "八张纸，一个蓝色染料，五十件盔甲"
+			tasks: [{
+				id: "7C908BCF33307735"
+				item: "satsu_iron_man_addon:recipe_table"
+				type: "item"
+			}]
+			title: "<grad from=#4D95D1 to=#5FB0F0 f=0.8 sp=16 uni>蓝图持有者"
+			x: 0.0d
+			y: 6.0d
+		}
+		{
+			dependencies: [
+				"37A8E81AEAE66862"
+				"5DA8D65E4AF9BEDE"
+			]
+			description: [
+				"顶部：战争机器支架、蓝图支架、铁之心支架。中部：红色染料、斯塔克之锤、红色染料。底部：钢锭、橡木原木、钢锭。"
+				""
+				"模组里的每套盔甲都在这块方块上定制。把它放在能防御的地方，因为你的全部武器库都会围绕它生长。"
+			]
+			icon: "satsu_iron_man_addon:stark_station"
+			id: "063FA42EB1440F6C"
+			rewards: [
+				{
+					id: "13C7D4B531726E44"
+					item: "satsu_iron_man_addon:upgrade_kit"
+					type: "item"
+				}
+				{
+					id: "6EB8CFD101846F48"
+					type: "xp"
+					xp: 100
+				}
+			]
+			shape: "irontier"
+			subtitle: "盔甲实际被制造出来的地方"
+			tasks: [{
+				id: "15AC750FA42F5E00"
+				item: "satsu_iron_man_addon:stark_station"
+				type: "item"
+			}]
+			title: "<grad from=#C58731 to=#E0A93A f=0 sp=16 uni>斯塔克空间站"
+			x: 0.0d
+			y: 7.5d
+		}
+		{
+			dependencies: ["063FA42EB1440F6C"]
+			description: [
+				"用一整排铁块可以建造盔甲放置台。"
+				""
+				"部分盔甲，包括 Mark 4 和 War Machine Mark 1，只能在站在悬臂上时穿戴和脱下。"
+				""
+				"{@pagebreak}"
+				""
+				"用普通的盔甲架制作一个盔甲放置器，"
+				""
+				"这样你的其他收藏品就都有了展示的地方。"
+			]
+			icon: "satsu_iron_man_addon:gantry_station"
+			id: "42411029E310AA06"
+			rewards: [{
+				count: 2
+				id: "46B6F60DB70CEFF7"
+				item: "minecraft:iron_block"
+				type: "item"
+			}]
+			shape: "goldtier"
+			subtitle: "九个铁块和一个可以站立的地方"
+			tasks: [{
+				id: "3DC24F8FA3CE77E8"
+				item: "satsu_iron_man_addon:gantry_station"
+				type: "item"
+			}]
+			title: "<grad from=#889DAF to=#9FB6C9 f=0 sp=16 uni>龙门吊站"
+			x: 1.5d
+			y: 7.5d
+		}
+		{
+			dependencies: ["063FA42EB1440F6C"]
+			description: [
+				"你的第一份裁缝工作。在斯塔克站，手持斯塔克之锤：8个铁锭、4个排斥器、10个基础电路、8根铜线。无需蓝图。"
+				""
+				"它能提供胸甲和靴子，单独作战能力不强，但几乎所有从2代起的Mark都基于它构建。"
+				""
+				"高级原型服的配方与精炼合金和中级电路相同，Mark 7及以上版本将不接受更低品质的材料。"
+			]
+			icon: {
+				Count: 1
+				id: "satsu_iron_man_addon:prototype_suit/prototype_suit_chest"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "72995A9A5B45F728"
+			rewards: [
+				{
+					count: 2
+					id: "5B5165A60630D17B"
+					item: "satsu_iron_man_addon:repulsor"
+					type: "item"
+				}
+				{
+					id: "356F1F462DF93702"
+					type: "xp"
+					xp: 60
+				}
+			]
+			shape: "goldtier"
+			subtitle: "一套内衬，而非盔甲"
+			tasks: [{
+				id: "15C5DFC77D60200E"
+				item: {
+					Count: 1
+					id: "satsu_iron_man_addon:prototype_suit/prototype_suit_chest"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "<grad from=#ACACAC to=#C4C4C4 f=0.8 sp=16 uni>原型套装"
+			x: 0.0d
+			y: 9.0d
+		}
+		{
+			description: [
+				"打开蓝图持有器并拿起第一个节点。"
+				""
+				"这完全免费，不花一分钱。"
+				""
+				"{@pagebreak}"
+				""
+				"然后在斯塔克车站进行定制："
+				""
+				"32 个铁锭，"
+				""
+				"10个基础电路，"
+				""
+				"32根铜线。"
+				" "
+				"{@pagebreak}"
+				""
+				"Mark 1 是模组中唯一由头盔到靴子四件组成的独立套装。"
+				""
+				"它很慢，很重，也是你第一次离开地面。"
+			]
+			icon: {
+				Count: 1
+				id: "satsu_iron_man_addon:marks/mark_01/mark_01_chest"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "1FEB035A893867E8"
+			rewards: [
+				{
+					count: 16
+					id: "7677533B4F9C0524"
+					item: "minecraft:iron_ingot"
+					type: "item"
+				}
+				{
+					id: "25E1A57F027213AE"
+					type: "xp"
+					xp: 120
+				}
+			]
+			shape: "irontier"
+			subtitle: "建造在一个洞穴里，带着一箱废料"
+			tasks: [{
+				id: "4EE1614E05D31927"
+				item: {
+					Count: 1
+					id: "satsu_iron_man_addon:marks/mark_01/mark_01_chest"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "<grad from=#BC9226 to=#D4A72C f=0.8 sp=16 uni>标记 1"
+			x: 0.0d
+			y: 10.5d
+		}
+		{
+			description: [
+				"Mark 2 节点需要消耗 10 经验等级。"
+				""
+				"购买它还能获得原型套装和战争机器1型的配方。"
+				""
+				"{@pagebreak}"
+				""
+				"首先制作一套黑色西装："
+				""
+				"皮革和黑色染料，交替使用。"
+				""
+				"然后用原型胸甲和靴子来定制盔甲，"
+				""
+				"32 个铁锭，"
+				""
+				"10个基础电路，"
+				""
+				"黑色西装，"
+				""
+				"4根铜线和一个弧反应堆。"
+				""
+				"{@pagebreak}"
+				""
+				"从现在开始，一套完整的盔甲算作单个箱子物品。"
+				""
+				"装备它，剩下的部分就会围绕着你自动建造。"
+			]
+			icon: {
+				Count: 1
+				id: "satsu_iron_man_addon:marks/mark_02/mark_02_black_suit"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "1F313FB689089AE3"
+			rewards: [
+				{
+					id: "6254CC59B219FD8C"
+					item: "satsu_iron_man_addon:arc_reactor"
+					type: "item"
+				}
+				{
+					id: "38E5BB684BD8D75D"
+					type: "xp"
+					xp: 140
+				}
+			]
+			shape: "goldtier"
+			subtitle: "银色，再往下一个节点深处"
+			tasks: [
+				{
+					id: "24445E7E584BE273"
+					item: "satsu_iron_man_addon:black_suit"
+					type: "item"
+				}
+				{
+					id: "6D8A2E7ED5D94587"
+					item: {
+						Count: 1
+						id: "satsu_iron_man_addon:marks/mark_02/mark_02_black_suit"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "<grad from=#8A8F98 to=#EEF3F8 f=0.8 sp=16 uni>Mark 2"
+			x: 0.0d
+			y: 12.0d
+		}
+		{
+			dependencies: ["1F313FB689089AE3"]
+			description: [
+				"Mark 3 需要 13 级，"
+				""
+				"Mark 4 需要 14 个。"
+				""
+				"两者都是 Mark 2 配方，只是将铁替换为 32 个精炼钢金合金。"
+				""
+				"{@pagebreak}"
+				""
+				"从这里开始，这套盔甲就不再像原型机了。"
+				""
+				"Mark 4 也需要在 Gantry Station 上穿戴，所以建造前请确保已放置好。"
+			]
+			icon: {
+				Count: 1
+				id: "satsu_iron_man_addon:marks/mark_03/mark_03_black_suit"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "3A0EFB6A5320C900"
+			rewards: [
+				{
+					count: 16
+					id: "35EDD34C7C46732C"
+					item: "satsu_iron_man_addon:steel_gold_refined_alloy"
+					type: "item"
+				}
+				{
+					id: "6C025557E0688BCD"
+					type: "xp"
+					xp: 160
+				}
+			]
+			shape: "diamondtier"
+			subtitle: "红色和金色，终于来了"
+			tasks: [
+				{
+					id: "513ADED11DCE0621"
+					item: {
+						Count: 1
+						id: "satsu_iron_man_addon:marks/mark_03/mark_03_black_suit"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "4F64E7A577F0A410"
+					item: {
+						Count: 1
+						id: "satsu_iron_man_addon:marks/mark_04/mark_04_black_suit"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "<grad from=#DA9B2B to=#F2C230 f=0.8 sp=16 uni>标记 3 和 4"
+			x: 0.0d
+			y: 13.5d
+		}
+		{
+			dependencies: ["3A0EFB6A5320C900"]
+			description: [
+				"Mark 5和Mark 6分别需要14和15级。Mark 5用铁锻造而成，是一个放在胸甲栏位的手提箱，部署在你站立的位置。"
+				""
+				"Mark 6 回归精炼合金与黑色套装，也是基于普通原型套装建造的最后一套盔甲。"
+			]
+			icon: {
+				Count: 1
+				id: "satsu_iron_man_addon:marks/mark_05/briefcase"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "7A3898E02304795D"
+			rewards: [
+				{
+					id: "1031C5DE2E7FB64A"
+					item: "satsu_iron_man_addon:upgrade_kit2"
+					type: "item"
+				}
+				{
+					id: "0FD925AF42B6C735"
+					type: "xp"
+					xp: 180
+				}
+			]
+			shape: "diamondtier"
+			subtitle: "手提箱套装"
+			tasks: [
+				{
+					id: "220B95001652FCDA"
+					item: {
+						Count: 1
+						id: "satsu_iron_man_addon:marks/mark_05/briefcase"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "48D4EF41E3068436"
+					item: {
+						Count: 1
+						id: "satsu_iron_man_addon:marks/mark_06/mark_06_black_suit"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "<grad from=#CF4F24 to=#E8622A f=0.8 sp=16 uni>第5和6个标记"
+			x: 0.0d
+			y: 15.0d
+		}
+		{
+			dependencies: ["7A3898E02304795D"]
+			description: [
+				"Mark 7需要15个等级，并且拒绝旧的潜水服。"
+				""
+				"先制作一套高级原型盔甲："
+				""
+				"6 精炼钢金合金，"
+				""
+				"4个排斥器，"
+				""
+				"4个中型电路，"
+				""
+				"8根铜线。"
+				""
+				"{@pagebreak}"
+				""
+				"然后是盔甲本身："
+				""
+				"高级的箱子和靴子，"
+				""
+				"32 精炼合金，"
+				""
+				"10 个中型电路，"
+				""
+				"4根铜线和一个弧反应堆。"
+				""
+				"它会变成一个能将盔甲召唤到你的手镯。"
+				""
+				"购买此节点还将解锁铁军原型机。"
+				""
+				"从这里开始都是深层树，而且层级越高越贵。"
+			]
+			hide_until_deps_complete: false
+			icon: {
+				Count: 1
+				id: "satsu_iron_man_addon:marks/mark_07/bracelet"
+				tag: {
+					Damage: 0
+				}
+			}
+			id: "591DAD9D1EB7A7FB"
+			rewards: [
+				{
+					id: "45592D70A94CF4DA"
+					item: "satsu_iron_man_addon:upgrade_kit3"
+					type: "item"
+				}
+				{
+					id: "0D61D867026FCDBB"
+					type: "xp"
+					xp: 220
+				}
+			]
+			shape: "netheritetier"
+			subtitle: "手镯到手，套装也随之而来，送到你面前"
+			tasks: [
+				{
+					id: "27CB14B00BDA5250"
+					item: {
+						Count: 1
+						id: "satsu_iron_man_addon:prototype_suit_advanced/chest"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "07230D90ED248B46"
+					item: {
+						Count: 1
+						id: "satsu_iron_man_addon:marks/mark_07/bracelet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "<grad from=#EAA73E to=#FFD24A f=0.8 sp=16 uni>标记 7"
+			x: 0.0d
+			y: 16.5d
+		}
+	]
+	title: "<grad from=#8B1A1A to=#F2C230 f=0.8 sp=16 uni>斯塔克工业"
+}

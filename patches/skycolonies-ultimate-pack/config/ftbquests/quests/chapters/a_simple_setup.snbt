@@ -1,0 +1,216 @@
+# AI 初翻，未人工校对
+{
+	id: "5B24CF7933F6BA51"
+	group: "6F4E94469F099FD8"
+	order_index: 0
+	filename: "a_simple_setup"
+	title: "基础知识"
+	icon: "storagedrawers:compacting_drawers_3"
+	subtitle: ["简单又宽敞的储物方案，满足我们所有人的强迫症。"]
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "完整抽屉"
+			x: -9.0d
+			y: 0.0d
+			description: [
+				"先制作一些储物抽屉。可以是单个、双格或四格类型。每个抽屉或槽位只能存放一种类型的方块。提取物品使用左键单击。单击提取单个物品。按住 Shift 可提取一整个堆叠。存入物品使用右键单击。单击存入一整个堆叠，双击（或长按）可将背包中该物品的所有堆叠存入抽屉。可通过潜行+空手右键单击打开GUI。"
+				"最多可存放32组同一种方块。即单层=32组，双层=每格16组，四层=每格8组。"
+				"你可以为每个抽屉添加“升级”以增加容量。例如：一级升级可使容量翻倍，即每个抽屉可容纳64个物品堆叠。"
+			]
+			id: "1DC790155639E523"
+			tasks: [
+				{
+					id: "3C01C88412CD2DF9"
+					type: "item"
+					item: "storagedrawers:oak_full_drawers_1"
+				}
+				{
+					id: "7593E3107BE04261"
+					type: "item"
+					item: "storagedrawers:oak_full_drawers_2"
+				}
+				{
+					id: "354E931B7B754A9E"
+					type: "item"
+					item: "storagedrawers:oak_full_drawers_4"
+				}
+			]
+			rewards: [{
+				id: "5BCA85A1BCDED5F6"
+				type: "item"
+				item: "storagedrawers:obsidian_storage_upgrade"
+			}]
+		}
+		{
+			title: "半抽屉"
+			x: -9.0d
+			y: -2.0d
+			description: [
+				"这些抽屉更“薄”，深度占半个方块，容量为基础容量的一半。"
+				"单个抽屉可存放16组单一类型的方块，双抽屉每个槽位可存放8组（共2x8=16），四抽屉每个槽位可存放4组（共4x4=16）。"
+			]
+			dependencies: ["1DC790155639E523"]
+			id: "02C3F2898BC3C398"
+			tasks: [
+				{
+					id: "6F8BB7AA01610F5A"
+					type: "item"
+					item: "storagedrawers:oak_half_drawers_1"
+				}
+				{
+					id: "799689DAF368B582"
+					type: "item"
+					item: "storagedrawers:oak_half_drawers_2"
+				}
+				{
+					id: "11CF8F78B0AD526B"
+					type: "item"
+					item: "storagedrawers:oak_half_drawers_4"
+				}
+			]
+			rewards: [{
+				id: "08AF7C1496F5DF91"
+				type: "item"
+				item: "storagedrawers:obsidian_storage_upgrade"
+			}]
+		}
+		{
+			x: -6.5d
+			y: 0.0d
+			description: [
+				"抽屉控制器是系统的核心。只要抽屉接触到它的任意一侧，它就能识别抽屉及其内容物，并对抽屉内的方块进行整理。"
+				"只要抽屉方块相邻且接触，控制器就能识别到其每个方向最远12个方块内的方块，并与该控制器协同工作。"
+				"物品可以通过漏斗、导管、管道等送入控制器。或者手持物品直接右键。"
+			]
+			dependencies: ["1DC790155639E523"]
+			id: "52A1A4FE331CE088"
+			tasks: [{
+				id: "419E4D2C9D0CA47C"
+				type: "item"
+				item: "storagedrawers:controller"
+			}]
+			rewards: [{
+				id: "6F65753AFC930483"
+				type: "item"
+				item: "storagedrawers:obsidian_storage_upgrade"
+			}]
+		}
+		{
+			x: -6.5d
+			y: -2.0d
+			description: [
+				"它可将物品自动从抽屉控制器12格内相连的入口插入现有存储系统，也可轻松隐藏在抽屉墙后。"
+				"物品应通过漏斗、导管、管道等送入控制器从属单元。"
+			]
+			dependencies: ["52A1A4FE331CE088"]
+			id: "1230C4A1DC1628DD"
+			tasks: [{
+				id: "6EE1499BEACCB5F1"
+				type: "item"
+				item: "storagedrawers:controller_slave"
+			}]
+			rewards: [{
+				id: "0FE8B69212835EB7"
+				type: "item"
+				item: "storagedrawers:obsidian_storage_upgrade"
+			}]
+		}
+		{
+			x: -9.0d
+			y: 2.0d
+			description: [
+				"压缩抽屉会存储可以制作成该方块变体的方块，每个抽屉可容纳一种变体。"
+				"例如黄金：抽屉的每个槽位可存放金块碎片，另一个槽位可存放金锭，再一个槽位可存放金块。只要有足够的材料，你就可以输入其中任何一种并提取出任意一种形式的黄金。"
+				"例如，你只需放入锭，需要时也可以直接提取方块或金块。"
+			]
+			dependencies: ["1DC790155639E523"]
+			id: "50904650368B467D"
+			tasks: [{
+				id: "430D3AADC74D9ECE"
+				type: "item"
+				item: "storagedrawers:compacting_drawers_3"
+			}]
+			rewards: [{
+				id: "1F75718900C8EBF2"
+				type: "item"
+				item: "storagedrawers:obsidian_storage_upgrade"
+			}]
+		}
+		{
+			x: -11.5d
+			y: 0.0d
+			description: ["抽屉有多种类型的存储升级。可以通过右键点击抽屉并使用升级物品来应用，或者在空手右键点击抽屉的GUI中手动放置。升级可以通过抽屉的GUI移除。升级之间可以相互叠加。"]
+			dependencies: ["1DC790155639E523"]
+			id: "5EB8B0472EB9E9D5"
+			tasks: [
+				{
+					id: "129ED2FB85ABF9A6"
+					type: "item"
+					item: "storagedrawers:emerald_storage_upgrade"
+				}
+				{
+					id: "00B3D05535D23C05"
+					type: "item"
+					item: "storagedrawers:void_upgrade"
+				}
+				{
+					id: "1C536324CEB587D9"
+					type: "item"
+					item: "storagedrawers:conversion_upgrade"
+				}
+				{
+					id: "599D6043CD9C2E0E"
+					type: "item"
+					item: "storagedrawers:illumination_upgrade"
+				}
+				{
+					id: "3CB9E76C19AB0492"
+					type: "item"
+					item: "storagedrawers:redstone_upgrade"
+				}
+			]
+			rewards: [{
+				id: "66239F9C3270942A"
+				type: "item"
+				item: "storagedrawers:upgrade_template"
+				count: 16
+			}]
+		}
+		{
+			x: -11.5d
+			y: -2.0d
+			description: [
+				"抽屉钥匙：用于将抽屉锁定在当前物品上；正面顶部会显示一个黑色的钥匙孔图标。即使抽屉内没有该物品，抽屉仍会将其列入白名单；其他物品无法覆盖抽屉的过滤条件。"
+				"数量键：用于显示抽屉中存储的物品数量。它也适用于多格抽屉。"
+				"Concealment Key; 用于显示或隐藏抽屉的内容。抽屉仍然可以交互。"
+			]
+			dependencies: ["5EB8B0472EB9E9D5"]
+			id: "3C1A41D51BF07435"
+			tasks: [
+				{
+					id: "72A70D2E012D9FC3"
+					type: "item"
+					item: "storagedrawers:drawer_key"
+				}
+				{
+					id: "17C10E7B73BA3185"
+					type: "item"
+					item: "storagedrawers:quantify_key"
+				}
+				{
+					id: "4BBA5ADB1D90ED76"
+					type: "item"
+					item: "storagedrawers:shroud_key"
+				}
+			]
+			rewards: [{
+				id: "7302B3F0FAD02E76"
+				type: "item"
+				item: "storagedrawers:emerald_storage_upgrade"
+				count: 4
+			}]
+		}
+	]
+}

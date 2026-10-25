@@ -1,0 +1,617 @@
+# AI 初翻，未人工校对
+{
+	id: "0000000000000014"
+	group: "181E2FB58AE4C193"
+	order_index: 1
+	filename: "Botania1"
+	title: "1 - 有点魔法的感觉"
+	icon: {
+		id: "aiotbotania:elementium_aiot"
+		Count: 1b
+		tag: {
+			Damage: 0
+		}
+	}
+	subtitle: [
+		"我们有法力，我们有资源，我们想要更多。"
+		"更多魔法物品。符文和工具可通过法力修复。"
+		"我们还需要泥土。动手干吧。"
+	]
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "法力水晶板"
+			x: -7.0d
+			y: -3.5d
+			description: [
+				"在池子里放法力？谁都能做到，但法力石板？那可是特别的存在！"
+				"你需要使用法力水晶来制作特殊盔甲和工具，所有物品都可以使用法力进行修复！"
+				"但要小心：如果法力值用尽，你的工具就会开始损坏！"
+			]
+			dependencies: [
+				"000000000000002F"
+				"0000000000000031"
+			]
+			id: "0000000000000073"
+			tasks: [{
+				id: "0000000000000074"
+				type: "item"
+				item: {
+					id: "botania:mana_tablet"
+					Count: 1b
+					tag: { }
+				}
+				consume_items: true
+			}]
+			rewards: [{
+				id: "000000000000008B"
+				type: "item"
+				item: {
+					id: "botania:mana_tablet"
+					Count: 1b
+					tag: {
+						mana: 500000
+					}
+				}
+			}]
+		}
+		{
+			title: "创造烈焰人"
+			icon: "botania:fel_pumpkin"
+			x: -1.0d
+			y: -3.5d
+			description: [
+				"要进入下界，你需要黑曜石。"
+				"要获得黑曜石，你需要烈焰粉。"
+				"最后，但同样重要：烈焰人需要Fel南瓜和铁栏杆。"
+				"要我说，这玩意儿还挺麻烦的。"
+			]
+			dependencies: [
+				"0000000000000031"
+				"000000000000002F"
+			]
+			id: "0000000000000075"
+			tasks: [
+				{
+					id: "0000000000000076"
+					type: "item"
+					item: "botania:fel_pumpkin"
+					count: 10L
+				}
+				{
+					id: "000000000000008C"
+					type: "item"
+					item: "minecraft:iron_bars"
+					count: 32L
+				}
+			]
+			rewards: [
+				{
+					id: "000000000000008D"
+					type: "item"
+					item: "minecraft:obsidian"
+				}
+				{
+					id: "000000000000008E"
+					type: "item"
+					item: "minecraft:fire_charge"
+				}
+			]
+		}
+		{
+			title: "符文（Runes）"
+			icon: "botania:runic_altar"
+			x: -3.0d
+			y: -2.625d
+			description: [
+				"符文是获取大量资源、花朵等物品的关键。"
+				"注意，有些物品需要去下界并从那里获取一些东西。"
+			]
+			dependencies: ["0000000000000075"]
+			id: "0000000000000077"
+			tasks: [
+				{
+					id: "0000000000000078"
+					type: "item"
+					item: "botania:runic_altar"
+				}
+				{
+					id: "0000000000000091"
+					type: "item"
+					item: "botania:rune_water"
+				}
+				{
+					id: "0000000000000092"
+					type: "item"
+					item: "botania:rune_fire"
+				}
+				{
+					id: "0000000000000093"
+					type: "item"
+					item: "botania:rune_earth"
+				}
+				{
+					id: "0000000000000094"
+					type: "item"
+					item: "botania:rune_air"
+				}
+			]
+			rewards: [{
+				id: "0000000000000095"
+				type: "choice"
+				table_id: 143L
+			}]
+		}
+		{
+			title: "Terrestrial Aglomeration Plate"
+			x: -5.642857142857146d
+			y: -1.482142857142854d
+			description: [
+				"能将三种物品融合成强力泰拉钢锭的板子。"
+				"使用它，你就能进入一个粉红色的世界 \(^.^)/"
+			]
+			dependencies: [
+				"0000000000000073"
+				"0000000000000077"
+			]
+			id: "0000000000000079"
+			tasks: [{
+				id: "000000000000007A"
+				type: "item"
+				item: "botania:terra_plate"
+			}]
+			rewards: [{
+				id: "0000000000000098"
+				type: "choice"
+				table_id: 150L
+			}]
+		}
+		{
+			title: "使用法力进行附魔"
+			icon: "botania:enchanter"
+			x: -7.0d
+			y: 1.0d
+			description: [
+				"你可以使用魔力赋予你的魔法能量来附魔各种物品。"
+				"你只需要附魔书。当然，还需要一个多方块结构。"
+			]
+			dependencies: ["0000000000000073"]
+			id: "000000000000007B"
+			tasks: [
+				{
+					id: "000000000000007C"
+					type: "item"
+					item: "minecraft:obsidian"
+					count: 17L
+				}
+				{
+					id: "00000000000000AB"
+					type: "item"
+					item: "botania:mana_pylon"
+					count: 6L
+				}
+				{
+					id: "00000000000000AC"
+					type: "item"
+					item: "botania:white_mystical_flower"
+				}
+			]
+			rewards: [{
+				id: "00000000000000AA"
+				type: "choice"
+				table_id: 169L
+			}]
+		}
+		{
+			title: "泰拉钢"
+			x: -4.0d
+			y: 1.0d
+			description: [
+				"将一颗法力珍珠、一颗法力钻石和一个曼纳斯钢锭组合起来，你就能得到最顶级的锭了！"
+				"用它可以制作强大的盔甲。这种锭也用于制作通往阿尔弗雷姆的传送门"
+				"还有，对盖亚来说更重要的是！"
+				"但现在还不是谈论这个的合适时机……"
+			]
+			dependencies: [
+				"0000000000000037"
+				"000000000000007F"
+				"0000000000000079"
+			]
+			id: "000000000000007D"
+			tasks: [{
+				id: "000000000000007E"
+				type: "item"
+				item: "botania:terrasteel_ingot"
+				count: 2L
+			}]
+			rewards: [{
+				id: "00000000000000A6"
+				type: "choice"
+				table_id: 165L
+			}]
+		}
+		{
+			title: "下界掠夺"
+			icon: "minecraft:blaze_rod"
+			x: 1.0d
+			y: -2.0d
+			description: [
+				"下界是个黑暗的地方。好吧，主要是个红色的地方。"
+				"你还需要来自下界的东西（又一次）。烈焰粉或许能办到……"
+				"但你需要烈焰棒。哦，还要让那些巨大的白色立方体哭泣。你迟早会需要它们的。"
+			]
+			dependencies: ["0000000000000075"]
+			id: "000000000000007F"
+			tasks: [
+				{
+					id: "0000000000000080"
+					type: "item"
+					item: "minecraft:blaze_rod"
+					count: 10L
+				}
+				{
+					id: "0000000000000099"
+					type: "item"
+					item: "minecraft:ghast_tear"
+				}
+			]
+			rewards: [{
+				id: "000000000000009C"
+				type: "choice"
+				table_id: 154L
+			}]
+		}
+		{
+			title: "生态酿造学 (Ecological Brewering)"
+			icon: "botania:brewery"
+			x: 1.0d
+			y: 0.8035714285714306d
+			description: [
+				"药水肯定能派上用场，这一点毋庸置疑。"
+				"但是我们玩的是 Botania 整合包！"
+				"Botania 要更加……生态友好！"
+			]
+			dependencies: ["000000000000007F"]
+			id: "0000000000000081"
+			tasks: [
+				{
+					id: "0000000000000082"
+					type: "item"
+					item: "botania:brewery"
+				}
+				{
+					id: "000000000000009D"
+					type: "item"
+					item: "botania:vial"
+					count: 10L
+				}
+				{
+					id: "000000000000009E"
+					type: "item"
+					item: "botania:flask"
+					count: 10L
+				}
+			]
+			rewards: [{
+				id: "00000000000000A1"
+				type: "choice"
+				table_id: 160L
+			}]
+		}
+		{
+			title: "通往阿尔弗雷姆的传送门"
+			icon: "botanicalmachinery:alfheim_market"
+			x: -1.2142857142857153d
+			y: 2.4464285714285765d
+			description: ["法力资源固然不错，但另一个世界的精灵会给你更酷、更重要的是——粉红色的东西！"]
+			dependencies: ["000000000000007D"]
+			id: "0000000000000083"
+			tasks: [
+				{
+					id: "0000000000000084"
+					type: "item"
+					item: "botania:alfheim_portal"
+				}
+				{
+					id: "00000000000000AD"
+					type: "item"
+					item: "botania:livingwood"
+					count: 8L
+				}
+				{
+					id: "00000000000000AE"
+					type: "item"
+					item: "botania:glimmering_livingwood"
+					count: 3L
+				}
+				{
+					id: "00000000000000AF"
+					type: "item"
+					item: "botania:natura_pylon"
+					count: 2L
+				}
+				{
+					id: "00000000000000B0"
+					type: "item"
+					item: "botania:mana_pool"
+					count: 2L
+				}
+			]
+			rewards: [{
+				id: "00000000000000B1"
+				type: "xp_levels"
+				xp_levels: 10
+			}]
+		}
+		{
+			title: "精灵贸易"
+			icon: "botania:pixie_dust"
+			x: -3.5d
+			y: 3.5d
+			description: [
+				"精灵们真的很友善。他们喜欢交易，用蓝色物品交换粉色物品。"
+				"但这会消耗你一点点微乎其微的魔法值。"
+			]
+			dependencies: [
+				"0000000000000083"
+				"000000000000007D"
+			]
+			id: "0000000000000085"
+			tasks: [
+				{
+					id: "0000000000000086"
+					type: "item"
+					item: "botania:pixie_dust"
+					count: 3L
+					consume_items: true
+				}
+				{
+					id: "00000000000000B2"
+					type: "item"
+					item: "botania:dragonstone"
+					count: 5L
+					consume_items: true
+				}
+				{
+					id: "00000000000000B3"
+					type: "item"
+					item: "botania:elementium_ingot"
+					count: 10L
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "00000000000000B4"
+					type: "item"
+					item: {
+						id: "botania:elementium_helmet"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "00000000000000B5"
+					type: "item"
+					item: {
+						id: "botania:elementium_chestplate"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "00000000000000B6"
+					type: "item"
+					item: {
+						id: "botania:elementium_leggings"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "00000000000000B7"
+					type: "item"
+					item: {
+						id: "botania:elementium_boots"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "00000000000000B8"
+					type: "item"
+					item: {
+						id: "botania:elementium_sword"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+		}
+		{
+			title: "元素锭装备"
+			x: -5.5d
+			y: 5.0d
+			description: [
+				"你已经有了那套蓝色盔甲，但众所周知：只有酷人才会穿粉色！"
+				"快给自己制作一套粉色装备，就能免费获得一个粉色 AIOT 了！"
+				"（仅限供应期间有效）"
+			]
+			dependencies: ["0000000000000085"]
+			id: "0000000000000087"
+			tasks: [
+				{
+					id: "0000000000000088"
+					type: "item"
+					item: {
+						id: "botania:elementium_helmet"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "00000000000000BA"
+					type: "item"
+					item: {
+						id: "botania:elementium_chestplate"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "00000000000000BB"
+					type: "item"
+					item: {
+						id: "botania:elementium_leggings"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "00000000000000BC"
+					type: "item"
+					item: {
+						id: "botania:elementium_boots"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "00000000000000BD"
+					type: "item"
+					item: {
+						id: "botania:elementium_pickaxe"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "00000000000000BE"
+					type: "item"
+					item: {
+						id: "botania:elementium_shovel"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "00000000000000BF"
+					type: "item"
+					item: {
+						id: "botania:elementium_axe"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "00000000000000C0"
+					type: "item"
+					item: {
+						id: "botania:elementium_hoe"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+				{
+					id: "3F40D35E01322B98"
+					type: "item"
+					item: {
+						id: "botania:elementium_sword"
+						Count: 1b
+						tag: {
+							Damage: 0
+						}
+					}
+				}
+			]
+			rewards: [{
+				id: "00000000000000C1"
+				type: "item"
+				item: {
+					id: "aiotbotania:elementium_aiot"
+					Count: 1b
+					tag: {
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			title: "彩虹的另一端，某个地方"
+			x: -1.5d
+			y: 5.0d
+			description: [
+				"你想比外面所有那些人都要更出色。"
+				"你想飞到空中，然后展翅高飞！"
+				"不要让梦想只是梦想！行动起来！"
+			]
+			dependencies: ["0000000000000085"]
+			id: "0000000000000089"
+			tasks: [{
+				id: "000000000000008A"
+				type: "item"
+				item: {
+					id: "botania:flight_tiara"
+					Count: 1b
+					tag: {
+						variant: 0
+					}
+				}
+			}]
+			rewards: [{
+				id: "00000000000000B9"
+				type: "item"
+				item: "minecraft:totem_of_undying"
+			}]
+		}
+		{
+			title: "无限水源"
+			x: -2.0d
+			y: -1.5d
+			description: [
+				"想要拥有无限的水吗？"
+				"试试这根钓竿，用石板、戒指等物品给它提供法力，它就会放置水源。"
+			]
+			dependencies: ["0000000000000077"]
+			dependency_requirement: "all_started"
+			id: "272A35CCC498E54B"
+			tasks: [{
+				id: "302E9109E84678CC"
+				type: "item"
+				item: "botania:water_rod"
+			}]
+			rewards: [{
+				id: "5EF1AC22A69B3C7A"
+				type: "item"
+				item: "botania:open_bucket"
+			}]
+		}
+	]
+}

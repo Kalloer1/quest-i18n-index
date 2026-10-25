@@ -1,0 +1,316 @@
+# AI 初翻，未人工校对
+{
+	id: "00000000000001F5"
+	group: "181E2FB58AE4C193"
+	order_index: 6
+	filename: "Botania6"
+	title: "植物学附加组件 (Botanical Addons)"
+	icon: "mythicbotany:alfsteel_pylon"
+	subtitle: ["Botania 是一款超棒的模组，许多用户都在为其制作模组。这里添加了几款，让我们来了解一下它们。"]
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "精灵们有新材料吗？"
+			x: -6.0d
+			y: -3.0d
+			description: [
+				"精灵也在进化！他们发现，将材料像我们制作泰拉钢一样组合，可以制成一种新的钢材——阿尔夫钢。"
+				"他们为此发明了自己的仪式设置方法。"
+				"你也觉得自己能合成阿尔法钢吗！？"
+			]
+			id: "00000000000001F6"
+			tasks: [{
+				id: "00000000000001F7"
+				type: "item"
+				item: "mythicbotany:alfsteel_ingot"
+			}]
+			rewards: [{
+				id: "00000000000001FA"
+				type: "choice"
+				table_id: 505L
+			}]
+		}
+		{
+			title: "工具修理"
+			x: -8.5d
+			y: -3.0d
+			description: [
+				"工具可以通过金字塔修复！"
+				"你只需要结合精灵的力量。哦... 只有能用法力修复的物品或带有修补附魔的物品才能被修复。"
+				"所有其他工具都不是真正的工具，所以我们不在乎！"
+			]
+			dependencies: ["00000000000001F6"]
+			id: "00000000000001FB"
+			tasks: [{
+				id: "00000000000001FC"
+				type: "item"
+				item: "mythicbotany:alfsteel_pylon"
+			}]
+			rewards: [{
+				id: "00000000000001FD"
+				type: "item"
+				item: {
+					id: "mythicbotany:alfsteel_pick"
+					Count: 1b
+					tag: {
+						mana: 9999999
+						Damage: 0
+					}
+				}
+			}]
+		}
+		{
+			title: "强大的戒指"
+			x: -3.5d
+			y: -3.0d
+			description: [
+				"你愿意娶我/嫁给我吗？（Do you wanna Marry me?）"
+				"哦，找错人了，抱歉！"
+				"这些戒指并不是为你准备的！"
+				"想要的话，就合成吧！绝对值得的！"
+			]
+			dependencies: ["00000000000001F6"]
+			id: "00000000000001FE"
+			tasks: [
+				{
+					id: "00000000000001FF"
+					type: "item"
+					item: "mythicbotany:fire_ring"
+				}
+				{
+					id: "0000000000000200"
+					type: "item"
+					item: "mythicbotany:ice_ring"
+				}
+			]
+			rewards: [{
+				id: "0000000000000201"
+				type: "item"
+				item: "mythicbotany:raindeletia"
+			}]
+		}
+		{
+			title: "史上最快的收藏家！"
+			x: -6.0d
+			y: -5.5d
+			description: [
+				"Ever thought that the Spreaders are really slow?"
+				"试试这个，它能像传播器一样收集每朵花的法力，并以火花般的速度将其传播出去。"
+			]
+			dependencies: ["00000000000000D5"]
+			id: "0000000000000202"
+			tasks: [{
+				id: "0000000000000203"
+				type: "item"
+				item: "mythicbotany:mana_collector"
+			}]
+			rewards: [{
+				id: "0000000000000204"
+				type: "item"
+				item: "botania:spark"
+				count: 3
+			}]
+		}
+		{
+			title: "机械化的……什么东西！？！"
+			icon: "botanicalmachinery:mechanical_apothecary"
+			x: -1.0d
+			y: -3.0d
+			description: ["好，自动化简单一点。有这功能也不错，快试试吧！"]
+			dependencies: ["0000000000000085"]
+			id: "0000000000000205"
+			tasks: [
+				{
+					id: "0000000000000206"
+					type: "item"
+					item: "botanicalmachinery:mechanical_daisy"
+				}
+				{
+					id: "0000000000000207"
+					type: "item"
+					item: "botanicalmachinery:mechanical_apothecary"
+				}
+			]
+			rewards: [{
+				id: "0000000000000208"
+				type: "item"
+				item: "botanicalmachinery:mana_emerald_block"
+			}]
+		}
+		{
+			title: "小市场"
+			x: 2.0d
+			y: -3.0d
+			description: [
+				"与迷你精灵进行小额交易的迷你市场。"
+				"只要把面包留在你的物品栏里就行了。"
+			]
+			dependencies: ["0000000000000085"]
+			id: "0000000000000209"
+			tasks: [{
+				id: "000000000000020A"
+				type: "item"
+				item: "botanicalmachinery:alfheim_market"
+			}]
+			rewards: [{
+				id: "000000000000020B"
+				type: "item"
+				item: "minecraft:bread"
+				count: 16
+			}]
+		}
+		{
+			title: "集中型法力存储装置"
+			x: 0.5d
+			y: -1.0d
+			description: [
+				"它能储存的魔力最多可达魔力池容量的10倍！"
+				"想在小地方建个大仓库？试试这个吧！"
+			]
+			dependencies: [
+				"0000000000000085"
+				"00000000000000D5"
+			]
+			id: "000000000000020C"
+			tasks: [{
+				id: "000000000000020D"
+				type: "item"
+				item: "botanicalmachinery:mana_battery"
+			}]
+			rewards: [{
+				id: "0000000000000211"
+				type: "item"
+				item: "mythicbotany:aura_ring_greatest"
+			}]
+		}
+		{
+			title: "米米尔之井 (Well of Mimir)"
+			icon: "mythicbotany:gjallar_horn_full"
+			x: -4.5d
+			y: -0.5d
+			description: [
+				"我渴了。我需要一些淡水来解渴。"
+				"等等，里面的是法力值吗？"
+			]
+			dependencies: ["00000000000001F6"]
+			id: "33C9D9068A792DAE"
+			tasks: [
+				{
+					id: "5BA7AF8D2A31166C"
+					type: "item"
+					item: "mythicbotany:gjallar_horn_empty"
+				}
+				{
+					id: "20F4AD1334F882C2"
+					type: "item"
+					item: "mythicbotany:yggdrasil_branch"
+				}
+			]
+			rewards: [{
+				id: "711F0A24F6A30CDD"
+				type: "item"
+				item: "botania:blacker_lotus"
+				count: 3
+			}]
+		}
+		{
+			title: "符文仪式 (Runical Ritual)"
+			icon: { id: "mythicbotany:alfheim_rune", Count: 2b }
+			x: -7.5d
+			y: -0.5d
+			description: [
+				"发现了能制造出更棒物品的新仪式！中间的宗师持有物和周围的所有所需物品。"
+				"再见了，中间的物品！"
+			]
+			dependencies: ["00000000000001F6"]
+			id: "615B08A307B95902"
+			tasks: [
+				{
+					id: "13B014182E2A7335"
+					type: "item"
+					item: "mythicbotany:rune_holder"
+					count: 12L
+				}
+				{
+					id: "005E428A288DAD28"
+					type: "item"
+					item: "mythicbotany:master_rune_holder"
+				}
+			]
+			rewards: [{
+				id: "6791E1670A41E5EA"
+				type: "item"
+				item: "mythicbotany:rune_holder"
+				count: 32
+			}]
+		}
+		{
+			title: "多么强大的锤子啊"
+			x: -9.0d
+			y: 1.5d
+			description: ["快看我的锤子，我的锤子超棒的。舔一口试试，能电死你！"]
+			dependencies: ["615B08A307B95902"]
+			id: "26C0A51D52568F01"
+			tasks: [{
+				id: "0842E5BEED244829"
+				type: "item"
+				item: "mythicbotany:mjoellnir"
+			}]
+			rewards: [{
+				id: "0647063D6A46AE8C"
+				type: "item"
+				item: {
+					id: "minecraft:enchanted_book"
+					Count: 1b
+					tag: {
+						StoredEnchantments: [{
+							lvl: 5s
+							id: "minecraft:sharpness"
+						}]
+					}
+				}
+			}]
+		}
+		{
+			title: "美味的蜂蜜酒"
+			x: -6.0d
+			y: 1.5d
+			description: ["我早就知道了，蜂蜜酒能让我更聪明，还能找到更好的住处。"]
+			dependencies: [
+				"33C9D9068A792DAE"
+				"615B08A307B95902"
+			]
+			id: "752AFC982AA69315"
+			tasks: [{
+				id: "7EBF5674E6CFCBEC"
+				type: "item"
+				item: "mythicbotany:kvasir_mead"
+			}]
+			rewards: [{
+				id: "7DC40A3FD2FF5700"
+				type: "item"
+				item: "mythicbotany:dream_cherry"
+				count: 8
+			}]
+		}
+		{
+			title: "阿尔芙海姆"
+			x: -4.5d
+			y: 3.5d
+			description: ["我们必须安静点，我们从来不被允许进去！"]
+			dependencies: ["752AFC982AA69315"]
+			id: "7AE6908D3C931624"
+			tasks: [{
+				id: "754EFE41D9F2B9E8"
+				type: "dimension"
+				dimension: "mythicbotany:alfheim"
+			}]
+			rewards: [{
+				id: "588D606BDC9D0102"
+				type: "item"
+				item: "mythicbotany:wither_aconite"
+			}]
+		}
+	]
+}

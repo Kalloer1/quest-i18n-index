@@ -1,0 +1,179 @@
+# AI 初翻，未人工校对
+{
+	id: "0000000000000016"
+	group: "181E2FB58AE4C193"
+	order_index: 4
+	filename: "Botania3"
+	title: "末地首领们"
+	icon: "minecraft:dragon_head"
+	subtitle: [
+		"我们有很多事要做！要完成这个整合包，我们必须击败凋零、盖亚和末影龙！"
+		"可能很简单，但试试不用 Draconic Evolution... 会难很多！"
+	]
+	default_quest_shape: ""
+	default_hide_dependency_lines: false
+	quests: [
+		{
+			title: "凋零骷髅准备阶段"
+			x: -1.0d
+			y: -3.5d
+			description: [
+				"凋零是一个非常难对付的 boss，但为它做准备更难。你必须杀死大量的凋零骷髅。"
+				"而这仅仅是为了3个骷髅头而已！"
+				"获取灵魂沙要容易得多得多得多。"
+				"所以你去拿头骨，我来给你灵魂沙。"
+				"听起来很公平，不是吗？"
+			]
+			id: "00000000000000CE"
+			tasks: [{
+				id: "00000000000000CF"
+				type: "item"
+				item: "minecraft:wither_skeleton_skull"
+				count: 3L
+			}]
+			rewards: [
+				{
+					id: "00000000000000D0"
+					type: "item"
+					item: "minecraft:soul_sand"
+					count: 4
+				}
+				{
+					id: "00000000000000D1"
+					type: "item"
+					item: "botania:pinkinator"
+				}
+			]
+		}
+		{
+			title: "凋零者"
+			icon: "minecraft:nether_star"
+			x: -1.0d
+			y: -1.5d
+			description: [
+				"击败末影人。哦，你已经做到了？好吧...你刚刚击败了末影人，原版Minecraft中最具破坏力的Boss之一"
+				"很简单，对吧？好了，现在你可以用刚得到的下界之星来换取两种物品中的一种。"
+				"但是……要选哪个呢？两个都真的超酷的。"
+			]
+			dependencies: ["00000000000000CE"]
+			id: "00000000000000D2"
+			tasks: [
+				{
+					id: "00000000000000D3"
+					type: "kill"
+					entity: "minecraft:wither"
+					value: 1L
+				}
+				{
+					id: "34BA24B7A19D6509"
+					type: "item"
+					item: "minecraft:nether_star"
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "3D2861852A7A0EC7"
+					type: "choice"
+					table_id: 6291348139598436569L
+				}
+				{
+					id: "3040026DFD9E4D6B"
+					type: "item"
+					item: "minecraft:wither_rose"
+				}
+			]
+		}
+		{
+			title: "盖亚"
+			icon: "botania:gaia_head"
+			x: -1.0d
+			y: 0.5d
+			description: [
+				"你必须献祭你宝贵的泰拉钢锭。对此我深表遗憾。"
+				"但我希望你能一次就成功杀死盖亚。"
+				"否则每次重试都要再献祭一个锭子才行。"
+				"永远别忘了：那只是简单的盖亚。"
+			]
+			dependencies: ["00000000000000D2"]
+			id: "00000000000000D5"
+			tasks: [{
+				id: "00000000000000D6"
+				type: "kill"
+				entity: "botania:doppleganger"
+				value: 1L
+			}]
+			rewards: [{
+				id: "00000000000000D7"
+				type: "item"
+				item: "botania:blacker_lotus"
+				count: 20
+			}]
+		}
+		{
+			title: "盖亚 2.0"
+			icon: "botania:gaia_ingot"
+			x: -2.0d
+			y: 2.5d
+			description: [
+				"你击败了第一个，简单的，胜利之神。现在献祭你所有的精华，击败第二个，更难对付的胜利之神。"
+				"否则你的精华将不复存在。永远消失。"
+				"祝你好运！你肯定需要它的。"
+			]
+			dependencies: ["00000000000000D5"]
+			id: "00000000000000D8"
+			tasks: [{
+				id: "00000000000000D9"
+				type: "item"
+				item: "botania:dice"
+			}]
+			rewards: [{
+				id: "00000000000000DA"
+				type: "item"
+				item: "botania:dice"
+			}]
+		}
+		{
+			title: "末影龙"
+			icon: "minecraft:dragon_head"
+			x: 0.0d
+			y: 2.5d
+			description: [
+				"干掉盖亚之后，末影龙应该不成问题了。小菜一碟。"
+				"通往世界永恒统治之路上的一个小污点！"
+				"穆阿哈哈哈！"
+			]
+			dependencies: ["00000000000000D5"]
+			id: "00000000000000DB"
+			tasks: [
+				{
+					id: "00000000000000DC"
+					type: "item"
+					item: "minecraft:dragon_egg"
+				}
+				{
+					id: "00000000000000DD"
+					type: "item"
+					item: "minecraft:dragon_breath"
+				}
+			]
+			rewards: [
+				{
+					id: "000000000000020E"
+					type: "item"
+					item: "minecraft:dragon_head"
+				}
+				{
+					id: "000000000000020F"
+					type: "item"
+					item: "minecraft:shulker_box"
+				}
+				{
+					id: "0000000000000210"
+					type: "xp"
+					xp: 1337
+				}
+			]
+		}
+	]
+}
