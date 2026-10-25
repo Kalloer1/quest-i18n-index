@@ -194,14 +194,33 @@ export async function translatePackParallel(slug, {
     written.add(n)
   }
 
-  await translateTexts(units.map((u) => u.text), {
+  // 文本级请求去重：同一包内完全相同的文本只发一次请求，结果扇回所有同名单元。
+  //
+  // 为什么：1.12.2 旧布局 challenge/classic 是同一份任务书的两个模式副本，
+  // 文本大面积重复（MC Eternal 实测 1653+1566 个任务文件）；不去重会让翻译量翻倍。
+  // 文本相同的请求本就等价（请求体只含文本本身），扇回去后两个副本各自的 key
+  // 都拿到译文 —— 「只翻一次、产物两处生效」；两副本有差异的文本键不同，各翻各的。
+  // 分片仍按单元原序切，outs 逐单元填齐，落盘粒度与计数口径不变。
+  const uniqueIdx = new Map()
+  const members = []
+  const uniq = []
+  for (let i = 0; i < units.length; i++) {
+    const t = units[i].text
+    let j = uniqueIdx.get(t)
+    if (j === undefined) { j = uniq.length; uniqueIdx.set(t, j); uniq.push(t); members.push([]) }
+    members[j].push(i)
+  }
+
+  await translateTexts(uniq, {
     lanes,
     translateFn,
-    onResult: (i, value) => {
-      outs[i] = value
-      const n = Math.floor(i / SHARD_SIZE)
-      remaining[n]--
-      if (remaining[n] === 0) writeShard(n)
+    onResult: (j, value) => {
+      for (const i of members[j]) {
+        outs[i] = value
+        const n = Math.floor(i / SHARD_SIZE)
+        remaining[n]--
+        if (remaining[n] === 0) writeShard(n)
+      }
     },
   })
 

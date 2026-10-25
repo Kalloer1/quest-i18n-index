@@ -154,8 +154,10 @@ export function validatePair(enFiles, zhFiles, { layout = LAYOUT.EMBEDDED, label
   const isEnSource = (name) => {
     if (layout === LAYOUT.SEPARATE_SINGLE) return /(^|\/)en_us\.snbt$/i.test(name)
     if (layout === LAYOUT.SEPARATE_DIR) return /(^|\/)lang\/en_us\//i.test(name)
-    // 内嵌布局：章节文件本身就是源（与 LAYOUT_PATTERNS.embedded 同一判据）。
-    return LAYOUT_PATTERNS.embedded.test(name)
+    // 内嵌布局：章节文件本身就是源（与 LAYOUT_PATTERNS.embedded 同一判据，
+    // 并上 1.12.2 旧布局的嵌套章节文件 embeddedLegacy —— 两代判据必须同步，
+    // 否则旧布局包的基准键集为空 → 「找不到英文源」假失败）。
+    return LAYOUT_PATTERNS.embedded.test(name) || LAYOUT_PATTERNS.embeddedLegacy.test(name)
   }
   for (const [name, root] of enMap) {
     if (!isEnSource(name)) continue
@@ -170,7 +172,8 @@ export function validatePair(enFiles, zhFiles, { layout = LAYOUT.EMBEDDED, label
     // 内嵌布局：产出侧同样只算本布局负责改写的文件。多出来的非章节文件
     // （例如有人手动把 data.snbt 也复制了一份）允许存在，但不进入键集合比对；
     // 它们仍要过上面的 BOM / 可解析 / 可序列化检查。
-    if (layout === LAYOUT.EMBEDDED && !LAYOUT_PATTERNS.embedded.test(name)) continue
+    if (layout === LAYOUT.EMBEDDED
+      && !LAYOUT_PATTERNS.embedded.test(name) && !LAYOUT_PATTERNS.embeddedLegacy.test(name)) continue
     for (const [k, v] of keysOf(root, name)) zhEntries.set(k, v)
   }
 
@@ -281,7 +284,9 @@ export function resolveLayout(enNames, fromDataset) {
   const list = Array.isArray(enNames) ? enNames : []
   const sepDir = list.filter((n) => LAYOUT_PATTERNS.sepDirEn.test(n)).length
   const sepFile = list.filter((n) => LAYOUT_PATTERNS.sepFileEn.test(n)).length
-  const embedded = list.filter((n) => LAYOUT_PATTERNS.embedded.test(n)).length
+  const embedded = list.filter(
+    (n) => LAYOUT_PATTERNS.embedded.test(n) || LAYOUT_PATTERNS.embeddedLegacy.test(n),
+  ).length
   // 与 candidates.classifyLayout 同优先级：分离·目录 > 分离·单文件 > 内嵌。
   if (sepDir > 0) return LAYOUT.SEPARATE_DIR
   if (sepFile > 0) return LAYOUT.SEPARATE_SINGLE

@@ -46,7 +46,17 @@ export const LAYOUT_PATTERNS = {
   sepDirZh: /(^|\/)lang\/zh_cn\/.+\.snbt$/i,
   sepFileEn: /(^|\/)lang\/en_us\.snbt$/i,
   sepFileZh: /(^|\/)lang\/zh_cn\.snbt$/i,
-  embedded: /(^|\/)chapters\/[^/]+\.snbt$/i,
+  // 新版布局：任务 snbt 直接位于 chapters/ 下一层。
+  // `index.snbt` 是纯 uid 数组的结构性文件（章节清单，不含 title/description 等
+  // 可译字段），不能当英文源 —— 实测 1.12.2 旧布局包里能匹配旧正则的只有它，
+  // 抽出 0 个单元被误记 noText，故显式排除。
+  embedded: /(^|\/)chapters\/(?!index\.snbt$)[^/]+\.snbt$/i,
+  // 1.12.2 旧布局：任务文件比新版深一层 ——
+  //   config/ftbquests/<mode>/chapters/<章节hex>/<任务hex>.snbt（mode 为 challenge/classic 等）。
+  // 必须锚定 `ftbquests/<非quests>/` 前缀：新版包在 quests/chapters/ 下也有
+  // 嵌套的 backup/、reward_tables/ 等结构文件（实测已交付基线），裸放宽到
+  // `chapters/.+` 会把它们当英文源，闸门基准凭空多键 → 存量包假失败。
+  embeddedLegacy: /(^|\/)ftbquests\/(?!quests(\/|$))[^/]+\/chapters\/[^/]+\/[^/]+\.snbt$/i,
   ftbQuests: /(^|\/)ftbquests\//i,
 }
 
@@ -66,7 +76,11 @@ export function classifyLayout(names) {
   const sepDirZh = list.filter((n) => LAYOUT_PATTERNS.sepDirZh.test(n)).length
   const sepFileEn = list.filter((n) => LAYOUT_PATTERNS.sepFileEn.test(n)).length
   const sepFileZh = list.filter((n) => LAYOUT_PATTERNS.sepFileZh.test(n)).length
-  const embedded = list.filter((n) => LAYOUT_PATTERNS.embedded.test(n)).length
+  // 内嵌布局的新旧两代判据并集：新版 `chapters/*.snbt` + 旧版
+  // `ftbquests/<mode>/chapters/<hex>/<hex>.snbt`。index.snbt 两个模式都不匹配。
+  const embedded = list.filter(
+    (n) => LAYOUT_PATTERNS.embedded.test(n) || LAYOUT_PATTERNS.embeddedLegacy.test(n),
+  ).length
   const hasQuests = list.some((n) => LAYOUT_PATTERNS.ftbQuests.test(n))
 
   let layout = LAYOUT.NONE

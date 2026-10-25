@@ -73,7 +73,15 @@ export function sourceFileNames(names, layout) {
   const list = Array.isArray(names) ? names : []
   if (layout === LAYOUT.SEPARATE_DIR) return list.filter((n) => LAYOUT_PATTERNS.sepDirEn.test(n))
   if (layout === LAYOUT.SEPARATE_SINGLE) return list.filter((n) => LAYOUT_PATTERNS.sepFileEn.test(n))
-  if (layout === LAYOUT.EMBEDDED) return dedupeConfigTree(list.filter((n) => LAYOUT_PATTERNS.embedded.test(n)))
+  if (layout === LAYOUT.EMBEDDED) {
+    // 新旧两代内嵌判据并集：旧布局（1.12.2）的任务文件在
+    // `ftbquests/<mode>/chapters/<hex>/<hex>.snbt`，比新版深一层。
+    // challenge/classic 双模式副本这里**不去重**：两份文件都可能含对方没有的文本，
+    // 去重靠翻译层的文本级合并（translate-parallel），两边各拿一份译文。
+    return dedupeConfigTree(
+      list.filter((n) => LAYOUT_PATTERNS.embedded.test(n) || LAYOUT_PATTERNS.embeddedLegacy.test(n)),
+    )
+  }
   return []
 }
 
